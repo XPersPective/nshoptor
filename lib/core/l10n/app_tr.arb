@@ -1,5 +1,44 @@
 {
   "@@locale": "tr",
   "appTitle": "NShoptor",
-  "slogan": "Evdeki hesap çarşıya uyar."
+  "slogan": "Evdeki hesap çarşıya uyar.",
+  "listsTitle": "Listeler",
+  "listsTabActive": "Aktif",
+  "listsTabCompleted": "Tamamlanan",
+  "listsTabArchived": "Arşiv",
+  "newListButton": "Yeni liste",
+  "listTitleHint": "Başlık (isteğe bağlı)",
+  "saveButton": "Kaydet",
+  "cancelButton": "Vazgeç",
+  "deleteButton": "Sil",
+  "editAction": "Düzenle",
+  "listDeleted": "Liste silindi",
+  "invalidAmountError": "Geçersiz tutar",
+  "duplicateAction": "Çoğalt",
+  "archiveAction": "Arşivle",
+  "unarchiveAction": "Arşivden çıkar",
+  "deleteListConfirm": "Bu liste silinsin mi? Planlanan ürünler de kaldırılacak.",
+  "undoButton": "Geri al",
+  "searchListHint": "Listelerde ara",
+  "currencyLabel": "Para birimi",
+  "budgetLabel": "Bütçe (isteğe bağlı)",
+  "noteLabel": "Not (isteğe bağlı)",
+  "storeLabel": "Mağaza",
+  "keepAmountsAction": "Rakamları koru",
+  "resetAmountsAction": "Rakamları sıfırla",
+  "currencyChangeWarning": "Para birimi değişiyor. Mevcut tutarlar ne yapılsın?",
+  "listsEmpty": "Henüz liste yok. İlk alışveriş planını oluştur.",
+  "statusDraft": "Taslak",
+  "statusPlanned": "Planlandı",
+  "statusShopping": "Alışverişte",
+  "statusCompleted": "Tamamlandı",
+  "statusArchived": "Arşivlendi",
+  "autoListTitle": "{date} alışverişi",
+  "@autoListTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  }
 }

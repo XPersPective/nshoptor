@@ -1,5 +1,44 @@
 {
   "@@locale": "en",
   "appTitle": "NShoptor",
-  "slogan": "Plan at home. Shop as planned."
+  "slogan": "Plan at home. Shop as planned.",
+  "listsTitle": "Lists",
+  "listsTabActive": "Active",
+  "listsTabCompleted": "Completed",
+  "listsTabArchived": "Archived",
+  "newListButton": "New list",
+  "listTitleHint": "Title (optional)",
+  "saveButton": "Save",
+  "cancelButton": "Cancel",
+  "deleteButton": "Delete",
+  "editAction": "Edit",
+  "listDeleted": "List deleted",
+  "invalidAmountError": "Invalid amount",
+  "duplicateAction": "Duplicate",
+  "archiveAction": "Archive",
+  "unarchiveAction": "Unarchive",
+  "deleteListConfirm": "Delete this list? Its planned items will also be removed.",
+  "undoButton": "Undo",
+  "searchListHint": "Search lists",
+  "currencyLabel": "Currency",
+  "budgetLabel": "Budget (optional)",
+  "noteLabel": "Note (optional)",
+  "storeLabel": "Store",
+  "keepAmountsAction": "Keep amounts",
+  "resetAmountsAction": "Reset amounts",
+  "currencyChangeWarning": "The currency is changing. What should happen to the existing amounts?",
+  "listsEmpty": "No lists yet. Create your first shopping plan.",
+  "statusDraft": "Draft",
+  "statusPlanned": "Planned",
+  "statusShopping": "Shopping",
+  "statusCompleted": "Completed",
+  "statusArchived": "Archived",
+  "autoListTitle": "{date} shopping",
+  "@autoListTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  }
 }

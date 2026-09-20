@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T8 tamam (bootstrap, CI, çekirdekler, l10n, tema, drift veri katmanı). Sıradaki iş: T9 (liste CRUD ve durum makinesi).
-> **Phase:** BUILD · **Next:** T9 · **Updated:** 2026-09-20 · **Synced@:** f638563
+> **Status:** T1-T9 tamam (çekirdekler + veri katmanı + liste CRUD/ekranı). Sıradaki iş: T10 (ürün planlama formu).
+> **Phase:** BUILD · **Next:** T10 · **Updated:** 2026-09-20 · **Synced@:** 09432fe
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -178,6 +178,7 @@ nshoptor/
     core/quantity/**                # UnitCode, UnitConversion, PackagingContent (T4)
     core/theme/**                   # AppTheme (M3) + SemanticDelta (T7)
     data/db/**                      # drift şeması v1 + AppDatabase + üretilmiş kod (T8)
+    features/lists/**               # ListStatus, ListRepository, ListsScreen + editör (T9)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
     app_test.dart                   # slogan widget testleri (T6)
@@ -211,7 +212,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T9-T13
+GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T10-T13
 GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
@@ -302,11 +303,11 @@ nshoptor/
   - → drift 2.35 seçildi (DECISION aşağıda); 14 tablo, FK cascade/set-null, PRAGMA foreign_keys, migration v0→v1; 10 test (paket 90). Not: kod f6385638'de, beyin güncellemesi ayrı commit'e düştü
   - Needs: T3, T4
 
-- [ ] T9 [M] Liste CRUD ve durum makinesi (spec §6.1)
-  - Where: `lib/features/lists/` (model, repository, controller, screens), `test/features/lists/`
-  - Do: 1) Durumlar: taslak, planlandı, alışverişte, tamamlandı, arşivlendi + geçiş kuralları. 2) Oluşturma/düzenleme: isteğe bağlı başlık (boşsa tarih/mağazadan otomatik ad), mağaza seç/ekle, tek ISO4217 para birimi (sistem locale önerisi), isteğe bağlı bütçe, not, renk/ikon. 3) Çoğaltma. 4) Liste ekranı: arama, filtre, sıralama, arşivleme; aktif/tamamlanmış/arşiv sekmeleri. 5) Silme: onay + undo (Snackbar). 6) Liste para birimi değişiminde rakamları koruma/sıfırlama soran onay diyaloğu (spec §7.1).
+- [x] T9 [M] (2026-09-20, GLM-5.3-Flash) Liste CRUD ve durum makinesi (spec §6.1)
   - Done when: `flutter test test/features/lists/` geçer (durum geçişleri, otomatik ad, çoğaltma, undo, para birimi değişim diyaloğu tetikleri); widget testi 2 liste oluşturup kalıcılığı doğrular.
+  - → 17 test geçti (paket 107); ListStatus geçiş kuralları, ListRepository (çift yazma/undo snapshot), ListsScreen (3 sekme + arama + FAB), düzenleme sayfası (para birimi değişim diyaloğu: koru/sıfırla; locale-aware bütçe girdisi); 32 yeni ARB anahtarı
   - Needs: T6, T7, T8
+
 - [ ] T10 [M] Ürün planlama formu (spec §6.2)
   - Where: `lib/features/lists/item_form/`, `test/features/lists/item_form/`
   - Do: 1) Alanlar: ad, marka/varyant, kategori (başlangıç kategorileriyle), reyon, miktar (ondalıklı), birim, fiyat giriş tipi (birim fiyat/satır toplamı), not, zorunlu işareti, maksimum fiyat. 2) Birim fiyat↔satır toplamı çift yönlü hesap; kullanıcının girdiği taraf kaybolmaz. 3) `+1` hızlı adet ve miktar stepper. 4) Doğrulama birime göre yapılandırılabilir; negatif/sıfır/aşırı büyük reddi (yerelleştirilmiş mesajlar). 5) Başlangıç kategorileri: meyve-sebze, süt, et, fırın, içecek, temizlik, kişisel bakım, ev, diğer.
@@ -448,4 +449,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T8 kapatıldı: drift 2.35, spec §8 şeması (14 tablo, FK kuralları, migration v1) + 10 test; paket 90 test. Kod f6385638'de, beyin güncellemesi sonraki commit'te. Push başarılı. Sıradaki iş: **T9** (liste CRUD + durum makinesi).
+T9 kapatıldı: liste CRUD + durum makinesi + sekmeli ekran; para birimi değişim diyaloğu (koru/sıfırla) ve locale-aware bütçe girdisi dahil; 17 test (paket 107). Widget testlerinde drift+FakeAsync deseni çözüldü: dispose→close başlat→pump(1ms)→await close. Push başarılı. Sıradaki iş: **T10** (ürün planlama formu).

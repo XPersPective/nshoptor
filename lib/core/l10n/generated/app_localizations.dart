@@ -109,6 +109,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Plan at home. Shop as planned.'**
   String get slogan;
+
+  /// No description provided for @listsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lists'**
+  String get listsTitle;
+
+  /// No description provided for @listsTabActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get listsTabActive;
+
+  /// No description provided for @listsTabCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get listsTabCompleted;
+
+  /// No description provided for @listsTabArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get listsTabArchived;
+
+  /// No description provided for @newListButton.
+  ///
+  /// In en, this message translates to:
+  /// **'New list'**
+  String get newListButton;
+
+  /// No description provided for @listTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Title (optional)'**
+  String get listTitleHint;
+
+  /// No description provided for @saveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get saveButton;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
+  /// No description provided for @deleteButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteButton;
+
+  /// No description provided for @editAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get editAction;
+
+  /// No description provided for @listDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'List deleted'**
+  String get listDeleted;
+
+  /// No description provided for @invalidAmountError.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid amount'**
+  String get invalidAmountError;
+
+  /// No description provided for @duplicateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get duplicateAction;
+
+  /// No description provided for @archiveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get archiveAction;
+
+  /// No description provided for @unarchiveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Unarchive'**
+  String get unarchiveAction;
+
+  /// No description provided for @deleteListConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this list? Its planned items will also be removed.'**
+  String get deleteListConfirm;
+
+  /// No description provided for @undoButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undoButton;
+
+  /// No description provided for @searchListHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search lists'**
+  String get searchListHint;
+
+  /// No description provided for @currencyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get currencyLabel;
+
+  /// No description provided for @budgetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget (optional)'**
+  String get budgetLabel;
+
+  /// No description provided for @noteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get noteLabel;
+
+  /// No description provided for @storeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Store'**
+  String get storeLabel;
+
+  /// No description provided for @keepAmountsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep amounts'**
+  String get keepAmountsAction;
+
+  /// No description provided for @resetAmountsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset amounts'**
+  String get resetAmountsAction;
+
+  /// No description provided for @currencyChangeWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'The currency is changing. What should happen to the existing amounts?'**
+  String get currencyChangeWarning;
+
+  /// No description provided for @listsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No lists yet. Create your first shopping plan.'**
+  String get listsEmpty;
+
+  /// No description provided for @statusDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get statusDraft;
+
+  /// No description provided for @statusPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get statusPlanned;
+
+  /// No description provided for @statusShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get statusShopping;
+
+  /// No description provided for @statusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get statusCompleted;
+
+  /// No description provided for @statusArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get statusArchived;
+
+  /// No description provided for @autoListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{date} shopping'**
+  String autoListTitle(String date);
 }
 
 class _AppLocalizationsDelegate
