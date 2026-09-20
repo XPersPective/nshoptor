@@ -209,8 +209,13 @@ nshoptor/
     app/src/**                    # manifest, res (ikonlar, backup rules), MainActivity
     app/build.gradle.kts          # key.properties + R8 release (T1)
     app/proguard-rules.pro        # WorkManager/Room keep (T1)
+    build.gradle.kts  settings.gradle.kts  gradle.properties   # kök gradle (T1)
+    gradle/wrapper/**             # gradle wrapper (T1)
     key.properties.example        # imza/admob yer tutucu
-  ios/                            # Flutter iOS kabuğu (T1): Runner, ikonlar, Info.plist
+  ios/                            # Flutter iOS kabuğu (T1)
+    Flutter/**                    # xcconfig + AppFrameworkInfo.plist
+    Runner/**                     # AppDelegate, Info.plist, ikonlar, storyboard
+    Runner.xcodeproj/**  Runner.xcworkspace/**  RunnerTests/**
   lib/
     main.dart                     # napp_core NappApp iskeleti (T1)
     core/money/**                 # Currency, DecimalFixed, Money, MoneyParser, formatMoney (T3)
@@ -227,7 +232,7 @@ nshoptor/
     core/quantity/**              # birim katmanı testleri: 12 test (T4)
     core/calc/**                  # hesap motoru testleri: 21 test (T5)
     core/theme/**                 # tema testleri: 5 test, WCAG kontrast (T7)
-  pubspec.yaml  pubspec.lock  analysis_options.yaml  .metadata  # Flutter proje dosyaları (T1)
+  pubspec.yaml  pubspec.lock  analysis_options.yaml  .metadata  l10n.yaml  # proje yapılandırması
   assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo Crazy Penguin'ten)
   tool/new_app.dart                # kurulum betiği
   tool/brand/generate_icons.py     # ikon üretici
@@ -244,38 +249,38 @@ nshoptor/
 ## 5. TASKS
 
 ### Aşama 0 — Bootstrap
-- [x] T1 (2026-09-20, GLM-5.3-Flash) Flutter projesini oluştur (spec §1-2: mevcut repo yeniden kullanım)
+- [x] T1 [H] (2026-09-20, GLM-5.3-Flash) Flutter projesini oluştur (spec §1-2: mevcut repo yeniden kullanım)
   - Done when: `flutter analyze` 0 issue; `flutter test` geçer; `flutter build apk --debug` başarılı; `grep -r "TODO" lib/` boş. iOS build Windows'ta doğrulanamaz → README'ye not (T31 kapsamında tamamlanır).
   - → new_app.dart ile kuruldu (stdin-prompt çökmesi sonrası kalan adımlar birebir elle uygulandı); analyze 0 issue, test geçti, TODO yok; debug build kullanıcı tarafından iptal edildi — daha sıkı olan release APK (44 MB, R8) derlendi; A2 bağımsız inceleme 8/8 PASS
   - Needs: —
-- [x] T2 (2026-09-20, GLM-5.3-Flash) CI'yi tek uygulamaya uyarla
+- [x] T2 [M] (2026-09-20, GLM-5.3-Flash) CI'yi tek uygulamaya uyarla
   - Done when: `grep -nE "melos|examples/|check_apk" .github/workflows/ci.yml` boş; YAML geçerli (`python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" .github/workflows/ci.yml`; PyYAML yoksa önce `pip install pyyaml`).
   - → Üç iş kaldı: analyze_and_test (pub get/analyze --fatal-infos/test), gitleaks, build_verify (java 17 + release APK + boyut özeti); YAML OK, eski referans yok
   - Done when: `grep -nE "melos|examples/|check_apk" .github/workflows/ci.yml` boş; YAML geçerli (`python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" .github/workflows/ci.yml`; PyYAML yoksa önce `pip install pyyaml`).
   - Needs: T1
 
 ### Aşama 1 — Temel ürün (spec §15 Aşama 1)
-- [x] T3 (2026-09-20, GLM-5.3-Flash) core/money para katmanı (spec §7.1)
+- [x] T3 [H] (2026-09-20, GLM-5.3-Flash) core/money para katmanı (spec §7.1)
   - Done when: `flutter test test/core/money/` geçer ve şunları kapsar: `1,5 kg × 42,90 = 64,35`; `3 × 19,99 = 59,97`; JPY/TRY/KWD basamak gösterimi; tr `1,5` ve en `1.5` parse; binlik ayraç belirsizliği; negatif/sıfır/aşırı büyük reddi; farklı para birimi karşılaştırma reddi.
   - → 40 test geçti; Currency (75+ kod tablosu, displaySymbol), DecimalFixed (BigInt unscaled+scale, yarıdan uzağa), Money (minor units, mismatch ArgumentError), MoneyParser (rol bazlı ayraç kuralı + geçerli gruplama), formatMoney (double'sız, intl sembolleri); analyze 0 issue
   - Needs: T1
-- [x] T4 (2026-09-20, GLM-5.3-Flash) core/quantity birim katmanı (spec §7.2)
+- [x] T4 [H] (2026-09-20, GLM-5.3-Flash) core/quantity birim katmanı (spec §7.2)
   - Done when: `flutter test test/core/quantity/` geçer ve §13'ün birim testlerini kapsar (500g↔0,5kg, L↔ml, paket↔kg reddi).
   - → 12 test geçti; UnitCode (13 birim, dbCode+boyut ailesi), UnitConversion (kg↔g, L↔ml, adet↔düzine yalnız allowCount ile, UnsupportedConversionError), tryConvertToBase (karşılaştırılamayan → null), PackagingContent (kullanıcı tanımlı içerik)
   - Needs: T1
-- [x] T5 (2026-09-20, GLM-5.3-Flash) core/calc varyans motoru (spec §7.3)
+- [x] T5 [H] (2026-09-20, GLM-5.3-Flash) core/calc varyans motoru (spec §7.3)
   - Done when: `flutter test test/core/calc/` geçer; §13 birim test listesinin hesap kalemlerinin tamamı kapsanır (indirimli toplam, plan sıfırken yüzde null, fiyat/miktar etkisi ayrımı, plansız/alınmayan toplamları, yuvarlama sınırları, projeksiyon).
   - → 21 test geçti (paket toplamı 74); LineCalc + EffectSplit, ListCalc (projeksiyon/bütçe/doğruluk), VarianceThreshold (%10 VEYA 200 minor), ReconciliationTolerance (±2 minor); DecimalFixed dahili ölçek üst sınırı 12'ye çıkarıldı (ara hesaplar için)
   - Needs: T3, T4
-- [x] T6 (2026-09-20, GLM-5.3-Flash) l10n iskeleti (spec §3)
+- [x] T6 [M] (2026-09-20, GLM-5.3-Flash) l10n iskeleti (spec §3)
   - Done when: `flutter gen-l10n` temiz; widget testi seçili dile göre sloganı değiştirdiğini doğrular (tr/en iki durum).
   - → l10n.yaml (nullable-getter: false) + app_en/app_tr ARB (slogan); LanguageController (system/tr/en, SettingsStore kalıcılığı); NShoptorApp kök bileşeni main.dart'a bağlandı; 2 slogan widget testi (paket 75)
   - Needs: T1
-- [x] T7 (2026-09-20, GLM-5.3-Flash) Material 3 marka teması (spec §10)
+- [x] T7 [M] (2026-09-20, GLM-5.3-Flash) Material 3 marka teması (spec §10)
   - Done when: `flutter analyze` temiz; tema testi açık+koyu için gövde metni kontrastını ≥4.5 hesaplayan birim test geçer (renk luminance hesabıyla).
   - → 5 test geçti (paket 80); AppTheme (fromSeed 0xFF0B8457, 48dp butonlar, esnek tipografi), SemanticDelta (renk+ikon+marker, WCAG AA hesaplanmış palet); NShoptorApp kendi temasına bağlandı
   - Needs: T1
-- [x] T8 (2026-09-20, GLM-5.3-Flash) SQLite veri katmanı (spec §8)
+- [x] T8 [H] (2026-09-20, GLM-5.3-Flash) SQLite veri katmanı (spec §8)
   - Done when: `flutter test test/data/` geçer: tablo oluşturma, migration v0→v1, transaction rollback senaryosu, FK cascade testi, decimal string round-trip.
   - → drift 2.35 seçildi (DECISION aşağıda); 14 tablo, FK cascade/set-null, PRAGMA foreign_keys, migration v0→v1; 10 test (paket 90). Not: kod f6385638'de, beyin güncellemesi ayrı commit'e düştü
   - Needs: T3, T4
