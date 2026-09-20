@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T2 tamam (proje bootstrap + CI tek-app). Sıradaki iş: T3 (core/money para katmanı).
-> **Phase:** BUILD · **Next:** T3 · **Updated:** 2026-09-20 · **Synced@:** acb7a92
+> **Status:** T1-T3 tamam (bootstrap, CI, para katmanı: 40 test). Sıradaki iş: T4 (core/quantity birim katmanı).
+> **Phase:** BUILD · **Next:** T4 · **Updated:** 2026-09-20 · **Synced@:** ba828b9
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -194,7 +194,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: money/quantity/calc çekirdekleri yok → T3,T4,T5
+GAP: money/quantity/calc çekirdekleri yok → T4,T5
 GAP: l10n/tema yok → T6,T7
 GAP: SQLite veri katmanı yok → T8
 GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T9-T13
@@ -216,8 +216,10 @@ nshoptor/
   ios/                            # Flutter iOS kabuğu (T1): Runner, ikonlar, Info.plist
   lib/
     main.dart                     # napp_core NappApp iskeleti (T1)
+    core/money/**                 # Currency, DecimalFixed, Money, MoneyParser, formatMoney (T3)
   test/
     app_test.dart                 # kurulum smoke testi (T1)
+    core/money/**                 # para katmanı testleri: 40 test (T3)
   pubspec.yaml  pubspec.lock  analysis_options.yaml  .metadata  # Flutter proje dosyaları (T1)
   assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo Crazy Penguin'ten)
   tool/new_app.dart                # kurulum betiği
@@ -246,10 +248,9 @@ nshoptor/
   - Needs: T1
 
 ### Aşama 1 — Temel ürün (spec §15 Aşama 1)
-- [ ] T3 [H] core/money para katmanı (spec §7.1)
-  - Where: `lib/core/money/` (currency.dart, money.dart, decimal_fixed.dart, money_parser.dart, money_format.dart), `test/core/money/`
-  - Do: 1) `Currency`: ISO4217 kod + minorUnitDigits (JPY 0, TRY 2, KWD 3; tablo içine gömülü, kapsamlı liste). 2) `Money`: işaretli int minor units; toplama/çıkarma; farklı para birimi aritmetiği `ArgumentError`. 3) `DecimalFixed`: string tabanlı sabit ölçekli decimal (çarpma/bölme/toplama/çıkarma, karşılaştırma); `toMinorUnits(digits)`. 4) `MoneyParser.parseDecimal("1,5"|"1.5"|"1.234,5"|"1,234.5", locale)` — binlik/ondalık ayraç belirsizliğini güvenli kurala bağla (belirsizse en muhafazakâr yorum + dokümante). 5) Tek yuvarlama kuralı: half-up, yalnız Money'a dönüşümde; dokümante et. 6) Format: intl `NumberFormat.currency` ile locale-aware, belirsiz `$` sembolünde ISO kodu göster. 7) `double` üretim kodunda kullanma.
+- [x] T3 (2026-09-20, GLM-5.3-Flash) core/money para katmanı (spec §7.1)
   - Done when: `flutter test test/core/money/` geçer ve şunları kapsar: `1,5 kg × 42,90 = 64,35`; `3 × 19,99 = 59,97`; JPY/TRY/KWD basamak gösterimi; tr `1,5` ve en `1.5` parse; binlik ayraç belirsizliği; negatif/sıfır/aşırı büyük reddi; farklı para birimi karşılaştırma reddi.
+  - → 40 test geçti; Currency (75+ kod tablosu, displaySymbol), DecimalFixed (BigInt unscaled+scale, yarıdan uzağa), Money (minor units, mismatch ArgumentError), MoneyParser (rol bazlı ayraç kuralı + geçerli gruplama), formatMoney (double'sız, intl sembolleri); analyze 0 issue
   - Needs: T1
 - [ ] T4 [H] core/quantity birim katmanı (spec §7.2)
   - Where: `lib/core/quantity/` (unit_code.dart, unit_conversion.dart, packaging.dart), `test/core/quantity/`
@@ -420,4 +421,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T2 kapatıldı: ci.yml tek-app CI'ye uyarlandı (analyze+test, gitleaks, release APK + boyut özeti), YAML doğrulandı. Push başarılı. Sıradaki iş: **T3** (core/money — ISO4217 para katmanı, testleriyle).
+T3 kapatıldı: core/money para katmanı (Currency/DecimalFixed/Money/MoneyParser/formatMoney) + 40 test; analyze 0 issue, tam paket 41 test geçti. intl bağımlılığı eklendi (^0.20.2). Push başarılı. Sıradaki iş: **T4** (core/quantity — birim kodları, kg↔g/L↔ml dönüşüm, ambalaj içeriği).
