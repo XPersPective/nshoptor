@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:napp_core/napp_core.dart';
 
 import '../core/l10n/generated/app_localizations.dart';
+import '../core/theme/app_theme.dart';
 import 'language_controller.dart';
 
 /// Uygulamanın kök bileşeni: l10n, tema ve dil tercihini birleştirir.
@@ -29,19 +29,11 @@ class NShoptorApp extends StatelessWidget {
     return AnimatedBuilder(
       animation: languageController,
       builder: (context, _) {
-        final identity = AppIdentity(
-          appName: 'NShoptor',
-          packageName: 'com.example.nshoptor',
-          sourceUrl: 'https://github.com/XPersPective/nshoptor',
-          privacyPolicyUrl: 'https://example.com/privacy',
-          contactEmail: 'hello@example.com',
-          sloganKey: 'slogan',
-        );
         return MaterialApp(
           title: 'NShoptor',
           locale: fixedLocale ?? languageController.locale,
-          theme: AppTheme.light(brandColor: identity.brandColor),
-          darkTheme: AppTheme.dark(brandColor: identity.brandColor),
+          theme: AppTheme.light(),
+          darkTheme: AppTheme.dark(),
           themeMode: themeMode,
           localizationsDelegates: const [
             AppLocalizations.delegate,

@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T6 tamam (bootstrap, CI, çekirdek katmanlar + l10n iskeleti). Sıradaki iş: T7 (Material 3 tema).
-> **Phase:** BUILD · **Next:** T7 · **Updated:** 2026-09-20 · **Synced@:** 16eb241
+> **Status:** T1-T7 tamam (bootstrap, CI, çekirdekler + l10n + tema). Sıradaki iş: T8 (SQLite veri katmanı).
+> **Phase:** BUILD · **Next:** T8 · **Updated:** 2026-09-20 · **Synced@:** 7330ec5
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -194,7 +194,6 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: tema yok → T7
 GAP: SQLite veri katmanı yok → T8
 GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T9-T13
 GAP: entegrasyon testi yok → T14
@@ -219,12 +218,14 @@ nshoptor/
     core/quantity/**              # UnitCode, UnitConversion, PackagingContent (T4)
     core/calc/**                  # LineCalc, EffectSplit, ListCalc, VarianceThreshold (T5)
     core/l10n/**                  # ARB dosyaları + generated AppLocalizations (T6)
+    core/theme/**                 # AppTheme (M3, açık/koyu) + SemanticDelta (T7)
   app/**                          # NShoptorApp kökü + LanguageController (T6)
   test/
     app_test.dart                 # kurulum smoke testi (T1)
     core/money/**                 # para katmanı testleri: 40 test (T3)
     core/quantity/**              # birim katmanı testleri: 12 test (T4)
     core/calc/**                  # hesap motoru testleri: 21 test (T5)
+    core/theme/**                 # tema testleri: 5 test, WCAG kontrast (T7)
   pubspec.yaml  pubspec.lock  analysis_options.yaml  .metadata  # Flutter proje dosyaları (T1)
   assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo Crazy Penguin'ten)
   tool/new_app.dart                # kurulum betiği
@@ -269,10 +270,9 @@ nshoptor/
   - Done when: `flutter gen-l10n` temiz; widget testi seçili dile göre sloganı değiştirdiğini doğrular (tr/en iki durum).
   - → l10n.yaml (nullable-getter: false) + app_en/app_tr ARB (slogan); LanguageController (system/tr/en, SettingsStore kalıcılığı); NShoptorApp kök bileşeni main.dart'a bağlandı; 2 slogan widget testi (paket 75)
   - Needs: T1
-- [ ] T7 [M] Material 3 marka teması (spec §10)
-  - Where: `lib/core/theme/` (app_theme.dart, semantic_colors.dart), `lib/app/`
-  - Do: 1) ColorScheme: yeşil/turkuaz primary; açık/koyu/sistem. 2) Anlamsal renkler: planAltında=yeşil, planÜstünde=kırmızı/turuncu, planaYakın=nötr/mavi — her biri ikon/metin ekiyle birlikte kullanılacak API (`SemanticDelta` gibi: renk+ikon+yön etiketi). 3) Dinamik yazıboyutuna dayanıklı tipografi. 4) Kontrast hedefi AA (koyu/açık iki temada en az 4.5:1 gövde metni).
+- [x] T7 (2026-09-20, GLM-5.3-Flash) Material 3 marka teması (spec §10)
   - Done when: `flutter analyze` temiz; tema testi açık+koyu için gövde metni kontrastını ≥4.5 hesaplayan birim test geçer (renk luminance hesabıyla).
+  - → 5 test geçti (paket 80); AppTheme (fromSeed 0xFF0B8457, 48dp butonlar, esnek tipografi), SemanticDelta (renk+ikon+marker, WCAG AA hesaplanmış palet); NShoptorApp kendi temasına bağlandı
   - Needs: T1
 - [ ] T8 [H] SQLite veri katmanı (spec §8)
   - Where: `lib/data/` (db/, daos/, entities/), `test/data/`
@@ -423,4 +423,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T6 kapatıldı: l10n iskeleti (ARB tr/en, slogan, LanguageController kalıcı tercih) + kök NShoptorApp; tam paket 75 test, analyze temiz. Push başarılı. Sıradaki iş: **T7** (Material 3 marka teması + anlamsal renkler).
+T7 kapatıldı: Material 3 marka teması (AppTheme açık/koyu, SemanticDelta AA paleti) + 5 WCAG kontrast testi; paket 80 test. Push başarılı. Sıradaki iş: **T8** (SQLite veri katmanı — paket kararı drift/sqflite, spec §8 varlıkları, migration).
