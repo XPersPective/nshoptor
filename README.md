@@ -1,19 +1,26 @@
-# napp_app_template
+# NShoptor
 
-CrazyPenguin (XPersPective) icin yeni Flutter uygulaması şablonu.
+**Türkçe:** Evdeki hesap çarşıya uyar.  
+**English:** Plan at home. Shop as planned.
 
-## Yeni uygulama açma
+NShoptor is a multilingual, offline-first shopping planner by Crazy Penguin.
+It compares estimated shopping costs with actual quantities and prices.
 
-1. Bu şablonu klonla: git clone https://github.com/XPersPective/napp_app_template.git yeni-uygulama && cd yeni-uygulama
-2. Kurulum betiğini çalıştır:
+## Durum
 
-   dart run tool/new_app.dart      --name "Uygulama Adı" --package com.crazypenguin.uygulama      --ads yes --pro yes --data local      --source-icon assets/brand/example_source_icon.png
+Proje geliştirme aşamasındadır. Çalışma planı, mimari, görevler ve kararlar
+tek dosyada tutulur: [PROJECT_BRAIN.md](PROJECT_BRAIN.md) (project-brain
+protokolü — önce onu okuyun, §0 PROTOCOL bağlayıcıdır).
 
-3. Betik: flutter create (güncel android/ios), platform ayarları (AdMob,
-   R8 keep, yalnızca HTTPS, yedekleme kuralları, imza), pubspec'e seçilen
-   napp paketleri (git etiketine sabitli), PROJECT_BRAIN.md bölüm 0 tablosu,
-   ikon üretimi ve analyze/test/release-build doğrulaması yapar.
+## Kimlik
 
-Kural kaynağı: ORTAK_UYGULAMA_STANDARDI.md. Çalışma protokolü: AGENTS.md
-→ PROJECT_BRAIN.md. Lisans: GPL-3.0. Uygulama adı ve logosu markadır;
+- Uygulama adı: **NShoptor** (büyük N, büyük S)
+- Yayıncı: **Crazy Penguin**
+- Android application ID / iOS bundle ID: şu an `com.example.nshoptor`
+  yer tutucusudur. Gerçek mağaza kimlikleri Crazy Penguin tarafından
+  sağlanınca değiştirilecektir (bkz. release kontrol listesi).
+
+## Lisans
+
+GNU GPL-3.0 — bkz. [LICENSE](LICENSE). Uygulama adı ve logosu markadır;
 lisansa dahil değildir.
