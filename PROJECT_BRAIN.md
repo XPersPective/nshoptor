@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1 bootstrap tamam (Flutter projesi kuruldu, release APK derlendi). Sıradaki iş: T2 (CI tek-app uyarlama).
-> **Phase:** BUILD · **Next:** T2 · **Updated:** 2026-09-20 · **Synced@:** fe19dcf
+> **Status:** T1-T2 tamam (proje bootstrap + CI tek-app). Sıradaki iş: T3 (core/money para katmanı).
+> **Phase:** BUILD · **Next:** T3 · **Updated:** 2026-09-20 · **Synced@:** acb7a92
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -188,13 +188,12 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `android/` — usesCleartextTraffic=false, data_extraction_rules/backup_rules, R8 minify+shrink release, proguard-rules.pro, kotlin.incremental=false, label=NShoptor, üretilmiş uyarlanabilir ikonlar
 - `ios/` — CFBundleDisplayName=NShoptor, üretilmiş ikonlar
 - `tool/new_app.dart` — kurulum betiği (2 lint düzeltmesi alındı); yeniden kullanılabilir
-- `.github/workflows/ci.yml` — bu depoya **kırık**: melos, `examples/core_only|full`, `tool/check_apk.sh` referansları depoda yok (satır 17-65, 73-99)
+- `.github/workflows/ci.yml` — tek-app CI (T2): analyze+test, gitleaks, release APK derleme
 - Doğrulanmış: `flutter analyze` 0 issue; `flutter test` geçer; `flutter build apk --release` 44 MB başarılı (R8 tree-shaking log kanıtı)
 - `README.md` — NShoptor kimliği (kullanıcı), app id placeholder'ı belgeli
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: CI tek-app deposuna uyumsuz → T2
 GAP: money/quantity/calc çekirdekleri yok → T3,T4,T5
 GAP: l10n/tema yok → T6,T7
 GAP: SQLite veri katmanı yok → T8
@@ -240,9 +239,9 @@ nshoptor/
   - Done when: `flutter analyze` 0 issue; `flutter test` geçer; `flutter build apk --debug` başarılı; `grep -r "TODO" lib/` boş. iOS build Windows'ta doğrulanamaz → README'ye not (T31 kapsamında tamamlanır).
   - → new_app.dart ile kuruldu (stdin-prompt çökmesi sonrası kalan adımlar birebir elle uygulandı); analyze 0 issue, test geçti, TODO yok; debug build kullanıcı tarafından iptal edildi — daha sıkı olan release APK (44 MB, R8) derlendi; A2 bağımsız inceleme 8/8 PASS
   - Needs: —
-- [ ] T2 [M] CI'yi tek uygulamaya uyarla
-  - Where: `.github/workflows/ci.yml`
-  - Do: 1) melos ve examples/core_only, examples/full, tool/check_apk.sh adımlarını kaldır. 2) İşleri bırak: analyze (`--fatal-infos`) + test + `flutter build apk --release` (java 17) + gitleaks. 3) Tüm repoda var olan yollara referans kontrol et.
+- [x] T2 (2026-09-20, GLM-5.3-Flash) CI'yi tek uygulamaya uyarla
+  - Done when: `grep -nE "melos|examples/|check_apk" .github/workflows/ci.yml` boş; YAML geçerli (`python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" .github/workflows/ci.yml`; PyYAML yoksa önce `pip install pyyaml`).
+  - → Üç iş kaldı: analyze_and_test (pub get/analyze --fatal-infos/test), gitleaks, build_verify (java 17 + release APK + boyut özeti); YAML OK, eski referans yok
   - Done when: `grep -nE "melos|examples/|check_apk" .github/workflows/ci.yml` boş; YAML geçerli (`python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" .github/workflows/ci.yml`; PyYAML yoksa önce `pip install pyyaml`).
   - Needs: T1
 
@@ -421,4 +420,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T1 kapatıldı: Flutter projesi kuruldu (napp_core, ikonlar, Android sertleştirme), analyze/test/release-build geçti, bağımsız inceleme temiz. Push başarılı. Sıradaki iş: **T2** (ci.yml'yi tek-app'e uyarla — melos/examples/check_apk adımlarını kaldır). iOS build doğrulaması macOS gerektirir (T31'de belgelenecek).
+T2 kapatıldı: ci.yml tek-app CI'ye uyarlandı (analyze+test, gitleaks, release APK + boyut özeti), YAML doğrulandı. Push başarılı. Sıradaki iş: **T3** (core/money — ISO4217 para katmanı, testleriyle).
