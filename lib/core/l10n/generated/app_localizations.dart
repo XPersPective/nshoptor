@@ -619,6 +619,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep screen on'**
   String get keepScreenAwake;
+
+  /// No description provided for @finishShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish shopping'**
+  String get finishShopping;
+
+  /// No description provided for @completionWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'There are missing or unverified records. You can still finish; the result will note them.'**
+  String get completionWarning;
+
+  /// No description provided for @continueShoppingButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep shopping'**
+  String get continueShoppingButton;
+
+  /// No description provided for @resultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Result'**
+  String get resultTitle;
+
+  /// No description provided for @summarySection.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get summarySection;
+
+  /// No description provided for @plannedTotalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned total'**
+  String get plannedTotalLabel;
+
+  /// No description provided for @actualTotalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual total'**
+  String get actualTotalLabel;
+
+  /// No description provided for @varianceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difference'**
+  String get varianceLabel;
+
+  /// No description provided for @varianceNotComputable.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot be computed'**
+  String get varianceNotComputable;
+
+  /// No description provided for @budgetStatusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget'**
+  String get budgetStatusLabel;
+
+  /// No description provided for @savingsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Under plan'**
+  String get savingsLabel;
+
+  /// No description provided for @overspendLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Over plan'**
+  String get overspendLabel;
+
+  /// No description provided for @unplannedTotalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unplanned total'**
+  String get unplannedTotalLabel;
+
+  /// No description provided for @unpurchasedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned but not bought'**
+  String get unpurchasedLabel;
+
+  /// No description provided for @totalDiscountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Total discounts'**
+  String get totalDiscountLabel;
+
+  /// No description provided for @accuracyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimate accuracy'**
+  String get accuracyLabel;
+
+  /// No description provided for @groupsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get groupsSection;
+
+  /// No description provided for @groupPricier.
+  ///
+  /// In en, this message translates to:
+  /// **'Pricier than planned'**
+  String get groupPricier;
+
+  /// No description provided for @groupCheaper.
+  ///
+  /// In en, this message translates to:
+  /// **'Cheaper than planned'**
+  String get groupCheaper;
+
+  /// No description provided for @groupClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close to estimate'**
+  String get groupClose;
+
+  /// No description provided for @groupNotTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned, not bought'**
+  String get groupNotTaken;
+
+  /// No description provided for @groupUnplanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought without plan'**
+  String get groupUnplanned;
+
+  /// No description provided for @groupQuantityChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity changed'**
+  String get groupQuantityChanged;
+
+  /// No description provided for @groupUnverified.
+  ///
+  /// In en, this message translates to:
+  /// **'Not verified'**
+  String get groupUnverified;
+
+  /// No description provided for @plannedQtyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned quantity'**
+  String get plannedQtyLabel;
+
+  /// No description provided for @actualQtyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual quantity'**
+  String get actualQtyLabel;
+
+  /// No description provided for @plannedUnitPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned unit price'**
+  String get plannedUnitPriceLabel;
+
+  /// No description provided for @actualUnitPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual unit price'**
+  String get actualUnitPriceLabel;
+
+  /// No description provided for @lineVarianceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Line difference'**
+  String get lineVarianceLabel;
+
+  /// No description provided for @discountEffectLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount effect'**
+  String get discountEffectLabel;
+
+  /// No description provided for @notBoughtMark.
+  ///
+  /// In en, this message translates to:
+  /// **'not bought'**
+  String get notBoughtMark;
+
+  /// No description provided for @noPurchasesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'No purchases were recorded.'**
+  String get noPurchasesNote;
 }
 
 class _AppLocalizationsDelegate

@@ -279,4 +279,101 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get keepScreenAwake => 'Keep screen on';
+
+  @override
+  String get finishShopping => 'Finish shopping';
+
+  @override
+  String get completionWarning =>
+      'There are missing or unverified records. You can still finish; the result will note them.';
+
+  @override
+  String get continueShoppingButton => 'Keep shopping';
+
+  @override
+  String get resultTitle => 'Result';
+
+  @override
+  String get summarySection => 'Summary';
+
+  @override
+  String get plannedTotalLabel => 'Planned total';
+
+  @override
+  String get actualTotalLabel => 'Actual total';
+
+  @override
+  String get varianceLabel => 'Difference';
+
+  @override
+  String get varianceNotComputable => 'Cannot be computed';
+
+  @override
+  String get budgetStatusLabel => 'Budget';
+
+  @override
+  String get savingsLabel => 'Under plan';
+
+  @override
+  String get overspendLabel => 'Over plan';
+
+  @override
+  String get unplannedTotalLabel => 'Unplanned total';
+
+  @override
+  String get unpurchasedLabel => 'Planned but not bought';
+
+  @override
+  String get totalDiscountLabel => 'Total discounts';
+
+  @override
+  String get accuracyLabel => 'Estimate accuracy';
+
+  @override
+  String get groupsSection => 'Items';
+
+  @override
+  String get groupPricier => 'Pricier than planned';
+
+  @override
+  String get groupCheaper => 'Cheaper than planned';
+
+  @override
+  String get groupClose => 'Close to estimate';
+
+  @override
+  String get groupNotTaken => 'Planned, not bought';
+
+  @override
+  String get groupUnplanned => 'Bought without plan';
+
+  @override
+  String get groupQuantityChanged => 'Quantity changed';
+
+  @override
+  String get groupUnverified => 'Not verified';
+
+  @override
+  String get plannedQtyLabel => 'Planned quantity';
+
+  @override
+  String get actualQtyLabel => 'Actual quantity';
+
+  @override
+  String get plannedUnitPriceLabel => 'Planned unit price';
+
+  @override
+  String get actualUnitPriceLabel => 'Actual unit price';
+
+  @override
+  String get lineVarianceLabel => 'Line difference';
+
+  @override
+  String get discountEffectLabel => 'Discount effect';
+
+  @override
+  String get notBoughtMark => 'not bought';
+
+  @override
+  String get noPurchasesNote => 'No purchases were recorded.';
 }

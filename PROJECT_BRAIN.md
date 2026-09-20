@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T11 tamam (çekirdek + veri + liste/ürün/alışveriş UI). Sıradaki iş: T12 (sonuç ve karşılaştırma ekranı).
-> **Phase:** BUILD · **Next:** T12 · **Updated:** 2026-09-20 · **Synced@:** 82bda04
+> **Status:** T1-T12 tamam (çekirdek + veri + liste/ürün/alışveriş/sonuç UI). Sıradaki iş: T13 (ana ekran).
+> **Phase:** BUILD · **Next:** T13 · **Updated:** 2026-09-20 · **Synced@:** 6db99bc
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -180,6 +180,7 @@ nshoptor/
     data/db/**                      # drift şeması v1 + AppDatabase + üretilmiş kod (T8)
     features/lists/**               # ListStatus, ListRepository, ListsScreen, ItemFormSheet (T9-T10)
     features/shopping_mode/**       # ItemStatus, ShoppingRepository, ShoppingModeScreen (T11)
+    features/shopping_mode/summary/**  # ResultRepository + SummaryScreen (T12)
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
@@ -214,7 +215,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: sonuç/ana ekran UI yok → T12,T13
+GAP: ana ekran UI yok → T13
 GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
@@ -419,6 +420,7 @@ nshoptor/
     data/db/**                      # drift şeması v1 + AppDatabase + üretilmiş kod (T8)
     features/lists/**               # ListStatus, ListRepository, ListsScreen, ItemFormSheet (T9-T10)
     features/shopping_mode/**       # ItemStatus, ShoppingRepository, ShoppingModeScreen (T11)
+    features/shopping_mode/summary/**  # ResultRepository + SummaryScreen (T12)
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
@@ -453,7 +455,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: sonuç/ana ekran UI yok → T12,T13
+GAP: ana ekran UI yok → T13
 GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
@@ -559,11 +561,11 @@ nshoptor/
   - Do: 1) Ürün durumları: alınmadı, sepette, bulunamadı, vazgeçildi, alternatif alındı. 2) Satın alım kaydı: gerçek miktar/birim, birim fiyat veya satır toplamı, indirim, kontrollü iade (eksi) girişi, alternatif ad, not; veri kaynağı alanı (manuel; ses/OCR sonraki aşamalarda değerlerle bağlanır) + userConfirmed. 3) Üst özet şeridi: planlanan toplam, sepet gerçek, kalan plan tahmini, tahmini kasa, bütçe kalan/aşım, tamamlanan/kalan sayı — her giriş sonrası anında güncelle. 4) Filtreler: tümü, alınacaklar, sepette, bulunamayanlar, zorunlular, kategori. 5) Plansız ürün ekleme (gerçek toplama dahil, sonuçta ayrı gösterilir). 6) Alınmayanlar gerçeğe 0 zorlanmaz. 7) `ekranı açık tut` opsiyonu (wakelock paketi — bakım kontrolü) + ayarlardan varsayılan. 8) Oturum dayanıklılığı: arka plan/uygulama kapanıp dönünce oturum ve girilen veriler korunur.
   - Done when: `flutter test test/features/shopping_mode/` geçer: projeksiyon hesabı bir girişten sonra beklenen değer, plansız ekleme toplama dahil, durum değişimleri; widget testi yeniden mount'ta (pump+restart pattern) oturum korunur.
   - Needs: T10
-- [ ] T12 [H] Sonuç ve karşılaştırma ekranı (spec §6.11)
-  - Where: `lib/features/shopping_mode/summary/`, `test/features/shopping_mode/summary/`
-  - Do: 1) Tamamlama öncesi kontrol ekranı: eksik/doğrulanmamış kayıt uyarısı (engellemez, açıklayıcı). 2) Özet: planlanan, gerçek, mutlak+yüzde fark (plan 0 → "Hesaplanamaz"), bütçe durumu, tasarruf/fazla, plansız toplam, alınmayan planlanan toplam, toplam indirim, tahmin doğruluk oranı. 3) Ürün grupları: pahalı/ucuz/yakın/alınmamış/plansız/miktar değişen/eşleşme doğrulanmamış. 4) Ürün detay: plan-gerçek miktar, birim fiyat, satır toplamı, birim fiyat farkı+%, miktar farkı, satır farkı, indirim etkisi, mağaza+tarih. 5) Miktar değişmişse "pahalandı" yargısı yalnız birim fiyat farkına dayanır.
-  - Done when: `flutter test test/features/shopping_mode/summary/` geçer: örnek bir alışveriş senaryosunda tüm özet alanları ve gruplama beklenen değerlerle; birim fiyat aynı+miktar artmış → "pahalı" grubunda değil.
+- [x] T12 [H] (2026-09-20, GLM-5.3-Flash) Sonuç ve karşılaştırma ekranı (spec §6.11)
+  - Done when: `flutter test test/features/shopping_mode/summary/` geçer: örnek senaryoda özet alanları ve gruplama beklenen değerlerle; birim fiyat aynı+miktar artmış → "pahalı" grubunda değil.
+  - → 6 test geçti (paket 132); ResultRepository (gruplar, plansız/alınmayan ayrımı, doğruluk oranı — çekirdek LineCalc/ListCalc/VarianceThreshold yeniden kullanımı), SummaryScreen (özet + ürün grup kartları + SemanticDelta renk/ikon). Kritik kural: "pahalandı" yalnız birim fiyat değişmişse; aksi halde close
   - Needs: T11
+
 - [ ] T13 [M] Ana ekran (spec §6.4)
   - Where: `lib/features/home/`, `test/features/home/`
   - Do: 1) `Yeni liste` ana eylemi. 2) Aktif ve yaklaşan listeler; alışverişte olana hızlı devam. 3) Son tamamlananlar. 4) Bu ay planlanan/gerçekleşen toplam ve fark/tasarruf kartları — yalnız yeterli veri varsa. 5) Arama girişi (listelerde). 6) Anlamlı boş durumlar (demo veri yok). 7) Alt navigasyon: Ana Sayfa, Listeler, Geçmiş, Ayarlar (Geçmiş/Ayarlar placeholder'sız: Geçmiş Aşama 2'ye kadar "henüz içerik yok" boş durumu gösterir — bu boş durum gerçek davranıştır, sahte buton değildir).
@@ -690,4 +692,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T11 kapatıldı: alışveriş modu (5 durum, plansız alım, özet şeridi, filtreler, wakelock, iade girişi); 9 test (paket 126). Push başarılı. Sıradaki iş: **T12** (sonuç ve karşılaştırma — fiyat/miktar etkisi ayrımı görselleştirme).
+T12 kapatıldı: sonuç ekranı + ResultRepository (gruplama; "pahalandı" yalnız birim fiyat farkına dayanır); 6 test (paket 132). Push başarılı. Sıradaki iş: **T13** (ana ekran — spec §6.4, alt navigasyonla).

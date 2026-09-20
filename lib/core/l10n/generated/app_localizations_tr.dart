@@ -279,4 +279,101 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get keepScreenAwake => 'Ekranı açık tut';
+
+  @override
+  String get finishShopping => 'Alışverişi bitir';
+
+  @override
+  String get completionWarning =>
+      'Eksik veya doğrulanmamış kayıtlar var. Yine de bitirebilirsiniz; sonuçta belirtilir.';
+
+  @override
+  String get continueShoppingButton => 'Alışverişe devam et';
+
+  @override
+  String get resultTitle => 'Sonuç';
+
+  @override
+  String get summarySection => 'Özet';
+
+  @override
+  String get plannedTotalLabel => 'Planlanan toplam';
+
+  @override
+  String get actualTotalLabel => 'Gerçek toplam';
+
+  @override
+  String get varianceLabel => 'Fark';
+
+  @override
+  String get varianceNotComputable => 'Hesaplanamaz';
+
+  @override
+  String get budgetStatusLabel => 'Bütçe';
+
+  @override
+  String get savingsLabel => 'Planın altında';
+
+  @override
+  String get overspendLabel => 'Planın üstünde';
+
+  @override
+  String get unplannedTotalLabel => 'Plansız toplam';
+
+  @override
+  String get unpurchasedLabel => 'Planlanıp alınmayan';
+
+  @override
+  String get totalDiscountLabel => 'Toplam indirim';
+
+  @override
+  String get accuracyLabel => 'Tahmin doğruluk oranı';
+
+  @override
+  String get groupsSection => 'Ürünler';
+
+  @override
+  String get groupPricier => 'Planlanandan pahalı';
+
+  @override
+  String get groupCheaper => 'Planlanandan ucuz';
+
+  @override
+  String get groupClose => 'Tahmine yakın';
+
+  @override
+  String get groupNotTaken => 'Planlanıp alınmayan';
+
+  @override
+  String get groupUnplanned => 'Plansız alınan';
+
+  @override
+  String get groupQuantityChanged => 'Miktarı değişen';
+
+  @override
+  String get groupUnverified => 'Doğrulanmamış';
+
+  @override
+  String get plannedQtyLabel => 'Planlanan miktar';
+
+  @override
+  String get actualQtyLabel => 'Gerçek miktar';
+
+  @override
+  String get plannedUnitPriceLabel => 'Planlanan birim fiyat';
+
+  @override
+  String get actualUnitPriceLabel => 'Gerçek birim fiyat';
+
+  @override
+  String get lineVarianceLabel => 'Satır farkı';
+
+  @override
+  String get discountEffectLabel => 'İndirim etkisi';
+
+  @override
+  String get notBoughtMark => 'alınmadı';
+
+  @override
+  String get noPurchasesNote => 'Kayıtlı satın alım yok.';
 }
