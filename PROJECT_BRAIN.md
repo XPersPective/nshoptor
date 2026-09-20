@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T10 tamam (çekirdek + veri + liste/ürün UI). Sıradaki iş: T11 (alışveriş modu).
-> **Phase:** BUILD · **Next:** T11 · **Updated:** 2026-09-20 · **Synced@:** 20e90c8
+> **Status:** T1-T11 tamam (çekirdek + veri + liste/ürün/alışveriş UI). Sıradaki iş: T12 (sonuç ve karşılaştırma ekranı).
+> **Phase:** BUILD · **Next:** T12 · **Updated:** 2026-09-20 · **Synced@:** 82bda04
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -179,6 +179,8 @@ nshoptor/
     core/theme/**                   # AppTheme (M3) + SemanticDelta (T7)
     data/db/**                      # drift şeması v1 + AppDatabase + üretilmiş kod (T8)
     features/lists/**               # ListStatus, ListRepository, ListsScreen, ItemFormSheet (T9-T10)
+    features/shopping_mode/**       # ItemStatus, ShoppingRepository, ShoppingModeScreen (T11)
+    core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
     app_test.dart                   # slogan widget testleri (T6)
@@ -212,7 +214,246 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: alışveriş/sonuç/ana ekran UI yok → T11-T13
+GAP: sonuç/ana ekran UI yok → T12,T13
+GAP: entegrasyon testi yok → T14
+GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
+GAP: ses/foto/OCR/fiş akışları yok → T22-T27
+GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
+
+## 4. FILE MAP
+
+```text
+nshoptor/
+  .github/workflows/ci.yml        # CI — kırık, T2'de tek-app'e uyarlanır
+  android/                        # Flutter Android kabuğu (T1)
+    app/src/**                    # manifest, res (ikonlar, backup rules), MainActivity
+    app/build.gradle.kts          # key.properties + R8 release (T1)
+    app/proguard-rules.pro        # WorkManager/Room keep (T1)
+    build.gradle.kts  settings.gradle.kts  gradle.properties   # kök gradle (T1)
+    gradle/wrapper/**             # gradle wrapper (T1)
+    key.properties.example        # imza/admob yer tutucu
+  ios/                            # Flutter iOS kabuğu (T1)
+    Flutter/**                    # xcconfig + AppFrameworkInfo.plist
+    Runner/**                     # AppDelegate, Info.plist, ikonlar, storyboard
+    Runner.xcodeproj/**  Runner.xcworkspace/**  RunnerTests/**
+  lib/
+    main.dart                     # napp_core NappApp iskeleti (T1)
+    core/money/**                 # Currency, DecimalFixed, Money, MoneyParser, formatMoney (T3)
+    core/quantity/**              # UnitCode, UnitConversion, PackagingContent (T4)
+    core/calc/**                  # LineCalc, EffectSplit, ListCalc, VarianceThreshold (T5)
+    core/l10n/**                  # ARB dosyaları + generated AppLocalizations (T6)
+    core/theme/**                 # AppTheme (M3, açık/koyu) + SemanticDelta (T7)
+  app/**                          # NShoptorApp kökü + LanguageController (T6)
+  data/db/app_database.dart       # drift şeması v1 + AppDatabase (T8; .g.dart üretilmiş)
+  test/
+    app_test.dart                 # kurulum smoke testi (T1)
+    data/app_database_test.dart   # şema/migration/transaction/FK testleri: 10 (T8)
+    core/money/**                 # para katmanı testleri: 40 test (T3)
+    core/quantity/**              # birim katmanı testleri: 12 test (T4)
+    core/calc/**                  # hesap motoru testleri: 21 test (T5)
+    core/theme/**                 # tema testleri: 5 test, WCAG kontrast (T7)
+  pubspec.yaml  pubspec.lock  analysis_options.yaml  .metadata  l10n.yaml  # proje yapılandırması
+  assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo Crazy Penguin'ten)
+  tool/new_app.dart                # kurulum betiği
+  tool/brand/generate_icons.py     # ikon üretici
+  tool/templates/**                # main/app_test şablonları
+  docs/spec/master-prompt-tr.md    # tam ürün spesifikasyonu (hedefin kaynağı, bağlayıcı)
+  .env.example                     # dart-define gizli değer notu
+  AGENTS.md                        # protokol işaretçisi
+  LICENSE                          # GPL-3.0
+  PROJECT_BRAIN.md                 # bu dosya
+  README.md                        # NShoptor kimliği
+```
+(gizli: .gitignore/.gitattributes/.gitleaks.toml/.zcodeignore)
+
+## 5. TASKS
+
+### Aşama 0 — Bootstrap
+- [x] T1 [H] (2026-09-20, GLM-5.3-Flash) Flutter projesini oluştur (spec §1-2: mevcut repo yeniden kullanım)
+  - Done when: `flutter analyze` 0 issue; `flutter test` geçer; `flutter build apk --debug` başarılı; `grep -r "TODO" lib/` boş. iOS build Windows'ta doğrulanamaz → README'ye not (T31 kapsamında tamamlanır).
+  - → new_app.dart ile kuruldu (stdin-prompt çökmesi sonrası kalan adımlar birebir elle uygulandı); analyze 0 issue, test geçti, TODO yok; debug build kullanıcı tarafından iptal edildi — daha sıkı olan release APK (44 MB, R8) derlendi; A2 bağımsız inceleme 8/8 PASS
+  - Needs: —
+- [x] T2 [M] (2026-09-20, GLM-5.3-Flash) CI'yi tek uygulamaya uyarla
+  - Done when: `grep -nE "melos|examples/|check_apk" .github/workflows/ci.yml` boş; YAML geçerli (`python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" .github/workflows/ci.yml`; PyYAML yoksa önce `pip install pyyaml`).
+  - → Üç iş kaldı: analyze_and_test (pub get/analyze --fatal-infos/test), gitleaks, build_verify (java 17 + release APK + boyut özeti); YAML OK, eski referans yok
+  - Done when: `grep -nE "melos|examples/|check_apk" .github/workflows/ci.yml` boş; YAML geçerli (`python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" .github/workflows/ci.yml`; PyYAML yoksa önce `pip install pyyaml`).
+  - Needs: T1
+
+### Aşama 1 — Temel ürün (spec §15 Aşama 1)
+- [x] T3 [H] (2026-09-20, GLM-5.3-Flash) core/money para katmanı (spec §7.1)
+  - Done when: `flutter test test/core/money/` geçer ve şunları kapsar: `1,5 kg × 42,90 = 64,35`; `3 × 19,99 = 59,97`; JPY/TRY/KWD basamak gösterimi; tr `1,5` ve en `1.5` parse; binlik ayraç belirsizliği; negatif/sıfır/aşırı büyük reddi; farklı para birimi karşılaştırma reddi.
+  - → 40 test geçti; Currency (75+ kod tablosu, displaySymbol), DecimalFixed (BigInt unscaled+scale, yarıdan uzağa), Money (minor units, mismatch ArgumentError), MoneyParser (rol bazlı ayraç kuralı + geçerli gruplama), formatMoney (double'sız, intl sembolleri); analyze 0 issue
+  - Needs: T1
+- [x] T4 [H] (2026-09-20, GLM-5.3-Flash) core/quantity birim katmanı (spec §7.2)
+  - Done when: `flutter test test/core/quantity/` geçer ve §13'ün birim testlerini kapsar (500g↔0,5kg, L↔ml, paket↔kg reddi).
+  - → 12 test geçti; UnitCode (13 birim, dbCode+boyut ailesi), UnitConversion (kg↔g, L↔ml, adet↔düzine yalnız allowCount ile, UnsupportedConversionError), tryConvertToBase (karşılaştırılamayan → null), PackagingContent (kullanıcı tanımlı içerik)
+  - Needs: T1
+- [x] T5 [H] (2026-09-20, GLM-5.3-Flash) core/calc varyans motoru (spec §7.3)
+  - Done when: `flutter test test/core/calc/` geçer; §13 birim test listesinin hesap kalemlerinin tamamı kapsanır (indirimli toplam, plan sıfırken yüzde null, fiyat/miktar etkisi ayrımı, plansız/alınmayan toplamları, yuvarlama sınırları, projeksiyon).
+  - → 21 test geçti (paket toplamı 74); LineCalc + EffectSplit, ListCalc (projeksiyon/bütçe/doğruluk), VarianceThreshold (%10 VEYA 200 minor), ReconciliationTolerance (±2 minor); DecimalFixed dahili ölçek üst sınırı 12'ye çıkarıldı (ara hesaplar için)
+  - Needs: T3, T4
+- [x] T6 [M] (2026-09-20, GLM-5.3-Flash) l10n iskeleti (spec §3)
+  - Done when: `flutter gen-l10n` temiz; widget testi seçili dile göre sloganı değiştirdiğini doğrular (tr/en iki durum).
+  - → l10n.yaml (nullable-getter: false) + app_en/app_tr ARB (slogan); LanguageController (system/tr/en, SettingsStore kalıcılığı); NShoptorApp kök bileşeni main.dart'a bağlandı; 2 slogan widget testi (paket 75)
+  - Needs: T1
+- [x] T7 [M] (2026-09-20, GLM-5.3-Flash) Material 3 marka teması (spec §10)
+  - Done when: `flutter analyze` temiz; tema testi açık+koyu için gövde metni kontrastını ≥4.5 hesaplayan birim test geçer (renk luminance hesabıyla).
+  - → 5 test geçti (paket 80); AppTheme (fromSeed 0xFF0B8457, 48dp butonlar, esnek tipografi), SemanticDelta (renk+ikon+marker, WCAG AA hesaplanmış palet); NShoptorApp kendi temasına bağlandı
+  - Needs: T1
+- [x] T8 [H] (2026-09-20, GLM-5.3-Flash) SQLite veri katmanı (spec §8)
+  - Done when: `flutter test test/data/` geçer: tablo oluşturma, migration v0→v1, transaction rollback senaryosu, FK cascade testi, decimal string round-trip.
+  - → drift 2.35 seçildi (DECISION aşağıda); 14 tablo, FK cascade/set-null, PRAGMA foreign_keys, migration v0→v1; 10 test (paket 90). Not: kod f6385638'de, beyin güncellemesi ayrı commit'e düştü
+  - Needs: T3, T4
+
+- [x] T9 [M] (2026-09-20, GLM-5.3-Flash) Liste CRUD ve durum makinesi (spec §6.1)
+  - Done when: `flutter test test/features/lists/` geçer (durum geçişleri, otomatik ad, çoğaltma, undo, para birimi değişim diyaloğu tetikleri); widget testi 2 liste oluşturup kalıcılığı doğrular.
+  - → 17 test geçti (paket 107); ListStatus geçiş kuralları, ListRepository (çift yazma/undo snapshot), ListsScreen (3 sekme + arama + FAB), düzenleme sayfası (para birimi değişim diyaloğu: koru/sıfırla; locale-aware bütçe girdisi); 32 yeni ARB anahtarı
+  - Needs: T6, T7, T8
+
+- [x] T10 [M] (2026-09-20, GLM-5.3-Flash) Ürün planlama formu (spec §6.2)
+  - Done when: `flutter test test/features/lists/item_form/` geçer: ondalıklı miktar kaydı, birim fiyat↔satır toplamı dönüşümü iki yönde, geçersiz girişte yerelleştirilmiş hata.
+  - → 10 test geçti (paket 117); ItemFormSheet (çift yönlü fiyat önizleme, +1 adımlayıcı, birime göre tam sayı doğrulaması, zorunlu/max fiyat/not), ItemRepository (girilen taraf korunur), StarterCategories (9 kategori seed). Not: yollar item_form/ yerine features/lists/ içinde; build sırasında fırlatan ayrıştırma hatası giderildi (gerçek bug)
+  - Needs: T9
+
+- [x] T11 [H] (2026-09-20, GLM-5.3-Flash) Alışveriş modu (spec §6.5-6.6)
+  - Done when: `flutter test test/features/shopping_mode/` geçer: projeksiyon hesabı bir girişten sonra beklenen değer, plansız ekleme toplama dahil, durum değişimleri; widget testi yeniden mount'ta (pump+restart pattern'i) oturum korunur.
+  - → 9 test geçti (paket 126); ShoppingRepository (5 durum, sepette-geri-al kayıt siler, plansız alım bağlantısız, özet şeridi combineLatest3 ile), ShoppingModeScreen (özet + 5 filtre + hızlı giriş sayfası + wakelock düğmesi + kontrollü iade). wakelock_plus bağımlılığı eklendi; core/util/combine_latest.dart eklendi (rxdart'sız). Ayarlardan varsayılan keepAwake tercihi T30'a
+  - Needs: T10
+
+- [ ] T12 [L] Add Turkish date parser
+  - Where: `src/utils/date.py` (new function next to `parse_iso`)
+  - Do: 1) add `parse_tr_date(s: str) -> date` for "16.09.2026"; 2) raise `ValueError` on bad input; 3) add cases to `tests/test_date.py`
+  - Done when: `pytest tests/test_date.py -q` passes
+  - Needs: T11
+```
+- IDs are permanent: never renumber or reuse. New top-level task = highest ID + 1; sub-task = `T12.1`.
+- Status: `[ ]` open · `[~]` in progress · `[x]` done · `[!]` blocked (reason) · `[-]` dropped (reason, e.g. `superseded by R2`).
+- Tier: `[L]` mechanical, fully specified, no judgment · `[M]` clear spec, normal engineering · `[H]` design, ambiguity, security, audits, writing specs for others.
+- `Where`, `Do`, `Done when` are mandatory for open tasks. Exact paths, symbol names, commands, expected output. Forbidden vague words: "etc.", "improve", "clean up", "as discussed", "handle properly". Cannot be that precise → tag `[H]` or split.
+- `Done when` must be objectively checkable and must include a test or check that fails if the work is wrong.
+
+### 0.8 Closing a task (all steps, one commit)
+1. Audit A2 (§0.4). Fails → not done; fix, or reopen with a `Note:`.
+2. Mark `[x] (YYYY-MM-DD, <model name>)`. Delete its `Where`/`Do` lines; keep `Done when`; add `→ <one-line result>` if useful.
+3. Behaviour, interfaces, data flow or dependencies changed → update §3 (and its `GAP:` lines). Files added/removed/moved → update §4.
+4. Header: Status, Phase, Next, Updated, and `Synced@` = `git rev-parse --short HEAD` taken **before** this commit.
+5. Overwrite §7 (≤5 lines).
+6. Commit code + this file together: `<type>(T<id>): <summary>` (feat/fix/refactor/test/docs/chore). Push to the current branch if a remote exists. Never force-push, never skip hooks. Push fails → keep the local commit, note it in §7, continue.
+- Stopping mid-task → commit `wip(T<id>): <state>`, keep `[~]`, describe exactly what remains in §7.
+- A task found broken after closing → reopen per §0.9a and repair with a new commit (`git revert` or smallest fix). Never rewrite history.
+- No git → skip commits and git checks; everything else still applies.
+- Brain-only commits (audits, revisions, goal changes): `docs(brain): <A<n>|R<n>|G<n>> <summary>`.
+
+### 0.9 Changing the plan
+**a) Task spec wrong or incomplete** (no architecture change): open task → edit in place and add `Note: revised YYYY-MM-DD — <why>`. Closed task whose result is wrong → reopen, or add a fix task if later work depends on it.
+
+**b) Target architecture (§2) wrong** — any model may revise it autonomously, only through this gate:
+1. Evidence, not taste: show that §2 cannot meet §1, violates a §1 constraint, or is demonstrably worse against §1 (cite files, measurements, docs, failing tests). "I would design it differently" is not evidence.
+2. Never changes §1.
+3. Reversing an earlier `DECISION`/`REVISION` requires new evidence that the earlier row did not have; cite that row.
+4. Smallest revision that fixes the problem.
+5. Log a `REVISION` row `R<n>`: problem + evidence, options considered, choice, impact.
+6. Impact analysis over **every** task: keep · edit · drop as `[-] superseded by R<n>` · new tasks; closed work that no longer fits → migration/removal tasks.
+7. Update §2, §3 `GAP:` lines, header; commit `docs(brain): R<n> <summary>`; continue the loop.
+
+**c) Goal (§1) changed by the user** — in chat, or detected because `brain.py check` reports the goal hash changed:
+1. If told in chat, write the new goal into §1 exactly as the user stated it (fill format gaps conservatively, log `ASSUMPTION`s).
+2. Log a `GOAL-CHANGE` row `G<n>`: old goal summary → new goal summary. Header: `Goal: v<n+1> #<brain.py goal-hash>`, `Goal status: CONFIRMED`, `Phase: BUILD`.
+3. Redesign §2 for the new goal (a REVISION per §0.9b, citing G<n>).
+4. Impact analysis over every task as in b.6, including built features the new goal no longer wants (remove only if they conflict with the new goal or its constraints).
+5. Run A0 steps 3–4 on the new plan. Commit `docs(brain): G<n> goal change`. Continue the loop.
+
+**d) Goal itself looks flawed** (contradictory, impossible, clearly harmful to the user's intent): never edit §1. Log a `GOAL-CONCERN` row with evidence. Follow the most faithful feasible interpretation (logged as `ASSUMPTION`); tasks that truly cannot be done → `[!]`. Continue everything else.
+
+### 0.10 Keeping this file small
+When this file exceeds ~500 lines: move fully completed §5 sections to `PROJECT_BRAIN.archive.md` (append, dated) and leave one line `- [x] T1–T9 <section> → archive`. Move superseded §6 rows there too. Never archive open tasks, active decisions or the latest AUDIT row.
+
+## 1. GOAL
+
+NShoptor: Crazy Penguin'in çok dilli (tr/en), offline-first, hesapsız **alışveriş planlama ve bütçe karşılaştırma** uygulaması. Kullanıcı alışverişten önce ürün/miktar/tahmini fiyat girerek planlar ve bütçe durumunu görür; mağazada gerçek miktar/fiyatları kaydeder (elle; opsiyonel ses, raf etiketi ve fiş OCR — her zaman düzenlenebilir doğrulama ekranıyla); alışveriş sonunda tahmin-gerçek farkını **fiyat / miktar / plansız ürün etkileri ayrışmış** biçimde görür; geçmiş fiyat gözlemleri sonraki planları besler. Tam spesifikasyon: `docs/spec/master-prompt-tr.md` (bağlayıcı; bölüm numaralarıyla atıf yapılır).
+
+**Acceptance criteria** (kaynak: spec §14)
+- [ ] AC1 `flutter analyze` 0 issue; `flutter test` tamamı geçer
+- [ ] AC2 Hesapsız ≥2 liste; ondalıklı miktar+tahmini fiyat; planlanan toplam locale-aware para biçiminde gösterilir
+- [ ] AC3 Alışveriş modunda gerçek fiyat/miktar girişi projeksiyonu anında günceller; plansız ve alınmayan ürünler doğru anlamla işlenir (alınmayan ≠ 0 TL)
+- [ ] AC4 Tamamlama ekranında fiyat etkisi ile miktar etkisi ayrı satırlarda gösterilir
+- [ ] AC5 tr/en tüm ana akışlarda çalışır; slogan seçili dile göre değişir
+- [ ] AC6 Sesle ekleme platform konuşma servisi üzerinden çalışır; başarısızken manuel fallback; kullanıcıdan model indirmesi istenmez
+- [ ] AC7 Fiş OCR ilk kurulumdan sonra uçak modunda metin okur; OCR sonucu kullanıcı onayı olmadan satın alıma dönüşmez
+- [ ] AC8 Veri uygulama yeniden başlatmada korunur; yedek dışa/içe aktarma veri kaybetmeden çalışır
+- [ ] AC9 Koyu tema, büyük yazı, ekran okuyucu için temel erişilebilirlik sağlanır
+- [ ] AC10 Kritik akışlarda boş/işlevsiz buton yok; Android debug/release + iOS build kontrolleri belgelenmiştir
+- [ ] AC11 Parasal/ondalıklı hesaplarda `double` yoktur; merkezi para/değer katmanı testlerle kanıtlanır
+
+**Constraints:** Flutter stable (3.47.x) + Dart null safety; Material 3; resmi l10n/ARB+intl; SQLite migration+transaction zorunlu; decimal/fixed-point para; offline-first; gizlilik (fiş/foto/veri cihazda kalır, ağa gönderilmez); gereksiz bağımlılık/soyutlama yok, paketler bakım/lisans/platform kontrolüyle seçilir ve README'de gerekçelendirilir; Android app id / iOS bundle id placeholder `com.example.nshoptor` (production kimliği Crazy Penguin sağlayacak); lisans GPL-3.0.
+**Out of scope:** spec §16'daki tam liste (hesap zorunluluğu, bulut senkron, ortak liste, web, scraping, canlı kur, bulut LLM OCR, tarif/kiler, rota optimizasyonu, konum hatırlatması, sadakat/kupon, watch, ana ekran widget'ı, ticari katalog API'si, reklam/abonelik) + production signing kimliği.
+**Open questions:** none
+
+## 2. TARGET ARCHITECTURE
+
+Flutter (android+ios), feature-first yapı (spec §11):
+
+```text
+nshoptor/
+  .github/workflows/ci.yml          # tek-app CI: analyze+test, gitleaks, release APK (T2)
+  android/                          # Flutter Android kabuğu (T1)
+    app/src/**                      # manifest (cleartext yok, backup rules), ikonlar, MainActivity
+    app/build.gradle.kts            # key.properties + R8 minify/shrink release (T1)
+    app/proguard-rules.pro          # R8 keep kuralları (T1)
+    gradle/wrapper/**               # gradle wrapper (T1)
+    build.gradle.kts  settings.gradle.kts  gradle.properties  # kök gradle (T1)
+    key.properties.example          # imza/admob yer tutucu
+  assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo CP'ten)
+  docs/spec/master-prompt-tr.md     # tam ürün spesifikasyonu (bağlayıcı hedef kaynağı)
+  ios/                              # Flutter iOS kabuğu (T1)
+    Flutter/                        # xcconfig + AppFrameworkInfo.plist
+    Runner/**                       # AppDelegate, Info.plist (NShoptor adı), ikonlar
+    Runner.xcodeproj/**  Runner.xcworkspace/**  RunnerTests/**  # Xcode projesi
+  lib/
+    app/                            # NShoptorApp kökü + LanguageController (T6)
+    core/calc/**                    # LineCalc, EffectSplit, ListCalc, VarianceThreshold (T5)
+    core/l10n/**                    # tr/en ARB + üretilmiş AppLocalizations (T6)
+    core/money/**                   # Currency, DecimalFixed, Money, MoneyParser, formatMoney (T3)
+    core/quantity/**                # UnitCode, UnitConversion, PackagingContent (T4)
+    core/theme/**                   # AppTheme (M3) + SemanticDelta (T7)
+    data/db/**                      # drift şeması v1 + AppDatabase + üretilmiş kod (T8)
+    features/lists/**               # ListStatus, ListRepository, ListsScreen, ItemFormSheet (T9-T10)
+    features/shopping_mode/**       # ItemStatus, ShoppingRepository, ShoppingModeScreen (T11)
+    core/util/**                    # combineLatest3 (T11)
+    main.dart                       # boot: SettingsStore + LanguageController + runApp
+  test/
+    app_test.dart                   # slogan widget testleri (T6)
+    core/**                         # çekirdek testleri: money 40, quantity 12, calc 21, theme 5
+    data/app_database_test.dart     # şema/migration/transaction/FK: 10 (T8)
+  tool/new_app.dart                 # kurulum betiği (yeniden kullanılabilir)
+  tool/brand/generate_icons.py      # ikon üretici
+  tool/templates/**                 # main/app_test şablonları
+  .env.example  AGENTS.md  analysis_options.yaml  l10n.yaml  LICENSE  PROJECT_BRAIN.md  pubspec.yaml  pubspec.lock  README.md  
+
+- **Domain kuralları** core/{money,quantity,calc} içinde, widget'lardan bağımsız, tamamen testli.
+- **Veri modeli** spec §8 varlıkları (ShoppingList, PlannedItem, PurchaseEntry, ProductMemory, ProductAlias, PriceObservation, Store, Category, Aisle, Receipt, ReceiptCandidateLine, Attachment, Reminder, AppSettings); kanonik değerler kod olarak saklanır, görünen adlar l10n'dan gelir; fotoğraflar app özel dizinde dosya, DB'de yalnız yol.
+- **State:** basit ve öngörülebilir (provider/riverpod/value-notifier; bootstrap'ta kararlaştırılır).
+- **Girdi yardımcıları:** speech_to_text (platform servisi), google_mlkit_text_recognition (bundled Latin, internetsiz), deterministik yerel ses komut ayrıştırıcısı, güven seviyeli fiş ayrıştırıcı — hepsi doğrulama ekranı arkasında.
+- **Bildirim:** yerel bildirimler (hatırlatmalar). **Yedek:** sürümlenmiş JSON + CSV sonuç dışa aktarma.
+- **Platform sertleştirme** (tool/new_app.dart'tan): cleartext yok, yedekleme kuralları, R8 release, key.properties imzası.
+
+## 3. CURRENT ARCHITECTURE
+
+Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + elle tamamlanan şablon adımları; ads=pro=kapalı, data=local):
+
+- `lib/main.dart` — napp_core `NappApp` iskeleti: AppIdentity(NShoptor, com.example.nshoptor), AppTheme açık/koyu, tr/en destekli locale delegeleri, tek-sekme HomePage
+- `test/app_test.dart` — kurulum smoke testi; `test/widget_test.dart` silindi
+- `pubspec.yaml` — napp_core (git, core-v1.0.0) + flutter_localizations; napp_pro/napp_ads yok
+- `android/` — usesCleartextTraffic=false, data_extraction_rules/backup_rules, R8 minify+shrink release, proguard-rules.pro, kotlin.incremental=false, label=NShoptor, üretilmiş uyarlanabilir ikonlar
+- `ios/` — CFBundleDisplayName=NShoptor, üretilmiş ikonlar
+- `tool/new_app.dart` — kurulum betiği (2 lint düzeltmesi alındı); yeniden kullanılabilir
+- `.github/workflows/ci.yml` — tek-app CI (T2): analyze+test, gitleaks, release APK derleme
+- Doğrulanmış: `flutter analyze` 0 issue; `flutter test` geçer; `flutter build apk --release` 44 MB başarılı (R8 tree-shaking log kanıtı)
+- `README.md` — NShoptor kimliği (kullanıcı), app id placeholder'ı belgeli
+- `AGENTS.md` — protokol işaretçisi satırı içeriyor
+- `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
+
+GAP: sonuç/ana ekran UI yok → T12,T13
 GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
@@ -449,4 +690,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T10 kapatıldı: ürün formu (çift yönlü fiyat, +1, birim doğrulaması) + kategori seed; 10 test (paket 117). build-sırasında-fırlatma bug'ı giderildi. Push başarılı. Sıradaki iş: **T11** (alışveriş modu — spec §6.5-6.6, en büyük UI parçası).
+T11 kapatıldı: alışveriş modu (5 durum, plansız alım, özet şeridi, filtreler, wakelock, iade girişi); 9 test (paket 126). Push başarılı. Sıradaki iş: **T12** (sonuç ve karşılaştırma — fiyat/miktar etkisi ayrımı görselleştirme).

@@ -199,4 +199,84 @@ class AppLocalizationsTr extends AppLocalizations {
   String unitPriceCalculated(String value) {
     return 'Birim fiyat: $value';
   }
+
+  @override
+  String get shoppingTitle => 'Alışveriş modu';
+
+  @override
+  String get summaryPlannedTotal => 'Planlanan';
+
+  @override
+  String get summaryInCart => 'Sepette';
+
+  @override
+  String get summaryRemainingPlan => 'Kalan plan';
+
+  @override
+  String get summaryProjected => 'Tahmini kasa';
+
+  @override
+  String get summaryBudgetRemaining => 'Bütçeden kalan';
+
+  @override
+  String get summaryBudgetOver => 'Bütçe aşımı';
+
+  @override
+  String itemsProgress(String done, String total) {
+    return '$total üründen $done';
+  }
+
+  @override
+  String get filterAll => 'Tümü';
+
+  @override
+  String get filterToBuy => 'Alınacaklar';
+
+  @override
+  String get filterInCart => 'Sepette';
+
+  @override
+  String get filterNotFound => 'Bulunamayanlar';
+
+  @override
+  String get filterRequired => 'Zorunlular';
+
+  @override
+  String get quickEntryTitle => 'Gerçek fiyat';
+
+  @override
+  String get actualQuantityLabel => 'Gerçek miktar';
+
+  @override
+  String get actualPriceLabel => 'Gerçek fiyat';
+
+  @override
+  String get discountLabel => 'İndirim (isteğe bağlı)';
+
+  @override
+  String get alternativeNameLabel => 'Alternatif ürün adı (isteğe bağlı)';
+
+  @override
+  String get savePurchaseButton => 'Sepete ekle';
+
+  @override
+  String get unplannedAddButton => 'Plansız ürün ekle';
+
+  @override
+  String get statusPending => 'Alınmadı';
+
+  @override
+  String get statusInCart => 'Sepette';
+
+  @override
+  String get statusNotFound => 'Bulunamadı';
+
+  @override
+  String get statusGaveUp => 'Vazgeçildi';
+
+  @override
+  String get statusAlternative => 'Alternatif alındı';
+
+  @override
+  String get keepScreenAwake => 'Ekranı açık tut';
 }

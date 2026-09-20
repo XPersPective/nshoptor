@@ -81,5 +81,41 @@
         "type": "String"
       }
     }
-  }
+  },
+  "shoppingTitle": "Shopping mode",
+  "summaryPlannedTotal": "Planned",
+  "summaryInCart": "In cart",
+  "summaryRemainingPlan": "Remaining plan",
+  "summaryProjected": "Estimated checkout",
+  "summaryBudgetRemaining": "Budget left",
+  "summaryBudgetOver": "Over budget",
+  "itemsProgress": "{done} of {total} items",
+  "@itemsProgress": {
+    "placeholders": {
+      "done": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "filterAll": "All",
+  "filterToBuy": "To buy",
+  "filterInCart": "In cart",
+  "filterNotFound": "Not found",
+  "filterRequired": "Required",
+  "quickEntryTitle": "Actual price",
+  "actualQuantityLabel": "Actual quantity",
+  "actualPriceLabel": "Actual price",
+  "discountLabel": "Discount (optional)",
+  "alternativeNameLabel": "Alternative product name (optional)",
+  "savePurchaseButton": "Add to cart",
+  "unplannedAddButton": "Add unplanned item",
+  "statusPending": "Not taken",
+  "statusInCart": "In cart",
+  "statusNotFound": "Not found",
+  "statusGaveUp": "Gave up",
+  "statusAlternative": "Alternative bought",
+  "keepScreenAwake": "Keep screen on"
 }

@@ -81,5 +81,31 @@
         "type": "String"
       }
     }
-  }
+  },
+  "shoppingTitle": "Alışveriş modu",
+  "summaryPlannedTotal": "Planlanan",
+  "summaryInCart": "Sepette",
+  "summaryRemainingPlan": "Kalan plan",
+  "summaryProjected": "Tahmini kasa",
+  "summaryBudgetRemaining": "Bütçeden kalan",
+  "summaryBudgetOver": "Bütçe aşımı",
+  "itemsProgress": "{total} üründen {done}",
+  "filterAll": "Tümü",
+  "filterToBuy": "Alınacaklar",
+  "filterInCart": "Sepette",
+  "filterNotFound": "Bulunamayanlar",
+  "filterRequired": "Zorunlular",
+  "quickEntryTitle": "Gerçek fiyat",
+  "actualQuantityLabel": "Gerçek miktar",
+  "actualPriceLabel": "Gerçek fiyat",
+  "discountLabel": "İndirim (isteğe bağlı)",
+  "alternativeNameLabel": "Alternatif ürün adı (isteğe bağlı)",
+  "savePurchaseButton": "Sepete ekle",
+  "unplannedAddButton": "Plansız ürün ekle",
+  "statusPending": "Alınmadı",
+  "statusInCart": "Sepette",
+  "statusNotFound": "Bulunamadı",
+  "statusGaveUp": "Vazgeçildi",
+  "statusAlternative": "Alternatif alındı",
+  "keepScreenAwake": "Ekranı açık tut"
 }

@@ -463,6 +463,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unit price: {value}'**
   String unitPriceCalculated(String value);
+
+  /// No description provided for @shoppingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping mode'**
+  String get shoppingTitle;
+
+  /// No description provided for @summaryPlannedTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get summaryPlannedTotal;
+
+  /// No description provided for @summaryInCart.
+  ///
+  /// In en, this message translates to:
+  /// **'In cart'**
+  String get summaryInCart;
+
+  /// No description provided for @summaryRemainingPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining plan'**
+  String get summaryRemainingPlan;
+
+  /// No description provided for @summaryProjected.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated checkout'**
+  String get summaryProjected;
+
+  /// No description provided for @summaryBudgetRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget left'**
+  String get summaryBudgetRemaining;
+
+  /// No description provided for @summaryBudgetOver.
+  ///
+  /// In en, this message translates to:
+  /// **'Over budget'**
+  String get summaryBudgetOver;
+
+  /// No description provided for @itemsProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} items'**
+  String itemsProgress(String done, String total);
+
+  /// No description provided for @filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filterAll;
+
+  /// No description provided for @filterToBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'To buy'**
+  String get filterToBuy;
+
+  /// No description provided for @filterInCart.
+  ///
+  /// In en, this message translates to:
+  /// **'In cart'**
+  String get filterInCart;
+
+  /// No description provided for @filterNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Not found'**
+  String get filterNotFound;
+
+  /// No description provided for @filterRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get filterRequired;
+
+  /// No description provided for @quickEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual price'**
+  String get quickEntryTitle;
+
+  /// No description provided for @actualQuantityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual quantity'**
+  String get actualQuantityLabel;
+
+  /// No description provided for @actualPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual price'**
+  String get actualPriceLabel;
+
+  /// No description provided for @discountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount (optional)'**
+  String get discountLabel;
+
+  /// No description provided for @alternativeNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Alternative product name (optional)'**
+  String get alternativeNameLabel;
+
+  /// No description provided for @savePurchaseButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to cart'**
+  String get savePurchaseButton;
+
+  /// No description provided for @unplannedAddButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Add unplanned item'**
+  String get unplannedAddButton;
+
+  /// No description provided for @statusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Not taken'**
+  String get statusPending;
+
+  /// No description provided for @statusInCart.
+  ///
+  /// In en, this message translates to:
+  /// **'In cart'**
+  String get statusInCart;
+
+  /// No description provided for @statusNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Not found'**
+  String get statusNotFound;
+
+  /// No description provided for @statusGaveUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Gave up'**
+  String get statusGaveUp;
+
+  /// No description provided for @statusAlternative.
+  ///
+  /// In en, this message translates to:
+  /// **'Alternative bought'**
+  String get statusAlternative;
+
+  /// No description provided for @keepScreenAwake.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep screen on'**
+  String get keepScreenAwake;
 }
 
 class _AppLocalizationsDelegate

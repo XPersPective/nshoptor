@@ -199,4 +199,84 @@ class AppLocalizationsEn extends AppLocalizations {
   String unitPriceCalculated(String value) {
     return 'Unit price: $value';
   }
+
+  @override
+  String get shoppingTitle => 'Shopping mode';
+
+  @override
+  String get summaryPlannedTotal => 'Planned';
+
+  @override
+  String get summaryInCart => 'In cart';
+
+  @override
+  String get summaryRemainingPlan => 'Remaining plan';
+
+  @override
+  String get summaryProjected => 'Estimated checkout';
+
+  @override
+  String get summaryBudgetRemaining => 'Budget left';
+
+  @override
+  String get summaryBudgetOver => 'Over budget';
+
+  @override
+  String itemsProgress(String done, String total) {
+    return '$done of $total items';
+  }
+
+  @override
+  String get filterAll => 'All';
+
+  @override
+  String get filterToBuy => 'To buy';
+
+  @override
+  String get filterInCart => 'In cart';
+
+  @override
+  String get filterNotFound => 'Not found';
+
+  @override
+  String get filterRequired => 'Required';
+
+  @override
+  String get quickEntryTitle => 'Actual price';
+
+  @override
+  String get actualQuantityLabel => 'Actual quantity';
+
+  @override
+  String get actualPriceLabel => 'Actual price';
+
+  @override
+  String get discountLabel => 'Discount (optional)';
+
+  @override
+  String get alternativeNameLabel => 'Alternative product name (optional)';
+
+  @override
+  String get savePurchaseButton => 'Add to cart';
+
+  @override
+  String get unplannedAddButton => 'Add unplanned item';
+
+  @override
+  String get statusPending => 'Not taken';
+
+  @override
+  String get statusInCart => 'In cart';
+
+  @override
+  String get statusNotFound => 'Not found';
+
+  @override
+  String get statusGaveUp => 'Gave up';
+
+  @override
+  String get statusAlternative => 'Alternative bought';
+
+  @override
+  String get keepScreenAwake => 'Keep screen on';
 }
