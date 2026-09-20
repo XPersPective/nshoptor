@@ -149,5 +149,21 @@
   "lineVarianceLabel": "Line difference",
   "discountEffectLabel": "Discount effect",
   "notBoughtMark": "not bought",
-  "noPurchasesNote": "No purchases were recorded."
+  "noPurchasesNote": "No purchases were recorded.",
+  "navHome": "Home",
+  "navLists": "Lists",
+  "navHistory": "History",
+  "navSettings": "Settings",
+  "homeEmptyTitle": "Plan your shopping",
+  "homeEmptyBody": "Create your first list and compare planned vs actual costs.",
+  "homeActiveSection": "Active lists",
+  "homeCompletedSection": "Recently completed",
+  "homeMonthlySection": "This month",
+  "monthPlannedLabel": "Planned",
+  "monthActualLabel": "Actual",
+  "monthVarianceLabel": "Difference",
+  "continueShoppingLabel": "Continue shopping",
+  "historyEmpty": "No completed shopping yet. Your history and insights will appear here.",
+  "aboutTabTitle": "About NShoptor",
+  "aboutBody": "NShoptor by Crazy Penguin. Offline-first shopping planner. Licensed under GPL-3.0."
 }

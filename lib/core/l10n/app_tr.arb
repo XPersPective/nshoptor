@@ -139,5 +139,21 @@
   "lineVarianceLabel": "Satır farkı",
   "discountEffectLabel": "İndirim etkisi",
   "notBoughtMark": "alınmadı",
-  "noPurchasesNote": "Kayıtlı satın alım yok."
+  "noPurchasesNote": "Kayıtlı satın alım yok.",
+  "navHome": "Ana Sayfa",
+  "navLists": "Listeler",
+  "navHistory": "Geçmiş",
+  "navSettings": "Ayarlar",
+  "homeEmptyTitle": "Alışverişini planla",
+  "homeEmptyBody": "İlk listeni oluştur; planladığın ile gerçek harcamanı karşılaştır.",
+  "homeActiveSection": "Aktif listeler",
+  "homeCompletedSection": "Son tamamlananlar",
+  "homeMonthlySection": "Bu ay",
+  "monthPlannedLabel": "Planlanan",
+  "monthActualLabel": "Gerçekleşen",
+  "monthVarianceLabel": "Fark",
+  "continueShoppingLabel": "Alışverişe devam et",
+  "historyEmpty": "Henüz tamamlanmış alışveriş yok. Geçmişin ve içgörülerin burada görünecek.",
+  "aboutTabTitle": "NShoptor Hakkında",
+  "aboutBody": "Crazy Penguin imzalı NShoptor. Çevrimdışı çalışan alışveriş planlayıcı. GPL-3.0 lisanslıdır."
 }

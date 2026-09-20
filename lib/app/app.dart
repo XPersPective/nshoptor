@@ -3,6 +3,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../core/l10n/generated/app_localizations.dart';
 import '../core/theme/app_theme.dart';
+import '../data/db/app_database.dart';
+import '../features/home/home_screen.dart';
+import '../features/lists/list_repository.dart';
 import 'language_controller.dart';
 
 /// Uygulamanın kök bileşeni: l10n, tema ve dil tercihini birleştirir.
@@ -12,6 +15,7 @@ import 'language_controller.dart';
 class NShoptorApp extends StatelessWidget {
   NShoptorApp({
     super.key,
+    required this.db,
     this.fixedLocale,
     LanguageController? languageController,
     this.themeMode = ThemeMode.system,
@@ -20,6 +24,9 @@ class NShoptorApp extends StatelessWidget {
   final Locale? fixedLocale;
   final LanguageController languageController;
   final ThemeMode themeMode;
+
+  /// Cihazda drift_flutter ile açılır; testlerde bellek-içi verilir.
+  final AppDatabase db;
 
   /// Desteklenen diller; yeni dil yalnız yeni ARB dosyasıyla eklenir.
   static const List<Locale> supportedLocales = [Locale('tr'), Locale('en')];
@@ -42,33 +49,21 @@ class NShoptorApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: supportedLocales,
-          home: const _HomePlaceholder(),
+          home: _Home(db: db, listRepository: ListRepository(db)),
         );
       },
     );
   }
 }
 
-/// Geçici ana ekran: yalnız marka + slogan gösterir. T13 gerçek ana
-/// ekranla değiştirir; sahte buton içermez.
-class _HomePlaceholder extends StatelessWidget {
-  const _HomePlaceholder();
+class _Home extends StatelessWidget {
+  const _Home({required this.db, required this.listRepository});
+
+  final AppDatabase db;
+  final ListRepository listRepository;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.appTitle)),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Text(
-            l10n.slogan,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-        ),
-      ),
-    );
+    return HomeShell(db: db, listRepository: listRepository);
   }
 }

@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T12 tamam (çekirdek + veri + liste/ürün/alışveriş/sonuç UI). Sıradaki iş: T13 (ana ekran).
-> **Phase:** BUILD · **Next:** T13 · **Updated:** 2026-09-20 · **Synced@:** 6db99bc
+> **Status:** T1-T13 tamam (Aşama 1 UI zinciri bitti). Sıradaki iş: T14 (uçtan uca entegrasyon testi) → ardından A3 milestone audit.
+> **Phase:** BUILD · **Next:** T14 · **Updated:** 2026-09-20 · **Synced@:** a68e718
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -181,6 +181,7 @@ nshoptor/
     features/lists/**               # ListStatus, ListRepository, ListsScreen, ItemFormSheet (T9-T10)
     features/shopping_mode/**       # ItemStatus, ShoppingRepository, ShoppingModeScreen (T11)
     features/shopping_mode/summary/**  # ResultRepository + SummaryScreen (T12)
+    features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
@@ -215,7 +216,6 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: ana ekran UI yok → T13
 GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
@@ -421,6 +421,7 @@ nshoptor/
     features/lists/**               # ListStatus, ListRepository, ListsScreen, ItemFormSheet (T9-T10)
     features/shopping_mode/**       # ItemStatus, ShoppingRepository, ShoppingModeScreen (T11)
     features/shopping_mode/summary/**  # ResultRepository + SummaryScreen (T12)
+    features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
@@ -455,7 +456,6 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: ana ekran UI yok → T13
 GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
@@ -566,11 +566,11 @@ nshoptor/
   - → 6 test geçti (paket 132); ResultRepository (gruplar, plansız/alınmayan ayrımı, doğruluk oranı — çekirdek LineCalc/ListCalc/VarianceThreshold yeniden kullanımı), SummaryScreen (özet + ürün grup kartları + SemanticDelta renk/ikon). Kritik kural: "pahalandı" yalnız birim fiyat değişmişse; aksi halde close
   - Needs: T11
 
-- [ ] T13 [M] Ana ekran (spec §6.4)
-  - Where: `lib/features/home/`, `test/features/home/`
-  - Do: 1) `Yeni liste` ana eylemi. 2) Aktif ve yaklaşan listeler; alışverişte olana hızlı devam. 3) Son tamamlananlar. 4) Bu ay planlanan/gerçekleşen toplam ve fark/tasarruf kartları — yalnız yeterli veri varsa. 5) Arama girişi (listelerde). 6) Anlamlı boş durumlar (demo veri yok). 7) Alt navigasyon: Ana Sayfa, Listeler, Geçmiş, Ayarlar (Geçmiş/Ayarlar placeholder'sız: Geçmiş Aşama 2'ye kadar "henüz içerik yok" boş durumu gösterir — bu boş durum gerçek davranıştır, sahte buton değildir).
+- [x] T13 [M] (2026-09-20, GLM-5.3-Flash) Ana ekran (spec §6.4)
   - Done when: `flutter test test/features/home/` geçer: boş durum gösterimi, veri varken kartlar, hızlı devam navigasyonu.
+  - → 4 test geçti (paket 136); HomeShell (4 sekmeli alt navigasyon, IndexedStack), HomeScreen (aktif listeler, alışverişte hızlı devam, aylık özet kartı — yalnız tamamlanmış alışveriş varken, boş durum + slogan), History/Ayarlar gerçek boş durum; drift_flutter bağımlılığı eklendi (cihaz DB yolu). Hero tag çakışması ve strftime-unixepoch hatası giderildi
   - Needs: T9
+
 - [ ] T14 [M] Entegrasyon testi: uçtan uca ana akış (spec §13)
   - Where: `integration_test/app_e2e_test.dart`
   - Do: 1) Akış: liste oluştur → ondalıklı ürün ekle → alışverişe başla → gerçek fiyat gir → (bir ürünü bulundu işaretle) → tamamla → sonuç ekranında beklenen farklar. 2) Aynı testte dil tr→en değiştirip sloganı doğrula. 3) Uygulama restart (tester.state yeniden başlatma pattern'i) sonrası veri korunur.
@@ -692,4 +692,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T12 kapatıldı: sonuç ekranı + ResultRepository (gruplama; "pahalandı" yalnız birim fiyat farkına dayanır); 6 test (paket 132). Push başarılı. Sıradaki iş: **T13** (ana ekran — spec §6.4, alt navigasyonla).
+T13 kapatıldı: HomeShell (4 sekme) + ana ekran (aktif listeler, hızlı devam, aylık kart, boş durumlar); 4 test (paket 136). Push başarılı. Sıradaki iş: **T14** (uçtan uca entegrasyon testi) → T14 sonrası Aşama 1 kapanır, A3 milestone audit çalıştırılır.

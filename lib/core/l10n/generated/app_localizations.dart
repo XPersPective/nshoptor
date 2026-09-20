@@ -811,6 +811,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No purchases were recorded.'**
   String get noPurchasesNote;
+
+  /// No description provided for @navHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navHome;
+
+  /// No description provided for @navLists.
+  ///
+  /// In en, this message translates to:
+  /// **'Lists'**
+  String get navLists;
+
+  /// No description provided for @navHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get navHistory;
+
+  /// No description provided for @navSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get navSettings;
+
+  /// No description provided for @homeEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan your shopping'**
+  String get homeEmptyTitle;
+
+  /// No description provided for @homeEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first list and compare planned vs actual costs.'**
+  String get homeEmptyBody;
+
+  /// No description provided for @homeActiveSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Active lists'**
+  String get homeActiveSection;
+
+  /// No description provided for @homeCompletedSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently completed'**
+  String get homeCompletedSection;
+
+  /// No description provided for @homeMonthlySection.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get homeMonthlySection;
+
+  /// No description provided for @monthPlannedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get monthPlannedLabel;
+
+  /// No description provided for @monthActualLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual'**
+  String get monthActualLabel;
+
+  /// No description provided for @monthVarianceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difference'**
+  String get monthVarianceLabel;
+
+  /// No description provided for @continueShoppingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue shopping'**
+  String get continueShoppingLabel;
+
+  /// No description provided for @historyEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No completed shopping yet. Your history and insights will appear here.'**
+  String get historyEmpty;
+
+  /// No description provided for @aboutTabTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About NShoptor'**
+  String get aboutTabTitle;
+
+  /// No description provided for @aboutBody.
+  ///
+  /// In en, this message translates to:
+  /// **'NShoptor by Crazy Penguin. Offline-first shopping planner. Licensed under GPL-3.0.'**
+  String get aboutBody;
 }
 
 class _AppLocalizationsDelegate

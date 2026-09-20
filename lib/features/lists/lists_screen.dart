@@ -96,6 +96,8 @@ class _ListsScreenState extends State<ListsScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton.extended(
+          key: const Key('lists_new_list_button'),
+          heroTag: 'listsFab',
           onPressed: () => _openEditor(context),
           icon: const Icon(Icons.add),
           label: Text(l10n.newListButton),

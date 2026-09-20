@@ -376,4 +376,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noPurchasesNote => 'No purchases were recorded.';
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navLists => 'Lists';
+
+  @override
+  String get navHistory => 'History';
+
+  @override
+  String get navSettings => 'Settings';
+
+  @override
+  String get homeEmptyTitle => 'Plan your shopping';
+
+  @override
+  String get homeEmptyBody =>
+      'Create your first list and compare planned vs actual costs.';
+
+  @override
+  String get homeActiveSection => 'Active lists';
+
+  @override
+  String get homeCompletedSection => 'Recently completed';
+
+  @override
+  String get homeMonthlySection => 'This month';
+
+  @override
+  String get monthPlannedLabel => 'Planned';
+
+  @override
+  String get monthActualLabel => 'Actual';
+
+  @override
+  String get monthVarianceLabel => 'Difference';
+
+  @override
+  String get continueShoppingLabel => 'Continue shopping';
+
+  @override
+  String get historyEmpty =>
+      'No completed shopping yet. Your history and insights will appear here.';
+
+  @override
+  String get aboutTabTitle => 'About NShoptor';
+
+  @override
+  String get aboutBody =>
+      'NShoptor by Crazy Penguin. Offline-first shopping planner. Licensed under GPL-3.0.';
 }

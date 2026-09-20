@@ -376,4 +376,55 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noPurchasesNote => 'Kayıtlı satın alım yok.';
+
+  @override
+  String get navHome => 'Ana Sayfa';
+
+  @override
+  String get navLists => 'Listeler';
+
+  @override
+  String get navHistory => 'Geçmiş';
+
+  @override
+  String get navSettings => 'Ayarlar';
+
+  @override
+  String get homeEmptyTitle => 'Alışverişini planla';
+
+  @override
+  String get homeEmptyBody =>
+      'İlk listeni oluştur; planladığın ile gerçek harcamanı karşılaştır.';
+
+  @override
+  String get homeActiveSection => 'Aktif listeler';
+
+  @override
+  String get homeCompletedSection => 'Son tamamlananlar';
+
+  @override
+  String get homeMonthlySection => 'Bu ay';
+
+  @override
+  String get monthPlannedLabel => 'Planlanan';
+
+  @override
+  String get monthActualLabel => 'Gerçekleşen';
+
+  @override
+  String get monthVarianceLabel => 'Fark';
+
+  @override
+  String get continueShoppingLabel => 'Alışverişe devam et';
+
+  @override
+  String get historyEmpty =>
+      'Henüz tamamlanmış alışveriş yok. Geçmişin ve içgörülerin burada görünecek.';
+
+  @override
+  String get aboutTabTitle => 'NShoptor Hakkında';
+
+  @override
+  String get aboutBody =>
+      'Crazy Penguin imzalı NShoptor. Çevrimdışı çalışan alışveriş planlayıcı. GPL-3.0 lisanslıdır.';
 }
