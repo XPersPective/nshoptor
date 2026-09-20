@@ -165,5 +165,7 @@
   "continueShoppingLabel": "Continue shopping",
   "historyEmpty": "No completed shopping yet. Your history and insights will appear here.",
   "aboutTabTitle": "About NShoptor",
-  "aboutBody": "NShoptor by Crazy Penguin. Offline-first shopping planner. Licensed under GPL-3.0."
+  "aboutBody": "NShoptor by Crazy Penguin. Offline-first shopping planner. Licensed under GPL-3.0.",
+  "startShoppingLabel": "Start shopping",
+  "finishAndSeeResult": "Finish & see result"
 }

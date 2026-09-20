@@ -907,6 +907,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'NShoptor by Crazy Penguin. Offline-first shopping planner. Licensed under GPL-3.0.'**
   String get aboutBody;
+
+  /// No description provided for @startShoppingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Start shopping'**
+  String get startShoppingLabel;
+
+  /// No description provided for @finishAndSeeResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish & see result'**
+  String get finishAndSeeResult;
 }
 
 class _AppLocalizationsDelegate

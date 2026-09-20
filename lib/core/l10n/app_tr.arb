@@ -155,5 +155,7 @@
   "continueShoppingLabel": "Alışverişe devam et",
   "historyEmpty": "Henüz tamamlanmış alışveriş yok. Geçmişin ve içgörülerin burada görünecek.",
   "aboutTabTitle": "NShoptor Hakkında",
-  "aboutBody": "Crazy Penguin imzalı NShoptor. Çevrimdışı çalışan alışveriş planlayıcı. GPL-3.0 lisanslıdır."
+  "aboutBody": "Crazy Penguin imzalı NShoptor. Çevrimdışı çalışan alışveriş planlayıcı. GPL-3.0 lisanslıdır.",
+  "startShoppingLabel": "Alışverişi başlat",
+  "finishAndSeeResult": "Bitir ve sonuca geç"
 }

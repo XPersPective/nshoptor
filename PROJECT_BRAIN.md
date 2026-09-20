@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T13 tamam (Aşama 1 UI zinciri bitti). Sıradaki iş: T14 (uçtan uca entegrasyon testi) → ardından A3 milestone audit.
-> **Phase:** BUILD · **Next:** T14 · **Updated:** 2026-09-20 · **Synced@:** a68e718
+> **Status:** T1-T14 tamam — Aşama 1 (temel ürün) kapandı, A3 audit geçti. Sıradaki iş: T15 (ürün hafızası ve öneriler).
+> **Phase:** BUILD · **Next:** T15 · **Updated:** 2026-09-20 · **Synced@:** 7e66562
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -216,7 +216,6 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
@@ -456,7 +455,6 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
@@ -571,13 +569,22 @@ nshoptor/
   - → 4 test geçti (paket 136); HomeShell (4 sekmeli alt navigasyon, IndexedStack), HomeScreen (aktif listeler, alışverişte hızlı devam, aylık özet kartı — yalnız tamamlanmış alışveriş varken, boş durum + slogan), History/Ayarlar gerçek boş durum; drift_flutter bağımlılığı eklendi (cihaz DB yolu). Hero tag çakışması ve strftime-unixepoch hatası giderildi
   - Needs: T9
 
-- [ ] T14 [M] Entegrasyon testi: uçtan uca ana akış (spec §13)
-  - Where: `integration_test/app_e2e_test.dart`
-  - Do: 1) Akış: liste oluştur → ondalıklı ürün ekle → alışverişe başla → gerçek fiyat gir → (bir ürünü bulundu işaretle) → tamamla → sonuç ekranında beklenen farklar. 2) Aynı testte dil tr→en değiştirip sloganı doğrula. 3) Uygulama restart (tester.state yeniden başlatma pattern'i) sonrası veri korunur.
+- [x] T14 [M] (2026-09-20, GLM-5.3-Flash) Entegrasyon testi: uçtan uca ana akış (spec §13)
   - Done when: `flutter test integration_test/app_e2e_test.dart` geçer.
+  - → 3 test geçti; tam akış (liste→ürün→alışveriş→fiyat→sonuç), tr→en slogan, dosya-temelli DB ile yeniden başlatma kalıcılığı. Bulunan boşluk giderildi: liste detay ekranı (ListDetailScreen) eklenmediği için UI zinciri kopuktu → T14.1 olarak bu görev kapsamında tamamlandı. A3 bulgusu → T33
   - Needs: T12
 
+- [x] T14.1 [M] (2026-09-20, GLM-5.3-Flash) Liste detay ekranı (T14 sırasında keşfedilen kopukluk)
+  - Done when: Liste kartından detaya geçiş; ürün ekleme; alışverişi başlat; bitir→sonuç; `flutter test test/features/` geçer.
+  - → ListDetailScreen (ürünler, ekleme sayfası, başlat/devam/bitir düğmeleri); ListsScreen kart tıklaması detaya bağlı; 136 birim test aynı pakette yeşil
+
 ### Aşama 2 — Hız ve geçmiş (spec §15 Aşama 2)
+- [ ] T33 [M] Ana ekran aylık toplamın para birimi güvenliği (A3 bulgusu, spec §7.1)
+  - Where: `lib/features/home/home_repository.dart` (watchMonthlyTotals), `lib/features/home/home_screen.dart`
+  - Do: 1) SQL'i para birimi başına gruplayacak şekilde değiştir (GROUP BY sl.currency_code). 2) MonthlyTotals'i liste yapısına çevir (currencyCode + planned + actual). 3) Ana ekran her para birimi için ayrı satır/kart gösterir; kart TRY varsaymaz. 4) Test: iki farklı para birimli tamamlanmış liste → iki ayrı satır, karışık toplam yok.
+  - Done when: `flutter test test/features/home/` geçer ve yeni test farklı para birimlerinin ayrı raporlandığını doğrular.
+  - Needs: T13
+
 - [ ] T15 [M] Ürün hafızası, alias ve fiyat gözlemleri (spec §6.2 öneriler, §6.10)
   - Where: `lib/features/lists/suggestions/`, `lib/data/daos/price_observation_dao.dart`, `test/features/lists/suggestions/`
   - Do: 1) Doğrulanmış her satın alım PriceObservation yazar (ürün, alias, mağaza, tarih, miktar/birim, ödenen birim fiyat, satır toplamı, para, indirim, kaynak). 2) Ürün ekleme formunda: yazarken geçmiş öneri (normalize edilmiş ad), son kategori/birim, son ödenen fiyat+tarih, aynı mağazadaki son fiyat, favoriler. 3) Çok satırlı yapıştırma → satır başına aday. 4) Yinelenen ürün uyarısı + birleştir/ayrı tut. 5) Farklı para birimi karşılaştırma yok; ortak temel birim yoksa birim fiyat karşılaştırma yok.
@@ -679,6 +686,7 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 | Date | Type | What | Why / evidence |
 |---|---|---|---|
+| 2026-09-20 | AUDIT | **A3 milestone audit (Aşama 1: T1-T14) geçti.** Tam paket: `flutter analyze` 0 issue; 136 birim + 3 entegrasyon testi yeşil; `flutter build apk --debug` √ (release de √ T1'den beri). Aşama 1 alanı §2 ile örtüşüyor: çekirdek katmanlar testli, l10n tr/en, drift v1 + migration, liste/ürün CRUD, alışveriş modu (5 durum/plansız/iade), sonuç (fiyat/miktar etkisi ayrımı), ana ekran, e2e. **Bulgu:** HomeRepository.watchMonthlyTotals farklı para birimli listeleri tek toplamda birleştiriyor ve kart TRY ile gösteriyor — spec §7.1 'farklı para birimleri toplanamaz' ihlali → **T33** oluşturuldu. Kalan GAP'ler Aşama 2-4 görevlerine işaret ediyor | protocol §0.4 A3 |
 | 2026-09-20 | AUDIT | **A1 (T6-T8 örnekleme) geçti.** check: 0 FAIL/0 WARN. Son 3 kapanışın Done-when'leri taze tam pakette koşuldu: `flutter test` 90/90 (l10n slogan tr/en, tema WCAG, veri şeması/rollback/FK dahil), `flutter analyze` 0 issue. Diff gözlemi: T6-T8 commit'leri yalnız ilgili dosyaları içeriyor, debug/TODO kalıntısı yok. Harita sürüklenmesi giderildi (§4 brain.py map çıktısıyla yeniden yazıldı); T8 beyin güncellemesinin ayrı commit'e düşmesi (f638563→ef4321c) düzeltilmiş oldu | protocol §0.4 |
 | 2026-09-20 | DECISION | Veri katmanı paketi: **drift 2.35** (sqflite değil) | drift aktif bakımda, tip güvenli şema + sürüm migration + transaction dahili; sqflite'ta bunlar yok. sqlite3_flutter_libs no-op (0.6.0+eol README: "no longer does anything") — drift sqlite3'ü kendisi bağlıyor. Üretilen app_database.g.dart repoya commit edildi (CI codegen adımı gerekmesin) |
 | 2026-09-20 | ASSUMPTION | T1 done-when'deki `flutter build apk --debug` koşulu release derlemesiyle kabul edildi: kullanıcı debug build komutunu iptal etti; release (R8+shrink, 202 s, 44 MB) debug'dan sıkı bir derleme olduğundan koşulu karşılar | Build çıktısı `√ Built build\app\outputs\flutter-apk\app-release.apk (44.0MB)` |
@@ -692,4 +700,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T13 kapatıldı: HomeShell (4 sekme) + ana ekran (aktif listeler, hızlı devam, aylık kart, boş durumlar); 4 test (paket 136). Push başarılı. Sıradaki iş: **T14** (uçtan uca entegrasyon testi) → T14 sonrası Aşama 1 kapanır, A3 milestone audit çalıştırılır.
+T14 + A3 kapatıldı: e2e 3 test (ana akış, dil değişimi, dosya-DB kalıcılığı); analyze 0, 136 birim + 3 entegrasyon testi yeşil, debug+release APK derleniyor. A3 bulgusu: ana ekrandaki aylık toplam farklı para birimli listeleri TRY varsayarak topluyor (spec §7.1 ihlali) → T33. Sıradaki iş: **T15**.

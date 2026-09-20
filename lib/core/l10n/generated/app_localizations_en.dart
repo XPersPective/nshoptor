@@ -427,4 +427,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get aboutBody =>
       'NShoptor by Crazy Penguin. Offline-first shopping planner. Licensed under GPL-3.0.';
+
+  @override
+  String get startShoppingLabel => 'Start shopping';
+
+  @override
+  String get finishAndSeeResult => 'Finish & see result';
 }

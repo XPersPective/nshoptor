@@ -6,6 +6,7 @@ import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/money/money_parser.dart';
 import '../../data/db/app_database.dart';
+import 'list_detail_screen.dart';
 import 'list_repository.dart';
 import 'list_status.dart';
 
@@ -25,9 +26,13 @@ String listDisplayTitle(AppLocalizations l10n, ShoppingList list) =>
 
 /// Aktif/tamamlanmış/arşiv sekmeli liste ekranı (spec §6.1).
 class ListsScreen extends StatefulWidget {
-  const ListsScreen({super.key, required this.repository});
+  const ListsScreen({super.key, required this.repository, this.onOpenListDetail});
 
   final ListRepository repository;
+
+  /// Liste kartına dokununca detay ekranını açar; verilmediyse dahili olarak
+  /// ListDetailScreen push edilir.
+  final void Function(BuildContext context, int listId)? onOpenListDetail;
 
   @override
   State<ListsScreen> createState() => _ListsScreenState();
@@ -77,18 +82,21 @@ class _ListsScreenState extends State<ListsScreen> {
                       ListStatus.shopping,
                     },
                     emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
                   ),
                   _ListsTab(
                     repository: widget.repository,
                     query: _query,
                     statuses: const {ListStatus.completed},
                     emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
                   ),
                   _ListsTab(
                     repository: widget.repository,
                     query: _query,
                     statuses: const {ListStatus.archived},
                     emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
                   ),
                 ],
               ),
@@ -125,12 +133,14 @@ class _ListsTab extends StatelessWidget {
     required this.query,
     required this.statuses,
     required this.emptyText,
+    required this.onOpenListDetail,
   });
 
   final ListRepository repository;
   final String query;
   final Set<ListStatus> statuses;
   final String emptyText;
+  final void Function(BuildContext, int)? onOpenListDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -156,8 +166,11 @@ class _ListsTab extends StatelessWidget {
         }
         return ListView.builder(
           itemCount: lists.length,
-          itemBuilder: (context, index) =>
-              _ListCard(repository: repository, list: lists[index]),
+          itemBuilder: (context, index) => _ListCard(
+            repository: repository,
+            list: lists[index],
+            onOpen: onOpenListDetail,
+          ),
         );
       },
     );
@@ -165,10 +178,15 @@ class _ListsTab extends StatelessWidget {
 }
 
 class _ListCard extends StatelessWidget {
-  const _ListCard({required this.repository, required this.list});
+  const _ListCard({
+    required this.repository,
+    required this.list,
+    this.onOpen,
+  });
 
   final ListRepository repository;
   final ShoppingList list;
+  final void Function(BuildContext, int)? onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -176,6 +194,20 @@ class _ListCard extends StatelessWidget {
     final status = ListStatus.tryFromDb(list.status)!;
     return Card(
       child: ListTile(
+        onTap: () {
+          final open = onOpen;
+          if (open != null) {
+            open(context, list.id);
+          } else {
+            Navigator.of(context).push(MaterialPageRoute<void>(
+              builder: (_) => ListDetailScreen(
+                db: repository.db,
+                listRepository: repository,
+                listId: list.id,
+              ),
+            ));
+          }
+        },
         title: Text(listDisplayTitle(l10n, list),
             overflow: TextOverflow.ellipsis),
         subtitle: Text(

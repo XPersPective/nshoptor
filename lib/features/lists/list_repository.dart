@@ -10,6 +10,9 @@ class ListRepository {
 
   final AppDatabase _db;
 
+  /// Detay ekranları gibi aynı veritabanını paylaşan bileşenler için.
+  AppDatabase get db => _db;
+
   /// Yeni liste kurar; [generatedTitle] başlık boş bırakıldığında UI
   /// katmanı tarafından üretilip verilir (depoda çeviri üretilmez).
   Future<int> createList({

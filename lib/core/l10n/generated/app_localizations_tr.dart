@@ -427,4 +427,10 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get aboutBody =>
       'Crazy Penguin imzalı NShoptor. Çevrimdışı çalışan alışveriş planlayıcı. GPL-3.0 lisanslıdır.';
+
+  @override
+  String get startShoppingLabel => 'Alışverişi başlat';
+
+  @override
+  String get finishAndSeeResult => 'Bitir ve sonuca geç';
 }
