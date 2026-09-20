@@ -40,5 +40,46 @@
         "type": "String"
       }
     }
+  },
+  "itemFormTitle": "Ürün ekle",
+  "itemNameLabel": "Ürün adı",
+  "brandLabel": "Marka / varyant (isteğe bağlı)",
+  "categoryLabel": "Kategori",
+  "quantityLabel": "Miktar",
+  "unitLabel": "Birim",
+  "pricingModeLabel": "Fiyat girişi",
+  "pricingModeUnitPrice": "Birim fiyat",
+  "pricingModeLineTotal": "Satır toplamı",
+  "plannedPriceLabel": "Planlanan fiyat",
+  "lineTotalCalculated": "Satır toplamı: {value}",
+  "requiredItemToggle": "Zorunlu ürün",
+  "maxPriceLabel": "En fazla kabul edilebilir fiyat (isteğe bağlı)",
+  "itemNoteLabel": "Not (isteğe bağlı)",
+  "categoryProduce": "Meyve-sebze",
+  "categoryDairy": "Süt ürünleri",
+  "categoryMeat": "Et",
+  "categoryBakery": "Fırın",
+  "categoryDrinks": "İçecek",
+  "categoryCleaning": "Temizlik",
+  "categoryPersonalCare": "Kişisel bakım",
+  "categoryHome": "Ev",
+  "categoryOther": "Diğer",
+  "@lineTotalCalculated": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidQuantityError": "Geçersiz miktar",
+  "invalidPriceError": "Geçersiz fiyat",
+  "invalidNameError": "Ad gerekli",
+  "unitPriceCalculated": "Birim fiyat: {value}",
+  "@unitPriceCalculated": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
   }
 }

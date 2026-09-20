@@ -301,6 +301,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{date} shopping'**
   String autoListTitle(String date);
+
+  /// No description provided for @itemFormTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get itemFormTitle;
+
+  /// No description provided for @itemNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Item name'**
+  String get itemNameLabel;
+
+  /// No description provided for @brandLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand / variant (optional)'**
+  String get brandLabel;
+
+  /// No description provided for @categoryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get categoryLabel;
+
+  /// No description provided for @quantityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get quantityLabel;
+
+  /// No description provided for @unitLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get unitLabel;
+
+  /// No description provided for @pricingModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Price entry'**
+  String get pricingModeLabel;
+
+  /// No description provided for @pricingModeUnitPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit price'**
+  String get pricingModeUnitPrice;
+
+  /// No description provided for @pricingModeLineTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Line total'**
+  String get pricingModeLineTotal;
+
+  /// No description provided for @plannedPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned price'**
+  String get plannedPriceLabel;
+
+  /// No description provided for @lineTotalCalculated.
+  ///
+  /// In en, this message translates to:
+  /// **'Line total: {value}'**
+  String lineTotalCalculated(String value);
+
+  /// No description provided for @requiredItemToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Required item'**
+  String get requiredItemToggle;
+
+  /// No description provided for @maxPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum acceptable price (optional)'**
+  String get maxPriceLabel;
+
+  /// No description provided for @itemNoteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get itemNoteLabel;
+
+  /// No description provided for @categoryProduce.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruit & vegetables'**
+  String get categoryProduce;
+
+  /// No description provided for @categoryDairy.
+  ///
+  /// In en, this message translates to:
+  /// **'Dairy'**
+  String get categoryDairy;
+
+  /// No description provided for @categoryMeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Meat'**
+  String get categoryMeat;
+
+  /// No description provided for @categoryBakery.
+  ///
+  /// In en, this message translates to:
+  /// **'Bakery'**
+  String get categoryBakery;
+
+  /// No description provided for @categoryDrinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Drinks'**
+  String get categoryDrinks;
+
+  /// No description provided for @categoryCleaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Cleaning'**
+  String get categoryCleaning;
+
+  /// No description provided for @categoryPersonalCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal care'**
+  String get categoryPersonalCare;
+
+  /// No description provided for @categoryHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get categoryHome;
+
+  /// No description provided for @categoryOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get categoryOther;
+
+  /// No description provided for @invalidQuantityError.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid quantity'**
+  String get invalidQuantityError;
+
+  /// No description provided for @invalidPriceError.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid price'**
+  String get invalidPriceError;
+
+  /// No description provided for @invalidNameError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a name'**
+  String get invalidNameError;
+
+  /// No description provided for @unitPriceCalculated.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit price: {value}'**
+  String unitPriceCalculated(String value);
 }
 
 class _AppLocalizationsDelegate

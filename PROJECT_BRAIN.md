@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T9 tamam (çekirdekler + veri katmanı + liste CRUD/ekranı). Sıradaki iş: T10 (ürün planlama formu).
-> **Phase:** BUILD · **Next:** T10 · **Updated:** 2026-09-20 · **Synced@:** 09432fe
+> **Status:** T1-T10 tamam (çekirdek + veri + liste/ürün UI). Sıradaki iş: T11 (alışveriş modu).
+> **Phase:** BUILD · **Next:** T11 · **Updated:** 2026-09-20 · **Synced@:** 20e90c8
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -178,7 +178,7 @@ nshoptor/
     core/quantity/**                # UnitCode, UnitConversion, PackagingContent (T4)
     core/theme/**                   # AppTheme (M3) + SemanticDelta (T7)
     data/db/**                      # drift şeması v1 + AppDatabase + üretilmiş kod (T8)
-    features/lists/**               # ListStatus, ListRepository, ListsScreen + editör (T9)
+    features/lists/**               # ListStatus, ListRepository, ListsScreen, ItemFormSheet (T9-T10)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
     app_test.dart                   # slogan widget testleri (T6)
@@ -212,7 +212,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T10-T13
+GAP: alışveriş/sonuç/ana ekran UI yok → T11-T13
 GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
@@ -308,11 +308,11 @@ nshoptor/
   - → 17 test geçti (paket 107); ListStatus geçiş kuralları, ListRepository (çift yazma/undo snapshot), ListsScreen (3 sekme + arama + FAB), düzenleme sayfası (para birimi değişim diyaloğu: koru/sıfırla; locale-aware bütçe girdisi); 32 yeni ARB anahtarı
   - Needs: T6, T7, T8
 
-- [ ] T10 [M] Ürün planlama formu (spec §6.2)
-  - Where: `lib/features/lists/item_form/`, `test/features/lists/item_form/`
-  - Do: 1) Alanlar: ad, marka/varyant, kategori (başlangıç kategorileriyle), reyon, miktar (ondalıklı), birim, fiyat giriş tipi (birim fiyat/satır toplamı), not, zorunlu işareti, maksimum fiyat. 2) Birim fiyat↔satır toplamı çift yönlü hesap; kullanıcının girdiği taraf kaybolmaz. 3) `+1` hızlı adet ve miktar stepper. 4) Doğrulama birime göre yapılandırılabilir; negatif/sıfır/aşırı büyük reddi (yerelleştirilmiş mesajlar). 5) Başlangıç kategorileri: meyve-sebze, süt, et, fırın, içecek, temizlik, kişisel bakım, ev, diğer.
+- [x] T10 [M] (2026-09-20, GLM-5.3-Flash) Ürün planlama formu (spec §6.2)
   - Done when: `flutter test test/features/lists/item_form/` geçer: ondalıklı miktar kaydı, birim fiyat↔satır toplamı dönüşümü iki yönde, geçersiz girişte yerelleştirilmiş hata.
+  - → 10 test geçti (paket 117); ItemFormSheet (çift yönlü fiyat önizleme, +1 adımlayıcı, birime göre tam sayı doğrulaması, zorunlu/max fiyat/not), ItemRepository (girilen taraf korunur), StarterCategories (9 kategori seed). Not: yollar item_form/ yerine features/lists/ içinde; build sırasında fırlatan ayrıştırma hatası giderildi (gerçek bug)
   - Needs: T9
+
 - [ ] T11 [H] Alışveriş modu (spec §6.5-6.6)
   - Where: `lib/features/shopping_mode/`, `test/features/shopping_mode/`
   - Do: 1) Ürün durumları: alınmadı, sepette, bulunamadı, vazgeçildi, alternatif alındı. 2) Satın alım kaydı: gerçek miktar/birim, birim fiyat veya satır toplamı, indirim, kontrollü iade (eksi) girişi, alternatif ad, not; veri kaynağı alanı (manuel; ses/OCR sonraki aşamalarda değerlerle bağlanır) + userConfirmed. 3) Üst özet şeridi: planlanan toplam, sepet gerçek, kalan plan tahmini, tahmini kasa, bütçe kalan/aşım, tamamlanan/kalan sayı — her giriş sonrası anında güncelle. 4) Filtreler: tümü, alınacaklar, sepette, bulunamayanlar, zorunlular, kategori. 5) Plansız ürün ekleme (gerçek toplama dahil, sonuçta ayrı gösterilir). 6) Alınmayanlar gerçeğe 0 zorlanmaz. 7) `ekranı açık tut` opsiyonu (wakelock paketi — bakım kontrolü) + ayarlardan varsayılan. 8) Oturum dayanıklılığı: arka plan/uygulama kapanıp dönünce oturum ve girilen veriler korunur.
@@ -449,4 +449,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T9 kapatıldı: liste CRUD + durum makinesi + sekmeli ekran; para birimi değişim diyaloğu (koru/sıfırla) ve locale-aware bütçe girdisi dahil; 17 test (paket 107). Widget testlerinde drift+FakeAsync deseni çözüldü: dispose→close başlat→pump(1ms)→await close. Push başarılı. Sıradaki iş: **T10** (ürün planlama formu).
+T10 kapatıldı: ürün formu (çift yönlü fiyat, +1, birim doğrulaması) + kategori seed; 10 test (paket 117). build-sırasında-fırlatma bug'ı giderildi. Push başarılı. Sıradaki iş: **T11** (alışveriş modu — spec §6.5-6.6, en büyük UI parçası).

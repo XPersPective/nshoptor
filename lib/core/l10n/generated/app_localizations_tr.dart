@@ -114,4 +114,89 @@ class AppLocalizationsTr extends AppLocalizations {
   String autoListTitle(String date) {
     return '$date alışverişi';
   }
+
+  @override
+  String get itemFormTitle => 'Ürün ekle';
+
+  @override
+  String get itemNameLabel => 'Ürün adı';
+
+  @override
+  String get brandLabel => 'Marka / varyant (isteğe bağlı)';
+
+  @override
+  String get categoryLabel => 'Kategori';
+
+  @override
+  String get quantityLabel => 'Miktar';
+
+  @override
+  String get unitLabel => 'Birim';
+
+  @override
+  String get pricingModeLabel => 'Fiyat girişi';
+
+  @override
+  String get pricingModeUnitPrice => 'Birim fiyat';
+
+  @override
+  String get pricingModeLineTotal => 'Satır toplamı';
+
+  @override
+  String get plannedPriceLabel => 'Planlanan fiyat';
+
+  @override
+  String lineTotalCalculated(String value) {
+    return 'Satır toplamı: $value';
+  }
+
+  @override
+  String get requiredItemToggle => 'Zorunlu ürün';
+
+  @override
+  String get maxPriceLabel => 'En fazla kabul edilebilir fiyat (isteğe bağlı)';
+
+  @override
+  String get itemNoteLabel => 'Not (isteğe bağlı)';
+
+  @override
+  String get categoryProduce => 'Meyve-sebze';
+
+  @override
+  String get categoryDairy => 'Süt ürünleri';
+
+  @override
+  String get categoryMeat => 'Et';
+
+  @override
+  String get categoryBakery => 'Fırın';
+
+  @override
+  String get categoryDrinks => 'İçecek';
+
+  @override
+  String get categoryCleaning => 'Temizlik';
+
+  @override
+  String get categoryPersonalCare => 'Kişisel bakım';
+
+  @override
+  String get categoryHome => 'Ev';
+
+  @override
+  String get categoryOther => 'Diğer';
+
+  @override
+  String get invalidQuantityError => 'Geçersiz miktar';
+
+  @override
+  String get invalidPriceError => 'Geçersiz fiyat';
+
+  @override
+  String get invalidNameError => 'Ad gerekli';
+
+  @override
+  String unitPriceCalculated(String value) {
+    return 'Birim fiyat: $value';
+  }
 }

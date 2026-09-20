@@ -40,5 +40,46 @@
         "type": "String"
       }
     }
+  },
+  "itemFormTitle": "Add item",
+  "itemNameLabel": "Item name",
+  "brandLabel": "Brand / variant (optional)",
+  "categoryLabel": "Category",
+  "quantityLabel": "Quantity",
+  "unitLabel": "Unit",
+  "pricingModeLabel": "Price entry",
+  "pricingModeUnitPrice": "Unit price",
+  "pricingModeLineTotal": "Line total",
+  "plannedPriceLabel": "Planned price",
+  "lineTotalCalculated": "Line total: {value}",
+  "requiredItemToggle": "Required item",
+  "maxPriceLabel": "Maximum acceptable price (optional)",
+  "itemNoteLabel": "Note (optional)",
+  "categoryProduce": "Fruit & vegetables",
+  "categoryDairy": "Dairy",
+  "categoryMeat": "Meat",
+  "categoryBakery": "Bakery",
+  "categoryDrinks": "Drinks",
+  "categoryCleaning": "Cleaning",
+  "categoryPersonalCare": "Personal care",
+  "categoryHome": "Home",
+  "categoryOther": "Other",
+  "@lineTotalCalculated": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidQuantityError": "Invalid quantity",
+  "invalidPriceError": "Invalid price",
+  "invalidNameError": "Enter a name",
+  "unitPriceCalculated": "Unit price: {value}",
+  "@unitPriceCalculated": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
   }
 }

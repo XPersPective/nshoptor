@@ -114,4 +114,89 @@ class AppLocalizationsEn extends AppLocalizations {
   String autoListTitle(String date) {
     return '$date shopping';
   }
+
+  @override
+  String get itemFormTitle => 'Add item';
+
+  @override
+  String get itemNameLabel => 'Item name';
+
+  @override
+  String get brandLabel => 'Brand / variant (optional)';
+
+  @override
+  String get categoryLabel => 'Category';
+
+  @override
+  String get quantityLabel => 'Quantity';
+
+  @override
+  String get unitLabel => 'Unit';
+
+  @override
+  String get pricingModeLabel => 'Price entry';
+
+  @override
+  String get pricingModeUnitPrice => 'Unit price';
+
+  @override
+  String get pricingModeLineTotal => 'Line total';
+
+  @override
+  String get plannedPriceLabel => 'Planned price';
+
+  @override
+  String lineTotalCalculated(String value) {
+    return 'Line total: $value';
+  }
+
+  @override
+  String get requiredItemToggle => 'Required item';
+
+  @override
+  String get maxPriceLabel => 'Maximum acceptable price (optional)';
+
+  @override
+  String get itemNoteLabel => 'Note (optional)';
+
+  @override
+  String get categoryProduce => 'Fruit & vegetables';
+
+  @override
+  String get categoryDairy => 'Dairy';
+
+  @override
+  String get categoryMeat => 'Meat';
+
+  @override
+  String get categoryBakery => 'Bakery';
+
+  @override
+  String get categoryDrinks => 'Drinks';
+
+  @override
+  String get categoryCleaning => 'Cleaning';
+
+  @override
+  String get categoryPersonalCare => 'Personal care';
+
+  @override
+  String get categoryHome => 'Home';
+
+  @override
+  String get categoryOther => 'Other';
+
+  @override
+  String get invalidQuantityError => 'Invalid quantity';
+
+  @override
+  String get invalidPriceError => 'Invalid price';
+
+  @override
+  String get invalidNameError => 'Enter a name';
+
+  @override
+  String unitPriceCalculated(String value) {
+    return 'Unit price: $value';
+  }
 }
