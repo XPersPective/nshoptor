@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T5 tamam (bootstrap, CI, para/birim/hesap çekirdekleri: 73 test). Sıradaki iş: T6 (l10n iskeleti).
-> **Phase:** BUILD · **Next:** T6 · **Updated:** 2026-09-20 · **Synced@:** b7fa525
+> **Status:** T1-T6 tamam (bootstrap, CI, çekirdek katmanlar + l10n iskeleti). Sıradaki iş: T7 (Material 3 tema).
+> **Phase:** BUILD · **Next:** T7 · **Updated:** 2026-09-20 · **Synced@:** 16eb241
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -194,7 +194,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: l10n/tema yok → T6,T7
+GAP: tema yok → T7
 GAP: SQLite veri katmanı yok → T8
 GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T9-T13
 GAP: entegrasyon testi yok → T14
@@ -218,6 +218,8 @@ nshoptor/
     core/money/**                 # Currency, DecimalFixed, Money, MoneyParser, formatMoney (T3)
     core/quantity/**              # UnitCode, UnitConversion, PackagingContent (T4)
     core/calc/**                  # LineCalc, EffectSplit, ListCalc, VarianceThreshold (T5)
+    core/l10n/**                  # ARB dosyaları + generated AppLocalizations (T6)
+  app/**                          # NShoptorApp kökü + LanguageController (T6)
   test/
     app_test.dart                 # kurulum smoke testi (T1)
     core/money/**                 # para katmanı testleri: 40 test (T3)
@@ -263,10 +265,9 @@ nshoptor/
   - Done when: `flutter test test/core/calc/` geçer; §13 birim test listesinin hesap kalemlerinin tamamı kapsanır (indirimli toplam, plan sıfırken yüzde null, fiyat/miktar etkisi ayrımı, plansız/alınmayan toplamları, yuvarlama sınırları, projeksiyon).
   - → 21 test geçti (paket toplamı 74); LineCalc + EffectSplit, ListCalc (projeksiyon/bütçe/doğruluk), VarianceThreshold (%10 VEYA 200 minor), ReconciliationTolerance (±2 minor); DecimalFixed dahili ölçek üst sınırı 12'ye çıkarıldı (ara hesaplar için)
   - Needs: T3, T4
-- [ ] T6 [M] l10n iskeleti (spec §3)
-  - Where: `lib/core/l10n/` (app_en.arb, app_tr.arb, l10n.yaml), `lib/app/`
-  - Do: 1) flutter gen-l10n yapılandırması; en temel ARB. 2) Slogan anahtarı: tr "Evdeki hesap çarşıya uyar." / en "Plan at home. Shop as planned.". 3) Dil tercihi kalıcı ayar: Sistem/Türkçe/English. 4) İlk açılış sistem dili. 5) Yeni dil = yalnız yeni ARB dosyası (yapı buna izin verir).
+- [x] T6 (2026-09-20, GLM-5.3-Flash) l10n iskeleti (spec §3)
   - Done when: `flutter gen-l10n` temiz; widget testi seçili dile göre sloganı değiştirdiğini doğrular (tr/en iki durum).
+  - → l10n.yaml (nullable-getter: false) + app_en/app_tr ARB (slogan); LanguageController (system/tr/en, SettingsStore kalıcılığı); NShoptorApp kök bileşeni main.dart'a bağlandı; 2 slogan widget testi (paket 75)
   - Needs: T1
 - [ ] T7 [M] Material 3 marka teması (spec §10)
   - Where: `lib/core/theme/` (app_theme.dart, semantic_colors.dart), `lib/app/`
@@ -422,4 +423,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T5 kapatıldı: core/calc hesap motoru (satır formülleri, etki ayrıştırması, liste projeksiyonu, eşikler) + 21 test; tam paket 74 test, analyze temiz. DecimalFixed'a dahili ölçek üst sınırı 12 eklendi. Push başarılı. Sıradaki iş: **T6** (l10n iskeleti — ARB, slogan, dil tercihi).
+T6 kapatıldı: l10n iskeleti (ARB tr/en, slogan, LanguageController kalıcı tercih) + kök NShoptorApp; tam paket 75 test, analyze temiz. Push başarılı. Sıradaki iş: **T7** (Material 3 marka teması + anlamsal renkler).
