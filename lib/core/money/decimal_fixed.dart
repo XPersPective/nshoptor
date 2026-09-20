@@ -9,10 +9,13 @@
 class DecimalFixed implements Comparable<DecimalFixed> {
   const DecimalFixed._(this.unscaled, this.scale)
       : assert(scale >= 0),
-        assert(scale <= _maxScale);
+        assert(scale <= _maxInternalScale);
 
-  /// Maksimum ondalık basamak sayısı (depolama ve gösterim sınırları için).
-  static const int _maxScale = 6;
+  /// Depolama ve kullanıcı girişi için ondalık basamak sınırı.
+  static const int maxFractionDigits = 6;
+
+  /// Ara hesaplarda izin verilen en büyük ölçek (çarpım ölçek toplamı).
+  static const int _maxInternalScale = 12;
 
   /// Tamsayı kısmı için izin verilen maksimum basamak (aşırı büyük girişe karşı).
   static const int _maxIntegerDigits = 15;
@@ -35,7 +38,7 @@ class DecimalFixed implements Comparable<DecimalFixed> {
   /// Sıkı ayrıştırma: `[işaret]basamaklar[.basamaklar]`; boşluk, binlik ayraç,
   /// boş kesir kabul edilmez. Kanonik ondalık ayracı `.`'dır; yerel ayraç
   /// dönüşümü `MoneyParser`'ın işidir. Maksimum [_maxIntegerDigits] tamsayı
-  /// ve [_maxScale] ondalık basamak; aşımında [FormatException].
+  /// ve [maxFractionDigits] ondalık basamak; aşımında [FormatException].
   static DecimalFixed parse(String input) {
     final s = input.trim();
     if (s.isEmpty) {
@@ -51,9 +54,9 @@ class DecimalFixed implements Comparable<DecimalFixed> {
     if (intPart.length > _maxIntegerDigits) {
       throw FormatException('değer çok büyük: "$input"');
     }
-    if (fracPart.length > _maxScale) {
+    if (fracPart.length > maxFractionDigits) {
       throw FormatException(
-          'en fazla $_maxScale ondalık basamak desteklenir: "$input"');
+          'en fazla $maxFractionDigits ondalık basamak desteklenir: "$input"');
     }
     final digits = fracPart.isEmpty
         ? BigInt.parse(intPart)
@@ -81,7 +84,7 @@ class DecimalFixed implements Comparable<DecimalFixed> {
   /// Tam çarpım: ölçekler toplanır, ara yuvarlama YOK.
   DecimalFixed operator *(DecimalFixed other) => DecimalFixed._(
       unscaled * other.unscaled,
-      (scale + other.scale).clamp(0, _maxScale + _maxScale));
+      (scale + other.scale).clamp(0, _maxInternalScale));
 
   /// [scale] ondalık basamaklı bölüm; yarıdan uzağa yuvarlama uygulanır.
   DecimalFixed divide(DecimalFixed other, {required int scale}) {
@@ -164,7 +167,7 @@ class DecimalFixed implements Comparable<DecimalFixed> {
       other is DecimalFixed && compareTo(other) == 0;
 
   @override
-  int get hashCode => rescale(_maxScale).unscaled.hashCode;
+  int get hashCode => rescale(maxFractionDigits).unscaled.hashCode;
 
   @override
   String toString() => toDbString();

@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T4 tamam (bootstrap, CI, para 40 test + birim 12 test). Sıradaki iş: T5 (core/calc varyans motoru).
-> **Phase:** BUILD · **Next:** T5 · **Updated:** 2026-09-20 · **Synced@:** 8509f5a
+> **Status:** T1-T5 tamam (bootstrap, CI, para/birim/hesap çekirdekleri: 73 test). Sıradaki iş: T6 (l10n iskeleti).
+> **Phase:** BUILD · **Next:** T6 · **Updated:** 2026-09-20 · **Synced@:** b7fa525
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -194,7 +194,6 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: money/quantity/calc çekirdekleri yok → T5
 GAP: l10n/tema yok → T6,T7
 GAP: SQLite veri katmanı yok → T8
 GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T9-T13
@@ -218,10 +217,12 @@ nshoptor/
     main.dart                     # napp_core NappApp iskeleti (T1)
     core/money/**                 # Currency, DecimalFixed, Money, MoneyParser, formatMoney (T3)
     core/quantity/**              # UnitCode, UnitConversion, PackagingContent (T4)
+    core/calc/**                  # LineCalc, EffectSplit, ListCalc, VarianceThreshold (T5)
   test/
     app_test.dart                 # kurulum smoke testi (T1)
     core/money/**                 # para katmanı testleri: 40 test (T3)
     core/quantity/**              # birim katmanı testleri: 12 test (T4)
+    core/calc/**                  # hesap motoru testleri: 21 test (T5)
   pubspec.yaml  pubspec.lock  analysis_options.yaml  .metadata  # Flutter proje dosyaları (T1)
   assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo Crazy Penguin'ten)
   tool/new_app.dart                # kurulum betiği
@@ -258,10 +259,9 @@ nshoptor/
   - Done when: `flutter test test/core/quantity/` geçer ve §13'ün birim testlerini kapsar (500g↔0,5kg, L↔ml, paket↔kg reddi).
   - → 12 test geçti; UnitCode (13 birim, dbCode+boyut ailesi), UnitConversion (kg↔g, L↔ml, adet↔düzine yalnız allowCount ile, UnsupportedConversionError), tryConvertToBase (karşılaştırılamayan → null), PackagingContent (kullanıcı tanımlı içerik)
   - Needs: T1
-- [ ] T5 [H] core/calc varyans motoru (spec §7.3)
-  - Where: `lib/core/calc/` (line_calc.dart, list_calc.dart, variance.dart), `test/core/calc/`
-  - Do: 1) plannedLineTotal, actualGrossTotal, actualLineTotal(indirim düşülmüş), lineVariance, lineVariancePercent (plan 0 ise null — UI "Hesaplanamaz" gösterir). 2) Liste: plannedTotal, actualTotal, totalVariance, projectedCheckoutToplam (sepet gerçek + kalan plan tahmini), budgetRemaining. 3) priceEffect/quantityEffect ayrıştırması (ortak birim varsa; yoksa null + açıklama alanı). 4) discountEffect, plansız toplam, alınmayan planlanan toplam, tahmin doğruluk oranı. 5) "Tahmine yakın" eşiği: yüzde + küçük mutlak para eşiği birleşimi, tek sabit'te tanımlı + dokümante. 6) Yuvarlama uzlaştırma toleransı (tanımlı, gizlice yutma yok).
+- [x] T5 (2026-09-20, GLM-5.3-Flash) core/calc varyans motoru (spec §7.3)
   - Done when: `flutter test test/core/calc/` geçer; §13 birim test listesinin hesap kalemlerinin tamamı kapsanır (indirimli toplam, plan sıfırken yüzde null, fiyat/miktar etkisi ayrımı, plansız/alınmayan toplamları, yuvarlama sınırları, projeksiyon).
+  - → 21 test geçti (paket toplamı 74); LineCalc + EffectSplit, ListCalc (projeksiyon/bütçe/doğruluk), VarianceThreshold (%10 VEYA 200 minor), ReconciliationTolerance (±2 minor); DecimalFixed dahili ölçek üst sınırı 12'ye çıkarıldı (ara hesaplar için)
   - Needs: T3, T4
 - [ ] T6 [M] l10n iskeleti (spec §3)
   - Where: `lib/core/l10n/` (app_en.arb, app_tr.arb, l10n.yaml), `lib/app/`
@@ -422,4 +422,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T4 kapatıldı: core/quantity birim katmanı (UnitCode/UnitConversion/PackagingContent) + 12 test; tam paket 53 test, analyze temiz. Push başarılı. Sıradaki iş: **T5** (core/calc — satır/liste formülleri, fiyat/miktar etkisi, eşikler).
+T5 kapatıldı: core/calc hesap motoru (satır formülleri, etki ayrıştırması, liste projeksiyonu, eşikler) + 21 test; tam paket 74 test, analyze temiz. DecimalFixed'a dahili ölçek üst sınırı 12 eklendi. Push başarılı. Sıradaki iş: **T6** (l10n iskeleti — ARB, slogan, dil tercihi).
