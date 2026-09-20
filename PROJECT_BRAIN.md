@@ -155,21 +155,38 @@ NShoptor: Crazy Penguin'in çok dilli (tr/en), offline-first, hesapsız **alış
 Flutter (android+ios), feature-first yapı (spec §11):
 
 ```text
-lib/
-  app/          # kök widget, MaterialApp, basit router, boot
-  core/
-    l10n/       # ARB (app_en, app_tr), AppLocalizations
-    money/      # para katmanı: Currency(ISO4217+minorDigits), Money(minor units int),
-                #   DecimalFixed(sabit ölçekli decimal string), locale-aware parse/format, tek yuvarlama kuralı
-    quantity/   # birim kodları, güvenli dönüşüm grupları (kg↔g, L↔ml, adet↔düzine),
-                #   ambalaj içeriği tanımları, normalize
-    calc/       # satır/liste formülleri, projeksiyon, bütçe, fiyat/miktar etkisi, eşikler (spec §7)
-    theme/      # Material 3 marka teması, anlamsal renkler (altında=yeşil, üstünde=kırmızı/turuncu, yakın=nötr)
-  features/
-    lists/  shopping_mode/  receipts/  voice_input/  history/  settings/
-  data/         # SQLite (sürümlü şema+migration+transaction), dosya depolama, OCR/speech adaptörleri
-test/  integration_test/  docs/
-```
+nshoptor/
+  .github/workflows/ci.yml          # tek-app CI: analyze+test, gitleaks, release APK (T2)
+  android/                          # Flutter Android kabuğu (T1)
+    app/src/**                      # manifest (cleartext yok, backup rules), ikonlar, MainActivity
+    app/build.gradle.kts            # key.properties + R8 minify/shrink release (T1)
+    app/proguard-rules.pro          # R8 keep kuralları (T1)
+    gradle/wrapper/**               # gradle wrapper (T1)
+    build.gradle.kts  settings.gradle.kts  gradle.properties  # kök gradle (T1)
+    key.properties.example          # imza/admob yer tutucu
+  assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo CP'ten)
+  docs/spec/master-prompt-tr.md     # tam ürün spesifikasyonu (bağlayıcı hedef kaynağı)
+  ios/                              # Flutter iOS kabuğu (T1)
+    Flutter/                        # xcconfig + AppFrameworkInfo.plist
+    Runner/**                       # AppDelegate, Info.plist (NShoptor adı), ikonlar
+    Runner.xcodeproj/**  Runner.xcworkspace/**  RunnerTests/**  # Xcode projesi
+  lib/
+    app/                            # NShoptorApp kökü + LanguageController (T6)
+    core/calc/**                    # LineCalc, EffectSplit, ListCalc, VarianceThreshold (T5)
+    core/l10n/**                    # tr/en ARB + üretilmiş AppLocalizations (T6)
+    core/money/**                   # Currency, DecimalFixed, Money, MoneyParser, formatMoney (T3)
+    core/quantity/**                # UnitCode, UnitConversion, PackagingContent (T4)
+    core/theme/**                   # AppTheme (M3) + SemanticDelta (T7)
+    data/db/**                      # drift şeması v1 + AppDatabase + üretilmiş kod (T8)
+    main.dart                       # boot: SettingsStore + LanguageController + runApp
+  test/
+    app_test.dart                   # slogan widget testleri (T6)
+    core/**                         # çekirdek testleri: money 40, quantity 12, calc 21, theme 5
+    data/app_database_test.dart     # şema/migration/transaction/FK: 10 (T8)
+  tool/new_app.dart                 # kurulum betiği (yeniden kullanılabilir)
+  tool/brand/generate_icons.py      # ikon üretici
+  tool/templates/**                 # main/app_test şablonları
+  .env.example  AGENTS.md  analysis_options.yaml  l10n.yaml  LICENSE  PROJECT_BRAIN.md  pubspec.yaml  pubspec.lock  README.md  
 
 - **Domain kuralları** core/{money,quantity,calc} içinde, widget'lardan bağımsız, tamamen testli.
 - **Veri modeli** spec §8 varlıkları (ShoppingList, PlannedItem, PurchaseEntry, ProductMemory, ProductAlias, PriceObservation, Store, Category, Aisle, Receipt, ReceiptCandidateLine, Attachment, Reminder, AppSettings); kanonik değerler kod olarak saklanır, görünen adlar l10n'dan gelir; fotoğraflar app özel dizinde dosya, DB'de yalnız yol.
@@ -418,6 +435,7 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 | Date | Type | What | Why / evidence |
 |---|---|---|---|
+| 2026-09-20 | AUDIT | **A1 (T6-T8 örnekleme) geçti.** check: 0 FAIL/0 WARN. Son 3 kapanışın Done-when'leri taze tam pakette koşuldu: `flutter test` 90/90 (l10n slogan tr/en, tema WCAG, veri şeması/rollback/FK dahil), `flutter analyze` 0 issue. Diff gözlemi: T6-T8 commit'leri yalnız ilgili dosyaları içeriyor, debug/TODO kalıntısı yok. Harita sürüklenmesi giderildi (§4 brain.py map çıktısıyla yeniden yazıldı); T8 beyin güncellemesinin ayrı commit'e düşmesi (f638563→ef4321c) düzeltilmiş oldu | protocol §0.4 |
 | 2026-09-20 | DECISION | Veri katmanı paketi: **drift 2.35** (sqflite değil) | drift aktif bakımda, tip güvenli şema + sürüm migration + transaction dahili; sqflite'ta bunlar yok. sqlite3_flutter_libs no-op (0.6.0+eol README: "no longer does anything") — drift sqlite3'ü kendisi bağlıyor. Üretilen app_database.g.dart repoya commit edildi (CI codegen adımı gerekmesin) |
 | 2026-09-20 | ASSUMPTION | T1 done-when'deki `flutter build apk --debug` koşulu release derlemesiyle kabul edildi: kullanıcı debug build komutunu iptal etti; release (R8+shrink, 202 s, 44 MB) debug'dan sıkı bir derleme olduğundan koşulu karşılar | Build çıktısı `√ Built build\app\outputs\flutter-apk\app-release.apk (44.0MB)` |
 | 2026-09-20 | AUDIT | **A0 creation audit geçti.** 1) check: FAIL yok (yalnız `Synced@` WARN — ilk görev kapanışında dolar). 2) §3 kanıtlarından 3'ü açıldı: `tool/new_app.dart` tamamen okundu (flutter create+platform+napp+doğrulama akışı iddiası doğru); `.github/workflows/ci.yml` satır 17-24/53-65/73-99 melos+examples+check_apk.sh referansları depoda yok (kırık iddiası doğru); pubspec.yaml/lib/test yok (proje yok iddiası doğru). 3) İzlenebilirlik: tüm §2-parça→GAP→görev eşlemeleri + AC1-11↔görev eşlemesi yapıldı (AC1→her Done-when+T32; AC2→T3/T9/T10; AC3→T11; AC4→T5/T12; AC5→T6/T14; AC6→T22/T23; AC7→T25-T27/T29/T32; AC8→T14/T21; AC9→T7/T28; AC10→T31/T32; AC11→T3). 4) İlk 5 görev sıfır-geçmiş model gözüyle okundu → T1'e smoke-test ve manifest-içerik-referansı düzeltmeleri eklendi; T2'ye PyYAML notu eklendi | protocol §0.4 |
