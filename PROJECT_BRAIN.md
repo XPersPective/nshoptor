@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T3 tamam (bootstrap, CI, para katmanı: 40 test). Sıradaki iş: T4 (core/quantity birim katmanı).
-> **Phase:** BUILD · **Next:** T4 · **Updated:** 2026-09-20 · **Synced@:** ba828b9
+> **Status:** T1-T4 tamam (bootstrap, CI, para 40 test + birim 12 test). Sıradaki iş: T5 (core/calc varyans motoru).
+> **Phase:** BUILD · **Next:** T5 · **Updated:** 2026-09-20 · **Synced@:** 8509f5a
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -194,7 +194,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: money/quantity/calc çekirdekleri yok → T4,T5
+GAP: money/quantity/calc çekirdekleri yok → T5
 GAP: l10n/tema yok → T6,T7
 GAP: SQLite veri katmanı yok → T8
 GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T9-T13
@@ -217,9 +217,11 @@ nshoptor/
   lib/
     main.dart                     # napp_core NappApp iskeleti (T1)
     core/money/**                 # Currency, DecimalFixed, Money, MoneyParser, formatMoney (T3)
+    core/quantity/**              # UnitCode, UnitConversion, PackagingContent (T4)
   test/
     app_test.dart                 # kurulum smoke testi (T1)
     core/money/**                 # para katmanı testleri: 40 test (T3)
+    core/quantity/**              # birim katmanı testleri: 12 test (T4)
   pubspec.yaml  pubspec.lock  analysis_options.yaml  .metadata  # Flutter proje dosyaları (T1)
   assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo Crazy Penguin'ten)
   tool/new_app.dart                # kurulum betiği
@@ -252,10 +254,9 @@ nshoptor/
   - Done when: `flutter test test/core/money/` geçer ve şunları kapsar: `1,5 kg × 42,90 = 64,35`; `3 × 19,99 = 59,97`; JPY/TRY/KWD basamak gösterimi; tr `1,5` ve en `1.5` parse; binlik ayraç belirsizliği; negatif/sıfır/aşırı büyük reddi; farklı para birimi karşılaştırma reddi.
   - → 40 test geçti; Currency (75+ kod tablosu, displaySymbol), DecimalFixed (BigInt unscaled+scale, yarıdan uzağa), Money (minor units, mismatch ArgumentError), MoneyParser (rol bazlı ayraç kuralı + geçerli gruplama), formatMoney (double'sız, intl sembolleri); analyze 0 issue
   - Needs: T1
-- [ ] T4 [H] core/quantity birim katmanı (spec §7.2)
-  - Where: `lib/core/quantity/` (unit_code.dart, unit_conversion.dart, packaging.dart), `test/core/quantity/`
-  - Do: 1) `UnitCode`: adet, kilogram, gram, litre, mililitre, paket, kutu, şişe, kavanoz, demet, düzine, metre, custom — kanonik kod string'leri. 2) Dönüşüm: kg↔g, L↔ml tam; adet↔düzine yalnız açık istekle; paket↔kg gibi içerik bilinmeyen dönüşüm `UnsupportedError`. 3) `normalize(500 g) → 0,5 kg` gibi taban birime indirme. 4) `PackagingContent` (1 paket = 500 g): ürüne bağlı, kullanıcı tanımlı; doğrulamasız genelleme yok. 5) Ondalıklı miktar destekli; adet için tam sayı varsayılan ama model katmanı ondalığı engelleme.
+- [x] T4 (2026-09-20, GLM-5.3-Flash) core/quantity birim katmanı (spec §7.2)
   - Done when: `flutter test test/core/quantity/` geçer ve §13'ün birim testlerini kapsar (500g↔0,5kg, L↔ml, paket↔kg reddi).
+  - → 12 test geçti; UnitCode (13 birim, dbCode+boyut ailesi), UnitConversion (kg↔g, L↔ml, adet↔düzine yalnız allowCount ile, UnsupportedConversionError), tryConvertToBase (karşılaştırılamayan → null), PackagingContent (kullanıcı tanımlı içerik)
   - Needs: T1
 - [ ] T5 [H] core/calc varyans motoru (spec §7.3)
   - Where: `lib/core/calc/` (line_calc.dart, list_calc.dart, variance.dart), `test/core/calc/`
@@ -421,4 +422,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T3 kapatıldı: core/money para katmanı (Currency/DecimalFixed/Money/MoneyParser/formatMoney) + 40 test; analyze 0 issue, tam paket 41 test geçti. intl bağımlılığı eklendi (^0.20.2). Push başarılı. Sıradaki iş: **T4** (core/quantity — birim kodları, kg↔g/L↔ml dönüşüm, ambalaj içeriği).
+T4 kapatıldı: core/quantity birim katmanı (UnitCode/UnitConversion/PackagingContent) + 12 test; tam paket 53 test, analyze temiz. Push başarılı. Sıradaki iş: **T5** (core/calc — satır/liste formülleri, fiyat/miktar etkisi, eşikler).
