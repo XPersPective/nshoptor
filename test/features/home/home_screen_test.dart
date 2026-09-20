@@ -52,7 +52,7 @@ void main() {
 
     expect(find.text('Alışverişini planla'), findsOneWidget);
     expect(find.text('Evdeki hesap çarşıya uyar.'), findsOneWidget);
-    expect(find.byKey(const Key('home_monthly_card')), findsNothing);
+    expect(find.byKey(const Key('home_monthly_card_TRY')), findsNothing);
     expect(find.byKey(const Key('home_new_list_button')), findsOneWidget);
 
     await disposeApp(tester);
@@ -104,7 +104,7 @@ void main() {
     await tester.pumpWidget(subject());
     await settle(tester);
 
-    expect(find.byKey(const Key('home_monthly_card')), findsOneWidget);
+    expect(find.byKey(const Key('home_monthly_card_TRY')), findsOneWidget);
     expect(find.text('Pazar'), findsOneWidget);
 
     await disposeApp(tester);
@@ -124,4 +124,53 @@ void main() {
 
     await disposeApp(tester);
   });
+  testWidgets('farklı para birimli listeler ayrı kartlarda raporlanır (T33)',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(800, 1400));
+    listRepo = ListRepository(db);
+    final tryList = await listRepo.createList(title: 'TL Pazar', currencyCode: 'TRY');
+    await listRepo.changeStatus(tryList, ListStatus.planned);
+    await listRepo.changeStatus(tryList, ListStatus.shopping);
+    await listRepo.changeStatus(tryList, ListStatus.completed);
+    await db.into(db.plannedItems).insert(
+          PlannedItemsCompanion.insert(
+            listId: tryList,
+            name: 'Ekmek',
+            normalizedName: 'ekmek',
+            plannedQuantity: '1',
+            plannedUnitCode: 'adet',
+            pricingInputMode: 'lineTotal',
+            plannedLineTotalMinorUnits: const Value(1500),
+          ),
+        );
+
+    final usdList = await listRepo.createList(title: 'USD Mall', currencyCode: 'USD');
+    await listRepo.changeStatus(usdList, ListStatus.planned);
+    await listRepo.changeStatus(usdList, ListStatus.shopping);
+    await listRepo.changeStatus(usdList, ListStatus.completed);
+    await db.into(db.plannedItems).insert(
+          PlannedItemsCompanion.insert(
+            listId: usdList,
+            name: 'Bread',
+            normalizedName: 'bread',
+            plannedQuantity: '1',
+            plannedUnitCode: 'adet',
+            pricingInputMode: 'lineTotal',
+            plannedLineTotalMinorUnits: const Value(300),
+          ),
+        );
+
+    await tester.pumpWidget(subject());
+    await settle(tester);
+
+    // Her para birimi kendi kartında: karışık toplam yok.
+    expect(find.byKey(const Key('home_monthly_card_TRY')), findsOneWidget);
+    expect(find.byKey(const Key('home_monthly_card_USD')), findsOneWidget);
+    expect(find.text('Fark: 15,00 ₺'), findsOneWidget);
+    expect(find.text('Fark: 3,00 USD'), findsOneWidget);
+
+    await disposeApp(tester);
+  });
+
 }
+

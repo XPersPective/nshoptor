@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T14 tamam — Aşama 1 (temel ürün) kapandı, A3 audit geçti. Sıradaki iş: T15 (ürün hafızası ve öneriler).
-> **Phase:** BUILD · **Next:** T15 · **Updated:** 2026-09-20 · **Synced@:** 7e66562
+> **Status:** T14+T33 tamam (Aşama 1 kapandı, A3 geçti, para birimi bulgusu giderildi). Sıradaki iş: T15 (ürün hafızası ve öneriler).
+> **Phase:** BUILD · **Next:** T15 · **Updated:** 2026-09-20 · **Synced@:** abfbf2c
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -579,10 +579,9 @@ nshoptor/
   - → ListDetailScreen (ürünler, ekleme sayfası, başlat/devam/bitir düğmeleri); ListsScreen kart tıklaması detaya bağlı; 136 birim test aynı pakette yeşil
 
 ### Aşama 2 — Hız ve geçmiş (spec §15 Aşama 2)
-- [ ] T33 [M] Ana ekran aylık toplamın para birimi güvenliği (A3 bulgusu, spec §7.1)
-  - Where: `lib/features/home/home_repository.dart` (watchMonthlyTotals), `lib/features/home/home_screen.dart`
-  - Do: 1) SQL'i para birimi başına gruplayacak şekilde değiştir (GROUP BY sl.currency_code). 2) MonthlyTotals'i liste yapısına çevir (currencyCode + planned + actual). 3) Ana ekran her para birimi için ayrı satır/kart gösterir; kart TRY varsaymaz. 4) Test: iki farklı para birimli tamamlanmış liste → iki ayrı satır, karışık toplam yok.
+- [x] T33 [M] (2026-09-20, GLM-5.3-Flash) Ana ekran aylık toplamın para birimi güvenliği (A3 bulgusu, spec §7.1)
   - Done when: `flutter test test/features/home/` geçer ve yeni test farklı para birimlerinin ayrı raporlandığını doğrular.
+  - → SQL GROUP BY sl.currency_code; MonthlyTotals currencyCode taşıyor; _MonthlyCard para birimi başına ayrı kart; 5. home testi (TRY+USD → 2 kart, karışık toplam yok) (paket 137)
   - Needs: T13
 
 - [ ] T15 [M] Ürün hafızası, alias ve fiyat gözlemleri (spec §6.2 öneriler, §6.10)

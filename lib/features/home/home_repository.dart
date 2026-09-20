@@ -22,26 +22,30 @@ class HomeRepository {
             ..orderBy([(t) => OrderingTerm.desc(t.completedAt)]))
           .watch();
 
-  /// Bu ay tamamlanan listelerin planlanan ve gerçek toplamları.
-  /// Ay içinde tamamlanan alışveriş yoksa null yayar.
-  Stream<MonthlyTotals?> watchMonthlyTotals() {
+  /// Bu ay tamamlanan listelerin PARA BİRİMİ BAŞINA planlanan ve gerçek
+  /// toplamları (spec §7.1: farklı para birimleri asla toplanmaz).
+  /// Ay içinde tamamlanan alışveriş yoksa boş liste yayar.
+  Stream<List<MonthlyTotals>> watchMonthlyTotals() {
     final now = DateTime.now();
     final monthPrefix =
         '${now.year}-${now.month.toString().padLeft(2, '0')}';
     return _db.customSelect(
       '''
       SELECT
+        sl.currency_code AS currency,
         COALESCE(SUM(pi.planned_line_total_minor_units), 0) AS planned,
         COALESCE((SELECT SUM(pe.actual_line_total_minor_units)
           FROM purchase_entries pe
           JOIN shopping_lists sl2 ON pe.list_id = sl2.id
           WHERE sl2.status = 'completed'
-            AND strftime('%Y-%m', sl2.completed_at, 'unixepoch') = ?), 0) AS actual,
-        COUNT(*) AS completed_count
+            AND sl2.currency_code = sl.currency_code
+            AND strftime('%Y-%m', sl2.completed_at, 'unixepoch') = ?), 0) AS actual
       FROM planned_items pi
       JOIN shopping_lists sl ON pi.list_id = sl.id
       WHERE sl.status = 'completed'
         AND strftime('%Y-%m', sl.completed_at, 'unixepoch') = ?
+      GROUP BY sl.currency_code
+      ORDER BY sl.currency_code
       ''',
       variables: [Variable(monthPrefix), Variable(monthPrefix)],
       readsFrom: {
@@ -49,22 +53,26 @@ class HomeRepository {
         _db.purchaseEntries,
         _db.shoppingLists,
       },
-    ).watch().map((rows) {
-      final row = rows.single;
-      final completedCount = row.read<int>('completed_count');
-      if (completedCount == 0) return null;
-      return MonthlyTotals(
-        plannedMinor: row.read<int>('planned'),
-        actualMinor: row.read<int>('actual'),
-      );
-    });
+    ).watch().map((rows) => [
+          for (final row in rows)
+            MonthlyTotals(
+              currencyCode: row.read<String>('currency'),
+              plannedMinor: row.read<int>('planned'),
+              actualMinor: row.read<int>('actual'),
+            ),
+        ]);
   }
 }
 
-/// Aylık toplamlar (minor unit).
+/// Bir para biriminin aylık toplamları (minor unit).
 class MonthlyTotals {
-  const MonthlyTotals({required this.plannedMinor, required this.actualMinor});
+  const MonthlyTotals({
+    required this.currencyCode,
+    required this.plannedMinor,
+    required this.actualMinor,
+  });
 
+  final String currencyCode;
   final int plannedMinor;
   final int actualMinor;
 

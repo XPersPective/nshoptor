@@ -180,56 +180,16 @@ class HomeScreen extends StatelessWidget {
             },
           ),
           const SizedBox(height: 12),
-          StreamBuilder<MonthlyTotals?>(
+          StreamBuilder<List<MonthlyTotals>>(
             stream: repo.watchMonthlyTotals(),
             builder: (context, snapshot) {
-              final totals = snapshot.data;
-              if (totals == null) return const SizedBox.shrink();
-              final currency = Currency.fromCode('TRY');
-              String money(int minor) => formatMoney(
-                  Money.fromMinorUnits(minor, currency),
-                  locale: Localizations.localeOf(context).languageCode);
-              final direction = totals.varianceMinor < 0
-                  ? SpendingDirection.underPlan
-                  : totals.varianceMinor > 0
-                      ? SpendingDirection.overPlan
-                      : SpendingDirection.nearPlan;
-              final delta = SemanticDelta.resolve(
-                  direction: direction,
-                  brightness: Theme.of(context).brightness);
-              return Card(
-                key: const Key('home_monthly_card'),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(l10n.homeMonthlySection,
-                          style: Theme.of(context).textTheme.titleMedium),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: Text(
-                                  '${l10n.monthPlannedLabel}: ${money(totals.plannedMinor)}')),
-                          Expanded(
-                              child: Text(
-                                  '${l10n.monthActualLabel}: ${money(totals.actualMinor)}')),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Row(children: [
-                        Icon(delta.icon, size: 16, color: delta.color,
-                            semanticLabel: delta.marker),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${l10n.monthVarianceLabel}: ${money(totals.varianceMinor.abs())}',
-                          style: TextStyle(color: delta.color),
-                        ),
-                      ]),
-                    ],
-                  ),
-                ),
+              final totalsList = snapshot.data ?? const <MonthlyTotals>[];
+              if (totalsList.isEmpty) return const SizedBox.shrink();
+              return Column(
+                children: [
+                  for (final totals in totalsList)
+                    _MonthlyCard(totals: totals),
+                ],
               );
             },
           ),
@@ -264,6 +224,66 @@ class HomeScreen extends StatelessWidget {
         onPressed: onNewList,
         icon: const Icon(Icons.add),
         label: Text(l10n.newListButton),
+      ),
+    );
+  }
+}
+
+/// Tek para birimi için aylık plan-gerçek kartı; farklı para birimleri
+/// asla tek toplamda birleştirilmez (spec §7.1).
+class _MonthlyCard extends StatelessWidget {
+  const _MonthlyCard({required this.totals});
+
+  final MonthlyTotals totals;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final currency = Currency.fromCode(totals.currencyCode);
+    String money(int minor) => formatMoney(
+        Money.fromMinorUnits(minor, currency),
+        locale: Localizations.localeOf(context).languageCode);
+    final direction = totals.varianceMinor < 0
+        ? SpendingDirection.underPlan
+        : totals.varianceMinor > 0
+            ? SpendingDirection.overPlan
+            : SpendingDirection.nearPlan;
+    final delta = SemanticDelta.resolve(
+        direction: direction, brightness: Theme.of(context).brightness);
+    return Card(
+      key: Key('home_monthly_card_${totals.currencyCode}'),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.homeMonthlySection,
+                style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                    child: Text(
+                        '${l10n.monthPlannedLabel}: ${money(totals.plannedMinor)}')),
+                Expanded(
+                    child: Text(
+                        '${l10n.monthActualLabel}: ${money(totals.actualMinor)}')),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Row(children: [
+              Icon(delta.icon,
+                  size: 16,
+                  color: delta.color,
+                  semanticLabel: delta.marker),
+              const SizedBox(width: 4),
+              Text(
+                '${l10n.monthVarianceLabel}: ${money(totals.varianceMinor.abs())}',
+                style: TextStyle(color: delta.color),
+              ),
+            ]),
+          ],
+        ),
       ),
     );
   }
