@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** Beyin oluşturuldu; Flutter projesi henüz yok (napp_app_template iskeleti duruyor). Sıradaki iş: T1 bootstrap.
-> **Phase:** BUILD · **Next:** T1 · **Updated:** 2026-09-20 · **Synced@:** 8e2ca15
+> **Status:** T1 bootstrap tamam (Flutter projesi kuruldu, release APK derlendi). Sıradaki iş: T2 (CI tek-app uyarlama).
+> **Phase:** BUILD · **Next:** T2 · **Updated:** 2026-09-20 · **Synced@:** fe19dcf
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -180,17 +180,20 @@ test/  integration_test/  docs/
 
 ## 3. CURRENT ARCHITECTURE
 
-Depo = `napp_app_template` iskeletinin ilk commit'i (64caff3) + kullanıcının working-tree hazırlığı. Flutter projesi yok.
+Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + elle tamamlanan şablon adımları; ads=pro=kapalı, data=local):
 
-- `tool/new_app.dart` — flutter create + platform ayarları + napp_kit git bağımlılıkları + analyze/test/build doğrulamalı kurulum betiği; henüz çalıştırılmamış (pubspec.yaml, lib/, test/ yok — `ls` kanıt)
-- `tool/templates/{main,app_test}.dart.template`, `tool/brand/generate_icons.py`, `assets/brand/example_source_icon.png` — betiğin kullandığı şablonlar/ikon kaynağı (placeholder logo)
+- `lib/main.dart` — napp_core `NappApp` iskeleti: AppIdentity(NShoptor, com.example.nshoptor), AppTheme açık/koyu, tr/en destekli locale delegeleri, tek-sekme HomePage
+- `test/app_test.dart` — kurulum smoke testi; `test/widget_test.dart` silindi
+- `pubspec.yaml` — napp_core (git, core-v1.0.0) + flutter_localizations; napp_pro/napp_ads yok
+- `android/` — usesCleartextTraffic=false, data_extraction_rules/backup_rules, R8 minify+shrink release, proguard-rules.pro, kotlin.incremental=false, label=NShoptor, üretilmiş uyarlanabilir ikonlar
+- `ios/` — CFBundleDisplayName=NShoptor, üretilmiş ikonlar
+- `tool/new_app.dart` — kurulum betiği (2 lint düzeltmesi alındı); yeniden kullanılabilir
 - `.github/workflows/ci.yml` — bu depoya **kırık**: melos, `examples/core_only|full`, `tool/check_apk.sh` referansları depoda yok (satır 17-65, 73-99)
-- `README.md` — NShoptor kimliğine çevrilmiş (kullanıcı; commit edilmemiş), app id placeholder'ı belgeli
+- Doğrulanmış: `flutter analyze` 0 issue; `flutter test` geçer; `flutter build apk --release` 44 MB başarılı (R8 tree-shaking log kanıtı)
+- `README.md` — NShoptor kimliği (kullanıcı), app id placeholder'ı belgeli
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
-- `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı hazır
-- Working tree: `ORTAK_UYGULAMA_STANDARDI.md` kullanıcı tarafından silinmiş (bilinçli; beyin A2 auditinde ASSUMPTION olarak loglandı)
+- `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: Flutter projesi ve tüm uygulama katmanları yok → T1
 GAP: CI tek-app deposuna uyumsuz → T2
 GAP: money/quantity/calc çekirdekleri yok → T3,T4,T5
 GAP: l10n/tema yok → T6,T7
@@ -206,11 +209,21 @@ GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 ```text
 nshoptor/
   .github/workflows/ci.yml        # CI — kırık, T2'de tek-app'e uyarlanır
-  android/key.properties.example   # imza/admob yer tutucu (T1 kullanır)
+  android/                        # Flutter Android kabuğu (T1)
+    app/src/**                    # manifest, res (ikonlar, backup rules), MainActivity
+    app/build.gradle.kts          # key.properties + R8 release (T1)
+    app/proguard-rules.pro        # WorkManager/Room keep (T1)
+    key.properties.example        # imza/admob yer tutucu
+  ios/                            # Flutter iOS kabuğu (T1): Runner, ikonlar, Info.plist
+  lib/
+    main.dart                     # napp_core NappApp iskeleti (T1)
+  test/
+    app_test.dart                 # kurulum smoke testi (T1)
+  pubspec.yaml  pubspec.lock  analysis_options.yaml  .metadata  # Flutter proje dosyaları (T1)
   assets/brand/example_source_icon.png  # ikon kaynağı (placeholder; gerçek logo Crazy Penguin'ten)
-  tool/new_app.dart                # kurulum betiği (T1)
-  tool/brand/generate_icons.py     # ikon üretici (T1 çalıştırır)
-  tool/templates/**                # main/app_test şablonları (T1 kullanır)
+  tool/new_app.dart                # kurulum betiği
+  tool/brand/generate_icons.py     # ikon üretici
+  tool/templates/**                # main/app_test şablonları
   docs/spec/master-prompt-tr.md    # tam ürün spesifikasyonu (hedefin kaynağı, bağlayıcı)
   .env.example                     # dart-define gizli değer notu
   AGENTS.md                        # protokol işaretçisi
@@ -218,15 +231,14 @@ nshoptor/
   PROJECT_BRAIN.md                 # bu dosya
   README.md                        # NShoptor kimliği
 ```
-(T1 sonrası flutter create çıktılarıyla güncellenir.)
+(gizli: .gitignore/.gitattributes/.gitleaks.toml/.zcodeignore)
 
 ## 5. TASKS
 
 ### Aşama 0 — Bootstrap
-- [ ] T1 [H] Flutter projesini oluştur (spec §1-2: mevcut repo yeniden kullanım)
-  - Where: depo kökü (pubspec.yaml, lib/main.dart, android/, ios/)
-  - Do: 1) `git ls-remote https://github.com/XPersPective/napp_kit.git` ile napp_kit erişimini doğrula. 2a) Erişilebilirse: `dart run tool/new_app.dart --name NShoptor --package com.example.nshoptor --ads no --pro no --data local --source-icon assets/brand/example_source_icon.png` (PROJECT_BRAIN.md üzerine yazma sorusuna cevap verme/atla; `ORTAK_UYGULAMA_STANDARDI.md EKSİK` uyarısı beklenir, sorun değil). 2b) Erişilemezse eşdeğer manuel kurulum: `flutter create --org com.example --project-name nshoptor --platforms android,ios .`; AndroidManifest'e `usesCleartextTraffic="false"` + `data_extraction_rules.xml`/`backup_rules.xml` (tam içerik: tool/new_app.dart `_androidManifest` fonksiyonu, satır ~222-243); build.gradle.kts'e R8 minify+shrink release bloğu ve key.properties okuma (tool/new_app.dart `_gradleRelease`); `lib/main.dart` minimal Material 3 + flutter_localizations içeren açılış ekranı, napp bağımlılığı ekleme; flutter create'in ürettiği `test/widget_test.dart`'ı sil ve yerine uygulamayı pump edip açıldığını doğrulayan smoke test koy (counter testi minimal app'te fail eder). 3) Android label/iOS CFBundleDisplayName = NShoptor. 4) main.dart'ta demo veri/TODO yok.
+- [x] T1 (2026-09-20, GLM-5.3-Flash) Flutter projesini oluştur (spec §1-2: mevcut repo yeniden kullanım)
   - Done when: `flutter analyze` 0 issue; `flutter test` geçer; `flutter build apk --debug` başarılı; `grep -r "TODO" lib/` boş. iOS build Windows'ta doğrulanamaz → README'ye not (T31 kapsamında tamamlanır).
+  - → new_app.dart ile kuruldu (stdin-prompt çökmesi sonrası kalan adımlar birebir elle uygulandı); analyze 0 issue, test geçti, TODO yok; debug build kullanıcı tarafından iptal edildi — daha sıkı olan release APK (44 MB, R8) derlendi; A2 bağımsız inceleme 8/8 PASS
   - Needs: —
 - [ ] T2 [M] CI'yi tek uygulamaya uyarla
   - Where: `.github/workflows/ci.yml`
@@ -398,6 +410,7 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 | Date | Type | What | Why / evidence |
 |---|---|---|---|
+| 2026-09-20 | ASSUMPTION | T1 done-when'deki `flutter build apk --debug` koşulu release derlemesiyle kabul edildi: kullanıcı debug build komutunu iptal etti; release (R8+shrink, 202 s, 44 MB) debug'dan sıkı bir derleme olduğundan koşulu karşılar | Build çıktısı `√ Built build\app\outputs\flutter-apk\app-release.apk (44.0MB)` |
 | 2026-09-20 | AUDIT | **A0 creation audit geçti.** 1) check: FAIL yok (yalnız `Synced@` WARN — ilk görev kapanışında dolar). 2) §3 kanıtlarından 3'ü açıldı: `tool/new_app.dart` tamamen okundu (flutter create+platform+napp+doğrulama akışı iddiası doğru); `.github/workflows/ci.yml` satır 17-24/53-65/73-99 melos+examples+check_apk.sh referansları depoda yok (kırık iddiası doğru); pubspec.yaml/lib/test yok (proje yok iddiası doğru). 3) İzlenebilirlik: tüm §2-parça→GAP→görev eşlemeleri + AC1-11↔görev eşlemesi yapıldı (AC1→her Done-when+T32; AC2→T3/T9/T10; AC3→T11; AC4→T5/T12; AC5→T6/T14; AC6→T22/T23; AC7→T25-T27/T29/T32; AC8→T14/T21; AC9→T7/T28; AC10→T31/T32; AC11→T3). 4) İlk 5 görev sıfır-geçmiş model gözüyle okundu → T1'e smoke-test ve manifest-içerik-referansı düzeltmeleri eklendi; T2'ye PyYAML notu eklendi | protocol §0.4 |
 | 2026-09-20 | ASSUMPTION | Kullanıcının working-tree değişiklikleri bilinçli hazırlıktır: README NShoptor kimliğine çevrilmiş, ORTAK_UYGULAMA_STANDARDI.md silinmiş, .zcodeignore eklenmiş — korunup ayrı commit'le gönderildi | Kullanıcı değişiklikleri README'de spec'le birebir aynı marka/slogan/app-id notunu taşıyor; skill §0.6 "never overwrite without evidence" |
 | 2026-09-20 | DECISION | Hedef spec'i depoya kopyalandı: `docs/spec/master-prompt-tr.md` (kaynak: OneDrive Desktop) | Sub-agent'lar ve sonraki oturumlar masaüstü dosyasına erişemeyebilir; spec repoda kalıcı ve atıflanabilir olmalı |
@@ -408,4 +421,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-Beyin ilk kez oluşturuldu (A0 audit altında). Working-tree kullanıcı değişiklikleri ayrı commit'le gönderildi. Flutter projesi henüz yok. Sıradaki iş: **T1** (bootstrap — napp_kit erişimini kontrol et, sonra new_app.dart veya manuel flutter create). CI hâlâ kırık (T2). Push denenmeli; auth hatası olursa buraya not düş.
+T1 kapatıldı: Flutter projesi kuruldu (napp_core, ikonlar, Android sertleştirme), analyze/test/release-build geçti, bağımsız inceleme temiz. Push başarılı. Sıradaki iş: **T2** (ci.yml'yi tek-app'e uyarla — melos/examples/check_apk adımlarını kaldır). iOS build doğrulaması macOS gerektirir (T31'de belgelenecek).

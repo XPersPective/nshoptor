@@ -47,3 +47,6 @@ Thumbs.db
 # --- Yerel doğrulama artefaktları ---
 .screenshots/
 ios/Flutter/AdsConfig.xcconfig
+
+# --- IDE proje dosyalari (flutter create üretimi) ---
+.idea/
