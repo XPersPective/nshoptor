@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T1-T7 tamam (bootstrap, CI, çekirdekler + l10n + tema). Sıradaki iş: T8 (SQLite veri katmanı).
-> **Phase:** BUILD · **Next:** T8 · **Updated:** 2026-09-20 · **Synced@:** 7330ec5
+> **Status:** T1-T8 tamam (bootstrap, CI, çekirdekler, l10n, tema, drift veri katmanı). Sıradaki iş: T9 (liste CRUD ve durum makinesi).
+> **Phase:** BUILD · **Next:** T9 · **Updated:** 2026-09-20 · **Synced@:** f638563
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -194,7 +194,6 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: SQLite veri katmanı yok → T8
 GAP: liste/ürün/alışveriş/sonuç/ana ekran UI yok → T9-T13
 GAP: entegrasyon testi yok → T14
 GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
@@ -220,8 +219,10 @@ nshoptor/
     core/l10n/**                  # ARB dosyaları + generated AppLocalizations (T6)
     core/theme/**                 # AppTheme (M3, açık/koyu) + SemanticDelta (T7)
   app/**                          # NShoptorApp kökü + LanguageController (T6)
+  data/db/app_database.dart       # drift şeması v1 + AppDatabase (T8; .g.dart üretilmiş)
   test/
     app_test.dart                 # kurulum smoke testi (T1)
+    data/app_database_test.dart   # şema/migration/transaction/FK testleri: 10 (T8)
     core/money/**                 # para katmanı testleri: 40 test (T3)
     core/quantity/**              # birim katmanı testleri: 12 test (T4)
     core/calc/**                  # hesap motoru testleri: 21 test (T5)
@@ -274,11 +275,11 @@ nshoptor/
   - Done when: `flutter analyze` temiz; tema testi açık+koyu için gövde metni kontrastını ≥4.5 hesaplayan birim test geçer (renk luminance hesabıyla).
   - → 5 test geçti (paket 80); AppTheme (fromSeed 0xFF0B8457, 48dp butonlar, esnek tipografi), SemanticDelta (renk+ikon+marker, WCAG AA hesaplanmış palet); NShoptorApp kendi temasına bağlandı
   - Needs: T1
-- [ ] T8 [H] SQLite veri katmanı (spec §8)
-  - Where: `lib/data/` (db/, daos/, entities/), `test/data/`
-  - Do: 1) Paket kararı: drift vs sqflite — pub.dev bakım/lisans/platform/popülerlik kontrolü, karar §6'ya DECISION olarak loglanır, gerekçe README'ye. 2) Spec §8 varlıklarının tamamı için tablolar (ShoppingList, PlannedItem, PurchaseEntry, ProductMemory, ProductAlias, PriceObservation, Store, Category, Aisle, Receipt, ReceiptCandidateLine, Attachment, Reminder, AppSettings) — alan adları spec'teki gibi; para minor units int, miktar/birim fiyat DecimalFixed string. 3) Sürümlü şema + migration altyapısı (v1). 4) Çoklu yazma transaction helper. 5) FK siliminde çocuk kayıt/dosya referans temizliği. 6) Kanonik değerler (durum, birim, para) kod string'i; çeviri UI katmanında.
+- [x] T8 (2026-09-20, GLM-5.3-Flash) SQLite veri katmanı (spec §8)
   - Done when: `flutter test test/data/` geçer: tablo oluşturma, migration v0→v1, transaction rollback senaryosu, FK cascade testi, decimal string round-trip.
+  - → drift 2.35 seçildi (DECISION aşağıda); 14 tablo, FK cascade/set-null, PRAGMA foreign_keys, migration v0→v1; 10 test (paket 90). Not: kod f6385638'de, beyin güncellemesi ayrı commit'e düştü
   - Needs: T3, T4
+
 - [ ] T9 [M] Liste CRUD ve durum makinesi (spec §6.1)
   - Where: `lib/features/lists/` (model, repository, controller, screens), `test/features/lists/`
   - Do: 1) Durumlar: taslak, planlandı, alışverişte, tamamlandı, arşivlendi + geçiş kuralları. 2) Oluşturma/düzenleme: isteğe bağlı başlık (boşsa tarih/mağazadan otomatik ad), mağaza seç/ekle, tek ISO4217 para birimi (sistem locale önerisi), isteğe bağlı bütçe, not, renk/ikon. 3) Çoğaltma. 4) Liste ekranı: arama, filtre, sıralama, arşivleme; aktif/tamamlanmış/arşiv sekmeleri. 5) Silme: onay + undo (Snackbar). 6) Liste para birimi değişiminde rakamları koruma/sıfırlama soran onay diyaloğu (spec §7.1).
@@ -412,6 +413,7 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 | Date | Type | What | Why / evidence |
 |---|---|---|---|
+| 2026-09-20 | DECISION | Veri katmanı paketi: **drift 2.35** (sqflite değil) | drift aktif bakımda, tip güvenli şema + sürüm migration + transaction dahili; sqflite'ta bunlar yok. sqlite3_flutter_libs no-op (0.6.0+eol README: "no longer does anything") — drift sqlite3'ü kendisi bağlıyor. Üretilen app_database.g.dart repoya commit edildi (CI codegen adımı gerekmesin) |
 | 2026-09-20 | ASSUMPTION | T1 done-when'deki `flutter build apk --debug` koşulu release derlemesiyle kabul edildi: kullanıcı debug build komutunu iptal etti; release (R8+shrink, 202 s, 44 MB) debug'dan sıkı bir derleme olduğundan koşulu karşılar | Build çıktısı `√ Built build\app\outputs\flutter-apk\app-release.apk (44.0MB)` |
 | 2026-09-20 | AUDIT | **A0 creation audit geçti.** 1) check: FAIL yok (yalnız `Synced@` WARN — ilk görev kapanışında dolar). 2) §3 kanıtlarından 3'ü açıldı: `tool/new_app.dart` tamamen okundu (flutter create+platform+napp+doğrulama akışı iddiası doğru); `.github/workflows/ci.yml` satır 17-24/53-65/73-99 melos+examples+check_apk.sh referansları depoda yok (kırık iddiası doğru); pubspec.yaml/lib/test yok (proje yok iddiası doğru). 3) İzlenebilirlik: tüm §2-parça→GAP→görev eşlemeleri + AC1-11↔görev eşlemesi yapıldı (AC1→her Done-when+T32; AC2→T3/T9/T10; AC3→T11; AC4→T5/T12; AC5→T6/T14; AC6→T22/T23; AC7→T25-T27/T29/T32; AC8→T14/T21; AC9→T7/T28; AC10→T31/T32; AC11→T3). 4) İlk 5 görev sıfır-geçmiş model gözüyle okundu → T1'e smoke-test ve manifest-içerik-referansı düzeltmeleri eklendi; T2'ye PyYAML notu eklendi | protocol §0.4 |
 | 2026-09-20 | ASSUMPTION | Kullanıcının working-tree değişiklikleri bilinçli hazırlıktır: README NShoptor kimliğine çevrilmiş, ORTAK_UYGULAMA_STANDARDI.md silinmiş, .zcodeignore eklenmiş — korunup ayrı commit'le gönderildi | Kullanıcı değişiklikleri README'de spec'le birebir aynı marka/slogan/app-id notunu taşıyor; skill §0.6 "never overwrite without evidence" |
@@ -423,4 +425,4 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 ## 7. HANDOFF
 
-T7 kapatıldı: Material 3 marka teması (AppTheme açık/koyu, SemanticDelta AA paleti) + 5 WCAG kontrast testi; paket 80 test. Push başarılı. Sıradaki iş: **T8** (SQLite veri katmanı — paket kararı drift/sqflite, spec §8 varlıkları, migration).
+T8 kapatıldı: drift 2.35, spec §8 şeması (14 tablo, FK kuralları, migration v1) + 10 test; paket 90 test. Kod f6385638'de, beyin güncellemesi sonraki commit'te. Push başarılı. Sıradaki iş: **T9** (liste CRUD + durum makinesi).
