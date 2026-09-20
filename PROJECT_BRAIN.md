@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T14+T33 tamam (Aşama 1 kapandı, A3 geçti, para birimi bulgusu giderildi). Sıradaki iş: T15 (ürün hafızası ve öneriler).
-> **Phase:** BUILD · **Next:** T15 · **Updated:** 2026-09-20 · **Synced@:** abfbf2c
+> **Status:** T15 tamam (ürün hafızası + gözlemler + yapıştırma). Sıradaki iş: T16 (mağaza/kategori/reyon yönetimi).
+> **Phase:** BUILD · **Next:** T16 · **Updated:** 2026-09-20 · **Synced@:** 57b855b
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -182,6 +182,8 @@ nshoptor/
     features/shopping_mode/**       # ItemStatus, ShoppingRepository, ShoppingModeScreen (T11)
     features/shopping_mode/summary/**  # ResultRepository + SummaryScreen (T12)
     features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
+    features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
+    core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
@@ -216,7 +218,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
+GAP: mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T16-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -421,6 +423,8 @@ nshoptor/
     features/shopping_mode/**       # ItemStatus, ShoppingRepository, ShoppingModeScreen (T11)
     features/shopping_mode/summary/**  # ResultRepository + SummaryScreen (T12)
     features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
+    features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
+    core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
   test/
@@ -455,7 +459,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: hafızafiyaat/mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T15-T21
+GAP: mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T16-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -584,11 +588,11 @@ nshoptor/
   - → SQL GROUP BY sl.currency_code; MonthlyTotals currencyCode taşıyor; _MonthlyCard para birimi başına ayrı kart; 5. home testi (TRY+USD → 2 kart, karışık toplam yok) (paket 137)
   - Needs: T13
 
-- [ ] T15 [M] Ürün hafızası, alias ve fiyat gözlemleri (spec §6.2 öneriler, §6.10)
-  - Where: `lib/features/lists/suggestions/`, `lib/data/daos/price_observation_dao.dart`, `test/features/lists/suggestions/`
-  - Do: 1) Doğrulanmış her satın alım PriceObservation yazar (ürün, alias, mağaza, tarih, miktar/birim, ödenen birim fiyat, satır toplamı, para, indirim, kaynak). 2) Ürün ekleme formunda: yazarken geçmiş öneri (normalize edilmiş ad), son kategori/birim, son ödenen fiyat+tarih, aynı mağazadaki son fiyat, favoriler. 3) Çok satırlı yapıştırma → satır başına aday. 4) Yinelenen ürün uyarısı + birleştir/ayrı tut. 5) Farklı para birimi karşılaştırma yok; ortak temel birim yoksa birim fiyat karşılaştırma yok.
+- [x] T15 [M] (2026-09-20, GLM-5.3-Flash) Ürün hafızası, alias ve fiyat gözlemleri (spec §6.2 öneriler, §6.10)
   - Done when: `flutter test test/features/lists/suggestions/` geçer: öneri sıralaması, mağaza bazlı fiyat, yapıştırma ayrıştırma, yinelenen uyarı akışı.
+  - → 7 test geçti (paket 144); ProductMemoryRepository (normalize ad başına tek hafıza, useCount/lastUsedAt, gözlem yazımı, mağaza bazlı son fiyat, favoriler, yinelenen kontrolü), paste_parser (satır başına aday), core/util/normalize_name.dart (tek normalize kaynağı); ShoppingRepository.recordPurchase artık gözlem yazıyor
   - Needs: T10
+
 - [ ] T16 [M] Mağaza/kategori/reyon yönetimi (spec §6.3)
   - Where: `lib/features/lists/taxonomy/`, `test/features/lists/taxonomy/`
   - Do: 1) Mağaza/kategori/reyon CRUD + sıralama. 2) Mağaza bazlı kategori/reyon sırası hatırlanır. 3) Liste sıralama modları: kategori, alfabetik, özel sıra, mağaza reyonu. 4) Ürün geçmişine göre kategori önerisi (kolayca değiştirilebilir).

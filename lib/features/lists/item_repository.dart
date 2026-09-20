@@ -3,6 +3,7 @@ import 'package:drift/drift.dart';
 import '../../core/calc/line_calc.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/decimal_fixed.dart';
+import '../../core/util/normalize_name.dart';
 import '../../data/db/app_database.dart';
 import 'starter_categories.dart';
 
@@ -28,7 +29,7 @@ class ItemRepository {
     bool requiredFlag = false,
     String? note,
   }) async {
-    final normalizedName = _normalize(name);
+    final normalizedName = normalizeName(name);
     final mode = priceIsUnitPrice ? 'unitPrice' : 'lineTotal';
     DecimalFixed? unitPrice;
     int? lineTotalMinor;
@@ -92,17 +93,4 @@ class ItemRepository {
     return 'TRY';
   }
 
-  /// Normalize edilmiş arama adı: küçük harf + Türkçe/aksan katlama +
-  /// çoklu boşluk temizliği (alias eşleştirmeleri bu normalizasyonu kullanır).
-  static String _normalize(String name) => name
-      .toLowerCase()
-      .replaceAll(RegExp(r'[çÇ]'), 'c')
-      .replaceAll(RegExp(r'[ğĞ]'), 'g')
-      .replaceAll(RegExp(r'[ıİ]'), 'i')
-      .replaceAll(RegExp(r'[öÖ]'), 'o')
-      .replaceAll(RegExp(r'[şŞ]'), 's')
-      .replaceAll(RegExp(r'[üÜ]'), 'u')
-      .replaceAll(RegExp(r'[^a-z0-9 ]'), '')
-      .replaceAll(RegExp(r'\s+'), ' ')
-      .trim();
 }

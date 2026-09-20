@@ -4,6 +4,7 @@ import '../../core/money/currency.dart';
 import '../../core/money/decimal_fixed.dart';
 import '../../core/util/combine_latest.dart';
 import '../../data/db/app_database.dart';
+import '../lists/suggestions/product_memory_repository.dart';
 import 'item_status.dart';
 
 /// Alışveriş modu üst şeridinin anlık özeti (spec §6.5). Tüm değerler
@@ -35,9 +36,10 @@ class CartSummary {
 
 /// Alışveriş oturumu işlemleri (spec §6.5-6.6).
 class ShoppingRepository {
-  ShoppingRepository(this._db);
+  ShoppingRepository(this._db) : _memory = ProductMemoryRepository(_db);
 
   final AppDatabase _db;
+  final ProductMemoryRepository _memory;
 
   Future<ShoppingList> getList(int listId) =>
       (_db.select(_db.shoppingLists)..where((t) => t.id.equals(listId)))
@@ -131,6 +133,19 @@ class ShoppingRepository {
     if (plannedItemId != null) {
       await setItemStatus(plannedItemId, ItemStatus.inCart);
     }
+    // Doğrulanmış kayıt fiyat gözlemi üretir (spec §6.10); plansız alımlar
+    // da hafızaya girer.
+    await _memory.recordObservation(
+      name: name,
+      normalizedName: normalizedName,
+      listId: listId,
+      quantity: quantity.toDbString(),
+      unitCode: unitCode,
+      unitPrice: unitPrice?.toDbString(),
+      lineTotalMinor: lineTotal,
+      discountMinor: discountMinor,
+      currencyCode: list.currencyCode,
+    );
   }
 
   /// Plansız ürün: satın alım kaydı olarak eklenir; planlı ürüne
