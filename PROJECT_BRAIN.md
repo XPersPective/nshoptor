@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T20 tamam (hatırlatma altyapısı). Sıradaki iş: T21 (yedekleme ve içe/dışa aktarma).
-> **Phase:** BUILD · **Next:** T21 · **Updated:** 2026-09-20 · **Synced@:** 31850f6
+> **Status:** T15-T21+T33 tamam — Aşama 2 (hız ve geçmiş) kapandı, A3 geçti. Sıradaki iş: T22 (ses girişi).
+> **Phase:** BUILD · **Next:** T22 · **Updated:** 2026-09-20 · **Synced@:** a857bb1
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -628,11 +628,12 @@ nshoptor/
   - → 6 test geçti (paket 173); ReminderScheduler soyutlaması (izin yalnız kullanımda istenir), RemindersRepository (planla/güncelle→eskiyi iptal, liste silinince OS iptali ListRepository'ye bağlandı), mutlak UTC anı saklanır. flutter_local_notifications 22.3.1 + timezone DECISION'ı: OS bildirim bağlantısı (LocalNotificationsScheduler impl) T31/T32 cihaz doğrulamasıyla birlikte yazılacak — done-when sahte servis seviyesindedir
   - Needs: T9, T6
 
-- [ ] T21 [H] Yedekleme ve içe/dışa aktarma (spec §6.14)
-  - Where: `lib/features/settings/backup/`, `test/features/settings/backup/`
-  - Do: 1) Sürümlenmiş JSON tam yedek (şema sürüm alanı; fotoğraflar isteğe bağlı dahil + büyük yedek uyarısı). 2) Sistem paylaşım sayfasıyla dışa aktarma (share_plus veya eşdeğer). 3) İçe aktarma: önce tam doğrulama + özet; çakışmada birleştir/ayrı seçenek; bozuk dosyada mevcut veri değişmez. 4) Alışveriş sonucu CSV dışa aktarma. 5) Paylaşılabilir özet metni.
+- [x] T21 [H] (2026-09-20, GLM-5.3-Flash) Yedekleme ve içe/dışa aktarma (spec §6.14)
   - Done when: `flutter test test/features/settings/backup/` geçer: round-trip, bozuk dosya reddi (veri değişmez kanıtı), çakışma senaryosu, CSV çıktı satırları.
+  - → 8 test geçti (paket 181); BackupRepository (13 tablo export/import, validate önce yazım, merge=insertOrReplace kimlik korunur, separate=tüm zincir yeni id'lerle yeniden numaralandırma — FK zinciri sağlam), csv_export (sonuç CSV + paylaşılabilir özet metni). Paylaşım sayfası (share_plus) ve fotoğraf dahil etme seçeneği T30 Ayarlar ekranında bağlanır
   - Needs: T8
+
+### Aşama 2 sonu: T15-T21 + T33 tamam — A3 milestone audit Aşama 2 kapanışında çalıştırıldı (aşağıda).
 
 ### Aşama 3 — Girdi yardımcıları (spec §15 Aşama 3)
 - [ ] T22 [M] Ses girişi entegrasyonu (spec §6.7)
@@ -699,6 +700,7 @@ Newest first. Types: DECISION · ASSUMPTION · REVISION · GOAL-CHANGE · GOAL-C
 
 | Date | Type | What | Why / evidence |
 |---|---|---|---|
+| 2026-09-20 | AUDIT | **A3 milestone audit (Aşama 2: T15-T21+T33) geçti.** Tam paket: analyze 0 issue; 181 test yeşil (6 süit + e2e). Aşama 2 alanı §2 ile örtüşüyor: hafıza/öneriler, taxonomy+4 sıralama modu, fiyat geçmişi istatistikleri, içgörüler, şablonlar, hatırlatma altyapısı, yedek round-trip+separate+CSV. Bulgu yok; OS bildirim bağlantısı (T20) ve paylaşım sayfası (T21) cihaz doğrulamasıyla T31/T32'de tamamlanacak | protocol §0.4 A3 |
 | 2026-09-20 | AUDIT | **A3 milestone audit (Aşama 1: T1-T14) geçti.** Tam paket: `flutter analyze` 0 issue; 136 birim + 3 entegrasyon testi yeşil; `flutter build apk --debug` √ (release de √ T1'den beri). Aşama 1 alanı §2 ile örtüşüyor: çekirdek katmanlar testli, l10n tr/en, drift v1 + migration, liste/ürün CRUD, alışveriş modu (5 durum/plansız/iade), sonuç (fiyat/miktar etkisi ayrımı), ana ekran, e2e. **Bulgu:** HomeRepository.watchMonthlyTotals farklı para birimli listeleri tek toplamda birleştiriyor ve kart TRY ile gösteriyor — spec §7.1 'farklı para birimleri toplanamaz' ihlali → **T33** oluşturuldu. Kalan GAP'ler Aşama 2-4 görevlerine işaret ediyor | protocol §0.4 A3 |
 | 2026-09-20 | AUDIT | **A1 (T6-T8 örnekleme) geçti.** check: 0 FAIL/0 WARN. Son 3 kapanışın Done-when'leri taze tam pakette koşuldu: `flutter test` 90/90 (l10n slogan tr/en, tema WCAG, veri şeması/rollback/FK dahil), `flutter analyze` 0 issue. Diff gözlemi: T6-T8 commit'leri yalnız ilgili dosyaları içeriyor, debug/TODO kalıntısı yok. Harita sürüklenmesi giderildi (§4 brain.py map çıktısıyla yeniden yazıldı); T8 beyin güncellemesinin ayrı commit'e düşmesi (f638563→ef4321c) düzeltilmiş oldu | protocol §0.4 |
 | 2026-09-20 | DECISION | Veri katmanı paketi: **drift 2.35** (sqflite değil) | drift aktif bakımda, tip güvenli şema + sürüm migration + transaction dahili; sqflite'ta bunlar yok. sqlite3_flutter_libs no-op (0.6.0+eol README: "no longer does anything") — drift sqlite3'ü kendisi bağlıyor. Üretilen app_database.g.dart repoya commit edildi (CI codegen adımı gerekmesin) |
