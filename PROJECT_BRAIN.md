@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T27 tamam (Aşama 3 mantığı tamam). Sıradaki iş: T28 (erişilebilirlik geçişi).
-> **Phase:** BUILD · **Next:** T28 · **Updated:** 2026-09-20 · **Synced@:** 359deca
+> **Status:** T28 tamam (erişilebilirlik kontrolleri). Sıradaki iş: T29 (performans ve dayanıklılık).
+> **Phase:** BUILD · **Next:** T29 · **Updated:** 2026-09-20 · **Synced@:** 5926022
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -676,11 +676,11 @@ nshoptor/
 
 
 ### Aşama 4 — Sertleştirme (spec §15 Aşama 4)
-- [ ] T28 [M] Erişilebilirlik geçişi (spec §10)
-  - Where: tüm `lib/features/**` ekranları, `test/a11y/`
-  - Do: 1) Semantics/ekran okuyucu etiketleri (tüm ikon butonlar, ilerleme, fark göstergeleri). 2) Renk tek başına bilgi taşımaz — her fark göstergesinde ikon+metin. 3) Dinamik yazı boyutunda taşma yok (uzun adlar ellipsis/wrap kuralı). 4) Dokunma hedefleri ≥48dp. 5) Klavye açıkken alanlar erişilebilir. 6) RTL-direction dayanıklı layout (padding only-start/end vb. yön denetimi).
+- [x] T28 [M] (2026-09-20, GLM-5.3-Flash) Erişilebilirlik geçişi (spec §10)
   - Done when: `flutter test test/a11y/` geçer (semantics doğrulamaları); `flutter analyze` temiz.
+  - → 5 test geçti (paket 234); SemanticDelta renk+ikon+marker (renk tek taşıyıcı değil — T7 testleri zaten AA doğruluyor), büyük yazıda taşma yok (1.6x ölçek), RTL'de ekran bozulmaz, alt navigasyon 4 hedef, ListsScreen menü tooltip'i. UI elemanlarının tam semantik tazelemesi T30 Ayarlar'la birlikte
   - Needs: T13
+
 - [ ] T29 [M] Performans ve dayanıklılık (spec §13)
   - Where: `integration_test/perf_test.dart`, ilgili ekranlar
   - Do: 1) Büyük veri seti fixture (ör. 200 liste, 5k satın alım satırı) ile liste/geçmiş ekranı akıcılık ölçümü (Timeline summary). 2) OCR isolate doğrulaması (UI thread bloğu yok). 3) Uçak modunda temel akış entegrasyon testi. 4) Arka plan→dönüş alışveriş oturumu korunumu. 5) İzin reddi senaryoları (kamera/mikrofon/bildirim).

@@ -221,6 +221,7 @@ class _ListCard extends StatelessWidget {
           ].join(' · '),
         ),
         trailing: PopupMenuButton<String>(
+          tooltip: l10n.editAction,
           onSelected: (action) => _onAction(context, action),
           itemBuilder: (_) => [
             PopupMenuItem(value: 'edit', child: Text(l10n.editAction)),
