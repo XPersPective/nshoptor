@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T24 tamam (fotoğraf saklama katmanı). Sıradaki iş: T25 (raf etiketi OCR).
-> **Phase:** BUILD · **Next:** T25 · **Updated:** 2026-09-20 · **Synced@:** 12f17b0
+> **Status:** T25 tamam (raf etiketi OCR aday çıkarımı). Sıradaki iş: T26 (fiş ayrıştırıcı).
+> **Phase:** BUILD · **Next:** T26 · **Updated:** 2026-09-20 · **Synced@:** bcfa38c
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -190,6 +190,7 @@ nshoptor/
     features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     features/voice_input/**         # SpeechService soyutlaması + VoiceInputController (T22)
     features/lists/attachments/**   # AttachmentRepository (dosya saklama + temizlik) (T24)
+    features/receipts/**            # OcrTextSource, MlKitTextSource, ShelfPriceExtractor (T25)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -226,7 +227,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses önizleme sayfası, raf etiketi/fiş akışları yok → T25-T27 + T30
+GAP: ses önizleme sayfası, fiş akışları yok → T26,T27 + T30
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -438,6 +439,7 @@ nshoptor/
     features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     features/voice_input/**         # SpeechService soyutlaması + VoiceInputController (T22)
     features/lists/attachments/**   # AttachmentRepository (dosya saklama + temizlik) (T24)
+    features/receipts/**            # OcrTextSource, MlKitTextSource, ShelfPriceExtractor (T25)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -474,7 +476,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses önizleme sayfası, raf etiketi/fiş akışları yok → T25-T27 + T30
+GAP: ses önizleme sayfası, fiş akışları yok → T26,T27 + T30
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -655,11 +657,11 @@ nshoptor/
   - → 5 test geçti (paket 204); AttachmentRepository (picker geçici dosyası→media/ kopyalama, yol-only saklama, deleteAttachment dosya+satır, sweepOrphans sahipsiz temizlik). image_picker + path_provider eklendi; kamera/galeri UI düğmesi ve izin akışı cihaz doğrulamasıyla T30/T32'de
   - Needs: T10
 
-- [ ] T25 [M] Raf etiketi OCR (spec §6.8)
-  - Where: `lib/features/receipts/shelf_label/`, `test/features/receipts/shelf_label/`
-  - Do: 1) google_mlkit_text_recognition bundled Latin (ağdan model indirmesiz; iOS statik dahil). 2) Kırpma/döndürme. 3) OCR → adaylar: ana fiyat, birim fiyat, ürün adı, para birimi; kullanıcı seçer/düzeltir; en büyük sayı körlemesine kabul edilmez. 4) Isolate + native kaynak kapatma. 5) Onay sonrası ürüne uygula.
+- [x] T25 [M] (2026-09-20, GLM-5.3-Flash) Raf etiketi OCR (spec §6.8)
   - Done when: `flutter test test/features/receipts/shelf_label/` geçer (aday seçim mantığı, çoklu fiyat ayrımı); cihazda uçak modu doğrulaması T32.
+  - → 7 test geçti (paket 210); OcrTextSource soyutlaması + MlKitTextSource (google_mlkit_text_recognition 0.17.1, bundled Latin — ağdan model yok), ShelfPriceExtractor (fiyat adayları: high/medium/low güven, /kg birim kalıbı, binlik ayraç normalizasyonu, '1 LT' hacim sayısı elemesi, en büyük sayı SEÇİLMEZ — adaylar listelenir kullanıcı seçer). Kırpma/döndürme + etiket uygulama UI'sı T30'da
   - Needs: T24, T3
+
 - [ ] T26 [H] Fiş ayrıştırıcı (spec §6.9)
   - Where: `lib/features/receipts/parser/`, `test/features/receipts/parser/fixtures/`
   - Do: 1) Girdi: blok/satır/kelime + bbox OCR çıktısı (soyut temsil; ML Kit adaptörü ayrı). 2) Mağaza, tarih/saat, para birimi, ara toplam, indirim, vergi, genel toplam adayları; ürün satırı/miktar/birim fiyat/çıkarma. 3) Tarih, telefon, vergi no, kart maskesi, fiş no yanlış-pozitif azaltımı. 4) Parça satır birleştirme (konum+devamlılık). 5) İsim normalize + alias öğrenme. 6) Planlanan ürüne muhafazakâr fuzzy eşleştirme. 7) Alan/eşleşme başına güven (yüksek/orta/düşük); düşük-orta otomatik kesinleştirilmez. 8) Satır toplamları ↔ genel toplam uzlaştırma + fark raporu. 9) parserVersion alanı.
