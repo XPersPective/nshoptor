@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T18 tamam (geçmiş + içgörüler). Sıradaki iş: T19 (şablonlar).
-> **Phase:** BUILD · **Next:** T19 · **Updated:** 2026-09-20 · **Synced@:** 7aa454a
+> **Status:** T19 tamam (şablonlar). Sıradaki iş: T20 (hatırlatmalar).
+> **Phase:** BUILD · **Next:** T20 · **Updated:** 2026-09-20 · **Synced@:** 4846ef6
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -184,6 +184,7 @@ nshoptor/
     features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
     features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
+    features/lists/templates/**     # TemplateRepository (gerçek alımdan plan) (T19)
     features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
     features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     core/util/**                    # normalizeName, combineLatest3
@@ -221,7 +222,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: şablon/hatırlatma/yedek yok → T19-T21
+GAP: hatırlatma/yedek yok → T20,T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -428,6 +429,7 @@ nshoptor/
     features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
     features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
+    features/lists/templates/**     # TemplateRepository (gerçek alımdan plan) (T19)
     features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
     features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     core/util/**                    # normalizeName, combineLatest3
@@ -465,7 +467,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: şablon/hatırlatma/yedek yok → T19-T21
+GAP: hatırlatma/yedek yok → T20,T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -614,11 +616,11 @@ nshoptor/
   - → 7 test geçti (paket 165); InsightsRepository (ay+para bucket'ları — iki gruppalamayı Dart'ta birleştirme, kategori/mağaza kırılımı, en sık ürünler, en büyük sapmalar, plansız toplam); History sekmesi tamamlanan alışverişlere bağlandı (boş durum korunuyor). Yetersiz veride metotlar boş döner, trend üretilmez
   - Needs: T12, T15
 
-- [ ] T19 [M] Şablonlar: önceki alışverişten plan (spec §6.1)
-  - Where: `lib/features/lists/templates/`, `test/features/lists/templates/`
-  - Do: 1) Tamamlanmış listeyi yeni plan olarak kopyalama: gerçek miktar ve birim fiyatlar tahmine dönüştürülür. 2) Sık kullanılan şablon kavramı (favori işaretli listeler) + ana ekranda şablon kartları.
+- [x] T19 [M] (2026-09-20, GLM-5.3-Flash) Şablonlar: önceki alışverişten plan (spec §6.1, §6.4)
   - Done when: `flutter test test/features/lists/templates/` geçer: kopya listede tahmini fiyatlar önceki gerçek fiyatlara eşit, durum taslak.
+  - → 2 test geçti (paket 167); TemplateRepository (createPlanFromActuals: en son kaydın gerçek miktar/fiyatı tahmine dönüşür, kayıtsız ürün plan değerleriyle korunur, kayıtlar kopyalanmaz; şablon işareti AppSettings JSON — migration gerektirmez). Ana ekran şablon kartı bağlantısı T30 ekran tazelemesinde
   - Needs: T9, T12, T13
+
 - [ ] T20 [M] Hatırlatmalar (spec §6.13)
   - Where: `lib/features/lists/reminders/`, `test/features/lists/reminders/`
   - Do: 1) Yerel bildirim paketi (flutter_local_notifications veya güncel eşdeğer — bakım kontrolü, §6'ya DECISION). 2) Bildirim izni yalnız hatırlatma açılınca istenir. 3) plannedAt saat seçimi; bildirim→doğru listeye derin bağlantı; silinmiş listede açıklayıcı fallback. 4) Tarih değişince güncelle, liste silinince iptal. 5) TZ/DST dayanıklılığı (zaman dilimi kaydırmalarla).
