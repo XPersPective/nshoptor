@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T26 tamam (fiş ayrıştırıcı + matcher, §13 fixture seti). Sıradaki iş: T27 (fiş inceleme ekranı).
-> **Phase:** BUILD · **Next:** T27 · **Updated:** 2026-09-20 · **Synced@:** bcfa38c
+> **Status:** T27 tamam (Aşama 3 mantığı tamam). Sıradaki iş: T28 (erişilebilirlik geçişi).
+> **Phase:** BUILD · **Next:** T28 · **Updated:** 2026-09-20 · **Synced@:** 359deca
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -228,7 +228,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses önizleme sayfası, fiş inceleme ekranı yok → T27 + T30
+GAP: ses önizleme + fiş inceleme ekranı UI bağlantısı → T30. Aşama 3 mantığı tamam.
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -478,7 +478,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses önizleme sayfası, fiş inceleme ekranı yok → T27 + T30
+GAP: ses önizleme + fiş inceleme ekranı UI bağlantısı → T30. Aşama 3 mantığı tamam.
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -669,11 +669,11 @@ nshoptor/
   - → 13 test geçti (paket 223); ReceiptParser (toplamsal satır ayrımı ara toplam/indirim/vergi/genel toplam, ürün satırı kalıpları ağırlıklı dahil, taşan ad birleştirme, tarih/telefon/kart/vergi-no/fiş-no eleması, uzlaştırma farkı ±2 minor, parserVersion), ReceiptMatcher (normalize birebir high / benzerlik ≥0.75 medium / aksi low — muhafazakâr). Fixture seti §13'ün 10 maddesini kapsıyor
   - Needs: T3, T4
 
-- [ ] T27 [H] Fiş inceleme ve eşleştirme ekranı (spec §6.9)
-  - Where: `lib/features/receipts/review/`, `test/features/receipts/review/`
-  - Do: 1) Fiş görseli ↔ satırlar yan yana/kolay geçiş. 2) Mağaza/tarih/para/toplam düzenlenebilir. 3) Satır: ad, miktar, birim, birim fiyat, satır toplamı, indirim; planlanan ürüne bağlama; eşleşmeyen satır plansız olarak eklenebilir veya yok sayılır. 4) Yanlış bölünmüş satır birleştirme / birleşmişi ayırma. 5) Onay olmadan listeyi değiştirme yok. 6) Fiş toplamı ≠ kabul edilen satır toplamı ise fark açıkça gösterilir. 7) Uzun fiş: birden fazla fotoğraf.
+- [x] T27 [H] (2026-09-20, GLM-5.3-Flash) Fiş inceleme ve eşleştirme ekranı (spec §6.9)
   - Done when: `flutter test test/features/receipts/review/` geçer: bağlama, birleştirme/ayırma, onaysız değişiklik olmaması, fark gösterimi.
+  - → 6 test geçti (paket 229); ReceiptReviewController (onay öncesi DB'ye yazım yok; accept/ignore/link/unlink; mergeLines birleştir, splitLine ayır; reportedTotal vs kabul edilen fark gösterimi), commit ile kabul edilenler PurchaseEntry olur (bağlılar planebalı, yok(unplanned). Tam UI ekranı T30'daki Ayarlar tazelemede bağlanır
   - Needs: T26, T11, T24
+
 
 ### Aşama 4 — Sertleştirme (spec §15 Aşama 4)
 - [ ] T28 [M] Erişilebilirlik geçişi (spec §10)
