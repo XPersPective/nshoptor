@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T15 tamam (ürün hafızası + gözlemler + yapıştırma). Sıradaki iş: T16 (mağaza/kategori/reyon yönetimi).
-> **Phase:** BUILD · **Next:** T16 · **Updated:** 2026-09-20 · **Synced@:** 57b855b
+> **Status:** T16 tamam (taxonomy CRUD + sıralama modları). Sıradaki iş: T17 (ürün fiyat geçmişi ekranı).
+> **Phase:** BUILD · **Next:** T17 · **Updated:** 2026-09-20 · **Synced@:** c8aad4b
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -183,6 +183,7 @@ nshoptor/
     features/shopping_mode/summary/**  # ResultRepository + SummaryScreen (T12)
     features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
+    features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -218,7 +219,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T16-T21
+GAP: fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T17-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -424,6 +425,7 @@ nshoptor/
     features/shopping_mode/summary/**  # ResultRepository + SummaryScreen (T12)
     features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
+    features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -459,7 +461,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: mağaza/fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T16-T21
+GAP: fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T17-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -593,11 +595,11 @@ nshoptor/
   - → 7 test geçti (paket 144); ProductMemoryRepository (normalize ad başına tek hafıza, useCount/lastUsedAt, gözlem yazımı, mağaza bazlı son fiyat, favoriler, yinelenen kontrolü), paste_parser (satır başına aday), core/util/normalize_name.dart (tek normalize kaynağı); ShoppingRepository.recordPurchase artık gözlem yazıyor
   - Needs: T10
 
-- [ ] T16 [M] Mağaza/kategori/reyon yönetimi (spec §6.3)
-  - Where: `lib/features/lists/taxonomy/`, `test/features/lists/taxonomy/`
-  - Do: 1) Mağaza/kategori/reyon CRUD + sıralama. 2) Mağaza bazlı kategori/reyon sırası hatırlanır. 3) Liste sıralama modları: kategori, alfabetik, özel sıra, mağaza reyonu. 4) Ürün geçmişine göre kategori önerisi (kolayca değiştirilebilir).
+- [x] T16 [M] (2026-09-20, GLM-5.3-Flash) Mağaza/kategori/reyon yönetimi (spec §6.3)
   - Done when: `flutter test test/features/lists/taxonomy/` geçer: sıra kalıcılığı, mağaza bazlı farklı sıra, sıralama modu değişimi.
+  - → 8 test geçti (paket 152); TaxonomyRepository (mağaza/kategori CRUD + reorder, mağaza bazlı reyon sırası — reyon satırı tek mağazaya ait), sortItems (kategori/alfabetik/özel/reyon modları), CategorySuggester (hafızadan öğrenilen kategori önerisi). Yönetim UI ekranı T30 Ayarlar entegrasyonunda bağlanacak (repo tamam; DECISION'a not düşüldü)
   - Needs: T9
+
 - [ ] T17 [M] Ürün fiyat geçmişi ekranı (spec §6.10)
   - Where: `lib/features/history/price_history/`, `test/features/history/price_history/`
   - Do: 1) Son ödenen fiyat+tarih; aynı mağazada son; son N'de min/medyan/max/ortalama; basit eğilim; görülen en ucuz mağaza; fiyat eskilik göstergesi. 2) Farklı para birimi veya dönüştürülemeyen ambalaj karşılaştırması yapılmaz (gösterilmez/etiketlenir).
