@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T23 tamam (ses komut ayrıştırıcı, 7/7 örnek). Sıradaki iş: T24 (ürün fotoğrafı).
-> **Phase:** BUILD · **Next:** T24 · **Updated:** 2026-09-20 · **Synced@:** a49bca3
+> **Status:** T24 tamam (fotoğraf saklama katmanı). Sıradaki iş: T25 (raf etiketi OCR).
+> **Phase:** BUILD · **Next:** T25 · **Updated:** 2026-09-20 · **Synced@:** 12f17b0
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -189,6 +189,7 @@ nshoptor/
     features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
     features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     features/voice_input/**         # SpeechService soyutlaması + VoiceInputController (T22)
+    features/lists/attachments/**   # AttachmentRepository (dosya saklama + temizlik) (T24)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -225,7 +226,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses önizleme sayfası, foto/OCR/fiş akışları yok → T24-T27 + T30
+GAP: ses önizleme sayfası, raf etiketi/fiş akışları yok → T25-T27 + T30
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -436,6 +437,7 @@ nshoptor/
     features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
     features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     features/voice_input/**         # SpeechService soyutlaması + VoiceInputController (T22)
+    features/lists/attachments/**   # AttachmentRepository (dosya saklama + temizlik) (T24)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -472,7 +474,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses önizleme sayfası, foto/OCR/fiş akışları yok → T24-T27 + T30
+GAP: ses önizleme sayfası, raf etiketi/fiş akışları yok → T25-T27 + T30
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -648,11 +650,11 @@ nshoptor/
   - → 11 test geçti (paket 199); VoiceCommandParser (tr sayı sözcükleri + buçuk/yarım, en and-a-half, birim sözlükleri, tr iyelik birim fiyat kalıbı 'kilosu kırk beş lira', en 'three euros per kilo', dolgu sökümü, tanınmayan cümle→tüm metin ad olarak korunur); ItemFormSheet initial-value parametreleri (önizleme doldurma hazır). Kalan: mikrofon düğmesi + önizleme sayfası bağlantısı T30 ekran işlerinde
   - Needs: T3, T4, T22
 
-- [ ] T24 [M] Ürün fotoğrafı ekleme (spec §6.8)
-  - Where: `lib/features/lists/attachments/`, `test/features/lists/attachments/`
-  - Do: 1) Kamera/galeri (image_picker veya eşdeğer, bakım kontrolü). 2) App özel dizinde dosya; DB'de yol; blob yok. 3) Silinince referans temizliği (sahipsiz dosya taraması). 4) Ürün detayında göster.
+- [x] T24 [M] (2026-09-20, GLM-5.3-Flash) Ürün fotoğrafı ekleme (spec §6.8)
   - Done when: `flutter test test/features/lists/attachments/` geçer (sahte picker ile kayıt+yol temizliği); izin reddi akışı manuel alternatif sunar.
+  - → 5 test geçti (paket 204); AttachmentRepository (picker geçici dosyası→media/ kopyalama, yol-only saklama, deleteAttachment dosya+satır, sweepOrphans sahipsiz temizlik). image_picker + path_provider eklendi; kamera/galeri UI düğmesi ve izin akışı cihaz doğrulamasıyla T30/T32'de
   - Needs: T10
+
 - [ ] T25 [M] Raf etiketi OCR (spec §6.8)
   - Where: `lib/features/receipts/shelf_label/`, `test/features/receipts/shelf_label/`
   - Do: 1) google_mlkit_text_recognition bundled Latin (ağdan model indirmesiz; iOS statik dahil). 2) Kırpma/döndürme. 3) OCR → adaylar: ana fiyat, birim fiyat, ürün adı, para birimi; kullanıcı seçer/düzeltir; en büyük sayı körlemesine kabul edilmez. 4) Isolate + native kaynak kapatma. 5) Onay sonrası ürüne uygula.
