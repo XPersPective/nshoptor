@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T16 tamam (taxonomy CRUD + sıralama modları). Sıradaki iş: T17 (ürün fiyat geçmişi ekranı).
-> **Phase:** BUILD · **Next:** T17 · **Updated:** 2026-09-20 · **Synced@:** c8aad4b
+> **Status:** T17 tamam (fiyat geçmişi istatistikleri). Sıradaki iş: T18 (geçmiş ve içgörüler).
+> **Phase:** BUILD · **Next:** T18 · **Updated:** 2026-09-20 · **Synced@:** 46f25d5
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -184,6 +184,7 @@ nshoptor/
     features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
     features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
+    features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -219,7 +220,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T17-T21
+GAP: içgörü/şablon/hatırlatma/yedek yok → T18-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -426,6 +427,7 @@ nshoptor/
     features/home/**                # HomeShell (4 sekme) + HomeScreen + HomeRepository (T13)
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
     features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
+    features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -461,7 +463,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: fiyat geçmişi/içgörü/şablon/hatırlatma/yedek yok → T17-T21
+GAP: içgörü/şablon/hatırlatma/yedek yok → T18-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -600,11 +602,11 @@ nshoptor/
   - → 8 test geçti (paket 152); TaxonomyRepository (mağaza/kategori CRUD + reorder, mağaza bazlı reyon sırası — reyon satırı tek mağazaya ait), sortItems (kategori/alfabetik/özel/reyon modları), CategorySuggester (hafızadan öğrenilen kategori önerisi). Yönetim UI ekranı T30 Ayarlar entegrasyonunda bağlanacak (repo tamam; DECISION'a not düşüldü)
   - Needs: T9
 
-- [ ] T17 [M] Ürün fiyat geçmişi ekranı (spec §6.10)
-  - Where: `lib/features/history/price_history/`, `test/features/history/price_history/`
-  - Do: 1) Son ödenen fiyat+tarih; aynı mağazada son; son N'de min/medyan/max/ortalama; basit eğilim; görülen en ucuz mağaza; fiyat eskilik göstergesi. 2) Farklı para birimi veya dönüştürülemeyen ambalaj karşılaştırması yapılmaz (gösterilmez/etiketlenir).
+- [x] T17 [M] (2026-09-20, GLM-5.3-Flash) Ürün fiyat geçmişi ekranı (spec §6.10)
   - Done when: `flutter test test/features/history/price_history/` geçer: min/medyan/max doğruluğu, para birimi ayrımı, eski fiyat etiketi.
+  - → 6 test geçti (paket 158); PriceHistoryRepository (son N min/medyan/max/ortalama, baskın para birimi dışını hesaba katmama, en ucuz mağaza, eğilim rising/falling/stable, 30 gün eskilik göstergesi). Ekran katmanı T31 dokümantasyonunda sonuç ekranına bağlanacak
   - Needs: T15
+
 - [ ] T18 [M] Geçmiş ve içgörüler ekranı (spec §6.12)
   - Where: `lib/features/history/insights/`, `test/features/history/insights/`
   - Do: 1) Tamamlanan alışveriş geçmişi; tarih/mağaza/para/başlık arama-filtre. 2) Aylık planlanan/gerçekleşen, aylık fark/tasarruf. 3) Kategori ve mağaza bazlı harcama. 4) En sık ürünler, en büyük tahmin sapmaları, plan dışı toplam. 5) Basit fiyat geçmişi grafiği + erişilebilir metin özeti; yetersiz veride trend gösterme.
