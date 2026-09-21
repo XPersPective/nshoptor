@@ -25,25 +25,39 @@ class ItemFormSheet extends StatefulWidget {
     required this.db,
     required this.starterCategories,
     required this.listId,
+    this.initialName,
+    this.initialQuantity,
+    this.initialUnitCode,
+    this.initialUnitPrice,
   });
 
   final AppDatabase db;
   final StarterCategories starterCategories;
   final int listId;
 
+  /// Ses önizlemesi gibi akışlardan öndoldurulan değerler (spec §6.7:
+  /// sonuç düzenlenebilir önizlemeye gider, doğrudan kaydedilmez).
+  final String? initialName;
+  final String? initialQuantity;
+  final UnitCode? initialUnitCode;
+  final String? initialUnitPrice;
+
   @override
   State<ItemFormSheet> createState() => _ItemFormSheetState();
 }
 
 class _ItemFormSheetState extends State<ItemFormSheet> {
-  final _name = TextEditingController();
+  late final TextEditingController _name =
+      TextEditingController(text: widget.initialName ?? '');
   final _brand = TextEditingController();
-  final _quantity = TextEditingController(text: '1');
-  final _price = TextEditingController();
+  late final TextEditingController _quantity =
+      TextEditingController(text: widget.initialQuantity ?? '1');
+  late final TextEditingController _price =
+      TextEditingController(text: widget.initialUnitPrice ?? '');
   final _maxPrice = TextEditingController();
   final _note = TextEditingController();
 
-  UnitCode _unit = UnitCode.adet;
+  late UnitCode _unit = widget.initialUnitCode ?? UnitCode.adet;
   bool _priceIsUnitPrice = true;
   bool _required = false;
   int? _categoryId;

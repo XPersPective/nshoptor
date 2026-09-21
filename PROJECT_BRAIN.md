@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T22 tamam (ses servisi soyutlaması). Sıradaki iş: T23 (ses komut ayrıştırıcı).
-> **Phase:** BUILD · **Next:** T23 · **Updated:** 2026-09-20 · **Synced@:** 3840481
+> **Status:** T23 tamam (ses komut ayrıştırıcı, 7/7 örnek). Sıradaki iş: T24 (ürün fotoğrafı).
+> **Phase:** BUILD · **Next:** T24 · **Updated:** 2026-09-20 · **Synced@:** a49bca3
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -225,7 +225,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses parser/foto/OCR/fiş akışları yok → T23-T27
+GAP: ses önizleme sayfası, foto/OCR/fiş akışları yok → T24-T27 + T30
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -472,7 +472,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses parser/foto/OCR/fiş akışları yok → T23-T27
+GAP: ses önizleme sayfası, foto/OCR/fiş akışları yok → T24-T27 + T30
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -643,11 +643,11 @@ nshoptor/
   - → 7 test geçti (paket 188); SpeechService soyutlaması + FakeSpeechService + VoiceInputController (idle/listening/error; shouldFallbackToManual; hata türüne göre metin korunur). speech_to_text 7.5.0 eklendi; gerçek cihaz bağlantısı (platform adaptör impl) T32 ile. **Not:** izin reddi testi serviceUnavailable akışını kullanır; cihaz izin akışı T32'de
   - Needs: T10, T6
 
-- [ ] T23 [H] Ses komut ayrıştırıcı + önizleme (spec §6.7)
-  - Where: `lib/features/voice_input/parser/`, `test/features/voice_input/parser/`
-  - Do: 1) Deterministik yerel parser: metin → ad/miktar/birim/fiyat/para adayları; tr sayı-kelimeleri (bir buçuk, yarım, kırk beş) ve en (one and a half, three euros per kilo). 2) Belirsiz fiyat boş bırakılır → doğrulamaya düşer. 3) Tanınmayan cümle veri kaybetmeden manuel forma aktarılır. 4) Düzenlenebilir önizleme ekranı; onay sonrası ekleme. 5) Test örnekleri: spec §6.7'deki 7 örnek cümle.
-  - Done when: `flutter test test/features/voice_input/parser/` geçer: 7 örnek cümrenin tamamı doğru aday üretir; tanınmayan cümle fallback'i.
+- [x] T23 [H] (2026-09-20, GLM-5.3-Flash) Ses komut ayrıştırıcı + önizleme (spec §6.7)
+  - Done when: `flutter test test/features/voice_input/parser/` geçer: 7 örnek cümle tamamı doğru aday üretir; tanınmayan cümle fallback'i.
+  - → 11 test geçti (paket 199); VoiceCommandParser (tr sayı sözcükleri + buçuk/yarım, en and-a-half, birim sözlükleri, tr iyelik birim fiyat kalıbı 'kilosu kırk beş lira', en 'three euros per kilo', dolgu sökümü, tanınmayan cümle→tüm metin ad olarak korunur); ItemFormSheet initial-value parametreleri (önizleme doldurma hazır). Kalan: mikrofon düğmesi + önizleme sayfası bağlantısı T30 ekran işlerinde
   - Needs: T3, T4, T22
+
 - [ ] T24 [M] Ürün fotoğrafı ekleme (spec §6.8)
   - Where: `lib/features/lists/attachments/`, `test/features/lists/attachments/`
   - Do: 1) Kamera/galeri (image_picker veya eşdeğer, bakım kontrolü). 2) App özel dizinde dosya; DB'de yol; blob yok. 3) Silinince referans temizliği (sahipsiz dosya taraması). 4) Ürün detayında göster.
