@@ -1,0 +1,363 @@
+import 'dart:math' as math;
+
+import '../../../core/money/decimal_fixed.dart';
+import '../../../core/util/normalize_name.dart';
+import '../../../data/db/app_database.dart';
+import '../ocr_text_source.dart';
+import 'receipt_parse_result.dart';
+
+/// Deterministik fiş ayrıştırıcı (spec §6.9).
+///
+/// OCR metin satırlarından; mağaza/tarih/para/ara toplam/indirim/vergi/toplam
+/// adayları, ürün satırları ve uzlaştırma raporu üretir. Yanlış pozitif
+/// azaltımı: tarih, telefon, vergi no, kart maskesi ve fiş no satırları
+/// ürün sanılmaz. Güven düşük/orta olan satırlar otomatik kesinleşmez.
+class ReceiptParser {
+  ReceiptParser({this.currency = 'TRY', this.reconciliationToleranceMinor = 2});
+
+  final String currency;
+
+  /// ±tolerans: satır toplamları ile fiş toplamı arasındaki yuvarlama payı.
+  final int reconciliationToleranceMinor;
+
+  static const List<String> _totalMarkers = [
+    'toplam', 'genel toplam', 'total', 'nakit', 'kasa',
+  ];
+  static const List<String> _subtotalMarkers = ['ara toplam', 'aratoplam'];
+  static const List<String> _discountMarkers = ['indirim', 'iskonto'];
+  static const List<String> _taxMarkers = ['kdv', 'vergi', 'vat', 'tax'];
+  static const List<String> _storeWords = ['market', 'mağaza', 'merk'];
+  static const List<String> _skipWords = [
+    'fiş', 'fis', 'no:', 'no :', 'kasiyer', 'yldz', 'yildiz', 'misafir',
+    'tarih', 'saat', 'date', 'kvkk', 'www', '.com', 'mal.hizmet', 'gv.ilk',
+    'geçici', 'gecici',
+  ];
+
+  /// Ürün satırı olmayan yapısal satırlar.
+  static final RegExp _datePattern = RegExp(
+      r'(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})|(\d{1,2}:\d{2})');
+  static final RegExp _phonePattern = RegExp(r'^\+?[\d\s-]{10,}$');
+  static final RegExp _cardMaskPattern = RegExp(r'(\*{3,}\d{3,4}|\d{15,16})');
+  static final RegExp _taxNoPattern = RegExp(r'\b\d{10,11}\b');
+
+  ReceiptParseResult parse(OcrScanResult scan) {
+    final lines = _mergeWrappedLines(scan.lines);
+
+    final storeCandidates = <String>[];
+    DateTime? dateCandidate;
+    String? currencyCandidate = currency;
+    int? subtotalMinor;
+    int? discountMinor;
+    int? taxMinor;
+    int? totalMinor;
+    final productLines = <ReceiptLineCandidate>[];
+
+    for (final line in lines) {
+      final text = line.text.trim();
+      final lower = text.toLowerCase();
+      if (text.isEmpty) continue;
+
+      // Tarih/saat adayı.
+      if (dateCandidate == null && _datePattern.hasMatch(text)) {
+        dateCandidate = _tryParseDate(text);
+      }
+
+      // Telefon / kart / vergi no satırları asla ürün veya toplam değildir.
+      if (_phonePattern.hasMatch(text) ||
+          _cardMaskPattern.hasMatch(text) ||
+          _taxNoPattern.hasMatch(text)) {
+        continue;
+      }
+
+      if (_skipWords.any(lower.contains)) continue;
+
+      // Toplamsal satırlar.
+      final amount = _lastAmountMinor(text);
+      if (amount != null) {
+        if (_subtotalMarkers.any(lower.contains)) {
+          subtotalMinor ??= amount;
+          continue;
+        }
+        if (_discountMarkers.any(lower.contains)) {
+          discountMinor = (discountMinor ?? 0) + amount;
+          continue;
+        }
+        if (_taxMarkers.any(lower.contains)) {
+          taxMinor ??= amount;
+          continue;
+        }
+        if (_totalMarkers.any(lower.contains) &&
+            !lower.contains('ara')) {
+          totalMinor = amount;
+          continue;
+        }
+      }
+
+      // Mağaza adayı: fiş başındaki, harf ağırlıklı kısa satırlar.
+      if (storeCandidates.isEmpty &&
+          text.length >= 3 &&
+          text.length <= 30 &&
+          RegExp(r'^[A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü .&]+$',).hasMatch(text) &&
+          !_hasDigits(text)) {
+        final looksStore = _storeWords.any(lower.contains) ||
+            text == text.toUpperCase();
+        if (looksStore) {
+          storeCandidates.add(text);
+          continue;
+        }
+      }
+
+      // Ürün satırı adayı: metin + sondaki fiyat.
+      final candidate = _parseProductLine(text);
+      if (candidate != null) {
+        productLines.add(candidate);
+      }
+    }
+
+    final computed = productLines.fold<int>(0, (s, l) => s + l.lineTotalMinor);
+    final difference =
+        totalMinor == null ? 0 : computed - totalMinor;
+
+    return ReceiptParseResult(
+      storeCandidates: storeCandidates,
+      dateCandidate: dateCandidate,
+      currencyCandidate: currencyCandidate,
+      subtotalMinor: subtotalMinor,
+      discountMinor: discountMinor,
+      taxMinor: taxMinor,
+      totalMinor: totalMinor,
+      lines: productLines,
+      computedTotalMinor: computed,
+      reconciliationDifferenceMinor: difference,
+      withinReconciliationTolerance:
+          difference.abs() <= reconciliationToleranceMinor,
+    );
+  }
+
+  /// Çok satıra taşan ürün adlarının birleştirilmesi (spec §6.9):
+  /// fiyat-satırı öncesindeki ardışık yapısal-olmayan ad satırları tek
+  /// ürün satırına katılır (konum+devamlılık kuralı).
+  List<OcrLine> _mergeWrappedLines(List<OcrLine> lines) {
+    final priceOnly = RegExp(r'^\d+[.,]\d{2}$');
+    final merged = <OcrLine>[];
+    final nameBuffer = <String>[];
+    for (final line in lines) {
+      final text = line.text.trim();
+      if (text.isEmpty) continue;
+      final lower = text.toLowerCase();
+      final structural = _skipWords.any(lower.contains) ||
+          _subtotalMarkers.any(lower.contains) ||
+          _discountMarkers.any(lower.contains) ||
+          _taxMarkers.any(lower.contains) ||
+          _totalMarkers.any(lower.contains) ||
+          _phonePattern.hasMatch(text) ||
+          _cardMaskPattern.hasMatch(text) ||
+          _taxNoPattern.hasMatch(text);
+
+      if (structural) {
+        nameBuffer.clear();
+        merged.add(line);
+        continue;
+      }
+      if (priceOnly.hasMatch(text)) {
+        // fiyat-satırı: önceki taşan ad satırlarıyla birleşir.
+        if (nameBuffer.isNotEmpty) {
+          merged.add(OcrLine(
+              text: '${nameBuffer.join(' ')} $text',
+              boundingBoxTop: line.boundingBoxTop));
+          nameBuffer.clear();
+        } else {
+          merged.add(line);
+        }
+        continue;
+      }
+      if (_hasTrailingPrice(text)) {
+        // kendi fiyatı olan tam ürün satırı: doğrudan çıkar.
+        merged.add(line);
+        continue;
+      }
+      nameBuffer.add(text);
+    }
+    if (nameBuffer.isNotEmpty) {
+      merged.add(OcrLine(text: nameBuffer.join(' ')));
+    }
+    return merged;
+  }
+
+  /// Satır sonunda parasal değer var mı?
+  static bool _hasTrailingPrice(String text) =>
+      RegExp(r'\d+[.,]\d{2}\s*$').hasMatch(text.trim());
+
+  /// Ürün satırı: `SUT 2X32,90 64,00` | `DOMATES 1,5KG X42,90 64,35` |
+  /// `EKMEK 15,00`. Dönüşüm: name + opsiyonel miktar/birim fiyat + son fiyat.
+  ReceiptLineCandidate? _parseProductLine(String text) {
+    final matches = RegExp(
+      r'(\d+(?:[.,]\d+)?)(kg|g|lt|l|adet|x)?\s*(?:x|X|×)\s*(\d+[.,]\d{2})\s+(\d+[.,]\d{2})$',
+      caseSensitive: false,
+    ).allMatches(text);
+    if (matches.isNotEmpty) {
+      final m = matches.last;
+      final name = text.substring(0, m.start).trim();
+      if (name.isEmpty) return null;
+      final qty = DecimalFixed.tryParse(m.group(1)!.replaceAll(',', '.'));
+      final unitPrice = _minorFrom(m.group(3)!);
+      final lineTotal = _minorFrom(m.group(4)!);
+      return ReceiptLineCandidate(
+        rawText: text,
+        name: name,
+        normalizedName: normalizeName(name),
+        quantity: qty,
+        unitPriceMinor: unitPrice,
+        lineTotalMinor: lineTotal ?? 0,
+        confidence: (qty != null && unitPrice != null && lineTotal != null)
+            ? 'high'
+            : 'medium',
+      );
+    }
+
+    // Basit satır: ad + sondaki fiyat (açgözlü ad yakalar: EKMEK).
+    final simple = RegExp(r'^(.+)\s+(\d+[.,]\d{2})$').firstMatch(text);
+    if (simple != null) {
+      final name = simple.group(1)!.trim();
+      if (name.isEmpty) return null;
+      final lineTotal = _minorFrom(simple.group(2)!);
+      if (lineTotal == null) return null;
+      // Kısa/harfsiz adlar düşük güvenle korunur: düşürülmez, incelenir.
+      final low = name.length < 3 ||
+          !name.contains(RegExp(r'[A-Za-zÇĞİÖŞÜçğıöşü]'));
+      return ReceiptLineCandidate(
+        rawText: text,
+        name: name,
+        normalizedName: normalizeName(name),
+        lineTotalMinor: lineTotal,
+        confidence: low ? 'low' : 'medium',
+      );
+    }
+    return null;
+  }
+
+  int? _lastAmountMinor(String text) {
+    final match =
+        RegExp(r'(\d{1,3}(?:[.,]\d{3})*[.,]\d{2})\s*(TL|₺|TRY)?\s*$')
+            .firstMatch(text);
+    if (match == null) return null;
+    return _minorFrom(match.group(1)!);
+  }
+
+  int? _minorFrom(String decimalText) {
+    var raw = decimalText;
+    final hasComma = raw.contains(',');
+    final hasDot = raw.contains('.');
+    if (hasComma && hasDot) {
+      raw = raw.lastIndexOf(',') > raw.lastIndexOf('.')
+          ? raw.replaceAll('.', '').replaceAll(',', '.')
+          : raw.replaceAll(',', '');
+    } else if (hasComma) {
+      raw = raw.replaceAll(',', '.');
+    } else if (hasDot) {
+      final frac = raw.substring(raw.lastIndexOf('.') + 1);
+      if (frac.length != 2) raw = raw.replaceAll('.', '');
+    }
+    final value = DecimalFixed.tryParse(raw);
+    if (value == null) return null;
+    final digits = currency == 'JPY' || currency == 'KRW' || currency == 'CLP'
+        ? 0
+        : (currency == 'KWD' || currency == 'BHD' || currency == 'OMR'
+            ? 3
+            : 2);
+    return value.toMinorUnits(digits);
+  }
+
+  DateTime? _tryParseDate(String text) {
+    final m = RegExp(r'(\d{1,2})[./-](\d{1,2})[./-](\d{2,4})').firstMatch(text);
+    if (m == null) return null;
+    var year = int.parse(m.group(3)!);
+    if (year < 100) year += 2000;
+    try {
+      return DateTime(year, int.parse(m.group(2)!), int.parse(m.group(1)!));
+    } on FormatException {
+      return null;
+    }
+  }
+
+  bool _hasDigits(String text) => RegExp(r'\d').hasMatch(text);
+}
+
+/// Ayrıştırılan satırların planlanan ürünlerle muhafazakâr eşleştirmesi
+/// (spec §6.9): normalize ad birebir → high; içerme veya benzerlik ≥0.75 →
+/// medium; aksi halde eşleşme yok. Benzerlik alt sınırı kasıtlı yüksektir.
+class ReceiptMatcher {
+  ReceiptMatcher(this._db);
+
+  final AppDatabase _db;
+
+  /// Satır adayı ↔ planlanan ürün eşleşmesi döndürür.
+  Future<List<(ReceiptLineCandidate, PlannedItem?, String)>> match(
+      List<ReceiptLineCandidate> lines,
+      {required int listId}) async {
+    final items = await (_db.select(_db.plannedItems)
+          ..where((t) => t.listId.equals(listId)))
+        .get();
+    return [
+      for (final line in lines)
+        (
+          line,
+          _bestMatch(line.normalizedName, items),
+          _matchConfidence(line.normalizedName, items),
+        ),
+    ];
+  }
+
+  PlannedItem? _bestMatch(String needle, List<PlannedItem> items) {
+    PlannedItem? best;
+    var bestScore = 0.0;
+    for (final item in items) {
+      final score = _similarity(needle, item.normalizedName);
+      if (score > bestScore) {
+        bestScore = score;
+        best = item;
+      }
+    }
+    return bestScore >= 0.75 ? best : null;
+  }
+
+  String _matchConfidence(String needle, List<PlannedItem> items) {
+    for (final item in items) {
+      if (item.normalizedName == needle) return 'high';
+    }
+    for (final item in items) {
+      if (_similarity(needle, item.normalizedName) >= 0.75) return 'medium';
+    }
+    return 'low';
+  }
+
+  /// 0..1 benzerlik: içerme + Levenshtein oranı.
+  static double _similarity(String a, String b) {
+    if (a.isEmpty || b.isEmpty) return 0;
+    if (a == b) return 1;
+    if (a.contains(b) || b.contains(a)) return 0.9;
+    final distance = levenshtein(a, b);
+    return 1 - distance / (a.length > b.length ? a.length : b.length);
+  }
+
+  static int levenshtein(String a, String b) {
+    final m = a.length, n = b.length;
+    if (m == 0) return n;
+    if (n == 0) return m;
+    var prev = List<int>.generate(n + 1, (i) => i);
+    final curr = List<int>.filled(n + 1, 0);
+    for (var i = 1; i <= m; i++) {
+      curr[0] = i;
+      for (var j = 1; j <= n; j++) {
+        final cost = a.codeUnitAt(i - 1) == b.codeUnitAt(j - 1) ? 0 : 1;
+        curr[j] = [
+          prev[j] + 1,
+          curr[j - 1] + 1,
+          prev[j - 1] + cost,
+        ].reduce(math.min);
+      }
+      prev = List.of(curr);
+    }
+    return prev[n];
+  }
+}

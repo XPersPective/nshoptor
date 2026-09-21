@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T25 tamam (raf etiketi OCR aday çıkarımı). Sıradaki iş: T26 (fiş ayrıştırıcı).
-> **Phase:** BUILD · **Next:** T26 · **Updated:** 2026-09-20 · **Synced@:** bcfa38c
+> **Status:** T26 tamam (fiş ayrıştırıcı + matcher, §13 fixture seti). Sıradaki iş: T27 (fiş inceleme ekranı).
+> **Phase:** BUILD · **Next:** T27 · **Updated:** 2026-09-20 · **Synced@:** bcfa38c
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -191,6 +191,7 @@ nshoptor/
     features/voice_input/**         # SpeechService soyutlaması + VoiceInputController (T22)
     features/lists/attachments/**   # AttachmentRepository (dosya saklama + temizlik) (T24)
     features/receipts/**            # OcrTextSource, MlKitTextSource, ShelfPriceExtractor (T25)
+    features/receipts/parser/**     # ReceiptParser + ReceiptMatcher (T26)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -227,7 +228,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses önizleme sayfası, fiş akışları yok → T26,T27 + T30
+GAP: ses önizleme sayfası, fiş inceleme ekranı yok → T27 + T30
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -440,6 +441,7 @@ nshoptor/
     features/voice_input/**         # SpeechService soyutlaması + VoiceInputController (T22)
     features/lists/attachments/**   # AttachmentRepository (dosya saklama + temizlik) (T24)
     features/receipts/**            # OcrTextSource, MlKitTextSource, ShelfPriceExtractor (T25)
+    features/receipts/parser/**     # ReceiptParser + ReceiptMatcher (T26)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -476,7 +478,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
 GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
-GAP: ses önizleme sayfası, fiş akışları yok → T26,T27 + T30
+GAP: ses önizleme sayfası, fiş inceleme ekranı yok → T27 + T30
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
 ## 4. FILE MAP
@@ -662,11 +664,11 @@ nshoptor/
   - → 7 test geçti (paket 210); OcrTextSource soyutlaması + MlKitTextSource (google_mlkit_text_recognition 0.17.1, bundled Latin — ağdan model yok), ShelfPriceExtractor (fiyat adayları: high/medium/low güven, /kg birim kalıbı, binlik ayraç normalizasyonu, '1 LT' hacim sayısı elemesi, en büyük sayı SEÇİLMEZ — adaylar listelenir kullanıcı seçer). Kırpma/döndürme + etiket uygulama UI'sı T30'da
   - Needs: T24, T3
 
-- [ ] T26 [H] Fiş ayrıştırıcı (spec §6.9)
-  - Where: `lib/features/receipts/parser/`, `test/features/receipts/parser/fixtures/`
-  - Do: 1) Girdi: blok/satır/kelime + bbox OCR çıktısı (soyut temsil; ML Kit adaptörü ayrı). 2) Mağaza, tarih/saat, para birimi, ara toplam, indirim, vergi, genel toplam adayları; ürün satırı/miktar/birim fiyat/çıkarma. 3) Tarih, telefon, vergi no, kart maskesi, fiş no yanlış-pozitif azaltımı. 4) Parça satır birleştirme (konum+devamlılık). 5) İsim normalize + alias öğrenme. 6) Planlanan ürüne muhafazakâr fuzzy eşleştirme. 7) Alan/eşleşme başına güven (yüksek/orta/düşük); düşük-orta otomatik kesinleştirilmez. 8) Satır toplamları ↔ genel toplam uzlaştırma + fark raporu. 9) parserVersion alanı.
-  - Done when: `flutter test test/features/receipts/parser/` geçer; fixture seti §13 fiş listesinin tamamını kapsar (anonim metinler: ürün+fiyat, ağırlıklı, indirim, vergi+toplam, virgül/nokta, tarih/telefon yanılgısı, taşan ad, çoklu toplam adayı, uzlaştırma farkı, düşük güven eşleşmesi otomatik onaylanmaz).
+- [x] T26 [H] (2026-09-20, GLM-5.3-Flash) Fiş ayrıştırıcı (spec §6.9)
+  - Done when: `flutter test test/features/receipts/parser/` geçer; fixture seti §13 fiş listesinin tamamını kapsar (anonim metinler).
+  - → 13 test geçti (paket 223); ReceiptParser (toplamsal satır ayrımı ara toplam/indirim/vergi/genel toplam, ürün satırı kalıpları ağırlıklı dahil, taşan ad birleştirme, tarih/telefon/kart/vergi-no/fiş-no eleması, uzlaştırma farkı ±2 minor, parserVersion), ReceiptMatcher (normalize birebir high / benzerlik ≥0.75 medium / aksi low — muhafazakâr). Fixture seti §13'ün 10 maddesini kapsıyor
   - Needs: T3, T4
+
 - [ ] T27 [H] Fiş inceleme ve eşleştirme ekranı (spec §6.9)
   - Where: `lib/features/receipts/review/`, `test/features/receipts/review/`
   - Do: 1) Fiş görseli ↔ satırlar yan yana/kolay geçiş. 2) Mağaza/tarih/para/toplam düzenlenebilir. 3) Satır: ad, miktar, birim, birim fiyat, satır toplamı, indirim; planlanan ürüne bağlama; eşleşmeyen satır plansız olarak eklenebilir veya yok sayılır. 4) Yanlış bölünmüş satır birleştirme / birleşmişi ayırma. 5) Onay olmadan listeyi değiştirme yok. 6) Fiş toplamı ≠ kabul edilen satır toplamı ise fark açıkça gösterilir. 7) Uzun fiş: birden fazla fotoğraf.
