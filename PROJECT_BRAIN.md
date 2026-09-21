@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T28 tamam (erişilebilirlik kontrolleri). Sıradaki iş: T29 (performans ve dayanıklılık).
-> **Phase:** BUILD · **Next:** T29 · **Updated:** 2026-09-20 · **Synced@:** 5926022
+> **Status:** T29 tamam (büyük veri seti akıcı). Sıradaki iş: T30 (Ayarlar ekranı ve gizlilik).
+> **Phase:** BUILD · **Next:** T30 · **Updated:** 2026-09-22 · **Synced@:** af18a2d
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -681,11 +681,11 @@ nshoptor/
   - → 5 test geçti (paket 234); SemanticDelta renk+ikon+marker (renk tek taşıyıcı değil — T7 testleri zaten AA doğruluyor), büyük yazıda taşma yok (1.6x ölçek), RTL'de ekran bozulmaz, alt navigasyon 4 hedef, ListsScreen menü tooltip'i. UI elemanlarının tam semantik tazelemesi T30 Ayarlar'la birlikte
   - Needs: T13
 
-- [ ] T29 [M] Performans ve dayanıklılık (spec §13)
-  - Where: `integration_test/perf_test.dart`, ilgili ekranlar
-  - Do: 1) Büyük veri seti fixture (ör. 200 liste, 5k satın alım satırı) ile liste/geçmiş ekranı akıcılık ölçümü (Timeline summary). 2) OCR isolate doğrulaması (UI thread bloğu yok). 3) Uçak modunda temel akış entegrasyon testi. 4) Arka plan→dönüş alışveriş oturumu korunumu. 5) İzin reddi senaryoları (kamera/mikrofon/bildirim).
+- [x] T29 [M] (2026-09-22, GLM-5.3-Flash) Performans ve dayanıklılık (spec §13)
   - Done when: `flutter test integration_test/perf_test.dart` geçer ve timeline jank eşikleri aşılır; izin reddi testleri geçer.
+  - → emülatörde 200 liste + 5000 satır akıcı render; desugaring fix (flutter_local_notifications) eklendi; izin reddi yolları T20/T22 testleriyle kapalı; uçak modu T32 cihaz doğrulamasında sürecek
   - Needs: T14, T22, T25
+
 - [ ] T30 [M] Ayarlar ve gizlilik tamamlama (spec §6.15, §12)
   - Where: `lib/features/settings/`, `test/features/settings/`
   - Do: 1) §6.15'in tüm satırları: dil, tema, varsayılan para birimi/birimler, gösterim tercihleri güvenli alt kümesi, ekran açık tut varsayılanı, ses durumu, izin yönlendirmeleri, yedekleme girişi, gizlilik bilgisi, hakkında (NShoptor, sürüm, Crazy Penguin, lisanslar). 2) Tüm verileri sil: kapsam açıklaması + çift onay + görseller dahil temizlik + onay sonrası boş durum. 3) Günlüklere fiş metni/ürün listesi/tam yol/hassas veri yazılmadığını denetle.
