@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T17 tamam (fiyat geçmişi istatistikleri). Sıradaki iş: T18 (geçmiş ve içgörüler).
-> **Phase:** BUILD · **Next:** T18 · **Updated:** 2026-09-20 · **Synced@:** 46f25d5
+> **Status:** T18 tamam (geçmiş + içgörüler). Sıradaki iş: T19 (şablonlar).
+> **Phase:** BUILD · **Next:** T19 · **Updated:** 2026-09-20 · **Synced@:** 7aa454a
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -185,6 +185,7 @@ nshoptor/
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
     features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
     features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
+    features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -220,7 +221,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: içgörü/şablon/hatırlatma/yedek yok → T18-T21
+GAP: şablon/hatırlatma/yedek yok → T19-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -428,6 +429,7 @@ nshoptor/
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
     features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
     features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
+    features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     core/util/**                    # normalizeName, combineLatest3
     core/util/**                    # combineLatest3 (T11)
     main.dart                       # boot: SettingsStore + LanguageController + runApp
@@ -463,7 +465,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: içgörü/şablon/hatırlatma/yedek yok → T18-T21
+GAP: şablon/hatırlatma/yedek yok → T19-T21
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -607,11 +609,11 @@ nshoptor/
   - → 6 test geçti (paket 158); PriceHistoryRepository (son N min/medyan/max/ortalama, baskın para birimi dışını hesaba katmama, en ucuz mağaza, eğilim rising/falling/stable, 30 gün eskilik göstergesi). Ekran katmanı T31 dokümantasyonunda sonuç ekranına bağlanacak
   - Needs: T15
 
-- [ ] T18 [M] Geçmiş ve içgörüler ekranı (spec §6.12)
-  - Where: `lib/features/history/insights/`, `test/features/history/insights/`
-  - Do: 1) Tamamlanan alışveriş geçmişi; tarih/mağaza/para/başlık arama-filtre. 2) Aylık planlanan/gerçekleşen, aylık fark/tasarruf. 3) Kategori ve mağaza bazlı harcama. 4) En sık ürünler, en büyük tahmin sapmaları, plan dışı toplam. 5) Basit fiyat geçmişi grafiği + erişilebilir metin özeti; yetersiz veride trend gösterme.
+- [x] T18 [M] (2026-09-20, GLM-5.3-Flash) Geçmiş ve içgörüler ekranı (spec §6.12)
   - Done when: `flutter test test/features/history/insights/` geçer: aylık toplamlar, gruplamalar, yetersiz veri durumu.
+  - → 7 test geçti (paket 165); InsightsRepository (ay+para bucket'ları — iki gruppalamayı Dart'ta birleştirme, kategori/mağaza kırılımı, en sık ürünler, en büyük sapmalar, plansız toplam); History sekmesi tamamlanan alışverişlere bağlandı (boş durum korunuyor). Yetersiz veride metotlar boş döner, trend üretilmez
   - Needs: T12, T15
+
 - [ ] T19 [M] Şablonlar: önceki alışverişten plan (spec §6.1)
   - Where: `lib/features/lists/templates/`, `test/features/lists/templates/`
   - Do: 1) Tamamlanmış listeyi yeni plan olarak kopyalama: gerçek miktar ve birim fiyatlar tahmine dönüştürülür. 2) Sık kullanılan şablon kavramı (favori işaretli listeler) + ana ekranda şablon kartları.

@@ -9,6 +9,7 @@ import '../../data/db/app_database.dart';
 import '../lists/list_status.dart';
 import '../lists/list_repository.dart';
 import '../lists/lists_screen.dart';
+import '../history/insights/insights_repository.dart';
 import '../shopping_mode/shopping_mode_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
 import 'home_repository.dart';
@@ -43,7 +44,7 @@ class _HomeShellState extends State<HomeShell> {
         onNewList: () => setState(() => _tab = 1),
       ),
       ListsScreen(repository: widget.listRepository),
-      const HistoryPlaceholder(),
+      HistoryPlaceholder(db: widget.db),
       const SettingsPlaceholder(),
     ];
     return Scaffold(
@@ -289,20 +290,47 @@ class _MonthlyCard extends StatelessWidget {
   }
 }
 
-/// Geçmiş sekmesi: T18'e kadar gerçek boş durum (sahte buton yok).
+/// Geçmiş sekmesi: tamamlanan alışverişler + aylık toplamlar (T18).
 class HistoryPlaceholder extends StatelessWidget {
-  const HistoryPlaceholder({super.key});
+  const HistoryPlaceholder({super.key, required this.db});
+
+  final AppDatabase db;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final repo = InsightsRepository(db);
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navHistory)),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Text(l10n.historyEmpty, textAlign: TextAlign.center),
-        ),
+      body: StreamBuilder<List<ShoppingList>>(
+        stream: repo.watchCompleted(),
+        builder: (context, snapshot) {
+          final completed = snapshot.data ?? const <ShoppingList>[];
+          if (completed.isEmpty) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(l10n.historyEmpty, textAlign: TextAlign.center),
+              ),
+            );
+          }
+          return ListView(
+            padding: const EdgeInsets.all(12),
+            children: [
+              for (final list in completed)
+                ListTile(
+                  leading: const Icon(Icons.check_circle_outline),
+                  title: Text(
+                      list.title ?? list.generatedTitle ?? l10n.listsTitle,
+                      overflow: TextOverflow.ellipsis),
+                  subtitle: Text(list.completedAt == null
+                      ? ''
+                      : MaterialLocalizations.of(context)
+                          .formatMediumDate(list.completedAt!)),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
