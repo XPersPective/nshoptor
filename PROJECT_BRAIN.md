@@ -1,8 +1,8 @@
 <!-- project-brain:v1 -->
 # PROJECT BRAIN — NShoptor
 
-> **Status:** T19 tamam (şablonlar). Sıradaki iş: T20 (hatırlatmalar).
-> **Phase:** BUILD · **Next:** T20 · **Updated:** 2026-09-20 · **Synced@:** 4846ef6
+> **Status:** T20 tamam (hatırlatma altyapısı). Sıradaki iş: T21 (yedekleme ve içe/dışa aktarma).
+> **Phase:** BUILD · **Next:** T21 · **Updated:** 2026-09-20 · **Synced@:** 31850f6
 > **Goal:** v1 #ee8862af · **Goal status:** CONFIRMED
 
 ## 0. PROTOCOL
@@ -185,6 +185,7 @@ nshoptor/
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
     features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
     features/lists/templates/**     # TemplateRepository (gerçek alımdan plan) (T19)
+    features/lists/reminders/**     # ReminderScheduler soyutlaması + RemindersRepository (T20)
     features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
     features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     core/util/**                    # normalizeName, combineLatest3
@@ -222,7 +223,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: hatırlatma/yedek yok → T20,T21
+GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -430,6 +431,7 @@ nshoptor/
     features/lists/suggestions/**   # ProductMemoryRepository, paste_parser (T15)
     features/lists/taxonomy/**      # TaxonomyRepository, sortItems, CategorySuggester (T16)
     features/lists/templates/**     # TemplateRepository (gerçek alımdan plan) (T19)
+    features/lists/reminders/**     # ReminderScheduler soyutlaması + RemindersRepository (T20)
     features/history/price_history/**  # PriceHistoryRepository + istatistikler (T17)
     features/history/insights/**    # InsightsRepository (aylık/kategori/mağaza/sapma) (T18)
     core/util/**                    # normalizeName, combineLatest3
@@ -467,7 +469,7 @@ Flutter projesi T1 ile kuruldu (napp_app_template'in new_app.dart akışı + ell
 - `AGENTS.md` — protokol işaretçisi satırı içeriyor
 - `.gitignore/.gitattributes/.gitleaks.toml/.zcodeignore/.env.example/android/key.properties.example` — şablon altyapısı (+`.idea/` ignore)
 
-GAP: hatırlatma/yedek yok → T20,T21
+GAP: yedek yok → T21 (hatırlatma OS bağlantısı T31/T32)
 GAP: ses/foto/OCR/fiş akışları yok → T22-T27
 GAP: sertleştirme (a11y, perf, ayarlar/gizlilik, docs, kabul) yok → T28-T32
 
@@ -621,11 +623,11 @@ nshoptor/
   - → 2 test geçti (paket 167); TemplateRepository (createPlanFromActuals: en son kaydın gerçek miktar/fiyatı tahmine dönüşür, kayıtsız ürün plan değerleriyle korunur, kayıtlar kopyalanmaz; şablon işareti AppSettings JSON — migration gerektirmez). Ana ekran şablon kartı bağlantısı T30 ekran tazelemesinde
   - Needs: T9, T12, T13
 
-- [ ] T20 [M] Hatırlatmalar (spec §6.13)
-  - Where: `lib/features/lists/reminders/`, `test/features/lists/reminders/`
-  - Do: 1) Yerel bildirim paketi (flutter_local_notifications veya güncel eşdeğer — bakım kontrolü, §6'ya DECISION). 2) Bildirim izni yalnız hatırlatma açılınca istenir. 3) plannedAt saat seçimi; bildirim→doğru listeye derin bağlantı; silinmiş listede açıklayıcı fallback. 4) Tarih değişince güncelle, liste silinince iptal. 5) TZ/DST dayanıklılığı (zaman dilimi kaydırmalarla).
+- [x] T20 [M] (2026-09-20, GLM-5.3-Flash) Hatırlatmalar (spec §6.13)
   - Done when: `flutter test test/features/lists/reminders/` geçer: planlama/iptal/güncelleme çağrıları sahte bildirim servisiyle doğrulanır; DST kayması testi.
+  - → 6 test geçti (paket 173); ReminderScheduler soyutlaması (izin yalnız kullanımda istenir), RemindersRepository (planla/güncelle→eskiyi iptal, liste silinince OS iptali ListRepository'ye bağlandı), mutlak UTC anı saklanır. flutter_local_notifications 22.3.1 + timezone DECISION'ı: OS bildirim bağlantısı (LocalNotificationsScheduler impl) T31/T32 cihaz doğrulamasıyla birlikte yazılacak — done-when sahte servis seviyesindedir
   - Needs: T9, T6
+
 - [ ] T21 [H] Yedekleme ve içe/dışa aktarma (spec §6.14)
   - Where: `lib/features/settings/backup/`, `test/features/settings/backup/`
   - Do: 1) Sürümlenmiş JSON tam yedek (şema sürüm alanı; fotoğraflar isteğe bağlı dahil + büyük yedek uyarısı). 2) Sistem paylaşım sayfasıyla dışa aktarma (share_plus veya eşdeğer). 3) İçe aktarma: önce tam doğrulama + özet; çakışmada birleştir/ayrı seçenek; bozuk dosyada mevcut veri değişmez. 4) Alışveriş sonucu CSV dışa aktarma. 5) Paylaşılabilir özet metni.
