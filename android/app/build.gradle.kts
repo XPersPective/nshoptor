@@ -10,10 +10,6 @@ val keystoreProperties = Properties().apply {
     val file = rootProject.file("key.properties")
     if (file.exists()) file.inputStream().use { load(it) }
 }
-val admobAppId = keystoreProperties.getProperty(
-    "admobAppId",
-    "ca-app-pub-3940256099942544~3347511713",
-)
 
 android {
     namespace = "com.example.nshoptor"
@@ -43,6 +39,18 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        // Crazy Penguin imza bilgileri android/key.properties ile gelir.
+        if (keystoreProperties.containsKey("storeFile")) {
+            create("release") {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -51,9 +59,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // key.properties yoksa debug anahtarı (yalnız yerel deneme için).
+            signingConfig = signingConfigs.findByName("release")
+                ?: signingConfigs.getByName("debug")
         }
     }
 }

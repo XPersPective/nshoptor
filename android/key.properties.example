@@ -2,4 +2,3 @@ storeFile=XXXX.jks
 storePassword=XXXX
 keyAlias=XXXX
 keyPassword=XXXX
-admobAppId=ca-app-pub-XXXX~XXXX

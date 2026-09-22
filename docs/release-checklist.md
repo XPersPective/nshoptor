@@ -22,8 +22,8 @@ Crazy Penguin tarafından sağlanacak alanlar:
       şu an `com.example.nshoptor`)
 - [ ] `android/key.properties` (şablon: `android/key.properties.example`):
       `storeFile`, `storePassword`, `keyAlias`, `keyPassword`
-- [ ] Release `signingConfig`: şu an **debug anahtarı** kullanılıyor;
-      `key.properties`'ten okuyan release imzası bağlanmalı
+- [ ] `key.properties` yoksa release derlemesi **debug anahtarıyla**
+      imzalanır — mağazaya yüklemeden önce dosyanın mevcut olduğunu doğrulayın
 - [ ] R8 minify+shrink açık; release APK'da ses/OCR akışları kontrol edildi
 
 ## iOS (macOS + Xcode gerekir; Windows'ta derlenemez)

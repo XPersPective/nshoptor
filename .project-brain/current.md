@@ -53,7 +53,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   `lists/taxonomy/` (store/category/aisle CRUD + 4 sort modes),
   `lists/templates/` (plan from previous actuals; Home completed-list tile
   "plan from this" marks template + opens new plan; Home Templates card), `lists/reminders/`
-  (ReminderScheduler abstraction; OS adapter not yet implemented — see PB-032
+  (ReminderScheduler abstraction; OS adapter not yet implemented — see PB-034
   device list), `lists/attachments/` (file storage + orphan sweep).
 - `shopping_mode/`: 5 item statuses, unplanned purchases, controlled returns,
   projection summary, wakelock; `shopping_mode/summary/`: ResultRepository +
@@ -89,8 +89,8 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
 **Status:** VERIFIED
 
 Android: RECORD_AUDIO + RecognitionService query; iOS camera/photo/mic/
-speech usage strings. Android: cleartext off, backup/data-extraction rules, R8 minify+shrink release,
-key.properties signature placeholders. iOS: display name NShoptor. CI
+speech usage strings. Android: cleartext off, backup/data-extraction rules, R8 minify+shrink release (ML Kit non-Latin dontwarn),
+release signing from key.properties if present, else debug key; AdMob placeholder removed. iOS: display name NShoptor. CI
 (`.github/workflows/ci.yml`): analyze+test, gitleaks, release APK build.
 
 ## External Dependencies
@@ -107,4 +107,4 @@ lists + 5000 rows fluid). Full suite 247/247 green + analyze 0 at PB-033.
 ## Known Unknowns
 
 - Voice / camera flows verified only with fakes in widget tests; real
-  device behaviour pending (PB-032).
+  device behaviour pending (PB-034, BLOCKED).
