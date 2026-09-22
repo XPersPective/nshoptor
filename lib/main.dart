@@ -8,6 +8,7 @@ import 'package:napp_core/napp_core.dart';
 import 'app/app.dart';
 import 'app/language_controller.dart';
 import 'data/db/app_database.dart';
+import 'features/settings/settings_repository.dart';
 
 /// Uygulama veritabanı: tüm platformlarda app dizininde tek dosya.
 QueryExecutor openAppDatabase() => driftDatabase(name: 'nshoptor');
@@ -17,8 +18,10 @@ Future<void> main() async {
   final store = await SettingsStore.load();
   final languageController = LanguageController(store: store)..load();
   WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
+  final db = AppDatabase(openAppDatabase());
   runApp(NShoptorApp(
-    db: AppDatabase(openAppDatabase()),
+    db: db,
+    settingsRepository: SettingsRepository(db, NappSettingsStoreOps(store)),
     languageController: languageController,
   ));
 }

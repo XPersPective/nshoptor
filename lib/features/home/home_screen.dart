@@ -10,9 +10,12 @@ import '../lists/list_status.dart';
 import '../lists/list_repository.dart';
 import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
+import '../settings/settings_repository.dart';
+import '../settings/settings_screen.dart';
 import '../shopping_mode/shopping_mode_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
 import 'home_repository.dart';
+import '../../app/language_controller.dart';
 
 /// Alt navigasyonlu uygulama kabuğu (spec §9): Ana Sayfa, Listeler,
 /// Geçmiş, Ayarlar.
@@ -21,10 +24,18 @@ class HomeShell extends StatefulWidget {
     super.key,
     required this.db,
     required this.listRepository,
+    this.settingsRepository,
+    this.languageController,
   });
 
   final AppDatabase db;
   final ListRepository listRepository;
+
+  /// Ayarlar sekmesi: verilmezse yer tutucu gösterilir.
+  final SettingsRepository? settingsRepository;
+
+  /// Dil denetleyicisi; Ayarlar ekranına devredilir.
+  final LanguageController? languageController;
 
   @override
   State<HomeShell> createState() => _HomeShellState();
@@ -45,7 +56,12 @@ class _HomeShellState extends State<HomeShell> {
       ),
       ListsScreen(repository: widget.listRepository),
       HistoryPlaceholder(db: widget.db),
-      const SettingsPlaceholder(),
+      widget.settingsRepository == null || widget.languageController == null
+          ? const SettingsPlaceholder()
+          : SettingsScreen(
+              repository: widget.settingsRepository!,
+              languageController: widget.languageController!,
+            ),
     ];
     return Scaffold(
       body: IndexedStack(index: _tab, children: tabs),

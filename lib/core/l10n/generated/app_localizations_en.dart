@@ -433,4 +433,127 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get finishAndSeeResult => 'Finish & see result';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get languageLabel => 'Language';
+
+  @override
+  String get languageSystem => 'System';
+
+  @override
+  String get languageTr => 'Turkish';
+
+  @override
+  String get languageEn => 'English';
+
+  @override
+  String get themeLabel => 'Theme';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get defaultCurrencyLabel => 'Default currency';
+
+  @override
+  String get defaultUnitLabel => 'Default unit';
+
+  @override
+  String get keepAwakeLabel => 'Keep screen on while shopping';
+
+  @override
+  String get backupSection => 'Backup';
+
+  @override
+  String get exportBackupLabel => 'Export backup';
+
+  @override
+  String get importBackupLabel => 'Import backup';
+
+  @override
+  String get mergeImportLabel => 'Merge into current data';
+
+  @override
+  String get separateImportLabel => 'Import as a separate copy';
+
+  @override
+  String get importCancelled => 'Import cancelled.';
+
+  @override
+  String get backupExported => 'Backup exported successfully.';
+
+  @override
+  String get backupSizeWarning =>
+      'Large backup: the file may be big. Do you want to include photos too?';
+
+  @override
+  String get deleteAllSection => 'Danger zone';
+
+  @override
+  String get deleteAllLabel => 'Delete all data';
+
+  @override
+  String get deleteAllConfirm =>
+      'This will remove all lists, history, receipt photos and prices. Files exported by you stay on your drive. Continue?';
+
+  @override
+  String get deleteAllConfirm2 =>
+      'Are you completely sure? This action cannot be undone.';
+
+  @override
+  String get cancelAction => 'Cancel';
+
+  @override
+  String get confirmDelete => 'Delete permanently';
+
+  @override
+  String get dataDeleted => 'All local data was deleted.';
+
+  @override
+  String get privacyInfoLabel => 'Privacy';
+
+  @override
+  String get privacyInfoBody =>
+      'NShoptor runs offline-first. Receipts and photos stay on your device by default and are never sent to the internet.';
+
+  @override
+  String get aboutSection => 'About';
+
+  @override
+  String get aboutVersion => 'Version 0.1.0 (Aşama 4)';
+
+  @override
+  String get aboutPublisher => 'Publisher: Crazy Penguin';
+
+  @override
+  String get aboutLicenses => 'License: MIT';
+
+  @override
+  String get voiceSettingsLabel => 'Voice input';
+
+  @override
+  String get voiceStatusUnknown => 'Service: not checked';
+
+  @override
+  String get permissionsLabel => 'Permissions';
+
+  @override
+  String get permissionsBody =>
+      'Camera, microphone and notifications are requested only when you actually use those features.';
+
+  @override
+  String get unitsSection => 'Defaults';
+
+  @override
+  String get roundingNote =>
+      'Roundings happen only with single rule: away from zero, one step at Money conversion.';
 }

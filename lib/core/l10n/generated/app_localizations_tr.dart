@@ -433,4 +433,126 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get finishAndSeeResult => 'Bitir ve sonuca geç';
+
+  @override
+  String get settingsTitle => 'Ayarlar';
+
+  @override
+  String get languageLabel => 'Dil';
+
+  @override
+  String get languageSystem => 'Sistem';
+
+  @override
+  String get languageTr => 'Türkçe';
+
+  @override
+  String get languageEn => 'English';
+
+  @override
+  String get themeLabel => 'Tema';
+
+  @override
+  String get themeSystem => 'Sistem';
+
+  @override
+  String get themeLight => 'Açık';
+
+  @override
+  String get themeDark => 'Koyu';
+
+  @override
+  String get defaultCurrencyLabel => 'Varsayılan para birimi';
+
+  @override
+  String get defaultUnitLabel => 'Varsayılan ölçü birimi';
+
+  @override
+  String get keepAwakeLabel => 'Alışveriş modunda ekranı açık tut';
+
+  @override
+  String get backupSection => 'Yedekleme';
+
+  @override
+  String get exportBackupLabel => 'Yedek dışa aktar';
+
+  @override
+  String get importBackupLabel => 'Yedek içe aktar';
+
+  @override
+  String get mergeImportLabel => 'Mevcut veriye birleştir';
+
+  @override
+  String get separateImportLabel => 'Ayrı kopya olarak içe aktar';
+
+  @override
+  String get importCancelled => 'İçe aktarma iptal edildi.';
+
+  @override
+  String get backupExported => 'Yedek başarıyla dışa aktarıldı.';
+
+  @override
+  String get backupSizeWarning =>
+      'Büyük yedek: dosya büyük olabilir. Fotoğrafları da dahil mi etsin';
+
+  @override
+  String get deleteAllSection => 'Tehlikeli alan';
+
+  @override
+  String get deleteAllLabel => 'Tüm verileri sil';
+
+  @override
+  String get deleteAllConfirm =>
+      'Bu, tüm listeleri, geçmişi, fişleri ve fiyatları siler. Dışa aktardığın dosyalar telefonunda kalır. Devam et?';
+
+  @override
+  String get deleteAllConfirm2 => 'Tamamen emin misin? Bu geri alınamaz.';
+
+  @override
+  String get cancelAction => 'Vazgeç';
+
+  @override
+  String get confirmDelete => 'Kalıcı olarak sil';
+
+  @override
+  String get dataDeleted => 'Tüm veriler silindi.';
+
+  @override
+  String get privacyInfoLabel => 'Gizlilik';
+
+  @override
+  String get privacyInfoBody =>
+      'NShoptor çevrimdışı çalışır. Fişler ve fotoğraflar varsayılan olarak cihazında kalır; internette saklanmaz.';
+
+  @override
+  String get aboutSection => 'Hakkında';
+
+  @override
+  String get aboutVersion => 'Sürüm 0.1.0 (Aşama 4)';
+
+  @override
+  String get aboutPublisher => 'Yayınlayıcı: Crazy Penguin';
+
+  @override
+  String get aboutLicenses => 'Lisans: MIT';
+
+  @override
+  String get voiceSettingsLabel => 'Sesli giriş';
+
+  @override
+  String get voiceStatusUnknown => 'Servis: kontrol edilmedi';
+
+  @override
+  String get permissionsLabel => 'İzinler';
+
+  @override
+  String get permissionsBody =>
+      'Kamera, mikrofon ve bildirim izni yalnızca kullanım sırasında istenir. İzin reddedilirse uygulama çalışmaya devam eder.';
+
+  @override
+  String get unitsSection => 'Varsayılanlar';
+
+  @override
+  String get roundingNote =>
+      'Yuvarlama yalnızca tanımlı kuralda: yarıdan uzağa, Money dönüşümünde tek adımda.';
 }

@@ -919,6 +919,240 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Finish & see result'**
   String get finishAndSeeResult;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @languageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageLabel;
+
+  /// No description provided for @languageSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get languageSystem;
+
+  /// No description provided for @languageTr.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkish'**
+  String get languageTr;
+
+  /// No description provided for @languageEn.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEn;
+
+  /// No description provided for @themeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get themeLabel;
+
+  /// No description provided for @themeSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeSystem;
+
+  /// No description provided for @themeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeLight;
+
+  /// No description provided for @themeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
+  /// No description provided for @defaultCurrencyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Default currency'**
+  String get defaultCurrencyLabel;
+
+  /// No description provided for @defaultUnitLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Default unit'**
+  String get defaultUnitLabel;
+
+  /// No description provided for @keepAwakeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep screen on while shopping'**
+  String get keepAwakeLabel;
+
+  /// No description provided for @backupSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get backupSection;
+
+  /// No description provided for @exportBackupLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Export backup'**
+  String get exportBackupLabel;
+
+  /// No description provided for @importBackupLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Import backup'**
+  String get importBackupLabel;
+
+  /// No description provided for @mergeImportLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Merge into current data'**
+  String get mergeImportLabel;
+
+  /// No description provided for @separateImportLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Import as a separate copy'**
+  String get separateImportLabel;
+
+  /// No description provided for @importCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Import cancelled.'**
+  String get importCancelled;
+
+  /// No description provided for @backupExported.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup exported successfully.'**
+  String get backupExported;
+
+  /// No description provided for @backupSizeWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Large backup: the file may be big. Do you want to include photos too?'**
+  String get backupSizeWarning;
+
+  /// No description provided for @deleteAllSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger zone'**
+  String get deleteAllSection;
+
+  /// No description provided for @deleteAllLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete all data'**
+  String get deleteAllLabel;
+
+  /// No description provided for @deleteAllConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'This will remove all lists, history, receipt photos and prices. Files exported by you stay on your drive. Continue?'**
+  String get deleteAllConfirm;
+
+  /// No description provided for @deleteAllConfirm2.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you completely sure? This action cannot be undone.'**
+  String get deleteAllConfirm2;
+
+  /// No description provided for @cancelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelAction;
+
+  /// No description provided for @confirmDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete permanently'**
+  String get confirmDelete;
+
+  /// No description provided for @dataDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'All local data was deleted.'**
+  String get dataDeleted;
+
+  /// No description provided for @privacyInfoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get privacyInfoLabel;
+
+  /// No description provided for @privacyInfoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'NShoptor runs offline-first. Receipts and photos stay on your device by default and are never sent to the internet.'**
+  String get privacyInfoBody;
+
+  /// No description provided for @aboutSection.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get aboutSection;
+
+  /// No description provided for @aboutVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version 0.1.0 (Aşama 4)'**
+  String get aboutVersion;
+
+  /// No description provided for @aboutPublisher.
+  ///
+  /// In en, this message translates to:
+  /// **'Publisher: Crazy Penguin'**
+  String get aboutPublisher;
+
+  /// No description provided for @aboutLicenses.
+  ///
+  /// In en, this message translates to:
+  /// **'License: MIT'**
+  String get aboutLicenses;
+
+  /// No description provided for @voiceSettingsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice input'**
+  String get voiceSettingsLabel;
+
+  /// No description provided for @voiceStatusUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Service: not checked'**
+  String get voiceStatusUnknown;
+
+  /// No description provided for @permissionsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Permissions'**
+  String get permissionsLabel;
+
+  /// No description provided for @permissionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera, microphone and notifications are requested only when you actually use those features.'**
+  String get permissionsBody;
+
+  /// No description provided for @unitsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Defaults'**
+  String get unitsSection;
+
+  /// No description provided for @roundingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Roundings happen only with single rule: away from zero, one step at Money conversion.'**
+  String get roundingNote;
 }
 
 class _AppLocalizationsDelegate
