@@ -50,3 +50,6 @@ ios/Flutter/AdsConfig.xcconfig
 
 # --- IDE proje dosyalari (flutter create üretimi) ---
 .idea/
+
+# Project Brain runtime cache (reconstructable, never committed)
+.project-brain/.cache/

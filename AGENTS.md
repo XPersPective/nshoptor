@@ -1,1 +1,1 @@
-Project state and working protocol: read PROJECT_BRAIN.md first and follow its §0 PROTOCOL.
+Project state and working protocol: the Project Brain lives in `.project-brain/` (config.yaml, current.md, target.md, constraints.md, tasks/, decisions/). At every session start run the project-brain skill boot sequence against that directory; execute work through its task loop. The legacy single-file `PROJECT_BRAIN.md` was removed — do not recreate it.
