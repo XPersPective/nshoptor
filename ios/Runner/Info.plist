@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Raf etiketi ve fiş fotoğrafı çekmek için. Görüntüler cihazda kalır.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Fiş fotoğrafı seçmek için. Görüntüler cihazda kalır.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Sesle ürün eklemek için.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Söylediğiniz ürünü metne çevirmek için.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

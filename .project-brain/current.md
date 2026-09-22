@@ -44,40 +44,52 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
 
 ### Features
 
-**Status:** VERIFIED (structure at committed HEAD); features/settings is
-mid-flight — uncommitted WIP owned by PB-030, currently does not compile.
+**Status:** VERIFIED (2026-09-22, PB-033 checkpoint)
 
 **Sources:** `lib/features/**`, `test/features/**`, `integration_test/**`
 
 - `lists/`: ListStatus machine, ListRepository (undo snapshot), ListsScreen,
   ItemFormSheet; `lists/suggestions/` (ProductMemory, paste_parser),
   `lists/taxonomy/` (store/category/aisle CRUD + 4 sort modes),
-  `lists/templates/` (plan from previous actuals), `lists/reminders/`
+  `lists/templates/` (plan from previous actuals; Home completed-list tile
+  "plan from this" marks template + opens new plan; Home Templates card), `lists/reminders/`
   (ReminderScheduler abstraction; OS adapter not yet implemented — see PB-032
   device list), `lists/attachments/` (file storage + orphan sweep).
 - `shopping_mode/`: 5 item statuses, unplanned purchases, controlled returns,
   projection summary, wakelock; `shopping_mode/summary/`: ResultRepository +
   SummaryScreen (price vs quantity effect rows).
+- `lists/list_detail_screen.dart`: hub for input helpers — item form gets
+  voice (VoicePreviewSheet) + shelf-label (price_candidate_sheet) callbacks;
+  AppBar receipt scan → ReceiptParser → ReceiptReviewScreen; item tap →
+  PriceHistoryScreen (productId, else ProductMemory by normalizedName).
+  SpeechService / OcrTextSource / image picker injectable for tests.
 - `home/`: HomeShell (4 tabs), HomeScreen (monthly totals per currency — T33
   fix).
-- `history/price_history/`: min/median/max, trend, cheapest store.
+- `history/price_history/`: min/median/max, trend, cheapest store
+  (repository); `price_history_sheet.dart` PriceHistoryScreen lists
+  observations only (stats not yet shown).
   `history/insights/`: monthly/category/store breakdowns, deviations.
-- `voice_input/`: SpeechService abstraction + controller;
-  `voice_input/parser/`: deterministic tr/en voice command parser. No mic
-  button wired to UI yet (PB-033).
+- `voice_input/`: SpeechService abstraction + controller; SttSpeechService
+  (speech_to_text adapter); VoicePreviewSheet (editable transcript, manual
+  fallback when service unavailable); `voice_input/parser/`: deterministic
+  tr/en voice command parser.
 - `receipts/`: OcrTextSource + MlKitTextSource (bundled Latin, no model
   download), ShelfPriceExtractor; `receipts/parser/` ReceiptParser +
   ReceiptMatcher; `receipts/review/` ReceiptReviewController (no DB write
-  before approval). Review/shelf-label UI screens not wired (PB-033).
-- `settings/`: `settings/backup/` BackupRepository (13-table export/import,
-  separate mode renumbers FK chain, CSV export) done; settings screen +
-  repository are uncommitted WIP → PB-030.
+  before approval) + ReceiptReviewScreen (accept/ignore/link/split/merge,
+  total diff). Shelf label: no crop/rotate UI — ML Kit reads any
+  orientation and user picks among all candidates (C-040: no crop package).
+  ReceiptMatcher auto-suggestion not used by the screen (manual link only).
+- `settings/`: SettingsScreen + SettingsRepository (spec §6.15, delete-all
+  double confirm); `settings/backup/` BackupRepository (13-table
+  export/import, CSV export).
 
 ### Platform shells & CI
 
 **Status:** VERIFIED
 
-Android: cleartext off, backup/data-extraction rules, R8 minify+shrink release,
+Android: RECORD_AUDIO + RecognitionService query; iOS camera/photo/mic/
+speech usage strings. Android: cleartext off, backup/data-extraction rules, R8 minify+shrink release,
 key.properties signature placeholders. iOS: display name NShoptor. CI
 (`.github/workflows/ci.yml`): analyze+test, gitleaks, release APK build.
 
@@ -85,18 +97,14 @@ key.properties signature placeholders. iOS: display name NShoptor. CI
 
 per `pubspec.yaml` (HEAD): drift 2.35, drift_flutter, flutter_localizations,
 speech_to_text 7.5.0, google_mlkit_text_recognition 0.17.1, image_picker,
-path_provider, flutter_local_notifications 22.3.1, timezone, wakelock_plus.
-Uncommitted WIP additionally adds share_plus + file_picker (PB-030).
+path_provider, flutter_local_notifications 22.3.1, timezone, wakelock_plus,
+share_plus, file_picker.
 
 Test totals: 234 unit/widget tests recorded green at legacy T28 close
 (2026-09-22); T29 added `integration_test/perf_test.dart` (emulator: 200
-lists + 5000 rows fluid). Settings suite (16 tests, uncommitted) passes now;
-full-suite re-run not performed this session.
+lists + 5000 rows fluid). Full suite 247/247 green + analyze 0 at PB-033.
 
 ## Known Unknowns
 
-- Whether WIP settings repository API (SettingsRepository taking
-  SettingsStoreOps) matches the planned final wiring — main.dart/app.dart
-  currently reference names that do not exist (see PB-030 resume notes).
-- Remaining spec §6.15 rows implemented vs pending in WIP settings screen
-  (assess at PB-030 resume).
+- Voice / camera flows verified only with fakes in widget tests; real
+  device behaviour pending (PB-032).

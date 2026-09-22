@@ -13,6 +13,8 @@ import '../history/insights/insights_repository.dart';
 import '../settings/settings_repository.dart';
 import '../settings/settings_screen.dart';
 import '../shopping_mode/shopping_mode_screen.dart';
+import '../lists/templates/template_repository.dart';
+import '../lists/list_detail_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
 import 'home_repository.dart';
 import '../../app/language_controller.dart';
@@ -95,12 +97,14 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   Future<void> _openShopping(BuildContext context, int listId) async {
-    await Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => ShoppingModeScreen(
-        repository: ShoppingRepository(widget.db),
-        listId: listId,
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ShoppingModeScreen(
+          repository: ShoppingRepository(widget.db),
+          listId: listId,
+        ),
       ),
-    ));
+    );
   }
 }
 
@@ -143,20 +147,23 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(l10n.homeEmptyTitle,
-                            style: Theme.of(context).textTheme.titleMedium),
+                        Text(
+                          l10n.homeEmptyTitle,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
                         const SizedBox(height: 4),
                         Text(l10n.homeEmptyBody),
                         const SizedBox(height: 8),
-                        Text(l10n.slogan,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(
-                                    fontStyle: FontStyle.italic,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant)),
+                        Text(
+                          l10n.slogan,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                fontStyle: FontStyle.italic,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                              ),
+                        ),
                       ],
                     ),
                   ),
@@ -165,20 +172,25 @@ class HomeScreen extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(l10n.homeActiveSection,
-                      style: Theme.of(context).textTheme.titleMedium),
+                  Text(
+                    l10n.homeActiveSection,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
                   for (final list in active)
                     Card(
                       child: ListTile(
                         key: Key('home_list_tile_${list.id}'),
-                        title: Text(list.title ??
-                            list.generatedTitle ??
-                            l10n.listsTitle,
-                            overflow: TextOverflow.ellipsis),
+                        title: Text(
+                          list.title ?? list.generatedTitle ?? l10n.listsTitle,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                         subtitle: Text(
-                            statusLabel(l10n,
-                                ListStatus.tryFromDb(list.status) ??
-                                    ListStatus.draft)),
+                          statusLabel(
+                            l10n,
+                            ListStatus.tryFromDb(list.status) ??
+                                ListStatus.draft,
+                          ),
+                        ),
                         trailing: list.status == 'shopping'
                             ? TextButton.icon(
                                 key: Key('home_continue_${list.id}'),
@@ -204,12 +216,12 @@ class HomeScreen extends StatelessWidget {
               if (totalsList.isEmpty) return const SizedBox.shrink();
               return Column(
                 children: [
-                  for (final totals in totalsList)
-                    _MonthlyCard(totals: totals),
+                  for (final totals in totalsList) _MonthlyCard(totals: totals),
                 ],
               );
             },
           ),
+          _TemplatesSection(db: db, listRepository: listRepository),
           const SizedBox(height: 12),
           StreamBuilder<List<ShoppingList>>(
             stream: repo.watchRecentCompleted(),
@@ -219,15 +231,24 @@ class HomeScreen extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(l10n.homeCompletedSection,
-                      style: Theme.of(context).textTheme.titleMedium),
+                  Text(
+                    l10n.homeCompletedSection,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
                   for (final list in completed)
                     ListTile(
                       leading: const Icon(Icons.check_circle_outline),
-                      title: Text(list.title ??
-                          list.generatedTitle ??
-                          l10n.listsTitle,
-                          overflow: TextOverflow.ellipsis),
+                      title: Text(
+                        list.title ?? list.generatedTitle ?? l10n.listsTitle,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      trailing: IconButton(
+                        key: Key('home_plan_from_${list.id}'),
+                        icon: const Icon(Icons.content_copy),
+                        tooltip: l10n.templateHint,
+                        onPressed: () =>
+                            planFromTemplate(context, db, listRepository, list),
+                      ),
                     ),
                 ],
               );
@@ -246,6 +267,81 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+/// Şablon olarak işaretli listeler; dokununca önceki gerçek alımlardan yeni
+/// taslak plan üretilir ve açılır (spec §6.1). Şablon yoksa görünmez.
+class _TemplatesSection extends StatelessWidget {
+  const _TemplatesSection({required this.db, required this.listRepository});
+
+  final AppDatabase db;
+  final ListRepository listRepository;
+
+  Future<List<ShoppingList>> _load() async {
+    final ids = await TemplateRepository(db).templateIds();
+    return (db.select(db.shoppingLists)..where((t) => t.id.isIn(ids))).get();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return FutureBuilder<List<ShoppingList>>(
+      future: _load(),
+      builder: (context, snapshot) {
+        final lists = snapshot.data ?? const <ShoppingList>[];
+        if (lists.isEmpty) return const SizedBox.shrink();
+        return Card(
+          key: const Key('home_templates_card'),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTile(
+                title: Text(l10n.templatesSection),
+                subtitle: Text(l10n.templateHint),
+              ),
+              for (final list in lists)
+                ListTile(
+                  key: Key('home_template_${list.id}'),
+                  leading: const Icon(Icons.content_copy),
+                  title: Text(
+                    list.title ?? list.generatedTitle ?? l10n.listsTitle,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  onTap: () =>
+                      planFromTemplate(context, db, listRepository, list),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// Kaynak listeyi şablon olarak işaretler, gerçek alımlarından yeni plan
+/// üretir ve açar.
+Future<void> planFromTemplate(
+  BuildContext context,
+  AppDatabase db,
+  ListRepository listRepository,
+  ShoppingList source,
+) async {
+  final templates = TemplateRepository(db);
+  await templates.markTemplate(source.id);
+  final newId = await templates.createPlanFromActuals(
+    source.id,
+    title: source.title,
+  );
+  if (!context.mounted) return;
+  await Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      builder: (_) => ListDetailScreen(
+        db: db,
+        listRepository: listRepository,
+        listId: newId,
+      ),
+    ),
+  );
+}
+
 /// Tek para birimi için aylık plan-gerçek kartı; farklı para birimleri
 /// asla tek toplamda birleştirilmez (spec §7.1).
 class _MonthlyCard extends StatelessWidget {
@@ -258,15 +354,18 @@ class _MonthlyCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final currency = Currency.fromCode(totals.currencyCode);
     String money(int minor) => formatMoney(
-        Money.fromMinorUnits(minor, currency),
-        locale: Localizations.localeOf(context).languageCode);
+      Money.fromMinorUnits(minor, currency),
+      locale: Localizations.localeOf(context).languageCode,
+    );
     final direction = totals.varianceMinor < 0
         ? SpendingDirection.underPlan
         : totals.varianceMinor > 0
-            ? SpendingDirection.overPlan
-            : SpendingDirection.nearPlan;
+        ? SpendingDirection.overPlan
+        : SpendingDirection.nearPlan;
     final delta = SemanticDelta.resolve(
-        direction: direction, brightness: Theme.of(context).brightness);
+      direction: direction,
+      brightness: Theme.of(context).brightness,
+    );
     return Card(
       key: Key('home_monthly_card_${totals.currencyCode}'),
       child: Padding(
@@ -274,31 +373,41 @@ class _MonthlyCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(l10n.homeMonthlySection,
-                style: Theme.of(context).textTheme.titleMedium),
+            Text(
+              l10n.homeMonthlySection,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
             const SizedBox(height: 8),
             Row(
               children: [
                 Expanded(
-                    child: Text(
-                        '${l10n.monthPlannedLabel}: ${money(totals.plannedMinor)}')),
+                  child: Text(
+                    '${l10n.monthPlannedLabel}: ${money(totals.plannedMinor)}',
+                  ),
+                ),
                 Expanded(
-                    child: Text(
-                        '${l10n.monthActualLabel}: ${money(totals.actualMinor)}')),
+                  child: Text(
+                    '${l10n.monthActualLabel}: ${money(totals.actualMinor)}',
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 4),
-            Row(children: [
-              Icon(delta.icon,
+            Row(
+              children: [
+                Icon(
+                  delta.icon,
                   size: 16,
                   color: delta.color,
-                  semanticLabel: delta.marker),
-              const SizedBox(width: 4),
-              Text(
-                '${l10n.monthVarianceLabel}: ${money(totals.varianceMinor.abs())}',
-                style: TextStyle(color: delta.color),
-              ),
-            ]),
+                  semanticLabel: delta.marker,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  '${l10n.monthVarianceLabel}: ${money(totals.varianceMinor.abs())}',
+                  style: TextStyle(color: delta.color),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -337,12 +446,15 @@ class HistoryPlaceholder extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.check_circle_outline),
                   title: Text(
-                      list.title ?? list.generatedTitle ?? l10n.listsTitle,
-                      overflow: TextOverflow.ellipsis),
-                  subtitle: Text(list.completedAt == null
-                      ? ''
-                      : MaterialLocalizations.of(context)
-                          .formatMediumDate(list.completedAt!)),
+                    list.title ?? list.generatedTitle ?? l10n.listsTitle,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  subtitle: Text(
+                    list.completedAt == null
+                        ? ''
+                        : MaterialLocalizations.of(context)
+                              .formatMediumDate(list.completedAt!),
+                  ),
                 ),
             ],
           );
@@ -364,8 +476,10 @@ class SettingsPlaceholder extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Text(l10n.aboutTabTitle,
-              style: Theme.of(context).textTheme.titleMedium),
+          Text(
+            l10n.aboutTabTitle,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           const SizedBox(height: 8),
           Text(l10n.aboutBody),
         ],

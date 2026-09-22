@@ -1153,6 +1153,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Roundings happen only with single rule: away from zero, one step at Money conversion.'**
   String get roundingNote;
+
+  /// No description provided for @voiceInputTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice input'**
+  String get voiceInputTitle;
+
+  /// No description provided for @voiceStartListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Start listening'**
+  String get voiceStartListening;
+
+  /// No description provided for @voiceTranscriptLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Transcript'**
+  String get voiceTranscriptLabel;
+
+  /// No description provided for @parseAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Parse'**
+  String get parseAction;
+
+  /// No description provided for @receiptReviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review receipt'**
+  String get receiptReviewTitle;
+
+  /// No description provided for @receiptTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt total'**
+  String get receiptTotal;
+
+  /// No description provided for @receiptTotalUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Total not detected'**
+  String get receiptTotalUnknown;
+
+  /// No description provided for @receiptDiff.
+  ///
+  /// In en, this message translates to:
+  /// **'Difference'**
+  String get receiptDiff;
+
+  /// No description provided for @acceptLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept line'**
+  String get acceptLine;
+
+  /// No description provided for @ignoreLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Ignore line'**
+  String get ignoreLine;
+
+  /// No description provided for @receiptLineActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Link to item, split or ignore'**
+  String get receiptLineActions;
+
+  /// No description provided for @receiptCommit.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept all'**
+  String get receiptCommit;
+
+  /// No description provided for @receiptCommitted.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt applied.'**
+  String get receiptCommitted;
+
+  /// No description provided for @priceHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Price history'**
+  String get priceHistoryTitle;
+
+  /// No description provided for @noObservations.
+  ///
+  /// In en, this message translates to:
+  /// **'No price observations yet'**
+  String get noObservations;
+
+  /// No description provided for @templatesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Templates'**
+  String get templatesSection;
+
+  /// No description provided for @templateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a new plan from a previous shopping trip'**
+  String get templateHint;
+
+  /// No description provided for @scanReceiptAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan receipt'**
+  String get scanReceiptAction;
+
+  /// No description provided for @shelfLabelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Price from shelf label'**
+  String get shelfLabelAction;
+
+  /// No description provided for @priceCandidatesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Price candidates'**
+  String get priceCandidatesTitle;
+
+  /// No description provided for @noPriceCandidates.
+  ///
+  /// In en, this message translates to:
+  /// **'No price found; enter it manually.'**
+  String get noPriceCandidates;
+
+  /// No description provided for @voiceUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Speech recognition unavailable; enter manually.'**
+  String get voiceUnavailable;
+
+  /// No description provided for @linkToItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Link to item'**
+  String get linkToItem;
+
+  /// No description provided for @splitLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Split in two'**
+  String get splitLine;
+
+  /// No description provided for @mergeWithNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Merge with next'**
+  String get mergeWithNext;
+
+  /// No description provided for @ocrNoText.
+  ///
+  /// In en, this message translates to:
+  /// **'No text read; try again.'**
+  String get ocrNoText;
+
+  /// No description provided for @priceHistoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Price history'**
+  String get priceHistoryAction;
 }
 
 class _AppLocalizationsDelegate

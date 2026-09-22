@@ -556,4 +556,86 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get roundingNote =>
       'Roundings happen only with single rule: away from zero, one step at Money conversion.';
+
+  @override
+  String get voiceInputTitle => 'Voice input';
+
+  @override
+  String get voiceStartListening => 'Start listening';
+
+  @override
+  String get voiceTranscriptLabel => 'Transcript';
+
+  @override
+  String get parseAction => 'Parse';
+
+  @override
+  String get receiptReviewTitle => 'Review receipt';
+
+  @override
+  String get receiptTotal => 'Receipt total';
+
+  @override
+  String get receiptTotalUnknown => 'Total not detected';
+
+  @override
+  String get receiptDiff => 'Difference';
+
+  @override
+  String get acceptLine => 'Accept line';
+
+  @override
+  String get ignoreLine => 'Ignore line';
+
+  @override
+  String get receiptLineActions => 'Link to item, split or ignore';
+
+  @override
+  String get receiptCommit => 'Accept all';
+
+  @override
+  String get receiptCommitted => 'Receipt applied.';
+
+  @override
+  String get priceHistoryTitle => 'Price history';
+
+  @override
+  String get noObservations => 'No price observations yet';
+
+  @override
+  String get templatesSection => 'Templates';
+
+  @override
+  String get templateHint => 'Create a new plan from a previous shopping trip';
+
+  @override
+  String get scanReceiptAction => 'Scan receipt';
+
+  @override
+  String get shelfLabelAction => 'Price from shelf label';
+
+  @override
+  String get priceCandidatesTitle => 'Price candidates';
+
+  @override
+  String get noPriceCandidates => 'No price found; enter it manually.';
+
+  @override
+  String get voiceUnavailable =>
+      'Speech recognition unavailable; enter manually.';
+
+  @override
+  String get linkToItem => 'Link to item';
+
+  @override
+  String get splitLine => 'Split in two';
+
+  @override
+  String get mergeWithNext => 'Merge with next';
+
+  @override
+  String get ocrNoText => 'No text read; try again.';
+
+  @override
+  String get priceHistoryAction => 'Price history';
 }

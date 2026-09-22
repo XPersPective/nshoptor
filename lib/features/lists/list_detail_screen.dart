@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
@@ -14,6 +15,18 @@ import '../shopping_mode/shopping_mode_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
 import '../shopping_mode/summary/summary_screen.dart';
 import '../shopping_mode/summary/result_repository.dart';
+import '../history/price_history/price_history_sheet.dart';
+import '../receipts/ocr_text_source.dart';
+import '../receipts/parser/receipt_parser.dart';
+import '../receipts/review/receipt_review_controller.dart';
+import '../receipts/review/receipt_review_screen.dart';
+import '../receipts/shelf_label/mlkit_text_source.dart';
+import '../receipts/shelf_label/price_candidate_sheet.dart';
+import '../receipts/shelf_label/price_candidates.dart';
+import '../voice_input/stt_speech_service.dart';
+import '../voice_input/voice_input_service.dart';
+import '../voice_input/voice_preview_sheet.dart';
+import '../voice_input/parser/parsed_item_candidate.dart';
 
 /// Liste detayı (spec §9 "Planlama liste detayı"): ürünler, ürün ekleme,
 /// alışverişi başlat/bitir ve sonuç.
@@ -23,11 +36,23 @@ class ListDetailScreen extends StatefulWidget {
     required this.db,
     required this.listRepository,
     required this.listId,
+    this.speechService,
+    this.ocrSource,
+    this.pickImage,
   });
 
   final AppDatabase db;
   final ListRepository listRepository;
   final int listId;
+
+  /// Test enjeksiyonu; verilmezse platform servisi (speech_to_text).
+  final SpeechService? speechService;
+
+  /// Test enjeksiyonu; verilmezse ML Kit (cihazda, model indirmesiz).
+  final OcrTextSource? ocrSource;
+
+  /// Test enjeksiyonu; verilmezse kamera. İptalde null.
+  final Future<String?> Function()? pickImage;
 
   @override
   State<ListDetailScreen> createState() => _ListDetailScreenState();
@@ -53,7 +78,17 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.listsTitle)),
+      appBar: AppBar(
+        title: Text(l10n.listsTitle),
+        actions: [
+          IconButton(
+            key: const Key('detail_scan_receipt'),
+            icon: const Icon(Icons.receipt_long),
+            tooltip: l10n.scanReceiptAction,
+            onPressed: () => _scanReceipt(context),
+          ),
+        ],
+      ),
       body: FutureBuilder<ShoppingList>(
         future: _listFuture,
         builder: (context, snapshot) {
@@ -65,9 +100,15 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
           return Column(
             children: [
               ListTile(
-                title: Text(list.title ?? list.generatedTitle ?? l10n.listsTitle),
-                subtitle: Text(statusLabel(
-                    l10n, ListStatus.tryFromDb(list.status) ?? ListStatus.draft)),
+                title: Text(
+                  list.title ?? list.generatedTitle ?? l10n.listsTitle,
+                ),
+                subtitle: Text(
+                  statusLabel(
+                    l10n,
+                    ListStatus.tryFromDb(list.status) ?? ListStatus.draft,
+                  ),
+                ),
               ),
               Expanded(
                 child: StreamBuilder<List<PlannedItem>>(
@@ -83,16 +124,22 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                           ListTile(
                             key: Key('detail_item_${item.id}'),
                             title: Text(item.name),
+                            onTap: () => _openPriceHistory(context, item),
                             subtitle: Text(
-                                '${item.plannedQuantity} ${item.plannedUnitCode}'),
+                              '${item.plannedQuantity} ${item.plannedUnitCode}',
+                            ),
                             trailing: item.plannedLineTotalMinorUnits == null
                                 ? null
-                                : Text(formatMoney(
-                                    Money.fromMinorUnits(
+                                : Text(
+                                    formatMoney(
+                                      Money.fromMinorUnits(
                                         item.plannedLineTotalMinorUnits!,
-                                        currency),
-                                    locale: Localizations.localeOf(context)
-                                        .languageCode)),
+                                        currency,
+                                      ),
+                                      locale: Localizations.localeOf(context)
+                                          .languageCode,
+                                    ),
+                                  ),
                           ),
                       ],
                     );
@@ -111,9 +158,11 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                               ? () => _openShopping(context)
                               : () => _startShopping(context),
                           icon: const Icon(Icons.shopping_cart),
-                          label: Text(list.status == 'shopping'
-                              ? l10n.continueShoppingLabel
-                              : l10n.startShoppingLabel),
+                          label: Text(
+                            list.status == 'shopping'
+                                ? l10n.continueShoppingLabel
+                                : l10n.startShoppingLabel,
+                          ),
                         ),
                       ),
                       if (list.status == 'shopping') ...[
@@ -145,22 +194,26 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
     await _shoppingRepo.startShopping(widget.listId);
     _refresh();
     if (!context.mounted) return;
-    await Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => ShoppingModeScreen(
-        repository: ShoppingRepository(widget.db),
-        listId: widget.listId,
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ShoppingModeScreen(
+          repository: ShoppingRepository(widget.db),
+          listId: widget.listId,
+        ),
       ),
-    ));
+    );
     _refresh();
   }
 
   Future<void> _openShopping(BuildContext context) async {
-    await Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => ShoppingModeScreen(
-        repository: ShoppingRepository(widget.db),
-        listId: widget.listId,
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ShoppingModeScreen(
+          repository: ShoppingRepository(widget.db),
+          listId: widget.listId,
+        ),
       ),
-    ));
+    );
     _refresh();
   }
 
@@ -174,22 +227,120 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
         db: widget.db,
         starterCategories: StarterCategories(),
         listId: widget.listId,
+        onVoicePressed: _voiceCandidate,
+        onShelfPricePressed: _shelfPrice,
       ),
     );
     _refresh();
   }
 
+  Future<String?> _pickImage() async {
+    if (widget.pickImage != null) return widget.pickImage!();
+    return (await ImagePicker().pickImage(source: ImageSource.camera))?.path;
+  }
+
+  /// Görseli okur; ML Kit kaynağı yalnız bu çağrı boyunca açık kalır.
+  Future<OcrScanResult?> _scan() async {
+    final path = await _pickImage();
+    if (path == null) return null;
+    if (widget.ocrSource != null) return widget.ocrSource!.scan(path);
+    final source = MlKitTextSource();
+    try {
+      return await source.scan(path);
+    } finally {
+      source.dispose();
+    }
+  }
+
+  Future<ParsedItemCandidate?> _voiceCandidate(BuildContext context) =>
+      showModalBottomSheet<ParsedItemCandidate>(
+        context: context,
+        isScrollControlled: true,
+        builder: (_) => VoicePreviewSheet(
+          service: widget.speechService ?? SttSpeechService(),
+        ),
+      );
+
+  Future<String?> _shelfPrice(BuildContext context) async {
+    final list = await widget.listRepository.getById(widget.listId);
+    final scan = await _scan();
+    if (scan == null || !context.mounted) return null;
+    final candidates = ShelfPriceExtractor(defaultCurrency: list.currencyCode)
+        .extract(scan.lines);
+    final picked = await showPriceCandidateSheet(context, candidates);
+    return picked?.value.toDbString();
+  }
+
+  /// Fiş: tara → ayrıştır → inceleme; onaya dek DB yazımı yok (spec §6.9).
+  Future<void> _scanReceipt(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final list = await widget.listRepository.getById(widget.listId);
+    final scan = await _scan();
+    if (scan == null || !context.mounted) return;
+    if (scan.lines.isEmpty) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(l10n.ocrNoText)));
+      return;
+    }
+    final parsed = ReceiptParser(currency: list.currencyCode).parse(scan);
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ReceiptReviewScreen(
+          controller: ReceiptReviewController(
+            db: widget.db,
+            listId: widget.listId,
+            parseResult: parsed,
+          ),
+          currency: list.currencyCode,
+          plannedItems: (widget.db.select(
+            widget.db.plannedItems,
+          )..where((t) => t.listId.equals(widget.listId))).get(),
+        ),
+      ),
+    );
+    _refresh();
+  }
+
+  Future<void> _openPriceHistory(BuildContext context, PlannedItem item) async {
+    final productId =
+        item.productId ??
+        (await (widget.db.select(widget.db.productMemory)
+                  ..where((t) => t.normalizedName.equals(item.normalizedName)))
+                .getSingleOrNull())
+            ?.id;
+    if (!context.mounted) return;
+    if (productId == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).noObservations)),
+      );
+      return;
+    }
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => PriceHistoryScreen(
+          db: widget.db,
+          productId: productId,
+          productName: item.name,
+        ),
+      ),
+    );
+  }
+
   /// Alışverişi tamamlar ve sonuç ekranını açar (spec §6.11).
   Future<void> _finishAndShowResult(BuildContext context) async {
     await widget.listRepository.changeStatus(
-        widget.listId, ListStatus.completed);
+      widget.listId,
+      ListStatus.completed,
+    );
     if (!context.mounted) return;
-    await Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => SummaryScreen(
-        repository: ResultRepository(widget.db),
-        listId: widget.listId,
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => SummaryScreen(
+          repository: ResultRepository(widget.db),
+          listId: widget.listId,
+        ),
       ),
-    ));
+    );
     _refresh();
   }
 }

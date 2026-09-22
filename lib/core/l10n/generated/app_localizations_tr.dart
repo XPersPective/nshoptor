@@ -555,4 +555,85 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get roundingNote =>
       'Yuvarlama yalnızca tanımlı kuralda: yarıdan uzağa, Money dönüşümünde tek adımda.';
+
+  @override
+  String get voiceInputTitle => 'Sesle giriş';
+
+  @override
+  String get voiceStartListening => 'Dinlemeye başla';
+
+  @override
+  String get voiceTranscriptLabel => 'Transkript';
+
+  @override
+  String get parseAction => 'Ayrıştır';
+
+  @override
+  String get receiptReviewTitle => 'Fiş inceleme';
+
+  @override
+  String get receiptTotal => 'Fiş toplamı';
+
+  @override
+  String get receiptTotalUnknown => 'Toplam algılanmadı';
+
+  @override
+  String get receiptDiff => 'Fark';
+
+  @override
+  String get acceptLine => 'Satırı kabul et';
+
+  @override
+  String get ignoreLine => 'Satırı yok say';
+
+  @override
+  String get receiptLineActions => 'Ürünle bağla, birleştir veya atla';
+
+  @override
+  String get receiptCommit => 'Tümünü onayla';
+
+  @override
+  String get receiptCommitted => 'Fiş uygulandı.';
+
+  @override
+  String get priceHistoryTitle => 'Fiyat geçmişi';
+
+  @override
+  String get noObservations => 'Bu ürün için henüz gözlem yok';
+
+  @override
+  String get templatesSection => 'Şablonlar';
+
+  @override
+  String get templateHint => 'Önceki alışverişten yeni plan oluştur';
+
+  @override
+  String get scanReceiptAction => 'Fiş tara';
+
+  @override
+  String get shelfLabelAction => 'Raf etiketinden fiyat';
+
+  @override
+  String get priceCandidatesTitle => 'Fiyat adayları';
+
+  @override
+  String get noPriceCandidates => 'Fiyat bulunamadı; elle girin.';
+
+  @override
+  String get voiceUnavailable => 'Ses tanıma kullanılamıyor; elle girin.';
+
+  @override
+  String get linkToItem => 'Ürünle bağla';
+
+  @override
+  String get splitLine => 'İkiye ayır';
+
+  @override
+  String get mergeWithNext => 'Sonrakiyle birleştir';
+
+  @override
+  String get ocrNoText => 'Metin okunamadı; tekrar deneyin.';
+
+  @override
+  String get priceHistoryAction => 'Fiyat geçmişi';
 }
