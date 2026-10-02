@@ -61,7 +61,7 @@ void main() {
 
     // 1) Ana ekran premium boş durum: başlık + gövde + slogan + CTA çizildi.
     expect(find.byIcon(Icons.shopping_basket_outlined), findsOneWidget);
-    expect(find.text('Create List'), findsOneWidget);
+    expect(find.text('New list'), findsOneWidget);
     await binding.takeScreenshot('home_light');
 
     // 2) Ayarlar → tema Koyu → MaterialApp.themeMode anında değişir.

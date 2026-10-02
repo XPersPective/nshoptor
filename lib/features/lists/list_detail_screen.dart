@@ -129,12 +129,17 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
     );
     if (time == null || !context.mounted) return;
     final local = DateTime(date.year, date.month, date.day, time.hour, time.minute);
+    // "Şimdi" seçilirse geçmiş zamana planlamayız: 30 sn sonrasına düşer
+    // (OS'un geçmiş tetikleme davranışı cihaza göre değişken).
+    final fireAt = local.isAfter(now)
+        ? local
+        : now.add(const Duration(seconds: 30));
     await repo.setReminder(
       listId: widget.listId,
       title: l10n.reminderTitle,
       body: l10n.reminderBody(
           list.title ?? list.generatedTitle ?? l10n.listsTitle),
-      atUtc: local.toUtc(),
+      atUtc: fireAt.toUtc(),
     );
     if (!context.mounted) return;
     ScaffoldMessenger.of(context)
