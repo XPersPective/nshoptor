@@ -83,6 +83,9 @@ void main() {
 
     await tester.enterText(find.byKey(const Key('item_name_field')), 'Süt');
     await tester.enterText(find.byKey(const Key('item_quantity_field')), '3');
+    // Fiyat modu anahtarı "Ayrıntılar" altında: önce bölümü aç.
+    await tester.tap(find.byKey(const Key('item_details_expand')));
+    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('item_pricing_mode')));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Satır toplamı').first);

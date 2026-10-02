@@ -263,21 +263,14 @@ class _ItemTile extends StatelessWidget {
     final status = ItemStatus.tryFromDb(item.status) ?? ItemStatus.pending;
     return ListTile(
       key: Key('item_tile_${item.id}'),
+      // Satıra dokunmak da girişi açar (C-004): mağazada tek dokunuşla
+      // gerçek fiyat yazılır; onay kutusu ikinci yoldur.
+      onTap: () => _openEntry(context),
       leading: Checkbox(
         value: status.isInCart,
         onChanged: (checked) async {
           if (checked ?? false) {
-            final list = await repository.getList(item.listId);
-            if (!context.mounted) return;
-            await showModalBottomSheet<void>(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => _PurchaseEntrySheet(
-                repository: repository,
-                list: list,
-                item: item,
-              ),
-            );
+            await _openEntry(context);
           } else {
             await repository.setItemStatus(item.id, ItemStatus.pending);
           }
@@ -306,6 +299,20 @@ class _ItemTile extends StatelessWidget {
           PopupMenuItem(value: 'notFound', child: Text(l10n.statusNotFound)),
           PopupMenuItem(value: 'gaveUp', child: Text(l10n.statusGaveUp)),
         ],
+      ),
+    );
+  }
+
+  Future<void> _openEntry(BuildContext context) async {
+    final list = await repository.getList(item.listId);
+    if (!context.mounted) return;
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => _PurchaseEntrySheet(
+        repository: repository,
+        list: list,
+        item: item,
       ),
     );
   }
@@ -436,44 +443,62 @@ class _PurchaseEntrySheetState extends State<_PurchaseEntrySheet> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(l10n.quickEntryTitle,
-              style: Theme.of(context).textTheme.titleMedium),
+          Text(
+            _isUnplanned
+                ? l10n.quickEntryTitle
+                : widget.item!.name,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           const SizedBox(height: 12),
-          if (_isUnplanned)
+          if (_isUnplanned) ...[
             TextField(
               key: const Key('entry_name_field'),
               controller: _name,
+              textInputAction: TextInputAction.next,
               decoration: InputDecoration(labelText: l10n.itemNameLabel),
             ),
-          if (_isUnplanned) const SizedBox(height: 12),
+            const SizedBox(height: 12),
+          ],
+          // Fiyat önce ve odaklı (C-004): mağazada en sık girilen değer.
+          TextField(
+            key: const Key('entry_price_field'),
+            controller: _price,
+            autofocus: true,
+            keyboardType:
+                const TextInputType.numberWithOptions(decimal: true),
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(labelText: l10n.actualPriceLabel),
+          ),
+          const SizedBox(height: 12),
           TextField(
             key: const Key('entry_quantity_field'),
             controller: _quantity,
             keyboardType:
                 const TextInputType.numberWithOptions(decimal: true),
+            textInputAction: TextInputAction.done,
             decoration: InputDecoration(labelText: l10n.actualQuantityLabel),
           ),
-          const SizedBox(height: 12),
-          TextField(
-            key: const Key('entry_price_field'),
-            controller: _price,
-            keyboardType:
-                const TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(labelText: l10n.actualPriceLabel),
+          // İndirim/alternatif ikincil: katlanır bölüm (C-004).
+          ExpansionTile(
+            key: const Key('entry_details_expand'),
+            title: Text(l10n.itemDetailsSection),
+            childrenPadding: const EdgeInsets.only(bottom: 8),
+            children: [
+              TextField(
+                controller: _discount,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                decoration: InputDecoration(labelText: l10n.discountLabel),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: _alternative,
+                decoration:
+                    InputDecoration(labelText: l10n.alternativeNameLabel),
+              ),
+            ],
           ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: _discount,
-            keyboardType:
-                const TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(labelText: l10n.discountLabel),
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: _alternative,
-            decoration: InputDecoration(labelText: l10n.alternativeNameLabel),
-          ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           FilledButton(
             key: const Key('entry_save_button'),
             onPressed: _save,

@@ -1459,6 +1459,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pick a time'**
   String get reminderPickTime;
+
+  /// No description provided for @itemDetailsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get itemDetailsSection;
+
+  /// No description provided for @priceOptionalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional — you\'ll enter the real price in the store'**
+  String get priceOptionalHint;
+
+  /// No description provided for @plannedTotalSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned: {total} · {count} items'**
+  String plannedTotalSummary(Object count, Object total);
 }
 
 class _AppLocalizationsDelegate

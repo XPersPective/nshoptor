@@ -171,119 +171,186 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
             return const Center(child: CircularProgressIndicator());
           }
           final currency = Currency.fromCode(list.currencyCode);
-          return Column(
-            children: [
-              ListTile(
-                title: Text(
-                  list.title ?? list.generatedTitle ?? l10n.listsTitle,
-                ),
-                subtitle: Text(
-                  statusLabel(
-                    l10n,
-                    ListStatus.tryFromDb(list.status) ?? ListStatus.draft,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: StreamBuilder<List<PlannedItem>>(
-                  stream: _shoppingRepo.watchItems(widget.listId),
-                  builder: (context, snapshot) {
-                    final items = snapshot.data ?? const <PlannedItem>[];
-                    if (items.isEmpty) {
-                      return Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.shopping_basket_outlined,
-                              size: 56,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant,
-                            ),
-                            const SizedBox(height: 12),
-                            Text(
-                              l10n.itemsEmptyTitle,
-                              style:
-                                  Theme.of(context).textTheme.titleMedium,
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              l10n.itemsEmptyBody,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                    return ListView(
-                      children: [
-                        for (final item in items)
-                          ListTile(
-                            key: Key('detail_item_${item.id}'),
-                            title: Text(item.name),
-                            onTap: () => _openPriceHistory(context, item),
-                            subtitle: Text(
-                              '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
-                            ),
-                            trailing: item.plannedLineTotalMinorUnits == null
-                                ? null
-                                : Text(
+          return StreamBuilder<List<PlannedItem>>(
+            stream: _shoppingRepo.watchItems(widget.listId),
+            builder: (context, snapshot) {
+              final items = snapshot.data ?? const <PlannedItem>[];
+              final plannedMinor = items.fold<int>(
+                0,
+                (a, i) => a + (i.plannedLineTotalMinorUnits ?? 0),
+              );
+              return Column(
+                children: [
+                  // Tek satır özet (C-004): jargonsuz "Planlanan ₺X · n ürün".
+                  Card(
+                    margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  list.title ??
+                                      list.generatedTitle ??
+                                      l10n.listsTitle,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  l10n.plannedTotalSummary(
+                                    items.length,
                                     formatMoney(
                                       Money.fromMinorUnits(
-                                        item.plannedLineTotalMinorUnits!,
+                                        plannedMinor,
                                         currency,
                                       ),
                                       locale: Localizations.localeOf(context)
                                           .languageCode,
                                     ),
                                   ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurfaceVariant,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
-                      ],
-                    );
-                  },
-                ),
-              ),
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: FilledButton.icon(
-                          key: const Key('detail_start_shopping'),
-                          onPressed: list.status == 'shopping'
-                              ? () => _openShopping(context)
-                              : () => _startShopping(context),
-                          icon: const Icon(Icons.shopping_cart),
-                          label: Text(
-                            list.status == 'shopping'
-                                ? l10n.continueShoppingLabel
-                                : l10n.startShoppingLabel,
+                          const SizedBox(width: 8),
+                          Chip(
+                            label: Text(
+                              statusLabel(
+                                l10n,
+                                ListStatus.tryFromDb(list.status) ??
+                                    ListStatus.draft,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                      if (list.status == 'shopping') ...[
-                        const SizedBox(width: 8),
-                        FilledButton.tonal(
-                          key: const Key('detail_finish_button'),
-                          onPressed: () => _finishAndShowResult(context),
-                          child: Text(l10n.finishAndSeeResult),
-                        ),
-                      ],
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ],
+                  Expanded(
+                    child: items.isEmpty
+                        ? Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.shopping_basket_outlined,
+                                  size: 56,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant,
+                                ),
+                                const SizedBox(height: 12),
+                                Text(
+                                  l10n.itemsEmptyTitle,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  l10n.itemsEmptyBody,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurfaceVariant,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : ListView(
+                            children: [
+                              for (final item in items)
+                                ListTile(
+                                  key: Key('detail_item_${item.id}'),
+                                  title: Text(item.name),
+                                  onTap: () =>
+                                      _openPriceHistory(context, item),
+                                  subtitle: Text(
+                                    '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
+                                  ),
+                                  // Tahmini fiyat yoksa soluk tire: fiyat
+                                  // girilmediği net görünür (C-004).
+                                  trailing: item.plannedLineTotalMinorUnits ==
+                                          null
+                                      ? Text(
+                                          '—',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium
+                                              ?.copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onSurfaceVariant,
+                                              ),
+                                        )
+                                      : Text(
+                                          formatMoney(
+                                            Money.fromMinorUnits(
+                                              item.plannedLineTotalMinorUnits!,
+                                              currency,
+                                            ),
+                                            locale: Localizations.localeOf(
+                                                  context,
+                                                ).languageCode,
+                                          ),
+                                        ),
+                                ),
+                            ],
+                          ),
+                  ),
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: FilledButton.icon(
+                              key: const Key('detail_start_shopping'),
+                              onPressed: list.status == 'shopping'
+                                  ? () => _openShopping(context)
+                                  : () => _startShopping(context),
+                              icon: const Icon(Icons.shopping_cart),
+                              label: Text(
+                                list.status == 'shopping'
+                                    ? l10n.continueShoppingLabel
+                                    : l10n.startShoppingLabel,
+                              ),
+                            ),
+                          ),
+                          if (list.status == 'shopping') ...[
+                            const SizedBox(width: 8),
+                            FilledButton.tonal(
+                              key: const Key('detail_finish_button'),
+                              onPressed: () =>
+                                  _finishAndShowResult(context),
+                              child: Text(l10n.finishAndSeeResult),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           );
         },
       ),

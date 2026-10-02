@@ -306,33 +306,40 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             TextField(
               key: const Key('item_name_field'),
               controller: _name,
+              autofocus: true,
+              textInputAction: TextInputAction.next,
               decoration: InputDecoration(
                 labelText: l10n.itemNameLabel,
                 errorText: _nameError,
               ),
             ),
             const SizedBox(height: 12),
+            // Tahmini fiyat: ikinci alan — "domates, 14 TL" akışı iki
+            // dokunuşta tamamlanır (C-004). Miktar varsayılanı 1'dir.
             TextField(
-              controller: _brand,
-              decoration: InputDecoration(labelText: l10n.brandLabel),
+              key: const Key('item_price_field'),
+              controller: _price,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                labelText: _priceIsUnitPrice
+                    ? l10n.pricingModeUnitPrice
+                    : l10n.pricingModeLineTotal,
+                helperText: l10n.priceOptionalHint,
+                errorText: _priceError,
+              ),
+              onChanged: (_) => setState(() {}),
             ),
-            const SizedBox(height: 12),
-            DropdownButtonFormField<int>(
-              key: const Key('item_category_field'),
-              initialValue: _categoryId,
-              decoration: InputDecoration(labelText: l10n.categoryLabel),
-              items: _categories
-                  .map(
-                    (c) => DropdownMenuItem(
-                      value: c.id,
-                      child: Text(
-                        widget.starterCategories.labelOf(l10n, c.name),
-                      ),
-                    ),
-                  )
-                  .toList(),
-              onChanged: (v) => setState(() => _categoryId = v),
-            ),
+            if (_otherSidePreview().isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                  _otherSidePreview(),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
             const SizedBox(height: 12),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -379,66 +386,72 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
-            SegmentedButton<bool>(
-              key: const Key('item_pricing_mode'),
-              segments: [
-                ButtonSegment(
-                  value: true,
-                  label: Text(l10n.pricingModeUnitPrice),
+            // Gelişmiş alanlar katlanır: ana akış yalnız ad+fiyat+miktar
+            // ister; kalanlar "Ayrıntılar"ta (C-004).
+            ExpansionTile(
+              key: const Key('item_details_expand'),
+              title: Text(l10n.itemDetailsSection),
+              childrenPadding: const EdgeInsets.only(bottom: 8),
+              children: [
+                SegmentedButton<bool>(
+                  key: const Key('item_pricing_mode'),
+                  segments: [
+                    ButtonSegment(
+                      value: true,
+                      label: Text(l10n.pricingModeUnitPrice),
+                    ),
+                    ButtonSegment(
+                      value: false,
+                      label: Text(l10n.pricingModeLineTotal),
+                    ),
+                  ],
+                  selected: {_priceIsUnitPrice},
+                  onSelectionChanged: (s) =>
+                      setState(() => _priceIsUnitPrice = s.first),
                 ),
-                ButtonSegment(
-                  value: false,
-                  label: Text(l10n.pricingModeLineTotal),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _brand,
+                  decoration: InputDecoration(labelText: l10n.brandLabel),
+                ),
+                const SizedBox(height: 12),
+                DropdownButtonFormField<int>(
+                  key: const Key('item_category_field'),
+                  initialValue: _categoryId,
+                  decoration: InputDecoration(labelText: l10n.categoryLabel),
+                  items: _categories
+                      .map(
+                        (c) => DropdownMenuItem(
+                          value: c.id,
+                          child: Text(
+                            widget.starterCategories.labelOf(l10n, c.name),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (v) => setState(() => _categoryId = v),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _maxPrice,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: InputDecoration(labelText: l10n.maxPriceLabel),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _note,
+                  decoration: InputDecoration(labelText: l10n.itemNoteLabel),
+                ),
+                CheckboxListTile(
+                  key: const Key('item_required_toggle'),
+                  value: _required,
+                  title: Text(l10n.requiredItemToggle),
+                  onChanged: (v) => setState(() => _required = v ?? false),
+                  contentPadding: EdgeInsets.zero,
                 ),
               ],
-              selected: {_priceIsUnitPrice},
-              onSelectionChanged: (s) =>
-                  setState(() => _priceIsUnitPrice = s.first),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              key: const Key('item_price_field'),
-              controller: _price,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              decoration: InputDecoration(
-                labelText: _priceIsUnitPrice
-                    ? l10n.pricingModeUnitPrice
-                    : l10n.pricingModeLineTotal,
-                errorText: _priceError,
-              ),
-              onChanged: (_) => setState(() {}),
-            ),
-            if (_otherSidePreview().isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Text(
-                  _otherSidePreview(),
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: _maxPrice,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              decoration: InputDecoration(labelText: l10n.maxPriceLabel),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: _note,
-              decoration: InputDecoration(labelText: l10n.itemNoteLabel),
-            ),
-            const SizedBox(height: 8),
-            CheckboxListTile(
-              key: const Key('item_required_toggle'),
-              value: _required,
-              title: Text(l10n.requiredItemToggle),
-              onChanged: (v) => setState(() => _required = v ?? false),
-              contentPadding: EdgeInsets.zero,
             ),
             const SizedBox(height: 8),
             FilledButton(

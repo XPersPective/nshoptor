@@ -257,5 +257,8 @@
   "reminderTitle": "Shopping reminder",
   "reminderBody": "Time to check your list: {title}",
   "reminderPickDate": "Pick a date",
-  "reminderPickTime": "Pick a time"
+  "reminderPickTime": "Pick a time",
+  "itemDetailsSection": "Details",
+  "priceOptionalHint": "Optional — you'll enter the real price in the store",
+  "plannedTotalSummary": "Planned: {total} · {count} items"
 }

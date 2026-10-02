@@ -247,5 +247,8 @@
   "reminderTitle": "Alışveriş hatırlatması",
   "reminderBody": "Listenin zamanı geldi: {title}",
   "reminderPickDate": "Tarih seç",
-  "reminderPickTime": "Saat seç"
+  "reminderPickTime": "Saat seç",
+  "itemDetailsSection": "Ayrıntılar",
+  "priceOptionalHint": "İsteğe bağlı — mağazada gerçek fiyatı gireceksin",
+  "plannedTotalSummary": "Planlanan: {total} · {count} ürün"
 }

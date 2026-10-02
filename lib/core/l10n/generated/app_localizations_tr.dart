@@ -712,4 +712,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get reminderPickTime => 'Saat seç';
+
+  @override
+  String get itemDetailsSection => 'Ayrıntılar';
+
+  @override
+  String get priceOptionalHint =>
+      'İsteğe bağlı — mağazada gerçek fiyatı gireceksin';
+
+  @override
+  String plannedTotalSummary(Object count, Object total) {
+    return 'Planlanan: $total · $count ürün';
+  }
 }

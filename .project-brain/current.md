@@ -55,18 +55,24 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
 **Sources:** `lib/features/**`, `test/features/**`, `integration_test/**`
 
 - `lists/`: ListStatus machine, ListRepository (undo snapshot), ListsScreen,
-  ItemFormSheet (varsayılan birim AppDefaults'tan); `lists/suggestions/`
-  (ProductMemory, paste_parser), `lists/taxonomy/` (store/category/aisle CRUD
-  + 4 sort modes), `lists/templates/` (plan from previous actuals; Home
-  completed-list tile "plan from this" marks template + opens new plan; Home
-  Templates card), `lists/reminders/` (ReminderScheduler abstraction +
-  LocalNotificationsScheduler: flutter_local_notifications üretim adaptörü —
-  izin yalnız hatırlatma kurulurken istenir, tam alarm izni yoksa inexact
-  fallback; cihaz doğrulaması PB-034'te bekliyor), `lists/attachments/`
-  (file storage + orphan sweep).
+  ItemFormSheet (iki kademeli: ad-odaklı + tahmini fiyat + miktar; marka/
+  kategori/birim-modu/min-max/not/zorunlu "Ayrıntılar" altında katlanır —
+  C-004); `lists/suggestions/` (ProductMemory, paste_parser), `lists/
+  taxonomy/` (store/category/aisle CRUD + 4 sort modes), `lists/templates/`
+  (plan from previous actuals; Home completed-list tile "plan from this"
+  marks template + opens new plan; Home Templates card), `lists/reminders/`
+  (ReminderScheduler abstraction + LocalNotificationsScheduler:
+  flutter_local_notifications üretim adaptörü — izin yalnız hatırlatma
+  kurulurken istenir, tam alarm izni yoksa inexact fallback; cihaz
+  doğrulaması PB-043'te bekliyor), `lists/attachments/` (file storage +
+  orphan sweep). `list_detail_screen.dart`: özet kartı ("Planlanan ₺X ·
+  n ürün" + durum çipi), fiyatsız ürün satırında soluk "—", altta
+  "Alışverişe başla" CTA + FAB "Ürün ekle".
 - `shopping_mode/`: 5 item statuses, unplanned purchases, controlled returns,
-  projection summary, wakelock; `shopping_mode/summary/`: ResultRepository +
-  SummaryScreen (price vs quantity effect rows).
+  projection summary, wakelock; satıra dokunuş → hızlı giriş alt sayfası
+  (fiyat alanı ilk + autofocus; indirim/alternatif katlanır) — C-004;
+  `shopping_mode/summary/`: ResultRepository + SummaryScreen (price vs
+  quantity effect rows).
 - `lists/list_detail_screen.dart`: hub for input helpers — item form gets
   voice (VoicePreviewSheet) + shelf-label (price_candidate_sheet) callbacks;
   AppBar receipt scan → ReceiptParser → ReceiptReviewScreen; item tap →

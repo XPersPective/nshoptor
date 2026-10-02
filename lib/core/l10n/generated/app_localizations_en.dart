@@ -714,4 +714,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reminderPickTime => 'Pick a time';
+
+  @override
+  String get itemDetailsSection => 'Details';
+
+  @override
+  String get priceOptionalHint =>
+      'Optional — you\'ll enter the real price in the store';
+
+  @override
+  String plannedTotalSummary(Object count, Object total) {
+    return 'Planned: $total · $count items';
+  }
 }
