@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:napp_core/napp_core.dart';
 
 import 'app/app.dart';
+import 'app/app_defaults.dart';
 import 'app/language_controller.dart';
+import 'app/theme_mode_controller.dart';
 import 'data/db/app_database.dart';
 import 'features/settings/settings_repository.dart';
 
@@ -16,12 +18,15 @@ QueryExecutor openAppDatabase() => driftDatabase(name: 'nshoptor');
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final store = await SettingsStore.load();
+  AppDefaults.attach(store);
   final languageController = LanguageController(store: store)..load();
+  final themeController = AppThemeModeController(store: store)..load();
   WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
   final db = AppDatabase(openAppDatabase());
   runApp(NShoptorApp(
     db: db,
     settingsRepository: SettingsRepository(db, NappSettingsStoreOps(store)),
     languageController: languageController,
+    themeModeController: themeController,
   ));
 }

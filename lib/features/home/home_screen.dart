@@ -18,6 +18,7 @@ import '../lists/list_detail_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
 import 'home_repository.dart';
 import '../../app/language_controller.dart';
+import '../../app/theme_mode_controller.dart';
 
 /// Alt navigasyonlu uygulama kabuğu (spec §9): Ana Sayfa, Listeler,
 /// Geçmiş, Ayarlar.
@@ -28,6 +29,7 @@ class HomeShell extends StatefulWidget {
     required this.listRepository,
     this.settingsRepository,
     this.languageController,
+    this.themeModeController,
   });
 
   final AppDatabase db;
@@ -38,6 +40,9 @@ class HomeShell extends StatefulWidget {
 
   /// Dil denetleyicisi; Ayarlar ekranına devredilir.
   final LanguageController? languageController;
+
+  /// Tema denetleyicisi; Ayarlar ekranına devredilir.
+  final AppThemeModeController? themeModeController;
 
   @override
   State<HomeShell> createState() => _HomeShellState();
@@ -63,6 +68,7 @@ class _HomeShellState extends State<HomeShell> {
           : SettingsScreen(
               repository: widget.settingsRepository!,
               languageController: widget.languageController!,
+              themeModeController: widget.themeModeController,
             ),
     ];
     return Scaffold(
@@ -141,28 +147,53 @@ class HomeScreen extends StatelessWidget {
             builder: (context, snapshot) {
               final active = snapshot.data ?? const <ShoppingList>[];
               if (active.isEmpty) {
+                final colors = Theme.of(context).colorScheme;
                 return Card(
                   child: Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: colors.secondaryContainer,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: const EdgeInsets.all(14),
+                          child: Icon(
+                            Icons.shopping_basket_outlined,
+                            size: 28,
+                            color: colors.onSecondaryContainer,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
                         Text(
                           l10n.homeEmptyTitle,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style:
+                              Theme.of(context).textTheme.headlineSmall,
                         ),
-                        const SizedBox(height: 4),
-                        Text(l10n.homeEmptyBody),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 6),
+                        Text(
+                          l10n.homeEmptyBody,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: colors.onSurfaceVariant),
+                        ),
+                        const SizedBox(height: 12),
                         Text(
                           l10n.slogan,
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
                                 fontStyle: FontStyle.italic,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
+                                color: colors.onSurfaceVariant,
                               ),
+                        ),
+                        const SizedBox(height: 12),
+                        FilledButton.icon(
+                          onPressed: onNewList,
+                          icon: const Icon(Icons.add),
+                          label: Text(l10n.newListButton),
                         ),
                       ],
                     ),

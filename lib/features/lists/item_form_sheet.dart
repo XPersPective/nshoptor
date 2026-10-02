@@ -10,7 +10,9 @@ import '../../core/money/money_format.dart';
 import '../../core/money/money.dart';
 import '../../core/money/money_parser.dart';
 import '../../core/quantity/unit_code.dart';
+import '../../core/quantity/unit_display.dart';
 import '../../data/db/app_database.dart';
+import '../../app/app_defaults.dart';
 import 'starter_categories.dart';
 
 /// Birimlerin varsayılan tam sayı tercihi (spec §6.2): adet/düzine tam sayı
@@ -70,7 +72,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   final _maxPrice = TextEditingController();
   final _note = TextEditingController();
 
-  late UnitCode _unit = widget.initialUnitCode ?? UnitCode.adet;
+  late UnitCode _unit = widget.initialUnitCode ?? AppDefaults.defaultUnit();
   bool _priceIsUnitPrice = true;
   bool _required = false;
   int? _categoryId;
@@ -368,7 +370,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                         .map(
                           (u) => DropdownMenuItem(
                             value: u,
-                            child: Text(_unitLabel(u)),
+                            child: Text(unitDisplayName(u, l10n)),
                           ),
                         )
                         .toList(),
@@ -449,22 +451,6 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       ),
     );
   }
-
-  String _unitLabel(UnitCode unit) => switch (unit) {
-    UnitCode.adet => 'adet',
-    UnitCode.kilogram => 'kg',
-    UnitCode.gram => 'g',
-    UnitCode.litre => 'L',
-    UnitCode.mililitre => 'ml',
-    UnitCode.paket => 'paket',
-    UnitCode.kutu => 'kutu',
-    UnitCode.sise => 'şişe',
-    UnitCode.kavanoz => 'kavanoz',
-    UnitCode.demet => 'demet',
-    UnitCode.duzine => 'düzine',
-    UnitCode.metre => 'm',
-    UnitCode.custom => '…',
-  };
 }
 
 /// Ad normalize etme (ItemRepository ile aynı kural; UI kaydetmede kullanır).

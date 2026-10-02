@@ -36,27 +36,35 @@ class SettingsRepository {
 
   // ---- Ayarlar ----
 
-  String get currentLanguage => _settings.getString('app.locale') ?? 'system';
-  void setLanguage(String code) =>
-      _settings.setString('app.locale', code);
+  /// Kalıcı anahtarlar; okuma tarafı (AppDefaults) aynı sabitleri kullanır.
+  static const String localeKey = 'app.locale';
+  static const String themeKey = 'app.theme';
+  static const String currencyKey = 'app.currency';
+  static const String unitKey = 'app.unit';
+  static const String keepAwakeKey = 'app.keepAwake';
 
-  String get themeMode => _settings.getString('app.theme') ?? 'system';
+  String get currentLanguage => _settings.getString(localeKey) ?? 'system';
+  void setLanguage(String code) =>
+      _settings.setString(localeKey, code);
+
+  String get themeMode => _settings.getString(themeKey) ?? 'system';
   void setThemeMode(String value) =>
-      _settings.setString('app.theme', value);
+      _settings.setString(themeKey, value);
 
   String get defaultCurrency =>
-      _settings.getString('app.currency') ?? 'TRY';
+      _settings.getString(currencyKey) ?? 'TRY';
   void setDefaultCurrency(String code) =>
-      _settings.setString('app.currency', code);
+      _settings.setString(currencyKey, code);
 
-  String get defaultUnit => _settings.getString('app.unit') ?? 'adet';
+  /// Varsayılan birimin enum adı (ör. `adet`, `kilogram`).
+  String get defaultUnit => _settings.getString(unitKey) ?? 'adet';
   void setDefaultUnit(String unit) =>
-      _settings.setString('app.unit', unit);
+      _settings.setString(unitKey, unit);
 
   bool get keepScreenAwake =>
-      _settings.getBool('app.keepAwake') ?? false;
+      _settings.getBool(keepAwakeKey) ?? false;
   void setKeepScreenAwake(bool value) =>
-      _settings.setBool('app.keepAwake', value);
+      _settings.setBool(keepAwakeKey, value);
 
   // ---- Yedekleme (T21 backup katmanını kullanır) ----
 

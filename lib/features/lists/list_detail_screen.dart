@@ -5,6 +5,7 @@ import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/money_format.dart';
 import '../../core/money/money.dart';
+import '../../core/quantity/unit_display.dart';
 import '../../data/db/app_database.dart';
 import '../lists/item_form_sheet.dart';
 import '../lists/list_repository.dart';
@@ -27,6 +28,9 @@ import '../voice_input/stt_speech_service.dart';
 import '../voice_input/voice_input_service.dart';
 import '../voice_input/voice_preview_sheet.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
+import 'reminders/local_notifications_scheduler.dart';
+import 'reminders/reminder_scheduler.dart';
+import 'reminders/reminders_repository.dart';
 
 /// Liste detayı (spec §9 "Planlama liste detayı"): ürünler, ürün ekleme,
 /// alışverişi başlat/bitir ve sonuç.
@@ -39,6 +43,7 @@ class ListDetailScreen extends StatefulWidget {
     this.speechService,
     this.ocrSource,
     this.pickImage,
+    this.reminderScheduler,
   });
 
   final AppDatabase db;
@@ -53,6 +58,9 @@ class ListDetailScreen extends StatefulWidget {
 
   /// Test enjeksiyonu; verilmezse kamera. İptalde null.
   final Future<String?> Function()? pickImage;
+
+  /// Test enjeksiyonu; verilmezse flutter_local_notifications adaptörü.
+  final ReminderScheduler? reminderScheduler;
 
   @override
   State<ListDetailScreen> createState() => _ListDetailScreenState();
@@ -74,6 +82,66 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
     });
   }
 
+  RemindersRepository _remindersRepo() => RemindersRepository(
+        widget.db,
+        widget.reminderScheduler ?? LocalNotificationsScheduler(),
+      );
+
+  /// Aktif hatırlatma varsa kaldırır, yoksa tarih+saat seçtirip kurar.
+  /// İzin yalnızca bu akışta istenir (spec §6.13).
+  Future<void> _toggleReminder(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final repo = _remindersRepo();
+    final active = await repo.activeForList(widget.listId);
+    if (active != null) {
+      await repo.cancelReminder(active.id);
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.reminderCancelled)));
+      return;
+    }
+    final scheduler =
+        widget.reminderScheduler ?? LocalNotificationsScheduler();
+    final granted = await scheduler.ensurePermission();
+    if (!granted) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.reminderPermissionDenied)));
+      return;
+    }
+    final list = await _listFuture;
+    if (!context.mounted) return;
+    final now = DateTime.now();
+    final date = await showDatePicker(
+      context: context,
+      helpText: l10n.reminderPickDate,
+      firstDate: now,
+      lastDate: now.add(const Duration(days: 365)),
+      initialDate: now,
+    );
+    if (date == null || !context.mounted) return;
+    final time = await showTimePicker(
+      context: context,
+      helpText: l10n.reminderPickTime,
+      initialTime: TimeOfDay.now(),
+    );
+    if (time == null || !context.mounted) return;
+    final local = DateTime(date.year, date.month, date.day, time.hour, time.minute);
+    await repo.setReminder(
+      listId: widget.listId,
+      title: l10n.reminderTitle,
+      body: l10n.reminderBody(
+          list.title ?? list.generatedTitle ?? l10n.listsTitle),
+      atUtc: local.toUtc(),
+    );
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(l10n.reminderScheduled)));
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -81,6 +149,12 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
       appBar: AppBar(
         title: Text(l10n.listsTitle),
         actions: [
+          IconButton(
+            key: const Key('detail_set_reminder'),
+            icon: const Icon(Icons.alarm_add_outlined),
+            tooltip: l10n.setReminderAction,
+            onPressed: () => _toggleReminder(context),
+          ),
           IconButton(
             key: const Key('detail_scan_receipt'),
             icon: const Icon(Icons.receipt_long),
@@ -116,7 +190,39 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                   builder: (context, snapshot) {
                     final items = snapshot.data ?? const <PlannedItem>[];
                     if (items.isEmpty) {
-                      return Center(child: Text(l10n.listsEmpty));
+                      return Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.shopping_basket_outlined,
+                              size: 56,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              l10n.itemsEmptyTitle,
+                              style:
+                                  Theme.of(context).textTheme.titleMedium,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              l10n.itemsEmptyBody,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      );
                     }
                     return ListView(
                       children: [
@@ -126,7 +232,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                             title: Text(item.name),
                             onTap: () => _openPriceHistory(context, item),
                             subtitle: Text(
-                              '${item.plannedQuantity} ${item.plannedUnitCode}',
+                              '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
                             ),
                             trailing: item.plannedLineTotalMinorUnits == null
                                 ? null
@@ -184,6 +290,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
       floatingActionButton: FloatingActionButton(
         key: const Key('detail_add_item_button'),
         heroTag: 'detailAddItem',
+        tooltip: l10n.addItemTooltip,
         onPressed: () => _openItemForm(context),
         child: const Icon(Icons.add),
       ),

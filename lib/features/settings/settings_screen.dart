@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/l10n/generated/app_localizations.dart';
 import '../../../../core/money/currency.dart';
 import '../../../../core/quantity/unit_code.dart';
+import '../../../../core/quantity/unit_display.dart';
 import '../../app/language_controller.dart';
+import '../../app/theme_mode_controller.dart';
 import 'settings_repository.dart';
 
 /// Ayarlar ekranı (spec §6.15): dil, tema, varsayılanlar, yedekleme,
@@ -14,10 +16,14 @@ class SettingsScreen extends StatefulWidget {
     super.key,
     required this.repository,
     required this.languageController,
+    this.themeModeController,
   });
 
   final SettingsRepository repository;
   final LanguageController languageController;
+
+  /// Tema tercihi değişince MaterialApp'e canlı uygulanır.
+  final AppThemeModeController? themeModeController;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -25,6 +31,14 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   SettingsRepository get _repo => widget.repository;
+
+  void _setThemeMode(String? v) {
+    if (v == null) return;
+    setState(() {
+      _repo.setThemeMode(v);
+      widget.themeModeController?.set(v);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 DropdownMenuItem(value: 'light', child: Text(l10n.themeLight)),
                 DropdownMenuItem(value: 'dark', child: Text(l10n.themeDark)),
               ],
-              onChanged: (v) => setState(() {
-                if (v != null) _repo.setThemeMode(v);
-              }),
+              onChanged: _setThemeMode,
             ),
 
             _SectionTitle(
@@ -75,13 +87,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ListTile(
               leading: const Icon(Icons.category_outlined),
               title: Text(l10n.defaultUnitLabel),
-              subtitle: Text(_repo.defaultUnit),
+              subtitle:
+                  Text(unitDisplayNameFromName(_repo.defaultUnit, l10n)),
               trailing: DropdownButton<String>(
                 value: _repo.defaultUnit,
                 items: UnitCode.standard()
                     .map((u) => DropdownMenuItem(
                           value: u.name,
-                          child: Text(u.name),
+                          child: Text(unitDisplayName(u, l10n)),
                         ))
                     .toList(),
                 onChanged: (v) => setState(() => _repo.setDefaultUnit(v!)),

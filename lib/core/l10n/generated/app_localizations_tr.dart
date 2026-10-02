@@ -554,7 +554,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get roundingNote =>
-      'Yuvarlama yalnızca tanımlı kuralda: yarıdan uzağa, Money dönüşümünde tek adımda.';
+      'Parasal yuvarlama tek kurala uyar: yarım ve üzeri sıfırdan uzağa yuvarlanır, yalnızca Money dönüşümünde bir kez uygulanır.';
 
   @override
   String get voiceInputTitle => 'Sesle giriş';
@@ -636,4 +636,80 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get priceHistoryAction => 'Fiyat geçmişi';
+
+  @override
+  String get itemsEmptyTitle => 'Bu liste henüz boş';
+
+  @override
+  String get itemsEmptyBody =>
+      'İlk ürününü ekle — mağazada gerçek fiyatları buradan gireceksin.';
+
+  @override
+  String get addItemTooltip => 'Ürün ekle';
+
+  @override
+  String get unitAdet => 'adet';
+
+  @override
+  String get unitKilogram => 'kg';
+
+  @override
+  String get unitGram => 'g';
+
+  @override
+  String get unitLitre => 'L';
+
+  @override
+  String get unitMililitre => 'ml';
+
+  @override
+  String get unitPaket => 'paket';
+
+  @override
+  String get unitKutu => 'kutu';
+
+  @override
+  String get unitSise => 'şişe';
+
+  @override
+  String get unitKavanoz => 'kavanoz';
+
+  @override
+  String get unitDemet => 'demet';
+
+  @override
+  String get unitDuzine => 'düzine';
+
+  @override
+  String get unitMetre => 'm';
+
+  @override
+  String get unitCustom => 'Özel';
+
+  @override
+  String get setReminderAction => 'Hatırlatma kur';
+
+  @override
+  String get reminderPermissionDenied =>
+      'Hatırlatmalar için bildirim izni gerekir. Sistem ayarlarından açabilirsin.';
+
+  @override
+  String get reminderScheduled => 'Hatırlatma kuruldu.';
+
+  @override
+  String get reminderCancelled => 'Hatırlatma kaldırıldı.';
+
+  @override
+  String get reminderTitle => 'Alışveriş hatırlatması';
+
+  @override
+  String reminderBody(Object title) {
+    return 'Listenin zamanı geldi: $title';
+  }
+
+  @override
+  String get reminderPickDate => 'Tarih seç';
+
+  @override
+  String get reminderPickTime => 'Saat seç';
 }

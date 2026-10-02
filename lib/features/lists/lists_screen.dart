@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
+import '../../app/app_defaults.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
@@ -157,10 +158,35 @@ class _ListsTab extends StatelessWidget {
             .toList()
           ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
         if (lists.isEmpty) {
+          final colors = Theme.of(context).colorScheme;
           return Center(
             child: Padding(
               padding: const EdgeInsets.all(24),
-              child: Text(emptyText, textAlign: TextAlign.center),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: colors.secondaryContainer,
+                      shape: BoxShape.circle,
+                    ),
+                    padding: const EdgeInsets.all(16),
+                    child: Icon(
+                      Icons.receipt_long_outlined,
+                      size: 30,
+                      color: colors.onSecondaryContainer,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  Text(
+                    emptyText,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: colors.onSurfaceVariant,
+                        ),
+                  ),
+                ],
+              ),
             ),
           );
         }
@@ -312,7 +338,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
       TextEditingController(text: widget.existing?.title ?? '');
   late final TextEditingController _budget = TextEditingController();
   String? _budgetPrefilled;
-  late String _currency = widget.existing?.currencyCode ?? 'TRY';
+  late String _currency = widget.existing?.currencyCode ?? AppDefaults.defaultCurrency();
   late final TextEditingController _note =
       TextEditingController(text: widget.existing?.note ?? '');
   String? _budgetError;

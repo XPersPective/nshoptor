@@ -10,6 +10,7 @@ import 'package:nshoptor/features/home/home_screen.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
+import 'package:nshoptor/features/lists/reminders/reminder_scheduler.dart';
 import 'package:nshoptor/features/lists/templates/template_repository.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/voice_input/voice_input_service.dart';
@@ -72,13 +73,15 @@ void main() {
         ),
       );
 
-  Widget detail(int listId, {OcrTextSource? ocr, SpeechService? speech}) =>
+  Widget detail(int listId,
+          {OcrTextSource? ocr, SpeechService? speech, ReminderScheduler? scheduler}) =>
       ListDetailScreen(
         db: db,
         listRepository: listRepo,
         listId: listId,
         ocrSource: ocr,
         speechService: speech,
+        reminderScheduler: scheduler,
         pickImage: () async => 'fake.jpg',
       );
 
@@ -269,4 +272,39 @@ void main() {
 
     await disposeApp(tester);
   });
+
+  testWidgets('hatırlatma: izin red → açıklayıcı snackbar, kurulum yok', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(800, 1400));
+    final listId = await listRepo.createList(title: 'Hatırlatmalı', currencyCode: 'TRY');
+    final scheduler = _DeniedScheduler();
+
+    await tester.pumpWidget(app(detail(listId, scheduler: scheduler)));
+    await settle(tester);
+    await tester.tap(find.byKey(const Key('detail_set_reminder')));
+    await settle(tester);
+
+    expect(find.textContaining('bildirim izni gerekir'), findsOneWidget);
+    expect(scheduler.calls, 1);
+
+    await disposeApp(tester);
+  });
+}
+
+/// İzin hep reddedilen sahte zamanlayıcı.
+class _DeniedScheduler implements ReminderScheduler {
+  int calls = 0;
+
+  @override
+  Future<bool> ensurePermission() async {
+    calls++;
+    return false;
+  }
+
+  @override
+  Future<void> schedule(ScheduledReminder reminder) async {}
+
+  @override
+  Future<void> cancel(int id) async {}
 }

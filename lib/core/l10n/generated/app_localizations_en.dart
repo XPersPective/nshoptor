@@ -555,7 +555,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get roundingNote =>
-      'Roundings happen only with single rule: away from zero, one step at Money conversion.';
+      'Money rounding follows one rule: halves round away from zero, applied once at Money conversion.';
 
   @override
   String get voiceInputTitle => 'Voice input';
@@ -638,4 +638,80 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get priceHistoryAction => 'Price history';
+
+  @override
+  String get itemsEmptyTitle => 'No items yet';
+
+  @override
+  String get itemsEmptyBody =>
+      'Add your first item — you\'ll enter real prices here in the store.';
+
+  @override
+  String get addItemTooltip => 'Add item';
+
+  @override
+  String get unitAdet => 'pc';
+
+  @override
+  String get unitKilogram => 'kg';
+
+  @override
+  String get unitGram => 'g';
+
+  @override
+  String get unitLitre => 'L';
+
+  @override
+  String get unitMililitre => 'ml';
+
+  @override
+  String get unitPaket => 'pack';
+
+  @override
+  String get unitKutu => 'box';
+
+  @override
+  String get unitSise => 'bottle';
+
+  @override
+  String get unitKavanoz => 'jar';
+
+  @override
+  String get unitDemet => 'bunch';
+
+  @override
+  String get unitDuzine => 'dozen';
+
+  @override
+  String get unitMetre => 'm';
+
+  @override
+  String get unitCustom => 'Custom';
+
+  @override
+  String get setReminderAction => 'Set reminder';
+
+  @override
+  String get reminderPermissionDenied =>
+      'Notification permission is needed for reminders. You can enable it in system settings.';
+
+  @override
+  String get reminderScheduled => 'Reminder set.';
+
+  @override
+  String get reminderCancelled => 'Reminder removed.';
+
+  @override
+  String get reminderTitle => 'Shopping reminder';
+
+  @override
+  String reminderBody(Object title) {
+    return 'Time to check your list: $title';
+  }
+
+  @override
+  String get reminderPickDate => 'Pick a date';
+
+  @override
+  String get reminderPickTime => 'Pick a time';
 }

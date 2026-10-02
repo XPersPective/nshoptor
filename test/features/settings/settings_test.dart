@@ -2,9 +2,14 @@ import 'dart:io';
 
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
+import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:napp_core/napp_core.dart';
 
+import 'package:nshoptor/app/app_defaults.dart';
+import 'package:nshoptor/app/theme_mode_controller.dart';
 import 'package:nshoptor/core/money/currency.dart';
+import 'package:nshoptor/core/quantity/unit_code.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/settings/settings_repository.dart';
 
@@ -48,6 +53,42 @@ void main() {
       expect(settings.keepScreenAwake, isFalse);
       settings.setKeepScreenAwake(true);
       expect(settings.keepScreenAwake, isTrue);
+    });
+  });
+
+  group('tema tercihi canlı uygulanır (regresyon: ölü ayar)', () {
+    test('controller ile ayar ekranı aynı anahtarı okur/yazar', () {
+      final store = SettingsStore();
+      final repo = SettingsRepository(db, NappSettingsStoreOps(store));
+      final controller = AppThemeModeController(store: store)..load();
+      expect(controller.mode, ThemeMode.system);
+
+      repo.setThemeMode('dark');
+      controller.load(); // yeniden başlatma davranışı
+      expect(controller.mode, ThemeMode.dark);
+
+      controller.set('light');
+      expect(repo.themeMode, 'light');
+    });
+  });
+
+  group('varsayılanlar tüketim tarafına bağlanır (regresyon)', () {
+    test('varsayılan birim/para birimi AppDefaults üzerinden okunur', () {
+      final store = SettingsStore();
+      AppDefaults.attach(store);
+      expect(AppDefaults.defaultUnit(), UnitCode.adet);
+      expect(AppDefaults.defaultCurrency(), 'TRY');
+
+      store.setString(SettingsRepository.unitKey, 'kilogram');
+      store.setString(SettingsRepository.currencyKey, 'USD');
+      expect(AppDefaults.defaultUnit(), UnitCode.kilogram);
+      expect(AppDefaults.defaultCurrency(), 'USD');
+
+      // Geçersiz değerler güvenli varsayılana döner.
+      store.setString(SettingsRepository.unitKey, 'yok-boyle-birim');
+      store.setString(SettingsRepository.currencyKey, 'XXX');
+      expect(AppDefaults.defaultUnit(), UnitCode.adet);
+      expect(AppDefaults.defaultCurrency(), 'TRY');
     });
   });
 

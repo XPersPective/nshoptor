@@ -25,6 +25,9 @@ Crazy Penguin tarafından sağlanacak alanlar:
 - [ ] `key.properties` yoksa release derlemesi **debug anahtarıyla**
       imzalanır — mağazaya yüklemeden önce dosyanın mevcut olduğunu doğrulayın
 - [ ] R8 minify+shrink açık; release APK'da ses/OCR akışları kontrol edildi
+- [ ] APK tüm ABI'leri içeriyor (fat `flutter build apk --release`;
+      `--target-platform` ile kısıtlarsanız x86_64 emülatörde
+      `UnsatisfiedLinkError` oluşur — 2026-09-29'da yakalanan hata)
 
 ## iOS (macOS + Xcode gerekir; Windows'ta derlenemez)
 
@@ -44,5 +47,8 @@ flutter build ipa
 - [ ] Uçak modunda fiş OCR
 - [ ] Ses: internet açık / kapalı, izin reddi → manuel giriş
 - [ ] Düşük bellek / arka plandan dönüş sonrası veri korunuyor
-- [ ] Hatırlatma bildirimi (OS adaptörü `LocalNotificationsScheduler`
-      bağlandıktan sonra)
+- [ ] Hatırlatma bildirimi: liste detayındaki alarm düğmesi → izin istemi
+      (Android 13+) → tarih/saat seçimi → bildirim zamanında geliyor;
+      izin reddinde uygulama çalışmaya devam ediyor
+      (OS adaptörü: `LocalNotificationsScheduler`, tam alarm izni yoksa
+      inexact kip)

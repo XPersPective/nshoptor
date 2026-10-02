@@ -1151,7 +1151,7 @@ abstract class AppLocalizations {
   /// No description provided for @roundingNote.
   ///
   /// In en, this message translates to:
-  /// **'Roundings happen only with single rule: away from zero, one step at Money conversion.'**
+  /// **'Money rounding follows one rule: halves round away from zero, applied once at Money conversion.'**
   String get roundingNote;
 
   /// No description provided for @voiceInputTitle.
@@ -1315,6 +1315,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Price history'**
   String get priceHistoryAction;
+
+  /// No description provided for @itemsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No items yet'**
+  String get itemsEmptyTitle;
+
+  /// No description provided for @itemsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first item — you\'ll enter real prices here in the store.'**
+  String get itemsEmptyBody;
+
+  /// No description provided for @addItemTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get addItemTooltip;
+
+  /// No description provided for @unitAdet.
+  ///
+  /// In en, this message translates to:
+  /// **'pc'**
+  String get unitAdet;
+
+  /// No description provided for @unitKilogram.
+  ///
+  /// In en, this message translates to:
+  /// **'kg'**
+  String get unitKilogram;
+
+  /// No description provided for @unitGram.
+  ///
+  /// In en, this message translates to:
+  /// **'g'**
+  String get unitGram;
+
+  /// No description provided for @unitLitre.
+  ///
+  /// In en, this message translates to:
+  /// **'L'**
+  String get unitLitre;
+
+  /// No description provided for @unitMililitre.
+  ///
+  /// In en, this message translates to:
+  /// **'ml'**
+  String get unitMililitre;
+
+  /// No description provided for @unitPaket.
+  ///
+  /// In en, this message translates to:
+  /// **'pack'**
+  String get unitPaket;
+
+  /// No description provided for @unitKutu.
+  ///
+  /// In en, this message translates to:
+  /// **'box'**
+  String get unitKutu;
+
+  /// No description provided for @unitSise.
+  ///
+  /// In en, this message translates to:
+  /// **'bottle'**
+  String get unitSise;
+
+  /// No description provided for @unitKavanoz.
+  ///
+  /// In en, this message translates to:
+  /// **'jar'**
+  String get unitKavanoz;
+
+  /// No description provided for @unitDemet.
+  ///
+  /// In en, this message translates to:
+  /// **'bunch'**
+  String get unitDemet;
+
+  /// No description provided for @unitDuzine.
+  ///
+  /// In en, this message translates to:
+  /// **'dozen'**
+  String get unitDuzine;
+
+  /// No description provided for @unitMetre.
+  ///
+  /// In en, this message translates to:
+  /// **'m'**
+  String get unitMetre;
+
+  /// No description provided for @unitCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get unitCustom;
+
+  /// No description provided for @setReminderAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Set reminder'**
+  String get setReminderAction;
+
+  /// No description provided for @reminderPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification permission is needed for reminders. You can enable it in system settings.'**
+  String get reminderPermissionDenied;
+
+  /// No description provided for @reminderScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder set.'**
+  String get reminderScheduled;
+
+  /// No description provided for @reminderCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder removed.'**
+  String get reminderCancelled;
+
+  /// No description provided for @reminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping reminder'**
+  String get reminderTitle;
+
+  /// No description provided for @reminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to check your list: {title}'**
+  String reminderBody(Object title);
+
+  /// No description provided for @reminderPickDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a date'**
+  String get reminderPickDate;
+
+  /// No description provided for @reminderPickTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a time'**
+  String get reminderPickTime;
 }
 
 class _AppLocalizationsDelegate
