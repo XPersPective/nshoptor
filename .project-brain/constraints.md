@@ -2,19 +2,35 @@
 
 ## User Requirements
 
-### C-001: Çok dilli tr/en
+### C-001: Çok dilli, dil ↔ para bağımsız
 
-Tüm kullanıcı akışları tr ve en ile çalışır; resmi flutter l10n/ARB + intl
-kullanılır. Slogan seçili dile göre değişir. (spec §3)
+Tüm kullanıcı akışları tr ve en ile tam çalışır; resmi flutter l10n/ARB +
+intl (ADR-003). Slogan seçili dile göre değişir. Dil seçimi para/sayı
+biçimini ZORLAMAZ: para birimi ve biçimlendirme ayrı ayar; yeni dil
+ekleme yolu belgeli, eksik anahtar testi zorunlu. (spec §3 + ADR-002)
 
-### C-002: Offline-first, hesapsız
+### C-002: Offline-first, hesapsız, VERİ=YEREL
 
-Hesap yok, bulut yok. Uçak modunda tam işlev (OCR dahil, kurulumdan sonra).
+Hesap yok, sunucu yok, analiz/çökme SDK'sı yok. Uçak modunda tam işlev
+(OCR dahil, kurulumdan sonra). Tek uzak çağrı: Keşfet apps.json (HTTPS,
+standart §3.6). (spec §12 + standart §6.1)
 
 ### C-003: Kullanıcı onayı olmadan veri değişmez
 
 OCR/ses çıktısı yalnızca düzenlenebilir doğrulama ekranından sonra satın
 alıma dönüşür.
+
+### C-004: Kullanıcının zihinsel modeli UX otoritesidir
+
+Ana akış (liste → isim+tahmini fiyat → alışveriş → gerçek fiyat/fiş →
+karşılaştırma) her ekranda tek bariz birincil eylemle ilerler; gelişmiş
+alanlar ikincil. "Nereye yazarım?" belirsizliği kabul edilebilir kusur
+değil, hatadır. (ADR-002)
+
+### C-005: Girdi yardımcıları ücretsiz ve cihaz içi
+
+Ücretli/harici OCR, tanıma veya bildirim servisi YASAK. ML Kit (cihaz
+içi) + speech_to_text + flutter_local_notifications. (ADR-002)
 
 ## Compatibility
 
@@ -45,7 +61,33 @@ tr+en locale-aware. (spec §7.1)
 Android app id / iOS bundle id `com.example.nshoptor` kalır; production
 kimliğini Crazy Penguin sağlayacak. (spec §2)
 
-### C-031: Lisans GPL-3.0
+### C-031: Lisans GPL-3.0 + bağımlılık lisans disiplini
+
+GPL-3.0 resmi tam metni; Hakkında'da anlamıyla anlatılır. Bağımlılıklar
+ücretsiz + ticari + GPL uyumlu (MIT/BSD/Apache-2.0/Zlib/ISC/LGPL; font
+OFL 1.1). THIRD_PARTY_LICENSES.md zorunlu. AGPL/SSPL/non-commercial YASAK.
+
+### C-032: Şablon standardı bağlayıcı
+
+`napp_app_template` → `ORTAK_UYGULAMA_STANDARDI.md` bağlayıcıdır; ayarlar
+REKLAM=EVET, PRO=EVET, VERİ=YEREL. Reklam kimlikleri koda/repoya girmez
+(key.properties / dart-define; repoda Google test kimlikleri). UMP onayı
+SDK'dan önce. Yedekleme dışa/içe aktarma Pro'ya özeldir (standart §3.8).
+(ADR-002)
+
+### C-033: Android öncelikli; iOS ertelendi
+
+Play yayını hedef; iOS derlemesi/Xcode işi sonraya bırakıldı (kullanıcı
+2026-10-02). iOS'a özgü iş, Android ana hattını bloklamaz.
+
+### C-034: Release doğrulaması emülatörde yapılır
+
+"Cihaz gerekli" bahanesi yok (standart §8): release APK emülatörde uçtan
+uca denenir; doğrulanamayan iş nedeni + test adımlarıyla Brain'e yazılır.
+
+### C-035: Kullanıcıya görünen sürüm dizesi jargonsuz
+
+Sürüm dizesinde "Aşama N" gibi geliştirme jargonu YOK (ör. "1.0.0").
 
 ## Development
 
