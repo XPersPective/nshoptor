@@ -8,12 +8,16 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 
 **Status:** VERIFIED
 
-Flutter stable 3.47.x, Dart null safety, Material 3. Entry point `lib/main.dart`
-→ `lib/app/` (NShoptorApp + LanguageController + AppThemeModeController +
-AppDefaults). Boot: SettingsStore yüklenir, dil + tema tercihleri runApp'ten
-önce okunur (ilk kare belirleyici; yerel çözümleme fallback'i tr). State:
-stream-based repositories + StatefulWidget; no external state framework.
-Persistence: drift 2.35 over sqlite (ADR-001).
+Flutter stable 3.47.x, Dart null safety, Material 3. Entry point
+`lib/main.dart` → `lib/app/` (NShoptorApp + LanguageController +
+AppThemeModeController + AppDefaults) + napp_kit katmanı (ADR-002):
+AppIdentity/env_config (dart-define), PurchaseRepository+ProController
+(`nshoptor_pro_lifetime`), AdPolicy+UMP onayı (SDK'dan önce),
+BannerAdController, napp sözlük delegesi. Boot: SettingsStore yüklenir,
+dil + tema + biçim-yereli (AppFormatLocale: dil'den BAĞIMSIZ, C-001)
+runApp'ten önce okunur. State: stream-based repositories +
+StatefulWidget; no external state framework. Persistence: drift 2.35
+over sqlite (ADR-001).
 
 ## Domains
 
@@ -50,7 +54,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
 
 ### Features
 
-**Status:** VERIFIED (2026-10-02, PB-035 checkpoint)
+**Status:** VERIFIED (2026-10-03, PB-036..045 checkpoint)
 
 **Sources:** `lib/features/**`, `test/features/**`, `integration_test/**`
 
@@ -78,8 +82,9 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   AppBar receipt scan → ReceiptParser → ReceiptReviewScreen; item tap →
   PriceHistoryScreen (productId, else ProductMemory by normalizedName).
   SpeechService / OcrTextSource / image picker injectable for tests.
-- `home/`: HomeShell (4 tabs), HomeScreen (monthly totals per currency — T33
-  fix); premium boş-durum kartı (ikon dairesi + CTA).
+- `home/`: HomeShell (5 tabs: + Keşfet/OtherAppsPage, apps.json
+  protokolü; banner bottom bar'ın ALTINDA), HomeScreen (monthly totals
+  per currency — T33 fix); premium boş-durum kartı (ikon dairesi + CTA).
 - `history/price_history/`: min/median/max, trend, cheapest store
   (repository); `price_history_sheet.dart` PriceHistoryScreen lists
   observations only (stats not yet shown).
@@ -95,25 +100,27 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   total diff). Shelf label: no crop/rotate UI — ML Kit reads any
   orientation and user picks among all candidates (C-040: no crop package).
   ReceiptMatcher auto-suggestion not used by the screen (manual link only).
-- `settings/`: SettingsScreen + SettingsRepository (spec §6.15, delete-all
-  double confirm; tema tercihi AppThemeModeController ile canlı uygulanır,
-  anahtar sabitleri repo'da); `settings/backup/` BackupRepository (13-table
-  export/import, CSV export).
+- `settings/`: SettingsScreen + SettingsRepository (spec §6.15,
+  delete-all double confirm; tema + formatLocale anahtarları repo'da);
+  Pro satırı (PaywallPage) + yedek dışa/içe PRO-GATE (standart §3.8:
+  kilit + paywall; Pro değişince kilit anında kalkar); Hakkında
+  (AboutPage: açık kaynak/GPL-3.0), Lisanslar, Paylaş, Puan ver
+  (napp_core); `settings/backup/` BackupRepository (13-table
+  export/import, CSV export — CSV serbest).
 
 ### Platform shells & CI
 
 **Status:** VERIFIED
 
-Android: RECORD_AUDIO + RecognitionService query; hatırlatmalar için
-POST_NOTIFICATIONS + SCHEDULE_EXACT_ALARM + RECEIVE_BOOT_COMPLETED ve
-flutter_local_notifications alıcıları (bildirim izni yalnız hatırlatma
-kurulurken istenir). iOS: camera/photo/mic/speech usage strings. Android:
-cleartext off, backup/data-extraction rules, R8 minify+shrink release (ML Kit
-non-Latin dontwarn), release signing from key.properties if present, else
-debug key; AdMob placeholder removed; fat APK tüm ABI'ler (x86_64 kısıtı
-emülatörde UnsatisfiedLinkError — bkz. docs/release-checklist.md). iOS:
-display name NShoptor. CI (`.github/workflows/ci.yml`): analyze+test,
-gitleaks, release APK build.
+Android: RECORD_AUDIO + RecognitionService query; hatırlatma izinleri
++ flutter_local_notifications alıcıları; AdMob APPLICATION_ID manifest
+placeholder'ı key.properties'ten (yoksa Google TEST kimliği; gerçek
+kimlik repoya GİRMEZ). Gerçek uygulama ikonu: marka yeşili sepet
+(tool/brand/make_source_icon.py → adaptive + monochrome + splash;
+emülatör launcher kanıtı). cleartext off, backup rules, R8
+minify+shrink, key.properties imza, fat APK tüm ABI'ler. iOS: ertelendi
+(C-033). CI: analyze+test, gitleaks, release APK build. Uygulama
+gerçeğiyle yasal taslaklar (docs/store/) çapraz kontrolü tamam.
 
 ## External Dependencies
 
@@ -122,17 +129,23 @@ speech_to_text 7.5.0, google_mlkit_text_recognition 0.17.1, image_picker,
 path_provider, flutter_local_notifications 22.3.1, timezone, wakelock_plus,
 share_plus, file_picker.
 
-Test totals: 234 unit/widget tests recorded green at legacy T28 close
-(2026-09-22); T29 added `integration_test/perf_test.dart` (emulator: 200
-lists + 5000 rows fluid). Full suite 247/247 green + analyze 0 at PB-033.
-PB-035: 254/254 green + analyze 0; `integration_test/device_audit_test.dart`
-(cihaz: premium ana ekranlar + canlı tema + hatırlatma akışı) eklendi;
-release APK (fat, 92,5 MB) emülatörde görsel olarak doğrulandı.
+Test totals: 259/259 green + analyze 0 (PB-036..045). Release APK
+(fat, 97,8 MB) emülatörde uçtan uca doğrulandı (2026-10-03): 5 sekme,
+Pro kilidi/paywall (dürüst: gerçek faydalar + restore, sahte fiyat yok),
+Keşfet çevrimdışı boş-durumu, biçim-yereli satırı, "Sürüm 1.0.0"
+(jargonsuz), koyu tema canlı geçiş, ikon launcher'da. Fiş korpusu:
+market_tr_1.txt ile parser/matcher; "domates kg"→"domates" yüksek
+güven.
 
 ## Known Unknowns
 
-- Voice / camera flows verified only with fakes in widget tests; real
-  device behaviour pending (PB-034, BLOCKED).
-- Reminders: OS bildiriminin cihazda zamanında gelmesi ve exact/inexact
-  davranışı yalnız kod + widget testi düzeyinde doğrulandı; gerçek cihaz
-  doğrulaması PB-034'te bekliyor.
+- Voice / camera flows: platform tanıyıcı/OCR emülatörde sınırlı
+  (speech emülatörde genelde yok → manuel fallback kanıtlı); gerçek
+  cihaz kontrolü kullanıcı deneyimine kalmıştır.
+- Reminders: reboot sonrası alarm kaydı dumpsys'ta korundu; ancak
+  emülatörün saat sıçraması nedeniyle reboot'tan SONRA tetiklenme anı
+  gözlemlenemedi (kayıt + BOOT_COMPLETED alıcısı mevcut; cihazda
+  doğrulanması önerilir).
+- Reklam banner'ı: test kimliğiyle SDK hazır; gerçek AdMob kimliği ve
+  paywall fiyatı Crazy Penguin'de; apps.json besleme repo adresi
+  bilinmiyor (docs/store/apps-json-entry.md).

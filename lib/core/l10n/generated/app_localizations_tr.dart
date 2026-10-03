@@ -531,7 +531,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get aboutPublisher => 'Yayınlayıcı: Crazy Penguin';
 
   @override
-  String get aboutLicenses => 'Lisans: MIT';
+  String get aboutLicenses => 'Lisanslar (GPL-3.0)';
 
   @override
   String get voiceSettingsLabel => 'Sesli giriş';

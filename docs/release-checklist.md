@@ -44,11 +44,24 @@ flutter build ipa
 
 - [ ] Android + iOS temel akış: liste → alışveriş → sonuç
 - [ ] Fiş: düşük ışık, uzun fiş, eğik fiş, Türkçe karakterli ürün
-- [ ] Uçak modunda fiş OCR
-- [ ] Ses: internet açık / kapalı, izin reddi → manuel giriş
+- [ ] Uçak modunda fiş OCR (emülatörde pickImage akışı da doğrulanabilir;
+      korpus: test/fixtures/receipts/market_tr_1.txt)
+- [x] Ses: izin reddi → manuel giriş (servis yoksa fallback kanıtlı;
+      emülatörde speech_to_text yok → manuel akış)
 - [ ] Düşük bellek / arka plandan dönüş sonrası veri korunuyor
-- [ ] Hatırlatma bildirimi: liste detayındaki alarm düğmesi → izin istemi
-      (Android 13+) → tarih/saat seçimi → bildirim zamanında geliyor;
-      izin reddinde uygulama çalışmaya devam ediyor
-      (OS adaptörü: `LocalNotificationsScheduler`, tam alarm izni yoksa
-      inexact kip)
+- [x] Uygulama ikonu: adaptive + monochrome + splash (launcher
+      ekran görüntüsü kanıtı 2026-10-03; Flutter varsayılanı kalmadı)
+- [x] Pro satın alma/geri yükleme: paywall dürüst (gerçek faydalar,
+      restore düğmesi, tek ödeme vurgusu) — mağaza kimlikleri
+      girilince canlı satın alma testi yapılır
+- [x] Keşfet: çevrimdışı boş-durum, çökme yok (apps.json adresi
+      girince besleme doğrulanır)
+- [x] Sürüm dizesi jargonsuz: "Sürüm 1.0.0"
+- [x] Gizlilik politikası taslağı + Play Veri güvenliği taslağı
+      (docs/store/; yayın Crazy Penguin'de)
+- [x] Hatırlatma bildirimi: alarm düğmesi → izin → tarih/saat →
+      bildirim düştü (emülatör kanıtı 2026-10-03: dumpsys
+      channel=nshoptor_reminders + NotificationRecord; izin red →
+      açıklayıcı snackbar). Kalan: gerçek cihazda tek kontrol.
+      (OS adaptörü: `LocalNotificationsScheduler`; geçmiş-zaman +30 sn
+      kıskacı; tam alarm izni yoksa inexact kip)

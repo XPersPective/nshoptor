@@ -532,7 +532,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutPublisher => 'Publisher: Crazy Penguin';
 
   @override
-  String get aboutLicenses => 'License: MIT';
+  String get aboutLicenses => 'Licenses (GPL-3.0)';
 
   @override
   String get voiceSettingsLabel => 'Voice input';

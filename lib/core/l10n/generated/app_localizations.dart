@@ -1109,7 +1109,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutLicenses.
   ///
   /// In en, this message translates to:
-  /// **'License: MIT'**
+  /// **'Licenses (GPL-3.0)'**
   String get aboutLicenses;
 
   /// No description provided for @voiceSettingsLabel.

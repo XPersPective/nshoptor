@@ -199,7 +199,7 @@
   "privacyInfoBody": "NShoptor runs offline-first. Receipts and photos stay on your device by default and are never sent to the internet.",
   "aboutSection": "About",
   "aboutPublisher": "Publisher: Crazy Penguin",
-  "aboutLicenses": "License: MIT",
+  "aboutLicenses": "Licenses (GPL-3.0)",
   "voiceSettingsLabel": "Voice input",
   "voiceStatusUnknown": "Service: not checked",
   "permissionsLabel": "Permissions",

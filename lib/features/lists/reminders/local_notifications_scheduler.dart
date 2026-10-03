@@ -43,7 +43,15 @@ class LocalNotificationsScheduler implements ReminderScheduler {
   @override
   Future<void> schedule(ScheduledReminder reminder) async {
     await _ensureInit();
-    final when = tz.TZDateTime.from(reminder.atUtc, tz.UTC);
+    // "Şimdi" seçilen hatırlatma, kullanıcı onayına dek geçmişe düşebilir;
+    // eklenti geçmiş tarihi REDDERİR (emülatör logcat kanıtı 2026-10-03:
+    // "Must be a date in the future"). Planlama anından 30 sn sonraya
+    // kaydırılır — kapatılabilir davranış en yakın eşdeğeridir.
+    final nowUtc = DateTime.now().toUtc();
+    final fireAt = reminder.atUtc.isAfter(nowUtc)
+        ? reminder.atUtc
+        : nowUtc.add(const Duration(seconds: 30));
+    final when = tz.TZDateTime.from(fireAt, tz.UTC);
     final details = NotificationDetails(
       android: AndroidNotificationDetails(
         _channelId,
