@@ -1,0 +1,17 @@
+A101 MARKET
+SATICI: 03   KASA: 02   02.10.2026 18:41
+--------------------------------
+DOMATES KG             24,90
+SALATALIK KG           18,50 *
+SUT 1L                 32,00
+EKMEK                  15,00
+CIPS PAKET             39,99
+YUMURTA 15'LI          68,90
+* KAMPANYALI URUN
+--------------------------------
+ARA TOPLAM           199,29
+KDV(%1)                 2,66
+KDV(%10)               17,85
+TOPLAM               199,29
+KART                  199,29
+FIYAT BILGILERINIZ ICIN TESEKKURLER

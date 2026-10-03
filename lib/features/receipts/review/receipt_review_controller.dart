@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import '../../../core/money/decimal_fixed.dart';
 import '../../../data/db/app_database.dart';
 import '../parser/receipt_parse_result.dart';
+import '../parser/receipt_parser.dart' show ReceiptMatcher;
 
 /// Bir aday satırın inceleme durumu.
 enum ReviewStatus { pending, accepted, ignored }
@@ -115,8 +116,37 @@ class ReceiptReviewController extends ChangeNotifier {
   }
 
   /// Planlanan ürüne bağla (spec §6.9).
-  void linkLine(int index, int plannedItemId) {
-    lines[index]
+  /// Öneri öncesi bağlama (PB-040): ReceiptMatcher'ın YÜKSEK güvenli
+  /// eşleşmelerini satırlara işler — kullanıcı önizlemede bağlı görür, tek
+  /// dokunuşla değiştirir/kaldırır. Orta güven yalnız öneridir, bağlamaz.
+  /// Onay akışı değişmez (C-003): DB'ye yalnız accept yazımı yazar.
+  Future<void> prefillSuggestions() async {
+    final candidates = [
+      for (final line in lines)
+        ReceiptLineCandidate(
+          rawText: line.rawText,
+          name: line.name,
+          normalizedName: line.normalizedName,
+          quantity: line.quantity,
+          unitPriceMinor: line.unitPriceMinor,
+          lineTotalMinor: line.lineTotalMinor,
+          confidence: 'medium',
+        ),
+    ];
+    final matches = await ReceiptMatcher(_db)
+        .match(candidates, listId: listId);
+    var changed = false;
+    for (final (line, item, confidence) in matches) {
+      if (confidence != 'high' || item == null) continue;
+      final index = lines.indexWhere((l) => l.rawText == line.rawText);
+      if (index == -1 || lines[index].linkedPlannedItemId != null) continue;
+      lines[index].linkedPlannedItemId = item.id;
+      changed = true;
+    }
+    if (changed) notifyListeners();
+  }
+
+  void linkLine(int index, int plannedItemId) {    lines[index]
       ..status = ReviewStatus.accepted
       ..linkedPlannedItemId = plannedItemId
       ..isUnplanned = false;

@@ -21,7 +21,7 @@ class ReceiptParser {
   final int reconciliationToleranceMinor;
 
   static const List<String> _totalMarkers = [
-    'toplam', 'genel toplam', 'total', 'nakit', 'kasa',
+    'toplam', 'genel toplam', 'total', 'nakit', 'kasa', 'kart',
   ];
   static const List<String> _subtotalMarkers = ['ara toplam', 'aratoplam'];
   static const List<String> _discountMarkers = ['indirim', 'iskonto'];
@@ -30,7 +30,7 @@ class ReceiptParser {
   static const List<String> _skipWords = [
     'fiş', 'fis', 'no:', 'no :', 'kasiyer', 'yldz', 'yildiz', 'misafir',
     'tarih', 'saat', 'date', 'kvkk', 'www', '.com', 'mal.hizmet', 'gv.ilk',
-    'geçici', 'gecici',
+    'geçici', 'gecici', 'bilgileriniz', 'teşekkür', 'tesekkur',
   ];
 
   /// Ürün satırı olmayan yapısal satırlar.
@@ -53,7 +53,13 @@ class ReceiptParser {
     final productLines = <ReceiptLineCandidate>[];
 
     for (final line in lines) {
-      final text = line.text.trim();
+      // Kampanya/sergi işaretleri (sondaki *, #, •) fişte satır sonunda
+      // gelebilir; fiyat çözümlemesini bozmamak için soyulur.
+      final text = line.text
+          .trim()
+          .replaceFirst(RegExp(r'^[\s*#•·-]+$'), '')
+          .replaceFirst(RegExp(r'[*\s]+$'), '')
+          .trim();
       final lower = text.toLowerCase();
       if (text.isEmpty) continue;
 
@@ -142,7 +148,13 @@ class ReceiptParser {
     final merged = <OcrLine>[];
     final nameBuffer = <String>[];
     for (final line in lines) {
-      final text = line.text.trim();
+      // Kampanya/sergi işaretleri (sondaki *, #, •) sonda fiyat yok sanıp
+      // satırı yanlış birleştirebilir; birleştirme kararından önce soyulur.
+      final text = line.text
+          .trim()
+          .replaceFirst(RegExp(r'^[\s*#•·-]+$'), '')
+          .replaceFirst(RegExp(r'[\s*]+$'), '')
+          .trim();
       if (text.isEmpty) continue;
       final lower = text.toLowerCase();
       final structural = _skipWords.any(lower.contains) ||
@@ -311,8 +323,9 @@ class ReceiptMatcher {
   PlannedItem? _bestMatch(String needle, List<PlannedItem> items) {
     PlannedItem? best;
     var bestScore = 0.0;
+    final n = stripUnits(needle);
     for (final item in items) {
-      final score = _similarity(needle, item.normalizedName);
+      final score = _similarity(n, stripUnits(item.normalizedName));
       if (score > bestScore) {
         bestScore = score;
         best = item;
@@ -321,12 +334,27 @@ class ReceiptMatcher {
     return bestScore >= 0.75 ? best : null;
   }
 
+  /// Fişte birim çoğu kez ADIN sonundadır ("DOMATES KG", "SUT 1L");
+  /// planda yoktur. Eşleştirme için bilinen birim/ambalaj jetonları ve
+  /// boyut+birim öbekleri (\d+l, \d+x\d+ml) soyulur (PB-040).
+  static final RegExp _trailingUnitWords = RegExp(
+    r'(\s+\d+(?:x\d+)?(?:kg|gr|g|lt|l|ml|m))'
+    r'|(\s+(kg|gr|g|lt|l|ml|adet|pk|pkt|paket|kutu|dz|dzn|düzine|şişe|sise|kavanoz|demet|metre))$',
+    caseSensitive: false,
+  );
+
+  static String stripUnits(String normalized) =>
+      normalized.replaceAll(_trailingUnitWords, '').trim();
+
   String _matchConfidence(String needle, List<PlannedItem> items) {
+    final n = stripUnits(needle);
     for (final item in items) {
-      if (item.normalizedName == needle) return 'high';
+      if (stripUnits(item.normalizedName) == n) return 'high';
     }
     for (final item in items) {
-      if (_similarity(needle, item.normalizedName) >= 0.75) return 'medium';
+      if (_similarity(n, stripUnits(item.normalizedName)) >= 0.75) {
+        return 'medium';
+      }
     }
     return 'low';
   }

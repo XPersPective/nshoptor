@@ -1,3 +1,5 @@
+import 'dart:async' show unawaited;
+
 import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
@@ -45,6 +47,9 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
   void initState() {
     super.initState();
     _c.addListener(_sync);
+    // Öneriler (PB-040): yüksek güvenli eşleşmeler bağlanmış gelir;
+    // kullanıcı tek dokunuşla onaylar/değiştirir (C-003: onaysız DB yok).
+    unawaited(_c.prefillSuggestions());
   }
 
   void _sync() => setState(() {});

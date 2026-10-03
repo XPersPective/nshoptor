@@ -1,7 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'dart:convert' show utf8;
+import 'dart:io' show File;
+
+import 'package:drift/drift.dart' show Value;
+import 'package:drift/native.dart' show NativeDatabase;
+
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/parser/receipt_parse_result.dart';
+import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/receipts/parser/receipt_parser.dart';
 
 /// Anonimleştirilmiş fixture metinleri (spec §13 fiş test listesi).
@@ -145,5 +152,53 @@ void main() {
       expect(ReceiptMatcher.levenshtein('sut', 'sut'), 0);
       expect(ReceiptMatcher.levenshtein('sut', 'surt'), 1);
     });
+  });
+
+  test('gerçekçi Türk market fişi: ürünler ayrışır, KDV/toplam ürün OLMAZ',
+      () async {
+    final text = File('test/fixtures/receipts/market_tr_1.txt')
+        .readAsLinesSync(encoding: utf8)
+        .where((l) => l.trim().isNotEmpty)
+        .toList();
+    final result = ReceiptParser(currency: 'TRY').parse(scan(text));
+
+    final names = result.lines.map((l) => l.normalizedName).toList();
+    // Birim adın sonunda kalabilir (eşleştirici soyar): 'domates kg'.
+    expect(
+        names.map(ReceiptMatcher.stripUnits),
+        containsAll(['domates', 'salatalik', 'sut', 'ekmek']));
+    // KDV/toplam/kasa satırları ürün sanılmaz.
+    for (final banned in ['kdv', 'toplam', 'kart', 'fiyat', 'satici', 'kasa']) {
+      expect(names.any((n) => n.contains(banned)), isFalse,
+          reason: 'yasak satır ürün oldu: $banned');
+    }
+    expect(result.totalMinor, 19929);
+    expect(result.subtotalMinor, 19929);
+  });
+
+  test('domates örneği (kullanıcı senaryosu): plandaki ürüne yüksek güvenli eşleşme',
+      () async {
+    final db = AppDatabase(NativeDatabase.memory());
+    addTearDown(() => db.close());
+    final listId = await db.into(db.shoppingLists).insert(
+        ShoppingListsCompanion.insert(title: const Value('Pazar'), currencyCode: 'TRY'));
+    final itemId = await db.into(db.plannedItems).insert(
+        PlannedItemsCompanion.insert(
+          listId: listId,
+          name: 'Domates',
+          normalizedName: 'domates',
+          plannedQuantity: '1',
+          plannedUnitCode: 'kilogram',
+          pricingInputMode: 'unitPrice',
+        ));
+    final text = File('test/fixtures/receipts/market_tr_1.txt')
+        .readAsLinesSync(encoding: utf8);
+    final result = ReceiptParser(currency: 'TRY').parse(scan(text));
+    final matches =
+        await ReceiptMatcher(db).match(result.lines, listId: listId);
+    final domates = matches.firstWhere(
+        (m) => ReceiptMatcher.stripUnits(m.$1.normalizedName) == 'domates');
+    expect(domates.$2?.id, itemId);
+    expect(domates.$3, 'high');
   });
 }
