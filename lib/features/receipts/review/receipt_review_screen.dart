@@ -1,3 +1,4 @@
+import '../../../core/money/format_locale.dart';
 import 'dart:async' show unawaited;
 
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     final currency = Currency.fromCode(widget.currency);
     String money(int minor) => formatMoney(
       Money.fromMinorUnits(minor, currency),
-      locale: Localizations.localeOf(context).languageCode,
+      locale: formatLocaleCode(context),
     );
 
     final diff = _c.reconciliationDifference;

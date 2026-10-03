@@ -757,4 +757,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get voiceAddItemAction => 'Sesle ekle';
+
+  @override
+  String get formatLocaleLabel => 'Sayı ve para biçimi';
+
+  @override
+  String get formatLocaleSystem => 'Sistem (arayüz dili)';
+
+  @override
+  String get formatLocaleTr => 'Türkçe (1.234,56)';
+
+  @override
+  String get formatLocaleEn => 'İngilizce (1,234.56)';
 }

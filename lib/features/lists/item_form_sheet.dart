@@ -1,3 +1,4 @@
+import '../../core/money/format_locale.dart';
 import 'package:drift/drift.dart' show OrderingTerm, Value;
 import 'package:flutter/material.dart';
 
@@ -111,9 +112,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     super.dispose();
   }
 
-  MoneySeparators get _separators => MoneySeparators.forLocaleCode(
-    Localizations.localeOf(context).languageCode,
-  );
+  MoneySeparators get _separators => MoneySeparators.forLocaleCode(formatLocaleCode(context));
 
   /// Ayrıştırma; boş veya geçersiz girdide null döner (build sırasında
   /// fırlatmaz). Geçersiz-girdi ayrımı [_fieldState] ile yapılır.

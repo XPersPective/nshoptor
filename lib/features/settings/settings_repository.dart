@@ -38,12 +38,21 @@ class SettingsRepository {
 
   /// Kalıcı anahtarlar; okuma tarafı (AppDefaults) aynı sabitleri kullanır.
   static const String localeKey = 'app.locale';
+  static const String formatLocaleKey = 'app.formatLocale';
   static const String themeKey = 'app.theme';
   static const String currencyKey = 'app.currency';
   static const String unitKey = 'app.unit';
   static const String keepAwakeKey = 'app.keepAwake';
 
   String get currentLanguage => _settings.getString(localeKey) ?? 'system';
+
+  /// Sayı/para BİÇİMİ yereli ('system' | 'tr' | 'en'); dilden bağımsız
+  /// (C-001, PB-042).
+  String get formatLocale =>
+      _settings.getString(formatLocaleKey) ?? 'system';
+
+  void setFormatLocale(String code) =>
+      _settings.setString(formatLocaleKey, code);
   void setLanguage(String code) =>
       _settings.setString(localeKey, code);
 

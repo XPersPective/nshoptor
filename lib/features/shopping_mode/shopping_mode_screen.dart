@@ -1,3 +1,4 @@
+import '../../core/money/format_locale.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
@@ -216,7 +217,7 @@ class _SummaryStrip extends StatelessWidget {
     final currency = Currency.fromCode(currencyCode);
     String money(int minor) => formatMoney(
         Money.fromMinorUnits(minor, currency),
-        locale: Localizations.localeOf(context).languageCode);
+        locale: formatLocaleCode(context));
     final budgetLine = summary.budgetRemainingMinor == null
         ? null
         : summary.isOverBudget
@@ -406,8 +407,7 @@ class _PurchaseEntrySheetState extends State<_PurchaseEntrySheet> {
     super.didChangeDependencies();
     if (!_quantityPrefilled) {
       _quantityPrefilled = true;
-      final decimalSep = MoneySeparators.forLocaleCode(
-              Localizations.localeOf(context).languageCode)
+      final decimalSep = MoneySeparators.forLocaleCode(formatLocaleCode(context))
           .decimal;
       // Planlı miktarda kullanıcıya yerel ayracıyla önerilir (1.5 → 1,5).
       final planned = widget.item?.plannedQuantity ??
@@ -425,8 +425,7 @@ class _PurchaseEntrySheetState extends State<_PurchaseEntrySheet> {
   Future<void> _save() async {
     final name = _name.text.trim();
     if (name.isEmpty) return;
-    final separators = MoneySeparators.forLocaleCode(
-        Localizations.localeOf(context).languageCode);
+    final separators = MoneySeparators.forLocaleCode(formatLocaleCode(context));
     // Planlı üründe negatif miktar = kontrollü iade satırı (spec §6.5).
     final allowNegative = !_isUnplanned;
     DecimalFixed quantity;

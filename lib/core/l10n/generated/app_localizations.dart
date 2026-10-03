@@ -1537,6 +1537,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add by voice'**
   String get voiceAddItemAction;
+
+  /// No description provided for @formatLocaleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Number & currency format'**
+  String get formatLocaleLabel;
+
+  /// No description provided for @formatLocaleSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System (follows app language)'**
+  String get formatLocaleSystem;
+
+  /// No description provided for @formatLocaleTr.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkish (1.234,56)'**
+  String get formatLocaleTr;
+
+  /// No description provided for @formatLocaleEn.
+  ///
+  /// In en, this message translates to:
+  /// **'English (1,234.56)'**
+  String get formatLocaleEn;
 }
 
 class _AppLocalizationsDelegate

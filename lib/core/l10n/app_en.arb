@@ -270,5 +270,9 @@
   "shareAction": "Share the app",
   "rateAction": "Rate us",
   "aboutOpenRow": "About & open source",
-  "voiceAddItemAction": "Add by voice"
+  "voiceAddItemAction": "Add by voice",
+  "formatLocaleLabel": "Number & currency format",
+  "formatLocaleSystem": "System (follows app language)",
+  "formatLocaleTr": "Turkish (1.234,56)",
+  "formatLocaleEn": "English (1,234.56)"
 }

@@ -14,6 +14,7 @@ import 'app/app_defaults.dart';
 import 'app/language_controller.dart';
 import 'app/theme_mode_controller.dart';
 import 'core/config/env_config.dart';
+import 'core/money/format_locale.dart';
 import 'data/db/app_database.dart';
 import 'features/settings/settings_repository.dart';
 
@@ -24,6 +25,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final store = await SettingsStore.load();
   AppDefaults.attach(store);
+  final formatSetting = store.getString(SettingsRepository.formatLocaleKey);
+  AppFormatLocale.attach(
+      formatSetting == 'tr' || formatSetting == 'en' ? formatSetting : null);
   final languageController = LanguageController(store: store)..load();
   final themeController = AppThemeModeController(store: store)..load();
   final identity = EnvConfig.identity;

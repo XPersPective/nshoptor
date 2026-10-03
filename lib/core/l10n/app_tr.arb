@@ -260,5 +260,9 @@
   "shareAction": "Uygulamayı paylaş",
   "rateAction": "Puan ver",
   "aboutOpenRow": "Hakkında ve açık kaynak",
-  "voiceAddItemAction": "Sesle ekle"
+  "voiceAddItemAction": "Sesle ekle",
+  "formatLocaleLabel": "Sayı ve para biçimi",
+  "formatLocaleSystem": "Sistem (arayüz dili)",
+  "formatLocaleTr": "Türkçe (1.234,56)",
+  "formatLocaleEn": "İngilizce (1,234.56)"
 }

@@ -1,3 +1,4 @@
+import '../../core/money/format_locale.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
@@ -242,7 +243,7 @@ class _ListCard extends StatelessWidget {
             formatMoney(
               Money.fromMinorUnits(
                   list.budgetMinorUnits ?? 0, Currency.fromCode(list.currencyCode)),
-              locale: Localizations.localeOf(context).languageCode,
+              locale: formatLocaleCode(context),
             ),
           ].join(' · '),
         ),
@@ -359,8 +360,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
     if (_budgetPrefilled == null && widget.existing?.budgetMinorUnits != null) {
       _budgetPrefilled = '';
       final existing = widget.existing!;
-      final sep = MoneySeparators.forLocaleCode(
-              Localizations.localeOf(context).languageCode)
+      final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context))
           .decimal;
       _budget.text = _minorToInput(
           existing.budgetMinorUnits!, Currency.fromCode(existing.currencyCode), sep);

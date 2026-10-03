@@ -759,4 +759,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get voiceAddItemAction => 'Add by voice';
+
+  @override
+  String get formatLocaleLabel => 'Number & currency format';
+
+  @override
+  String get formatLocaleSystem => 'System (follows app language)';
+
+  @override
+  String get formatLocaleTr => 'Turkish (1.234,56)';
+
+  @override
+  String get formatLocaleEn => 'English (1,234.56)';
 }

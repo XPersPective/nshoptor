@@ -1,3 +1,4 @@
+import '../../core/money/format_locale.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -214,8 +215,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                                         plannedMinor,
                                         currency,
                                       ),
-                                      locale: Localizations.localeOf(context)
-                                          .languageCode,
+                                      locale: formatLocaleCode(context),
                                     ),
                                   ),
                                   style: Theme.of(context)

@@ -1,3 +1,4 @@
+import '../../../core/money/format_locale.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
@@ -54,7 +55,7 @@ class PriceHistoryScreen extends StatelessWidget {
               ).toMinorUnits(Currency.fromCode(r.currencyCode).minorUnitDigits);
               final money = formatMoney(
                 Money.fromMinorUnits(minor, Currency.fromCode(r.currencyCode)),
-                locale: Localizations.localeOf(context).languageCode,
+                locale: formatLocaleCode(context),
               );
               final date = MaterialLocalizations.of(context)
                   .formatMediumDate(r.observedAt);

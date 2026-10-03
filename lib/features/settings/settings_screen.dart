@@ -5,6 +5,7 @@ import 'package:napp_pro/napp_pro.dart';
 import '../../../../core/app_version.dart';
 import '../../../../core/l10n/generated/app_localizations.dart';
 import '../../../../core/money/currency.dart';
+import '../../../../core/money/format_locale.dart';
 import '../../../../core/quantity/unit_code.dart';
 import '../../../../core/quantity/unit_display.dart';
 import '../../app/language_controller.dart';
@@ -108,6 +109,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 DropdownMenuItem(value: 'en', child: Text(l10n.languageEn)),
               ],
               onChanged: (v) => _setLanguage(v),
+            ),
+
+            // Biçim yereli DİLDEN BAĞIMSIZ seçilir (C-001, PB-042).
+            _SectionTitle(
+                icon: Icons.numbers, label: l10n.formatLocaleLabel),
+            DropdownButtonFormField<String>(
+              key: const Key('settings_format_locale_dropdown'),
+              initialValue: _repo.formatLocale,
+              decoration: InputDecoration(
+                labelText: l10n.formatLocaleLabel,
+                prefixIcon: const Icon(Icons.numbers),
+              ),
+              items: [
+                DropdownMenuItem(
+                    value: 'system', child: Text(l10n.formatLocaleSystem)),
+                DropdownMenuItem(
+                    value: 'tr', child: Text(l10n.formatLocaleTr)),
+                DropdownMenuItem(
+                    value: 'en', child: Text(l10n.formatLocaleEn)),
+              ],
+              onChanged: (v) {
+                if (v == null) return;
+                setState(() => _repo.setFormatLocale(v));
+                AppFormatLocale.attach(v == 'tr' || v == 'en' ? v : null);
+              },
             ),
 
             _SectionTitle(

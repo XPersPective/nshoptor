@@ -1,3 +1,4 @@
+import '../../../core/money/format_locale.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
@@ -78,7 +79,7 @@ class _SummarySection extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final currency = Currency.fromCode(result.currencyCode);
     String money(int minor) => formatMoney(Money.fromMinorUnits(minor, currency),
-        locale: Localizations.localeOf(context).languageCode);
+        locale: formatLocaleCode(context));
     final direction = result.varianceMinor == 0
         ? SpendingDirection.nearPlan
         : result.varianceMinor < 0
@@ -173,7 +174,7 @@ class _ItemResultTile extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final currency = Currency.fromCode(result.currencyCode);
     String money(int minor) => formatMoney(Money.fromMinorUnits(minor, currency),
-        locale: Localizations.localeOf(context).languageCode);
+        locale: formatLocaleCode(context));
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
