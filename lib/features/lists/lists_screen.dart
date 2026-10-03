@@ -10,6 +10,7 @@ import '../../core/money/money_parser.dart';
 import '../../data/db/app_database.dart';
 import 'list_detail_screen.dart';
 import 'list_repository.dart';
+import 'reminders/reminder_scheduler.dart';
 import 'list_status.dart';
 
 /// Liste durumlarının görünen adları (kanonik kod → l10n).
@@ -28,9 +29,17 @@ String listDisplayTitle(AppLocalizations l10n, ShoppingList list) =>
 
 /// Aktif/tamamlanmış/arşiv sekmeli liste ekranı (spec §6.1).
 class ListsScreen extends StatefulWidget {
-  const ListsScreen({super.key, required this.repository, this.onOpenListDetail});
+  const ListsScreen({
+    super.key,
+    required this.repository,
+    this.onOpenListDetail,
+    this.reminderScheduler,
+  });
 
   final ListRepository repository;
+
+  /// Test dikişi: liste detayına geçirilir (hatırlatma akışı).
+  final ReminderScheduler? reminderScheduler;
 
   /// Liste kartına dokununca detay ekranını açar; verilmediyse dahili olarak
   /// ListDetailScreen push edilir.
@@ -85,6 +94,7 @@ class _ListsScreenState extends State<ListsScreen> {
                     },
                     emptyText: l10n.listsEmpty,
                     onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
                   ),
                   _ListsTab(
                     repository: widget.repository,
@@ -92,6 +102,7 @@ class _ListsScreenState extends State<ListsScreen> {
                     statuses: const {ListStatus.completed},
                     emptyText: l10n.listsEmpty,
                     onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
                   ),
                   _ListsTab(
                     repository: widget.repository,
@@ -99,6 +110,7 @@ class _ListsScreenState extends State<ListsScreen> {
                     statuses: const {ListStatus.archived},
                     emptyText: l10n.listsEmpty,
                     onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
                   ),
                 ],
               ),
@@ -136,6 +148,7 @@ class _ListsTab extends StatelessWidget {
     required this.statuses,
     required this.emptyText,
     required this.onOpenListDetail,
+    this.reminderScheduler,
   });
 
   final ListRepository repository;
@@ -143,6 +156,7 @@ class _ListsTab extends StatelessWidget {
   final Set<ListStatus> statuses;
   final String emptyText;
   final void Function(BuildContext, int)? onOpenListDetail;
+  final ReminderScheduler? reminderScheduler;
 
   @override
   Widget build(BuildContext context) {
@@ -197,6 +211,7 @@ class _ListsTab extends StatelessWidget {
             repository: repository,
             list: lists[index],
             onOpen: onOpenListDetail,
+            reminderScheduler: reminderScheduler,
           ),
         );
       },
@@ -209,11 +224,13 @@ class _ListCard extends StatelessWidget {
     required this.repository,
     required this.list,
     this.onOpen,
+    this.reminderScheduler,
   });
 
   final ListRepository repository;
   final ShoppingList list;
   final void Function(BuildContext, int)? onOpen;
+  final ReminderScheduler? reminderScheduler;
 
   @override
   Widget build(BuildContext context) {
@@ -231,6 +248,7 @@ class _ListCard extends StatelessWidget {
                 db: repository.db,
                 listRepository: repository,
                 listId: list.id,
+                reminderScheduler: reminderScheduler,
               ),
             ));
           }

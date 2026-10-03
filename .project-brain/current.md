@@ -94,7 +94,10 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   fallback when service unavailable); `voice_input/parser/`: deterministic
   tr/en voice command parser.
 - `receipts/`: OcrTextSource + MlKitTextSource (bundled Latin, no model
-  download), ShelfPriceExtractor; `receipts/parser/` ReceiptParser +
+  download), ShelfPriceExtractor; `receipts/parser/` ReceiptParser
+  (_reconstructRows: ML Kit kolon-bölünmesini görsel satırlara geri
+  kurar — top ±8px gruplama; korpus market_tr_1.png CİHAZ OCR'ıyla
+  uçtan uca kanıtlandı) +
   ReceiptMatcher; `receipts/review/` ReceiptReviewController (no DB write
   before approval) + ReceiptReviewScreen (accept/ignore/link/split/merge,
   total diff). Shelf label: no crop/rotate UI — ML Kit reads any
@@ -129,23 +132,19 @@ speech_to_text 7.5.0, google_mlkit_text_recognition 0.17.1, image_picker,
 path_provider, flutter_local_notifications 22.3.1, timezone, wakelock_plus,
 share_plus, file_picker.
 
-Test totals: 259/259 green + analyze 0 (PB-036..045). Release APK
-(fat, 97,8 MB) emülatörde uçtan uca doğrulandı (2026-10-03): 5 sekme,
-Pro kilidi/paywall (dürüst: gerçek faydalar + restore, sahte fiyat yok),
-Keşfet çevrimdışı boş-durumu, biçim-yereli satırı, "Sürüm 1.0.0"
-(jargonsuz), koyu tema canlı geçiş, ikon launcher'da. Fiş korpusu:
+Test totals: 259 unit/widget green + 3 integration (device_audit 2/2,
+receipt_flow 1/1) + analyze 0. Release APK (fat, 97,8 MB) emülatörde
+uçtan uca (2026-10-03/04): 5 sekme, Pro kilidi/paywall, Keşfet,
+biçim-yereli, "Sürüm 1.0.0", koyu tema canlı, ikon launcher'da,
+BANNER bottom bar altında test-ad ile canlı (UMP gdprApplies:0),
+bildirim reboot sonrası panelde görüntülendi. Fiş korpusu:
 market_tr_1.txt ile parser/matcher; "domates kg"→"domates" yüksek
 güven.
 
 ## Known Unknowns
 
-- Voice / camera flows: platform tanıyıcı/OCR emülatörde sınırlı
-  (speech emülatörde genelde yok → manuel fallback kanıtlı); gerçek
-  cihaz kontrolü kullanıcı deneyimine kalmıştır.
-- Reminders: reboot sonrası alarm kaydı dumpsys'ta korundu; ancak
-  emülatörün saat sıçraması nedeniyle reboot'tan SONRA tetiklenme anı
-  gözlemlenemedi (kayıt + BOOT_COMPLETED alıcısı mevcut; cihazda
-  doğrulanması önerilir).
-- Reklam banner'ı: test kimliğiyle SDK hazır; gerçek AdMob kimliği ve
-  paywall fiyatı Crazy Penguin'de; apps.json besleme repo adresi
+- Voice: gerçek tanıma cihazda denenmedi (emülatörde platform tanıyıcı
+  yok → manuel fallback kanıtlı); cihazda tek kontrol önerilir.
+- Reklam/Pro: test kimlikleriyle tam akış canlı; gerçek AdMob kimliği
+  ve paywall fiyatı Crazy Penguin'de; apps.json besleme repo adresi
   bilinmiyor (docs/store/apps-json-entry.md).

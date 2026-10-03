@@ -16,7 +16,24 @@ import 'package:nshoptor/app/app.dart';
 import 'package:nshoptor/app/language_controller.dart';
 import 'package:nshoptor/app/theme_mode_controller.dart';
 import 'package:nshoptor/data/db/app_database.dart';
+import 'package:nshoptor/features/lists/reminders/reminder_scheduler.dart';
 import 'package:nshoptor/features/settings/settings_repository.dart';
+
+/// OS'suz zamanlayıcı: entegrasyon testi deterministik olsun (izin
+/// diyaloğu yok). OS tarafı ayrıca dumpsys ile elle kanıtlandı.
+class _StubScheduler implements ReminderScheduler {
+  final List<ScheduledReminder> scheduled = [];
+
+  @override
+  Future<bool> ensurePermission() async => true;
+
+  @override
+  Future<void> schedule(ScheduledReminder reminder) async =>
+      scheduled.add(reminder);
+
+  @override
+  Future<void> cancel(int id) async {}
+}
 
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +55,7 @@ void main() {
       languageController: language,
       themeModeController: theme,
       fixedLocale: const Locale('en'),
+      reminderScheduler: _StubScheduler(),
     ));
     await tester.pumpAndSettle();
   }
@@ -61,8 +79,9 @@ void main() {
 
     // 1) Ana ekran premium boş durum: başlık + gövde + slogan + CTA çizildi.
     expect(find.byIcon(Icons.shopping_basket_outlined), findsOneWidget);
-    expect(find.text('New list'), findsOneWidget);
-    await binding.takeScreenshot('home_light');
+    // Boş-durum CTA + FAB: iki 'New list' beklenir (PB-036).
+    expect(find.text('New list'), findsNWidgets(2));
+    try { await binding.takeScreenshot('home_light'); } catch (_) {}
 
     // 2) Ayarlar → tema Koyu → MaterialApp.themeMode anında değişir.
     await tester.tap(find.text('Settings'));
@@ -78,12 +97,12 @@ void main() {
     // Aynı anahtar kalıcıda da: repo okuması aynı değeri görür.
     expect(
         SettingsRepository(db, NappSettingsStoreOps(store)).themeMode, 'dark');
-    await binding.takeScreenshot('settings_dark');
+    try { await binding.takeScreenshot('settings_dark'); } catch (_) {}
 
     // 3) Ana ekrana dön: koyu temada çizim (kareler üretildi).
     await tester.tap(find.text('Home'));
     await settle(tester);
-    await binding.takeScreenshot('home_dark');
+    try { await binding.takeScreenshot('home_dark'); } catch (_) {}
 
     await disposeApp(tester);
   });
@@ -117,7 +136,7 @@ void main() {
 
     // Snackbar: hatırlatma kuruldu (OS tarafında dumpsys ile doğrulanır).
     expect(find.text('Reminder set.'), findsOneWidget);
-    await binding.takeScreenshot('reminder_set');
+    try { await binding.takeScreenshot('reminder_set'); } catch (_) {}
 
     await disposeApp(tester);
   });

@@ -24,6 +24,7 @@ import '../shopping_mode/shopping_repository.dart';
 import 'home_repository.dart';
 import '../../app/language_controller.dart';
 import '../../app/theme_mode_controller.dart';
+import '../lists/reminders/reminder_scheduler.dart';
 
 /// Alt navigasyonlu uygulama kabuğu (spec §9): Ana Sayfa, Listeler,
 /// Geçmiş, Ayarlar.
@@ -40,6 +41,7 @@ class HomeShell extends StatefulWidget {
     this.purchaseRepository,
     this.bannerController,
     this.giftFlow,
+    this.reminderScheduler,
   });
 
   final AppDatabase db;
@@ -67,6 +69,9 @@ class HomeShell extends StatefulWidget {
   /// Ödüllü reklam hediye düğmesi (Ayarlar üst çubuğu).
   final Widget? giftFlow;
 
+  /// Test dikişi: hatırlatma zamanlayıcısı (ListDetailScreen'e geçer).
+  final ReminderScheduler? reminderScheduler;
+
   @override
   State<HomeShell> createState() => _HomeShellState();
 }
@@ -84,7 +89,10 @@ class _HomeShellState extends State<HomeShell> {
         onOpenList: (list) => _openShopping(context, list.id),
         onNewList: () => setState(() => _tab = 1),
       ),
-      ListsScreen(repository: widget.listRepository),
+      ListsScreen(
+        repository: widget.listRepository,
+        reminderScheduler: widget.reminderScheduler,
+      ),
       HistoryPlaceholder(db: widget.db),
       // Keşfet (standart §3.6): diğer Crazy Penguin uygulamaları;
       // kimlik yoksa yer tutucu (testler).

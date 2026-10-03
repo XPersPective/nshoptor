@@ -41,7 +41,7 @@ class ReceiptParser {
   static final RegExp _taxNoPattern = RegExp(r'\b\d{10,11}\b');
 
   ReceiptParseResult parse(OcrScanResult scan) {
-    final lines = _mergeWrappedLines(scan.lines);
+    final lines = _mergeWrappedLines(_reconstructRows(scan.lines));
 
     final storeCandidates = <String>[];
     DateTime? dateCandidate;
@@ -143,6 +143,48 @@ class ReceiptParser {
   /// Çok satıra taşan ürün adlarının birleştirilmesi (spec §6.9):
   /// fiyat-satırı öncesindeki ardışık yapısal-olmayan ad satırları tek
   /// ürün satırına katılır (konum+devamlılık kuralı).
+  /// ML Kit geniş boşlukları kolon sanıp ad/fiyatı ayrı satırlara bölebilir
+  /// ve okuma sırası görsel satır sırası olmayabilir (emülatör kanıtı
+  /// 2026-10-04: adlar önce, fiyatlar sonra geldi). Konum verisi tamsa
+  /// satırlar görsel satırlara yeniden kurulur: aynı top (±8px) tek satır,
+  /// soldan sağa birleştirilir. Metin fixture'larında konum yoktur —
+  /// verilen sıra korunur (PB-040).
+  List<OcrLine> _reconstructRows(List<OcrLine> lines) {
+    if (lines.length < 2) return lines;
+    if (lines.any((l) => l.boundingBoxTop == null)) return lines;
+    final sorted = [...lines]..sort((a, b) {
+        final t = a.boundingBoxTop!.compareTo(b.boundingBoxTop!);
+        if (t != 0) return t;
+        return (a.boundingBoxLeft ?? 0).compareTo(b.boundingBoxLeft ?? 0);
+      });
+    final rows = <OcrLine>[];
+    var rowTop = sorted.first.boundingBoxTop!;
+    var rowLines = <OcrLine>[];
+    void flush() {
+      if (rowLines.isEmpty) return;
+      rowLines.sort((a, b) =>
+          (a.boundingBoxLeft ?? 0).compareTo(b.boundingBoxLeft ?? 0));
+      rows.add(OcrLine(
+        text: rowLines.map((l) => l.text).join(' '),
+        boundingBoxTop: rowTop,
+        boundingBoxLeft: rowLines.first.boundingBoxLeft,
+      ));
+      rowLines = [];
+    }
+
+    for (final line in sorted) {
+      if ((line.boundingBoxTop! - rowTop).abs() <= 8) {
+        rowLines.add(line);
+      } else {
+        flush();
+        rowTop = line.boundingBoxTop!;
+        rowLines.add(line);
+      }
+    }
+    flush();
+    return rows;
+  }
+
   List<OcrLine> _mergeWrappedLines(List<OcrLine> lines) {
     final priceOnly = RegExp(r'^\d+[.,]\d{2}$');
     final merged = <OcrLine>[];

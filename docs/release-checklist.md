@@ -60,8 +60,10 @@ flutter build ipa
 - [x] Gizlilik politikası taslağı + Play Veri güvenliği taslağı
       (docs/store/; yayın Crazy Penguin'de)
 - [x] Hatırlatma bildirimi: alarm düğmesi → izin → tarih/saat →
-      bildirim düştü (emülatör kanıtı 2026-10-03: dumpsys
-      channel=nshoptor_reminders + NotificationRecord; izin red →
-      açıklayıcı snackbar). Kalan: gerçek cihazda tek kontrol.
+      bildirim düştü (emülatör: dumpsys + panel görüntüsü); ARKA PLAN
+      düştü; REBOOT sonrası düştü (alarm AlarmManager'da korundu,
+      alıcı süreç başlattı — 2026-10-04). İzin red → açıklayıcı
+      snackbar. Not: kullanıcı "Durdurmaya zorlarsa" bildirim gelmez
+      (Android stopped-state; platform davranışı).
       (OS adaptörü: `LocalNotificationsScheduler`; geçmiş-zaman +30 sn
       kıskacı; tam alarm izni yoksa inexact kip)

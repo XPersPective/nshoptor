@@ -8,6 +8,7 @@ import '../core/l10n/generated/app_localizations.dart';
 import '../core/theme/app_theme.dart';
 import '../data/db/app_database.dart';
 import '../features/home/home_screen.dart';
+import '../features/lists/reminders/reminder_scheduler.dart';
 import '../features/lists/list_repository.dart';
 import '../features/settings/settings_repository.dart';
 import 'language_controller.dart';
@@ -35,6 +36,7 @@ class NShoptorApp extends StatelessWidget {
     this.purchaseRepository,
     this.bannerController,
     this.giftFlow,
+    this.reminderScheduler,
   })  : languageController = languageController ?? LanguageController();
 
   final Locale? fixedLocale;
@@ -63,6 +65,9 @@ class NShoptorApp extends StatelessWidget {
 
   /// Ödüllü reklam → 24 saat Pro akışı (Ayarlar üst çubuğu).
   final Widget? giftFlow;
+
+  /// Test dikişi: hatırlatma zamanlayıcısı; null = üretim adaptörü.
+  final ReminderScheduler? reminderScheduler;
 
   /// Desteklenen diller; yeni dil yalnız yeni ARB dosyasıyla eklenir.
   static const List<Locale> supportedLocales = [Locale('tr'), Locale('en')];
@@ -115,6 +120,7 @@ class NShoptorApp extends StatelessWidget {
           purchaseRepository: purchaseRepository,
           bannerController: bannerController,
           giftFlow: giftFlow,
+          reminderScheduler: reminderScheduler,
         ),
         );
       },
@@ -134,6 +140,7 @@ class _Home extends StatelessWidget {
     this.purchaseRepository,
     this.bannerController,
     this.giftFlow,
+    this.reminderScheduler,
   });
 
   final AppDatabase db;
@@ -146,6 +153,7 @@ class _Home extends StatelessWidget {
   final PurchaseRepository? purchaseRepository;
   final BannerAdController? bannerController;
   final Widget? giftFlow;
+  final ReminderScheduler? reminderScheduler;
 
   @override
   Widget build(BuildContext context) {
@@ -160,6 +168,7 @@ class _Home extends StatelessWidget {
       purchaseRepository: purchaseRepository,
       bannerController: bannerController,
       giftFlow: giftFlow,
+      reminderScheduler: reminderScheduler,
     );
   }
 }
