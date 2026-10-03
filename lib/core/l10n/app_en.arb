@@ -269,5 +269,6 @@
   "navDiscover": "Discover",
   "shareAction": "Share the app",
   "rateAction": "Rate us",
-  "aboutOpenRow": "About & open source"
+  "aboutOpenRow": "About & open source",
+  "voiceAddItemAction": "Add by voice"
 }

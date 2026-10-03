@@ -277,6 +277,14 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                                             .onSurfaceVariant,
                                       ),
                                 ),
+                                const SizedBox(height: 12),
+                                OutlinedButton.icon(
+                                  key: const Key('detail_voice_add_button'),
+                                  onPressed: () =>
+                                      _openItemFormWithVoice(context),
+                                  icon: const Icon(Icons.mic_none),
+                                  label: Text(l10n.voiceAddItemAction),
+                                ),
                               ],
                             ),
                           )
@@ -378,6 +386,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
         builder: (_) => ShoppingModeScreen(
           repository: ShoppingRepository(widget.db),
           listId: widget.listId,
+          onVoicePressed: _voiceCandidate,
         ),
       ),
     );
@@ -390,13 +399,15 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
         builder: (_) => ShoppingModeScreen(
           repository: ShoppingRepository(widget.db),
           listId: widget.listId,
+          onVoicePressed: _voiceCandidate,
         ),
       ),
     );
     _refresh();
   }
 
-  Future<void> _openItemForm(BuildContext context) async {
+  Future<void> _openItemForm(BuildContext context,
+      {ParsedItemCandidate? prefill}) async {
     await StarterCategories().seedIfEmpty(widget.db);
     if (!context.mounted) return;
     await showModalBottomSheet<void>(
@@ -406,11 +417,23 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
         db: widget.db,
         starterCategories: StarterCategories(),
         listId: widget.listId,
+        initialName: prefill?.name,
+        initialQuantity: prefill?.quantity?.toDbString(),
+        initialUnitCode: prefill?.unitCode,
+        initialUnitPrice: prefill?.unitPrice?.toDbString(),
         onVoicePressed: _voiceCandidate,
         onShelfPricePressed: _shelfPrice,
       ),
     );
     _refresh();
+  }
+
+  /// Boş durumun "Sesle ekle" kısayolu (PB-039): doğrulama önizlemesi →
+  /// doldurulmuş ürün formu (C-003: onaysız kayıt yok).
+  Future<void> _openItemFormWithVoice(BuildContext context) async {
+    final candidate = await _voiceCandidate(context);
+    if (candidate == null || !context.mounted) return;
+    await _openItemForm(context, prefill: candidate);
   }
 
   Future<String?> _pickImage() async {

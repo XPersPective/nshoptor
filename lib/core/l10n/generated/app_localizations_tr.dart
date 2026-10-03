@@ -754,4 +754,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get aboutOpenRow => 'Hakkında ve açık kaynak';
+
+  @override
+  String get voiceAddItemAction => 'Sesle ekle';
 }

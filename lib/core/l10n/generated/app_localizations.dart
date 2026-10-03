@@ -1531,6 +1531,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'About & open source'**
   String get aboutOpenRow;
+
+  /// No description provided for @voiceAddItemAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add by voice'**
+  String get voiceAddItemAction;
 }
 
 class _AppLocalizationsDelegate

@@ -8,6 +8,7 @@ import '../../core/money/money.dart';
 import '../../core/money/money_parser.dart';
 import '../../core/quantity/unit_code.dart';
 import '../../data/db/app_database.dart';
+import '../voice_input/parser/parsed_item_candidate.dart';
 import 'item_status.dart';
 import 'shopping_repository.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -16,10 +17,15 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 /// çipleri + ürün satırları. Tek elle kullanım için büyük dokunma
 /// hedefleri; her ürün dokunuşunda gerçek fiyat girişi açılır.
 class ShoppingModeScreen extends StatefulWidget {
-  const ShoppingModeScreen({super.key, required this.repository, required this.listId});
+  const ShoppingModeScreen({super.key, required this.repository, required this.listId, this.onVoicePressed});
 
   final ShoppingRepository repository;
   final int listId;
+
+  /// Sesle plansız ürün ekleme (PB-039): doğrulama önizlemesi → doldurulmuş
+  /// hızlı giriş. Verilmezse mikrofon düğmesi görünmez.
+  final Future<ParsedItemCandidate?> Function(BuildContext context)?
+      onVoicePressed;
 
   @override
   State<ShoppingModeScreen> createState() => _ShoppingModeScreenState();
@@ -62,6 +68,13 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
       appBar: AppBar(
         title: Text(l10n.shoppingTitle),
         actions: [
+          if (widget.onVoicePressed != null)
+            IconButton(
+              key: const Key('shopping_voice_button'),
+              tooltip: l10n.voiceStartListening,
+              onPressed: () => _openVoiceEntry(context),
+              icon: const Icon(Icons.mic_none),
+            ),
           IconButton(
             key: const Key('keep_awake_toggle'),
             tooltip: l10n.keepScreenAwake,
@@ -168,6 +181,24 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
         repository: widget.repository,
         list: list,
         item: null,
+      ),
+    );
+  }
+
+  /// Sesle plansız ürün: önizleme → doldurulmuş hızlı giriş (C-003).
+  Future<void> _openVoiceEntry(BuildContext context) async {
+    final candidate = await widget.onVoicePressed!(context);
+    if (candidate == null || !context.mounted) return;
+    final list = await widget.repository.getList(widget.listId);
+    if (!context.mounted) return;
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => _PurchaseEntrySheet(
+        repository: widget.repository,
+        list: list,
+        item: null,
+        initialCandidate: candidate,
       ),
     );
   }
@@ -332,19 +363,24 @@ class _PurchaseEntrySheet extends StatefulWidget {
     required this.repository,
     required this.list,
     required this.item,
+    this.initialCandidate,
   });
 
   final ShoppingRepository repository;
   final ShoppingList list;
   final PlannedItem? item;
 
+  /// Sesle girişte öndoldurulan aday (ad/miktar/birim fiyat).
+  final ParsedItemCandidate? initialCandidate;
+
   @override
   State<_PurchaseEntrySheet> createState() => _PurchaseEntrySheetState();
 }
 
 class _PurchaseEntrySheetState extends State<_PurchaseEntrySheet> {
-  late final TextEditingController _name =
-      TextEditingController(text: widget.item?.name ?? '');
+  late final TextEditingController _name = TextEditingController(
+    text: widget.item?.name ?? widget.initialCandidate?.name ?? '',
+  );
   final TextEditingController _quantity = TextEditingController();
   final TextEditingController _price = TextEditingController();
   bool _quantityPrefilled = false;
@@ -374,8 +410,15 @@ class _PurchaseEntrySheetState extends State<_PurchaseEntrySheet> {
               Localizations.localeOf(context).languageCode)
           .decimal;
       // Planlı miktarda kullanıcıya yerel ayracıyla önerilir (1.5 → 1,5).
-      _quantity.text = (widget.item?.plannedQuantity ?? '1')
-          .replaceAll('.', decimalSep);
+      final planned = widget.item?.plannedQuantity ??
+          widget.initialCandidate?.quantity?.toDbString() ??
+          '1';
+      _quantity.text = planned.replaceAll('.', decimalSep);
+      final voiced = widget.initialCandidate;
+      if (voiced?.unitPrice != null) {
+        _price.text = voiced!.unitPrice!.toDbString().replaceAll(
+            '.', decimalSep);
+      }
     }
   }
 

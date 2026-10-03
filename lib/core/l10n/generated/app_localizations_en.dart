@@ -756,4 +756,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutOpenRow => 'About & open source';
+
+  @override
+  String get voiceAddItemAction => 'Add by voice';
 }
