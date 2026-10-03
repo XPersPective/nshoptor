@@ -30,6 +30,7 @@ class NShoptorApp extends StatelessWidget {
     this.themeModeController,
     this.themeMode = ThemeMode.system,
     this.appIdentity,
+    this.nappTranslations,
     this.proController,
     this.purchaseRepository,
     this.bannerController,
@@ -49,6 +50,9 @@ class NShoptorApp extends StatelessWidget {
 
   /// napp ortak yüzeyi (Hakkında/Keşfet/paywall kimliği); opsiyonel.
   final AppIdentity? appIdentity;
+
+  /// napp sayfalarının sözlüğü (main'de yüklenir); opsiyonel.
+  final NappTranslations? nappTranslations;
 
   /// Pro durumu; null = Pro (test dikişi, standart §3.8 kilidi açılır).
   final ProController? proController;
@@ -90,8 +94,10 @@ class NShoptorApp extends StatelessWidget {
           darkTheme: AppTheme.dark(),
           themeMode:
               themeModeController?.mode ?? themeMode,
-          localizationsDelegates: const [
+          localizationsDelegates: [
             AppLocalizations.delegate,
+            if (nappTranslations case final nappT?)
+              NappLocalizationsDelegate(nappT),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,

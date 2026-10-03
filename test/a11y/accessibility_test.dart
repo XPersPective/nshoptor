@@ -21,9 +21,10 @@ void main() {
       ));
       await tester.pumpAndSettle();
 
-      // Alt navigasyon 4 hedef gösterir; ikon butonlarda tooltip vardır.
+      // Alt navigasyon 5 hedef gösterir (Keşfet dahil, standart §3.6);
+      // ikon butonlarda tooltip vardır.
       final navBar = tester.widget<NavigationBar>(find.byType(NavigationBar));
-      expect(navBar.destinations.length, 4);
+      expect(navBar.destinations.length, 5);
       final newList = find.byKey(const Key('home_new_list_button'));
       expect(newList, findsOneWidget);
 

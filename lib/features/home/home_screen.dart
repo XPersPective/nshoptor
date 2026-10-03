@@ -85,6 +85,16 @@ class _HomeShellState extends State<HomeShell> {
       ),
       ListsScreen(repository: widget.listRepository),
       HistoryPlaceholder(db: widget.db),
+      // Keşfet (standart §3.6): diğer Crazy Penguin uygulamaları;
+      // kimlik yoksa yer tutucu (testler).
+      widget.appIdentity?.otherAppsUrl == null
+          ? const _DiscoverPlaceholder()
+          : OtherAppsPage(
+              identity: widget.appIdentity!,
+              repository: OtherAppsRepository(
+                appsUrl: widget.appIdentity!.otherAppsUrl!,
+              ),
+            ),
       widget.settingsRepository == null || widget.languageController == null
           ? const SettingsPlaceholder()
           : SettingsScreen(
@@ -118,16 +128,21 @@ class _HomeShellState extends State<HomeShell> {
                 selectedIcon: const Icon(Icons.list),
                 label: l10n.navLists,
               ),
-              NavigationDestination(
-                icon: const Icon(Icons.history_outlined),
-                selectedIcon: const Icon(Icons.history),
-                label: l10n.navHistory,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.settings_outlined),
-                selectedIcon: const Icon(Icons.settings),
-                label: l10n.navSettings,
-              ),
+          NavigationDestination(
+            icon: const Icon(Icons.history_outlined),
+            selectedIcon: const Icon(Icons.history),
+            label: l10n.navHistory,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.explore_outlined),
+            selectedIcon: const Icon(Icons.explore),
+            label: l10n.navDiscover,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: l10n.navSettings,
+          ),
             ],
           ),
           if (widget.bannerController != null)
@@ -551,5 +566,15 @@ class SettingsPlaceholder extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/// Keşfet yer tutucusu (yalnız test ortamı: kimlik verilmediğinde).
+class _DiscoverPlaceholder extends StatelessWidget {
+  const _DiscoverPlaceholder();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Icon(Icons.explore_outlined));
   }
 }

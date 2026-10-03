@@ -528,9 +528,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get aboutSection => 'Hakkında';
 
   @override
-  String get aboutVersion => 'Sürüm 0.1.0 (Aşama 4)';
-
-  @override
   String get aboutPublisher => 'Yayınlayıcı: Crazy Penguin';
 
   @override
@@ -740,4 +737,21 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get proBenefitBackup => 'Yedekleme (dışa/içe aktarma)';
+
+  @override
+  String aboutVersion(Object version) {
+    return 'Sürüm $version';
+  }
+
+  @override
+  String get navDiscover => 'Keşfet';
+
+  @override
+  String get shareAction => 'Uygulamayı paylaş';
+
+  @override
+  String get rateAction => 'Puan ver';
+
+  @override
+  String get aboutOpenRow => 'Hakkında ve açık kaynak';
 }

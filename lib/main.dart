@@ -27,6 +27,11 @@ Future<void> main() async {
   final languageController = LanguageController(store: store)..load();
   final themeController = AppThemeModeController(store: store)..load();
   final identity = EnvConfig.identity;
+  // napp ortak sayfaları (Hakkında/Keşfet/paywall) kendi sözlüğünü kullanır;
+  // uygulama dizgeleri ARB'de kalır (ADR-003) — iki sistem yan yana.
+  final nappTranslations = await ProLocalization.load(
+    base: await NappTranslations.loadCore(),
+  );
 
   // Pro (standart §5.1): durum önce cihazdan; dinleme satın alma/geri
   // yükleme olaylarını uygular.
@@ -73,6 +78,7 @@ Future<void> main() async {
     languageController: languageController,
     themeModeController: themeController,
     appIdentity: identity,
+    nappTranslations: nappTranslations,
     proController: proController,
     purchaseRepository: purchaseRepository,
     bannerController: bannerController,

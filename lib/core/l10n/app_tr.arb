@@ -188,7 +188,6 @@
   "privacyInfoLabel": "Gizlilik",
   "privacyInfoBody": "NShoptor çevrimdışı çalışır. Fişler ve fotoğraflar varsayılan olarak cihazında kalır; internette saklanmaz.",
   "aboutSection": "Hakkında",
-  "aboutVersion": "Sürüm 0.1.0 (Aşama 4)",
   "aboutPublisher": "Yayınlayıcı: Crazy Penguin",
   "aboutLicenses": "Lisans: MIT",
   "voiceSettingsLabel": "Sesli giriş",
@@ -255,5 +254,10 @@
   "proBuyLabel": "NShoptor Pro",
   "proBenefitsLine": "Reklamsız kullanım + yedekleme · tek ödeme, abonelik yok",
   "proBenefitNoAds": "Reklamsız kullanım",
-  "proBenefitBackup": "Yedekleme (dışa/içe aktarma)"
+  "proBenefitBackup": "Yedekleme (dışa/içe aktarma)",
+  "aboutVersion": "Sürüm {version}",
+  "navDiscover": "Keşfet",
+  "shareAction": "Uygulamayı paylaş",
+  "rateAction": "Puan ver",
+  "aboutOpenRow": "Hakkında ve açık kaynak"
 }

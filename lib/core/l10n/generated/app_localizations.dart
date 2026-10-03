@@ -1100,12 +1100,6 @@ abstract class AppLocalizations {
   /// **'About'**
   String get aboutSection;
 
-  /// No description provided for @aboutVersion.
-  ///
-  /// In en, this message translates to:
-  /// **'Version 0.1.0 (Aşama 4)'**
-  String get aboutVersion;
-
   /// No description provided for @aboutPublisher.
   ///
   /// In en, this message translates to:
@@ -1507,6 +1501,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Backup (export/import)'**
   String get proBenefitBackup;
+
+  /// No description provided for @aboutVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}'**
+  String aboutVersion(Object version);
+
+  /// No description provided for @navDiscover.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover'**
+  String get navDiscover;
+
+  /// No description provided for @shareAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the app'**
+  String get shareAction;
+
+  /// No description provided for @rateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate us'**
+  String get rateAction;
+
+  /// No description provided for @aboutOpenRow.
+  ///
+  /// In en, this message translates to:
+  /// **'About & open source'**
+  String get aboutOpenRow;
 }
 
 class _AppLocalizationsDelegate

@@ -198,7 +198,6 @@
   "privacyInfoLabel": "Privacy",
   "privacyInfoBody": "NShoptor runs offline-first. Receipts and photos stay on your device by default and are never sent to the internet.",
   "aboutSection": "About",
-  "aboutVersion": "Version 0.1.0 (Aşama 4)",
   "aboutPublisher": "Publisher: Crazy Penguin",
   "aboutLicenses": "License: MIT",
   "voiceSettingsLabel": "Voice input",
@@ -265,5 +264,10 @@
   "proBuyLabel": "NShoptor Pro",
   "proBenefitsLine": "Ad-free + backup · one-time payment, no subscription",
   "proBenefitNoAds": "Ad-free experience",
-  "proBenefitBackup": "Backup (export/import)"
+  "proBenefitBackup": "Backup (export/import)",
+  "aboutVersion": "Version {version}",
+  "navDiscover": "Discover",
+  "shareAction": "Share the app",
+  "rateAction": "Rate us",
+  "aboutOpenRow": "About & open source"
 }

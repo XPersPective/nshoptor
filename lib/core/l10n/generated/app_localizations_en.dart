@@ -529,9 +529,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutSection => 'About';
 
   @override
-  String get aboutVersion => 'Version 0.1.0 (Aşama 4)';
-
-  @override
   String get aboutPublisher => 'Publisher: Crazy Penguin';
 
   @override
@@ -742,4 +739,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get proBenefitBackup => 'Backup (export/import)';
+
+  @override
+  String aboutVersion(Object version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get navDiscover => 'Discover';
+
+  @override
+  String get shareAction => 'Share the app';
+
+  @override
+  String get rateAction => 'Rate us';
+
+  @override
+  String get aboutOpenRow => 'About & open source';
 }

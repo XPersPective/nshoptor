@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
 
+import '../../../../core/app_version.dart';
 import '../../../../core/l10n/generated/app_localizations.dart';
 import '../../../../core/money/currency.dart';
 import '../../../../core/quantity/unit_code.dart';
@@ -235,11 +236,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             _SectionTitle(icon: Icons.info_outline, label: l10n.aboutSection),
+            // Sürüm dizesi jargonsuz (C-035): "Sürüm 1.0.0".
             ListTile(
-              title: Text(l10n.aboutVersion),
+              title: Text(l10n.aboutVersion(appVersion)),
               subtitle: Text(l10n.aboutPublisher),
             ),
-            ListTile(title: Text(l10n.aboutLicenses)),
+            if (widget.appIdentity != null) ...[
+              ListTile(
+                key: const Key('settings_about_row'),
+                leading: const Icon(Icons.code_outlined),
+                title: Text(l10n.aboutOpenRow),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => AboutPage(
+                      identity: widget.appIdentity!,
+                      version: appVersion,
+                    ),
+                  ),
+                ),
+              ),
+              ListTile(
+                key: const Key('settings_licenses_row'),
+                leading: const Icon(Icons.description_outlined),
+                title: Text(l10n.aboutLicenses),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => LicensesPage(identity: widget.appIdentity!),
+                  ),
+                ),
+              ),
+              ListTile(
+                key: const Key('settings_share_row'),
+                leading: const Icon(Icons.share_outlined),
+                title: Text(l10n.shareAction),
+                onTap: () => ShareService().shareApp(
+                  widget.appIdentity!,
+                  message: l10n.shareAction,
+                  isIos: false, // Android öncelikli (C-033); iOS ertelendi
+                ),
+              ),
+              ListTile(
+                key: const Key('settings_rate_row'),
+                leading: const Icon(Icons.star_outline),
+                title: Text(l10n.rateAction),
+                onTap: () => ReviewService()
+                    .openRatePage(widget.appIdentity!, isIos: false),
+              ),
+            ] else
+              ListTile(title: Text(l10n.aboutLicenses)),
 
             _SectionTitle(
                 icon: Icons.mic_none, label: l10n.voiceSettingsLabel),
