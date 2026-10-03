@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:napp_ads/napp_ads.dart';
+import 'package:napp_core/napp_core.dart' hide AppTheme;
+import 'package:napp_pro/napp_pro.dart';
 
 import '../core/l10n/generated/app_localizations.dart';
 import '../core/theme/app_theme.dart';
@@ -15,7 +18,8 @@ import 'theme_mode_controller.dart';
 /// [fixedLocale] yalnız testlerde kullanılır; null iken dil tercihi
 /// [LanguageController]'dan gelir (`system` → MaterialApp sistem dili).
 /// [themeModeController] Ayarlar'daki tema tercihini canlı uygular;
-/// verilmezse [themeMode] kullanılır.
+/// verilmezse [themeMode] kullanılır. Reklam/Pro bileşenleri opsiyoneldir:
+/// verilmezse banner yoktur ve yedekleme kilidi açık olur (test dikişi).
 class NShoptorApp extends StatelessWidget {
   NShoptorApp({
     super.key,
@@ -25,6 +29,11 @@ class NShoptorApp extends StatelessWidget {
     LanguageController? languageController,
     this.themeModeController,
     this.themeMode = ThemeMode.system,
+    this.appIdentity,
+    this.proController,
+    this.purchaseRepository,
+    this.bannerController,
+    this.giftFlow,
   })  : languageController = languageController ?? LanguageController();
 
   final Locale? fixedLocale;
@@ -37,6 +46,19 @@ class NShoptorApp extends StatelessWidget {
 
   /// Ayarlar ekranı ihtiyacı: dil/tema/birimler; testlerde in-memory fake.
   final SettingsRepository? settingsRepository;
+
+  /// napp ortak yüzeyi (Hakkında/Keşfet/paywall kimliği); opsiyonel.
+  final AppIdentity? appIdentity;
+
+  /// Pro durumu; null = Pro (test dikişi, standart §3.8 kilidi açılır).
+  final ProController? proController;
+  final PurchaseRepository? purchaseRepository;
+
+  /// Bottom bar altındaki banner (standart §5.2); null = banner yok.
+  final BannerAdController? bannerController;
+
+  /// Ödüllü reklam → 24 saat Pro akışı (Ayarlar üst çubuğu).
+  final Widget? giftFlow;
 
   /// Desteklenen diller; yeni dil yalnız yeni ARB dosyasıyla eklenir.
   static const List<Locale> supportedLocales = [Locale('tr'), Locale('en')];
@@ -82,6 +104,11 @@ class NShoptorApp extends StatelessWidget {
               SettingsRepository(db, _InMemorySettingsOps()),
           languageController: languageController,
           themeModeController: themeModeController,
+          appIdentity: appIdentity,
+          proController: proController,
+          purchaseRepository: purchaseRepository,
+          bannerController: bannerController,
+          giftFlow: giftFlow,
         ),
         );
       },
@@ -96,6 +123,11 @@ class _Home extends StatelessWidget {
     required this.languageController,
     this.settingsRepository,
     this.themeModeController,
+    this.appIdentity,
+    this.proController,
+    this.purchaseRepository,
+    this.bannerController,
+    this.giftFlow,
   });
 
   final AppDatabase db;
@@ -103,6 +135,11 @@ class _Home extends StatelessWidget {
   final LanguageController languageController;
   final AppThemeModeController? themeModeController;
   final SettingsRepository? settingsRepository;
+  final AppIdentity? appIdentity;
+  final ProController? proController;
+  final PurchaseRepository? purchaseRepository;
+  final BannerAdController? bannerController;
+  final Widget? giftFlow;
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +149,11 @@ class _Home extends StatelessWidget {
       settingsRepository: settingsRepository,
       languageController: languageController,
       themeModeController: themeModeController,
+      appIdentity: appIdentity,
+      proController: proController,
+      purchaseRepository: purchaseRepository,
+      bannerController: bannerController,
+      giftFlow: giftFlow,
     );
   }
 }

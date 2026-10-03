@@ -40,6 +40,11 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- AdMob uygulama kimliği (STANDARD §1.2.1): değeri build.gradle
+             key.properties'ten okur; repoda yalnızca test kimliği görünür. -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="${admobAppId}" />
         <!-- flutter_local_notifications: planlı hatırlatmalar ve yeniden başlatma
              sonrası yeniden planlama. -->
         <receiver

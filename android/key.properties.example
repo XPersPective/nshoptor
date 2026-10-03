@@ -1,4 +1,8 @@
-storeFile=XXXX.jks
+# Gerçek dosya android/key.properties — GITIGNORE'DADIR, repoya girmez.
+# Yalnızca yer tutucu değerler; gerçek kimlikler Crazy Penguin'de tutulur.
+storeFile=XXXX
 storePassword=XXXX
 keyAlias=XXXX
 keyPassword=XXXX
+# AdMob uygulama kimliği (STANDARD 1.2.1); yoksa Google test kimliği derlenir.
+admobAppId=ca-app-pub-XXXX~XXXX

@@ -37,7 +37,17 @@ dependencies:
     git:
       url: https://github.com/XPersPective/napp_kit.git
       path: packages/napp_core
-      ref: core-v1.0.0
+      ref: core-v1.0.1
+  napp_pro:
+    git:
+      url: https://github.com/XPersPective/napp_kit.git
+      path: packages/napp_pro
+      ref: pro-v1.0.0
+  napp_ads:
+    git:
+      url: https://github.com/XPersPective/napp_kit.git
+      path: packages/napp_ads
+      ref: ads-v1.0.0
   flutter_localizations:
     sdk: flutter
   # The following adds the Cupertino Icons font to your application.
@@ -111,3 +121,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# napp_pro/napp_ads (git) pub.dev'de yayımlanmamış napp_core ^0.0.1 istiyor;
+# tek çözünürlük kaynağı olarak git core tag'i dayatılır (kit monorepo dışı
+# kullanım — ORTAK_UYGULAMA_STANDARDI §1.2 paket disipliniyle uyumlu).
+dependency_overrides:
+  napp_core:
+    git:
+      url: https://github.com/XPersPective/napp_kit.git
+      path: packages/napp_core
+      ref: core-v1.0.1

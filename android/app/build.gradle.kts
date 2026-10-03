@@ -37,6 +37,12 @@ android {
         // flag during build.
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        // AdMob uygulama kimliği manifest'e buradan girer (STANDARD §1.2.1):
+        // key.properties'te admobAppId yoksa Google'ın resmi TEST kimliği.
+        val admobAppId = keystoreProperties.getProperty("admobAppId")
+            ?: "ca-app-pub-3940256099942544~3347511713"
+        manifestPlaceholders["admobAppId"] = admobAppId
     }
 
     signingConfigs {

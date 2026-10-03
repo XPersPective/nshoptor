@@ -726,4 +726,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String plannedTotalSummary(Object count, Object total) {
     return 'Planned: $total · $count items';
   }
+
+  @override
+  String get proActiveLabel => 'Pro active — thank you!';
+
+  @override
+  String get proBuyLabel => 'NShoptor Pro';
+
+  @override
+  String get proBenefitsLine =>
+      'Ad-free + backup · one-time payment, no subscription';
+
+  @override
+  String get proBenefitNoAds => 'Ad-free experience';
+
+  @override
+  String get proBenefitBackup => 'Backup (export/import)';
 }

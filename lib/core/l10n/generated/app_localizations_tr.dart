@@ -724,4 +724,20 @@ class AppLocalizationsTr extends AppLocalizations {
   String plannedTotalSummary(Object count, Object total) {
     return 'Planlanan: $total · $count ürün';
   }
+
+  @override
+  String get proActiveLabel => 'Pro etkin — teşekkürler!';
+
+  @override
+  String get proBuyLabel => 'NShoptor Pro';
+
+  @override
+  String get proBenefitsLine =>
+      'Reklamsız kullanım + yedekleme · tek ödeme, abonelik yok';
+
+  @override
+  String get proBenefitNoAds => 'Reklamsız kullanım';
+
+  @override
+  String get proBenefitBackup => 'Yedekleme (dışa/içe aktarma)';
 }

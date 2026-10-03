@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:napp_core/napp_core.dart';
+import 'package:napp_pro/napp_pro.dart';
 
 import '../../../../core/l10n/generated/app_localizations.dart';
 import '../../../../core/money/currency.dart';
@@ -11,12 +13,19 @@ import 'settings_repository.dart';
 /// Ayarlar ekranı (spec §6.15): dil, tema, varsayılanlar, yedekleme,
 /// silme, gizlilik ve hakkında bölümleri. "Double onay" silme akışı
 /// (spec §12: ikinci onay + kapsam açıklaması).
+///
+/// Yedekleme dışa/içe aktarma Pro'ya özeldir (standart §3.8):
+/// [proController] verilmezse Pro sayılır (test dikişi).
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
     super.key,
     required this.repository,
     required this.languageController,
     this.themeModeController,
+    this.proController,
+    this.purchaseRepository,
+    this.appIdentity,
+    this.giftFlow,
   });
 
   final SettingsRepository repository;
@@ -25,12 +34,42 @@ class SettingsScreen extends StatefulWidget {
   /// Tema tercihi değişince MaterialApp'e canlı uygulanır.
   final AppThemeModeController? themeModeController;
 
+  /// Pro durumu; null = Pro (testler). Pro değilken yedek satırları
+  /// kilitlidir ve paywall açılır.
+  final ProController? proController;
+
+  /// Paywall için satın alma deposu; null ise yalnız durum gösterilir.
+  final PurchaseRepository? purchaseRepository;
+
+  /// Paywall başlığı/marka için kimlik (napp_core).
+  final AppIdentity? appIdentity;
+
+  /// Verilirse üst çubukta ödüllü reklam hediye düğmesi (standart §5.2).
+  final Widget? giftFlow;
+
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
   SettingsRepository get _repo => widget.repository;
+
+  @override
+  void initState() {
+    super.initState();
+    // Pro durumu değişince (satın alma/ödüllü 24s) kilitler anında kalkar.
+    widget.proController?.addListener(_onProChanged);
+  }
+
+  @override
+  void dispose() {
+    widget.proController?.removeListener(_onProChanged);
+    super.dispose();
+  }
+
+  void _onProChanged() {
+    if (mounted) setState(() {});
+  }
 
   void _setThemeMode(String? v) {
     if (v == null) return;
@@ -44,7 +83,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.navSettings)),
+      appBar: AppBar(
+        title: Text(l10n.navSettings),
+        actions: [
+          if (widget.giftFlow != null) widget.giftFlow!,
+        ],
+      ),
       body: AnimatedBuilder(
         animation: widget.languageController,
         builder: (context, _) => ListView(
@@ -130,18 +174,46 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             _SectionTitle(
+                icon: Icons.workspace_premium_outlined,
+                label: 'NShoptor Pro'),
+            ListTile(
+              key: const Key('settings_pro_row'),
+              leading: const Icon(Icons.workspace_premium_outlined),
+              title: Text(_proUnlocked
+                  ? l10n.proActiveLabel
+                  : l10n.proBuyLabel),
+              subtitle: !_proUnlocked ? Text(l10n.proBenefitsLine) : null,
+              trailing: _proUnlocked
+                  ? const Icon(Icons.check_circle_outline)
+                  : const Icon(Icons.chevron_right),
+              onTap: () => _proUnlocked ? null : _openPaywall(context),
+            ),
+
+            _SectionTitle(
                 icon: Icons.backup_outlined, label: l10n.backupSection),
+            // Yedekleme Pro'ya özeldir (standart §3.8): Pro değilken
+            // kilit simgesi + dokunuş paywall açar.
             ListTile(
               key: const Key('export_backup_button'),
               leading: const Icon(Icons.upload_file),
               title: Text(l10n.exportBackupLabel),
-              onTap: () => _exportBackup(context),
+              trailing: _proUnlocked
+                  ? null
+                  : const Icon(Icons.lock_outline),
+              onTap: () => _proUnlocked
+                  ? _exportBackup(context)
+                  : _openPaywall(context),
             ),
             ListTile(
               key: const Key('import_backup_button'),
               leading: const Icon(Icons.download_outlined),
               title: Text(l10n.importBackupLabel),
-              onTap: () => _importBackup(context),
+              trailing: _proUnlocked
+                  ? null
+                  : const Icon(Icons.lock_outline),
+              onTap: () => _proUnlocked
+                  ? _importBackup(context)
+                  : _openPaywall(context),
             ),
 
             _SectionTitle(
@@ -188,6 +260,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
     widget.languageController.set(
       AppLocaleSetting.values.firstWhere((e) => e.name == value),
     );
+  }
+
+  bool get _proUnlocked => widget.proController?.isPro ?? true;
+
+  /// Paywall: Pro değilken kilitli özelliklerden buraya gelinir (standart
+  /// §5.1: dürüst faydalar, geri yükleme düğmesi).
+  Future<void> _openPaywall(BuildContext context) async {
+    final controller = widget.proController;
+    final repository = widget.purchaseRepository;
+    final identity = widget.appIdentity;
+    if (controller == null || repository == null || identity == null) {
+      return;
+    }
+    final l10n = AppLocalizations.of(context);
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => PaywallPage(
+          identity: identity,
+          controller: controller,
+          repository: repository,
+          benefits: [
+            l10n.proBenefitNoAds,
+            l10n.proBenefitBackup,
+          ],
+        ),
+      ),
+    );
+    if (mounted) setState(() {});
   }
 
   Future<void> _exportBackup(BuildContext context) async {

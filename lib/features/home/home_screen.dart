@@ -15,6 +15,10 @@ import '../settings/settings_screen.dart';
 import '../shopping_mode/shopping_mode_screen.dart';
 import '../lists/templates/template_repository.dart';
 import '../lists/list_detail_screen.dart';
+import 'package:napp_ads/napp_ads.dart';
+import 'package:napp_core/napp_core.dart';
+import 'package:napp_pro/napp_pro.dart';
+
 import '../shopping_mode/shopping_repository.dart';
 import 'home_repository.dart';
 import '../../app/language_controller.dart';
@@ -30,6 +34,11 @@ class HomeShell extends StatefulWidget {
     this.settingsRepository,
     this.languageController,
     this.themeModeController,
+    this.appIdentity,
+    this.proController,
+    this.purchaseRepository,
+    this.bannerController,
+    this.giftFlow,
   });
 
   final AppDatabase db;
@@ -43,6 +52,19 @@ class HomeShell extends StatefulWidget {
 
   /// Tema denetleyicisi; Ayarlar ekranına devredilir.
   final AppThemeModeController? themeModeController;
+
+  /// napp kimliği; Ayarlar/paywall'a devredilir.
+  final AppIdentity? appIdentity;
+
+  /// Pro durumu; null = Pro (test dikişi).
+  final ProController? proController;
+  final PurchaseRepository? purchaseRepository;
+
+  /// Bottom bar'IN altındaki banner (standart §5.2); null = banner yok.
+  final BannerAdController? bannerController;
+
+  /// Ödüllü reklam hediye düğmesi (Ayarlar üst çubuğu).
+  final Widget? giftFlow;
 
   @override
   State<HomeShell> createState() => _HomeShellState();
@@ -69,34 +91,47 @@ class _HomeShellState extends State<HomeShell> {
               repository: widget.settingsRepository!,
               languageController: widget.languageController!,
               themeModeController: widget.themeModeController,
+              appIdentity: widget.appIdentity,
+              proController: widget.proController,
+              purchaseRepository: widget.purchaseRepository,
+              giftFlow: widget.giftFlow,
             ),
     ];
     return Scaffold(
       body: IndexedStack(index: _tab, children: tabs),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _tab,
-        onDestinationSelected: (i) => setState(() => _tab = i),
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.home_outlined),
-            selectedIcon: const Icon(Icons.home),
-            label: l10n.navHome,
+      // Banner bottom bar'ın altındadır (kullanıcı talebi 2026-10-02);
+      // AdPolicy Pro'da hiç yüklemez, kalkınca boşluk kalmaz.
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          NavigationBar(
+            selectedIndex: _tab,
+            onDestinationSelected: (i) => setState(() => _tab = i),
+            destinations: [
+              NavigationDestination(
+                icon: const Icon(Icons.home_outlined),
+                selectedIcon: const Icon(Icons.home),
+                label: l10n.navHome,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.list_outlined),
+                selectedIcon: const Icon(Icons.list),
+                label: l10n.navLists,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.history_outlined),
+                selectedIcon: const Icon(Icons.history),
+                label: l10n.navHistory,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.settings_outlined),
+                selectedIcon: const Icon(Icons.settings),
+                label: l10n.navSettings,
+              ),
+            ],
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.list_outlined),
-            selectedIcon: const Icon(Icons.list),
-            label: l10n.navLists,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.history_outlined),
-            selectedIcon: const Icon(Icons.history),
-            label: l10n.navHistory,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.settings_outlined),
-            selectedIcon: const Icon(Icons.settings),
-            label: l10n.navSettings,
-          ),
+          if (widget.bannerController != null)
+            BannerAdWidget(controller: widget.bannerController!),
         ],
       ),
     );

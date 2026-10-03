@@ -2,11 +2,16 @@ import 'dart:io';
 
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
-import 'package:flutter/material.dart' show ThemeMode;
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:napp_core/napp_core.dart';
+import 'package:napp_pro/napp_pro.dart';
 
 import 'package:nshoptor/app/app_defaults.dart';
+import 'package:nshoptor/app/language_controller.dart';
+import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
+import 'package:nshoptor/features/settings/settings_screen.dart';
 import 'package:nshoptor/app/theme_mode_controller.dart';
 import 'package:nshoptor/core/money/currency.dart';
 import 'package:nshoptor/core/quantity/unit_code.dart';
@@ -148,6 +153,48 @@ void main() {
       expect(await db.select(db.plannedItems).get(), isEmpty);
     });
   });
+
+  testWidgets('yedekleme kilidi: Pro değilken kilitli, Pro ile açık (§3.8)',
+      (tester) async {
+    final store = SettingsStore();
+    final language = LanguageController(store: store)..load();
+    final pro = ProController(
+      store: store,
+      repository: PurchaseRepository(
+        adapter: InAppPurchaseAdapter(),
+        productId: 'nshoptor_pro_lifetime',
+      ),
+    )..load(); // startListening YOK: test ortamında mağaza kanalı yok.
+
+    // Uzun ayarlar listesinde ekran dışı satırlar inşa edilmez.
+    await tester.binding.setSurfaceSize(const Size(800, 1800));
+    await tester.pumpWidget(MaterialApp(
+      locale: const Locale('en'),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('tr'), Locale('en')],
+      home: SettingsScreen(
+        repository: settings,
+        languageController: language,
+        proController: pro,
+      ),
+    ));
+    await tester.pumpAndSettle();
+
+    // Pro değil: yedek satırlarında kilit + "NShoptor Pro" satırı.
+    expect(find.byIcon(Icons.lock_outline), findsNWidgets(2));
+    expect(find.byKey(const Key('settings_pro_row')), findsOneWidget);
+
+    // Geçici Pro (ödüllü reklam eşdeğeri): kilitler kalkar.
+    pro.grantTemporaryPro(const Duration(hours: 1));
+    await tester.pumpAndSettle();
+    expect(find.byIcon(Icons.lock_outline), findsNothing);
+  });
+
 }
 
 /// Bellekte çalışan ayar deposu (test için).

@@ -1477,6 +1477,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Planned: {total} · {count} items'**
   String plannedTotalSummary(Object count, Object total);
+
+  /// No description provided for @proActiveLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pro active — thank you!'**
+  String get proActiveLabel;
+
+  /// No description provided for @proBuyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'NShoptor Pro'**
+  String get proBuyLabel;
+
+  /// No description provided for @proBenefitsLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad-free + backup · one-time payment, no subscription'**
+  String get proBenefitsLine;
+
+  /// No description provided for @proBenefitNoAds.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad-free experience'**
+  String get proBenefitNoAds;
+
+  /// No description provided for @proBenefitBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup (export/import)'**
+  String get proBenefitBackup;
 }
 
 class _AppLocalizationsDelegate
