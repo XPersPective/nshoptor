@@ -91,7 +91,7 @@ dosyaları JSON'a gömülmez (yalnız yollar).
 
 - Uygulama adı: **NShoptor** (büyük N, büyük S)
 - Yayıncı: **Crazy Penguin**
-- Android application ID / iOS bundle ID: şu an `com.example.nshoptor`
+- Android application ID / iOS bundle ID: şu an `com.crazypenguin.nshoptor`
   yer tutucusudur. Gerçek mağaza kimlikleri ve imzalama bilgileri Crazy
   Penguin tarafından sağlanınca değiştirilecektir (bkz.
   [release kontrol listesi](docs/release-checklist.md)).

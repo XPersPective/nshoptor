@@ -13,7 +13,7 @@ belirlenince `lib/core/config/env_config.dart` içindeki
 ```json
 {
   "id": "nshoptor",
-  "androidPackage": "com.example.nshoptor",
+  "androidPackage": "com.crazypenguin.nshoptor",
   "appStoreId": null,
   "icon": "https://raw.githubusercontent.com/<kullanici>/<apps-repo>/main/icons/nshoptor.png",
   "name": { "en": "NShoptor", "tr": "NShoptor" },

@@ -17,25 +17,25 @@ class EnvConfig {
   static const _privacyUrl = String.fromEnvironment(
     'NSHOPTOR_PRIVACY_URL',
     // Yayınlanacak sayfa (PB-044 taslağı); yayınlanana dek yer tutucu.
-    defaultValue: 'https://xperspective.github.io/privacy/nshoptor.html',
+    defaultValue: 'https://github.com/XPersPective/nshoptor/blob/main/docs/store/privacy-policy.md',
   );
   static const _contactEmail = String.fromEnvironment(
     'NSHOPTOR_CONTACT_EMAIL',
-    defaultValue: 'contact@crazypenguin.example',
+    defaultValue: 'devx8585@gmail.com',
   );
   static const _otherAppsUrl = String.fromEnvironment(
     'NSHOPTOR_OTHER_APPS_URL',
     // Crazy Penguin'in apps.json adresi bilinene dek yer tutucu (§3.6);
     // paylaşılamaz Köşfet bu URL'yi önbelleksiz dener, çevrimdışı gömülü
     // kopyaya düşer.
-    defaultValue: 'https://xperspective.github.io/apps/apps.json',
+    defaultValue: 'https://raw.githubusercontent.com/XPersPective/napp_apps/HEAD/apps.json',
   );
 
   static const String proProductId = 'nshoptor_pro_lifetime';
 
   static AppIdentity get identity => AppIdentity(
         appName: 'NShoptor',
-        packageName: 'com.example.nshoptor',
+        packageName: 'com.crazypenguin.nshoptor',
         sourceUrl: _sourceUrl,
         privacyPolicyUrl: _privacyUrl,
         contactEmail: _contactEmail,

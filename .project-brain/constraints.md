@@ -58,7 +58,7 @@ tr+en locale-aware. (spec §7.1)
 
 ### C-030: Paket kimliği placeholder
 
-Android app id / iOS bundle id `com.example.nshoptor` kalır; production
+Android app id / iOS bundle id `com.crazypenguin.nshoptor` kalır; production
 kimliğini Crazy Penguin sağlayacak. (spec §2)
 
 ### C-031: Lisans GPL-3.0 + bağımlılık lisans disiplini

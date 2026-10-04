@@ -1,11 +1,6 @@
-# Gizlilik Politikası — NShoptor (TASLAK)
+# Gizlilik Politikası — NShoptor
 
-> **Durum:** TASLAK — yayınlama Crazy Penguin'e aittir. Herkese açık
-> sayfaya (ör. GitHub Pages) konacak; bağlantı dart-define
-> `NSHOPTOR_PRIVACY_URL` ile uygulamaya girer. Yayınlanmadan önce hukuki
-> onay alınmalıdır (PB-044 Decision Boundary).
-
-**Son güncelleme:** 2026-10-03 · **Uygulama:** NShoptor (Crazy Penguin)
+**Son güncelleme:** 2026-10-04 · **Uygulama:** NShoptor (Crazy Penguin)
 
 ## Verileriniz nerede?
 
@@ -42,8 +37,7 @@ gönderilmez.
 
 ## İletişim
 
-Sorularınız için: `contact@crazypenguin.example` *(yayında gerçek
-adresle değiştirilecek — dart-define `NSHOPTOR_CONTACT_EMAIL`)*.
+Sorularınız için: devx8585@gmail.com
 
 ## Açık kaynak
 

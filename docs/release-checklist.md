@@ -19,7 +19,7 @@ flutter build appbundle --release
 Crazy Penguin tarafından sağlanacak alanlar:
 
 - [ ] `applicationId` / `namespace` (`android/app/build.gradle.kts`,
-      şu an `com.example.nshoptor`)
+      şu an `com.crazypenguin.nshoptor`)
 - [ ] `android/key.properties` (şablon: `android/key.properties.example`):
       `storeFile`, `storePassword`, `keyAlias`, `keyPassword`
 - [ ] `key.properties` yoksa release derlemesi **debug anahtarıyla**
@@ -36,7 +36,7 @@ flutter build ios --release
 flutter build ipa
 ```
 
-- [ ] Bundle ID (şu an `com.example.nshoptor`), Team, provisioning profile
+- [ ] Bundle ID (şu an `com.crazypenguin.nshoptor`), Team, provisioning profile
 - [ ] `Info.plist` izin metinleri (kamera, fotoğraflar, mikrofon, konuşma
       tanıma) gözden geçirildi
 

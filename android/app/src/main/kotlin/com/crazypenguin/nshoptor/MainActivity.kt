@@ -1,4 +1,4 @@
-package com.example.nshoptor
+package com.crazypenguin.nshoptor
 
 import io.flutter.embedding.android.FlutterActivity
 
