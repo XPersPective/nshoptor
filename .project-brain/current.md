@@ -148,3 +148,11 @@ güven.
 - Reklam/Pro: test kimlikleriyle tam akış canlı; gerçek AdMob kimliği
   ve paywall fiyatı Crazy Penguin'de; apps.json besleme repo adresi
   bilinmiyor (docs/store/apps-json-entry.md).
+
+
+## Yayın durumu (VERIFIED 2026-10-06)
+
+- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). İç test + üretim sürümü 1.0.0 (1) yüklü; 12 değişiklik incelemeye gönderildi (ön kontroller sürüyor).
+- Yayın kökü D:\AppPublishingpps
+shoptor (imza, kimlikler, mağaza metni/görselleri); kaynak projede fastlane/ lane'leri; test/store_capture_test.dart ekran görüntülerini üretir.
+- Pro ürünü com.crazypenguin.nshoptor.pro_lifetime Play'de etkin. Ödüllü reklam birimi yok → hediye akışı kapalı.
