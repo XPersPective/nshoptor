@@ -6,9 +6,12 @@ plugins {
 
 import java.util.Properties
 
+// NSHOPTOR_SIGNING yayın kökündeki key.properties'i gösterir (storeFile ona
+// göreli); yoksa android/key.properties.
+val signingFile = System.getenv("NSHOPTOR_SIGNING")?.let { file(it) }
+    ?: rootProject.file("key.properties")
 val keystoreProperties = Properties().apply {
-    val file = rootProject.file("key.properties")
-    if (file.exists()) file.inputStream().use { load(it) }
+    if (signingFile.exists()) signingFile.inputStream().use { load(it) }
 }
 
 android {
@@ -39,7 +42,8 @@ android {
 
         // AdMob uygulama kimliği manifest'e buradan girer (STANDARD §1.2.1):
         // key.properties'te admobAppId yoksa Google'ın resmi TEST kimliği.
-        val admobAppId = keystoreProperties.getProperty("admobAppId")
+        val admobAppId = System.getenv("ADMOB_APP_ID_ANDROID")
+            ?: keystoreProperties.getProperty("admobAppId")
             ?: "ca-app-pub-3940256099942544~3347511713"
         manifestPlaceholders["admobAppId"] = admobAppId
     }
@@ -48,7 +52,7 @@ android {
         // Crazy Penguin imza bilgileri android/key.properties ile gelir.
         if (keystoreProperties.containsKey("storeFile")) {
             create("release") {
-                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storeFile = signingFile.parentFile.resolve(keystoreProperties.getProperty("storeFile"))
                 storePassword = keystoreProperties.getProperty("storePassword")
                 keyAlias = keystoreProperties.getProperty("keyAlias")
                 keyPassword = keystoreProperties.getProperty("keyPassword")

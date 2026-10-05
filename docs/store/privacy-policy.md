@@ -37,7 +37,7 @@ gönderilmez.
 
 ## İletişim
 
-Sorularınız için: devx8585@gmail.com
+Sorularınız için: devcrazypenguin@gmail.com
 
 ## Açık kaynak
 

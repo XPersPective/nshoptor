@@ -1,4 +1,5 @@
 import '../../core/money/format_locale.dart';
+
 import 'package:drift/drift.dart' show OrderingTerm, Value;
 import 'package:flutter/material.dart';
 
@@ -112,7 +113,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     super.dispose();
   }
 
-  MoneySeparators get _separators => MoneySeparators.forLocaleCode(formatLocaleCode(context));
+  MoneySeparators get _separators =>
+      MoneySeparators.forLocaleCode(formatLocaleCode(context));
 
   /// Ayrıştırma; boş veya geçersiz girdide null döner (build sırasında
   /// fırlatmaz). Geçersiz-girdi ayrımı [_fieldState] ile yapılır.
@@ -147,13 +149,17 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     if (_priceIsUnitPrice) {
       final total = LineCalc.plannedLineTotal(qty, price);
       return l10n.lineTotalCalculated(
-        formatMoney(Money.fromMinorUnits(total.toMinorUnits(digits), currency)),
+        formatMoney(
+          Money.fromMinorUnits(total.toMinorUnits(digits), currency),
+          locale: formatLocaleCode(context),
+        ),
       );
     }
     final unitPrice = price.divide(qty, scale: DecimalFixed.maxFractionDigits);
     return l10n.unitPriceCalculated(
       formatMoney(
         Money.fromMinorUnits(unitPrice.toMinorUnits(digits + 2), currency),
+        locale: formatLocaleCode(context),
       ),
     );
   }

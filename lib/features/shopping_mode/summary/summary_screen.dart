@@ -1,4 +1,5 @@
 import '../../../core/money/format_locale.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
@@ -57,8 +58,10 @@ class SummaryScreen extends StatelessWidget {
                 ),
               _SummarySection(result: result),
               const SizedBox(height: 12),
-              Text(l10n.groupsSection,
-                  style: Theme.of(context).textTheme.titleMedium),
+              Text(
+                l10n.groupsSection,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
               for (final row in result.rows)
                 _ItemResultTile(result: result, row: row),
             ],
@@ -78,22 +81,26 @@ class _SummarySection extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final currency = Currency.fromCode(result.currencyCode);
-    String money(int minor) => formatMoney(Money.fromMinorUnits(minor, currency),
-        locale: formatLocaleCode(context));
+    String money(int minor) => formatMoney(
+      Money.fromMinorUnits(minor, currency),
+      locale: formatLocaleCode(context),
+    );
     final direction = result.varianceMinor == 0
         ? SpendingDirection.nearPlan
         : result.varianceMinor < 0
-            ? SpendingDirection.underPlan
-            : SpendingDirection.overPlan;
+        ? SpendingDirection.underPlan
+        : SpendingDirection.overPlan;
     final delta = SemanticDelta.resolve(
-        direction: direction, brightness: Theme.of(context).brightness);
+      direction: direction,
+      brightness: Theme.of(context).brightness,
+    );
     final varianceText = result.variancePercent == null
         ? l10n.varianceNotComputable
-        : '${delta.marker} ${money(result.varianceMinor.abs())}'
-            ' (${_formatPercent(result.variancePercent!)}%)';
+        : '${money(result.varianceMinor.abs())}'
+              ' (${formatPercentText(result.variancePercent!, formatLocaleCode(context))})';
     final accuracyText = result.accuracy == null
         ? l10n.varianceNotComputable
-        : '%${result.accuracy!.toDbString()}';
+        : formatPercentText(result.accuracy!, formatLocaleCode(context));
 
     return Card(
       child: Padding(
@@ -101,43 +108,60 @@ class _SummarySection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(l10n.summarySection,
-                style: Theme.of(context).textTheme.titleMedium),
+            Text(
+              l10n.summarySection,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
             const SizedBox(height: 8),
-            _Row(label: l10n.plannedTotalLabel, value: money(result.plannedTotalMinor)),
-            _Row(label: l10n.actualTotalLabel, value: money(result.actualTotalMinor)),
+            _Row(
+              label: l10n.plannedTotalLabel,
+              value: money(result.plannedTotalMinor),
+            ),
+            _Row(
+              label: l10n.actualTotalLabel,
+              value: money(result.actualTotalMinor),
+            ),
             _Row(
               label: l10n.varianceLabel,
               value: varianceText,
               valueColor: result.varianceMinor == 0 ? null : delta.color,
-              icon: Icon(delta.icon,
-                  size: 18, color: delta.color,
-                  semanticLabel: delta.marker),
+              icon: Icon(
+                delta.icon,
+                size: 18,
+                color: delta.color,
+                semanticLabel: delta.marker,
+              ),
             ),
             if (result.unplannedTotalMinor > 0)
-              _Row(label: l10n.unplannedTotalLabel,
-                  value: money(result.unplannedTotalMinor)),
+              _Row(
+                label: l10n.unplannedTotalLabel,
+                value: money(result.unplannedTotalMinor),
+              ),
             if (result.unpurchasedPlannedMinor > 0)
-              _Row(label: l10n.unpurchasedLabel,
-                  value: money(result.unpurchasedPlannedMinor)),
+              _Row(
+                label: l10n.unpurchasedLabel,
+                value: money(result.unpurchasedPlannedMinor),
+              ),
             if (result.totalDiscountMinor > 0)
-              _Row(label: l10n.totalDiscountLabel,
-                  value: money(result.totalDiscountMinor)),
+              _Row(
+                label: l10n.totalDiscountLabel,
+                value: money(result.totalDiscountMinor),
+              ),
             _Row(label: l10n.accuracyLabel, value: accuracyText),
           ],
         ),
       ),
     );
   }
-
-  String _formatPercent(DecimalFixed percent) {
-    final s = percent.toDbString();
-    return s.endsWith('000000') ? s.substring(0, s.length - 7) : s;
-  }
 }
 
 class _Row extends StatelessWidget {
-  const _Row({required this.label, required this.value, this.valueColor, this.icon});
+  const _Row({
+    required this.label,
+    required this.value,
+    this.valueColor,
+    this.icon,
+  });
 
   final String label;
   final String value;
@@ -152,11 +176,14 @@ class _Row extends StatelessWidget {
         children: [
           Expanded(child: Text(label)),
           ?icon,
-          Text(value,
-              style: TextStyle(
-                  color: valueColor,
-                  fontWeight: FontWeight.w600,
-                  fontFeatures: const [])),
+          Text(
+            value,
+            style: TextStyle(
+              color: valueColor,
+              fontWeight: FontWeight.w600,
+              fontFeatures: const [],
+            ),
+          ),
         ],
       ),
     );
@@ -173,42 +200,65 @@ class _ItemResultTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final currency = Currency.fromCode(result.currencyCode);
-    String money(int minor) => formatMoney(Money.fromMinorUnits(minor, currency),
-        locale: formatLocaleCode(context));
+    String money(int minor) => formatMoney(
+      Money.fromMinorUnits(minor, currency),
+      locale: formatLocaleCode(context),
+    );
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(row.name,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w600)),
+            Text(
+              row.name,
+              style: Theme.of(context).textTheme.titleSmall
+                  ?.copyWith(fontWeight: FontWeight.w600),
+            ),
             const SizedBox(height: 4),
             Wrap(
               spacing: 6,
               children: [
                 for (final g in row.groups)
-                  Chip(label: Text(_groupLabel(l10n, g), style: const TextStyle(fontSize: 11))),
+                  Chip(
+                    label: Text(
+                      _groupLabel(l10n, g),
+                      style: const TextStyle(fontSize: 11),
+                    ),
+                  ),
               ],
             ),
             if (!row.isUnplanned) ...[
-              _Row(label: l10n.plannedQtyLabel,
-                  value: row.plannedQuantity?.toDbString() ?? '-'),
-              _Row(label: l10n.actualQtyLabel,
-                  value: row.notTaken ? l10n.notBoughtMark : row.actualQuantity?.toDbString() ?? '-'),
+              _Row(
+                label: l10n.plannedQtyLabel,
+                value: row.plannedQuantity?.toDbString() ?? '-',
+              ),
+              _Row(
+                label: l10n.actualQtyLabel,
+                value: row.notTaken
+                    ? l10n.notBoughtMark
+                    : row.actualQuantity?.toDbString() ?? '-',
+              ),
             ],
             if (row.plannedUnitPrice != null)
-              _Row(label: l10n.plannedUnitPriceLabel,
-                  value: money(_toMinor(row.plannedUnitPrice!, currency))),
+              _Row(
+                label: l10n.plannedUnitPriceLabel,
+                value: money(_toMinor(row.plannedUnitPrice!, currency)),
+              ),
             if (row.actualUnitPrice != null)
-              _Row(label: l10n.actualUnitPriceLabel,
-                  value: money(_toMinor(row.actualUnitPrice!, currency))),
+              _Row(
+                label: l10n.actualUnitPriceLabel,
+                value: money(_toMinor(row.actualUnitPrice!, currency)),
+              ),
             if (row.discountMinor > 0)
-              _Row(label: l10n.discountEffectLabel, value: money(row.discountMinor)),
-            _Row(label: l10n.lineVarianceLabel, value: money(row.lineVarianceMinor)),
+              _Row(
+                label: l10n.discountEffectLabel,
+                value: money(row.discountMinor),
+              ),
+            _Row(
+              label: l10n.lineVarianceLabel,
+              value: money(row.lineVarianceMinor),
+            ),
           ],
         ),
       ),
@@ -219,12 +269,28 @@ class _ItemResultTile extends StatelessWidget {
       value.toMinorUnits(currency.minorUnitDigits);
 
   String _groupLabel(AppLocalizations l10n, ItemResultGroup g) => switch (g) {
-        ItemResultGroup.pricier => l10n.groupPricier,
-        ItemResultGroup.cheaper => l10n.groupCheaper,
-        ItemResultGroup.close => l10n.groupClose,
-        ItemResultGroup.notTaken => l10n.groupNotTaken,
-        ItemResultGroup.unplanned => l10n.groupUnplanned,
-        ItemResultGroup.quantityChanged => l10n.groupQuantityChanged,
-        ItemResultGroup.unverified => l10n.groupUnverified,
-      };
+    ItemResultGroup.pricier => l10n.groupPricier,
+    ItemResultGroup.cheaper => l10n.groupCheaper,
+    ItemResultGroup.close => l10n.groupClose,
+    ItemResultGroup.notTaken => l10n.groupNotTaken,
+    ItemResultGroup.unplanned => l10n.groupUnplanned,
+    ItemResultGroup.quantityChanged => l10n.groupQuantityChanged,
+    ItemResultGroup.unverified => l10n.groupUnverified,
+  };
+}
+
+/// Yüzdeyi bir ondalığa yuvarlar (yarım yukarı, tamsayı aritmetiği); dile göre
+/// ondalık ayracı ve işaret yerleşimi: tr "-%84,9", en "-84.9%".
+String formatPercentText(DecimalFixed percent, String localeCode) {
+  final raw = percent.toDbString();
+  final negative = raw.startsWith('-');
+  final parts = (negative ? raw.substring(1) : raw).split('.');
+  final frac = parts.length > 1 ? parts[1].padRight(2, '0') : '00';
+  var tenths = int.parse(parts[0]) * 10 + int.parse(frac[0]);
+  if (int.parse(frac[1]) >= 5) tenths += 1;
+  final sep = localeCode == 'tr' ? ',' : '.';
+  var number = '${tenths ~/ 10}$sep${tenths % 10}';
+  if (tenths % 10 == 0) number = '${tenths ~/ 10}';
+  final sign = negative && tenths != 0 ? '-' : '';
+  return localeCode == 'tr' ? '$sign%$number' : '$sign$number%';
 }

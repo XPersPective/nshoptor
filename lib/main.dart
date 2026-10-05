@@ -27,7 +27,8 @@ Future<void> main() async {
   AppDefaults.attach(store);
   final formatSetting = store.getString(SettingsRepository.formatLocaleKey);
   AppFormatLocale.attach(
-      formatSetting == 'tr' || formatSetting == 'en' ? formatSetting : null);
+    formatSetting == 'tr' || formatSetting == 'en' ? formatSetting : null,
+  );
   final languageController = LanguageController(store: store)..load();
   final themeController = AppThemeModeController(store: store)..load();
   final identity = EnvConfig.identity;
@@ -65,32 +66,39 @@ Future<void> main() async {
 
   final bannerController = BannerAdController(policy: policy);
   final rewardedManager = RewardedAdManager(policy: policy);
+  // Ödüllü reklam birimi tanımlı değilse (standart: yalnız banner) hediye akışı
+  // kapalı kalır; üretimde Google test birimi gösterilmez.
+  const hasRewardedUnit = bool.hasEnvironment('ADMOB_REWARDED_ANDROID');
 
   unawaited(() async {
     final ready = await ConsentManager.initialize();
     if (!ready) return; // onay alınamadı: reklamsız devam
     policy.setSdkReady(true);
     bannerController.load();
-    await rewardedManager.load();
+    if (hasRewardedUnit) await rewardedManager.load();
   }());
 
   WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
   final db = AppDatabase(openAppDatabase());
-  runApp(NShoptorApp(
-    db: db,
-    settingsRepository: SettingsRepository(db, NappSettingsStoreOps(store)),
-    languageController: languageController,
-    themeModeController: themeController,
-    appIdentity: identity,
-    nappTranslations: nappTranslations,
-    proController: proController,
-    purchaseRepository: purchaseRepository,
-    bannerController: bannerController,
-    giftFlow: GiftFlow(
-      policy: policy,
-      rewardedManager: rewardedManager,
-      onRewardEarned: () =>
-          proController.grantTemporaryPro(const Duration(hours: 24)),
+  runApp(
+    NShoptorApp(
+      db: db,
+      settingsRepository: SettingsRepository(db, NappSettingsStoreOps(store)),
+      languageController: languageController,
+      themeModeController: themeController,
+      appIdentity: identity,
+      nappTranslations: nappTranslations,
+      proController: proController,
+      purchaseRepository: purchaseRepository,
+      bannerController: bannerController,
+      giftFlow: !hasRewardedUnit
+          ? null
+          : GiftFlow(
+              policy: policy,
+              rewardedManager: rewardedManager,
+              onRewardEarned: () =>
+                  proController.grantTemporaryPro(const Duration(hours: 24)),
+            ),
     ),
-  ));
+  );
 }

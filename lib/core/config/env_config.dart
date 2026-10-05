@@ -21,7 +21,7 @@ class EnvConfig {
   );
   static const _contactEmail = String.fromEnvironment(
     'NSHOPTOR_CONTACT_EMAIL',
-    defaultValue: 'devx8585@gmail.com',
+    defaultValue: 'devcrazypenguin@gmail.com',
   );
   static const _otherAppsUrl = String.fromEnvironment(
     'NSHOPTOR_OTHER_APPS_URL',
@@ -31,7 +31,7 @@ class EnvConfig {
     defaultValue: 'https://raw.githubusercontent.com/XPersPective/napp_apps/HEAD/apps.json',
   );
 
-  static const String proProductId = 'nshoptor_pro_lifetime';
+  static const String proProductId = 'com.crazypenguin.nshoptor.pro_lifetime';
 
   static AppIdentity get identity => AppIdentity(
         appName: 'NShoptor',

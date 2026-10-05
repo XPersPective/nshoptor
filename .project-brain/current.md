@@ -12,7 +12,7 @@ Flutter stable 3.47.x, Dart null safety, Material 3. Entry point
 `lib/main.dart` → `lib/app/` (NShoptorApp + LanguageController +
 AppThemeModeController + AppDefaults) + napp_kit katmanı (ADR-002):
 AppIdentity/env_config (dart-define), PurchaseRepository+ProController
-(`nshoptor_pro_lifetime`), AdPolicy+UMP onayı (SDK'dan önce),
+(`com.crazypenguin.nshoptor.pro_lifetime`), AdPolicy+UMP onayı (SDK'dan önce),
 BannerAdController, napp sözlük delegesi. Boot: SettingsStore yüklenir,
 dil + tema + biçim-yereli (AppFormatLocale: dil'den BAĞIMSIZ, C-001)
 runApp'ten önce okunur. State: stream-based repositories +

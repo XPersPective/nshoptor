@@ -21,7 +21,7 @@ Ticari/şablon hizalaması (kural kaynağı: napp_app_template deposundaki
 `ORTAK_UYGULAMA_STANDARDI.md`; ayarlar REKLAM=EVET, PRO=EVET, VERİ=YEREL):
 
 - **Pro:** ömür boyu tek seferlik (~1 $ + KDV), ürün kimliği
-  `nshoptor_pro_lifetime`; reklamları kaldırır + yedekleme dışa/içe
+  `com.crazypenguin.nshoptor.pro_lifetime`; reklamları kaldırır + yedekleme dışa/içe
   aktarmayı açar (standart §3.8/§5.1). Abonelik yok.
 - **Reklam:** yalnızca küçük banner, bottom bar'ın altında; UMP onayı
   (AB/İngiltere) SDK'dan ÖNCE; repoda yalnızca Google test kimlikleri.

@@ -27,6 +27,6 @@ verisi tutulmadığından uzaktan silme gerekmez.
 - **Reklam içeriği:** Uygulama reklam içerir (AdMob banner).
 - **Hedef SDK / izinler:** Bildirim izni yalnız hatırlatma kurulurken
   istenir; mikrofon/kamera yalnız kullanım anında.
-- **Dijital varlar (Play Billing):** `nshoptor_pro_lifetime` tek seferlik.
+- **Dijital varlar (Play Billing):** `com.crazypenguin.nshoptor.pro_lifetime` tek seferlik.
 - UNKNOWN: Play Console hesap bilgileri, mağaza görselleri, açıklama
   metinleri (docs/store/play-listing.md tamamlanınca).
