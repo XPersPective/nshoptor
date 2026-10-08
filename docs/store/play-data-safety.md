@@ -1,32 +1,31 @@
-# Google Play "Veri güvenliği" formu taslağı — NShoptor
+# Google Play "Veri güvenliği" formu — NShoptor
 
-> **Durum:** TASLAK (PB-044). Yayın öncesi Play Console'a doldurulur;
-> UNKNOWN alanlar Crazy Penguin değerle doldurur.
+> **Durum:** 1.1.0 (PB-059) için güncel. Kaynak: docs/store/privacy-policy.md,
+> server/ (Worker), ADR-004.
 
-## Toplanan/paylaşılan veri matrisi
+## Genel sorular
 
-| Veri | Toplanıyor mu? | Paylaşılıyor mu? | Amaç | Zorunlu mu? |
-|---|---|---|---|---|
-| Kişisel kimlik (ad, e-posta) | HAYIR | HAYIR | — | — |
-| Kullanıcı etkinliği (analiz) | HAYIR | HAYIR | — | — |
-| Konum | HAYIR | HAYIR | — | — |
-| Fotoğraf/videolar | Yalnız sizin seçtiğiniz fiş görselleri, CİHAZ İÇİ işlenir | HAYIR | Fiş tanıma; dosya cihazda kalır, yüklenmez | Hayır (elle giriş alternatifi var) |
-| Ses kaydı | Mikrofon yalnız "Sesle ekle" basılıyken; platform tanıyıcısı dinler | HAYIR (tanıma cihaz/OS hizmetiyle) | Ürün adı girişi | Hayır (klavye alternatifi var) |
-| Uygulama etkinliği (liste/fiyat verisi) | CİHAZ İÇİ | HAYIR | Uygulamanın işlevi | Evet (cihazdan çıkmaz) |
-| Reklam kimliği | EVET (AdMob SDK'sı, ücretsiz sürüm) | EVET (Google Ads) | Reklam gösterimi | Hayır — Pro ile tamamen kalkar; onay reddedilebilir |
+- Veri topluyor veya paylaşıyor mu? **EVET** (AI metni geçici işlenir; AdMob reklam kimliği).
+- Aktarımda şifreli mi? **EVET** (yalnız HTTPS).
+- Silme talebi yolu: **EVET** — uygulama içi "Tüm verileri sil" + kaldırma; sunucuda kişisel veri yok.
 
-## Silme beyanı
+## Veri matrisi
 
-Uygulama kaldırıldığında tüm yerel veriler silinir; sunucuda kullanıcı
-verisi tutulmadığından uzaktan silme gerekmez.
+| Play kategorisi | Toplanan | Paylaşılan | Geçici işleme | Amaç | Zorunlu |
+|---|---|---|---|---|---|
+| Uygulama etkinliği › Diğer kullanıcı içeriği (AI'ya giden metin: fiş satırı, ürün adı, cümle) | EVET | HAYIR¹ | **EVET** (saklanmaz) | Uygulama işlevselliği | Hayır (AI kapatılabilir) |
+| Cihaz veya diğer kimlikler (rastgele kurulum kimliği — kota) | EVET | HAYIR | Hayır | Uygulama işlevselliği, kötüye kullanımı önleme | Evet (AI kullanılırken) |
+| Cihaz veya diğer kimlikler (reklam kimliği — AdMob) | EVET | EVET (Google) | Hayır | Reklam | Hayır (ücretli planlarda yok) |
+| Finansal bilgi › Satın alma geçmişi (Play jetonu → plan) | EVET | HAYIR | Hayır (yalnız SHA-256 özeti, kısa önbellek) | Uygulama işlevselliği | Hayır |
+| Fotoğraflar, ses kayıtları, konum, kişisel bilgiler | HAYIR (cihazda işlenir/kalır) | HAYIR | — | — | — |
+
+¹ Hizmet sağlayıcılar (Cloudflare, AI model sağlayıcısı) adımıza işlediği için
+Play tanımında "paylaşım" sayılmaz.
 
 ## Diğer formlar
 
-- **Yaş derecelendirmesi:** Herkes (3+ önerisi; reklam nedeniyle ESRB
-  benzeri "dijital satın alma" beyanı: EVET — Pro satın alma).
-- **Reklam içeriği:** Uygulama reklam içerir (AdMob banner).
-- **Hedef SDK / izinler:** Bildirim izni yalnız hatırlatma kurulurken
-  istenir; mikrofon/kamera yalnız kullanım anında.
-- **Dijital varlar (Play Billing):** `com.crazypenguin.nshoptor.pro_lifetime` tek seferlik.
-- UNKNOWN: Play Console hesap bilgileri, mağaza görselleri, açıklama
-  metinleri (docs/store/play-listing.md tamamlanınca).
+- **Reklam içeriği:** EVET (AdMob banner, uygulama açılışı, ödüllü).
+- **Uygulama içi satın alma:** EVET — `nshoptor_pro`, `nshoptor_max` (abonelik),
+  `com.crazypenguin.nshoptor.pro_lifetime` (tek seferlik).
+- **Hedef kitle:** 18+ değil, genel; çocuklara yönelik değil.
+- **İzinler:** mikrofon/kamera yalnız kullanım anında; bildirim yalnız hatırlatma kurulurken.

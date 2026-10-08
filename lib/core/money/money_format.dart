@@ -33,7 +33,9 @@ String formatMoney(Money money, {String locale = 'en'}) {
 
   final withSymbol = _suffixSymbol.contains(locale.toLowerCase().split(RegExp('[-_]')).first)
       ? '$body $symbol'
-      : '$symbol$body';
+      : symbol == money.currency.code
+          ? '$symbol $body' // ISO kodu rakama yapışmasın: `USD 3.49`
+          : '$symbol$body';
   return negative ? '-$withSymbol' : withSymbol;
 }
 

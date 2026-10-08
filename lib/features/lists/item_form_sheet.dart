@@ -377,12 +377,17 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                   child: DropdownButtonFormField<UnitCode>(
                     key: const Key('item_unit_field'),
                     initialValue: _unit,
+                    // Uzun birim adları (ör. de "Schachtel") dar ekranda taşmasın.
+                    isExpanded: true,
                     decoration: InputDecoration(labelText: l10n.unitLabel),
                     items: UnitCode.standard()
                         .map(
                           (u) => DropdownMenuItem(
                             value: u,
-                            child: Text(unitDisplayName(u, l10n)),
+                            child: Text(
+                              unitDisplayName(u, l10n),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         )
                         .toList(),

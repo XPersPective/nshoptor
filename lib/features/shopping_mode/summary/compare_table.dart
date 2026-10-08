@@ -38,12 +38,9 @@ class CompareTable extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(delta.icon, size: 14, color: delta.color, semanticLabel: delta.marker),
-          Flexible(
-            child: Text(
-              '${diff > 0 ? '+' : '−'}${money(diff.abs())}',
-              textAlign: TextAlign.end,
-              style: TextStyle(color: delta.color, fontWeight: FontWeight.w600),
-            ),
+          Text(
+            '${diff > 0 ? '+' : '−'}${money(diff.abs())}',
+            style: TextStyle(color: delta.color, fontWeight: FontWeight.w600),
           ),
         ],
       );
@@ -52,8 +49,18 @@ class CompareTable extends StatelessWidget {
     TableRow row(List<Widget> cells, {Decoration? decoration}) => TableRow(
           decoration: decoration,
           children: [
-            for (final c in cells)
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4), child: c),
+            for (final (i, c) in cells.indexed)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                // Tutarlar kaymasın: dar ekranda satır kırmak yerine küçülür.
+                child: i == 0
+                    ? c
+                    : FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: c,
+                      ),
+              ),
           ],
         );
 

@@ -19,7 +19,7 @@ void main() {
     test('JPY 0 basamak gösterir', () {
       final m = Money.fromMinorUnits(1234, Currency.jpy);
       expect(formatMoney(m, locale: 'tr'), '1.234 JPY');
-      expect(formatMoney(m, locale: 'en'), 'JPY1,234');
+      expect(formatMoney(m, locale: 'en'), 'JPY 1,234');
     });
 
     test('KWD 3 basamak gösterir', () {
