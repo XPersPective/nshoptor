@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.2] — 2026-10-09
+
+- Cümle/sesle liste önce liste ekranında açılır (fiyatları düzenle, sonra alışverişe başla)
+- İlk açılışta varsayılan para birimi cihaz ülkesinden (herkese ₺ değil)
+- Sunucu: "2 kg domates 30" gibi ürün sonrası sayı artık fiyat olarak okunur
+
 ## [1.1.1] — 2026-10-08
 
 - 71 dil (şablon standardı §3.1): uygulama arayüzü ve para yazımı (ondalık

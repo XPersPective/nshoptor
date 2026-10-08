@@ -232,7 +232,19 @@ class _HomeShellState extends State<HomeShell> {
             price: c.unitPrice,
           );
         }
-        if (context.mounted) await _openShopping(context, listId);
+        // Önce liste açılır: fiyatları düzenle, sonra "Alışverişe başla" (plan → alışveriş).
+        if (context.mounted) {
+          await Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => ListDetailScreen(
+                db: widget.db,
+                listRepository: widget.listRepository,
+                listId: listId,
+                reminderScheduler: widget.reminderScheduler,
+              ),
+            ),
+          );
+        }
     }
   }
 

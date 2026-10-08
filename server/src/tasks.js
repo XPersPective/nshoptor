@@ -29,6 +29,8 @@ export const TASKS = {
       '"priceIsUnitPrice":boolean}]}. quantity/estimatedPrice are plain decimal ' +
       'strings with a dot ("1.5", "20"). estimatedPrice is the price the user ' +
       'said; if they said "kilosu 45" or "per kilo" set priceIsUnitPrice true. ' +
+      'A number written right after an item (e.g. "2 kg tomatoes 30") is the price of that item: ' +
+      'put it in estimatedPrice (a total unless the user says per unit). Quantity words like "2 kg" are not prices. ' +
       'Never invent prices. Max 40 items. ' + LOCALE_NOTE(locale),
     user: input => input.text,
     clean(out) {
