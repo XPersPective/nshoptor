@@ -175,12 +175,12 @@ güven.
   bilinmiyor (docs/store/apps-json-entry.md).
 
 
-## Yayın durumu (VERIFIED 2026-10-06)
+## Yayın durumu (VERIFIED 2026-10-08)
 
-- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). İç test + üretim sürümü 1.0.0 (1) yüklü; 12 değişiklik incelemeye gönderildi (ön kontroller sürüyor).
-- Yayın kökü D:\AppPublishingpps
-shoptor (imza, kimlikler, mağaza metni/görselleri); kaynak projede fastlane/ lane'leri; test/store_capture_test.dart ekran görüntülerini üretir.
-- Pro ürünü com.crazypenguin.nshoptor.pro_lifetime Play'de etkin. Ödüllü reklam birimi yok → hediye akışı kapalı.
+- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.1.0 (2) completed, test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444 (PB-060).
+- Yayın kökü `D:\AppPublishingpps
+shoptor` (imza, kimlikler, 9 dil mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py`; ekran görüntüleri `test/store_capture_test.dart`, tanıtım görseli `test/store_feature_test.dart`. 1.1 mağaza metni/görselleri henüz Play'e yüklenmedi (üretime alırken `push_metadata`).
+- Ürünler: `nshoptor_pro`, `nshoptor_max` (abonelik), `com.crazypenguin.nshoptor.pro_lifetime` (ömür boyu reklamsız). Ödüllü reklam birimi app-ids.env'de (ADMOB_REWARDED_ANDROID).
 
 ### Server (AI vekili)
 

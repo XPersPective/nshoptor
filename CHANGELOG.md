@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.0] — 2026-10-08
+
+- Yapay zeka (sunucu üzerinden, anahtar uygulamada yok): fiş satırlarını
+  listeyle eşleştirme (kullanıcı onaylı), raf etiketinden fiyat, cümleden liste
+- Sade planlanan ↔ gerçek tablosu, pahalı/ucuz çıkanlar
+- Harcama takvimi, haftalık/aylık grafikler, aylık limit
+- Sağ altta kapatılabilir asistan
+- Pro/Max abonelikleri (7 gün deneme), ömür boyu reklamsız; ilk 7 gün
+  reklamsız, uygulama açılış reklamı, ödüllü reklamla 1 gün reklamsız
+- 9 dil: tr, en, de, fr, es, it, pt, ru, ar
+
 ## [1.0.0] — geliştirmede
 
 İlk sürüm (V1 kapsamı, spec §6):
