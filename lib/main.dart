@@ -16,6 +16,7 @@ import 'app/theme_mode_controller.dart';
 import 'core/config/env_config.dart';
 import 'core/money/format_locale.dart';
 import 'data/db/app_database.dart';
+import 'features/ads/ad_gate.dart';
 import 'features/ai/ai_client.dart';
 import 'features/subscription/lifetime_only_adapter.dart';
 import 'features/subscription/subscription_service.dart';
@@ -64,8 +65,11 @@ Future<void> main() async {
     baseUrl: EnvConfig.aiBaseUrl,
     credential: () => subscriptions.credential,
   );
-  bool adFree() => SubscriptionService.adFree(
-      lifetimeOrTemp: proController.isPro, tier: subscriptions.tier);
+  // İlk 7 gün reklamsız (AdGate), ömür boyu/geçici Pro ya da abonelik.
+  bool adFree() =>
+      AdGate.inGrace(store, DateTime.now()) ||
+      SubscriptionService.adFree(
+          lifetimeOrTemp: proController.isPro, tier: subscriptions.tier);
 
   // Reklam (standart §5.2): kalıcı durum → oturum → onay/SDK → politika
   // Pro'yu izler; UMP onayı SDK başlatmasından ÖNCE.
@@ -85,6 +89,15 @@ Future<void> main() async {
 
   final bannerController = BannerAdController(policy: policy);
   final rewardedManager = RewardedAdManager(policy: policy);
+  final appOpen = AppOpenAdManager(policy: policy);
+  // Açılış reklamı: politika (≥4 saat, oturumda bir) + alışveriş modunda yok.
+  Future<void> maybeShowAppOpen() async {
+    policy.setPro(adFree());
+    if (AdGate.shoppingModeActive) return;
+    await appOpen.tryLoad(DateTime.now());
+    await Future<void>.delayed(const Duration(milliseconds: 400));
+    if (!AdGate.shoppingModeActive) await appOpen.showIfAvailable();
+  }
   // Ödüllü reklam birimi tanımlı değilse (standart: yalnız banner) hediye akışı
   // kapalı kalır; üretimde Google test birimi gösterilmez.
   const hasRewardedUnit = bool.hasEnvironment('ADMOB_REWARDED_ANDROID');
@@ -95,7 +108,9 @@ Future<void> main() async {
     policy.setSdkReady(true);
     bannerController.load();
     if (hasRewardedUnit) await rewardedManager.load();
+    await maybeShowAppOpen();
   }());
+  AppLifecycleListener(onResume: () => unawaited(maybeShowAppOpen()));
 
   WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
   final db = AppDatabase(openAppDatabase());

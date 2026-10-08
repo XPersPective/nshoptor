@@ -27,6 +27,8 @@ AD_UNITS = {
   "ADMOB_APP_OPEN_ANDROID" => "ADMOB_APP_OPEN_ANDROID",
 }
 
+OPTIONAL_AD_UNITS = ["ADMOB_REWARDED_ANDROID"]
+
 def app_ids
   UI.user_error!("Yayın kimlikleri yok: #{APP_IDS}") unless File.exist?(APP_IDS)
   File.readlines(APP_IDS, chomp: true).grep(/^[A-Z_]+=/).to_h { |l| l.split("=", 2) }
@@ -37,6 +39,13 @@ platform :android do
   lane :build_release do
     ids = app_ids
     UI.user_error!("İmza dosyası yok: #{SIGNING}") unless File.exist?(SIGNING)
+    # İsteğe bağlı birimler (ödüllü): app-ids.env'de yoksa hediye akışı kapalı derlenir.
+    optional = OPTIONAL_AD_UNITS.filter_map do |key|
+      value = ids[key].to_s
+      next if value.empty?
+      UI.user_error!("#{key} Google test birimi") if value.include?("3940256099942544")
+      "--dart-define=#{key}=#{value}"
+    end
     defines = AD_UNITS.map do |key, define|
       value = ids[key].to_s
       UI.user_error!("#{APP_IDS}: #{key} eksik") unless value.start_with?("ca-app-pub-")
@@ -47,7 +56,7 @@ platform :android do
     UI.user_error!("#{APP_IDS}: ADMOB_APP_ID_ANDROID eksik") unless app_id.include?("~")
     ENV["NSHOPTOR_SIGNING"] = SIGNING
     ENV["ADMOB_APP_ID_ANDROID"] = app_id
-    sh("flutter", "build", "appbundle", "--release", *defines, log: false)
+    sh("flutter", "build", "appbundle", "--release", *defines, *optional, log: false)
     UI.success("AAB hazır: #{AAB_PATH}")
   end
 

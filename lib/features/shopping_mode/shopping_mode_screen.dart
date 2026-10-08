@@ -1,6 +1,8 @@
 import '../../core/money/format_locale.dart';
 import 'package:flutter/material.dart';
 
+import '../ads/ad_gate.dart';
+
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/decimal_fixed.dart';
@@ -39,6 +41,7 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
 
   @override
   void initState() {
+    AdGate.shoppingModeActive = true;
     super.initState();
     widget.repository.getList(widget.listId).then((list) {
       if (mounted) setState(() => _list = list);
@@ -47,6 +50,7 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
 
   @override
   void dispose() {
+    AdGate.shoppingModeActive = false;
     // Ekrandan çıkınca normal ekran zamanlayıcısına dön.
     WakelockPlus.disable();
     super.dispose();
