@@ -2,6 +2,25 @@
 Status: CONFIRMED
 
 ## Goal
+**Revizyon 2026-10-08 (kullanıcı, özet alıntı):** "alışverişe çıkmadan önce bir
+liste yaparsın … tahmini fiyatlar yazarsın … evdeki hesabın çarşıya uyacak mı,
+uymayacak mı onu bilmen lazım … bütçemi aştı mı bunları net görebilmen
+gerekiyor … hangileri pahalı, hangileri ucuz almışsın". Gerçek fiyat: rafta
+elle ya da fotoğrafla, veya fişi okutarak; fiş satırları plandaki ürünlerle
+"yapay zeka ile" doğru eşleşir ("elma" ↔ "indirimli elma") ve kullanıcı
+onaylar (evde de yapılabilir). Liste tıklanınca "elma 20 → 30, +10" gibi
+basit bir karşılaştırma listesi. Alışveriş günleri takvimi, haftalık/aylık
+harcama grafikleri, aylık harcama limiti. Konuşarak liste: Google'ın ücretsiz
+konuşma tanıması + arka planda yapay zekâ ("1 kilo elma alacağım 20 lira").
+AI anahtarı uygulamada değil sunucuda; ücretsiz (reklamlı, ilk 7 gün
+reklamsız, az rahatsız eden açılış reklamı, ödüllü reklam 1 gün reklamsız),
+Pro (≈1 $/ay + KDV), Max Pro (yüksek AI kotası). SEO uyumlu slogan, çok dilli
+mağaza ve uygulama. Sağ altta açılıp kapanabilen küçük asistan avatarı.
+"Ev hanımının kullanabileceği" basit, estetik. Açık kaynak, GPL-3.0, veri
+sızıntısı yok, güvenlik üst planda; anahtarlar D:\AppPublishing'de. Bitince
+dahili teste gönder. Kararlar: ADR-004.
+
+### Önceki hedef (2026-10-02, hâlâ geçerli kısımlar)
 NShoptor: Crazy Penguin'in açık kaynak (GPL-3.0), offline-first, hesapsız
 alışveriş planlayıcısı. Kullanıcının zihinsel modeli ÜRÜNÜN TASARIM
 OTORİTESİDİR (ADR-002, 2026-10-02):
@@ -17,7 +36,7 @@ OTORİTESİDİR (ADR-002, 2026-10-02):
 4. **Sonucu görür** — evdeki hesap çarşıya uyuyor mu: planlanan vs gerçek,
    fiyat/miktar/plan-dışı etkileriyle.
 
-Ticari/şablon hizalaması (kural kaynağı: napp_app_template deposundaki
+Ticari/şablon hizalaması (ADR-004 ile güncellendi: abonelik + AI sunucu vekili) (kural kaynağı: napp_app_template deposundaki
 `ORTAK_UYGULAMA_STANDARDI.md`; ayarlar REKLAM=EVET, PRO=EVET, VERİ=YEREL):
 
 - **Pro:** ömür boyu tek seferlik (~1 $ + KDV), ürün kimliği

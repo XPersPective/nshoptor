@@ -9,7 +9,7 @@ intl (ADR-003). Slogan seçili dile göre değişir. Dil seçimi para/sayı
 biçimini ZORLAMAZ: para birimi ve biçimlendirme ayrı ayar; yeni dil
 ekleme yolu belgeli, eksik anahtar testi zorunlu. (spec §3 + ADR-002)
 
-### C-002: Offline-first, hesapsız, VERİ=YEREL
+### C-002: Offline-first, hesapsız, VERİ=YEREL (ADR-004: tek istisna AI metin vekili)
 
 Hesap yok, sunucu yok, analiz/çökme SDK'sı yok. Uçak modunda tam işlev
 (OCR dahil, kurulumdan sonra). Tek uzak çağrı: Keşfet apps.json (HTTPS,
@@ -27,7 +27,7 @@ karşılaştırma) her ekranda tek bariz birincil eylemle ilerler; gelişmiş
 alanlar ikincil. "Nereye yazarım?" belirsizliği kabul edilebilir kusur
 değil, hatadır. (ADR-002)
 
-### C-005: Girdi yardımcıları ücretsiz ve cihaz içi
+### C-005: OCR ve konuşma tanıma cihaz içi; AI yalnız kendi Worker vekilimiz üzerinden (ADR-004)
 
 Ücretli/harici OCR, tanıma veya bildirim servisi YASAK. ML Kit (cihaz
 içi) + speech_to_text + flutter_local_notifications. (ADR-002)
@@ -43,7 +43,7 @@ içi) + speech_to_text + flutter_local_notifications. (ADR-002)
 
 ## Security
 
-### C-020: Gizlilik — veri cihazda kalır
+### C-020: Gizlilik — fotoğraf/ses cihazda kalır; AI'ya yalnız metin, onaylı ve kotalı (ADR-004)
 
 Fiş, fotoğraf ve tüm kullanıcı verisi cihazdan ağa gönderilmez. Günlüklere
 fiş metni, ürün listesi, tam dosya yolu veya başka hassas veri yazılmaz.
@@ -96,3 +96,9 @@ Sürüm dizesinde "Aşama N" gibi geliştirme jargonu YOK (ör. "1.0.0").
 Gereksiz bağımlılık/soyutlama yok; her paket bakım/lisans/platform kontrolüyle
 seçilir ve README'de gerekçelendirilir. Kod: mevcut kod > stdlib > kurulu
 bağımlılık > yeni kod; en küçük düzeltme diff'i.
+
+### C-041: Gizli anahtar asla repo/APK'da yok
+
+AI sağlayıcı anahtarı, Play doğrulama kimliği ve imza bilgileri yalnızca
+Worker secret'ı veya D:\AppPublishing altında. Açık kaynak repo + gitleaks.
+Pro/Max yetkisi istemci iddiasına değil sunucu doğrulamasına dayanır.
