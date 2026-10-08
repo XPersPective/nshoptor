@@ -25,6 +25,7 @@ import '../receipts/review/receipt_review_screen.dart';
 import '../receipts/shelf_label/mlkit_text_source.dart';
 import '../receipts/shelf_label/price_candidate_sheet.dart';
 import '../receipts/shelf_label/price_candidates.dart';
+import '../receipts/shelf_label/ai_label_reader.dart';
 import '../voice_input/stt_speech_service.dart';
 import '../voice_input/voice_input_service.dart';
 import '../voice_input/voice_preview_sheet.dart';
@@ -510,8 +511,20 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
     final list = await widget.listRepository.getById(widget.listId);
     final scan = await _scan();
     if (scan == null || !context.mounted) return null;
-    final candidates = ShelfPriceExtractor(defaultCurrency: list.currencyCode)
+    final local = ShelfPriceExtractor(defaultCurrency: list.currencyCode)
         .extract(scan.lines);
+    final client = AiService.client;
+    final lang = Localizations.localeOf(context).languageCode;
+    final ocrText = scan.lines.map((l) => l.text).join(String.fromCharCode(10));
+    final fromAi = client == null
+        ? const <PriceCandidate>[]
+        : await AiLabelReader(client, localeCode: lang)
+            .read(ocrText, currencyCode: list.currencyCode);
+    if (!context.mounted) return null;
+    final candidates = [
+      ...fromAi,
+      ...local.where((c) => !fromAi.any((a) => a.value == c.value)),
+    ];
     final picked = await showPriceCandidateSheet(context, candidates);
     return picked?.value.toDbString();
   }

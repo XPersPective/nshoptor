@@ -30,7 +30,12 @@ Future<PriceCandidate?> showPriceCandidateSheet(
                 '${c.isUnitPrice ? ' /unit' : ''}',
               ),
               subtitle: Text(c.sourceLine),
-              trailing: Text(c.confidence),
+              trailing: c.confidence == 'ai'
+                  ? Chip(
+                      avatar: const Icon(Icons.auto_awesome, size: 16),
+                      label: Text(l10n.aiSourceLabel),
+                    )
+                  : Text(c.confidence),
               onTap: () => Navigator.of(ctx).pop(c),
             ),
         ],
