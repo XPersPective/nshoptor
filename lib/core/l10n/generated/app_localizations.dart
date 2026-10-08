@@ -1091,7 +1091,7 @@ abstract class AppLocalizations {
   /// No description provided for @privacyInfoBody.
   ///
   /// In en, this message translates to:
-  /// **'NShoptor runs offline-first. Receipts and photos stay on your device by default and are never sent to the internet.'**
+  /// **'Your lists, prices, receipts and photos stay on your device. Photos and voice never leave it. When AI help is on, only text (for example receipt lines or what you dictated) is sent to our server to be processed and is not stored.'**
   String get privacyInfoBody;
 
   /// No description provided for @aboutSection.
@@ -1561,6 +1561,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English (1,234.56)'**
   String get formatLocaleEn;
+
+  /// No description provided for @aiToggleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI help'**
+  String get aiToggleTitle;
+
+  /// No description provided for @aiToggleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Matches receipts, reads price labels and turns sentences into lists. Photos and voice stay on your device; only text is processed.'**
+  String get aiToggleSubtitle;
+
+  /// No description provided for @aiQuotaReached.
+  ///
+  /// In en, this message translates to:
+  /// **'You have used this month\'s AI requests ({used}/{limit}). Upgrade for more, or continue without AI.'**
+  String aiQuotaReached(int used, int limit);
+
+  /// No description provided for @aiOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection — continuing without AI.'**
+  String get aiOffline;
+
+  /// No description provided for @aiFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'AI is unavailable right now — continuing without it.'**
+  String get aiFailed;
+
+  /// No description provided for @aiSourceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'AI'**
+  String get aiSourceLabel;
+
+  /// No description provided for @deviceSourceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Device'**
+  String get deviceSourceLabel;
 }
 
 class _AppLocalizationsDelegate

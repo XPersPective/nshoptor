@@ -16,6 +16,7 @@ import 'app/theme_mode_controller.dart';
 import 'core/config/env_config.dart';
 import 'core/money/format_locale.dart';
 import 'data/db/app_database.dart';
+import 'features/ai/ai_client.dart';
 import 'features/settings/settings_repository.dart';
 
 /// Uygulama veritabanı: tüm platformlarda app dizininde tek dosya.
@@ -29,6 +30,7 @@ Future<void> main() async {
   AppFormatLocale.attach(
     formatSetting == 'tr' || formatSetting == 'en' ? formatSetting : null,
   );
+  AiService.client = AiClient(store: store, baseUrl: EnvConfig.aiBaseUrl);
   final languageController = LanguageController(store: store)..load();
   final themeController = AppThemeModeController(store: store)..load();
   final identity = EnvConfig.identity;

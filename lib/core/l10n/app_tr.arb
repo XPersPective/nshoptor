@@ -186,7 +186,7 @@
   "confirmDelete": "Kalıcı olarak sil",
   "dataDeleted": "Tüm veriler silindi.",
   "privacyInfoLabel": "Gizlilik",
-  "privacyInfoBody": "NShoptor çevrimdışı çalışır. Fişler ve fotoğraflar varsayılan olarak cihazında kalır; internette saklanmaz.",
+  "privacyInfoBody": "Listelerin, fiyatların, fişlerin ve fotoğrafların cihazında kalır. Fotoğraf ve ses asla cihazdan çıkmaz. Yapay zekâ yardımı açıkken yalnızca metin (örneğin fiş satırları ya da söylediklerin) işlenmek üzere sunucumuza gider ve saklanmaz.",
   "aboutSection": "Hakkında",
   "aboutPublisher": "Yayınlayıcı: Crazy Penguin",
   "aboutLicenses": "Lisanslar (GPL-3.0)",
@@ -264,5 +264,12 @@
   "formatLocaleLabel": "Sayı ve para biçimi",
   "formatLocaleSystem": "Sistem (arayüz dili)",
   "formatLocaleTr": "Türkçe (1.234,56)",
-  "formatLocaleEn": "İngilizce (1,234.56)"
+  "formatLocaleEn": "İngilizce (1,234.56)",
+  "aiToggleTitle": "Yapay zekâ yardımı",
+  "aiToggleSubtitle": "Fişi eşleştirir, raf etiketini okur, cümleden liste çıkarır. Fotoğraf ve ses cihazında kalır; yalnızca metin işlenir.",
+  "aiQuotaReached": "Bu ayın yapay zekâ hakkını kullandın ({used}/{limit}). Daha fazlası için yükselt ya da yapay zekâsız devam et.",
+  "aiOffline": "Bağlantı yok — yapay zekâsız devam ediliyor.",
+  "aiFailed": "Yapay zekâ şu an kullanılamıyor — onsuz devam ediliyor.",
+  "aiSourceLabel": "Yapay zekâ",
+  "deviceSourceLabel": "Cihaz"
 }

@@ -196,7 +196,7 @@
   "confirmDelete": "Delete permanently",
   "dataDeleted": "All local data was deleted.",
   "privacyInfoLabel": "Privacy",
-  "privacyInfoBody": "NShoptor runs offline-first. Receipts and photos stay on your device by default and are never sent to the internet.",
+  "privacyInfoBody": "Your lists, prices, receipts and photos stay on your device. Photos and voice never leave it. When AI help is on, only text (for example receipt lines or what you dictated) is sent to our server to be processed and is not stored.",
   "aboutSection": "About",
   "aboutPublisher": "Publisher: Crazy Penguin",
   "aboutLicenses": "Licenses (GPL-3.0)",
@@ -274,5 +274,22 @@
   "formatLocaleLabel": "Number & currency format",
   "formatLocaleSystem": "System (follows app language)",
   "formatLocaleTr": "Turkish (1.234,56)",
-  "formatLocaleEn": "English (1,234.56)"
+  "formatLocaleEn": "English (1,234.56)",
+  "aiToggleTitle": "AI help",
+  "aiToggleSubtitle": "Matches receipts, reads price labels and turns sentences into lists. Photos and voice stay on your device; only text is processed.",
+  "aiQuotaReached": "You have used this month's AI requests ({used}/{limit}). Upgrade for more, or continue without AI.",
+  "aiOffline": "No connection — continuing without AI.",
+  "aiFailed": "AI is unavailable right now — continuing without it.",
+  "aiSourceLabel": "AI",
+  "deviceSourceLabel": "Device",
+  "@aiQuotaReached": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  }
 }

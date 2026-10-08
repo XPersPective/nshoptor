@@ -523,7 +523,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'NShoptor runs offline-first. Receipts and photos stay on your device by default and are never sent to the internet.';
+      'Your lists, prices, receipts and photos stay on your device. Photos and voice never leave it. When AI help is on, only text (for example receipt lines or what you dictated) is sent to our server to be processed and is not stored.';
 
   @override
   String get aboutSection => 'About';
@@ -771,4 +771,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get formatLocaleEn => 'English (1,234.56)';
+
+  @override
+  String get aiToggleTitle => 'AI help';
+
+  @override
+  String get aiToggleSubtitle =>
+      'Matches receipts, reads price labels and turns sentences into lists. Photos and voice stay on your device; only text is processed.';
+
+  @override
+  String aiQuotaReached(int used, int limit) {
+    return 'You have used this month\'s AI requests ($used/$limit). Upgrade for more, or continue without AI.';
+  }
+
+  @override
+  String get aiOffline => 'No connection — continuing without AI.';
+
+  @override
+  String get aiFailed => 'AI is unavailable right now — continuing without it.';
+
+  @override
+  String get aiSourceLabel => 'AI';
+
+  @override
+  String get deviceSourceLabel => 'Device';
 }

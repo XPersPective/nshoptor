@@ -19,7 +19,8 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/features/receipts/` — cihaz içi OCR (ML Kit), fiş ayrıştırma/eşleştirme, raf etiketi
 - `lib/features/voice_input/` — speech_to_text + kural tabanlı komut ayrıştırıcı
 - `lib/features/history/` — geçmiş, fiyat geçmişi, içgörüler
-- `lib/features/settings/` — ayarlar, yedek/CSV
+- `lib/features/settings/` — ayarlar, yedek/CSV, AI anahtarı
+- `lib/features/ai/ai_client.dart` — AI vekiline tek kapı (AiService.client, kurulum kimliği, AiResult)
 - `test/`, `integration_test/` — birim/widget/e2e; `test/store_capture_test.dart` mağaza görselleri
 - `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishingpps
 shoptor)

@@ -31,6 +31,12 @@ class EnvConfig {
     defaultValue: 'https://raw.githubusercontent.com/XPersPective/napp_apps/HEAD/apps.json',
   );
 
+  /// AI vekili (server/, ADR-004). Sır taşımaz; yalnız adres.
+  static const aiBaseUrl = String.fromEnvironment(
+    'NSHOPTOR_AI_URL',
+    defaultValue: 'https://nshoptor-api.devx8585.workers.dev',
+  );
+
   static const String proProductId = 'com.crazypenguin.nshoptor.pro_lifetime';
 
   static AppIdentity get identity => AppIdentity(

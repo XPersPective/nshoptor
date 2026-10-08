@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../ai/ai_client.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
 
@@ -253,6 +255,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: (_) => _confirmDeleteAll(context),
             ),
 
+            if (AiService.client != null)
+              SwitchListTile(
+                key: const Key('ai_toggle'),
+                secondary: const Icon(Icons.auto_awesome_outlined),
+                title: Text(l10n.aiToggleTitle),
+                subtitle: Text(l10n.aiToggleSubtitle),
+                value: AiService.client!.enabled,
+                onChanged: (v) => setState(() => AiService.client!.enabled = v),
+              ),
             _SectionTitle(
                 icon: Icons.privacy_tip_outlined, label: l10n.privacyInfoLabel),
             Padding(
