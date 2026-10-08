@@ -1657,6 +1657,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Discount'**
   String get receiptDiscountLine;
+
+  /// No description provided for @compareItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get compareItem;
+
+  /// No description provided for @compareEstimated.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimate'**
+  String get compareEstimated;
+
+  /// No description provided for @compareActual.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual'**
+  String get compareActual;
+
+  /// No description provided for @compareDiff.
+  ///
+  /// In en, this message translates to:
+  /// **'Difference'**
+  String get compareDiff;
+
+  /// No description provided for @compareTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get compareTotal;
+
+  /// No description provided for @compareBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget'**
+  String get compareBudget;
+
+  /// No description provided for @compareNotBought.
+  ///
+  /// In en, this message translates to:
+  /// **'not bought'**
+  String get compareNotBought;
+
+  /// No description provided for @compareUnplanned.
+  ///
+  /// In en, this message translates to:
+  /// **'not planned'**
+  String get compareUnplanned;
+
+  /// No description provided for @pricierItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost more'**
+  String get pricierItems;
+
+  /// No description provided for @cheaperItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost less'**
+  String get cheaperItems;
+
+  /// No description provided for @compareAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare'**
+  String get compareAction;
+
+  /// No description provided for @detailsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get detailsSection;
 }
 
 class _AppLocalizationsDelegate

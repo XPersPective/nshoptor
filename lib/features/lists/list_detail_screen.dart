@@ -168,6 +168,19 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
             onPressed: () => _openQuickList(context),
           ),
           IconButton(
+            key: const Key('detail_compare'),
+            icon: const Icon(Icons.compare_arrows),
+            tooltip: l10n.compareAction,
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => CompareScreen(
+                  repository: ResultRepository(widget.db),
+                  listId: widget.listId,
+                ),
+              ),
+            ),
+          ),
+          IconButton(
             key: const Key('detail_set_reminder'),
             icon: const Icon(Icons.alarm_add_outlined),
             tooltip: l10n.setReminderAction,

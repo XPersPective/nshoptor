@@ -827,4 +827,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get receiptDiscountLine => 'Discount';
+
+  @override
+  String get compareItem => 'Item';
+
+  @override
+  String get compareEstimated => 'Estimate';
+
+  @override
+  String get compareActual => 'Actual';
+
+  @override
+  String get compareDiff => 'Difference';
+
+  @override
+  String get compareTotal => 'Total';
+
+  @override
+  String get compareBudget => 'Budget';
+
+  @override
+  String get compareNotBought => 'not bought';
+
+  @override
+  String get compareUnplanned => 'not planned';
+
+  @override
+  String get pricierItems => 'Cost more';
+
+  @override
+  String get cheaperItems => 'Cost less';
+
+  @override
+  String get compareAction => 'Compare';
+
+  @override
+  String get detailsSection => 'Details';
 }

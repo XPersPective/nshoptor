@@ -826,4 +826,40 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get receiptDiscountLine => 'İndirim';
+
+  @override
+  String get compareItem => 'Ürün';
+
+  @override
+  String get compareEstimated => 'Tahmini';
+
+  @override
+  String get compareActual => 'Gerçek';
+
+  @override
+  String get compareDiff => 'Fark';
+
+  @override
+  String get compareTotal => 'Toplam';
+
+  @override
+  String get compareBudget => 'Bütçe';
+
+  @override
+  String get compareNotBought => 'alınmadı';
+
+  @override
+  String get compareUnplanned => 'plan dışı';
+
+  @override
+  String get pricierItems => 'Pahalı çıkanlar';
+
+  @override
+  String get cheaperItems => 'Ucuza aldıkların';
+
+  @override
+  String get compareAction => 'Karşılaştır';
+
+  @override
+  String get detailsSection => 'Ayrıntılar';
 }

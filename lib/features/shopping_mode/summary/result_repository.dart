@@ -66,7 +66,11 @@ class ListResult {
     required this.variancePercent,
     required this.accuracy,
     required this.rows,
+    this.budgetMinor,
   });
+
+  /// Listenin bütçesi (varsa); karşılaştırma tablosunda bütçe satırı.
+  final int? budgetMinor;
 
   final String currencyCode;
   final int plannedTotalMinor;
@@ -233,6 +237,7 @@ class ResultRepository {
           actualTotal - plannedTotal, plannedTotal, digits),
       accuracy: _accuracy(plannedTotal, actualTotal, list.currencyCode),
       rows: rows,
+      budgetMinor: list.budgetMinorUnits,
     );
   }
 

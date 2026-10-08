@@ -280,5 +280,17 @@
   "quickListEmpty": "Ürün bulunamadı. Virgülle ayırarak yazmayı dene.",
   "receiptAiMatched": "Yapay zekâ fişi listenle eşleştirdi. Bağlantıları kontrol edip onayla.",
   "receiptNeedsCheck": "Bu eşleşmeyi kontrol et",
-  "receiptDiscountLine": "İndirim"
+  "receiptDiscountLine": "İndirim",
+  "compareItem": "Ürün",
+  "compareEstimated": "Tahmini",
+  "compareActual": "Gerçek",
+  "compareDiff": "Fark",
+  "compareTotal": "Toplam",
+  "compareBudget": "Bütçe",
+  "compareNotBought": "alınmadı",
+  "compareUnplanned": "plan dışı",
+  "pricierItems": "Pahalı çıkanlar",
+  "cheaperItems": "Ucuza aldıkların",
+  "compareAction": "Karşılaştır",
+  "detailsSection": "Ayrıntılar"
 }

@@ -307,5 +307,17 @@
   },
   "receiptAiMatched": "AI matched the receipt to your list. Check the links and confirm.",
   "receiptNeedsCheck": "Check this match",
-  "receiptDiscountLine": "Discount"
+  "receiptDiscountLine": "Discount",
+  "compareItem": "Item",
+  "compareEstimated": "Estimate",
+  "compareActual": "Actual",
+  "compareDiff": "Difference",
+  "compareTotal": "Total",
+  "compareBudget": "Budget",
+  "compareNotBought": "not bought",
+  "compareUnplanned": "not planned",
+  "pricierItems": "Cost more",
+  "cheaperItems": "Cost less",
+  "compareAction": "Compare",
+  "detailsSection": "Details"
 }

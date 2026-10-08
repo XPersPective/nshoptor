@@ -8,6 +8,7 @@ import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
 import '../../../core/theme/semantic_colors.dart';
+import 'compare_table.dart';
 import 'result_repository.dart';
 
 /// Alışveriş bitiş/sonuç ekranı (spec §6.11).
@@ -57,13 +58,22 @@ class SummaryScreen extends StatelessWidget {
                   ),
                 ),
               _SummarySection(result: result),
-              const SizedBox(height: 12),
-              Text(
-                l10n.groupsSection,
-                style: Theme.of(context).textTheme.titleMedium,
+              const SizedBox(height: 8),
+              CompareTable(result: result),
+              const SizedBox(height: 8),
+              PriceMovers(result: result),
+              ExpansionTile(
+                key: const Key('summary_details'),
+                tilePadding: const EdgeInsets.symmetric(horizontal: 4),
+                title: Text(
+                  l10n.detailsSection,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                children: [
+                  for (final row in result.rows)
+                    _ItemResultTile(result: result, row: row),
+                ],
               ),
-              for (final row in result.rows)
-                _ItemResultTile(result: result, row: row),
             ],
           );
         },
@@ -293,4 +303,36 @@ String formatPercentText(DecimalFixed percent, String localeCode) {
   if (tenths % 10 == 0) number = '${tenths ~/ 10}';
   final sign = negative && tenths != 0 ? '-' : '';
   return localeCode == 'tr' ? '$sign%$number' : '$sign$number%';
+}
+
+
+/// Liste detayından açılan yalın karşılaştırma ekranı (PB-053).
+class CompareScreen extends StatelessWidget {
+  const CompareScreen({super.key, required this.repository, required this.listId});
+
+  final ResultRepository repository;
+  final int listId;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Scaffold(
+      appBar: AppBar(title: Text(l10n.compareAction)),
+      body: FutureBuilder<ListResult>(
+        future: repository.compute(listId),
+        builder: (context, snapshot) {
+          final result = snapshot.data;
+          if (result == null) return const Center(child: CircularProgressIndicator());
+          return ListView(
+            padding: const EdgeInsets.all(12),
+            children: [
+              CompareTable(result: result),
+              const SizedBox(height: 8),
+              PriceMovers(result: result),
+            ],
+          );
+        },
+      ),
+    );
+  }
 }
