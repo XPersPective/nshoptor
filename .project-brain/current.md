@@ -24,6 +24,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishingpps
 shoptor)
 - `docs/store/` — gizlilik politikası, Play beyan taslakları
+- `server/` — Cloudflare Worker AI vekili (`nshoptor-api.devx8585.workers.dev`), D1 kota, Play doğrulama
 
 ## Runtime
 
@@ -177,3 +178,18 @@ güven.
 - Yayın kökü D:\AppPublishingpps
 shoptor (imza, kimlikler, mağaza metni/görselleri); kaynak projede fastlane/ lane'leri; test/store_capture_test.dart ekran görüntülerini üretir.
 - Pro ürünü com.crazypenguin.nshoptor.pro_lifetime Play'de etkin. Ödüllü reklam birimi yok → hediye akışı kapalı.
+
+### Server (AI vekili)
+
+**Status:** VERIFIED (2026-10-08, PB-048)
+
+**Sources:** `server/**`
+
+Cloudflare Worker `nshoptor-api` (workers.dev) + D1 `nshoptor`. `POST /v1/ai`
+görevleri `parse_list`, `match_receipt`, `read_label`; çıktı `tasks.js`'te
+şemaya göre temizlenir (bilinmeyen plan kimliği/birim atılır). Kota aylık
+(free 15 / pro 200 / max 1000) + günlük global tavan; Pro/Max yalnız
+Play `subscriptionsv2` doğrulamasıyla (hata → free). Sağlayıcı OpenAI
+uyumlu; şu an Qwen Token Plan `qwen3.6-flash` (DeepSeek anahtarı gelince
+yalnız vars/secret değişir). Sırlar: `AI_KEY`, `GOOGLE_SA_JSON` (Worker
+secret; kaynak D:\AppPublishing). Testler: `cd server && npm test`.

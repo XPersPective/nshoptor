@@ -1,0 +1,14 @@
+{
+  "name": "nshoptor-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "migrate": "wrangler d1 migrations apply DB --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.145.0"
+  }
+}

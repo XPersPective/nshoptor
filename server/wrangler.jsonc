@@ -1,0 +1,30 @@
+{
+  // NShoptor AI vekili (ADR-004). Sırlar (AI_KEY, GOOGLE_SA_JSON) yalnız
+  // `wrangler secret put` ile; bu dosyada ve repoda sır yok (C-041).
+  "name": "nshoptor-api",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-01",
+  "account_id": "5c5871cee9d16a81a908008f2a3de9af",
+  "workers_dev": true,
+  "observability": { "enabled": true, "head_sampling_rate": 0.1 },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "nshoptor",
+      "database_id": "abf29641-7f69-4204-8e71-c7660195b635",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "AI_URL": "https://token-plan.maas.qwencloudapi.com/compatible-mode/v1",
+    "AI_MODEL": "qwen3.6-flash",
+    "AI_NOTHINK": "1",
+    "AI_TIMEOUT_MS": "20000",
+    "QUOTA_FREE": "15",
+    "QUOTA_PRO": "200",
+    "QUOTA_MAX": "1000",
+    "GLOBAL_DAILY": "20000",
+    "MAX_INPUT_CHARS": "6000",
+    "PACKAGE_NAME": "com.crazypenguin.nshoptor"
+  }
+}
