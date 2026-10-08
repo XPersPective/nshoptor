@@ -4,6 +4,7 @@
 //     --dart-define=STORE_LOCALE=<tr|en|de|fr|es|it|pt|ru|ar>
 //     --dart-define=STORE_OUT=<klasör>
 // Uygulama gerçek ekranlarını sürer (e2e akışı) ve her adımda görüntü alır.
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:drift/drift.dart' show Value;
@@ -16,6 +17,7 @@ import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/app/app.dart';
 import 'package:nshoptor/app/app_defaults.dart';
 import 'package:nshoptor/data/db/app_database.dart';
+import 'package:nshoptor/core/money/locale_conventions.dart';
 import 'package:nshoptor/features/settings/settings_repository.dart';
 
 const _locale = String.fromEnvironment('STORE_LOCALE');
@@ -89,6 +91,39 @@ const Map<String, _Data> _data = {
   ),
 };
 
+/// Elle yazılmamış diller: test/store_samples.json'daki çevrilmiş adlar; fiyatlar
+/// dilin ondalık yazımıyla (virgüllü dillerde EUR, diğerlerinde USD).
+_Data _dataFor(String code) {
+  final hand = _data[code];
+  if (hand != null) return hand;
+  final s = (jsonDecode(File('test/store_samples.json').readAsStringSync()) as Map)[code] as Map;
+  final comma = usesCommaDecimal(code) && usesLatinDigits(code);
+  String n(String v) => comma ? v.replaceAll('.', ',') : v;
+  const est = ['2.49', '2.19', '1.15', '2.99', '8.99', '1.89'];
+  return (
+    list: s['list'] as String,
+    currency: comma ? 'EUR' : 'USD',
+    budget: '30',
+    items: [for (var i = 0; i < 6; i++) (s['i$i'] as String, n(est[i]))],
+    real: ['2.79', '2.19', '1.25', '2.99', '9.49', '1.79'].map(n).toList(),
+    pastMinor: const [5230, 2940, 7180, 2210, 6050, 8320],
+  );
+}
+
+/// Betik başına tek yazı tipi (Latin dahil) — test ortamında glif yedeği yok.
+/// Dil → Windows yazı tipi dosyaları (kalın dosya ikinci sırada).
+const _fonts = <String, List<String>>{
+  'th': ['LeelawUI.ttf'], 'lo': ['LeelawUI.ttf'],
+  'hi': ['Nirmala.ttc'], 'bn': ['Nirmala.ttc'], 'gu': ['Nirmala.ttc'], 'kn': ['Nirmala.ttc'],
+  'ml': ['Nirmala.ttc'], 'mr': ['Nirmala.ttc'], 'ne': ['Nirmala.ttc'], 'pa': ['Nirmala.ttc'],
+  'si': ['Nirmala.ttc'], 'ta': ['Nirmala.ttc'], 'te': ['Nirmala.ttc'],
+  'ja': ['YuGothR.ttc', 'YuGothB.ttc'], 'ko': ['malgun.ttf', 'malgunbd.ttf'],
+  'zh': ['msyh.ttc', 'msyhbd.ttc'], 'my': ['mmrtext.ttf', 'mmrtextb.ttf'],
+  'ar': ['segoeui.ttf', 'segoeuib.ttf', 'seguisb.ttf'], 'fa': ['segoeui.ttf', 'segoeuib.ttf'],
+  'ur': ['segoeui.ttf', 'segoeuib.ttf'], 'he': ['segoeui.ttf', 'segoeuib.ttf'],
+  'ka': ['segoeui.ttf', 'segoeuib.ttf'], 'hy': ['segoeui.ttf', 'segoeuib.ttf'], 'ps': ['segoeui.ttf', 'segoeuib.ttf'],
+};
+
 /// Test ortamı yazı tipi taşımaz; SDK'nın Roboto/MaterialIcons'unu yükler
 /// (aksi halde her glif dolu kutu çizilir). Arapça için Segoe UI.
 Future<void> _loadFonts() async {
@@ -97,8 +132,9 @@ Future<void> _loadFonts() async {
   Future<ByteData> bytes(String path) async =>
       ByteData.sublistView(Uint8List.fromList(await File(path).readAsBytes()));
   final roboto = FontLoader('Roboto');
-  final files = _locale == 'ar'
-      ? ['C:/Windows/Fonts/segoeui.ttf', 'C:/Windows/Fonts/segoeuib.ttf', 'C:/Windows/Fonts/seguisb.ttf']
+  final win = _fonts[_locale];
+  final files = win != null
+      ? [for (final f in win) 'C:/Windows/Fonts/$f']
       : ['$dir/roboto-regular.ttf', '$dir/roboto-medium.ttf', '$dir/roboto-bold.ttf', '$dir/roboto-light.ttf', '$dir/roboto-italic.ttf'];
   for (final f in files) {
     if (File(f).existsSync()) roboto.addFont(bytes(f));
@@ -115,7 +151,7 @@ String _past(DateTime now, int i) {
 
 void main() {
   if (_locale.isEmpty) return;
-  final data = _data[_locale]!;
+  final data = _dataFor(_locale);
   late AppDatabase db;
   setUpAll(() async {
     // Test bağlayıcısı gölgeleri düz siyah çerçeve çizer; gerçek gölge istenir.
@@ -133,6 +169,8 @@ void main() {
   Future<void> settle(WidgetTester tester) async {
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.pumpAndSettle();
+    // Taşma/yerleşim hatası görüntüyü bozar: dil başına yakalanır.
+    expect(tester.takeException(), isNull);
   }
 
   Future<void> shot(WidgetTester tester, String name) async {
@@ -217,9 +255,12 @@ void main() {
         await tester.drag(find.byType(Scrollable).last, const Offset(0, 800));
         await shot(tester, '04'); // alışveriş modu (yarı yolda)
       }
-      await tester.ensureVisible(find.byType(Checkbox).at(i));
+      // Liste tembeldir: dil/yazı tipi yüksekliğine göre görünen satır sayısı değişir.
+      final box = find.descendant(
+          of: find.widgetWithText(ListTile, data.items[i].$1), matching: find.byType(Checkbox));
+      await tester.scrollUntilVisible(box, 120, scrollable: find.byType(Scrollable).last);
       await tester.pumpAndSettle();
-      await tester.tap(find.byType(Checkbox).at(i));
+      await tester.tap(box);
       await settle(tester);
       await tester.enterText(find.byKey(const Key('entry_price_field')), data.real[i]);
       await settle(tester);

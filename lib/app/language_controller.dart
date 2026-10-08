@@ -3,45 +3,37 @@ import 'dart:ui' show Locale;
 import 'package:flutter/foundation.dart';
 import 'package:napp_core/napp_core.dart';
 
-/// Ayarlar'daki dil tercihi (spec §3, §6.15; PB-058 ile 9 dil).
-enum AppLocaleSetting { system, tr, en, de, fr, es, it, pt, ru, ar }
+import '../core/l10n/language_names.dart';
 
-/// Dil tercihini kalıcı tutar (SettingsStore) ve MaterialApp'e bağlar.
-/// `system` iken locale null'dur: MaterialApp sistem dilini kullanır
-/// (ilk açılış davranışı da budur).
+/// Ayarlar'daki dil tercihi (spec §3, §6.15; PB-061 ile 71 dil).
+/// Değer: `system` ya da [appLanguages] içindeki bir dil kodu.
 class LanguageController extends ChangeNotifier {
   LanguageController({this._store});
 
-  /// SettingsStore anahtarı; değer [AppLocaleSetting.name] olarak saklanır.
+  /// SettingsStore anahtarı; değer dil kodu olarak saklanır.
   static const String storageKey = 'app.locale';
+  static const String system = 'system';
 
   final SettingsStore? _store;
 
-  AppLocaleSetting _value = AppLocaleSetting.system;
+  String _value = system;
 
-  AppLocaleSetting get value => _value;
+  String get value => _value;
 
-  /// Kalıcı depodan okur; main'de runApp'ten önce çağrılır.
+  /// Kalıcı depodan okur; main'de runApp'ten önce çağrılır. Bilinmeyen kod
+  /// (eski sürüm/bozuk değer) `system`e düşer.
   void load() {
     final stored = _store?.getString(storageKey);
-    if (stored == null) return;
-    for (final v in AppLocaleSetting.values) {
-      if (v.name == stored) {
-        _value = v;
-        return;
-      }
-    }
-    _value = AppLocaleSetting.system;
+    _value = stored != null && appLanguages.containsKey(stored) ? stored : system;
   }
 
-  void set(AppLocaleSetting setting) {
-    if (setting == _value) return;
-    _value = setting;
-    _store?.setString(storageKey, setting.name);
+  void set(String code) {
+    if (code == _value || (code != system && !appLanguages.containsKey(code))) return;
+    _value = code;
+    _store?.setString(storageKey, code);
     notifyListeners();
   }
 
   /// MaterialApp.locale değeri; `system` → null.
-  Locale? get locale =>
-      _value == AppLocaleSetting.system ? null : Locale(_value.name);
+  Locale? get locale => _value == system ? null : Locale(_value);
 }

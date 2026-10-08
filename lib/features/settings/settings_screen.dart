@@ -1,3 +1,4 @@
+import '../../core/l10n/language_names.dart';
 import 'package:flutter/material.dart';
 
 import '../ai/ai_client.dart';
@@ -107,6 +108,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             _SectionTitle(icon: Icons.language, label: l10n.languageLabel),
             DropdownButtonFormField<String>(
+              isExpanded: true,
               key: const Key('settings_language_dropdown'),
               initialValue: _repo.currentLanguage,
               decoration: InputDecoration(
@@ -115,18 +117,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               items: [
                 DropdownMenuItem(value: 'system', child: Text(l10n.languageSystem)),
                 // Diller kendi adlarıyla (kullanıcı kendi dilini tanır).
-                for (final (code, name) in const [
-                  ('tr', 'Türkçe'),
-                  ('en', 'English'),
-                  ('de', 'Deutsch'),
-                  ('fr', 'Français'),
-                  ('es', 'Español'),
-                  ('it', 'Italiano'),
-                  ('pt', 'Português'),
-                  ('ru', 'Русский'),
-                  ('ar', 'العربية'),
-                ])
-                  DropdownMenuItem(value: code, child: Text(name)),
+                for (final e in appLanguages.entries)
+                  DropdownMenuItem(value: e.key, child: Text(e.value)),
               ],
               onChanged: (v) => _setLanguage(v),
             ),
@@ -135,6 +127,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _SectionTitle(
                 icon: Icons.numbers, label: l10n.formatLocaleLabel),
             DropdownButtonFormField<String>(
+              isExpanded: true,
               key: const Key('settings_format_locale_dropdown'),
               initialValue: _repo.formatLocale,
               decoration: InputDecoration(
@@ -159,6 +152,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _SectionTitle(
                 icon: Icons.dark_mode_outlined, label: l10n.themeLabel),
             DropdownButtonFormField<String>(
+              isExpanded: true,
               key: const Key('settings_theme_dropdown'),
               initialValue: _repo.themeMode,
               decoration: InputDecoration(
@@ -371,9 +365,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _setLanguage(String? value) {
     if (value == null) return;
     setState(() => _repo.setLanguage(value));
-    widget.languageController.set(
-      AppLocaleSetting.values.firstWhere((e) => e.name == value),
-    );
+    widget.languageController.set(value);
   }
 
   bool get _proUnlocked =>

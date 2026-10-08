@@ -1,4 +1,5 @@
 import 'decimal_fixed.dart';
+import 'locale_conventions.dart';
 
 /// Yerel ayraç yapılandırması: ondalık ve binlik ayraç karakterleri.
 class MoneySeparators {
@@ -16,11 +17,10 @@ class MoneySeparators {
   /// İngilizce: ondalık `.`, binlik `,`.
   static const MoneySeparators en = MoneySeparators('.', ',');
 
-  /// Ondalık virgül kullanan uygulama dilleri (PB-058); diğerleri [en].
-  static const _commaDecimal = {'tr', 'de', 'fr', 'es', 'it', 'pt', 'ru'};
-
+  /// Ondalık virgül kullanan ve 0-9 rakamı yazan diller [tr]; diğerleri [en]
+  /// (PB-058/061; intl tablosundan).
   static MoneySeparators forLocaleCode(String localeCode) =>
-      _commaDecimal.contains(localeCode.toLowerCase().split(RegExp('[-_]')).first) ? tr : en;
+      usesLatinDigits(localeCode) && usesCommaDecimal(localeCode) ? tr : en;
 }
 
 /// Kullanıcı girişindeki yerel ondalık sayı ayrıştırıcısı.

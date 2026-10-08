@@ -500,6 +500,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<String>(
+            isExpanded: true,
             key: const Key('list_currency_field'),
             initialValue: _currency,
             decoration: InputDecoration(labelText: l10n.currencyLabel),

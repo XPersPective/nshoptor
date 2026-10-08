@@ -1,0 +1,250 @@
+{
+ "af": {
+  "a": "Plan. Koop. Vergelyk.",
+  "b": "AI pas jou kwitansie."
+ },
+ "be": {
+  "a": "Плануй. Купуй. Параўноўвай.",
+  "b": "Штучны розум падбірае."
+ },
+ "bs": {
+  "a": "Planiraj. Kupi. Usporedi.",
+  "b": "AI uparuje račun."
+ },
+ "bn": {
+  "a": "পরিকল্পনা করো। কেনো। তুলনা করো।",
+  "b": "AI রসিদ মিলিয়ে দেয়।"
+ },
+ "az": {
+  "a": "Planla. Al. Müqayisə et.",
+  "b": "AI çeki uyğunlaşdırır."
+ },
+ "bg": {
+  "a": "Планирай. Купи. Сравни.",
+  "b": "ИИ сравнява касовата."
+ },
+ "ca": {
+  "a": "Planifica. Compra. Compara.",
+  "b": "IA iguala el teu rebut."
+ },
+ "da": {
+  "a": "Planlæg. Køb. Sammenlign.",
+  "b": "AI matcher din kvittering."
+ },
+ "et": {
+  "a": "Plaani. Osta. Võrdle.",
+  "b": "AI sobitab piletiga."
+ },
+ "cs": {
+  "a": "Naplánuj. Nakupuj. Srovnej.",
+  "b": "AI srovná účtenku."
+ },
+ "el": {
+  "a": "Σχεδίασε. Αγόρασε. Σύγκρινε.",
+  "b": "Το AI ταιριάζει την απόδειξη."
+ },
+ "eu": {
+  "a": "Planoa. Erosi. Konpara.",
+  "b": "IAk zure ordainketa egokitzen du."
+ },
+ "fa": {
+  "a": "برنامه‌ریزی کن. خرید کن. مقایسه کن.",
+  "b": "هوش مصنوعی فاکتور را تطبیق می‌دهد."
+ },
+ "fil": {
+  "a": "Iplan. Bumili. Ikumpara.",
+  "b": "AI ang tumutugma."
+ },
+ "fi": {
+  "a": "Suunnittele. Osta. Vertaa.",
+  "b": "AI tunnistaa kuitin."
+ },
+ "gl": {
+  "a": "Planifica. Compra. Compara.",
+  "b": "IA iguala o teu recibo."
+ },
+ "gu": {
+  "a": "યોજો. ખરીદો. તુલના કરો.",
+  "b": "AI રસીદ મેળવે છે."
+ },
+ "he": {
+  "a": "תכנן. קנה. השווה.",
+  "b": "בינה מלאכותית תואמת."
+ },
+ "hr": {
+  "a": "Planiraj. Kupi. Usporedi.",
+  "b": "AI uspoređuje račun."
+ },
+ "id": {
+  "a": "Rencana. Belanja. Bandingkan.",
+  "b": "AI cocokkan strukmu."
+ },
+ "hu": {
+  "a": "Tervezd. Vásárolj. Összehasonlítsd.",
+  "b": "Az AI egyezteti a számlát."
+ },
+ "hy": {
+  "a": "Պլանիր։ Գնիր։ Համեմատիր։",
+  "b": "AI-ն համապատասխանեցնում է չեկը։"
+ },
+ "is": {
+  "a": "Skipuleggðu. Keyptu. Berðu saman.",
+  "b": "AI passar kvittina."
+ },
+ "ja": {
+  "a": "計画して、買おう、比較しよう。",
+  "b": "AIがレシートをマッチング。"
+ },
+ "ka": {
+  "a": "გეგმე. იყიდე. შეადარე.",
+  "b": "AI-ს გაქვს ჩეკის მორგება."
+ },
+ "kk": {
+  "a": "Жоспарла. Сатып ал. Салыстыр.",
+  "b": "AI чекті таңдайды."
+ },
+ "ko": {
+  "a": "계획해. 장봐. 비교해.",
+  "b": "AI가 영수증을 매칭해요."
+ },
+ "kn": {
+  "a": "ಯೋಜಿಸಿ. ಖರೀದಿಸಿ. ಹೋಲಿಕೆ ಮಾಡಿ.",
+  "b": "AI ನಿಮ್ಮ ಬಿಲ್ ಜೊತೆ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ."
+ },
+ "ky": {
+  "a": "Жосуп ал. Сатып ал. Салыштыр.",
+  "b": "AI чекти тааныйт."
+ },
+ "lt": {
+  "a": "Suplanuok. Nupirk. Palygink.",
+  "b": "AI sutvarkys čekį."
+ },
+ "lo": {
+  "a": "ວາງແຜນ. ຊື້. ປຽບທຽບ.",
+  "b": "AI ກວດສອບໃບເກັບເງິນ."
+ },
+ "lv": {
+  "a": "Plāno. Pērc. Salīdzini.",
+  "b": "AI salīdzina rēķinu."
+ },
+ "mk": {
+  "a": "Планирај. Купи. Спореди.",
+  "b": "ИИ ги совпаѓа фактурите."
+ },
+ "mn": {
+  "a": "Төлөвлө. Худалдаж ав. Харьцуул.",
+  "b": "Хүний оюун ухаан таны чек."
+ },
+ "ml": {
+  "a": "ആസൂത്രണം ചെയ്യുക. വാങ്ങുക. താരതമ്യം ചെയ്യുക.",
+  "b": "AI റിസീറ്റ് പൊരുത്തപ്പെടുത്തുന്നു."
+ },
+ "mr": {
+  "a": "नियोजित करा. खरेदी करा. तुलना करा.",
+  "b": "AI बिलाशी जुळते."
+ },
+ "ms": {
+  "a": "Rancang. Beli. Banding.",
+  "b": "AI padan resit anda."
+ },
+ "my": {
+  "a": "စီမံ။ ဝယ်။ နှိုင်းယှဉ်။",
+  "b": "AI က ရစ်သပ်ကို သတ်မှတ်ပေးတယ်။"
+ },
+ "nl": {
+  "a": "Plan. Koop. Vergelijk.",
+  "b": "AI scant je bonnetje."
+ },
+ "pa": {
+  "a": "ਪਲੈਨ ਕਰੋ। ਖਰੀਦੋ। ਤੁਲਨਾ ਕਰੋ।",
+  "b": "AI ਰਸੀਦ ਮਿਲਾਉਂਦਾ ਹੈ।"
+ },
+ "pl": {
+  "a": "Zaplanuj. Kup. Porównaj.",
+  "b": "AI dopasuje paragon."
+ },
+ "ro": {
+  "a": "Planifică. Cumpără. Compară.",
+  "b": "AI îți potrivește chitanța."
+ },
+ "ps": {
+  "a": "پلان کړئ. خرید وکړئ.",
+  "b": "AI ستاسو رسید سره سمون لري."
+ },
+ "ne": {
+  "a": "योजना गर्नुहोस्।",
+  "b": "AI ले मिलान गर्छ।"
+ },
+ "si": {
+  "a": "තීරණය කරන්න. මිලදී ගන්න. සසඳන්න.",
+  "b": "AI ඔබේ බිල්පතට ගැළපේ."
+ },
+ "sk": {
+  "a": "Naplánuj. Nakúp. Porovnaj.",
+  "b": "AI porovnáva účty."
+ },
+ "sl": {
+  "a": "Načrtuj. Kupi. Primerjaj.",
+  "b": "AI ujame račun."
+ },
+ "sq": {
+  "a": "Planifiko. Bli. Krahaso.",
+  "b": "AI krahason faturën."
+ },
+ "sr": {
+  "a": "Планирај. Kupи. Uporedi.",
+  "b": "AI упарује рачун."
+ },
+ "sv": {
+  "a": "Planera. Handla. Jämför.",
+  "b": "AI matchar ditt kvitto."
+ },
+ "sw": {
+  "a": "Panga. Nunua. Linganisha.",
+  "b": "AI inalinganisha tikiti."
+ },
+ "th": {
+  "a": "วางแผน ช้อป เปรียบเทียบ",
+  "b": "AI จับคู่ใบเสร็จ"
+ },
+ "ta": {
+  "a": "திட்டமிடு. வாங்கு. ஒப்பிடு.",
+  "b": "ஏற்பாடு செய்கிறது."
+ },
+ "te": {
+  "a": "ప్లాన్ చేయి. షాప్ చేయి. పోల్చు.",
+  "b": "AI రసీదును సరిపోస్తుంది."
+ },
+ "uk": {
+  "a": "Плануй. Купуй. Порівнюй.",
+  "b": "Штучний інтелект збігається."
+ },
+ "ur": {
+  "a": "پلان کریں۔ شاپ کریں۔ موازنہ کریں۔",
+  "b": "AI آپ کے رسید سے میل کھاتا ہے۔"
+ },
+ "uz": {
+  "a": "Reja qil. Xarid qil. Taqqosla.",
+  "b": "AI chekingizni topadi."
+ },
+ "vi": {
+  "a": "Lên kế. Mua ngay. So sánh.",
+  "b": "AI khớp hóa đơn của bạn."
+ },
+ "zh": {
+  "a": "先计划，再采购，后比价。",
+  "b": "AI精准匹配你的小票。"
+ },
+ "zu": {
+  "a": "Hlela. Thenga. Bheka.",
+  "b": "I-AI iyahambisana."
+ },
+ "tl": {
+  "a": "Plano. Bilhin. Ikumpara.",
+  "b": "AI ang tumutugma."
+ },
+ "hi": {
+  "a": "योजना बनाएं। खरीदें। तुलना करें।",
+  "b": "AI आपकी रसीद मिलाता है।"
+ }
+}

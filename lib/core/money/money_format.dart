@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:intl/number_symbols_data.dart';
 
+import 'locale_conventions.dart';
 import 'money.dart';
 
 /// Locale-aware, `double` kullanmadan para biçimleyici (spec §7.1).
@@ -11,6 +12,7 @@ import 'money.dart';
 /// gösterilir ([Currency.displaySymbol]). Yerleşim: `tr` gibi sonek
 /// dillerinde `1.234,56 ₺`, önek dillerinde `₺1,234.56`; negatifte `-` öneki.
 String formatMoney(Money money, {String locale = 'en'}) {
+  locale = knownNumberLocale(locale);
   final digits = money.currency.minorUnitDigits;
   final symbol = money.currency.displaySymbol;
   final symbols =
@@ -31,16 +33,13 @@ String formatMoney(Money money, {String locale = 'en'}) {
       ? grouped
       : '$grouped${symbols.DECIMAL_SEP}${(abs % divisor).toString().padLeft(digits, '0')}';
 
-  final withSymbol = _suffixSymbol.contains(locale.toLowerCase().split(RegExp('[-_]')).first)
+  final withSymbol = usesSuffixCurrency(locale)
       ? '$body $symbol'
       : symbol == money.currency.code
           ? '$symbol $body' // ISO kodu rakama yapışmasın: `USD 3.49`
           : '$symbol$body';
   return negative ? '-$withSymbol' : withSymbol;
 }
-
-/// Sembolü sona yazan diller: `12,50 €`, `12,50 ₺` (PB-058).
-const _suffixSymbol = {'tr', 'de', 'fr', 'es', 'it', 'pt', 'ru'};
 
 int _pow10(int n) {
   var v = 1;

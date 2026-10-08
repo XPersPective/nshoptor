@@ -364,29 +364,29 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                   SafeArea(
                     child: Padding(
                       padding: const EdgeInsets.all(12),
-                      child: Row(
+                      // Dikey: uzun çevirilerde iki buton yan yana sığmaz (PB-061).
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Expanded(
-                            child: FilledButton.icon(
-                              key: const Key('detail_start_shopping'),
-                              onPressed: list.status == 'shopping'
-                                  ? () => _openShopping(context)
-                                  : () => _startShopping(context),
-                              icon: const Icon(Icons.shopping_cart),
-                              label: Text(
-                                list.status == 'shopping'
-                                    ? l10n.continueShoppingLabel
-                                    : l10n.startShoppingLabel,
-                              ),
+                          FilledButton.icon(
+                            key: const Key('detail_start_shopping'),
+                            onPressed: list.status == 'shopping'
+                                ? () => _openShopping(context)
+                                : () => _startShopping(context),
+                            icon: const Icon(Icons.shopping_cart),
+                            label: Text(
+                              list.status == 'shopping'
+                                  ? l10n.continueShoppingLabel
+                                  : l10n.startShoppingLabel,
                             ),
                           ),
                           if (list.status == 'shopping') ...[
-                            const SizedBox(width: 8),
+                            const SizedBox(height: 8),
                             FilledButton.tonal(
                               key: const Key('detail_finish_button'),
-                              onPressed: () =>
-                                  _finishAndShowResult(context),
-                              child: Text(l10n.finishAndSeeResult),
+                              onPressed: () => _finishAndShowResult(context),
+                              child: Text(l10n.finishAndSeeResult, textAlign: TextAlign.center),
                             ),
                           ],
                         ],

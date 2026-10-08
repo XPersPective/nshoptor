@@ -3,6 +3,7 @@
 //   flutter test test/store_feature_test.dart --update-goldens
 //     --dart-define=STORE_LOCALE=<tr|en|de|fr|es|it|pt|ru|ar>
 //     --dart-define=STORE_OUT=<klasör>
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -24,6 +25,17 @@ const _slogan = {
   'ar': ('خطّط. تسوّق. قارن.', 'الذكاء الاصطناعي يطابق إيصالك.'),
 };
 
+// Betiğe uygun Windows yazı tipi (store_capture_test ile aynı eşleme).
+const _fonts = <String, List<String>>{
+  'th': ['LeelawUI.ttf'], 'lo': ['LeelawUI.ttf'],
+  'hi': ['Nirmala.ttc'], 'bn': ['Nirmala.ttc'], 'gu': ['Nirmala.ttc'], 'kn': ['Nirmala.ttc'],
+  'ml': ['Nirmala.ttc'], 'mr': ['Nirmala.ttc'], 'ne': ['Nirmala.ttc'], 'pa': ['Nirmala.ttc'],
+  'si': ['Nirmala.ttc'], 'ta': ['Nirmala.ttc'], 'te': ['Nirmala.ttc'],
+  'ja': ['YuGothR.ttc', 'YuGothB.ttc'], 'ko': ['malgun.ttf', 'malgunbd.ttf'],
+  'zh': ['msyh.ttc', 'msyhbd.ttc'], 'my': ['mmrtext.ttf', 'mmrtextb.ttf'],
+};
+const _rtl = {'ar', 'fa', 'he', 'ur', 'ps'};
+
 void main() {
   if (_locale.isEmpty) return;
   testWidgets('tanıtım görseli ($_locale)', (tester) async {
@@ -34,15 +46,18 @@ void main() {
     final bg = File('build/feature_bg.png').readAsBytesSync();
     await tester.runAsync(() async {
       final font = FontLoader('Seg');
-      for (final f in ['segoeui.ttf', 'seguisb.ttf', 'segoeuib.ttf']) {
+      for (final f in _fonts[_locale] ?? ['segoeui.ttf', 'seguisb.ttf', 'segoeuib.ttf']) {
         font.addFont(Future.value(ByteData.sublistView(File('C:/Windows/Fonts/$f').readAsBytesSync())));
       }
       await font.load();
     });
 
-    final (a, b) = _slogan[_locale]!;
+    final extra = File('test/store_slogans.json').existsSync()
+        ? (jsonDecode(File('test/store_slogans.json').readAsStringSync()) as Map)[_locale] as Map?
+        : null;
+    final (a, b) = _slogan[_locale] ?? (extra!['a'] as String, extra['b'] as String);
     const white = Color(0xFFFFFFFF);
-    final rtl = _locale == 'ar';
+    final rtl = _rtl.contains(_locale);
     await tester.pumpWidget(Directionality(
       textDirection: TextDirection.ltr,
       child: Stack(children: [

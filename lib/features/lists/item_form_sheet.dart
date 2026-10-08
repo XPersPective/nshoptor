@@ -426,6 +426,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 ),
                 const SizedBox(height: 12),
                 DropdownButtonFormField<int>(
+                  isExpanded: true,
                   key: const Key('item_category_field'),
                   initialValue: _categoryId,
                   decoration: InputDecoration(labelText: l10n.categoryLabel),

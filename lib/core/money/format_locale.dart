@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+import 'locale_conventions.dart';
+
 /// Sayı/para BİÇİMİ yereli — DİLDEN BAĞIMSIZ (C-001, PB-042).
 ///
 /// Kullanıcı "İngilizce arayüz + Türkçe biçim (1.234,56 ₺)" isteyebilir.
@@ -23,10 +25,11 @@ class AppFormatLocale {
   static String effective(BuildContext context) =>
       _code ?? forLanguage(Localizations.localeOf(context).languageCode);
 
-  /// Arayüz dilinden biçim yereli. Arapçada giriş (batı rakamı, nokta) ile
-  /// gösterim tutarlı kalsın diye 'en' biçimi kullanılır (PB-058).
+  /// Arayüz dilinden biçim yereli. Batı rakamı yazmayan dillerde (ar, fa, bn…)
+  /// giriş (0-9, nokta) ile gösterim tutarlı kalsın diye 'en' biçimi
+  /// kullanılır (PB-058/061).
   static String forLanguage(String languageCode) =>
-      languageCode == 'ar' ? 'en' : languageCode;
+      usesLatinDigits(languageCode) ? languageCode : 'en';
 }
 
 /// Kısayol: parasal/ondalık biçimleme yerel kodu.

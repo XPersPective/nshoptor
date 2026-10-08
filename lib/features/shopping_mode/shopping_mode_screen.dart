@@ -244,14 +244,14 @@ class _SummaryStrip extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 4),
-          Row(
+          // Wrap: uzun çevirilerde iki metin alt alta iner (PB-061).
+          Wrap(
+            spacing: 12,
             children: [
               Text(l10n.itemsProgress('${summary.doneCount}', '${summary.totalCount}'),
                   style: Theme.of(context).textTheme.bodySmall),
-              if (budgetLine != null) ...[
-                const SizedBox(width: 12),
+              if (budgetLine != null)
                 Text(budgetLine, style: Theme.of(context).textTheme.bodySmall),
-              ],
             ],
           ),
         ],

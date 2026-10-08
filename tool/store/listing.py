@@ -2,6 +2,7 @@
 #   python tool/store/listing.py <metadata-kökü> <versionCode>
 # Uzunlukları Play sınırlarına göre doğrular (başlık 30, kısa 80, uzun 4000,
 # sürüm notu 500); sınırı aşan dil yazılmaz.
+import json
 import pathlib
 import sys
 
@@ -405,6 +406,13 @@ NShoptor قائمة تسوق ذكية وأداة لمتابعة ميزانية �
 • 9 لغات''',
     ),
 }
+
+# Diger Play dilleri: listing_translate.py'nin urettigi JSON + bolgesel kopyalar.
+_extra = pathlib.Path(__file__).with_name('listing_extra.json')
+if _extra.exists():
+    L.update(json.loads(_extra.read_text(encoding='utf8')))
+for _to, _from in {'en-GB': 'en-US', 'es-419': 'es-ES', 'es-US': 'es-ES', 'fr-CA': 'fr-FR'}.items():
+    L[_to] = L[_from]
 
 LIMITS = {'title': 30, 'short': 80, 'full': 4000, 'notes': 500}
 

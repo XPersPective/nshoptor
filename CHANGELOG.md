@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1] — 2026-10-08
+
+- 71 dil (şablon standardı §3.1): uygulama arayüzü ve para yazımı (ondalık
+  virgül/nokta, sembol yeri, rakamlar) dile göre; sağdan sola: ar, fa, he, ur, ps
+- Ayarlar'da dil listesi kendi adlarıyla
+
 ## [1.1.0] — 2026-10-08
 
 - Yapay zeka (sunucu üzerinden, anahtar uygulamada yok): fiş satırlarını
