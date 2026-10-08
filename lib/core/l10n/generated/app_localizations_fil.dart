@@ -428,7 +428,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'NShoptor by Crazy Penguin. Offline-first shopping planner. Licensed under GPL-3.0.';
+      'NShoptor ni Crazy Penguin. Offline-first na planner sa pamimili. May lisensyang GPL-3.0.';
 
   @override
   String get startShoppingLabel => 'Simulan ang pagbili';

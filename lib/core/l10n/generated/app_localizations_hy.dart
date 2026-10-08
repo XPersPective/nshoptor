@@ -916,7 +916,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get plansTitle => 'Պլաններ';
 
   @override
-  String get plansHeadline => 'Shop smarter with AI';
+  String get plansHeadline => 'Գնեք խելացիորեն AI-ով';
 
   @override
   String get plansSubhead =>

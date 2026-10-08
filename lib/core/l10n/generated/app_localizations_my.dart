@@ -463,10 +463,10 @@ class AppLocalizationsMy extends AppLocalizations {
   String get themeDark => 'အမှောင်';
 
   @override
-  String get defaultCurrencyLabel => 'Default currency';
+  String get defaultCurrencyLabel => 'အလိုအလျောက်ငွေကြေး';
 
   @override
-  String get defaultUnitLabel => 'Default unit';
+  String get defaultUnitLabel => 'အလိုအလျောက်တိုင်းတာမှုယူနစ်';
 
   @override
   String get keepAwakeLabel => 'ဝယ်ယူနေစဉ် အားလုံးကို ထိန်းသိမ်းရန်';
@@ -475,100 +475,101 @@ class AppLocalizationsMy extends AppLocalizations {
   String get backupSection => 'Backup';
 
   @override
-  String get exportBackupLabel => 'Export backup';
+  String get exportBackupLabel => 'Backup ထုတ်ယူရန်';
 
   @override
-  String get importBackupLabel => 'Import backup';
+  String get importBackupLabel => 'Backup ဝင်ရောက်စေ့စပ်ရန်';
 
   @override
-  String get mergeImportLabel => 'Merge into current data';
+  String get mergeImportLabel => 'ရှိပြီးသားဒေတာထဲသို့ ပေါင်းထည့်ရန်';
 
   @override
-  String get separateImportLabel => 'Import as a separate copy';
+  String get separateImportLabel =>
+      'ကွဲပြားသော ကူးယူမှုအဖြစ် ဝင်ရောက်စေ့စပ်ရန်';
 
   @override
-  String get importCancelled => 'Import cancelled.';
+  String get importCancelled => 'ဝင်ရောက်စေ့စပ်ခြင်း ရုပ်သိမ်းပြီး။';
 
   @override
-  String get backupExported => 'Backup exported successfully.';
+  String get backupExported => 'Backup အောင်မြင်စွာ ထုတ်ယူပြီးပါပြီ။';
 
   @override
   String get backupSizeWarning =>
-      'Large backup: the file may be big. Do you want to include photos too?';
+      'Backup အရွယ်အစား ကြီးမားနေသည် - ဖိုင်သည် ကြီးမားနိုင်ပါသည်။ ဓာတ်ပုံများကိုပါ ထည့်သွင်းမည်လား?';
 
   @override
-  String get deleteAllSection => 'Danger zone';
+  String get deleteAllSection => 'အန္တရာယ်ရှိသော နေရာ';
 
   @override
-  String get deleteAllLabel => 'Delete all data';
+  String get deleteAllLabel => 'ဒေတာအားလုံး ဖျက်ပစ်ရန်';
 
   @override
   String get deleteAllConfirm =>
-      'This will remove all lists, history, receipt photos and prices. Files exported by you stay on your drive. Continue?';
+      'ဤသို့ပြုလုပ်ပါက စာရင်းများ၊ သမိုင်းကြောင်း၊ receipt ဓာတ်ပုံများနှင့် ဈေးနှုန်းများအားလုံး ဖျက်သွားမည်ဖြစ်ပါသည်။ သင် export လုပ်ထားသော ဖိုင်များမှာမူ သင့် drive တွင် ဆက်လက်ရှိနေမည်ဖြစ်ပါသည်။ ဆက်လက်လုပ်ဆောင်မည်လား?';
 
   @override
   String get deleteAllConfirm2 =>
-      'Are you completely sure? This action cannot be undone.';
+      'သေချာစွာ မှန်ကန်ကြောင်း အတည်ပြုပါသလား? ဤလုပ်ဆောင်ချက်ကို ပြန်လည်ပြင်ဆင်၍ မရနိုင်ပါ။';
 
   @override
   String get cancelAction => 'Cancel';
 
   @override
-  String get confirmDelete => 'Delete permanently';
+  String get confirmDelete => 'အပြီးတိုင် ဖျက်ပစ်ရန်';
 
   @override
-  String get dataDeleted => 'All local data was deleted.';
+  String get dataDeleted => 'ဒေတာအားလုံး (local) ကို ဖျက်ပြီးပါပြီ။';
 
   @override
   String get privacyInfoLabel => 'Privacy';
 
   @override
   String get privacyInfoBody =>
-      'Your lists, prices, receipts and photos stay on your device. Photos and voice never leave it. When AI help is on, only text (for example receipt lines or what you dictated) is sent to our server to be processed and is not stored.';
+      'သင့်စာရင်းများ၊ ဈေးနှုန်းများ၊ receipts နှင့် ဓာတ်ပုံများသည် သင့်ဖုန်းတွင်သာ ရှိနေမည်ဖြစ်ပါသည်။ ဓာတ်ပုံများနှင့် အသံများသည် ဖုန်းမှ မထွက်ခွာပါ။ AI help ကို အသုံးပြုနေပါက စာသားများ (ဥပမာ - receipt များ သို့မဟုတ် သင်ပြောဆိုခဲ့သော စာသားများ) ကိုသာ server သို့ ပို့ဆောင်ပြီး ပြုပြင်လုပ်ဆောင်ကာ သိမ်းဆည်းထားခြင်း မရှိပါ။';
 
   @override
   String get aboutSection => 'About';
 
   @override
-  String get aboutPublisher => 'Publisher: Crazy Penguin';
+  String get aboutPublisher => 'ထုတ်ဝေသူ - Crazy Penguin';
 
   @override
-  String get aboutLicenses => 'Licenses (GPL-3.0)';
+  String get aboutLicenses => 'လိုင်စင်များ (GPL-3.0)';
 
   @override
-  String get voiceSettingsLabel => 'Voice input';
+  String get voiceSettingsLabel => 'အသံဖြင့် ထည့်သွင်းခြင်း';
 
   @override
-  String get voiceStatusUnknown => 'Service: not checked';
+  String get voiceStatusUnknown => 'Service: စစ်ဆေးခြင်း မရှိသေး';
 
   @override
-  String get permissionsLabel => 'Permissions';
+  String get permissionsLabel => 'ခွင့်ပြုချက်များ';
 
   @override
   String get permissionsBody =>
-      'Camera, microphone and notifications are requested only when you actually use those features.';
+      'Camera, microphone နှင့် notifications တို့ကို သင် ထို feature များကို အမှန်တကယ် အသုံးပြုသည့်အခါတွင်သာ တောင်းဆိုပါသည်။';
 
   @override
-  String get unitsSection => 'Defaults';
+  String get unitsSection => 'အလိုအလျောက် သတ်မှတ်ချက်များ';
 
   @override
   String get roundingNote =>
-      'Money rounding follows one rule: halves round away from zero, applied once at Money conversion.';
+      'ငွေကြေး ပြန်လည်တွက်ချက်ခြင်းသည် စည်းမျဉ်းတစ်ခုတည်းကို လိုက်နာပါသည် - သုံးသွက်ကိန်းများကို သုညမှ ဝေးရာသို့ ပြန်လည်တွက်ချက်ပြီး၊ Money conversion တွင် တစ်ကြိမ်သာ အသုံးပြုပါသည်။';
 
   @override
-  String get voiceInputTitle => 'Voice input';
+  String get voiceInputTitle => 'အသံဖြင့် ထည့်သွင်းခြင်း';
 
   @override
-  String get voiceStartListening => 'Start listening';
+  String get voiceStartListening => 'ကျွန်ုပ်၏ အသံကို နားထောင်ရန် စတင်ပါ';
 
   @override
-  String get voiceTranscriptLabel => 'Transcript';
+  String get voiceTranscriptLabel => 'စာသားပြန်လည်ရေးသားခြင်း';
 
   @override
   String get parseAction => 'Parse';
 
   @override
-  String get receiptReviewTitle => 'Review receipt';
+  String get receiptReviewTitle => 'Receipt ကို ပြန်လည်သုံးသပ်ခြင်း';
 
   @override
   String get receiptTotal => 'ရိတ်ထုပ်စုစုပေါင်း';
@@ -741,11 +742,11 @@ class AppLocalizationsMy extends AppLocalizations {
   String get proBenefitNoAds => 'ကြော်ငြာ မပါဝင်သော အတွေ့အကြုံ';
 
   @override
-  String get proBenefitBackup => 'Backup (export/import)';
+  String get proBenefitBackup => 'ဘက်အပ် (တင်သွင်း/ထုတ်ယူ)';
 
   @override
   String aboutVersion(Object version) {
-    return 'Version $version';
+    return 'ဗားရှင်း $version';
   }
 
   @override
@@ -1002,10 +1003,10 @@ class AppLocalizationsMy extends AppLocalizations {
   String get planChoose => 'ရွေးချယ်ပါ';
 
   @override
-  String get plansAction => 'Plans: Pro and Max';
+  String get plansAction => 'စီမံချက်များ: Pro နှင့် Max';
 
   @override
-  String get assistantTitle => 'Assistant';
+  String get assistantTitle => 'အကူအညီ';
 
   @override
   String get assistantGreeting => 'ဟယ်လို! ဘာလုပ်ချင်လဲ?';
@@ -1014,24 +1015,24 @@ class AppLocalizationsMy extends AppLocalizations {
   String get assistantNewList => 'New list';
 
   @override
-  String get assistantVoiceList => 'List by voice';
+  String get assistantVoiceList => 'အသံဖြင့် စာရင်း';
 
   @override
-  String get assistantTextList => 'List from a sentence';
+  String get assistantTextList => 'စာကြောင်းမှ စာရင်း';
 
   @override
-  String get assistantScanReceipt => 'Scan a receipt';
+  String get assistantScanReceipt => 'လက်ခံငွေပေးချေမှုစာရွက်ကို စကင်န်လုပ်ပါ';
 
   @override
-  String get assistantSpending => 'My spending';
+  String get assistantSpending => 'ကျွန်ုပ်၏ ကုန်ကျစရိတ်';
 
   @override
   String get assistantReceiptHint =>
-      'Open your list and tap the receipt icon to scan it.';
+      'သင့်စာရင်းကိုဖွင့်ပြီး လက်ခံငွေပေးချေမှုစာရွက်ကို စကင်န်လုပ်ရန် အိုင်ကွန်ကို နှိပ်ပါ။';
 
   @override
-  String get assistantToggleTitle => 'Show assistant';
+  String get assistantToggleTitle => 'အကူအညီကို ပြပါ';
 
   @override
-  String get assistantToggleSubtitle => 'The little helper at the bottom right';
+  String get assistantToggleSubtitle => 'ညာဘက်အောက်ခြေရှိ အကူအညီပေးသူ';
 }

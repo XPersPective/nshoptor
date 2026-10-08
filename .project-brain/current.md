@@ -177,9 +177,9 @@ güven.
 
 ## Yayın durumu (VERIFIED 2026-10-08)
 
-- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.1.0 (2) completed, test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444 (PB-060).
+- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.1.1 (3) completed (71 dil, PB-061), test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444.
 - Yayın kökü `D:\AppPublishingpps
-shoptor` (imza, kimlikler, 9 dil mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py`; ekran görüntüleri `test/store_capture_test.dart`, tanıtım görseli `test/store_feature_test.dart`. 1.1 mağaza metni/görselleri henüz Play'e yüklenmedi (üretime alırken `push_metadata`).
+shoptor` (imza, kimlikler, 73 Play dili mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py` (+ `listing_extra.json`, `listing_translate.py`); toplu görsel `tool/store/capture_all.py`; uygulama çevirisi `tool/i18n/translate.py`. 71 uygulama dili (ARB), napp_pro/napp_ads kendi metinleri tr/en (diğerlerinde İngilizce). 1.1 mağaza metni/görselleri henüz Play'e yüklenmedi (üretime alırken `push_metadata`).
 - Ürünler: `nshoptor_pro`, `nshoptor_max` (abonelik), `com.crazypenguin.nshoptor.pro_lifetime` (ömür boyu reklamsız). Ödüllü reklam birimi app-ids.env'de (ADMOB_REWARDED_ANDROID).
 
 ### Server (AI vekili)
