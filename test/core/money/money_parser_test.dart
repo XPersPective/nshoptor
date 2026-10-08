@@ -61,10 +61,11 @@ void main() {
   });
 
   group('locale eşleme', () {
-    test('forLocaleCode tr/en seçer, bilinmeyen en düşer', () {
+    test('forLocaleCode: virgüllü diller tr ayracı, bilinmeyen en düşer', () {
       expect(MoneySeparators.forLocaleCode('tr_TR'), MoneySeparators.tr);
       expect(MoneySeparators.forLocaleCode('en_US'), MoneySeparators.en);
-      expect(MoneySeparators.forLocaleCode('de_DE'), MoneySeparators.en);
+      expect(MoneySeparators.forLocaleCode('de_DE'), MoneySeparators.tr);
+      expect(MoneySeparators.forLocaleCode('ja_JP'), MoneySeparators.en);
     });
   });
 

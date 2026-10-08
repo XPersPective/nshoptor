@@ -16,9 +16,11 @@ class MoneySeparators {
   /// İngilizce: ondalık `.`, binlik `,`.
   static const MoneySeparators en = MoneySeparators('.', ',');
 
-  /// Bilinen uygulama dilleri; `tr`/`en` dışında [en] ile düşer.
+  /// Ondalık virgül kullanan uygulama dilleri (PB-058); diğerleri [en].
+  static const _commaDecimal = {'tr', 'de', 'fr', 'es', 'it', 'pt', 'ru'};
+
   static MoneySeparators forLocaleCode(String localeCode) =>
-      localeCode.toLowerCase().startsWith('tr') ? tr : en;
+      _commaDecimal.contains(localeCode.toLowerCase().split(RegExp('[-_]')).first) ? tr : en;
 }
 
 /// Kullanıcı girişindeki yerel ondalık sayı ayrıştırıcısı.

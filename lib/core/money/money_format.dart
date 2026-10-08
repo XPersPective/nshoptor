@@ -31,10 +31,14 @@ String formatMoney(Money money, {String locale = 'en'}) {
       ? grouped
       : '$grouped${symbols.DECIMAL_SEP}${(abs % divisor).toString().padLeft(digits, '0')}';
 
-  final withSymbol =
-      locale.toLowerCase().startsWith('tr') ? '$body $symbol' : '$symbol$body';
+  final withSymbol = _suffixSymbol.contains(locale.toLowerCase().split(RegExp('[-_]')).first)
+      ? '$body $symbol'
+      : '$symbol$body';
   return negative ? '-$withSymbol' : withSymbol;
 }
+
+/// Sembolü sona yazan diller: `12,50 €`, `12,50 ₺` (PB-058).
+const _suffixSymbol = {'tr', 'de', 'fr', 'es', 'it', 'pt', 'ru'};
 
 int _pow10(int n) {
   var v = 1;

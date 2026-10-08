@@ -3,8 +3,8 @@ import 'dart:ui' show Locale;
 import 'package:flutter/foundation.dart';
 import 'package:napp_core/napp_core.dart';
 
-/// Ayarlar'daki dil tercihi: Sistem / Türkçe / English (spec §3, §6.15).
-enum AppLocaleSetting { system, tr, en }
+/// Ayarlar'daki dil tercihi (spec §3, §6.15; PB-058 ile 9 dil).
+enum AppLocaleSetting { system, tr, en, de, fr, es, it, pt, ru, ar }
 
 /// Dil tercihini kalıcı tutar (SettingsStore) ve MaterialApp'e bağlar.
 /// `system` iken locale null'dur: MaterialApp sistem dilini kullanır
@@ -42,9 +42,6 @@ class LanguageController extends ChangeNotifier {
   }
 
   /// MaterialApp.locale değeri; `system` → null.
-  Locale? get locale => switch (_value) {
-        AppLocaleSetting.system => null,
-        AppLocaleSetting.tr => const Locale('tr'),
-        AppLocaleSetting.en => const Locale('en'),
-      };
+  Locale? get locale =>
+      _value == AppLocaleSetting.system ? null : Locale(_value.name);
 }

@@ -21,7 +21,12 @@ class AppFormatLocale {
 
   /// Etkin biçim yereli: ayar 'system'/yoksa arayüz dili.
   static String effective(BuildContext context) =>
-      _code ?? Localizations.localeOf(context).languageCode;
+      _code ?? forLanguage(Localizations.localeOf(context).languageCode);
+
+  /// Arayüz dilinden biçim yereli. Arapçada giriş (batı rakamı, nokta) ile
+  /// gösterim tutarlı kalsın diye 'en' biçimi kullanılır (PB-058).
+  static String forLanguage(String languageCode) =>
+      languageCode == 'ar' ? 'en' : languageCode;
 }
 
 /// Kısayol: parasal/ondalık biçimleme yerel kodu.

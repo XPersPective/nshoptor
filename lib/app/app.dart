@@ -73,17 +73,19 @@ class NShoptorApp extends StatelessWidget {
   final ReminderScheduler? reminderScheduler;
 
   /// Desteklenen diller; yeni dil yalnız yeni ARB dosyasıyla eklenir.
-  static const List<Locale> supportedLocales = [Locale('tr'), Locale('en')];
+  static const List<Locale> supportedLocales = AppLocalizations.supportedLocales;
 
   /// Belirleyici yerel çözümleme: platform yeleri henüz iletilmemişse
   /// (emülatör ilk karesi) birinci desteklenen dile düşülür; dil kodu
-  /// eşleşmezse de tr (ürünün birincil pazarı) varsayılır. Böylece ilk
-  /// kare ile ikinci kare arasında dil sıçraması olmaz.
+  /// eşleşmezse en (uluslararası kullanıcı, PB-058) varsayılır. Platform
+  /// yereli yokken tr (birincil pazar). Böylece ilk kare ile ikinci kare
+  /// arasında dil sıçraması olmaz.
   Locale _resolveLocale(Locale? deviceLocale, Iterable<Locale> supported) {
     if (deviceLocale != null) {
       for (final l in supported) {
         if (l.languageCode == deviceLocale.languageCode) return l;
       }
+      return const Locale('en');
     }
     return const Locale('tr');
   }

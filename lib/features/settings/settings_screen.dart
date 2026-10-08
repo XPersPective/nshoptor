@@ -114,8 +114,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   prefixIcon: const Icon(Icons.language)),
               items: [
                 DropdownMenuItem(value: 'system', child: Text(l10n.languageSystem)),
-                DropdownMenuItem(value: 'tr', child: Text(l10n.languageTr)),
-                DropdownMenuItem(value: 'en', child: Text(l10n.languageEn)),
+                // Diller kendi adlarıyla (kullanıcı kendi dilini tanır).
+                for (final (code, name) in const [
+                  ('tr', 'Türkçe'),
+                  ('en', 'English'),
+                  ('de', 'Deutsch'),
+                  ('fr', 'Français'),
+                  ('es', 'Español'),
+                  ('it', 'Italiano'),
+                  ('pt', 'Português'),
+                  ('ru', 'Русский'),
+                  ('ar', 'العربية'),
+                ])
+                  DropdownMenuItem(value: code, child: Text(name)),
               ],
               onChanged: (v) => _setLanguage(v),
             ),
