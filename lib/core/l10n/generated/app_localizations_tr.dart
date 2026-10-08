@@ -730,7 +730,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklamsız kullanım + yedekleme · tek ödeme, abonelik yok';
+      'Reklamsız, daha fazla yapay zekâ, yedekleme · küçük aylık ücretle';
 
   @override
   String get proBenefitNoAds => 'Reklamsız kullanım';
@@ -907,4 +907,96 @@ class AppLocalizationsTr extends AppLocalizations {
   String monthlyLimitLeft(String amount) {
     return 'Bu ay $amount kaldı';
   }
+
+  @override
+  String get plansTitle => 'Planlar';
+
+  @override
+  String get plansHeadline => 'Yapay zekâyla daha akıllı alışveriş';
+
+  @override
+  String get plansSubhead =>
+      'Fiş eşleştirme, raf etiketi ve cümleden liste. İstediğin zaman iptal et.';
+
+  @override
+  String get plansMonthly => 'Aylık';
+
+  @override
+  String get plansYearly => 'Yıllık';
+
+  @override
+  String get planFree => 'Ücretsiz';
+
+  @override
+  String get planFreePrice => 'Her zaman ücretsiz';
+
+  @override
+  String get planFreeAi => 'Ayda 15 yapay zekâ isteği';
+
+  @override
+  String get planFreeAds => 'Küçük banner reklam (ilk 7 gün reklamsız)';
+
+  @override
+  String get planCoreFeatures =>
+      'Listeler, fiyatlar, fişler, harcama grafikleri';
+
+  @override
+  String get plansPerYear => '/ yıl';
+
+  @override
+  String get plansPerMonth => '/ ay';
+
+  @override
+  String get planTrial => '7 gün ücretsiz';
+
+  @override
+  String get planProAi => 'Ayda 200 yapay zekâ isteği';
+
+  @override
+  String get planNoAds => 'Reklamsız';
+
+  @override
+  String get planBackup => 'Yedeği dışa ve içe aktarma';
+
+  @override
+  String get planMaxAi => 'Ayda 1000 yapay zekâ isteği';
+
+  @override
+  String get planMaxFamily => 'Büyük aile alışverişleri için';
+
+  @override
+  String get plansStoreUnavailable => 'Mağazaya şu an ulaşılamıyor.';
+
+  @override
+  String get retryAction => 'Tekrar dene';
+
+  @override
+  String get plansPurchaseFailed =>
+      'Satın alma tamamlanmadı. Lütfen tekrar dene.';
+
+  @override
+  String get planLifetimeTitle => 'Ömür boyu reklamsız';
+
+  @override
+  String get planLifetimeSubtitle =>
+      'Tek ödeme: reklamsız, yedekleme; yapay zekâ ücretsiz hakla devam eder';
+
+  @override
+  String get plansRestore => 'Satın alımları geri yükle';
+
+  @override
+  String get plansLegal =>
+      'Abonelikler iptal edilene kadar otomatik yenilenir. Google Play › Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin. Fiyatlara Google Play\'in gösterdiği vergiler dahildir.';
+
+  @override
+  String get planCurrent => 'Mevcut';
+
+  @override
+  String get planStartTrial => '7 gün ücretsiz dene';
+
+  @override
+  String get planChoose => 'Seç';
+
+  @override
+  String get plansAction => 'Planlar: Pro ve Max';
 }

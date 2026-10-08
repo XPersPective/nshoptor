@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart' hide AppTheme;
 import 'package:napp_pro/napp_pro.dart';
+import '../features/subscription/subscription_service.dart';
 
 import '../core/l10n/generated/app_localizations.dart';
 import '../core/theme/app_theme.dart';
@@ -34,6 +35,7 @@ class NShoptorApp extends StatelessWidget {
     this.nappTranslations,
     this.proController,
     this.purchaseRepository,
+    this.subscriptions,
     this.bannerController,
     this.giftFlow,
     this.reminderScheduler,
@@ -59,6 +61,7 @@ class NShoptorApp extends StatelessWidget {
   /// Pro durumu; null = Pro (test dikişi, standart §3.8 kilidi açılır).
   final ProController? proController;
   final PurchaseRepository? purchaseRepository;
+  final SubscriptionService? subscriptions;
 
   /// Bottom bar altındaki banner (standart §5.2); null = banner yok.
   final BannerAdController? bannerController;
@@ -118,6 +121,7 @@ class NShoptorApp extends StatelessWidget {
           appIdentity: appIdentity,
           proController: proController,
           purchaseRepository: purchaseRepository,
+          subscriptions: subscriptions,
           bannerController: bannerController,
           giftFlow: giftFlow,
           reminderScheduler: reminderScheduler,
@@ -138,6 +142,7 @@ class _Home extends StatelessWidget {
     this.appIdentity,
     this.proController,
     this.purchaseRepository,
+    this.subscriptions,
     this.bannerController,
     this.giftFlow,
     this.reminderScheduler,
@@ -151,6 +156,7 @@ class _Home extends StatelessWidget {
   final AppIdentity? appIdentity;
   final ProController? proController;
   final PurchaseRepository? purchaseRepository;
+  final SubscriptionService? subscriptions;
   final BannerAdController? bannerController;
   final Widget? giftFlow;
   final ReminderScheduler? reminderScheduler;
@@ -166,6 +172,7 @@ class _Home extends StatelessWidget {
       appIdentity: appIdentity,
       proController: proController,
       purchaseRepository: purchaseRepository,
+      subscriptions: subscriptions,
       bannerController: bannerController,
       giftFlow: giftFlow,
       reminderScheduler: reminderScheduler,

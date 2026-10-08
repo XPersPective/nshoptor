@@ -732,7 +732,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ad-free + backup · one-time payment, no subscription';
+      'No ads, more AI, backup · from a small monthly price';
 
   @override
   String get proBenefitNoAds => 'Ad-free experience';
@@ -908,4 +908,95 @@ class AppLocalizationsEn extends AppLocalizations {
   String monthlyLimitLeft(String amount) {
     return '$amount left this month';
   }
+
+  @override
+  String get plansTitle => 'Plans';
+
+  @override
+  String get plansHeadline => 'Shop smarter with AI';
+
+  @override
+  String get plansSubhead =>
+      'Receipt matching, price labels and lists from a sentence. Cancel any time.';
+
+  @override
+  String get plansMonthly => 'Monthly';
+
+  @override
+  String get plansYearly => 'Yearly';
+
+  @override
+  String get planFree => 'Free';
+
+  @override
+  String get planFreePrice => 'Free forever';
+
+  @override
+  String get planFreeAi => '15 AI requests a month';
+
+  @override
+  String get planFreeAds => 'Small banner ads (none in your first 7 days)';
+
+  @override
+  String get planCoreFeatures => 'Lists, prices, receipts, spending charts';
+
+  @override
+  String get plansPerYear => '/ year';
+
+  @override
+  String get plansPerMonth => '/ month';
+
+  @override
+  String get planTrial => '7 days free';
+
+  @override
+  String get planProAi => '200 AI requests a month';
+
+  @override
+  String get planNoAds => 'No ads';
+
+  @override
+  String get planBackup => 'Backup export and import';
+
+  @override
+  String get planMaxAi => '1000 AI requests a month';
+
+  @override
+  String get planMaxFamily => 'For big family shopping';
+
+  @override
+  String get plansStoreUnavailable => 'The store is not reachable right now.';
+
+  @override
+  String get retryAction => 'Retry';
+
+  @override
+  String get plansPurchaseFailed =>
+      'The purchase did not go through. Please try again.';
+
+  @override
+  String get planLifetimeTitle => 'Ad-free for life';
+
+  @override
+  String get planLifetimeSubtitle =>
+      'One-time payment: no ads, backup; AI stays on the free allowance';
+
+  @override
+  String get plansRestore => 'Restore purchases';
+
+  @override
+  String get plansLegal =>
+      'Subscriptions renew automatically until cancelled. Cancel any time in Google Play › Payments & subscriptions. Prices include the taxes shown by Google Play.';
+
+  @override
+  String get planCurrent => 'Current';
+
+  @override
+  String get planStartTrial => 'Start 7-day free trial';
+
+  @override
+  String get planChoose => 'Choose';
+
+  @override
+  String get plansAction => 'Plans: Pro and Max';
 }

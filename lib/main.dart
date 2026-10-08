@@ -17,6 +17,8 @@ import 'core/config/env_config.dart';
 import 'core/money/format_locale.dart';
 import 'data/db/app_database.dart';
 import 'features/ai/ai_client.dart';
+import 'features/subscription/lifetime_only_adapter.dart';
+import 'features/subscription/subscription_service.dart';
 import 'features/settings/settings_repository.dart';
 
 /// Uygulama veritabanı: tüm platformlarda app dizininde tek dosya.
@@ -30,7 +32,6 @@ Future<void> main() async {
   AppFormatLocale.attach(
     formatSetting == 'tr' || formatSetting == 'en' ? formatSetting : null,
   );
-  AiService.client = AiClient(store: store, baseUrl: EnvConfig.aiBaseUrl);
   final languageController = LanguageController(store: store)..load();
   final themeController = AppThemeModeController(store: store)..load();
   final identity = EnvConfig.identity;
@@ -42,8 +43,10 @@ Future<void> main() async {
 
   // Pro (standart §5.1): durum önce cihazdan; dinleme satın alma/geri
   // yükleme olaylarını uygular.
+  // Ömür boyu ürün akışı süzülür: abonelik olayları ProController'ı
+  // kalıcı Pro yapmasın (PB-055).
   final purchaseRepository = PurchaseRepository(
-    adapter: InAppPurchaseAdapter(),
+    adapter: LifetimeOnlyAdapter(InAppPurchaseAdapter(), productId: EnvConfig.proProductId),
     productId: EnvConfig.proProductId,
   );
   final proController = ProController(
@@ -52,6 +55,18 @@ Future<void> main() async {
   )..load();
   proController.startListening();
 
+  // Pro/Max abonelikleri (ADR-004 §6); AI kotası sunucuda doğrulanır.
+  final subscriptions = SubscriptionService(store: store)..load();
+  subscriptions.start();
+  SubscriptionService.instance = subscriptions;
+  AiService.client = AiClient(
+    store: store,
+    baseUrl: EnvConfig.aiBaseUrl,
+    credential: () => subscriptions.credential,
+  );
+  bool adFree() => SubscriptionService.adFree(
+      lifetimeOrTemp: proController.isPro, tier: subscriptions.tier);
+
   // Reklam (standart §5.2): kalıcı durum → oturum → onay/SDK → politika
   // Pro'yu izler; UMP onayı SDK başlatmasından ÖNCE.
   final adsAdapter = await SharedPreferencesAdapter.create();
@@ -59,11 +74,13 @@ Future<void> main() async {
   final saved = AdPolicyPersistence.load(adsAdapter);
   if (saved != null) policy.restore(saved);
   policy.setOnboardingCompleted(true);
-  policy.setPro(proController.isPro);
-  proController.addListener(() {
-    policy.setPro(proController.isPro);
+  policy.setPro(adFree());
+  void syncAds() {
+    policy.setPro(adFree());
     AdPolicyPersistence.save(adsAdapter, policy);
-  });
+  }
+  proController.addListener(syncAds);
+  subscriptions.addListener(syncAds);
   policy.startSession(DateTime.now());
 
   final bannerController = BannerAdController(policy: policy);
@@ -92,6 +109,7 @@ Future<void> main() async {
       nappTranslations: nappTranslations,
       proController: proController,
       purchaseRepository: purchaseRepository,
+    subscriptions: subscriptions,
       bannerController: bannerController,
       giftFlow: !hasRewardedUnit
           ? null

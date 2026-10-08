@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../ai/ai_client.dart';
+import '../subscription/subscription_paywall.dart';
+import '../subscription/subscription_service.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
 
@@ -28,6 +30,7 @@ class SettingsScreen extends StatefulWidget {
     this.themeModeController,
     this.proController,
     this.purchaseRepository,
+    this.subscriptions,
     this.appIdentity,
     this.giftFlow,
   });
@@ -44,6 +47,9 @@ class SettingsScreen extends StatefulWidget {
 
   /// Paywall için satın alma deposu; null ise yalnız durum gösterilir.
   final PurchaseRepository? purchaseRepository;
+
+  /// Pro/Max abonelikleri (PB-055); null ise yalnız ömür boyu paywall.
+  final SubscriptionService? subscriptions;
 
   /// Paywall başlığı/marka için kimlik (napp_core).
   final AppIdentity? appIdentity;
@@ -208,14 +214,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ListTile(
               key: const Key('settings_pro_row'),
               leading: const Icon(Icons.workspace_premium_outlined),
-              title: Text(_proUnlocked
-                  ? l10n.proActiveLabel
-                  : l10n.proBuyLabel),
-              subtitle: !_proUnlocked ? Text(l10n.proBenefitsLine) : null,
-              trailing: _proUnlocked
-                  ? const Icon(Icons.check_circle_outline)
-                  : const Icon(Icons.chevron_right),
-              onTap: () => _proUnlocked ? null : _openPaywall(context),
+              title: Text(widget.subscriptions == null
+                  ? (_proUnlocked ? l10n.proActiveLabel : l10n.proBuyLabel)
+                  : switch (_tier) {
+                      Tier.max => 'NShoptor Max',
+                      Tier.pro => 'NShoptor Pro',
+                      Tier.free => l10n.plansAction,
+                    }),
+              subtitle: _tier == Tier.free ? Text(l10n.proBenefitsLine) : null,
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => widget.subscriptions == null
+                  ? (_proUnlocked ? null : _openPaywall(context))
+                  : _openPlans(context),
             ),
 
             _SectionTitle(
@@ -231,7 +241,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   : const Icon(Icons.lock_outline),
               onTap: () => _proUnlocked
                   ? _exportBackup(context)
-                  : _openPaywall(context),
+                  : (widget.subscriptions != null ? _openPlans(context) : _openPaywall(context)),
             ),
             ListTile(
               key: const Key('import_backup_button'),
@@ -242,7 +252,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   : const Icon(Icons.lock_outline),
               onTap: () => _proUnlocked
                   ? _importBackup(context)
-                  : _openPaywall(context),
+                  : (widget.subscriptions != null ? _openPlans(context) : _openPaywall(context)),
             ),
 
             _SectionTitle(
@@ -343,7 +353,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  bool get _proUnlocked => widget.proController?.isPro ?? true;
+  bool get _proUnlocked =>
+      (widget.proController?.isPro ?? true) ||
+      (widget.subscriptions?.tier ?? Tier.free) != Tier.free;
+
+  Tier get _tier => widget.subscriptions?.tier ?? Tier.free;
+
+  Future<void> _openPlans(BuildContext context) async {
+    final subs = widget.subscriptions!;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (ctx) => SubscriptionPaywall(
+          service: subs,
+          onLifetime: widget.proController?.hasLifetimePurchase == true
+              ? null
+              : () => _openPaywall(ctx),
+        ),
+      ),
+    );
+    if (mounted) setState(() {});
+  }
 
   /// Paywall: Pro değilken kilitli özelliklerden buraya gelinir (standart
   /// §5.1: dürüst faydalar, geri yükleme düğmesi).

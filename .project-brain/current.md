@@ -21,6 +21,8 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/features/history/` — geçmiş, fiyat geçmişi, içgörüler
 - `lib/features/settings/` — ayarlar, yedek/CSV, AI anahtarı
 - `lib/features/ai/ai_client.dart` — AI vekiline tek kapı (AiService.client, kurulum kimliği, AiResult)
+- `lib/features/subscription/` — Pro/Max abonelik servisi, planlar ekranı, ömür boyu akış süzgeci
+- `tool/play/subscriptions.rb` — Play abonelik/plan/deneme kurulumu (API)
 - `test/`, `integration_test/` — birim/widget/e2e; `test/store_capture_test.dart` mağaza görselleri
 - `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishingpps
 shoptor)

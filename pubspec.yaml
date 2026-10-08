@@ -66,6 +66,9 @@ dependencies:
   file_picker: ^13.1.0
   # AI vekiline HTTPS istemcisi (ADR-004); zaten dolaylı bağımlılıktı, BSD-3.
   http: ^1.6.0
+  # Pro/Max abonelikleri (ADR-004); napp_pro üzerinden zaten dolaylıydı, BSD-3.
+  in_app_purchase: ^3.3.1
+  in_app_purchase_android: ^0.5.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

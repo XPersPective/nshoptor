@@ -1487,7 +1487,7 @@ abstract class AppLocalizations {
   /// No description provided for @proBenefitsLine.
   ///
   /// In en, this message translates to:
-  /// **'Ad-free + backup · one-time payment, no subscription'**
+  /// **'No ads, more AI, backup · from a small monthly price'**
   String get proBenefitsLine;
 
   /// No description provided for @proBenefitNoAds.
@@ -1807,6 +1807,180 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{amount} left this month'**
   String monthlyLimitLeft(String amount);
+
+  /// No description provided for @plansTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plans'**
+  String get plansTitle;
+
+  /// No description provided for @plansHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop smarter with AI'**
+  String get plansHeadline;
+
+  /// No description provided for @plansSubhead.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt matching, price labels and lists from a sentence. Cancel any time.'**
+  String get plansSubhead;
+
+  /// No description provided for @plansMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get plansMonthly;
+
+  /// No description provided for @plansYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get plansYearly;
+
+  /// No description provided for @planFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get planFree;
+
+  /// No description provided for @planFreePrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Free forever'**
+  String get planFreePrice;
+
+  /// No description provided for @planFreeAi.
+  ///
+  /// In en, this message translates to:
+  /// **'15 AI requests a month'**
+  String get planFreeAi;
+
+  /// No description provided for @planFreeAds.
+  ///
+  /// In en, this message translates to:
+  /// **'Small banner ads (none in your first 7 days)'**
+  String get planFreeAds;
+
+  /// No description provided for @planCoreFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'Lists, prices, receipts, spending charts'**
+  String get planCoreFeatures;
+
+  /// No description provided for @plansPerYear.
+  ///
+  /// In en, this message translates to:
+  /// **'/ year'**
+  String get plansPerYear;
+
+  /// No description provided for @plansPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'/ month'**
+  String get plansPerMonth;
+
+  /// No description provided for @planTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'7 days free'**
+  String get planTrial;
+
+  /// No description provided for @planProAi.
+  ///
+  /// In en, this message translates to:
+  /// **'200 AI requests a month'**
+  String get planProAi;
+
+  /// No description provided for @planNoAds.
+  ///
+  /// In en, this message translates to:
+  /// **'No ads'**
+  String get planNoAds;
+
+  /// No description provided for @planBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup export and import'**
+  String get planBackup;
+
+  /// No description provided for @planMaxAi.
+  ///
+  /// In en, this message translates to:
+  /// **'1000 AI requests a month'**
+  String get planMaxAi;
+
+  /// No description provided for @planMaxFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'For big family shopping'**
+  String get planMaxFamily;
+
+  /// No description provided for @plansStoreUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The store is not reachable right now.'**
+  String get plansStoreUnavailable;
+
+  /// No description provided for @retryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retryAction;
+
+  /// No description provided for @plansPurchaseFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The purchase did not go through. Please try again.'**
+  String get plansPurchaseFailed;
+
+  /// No description provided for @planLifetimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad-free for life'**
+  String get planLifetimeTitle;
+
+  /// No description provided for @planLifetimeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One-time payment: no ads, backup; AI stays on the free allowance'**
+  String get planLifetimeSubtitle;
+
+  /// No description provided for @plansRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get plansRestore;
+
+  /// No description provided for @plansLegal.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriptions renew automatically until cancelled. Cancel any time in Google Play › Payments & subscriptions. Prices include the taxes shown by Google Play.'**
+  String get plansLegal;
+
+  /// No description provided for @planCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get planCurrent;
+
+  /// No description provided for @planStartTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'Start 7-day free trial'**
+  String get planStartTrial;
+
+  /// No description provided for @planChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose'**
+  String get planChoose;
+
+  /// No description provided for @plansAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Plans: Pro and Max'**
+  String get plansAction;
 }
 
 class _AppLocalizationsDelegate

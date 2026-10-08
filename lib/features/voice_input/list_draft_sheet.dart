@@ -4,6 +4,8 @@ import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/quantity/unit_display.dart';
 import '../ai/ai_client.dart';
 import 'ai_list_parser.dart';
+import '../subscription/subscription_paywall.dart';
+import '../subscription/subscription_service.dart';
 import 'parser/parsed_item_candidate.dart';
 import 'voice_input_service.dart';
 
@@ -82,7 +84,13 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
       _ => null,
     };
     if (note != null && !draft.fromAi) {
-      messenger?.showSnackBar(SnackBar(content: Text(note)));
+      final nav = Navigator.of(context);
+      messenger?.showSnackBar(SnackBar(
+        content: Text(note),
+        action: why is AiQuota && SubscriptionService.instance != null
+            ? SnackBarAction(label: l10n.plansTitle, onPressed: () => openPlans(nav.context))
+            : null,
+      ));
     }
   }
 

@@ -11,6 +11,8 @@ import '../../../data/db/app_database.dart';
 
 import 'receipt_review_controller.dart';
 import '../../ai/ai_client.dart';
+import '../../subscription/subscription_paywall.dart';
+import '../../subscription/subscription_service.dart';
 
 /// Fiş inceleme ve eşleştirme ekranı (spec §6.9).
 ///
@@ -87,7 +89,12 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                       AiOffline() => l10n.aiOffline,
                       _ => l10n.aiFailed,
                     }),
-              actions: const [SizedBox.shrink()],
+              actions: [
+                if (_c.aiProblem is AiQuota && SubscriptionService.instance != null)
+                  TextButton(onPressed: () => openPlans(context), child: Text(l10n.plansTitle))
+                else
+                  const SizedBox.shrink(),
+              ],
             ),
           Card(
             child: ListTile(

@@ -12,6 +12,7 @@ import '../lists/list_repository.dart';
 import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
+import '../subscription/subscription_service.dart';
 import '../../app/app_defaults.dart';
 import '../settings/settings_repository.dart';
 import '../settings/settings_screen.dart';
@@ -41,6 +42,7 @@ class HomeShell extends StatefulWidget {
     this.appIdentity,
     this.proController,
     this.purchaseRepository,
+    this.subscriptions,
     this.bannerController,
     this.giftFlow,
     this.reminderScheduler,
@@ -64,6 +66,7 @@ class HomeShell extends StatefulWidget {
   /// Pro durumu; null = Pro (test dikişi).
   final ProController? proController;
   final PurchaseRepository? purchaseRepository;
+  final SubscriptionService? subscriptions;
 
   /// Bottom bar'IN altındaki banner (standart §5.2); null = banner yok.
   final BannerAdController? bannerController;
@@ -115,6 +118,7 @@ class _HomeShellState extends State<HomeShell> {
               appIdentity: widget.appIdentity,
               proController: widget.proController,
               purchaseRepository: widget.purchaseRepository,
+              subscriptions: widget.subscriptions,
               giftFlow: widget.giftFlow,
             ),
     ];
