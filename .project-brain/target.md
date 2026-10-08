@@ -1,7 +1,7 @@
 # Target Architecture
+Status: CONFIRMED
 
-## Objective
-
+## Goal
 NShoptor: Crazy Penguin'in açık kaynak (GPL-3.0), offline-first, hesapsız
 alışveriş planlayıcısı. Kullanıcının zihinsel modeli ÜRÜNÜN TASARIM
 OTORİTESİDİR (ADR-002, 2026-10-02):

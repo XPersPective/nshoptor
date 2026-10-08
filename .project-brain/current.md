@@ -4,6 +4,27 @@
 
 Repository-wide current architecture (NShoptor, single Flutter app).
 
+## Map
+
+- `lib/main.dart` — boot: settings, Pro/Ads (napp_kit), DB, runApp
+- `lib/app/` — NShoptorApp, dil/tema denetleyicileri, varsayılanlar
+- `lib/core/money|quantity|calc` — decimal para, birim, plan-gerçek hesapları (double yok)
+- `lib/core/l10n/` — tr/en ARB + üretilmiş AppLocalizations
+- `lib/core/theme/` — M3 tema, SemanticDelta renkleri
+- `lib/core/config/env_config.dart` — AppIdentity, dart-define adresleri, Pro ürün kimliği
+- `lib/data/db/` — drift şeması (14 tablo) + üretilmiş kod
+- `lib/features/home/` — HomeShell (5 sekme), ana sayfa kartları
+- `lib/features/lists/` — listeler, liste detayı, ürün formu, hatırlatma, şablonlar
+- `lib/features/shopping_mode/` — alışveriş modu, sonuç ekranı (summary/)
+- `lib/features/receipts/` — cihaz içi OCR (ML Kit), fiş ayrıştırma/eşleştirme, raf etiketi
+- `lib/features/voice_input/` — speech_to_text + kural tabanlı komut ayrıştırıcı
+- `lib/features/history/` — geçmiş, fiyat geçmişi, içgörüler
+- `lib/features/settings/` — ayarlar, yedek/CSV
+- `test/`, `integration_test/` — birim/widget/e2e; `test/store_capture_test.dart` mağaza görselleri
+- `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishingpps
+shoptor)
+- `docs/store/` — gizlilik politikası, Play beyan taslakları
+
 ## Runtime
 
 **Status:** VERIFIED
