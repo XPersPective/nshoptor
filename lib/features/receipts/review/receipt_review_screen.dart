@@ -10,6 +10,7 @@ import '../../../core/money/money.dart';
 import '../../../data/db/app_database.dart';
 
 import 'receipt_review_controller.dart';
+import '../../ai/ai_client.dart';
 
 /// Fiş inceleme ve eşleştirme ekranı (spec §6.9).
 ///
@@ -51,7 +52,13 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     // Öneriler (PB-040): yüksek güvenli eşleşmeler bağlanmış gelir;
     // kullanıcı tek dokunuşla onaylar/değiştirir (C-003: onaysız DB yok).
     unawaited(_c.prefillSuggestions());
+    unawaited(widget.plannedItems.then((items) {
+      if (!mounted) return;
+      setState(() => _plannedNames = {for (final p in items) p.id: p.name});
+    }));
   }
+
+  Map<int, String> _plannedNames = const {};
 
   void _sync() => setState(() {});
 
@@ -69,6 +76,19 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
       appBar: AppBar(title: Text(l10n.receiptReviewTitle)),
       body: Column(
         children: [
+          if (_c.aiMatched || _c.aiProblem != null)
+            MaterialBanner(
+              key: const Key('receipt_ai_banner'),
+              leading: Icon(_c.aiMatched ? Icons.auto_awesome : Icons.info_outline),
+              content: Text(_c.aiMatched
+                  ? l10n.receiptAiMatched
+                  : switch (_c.aiProblem) {
+                      AiQuota(:final used, :final limit) => l10n.aiQuotaReached(used, limit),
+                      AiOffline() => l10n.aiOffline,
+                      _ => l10n.aiFailed,
+                    }),
+              actions: const [SizedBox.shrink()],
+            ),
           Card(
             child: ListTile(
               leading: const Icon(Icons.receipt_long),
@@ -102,8 +122,29 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                   child: ListTile(
                     key: Key('receipt_line_$i'),
                     title: Text(line.name),
-                    subtitle: Text(
-                      '${_lineQty(line)} · ${money(line.lineTotalMinor)}',
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('${_lineQty(line)} · ${money(line.lineTotalMinor)}'),
+                        if (line.linkedPlannedItemId != null &&
+                            _plannedNames[line.linkedPlannedItemId] != null)
+                          Text(
+                            '→ ${_plannedNames[line.linkedPlannedItemId]}',
+                            key: Key('receipt_line_link_$i'),
+                            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                          ),
+                        if (line.needsCheck || line.isDiscount)
+                          Wrap(
+                            spacing: 6,
+                            children: [
+                              if (line.needsCheck)
+                                Text(l10n.receiptNeedsCheck,
+                                    key: Key('receipt_line_check_$i'),
+                                    style: TextStyle(color: Theme.of(context).colorScheme.tertiary)),
+                              if (line.isDiscount) Text(l10n.receiptDiscountLine),
+                            ],
+                          ),
+                      ],
                     ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,

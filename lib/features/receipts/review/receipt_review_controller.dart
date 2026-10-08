@@ -5,6 +5,8 @@ import '../../../core/money/decimal_fixed.dart';
 import '../../../data/db/app_database.dart';
 import '../parser/receipt_parse_result.dart';
 import '../parser/receipt_parser.dart' show ReceiptMatcher;
+import '../../ai/ai_client.dart';
+import 'ai_receipt_matcher.dart';
 
 /// Bir aday satırın inceleme durumu.
 enum ReviewStatus { pending, accepted, ignored }
@@ -34,6 +36,12 @@ class ReviewLine {
 
   /// Bağlantısız kabul edilen satır plansız ürün olarak eklenir (spec §6.9).
   bool isUnplanned;
+
+  /// AI orta güvenle bağladı: kullanıcı kontrol etmeli (PB-051).
+  bool needsCheck = false;
+
+  /// Fişte indirim/kampanya satırı olarak işaretlendi (PB-051).
+  bool isDiscount = false;
 }
 
 /// Fiş inceleme denetleyicisi (spec §6.9).
@@ -47,6 +55,8 @@ class ReceiptReviewController extends ChangeNotifier {
     required this.listId,
     required ReceiptParseResult parseResult,
     this.imagePath,
+    this.ai,
+    this.localeCode = 'tr',
   }) {
     lines = [
       for (final line in parseResult.lines)
@@ -67,6 +77,16 @@ class ReceiptReviewController extends ChangeNotifier {
 
   final AppDatabase _db;
   final int listId;
+
+  /// AI eşleştirme (PB-051); null ya da başarısızsa kural tabanlı eşleştirici.
+  final AiClient? ai;
+  final String localeCode;
+
+  /// Son öneri turunda eşleşmeleri AI mı yaptı (ekranda bilgi bandı).
+  bool aiMatched = false;
+
+  /// AI denenip kullanılamadıysa sebep (kota/çevrimdışı/hata).
+  AiResult? aiProblem;
 
   late final List<ReviewLine> lines;
 
@@ -121,6 +141,46 @@ class ReceiptReviewController extends ChangeNotifier {
   /// dokunuşla değiştirir/kaldırır. Orta güven yalnız öneridir, bağlamaz.
   /// Onay akışı değişmez (C-003): DB'ye yalnız accept yazımı yazar.
   Future<void> prefillSuggestions() async {
+    if (await _prefillWithAi()) return;
+    await _prefillWithRules();
+  }
+
+  Future<bool> _prefillWithAi() async {
+    final client = ai;
+    if (client == null || !client.enabled) return false;
+    final planned = await (_db.select(_db.plannedItems)
+          ..where((t) => t.listId.equals(listId)))
+        .get();
+    final outcome = await AiReceiptMatcher(client, localeCode: localeCode).match(
+      [
+        for (var i = 0; i < lines.length; i++)
+          (
+            index: i,
+            text: lines[i].rawText,
+            total: DecimalFixed.fromMinorUnits(lines[i].lineTotalMinor, 2).toDbString(),
+          ),
+      ],
+      [for (final p in planned) (id: p.id, name: p.name)],
+    );
+    if (outcome == null) return false;
+    if (outcome.result is! AiOk) {
+      aiProblem = outcome.result;
+      return false;
+    }
+    for (final m in outcome.matches) {
+      final line = lines[m.lineIndex];
+      line.isDiscount = m.isDiscount;
+      if (m.plannedId == null || m.confidence == 'low') continue;
+      if (line.linkedPlannedItemId != null) continue;
+      line.linkedPlannedItemId = m.plannedId;
+      line.needsCheck = m.confidence == 'medium';
+    }
+    aiMatched = true;
+    notifyListeners();
+    return true;
+  }
+
+  Future<void> _prefillWithRules() async {
     final candidates = [
       for (final line in lines)
         ReceiptLineCandidate(

@@ -277,5 +277,8 @@
   "quickListHint": "Örn: 1 kilo elma 20 lira, 2 ekmek, yarım kilo peynir",
   "quickListConvert": "Listeye dönüştür",
   "quickListAdd": "{count} ürünü ekle",
-  "quickListEmpty": "Ürün bulunamadı. Virgülle ayırarak yazmayı dene."
+  "quickListEmpty": "Ürün bulunamadı. Virgülle ayırarak yazmayı dene.",
+  "receiptAiMatched": "Yapay zekâ fişi listenle eşleştirdi. Bağlantıları kontrol edip onayla.",
+  "receiptNeedsCheck": "Bu eşleşmeyi kontrol et",
+  "receiptDiscountLine": "İndirim"
 }

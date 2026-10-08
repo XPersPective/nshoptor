@@ -816,4 +816,14 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get quickListEmpty =>
       'Ürün bulunamadı. Virgülle ayırarak yazmayı dene.';
+
+  @override
+  String get receiptAiMatched =>
+      'Yapay zekâ fişi listenle eşleştirdi. Bağlantıları kontrol edip onayla.';
+
+  @override
+  String get receiptNeedsCheck => 'Bu eşleşmeyi kontrol et';
+
+  @override
+  String get receiptDiscountLine => 'İndirim';
 }

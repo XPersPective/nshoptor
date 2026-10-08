@@ -84,7 +84,7 @@ class ReceiptParser {
           subtotalMinor ??= amount;
           continue;
         }
-        if (_discountMarkers.any(lower.contains)) {
+        if (_isDiscountLine(lower)) {
           discountMinor = (discountMinor ?? 0) + amount;
           continue;
         }
@@ -201,7 +201,7 @@ class ReceiptParser {
       final lower = text.toLowerCase();
       final structural = _skipWords.any(lower.contains) ||
           _subtotalMarkers.any(lower.contains) ||
-          _discountMarkers.any(lower.contains) ||
+          _isDiscountLine(lower) ||
           _taxMarkers.any(lower.contains) ||
           _totalMarkers.any(lower.contains) ||
           _phonePattern.hasMatch(text) ||
@@ -241,6 +241,17 @@ class ReceiptParser {
   /// Satır sonunda parasal değer var mı?
   static bool _hasTrailingPrice(String text) =>
       RegExp(r'\d+[.,]\d{2}\s*$').hasMatch(text.trim());
+
+  /// İndirim satırı: tutar eksiyse ya da işaret kelimesi dışında ürün adı
+  /// yoksa ("İNDİRİM 5,00"). "İNDİRİMLİ ELMA 31,50" bir üründür (PB-051).
+  bool _isDiscountLine(String lower) {
+    if (!_discountMarkers.any(lower.contains)) return false;
+    if (RegExp(r'-\s*\d').hasMatch(lower)) return true;
+    final rest = lower
+        .replaceAll(RegExp(r'\S*(indirim|iskonto|kampanya|kupon)\S*'), ' ')
+        .replaceAll(RegExp(r'[^a-zçğıöşü]'), '');
+    return rest.length < 3;
+  }
 
   /// Ürün satırı: `SUT 2X32,90 64,00` | `DOMATES 1,5KG X42,90 64,35` |
   /// `EKMEK 15,00`. Dönüşüm: name + opsiyonel miktar/birim fiyat + son fiyat.

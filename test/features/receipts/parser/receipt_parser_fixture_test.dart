@@ -201,4 +201,15 @@ void main() {
     expect(domates.$2?.id, itemId);
     expect(domates.$3, 'high');
   });
+
+  test('"İNDİRİMLİ ELMA" ürün; "İNDİRİM", "KAMPANYA İNDİRİMİ" ve eksi tutar indirim (PB-051)', () {
+    final r = ReceiptParser().parse(const OcrScanResult(lines: [
+      OcrLine(text: 'INDIRIMLI ELMA KG 31,50'),
+      OcrLine(text: 'INDIRIM 5,00'),
+      OcrLine(text: 'KAMPANYA INDIRIMI 2,00'),
+      OcrLine(text: 'ISKONTO -1,50'),
+    ]));
+    expect(r.lines.map((l) => l.name.toLowerCase()), ['indirimli elma kg']);
+    expect(r.discountMinor, 850);
+  });
 }

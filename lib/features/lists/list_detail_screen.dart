@@ -32,6 +32,7 @@ import '../voice_input/list_draft_sheet.dart';
 import '../../app/app_defaults.dart';
 import '../../core/money/decimal_fixed.dart';
 import 'item_repository.dart';
+import '../ai/ai_client.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
 import 'reminders/local_notifications_scheduler.dart';
 import 'reminders/reminder_scheduler.dart';
@@ -534,6 +535,8 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
             db: widget.db,
             listId: widget.listId,
             parseResult: parsed,
+            ai: AiService.client,
+            localeCode: Localizations.localeOf(context).languageCode,
           ),
           currency: list.currencyCode,
           plannedItems: (widget.db.select(

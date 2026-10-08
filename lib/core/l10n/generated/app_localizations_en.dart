@@ -817,4 +817,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get quickListEmpty =>
       'No items found. Try listing them separated by commas.';
+
+  @override
+  String get receiptAiMatched =>
+      'AI matched the receipt to your list. Check the links and confirm.';
+
+  @override
+  String get receiptNeedsCheck => 'Check this match';
+
+  @override
+  String get receiptDiscountLine => 'Discount';
 }

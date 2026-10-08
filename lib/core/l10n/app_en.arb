@@ -304,5 +304,8 @@
         "type": "int"
       }
     }
-  }
+  },
+  "receiptAiMatched": "AI matched the receipt to your list. Check the links and confirm.",
+  "receiptNeedsCheck": "Check this match",
+  "receiptDiscountLine": "Discount"
 }

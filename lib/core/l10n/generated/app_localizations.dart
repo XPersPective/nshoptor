@@ -1639,6 +1639,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No items found. Try listing them separated by commas.'**
   String get quickListEmpty;
+
+  /// No description provided for @receiptAiMatched.
+  ///
+  /// In en, this message translates to:
+  /// **'AI matched the receipt to your list. Check the links and confirm.'**
+  String get receiptAiMatched;
+
+  /// No description provided for @receiptNeedsCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Check this match'**
+  String get receiptNeedsCheck;
+
+  /// No description provided for @receiptDiscountLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get receiptDiscountLine;
 }
 
 class _AppLocalizationsDelegate
