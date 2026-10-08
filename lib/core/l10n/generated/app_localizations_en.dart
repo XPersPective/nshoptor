@@ -863,4 +863,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get detailsSection => 'Details';
+
+  @override
+  String get spendingTitle => 'Spending';
+
+  @override
+  String get spendingAction => 'Spending';
+
+  @override
+  String get spendingMonthTotal => 'This month';
+
+  @override
+  String get spendingWeekly => 'Weekly spending';
+
+  @override
+  String get spendingMonthly => 'Monthly spending';
+
+  @override
+  String get monthlyLimitTitle => 'Monthly limit';
+
+  @override
+  String get monthlyLimitHelp =>
+      'How much do you want to spend on shopping per month?';
+
+  @override
+  String get monthlyLimitRemove => 'Remove';
+
+  @override
+  String get monthlyLimitSet => 'Set';
+
+  @override
+  String get monthlyLimitChange => 'Change';
+
+  @override
+  String get monthlyLimitNone =>
+      'Set a monthly limit to see how much you have left.';
+
+  @override
+  String monthlyLimitOver(String amount) {
+    return '$amount over the limit';
+  }
+
+  @override
+  String monthlyLimitLeft(String amount) {
+    return '$amount left this month';
+  }
 }

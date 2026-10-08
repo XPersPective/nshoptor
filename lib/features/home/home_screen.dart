@@ -11,6 +11,8 @@ import '../lists/list_status.dart';
 import '../lists/list_repository.dart';
 import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
+import '../history/insights/spending_screen.dart';
+import '../../app/app_defaults.dart';
 import '../settings/settings_repository.dart';
 import '../settings/settings_screen.dart';
 import '../shopping_mode/shopping_mode_screen.dart';
@@ -498,6 +500,26 @@ class _MonthlyCard extends StatelessWidget {
                 ),
               ],
             ),
+            if (AppDefaults.monthlyLimitMinor() != null &&
+                totals.currencyCode == AppDefaults.defaultCurrency()) ...[
+              const SizedBox(height: 10),
+              LinearProgressIndicator(
+                key: const Key('home_limit_progress'),
+                value: (totals.actualMinor / AppDefaults.monthlyLimitMinor()!)
+                    .clamp(0, 1)
+                    .toDouble(),
+                color: totals.actualMinor > AppDefaults.monthlyLimitMinor()!
+                    ? Theme.of(context).colorScheme.error
+                    : null,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                totals.actualMinor > AppDefaults.monthlyLimitMinor()!
+                    ? l10n.monthlyLimitOver(money(totals.actualMinor - AppDefaults.monthlyLimitMinor()!))
+                    : l10n.monthlyLimitLeft(money(AppDefaults.monthlyLimitMinor()! - totals.actualMinor)),
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
           ],
         ),
       ),
@@ -516,7 +538,19 @@ class HistoryPlaceholder extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final repo = InsightsRepository(db);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.navHistory)),
+      appBar: AppBar(
+        title: Text(l10n.navHistory),
+        actions: [
+          IconButton(
+            key: const Key('history_spending'),
+            icon: const Icon(Icons.insights_outlined),
+            tooltip: l10n.spendingAction,
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: db)),
+            ),
+          ),
+        ],
+      ),
       body: StreamBuilder<List<ShoppingList>>(
         stream: repo.watchCompleted(),
         builder: (context, snapshot) {
@@ -532,6 +566,18 @@ class HistoryPlaceholder extends StatelessWidget {
           return ListView(
             padding: const EdgeInsets.all(12),
             children: [
+              Card(
+                key: const Key('history_spending_card'),
+                child: ListTile(
+                  leading: const Icon(Icons.insights_outlined),
+                  title: Text(l10n.spendingTitle),
+                  subtitle: Text('${l10n.spendingWeekly} · ${l10n.monthlyLimitTitle}'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: db)),
+                  ),
+                ),
+              ),
               for (final list in completed)
                 ListTile(
                   leading: const Icon(Icons.check_circle_outline),

@@ -292,5 +292,18 @@
   "pricierItems": "Pahalı çıkanlar",
   "cheaperItems": "Ucuza aldıkların",
   "compareAction": "Karşılaştır",
-  "detailsSection": "Ayrıntılar"
+  "detailsSection": "Ayrıntılar",
+  "spendingTitle": "Harcamalar",
+  "spendingAction": "Harcamalar",
+  "spendingMonthTotal": "Bu ay",
+  "spendingWeekly": "Haftalık harcama",
+  "spendingMonthly": "Aylık harcama",
+  "monthlyLimitTitle": "Aylık limit",
+  "monthlyLimitHelp": "Alışverişe ayda ne kadar harcamak istiyorsun?",
+  "monthlyLimitRemove": "Kaldır",
+  "monthlyLimitSet": "Belirle",
+  "monthlyLimitChange": "Değiştir",
+  "monthlyLimitNone": "Ne kadar kaldığını görmek için aylık bir limit belirle.",
+  "monthlyLimitOver": "Limit {amount} aşıldı",
+  "monthlyLimitLeft": "Bu ay {amount} kaldı"
 }

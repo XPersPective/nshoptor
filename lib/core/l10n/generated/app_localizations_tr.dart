@@ -862,4 +862,49 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get detailsSection => 'Ayrıntılar';
+
+  @override
+  String get spendingTitle => 'Harcamalar';
+
+  @override
+  String get spendingAction => 'Harcamalar';
+
+  @override
+  String get spendingMonthTotal => 'Bu ay';
+
+  @override
+  String get spendingWeekly => 'Haftalık harcama';
+
+  @override
+  String get spendingMonthly => 'Aylık harcama';
+
+  @override
+  String get monthlyLimitTitle => 'Aylık limit';
+
+  @override
+  String get monthlyLimitHelp =>
+      'Alışverişe ayda ne kadar harcamak istiyorsun?';
+
+  @override
+  String get monthlyLimitRemove => 'Kaldır';
+
+  @override
+  String get monthlyLimitSet => 'Belirle';
+
+  @override
+  String get monthlyLimitChange => 'Değiştir';
+
+  @override
+  String get monthlyLimitNone =>
+      'Ne kadar kaldığını görmek için aylık bir limit belirle.';
+
+  @override
+  String monthlyLimitOver(String amount) {
+    return 'Limit $amount aşıldı';
+  }
+
+  @override
+  String monthlyLimitLeft(String amount) {
+    return 'Bu ay $amount kaldı';
+  }
 }

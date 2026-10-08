@@ -35,4 +35,19 @@ class AppDefaults {
     }
     return UnitCode.adet;
   }
+
+  /// Aylık harcama limiti (minor unit, varsayılan para biriminde); yoksa null.
+  static const monthlyLimitKey = 'monthly_limit_minor';
+
+  static int? monthlyLimitMinor() => _store?.getInt(monthlyLimitKey);
+
+  static void setMonthlyLimitMinor(int? value) {
+    final store = _store;
+    if (store == null) return;
+    if (value == null || value <= 0) {
+      store.remove(monthlyLimitKey);
+    } else {
+      store.setInt(monthlyLimitKey, value);
+    }
+  }
 }

@@ -1729,6 +1729,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Details'**
   String get detailsSection;
+
+  /// No description provided for @spendingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Spending'**
+  String get spendingTitle;
+
+  /// No description provided for @spendingAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Spending'**
+  String get spendingAction;
+
+  /// No description provided for @spendingMonthTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get spendingMonthTotal;
+
+  /// No description provided for @spendingWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly spending'**
+  String get spendingWeekly;
+
+  /// No description provided for @spendingMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly spending'**
+  String get spendingMonthly;
+
+  /// No description provided for @monthlyLimitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly limit'**
+  String get monthlyLimitTitle;
+
+  /// No description provided for @monthlyLimitHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'How much do you want to spend on shopping per month?'**
+  String get monthlyLimitHelp;
+
+  /// No description provided for @monthlyLimitRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get monthlyLimitRemove;
+
+  /// No description provided for @monthlyLimitSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Set'**
+  String get monthlyLimitSet;
+
+  /// No description provided for @monthlyLimitChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get monthlyLimitChange;
+
+  /// No description provided for @monthlyLimitNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a monthly limit to see how much you have left.'**
+  String get monthlyLimitNone;
+
+  /// No description provided for @monthlyLimitOver.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} over the limit'**
+  String monthlyLimitOver(String amount);
+
+  /// No description provided for @monthlyLimitLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} left this month'**
+  String monthlyLimitLeft(String amount);
 }
 
 class _AppLocalizationsDelegate

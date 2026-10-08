@@ -319,5 +319,32 @@
   "pricierItems": "Cost more",
   "cheaperItems": "Cost less",
   "compareAction": "Compare",
-  "detailsSection": "Details"
+  "detailsSection": "Details",
+  "spendingTitle": "Spending",
+  "spendingAction": "Spending",
+  "spendingMonthTotal": "This month",
+  "spendingWeekly": "Weekly spending",
+  "spendingMonthly": "Monthly spending",
+  "monthlyLimitTitle": "Monthly limit",
+  "monthlyLimitHelp": "How much do you want to spend on shopping per month?",
+  "monthlyLimitRemove": "Remove",
+  "monthlyLimitSet": "Set",
+  "monthlyLimitChange": "Change",
+  "monthlyLimitNone": "Set a monthly limit to see how much you have left.",
+  "monthlyLimitOver": "{amount} over the limit",
+  "monthlyLimitLeft": "{amount} left this month",
+  "@monthlyLimitOver": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@monthlyLimitLeft": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  }
 }
