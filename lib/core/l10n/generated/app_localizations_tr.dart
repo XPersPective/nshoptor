@@ -794,4 +794,26 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get deviceSourceLabel => 'Cihaz';
+
+  @override
+  String get quickListAction => 'Cümleyle ekle';
+
+  @override
+  String get quickListTitle => 'Hızlı liste';
+
+  @override
+  String get quickListHint =>
+      'Örn: 1 kilo elma 20 lira, 2 ekmek, yarım kilo peynir';
+
+  @override
+  String get quickListConvert => 'Listeye dönüştür';
+
+  @override
+  String quickListAdd(int count) {
+    return '$count ürünü ekle';
+  }
+
+  @override
+  String get quickListEmpty =>
+      'Ürün bulunamadı. Virgülle ayırarak yazmayı dene.';
 }

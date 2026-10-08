@@ -291,5 +291,18 @@
         "type": "int"
       }
     }
+  },
+  "quickListAction": "Add from a sentence",
+  "quickListTitle": "Quick list",
+  "quickListHint": "e.g. 1 kg apples 20, 2 breads, half a kilo of cheese",
+  "quickListConvert": "Turn into a list",
+  "quickListAdd": "Add {count} items",
+  "quickListEmpty": "No items found. Try listing them separated by commas.",
+  "@quickListAdd": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

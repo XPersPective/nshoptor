@@ -1603,6 +1603,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Device'**
   String get deviceSourceLabel;
+
+  /// No description provided for @quickListAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add from a sentence'**
+  String get quickListAction;
+
+  /// No description provided for @quickListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick list'**
+  String get quickListTitle;
+
+  /// No description provided for @quickListHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 1 kg apples 20, 2 breads, half a kilo of cheese'**
+  String get quickListHint;
+
+  /// No description provided for @quickListConvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn into a list'**
+  String get quickListConvert;
+
+  /// No description provided for @quickListAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {count} items'**
+  String quickListAdd(int count);
+
+  /// No description provided for @quickListEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No items found. Try listing them separated by commas.'**
+  String get quickListEmpty;
 }
 
 class _AppLocalizationsDelegate

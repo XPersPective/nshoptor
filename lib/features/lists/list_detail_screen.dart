@@ -28,6 +28,10 @@ import '../receipts/shelf_label/price_candidates.dart';
 import '../voice_input/stt_speech_service.dart';
 import '../voice_input/voice_input_service.dart';
 import '../voice_input/voice_preview_sheet.dart';
+import '../voice_input/list_draft_sheet.dart';
+import '../../app/app_defaults.dart';
+import '../../core/money/decimal_fixed.dart';
+import 'item_repository.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
 import 'reminders/local_notifications_scheduler.dart';
 import 'reminders/reminder_scheduler.dart';
@@ -155,6 +159,12 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
       appBar: AppBar(
         title: Text(l10n.listsTitle),
         actions: [
+          IconButton(
+            key: const Key('detail_quick_list'),
+            icon: const Icon(Icons.auto_awesome_outlined),
+            tooltip: l10n.quickListAction,
+            onPressed: () => _openQuickList(context),
+          ),
           IconButton(
             key: const Key('detail_set_reminder'),
             icon: const Icon(Icons.alarm_add_outlined),
@@ -284,6 +294,13 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                                       _openItemFormWithVoice(context),
                                   icon: const Icon(Icons.mic_none),
                                   label: Text(l10n.voiceAddItemAction),
+                                ),
+                                const SizedBox(height: 8),
+                                TextButton.icon(
+                                  key: const Key('detail_quick_list_empty'),
+                                  onPressed: () => _openQuickList(context),
+                                  icon: const Icon(Icons.auto_awesome_outlined),
+                                  label: Text(l10n.quickListAction),
                                 ),
                               ],
                             ),
@@ -425,6 +442,31 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
         onShelfPricePressed: _shelfPrice,
       ),
     );
+    _refresh();
+  }
+
+  /// Cümleden/sesten çok ürün (PB-050): önizlemede seçilenler eklenir.
+  Future<void> _openQuickList(BuildContext context) async {
+    final picked = await showModalBottomSheet<List<ParsedItemCandidate>>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (_) => ListDraftSheet(
+        speechService: widget.speechService ?? SttSpeechService(),
+      ),
+    );
+    if (picked == null || picked.isEmpty) return;
+    final repo = ItemRepository(widget.db);
+    for (final c in picked) {
+      await repo.addItem(
+        listId: widget.listId,
+        name: c.name,
+        quantity: c.quantity ?? DecimalFixed.fromInt(1),
+        unitCode: (c.unitCode ?? AppDefaults.defaultUnit()).dbCode,
+        priceIsUnitPrice: c.isUnitPrice ?? false,
+        price: c.unitPrice,
+      );
+    }
     _refresh();
   }
 

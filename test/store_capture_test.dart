@@ -4,11 +4,9 @@
 //     --dart-define=STORE_LOCALE=en|tr --dart-define=STORE_OUT=<klasör>
 // Uygulama gerçek ekranlarını sürer (e2e akışı) ve her adımda görüntü alır.
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart' show debugDisableShadows;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 

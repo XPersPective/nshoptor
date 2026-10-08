@@ -795,4 +795,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deviceSourceLabel => 'Device';
+
+  @override
+  String get quickListAction => 'Add from a sentence';
+
+  @override
+  String get quickListTitle => 'Quick list';
+
+  @override
+  String get quickListHint =>
+      'e.g. 1 kg apples 20, 2 breads, half a kilo of cheese';
+
+  @override
+  String get quickListConvert => 'Turn into a list';
+
+  @override
+  String quickListAdd(int count) {
+    return 'Add $count items';
+  }
+
+  @override
+  String get quickListEmpty =>
+      'No items found. Try listing them separated by commas.';
 }

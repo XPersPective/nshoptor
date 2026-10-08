@@ -271,5 +271,11 @@
   "aiOffline": "Bağlantı yok — yapay zekâsız devam ediliyor.",
   "aiFailed": "Yapay zekâ şu an kullanılamıyor — onsuz devam ediliyor.",
   "aiSourceLabel": "Yapay zekâ",
-  "deviceSourceLabel": "Cihaz"
+  "deviceSourceLabel": "Cihaz",
+  "quickListAction": "Cümleyle ekle",
+  "quickListTitle": "Hızlı liste",
+  "quickListHint": "Örn: 1 kilo elma 20 lira, 2 ekmek, yarım kilo peynir",
+  "quickListConvert": "Listeye dönüştür",
+  "quickListAdd": "{count} ürünü ekle",
+  "quickListEmpty": "Ürün bulunamadı. Virgülle ayırarak yazmayı dene."
 }
