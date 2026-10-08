@@ -13,7 +13,19 @@ import 'voice_input_service.dart';
 /// "Listeye dönüştür" ile adaylar çıkar; yalnız işaretlenenler eklenir
 /// (C-003: onaysız kayıt yok). Sonuç: seçilen adaylar.
 class ListDraftSheet extends StatefulWidget {
-  const ListDraftSheet({super.key, this.speechService, this.parser});
+  const ListDraftSheet({
+    super.key,
+    this.speechService,
+    this.parser,
+    this.initialText,
+    this.autoListen = false,
+  });
+
+  /// Asistandan gelen cümle: verilirse hemen dönüştürülür (PB-057).
+  final String? initialText;
+
+  /// Asistanın "Sesle liste" eylemi: açılır açılmaz dinlemeye başlar.
+  final bool autoListen;
 
   final SpeechService? speechService;
 
@@ -39,6 +51,17 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     final service = widget.speechService;
     if (service != null) {
       _voice = VoiceInputController(service: service)..addListener(_onVoice);
+    }
+    final initial = widget.initialText;
+    if (initial != null && initial.trim().isNotEmpty) {
+      _text.text = initial;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _convert();
+      });
+    } else if (widget.autoListen && _voice != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _listen();
+      });
     }
   }
 

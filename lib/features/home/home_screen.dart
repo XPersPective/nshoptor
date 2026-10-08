@@ -13,6 +13,13 @@ import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
 import '../subscription/subscription_service.dart';
+import '../assistant/assistant_bubble.dart';
+import '../voice_input/list_draft_sheet.dart';
+import '../voice_input/parser/parsed_item_candidate.dart';
+import '../voice_input/stt_speech_service.dart';
+import '../lists/item_repository.dart';
+import '../../core/money/decimal_fixed.dart';
+
 import '../../app/app_defaults.dart';
 import '../settings/settings_repository.dart';
 import '../settings/settings_screen.dart';
@@ -123,7 +130,24 @@ class _HomeShellState extends State<HomeShell> {
             ),
     ];
     return Scaffold(
-      body: IndexedStack(index: _tab, children: tabs),
+      body: Stack(
+        children: [
+          IndexedStack(index: _tab, children: tabs),
+          // Asistan (PB-057): sağ altta, sekme FAB'larının üstünde.
+          ValueListenableBuilder<bool>(
+            valueListenable: AssistantPrefs.visible,
+            builder: (context, visible, _) => !visible || _tab > 2
+                ? const SizedBox.shrink()
+                : Positioned(
+                    right: 20,
+                    bottom: 88,
+                    child: AssistantBubble(
+                      onChoice: (c) => _onAssistant(context, c),
+                    ),
+                  ),
+          ),
+        ],
+      ),
       // Banner bottom bar'ın altındadır (kullanıcı talebi 2026-10-02);
       // AdPolicy Pro'da hiç yüklemez, kalkınca boşluk kalmaz.
       bottomNavigationBar: Column(
@@ -165,6 +189,51 @@ class _HomeShellState extends State<HomeShell> {
         ],
       ),
     );
+  }
+
+  Future<void> _onAssistant(BuildContext context, AssistantChoice choice) async {
+    final l10n = AppLocalizations.of(context);
+    switch (choice.action) {
+      case AssistantAction.newList:
+        setState(() => _tab = 1);
+      case AssistantAction.scanReceipt:
+        setState(() => _tab = 1);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.assistantReceiptHint)),
+        );
+      case AssistantAction.spending:
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: widget.db)),
+        );
+      case AssistantAction.voiceList || AssistantAction.textList:
+        final picked = await showModalBottomSheet<List<ParsedItemCandidate>>(
+          context: context,
+          isScrollControlled: true,
+          showDragHandle: true,
+          builder: (_) => ListDraftSheet(
+            speechService: SttSpeechService(),
+            initialText: choice.text,
+            autoListen: choice.action == AssistantAction.voiceList,
+          ),
+        );
+        if (picked == null || picked.isEmpty || !context.mounted) return;
+        final listId = await widget.listRepository.createList(
+          currencyCode: AppDefaults.defaultCurrency(),
+          generatedTitle: l10n.quickListTitle,
+        );
+        final repo = ItemRepository(widget.db);
+        for (final c in picked) {
+          await repo.addItem(
+            listId: listId,
+            name: c.name,
+            quantity: c.quantity ?? DecimalFixed.fromInt(1),
+            unitCode: (c.unitCode ?? AppDefaults.defaultUnit()).dbCode,
+            priceIsUnitPrice: c.isUnitPrice ?? false,
+            price: c.unitPrice,
+          );
+        }
+        if (context.mounted) await _openShopping(context, listId);
+    }
   }
 
   Future<void> _openShopping(BuildContext context, int listId) async {

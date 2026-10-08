@@ -375,5 +375,15 @@
   "planCurrent": "Current",
   "planStartTrial": "Start 7-day free trial",
   "planChoose": "Choose",
-  "plansAction": "Plans: Pro and Max"
+  "plansAction": "Plans: Pro and Max",
+  "assistantTitle": "Assistant",
+  "assistantGreeting": "Hi! What would you like to do?",
+  "assistantNewList": "New list",
+  "assistantVoiceList": "List by voice",
+  "assistantTextList": "List from a sentence",
+  "assistantScanReceipt": "Scan a receipt",
+  "assistantSpending": "My spending",
+  "assistantReceiptHint": "Open your list and tap the receipt icon to scan it.",
+  "assistantToggleTitle": "Show assistant",
+  "assistantToggleSubtitle": "The little helper at the bottom right"
 }

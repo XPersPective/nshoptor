@@ -999,4 +999,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get plansAction => 'Plans: Pro and Max';
+
+  @override
+  String get assistantTitle => 'Assistant';
+
+  @override
+  String get assistantGreeting => 'Hi! What would you like to do?';
+
+  @override
+  String get assistantNewList => 'New list';
+
+  @override
+  String get assistantVoiceList => 'List by voice';
+
+  @override
+  String get assistantTextList => 'List from a sentence';
+
+  @override
+  String get assistantScanReceipt => 'Scan a receipt';
+
+  @override
+  String get assistantSpending => 'My spending';
+
+  @override
+  String get assistantReceiptHint =>
+      'Open your list and tap the receipt icon to scan it.';
+
+  @override
+  String get assistantToggleTitle => 'Show assistant';
+
+  @override
+  String get assistantToggleSubtitle => 'The little helper at the bottom right';
 }

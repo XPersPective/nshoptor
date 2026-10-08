@@ -334,5 +334,15 @@
   "planCurrent": "Mevcut",
   "planStartTrial": "7 gün ücretsiz dene",
   "planChoose": "Seç",
-  "plansAction": "Planlar: Pro ve Max"
+  "plansAction": "Planlar: Pro ve Max",
+  "assistantTitle": "Asistan",
+  "assistantGreeting": "Merhaba! Ne yapmak istiyorsun?",
+  "assistantNewList": "Yeni liste",
+  "assistantVoiceList": "Sesle liste",
+  "assistantTextList": "Cümleden liste",
+  "assistantScanReceipt": "Fiş okut",
+  "assistantSpending": "Harcamalarım",
+  "assistantReceiptHint": "Listeni aç ve fiş simgesine dokunarak fişini okut.",
+  "assistantToggleTitle": "Asistanı göster",
+  "assistantToggleSubtitle": "Sağ alttaki küçük yardımcı"
 }

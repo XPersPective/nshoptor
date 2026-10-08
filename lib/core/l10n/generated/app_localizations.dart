@@ -1981,6 +1981,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Plans: Pro and Max'**
   String get plansAction;
+
+  /// No description provided for @assistantTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Assistant'**
+  String get assistantTitle;
+
+  /// No description provided for @assistantGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi! What would you like to do?'**
+  String get assistantGreeting;
+
+  /// No description provided for @assistantNewList.
+  ///
+  /// In en, this message translates to:
+  /// **'New list'**
+  String get assistantNewList;
+
+  /// No description provided for @assistantVoiceList.
+  ///
+  /// In en, this message translates to:
+  /// **'List by voice'**
+  String get assistantVoiceList;
+
+  /// No description provided for @assistantTextList.
+  ///
+  /// In en, this message translates to:
+  /// **'List from a sentence'**
+  String get assistantTextList;
+
+  /// No description provided for @assistantScanReceipt.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a receipt'**
+  String get assistantScanReceipt;
+
+  /// No description provided for @assistantSpending.
+  ///
+  /// In en, this message translates to:
+  /// **'My spending'**
+  String get assistantSpending;
+
+  /// No description provided for @assistantReceiptHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Open your list and tap the receipt icon to scan it.'**
+  String get assistantReceiptHint;
+
+  /// No description provided for @assistantToggleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show assistant'**
+  String get assistantToggleTitle;
+
+  /// No description provided for @assistantToggleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The little helper at the bottom right'**
+  String get assistantToggleSubtitle;
 }
 
 class _AppLocalizationsDelegate

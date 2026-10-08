@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../ai/ai_client.dart';
+import '../assistant/assistant_bubble.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
 import 'package:napp_core/napp_core.dart';
@@ -265,6 +266,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: (_) => _confirmDeleteAll(context),
             ),
 
+            ValueListenableBuilder<bool>(
+              valueListenable: AssistantPrefs.visible,
+              builder: (context, visible, _) => SwitchListTile(
+                key: const Key('assistant_toggle'),
+                secondary: const Icon(Icons.support_agent_outlined),
+                title: Text(l10n.assistantToggleTitle),
+                subtitle: Text(l10n.assistantToggleSubtitle),
+                value: visible,
+                onChanged: AssistantPrefs.set,
+              ),
+            ),
             if (AiService.client != null)
               SwitchListTile(
                 key: const Key('ai_toggle'),

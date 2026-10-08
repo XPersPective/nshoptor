@@ -17,6 +17,7 @@ import 'core/config/env_config.dart';
 import 'core/money/format_locale.dart';
 import 'data/db/app_database.dart';
 import 'features/ads/ad_gate.dart';
+import 'features/assistant/assistant_bubble.dart';
 import 'features/ai/ai_client.dart';
 import 'features/subscription/lifetime_only_adapter.dart';
 import 'features/subscription/subscription_service.dart';
@@ -29,6 +30,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final store = await SettingsStore.load();
   AppDefaults.attach(store);
+  AssistantPrefs.attach(store);
   final formatSetting = store.getString(SettingsRepository.formatLocaleKey);
   AppFormatLocale.attach(
     formatSetting == 'tr' || formatSetting == 'en' ? formatSetting : null,

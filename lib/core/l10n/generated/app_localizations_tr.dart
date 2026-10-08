@@ -999,4 +999,35 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get plansAction => 'Planlar: Pro ve Max';
+
+  @override
+  String get assistantTitle => 'Asistan';
+
+  @override
+  String get assistantGreeting => 'Merhaba! Ne yapmak istiyorsun?';
+
+  @override
+  String get assistantNewList => 'Yeni liste';
+
+  @override
+  String get assistantVoiceList => 'Sesle liste';
+
+  @override
+  String get assistantTextList => 'Cümleden liste';
+
+  @override
+  String get assistantScanReceipt => 'Fiş okut';
+
+  @override
+  String get assistantSpending => 'Harcamalarım';
+
+  @override
+  String get assistantReceiptHint =>
+      'Listeni aç ve fiş simgesine dokunarak fişini okut.';
+
+  @override
+  String get assistantToggleTitle => 'Asistanı göster';
+
+  @override
+  String get assistantToggleSubtitle => 'Sağ alttaki küçük yardımcı';
 }
