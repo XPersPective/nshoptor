@@ -41,6 +41,7 @@ class ShoppingRepository {
   ShoppingRepository(this._db) : _memory = ProductMemoryRepository(_db);
 
   final AppDatabase _db;
+  AppDatabase get db => _db;
   final ProductMemoryRepository _memory;
 
   Future<ShoppingList> getList(int listId) => (_db.select(

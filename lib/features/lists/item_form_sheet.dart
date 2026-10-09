@@ -41,6 +41,8 @@ class ItemFormSheet extends StatefulWidget {
     this.onShelfPricePressed,
     this.existing,
     this.entries = const [],
+    this.initialActualPrice,
+    this.focusActual = false,
   });
 
   final AppDatabase db;
@@ -48,6 +50,8 @@ class ItemFormSheet extends StatefulWidget {
   final int listId;
   final PlannedItem? existing;
   final List<PurchaseEntry> entries;
+  final String? initialActualPrice;
+  final bool focusActual;
 
   /// Ses önizlemesi gibi akışlardan öndoldurulan değerler (spec §6.7:
   /// sonuç düzenlenebilir önizlemeye gider, doğrudan kaydedilmez).
@@ -163,6 +167,10 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
           (s, e) => s + e.actualLineTotalMinorUnits + e.discountMinorUnits), digits).toDbString());
       _discount.text = local(DecimalFixed.fromMinorUnits(widget.entries.fold<int>(0,
         (s, e) => s + e.discountMinorUnits), digits).toDbString());
+    }
+    if (widget.initialActualPrice != null) {
+      _actualPrice.text = local(widget.initialActualPrice!);
+      _actualPriceIsUnit = true; _actualChanged = true;
     }
   }
 
@@ -366,7 +374,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             TextField(
               key: const Key('item_name_field'),
               controller: _name,
-              autofocus: true,
+              autofocus: !widget.focusActual,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
                 labelText: l10n.itemNameLabel,
@@ -454,6 +462,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             // Gelişmiş alanlar katlanır: ana akış yalnız ad+fiyat+miktar
             // ister; kalanlar "Ayrıntılar"ta (C-004).
             TextField(key: const Key('item_actual_price_field'), controller: _actualPrice,
+              autofocus: widget.focusActual,
               enabled: !_mixedUnits,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(labelText: '${l10n.compareActual} · ${_actualPriceIsUnit ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}',

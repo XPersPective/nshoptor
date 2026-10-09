@@ -79,11 +79,14 @@ void main() {
     // Ürün satırına dokun (checkbox) → giriş sayfası açılır.
     await tester.tap(find.byType(Checkbox).first);
     await settle(tester);
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    await tester.tap(find.byKey(const Key('price_enter')));
+    await settle(tester);
 
     await tester.enterText(
-        find.byKey(const Key('entry_price_field')), '45,00');
+        find.byKey(const Key('item_actual_price_field')), '45,00');
     await settle(tester);
-    await tester.tap(find.byKey(const Key('entry_save_button')));
+    await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
 
     // Sepet: 1,5 × 45,00 = 67,50; kalan plan 0; tahmini kasa 67,50.
@@ -101,10 +104,12 @@ void main() {
     await settle(tester);
     await tester.tap(find.byType(Checkbox).first);
     await settle(tester);
-    await tester.enterText(
-        find.byKey(const Key('entry_price_field')), '45,00');
+    await tester.tap(find.byKey(const Key('price_enter')));
     await settle(tester);
-    await tester.tap(find.byKey(const Key('entry_save_button')));
+    await tester.enterText(
+        find.byKey(const Key('item_actual_price_field')), '45,00');
+    await settle(tester);
+    await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
     expect(find.text('67,50 ₺'), findsWidgets);
 
@@ -138,6 +143,8 @@ void main() {
     await tester.pumpWidget(subject(listId));
     await settle(tester);
 
+    await tester.tap(find.byKey(const Key('detail_more_menu')));
+    await settle(tester);
     await tester.tap(find.byKey(const Key('add_unplanned_button')));
     await settle(tester);
     await tester.enterText(find.byKey(const Key('entry_name_field')), 'Poşet');
@@ -149,7 +156,8 @@ void main() {
 
     // Sepet: 5,50 plansız + 0 planlı; tahmini kasa 5,50 + 64,35 = 69,85.
     expect(find.text('5,50 ₺'), findsWidgets);
-    expect(find.text('69,85 ₺'), findsWidgets);
+    final summary = await tester.runAsync(() => ShoppingRepository(db).watchSummary(listId).first);
+    expect(summary!.projectedCheckoutMinor, 6985);
 
     await disposeApp(tester);
   });

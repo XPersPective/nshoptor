@@ -118,7 +118,7 @@ void main() {
 
     await tester.tap(find.byKey(Key('home_plan_from_$src')));
     await settle(tester);
-    expect(find.byKey(const Key('detail_start_shopping')), findsOneWidget);
+    expect(find.byKey(const Key('detail_finish_button')), findsOneWidget);
     expect(find.text('Süt'), findsOneWidget); // plan kopyalandı
     expect(await TemplateRepository(db).templateIds(), [src]);
 
@@ -299,8 +299,8 @@ void main() {
     // Satıra dokun → gerçek fiyat gir (ayrıntı ekranına gitmeden).
     await tester.tap(find.byKey(const Key('price_enter')));
     await settle(tester);
-    await tester.enterText(find.byKey(const Key('entry_price_field')), '15');
-    await tester.tap(find.byKey(const Key('entry_save_button')));
+    await tester.enterText(find.byKey(const Key('item_actual_price_field')), '15');
+    await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
 
     expect(find.byKey(const Key('price_actual')), findsOneWidget);
@@ -311,8 +311,8 @@ void main() {
     // Yeniden girmek öncekini değiştirir: çift sayılmaz.
     await tester.tap(find.text('Elma'));
     await settle(tester);
-    await tester.enterText(find.byKey(const Key('entry_price_field')), '12');
-    await tester.tap(find.byKey(const Key('entry_save_button')));
+    await tester.enterText(find.byKey(const Key('item_actual_price_field')), '12');
+    await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
     expect(find.text('12,00 ₺'), findsWidgets);
     expect(find.text('+2,00 ₺'), findsWidgets);
@@ -329,6 +329,8 @@ void main() {
     final scheduler = _DeniedScheduler();
 
     await tester.pumpWidget(app(detail(listId, scheduler: scheduler)));
+    await settle(tester);
+    await tester.tap(find.byKey(const Key('detail_more_menu')));
     await settle(tester);
     await tester.tap(find.byKey(const Key('detail_set_reminder')));
     await settle(tester);
