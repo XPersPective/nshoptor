@@ -129,16 +129,27 @@ class _ListsScreenState extends State<ListsScreen> {
   }
 
   Future<void> _openEditor(BuildContext context, {ShoppingList? existing}) {
-    return showModalBottomSheet<void>(
+    return showListEditor(context, widget.repository, existing: existing,
+        reminderScheduler: widget.reminderScheduler);
+  }
+}
+
+Future<void> showListEditor(BuildContext context, ListRepository repository,
+    {ShoppingList? existing, ReminderScheduler? reminderScheduler}) async {
+    final id = await showModalBottomSheet<int>(
       context: context,
       isScrollControlled: true,
       builder: (_) => _ListEditorSheet(
-        repository: widget.repository,
+        repository: repository,
         l10n: AppLocalizations.of(context),
         existing: existing,
       ),
     );
-  }
+    if (existing == null && id != null && context.mounted) {
+      await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) =>
+        ListDetailScreen(db: repository.db, listRepository: repository,
+          listId: id, reminderScheduler: reminderScheduler)));
+    }
 }
 
 class _ListsTab extends StatelessWidget {
@@ -363,6 +374,8 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
   late final TextEditingController _note =
       TextEditingController(text: widget.existing?.note ?? '');
   String? _budgetError;
+  String? _saveError;
+  bool _saving = false;
 
   /// Bütçe minor unit değerini, kullanıcının dilindeki ondalık ayracıyla
   /// girdi dizesine çevirir (tr: `100,00`, en: `100.00`).
@@ -424,11 +437,12 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
     final title = _title.text.trim();
     final budgetMinor = _parseBudgetMinor();
 
+    int? createdId;
     if (existing == null) {
       final now = DateTime.now();
       final generated =
           title.isEmpty ? widget.l10n.autoListTitle(_formatDate(now)) : null;
-      await widget.repository.createList(
+      createdId = await widget.repository.createList(
         title: title.isEmpty ? null : title,
         generatedTitle: generated,
         currencyCode: _currency,
@@ -455,7 +469,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
       await widget.repository.updateNote(
           existing.id, _note.text.trim().isEmpty ? null : _note.text.trim());
     }
-    if (mounted) Navigator.of(context).pop();
+    if (mounted) Navigator.of(context).pop(createdId);
   }
 
   Future<bool?> _askCurrencyChange() {
@@ -491,7 +505,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
         top: 16,
         bottom: MediaQuery.of(context).viewInsets.bottom + 16,
       ),
-      child: Column(
+      child: SingleChildScrollView(child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -529,18 +543,26 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
           const SizedBox(height: 16),
           FilledButton(
             key: const Key('list_save_button'),
-            onPressed: () async {
-              setState(() => _budgetError = null);
+            onPressed: _saving ? null : () async {
+              setState(() { _budgetError = null; _saveError = null; _saving = true; });
               try {
                 await _save();
               } on _BudgetFormatException {
-                setState(() => _budgetError = l10n.invalidAmountError);
+                if (mounted) setState(() => _budgetError = l10n.invalidAmountError);
+              } catch (_) {
+                if (mounted) setState(() => _saveError = l10n.saveFailed);
+              } finally {
+                if (mounted) setState(() => _saving = false);
               }
             },
             child: Text(l10n.saveButton),
           ),
+          if (_saveError != null) Text(_saveError!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+          TextButton(key: const Key('list_cancel_button'),
+            onPressed: _saving ? null : () => Navigator.of(context).pop(),
+            child: Text(l10n.cancelButton)),
         ],
-      ),
+      )),
     );
   }
 }

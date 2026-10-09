@@ -23,14 +23,12 @@ import '../../core/money/decimal_fixed.dart';
 import '../../app/app_defaults.dart';
 import '../settings/settings_repository.dart';
 import '../settings/settings_screen.dart';
-import '../shopping_mode/shopping_mode_screen.dart';
 import '../lists/templates/template_repository.dart';
 import '../lists/list_detail_screen.dart';
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
 
-import '../shopping_mode/shopping_repository.dart';
 import 'home_repository.dart';
 import '../../app/language_controller.dart';
 import '../../app/theme_mode_controller.dart';
@@ -99,7 +97,8 @@ class _HomeShellState extends State<HomeShell> {
         db: widget.db,
         listRepository: widget.listRepository,
         onOpenList: (list) => _openShopping(context, list.id),
-        onNewList: () => setState(() => _tab = 1),
+        onNewList: () => showListEditor(context, widget.listRepository,
+            reminderScheduler: widget.reminderScheduler),
       ),
       ListsScreen(
         repository: widget.listRepository,
@@ -195,7 +194,8 @@ class _HomeShellState extends State<HomeShell> {
     final l10n = AppLocalizations.of(context);
     switch (choice.action) {
       case AssistantAction.newList:
-        setState(() => _tab = 1);
+        await showListEditor(context, widget.listRepository,
+            reminderScheduler: widget.reminderScheduler);
       case AssistantAction.scanReceipt:
         setState(() => _tab = 1);
         ScaffoldMessenger.of(context).showSnackBar(
@@ -251,9 +251,11 @@ class _HomeShellState extends State<HomeShell> {
   Future<void> _openShopping(BuildContext context, int listId) async {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (_) => ShoppingModeScreen(
-          repository: ShoppingRepository(widget.db),
+        builder: (_) => ListDetailScreen(
+          db: widget.db,
+          listRepository: widget.listRepository,
           listId: listId,
+          reminderScheduler: widget.reminderScheduler,
         ),
       ),
     );
@@ -376,9 +378,7 @@ class HomeScreen extends StatelessWidget {
                                 label: Text(l10n.continueShoppingLabel),
                               )
                             : null,
-                        onTap: list.status == 'shopping'
-                            ? () => onOpenList(list)
-                            : null,
+                        onTap: () => onOpenList(list),
                       ),
                     ),
                 ],
@@ -393,7 +393,9 @@ class HomeScreen extends StatelessWidget {
               if (totalsList.isEmpty) return const SizedBox.shrink();
               return Column(
                 children: [
-                  for (final totals in totalsList) _MonthlyCard(totals: totals),
+                  for (final totals in totalsList) _MonthlyCard(totals: totals,
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => SpendingScreen(db: db, currencyCode: totals.currencyCode)))),
                 ],
               );
             },
@@ -414,6 +416,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                   for (final list in completed)
                     ListTile(
+                      key: Key('home_completed_${list.id}'),
+                      onTap: () => onOpenList(list),
                       leading: const Icon(Icons.check_circle_outline),
                       title: Text(
                         list.title ?? list.generatedTitle ?? l10n.listsTitle,
@@ -522,9 +526,10 @@ Future<void> planFromTemplate(
 /// Tek para birimi için aylık plan-gerçek kartı; farklı para birimleri
 /// asla tek toplamda birleştirilmez (spec §7.1).
 class _MonthlyCard extends StatelessWidget {
-  const _MonthlyCard({required this.totals});
+  const _MonthlyCard({required this.totals, required this.onTap});
 
   final MonthlyTotals totals;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -545,7 +550,7 @@ class _MonthlyCard extends StatelessWidget {
     );
     return Card(
       key: Key('home_monthly_card_${totals.currencyCode}'),
-      child: Padding(
+      child: InkWell(onTap: onTap, child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -607,7 +612,7 @@ class _MonthlyCard extends StatelessWidget {
             ],
           ],
         ),
-      ),
+      )),
     );
   }
 }
@@ -665,6 +670,9 @@ class HistoryPlaceholder extends StatelessWidget {
               ),
               for (final list in completed)
                 ListTile(
+                  key: Key('history_list_${list.id}'),
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) =>
+                    ListDetailScreen(db: db, listRepository: ListRepository(db), listId: list.id))),
                   leading: const Icon(Icons.check_circle_outline),
                   title: Text(
                     list.title ?? list.generatedTitle ?? l10n.listsTitle,

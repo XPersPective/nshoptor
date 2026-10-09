@@ -64,10 +64,20 @@ Future<void> disposeApp(WidgetTester tester) async {
     await tester.tap(find.byKey(const Key('list_save_button')));
     await settle(tester);
 
+    await repo.getById((await db.select(db.shoppingLists).get()).single.id);
+    await settle(tester);
+    await tester.binding.handlePopRoute();
+    await settle(tester);
+
     await tester.tap(find.byType(FloatingActionButton));
     await settle(tester);
     await tester.enterText(find.byKey(const Key('list_title_field')), 'Market');
     await tester.tap(find.byKey(const Key('list_save_button')));
+    await settle(tester);
+
+    await db.select(db.shoppingLists).get();
+    await settle(tester);
+    await tester.binding.handlePopRoute();
     await settle(tester);
 
     expect(find.text('Haftalık'), findsOneWidget);
