@@ -104,10 +104,10 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   doğrulaması PB-043'te bekliyor), `lists/attachments/` (file storage +
   orphan sweep). `list_detail_screen.dart`: canonical checkbox rows for every status, unknown price —, independent planned/actual edit+scan, confirmation for delete/undo, fixed bottom input/receipt/finish actions; header scrolls at large type. Completed lists have no restart.
 - `shopping_mode/`: 5 item statuses, unplanned purchases, controlled returns,
-  projection summary, wakelock; satıra dokunuş → hızlı giriş alt sayfası
+  projection summary; canonical wakelock implementation still pending PB-077; satıra dokunuş → hızlı giriş alt sayfası
   (fiyat alanı ilk + autofocus; indirim/alternatif katlanır) — C-004;
   `shopping_mode/summary/`: ResultRepository + SummaryScreen (price vs
-  quantity effect rows).
+  quantity effect rows; comparable known prices only).
 - `lists/list_detail_screen.dart`: hub for input helpers — item form gets
   voice (VoicePreviewSheet) + shelf-label (price_candidate_sheet) callbacks;
   AppBar receipt scan → ReceiptParser → ReceiptReviewScreen; item tap →
