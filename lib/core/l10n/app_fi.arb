@@ -241,7 +241,7 @@
   "aboutOpenRow": "Tietoja & avoin lähdekoodi",
   "voiceAddItemAction": "Lisää puheella",
   "formatLocaleLabel": "Numerot ja valuuttamuoto",
-  "formatLocaleSystem": "Järjestelmä (noudattaa sovelluksen kieltä)",
+  "formatLocaleSystem": "Laitteen asetus (latinalaiset numerot; muuten englanti)",
   "formatLocaleTr": "Turkki (1.234,56)",
   "formatLocaleEn": "Englanti (1,234.56)",
   "aiToggleTitle": "AI-avustaja",

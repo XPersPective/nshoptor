@@ -767,7 +767,7 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get formatLocaleSystem =>
-      'Систем (следи ја јазичната поставка на апликацијата)';
+      'Формат на уредата (Латинички цифри; инаку англиски)';
 
   @override
   String get formatLocaleTr => 'Турски (1.234,56)';

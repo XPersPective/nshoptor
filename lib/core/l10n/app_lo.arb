@@ -241,7 +241,7 @@
   "aboutOpenRow": "ກ່ຽວກັບ & ເປີດແຫຼ່ງ",
   "voiceAddItemAction": "ເພີ່ມດ້ວຍສຽງ",
   "formatLocaleLabel": "ຮູບແບບຕົວເລກ ແລະ ສັນຍາລັກເງິນ",
-  "formatLocaleSystem": "ລະບົບ (ຕາມພາສາຂອງແອັບ)",
+  "formatLocaleSystem": "ຕົວຢ່າງຂອງອຸປະກອນ (ຕົວເລກ Latin; ຖ້າບໍ່ແມ່ນ English)",
   "formatLocaleTr": "ຕວກກີ (1.234,56)",
   "formatLocaleEn": "ອັງກິດ (1,234.56)",
   "aiToggleTitle": "ຊ່ວຍເຫຼືອໂດຍ AI",

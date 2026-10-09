@@ -241,7 +241,7 @@
   "aboutOpenRow": "Over & open source",
   "voiceAddItemAction": "Toevoegen via spraak",
   "formatLocaleLabel": "Getallen- en valuta-indeling",
-  "formatLocaleSystem": "Systeem (volgt app-taal)",
+  "formatLocaleSystem": "Apparaatindeling (Latijnse cijfers; anders Engels)",
   "formatLocaleTr": "Turks (1.234,56)",
   "formatLocaleEn": "Engels (1,234.56)",
   "aiToggleTitle": "AI-hulp",

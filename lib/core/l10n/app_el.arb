@@ -241,7 +241,7 @@
   "aboutOpenRow": "Σχετικά & ανοιχτός κώδικας",
   "voiceAddItemAction": "Προσθήκη με φωνή",
   "formatLocaleLabel": "Μορφή αριθμών και νομίσματος",
-  "formatLocaleSystem": "Σύστημα (ακολουθεί τη γλώσσα της εφαρμογής)",
+  "formatLocaleSystem": "Μορφή συσκευής (Λατινικά ψηφία· διαφορετικά Αγγλικά)",
   "formatLocaleTr": "Τουρκικά (1.234,56)",
   "formatLocaleEn": "Αγγλικά (1,234.56)",
   "aiToggleTitle": "Βοήθεια AI",

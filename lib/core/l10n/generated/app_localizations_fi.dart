@@ -765,7 +765,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String get formatLocaleLabel => 'Numerot ja valuuttamuoto';
 
   @override
-  String get formatLocaleSystem => 'Järjestelmä (noudattaa sovelluksen kieltä)';
+  String get formatLocaleSystem =>
+      'Laitteen asetus (latinalaiset numerot; muuten englanti)';
 
   @override
   String get formatLocaleTr => 'Turkki (1.234,56)';

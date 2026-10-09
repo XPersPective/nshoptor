@@ -241,7 +241,7 @@
   "aboutOpenRow": "Մասին և բաց կոդ",
   "voiceAddItemAction": "Ավելացնել ձայնով",
   "formatLocaleLabel": "Թվերի և արժույթի ձևաչափ",
-  "formatLocaleSystem": "Համակարգ (հետևում է հավելվածի լեզվին)",
+  "formatLocaleSystem": "Սարքի ձևաչափ (Լատինական թվեր; հակառակ դեպքում անգլերեն)",
   "formatLocaleTr": "Թուրքերեն (1.234,56)",
   "formatLocaleEn": "Անգլերեն (1,234.56)",
   "aiToggleTitle": "AI օգնություն",

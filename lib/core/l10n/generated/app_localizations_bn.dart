@@ -765,7 +765,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get formatLocaleLabel => 'সংখ্যা ও মুদ্রার ফরম্যাট';
 
   @override
-  String get formatLocaleSystem => 'সিস্টেম (অ্যাপের ভাষা অনুসরণ করবে)';
+  String get formatLocaleSystem =>
+      'ডিভাইস ফরম্যাট (ল্যাটিন ডিজিট; অন্যথায় ইংরেজি)';
 
   @override
   String get formatLocaleTr => 'তুর্কি (1.234,56)';

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_defaults.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/money/currency.dart';
+import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/format_locale.dart';
 import '../../../core/money/money.dart';
 import '../../../core/money/money_format.dart';
@@ -30,7 +31,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
   late DateTime _month = DateTime(_now.year, _now.month);
   late final String _currency = widget.currencyCode ?? AppDefaults.defaultCurrency();
   late final Future<List<SpendPoint>> _points = InsightsRepository(widget.db).completedSpend(_currency);
-  int? _limit = AppDefaults.monthlyLimitMinor();
+  late int? _limit = AppDefaults.monthlyLimitMinor(currencyCode: _currency);
 
   String _money(int minor) => formatMoney(
         Money.fromMinorUnits(minor, Currency.fromCode(_currency)),
@@ -40,40 +41,41 @@ class _SpendingScreenState extends State<SpendingScreen> {
   Future<void> _editLimit() async {
     final l10n = AppLocalizations.of(context);
     final digits = Currency.fromCode(_currency).minorUnitDigits;
-    final ctrl = TextEditingController(
-      text: _limit == null ? '' : '${_limit! ~/ 100}',
-    );
     final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context));
+    var text = _limit == null ? '' : DecimalFixed.fromMinorUnits(_limit!, digits).toDbString().replaceAll('.', sep.decimal);
+    final form = GlobalKey<FormState>();
+    int parse() {
+      final minor = MoneyParser.parseDecimal(text, separators: sep, requirePositive: true).toMinorUnits(digits);
+      if (minor <= 0) throw const FormatException('positive minor amount required');
+      return minor;
+    }
     final result = await showDialog<int?>(
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text(l10n.monthlyLimitTitle),
-        content: TextField(
+        content: Form(key: form, child: TextFormField(
+          validator: (_) { try { parse(); return null; } on FormatException { return l10n.invalidPriceError; } },
           key: const Key('limit_field'),
-          controller: ctrl,
+          initialValue: text,
+          onChanged: (value) => text = value,
           autofocus: true,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           decoration: InputDecoration(helperText: l10n.monthlyLimitHelp, suffixText: _currency),
-        ),
+        )),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, -1), child: Text(l10n.monthlyLimitRemove)),
           FilledButton(
             key: const Key('limit_save'),
             onPressed: () {
-              try {
-                final v = MoneyParser.parseDecimal(ctrl.text, separators: sep, requirePositive: true);
-                Navigator.pop(ctx, v.toMinorUnits(digits));
-              } on FormatException {
-                Navigator.pop(ctx);
-              }
+              if (form.currentState!.validate()) Navigator.pop(ctx, parse());
             },
             child: Text(l10n.saveButton),
           ),
         ],
       ),
     );
-    if (result == null) return;
-    AppDefaults.setMonthlyLimitMinor(result < 0 ? null : result);
+    if (result == null || !mounted) return;
+    AppDefaults.setMonthlyLimitMinor(result < 0 ? null : result, currencyCode: _currency);
     setState(() => _limit = result < 0 ? null : result);
   }
 

@@ -241,7 +241,7 @@
   "aboutOpenRow": "Mengenai & sumber terbuka",
   "voiceAddItemAction": "Tambah melalui suara",
   "formatLocaleLabel": "Format nombor & mata wang",
-  "formatLocaleSystem": "Sistem (mengikuti bahasa aplikasi)",
+  "formatLocaleSystem": "Format peranti (angka Latin; jika tidak, Bahasa Inggeris)",
   "formatLocaleTr": "Turki (1.234,56)",
   "formatLocaleEn": "Inggeris (1,234.56)",
   "aiToggleTitle": "Bantuan AI",

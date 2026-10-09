@@ -241,7 +241,7 @@
   "aboutOpenRow": "په اړه او خلاص سورس",
   "voiceAddItemAction": "غږ په واسطه اضافه کړئ",
   "formatLocaleLabel": "د شمېرو او پیسو بڼه",
-  "formatLocaleSystem": "سیسټم (د اپلیکیشن ژبه تعقیبوي)",
+  "formatLocaleSystem": "د وسیزې فارمیټ (لاتیني شمیرې؛ نور ځایونه انګلیسي)",
   "formatLocaleTr": "ترکي (1.234,56)",
   "formatLocaleEn": "انګلیسي (1,234.56)",
   "aiToggleTitle": "د AI مرسته",

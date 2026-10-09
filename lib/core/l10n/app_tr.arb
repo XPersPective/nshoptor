@@ -262,7 +262,7 @@
   "aboutOpenRow": "Hakkında ve açık kaynak",
   "voiceAddItemAction": "Sesle ekle",
   "formatLocaleLabel": "Sayı ve para biçimi",
-  "formatLocaleSystem": "Sistem (arayüz dili)",
+  "formatLocaleSystem": "Cihaz biçimi (Latin rakamlar; diğerlerinde İngilizce)",
   "formatLocaleTr": "Türkçe (1.234,56)",
   "formatLocaleEn": "İngilizce (1,234.56)",
   "aiToggleTitle": "Yapay zekâ yardımı",

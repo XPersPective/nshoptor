@@ -764,7 +764,8 @@ class AppLocalizationsGu extends AppLocalizations {
   String get formatLocaleLabel => 'સંખ્યા અને મુદ્રા ફોર્મેટ';
 
   @override
-  String get formatLocaleSystem => 'સિસ્ટમ (એપ ભાષા અનુસાર)';
+  String get formatLocaleSystem =>
+      'ડિવાઇસ ફોર્મેટ (લેટિન અંકો; અન્યથા અંગ્રેજી)';
 
   @override
   String get formatLocaleTr => 'તુર્કી (1.234,56)';

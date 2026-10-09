@@ -763,7 +763,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get formatLocaleLabel => 'פורמט מספרים ומטבע';
 
   @override
-  String get formatLocaleSystem => 'מערכת (עוקב אחר שפת האפליקציה)';
+  String get formatLocaleSystem => 'תצורת המכשיר (ספרות לטיניות; אחרת באנגלית)';
 
   @override
   String get formatLocaleTr => 'טורקי (1.234,56)';

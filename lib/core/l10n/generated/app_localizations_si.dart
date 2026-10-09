@@ -764,7 +764,8 @@ class AppLocalizationsSi extends AppLocalizations {
   String get formatLocaleLabel => 'අංක සහ මුදල් ආකෘතිය';
 
   @override
-  String get formatLocaleSystem => 'පද්ධතිය (යෙදුම් භාෂාව අනුගමනය කරයි)';
+  String get formatLocaleSystem =>
+      'උපාංග ආකෘතිය (ලතින් අංක; වෙනත් ස්ථානවල ඉංග්‍රීසි)';
 
   @override
   String get formatLocaleTr => 'තුර්කි (1.234,56)';

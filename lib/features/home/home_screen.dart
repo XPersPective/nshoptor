@@ -393,9 +393,12 @@ class HomeScreen extends StatelessWidget {
               if (totalsList.isEmpty) return const SizedBox.shrink();
               return Column(
                 children: [
-                  for (final totals in totalsList) _MonthlyCard(totals: totals,
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
-                        builder: (_) => SpendingScreen(db: db, currencyCode: totals.currencyCode)))),
+                  for (final totals in totalsList) StatefulBuilder(builder: (context, refresh) =>
+                    _MonthlyCard(totals: totals, onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => SpendingScreen(db: db, currencyCode: totals.currencyCode)));
+                      if (context.mounted) refresh(() {});
+                    })),
                 ],
               );
             },
@@ -590,23 +593,22 @@ class _MonthlyCard extends StatelessWidget {
                 ),
               ],
             ),
-            if (AppDefaults.monthlyLimitMinor() != null &&
-                totals.currencyCode == AppDefaults.defaultCurrency()) ...[
+            if (AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode) != null) ...[
               const SizedBox(height: 10),
               LinearProgressIndicator(
                 key: const Key('home_limit_progress'),
-                value: (totals.actualMinor / AppDefaults.monthlyLimitMinor()!)
+                value: (totals.actualMinor / AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)!)
                     .clamp(0, 1)
                     .toDouble(),
-                color: totals.actualMinor > AppDefaults.monthlyLimitMinor()!
+                color: totals.actualMinor > AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)!
                     ? Theme.of(context).colorScheme.error
                     : null,
               ),
               const SizedBox(height: 4),
               Text(
-                totals.actualMinor > AppDefaults.monthlyLimitMinor()!
-                    ? l10n.monthlyLimitOver(money(totals.actualMinor - AppDefaults.monthlyLimitMinor()!))
-                    : l10n.monthlyLimitLeft(money(AppDefaults.monthlyLimitMinor()! - totals.actualMinor)),
+                totals.actualMinor > AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)!
+                    ? l10n.monthlyLimitOver(money(totals.actualMinor - AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)!))
+                    : l10n.monthlyLimitLeft(money(AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)! - totals.actualMinor)),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

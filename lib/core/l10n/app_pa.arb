@@ -241,7 +241,7 @@
   "aboutOpenRow": "ਬਾਰੇ ਅਤੇ ਓਪਨ ਸੋਰਸ",
   "voiceAddItemAction": "ਬੋਲ ਕੇ ਜੋੜੋ",
   "formatLocaleLabel": "ਸੰਖਿਆ ਅਤੇ ਮੁਦਰਾ ਫਾਰਮੈਟ",
-  "formatLocaleSystem": "ਸਿਸਟਮ (ਐਪ ਭਾਸ਼ਾ ਦੀ ਪਾਲਣਾ ਕਰਦਾ ਹੈ)",
+  "formatLocaleSystem": "ਡਿਵਾਈਸ ਫਾਰਮੈਟ (ਲੈਟਿਨ ਅੰਕ; ਬਾਕੀ ਅੰਗਰੇਜ਼ੀ)",
   "formatLocaleTr": "ਤੁਰਕੀ (1.234,56)",
   "formatLocaleEn": "ਅੰਗਰੇਜ਼ੀ (1,234.56)",
   "aiToggleTitle": "AI ਮਦਦ",

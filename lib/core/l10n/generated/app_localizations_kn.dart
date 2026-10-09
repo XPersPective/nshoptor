@@ -765,7 +765,8 @@ class AppLocalizationsKn extends AppLocalizations {
   String get formatLocaleLabel => 'ಸಂಖ್ಯೆ ಮತ್ತು ನಾಣ್ಯ ರೂಪ';
 
   @override
-  String get formatLocaleSystem => 'ಸಿಸ್ಟಮ್ (ಆಪ್ ಭಾಷೆಯನ್ನು ಅನುಸರಿಸಿ)';
+  String get formatLocaleSystem =>
+      'ಸಾಧನದ ರೂಪ (ಲ್ಯಾಟಿನ್ ಅಂಕಿಗಳು; ಇಲ್ಲದಿದ್ದರೆ ಇಂಗ್ಲಿಷ್)';
 
   @override
   String get formatLocaleTr => 'ಟರ್ಕಿಶ್ (1.234,56)';

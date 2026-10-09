@@ -765,7 +765,8 @@ class AppLocalizationsAf extends AppLocalizations {
   String get formatLocaleLabel => 'Getal- en geldeenheidsformaat';
 
   @override
-  String get formatLocaleSystem => 'Stelsel (volg app-taal)';
+  String get formatLocaleSystem =>
+      'Toestelindeling (Latynse syfers; andersins Engels)';
 
   @override
   String get formatLocaleTr => 'Turks (1.234,56)';

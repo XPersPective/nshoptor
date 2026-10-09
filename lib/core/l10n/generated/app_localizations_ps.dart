@@ -764,7 +764,8 @@ class AppLocalizationsPs extends AppLocalizations {
   String get formatLocaleLabel => 'د شمېرو او پیسو بڼه';
 
   @override
-  String get formatLocaleSystem => 'سیسټم (د اپلیکیشن ژبه تعقیبوي)';
+  String get formatLocaleSystem =>
+      'د وسیزې فارمیټ (لاتیني شمیرې؛ نور ځایونه انګلیسي)';
 
   @override
   String get formatLocaleTr => 'ترکي (1.234,56)';

@@ -241,7 +241,7 @@
   "aboutOpenRow": "Пра прыкладанне і адкрыты код",
   "voiceAddItemAction": "Дадаць голасам",
   "formatLocaleLabel": "Фармат лічбаў і валюты",
-  "formatLocaleSystem": "Сістэмны (адпавядае мове прыкладання)",
+  "formatLocaleSystem": "Фармат сістэмы (лічбы лацінскія; інакш англійская)",
   "formatLocaleTr": "Турэцкі (1.234,56)",
   "formatLocaleEn": "Англійскі (1,234.56)",
   "aiToggleTitle": "Даведка AI",

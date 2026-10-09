@@ -1,3 +1,4 @@
+import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,50 @@ import 'package:nshoptor/features/history/insights/insights_repository.dart';
 import 'package:nshoptor/features/history/insights/spending_screen.dart';
 
 void main() {
+  setUp(() => AppFormatLocale.attach('tr'));
+  tearDown(AppFormatLocale.attachReset);
   late AppDatabase db;
 
   setUp(() => db = AppDatabase(NativeDatabase.memory()));
   tearDown(() => db.close());
+
+  for (final (currency, minor, initial, edited, expected) in [
+    ('JPY', 1234, '1234', '2345', 2345),
+    ('KWD', 12345, '12,345', '98,765', 98765),
+    ('TRY', 12345, '123,45', '234,56', 23456),
+  ]) {
+    testWidgets('$currency limit prefill round-trip, validation and cancel preserve data', (tester) async {
+      final store = SettingsStore();
+      store.setString('app.currency', 'USD');
+      AppDefaults.attach(store);
+      AppDefaults.setMonthlyLimitMinor(7890, currencyCode: 'USD');
+      AppDefaults.setMonthlyLimitMinor(minor, currencyCode: currency);
+      await tester.pumpWidget(MaterialApp(locale: const Locale('en'),
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+        home: SpendingScreen(db: db, currencyCode: currency, now: DateTime(2026, 10, 8))));
+      await tester.runAsync(() => db.select(db.shoppingLists).get());
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('limit_edit'))); await tester.pumpAndSettle();
+      expect(tester.widget<TextFormField>(find.byKey(const Key('limit_field'))).initialValue, initial);
+      await tester.enterText(find.byKey(const Key('limit_field')), 'invalid');
+      await tester.tap(find.byKey(const Key('limit_save'))); await tester.pumpAndSettle();
+      expect(find.text('Invalid price'), findsOneWidget);
+      expect(find.byType(AlertDialog), findsOneWidget);
+      expect(AppDefaults.monthlyLimitMinor(currencyCode: currency), minor);
+      await tester.enterText(find.byKey(const Key('limit_field')), edited);
+      await tester.tap(find.byKey(const Key('limit_save'))); await tester.pumpAndSettle();
+      expect(AppDefaults.monthlyLimitMinor(currencyCode: currency), expected);
+      expect(AppDefaults.monthlyLimitMinor(currencyCode: 'USD'), 7890);
+      await tester.tap(find.byKey(const Key('limit_edit'))); await tester.pumpAndSettle();
+      expect(tester.widget<TextFormField>(find.byKey(const Key('limit_field'))).initialValue, edited);
+      await tester.enterText(find.byKey(const Key('limit_field')), '999');
+      await tester.binding.handlePopRoute(); await tester.pumpAndSettle();
+      expect(AppDefaults.monthlyLimitMinor(currencyCode: currency), expected);
+      await tester.pumpWidget(const SizedBox.shrink());
+    });
+  }
 
   Future<void> completed(DateTime at, int minor, {String currency = 'TRY'}) async {
     final id = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(

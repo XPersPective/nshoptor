@@ -751,7 +751,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get formatLocaleLabel => '数字と通貨の形式';
 
   @override
-  String get formatLocaleSystem => 'システム（アプリの言語に従う）';
+  String get formatLocaleSystem => 'デバイスの形式（ラテン数字の場合、それ以外は英語）';
 
   @override
   String get formatLocaleTr => 'トルコ語 (1.234,56)';

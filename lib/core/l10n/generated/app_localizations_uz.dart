@@ -765,7 +765,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get formatLocaleLabel => 'Raqam va valyuta formati';
 
   @override
-  String get formatLocaleSystem => 'Tizim (ilova tiliga amal qiladi)';
+  String get formatLocaleSystem =>
+      'Qurilma formati (Lotin raqamlari; aks holda ingliz tili)';
 
   @override
   String get formatLocaleTr => 'Turkcha (1.234,56)';

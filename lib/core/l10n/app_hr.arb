@@ -241,7 +241,7 @@
   "aboutOpenRow": "O aplikaciji & otvoreni kod",
   "voiceAddItemAction": "Dodaj glasom",
   "formatLocaleLabel": "Format brojeva i valuta",
-  "formatLocaleSystem": "Sustav (prati jezik aplikacije)",
+  "formatLocaleSystem": "Format uređaja (latinične znamenke; inače engleski)",
   "formatLocaleTr": "Turski (1.234,56)",
   "formatLocaleEn": "Engleski (1,234.56)",
   "aiToggleTitle": "Pomoć AI-ja",

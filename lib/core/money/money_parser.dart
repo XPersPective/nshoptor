@@ -1,15 +1,19 @@
+import 'package:intl/number_symbols_data.dart';
 import 'decimal_fixed.dart';
 import 'locale_conventions.dart';
 
 /// Yerel ayraç yapılandırması: ondalık ve binlik ayraç karakterleri.
 class MoneySeparators {
-  const MoneySeparators(this.decimal, this.thousands)
+  const MoneySeparators(this.decimal, this.thousands, {this.primaryGroupSize = 3, this.secondaryGroupSize = 3})
       : assert(decimal != thousands),
         assert(decimal.length == 1),
-        assert(thousands.length == 1);
+        assert(thousands.length == 1),
+        assert(primaryGroupSize > 0), assert(secondaryGroupSize > 0);
 
   final String decimal;
   final String thousands;
+  final int primaryGroupSize;
+  final int secondaryGroupSize;
 
   /// Türkçe: ondalık `,`, binlik `.`.
   static const MoneySeparators tr = MoneySeparators(',', '.');
@@ -17,10 +21,21 @@ class MoneySeparators {
   /// İngilizce: ondalık `.`, binlik `,`.
   static const MoneySeparators en = MoneySeparators('.', ',');
 
-  /// Ondalık virgül kullanan ve 0-9 rakamı yazan diller [tr]; diğerleri [en]
-  /// (PB-058/061; intl tablosundan).
-  static MoneySeparators forLocaleCode(String localeCode) =>
-      usesLatinDigits(localeCode) && usesCommaDecimal(localeCode) ? tr : en;
+  /// Installed intl data is also the formatter's source of separators/grouping.
+  static MoneySeparators forLocaleCode(String localeCode) {
+    if (!usesLatinDigits(localeCode)) return en;
+    final symbols = numberFormatSymbols[knownNumberLocale(localeCode)]!;
+    final groups = symbols.DECIMAL_PATTERN.split('.').first.split(',');
+    final primary = groups.length > 1 ? groups.last.length : 3;
+    final secondary = groups.length > 2 ? groups[groups.length - 2].length : primary;
+    if (primary == 3 && secondary == 3) {
+      if (symbols.DECIMAL_SEP == tr.decimal && symbols.GROUP_SEP == tr.thousands) return tr;
+      if (symbols.DECIMAL_SEP == en.decimal && symbols.GROUP_SEP == en.thousands) return en;
+    }
+    return MoneySeparators(symbols.DECIMAL_SEP, symbols.GROUP_SEP,
+      primaryGroupSize: primary, secondaryGroupSize: secondary);
+  }
+
 }
 
 /// Kullanıcı girişindeki yerel ondalık sayı ayrıştırıcısı.
@@ -28,15 +43,13 @@ class MoneySeparators {
 /// Belirsizlik kuralı (deterministik ve test edilebilir, spec §13):
 /// - Ayraç karakteri kendi rolüne göre yorumlanır: [MoneySeparators.decimal]
 ///   ondalık, [MoneySeparators.thousands] binliktir.
-/// - Binlik ayracı geçerli gruplamak zorundadır: ilk grup 1-3, sonrakiler
-///   tam 3 basamak. Geçersiz gruplama `FormatException` verir — tahmin edilmez.
+/// - Binlik ayracı seçilmiş yerelin intl gruplamasına uymalıdır. Geçersiz gruplama `FormatException` verir — tahmin edilmez.
 /// - Ondalık ayracı en fazla bir kez görünebilir; ilk veya son karakter olamaz.
 /// - Örnekler (tr): `1,5` → 1.5; `1.234,5` → 1234.5; `1.234` → 1234.
 ///   (en): `1.5` → 1.5; `1,234.5` → 1234.5; `1,234` → 1234; `1,23` → HATA.
 class MoneyParser {
   MoneyParser._();
 
-  static final RegExp _allowed = RegExp(r'^[+-]?[\d.,]+$');
 
   /// [input] girdisini [separators] kurallarına göre ayrıştırır.
   ///
@@ -51,7 +64,7 @@ class MoneyParser {
     if (s.isEmpty) {
       throw const FormatException('boş girdi');
     }
-    if (!_allowed.hasMatch(s)) {
+    if (!RegExp(r'^[+-]?[0-9' + RegExp.escape(separators.decimal + separators.thousands) + r']+$').hasMatch(s)) {
       throw FormatException('geçersiz karakter: "$input"');
     }
 
@@ -91,26 +104,27 @@ class MoneyParser {
       if (fracPart.contains(t)) {
         throw FormatException('ondalık ayracın sağında binlik ayraç: "$s"');
       }
-      _checkGrouping(intPart, t, s);
+      _checkGrouping(intPart, sep, s);
       return '${intPart.replaceAll(t, "")}.$fracPart';
     }
 
     // Ondalık ayraç yok: görünen tüm ayraçlar binliktir.
     if (thousandsCount > 0) {
-      _checkGrouping(s, t, s);
+      _checkGrouping(s, sep, s);
       return s.replaceAll(t, '');
     }
     return s;
   }
 
-  /// Geçerli gruplama: ilk grup 1-3 basamak, kalan gruplar tam 3.
-  static void _checkGrouping(String intPart, String t, String original) {
-    final groups = intPart.split(t);
-    if (groups.first.isEmpty || groups.first.length > 3) {
+  /// Ungrouped integers have no size ceiling; grouped integers follow intl.
+  static void _checkGrouping(String intPart, MoneySeparators sep, String original) {
+    final groups = intPart.split(sep.thousands);
+    if (groups.length == 1) return;
+    if (groups.first.isEmpty || groups.first.length > sep.secondaryGroupSize) {
       throw FormatException('geçersiz binlik gruplama: "$original"');
     }
     for (var i = 1; i < groups.length; i++) {
-      if (groups[i].length != 3) {
+      if (groups[i].length != (i == groups.length - 1 ? sep.primaryGroupSize : sep.secondaryGroupSize)) {
         throw FormatException('geçersiz binlik gruplama: "$original"');
       }
     }

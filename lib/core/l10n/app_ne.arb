@@ -241,7 +241,7 @@
   "aboutOpenRow": "बारेमा & ओपन सोर्स",
   "voiceAddItemAction": "वाक्द्वारा थप्नुहोस्",
   "formatLocaleLabel": "संख्या र मुद्रा प्रारूप",
-  "formatLocaleSystem": "सिस्टम (एप भाषा अनुसार)",
+  "formatLocaleSystem": "डिभाइस फरमेट (लिन अंक; अन्यथा इंग्लिश)",
   "formatLocaleTr": "टर्किश (1.234,56)",
   "formatLocaleEn": "अंग्रेजी (1,234.56)",
   "aiToggleTitle": "AI सहायता",

@@ -241,7 +241,7 @@
   "aboutOpenRow": "Par un atvērtā koda",
   "voiceAddItemAction": "Pievienot ar balss komandu",
   "formatLocaleLabel": "Skaitļu un valūtas formāts",
-  "formatLocaleSystem": "Sistēma (seko lietotnes valodai)",
+  "formatLocaleSystem": "Ierīces formāts (Latīņu cipari; citādi angļu valodā)",
   "formatLocaleTr": "Turku (1.234,56)",
   "formatLocaleEn": "Angļu (1,234.56)",
   "aiToggleTitle": "AI palīdzība",

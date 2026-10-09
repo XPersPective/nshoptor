@@ -241,7 +241,7 @@
   "aboutOpenRow": "Sobre e código aberto",
   "voiceAddItemAction": "Engadir por voz",
   "formatLocaleLabel": "Formato de número e moeda",
-  "formatLocaleSystem": "Sistema (segue o idioma da app)",
+  "formatLocaleSystem": "Formato do dispositivo (dígitos latinos; de outro modo, inglés)",
   "formatLocaleTr": "Turco (1.234,56)",
   "formatLocaleEn": "Inglés (1,234.56)",
   "aiToggleTitle": "Axuda IA",

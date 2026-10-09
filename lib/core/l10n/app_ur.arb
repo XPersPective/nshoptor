@@ -241,7 +241,7 @@
   "aboutOpenRow": "ایپ کے بارے میں اور اوپن سورس",
   "voiceAddItemAction": "آواز سے شامل کریں",
   "formatLocaleLabel": "نمبر اور کرنسی کی فارمیٹ",
-  "formatLocaleSystem": "سسٹم (ایپ کی زبان کے مطابق)",
+  "formatLocaleSystem": "ڈیوائس فارمیٹ (لینی ڈیجٹس؛ ورنہ انگریزی)",
   "formatLocaleTr": "ترکی (1.234,56)",
   "formatLocaleEn": "انگلش (1,234.56)",
   "aiToggleTitle": "AI مدد",

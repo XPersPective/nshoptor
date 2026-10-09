@@ -11,8 +11,29 @@ import 'package:nshoptor/core/money/money_parser.dart';
 void main() {
   tearDown(AppFormatLocale.attachReset);
 
-  testWidgets('ayarı yoksa arayüz dilinden gelir', (tester) async {
+  for (final (device, expected) in [
+    (const Locale('en', 'GB'), 'en_GB'),
+    (const Locale('en', 'IN'), 'en_IN'),
+    (const Locale('ar', 'KW'), 'ar_KW'),
+    (const Locale('fa', 'IR'), 'en'),
+  ]) {
+    testWidgets('device $device region/fallback independent of Turkish UI', (tester) async {
+      tester.binding.platformDispatcher.localeTestValue = device;
+      addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
+      late String resolved;
+      await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+        home: Builder(builder: (context) { resolved = formatLocaleCode(context); return const SizedBox.shrink(); })));
+      expect(resolved, expected);
+    });
+  }
+
+  testWidgets('system follows device region independently of app language', (tester) async {
     AppFormatLocale.attach(null);
+    tester.binding.platformDispatcher.localeTestValue = const Locale('tr', 'TR');
+    addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
     late String resolved;
     await tester.pumpWidget(MaterialApp(
       locale: const Locale('en'),
@@ -30,7 +51,7 @@ void main() {
         },
       ),
     ));
-    expect(resolved, 'en');
+    expect(resolved, 'tr_TR');
   });
 
   testWidgets('tr biçim ayarı en arayüzde bile tr kalır', (tester) async {

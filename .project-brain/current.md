@@ -10,6 +10,7 @@
 - Kullanıcı devralma/tamamlama yetkisi verdi; yalnız kanıtlanan checkpointler burada mevcut durumdur.
 - PB-062 doğrulama: 321 full-suite passed, analyze 0; 320dp/2x tr/ar taşmasız, 48dp erişilebilir eylemler. Büyük yazıda başlık ürünlerle birlikte kayar. Tamamlanmış listede yeniden başlatma yok.
 - PB-066 liste menüsü/sonuç PDF raporu: atomic snapshot, kaçırılmış HTML, null/para/birim dürüst; Android native print lifecycle. API36 emülatörde cancel→repeat→save→open 5 sayfa/Türkçe görsel kanıtlı; docs/audits/pdf-report-2026-10-09.md. 74 domain +2 son delta passed, debug APK, analyze 0.
+- PB-067 system sayı biçimi cihaz ülke yerelinden (Latin dışı rakamda en), UI dili bağımsız; 71 dilde açıklama güncel. MoneyParser intl ayraç/gruplama (en_IN3/2, fr ince boşluk) ve büyük ondalık için ortak doğru yol. Limitler currency key ile saklanır; eski değer mevcut tercihe bir kez bağlanır, prefill hassasiyet/küsurat korunur, invalid kalır; plansız aylık kart/geri dönüş refresh testli. Full335 passed, analyze0. Wakelock PB-077, feedback PB-078 halen açık.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -38,7 +39,9 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `server/` — Cloudflare Worker AI vekili (`nshoptor-api.devx8585.workers.dev`), D1 kota, Play doğrulama
 ## Runtime
 
-**Status:** VERIFIED
+**Status:** VERIFIED (2026-10-09 boot/defaults/format checkpoint)
+
+**Sources:** `lib/main.dart`, `lib/app/**`, `pubspec.yaml`, `pubspec.lock`
 
 Flutter stable 3.47.x, Dart null safety, Material 3. Entry point
 `lib/main.dart` → `lib/app/` (NShoptorApp + LanguageController +
@@ -58,7 +61,7 @@ over sqlite (ADR-001).
 **Sources:** `lib/core/**`, `test/core/**`
 
 - `core/money/`: Currency, DecimalFixed (BigInt unscaled+scale), Money (minor
-  units), MoneyParser (tr/en), formatMoney — no `double`.
+  units), MoneyParser/formatter same intl separators and primary/secondary grouping, ungrouped large decimals valid; system device region, explicit tr/en independent; no `double`.
 - `core/quantity/`: UnitCode (13 units), UnitConversion, PackagingContent,
   unit_display (görünen ad l10n'dan; DB'de kanonik kod — tek kaynak).
 - `core/calc/`: LineCalc, EffectSplit (price/quantity effect separation),
@@ -161,14 +164,8 @@ speech_to_text 7.5.0, google_mlkit_text_recognition 0.17.1, image_picker,
 path_provider, flutter_local_notifications 22.3.1, timezone, wakelock_plus,
 share_plus, file_picker.
 
-Test totals: 259 unit/widget green + 3 integration (device_audit 2/2,
-receipt_flow 1/1) + analyze 0. Release APK (fat, 97,8 MB) emülatörde
-uçtan uca (2026-10-03/04): 5 sekme, Pro kilidi/paywall, Keşfet,
-biçim-yereli, "Sürüm 1.0.0", koyu tema canlı, ikon launcher'da,
-BANNER bottom bar altında test-ad ile canlı (UMP gdprApplies:0),
-bildirim reboot sonrası panelde görüntülendi. Fiş korpusu:
-market_tr_1.txt ile parser/matcher; "domates kg"→"domates" yüksek
-güven.
+Historical device evidence (2026-10-03/04): 259 unit/widget + 3 integration, release APK 97.8 MB; five tabs, Pro gate/paywall, live test banner, theme/format, launcher icon, notification after reboot and receipt market_tr_1.png OCR. That APK's 1.0.0 label is historical; current source/version/checks are above.
+
 ## Known Unknowns
 
 - Voice: gerçek tanıma cihazda denenmedi (emülatörde platform tanıyıcı

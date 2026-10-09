@@ -241,7 +241,7 @@
   "aboutOpenRow": "Quant a i codi obert",
   "voiceAddItemAction": "Afegeix per veu",
   "formatLocaleLabel": "Format de nombre i moneda",
-  "formatLocaleSystem": "Sistema (segueix l'idioma de l'app)",
+  "formatLocaleSystem": "Format del dispositiu (xifres llatines; altrament, anglès)",
   "formatLocaleTr": "Turc (1.234,56)",
   "formatLocaleEn": "Anglès (1,234.56)",
   "aiToggleTitle": "Ajuda IA",

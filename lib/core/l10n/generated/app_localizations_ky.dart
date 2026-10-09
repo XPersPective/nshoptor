@@ -765,7 +765,8 @@ class AppLocalizationsKy extends AppLocalizations {
   String get formatLocaleLabel => 'Сандар жана валюта форматы';
 
   @override
-  String get formatLocaleSystem => 'Система (колдонмонун тилин ээрчиген)';
+  String get formatLocaleSystem =>
+      'Түзмөктүн форматы (Латин цифралары; башка учурларда англисче)';
 
   @override
   String get formatLocaleTr => 'Түрк (1.234,56)';

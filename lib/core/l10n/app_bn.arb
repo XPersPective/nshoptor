@@ -241,7 +241,7 @@
   "aboutOpenRow": "সম্পর্কে ও ওপেন সোর্স",
   "voiceAddItemAction": "ভয়েস দিয়ে যোগ করুন",
   "formatLocaleLabel": "সংখ্যা ও মুদ্রার ফরম্যাট",
-  "formatLocaleSystem": "সিস্টেম (অ্যাপের ভাষা অনুসরণ করবে)",
+  "formatLocaleSystem": "ডিভাইস ফরম্যাট (ল্যাটিন ডিজিট; অন্যথায় ইংরেজি)",
   "formatLocaleTr": "তুর্কি (1.234,56)",
   "formatLocaleEn": "ইংরেজি (1,234.56)",
   "aiToggleTitle": "AI সাহায্য",

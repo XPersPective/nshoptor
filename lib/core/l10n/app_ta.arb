@@ -241,7 +241,7 @@
   "aboutOpenRow": "பற்றியது & திறந்த மூலம்",
   "voiceAddItemAction": "குரல் மூலம் சேர்",
   "formatLocaleLabel": "எண் மற்றும் நாணய வடிவம்",
-  "formatLocaleSystem": "அமைப்பு (பயன்பாட்டு மொழியைப் பின்பற்று)",
+  "formatLocaleSystem": "சாதன வடிவம் (லத்தின் எண்கள்; மற்றபடி ஆங்கிலம்)",
   "formatLocaleTr": "துருக்கிய (1.234,56)",
   "formatLocaleEn": "ஆங்கிலம் (1,234.56)",
   "aiToggleTitle": "AI உதவி",

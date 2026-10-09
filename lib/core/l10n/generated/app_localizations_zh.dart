@@ -749,7 +749,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get formatLocaleLabel => '数字与货币格式';
 
   @override
-  String get formatLocaleSystem => '系统（跟随应用语言）';
+  String get formatLocaleSystem => '设备格式（拉丁数字；否则为英文）';
 
   @override
   String get formatLocaleTr => '土耳其语 (1.234,56)';

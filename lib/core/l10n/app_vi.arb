@@ -241,7 +241,7 @@
   "aboutOpenRow": "Giới thiệu & mã nguồn mở",
   "voiceAddItemAction": "Thêm bằng giọng nói",
   "formatLocaleLabel": "Định dạng số & tiền tệ",
-  "formatLocaleSystem": "Hệ thống (theo ngôn ngữ ứng dụng)",
+  "formatLocaleSystem": "Định dạng thiết bị (chữ số Latin; nếu không thì tiếng Anh)",
   "formatLocaleTr": "Tiếng Thổ Nhĩ Kỳ (1.234,56)",
   "formatLocaleEn": "Tiếng Anh (1,234.56)",
   "aiToggleTitle": "Trợ lý AI",

@@ -768,7 +768,8 @@ class AppLocalizationsMy extends AppLocalizations {
   String get formatLocaleLabel => 'အရေအတွက်နှင့် ငွေကြေးပုံစံ';
 
   @override
-  String get formatLocaleSystem => 'စနစ် (အက်ပ်ဘာသာစကားကိုလိုက်သည်)';
+  String get formatLocaleSystem =>
+      'စက်ပစ္စည်း ပုံစံ (လက်ရေးကိန်းဂဏန်းများ; အခြားအင်္ဂလိပ်)';
 
   @override
   String get formatLocaleTr => 'တူရကီ (1.234,56)';

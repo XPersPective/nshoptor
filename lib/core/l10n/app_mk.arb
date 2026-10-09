@@ -241,7 +241,7 @@
   "aboutOpenRow": "За нас и отворен код",
   "voiceAddItemAction": "Додај преку глас",
   "formatLocaleLabel": "Формат на број и валута",
-  "formatLocaleSystem": "Систем (следи ја јазичната поставка на апликацијата)",
+  "formatLocaleSystem": "Формат на уредата (Латинички цифри; инаку англиски)",
   "formatLocaleTr": "Турски (1.234,56)",
   "formatLocaleEn": "Англиски (1,234.56)",
   "aiToggleTitle": "AI помош",

@@ -764,7 +764,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get formatLocaleLabel => 'فرمت عدد و ارز';
 
   @override
-  String get formatLocaleSystem => 'سیستم (پیروی از زبان برنامه)';
+  String get formatLocaleSystem =>
+      'فرمت دستگاه (اعداد لاتین؛ در غیر این صورت انگلیسی)';
 
   @override
   String get formatLocaleTr => 'ترکی (1.234,56)';

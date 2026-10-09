@@ -241,7 +241,7 @@
   "aboutOpenRow": "O aplikaci & open source",
   "voiceAddItemAction": "Přidat hlasem",
   "formatLocaleLabel": "Formát čísel a měny",
-  "formatLocaleSystem": "Systém (sleduje jazyk aplikace)",
+  "formatLocaleSystem": "Formát systému zařízení (latinské číslice; jinak anglicky)",
   "formatLocaleTr": "Turečtina (1.234,56)",
   "formatLocaleEn": "Angličtina (1,234.56)",
   "aiToggleTitle": "Nápověda AI",

@@ -1,3 +1,4 @@
+import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -27,6 +28,8 @@ ItemResultRow _row(String name, int planned, int actual, {bool notTaken = false,
     );
 
 void main() {
+  setUp(() => AppFormatLocale.attach('tr'));
+  tearDown(AppFormatLocale.attachReset);
   testWidgets('unknown estimate and actual stay dashes in the result table', (tester) async {
     final result = ListResult(currencyCode: 'TRY', plannedTotalMinor: 0, actualTotalMinor: 0,
       unplannedTotalMinor: 0, unpurchasedPlannedMinor: 0, totalDiscountMinor: 0, variancePercent: null,

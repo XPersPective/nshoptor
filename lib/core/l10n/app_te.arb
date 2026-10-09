@@ -241,7 +241,7 @@
   "aboutOpenRow": "గూర్చి & ఓపెన్ సోర్స్",
   "voiceAddItemAction": "వాయిస్ ద్వారా జోడించండి",
   "formatLocaleLabel": "సంఖ్య & కరెన్సి ఫార్మాట్",
-  "formatLocaleSystem": "సిస్టమ్ (యాప్ భాషను అనుసరిస్తుంది)",
+  "formatLocaleSystem": "డివైస్ ఫార్మాట్ (లాటిన్ అంకెలు; ఇతరత్రా ఇంగ్లీష్)",
   "formatLocaleTr": "తుర్కీ (1.234,56)",
   "formatLocaleEn": "ఇంగ్లీష్ (1,234.56)",
   "aiToggleTitle": "AI సహాయం",

@@ -1,8 +1,32 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/core/money/money_parser.dart';
+import 'package:nshoptor/core/l10n/language_names.dart';
+import 'package:nshoptor/core/money/format_locale.dart';
+import 'package:nshoptor/core/money/currency.dart';
+import 'package:nshoptor/core/money/money.dart';
+import 'package:nshoptor/core/money/money_format.dart';
 
 void main() {
+  test('large ungrouped decimals are valid; all supported formatted groups round-trip', () {
+    expect(MoneyParser.parseDecimal('1234567.89').toDbString(), '1234567.89');
+    expect(MoneyParser.parseDecimal('1234567,89', separators: MoneySeparators.tr).toDbString(), '1234567.89');
+    final currency = Currency.fromCode('EUR');
+    for (final code in {...appLanguages.keys, 'en_IN', 'fr_FR', 'ru_RU', 'ar_KW'}) {
+      final locale = AppFormatLocale.forLanguage(code);
+      const minor = 123456789;
+      final text = formatMoney(Money.fromMinorUnits(minor, currency), locale: locale);
+      final number = text.replaceAll(currency.displaySymbol, '').trim();
+      expect(MoneyParser.parseDecimal(number, separators: MoneySeparators.forLocaleCode(locale)).toMinorUnits(2), minor,
+        reason: '$locale: $text');
+    }
+  });
+  test('Indian grouping follows installed intl pattern rather than accepting broken groups', () {
+    final sep = MoneySeparators.forLocaleCode('en_IN');
+    expect(MoneyParser.parseDecimal('12,34,567.89', separators: sep).toDbString(), '1234567.89');
+    expect(() => MoneyParser.parseDecimal('1,234,567.89', separators: sep), throwsFormatException);
+    expect(() => MoneyParser.parseDecimal('12,34,56.89', separators: sep), throwsFormatException);
+  });
   group('Türkçe ayraçlar', () {
     const sep = MoneySeparators.tr;
 

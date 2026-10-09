@@ -765,7 +765,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get formatLocaleLabel => 'ਸੰਖਿਆ ਅਤੇ ਮੁਦਰਾ ਫਾਰਮੈਟ';
 
   @override
-  String get formatLocaleSystem => 'ਸਿਸਟਮ (ਐਪ ਭਾਸ਼ਾ ਦੀ ਪਾਲਣਾ ਕਰਦਾ ਹੈ)';
+  String get formatLocaleSystem => 'ਡਿਵਾਈਸ ਫਾਰਮੈਟ (ਲੈਟਿਨ ਅੰਕ; ਬਾਕੀ ਅੰਗਰੇਜ਼ੀ)';
 
   @override
   String get formatLocaleTr => 'ਤੁਰਕੀ (1.234,56)';

@@ -767,7 +767,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get formatLocaleLabel => 'Szám- és pénznemformátum';
 
   @override
-  String get formatLocaleSystem => 'Rendszer (az app nyelve szerint)';
+  String get formatLocaleSystem =>
+      'Eszköz formátuma (Latin számjegyek; egyébként angol)';
 
   @override
   String get formatLocaleTr => 'Török (1.234,56)';

@@ -764,7 +764,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get formatLocaleLabel => 'Arvude ja valuuta vorming';
 
   @override
-  String get formatLocaleSystem => 'Süsteem (järgib rakenduse keelt)';
+  String get formatLocaleSystem =>
+      'Seadme formaat (ladina numbrid; muidu inglise keeles)';
 
   @override
   String get formatLocaleTr => 'Türgi (1.234,56)';

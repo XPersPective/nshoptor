@@ -241,7 +241,7 @@
   "aboutOpenRow": "എപ്പോൾ & اوپن സോഴ്സ്",
   "voiceAddItemAction": "വോയ്‌സ് വഴി ചേർക്കുക",
   "formatLocaleLabel": "സംഖ്യയും നാണയ ഫോമാറ്റും",
-  "formatLocaleSystem": "സിസ്റ്റം (ആപ്പ് ഭാഷ അനുസരിക്കുന്നു)",
+  "formatLocaleSystem": "ഡിവൈസ് ഫോർമാറ്റ് (ലാറ്റിൻ അക്കങ്ങൾ; മറ്റുള്ളവ ഇംഗ്ലീഷ്)",
   "formatLocaleTr": "ടർക്കിഷ് (1.234,56)",
   "formatLocaleEn": "ഇംഗ്ലീഷ് (1,234.56)",
   "aiToggleTitle": "AI സഹായം",

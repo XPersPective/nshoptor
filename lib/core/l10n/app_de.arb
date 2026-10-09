@@ -241,7 +241,7 @@
   "aboutOpenRow": "Über & Open Source",
   "voiceAddItemAction": "Per Sprache hinzufügen",
   "formatLocaleLabel": "Zahlen- & Währungsformat",
-  "formatLocaleSystem": "System (wie App-Sprache)",
+  "formatLocaleSystem": "Geräteformat (lateinische Ziffern; sonst Englisch)",
   "formatLocaleTr": "Türkisch (1.234,56)",
   "formatLocaleEn": "Englisch (1,234.56)",
   "aiToggleTitle": "KI-Hilfe",

@@ -241,7 +241,7 @@
   "aboutOpenRow": "Honi buruz eta kode irekia",
   "voiceAddItemAction": "Gehitu ahots bidez",
   "formatLocaleLabel": "Zenbaki eta moneta-formatua",
-  "formatLocaleSystem": "Sistema (aplikazioaren hizkuntza jarraitzen du)",
+  "formatLocaleSystem": "Gailuaren formatua (digitu latindarrak; bestela ingelesez",
   "formatLocaleTr": "Turkiera (1.234,56)",
   "formatLocaleEn": "Ingelesa (1,234.56)",
   "aiToggleTitle": "AI laguntza",

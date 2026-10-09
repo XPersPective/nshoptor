@@ -241,7 +241,7 @@
   "aboutOpenRow": "概要 & オープンソース",
   "voiceAddItemAction": "音声で追加",
   "formatLocaleLabel": "数字と通貨の形式",
-  "formatLocaleSystem": "システム（アプリの言語に従う）",
+  "formatLocaleSystem": "デバイスの形式（ラテン数字の場合、それ以外は英語）",
   "formatLocaleTr": "トルコ語 (1.234,56)",
   "formatLocaleEn": "英語 (1,234.56)",
   "aiToggleTitle": "AIヘルプ",

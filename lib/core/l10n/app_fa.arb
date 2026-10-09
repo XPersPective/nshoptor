@@ -241,7 +241,7 @@
   "aboutOpenRow": "درباره و متن‌باز",
   "voiceAddItemAction": "افزودن با صدا",
   "formatLocaleLabel": "فرمت عدد و ارز",
-  "formatLocaleSystem": "سیستم (پیروی از زبان برنامه)",
+  "formatLocaleSystem": "فرمت دستگاه (اعداد لاتین؛ در غیر این صورت انگلیسی)",
   "formatLocaleTr": "ترکی (1.234,56)",
   "formatLocaleEn": "انگلیسی (1,234.56)",
   "aiToggleTitle": "کمک هوش مصنوعی",

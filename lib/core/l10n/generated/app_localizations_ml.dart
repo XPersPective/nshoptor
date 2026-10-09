@@ -765,7 +765,8 @@ class AppLocalizationsMl extends AppLocalizations {
   String get formatLocaleLabel => 'സംഖ്യയും നാണയ ഫോമാറ്റും';
 
   @override
-  String get formatLocaleSystem => 'സിസ്റ്റം (ആപ്പ് ഭാഷ അനുസരിക്കുന്നു)';
+  String get formatLocaleSystem =>
+      'ഡിവൈസ് ഫോർമാറ്റ് (ലാറ്റിൻ അക്കങ്ങൾ; മറ്റുള്ളവ ഇംഗ്ലീഷ്)';
 
   @override
   String get formatLocaleTr => 'ടർക്കിഷ് (1.234,56)';

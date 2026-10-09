@@ -241,7 +241,7 @@
   "aboutOpenRow": "အကြောင်း & open source",
   "voiceAddItemAction": "အသံဖြင့် ပစ္စည်းထည့်မည်",
   "formatLocaleLabel": "အရေအတွက်နှင့် ငွေကြေးပုံစံ",
-  "formatLocaleSystem": "စနစ် (အက်ပ်ဘာသာစကားကိုလိုက်သည်)",
+  "formatLocaleSystem": "စက်ပစ္စည်း ပုံစံ (လက်ရေးကိန်းဂဏန်းများ; အခြားအင်္ဂလိပ်)",
   "formatLocaleTr": "တူရကီ (1.234,56)",
   "formatLocaleEn": "အင်္ဂလိပ် (1,234.56)",
   "aiToggleTitle": "AI အကူအညီ",

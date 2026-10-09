@@ -38,3 +38,5 @@ Her görev bir davranış kümesi ve bir checkpoint. Dosyaların tamamını tekr
 
 ## Kapsam eşlemesi
 Tıklanamayan kart/yeni liste/asistan → 062. Silme/tik/tahmin/gerçek/uzun ad → 062+063. Ses başlık/ürün/marka/kategori ve fotoğraf → 064. Fişle plansız/kısmi alışveriş → 063+064. Ülke/para/sayı/ekran kilidi/bildirim → 067. Free/Pro/Max/lifetime/yıllık/kâr → 065. PDF/KDV → 066. Ürün sıklığı/miktar/kategori/grafik → 068. Profesyonel uçtan uca kanıt → 069.
+
+2026-10-09 PB-067 kapsam bölümü: device format/limitler tamam; PB-077 rota/lifecycle wakelock, PB-078 feedback/busy; PB-079 kaynak incelemesinden çıkan signed minor-unit overflow koruması. PB-069 bu ek kabul işlerini bitirmeden yayın kabulü yapmaz.

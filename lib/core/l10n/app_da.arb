@@ -241,7 +241,7 @@
   "aboutOpenRow": "Om & open source",
   "voiceAddItemAction": "Tilføj med stemme",
   "formatLocaleLabel": "Nummer- og valutaformat",
-  "formatLocaleSystem": "System (følger appens sprog)",
+  "formatLocaleSystem": "Enhedsformat (Latinske cifre; ellers engelsk)",
   "formatLocaleTr": "Tyrkisk (1.234,56)",
   "formatLocaleEn": "Engelsk (1,234.56)",
   "aiToggleTitle": "AI-hjælp",

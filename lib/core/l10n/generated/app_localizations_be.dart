@@ -767,7 +767,8 @@ class AppLocalizationsBe extends AppLocalizations {
   String get formatLocaleLabel => 'Фармат лічбаў і валюты';
 
   @override
-  String get formatLocaleSystem => 'Сістэмны (адпавядае мове прыкладання)';
+  String get formatLocaleSystem =>
+      'Фармат сістэмы (лічбы лацінскія; інакш англійская)';
 
   @override
   String get formatLocaleTr => 'Турэцкі (1.234,56)';

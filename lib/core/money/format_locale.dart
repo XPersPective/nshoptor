@@ -6,7 +6,7 @@ import 'locale_conventions.dart';
 ///
 /// Kullanıcı "İngilizce arayüz + Türkçe biçim (1.234,56 ₺)" isteyebilir.
 /// `AppFormatLocale.attach` main'de ayarlardan bağlanır; ayar 'system'
-/// olduğunda (varsayılan) biçim, arayüz dilinden gelir (eski davranış).
+/// olduğunda (varsayılan) biçim, cihazın ülke yerelinden gelir; Latin dışı rakamda en yedeği kullanılır.
 class AppFormatLocale {
   AppFormatLocale._();
 
@@ -21,9 +21,9 @@ class AppFormatLocale {
   /// Test temizliği.
   static void attachReset() => _code = null;
 
-  /// Etkin biçim yereli: ayar 'system'/yoksa arayüz dili.
+  /// Etkin biçim yereli: ayar 'system'/yoksa cihazın ülke yereli.
   static String effective(BuildContext context) =>
-      _code ?? forLanguage(Localizations.localeOf(context).languageCode);
+      _code ?? forLanguage(WidgetsBinding.instance.platformDispatcher.locale.toString());
 
   /// Arayüz dilinden biçim yereli. Batı rakamı yazmayan dillerde (ar, fa, bn…)
   /// giriş (0-9, nokta) ile gösterim tutarlı kalsın diye 'en' biçimi

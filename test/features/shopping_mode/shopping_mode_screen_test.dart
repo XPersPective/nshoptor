@@ -1,3 +1,4 @@
+import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:nshoptor/features/shopping_mode/shopping_mode_screen.dart';
 import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
 
 void main() {
+  setUp(() => AppFormatLocale.attach('tr'));
+  tearDown(AppFormatLocale.attachReset);
   late AppDatabase db;
 
   setUp(() async {

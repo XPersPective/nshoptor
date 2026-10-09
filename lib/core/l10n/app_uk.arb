@@ -241,7 +241,7 @@
   "aboutOpenRow": "Про додаток та open source",
   "voiceAddItemAction": "Додати голосом",
   "formatLocaleLabel": "Формат чисел і валюти",
-  "formatLocaleSystem": "Системний (відповідає мові додатку)",
+  "formatLocaleSystem": "Формат пристрою (латинські цифри; інакше англійською)",
   "formatLocaleTr": "Турецький (1.234,56)",
   "formatLocaleEn": "Англійський (1,234.56)",
   "aiToggleTitle": "Допомога AI",

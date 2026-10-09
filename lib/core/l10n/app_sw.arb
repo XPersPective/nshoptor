@@ -241,7 +241,7 @@
   "aboutOpenRow": "Kuhusu & chanzo wazi",
   "voiceAddItemAction": "Ongeza kwa sauti",
   "formatLocaleLabel": "Namba na muundo wa sarafu",
-  "formatLocaleSystem": "Mfumo (ufuatie lugha ya programu)",
+  "formatLocaleSystem": "Muundo wa kifaa (tarakimu za Kihindi; vinginevyo Kiingereza)",
   "formatLocaleTr": "Kituruki (1.234,56)",
   "formatLocaleEn": "Kiingereza (1,234.56)",
   "aiToggleTitle": "Msaada wa AI",

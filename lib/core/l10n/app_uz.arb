@@ -241,7 +241,7 @@
   "aboutOpenRow": "Haqida va ochiq kod",
   "voiceAddItemAction": "Ovoz orqali qo'shish",
   "formatLocaleLabel": "Raqam va valyuta formati",
-  "formatLocaleSystem": "Tizim (ilova tiliga amal qiladi)",
+  "formatLocaleSystem": "Qurilma formati (Lotin raqamlari; aks holda ingliz tili)",
   "formatLocaleTr": "Turkcha (1.234,56)",
   "formatLocaleEn": "Inglizcha (1,234.56)",
   "aiToggleTitle": "AI yordami",

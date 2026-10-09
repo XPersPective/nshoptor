@@ -272,7 +272,7 @@
   "aboutOpenRow": "About & open source",
   "voiceAddItemAction": "Add by voice",
   "formatLocaleLabel": "Number & currency format",
-  "formatLocaleSystem": "System (follows app language)",
+  "formatLocaleSystem": "Device format (Latin digits; otherwise English)",
   "formatLocaleTr": "Turkish (1.234,56)",
   "formatLocaleEn": "English (1,234.56)",
   "aiToggleTitle": "AI help",

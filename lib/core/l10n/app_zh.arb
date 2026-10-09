@@ -241,7 +241,7 @@
   "aboutOpenRow": "关于 & 开源",
   "voiceAddItemAction": "语音添加商品",
   "formatLocaleLabel": "数字与货币格式",
-  "formatLocaleSystem": "系统（跟随应用语言）",
+  "formatLocaleSystem": "设备格式（拉丁数字；否则为英文）",
   "formatLocaleTr": "土耳其语 (1.234,56)",
   "formatLocaleEn": "英语 (1,234.56)",
   "aiToggleTitle": "AI 帮助",

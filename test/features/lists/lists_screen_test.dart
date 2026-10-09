@@ -1,3 +1,4 @@
+import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -9,6 +10,8 @@ import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/lists_screen.dart';
 
 void main() {
+  setUp(() => AppFormatLocale.attach('tr'));
+  tearDown(AppFormatLocale.attachReset);
   late AppDatabase db;
   late ListRepository repo;
 

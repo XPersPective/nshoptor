@@ -764,7 +764,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get formatLocaleLabel => 'รูปแบบตัวเลขและสกุลเงิน';
 
   @override
-  String get formatLocaleSystem => 'ระบบ (ตามภาษาของแอป)';
+  String get formatLocaleSystem =>
+      'รูปแบบของอุปกรณ์ (ตัวเลขละติน; หากไม่ใช่เป็นภาษาอังกฤษ)';
 
   @override
   String get formatLocaleTr => 'ตุรกี (1.234,56)';

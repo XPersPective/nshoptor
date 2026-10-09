@@ -761,7 +761,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get formatLocaleLabel => 'تنسيق الأرقام والعملة';
 
   @override
-  String get formatLocaleSystem => 'حسب النظام (لغة التطبيق)';
+  String get formatLocaleSystem => 'تنسيق الجهاز (أرقام لاتينية؛ وإلا إنجليزي)';
 
   @override
   String get formatLocaleTr => 'التركية (1.234,56)';

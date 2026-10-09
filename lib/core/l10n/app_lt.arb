@@ -241,7 +241,7 @@
   "aboutOpenRow": "Apie & atvirojo kodo",
   "voiceAddItemAction": "Pridėti balsu",
   "formatLocaleLabel": "Skaičių ir valiutos formatavimas",
-  "formatLocaleSystem": "Sistemos (pagal programėlės kalbą)",
+  "formatLocaleSystem": "Įrenginio formatas (Lotyniški skaitmenys; kitu atveju anglų kalba)",
   "formatLocaleTr": "Turkų (1.234,56)",
   "formatLocaleEn": "Anglų (1,234.56)",
   "aiToggleTitle": "AI pagalba",

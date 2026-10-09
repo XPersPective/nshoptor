@@ -241,7 +241,7 @@
   "aboutOpenRow": "Um & opinn kóða",
   "voiceAddItemAction": "Bæta við með tali",
   "formatLocaleLabel": "Tölur og gjaldmiðill",
-  "formatLocaleSystem": "Kerfi (fylgir tungumáli forritsins)",
+  "formatLocaleSystem": "Tæki stillt (Latneskir tölustafir; annars enska)",
   "formatLocaleTr": "Tyrkneska (1.234,56)",
   "formatLocaleEn": "Enska (1,234.56)",
   "aiToggleTitle": "AI aðstoð",

@@ -768,7 +768,7 @@ class AppLocalizationsNe extends AppLocalizations {
   String get formatLocaleLabel => 'संख्या र मुद्रा प्रारूप';
 
   @override
-  String get formatLocaleSystem => 'सिस्टम (एप भाषा अनुसार)';
+  String get formatLocaleSystem => 'डिभाइस फरमेट (लिन अंक; अन्यथा इंग्लिश)';
 
   @override
   String get formatLocaleTr => 'टर्किश (1.234,56)';

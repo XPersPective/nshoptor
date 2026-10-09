@@ -767,7 +767,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get formatLocaleLabel => 'Formati i numrave dhe valutës';
 
   @override
-  String get formatLocaleSystem => 'Sistemi (ndjek gjuhën e aplikacionit)';
+  String get formatLocaleSystem =>
+      'Formati i pajisjes (shifra Latine; përndryshe Anglisht';
 
   @override
   String get formatLocaleTr => 'Turqisht (1.234,56)';

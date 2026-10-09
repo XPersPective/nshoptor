@@ -241,7 +241,7 @@
   "aboutOpenRow": "정보 및 오픈소스",
   "voiceAddItemAction": "음성으로 추가",
   "formatLocaleLabel": "숫자 및 통화 형식",
-  "formatLocaleSystem": "시스템 (앱 언어 따름)",
+  "formatLocaleSystem": "기기 설정 (숫자는 아라비아 숫자; 나머지는 영어)",
   "formatLocaleTr": "터키어 (1.234,56)",
   "formatLocaleEn": "영어 (1,234.56)",
   "aiToggleTitle": "AI 도움말",

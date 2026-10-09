@@ -129,6 +129,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             DropdownButtonFormField<String>(
               isExpanded: true,
               key: const Key('settings_format_locale_dropdown'),
+              itemHeight: null,
               initialValue: _repo.formatLocale,
               decoration: InputDecoration(
                 labelText: l10n.formatLocaleLabel,

@@ -766,7 +766,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get formatLocaleSystem =>
-      'Sistema (aplikazioaren hizkuntza jarraitzen du)';
+      'Gailuaren formatua (digitu latindarrak; bestela ingelesez';
 
   @override
   String get formatLocaleTr => 'Turkiera (1.234,56)';

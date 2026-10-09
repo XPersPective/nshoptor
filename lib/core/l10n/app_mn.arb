@@ -241,7 +241,7 @@
   "aboutOpenRow": "Тухай & нээлттэй эхийн код",
   "voiceAddItemAction": "Дуу хоолоор нэмэх",
   "formatLocaleLabel": "Тоо ба валютын формат",
-  "formatLocaleSystem": "Систем (приложениян хэлээр дагах)",
+  "formatLocaleSystem": "Төхөөрөмжийн хэлбэр (Латин цифр; бусад нь Англи)",
   "formatLocaleTr": "Турк (1.234,56)",
   "formatLocaleEn": "Англи (1,234.56)",
   "aiToggleTitle": "AI тусламж",

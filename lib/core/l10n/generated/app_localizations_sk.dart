@@ -767,7 +767,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String get formatLocaleLabel => 'Formát čísel a meny';
 
   @override
-  String get formatLocaleSystem => 'Systém (sleduje jazyk aplikácie)';
+  String get formatLocaleSystem =>
+      'Formát zariadenia (latinské číslice; inak anglicky)';
 
   @override
   String get formatLocaleTr => 'Turečtina (1.234,56)';

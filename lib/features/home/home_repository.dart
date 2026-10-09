@@ -40,8 +40,8 @@ class HomeRepository {
           WHERE sl2.status = 'completed'
             AND sl2.currency_code = sl.currency_code
             AND strftime('%Y-%m', sl2.completed_at, 'unixepoch') = ?), 0) AS actual
-      FROM planned_items pi
-      JOIN shopping_lists sl ON pi.list_id = sl.id
+      FROM shopping_lists sl
+      LEFT JOIN planned_items pi ON pi.list_id = sl.id
       WHERE sl.status = 'completed'
         AND strftime('%Y-%m', sl.completed_at, 'unixepoch') = ?
       GROUP BY sl.currency_code

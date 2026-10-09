@@ -241,7 +241,7 @@
   "aboutOpenRow": "बारे में और ओपन सोर्स",
   "voiceAddItemAction": "वॉइस से जोड़ें",
   "formatLocaleLabel": "संख्या और मुद्रा प्रारूप",
-  "formatLocaleSystem": "सिस्टम (ऐप भाषा का पालन करें)",
+  "formatLocaleSystem": "डिवाइस फॉर्मेट (लैटिन अंक; अन्यथा अंग्रेजी)",
   "formatLocaleTr": "तुर्की (1.234,56)",
   "formatLocaleEn": "अंग्रेज़ी (1,234.56)",
   "aiToggleTitle": "AI सहायता",

@@ -766,7 +766,8 @@ class AppLocalizationsAz extends AppLocalizations {
   String get formatLocaleLabel => 'Rəqəm və valyuta formatı';
 
   @override
-  String get formatLocaleSystem => 'Sistem (tətbiq dilini izləyir)';
+  String get formatLocaleSystem =>
+      'Cihaz formatı (Latın rəqəmləri; əks halda İngilis dili)';
 
   @override
   String get formatLocaleTr => 'Türkcə (1.234,56)';

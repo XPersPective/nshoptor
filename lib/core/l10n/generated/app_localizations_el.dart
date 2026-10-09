@@ -767,7 +767,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get formatLocaleSystem =>
-      'Σύστημα (ακολουθεί τη γλώσσα της εφαρμογής)';
+      'Μορφή συσκευής (Λατινικά ψηφία· διαφορετικά Αγγλικά)';
 
   @override
   String get formatLocaleTr => 'Τουρκικά (1.234,56)';

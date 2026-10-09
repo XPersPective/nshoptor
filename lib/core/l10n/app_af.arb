@@ -241,7 +241,7 @@
   "aboutOpenRow": "Aangaande & oopbron",
   "voiceAddItemAction": "Voeg deur stem by",
   "formatLocaleLabel": "Getal- en geldeenheidsformaat",
-  "formatLocaleSystem": "Stelsel (volg app-taal)",
+  "formatLocaleSystem": "Toestelindeling (Latynse syfers; andersins Engels)",
   "formatLocaleTr": "Turks (1.234,56)",
   "formatLocaleEn": "Engels (1,234.56)",
   "aiToggleTitle": "AI-hulp",

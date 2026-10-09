@@ -241,7 +241,7 @@
   "aboutOpenRow": "Info ja avatud lähtekood",
   "voiceAddItemAction": "Lisa häälega",
   "formatLocaleLabel": "Arvude ja valuuta vorming",
-  "formatLocaleSystem": "Süsteem (järgib rakenduse keelt)",
+  "formatLocaleSystem": "Seadme formaat (ladina numbrid; muidu inglise keeles)",
   "formatLocaleTr": "Türgi (1.234,56)",
   "formatLocaleEn": "Inglise (1,234.56)",
   "aiToggleTitle": "AI abi",

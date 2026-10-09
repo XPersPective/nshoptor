@@ -766,7 +766,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get formatLocaleLabel => 'Getallen- en valuta-indeling';
 
   @override
-  String get formatLocaleSystem => 'Systeem (volgt app-taal)';
+  String get formatLocaleSystem =>
+      'Apparaatindeling (Latijnse cijfers; anders Engels)';
 
   @override
   String get formatLocaleTr => 'Turks (1.234,56)';

@@ -14,7 +14,17 @@ class AppDefaults {
   static SettingsStore? _store;
 
   /// main'de runApp'ten önce bir kez çağrılır.
-  static void attach(SettingsStore store) => _store = store;
+  static void attach(SettingsStore store) {
+    _store = store;
+    final legacy = store.getInt(monthlyLimitKey);
+    if (legacy != null) {
+      // ponytail: legacy limits have no currency tag; bind once to the saved default.
+      // Recovering an older intended currency requires an explicit user selection.
+      final key = '$monthlyLimitKey.${defaultCurrency()}';
+      if (legacy > 0 && store.getInt(key) == null) store.setInt(key, legacy);
+      store.remove(monthlyLimitKey);
+    }
+  }
 
   /// Ayarlar'dan varsayılan para birimi; geçersizse TRY.
   static String defaultCurrency() {
@@ -39,15 +49,19 @@ class AppDefaults {
   /// Aylık harcama limiti (minor unit, varsayılan para biriminde); yoksa null.
   static const monthlyLimitKey = 'monthly_limit_minor';
 
-  static int? monthlyLimitMinor() => _store?.getInt(monthlyLimitKey);
+  static int? monthlyLimitMinor({String? currencyCode}) {
+    final value = _store?.getInt('$monthlyLimitKey.${currencyCode ?? defaultCurrency()}');
+    return value != null && value > 0 ? value : null;
+  }
 
-  static void setMonthlyLimitMinor(int? value) {
+  static void setMonthlyLimitMinor(int? value, {String? currencyCode}) {
     final store = _store;
     if (store == null) return;
+    final key = '$monthlyLimitKey.${currencyCode ?? defaultCurrency()}';
     if (value == null || value <= 0) {
-      store.remove(monthlyLimitKey);
+      store.remove(key);
     } else {
-      store.setInt(monthlyLimitKey, value);
+      store.setInt(key, value);
     }
   }
 }

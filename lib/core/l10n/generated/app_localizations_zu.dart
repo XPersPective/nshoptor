@@ -769,7 +769,8 @@ class AppLocalizationsZu extends AppLocalizations {
   String get formatLocaleLabel => 'Inombolo nendlela yokubala imali';
 
   @override
-  String get formatLocaleSystem => 'Uhlelo (kulandela ulwimi lwesebe)';
+  String get formatLocaleSystem =>
+      'Isistimu yefomethi yesikhungo (izinombolo zeLatin; ngaphandle kwalokho isiNgisi)';
 
   @override
   String get formatLocaleTr => 'IsiTuthuki (1.234,56)';

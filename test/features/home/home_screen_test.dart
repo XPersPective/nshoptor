@@ -1,3 +1,4 @@
+import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,12 @@ import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
 import 'package:nshoptor/features/history/insights/spending_screen.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
+import 'package:nshoptor/app/app_defaults.dart';
+import 'package:napp_core/napp_core.dart';
 
 void main() {
+  setUp(() => AppFormatLocale.attach('tr'));
+  tearDown(AppFormatLocale.attachReset);
   late AppDatabase db;
   late ListRepository listRepo;
 
@@ -45,6 +50,27 @@ void main() {
           listRepository: ListRepository(db),
         ),
       );
+
+  testWidgets('monthly card refreshes its own currency limit after editing and returning', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(800, 1400));
+    final store = SettingsStore()..setString('app.currency', 'USD');
+    AppDefaults.attach(store);
+    final id = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY',
+      status: const Value('completed'), completedAt: Value(DateTime.now())));
+    await db.into(db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(listId: id,
+      name: 'x', normalizedName: 'x', actualQuantity: '1', actualUnitCode: 'piece', actualLineTotalMinorUnits: 1000));
+    await tester.pumpWidget(subject()); await settle(tester);
+    await tester.tap(find.byKey(const Key('home_monthly_card_TRY'))); await settle(tester);
+    await tester.tap(find.byKey(const Key('limit_edit'))); await settle(tester);
+    await tester.enterText(find.byKey(const Key('limit_field')), '25,50');
+    await tester.tap(find.byKey(const Key('limit_save'))); await settle(tester);
+    await tester.binding.handlePopRoute(); await settle(tester);
+    expect(find.byKey(const Key('home_limit_progress')), findsOneWidget);
+    expect(find.text('Bu ay 15,50 ₺ kaldı'), findsOneWidget);
+    expect(AppDefaults.monthlyLimitMinor(currencyCode: 'USD'), isNull);
+    expect(AppDefaults.monthlyLimitMinor(currencyCode: 'TRY'), 2550);
+    await disposeApp(tester);
+  });
 
   testWidgets('home creates directly into detail; cancelling leaves no empty list', (tester) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));

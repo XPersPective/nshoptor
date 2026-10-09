@@ -765,7 +765,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get formatLocaleLabel => 'Định dạng số & tiền tệ';
 
   @override
-  String get formatLocaleSystem => 'Hệ thống (theo ngôn ngữ ứng dụng)';
+  String get formatLocaleSystem =>
+      'Định dạng thiết bị (chữ số Latin; nếu không thì tiếng Anh)';
 
   @override
   String get formatLocaleTr => 'Tiếng Thổ Nhĩ Kỳ (1.234,56)';

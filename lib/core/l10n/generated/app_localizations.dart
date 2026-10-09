@@ -1685,7 +1685,7 @@ abstract class AppLocalizations {
   /// No description provided for @formatLocaleSystem.
   ///
   /// In en, this message translates to:
-  /// **'System (follows app language)'**
+  /// **'Device format (Latin digits; otherwise English)'**
   String get formatLocaleSystem;
 
   /// No description provided for @formatLocaleTr.

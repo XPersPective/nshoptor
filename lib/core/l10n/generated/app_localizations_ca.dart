@@ -766,7 +766,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get formatLocaleLabel => 'Format de nombre i moneda';
 
   @override
-  String get formatLocaleSystem => 'Sistema (segueix l\'idioma de l\'app)';
+  String get formatLocaleSystem =>
+      'Format del dispositiu (xifres llatines; altrament, anglès)';
 
   @override
   String get formatLocaleTr => 'Turc (1.234,56)';

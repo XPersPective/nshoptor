@@ -241,7 +241,7 @@
   "aboutOpenRow": "පිළිබඳව සහ විවෘත මූලාශ්‍ර",
   "voiceAddItemAction": "හඬ මගින් එකතු කරන්න",
   "formatLocaleLabel": "අංක සහ මුදල් ආකෘතිය",
-  "formatLocaleSystem": "පද්ධතිය (යෙදුම් භාෂාව අනුගමනය කරයි)",
+  "formatLocaleSystem": "උපාංග ආකෘතිය (ලතින් අංක; වෙනත් ස්ථානවල ඉංග්‍රීසි)",
   "formatLocaleTr": "තුර්කි (1.234,56)",
   "formatLocaleEn": "ඉංග්‍රීසි (1,234.56)",
   "aiToggleTitle": "AI උදව්",

@@ -241,7 +241,7 @@
   "aboutOpenRow": "Informazioni e open source",
   "voiceAddItemAction": "Aggiungi con la voce",
   "formatLocaleLabel": "Formato numeri e valuta",
-  "formatLocaleSystem": "Sistema (segue la lingua)",
+  "formatLocaleSystem": "Formato del dispositivo (cifre latine; altrimenti inglese)",
   "formatLocaleTr": "Turco (1.234,56)",
   "formatLocaleEn": "Inglese (1,234.56)",
   "aiToggleTitle": "Aiuto IA",

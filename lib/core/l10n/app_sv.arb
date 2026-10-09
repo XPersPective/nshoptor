@@ -241,7 +241,7 @@
   "aboutOpenRow": "Om & öppen källkod",
   "voiceAddItemAction": "Lägg till via röst",
   "formatLocaleLabel": "Nummer- och valutainställningar",
-  "formatLocaleSystem": "System (följer appens språk)",
+  "formatLocaleSystem": "Enhetens format (Latinska siffror; annars engelska)",
   "formatLocaleTr": "Turkiska (1.234,56)",
   "formatLocaleEn": "Engelska (1,234.56)",
   "aiToggleTitle": "AI-hjälp",

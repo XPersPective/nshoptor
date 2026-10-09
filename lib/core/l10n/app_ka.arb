@@ -241,7 +241,7 @@
   "aboutOpenRow": "შესახ და ღია კოდი",
   "voiceAddItemAction": "ხმით დამატება",
   "formatLocaleLabel": "რიცხვების და ვალუტის ფორმატი",
-  "formatLocaleSystem": "სისტემური (აპის ენის მიხედვით)",
+  "formatLocaleSystem": "მოწყობილობის ფორმატი (ლათინური ციფრები; სხვა შემთხვევაში ინგლისურად)",
   "formatLocaleTr": "თურქული (1.234,56)",
   "formatLocaleEn": "ინგლისური (1,234.56)",
   "aiToggleTitle": "AI დახმარება",

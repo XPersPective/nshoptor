@@ -241,7 +241,7 @@
   "aboutOpenRow": "અંગે અને ઓપન સોર્સ",
   "voiceAddItemAction": "વૉઇસ દ્વારા ઉમેરો",
   "formatLocaleLabel": "સંખ્યા અને મુદ્રા ફોર્મેટ",
-  "formatLocaleSystem": "સિસ્ટમ (એપ ભાષા અનુસાર)",
+  "formatLocaleSystem": "ડિવાઇસ ફોર્મેટ (લેટિન અંકો; અન્યથા અંગ્રેજી)",
   "formatLocaleTr": "તુર્કી (1.234,56)",
   "formatLocaleEn": "અંગ્રેજી (1,234.56)",
   "aiToggleTitle": "AI મદદ",

@@ -767,7 +767,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get formatLocaleLabel => 'எண் மற்றும் நாணய வடிவம்';
 
   @override
-  String get formatLocaleSystem => 'அமைப்பு (பயன்பாட்டு மொழியைப் பின்பற்று)';
+  String get formatLocaleSystem =>
+      'சாதன வடிவம் (லத்தின் எண்கள்; மற்றபடி ஆங்கிலம்)';
 
   @override
   String get formatLocaleTr => 'துருக்கிய (1.234,56)';

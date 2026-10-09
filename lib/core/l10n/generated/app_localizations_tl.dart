@@ -767,7 +767,8 @@ class AppLocalizationsTl extends AppLocalizations {
   String get formatLocaleLabel => 'Format ng numero at pera';
 
   @override
-  String get formatLocaleSystem => 'Sistema (sumusunod sa wika ng app)';
+  String get formatLocaleSystem =>
+      'Format ng device (Latin digits; kung hindi, English)';
 
   @override
   String get formatLocaleTr => 'Turko (1.234,56)';

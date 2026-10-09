@@ -765,7 +765,8 @@ class AppLocalizationsIs extends AppLocalizations {
   String get formatLocaleLabel => 'Tölur og gjaldmiðill';
 
   @override
-  String get formatLocaleSystem => 'Kerfi (fylgir tungumáli forritsins)';
+  String get formatLocaleSystem =>
+      'Tæki stillt (Latneskir tölustafir; annars enska)';
 
   @override
   String get formatLocaleTr => 'Tyrkneska (1.234,56)';

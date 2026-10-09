@@ -241,7 +241,7 @@
   "aboutOpenRow": "ಬಗ್ಗೆ ಮತ್ತು ಓಪನ್ ಸೋರ್ಸ್",
   "voiceAddItemAction": "ಮಾತಿನಿಂದ ಸೇರಿಸಿ",
   "formatLocaleLabel": "ಸಂಖ್ಯೆ ಮತ್ತು ನಾಣ್ಯ ರೂಪ",
-  "formatLocaleSystem": "ಸಿಸ್ಟಮ್ (ಆಪ್ ಭಾಷೆಯನ್ನು ಅನುಸರಿಸಿ)",
+  "formatLocaleSystem": "ಸಾಧನದ ರೂಪ (ಲ್ಯಾಟಿನ್ ಅಂಕಿಗಳು; ಇಲ್ಲದಿದ್ದರೆ ಇಂಗ್ಲಿಷ್)",
   "formatLocaleTr": "ಟರ್ಕಿಶ್ (1.234,56)",
   "formatLocaleEn": "ಇಂಗ್ಲಿಷ್ (1,234.56)",
   "aiToggleTitle": "AI ಸಹಾಯ",

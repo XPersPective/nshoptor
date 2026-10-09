@@ -241,7 +241,7 @@
   "aboutOpenRow": "Қосымша туралы & ашық бастапқы код",
   "voiceAddItemAction": "Дауыспен қосу",
   "formatLocaleLabel": "Сандар мен валюта форматы",
-  "formatLocaleSystem": "Жүйе (қосымша тіліне сәйкес)",
+  "formatLocaleSystem": "Құрылғы форматы (Латын цифрлары; әйтпесе ағылшынша)",
   "formatLocaleTr": "Түрікше (1.234,56)",
   "formatLocaleEn": "Ағылшынша (1,234.56)",
   "aiToggleTitle": "AI көмегі",

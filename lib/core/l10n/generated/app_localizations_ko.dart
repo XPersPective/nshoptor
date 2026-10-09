@@ -752,7 +752,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get formatLocaleLabel => '숫자 및 통화 형식';
 
   @override
-  String get formatLocaleSystem => '시스템 (앱 언어 따름)';
+  String get formatLocaleSystem => '기기 설정 (숫자는 아라비아 숫자; 나머지는 영어)';
 
   @override
   String get formatLocaleTr => '터키어 (1.234,56)';

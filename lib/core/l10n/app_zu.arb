@@ -241,7 +241,7 @@
   "aboutOpenRow": "Mayelana & ivulekile",
   "voiceAddItemAction": "Faka ngezwi",
   "formatLocaleLabel": "Inombolo nendlela yokubala imali",
-  "formatLocaleSystem": "Uhlelo (kulandela ulwimi lwesebe)",
+  "formatLocaleSystem": "Isistimu yefomethi yesikhungo (izinombolo zeLatin; ngaphandle kwalokho isiNgisi)",
   "formatLocaleTr": "IsiTuthuki (1.234,56)",
   "formatLocaleEn": "IsiNgisi (1,234.56)",
   "aiToggleTitle": "Usizo lwe-AI",

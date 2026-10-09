@@ -241,7 +241,7 @@
   "aboutOpenRow": "Тууралуу жана ачык булак",
   "voiceAddItemAction": "Үн аркылуу кошуу",
   "formatLocaleLabel": "Сандар жана валюта форматы",
-  "formatLocaleSystem": "Система (колдонмонун тилин ээрчиген)",
+  "formatLocaleSystem": "Түзмөктүн форматы (Латин цифралары; башка учурларда англисче)",
   "formatLocaleTr": "Түрк (1.234,56)",
   "formatLocaleEn": "Англис (1,234.56)",
   "aiToggleTitle": "AI жардамчысы",
