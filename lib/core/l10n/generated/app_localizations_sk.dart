@@ -1035,4 +1035,44 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skenovať cenu';
+
+  @override
+  String get saveFailed =>
+      'Nepodarilo sa uložiť. Vaše zmeny sú stále tu. Skúste to prosím znova.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Odstrániť túto položku a jej zaznamenané nákupy?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Zrušiť označenie tejto položky a odstrániť jej zaznamenané nákupy?';
+
+  @override
+  String get reportPdfAction => 'Uložiť PDF správu';
+
+  @override
+  String get reportNotInvoice =>
+      'Súhrn nákupov, nie daňový faktúra. Daňové sadzby sú neznáme.';
+
+  @override
+  String get purchaseVisits => 'Počet nákupných návštev';
+
+  @override
+  String get purchaseInterval => 'Priemerný počet dní medzi nákupmi';
+
+  @override
+  String get purchasedQuantity => 'Kúpne množstvo';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Nákupy nemusia zodpovedať spotrebe. Meny a jednotky sú zobrazené oddelene.';
+
+  @override
+  String get receiptReplaces =>
+      'Prepojené riadky účtenky nahradia existujúce nákupy; neprepojené riadky sa pridajú.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Tento jazyk nie je na tomto zariadení dostupný pre hlasový vstup. Môžete namiesto toho písať.';
 }

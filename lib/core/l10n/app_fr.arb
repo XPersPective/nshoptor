@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Ouvrez votre liste et touchez l'icône du ticket pour le scanner.",
   "assistantToggleTitle": "Afficher l'assistant",
   "assistantToggleSubtitle": "Le petit assistant en bas à droite",
-  "scanPriceLabel": "Scanner l'étiquette de prix"
+  "scanPriceLabel": "Scanner l'étiquette de prix",
+  "saveFailed": "Échec de l'enregistrement. Vos modifications sont toujours présentes. Veuillez réessayer.",
+  "deleteItemConfirm": "Supprimer cet article et ses achats enregistrés ?",
+  "clearPurchaseConfirm": "Décocher cet article et supprimer ses achats enregistrés ?",
+  "reportPdfAction": "Enregistrer le rapport PDF",
+  "reportNotInvoice": "Résumé des courses, pas une facture fiscale. Les taux de taxe sont inconnus.",
+  "purchaseVisits": "Visites d'achat",
+  "purchaseInterval": "Jours moyens entre les achats",
+  "purchasedQuantity": "Quantité achetée",
+  "purchaseAnalyticsHint": "Les achats ne mesurent pas la consommation. Les devises et unités sont affichées séparément.",
+  "receiptReplaces": "Les lignes du reçu lié remplacent les achats existants ; les lignes non liées sont ajoutées.",
+  "voiceUnsupportedLanguage": "Cette langue n'est pas disponible pour la saisie vocale sur cet appareil. Vous pouvez taper à la place."
 }

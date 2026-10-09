@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Buka daftar kamu dan ketuk ikon struk untuk memindainya.",
   "assistantToggleTitle": "Tampilkan asisten",
   "assistantToggleSubtitle": "Si kecil pembantu di kanan bawah",
-  "scanPriceLabel": "Pindai label harga"
+  "scanPriceLabel": "Pindai label harga",
+  "saveFailed": "Gagal menyimpan. Perubahan Anda masih ada. Silakan coba lagi.",
+  "deleteItemConfirm": "Hapus item ini dan riwayat pembeliannya?",
+  "clearPurchaseConfirm": "Batal centang item ini dan hapus riwayat pembeliannya?",
+  "reportPdfAction": "Simpan laporan PDF",
+  "reportNotInvoice": "Ringkasan belanja, bukan faktur pajak. Tarif pajak tidak diketahui.",
+  "purchaseVisits": "Kunjungan belanja",
+  "purchaseInterval": "Rata-rata hari antar pembelian",
+  "purchasedQuantity": "Jumlah yang dibeli",
+  "purchaseAnalyticsHint": "Pembelian tidak mengukur konsumsi. Mata uang dan satuan ditampilkan secara terpisah.",
+  "receiptReplaces": "Baris struk yang terhubung akan menggantikan pembelian yang sudah ada; baris yang tidak terhubung akan ditambahkan.",
+  "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara di perangkat ini. Anda bisa mengetik sebagai gantinya."
 }

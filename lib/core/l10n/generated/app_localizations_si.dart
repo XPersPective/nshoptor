@@ -1032,4 +1032,44 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'මිල ලේබලය ස්කෑන් කරන්න';
+
+  @override
+  String get saveFailed =>
+      'සුරැකීමට නොහැක. ඔබේ වෙනස්කම් තවමත් ඇත. කරුණාකර නැවත උත්සාහ කරන්න.';
+
+  @override
+  String get deleteItemConfirm =>
+      'මෙම අයිතමය සහ එහි ලියාපදිංචි කළ මිලදී ගැනීම් ඉවත් කරන්නද?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'මෙම අයිතමයේ තෝරාගැනීම ඉවත් කර එහි ලියාපදිංචි කළ මිලදී ගැනීම් ඉවත් කරන්නද?';
+
+  @override
+  String get reportPdfAction => 'PDF වාර්තාව සුරැකන්න';
+
+  @override
+  String get reportNotInvoice =>
+      'සාප්පු සෑදීමේ සාරාංශය, බදු විකුණුම් බිල්පතක් නොවේ. බදු අනුපාත නොදනී.';
+
+  @override
+  String get purchaseVisits => 'සාප්පු සෑදීමේ පිටවීම්';
+
+  @override
+  String get purchaseInterval => 'මිලදී ගැනීම් අතර සාමාන්‍ය දින';
+
+  @override
+  String get purchasedQuantity => 'මිලදී ගත් ප්‍රමාණය';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'මිලදී ගැනීම් පරිභෝජනය මනින්නේ නැත. මුදල් ඒකක සහ ඒකක වෙන්ව පෙන්වයි.';
+
+  @override
+  String get receiptReplaces =>
+      'සම්බන්ධිත රිසිට් පේළි පවතින මිලදී ගැනීම් වෙනුවට ගනී; අසම්බන්ධිත පේළි එකතු කෙරේ.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'මෙම භාෂාව මෙම උපාංගයේ හඬ ඇතුළත් කිරීම සඳහා ලබා දී නැත. ඔබට ටයිප් කළ හැක.';
 }

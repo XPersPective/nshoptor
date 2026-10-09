@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Opnaðu listann þinn og ýttu á kvittunartáknið til að skanna hann.",
   "assistantToggleTitle": "Sýna aðstoðarmann",
   "assistantToggleSubtitle": "Líti hjálparmaðurinn neðst til hægri",
-  "scanPriceLabel": "Skanna verðmerki"
+  "scanPriceLabel": "Skanna verðmerki",
+  "saveFailed": "Gat ekki vistað. Breytingarnar þínar eru enn til staðar. Vinsamlegast reyndu aftur.",
+  "deleteItemConfirm": "Eyða þessu atriði og skráðum kaupum?",
+  "clearPurchaseConfirm": "Fjarlægja merkið frá þessu atriði og eyða skráðum kaupum?",
+  "reportPdfAction": "Vista PDF skýrslu",
+  "reportNotInvoice": "Yfirlit yfir innkaup, ekki skattreikning. Skattprósentur eru óþekktar.",
+  "purchaseVisits": "Innkaupasjón",
+  "purchaseInterval": "Meðaldagabil á milli innkaupa",
+  "purchasedQuantity": "Magn keypt",
+  "purchaseAnalyticsHint": "Innkaup mæla ekki neyslu. Gjaldmiðlar og einingar eru sýndir aðskild.",
+  "receiptReplaces": "Línur tengd kvittingu koma í stað núverandi kaupa; ótengdar línur eru bættar við.",
+  "voiceUnsupportedLanguage": "Þetta tungumál er ekki tiltækt fyrir raddinntak á þessu tæki. Þú getur skrifað í staðinn."
 }

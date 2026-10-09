@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Ireki zure zerrenda eta sakatu errezeptuaren ikonoa eskaneatzeko.",
   "assistantToggleTitle": "Erakutsi laguntzailea",
   "assistantToggleSubtitle": "Laguntzaile txikia behe-eskuinean",
-  "scanPriceLabel": "Eskaneatu prezio etiketa"
+  "scanPriceLabel": "Eskaneatu prezio etiketa",
+  "saveFailed": "Ezin izan da gorde. Zure aldaketak oraindik bertan daude. Saiatu berriro.",
+  "deleteItemConfirm": "Elementu hau eta erosi diren salmentak ezabatu?",
+  "clearPurchaseConfirm": "Elementu honen markazioa kendu eta erosi diren salmentak ezabatu?",
+  "reportPdfAction": "Gorde PDF txostena",
+  "reportNotInvoice": "Ostalaritza-laguntzaren laburpena, ez zerga-faktura. Zerga-tasak ezezagunak dira.",
+  "purchaseVisits": "Erosten dituzten bisitak",
+  "purchaseInterval": "Erosketen arteko batez besteko egunak",
+  "purchasedQuantity": "Erositako kantitatea",
+  "purchaseAnalyticsHint": "Erosketek ez dute kontsumoa neurtzen. Dirulaguntzak eta unitateak bereizita erakusten dira.",
+  "receiptReplaces": "Lotutako errezeptu-lerroek lehendik dauden erosketak ordezkatzen dituzte; loturarik gabeko lerroak gehitzen dira.",
+  "voiceUnsupportedLanguage": "Hau ez da hizkuntza hori ahots-sarrerarako gailu honetan erabilgarria. Ordez, idatz dezakezu."
 }

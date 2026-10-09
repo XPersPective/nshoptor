@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Maak jou lys oop en tik op die kwitansie-ikoon om dit te skandeer.",
   "assistantToggleTitle": "Wys assistent",
   "assistantToggleSubtitle": "Die klein helper regs onder",
-  "scanPriceLabel": "Skandeer prysetiket"
+  "scanPriceLabel": "Skandeer prysetiket",
+  "saveFailed": "Kon nie stoor nie. Jou veranderinge is steeds hier. Probeer asseblief weer.",
+  "deleteItemConfirm": "Verwyder hierdie item en sy geregistreerde aankope?",
+  "clearPurchaseConfirm": "Vee hierdie item af en verwyder sy geregistreerde aankope?",
+  "reportPdfAction": "Stoor PDF-verslag",
+  "reportNotInvoice": "Aankopsamevatting, nie 'n belastingfactuur nie. Belastingkoerse is onbekend.",
+  "purchaseVisits": "Aankoopbesoeke",
+  "purchaseInterval": "Gemiddelde dae tussen aankope",
+  "purchasedQuantity": "Aangekoopte hoeveelheid",
+  "purchaseAnalyticsHint": "Aankope meet nie verbruik nie. Geldeenhede en eenhede word apart vertoon.",
+  "receiptReplaces": "Geskakelde bonlyne vervang bestaande aankope; ongeskakelde lyne word bygevoeg.",
+  "voiceUnsupportedLanguage": "Hierdie taal is nie beskikbaar vir stemintyding op hierdie toestel nie. Jy kan tik."
 }

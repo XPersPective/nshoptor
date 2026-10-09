@@ -1031,4 +1031,44 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'สแกนราคาสินค้า';
+
+  @override
+  String get saveFailed =>
+      'บันทึกไม่สำเร็จ การเปลี่ยนแปลงของคุณยังคงอยู่ กรุณาลองอีกครั้ง';
+
+  @override
+  String get deleteItemConfirm =>
+      'ต้องการลบรายการนี้และประวัติการซื้อที่บันทึกไว้หรือไม่?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'ต้องการยกเลิกเลือกสินค้านี้และลบประวัติการซื้อที่บันทึกไว้หรือไม่?';
+
+  @override
+  String get reportPdfAction => 'บันทึกรายงานเป็น PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'สรุปยอดการช้อปปิ้ง ไม่ใช่ใบกำกับภาษี อัตราภาษีจึงยังไม่ทราบ';
+
+  @override
+  String get purchaseVisits => 'จำนวนครั้งในการช้อปปิ้ง';
+
+  @override
+  String get purchaseInterval => 'จำนวนวันเฉลี่ยระหว่างการซื้อ';
+
+  @override
+  String get purchasedQuantity => 'ปริมาณที่ซื้อ';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'การซื้อไม่ได้วัดการบริโภค สกุลเงินและหน่วยจะแสดงแยกกัน';
+
+  @override
+  String get receiptReplaces =>
+      'บรรทัดในใบเสร็จที่เชื่อมโยงจะแทนที่การซื้อที่มีอยู่; บรรทัดที่ไม่ได้เชื่อมโยงจะถูกเพิ่มเข้าไป';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'ภาษานี้ไม่รองรับการป้อนข้อมูลด้วยเสียงบนอุปกรณ์นี้ คุณสามารถพิมพ์แทนได้';
 }

@@ -1036,4 +1036,43 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Сканувати ціну';
+
+  @override
+  String get saveFailed =>
+      'Не вдалося зберегти. Ваші зміни досі тут. Спробуйте ще раз.';
+
+  @override
+  String get deleteItemConfirm => 'Видалити цей товар і його записані покупки?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Зняти позначку з цього товару та видалити його записані покупки?';
+
+  @override
+  String get reportPdfAction => 'Зберегти PDF-звіт';
+
+  @override
+  String get reportNotInvoice =>
+      'Підсумок покупок, а не податкова накладна. Податкові ставки невідомі.';
+
+  @override
+  String get purchaseVisits => 'Відвідування магазинів';
+
+  @override
+  String get purchaseInterval => 'Середня кількість днів між покупками';
+
+  @override
+  String get purchasedQuantity => 'Кількість придбаного';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Покупки не вимірюють споживання. Валюти та одиниці виміру показуються окремо.';
+
+  @override
+  String get receiptReplaces =>
+      'Зв\'язані рядки чека замінюють наявні покупки; незв\'язані рядки додаються.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Ця мова недоступна для голосового введення на цьому пристрої. Можете ввести текст натомість.';
 }

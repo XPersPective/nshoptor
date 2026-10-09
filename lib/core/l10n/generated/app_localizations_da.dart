@@ -1033,4 +1033,44 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Scan prislabel';
+
+  @override
+  String get saveFailed =>
+      'Kunne ikke gemme. Dine ændringer er stadig her. Prøv venligst igen.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Slet dette produkt og dets registrerede køb?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Fjern markeringen for dette produkt og fjern dets registrerede køb?';
+
+  @override
+  String get reportPdfAction => 'Gem PDF-rapport';
+
+  @override
+  String get reportNotInvoice =>
+      'Indkøbsoversigt, ikke en momsregning. Momsatsen er ukendt.';
+
+  @override
+  String get purchaseVisits => 'Indkøbssøgninger';
+
+  @override
+  String get purchaseInterval => 'Gennemsnitlige dage mellem indkøb';
+
+  @override
+  String get purchasedQuantity => 'Købt mængde';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Indkøb måler ikke forbrug. Valutaer og enheder vises separat.';
+
+  @override
+  String get receiptReplaces =>
+      'Linkede kvitteringslinjer erstatter eksisterende køb; ulinkede linjer tilføjes.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Dette sprog er ikke tilgængeligt til stemmeinput på denne enhed. Du kan i stedet skrive.';
 }

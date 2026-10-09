@@ -1030,4 +1030,43 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'اسکن برچسب قیمت';
+
+  @override
+  String get saveFailed =>
+      'ذخیره نشد. تغییرات شما هنوز باقی است. لطفاً دوباره تلاش کنید.';
+
+  @override
+  String get deleteItemConfirm => 'این مورد و خریدهای ثبت‌شده آن حذف شود؟';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'تیک این مورد برداشته و خریدهای ثبت‌شده آن حذف شود؟';
+
+  @override
+  String get reportPdfAction => 'ذخیره گزارش PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'خلاصه خرید، نه فاکتور مالیاتی. نرخ‌های مالیاتی نامشخص هستند.';
+
+  @override
+  String get purchaseVisits => 'بازدیدهای خرید';
+
+  @override
+  String get purchaseInterval => 'میانگین روزهای بین خریدها';
+
+  @override
+  String get purchasedQuantity => 'تعداد خریداری‌شده';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'خریدها نشان‌دهنده مصرف نیستند. ارزها و واحدها جداگانه نمایش داده می‌شوند.';
+
+  @override
+  String get receiptReplaces =>
+      'خطوط رسید پیوند‌خورده، خریدهای موجود را جایگزین می‌کنند؛ خطوط بدون پیوند اضافه می‌شوند.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'این زبان برای ورود صوتی در این دستگاه در دسترس نیست. می‌توانید تایپ کنید.';
 }

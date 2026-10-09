@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Ava oma nimekiri ja puuduta skaneerimise ikooni.",
   "assistantToggleTitle": "Kuva assistent",
   "assistantToggleSubtitle": "Väike abiline paremas nurgas",
-  "scanPriceLabel": "Skaneeri hinnasilt"
+  "scanPriceLabel": "Skaneeri hinnasilt",
+  "saveFailed": "Salvestamine ei õnnestunud. Sinu muudatused on endiselt olemas. Palun proovi uuesti.",
+  "deleteItemConfirm": "Kas kustutame selle toote ja selle salvestatud ostud?",
+  "clearPurchaseConfirm": "Kas eemaldame selle toote märgistuse ja selle salvestatud ostud?",
+  "reportPdfAction": "Salvesta PDF-aruanne",
+  "reportNotInvoice": "Ostude kokkuvõte, mitte maksuarve. Maksumäärad on teadmata.",
+  "purchaseVisits": "Ostureisid",
+  "purchaseInterval": "Keskmine päevade arv ostude vahel",
+  "purchasedQuantity": "Ostetud kogus",
+  "purchaseAnalyticsHint": "Ostud ei mõõda tarbimist. Valuutad ja ühikud kuvatakse eraldi.",
+  "receiptReplaces": "Seotud kviitungiread asendavad olemasolevad ostud; seostamata read lisatakse.",
+  "voiceUnsupportedLanguage": "Seda keele varianti pole selles seadmes häälsisestamiseks saadaval. Saad selle asemel tekstina sisestada."
 }

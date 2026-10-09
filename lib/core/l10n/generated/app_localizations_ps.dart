@@ -1031,4 +1031,43 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'د بیه لیبل سکین کړئ';
+
+  @override
+  String get saveFailed =>
+      'نږدې کول ناموفق پاتې شول. ستاسو بدلونونه لا هم شته. بیا هڅه وکړئ.';
+
+  @override
+  String get deleteItemConfirm => 'دا توکي او د هغې ثبت شوي خریدونه حذف کړم؟';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'دا توکی ناسیټ کړم او د هغې ثبت شوي خریدونه لرې کړم؟';
+
+  @override
+  String get reportPdfAction => 'PDF راپور خوندي کړئ';
+
+  @override
+  String get reportNotInvoice =>
+      'د خرید لنډیز، د مالیاتو انوائس نه. د مالیاتو نرخونه ناشتون دي.';
+
+  @override
+  String get purchaseVisits => 'د خرید سفرې';
+
+  @override
+  String get purchaseInterval => 'په منځ کې د خریدونو اوسط ورځې';
+
+  @override
+  String get purchasedQuantity => 'خریدل شوې مقدار';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'خریدونه د مصرف اندازه نه کوي. کرنسي او واحدونه جلا ښودل کیږي.';
+
+  @override
+  String get receiptReplaces =>
+      'تړلي رسید قطې شتون لري خریدونه ځای پر ځای کوي؛ غیر تړلي قطې اضافه کیږي.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'دا ژبه په دې وسیله کې د غږیزو داخلولو لپاره شتون نلري. تاسو کولی شئ تایپ وکړئ.';
 }

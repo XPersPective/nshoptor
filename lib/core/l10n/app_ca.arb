@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Obre la teva llista i toca la icona del rebuig per escanejar-lo.",
   "assistantToggleTitle": "Mostra l'assistent",
   "assistantToggleSubtitle": "El petit ajudant a la cantonada inferior dreta",
-  "scanPriceLabel": "Escaneja l'etiqueta de preu"
+  "scanPriceLabel": "Escaneja l'etiqueta de preu",
+  "saveFailed": "No s'ha pogut desar. Els canvis es mantenen. Torna-ho a provar.",
+  "deleteItemConfirm": "Vols eliminar aquest article i les seves compres registrades?",
+  "clearPurchaseConfirm": "Vols desmarcar aquest article i eliminar-ne les compres registrades?",
+  "reportPdfAction": "Desa l'informe en PDF",
+  "reportNotInvoice": "Resum de la compra, no és una factura fiscal. Les taxes fiscals són desconegudes.",
+  "purchaseVisits": "Visites de compra",
+  "purchaseInterval": "Dies mitjans entre compres",
+  "purchasedQuantity": "Quantitat comprada",
+  "purchaseAnalyticsHint": "Les compres no mesuren el consum. Les monedes i les unitats es mostren per separat.",
+  "receiptReplaces": "Les línies del rebuig vinculades substitueixen les compres existents; les línies sense vincular s'afegeixen.",
+  "voiceUnsupportedLanguage": "Aquest idioma no està disponible per a l'entrada per veu en aquest dispositiu. Pots escriure en el seu lloc."
 }

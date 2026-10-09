@@ -1037,4 +1037,44 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Escaneja l\'etiqueta de preu';
+
+  @override
+  String get saveFailed =>
+      'No s\'ha pogut desar. Els canvis es mantenen. Torna-ho a provar.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Vols eliminar aquest article i les seves compres registrades?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Vols desmarcar aquest article i eliminar-ne les compres registrades?';
+
+  @override
+  String get reportPdfAction => 'Desa l\'informe en PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Resum de la compra, no és una factura fiscal. Les taxes fiscals són desconegudes.';
+
+  @override
+  String get purchaseVisits => 'Visites de compra';
+
+  @override
+  String get purchaseInterval => 'Dies mitjans entre compres';
+
+  @override
+  String get purchasedQuantity => 'Quantitat comprada';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Les compres no mesuren el consum. Les monedes i les unitats es mostren per separat.';
+
+  @override
+  String get receiptReplaces =>
+      'Les línies del rebuig vinculades substitueixen les compres existents; les línies sense vincular s\'afegeixen.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Aquest idioma no està disponible per a l\'entrada per veu en aquest dispositiu. Pots escriure en el seu lloc.';
 }

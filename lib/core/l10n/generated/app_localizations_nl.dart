@@ -1037,4 +1037,44 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Prijslabel scannen';
+
+  @override
+  String get saveFailed =>
+      'Opslaan mislukt. Je wijzigingen zijn nog steeds beschikbaar. Probeer het opnieuw.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Dit item en de geregistreerde aankopen verwijderen?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Dit item uitvinken en de geregistreerde aankopen verwijderen?';
+
+  @override
+  String get reportPdfAction => 'PDF-rapport opslaan';
+
+  @override
+  String get reportNotInvoice =>
+      'Winkeloverzicht, geen belastingfactuur. BTW-tarieven zijn onbekend.';
+
+  @override
+  String get purchaseVisits => 'Winkelbezoeken';
+
+  @override
+  String get purchaseInterval => 'Gemiddelde dagen tussen aankopen';
+
+  @override
+  String get purchasedQuantity => 'Aangekochte hoeveelheid';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Aankopen meten geen verbruik. Valuta\'s en eenheden worden apart weergegeven.';
+
+  @override
+  String get receiptReplaces =>
+      'Gekoppelde bonregels vervangen bestaande aankopen; niet-gekoppelde regels worden toegevoegd.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Deze taal is niet beschikbaar voor spraakinvoer op dit apparaat. Je kunt in plaats daarvan typen.';
 }

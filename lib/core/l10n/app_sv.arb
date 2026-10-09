@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Öppna din lista och tryck på kvittosymbolen för att skanna det.",
   "assistantToggleTitle": "Visa assistent",
   "assistantToggleSubtitle": "Den lilla hjälparen nere till höger",
-  "scanPriceLabel": "Skanna prisetikett"
+  "scanPriceLabel": "Skanna prisetikett",
+  "saveFailed": "Kunde inte spara. Dina ändringar finns kvar. Försök igen.",
+  "deleteItemConfirm": "Ta bort denna vara och dess registrerade köp?",
+  "clearPurchaseConfirm": "Avmarkera denna vara och ta bort dess registrerade köp?",
+  "reportPdfAction": "Spara PDF-rapport",
+  "reportNotInvoice": "Inköpsöversikt, inte en skattefaktura. Skattesatser är okända.",
+  "purchaseVisits": "Inköpsbesök",
+  "purchaseInterval": "Genomsnittliga dagar mellan inköp",
+  "purchasedQuantity": "Köpt kvantitet",
+  "purchaseAnalyticsHint": "Inköp mäter inte konsumtion. Valutor och enheter visas separat.",
+  "receiptReplaces": "Länkade rader i kvitto ersätter befintliga inköp; olänkade rader läggs till.",
+  "voiceUnsupportedLanguage": "Detta språk stöder inte röstinskrivning på den här enheten. Du kan skriva istället."
 }

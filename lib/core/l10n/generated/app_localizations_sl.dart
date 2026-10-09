@@ -1033,4 +1033,44 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skeniraj cenovno nalepko';
+
+  @override
+  String get saveFailed =>
+      'Shranjevanje ni uspelo. Vaše spremembe so še vedno tukaj. Poskusite znova.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Izbrišite ta artikel in vse zabeležene nakupe?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Označite ta artikel kot ne-nakupovan in odstranite vse zabeležene nakupe?';
+
+  @override
+  String get reportPdfAction => 'Shrani poročilo PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Povzetek nakupov, ne davčna faktura. Davne stopnje so neznane.';
+
+  @override
+  String get purchaseVisits => 'Obiski nakupovanja';
+
+  @override
+  String get purchaseInterval => 'Povprečno število dni med nakupi';
+
+  @override
+  String get purchasedQuantity => 'Količina kupljenega';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Nakupi ne merijo porabe. Valute in enote so prikazane ločeno.';
+
+  @override
+  String get receiptReplaces =>
+      'Povezane vrstice računa nadomestijo obstoječe nakupe; nepovezane vrstice se dodajo.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Ta jezik na tej napravi ni podprt za glasovni vnos. Namesto tega lahko tipkate.';
 }

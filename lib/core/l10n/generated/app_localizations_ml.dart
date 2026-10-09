@@ -1033,4 +1033,44 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'വില ലേബൽ സ്കാൻ ചെയ്യുക';
+
+  @override
+  String get saveFailed =>
+      'സേവ് ചെയ്യാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ മാറ്റങ്ങൾ ഇപ്പോഴും ഉണ്ട്. ദയവായി വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get deleteItemConfirm =>
+      'ഈ ആइटം及其 രേഖപ്പെടുത്തിയ വാങ്ങലുകൾ ഡിലീറ്റ് ചെയ്യണോ?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'ഈ ആइटം അൺചെക്ക് ചെയ്ത് its രേഖപ്പെടുത്തിയ വാങ്ങലുകൾ നീക്കം ചെയ്യണോ?';
+
+  @override
+  String get reportPdfAction => 'PDF റിപ്പോർട്ട് സേവ് ചെയ്യുക';
+
+  @override
+  String get reportNotInvoice =>
+      'ഷോപ്പിംഗ് സംഗ്രഹം, ടാക്സ് ഇൻവോയിസ് അല്ല. ടാക്സ് നിരക്കുകൾ അജ്ഞാതമാണ്.';
+
+  @override
+  String get purchaseVisits => 'ഷോപ്പിംഗ് സന്ദർശനങ്ങൾ';
+
+  @override
+  String get purchaseInterval => 'വാങ്ങലുകൾ തമ്മിലുള്ള ശരാശരി ദിവസങ്ങൾ';
+
+  @override
+  String get purchasedQuantity => 'വാങ്ങിയ അളവ്';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'വാങ്ങലുകൾ ഉപഭോഗത്തെ അളക്കുന്നില്ല. കറൻസികളും യൂണിറ്റുകളും പ്രത്യേകമായി കാണിക്കുന്നു.';
+
+  @override
+  String get receiptReplaces =>
+      'ലിങ്ക് ചെയ്ത റിസീറ്റ് ലൈനുകൾ existing വാങ്ങലുകൾ മാറ്റിസ്ഥാപിക്കുന്നു; ലിങ്ക് ചെയ്യാത്ത ലൈനുകൾ ചേർക്കുന്നു.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'ഈ ഭാഷ ഈ ഉപകരണത്തിൽ വോയ്സ് ഇൻപുട്ടിന് ലഭ്യമല്ല. പകരം ടൈപ്പ് ചെയ്യാം.';
 }

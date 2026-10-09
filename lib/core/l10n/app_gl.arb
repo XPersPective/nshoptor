@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Abre a túa lista e toca o icono do recibo para escanealo.",
   "assistantToggleTitle": "Mostrar asistente",
   "assistantToggleSubtitle": "O pequeno axudante na esquina inferior dereita",
-  "scanPriceLabel": "Escanear etiqueta de prezo"
+  "scanPriceLabel": "Escanear etiqueta de prezo",
+  "saveFailed": "Non se puido gardar. Os teus cambios aínda están aquí. Téntao de novo.",
+  "deleteItemConfirm": "Eliminar este artigo e as súas compras rexistradas?",
+  "clearPurchaseConfirm": "Desmarcar este artigo e eliminar as súas compras rexistradas?",
+  "reportPdfAction": "Gardar informe en PDF",
+  "reportNotInvoice": "Resumo da compra, non é unha factura fiscal. As taxas fiscais son descoñecidas.",
+  "purchaseVisits": "Visitas de compra",
+  "purchaseInterval": "Días medios entre compras",
+  "purchasedQuantity": "Cantidade comprada",
+  "purchaseAnalyticsHint": "As compras non miden o consumo. As moedas e unidades móstranse por separado.",
+  "receiptReplaces": "As liñas do recibo vinculadas substitúen as compras existentes; as liñas sen vincular engádense.",
+  "voiceUnsupportedLanguage": "Este idioma non está dispoñible para a entrada por voz neste dispositivo. Podes escribir en seu lugar."
 }

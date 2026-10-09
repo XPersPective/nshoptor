@@ -1013,4 +1013,39 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get scanPriceLabel => '가격 라벨 스캔';
+
+  @override
+  String get saveFailed => '저장하지 못했습니다. 변경 사항은 그대로 유지됩니다. 다시 시도해 주세요.';
+
+  @override
+  String get deleteItemConfirm => '이 항목과 기록된 구매 내역을 삭제하시겠습니까?';
+
+  @override
+  String get clearPurchaseConfirm => '이 항목의 체크를 해제하고 기록된 구매 내역을 삭제하시겠습니까?';
+
+  @override
+  String get reportPdfAction => 'PDF 보고서 저장';
+
+  @override
+  String get reportNotInvoice => '쇼핑 요약 정보이며 세금 계산서가 아닙니다. 세율은 알 수 없습니다.';
+
+  @override
+  String get purchaseVisits => '쇼핑 횟수';
+
+  @override
+  String get purchaseInterval => '구매 간 평균 일수';
+
+  @override
+  String get purchasedQuantity => '구매 수량';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      '구매 데이터는 소비량을 측정하지 않습니다. 통화와 단위는 별도로 표시됩니다.';
+
+  @override
+  String get receiptReplaces => '연결된 영수증 줄은 기존 구매 내역을 대체하며, 연결되지 않은 줄은 추가됩니다.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      '이 기기는 음성 입력을 지원하지 않는 언어입니다. 대신 텍스트로 입력할 수 있습니다.';
 }

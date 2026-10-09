@@ -1036,4 +1036,43 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skanuj cenę';
+
+  @override
+  String get saveFailed =>
+      'Nie udało się zapisać. Twoje zmiany zostały zachowane. Spróbuj ponownie.';
+
+  @override
+  String get deleteItemConfirm => 'Usunąć ten produkt i jego zapisane zakupy?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Odznaczyć ten produkt i usunąć jego zapisane zakupy?';
+
+  @override
+  String get reportPdfAction => 'Zapisz raport PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Podsumowanie zakupów, nie paragon fiskalny. Stawki podatkowe są nieznane.';
+
+  @override
+  String get purchaseVisits => 'Liczba wizyt w sklepie';
+
+  @override
+  String get purchaseInterval => 'Średnia liczba dni między zakupami';
+
+  @override
+  String get purchasedQuantity => 'Ilość zakupiona';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Zakupy nie mierzą spożycia. Waluty i jednostki są wyświetlane oddzielnie.';
+
+  @override
+  String get receiptReplaces =>
+      'Połączone pozycje z paragonu zastępują istniejące zakupy; niepołączone pozycje są dodawane.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Ten język nie jest obsługiwany dla głosu na tym urządzeniu. Możesz wpisać tekst ręcznie.';
 }

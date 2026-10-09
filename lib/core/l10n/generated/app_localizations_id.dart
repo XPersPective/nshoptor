@@ -1033,4 +1033,43 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Pindai label harga';
+
+  @override
+  String get saveFailed =>
+      'Gagal menyimpan. Perubahan Anda masih ada. Silakan coba lagi.';
+
+  @override
+  String get deleteItemConfirm => 'Hapus item ini dan riwayat pembeliannya?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Batal centang item ini dan hapus riwayat pembeliannya?';
+
+  @override
+  String get reportPdfAction => 'Simpan laporan PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Ringkasan belanja, bukan faktur pajak. Tarif pajak tidak diketahui.';
+
+  @override
+  String get purchaseVisits => 'Kunjungan belanja';
+
+  @override
+  String get purchaseInterval => 'Rata-rata hari antar pembelian';
+
+  @override
+  String get purchasedQuantity => 'Jumlah yang dibeli';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Pembelian tidak mengukur konsumsi. Mata uang dan satuan ditampilkan secara terpisah.';
+
+  @override
+  String get receiptReplaces =>
+      'Baris struk yang terhubung akan menggantikan pembelian yang sudah ada; baris yang tidak terhubung akan ditambahkan.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Bahasa ini tidak tersedia untuk input suara di perangkat ini. Anda bisa mengetik sebagai gantinya.';
 }

@@ -1036,4 +1036,43 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skenē cenu etiķeti';
+
+  @override
+  String get saveFailed =>
+      'Neizdevās saglabāt. Jūsu izmaiņas joprojām ir šeit. Lūdzu, mēģiniet vēlreiz.';
+
+  @override
+  String get deleteItemConfirm => 'Dzēst šo preci un tās reģistrētos pirkumus?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Noņemt atzīmi no šīs preces un dzēst tās reģistrētos pirkumus?';
+
+  @override
+  String get reportPdfAction => 'Saglabāt PDF pārskatu';
+
+  @override
+  String get reportNotInvoice =>
+      'Pirkumu kopsavilkums, nevis nodokļu rēķins. Nodokļa likmes nav zināmas.';
+
+  @override
+  String get purchaseVisits => 'Veikalu apmeklējumi';
+
+  @override
+  String get purchaseInterval => 'Vidējais dienu skaits starp pirkumiem';
+
+  @override
+  String get purchasedQuantity => 'Iegādātā daudzums';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Pirkumi nemēra patēriņu. Valūtas un vienības tiek rādītas atsevišķi.';
+
+  @override
+  String get receiptReplaces =>
+      'Saistītās čeka pozīcijas aizvieto esošos pirkumus; nesaistītās pozīcijas tiek pievienotas.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Šī valoda nav pieejama balss ievadei šajā ierīcē. Varat rakstīt tekstu.';
 }

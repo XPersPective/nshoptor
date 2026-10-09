@@ -1035,4 +1035,44 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skandeer prysetiket';
+
+  @override
+  String get saveFailed =>
+      'Kon nie stoor nie. Jou veranderinge is steeds hier. Probeer asseblief weer.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Verwyder hierdie item en sy geregistreerde aankope?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Vee hierdie item af en verwyder sy geregistreerde aankope?';
+
+  @override
+  String get reportPdfAction => 'Stoor PDF-verslag';
+
+  @override
+  String get reportNotInvoice =>
+      'Aankopsamevatting, nie \'n belastingfactuur nie. Belastingkoerse is onbekend.';
+
+  @override
+  String get purchaseVisits => 'Aankoopbesoeke';
+
+  @override
+  String get purchaseInterval => 'Gemiddelde dae tussen aankope';
+
+  @override
+  String get purchasedQuantity => 'Aangekoopte hoeveelheid';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Aankope meet nie verbruik nie. Geldeenhede en eenhede word apart vertoon.';
+
+  @override
+  String get receiptReplaces =>
+      'Geskakelde bonlyne vervang bestaande aankope; ongeskakelde lyne word bygevoeg.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Hierdie taal is nie beskikbaar vir stemintyding op hierdie toestel nie. Jy kan tik.';
 }

@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Atidarykite savo sąrašą ir bakstelėkite kvito ikoną, kad jį nuskenuotumėte.",
   "assistantToggleTitle": "Rodyti asistentą",
   "assistantToggleSubtitle": "Mažas pagalbininkas dešiniajame apačios kampe",
-  "scanPriceLabel": "Skenuoti kainos etiketę"
+  "scanPriceLabel": "Skenuoti kainos etiketę",
+  "saveFailed": "Nepavyko išsaugoti. Jūsų pakeitimai vis dar čia. Bandykite dar kartą.",
+  "deleteItemConfirm": "Ištrinti šį elementą ir jo įrašytus pirkinius?",
+  "clearPurchaseConfirm": "Nuimti žymėjimą iš šio elemento ir pašalinti jo įrašytus pirkinius?",
+  "reportPdfAction": "Įrašyti PDF ataskaitą",
+  "reportNotInvoice": "Pirkinių santrauka, ne mokesčių sąskaita. Mokesčių tarifai nežinomi.",
+  "purchaseVisits": "Apsilankymai parduotuvėje",
+  "purchaseInterval": "Vidutinės dienos tarp pirkinių",
+  "purchasedQuantity": "Perkama kiekis",
+  "purchaseAnalyticsHint": "Pirkiniai nematuojami kaip vartojimas. Valiutos ir vienetai rodomi atskirai.",
+  "receiptReplaces": "Susietos čekio eilutės pakeičia esamus pirkinius; nesusietos eilutės pridedamos.",
+  "voiceUnsupportedLanguage": "Ši kalba šiame įrenginyje nepalaikoma balso įvesties funkcijai. Vietoj to galite rašyti."
 }

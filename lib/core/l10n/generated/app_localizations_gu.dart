@@ -1031,4 +1031,44 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'કિંમત લેબલ સ્કેન કરો';
+
+  @override
+  String get saveFailed =>
+      'સેવ કરી શકાયા નહીં. તમારા ફેરફારો હજુ પણ અહીં છે. કૃપા કરીને ફરી પ્રયાસ કરો.';
+
+  @override
+  String get deleteItemConfirm =>
+      'આ આઇટમ અને તેના રેકોર્ડેડ ખરીદીઓ ડિલીટ કરવા?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'આ આઇટમનું ચેકબોક્સ દૂર કરીને તેની રેકોર્ડેડ ખરીદીઓ દૂર કરવી?';
+
+  @override
+  String get reportPdfAction => 'PDF રિપોર્ટ સેવ કરો';
+
+  @override
+  String get reportNotInvoice =>
+      'શોપિંગ સારાંશ, ટેક્સ ઇન્વોઇસ નથી. ટેક્સ રેટ્સ અજ્ઞાત છે.';
+
+  @override
+  String get purchaseVisits => 'શોપિંગ વિઝિટ્સ';
+
+  @override
+  String get purchaseInterval => 'ખરીદી વચ્ચેનો સરેરાશ દિવસો';
+
+  @override
+  String get purchasedQuantity => 'ખરીદેલ માત્રા';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'ખરીદીઓ ખપતને માપતી નથી. કરન્સી અને એકમો અલગ દર્શાવવામાં આવે છે.';
+
+  @override
+  String get receiptReplaces =>
+      'લિંકેડ રસીદ લાઇન્સ existing ખરીદીઓને બદલે છે; અનલિંકેડ લાઇન્સ ઉમેરાય છે.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'આ ભાષા આ ડિવાઇસ પર વૉઇસ ઇનપુટ માટે ઉપલબ્ધ નથી. તમે ટાઇપ કરી શકો છો.';
 }

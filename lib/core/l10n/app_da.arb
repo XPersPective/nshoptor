@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Åbn din liste, og tryk på kvitteringsikonet for at scanne den.",
   "assistantToggleTitle": "Vis assistent",
   "assistantToggleSubtitle": "Den lille hjælper nederst til højre",
-  "scanPriceLabel": "Scan prislabel"
+  "scanPriceLabel": "Scan prislabel",
+  "saveFailed": "Kunne ikke gemme. Dine ændringer er stadig her. Prøv venligst igen.",
+  "deleteItemConfirm": "Slet dette produkt og dets registrerede køb?",
+  "clearPurchaseConfirm": "Fjern markeringen for dette produkt og fjern dets registrerede køb?",
+  "reportPdfAction": "Gem PDF-rapport",
+  "reportNotInvoice": "Indkøbsoversigt, ikke en momsregning. Momsatsen er ukendt.",
+  "purchaseVisits": "Indkøbssøgninger",
+  "purchaseInterval": "Gennemsnitlige dage mellem indkøb",
+  "purchasedQuantity": "Købt mængde",
+  "purchaseAnalyticsHint": "Indkøb måler ikke forbrug. Valutaer og enheder vises separat.",
+  "receiptReplaces": "Linkede kvitteringslinjer erstatter eksisterende køb; ulinkede linjer tilføjes.",
+  "voiceUnsupportedLanguage": "Dette sprog er ikke tilgængeligt til stemmeinput på denne enhed. Du kan i stedet skrive."
 }

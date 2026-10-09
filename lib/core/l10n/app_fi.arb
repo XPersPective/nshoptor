@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Avaa listasi ja napauta skannataksesi kuitin kuvaketta.",
   "assistantToggleTitle": "Näytä avustaja",
   "assistantToggleSubtitle": "Pieni apuri oikeassa alakulmassa",
-  "scanPriceLabel": "Skannaa hintalappu"
+  "scanPriceLabel": "Skannaa hintalappu",
+  "saveFailed": "Tallennus epäonnistui. Muutoksesi ovat vielä tallessa. Yritä uudelleen.",
+  "deleteItemConfirm": "Poista tämä tuote ja sen kirjatuista ostoksista?",
+  "clearPurchaseConfirm": "Poista valinta tästä tuotteesta ja poista sen kirjatuista ostoksista?",
+  "reportPdfAction": "Tallenna PDF-raportti",
+  "reportNotInvoice": "Ostosyhteenveto, ei verolasku. Veroprosentteja ei ole tiedossa.",
+  "purchaseVisits": "Ostopäivystykset",
+  "purchaseInterval": "Keskimääräinen päivien määrä ostosten välillä",
+  "purchasedQuantity": "Ostetun määrän",
+  "purchaseAnalyticsHint": "Ostokset eivät mittaa kulutusta. Valuutat ja yksiköt näytetään erikseen.",
+  "receiptReplaces": "Linkitetyt kuitin rivit korvaavat olemassa olevat ostokset; linkittömät rivit lisätään.",
+  "voiceUnsupportedLanguage": "Tätä kieltä ei tueta ääntunnistukseen tällä laitteella. Voit kirjoittaa tekstiä sen sijaan."
 }

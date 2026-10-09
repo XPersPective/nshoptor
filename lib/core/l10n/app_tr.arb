@@ -345,5 +345,16 @@
   "assistantReceiptHint": "Listeni aç ve fiş simgesine dokunarak fişini okut.",
   "assistantToggleTitle": "Asistanı göster",
   "assistantToggleSubtitle": "Sağ alttaki küçük yardımcı",
-  "scanPriceLabel": "Fiyat etiketini okut"
+  "scanPriceLabel": "Fiyat etiketini okut",
+  "saveFailed": "Kaydedilemedi. Değişikliklerin burada duruyor. Lütfen tekrar dene.",
+  "deleteItemConfirm": "Bu ürünü ve kayıtlı alımlarını silmek istiyor musun?",
+  "clearPurchaseConfirm": "Bu ürünün tikini ve kayıtlı alımlarını kaldırmak istiyor musun?",
+  "reportPdfAction": "PDF raporunu kaydet",
+  "reportNotInvoice": "Alışveriş özetidir, vergi faturası değildir. Vergi oranları bilinmiyor.",
+  "purchaseVisits": "Alışveriş sayısı",
+  "purchaseInterval": "Alımlar arası ortalama gün",
+  "purchasedQuantity": "Satın alınan miktar",
+  "purchaseAnalyticsHint": "Satın alımlar tüketimi ölçmez. Para ve birimler ayrı gösterilir.",
+  "receiptReplaces": "Bağlı fiş satırları mevcut alımları değiştirir; bağlantısız satırlar eklenir.",
+  "voiceUnsupportedLanguage": "Bu cihazda bu dil için sesli giriş yok. Bunun yerine yazabilirsin."
 }

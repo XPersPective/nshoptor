@@ -61,7 +61,7 @@ over sqlite (ADR-001).
   unit_display (görünen ad l10n'dan; DB'de kanonik kod — tek kaynak).
 - `core/calc/`: LineCalc, EffectSplit (price/quantity effect separation),
   ListCalc, VarianceThreshold (%10 OR 200 minor).
-- `core/l10n/`: tr/en ARB + generated AppLocalizations (`l10n.yaml`).
+- `core/l10n/`: 71 ARB + generated AppLocalizations (`l10n.yaml`); PB-072 ortak hata/onay/PDF/istatistik metinlerini bütün dillere ekler. Anahtar/placeholder/İngilizce fallback kontrolü testlidir; çeviriler insan dil denetimi değildir.
 - `core/theme/`: AppTheme (M3, seed 0xFF0B8457), premium görsel katman
   (kademeli tipografi ağırlıkları, stadium butonlar, 14r girişler, 16r
   kartlar, alt sayfa tutamacı, FadeForwards geçişler), SemanticDelta

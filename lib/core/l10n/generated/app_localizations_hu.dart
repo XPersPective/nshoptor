@@ -1035,4 +1035,44 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Ár címkéjének beolvasása';
+
+  @override
+  String get saveFailed =>
+      'Mentés sikertelen. A módosításaid megmaradtak. Kérjük, próbáld újra.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Töröljük ezt a tételt és a rögzített vásárlásokat?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Kijelölést töröljük erről a tételről és eltávolítjuk a rögzített vásárlásokat?';
+
+  @override
+  String get reportPdfAction => 'PDF jelentés mentése';
+
+  @override
+  String get reportNotInvoice =>
+      'Vásárlási összefoglaló, nem adóigazolás. Az adókulcsok ismeretlenek.';
+
+  @override
+  String get purchaseVisits => 'Vásárlási látogatások';
+
+  @override
+  String get purchaseInterval => 'Átlagos napok a vásárlások között';
+
+  @override
+  String get purchasedQuantity => 'Megvásárolt mennyiség';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'A vásárlások nem mérik a fogyasztást. A pénznemek és egységek külön jelennek meg.';
+
+  @override
+  String get receiptReplaces =>
+      'A társított nyugta sorok felülírják a meglévő vásárlásokat; a nem társított sorok hozzáadódnak.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Ez a nyelv nem érhető el hangbemenetre ezen az eszközön. Ehelyett gépelheted.';
 }

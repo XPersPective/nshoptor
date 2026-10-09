@@ -1025,4 +1025,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'امسح ملصق السعر';
+
+  @override
+  String get saveFailed =>
+      'تعذّر الحفظ. لا تزال التغييرات موجودة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get deleteItemConfirm => 'حذف هذا العنصر ومشترياته المسجلة؟';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'إلغاء تحديد هذا العنصر وإزالة مشترياته المسجلة؟';
+
+  @override
+  String get reportPdfAction => 'حفظ تقرير بصيغة PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'ملخص التسوق، وليس فاتورة ضريبية. أسعار الضرائب غير معروفة.';
+
+  @override
+  String get purchaseVisits => 'زيارات التسوق';
+
+  @override
+  String get purchaseInterval => 'متوسط الأيام بين المشتريات';
+
+  @override
+  String get purchasedQuantity => 'الكمية المشتراة';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'لا تقيس المشتريات الاستهلاك. تُعرض العملات والوحدات بشكل منفصل.';
+
+  @override
+  String get receiptReplaces =>
+      'تستبدل أسطر الإيصال المرتبطة المشتريات الموجودة؛ وتُضاف الأسطر غير المرتبطة.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'هذه اللغة غير متاحة للإدخال الصوتي على هذا الجهاز. يمكنك الكتابة بدلاً من ذلك.';
 }

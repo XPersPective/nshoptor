@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Otvori svoju listu i dodirni ikonu računa za skeniranje.",
   "assistantToggleTitle": "Prikaži asistenta",
   "assistantToggleSubtitle": "Mali pomoćnik u donjem desnom uglu",
-  "scanPriceLabel": "Skeniraj cijenu"
+  "scanPriceLabel": "Skeniraj cijenu",
+  "saveFailed": "Nije moguće spremiti. Vaše promjene su i dalje ovdje. Molimo pokušajte ponovo.",
+  "deleteItemConfirm": "Izbrisati ovu stavku i njezine zabilježene kupnje?",
+  "clearPurchaseConfirm": "Poništiti odabir ove stavke i ukloniti njezine zabilježene kupnje?",
+  "reportPdfAction": "Spremi PDF izvještaj",
+  "reportNotInvoice": "Sažetak kupovine, nije porezni račun. Porezne stope su nepoznate.",
+  "purchaseVisits": "Posjeti kupovini",
+  "purchaseInterval": "Prosječni dani između kupovina",
+  "purchasedQuantity": "Količina kupljena",
+  "purchaseAnalyticsHint": "Kupnje ne mjere potrošnju. Valute i jedinice prikazuju se odvojeno.",
+  "receiptReplaces": "Povezane linije računa zamjenjuju postojeće kupnje; nepovezane linije se dodaju.",
+  "voiceUnsupportedLanguage": "Ovaj jezik nije dostupan za glasovni unos na ovom uređaju. Umjesto toga možete tipkati."
 }

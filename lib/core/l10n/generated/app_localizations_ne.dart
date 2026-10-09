@@ -1036,4 +1036,44 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'मूल्य लेबल स्क्यान गर्नुहोस्';
+
+  @override
+  String get saveFailed =>
+      'सेभ हुन सकेन। तपाईंका परिवर्तनहरू अझै पनि छन्। कृपया पुन प्रयास गर्नुहोस्।';
+
+  @override
+  String get deleteItemConfirm =>
+      'यो वस्तु र यसका रेकर्ड गरिएका खरिदहरू मेट्ने हो?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'यो वस्तुको चिन्ह हटाउने र यसका रेकर्ड गरिएका खरिदहरू मेट्ने हो?';
+
+  @override
+  String get reportPdfAction => 'PDF रिपोर्ट सेभ गर्नुहोस्';
+
+  @override
+  String get reportNotInvoice =>
+      'खरिदको सारांश, कर इनभॉइस होइन। कर दरहरू अज्ञात छन्।';
+
+  @override
+  String get purchaseVisits => 'खरिद भ्रमणहरू';
+
+  @override
+  String get purchaseInterval => 'खरिद बीचको औसत दिनहरू';
+
+  @override
+  String get purchasedQuantity => 'खरिद मात्रा';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'खरिदले उपभोग नाप्दैन। मुद्रा र एकाइहरू छुट्टाछुट्टै देखाइन्छन्।';
+
+  @override
+  String get receiptReplaces =>
+      'लिङ्क गरिएका रेसिट पंक्तिहरूले मौजूदा खरिदहरू प्रतिस्थापन गर्छन्; अनलिङ्क गरिएका पंक्तिहरू थपिन्छन्।';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'यो भाषा यो डिभाइसमा भoice इनपुटका लागि उपलब्ध छैन। तपाईं टाइप गर्न सक्नुहुन्छ।';
 }

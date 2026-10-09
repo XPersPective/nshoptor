@@ -324,5 +324,16 @@
   "assistantReceiptHint": "פתח את הרשימה שלך ולחץ על סמל הקבלה כדי לסרוק אותה.",
   "assistantToggleTitle": "הצג עוזר",
   "assistantToggleSubtitle": "העוזר הקטן בפינה הימנית התחתונה",
-  "scanPriceLabel": "סרוק תווית מחיר"
+  "scanPriceLabel": "סרוק תווית מחיר",
+  "saveFailed": "לא הצליח לשמור. השינויים עדיין כאן. נסה שוב.",
+  "deleteItemConfirm": "למחוק פריט זה ואת רכישותיו הרשומות?",
+  "clearPurchaseConfirm": "לבטל את סימון הפריט ולהסיר את רכישותיו הרשומות?",
+  "reportPdfAction": "שמירת דוח PDF",
+  "reportNotInvoice": "סיכום קניות, לא חשבון מס. שיעורי המס אינם ידועים.",
+  "purchaseVisits": "ביקורי קניות",
+  "purchaseInterval": "ימים ממוצעים בין רכישות",
+  "purchasedQuantity": "כמות שנרכשה",
+  "purchaseAnalyticsHint": "רכישות אינן מודדות צריכה. מטבעות ויחידות מוצגים בנפרד.",
+  "receiptReplaces": "שורות קבלה מקושרות מחליפות רכישות קיימות; שורות שאינן מקושרות מתווספות.",
+  "voiceUnsupportedLanguage": "שפה זו אינה זמינה לקלט קולי במכשיר זה. ניתן להקליד במקום זאת."
 }

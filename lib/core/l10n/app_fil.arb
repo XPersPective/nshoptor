@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Buksan ang iyong listahan at i-tap ang icon ng resibo para i-scan ito.",
   "assistantToggleTitle": "Ipakita ang assistant",
   "assistantToggleSubtitle": "Ang maliit na katulong sa kanang ibaba",
-  "scanPriceLabel": "I-scan ang label ng presyo"
+  "scanPriceLabel": "I-scan ang label ng presyo",
+  "saveFailed": "Hindi ma-save. Manatili pa rin ang iyong mga pagbabago. Subukan ulit.",
+  "deleteItemConfirm": "Burahin ang item na ito at ang mga nakarekord na pagbili?",
+  "clearPurchaseConfirm": "I-uncheck ang item na ito at burahin ang mga nakarekord na pagbili?",
+  "reportPdfAction": "I-save ang PDF report",
+  "reportNotInvoice": "Buod ng pamimili, hindi tax invoice. Hindi alam ang mga rate ng buwis.",
+  "purchaseVisits": "Mga bisita sa pamimili",
+  "purchaseInterval": "Karaniwang araw sa pagitan ng mga pagbili",
+  "purchasedQuantity": "Dami ng binili",
+  "purchaseAnalyticsHint": "Hindi sinusukat ng mga pagbili ang konsumpsyon. Hiwalay na ipinapakita ang mga currency at yunit.",
+  "receiptReplaces": "Ang mga linked receipt line ay papalitan ang umiiral na pagbili; ang mga unlinked line ay idadagdag.",
+  "voiceUnsupportedLanguage": "Hindi available ang wika na ito para sa voice input sa device na ito. Maaari kang mag-type."
 }

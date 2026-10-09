@@ -1036,4 +1036,44 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Qiymət etiketini skan et';
+
+  @override
+  String get saveFailed =>
+      'Yadda saxlamaq mümkün olmadı. Dəyişiklikləriniz hələ də qalır. Zəhmət olmasa, yenidən cəhd edin.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Bu məhsulu və onun qeydə alınmış alışlarını silmək istəyirsiniz?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Bu məhsulun işarəsini silmək və onun qeydə alınmış alışlarını silmək istəyirsiniz?';
+
+  @override
+  String get reportPdfAction => 'PDF hesabatını saxla';
+
+  @override
+  String get reportNotInvoice =>
+      'Alış xülasəsi, vergi fakturası deyil. Vergi dərəcələri naməlumdur.';
+
+  @override
+  String get purchaseVisits => 'Alış ziyarətləri';
+
+  @override
+  String get purchaseInterval => 'Alışlar arasındakı orta günlər';
+
+  @override
+  String get purchasedQuantity => 'Alınan miqdar';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Alışlar istehlakı ölçmür. Valyutalar və vahidlər ayrıca göstərilir.';
+
+  @override
+  String get receiptReplaces =>
+      'Əlaqələndirilmiş çeki sətirləri mövcud alışları əvəz edir; əlaqələndirilməmiş sətirlər isə əlavə edilir.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Bu dil bu cihazda səsli giriş üçün mövcud deyil. Bunun əvəzinə yazmaq mümkündür.';
 }

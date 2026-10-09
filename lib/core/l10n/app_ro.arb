@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Deschide lista ta și atinge pictograma chitanței pentru a o scana.",
   "assistantToggleTitle": "Arată asistentul",
   "assistantToggleSubtitle": "Micul ajutor în colțul din dreapta jos",
-  "scanPriceLabel": "Scanează eticheta de preț"
+  "scanPriceLabel": "Scanează eticheta de preț",
+  "saveFailed": "Nu s-a putut salva. Modificările tale sunt încă aici. Te rog să încerci din nou.",
+  "deleteItemConfirm": "Ștergi acest produs și achizițiile înregistrate pentru el?",
+  "clearPurchaseConfirm": "Deselectezi acest produs și elimi achizițiile înregistrate pentru el?",
+  "reportPdfAction": "Salvează raportul PDF",
+  "reportNotInvoice": "Rezumat al cumpărăturilor, nu factură fiscală. Cotele de taxare sunt necunoscute.",
+  "purchaseVisits": "Vizite la cumpărături",
+  "purchaseInterval": "Zile medii între achiziții",
+  "purchasedQuantity": "Cantitate achiziționată",
+  "purchaseAnalyticsHint": "Achizițiile nu măsoară consumul. Monedele și unitățile sunt afișate separat.",
+  "receiptReplaces": "Linii din chitanță legate înlocuiesc achizițiile existente; liniile nelegate se adaugă.",
+  "voiceUnsupportedLanguage": "Această limbă nu este disponibilă pentru input vocal pe acest dispozitiv. Poți scrie în schimb."
 }

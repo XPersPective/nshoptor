@@ -1037,4 +1037,44 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Scanează eticheta de preț';
+
+  @override
+  String get saveFailed =>
+      'Nu s-a putut salva. Modificările tale sunt încă aici. Te rog să încerci din nou.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Ștergi acest produs și achizițiile înregistrate pentru el?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Deselectezi acest produs și elimi achizițiile înregistrate pentru el?';
+
+  @override
+  String get reportPdfAction => 'Salvează raportul PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Rezumat al cumpărăturilor, nu factură fiscală. Cotele de taxare sunt necunoscute.';
+
+  @override
+  String get purchaseVisits => 'Vizite la cumpărături';
+
+  @override
+  String get purchaseInterval => 'Zile medii între achiziții';
+
+  @override
+  String get purchasedQuantity => 'Cantitate achiziționată';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Achizițiile nu măsoară consumul. Monedele și unitățile sunt afișate separat.';
+
+  @override
+  String get receiptReplaces =>
+      'Linii din chitanță legate înlocuiesc achizițiile existente; liniile nelegate se adaugă.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Această limbă nu este disponibilă pentru input vocal pe acest dispozitiv. Poți scrie în schimb.';
 }

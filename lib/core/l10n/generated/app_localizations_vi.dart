@@ -1035,4 +1035,43 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Quét giá';
+
+  @override
+  String get saveFailed =>
+      'Không thể lưu. Thay đổi của bạn vẫn còn ở đây. Vui lòng thử lại.';
+
+  @override
+  String get deleteItemConfirm => 'Xóa mục này và các lần mua đã ghi nhận?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Bỏ chọn mục này và xóa các lần mua đã ghi nhận?';
+
+  @override
+  String get reportPdfAction => 'Lưu báo cáo PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Tóm tắt mua sắm, không phải hóa đơn thuế. Không rõ mức thuế.';
+
+  @override
+  String get purchaseVisits => 'Lần mua hàng';
+
+  @override
+  String get purchaseInterval => 'Số ngày trung bình giữa các lần mua';
+
+  @override
+  String get purchasedQuantity => 'Số lượng đã mua';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Mua hàng không đo lường mức tiêu thụ. Đơn vị tiền tệ và đơn vị tính được hiển thị riêng biệt.';
+
+  @override
+  String get receiptReplaces =>
+      'Các dòng hóa đơn liên kết sẽ thay thế các lần mua hiện có; các dòng không liên kết sẽ được thêm vào.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Ngôn ngữ này không hỗ trợ nhập giọng nói trên thiết bị này. Bạn có thể gõ văn bản thay thế.';
 }

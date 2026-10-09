@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Vula uhlu lwakho bese ucinca ikhono le-receipt ukuze usikane.",
   "assistantToggleTitle": "Bonisa usizo",
   "assistantToggleSubtitle": "Umncintisana omncane ohlangothini lwasekunene",
-  "scanPriceLabel": "Skana isikhwama somanani"
+  "scanPriceLabel": "Skana isikhwama somanani",
+  "saveFailed": "Akukwazanga ukugcina. Usugu lwakho lusasele. Sicela uzame futhi.",
+  "deleteItemConfirm": "Sula lelo into kanye nezithengiso ezibhalwe?",
+  "clearPurchaseConfirm": "Susela leli qembu kanye nezithengiso ezibhalwe?",
+  "reportPdfAction": "Gcina ingxelo ye-PDF",
+  "reportNotInvoice": "Isifinyezo sokuthenga, akuyona i-invoice yetax. Amaphesenti etax ayaziwa.",
+  "purchaseVisits": "Ukuvakasha kokuthenga",
+  "purchaseInterval": "Amahora aphakathi kwezithengiso",
+  "purchasedQuantity": "Inani elithengisiwe",
+  "purchaseAnalyticsHint": "Izithengiso azilinganisa ukusetshenziswa. Izimali namayunithi ziboniswa ngokuhlukile.",
+  "receiptReplaces": "Imigqa yesiphetho esixhumanisayo isusa izithengiso ezikhona; imigqa engaxhumaniswe iyengezwa.",
+  "voiceUnsupportedLanguage": "Lolu lwimi alukhona ekufakeni ngezwi kulawula lokhu. Ungabhala endaweni."
 }

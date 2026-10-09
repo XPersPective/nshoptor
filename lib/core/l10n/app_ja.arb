@@ -324,5 +324,16 @@
   "assistantReceiptHint": "リストを開き、レシートアイコンをタップしてスキャンしてください。",
   "assistantToggleTitle": "アシスタントを表示",
   "assistantToggleSubtitle": "右下の小さなヘルパー",
-  "scanPriceLabel": "価格ラベルをスキャン"
+  "scanPriceLabel": "価格ラベルをスキャン",
+  "saveFailed": "保存できませんでした。変更内容は保持されています。もう一度お試しください。",
+  "deleteItemConfirm": "この商品と記録された購入履歴を削除しますか？",
+  "clearPurchaseConfirm": "この商品のチェックを外し、記録された購入履歴を削除しますか？",
+  "reportPdfAction": "PDFレポートを保存",
+  "reportNotInvoice": "ショッピングのまとめであり、税務請求書ではありません。税率は不明です。",
+  "purchaseVisits": "買い物回数",
+  "purchaseInterval": "平均的な購入間隔（日）",
+  "purchasedQuantity": "購入数量",
+  "purchaseAnalyticsHint": "購入データは消費量を直接示すものではありません。通貨と単位は別に表示されます。",
+  "receiptReplaces": "紐付けられたレシート行は既存の購入データを上書きし、紐付けられていない行は追加されます。",
+  "voiceUnsupportedLanguage": "このデバイスでは、この言語での音声入力はサポートされていません。代わりにテキスト入力してください。"
 }

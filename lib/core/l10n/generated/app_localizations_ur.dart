@@ -1033,4 +1033,44 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'قیمت کا لیبل اسکین کریں';
+
+  @override
+  String get saveFailed =>
+      'محفوظ نہیں ہو سکا۔ آپ کی تبدیلیاں ابھی بھی موجود ہیں۔ براہ کرم دوبارہ کوشش کریں۔';
+
+  @override
+  String get deleteItemConfirm =>
+      'کیا آپ اس آئٹم اور اس کی ریکارڈ شدہ خریداریوں کو حذف کرنا چاہتے ہیں؟';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'کیا آپ اس آئٹم کو غیر منتخب کر کے اس کی ریکارڈ شدہ خریداریوں کو ہٹانا چاہتے ہیں؟';
+
+  @override
+  String get reportPdfAction => 'PDF رپورٹ محفوظ کریں';
+
+  @override
+  String get reportNotInvoice =>
+      'خریداری کا خلاصہ، ٹیکس انوائس نہیں۔ ٹیکس ریٹس نامعلوم ہیں۔';
+
+  @override
+  String get purchaseVisits => 'خریداری کے دورے';
+
+  @override
+  String get purchaseInterval => 'خریداریوں کے درمیان اوسط دن';
+
+  @override
+  String get purchasedQuantity => 'خریدا گیا مقدار';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'خریداریاں استعمال کی پیمائش نہیں کرتیں۔ کرنسیاں اور اکائیاں الگ دکھائی جاتی ہیں۔';
+
+  @override
+  String get receiptReplaces =>
+      'منسلک رسید کی لائنیں موجودہ خریداریوں کو تبدیل کر دیتی ہیں؛ غیر منسلک لائنیں شامل کی جاتی ہیں۔';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'اس ڈیوائس پر آواز کے ذریعے ان زبان کے لیے ان پٹ دستیاب نہیں ہے۔ آپ ٹائپ کر سکتے ہیں۔';
 }

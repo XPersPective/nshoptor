@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Otvorte svoj zoznam a klepnutím na ikonu účtenky ju naskenujte.",
   "assistantToggleTitle": "Zobraziť asistenta",
   "assistantToggleSubtitle": "Malý pomocník v pravom dolnom rohu",
-  "scanPriceLabel": "Skenovať cenu"
+  "scanPriceLabel": "Skenovať cenu",
+  "saveFailed": "Nepodarilo sa uložiť. Vaše zmeny sú stále tu. Skúste to prosím znova.",
+  "deleteItemConfirm": "Odstrániť túto položku a jej zaznamenané nákupy?",
+  "clearPurchaseConfirm": "Zrušiť označenie tejto položky a odstrániť jej zaznamenané nákupy?",
+  "reportPdfAction": "Uložiť PDF správu",
+  "reportNotInvoice": "Súhrn nákupov, nie daňový faktúra. Daňové sadzby sú neznáme.",
+  "purchaseVisits": "Počet nákupných návštev",
+  "purchaseInterval": "Priemerný počet dní medzi nákupmi",
+  "purchasedQuantity": "Kúpne množstvo",
+  "purchaseAnalyticsHint": "Nákupy nemusia zodpovedať spotrebe. Meny a jednotky sú zobrazené oddelene.",
+  "receiptReplaces": "Prepojené riadky účtenky nahradia existujúce nákupy; neprepojené riadky sa pridajú.",
+  "voiceUnsupportedLanguage": "Tento jazyk nie je na tomto zariadení dostupný pre hlasový vstup. Môžete namiesto toho písať."
 }

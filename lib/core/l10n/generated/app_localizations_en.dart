@@ -1033,4 +1033,44 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Scan price label';
+
+  @override
+  String get saveFailed =>
+      'Could not save. Your changes are still here. Please try again.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Delete this item and its recorded purchases?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Uncheck this item and remove its recorded purchases?';
+
+  @override
+  String get reportPdfAction => 'Save PDF report';
+
+  @override
+  String get reportNotInvoice =>
+      'Shopping summary, not a tax invoice. Tax rates are unknown.';
+
+  @override
+  String get purchaseVisits => 'Shopping visits';
+
+  @override
+  String get purchaseInterval => 'Average days between purchases';
+
+  @override
+  String get purchasedQuantity => 'Purchased quantity';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Purchases do not measure consumption. Currencies and units are shown separately.';
+
+  @override
+  String get receiptReplaces =>
+      'Linked receipt lines replace existing purchases; unlinked lines are added.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'This language is not available for voice input on this device. You can type instead.';
 }

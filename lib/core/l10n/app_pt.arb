@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Abra sua lista e toque no ícone do cupom para escaneá-lo.",
   "assistantToggleTitle": "Mostrar assistente",
   "assistantToggleSubtitle": "O pequeno ajudante no canto inferior direito",
-  "scanPriceLabel": "Ler etiqueta de preço"
+  "scanPriceLabel": "Ler etiqueta de preço",
+  "saveFailed": "Não foi possível salvar. Suas alterações ainda estão aqui. Por favor, tente novamente.",
+  "deleteItemConfirm": "Excluir este item e suas compras registradas?",
+  "clearPurchaseConfirm": "Desmarcar este item e remover suas compras registradas?",
+  "reportPdfAction": "Salvar relatório em PDF",
+  "reportNotInvoice": "Resumo das compras, não nota fiscal. As alíquotas de impostos são desconhecidas.",
+  "purchaseVisits": "Visitas às compras",
+  "purchaseInterval": "Dias médios entre as compras",
+  "purchasedQuantity": "Quantidade comprada",
+  "purchaseAnalyticsHint": "As compras não medem o consumo. Moedas e unidades são exibidas separadamente.",
+  "receiptReplaces": "Linhas do recibo vinculadas substituem as compras existentes; linhas não vinculadas são adicionadas.",
+  "voiceUnsupportedLanguage": "Este idioma não está disponível para entrada por voz neste dispositivo. Você pode digitar."
 }

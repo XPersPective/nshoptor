@@ -1038,4 +1038,44 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Narx yorlig\'ini skanerlang';
+
+  @override
+  String get saveFailed =>
+      'Saqlanmadi. O\'zgarishlaringiz hali ham saqlangan. Iltimos, qayta urinib ko\'ring.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Ushbu mahsulotni va uning sotib olish yozuvlarini o\'chirishni xohlaysizmi?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Ushbu mahsulotni belgisiz qilish va uning sotib olish yozuvlarini o\'chirishni xohlaysizmi?';
+
+  @override
+  String get reportPdfAction => 'PDF hisobotni saqlash';
+
+  @override
+  String get reportNotInvoice =>
+      'Xaridlar tahlili, soliq cheki emas. Soliq stavkalari noma\'lum.';
+
+  @override
+  String get purchaseVisits => 'Xarid safarlari';
+
+  @override
+  String get purchaseInterval => 'Xaridlar orasidagi o\'rtacha kunlar soni';
+
+  @override
+  String get purchasedQuantity => 'Sotib olingan miqdor';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Xaridlar iste\'molni o\'lchamaydi. Valyutalar va birliklar alohida ko\'rsatiladi.';
+
+  @override
+  String get receiptReplaces =>
+      'Bog\'langan chek qatorlari mavjud xaridlarni almashtiradi; bog\'lanmagan qatorlar qo\'shiladi.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Bu til ushbu qurilmada ovozli kiritish uchun mavjud emas. Buning o\'rniga matn kiritishingiz mumkin.';
 }

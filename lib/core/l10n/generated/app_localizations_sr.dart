@@ -1033,4 +1033,44 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Скенирај ознаку цене';
+
+  @override
+  String get saveFailed =>
+      'Није могуће сачувати. Промене су и даље овде. Молимо покушајте поново.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Обрисати ову ставку и њене забележене куповине?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Поништити ову ставку и уклонити њене забележене куповине?';
+
+  @override
+  String get reportPdfAction => 'Сачувај ПДФ извештај';
+
+  @override
+  String get reportNotInvoice =>
+      'Преглед куповине, није пореска рачуна. Пореске стопе су непознате.';
+
+  @override
+  String get purchaseVisits => 'Посете куповини';
+
+  @override
+  String get purchaseInterval => 'Просечан број дана између куповина';
+
+  @override
+  String get purchasedQuantity => 'Количина купљеног';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Куповине не мере потрошњу. Валуте и јединице приказане су одвојено.';
+
+  @override
+  String get receiptReplaces =>
+      'Линкови повезаних рачуна замењују постојеће куповине; непојединачне линије се додају.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Овај језик није доступан за гласовни унос на овом уређају. Можете куцати уместо тога.';
 }

@@ -1038,4 +1038,44 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Үнийн шошгыг сканнердах';
+
+  @override
+  String get saveFailed =>
+      'Хадгалах боломжгүй. Таны өөрчлөлт хадгалагдаагүй байна. Дахин оролдоно уу.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Энэ зүйлийг болон бүртгэгдсэн худалдаж авалтуудыг устгах уу?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Энэ зүйлийг тэмдэглэлтэй нь цуцлаж, бүртгэгдсэн худалдаж авалтыг устгах уу?';
+
+  @override
+  String get reportPdfAction => 'PDF тайланг хадгалах';
+
+  @override
+  String get reportNotInvoice =>
+      'Худалдаж авалтын нийтлэг дүн; төлбөрийн баримт бичиг биш. Татварын хувь тодорхойгүй.';
+
+  @override
+  String get purchaseVisits => 'Худалдаж авах аялал';
+
+  @override
+  String get purchaseInterval => 'Худалдаж авах хоорондын дундаж өдрүүд';
+
+  @override
+  String get purchasedQuantity => 'Худалдаж авсан хэмжээ';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Худалдаж авалт нь хэрэглээг хэмждэггүй. Валют болон хэмжих нэгжийг тусад нь харуулна.';
+
+  @override
+  String get receiptReplaces =>
+      'Холбогдсон хүлээн авалтын мөрүүд одоогийн худалдаж авалтыг орлох; холбогдоогүй мөрүүдийг нэмнэ.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Энэ хэлээр дуут оруулга энэ төхөөрөмжид боломжгүй. Та гарчилгаар оруулж болно.';
 }

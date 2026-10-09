@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Siyahınızı açın və onu skan etmək üçün çek ikonuna toxunun.",
   "assistantToggleTitle": "Assidenti göstər",
   "assistantToggleSubtitle": "Sağ aşağı küncdəki kiçik köməkçi",
-  "scanPriceLabel": "Qiymət etiketini skan et"
+  "scanPriceLabel": "Qiymət etiketini skan et",
+  "saveFailed": "Yadda saxlamaq mümkün olmadı. Dəyişiklikləriniz hələ də qalır. Zəhmət olmasa, yenidən cəhd edin.",
+  "deleteItemConfirm": "Bu məhsulu və onun qeydə alınmış alışlarını silmək istəyirsiniz?",
+  "clearPurchaseConfirm": "Bu məhsulun işarəsini silmək və onun qeydə alınmış alışlarını silmək istəyirsiniz?",
+  "reportPdfAction": "PDF hesabatını saxla",
+  "reportNotInvoice": "Alış xülasəsi, vergi fakturası deyil. Vergi dərəcələri naməlumdur.",
+  "purchaseVisits": "Alış ziyarətləri",
+  "purchaseInterval": "Alışlar arasındakı orta günlər",
+  "purchasedQuantity": "Alınan miqdar",
+  "purchaseAnalyticsHint": "Alışlar istehlakı ölçmür. Valyutalar və vahidlər ayrıca göstərilir.",
+  "receiptReplaces": "Əlaqələndirilmiş çeki sətirləri mövcud alışları əvəz edir; əlaqələndirilməmiş sətirlər isə əlavə edilir.",
+  "voiceUnsupportedLanguage": "Bu dil bu cihazda səsli giriş üçün mövcud deyil. Bunun əvəzinə yazmaq mümkündür."
 }

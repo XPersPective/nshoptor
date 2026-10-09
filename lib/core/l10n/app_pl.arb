@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Otwórz swoją listę i naciśnij ikonę paragonu, aby ją zeskanować.",
   "assistantToggleTitle": "Pokaż asystenta",
   "assistantToggleSubtitle": "Mały pomocnik w prawym dolnym rogu",
-  "scanPriceLabel": "Skanuj cenę"
+  "scanPriceLabel": "Skanuj cenę",
+  "saveFailed": "Nie udało się zapisać. Twoje zmiany zostały zachowane. Spróbuj ponownie.",
+  "deleteItemConfirm": "Usunąć ten produkt i jego zapisane zakupy?",
+  "clearPurchaseConfirm": "Odznaczyć ten produkt i usunąć jego zapisane zakupy?",
+  "reportPdfAction": "Zapisz raport PDF",
+  "reportNotInvoice": "Podsumowanie zakupów, nie paragon fiskalny. Stawki podatkowe są nieznane.",
+  "purchaseVisits": "Liczba wizyt w sklepie",
+  "purchaseInterval": "Średnia liczba dni między zakupami",
+  "purchasedQuantity": "Ilość zakupiona",
+  "purchaseAnalyticsHint": "Zakupy nie mierzą spożycia. Waluty i jednostki są wyświetlane oddzielnie.",
+  "receiptReplaces": "Połączone pozycje z paragonu zastępują istniejące zakupy; niepołączone pozycje są dodawane.",
+  "voiceUnsupportedLanguage": "Ten język nie jest obsługiwany dla głosu na tym urządzeniu. Możesz wpisać tekst ręcznie."
 }

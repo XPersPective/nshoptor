@@ -87,7 +87,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
             Padding(
               padding: const EdgeInsets.all(12),
               child: Text(
-                l10n.aiFailed,
+              l10n.saveFailed,
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             ),

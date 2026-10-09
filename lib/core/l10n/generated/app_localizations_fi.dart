@@ -1037,4 +1037,45 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skannaa hintalappu';
+
+  @override
+  String get saveFailed =>
+      'Tallennus epäonnistui. Muutoksesi ovat vielä tallessa. Yritä uudelleen.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Poista tämä tuote ja sen kirjatuista ostoksista?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Poista valinta tästä tuotteesta ja poista sen kirjatuista ostoksista?';
+
+  @override
+  String get reportPdfAction => 'Tallenna PDF-raportti';
+
+  @override
+  String get reportNotInvoice =>
+      'Ostosyhteenveto, ei verolasku. Veroprosentteja ei ole tiedossa.';
+
+  @override
+  String get purchaseVisits => 'Ostopäivystykset';
+
+  @override
+  String get purchaseInterval =>
+      'Keskimääräinen päivien määrä ostosten välillä';
+
+  @override
+  String get purchasedQuantity => 'Ostetun määrän';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Ostokset eivät mittaa kulutusta. Valuutat ja yksiköt näytetään erikseen.';
+
+  @override
+  String get receiptReplaces =>
+      'Linkitetyt kuitin rivit korvaavat olemassa olevat ostokset; linkittömät rivit lisätään.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Tätä kieltä ei tueta ääntunnistukseen tällä laitteella. Voit kirjoittaa tekstiä sen sijaan.';
 }

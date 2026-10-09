@@ -1034,4 +1034,43 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Сканировать ценник';
+
+  @override
+  String get saveFailed =>
+      'Не удалось сохранить. Ваши изменения остались. Попробуйте ещё раз.';
+
+  @override
+  String get deleteItemConfirm => 'Удалить этот товар и его записи о покупках?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Снять отметку с этого товара и удалить его записи о покупках?';
+
+  @override
+  String get reportPdfAction => 'Сохранить PDF-отчёт';
+
+  @override
+  String get reportNotInvoice =>
+      'Итоги покупок, не налоговый счёт. Ставки налогов неизвестны.';
+
+  @override
+  String get purchaseVisits => 'Походы за покупками';
+
+  @override
+  String get purchaseInterval => 'Среднее число дней между покупками';
+
+  @override
+  String get purchasedQuantity => 'Купленное количество';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Покупки не измеряют потребление. Валюты и единицы показаны отдельно.';
+
+  @override
+  String get receiptReplaces =>
+      'Строки привязанного чека заменяют существующие покупки; непривязанные строки добавляются.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Этот язык недоступен для голосового ввода на этом устройстве. Можно ввести текст.';
 }

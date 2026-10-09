@@ -1038,4 +1038,44 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'ဈေးနှုန်းလိပ်စာကို စကင်န်ပါ';
+
+  @override
+  String get saveFailed =>
+      'သိမ်းဆည်းရန် မအောင်မြင်ပါ။ သင့်ပြောင်းလဲမှုများ ကျန်ရှိနေဆဲဖြစ်သည်။ ပြန်လည်ကြိုးစားပါ။';
+
+  @override
+  String get deleteItemConfirm =>
+      'ဤပစ္စည်းနှင့် ၎င်း၏ မှတ်တမ်းတင်ဝယ်ယူမှုများကို ဖျက်ပစ်မည်မှာ အတည်ပြုပါသလား?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'ဤပစ္စည်းမှ တicked (ရွေးချယ်ထားခြင်း) ကို ဖယ်ရှားပြီး ၎င်း၏ မှတ်တမ်းတင်ဝယ်ယူမှုများကို ဖျက်ပစ်မည်မှာ အတည်ပြုပါသလား?';
+
+  @override
+  String get reportPdfAction => 'PDF အစီရင်ခံစာကို သိမ်းဆည်းပါ';
+
+  @override
+  String get reportNotInvoice =>
+      'ဝယ်ယူမှု စုစည်းချက်၊ ဘဏ္ဍာရေးအခွန် လက်မှတ် မဟုတ်ပါ။ ဘဏ္ဍာရေးအခွန်နှုန်းထားများ မသိရှိနိုင်ပါ။';
+
+  @override
+  String get purchaseVisits => 'ဝယ်ယူမှု ခရီးစဉ်များ';
+
+  @override
+  String get purchaseInterval => 'ဝယ်ယူမှုများကြား ပျမ်းမျှ ရက်အရေအတွက်';
+
+  @override
+  String get purchasedQuantity => 'ဝယ်ယူလိုက်သော ပမာဏ';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'ဝယ်ယူမှုများသည် စားသုံးမှုကို တိုင်းတာခြင်း မဟုတ်ပါ။ ငွေကြေးနှင့် ယူနစ်များကို သီးခြားစီ ပြသထားပါသည်။';
+
+  @override
+  String get receiptReplaces =>
+      'ချိတ်ဆက်ထားသော လက်မှတ်လိုင်းများသည် ရှိပြီးသား ဝယ်ယူမှုများကို အစားထိုးပြီး၊ မချိတ်ဆက်ထားသော လိုင်းများကို ထည့်သွင်းပါသည်။';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'ဤဘာသာစကားကို ဤစက်ပစ္စည်းတွင် အသံဖြင့် ထည့်သွင်းရန် မရရှိနိုင်ပါ။ အစားထိုး၍ ရိုက်ထည့်နိုင်ပါသည်။';
 }

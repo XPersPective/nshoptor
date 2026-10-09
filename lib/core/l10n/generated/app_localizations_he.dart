@@ -1029,4 +1029,42 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'סרוק תווית מחיר';
+
+  @override
+  String get saveFailed => 'לא הצליח לשמור. השינויים עדיין כאן. נסה שוב.';
+
+  @override
+  String get deleteItemConfirm => 'למחוק פריט זה ואת רכישותיו הרשומות?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'לבטל את סימון הפריט ולהסיר את רכישותיו הרשומות?';
+
+  @override
+  String get reportPdfAction => 'שמירת דוח PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'סיכום קניות, לא חשבון מס. שיעורי המס אינם ידועים.';
+
+  @override
+  String get purchaseVisits => 'ביקורי קניות';
+
+  @override
+  String get purchaseInterval => 'ימים ממוצעים בין רכישות';
+
+  @override
+  String get purchasedQuantity => 'כמות שנרכשה';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'רכישות אינן מודדות צריכה. מטבעות ויחידות מוצגים בנפרד.';
+
+  @override
+  String get receiptReplaces =>
+      'שורות קבלה מקושרות מחליפות רכישות קיימות; שורות שאינן מקושרות מתווספות.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'שפה זו אינה זמינה לקלט קולי במכשיר זה. ניתן להקליד במקום זאת.';
 }

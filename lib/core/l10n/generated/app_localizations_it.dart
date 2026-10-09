@@ -1037,4 +1037,44 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Scansiona l\'etichetta del prezzo';
+
+  @override
+  String get saveFailed =>
+      'Salvataggio non riuscito. Le modifiche sono ancora qui. Riprova.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Eliminare questo articolo e gli acquisti registrati?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Deselezionare questo articolo e rimuovere gli acquisti registrati?';
+
+  @override
+  String get reportPdfAction => 'Salva rapporto PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Riepilogo della spesa, non una fattura fiscale. I tassi fiscali sono sconosciuti.';
+
+  @override
+  String get purchaseVisits => 'Visite allo shopping';
+
+  @override
+  String get purchaseInterval => 'Giorni medi tra gli acquisti';
+
+  @override
+  String get purchasedQuantity => 'Quantità acquistata';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Gli acquisti non misurano il consumo. Valute e unità vengono mostrate separatamente.';
+
+  @override
+  String get receiptReplaces =>
+      'Le righe del scontrino collegate sostituiscono gli acquisti esistenti; le righe non collegate vengono aggiunte.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Questa lingua non è disponibile per l\'input vocale su questo dispositivo. Puoi digitare invece.';
 }

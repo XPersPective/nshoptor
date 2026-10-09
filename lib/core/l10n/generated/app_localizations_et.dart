@@ -1032,4 +1032,44 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skaneeri hinnasilt';
+
+  @override
+  String get saveFailed =>
+      'Salvestamine ei õnnestunud. Sinu muudatused on endiselt olemas. Palun proovi uuesti.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Kas kustutame selle toote ja selle salvestatud ostud?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Kas eemaldame selle toote märgistuse ja selle salvestatud ostud?';
+
+  @override
+  String get reportPdfAction => 'Salvesta PDF-aruanne';
+
+  @override
+  String get reportNotInvoice =>
+      'Ostude kokkuvõte, mitte maksuarve. Maksumäärad on teadmata.';
+
+  @override
+  String get purchaseVisits => 'Ostureisid';
+
+  @override
+  String get purchaseInterval => 'Keskmine päevade arv ostude vahel';
+
+  @override
+  String get purchasedQuantity => 'Ostetud kogus';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Ostud ei mõõda tarbimist. Valuutad ja ühikud kuvatakse eraldi.';
+
+  @override
+  String get receiptReplaces =>
+      'Seotud kviitungiread asendavad olemasolevad ostud; seostamata read lisatakse.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Seda keele varianti pole selles seadmes häälsisestamiseks saadaval. Saad selle asemel tekstina sisestada.';
 }

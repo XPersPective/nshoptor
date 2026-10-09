@@ -1040,4 +1040,44 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'ధర లేబుల్ స్కాన్ చేయండి';
+
+  @override
+  String get saveFailed =>
+      'సేవ్ చేయలేకపోయాము. మీ మార్పులు ఇంకా ఉన్నాయి. దయచేసి మళ్ళీ ప్రయత్నించండి.';
+
+  @override
+  String get deleteItemConfirm =>
+      'ఈ ఆइटెమ్ మరియు దాని రికార్డ్ చేయబడిన కొనుగోళ్లను తొలగించాలా?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'ఈ ఆइटెమ్ నుండి టిక్ తీసి, దాని రికార్డ్ చేయబడిన కొనుగోళ్లను తొలగించాలా?';
+
+  @override
+  String get reportPdfAction => 'PDF రిపోర్ట్ సేవ్ చేయి';
+
+  @override
+  String get reportNotInvoice =>
+      'షాపింగ్ సారాంశం, ట్యాక్స్ ఇన్‌వాయిస్ కాదు. ట్యాక్స్ రేట్లు తెలియవు.';
+
+  @override
+  String get purchaseVisits => 'షాపింగ్ సందర్శనలు';
+
+  @override
+  String get purchaseInterval => 'కొనుగోళ్ల మధ్య సగటు రోజులు';
+
+  @override
+  String get purchasedQuantity => 'కొనుగోలు చేసిన పరిమాణం';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'కొనుగోళ్లు వినియోగాన్ని కొలవవు. కరెన్సీలు మరియు యూనిట్లు వేరుగా చూపబడతాయి.';
+
+  @override
+  String get receiptReplaces =>
+      'లింక్ చేయబడిన రసీదు లైన్లు existing కొనుగోళ్లను భర్తీ చేస్తాయి; లింక్ లేని లైన్లు జోడించబడతాయి.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'ఈ భాష ఈ డివైజ్‌లో వాయిస్ ఇన్‌పుట్ కోసం అందుబాటులో లేదు. మీరు టైప్ చేయవచ్చు.';
 }

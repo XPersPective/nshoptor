@@ -1034,4 +1034,43 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'মূল্য লেবেল স্ক্যান করুন';
+
+  @override
+  String get saveFailed =>
+      'সেভ করা যায়নি। আপনার পরিবর্তনগুলো এখনও আছে। অনুগ্রহ করে আবার চেষ্টা করুন।';
+
+  @override
+  String get deleteItemConfirm =>
+      'এই আইটেমটি এবং এর রেকর্ডকৃত ক্রয় মুছে ফেলবেন?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'এই আইটেমটি থেকে টিকচিহ্ন সরিয়ে এর রেকর্ডকৃত ক্রয় মুছে ফেলবেন?';
+
+  @override
+  String get reportPdfAction => 'PDF রিপোর্ট সেভ করুন';
+
+  @override
+  String get reportNotInvoice => 'শপিং সারাংশ, কর ইনভয়েস নয়। করের হার অজানা।';
+
+  @override
+  String get purchaseVisits => 'শপিং ভিজিট';
+
+  @override
+  String get purchaseInterval => 'ক্রয়ের মধ্যে গড় দিন';
+
+  @override
+  String get purchasedQuantity => 'ক্রয়কৃত পরিমাণ';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'ক্রয় খরচ পরিমাপ করে না। মুদ্রা এবং একক আলাদাভাবে দেখানো হয়।';
+
+  @override
+  String get receiptReplaces =>
+      'লিংকযুক্ত রসিদ লাইন বিদ্যমান ক্রয় প্রতিস্থাপন করে; অলিংকযুক্ত লাইন যোগ করা হয়।';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'এই ডিভাইসে ভয়েস ইনপুটের জন্য এই ভাষা উপলব্ধ নেই। আপনি টাইপ করতে পারেন।';
 }

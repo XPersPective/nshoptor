@@ -1036,4 +1036,44 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skenuoti kainos etiketę';
+
+  @override
+  String get saveFailed =>
+      'Nepavyko išsaugoti. Jūsų pakeitimai vis dar čia. Bandykite dar kartą.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Ištrinti šį elementą ir jo įrašytus pirkinius?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Nuimti žymėjimą iš šio elemento ir pašalinti jo įrašytus pirkinius?';
+
+  @override
+  String get reportPdfAction => 'Įrašyti PDF ataskaitą';
+
+  @override
+  String get reportNotInvoice =>
+      'Pirkinių santrauka, ne mokesčių sąskaita. Mokesčių tarifai nežinomi.';
+
+  @override
+  String get purchaseVisits => 'Apsilankymai parduotuvėje';
+
+  @override
+  String get purchaseInterval => 'Vidutinės dienos tarp pirkinių';
+
+  @override
+  String get purchasedQuantity => 'Perkama kiekis';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Pirkiniai nematuojami kaip vartojimas. Valiutos ir vienetai rodomi atskirai.';
+
+  @override
+  String get receiptReplaces =>
+      'Susietos čekio eilutės pakeičia esamus pirkinius; nesusietos eilutės pridedamos.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Ši kalba šiame įrenginyje nepalaikoma balso įvesties funkcijai. Vietoj to galite rašyti.';
 }

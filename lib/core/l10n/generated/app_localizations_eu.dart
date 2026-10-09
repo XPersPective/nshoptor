@@ -1037,4 +1037,44 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Eskaneatu prezio etiketa';
+
+  @override
+  String get saveFailed =>
+      'Ezin izan da gorde. Zure aldaketak oraindik bertan daude. Saiatu berriro.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Elementu hau eta erosi diren salmentak ezabatu?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Elementu honen markazioa kendu eta erosi diren salmentak ezabatu?';
+
+  @override
+  String get reportPdfAction => 'Gorde PDF txostena';
+
+  @override
+  String get reportNotInvoice =>
+      'Ostalaritza-laguntzaren laburpena, ez zerga-faktura. Zerga-tasak ezezagunak dira.';
+
+  @override
+  String get purchaseVisits => 'Erosten dituzten bisitak';
+
+  @override
+  String get purchaseInterval => 'Erosketen arteko batez besteko egunak';
+
+  @override
+  String get purchasedQuantity => 'Erositako kantitatea';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Erosketek ez dute kontsumoa neurtzen. Dirulaguntzak eta unitateak bereizita erakusten dira.';
+
+  @override
+  String get receiptReplaces =>
+      'Lotutako errezeptu-lerroek lehendik dauden erosketak ordezkatzen dituzte; loturarik gabeko lerroak gehitzen dira.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Hau ez da hizkuntza hori ahots-sarrerarako gailu honetan erabilgarria. Ordez, idatz dezakezu.';
 }

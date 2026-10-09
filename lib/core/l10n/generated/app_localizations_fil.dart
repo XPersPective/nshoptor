@@ -1039,4 +1039,44 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'I-scan ang label ng presyo';
+
+  @override
+  String get saveFailed =>
+      'Hindi ma-save. Manatili pa rin ang iyong mga pagbabago. Subukan ulit.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Burahin ang item na ito at ang mga nakarekord na pagbili?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'I-uncheck ang item na ito at burahin ang mga nakarekord na pagbili?';
+
+  @override
+  String get reportPdfAction => 'I-save ang PDF report';
+
+  @override
+  String get reportNotInvoice =>
+      'Buod ng pamimili, hindi tax invoice. Hindi alam ang mga rate ng buwis.';
+
+  @override
+  String get purchaseVisits => 'Mga bisita sa pamimili';
+
+  @override
+  String get purchaseInterval => 'Karaniwang araw sa pagitan ng mga pagbili';
+
+  @override
+  String get purchasedQuantity => 'Dami ng binili';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Hindi sinusukat ng mga pagbili ang konsumpsyon. Hiwalay na ipinapakita ang mga currency at yunit.';
+
+  @override
+  String get receiptReplaces =>
+      'Ang mga linked receipt line ay papalitan ang umiiral na pagbili; ang mga unlinked line ay idadagdag.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Hindi available ang wika na ito para sa voice input sa device na ito. Maaari kang mag-type.';
 }

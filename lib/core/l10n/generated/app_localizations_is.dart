@@ -1033,4 +1033,43 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skanna verðmerki';
+
+  @override
+  String get saveFailed =>
+      'Gat ekki vistað. Breytingarnar þínar eru enn til staðar. Vinsamlegast reyndu aftur.';
+
+  @override
+  String get deleteItemConfirm => 'Eyða þessu atriði og skráðum kaupum?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Fjarlægja merkið frá þessu atriði og eyða skráðum kaupum?';
+
+  @override
+  String get reportPdfAction => 'Vista PDF skýrslu';
+
+  @override
+  String get reportNotInvoice =>
+      'Yfirlit yfir innkaup, ekki skattreikning. Skattprósentur eru óþekktar.';
+
+  @override
+  String get purchaseVisits => 'Innkaupasjón';
+
+  @override
+  String get purchaseInterval => 'Meðaldagabil á milli innkaupa';
+
+  @override
+  String get purchasedQuantity => 'Magn keypt';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Innkaup mæla ekki neyslu. Gjaldmiðlar og einingar eru sýndir aðskild.';
+
+  @override
+  String get receiptReplaces =>
+      'Línur tengd kvittingu koma í stað núverandi kaupa; ótengdar línur eru bættar við.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Þetta tungumál er ekki tiltækt fyrir raddinntak á þessu tæki. Þú getur skrifað í staðinn.';
 }

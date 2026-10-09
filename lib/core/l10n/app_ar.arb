@@ -324,5 +324,16 @@
   "assistantReceiptHint": "افتح قائمتك واضغط على أيقونة الإيصال لمسحه.",
   "assistantToggleTitle": "إظهار المساعد",
   "assistantToggleSubtitle": "المساعد الصغير أسفل اليمين",
-  "scanPriceLabel": "امسح ملصق السعر"
+  "scanPriceLabel": "امسح ملصق السعر",
+  "saveFailed": "تعذّر الحفظ. لا تزال التغييرات موجودة. يرجى المحاولة مرة أخرى.",
+  "deleteItemConfirm": "حذف هذا العنصر ومشترياته المسجلة؟",
+  "clearPurchaseConfirm": "إلغاء تحديد هذا العنصر وإزالة مشترياته المسجلة؟",
+  "reportPdfAction": "حفظ تقرير بصيغة PDF",
+  "reportNotInvoice": "ملخص التسوق، وليس فاتورة ضريبية. أسعار الضرائب غير معروفة.",
+  "purchaseVisits": "زيارات التسوق",
+  "purchaseInterval": "متوسط الأيام بين المشتريات",
+  "purchasedQuantity": "الكمية المشتراة",
+  "purchaseAnalyticsHint": "لا تقيس المشتريات الاستهلاك. تُعرض العملات والوحدات بشكل منفصل.",
+  "receiptReplaces": "تستبدل أسطر الإيصال المرتبطة المشتريات الموجودة؛ وتُضاف الأسطر غير المرتبطة.",
+  "voiceUnsupportedLanguage": "هذه اللغة غير متاحة للإدخال الصوتي على هذا الجهاز. يمكنك الكتابة بدلاً من ذلك."
 }

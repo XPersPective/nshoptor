@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Open je lijst en tik op het bonpictogram om te scannen.",
   "assistantToggleTitle": "Assistent tonen",
   "assistantToggleSubtitle": "Het kleine hulpje rechtsonder",
-  "scanPriceLabel": "Prijslabel scannen"
+  "scanPriceLabel": "Prijslabel scannen",
+  "saveFailed": "Opslaan mislukt. Je wijzigingen zijn nog steeds beschikbaar. Probeer het opnieuw.",
+  "deleteItemConfirm": "Dit item en de geregistreerde aankopen verwijderen?",
+  "clearPurchaseConfirm": "Dit item uitvinken en de geregistreerde aankopen verwijderen?",
+  "reportPdfAction": "PDF-rapport opslaan",
+  "reportNotInvoice": "Winkeloverzicht, geen belastingfactuur. BTW-tarieven zijn onbekend.",
+  "purchaseVisits": "Winkelbezoeken",
+  "purchaseInterval": "Gemiddelde dagen tussen aankopen",
+  "purchasedQuantity": "Aangekochte hoeveelheid",
+  "purchaseAnalyticsHint": "Aankopen meten geen verbruik. Valuta's en eenheden worden apart weergegeven.",
+  "receiptReplaces": "Gekoppelde bonregels vervangen bestaande aankopen; niet-gekoppelde regels worden toegevoegd.",
+  "voiceUnsupportedLanguage": "Deze taal is niet beschikbaar voor spraakinvoer op dit apparaat. Je kunt in plaats daarvan typen."
 }

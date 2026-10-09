@@ -1042,4 +1042,44 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skana isikhwama somanani';
+
+  @override
+  String get saveFailed =>
+      'Akukwazanga ukugcina. Usugu lwakho lusasele. Sicela uzame futhi.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Sula lelo into kanye nezithengiso ezibhalwe?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Susela leli qembu kanye nezithengiso ezibhalwe?';
+
+  @override
+  String get reportPdfAction => 'Gcina ingxelo ye-PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Isifinyezo sokuthenga, akuyona i-invoice yetax. Amaphesenti etax ayaziwa.';
+
+  @override
+  String get purchaseVisits => 'Ukuvakasha kokuthenga';
+
+  @override
+  String get purchaseInterval => 'Amahora aphakathi kwezithengiso';
+
+  @override
+  String get purchasedQuantity => 'Inani elithengisiwe';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Izithengiso azilinganisa ukusetshenziswa. Izimali namayunithi ziboniswa ngokuhlukile.';
+
+  @override
+  String get receiptReplaces =>
+      'Imigqa yesiphetho esixhumanisayo isusa izithengiso ezikhona; imigqa engaxhumaniswe iyengezwa.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Lolu lwimi alukhona ekufakeni ngezwi kulawula lokhu. Ungabhala endaweni.';
 }

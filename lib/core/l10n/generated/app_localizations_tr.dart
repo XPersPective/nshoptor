@@ -1033,4 +1033,44 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Fiyat etiketini okut';
+
+  @override
+  String get saveFailed =>
+      'Kaydedilemedi. Değişikliklerin burada duruyor. Lütfen tekrar dene.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Bu ürünü ve kayıtlı alımlarını silmek istiyor musun?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Bu ürünün tikini ve kayıtlı alımlarını kaldırmak istiyor musun?';
+
+  @override
+  String get reportPdfAction => 'PDF raporunu kaydet';
+
+  @override
+  String get reportNotInvoice =>
+      'Alışveriş özetidir, vergi faturası değildir. Vergi oranları bilinmiyor.';
+
+  @override
+  String get purchaseVisits => 'Alışveriş sayısı';
+
+  @override
+  String get purchaseInterval => 'Alımlar arası ortalama gün';
+
+  @override
+  String get purchasedQuantity => 'Satın alınan miktar';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Satın alımlar tüketimi ölçmez. Para ve birimler ayrı gösterilir.';
+
+  @override
+  String get receiptReplaces =>
+      'Bağlı fiş satırları mevcut alımları değiştirir; bağlantısız satırlar eklenir.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Bu cihazda bu dil için sesli giriş yok. Bunun yerine yazabilirsin.';
 }

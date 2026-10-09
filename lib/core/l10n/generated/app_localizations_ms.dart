@@ -1036,4 +1036,44 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Imbas label harga';
+
+  @override
+  String get saveFailed =>
+      'Gagal menyimpan. Perubahan anda masih ada. Sila cuba lagi.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Padam item ini dan pembelian yang direkodkan?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Nyahtanda item ini dan buang pembelian yang direkodkan?';
+
+  @override
+  String get reportPdfAction => 'Simpan laporan PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Ringkasan membeli-belah, bukan invois cukai. Kadar cukai tidak diketahui.';
+
+  @override
+  String get purchaseVisits => 'Kunjungan membeli-belah';
+
+  @override
+  String get purchaseInterval => 'Purata hari antara pembelian';
+
+  @override
+  String get purchasedQuantity => 'Kuantiti dibeli';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Pembelian tidak mengukur penggunaan. Mata wang dan unit dipaparkan secara berasingan.';
+
+  @override
+  String get receiptReplaces =>
+      'Baris resit yang disambungkan menggantikan pembelian sedia ada; baris yang tidak disambungkan akan ditambah.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Bahasa ini tidak tersedia untuk input suara pada peranti ini. Anda boleh menaip sebagai gantinya.';
 }

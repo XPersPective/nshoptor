@@ -1034,4 +1034,44 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skeniraj cijenu';
+
+  @override
+  String get saveFailed =>
+      'Nije moguće spremiti. Vaše promjene su i dalje ovdje. Molimo pokušajte ponovo.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Izbrisati ovu stavku i njezine zabilježene kupnje?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Poništiti odabir ove stavke i ukloniti njezine zabilježene kupnje?';
+
+  @override
+  String get reportPdfAction => 'Spremi PDF izvještaj';
+
+  @override
+  String get reportNotInvoice =>
+      'Sažetak kupovine, nije porezni račun. Porezne stope su nepoznate.';
+
+  @override
+  String get purchaseVisits => 'Posjeti kupovini';
+
+  @override
+  String get purchaseInterval => 'Prosječni dani između kupovina';
+
+  @override
+  String get purchasedQuantity => 'Količina kupljena';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Kupnje ne mjere potrošnju. Valute i jedinice prikazuju se odvojeno.';
+
+  @override
+  String get receiptReplaces =>
+      'Povezane linije računa zamjenjuju postojeće kupnje; nepovezane linije se dodaju.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Ovaj jezik nije dostupan za glasovni unos na ovom uređaju. Umjesto toga možete tipkati.';
 }

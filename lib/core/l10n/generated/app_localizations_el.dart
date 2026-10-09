@@ -1037,4 +1037,44 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Σάρωση ετικέτας τιμής';
+
+  @override
+  String get saveFailed =>
+      'Αποτυχία αποθήκευσης. Οι αλλαγές σας παραμένουν. Παρακαλώ δοκιμάστε ξανά.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Διαγραφή αυτού του αντικειμένου και των καταχωρημένων αγορών του;';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Αποεπιλογή αυτού του αντικειμένου και διαγραφή των καταχωρημένων αγορών του;';
+
+  @override
+  String get reportPdfAction => 'Αποθήκευση αναφοράς PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Σύνοψη ψωνών, όχι φορολογική απόδειξη. Οι φορολογικοί συντελεστές είναι άγνωστοι.';
+
+  @override
+  String get purchaseVisits => 'Επισκέψεις σε ψώνια';
+
+  @override
+  String get purchaseInterval => 'Μέσες ημέρες μεταξύ αγορών';
+
+  @override
+  String get purchasedQuantity => 'Ποσότητα που αγοράστηκε';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Οι αγορές δεν μετρούν την κατανάλωση. Τα νομίσματα και οι μονάδες εμφανίζονται ξεχωριστά.';
+
+  @override
+  String get receiptReplaces =>
+      'Οι γραμμές της συνημμένης απόδειξης αντικαθιστούν τις υπάρχουσες αγορές· οι μη συνημμένες γραμμές προστίθενται.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Αυτή η γλώσσα δεν υποστηρίζεται για φωνητική είσοδο σε αυτή τη συσκευή. Μπορείτε να πληκτρολογήσετε αντίθετα.';
 }

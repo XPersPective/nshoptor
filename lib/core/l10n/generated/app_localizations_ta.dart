@@ -1040,4 +1040,44 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'விலை லேபிளை ஸ்கேன் செய்யுங்கள்';
+
+  @override
+  String get saveFailed =>
+      'சேமிக்க முடியவில்லை. உங்கள் மாற்றங்கள் இன்னும் உள்ளன. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String get deleteItemConfirm =>
+      'இந்த பொருளை மற்றும் அதன் பதிவு செய்யப்பட்ட வாங்கல்களை நீக்கவா?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'இந்த பொருளின் தேர்வை நீக்கி, அதன் பதிவு செய்யப்பட்ட வாங்கல்களை அழிக்கவா?';
+
+  @override
+  String get reportPdfAction => 'PDF அறிக்கையை சேமி';
+
+  @override
+  String get reportNotInvoice =>
+      'வாடகை சுருக்கம், வரி விசையம் அல்ல. வரி விகிதங்கள் தெரியவில்லை.';
+
+  @override
+  String get purchaseVisits => 'வாங்கல் பார்வைகள்';
+
+  @override
+  String get purchaseInterval => 'வாங்கல்களுக்கு இடைப்பட்ட சராசரி நாட்கள்';
+
+  @override
+  String get purchasedQuantity => 'வாங்கிய அளவு';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'வாங்கல்கள் நுகர்ச்சியை அளவிடுவதில்லை. நாணயங்கள் மற்றும் அலகுகள் தனித்தனியாக காட்டப்படும்.';
+
+  @override
+  String get receiptReplaces =>
+      'இணைக்கப்பட்ட ரசீது வரிகள் உள்ள வாங்கல்களை மாற்றும்; இணைக்கப்படாத வரிகள் சேர்க்கப்படும்.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'இந்த மொழி இந்த கருவியில் குரல் உள்ளீட்டிற்கு கிடைக்கவில்லை. நீங்கள் டைப் செய்யலாம்.';
 }

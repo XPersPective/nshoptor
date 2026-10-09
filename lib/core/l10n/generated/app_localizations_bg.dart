@@ -1036,4 +1036,44 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Сканирай етикета с цената';
+
+  @override
+  String get saveFailed =>
+      'Неуспешно запазване. Промените ви остават. Моля, опитайте отново.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Да изтриете ли този артикул и записаните покупки?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Да премахнете ли отметката от този артикул и да изтриете записаните покупки?';
+
+  @override
+  String get reportPdfAction => 'Запазване на PDF отчет';
+
+  @override
+  String get reportNotInvoice =>
+      'Обобщение на пазаруването, не е данъчна фактура. Данъчните ставки са неизвестни.';
+
+  @override
+  String get purchaseVisits => 'Посещения за пазаруване';
+
+  @override
+  String get purchaseInterval => 'Среден брой дни между покупките';
+
+  @override
+  String get purchasedQuantity => 'Купена количество';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Покупките не измерват консумацията. Валутите и мерните единици се показват отделно.';
+
+  @override
+  String get receiptReplaces =>
+      'Връзаните редове от касовата бележка заменят съществуващите покупки; невръзаните редове се добавят.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Този език не е наличен за гласов въвеждане на това устройство. Можете да пишете вместо това.';
 }

@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Mở danh sách của bạn và nhấn vào biểu tượng hóa đơn để quét.",
   "assistantToggleTitle": "Hiển thị trợ lý",
   "assistantToggleSubtitle": "Trợ lý nhỏ ở góc dưới bên phải",
-  "scanPriceLabel": "Quét giá"
+  "scanPriceLabel": "Quét giá",
+  "saveFailed": "Không thể lưu. Thay đổi của bạn vẫn còn ở đây. Vui lòng thử lại.",
+  "deleteItemConfirm": "Xóa mục này và các lần mua đã ghi nhận?",
+  "clearPurchaseConfirm": "Bỏ chọn mục này và xóa các lần mua đã ghi nhận?",
+  "reportPdfAction": "Lưu báo cáo PDF",
+  "reportNotInvoice": "Tóm tắt mua sắm, không phải hóa đơn thuế. Không rõ mức thuế.",
+  "purchaseVisits": "Lần mua hàng",
+  "purchaseInterval": "Số ngày trung bình giữa các lần mua",
+  "purchasedQuantity": "Số lượng đã mua",
+  "purchaseAnalyticsHint": "Mua hàng không đo lường mức tiêu thụ. Đơn vị tiền tệ và đơn vị tính được hiển thị riêng biệt.",
+  "receiptReplaces": "Các dòng hóa đơn liên kết sẽ thay thế các lần mua hiện có; các dòng không liên kết sẽ được thêm vào.",
+  "voiceUnsupportedLanguage": "Ngôn ngữ này không hỗ trợ nhập giọng nói trên thiết bị này. Bạn có thể gõ văn bản thay thế."
 }

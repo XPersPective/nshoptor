@@ -1033,4 +1033,43 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'किंमत लेबल स्कॅन करा';
+
+  @override
+  String get saveFailed =>
+      'सेव्ह करता आले नाही. तुमचे बदल अजूनही येथे आहेत. कृपया पुन्हा प्रयत्न करा.';
+
+  @override
+  String get deleteItemConfirm => 'हे आयटम आणि त्याची नोंदवलेली खरेदी हटवायची?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'हे आयटम अनचेक करा आणि त्याची नोंदवलेली खरेदी काढून टाकायची?';
+
+  @override
+  String get reportPdfAction => 'PDF रिपोर्ट सेव्ह करा';
+
+  @override
+  String get reportNotInvoice =>
+      'खरेदी सारांश, कर इनवॉइस नाही. कर दर अज्ञात आहेत.';
+
+  @override
+  String get purchaseVisits => 'खरेदी भेटी';
+
+  @override
+  String get purchaseInterval => 'खरेदींमधील सरासरी दिवस';
+
+  @override
+  String get purchasedQuantity => 'खरेदी केलेले प्रमाण';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'खरेदी या वापराचे मापन नाही. चलने आणि एकके वेगळी दाखवली जातात.';
+
+  @override
+  String get receiptReplaces =>
+      'लिंक केलेल्या रसीद ओळी अस्तित्वातील खरेदी बदलतात; लिंक नसलेल्या ओळी जोडल्या जातात.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'या डिव्हाइसवर आवाजी इनपुटसाठी ही भाषा उपलब्ध नाही. तुम्ही टायप करू शकता.';
 }

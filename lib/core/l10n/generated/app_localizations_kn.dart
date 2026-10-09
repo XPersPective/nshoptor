@@ -1036,4 +1036,44 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'ಬೆಲೆ ಲೇಬಲ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ';
+
+  @override
+  String get saveFailed =>
+      'ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಬದಲಾವಣೆಗಳು ಇನ್ನೂ ಇವೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get deleteItemConfirm =>
+      'ಈ ವಸ್ತುವನ್ನು ಮತ್ತು ಅದರ ದಾಖಲಾದ ಖರೀದಿಗಳನ್ನು ತೆಗೆದುಹಾಕಬೇಕೇ?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'ಈ ವಸ್ತುವಿನ ಚೆಕ್‌ಮಾರ್ಕ್ ತೆಗೆದು, ಅದರ ದಾಖಲಾದ ಖರೀದಿಗಳನ್ನು ತೆಗೆದುಹಾಕಬೇಕೇ?';
+
+  @override
+  String get reportPdfAction => 'PDF ರಿಪೋರ್ಟ್ ಉಳಿಸಿ';
+
+  @override
+  String get reportNotInvoice =>
+      'ಖರೀದಿಯ ಸಾರಾಂಶ, ತೆರಿಗೆ ಇನ್ವಾಯ್ಸ್ ಅಲ್ಲ. ತೆರಿಗೆ ದರಗಳು ತಿಳಿದಿಲ್ಲ.';
+
+  @override
+  String get purchaseVisits => 'ಖರೀದಿ ಭೇಟಿಗಳು';
+
+  @override
+  String get purchaseInterval => 'ಖರೀದಿಗಳ ನಡುವಿನ ಸರಾಸರಿ ದಿನಗಳು';
+
+  @override
+  String get purchasedQuantity => 'ಖರೀದಿಸಿದ ಪ್ರಮಾಣ';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'ಖರೀದಿಗಳು ಬಳಕೆಯನ್ನು ಅಳೆಯುವುದಿಲ್ಲ. ನಾಣ್ಯಗಳು ಮತ್ತು ಏಕಮಾನಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾಗಿ ತೋರಿಸಲಾಗುತ್ತದೆ.';
+
+  @override
+  String get receiptReplaces =>
+      'ಲಿಂಕ್ ಆಗಿರುವ ರಸೀದಿ ಪಂಕ್ತಿಗಳು ಇರುವ ಖರೀದಿಗಳನ್ನು ಬದಲಾಯಿಸುತ್ತವೆ; ಲಿಂಕ್ ಆಗಿಲ್ಲದ ಪಂಕ್ತಿಗಳನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'ಈ ಭಾಷೆಯನ್ನು ಈ ಸಾಧನದಲ್ಲಿ ಧ್ವನಿ ಇನ್‌ಪುಟ್‌ಗೆ ಬಳಸಲಾಗುವುದಿಲ್ಲ. ನೀವು ಟೈಪ್ ಮಾಡಬಹುದು.';
 }

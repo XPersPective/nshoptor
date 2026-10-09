@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Öffne deine Liste und tippe auf das Bon-Symbol, um ihn zu scannen.",
   "assistantToggleTitle": "Assistent anzeigen",
   "assistantToggleSubtitle": "Der kleine Helfer unten rechts",
-  "scanPriceLabel": "Preisschild scannen"
+  "scanPriceLabel": "Preisschild scannen",
+  "saveFailed": "Speichern fehlgeschlagen. Deine Änderungen sind noch vorhanden. Bitte versuche es erneut.",
+  "deleteItemConfirm": "Diesen Artikel und seine aufgezeichneten Einkäufe löschen?",
+  "clearPurchaseConfirm": "Diesen Artikel abhaken und seine aufgezeichneten Einkäufe entfernen?",
+  "reportPdfAction": "PDF-Bericht speichern",
+  "reportNotInvoice": "Einkaufsübersicht, keine Steuerrechnung. Steuersätze sind unbekannt.",
+  "purchaseVisits": "Einkaufsbesuche",
+  "purchaseInterval": "Durchschnittliche Tage zwischen den Einkäufen",
+  "purchasedQuantity": "Gekaufte Menge",
+  "purchaseAnalyticsHint": "Einkäufe messen nicht den Verbrauch. Währungen und Einheiten werden separat angezeigt.",
+  "receiptReplaces": "Verknüpfte Belegzeilen ersetzen bestehende Einkäufe; nicht verknüpfte Zeilen werden hinzugefügt.",
+  "voiceUnsupportedLanguage": "Diese Sprache ist für die Spracheingabe auf diesem Gerät nicht verfügbar. Du kannst stattdessen tippen."
 }

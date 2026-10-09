@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Nyisd meg a listádat, és koppints a számla ikonra a beolvasáshoz.",
   "assistantToggleTitle": "Asszisztens megjelenítése",
   "assistantToggleSubtitle": "A kis segítő az alsó jobb sarokban",
-  "scanPriceLabel": "Ár címkéjének beolvasása"
+  "scanPriceLabel": "Ár címkéjének beolvasása",
+  "saveFailed": "Mentés sikertelen. A módosításaid megmaradtak. Kérjük, próbáld újra.",
+  "deleteItemConfirm": "Töröljük ezt a tételt és a rögzített vásárlásokat?",
+  "clearPurchaseConfirm": "Kijelölést töröljük erről a tételről és eltávolítjuk a rögzített vásárlásokat?",
+  "reportPdfAction": "PDF jelentés mentése",
+  "reportNotInvoice": "Vásárlási összefoglaló, nem adóigazolás. Az adókulcsok ismeretlenek.",
+  "purchaseVisits": "Vásárlási látogatások",
+  "purchaseInterval": "Átlagos napok a vásárlások között",
+  "purchasedQuantity": "Megvásárolt mennyiség",
+  "purchaseAnalyticsHint": "A vásárlások nem mérik a fogyasztást. A pénznemek és egységek külön jelennek meg.",
+  "receiptReplaces": "A társított nyugta sorok felülírják a meglévő vásárlásokat; a nem társított sorok hozzáadódnak.",
+  "voiceUnsupportedLanguage": "Ez a nyelv nem érhető el hangbemenetre ezen az eszközön. Ehelyett gépelheted."
 }

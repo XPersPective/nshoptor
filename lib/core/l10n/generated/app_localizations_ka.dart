@@ -1032,4 +1032,44 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'ფასის სკანირება';
+
+  @override
+  String get saveFailed =>
+      'შენახვა ვერ მოხერხდა. თქვენი ცვლილებები ჯერ კიდევ ინახება. გთხოვთ, სცადოთ თავიდან.';
+
+  @override
+  String get deleteItemConfirm =>
+      'წაშალოთ ეს პროდუქტი და მისი ჩანაწერი შენაძენები?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'ამოიღოთ მონიშვნა ამ პროდუქტიდან და წაშალოთ მისი ჩანაწერი შენაძენები?';
+
+  @override
+  String get reportPdfAction => 'PDF ანგარიშის შენახვა';
+
+  @override
+  String get reportNotInvoice =>
+      'ყიდვების მიმოხილვა, არა საგადასახადო ფაქტურა. გადასახადის მაჩვენებლები უცნობია.';
+
+  @override
+  String get purchaseVisits => 'ყიდვის ვიზიტები';
+
+  @override
+  String get purchaseInterval => 'შენაძენებს შორის საშუალო დღეები';
+
+  @override
+  String get purchasedQuantity => 'შეძენილი რაოდენობა';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'შეძენები არ ასახავს მოხმარებას. ვალუტები და ერთეულები ცალ-ცალკეა ნაჩვენები.';
+
+  @override
+  String get receiptReplaces =>
+      'შეკრული ბარათის ხაზები ცვლის არსებულ შენაძენებს; შეუერთებელი ხაზები ემატება.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'ეს ენა ამ მოწყობილობაზე ხმოვანი შეყვანისთვის არ არის ხელმისაწვდომი. შეგიძლიათ, ტექსტით ჩაწეროთ.';
 }

@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Fungua orodha yako na bonyeza ikoni ya risiti ili kupiga picha.",
   "assistantToggleTitle": "Onyesha msaidizi",
   "assistantToggleSubtitle": "Msisitizo mdogo upande wa chini kulia",
-  "scanPriceLabel": "Skana bei ya lebo"
+  "scanPriceLabel": "Skana bei ya lebo",
+  "saveFailed": "Haijafanikiwa kuhifadhi. Mabadiliko yako bado yamo. Tafadhali jaribu tena.",
+  "deleteItemConfirm": "Futa kipengele hiki na ununuzi wake ulorekodiwa?",
+  "clearPurchaseConfirm": "Chagua upya kipengele hiki na futa ununuzi wake uliorekodiwa?",
+  "reportPdfAction": "Hifadhi ripoti ya PDF",
+  "reportNotInvoice": "Muhtasari wa ununuzi, sio risiti ya kodi. Kiwango cha kodi hakijulikani.",
+  "purchaseVisits": "Mikutano ya ununuzi",
+  "purchaseInterval": "Siku za wastani kati ya ununuzi",
+  "purchasedQuantity": "Kiasi kilichonunuliwa",
+  "purchaseAnalyticsHint": "Ununuzi haupimi matumizi. Viwango vya sarafu na vitengo vinaonyeshwa tofauti.",
+  "receiptReplaces": "Mistari ya risiti iliyounganishwa inabadilisha ununuzi uliopo; mistari isiyo yaunganishwa inaongezwa.",
+  "voiceUnsupportedLanguage": "Lugha hii haipatikani kwa ingizo la sauti kwenye kifaa hiki. Unaweza kuandika badala yake."
 }

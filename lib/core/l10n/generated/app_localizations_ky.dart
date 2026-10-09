@@ -1034,4 +1034,44 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Баа этикеткесин сканерлөө';
+
+  @override
+  String get saveFailed =>
+      'Сакталбады. Сиздин өзгөртүүлөр сакталып калды. Кайра аракет кылып көрүңүз.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Бул товарды жана анын сатып алуу тарыхын өчүрүү керекпи?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Бул товардын тандоосун алып салып, анын сатып алуу тарыхын өчүрүү керекпи?';
+
+  @override
+  String get reportPdfAction => 'PDF отчетту сактоо';
+
+  @override
+  String get reportNotInvoice =>
+      'Сатып алуунун жалпысы, салык чеки эмес. Салык ставкалары белгисиз.';
+
+  @override
+  String get purchaseVisits => 'Сатып алуу сапарлары';
+
+  @override
+  String get purchaseInterval => 'Сатып алуулар ортосундагы орточо күндөр';
+
+  @override
+  String get purchasedQuantity => 'Сатып алынган өлчөм';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Сатып алууларды эсептөө колдонууну билдирбейт. Валюталар жана бирдиктер бөлөк көрсөтүлөт.';
+
+  @override
+  String get receiptReplaces =>
+      'Шилтемеленген чек саптары бар болгон сатып алууларды алмаштырат; шилтемеленбегендер кошулат.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Бул түзмөктө бул тил үчүн үн киргизүү мүмкүн эмес. Ордуна терип жазсаңыз болот.';
 }

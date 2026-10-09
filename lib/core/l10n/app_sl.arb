@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Odpri svoj seznam in pritisni ikono računa za skeniranje.",
   "assistantToggleTitle": "Prikaži pomočnika",
   "assistantToggleSubtitle": "Mali pomočnik v spodnjem desnem kotu",
-  "scanPriceLabel": "Skeniraj cenovno nalepko"
+  "scanPriceLabel": "Skeniraj cenovno nalepko",
+  "saveFailed": "Shranjevanje ni uspelo. Vaše spremembe so še vedno tukaj. Poskusite znova.",
+  "deleteItemConfirm": "Izbrišite ta artikel in vse zabeležene nakupe?",
+  "clearPurchaseConfirm": "Označite ta artikel kot ne-nakupovan in odstranite vse zabeležene nakupe?",
+  "reportPdfAction": "Shrani poročilo PDF",
+  "reportNotInvoice": "Povzetek nakupov, ne davčna faktura. Davne stopnje so neznane.",
+  "purchaseVisits": "Obiski nakupovanja",
+  "purchaseInterval": "Povprečno število dni med nakupi",
+  "purchasedQuantity": "Količina kupljenega",
+  "purchaseAnalyticsHint": "Nakupi ne merijo porabe. Valute in enote so prikazane ločeno.",
+  "receiptReplaces": "Povezane vrstice računa nadomestijo obstoječe nakupe; nepovezane vrstice se dodajo.",
+  "voiceUnsupportedLanguage": "Ta jezik na tej napravi ni podprt za glasovni vnos. Namesto tega lahko tipkate."
 }

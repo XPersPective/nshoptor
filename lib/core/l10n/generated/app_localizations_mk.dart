@@ -1037,4 +1037,44 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Скенирај ја цената';
+
+  @override
+  String get saveFailed =>
+      'Не успеа да се зачува. Вашите промени сè уште се тука. Ве молиме обидете се повторно.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Да го избришам овој артикл и неговите забележани купувања?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Да го отстранам означувањето на овој артикл и да ги избришам неговите забележани купувања?';
+
+  @override
+  String get reportPdfAction => 'Зачувај PDF извештај';
+
+  @override
+  String get reportNotInvoice =>
+      'Резиме на пазарување, не е даночна фактура. Данските стапки се непознати.';
+
+  @override
+  String get purchaseVisits => 'Посети при пазарување';
+
+  @override
+  String get purchaseInterval => 'Просечни денови помеѓу купувањата';
+
+  @override
+  String get purchasedQuantity => 'Количина купена';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Купувањата не ја мерат потрошувачката. Валутите и единиците се прикажани одделно.';
+
+  @override
+  String get receiptReplaces =>
+      'Линиите од поврзаното претходно уплатување ги заменуваат постоечките купувања; линиите без поврзување се додаваат.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Овој јазик не е достапен за гласовен ввод на ова уред. Можете да пишувате наместо тоа.';
 }

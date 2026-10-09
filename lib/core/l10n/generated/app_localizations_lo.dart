@@ -1031,4 +1031,43 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'ສະແກນປ້າຍລາຄາ';
+
+  @override
+  String get saveFailed =>
+      'ບັນທຶກລົ້ມເຫຼວ. ການປ່ຽນແປງຂອງທ່ານຍັງຄົງຢູ່. ກະລຸນາລອງໃໝ່.';
+
+  @override
+  String get deleteItemConfirm => 'ລຶບອຸປະກອນນີ້ ແລະ ການຊື້ທີ່ບັນທຶກໄວ້?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'ລະເລີຍການກວດສອບອຸປະກອນນີ້ ແລະ ລຶບການຊື້ທີ່ບັນທຶກໄວ້?';
+
+  @override
+  String get reportPdfAction => 'ບັນທຶກລາຍງານ PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'ສະຫຼຸບການຊື້, ບໍ່ແມ່ນໃບເກັບເງິນພາສີ. ອັດຕາພາສີບໍ່ຮູ້ຈັກ.';
+
+  @override
+  String get purchaseVisits => 'ການໄປຊື້';
+
+  @override
+  String get purchaseInterval => 'ຈຳນວນວັນສະເລ່ຍລະຫວ່າງການຊື້';
+
+  @override
+  String get purchasedQuantity => 'ຈຳນວນທີ່ຊື້';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'ການຊື້ບໍ່ວັດແທກການບໍລິໂພກ. ສະກຸນເງິນ ແລະ ຫົວໜ່ວຍຈະສະແດງແຍກກັນ.';
+
+  @override
+  String get receiptReplaces =>
+      'ແຖບໃບເກັບເງິນທີ່ເຊື່ອມຕໍ່ຈະແທນທີ່ການຊື້ທີ່ມີຢູ່; ແຖບທີ່ບໍ່ເຊື່ອມຕໍ່ຈະຖືກເພີ່ມເຂົ້າໄປ.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'ພາສານີ້ບໍ່ສາມາດໃຊ້ສຳລັບການປ້ອນຂໍ້ຄວາມດ້ວຍສຽງໃນອຸປະກອນນີ້. ທ່ານສາມາດພິມແທນໄດ້.';
 }

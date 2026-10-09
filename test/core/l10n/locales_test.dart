@@ -15,6 +15,20 @@ import 'package:nshoptor/core/money/money_parser.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 
 void main() {
+  test('new flow messages are translated in every app language', () {
+    const keys = ['saveFailed', 'deleteItemConfirm', 'clearPurchaseConfirm',
+      'reportPdfAction', 'reportNotInvoice', 'purchaseVisits', 'purchaseInterval',
+      'purchasedQuantity', 'purchaseAnalyticsHint', 'receiptReplaces', 'voiceUnsupportedLanguage'];
+    final en = jsonDecode(File('lib/core/l10n/app_en.arb').readAsStringSync()) as Map;
+    for (final code in appLanguages.keys.where((c) => c != 'en')) {
+      final arb = jsonDecode(File('lib/core/l10n/app_$code.arb').readAsStringSync()) as Map;
+      for (final key in keys) {
+        expect(arb[key], isA<String>(), reason: '$code:$key');
+        expect(arb[key], isNot(en[key]), reason: '$code:$key English fallback');
+        expect((arb[key] as String).trim(), isNotEmpty, reason: '$code:$key');
+      }
+    }
+  });
   test('tüm ARB dosyaları en ile aynı anahtar ve yer tutuculara sahip', () {
     final dir = Directory('lib/core/l10n');
     final en = jsonDecode(File('${dir.path}/app_en.arb').readAsStringSync()) as Map<String, dynamic>;

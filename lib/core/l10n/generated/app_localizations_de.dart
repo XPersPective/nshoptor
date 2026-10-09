@@ -1037,4 +1037,45 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Preisschild scannen';
+
+  @override
+  String get saveFailed =>
+      'Speichern fehlgeschlagen. Deine Änderungen sind noch vorhanden. Bitte versuche es erneut.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Diesen Artikel und seine aufgezeichneten Einkäufe löschen?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Diesen Artikel abhaken und seine aufgezeichneten Einkäufe entfernen?';
+
+  @override
+  String get reportPdfAction => 'PDF-Bericht speichern';
+
+  @override
+  String get reportNotInvoice =>
+      'Einkaufsübersicht, keine Steuerrechnung. Steuersätze sind unbekannt.';
+
+  @override
+  String get purchaseVisits => 'Einkaufsbesuche';
+
+  @override
+  String get purchaseInterval =>
+      'Durchschnittliche Tage zwischen den Einkäufen';
+
+  @override
+  String get purchasedQuantity => 'Gekaufte Menge';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Einkäufe messen nicht den Verbrauch. Währungen und Einheiten werden separat angezeigt.';
+
+  @override
+  String get receiptReplaces =>
+      'Verknüpfte Belegzeilen ersetzen bestehende Einkäufe; nicht verknüpfte Zeilen werden hinzugefügt.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Diese Sprache ist für die Spracheingabe auf diesem Gerät nicht verfügbar. Du kannst stattdessen tippen.';
 }

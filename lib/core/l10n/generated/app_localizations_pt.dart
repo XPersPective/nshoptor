@@ -1037,4 +1037,44 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Ler etiqueta de preço';
+
+  @override
+  String get saveFailed =>
+      'Não foi possível salvar. Suas alterações ainda estão aqui. Por favor, tente novamente.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Excluir este item e suas compras registradas?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Desmarcar este item e remover suas compras registradas?';
+
+  @override
+  String get reportPdfAction => 'Salvar relatório em PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Resumo das compras, não nota fiscal. As alíquotas de impostos são desconhecidas.';
+
+  @override
+  String get purchaseVisits => 'Visitas às compras';
+
+  @override
+  String get purchaseInterval => 'Dias médios entre as compras';
+
+  @override
+  String get purchasedQuantity => 'Quantidade comprada';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'As compras não medem o consumo. Moedas e unidades são exibidas separadamente.';
+
+  @override
+  String get receiptReplaces =>
+      'Linhas do recibo vinculadas substituem as compras existentes; linhas não vinculadas são adicionadas.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Este idioma não está disponível para entrada por voz neste dispositivo. Você pode digitar.';
 }

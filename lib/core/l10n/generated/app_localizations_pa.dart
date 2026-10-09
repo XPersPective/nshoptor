@@ -1034,4 +1034,44 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'ਮੁੱਲ ਲੇਬਲ ਸਕੈਨ ਕਰੋ';
+
+  @override
+  String get saveFailed =>
+      'ਸੇਵ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਤੁਹਾਡੇ ਬਦਲਾਅ ਅਜੇ ਵੀ ਇੱਥੇ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get deleteItemConfirm =>
+      'ਇਹ ਆਈਟਮ ਅਤੇ ਇਸਦੇ ਰਿਕਾਰਡ ਕੀਤੇ ਗਏ ਖਰੀਦਾਰੀਆਂ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'ਇਸ ਆਈਟਮ ਨੂੰ ਅਣਚੈੱਕ ਕਰੋ ਅਤੇ ਇਸਦੇ ਰਿਕਾਰਡ ਕੀਤੇ ਗਏ ਖਰੀਦਾਰੀਆਂ ਨੂੰ ਹਟਾਓ?';
+
+  @override
+  String get reportPdfAction => 'PDF ਰਿਪੋਰਟ ਸੇਵ ਕਰੋ';
+
+  @override
+  String get reportNotInvoice =>
+      'ਖਰੀਦਾਰੀ ਦੀ ਸੰਖੇਪ ਜਾਣਕਾਰੀ, ਟੈਕਸ ਇਨਵੌਇਸ ਨਹੀਂ। ਟੈਕਸ ਦਰਾਂ ਅਣਜਾਣ ਹਨ।';
+
+  @override
+  String get purchaseVisits => 'ਖਰੀਦਾਰੀ ਦੇ ਦੌਰੇ';
+
+  @override
+  String get purchaseInterval => 'ਖਰੀਦਾਰੀਆਂ ਵਿਚਕਾਰ ਔਸਤ ਦਿਨ';
+
+  @override
+  String get purchasedQuantity => 'ਖਰੀਦੀ ਗਈ ਮਾਤਰਾ';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'ਖਰੀਦਾਰੀਆਂ ਖਪਤ ਨੂੰ ਨਹੀਂ ਮਾਪਦੀਆਂ। ਕਰੰਸੀਆਂ ਅਤੇ ਇਕਾਈਆਂ ਵੱਖਰੇ ਤੌਰ \'ਤੇ ਦਿਖਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ।';
+
+  @override
+  String get receiptReplaces =>
+      'ਲਿੰਕ ਕੀਤੀਆਂ ਰਸੀਦ ਲਾਈਨਾਂ ਮੌਜੂਦਾ ਖਰੀਦਾਰੀਆਂ ਨੂੰ ਬਦਲਦੀਆਂ ਹਨ; ਅਣਲਿੰਕ ਕੀਤੀਆਂ ਲਾਈਨਾਂ ਜੋੜੀਆਂ ਜਾਂਦੀਆਂ ਹਨ।';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'ਇਹ ਭਾਸ਼ਾ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਵੌਇਸ ਇਨਪੁਟ ਲਈ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਤੁਸੀਂ ਟਾਈਪ ਕਰ ਸਕਦੇ ਹੋ।';
 }

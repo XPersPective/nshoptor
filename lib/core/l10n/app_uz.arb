@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Ro'yxatingizni oching va chekni skanerlash uchun chek belgisini bosing.",
   "assistantToggleTitle": "Yordamchini ko'rsatish",
   "assistantToggleSubtitle": "O'ng pastki burchakdagi kichik yordamchi",
-  "scanPriceLabel": "Narx yorlig'ini skanerlang"
+  "scanPriceLabel": "Narx yorlig'ini skanerlang",
+  "saveFailed": "Saqlanmadi. O'zgarishlaringiz hali ham saqlangan. Iltimos, qayta urinib ko'ring.",
+  "deleteItemConfirm": "Ushbu mahsulotni va uning sotib olish yozuvlarini o'chirishni xohlaysizmi?",
+  "clearPurchaseConfirm": "Ushbu mahsulotni belgisiz qilish va uning sotib olish yozuvlarini o'chirishni xohlaysizmi?",
+  "reportPdfAction": "PDF hisobotni saqlash",
+  "reportNotInvoice": "Xaridlar tahlili, soliq cheki emas. Soliq stavkalari noma'lum.",
+  "purchaseVisits": "Xarid safarlari",
+  "purchaseInterval": "Xaridlar orasidagi o'rtacha kunlar soni",
+  "purchasedQuantity": "Sotib olingan miqdor",
+  "purchaseAnalyticsHint": "Xaridlar iste'molni o'lchamaydi. Valyutalar va birliklar alohida ko'rsatiladi.",
+  "receiptReplaces": "Bog'langan chek qatorlari mavjud xaridlarni almashtiradi; bog'lanmagan qatorlar qo'shiladi.",
+  "voiceUnsupportedLanguage": "Bu til ushbu qurilmada ovozli kiritish uchun mavjud emas. Buning o'rniga matn kiritishingiz mumkin."
 }

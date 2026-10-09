@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Abre tu lista y toca el icono del ticket para escanearlo.",
   "assistantToggleTitle": "Mostrar asistente",
   "assistantToggleSubtitle": "El pequeño ayudante de abajo a la derecha",
-  "scanPriceLabel": "Escanear etiqueta de precio"
+  "scanPriceLabel": "Escanear etiqueta de precio",
+  "saveFailed": "No se pudo guardar. Tus cambios siguen aquí. Inténtalo de nuevo.",
+  "deleteItemConfirm": "¿Eliminar este artículo y sus compras registradas?",
+  "clearPurchaseConfirm": "¿Desmarcar este artículo y eliminar sus compras registradas?",
+  "reportPdfAction": "Guardar informe en PDF",
+  "reportNotInvoice": "Resumen de la compra, no es una factura fiscal. Las tasas impositivas son desconocidas.",
+  "purchaseVisits": "Visitas de compra",
+  "purchaseInterval": "Días promedio entre compras",
+  "purchasedQuantity": "Cantidad comprada",
+  "purchaseAnalyticsHint": "Las compras no miden el consumo. Las monedas y las unidades se muestran por separado.",
+  "receiptReplaces": "Las líneas del recibo vinculado reemplazan las compras existentes; las líneas no vinculadas se agregan.",
+  "voiceUnsupportedLanguage": "Este idioma no está disponible para entrada por voz en este dispositivo. Puedes escribir en su lugar."
 }

@@ -1037,4 +1037,44 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Սկանավորեք գնի փոստը';
+
+  @override
+  String get saveFailed =>
+      'Չհաջողվեց պահպանել։ Ձեր փոփոխությունները դեռևս այստեղ են։ Խնդրում ենք կրկին փորձել:';
+
+  @override
+  String get deleteItemConfirm =>
+      'Ջնջե՞լ է այս ապրանքը և նրա գրանցված գնումները:';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Ազատե՞լ է այս ապրանքի նշումը և հեռացնե՞լ նրա գրանցված գնումները:';
+
+  @override
+  String get reportPdfAction => 'Պահպանել PDF հաշվետվություն';
+
+  @override
+  String get reportNotInvoice =>
+      'Գնումների ամփոփում, ոչ թե հարկային հաշիվ։ Հարկային տոկոսները անհայտ են:';
+
+  @override
+  String get purchaseVisits => 'Գնումների այցեր';
+
+  @override
+  String get purchaseInterval => 'Միջին օրերը գնումների միջև';
+
+  @override
+  String get purchasedQuantity => 'Գնված քանակ';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Գնումները չեն չափում սպառումը։ Արժույթները և միավորները ցուցադրվում են առանձին:';
+
+  @override
+  String get receiptReplaces =>
+      'Կապված լիցքագրման տողերը փոխարինում են գոյություն ունեցող գնումներին; անկապ տողերը ավելացվում են:';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Այս լեզուն հասանելի չէ ձայնային մուտքագրման համար այս սարքում։ Կարող եք փոխարենը տպել:';
 }

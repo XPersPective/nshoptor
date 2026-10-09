@@ -1036,4 +1036,44 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Сканаваць цану';
+
+  @override
+  String get saveFailed =>
+      'Не ўдалося захаваць. Вашы змены захаваны. Паўтарыце спробу.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Выдаліць гэты пункт і яго запісаныя пакупкі?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Зняць адзнаку з гэтага пункта і выдаліць яго запісаныя пакупкі?';
+
+  @override
+  String get reportPdfAction => 'Захаваць PDF-звіт';
+
+  @override
+  String get reportNotInvoice =>
+      'Агульная інфармацыя пра пакупкі, не падатковы рахунак. Стаўкі податку невядомыя.';
+
+  @override
+  String get purchaseVisits => 'Колькасць візітаў у краму';
+
+  @override
+  String get purchaseInterval => 'Сярэдняя колькасць дзён паміж пакупкамі';
+
+  @override
+  String get purchasedQuantity => 'Колькасць набытага';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Пакупкі не вымяраюць спажыванне. Валюты і адзінкі вымярэння паказваюцца асобна.';
+
+  @override
+  String get receiptReplaces =>
+      'Падключаныя радкі чека замяняюць існуючыя пакупкі; непадключаныя дадаюцца.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Гэтая мова не даступная для голасавога ўводу на гэтым прыладзе. Вы можаце пісаць тэкстам.';
 }

@@ -1033,4 +1033,43 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skenovat cenovou etiketu';
+
+  @override
+  String get saveFailed =>
+      'Uložení se nezdařilo. Změny zůstávají. Zkuste to prosím znovu.';
+
+  @override
+  String get deleteItemConfirm => 'Smazat tuto položku a zaznamenané nákupy?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Odebrat zaškrtnutí této položky a odstranit zaznamenané nákupy?';
+
+  @override
+  String get reportPdfAction => 'Uložit PDF report';
+
+  @override
+  String get reportNotInvoice =>
+      'Souhrn nákupů, ne daňový doklad. Daňové sazby nejsou známy.';
+
+  @override
+  String get purchaseVisits => 'Nákupní návštěvy';
+
+  @override
+  String get purchaseInterval => 'Průměrný počet dní mezi nákupy';
+
+  @override
+  String get purchasedQuantity => 'Koupěné množství';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Nákupy neměřují spotřebu. Měny a jednotky jsou zobrazovány odděleně.';
+
+  @override
+  String get receiptReplaces =>
+      'Řádky propojeného účtenky nahradí existující nákupy; nespojené řádky budou přidány.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Tento jazyk není na tomto zařízení dostupný pro hlasový vstup. Můžete místo toho psát.';
 }

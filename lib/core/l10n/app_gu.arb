@@ -324,5 +324,16 @@
   "assistantReceiptHint": "તમારી લિસ્ટ ખોલો અને તેને સ્કેન કરવા માટે રસીદ આઇકન પર ટેપ કરો.",
   "assistantToggleTitle": "સહાયક દર્શાવો",
   "assistantToggleSubtitle": "જમણી બાજુ નીચેનો નાનો હેલ્પર",
-  "scanPriceLabel": "કિંમત લેબલ સ્કેન કરો"
+  "scanPriceLabel": "કિંમત લેબલ સ્કેન કરો",
+  "saveFailed": "સેવ કરી શકાયા નહીં. તમારા ફેરફારો હજુ પણ અહીં છે. કૃપા કરીને ફરી પ્રયાસ કરો.",
+  "deleteItemConfirm": "આ આઇટમ અને તેના રેકોર્ડેડ ખરીદીઓ ડિલીટ કરવા?",
+  "clearPurchaseConfirm": "આ આઇટમનું ચેકબોક્સ દૂર કરીને તેની રેકોર્ડેડ ખરીદીઓ દૂર કરવી?",
+  "reportPdfAction": "PDF રિપોર્ટ સેવ કરો",
+  "reportNotInvoice": "શોપિંગ સારાંશ, ટેક્સ ઇન્વોઇસ નથી. ટેક્સ રેટ્સ અજ્ઞાત છે.",
+  "purchaseVisits": "શોપિંગ વિઝિટ્સ",
+  "purchaseInterval": "ખરીદી વચ્ચેનો સરેરાશ દિવસો",
+  "purchasedQuantity": "ખરીદેલ માત્રા",
+  "purchaseAnalyticsHint": "ખરીદીઓ ખપતને માપતી નથી. કરન્સી અને એકમો અલગ દર્શાવવામાં આવે છે.",
+  "receiptReplaces": "લિંકેડ રસીદ લાઇન્સ existing ખરીદીઓને બદલે છે; અનલિંકેડ લાઇન્સ ઉમેરાય છે.",
+  "voiceUnsupportedLanguage": "આ ભાષા આ ડિવાઇસ પર વૉઇસ ઇનપુટ માટે ઉપલબ્ધ નથી. તમે ટાઇપ કરી શકો છો."
 }

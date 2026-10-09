@@ -2185,6 +2185,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Scan price label'**
   String get scanPriceLabel;
+
+  /// No description provided for @saveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save. Your changes are still here. Please try again.'**
+  String get saveFailed;
+
+  /// No description provided for @deleteItemConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this item and its recorded purchases?'**
+  String get deleteItemConfirm;
+
+  /// No description provided for @clearPurchaseConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Uncheck this item and remove its recorded purchases?'**
+  String get clearPurchaseConfirm;
+
+  /// No description provided for @reportPdfAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save PDF report'**
+  String get reportPdfAction;
+
+  /// No description provided for @reportNotInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping summary, not a tax invoice. Tax rates are unknown.'**
+  String get reportNotInvoice;
+
+  /// No description provided for @purchaseVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping visits'**
+  String get purchaseVisits;
+
+  /// No description provided for @purchaseInterval.
+  ///
+  /// In en, this message translates to:
+  /// **'Average days between purchases'**
+  String get purchaseInterval;
+
+  /// No description provided for @purchasedQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchased quantity'**
+  String get purchasedQuantity;
+
+  /// No description provided for @purchaseAnalyticsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases do not measure consumption. Currencies and units are shown separately.'**
+  String get purchaseAnalyticsHint;
+
+  /// No description provided for @receiptReplaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked receipt lines replace existing purchases; unlinked lines are added.'**
+  String get receiptReplaces;
+
+  /// No description provided for @voiceUnsupportedLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'This language is not available for voice input on this device. You can type instead.'**
+  String get voiceUnsupportedLanguage;
 }
 
 class _AppLocalizationsDelegate

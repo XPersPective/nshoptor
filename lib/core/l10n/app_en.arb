@@ -386,5 +386,16 @@
   "assistantReceiptHint": "Open your list and tap the receipt icon to scan it.",
   "assistantToggleTitle": "Show assistant",
   "assistantToggleSubtitle": "The little helper at the bottom right",
-  "scanPriceLabel": "Scan price label"
+  "scanPriceLabel": "Scan price label",
+  "saveFailed": "Could not save. Your changes are still here. Please try again.",
+  "deleteItemConfirm": "Delete this item and its recorded purchases?",
+  "clearPurchaseConfirm": "Uncheck this item and remove its recorded purchases?",
+  "reportPdfAction": "Save PDF report",
+  "reportNotInvoice": "Shopping summary, not a tax invoice. Tax rates are unknown.",
+  "purchaseVisits": "Shopping visits",
+  "purchaseInterval": "Average days between purchases",
+  "purchasedQuantity": "Purchased quantity",
+  "purchaseAnalyticsHint": "Purchases do not measure consumption. Currencies and units are shown separately.",
+  "receiptReplaces": "Linked receipt lines replace existing purchases; unlinked lines are added.",
+  "voiceUnsupportedLanguage": "This language is not available for voice input on this device. You can type instead."
 }

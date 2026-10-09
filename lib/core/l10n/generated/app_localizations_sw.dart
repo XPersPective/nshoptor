@@ -1035,4 +1035,44 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skana bei ya lebo';
+
+  @override
+  String get saveFailed =>
+      'Haijafanikiwa kuhifadhi. Mabadiliko yako bado yamo. Tafadhali jaribu tena.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Futa kipengele hiki na ununuzi wake ulorekodiwa?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Chagua upya kipengele hiki na futa ununuzi wake uliorekodiwa?';
+
+  @override
+  String get reportPdfAction => 'Hifadhi ripoti ya PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Muhtasari wa ununuzi, sio risiti ya kodi. Kiwango cha kodi hakijulikani.';
+
+  @override
+  String get purchaseVisits => 'Mikutano ya ununuzi';
+
+  @override
+  String get purchaseInterval => 'Siku za wastani kati ya ununuzi';
+
+  @override
+  String get purchasedQuantity => 'Kiasi kilichonunuliwa';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Ununuzi haupimi matumizi. Viwango vya sarafu na vitengo vinaonyeshwa tofauti.';
+
+  @override
+  String get receiptReplaces =>
+      'Mistari ya risiti iliyounganishwa inabadilisha ununuzi uliopo; mistari isiyo yaunganishwa inaongezwa.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Lugha hii haipatikani kwa ingizo la sauti kwenye kifaa hiki. Unaweza kuandika badala yake.';
 }

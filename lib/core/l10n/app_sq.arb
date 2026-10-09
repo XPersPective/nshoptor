@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Hap listën tënde dhe prek ikonën e faturës për ta skanuar atë.",
   "assistantToggleTitle": "Shfaq asistentin",
   "assistantToggleSubtitle": "Ndihmësi i vogël në këndin e djathtë poshtë",
-  "scanPriceLabel": "Skano etiketën e çmimit"
+  "scanPriceLabel": "Skano etiketën e çmimit",
+  "saveFailed": "Ruajtja dështoi. Ndryshimet tuaja janë ende këtu. Ju lutemi provoni përsëri.",
+  "deleteItemConfirm": "A të fshihet ky artikull dhe blerjet e tij të regjistruara?",
+  "clearPurchaseConfirm": "A të heqet shenja nga ky artikull dhe të hiqen blerjet e tij të regjistruara?",
+  "reportPdfAction": "Ruaj raportin PDF",
+  "reportNotInvoice": "Përmbledhje e blerjeve, jo fakturë tatimore. Shkallët tatimore janë të panjohura.",
+  "purchaseVisits": "Vizitat e blerjeve",
+  "purchaseInterval": "Ditët mesatarë midis blerjeve",
+  "purchasedQuantity": "Sasia e blerë",
+  "purchaseAnalyticsHint": "Blerjet nuk matin konsumin. Monedhat dhe njësitë shfaqen veçmas.",
+  "receiptReplaces": "Rreshtat e lidhur të faturës zëvendësojnë blerjet ekzistuese; rreshtat e palidhur shtohen.",
+  "voiceUnsupportedLanguage": "Ky gjuhë nuk është e disponueshme për hyrjen me zë në këtë pajisje. Mund të shkruani në vend të kësaj."
 }

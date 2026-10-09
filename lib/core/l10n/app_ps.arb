@@ -324,5 +324,16 @@
   "assistantReceiptHint": "خپل لیست خلاص کړئ او د سکن کولو لپاره د رسید آیکون ته ټچ وکړئ.",
   "assistantToggleTitle": "مرسته کوونکی ښکاره کړئ",
   "assistantToggleSubtitle": "د ښي لاندې کوچنی مرسته کوونکی",
-  "scanPriceLabel": "د بیه لیبل سکین کړئ"
+  "scanPriceLabel": "د بیه لیبل سکین کړئ",
+  "saveFailed": "نږدې کول ناموفق پاتې شول. ستاسو بدلونونه لا هم شته. بیا هڅه وکړئ.",
+  "deleteItemConfirm": "دا توکي او د هغې ثبت شوي خریدونه حذف کړم؟",
+  "clearPurchaseConfirm": "دا توکی ناسیټ کړم او د هغې ثبت شوي خریدونه لرې کړم؟",
+  "reportPdfAction": "PDF راپور خوندي کړئ",
+  "reportNotInvoice": "د خرید لنډیز، د مالیاتو انوائس نه. د مالیاتو نرخونه ناشتون دي.",
+  "purchaseVisits": "د خرید سفرې",
+  "purchaseInterval": "په منځ کې د خریدونو اوسط ورځې",
+  "purchasedQuantity": "خریدل شوې مقدار",
+  "purchaseAnalyticsHint": "خریدونه د مصرف اندازه نه کوي. کرنسي او واحدونه جلا ښودل کیږي.",
+  "receiptReplaces": "تړلي رسید قطې شتون لري خریدونه ځای پر ځای کوي؛ غیر تړلي قطې اضافه کیږي.",
+  "voiceUnsupportedLanguage": "دا ژبه په دې وسیله کې د غږیزو داخلولو لپاره شتون نلري. تاسو کولی شئ تایپ وکړئ."
 }

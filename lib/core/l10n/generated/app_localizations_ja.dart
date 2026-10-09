@@ -1011,4 +1011,38 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scanPriceLabel => '価格ラベルをスキャン';
+
+  @override
+  String get saveFailed => '保存できませんでした。変更内容は保持されています。もう一度お試しください。';
+
+  @override
+  String get deleteItemConfirm => 'この商品と記録された購入履歴を削除しますか？';
+
+  @override
+  String get clearPurchaseConfirm => 'この商品のチェックを外し、記録された購入履歴を削除しますか？';
+
+  @override
+  String get reportPdfAction => 'PDFレポートを保存';
+
+  @override
+  String get reportNotInvoice => 'ショッピングのまとめであり、税務請求書ではありません。税率は不明です。';
+
+  @override
+  String get purchaseVisits => '買い物回数';
+
+  @override
+  String get purchaseInterval => '平均的な購入間隔（日）';
+
+  @override
+  String get purchasedQuantity => '購入数量';
+
+  @override
+  String get purchaseAnalyticsHint => '購入データは消費量を直接示すものではありません。通貨と単位は別に表示されます。';
+
+  @override
+  String get receiptReplaces => '紐付けられたレシート行は既存の購入データを上書きし、紐付けられていない行は追加されます。';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'このデバイスでは、この言語での音声入力はサポートされていません。代わりにテキスト入力してください。';
 }

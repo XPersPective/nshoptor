@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Apri la tua lista e tocca l'icona dello scontrino per scansionarlo.",
   "assistantToggleTitle": "Mostra assistente",
   "assistantToggleSubtitle": "Il piccolo aiutante in basso a destra",
-  "scanPriceLabel": "Scansiona l'etichetta del prezzo"
+  "scanPriceLabel": "Scansiona l'etichetta del prezzo",
+  "saveFailed": "Salvataggio non riuscito. Le modifiche sono ancora qui. Riprova.",
+  "deleteItemConfirm": "Eliminare questo articolo e gli acquisti registrati?",
+  "clearPurchaseConfirm": "Deselezionare questo articolo e rimuovere gli acquisti registrati?",
+  "reportPdfAction": "Salva rapporto PDF",
+  "reportNotInvoice": "Riepilogo della spesa, non una fattura fiscale. I tassi fiscali sono sconosciuti.",
+  "purchaseVisits": "Visite allo shopping",
+  "purchaseInterval": "Giorni medi tra gli acquisti",
+  "purchasedQuantity": "Quantità acquistata",
+  "purchaseAnalyticsHint": "Gli acquisti non misurano il consumo. Valute e unità vengono mostrate separatamente.",
+  "receiptReplaces": "Le righe del scontrino collegate sostituiscono gli acquisti esistenti; le righe non collegate vengono aggiunte.",
+  "voiceUnsupportedLanguage": "Questa lingua non è disponibile per l'input vocale su questo dispositivo. Puoi digitare invece."
 }

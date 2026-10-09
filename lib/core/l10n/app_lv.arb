@@ -324,5 +324,16 @@
   "assistantReceiptHint": "Atveriet savu sarakstu un pieskarieties čekam, lai to ieskenētu.",
   "assistantToggleTitle": "Rādīt asistentu",
   "assistantToggleSubtitle": "Mazais palīgs apakšējā labajā stūrī",
-  "scanPriceLabel": "Skenē cenu etiķeti"
+  "scanPriceLabel": "Skenē cenu etiķeti",
+  "saveFailed": "Neizdevās saglabāt. Jūsu izmaiņas joprojām ir šeit. Lūdzu, mēģiniet vēlreiz.",
+  "deleteItemConfirm": "Dzēst šo preci un tās reģistrētos pirkumus?",
+  "clearPurchaseConfirm": "Noņemt atzīmi no šīs preces un dzēst tās reģistrētos pirkumus?",
+  "reportPdfAction": "Saglabāt PDF pārskatu",
+  "reportNotInvoice": "Pirkumu kopsavilkums, nevis nodokļu rēķins. Nodokļa likmes nav zināmas.",
+  "purchaseVisits": "Veikalu apmeklējumi",
+  "purchaseInterval": "Vidējais dienu skaits starp pirkumiem",
+  "purchasedQuantity": "Iegādātā daudzums",
+  "purchaseAnalyticsHint": "Pirkumi nemēra patēriņu. Valūtas un vienības tiek rādītas atsevišķi.",
+  "receiptReplaces": "Saistītās čeka pozīcijas aizvieto esošos pirkumus; nesaistītās pozīcijas tiek pievienotas.",
+  "voiceUnsupportedLanguage": "Šī valoda nav pieejama balss ievadei šajā ierīcē. Varat rakstīt tekstu."
 }

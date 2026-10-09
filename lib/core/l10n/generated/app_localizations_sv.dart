@@ -1032,4 +1032,44 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skanna prisetikett';
+
+  @override
+  String get saveFailed =>
+      'Kunde inte spara. Dina ändringar finns kvar. Försök igen.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Ta bort denna vara och dess registrerade köp?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Avmarkera denna vara och ta bort dess registrerade köp?';
+
+  @override
+  String get reportPdfAction => 'Spara PDF-rapport';
+
+  @override
+  String get reportNotInvoice =>
+      'Inköpsöversikt, inte en skattefaktura. Skattesatser är okända.';
+
+  @override
+  String get purchaseVisits => 'Inköpsbesök';
+
+  @override
+  String get purchaseInterval => 'Genomsnittliga dagar mellan inköp';
+
+  @override
+  String get purchasedQuantity => 'Köpt kvantitet';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Inköp mäter inte konsumtion. Valutor och enheter visas separat.';
+
+  @override
+  String get receiptReplaces =>
+      'Länkade rader i kvitto ersätter befintliga inköp; olänkade rader läggs till.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Detta språk stöder inte röstinskrivning på den här enheten. Du kan skriva istället.';
 }

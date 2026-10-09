@@ -1008,4 +1008,37 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get scanPriceLabel => '扫描价格标签';
+
+  @override
+  String get saveFailed => '保存失败。您的更改仍在，请重试。';
+
+  @override
+  String get deleteItemConfirm => '删除此项及其已记录的消费？';
+
+  @override
+  String get clearPurchaseConfirm => '取消勾选此项并移除其已记录的消费？';
+
+  @override
+  String get reportPdfAction => '保存 PDF 报告';
+
+  @override
+  String get reportNotInvoice => '购物汇总，非税务发票。税率未知。';
+
+  @override
+  String get purchaseVisits => '购物次数';
+
+  @override
+  String get purchaseInterval => '平均购买间隔天数';
+
+  @override
+  String get purchasedQuantity => '购买数量';
+
+  @override
+  String get purchaseAnalyticsHint => '消费数据不反映实际消耗量。货币和单位将分别显示。';
+
+  @override
+  String get receiptReplaces => '关联的收据行将替换现有消费记录；未关联的行将被添加。';
+
+  @override
+  String get voiceUnsupportedLanguage => '此设备不支持该语言的语音输入。您可以改为手动输入。';
 }

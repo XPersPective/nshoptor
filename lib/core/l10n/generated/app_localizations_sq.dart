@@ -1037,4 +1037,44 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Skano etiketën e çmimit';
+
+  @override
+  String get saveFailed =>
+      'Ruajtja dështoi. Ndryshimet tuaja janë ende këtu. Ju lutemi provoni përsëri.';
+
+  @override
+  String get deleteItemConfirm =>
+      'A të fshihet ky artikull dhe blerjet e tij të regjistruara?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'A të heqet shenja nga ky artikull dhe të hiqen blerjet e tij të regjistruara?';
+
+  @override
+  String get reportPdfAction => 'Ruaj raportin PDF';
+
+  @override
+  String get reportNotInvoice =>
+      'Përmbledhje e blerjeve, jo fakturë tatimore. Shkallët tatimore janë të panjohura.';
+
+  @override
+  String get purchaseVisits => 'Vizitat e blerjeve';
+
+  @override
+  String get purchaseInterval => 'Ditët mesatarë midis blerjeve';
+
+  @override
+  String get purchasedQuantity => 'Sasia e blerë';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Blerjet nuk matin konsumin. Monedhat dhe njësitë shfaqen veçmas.';
+
+  @override
+  String get receiptReplaces =>
+      'Rreshtat e lidhur të faturës zëvendësojnë blerjet ekzistuese; rreshtat e palidhur shtohen.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Ky gjuhë nuk është e disponueshme për hyrjen me zë në këtë pajisje. Mund të shkruani në vend të kësaj.';
 }

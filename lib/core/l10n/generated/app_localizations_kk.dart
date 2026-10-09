@@ -1032,4 +1032,44 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get scanPriceLabel => 'Баға жапсырмасын сканерлеу';
+
+  @override
+  String get saveFailed =>
+      'Сақтау сәтсіз аяқталды. Өзгерістеріңіз сақталған. Қайталап көріңіз.';
+
+  @override
+  String get deleteItemConfirm =>
+      'Бұл тауар мен оның тіркелген сатылымдарын жою керек пе?';
+
+  @override
+  String get clearPurchaseConfirm =>
+      'Бұл тауардың белгісін алып, оның тіркелген сатылымдарын жойғыңыз келе ме?';
+
+  @override
+  String get reportPdfAction => 'PDF есепті сақтау';
+
+  @override
+  String get reportNotInvoice =>
+      'Сатып алу қорытындысы, салықтық шот емес. Салық мөлшерлемелері белгісіз.';
+
+  @override
+  String get purchaseVisits => 'Дүкенге барулар';
+
+  @override
+  String get purchaseInterval => 'Сатып алулар арасындағы орташа күндер саны';
+
+  @override
+  String get purchasedQuantity => 'Сатып алынған мөлшер';
+
+  @override
+  String get purchaseAnalyticsHint =>
+      'Сатып алулар тұтыну көлемін өлшемейді. Валюталар мен бірліктер жеке көрсетіледі.';
+
+  @override
+  String get receiptReplaces =>
+      'Тіркетілген чек жолдары бар сатылымдарды алмастырады; тіркелмеген жолдар қосылады.';
+
+  @override
+  String get voiceUnsupportedLanguage =>
+      'Бұл тіл бұл құрылғыда дауыспен енгізу үшін қолжетімсіз. Оның орнына мәтінмен теруге болады.';
 }
