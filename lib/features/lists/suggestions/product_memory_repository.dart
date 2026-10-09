@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 
 import '../../../core/util/normalize_name.dart';
+import '../../../core/money/currency.dart';
+import '../../../core/money/decimal_fixed.dart';
 import '../../../data/db/app_database.dart';
 
 /// Ürün hafızası ve fiyat gözlemleri (spec §6.2 öneriler, §6.10).
@@ -25,16 +27,30 @@ class ProductMemoryRepository {
     int discountMinor = 0,
     required String currencyCode,
     int? storeId,
+    int? purchaseEntryId,
     String source = 'manual',
   }) async {
     final productId = await _upsertProduct(name, normalizedName);
-    await _db.into(_db.priceObservations).insert(
+    await _db
+        .into(_db.priceObservations)
+        .insert(
           PriceObservationsCompanion.insert(
             productId: Value(productId),
+            purchaseEntryId: Value(purchaseEntryId),
             storeId: Value(storeId),
             quantity: quantity,
             unitCode: unitCode,
-            unitPrice: unitPrice ?? '0',
+            unitPrice:
+                unitPrice ??
+                DecimalFixed.fromMinorUnits(
+                      lineTotalMinor,
+                      Currency.fromCode(currencyCode).minorUnitDigits,
+                    )
+                    .divide(
+                      DecimalFixed.parse(quantity),
+                      scale: DecimalFixed.maxFractionDigits,
+                    )
+                    .toDbString(),
             lineTotalMinorUnits: lineTotalMinor,
             discountMinorUnits: Value(discountMinor),
             currencyCode: currencyCode,
@@ -44,19 +60,23 @@ class ProductMemoryRepository {
   }
 
   Future<int> _upsertProduct(String name, String normalizedName) async {
-    final existing = await (_db.select(_db.productMemory)
-          ..where((t) => t.normalizedName.equals(normalizedName)))
-        .getSingleOrNull();
+    final existing = await (_db.select(
+      _db.productMemory,
+    )..where((t) => t.normalizedName.equals(normalizedName))).getSingleOrNull();
     if (existing != null) {
-      await (_db.update(_db.productMemory)
-            ..where((t) => t.id.equals(existing.id)))
-          .write(ProductMemoryCompanion(
-        useCount: Value(existing.useCount + 1),
-        lastUsedAt: Value(DateTime.now()),
-      ));
+      await (_db.update(
+        _db.productMemory,
+      )..where((t) => t.id.equals(existing.id))).write(
+        ProductMemoryCompanion(
+          useCount: Value(existing.useCount + 1),
+          lastUsedAt: Value(DateTime.now()),
+        ),
+      );
       return existing.id;
     }
-    return _db.into(_db.productMemory).insert(
+    return _db
+        .into(_db.productMemory)
+        .insert(
           ProductMemoryCompanion.insert(
             canonicalName: name,
             normalizedName: normalizedName,
@@ -68,8 +88,10 @@ class ProductMemoryRepository {
 
   /// Yazarken öneri: normalize önekiyle eşleşen hafıza kayıtları; en çok
   /// kullanılan ve en yeni kullanılanlar önce (spec §6.2).
-  Future<List<ProductMemoryData>> suggestNames(String query,
-      {int limit = 5}) async {
+  Future<List<ProductMemoryData>> suggestNames(
+    String query, {
+    int limit = 5,
+  }) async {
     final q = query.trim().toLowerCase();
     if (q.isEmpty) {
       return (_db.select(_db.productMemory)
@@ -123,4 +145,3 @@ class ProductMemoryRepository {
             ..where((t) => t.normalizedName.equals(normalizedName)))
           .getSingleOrNull();
 }
-

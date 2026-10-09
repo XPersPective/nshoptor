@@ -1,7 +1,9 @@
-import 'package:drift/drift.dart' show Value;
 import 'package:flutter/foundation.dart';
 
 import '../../../core/money/decimal_fixed.dart';
+import '../../../core/money/currency.dart';
+import '../../../core/util/normalize_name.dart';
+import '../../shopping_mode/shopping_repository.dart';
 import '../../../data/db/app_database.dart';
 import '../parser/receipt_parse_result.dart';
 import '../parser/receipt_parser.dart' show ReceiptMatcher;
@@ -69,6 +71,17 @@ class ReceiptReviewController extends ChangeNotifier {
           lineTotalMinor: line.lineTotalMinor,
         ),
     ];
+    if ((parseResult.discountMinor ?? 0) > 0) {
+      lines.add(
+        ReviewLine(
+          rawText: '',
+          name: '−',
+          normalizedName: 'discount',
+          quantity: DecimalFixed.zero(),
+          lineTotalMinor: -parseResult.discountMinor!,
+        )..isDiscount = true,
+      );
+    }
     reportedTotalMinor = parseResult.totalMinor;
     detectedStore = parseResult.storeCandidates.firstOrNull;
     detectedDate = parseResult.dateCandidate;
@@ -148,20 +161,26 @@ class ReceiptReviewController extends ChangeNotifier {
   Future<bool> _prefillWithAi() async {
     final client = ai;
     if (client == null || !client.enabled) return false;
-    final planned = await (_db.select(_db.plannedItems)
-          ..where((t) => t.listId.equals(listId)))
-        .get();
-    final outcome = await AiReceiptMatcher(client, localeCode: localeCode).match(
-      [
-        for (var i = 0; i < lines.length; i++)
-          (
-            index: i,
-            text: lines[i].rawText,
-            total: DecimalFixed.fromMinorUnits(lines[i].lineTotalMinor, 2).toDbString(),
-          ),
-      ],
-      [for (final p in planned) (id: p.id, name: p.name)],
-    );
+    final list = await ShoppingRepository(_db).getList(listId);
+    final digits = Currency.fromCode(list.currencyCode).minorUnitDigits;
+    final planned = await (_db.select(
+      _db.plannedItems,
+    )..where((t) => t.listId.equals(listId))).get();
+    final outcome = await AiReceiptMatcher(client, localeCode: localeCode)
+        .match(
+          [
+            for (var i = 0; i < lines.length; i++)
+              (
+                index: i,
+                text: lines[i].rawText,
+                total: DecimalFixed.fromMinorUnits(
+                  lines[i].lineTotalMinor,
+                  digits,
+                ).toDbString(),
+              ),
+          ],
+          [for (final p in planned) (id: p.id, name: p.name)],
+        );
     if (outcome == null) return false;
     if (outcome.result is! AiOk) {
       aiProblem = outcome.result;
@@ -193,8 +212,7 @@ class ReceiptReviewController extends ChangeNotifier {
           confidence: 'medium',
         ),
     ];
-    final matches = await ReceiptMatcher(_db)
-        .match(candidates, listId: listId);
+    final matches = await ReceiptMatcher(_db).match(candidates, listId: listId);
     var changed = false;
     for (final (line, item, confidence) in matches) {
       if (confidence != 'high' || item == null) continue;
@@ -206,7 +224,8 @@ class ReceiptReviewController extends ChangeNotifier {
     if (changed) notifyListeners();
   }
 
-  void linkLine(int index, int plannedItemId) {    lines[index]
+  void linkLine(int index, int plannedItemId) {
+    lines[index]
       ..status = ReviewStatus.accepted
       ..linkedPlannedItemId = plannedItemId
       ..isUnplanned = false;
@@ -241,17 +260,33 @@ class ReceiptReviewController extends ChangeNotifier {
   void splitLine(int index, {required int firstMinor}) {
     final original = lines[index];
     final remaining = original.lineTotalMinor - firstMinor;
+    if (original.lineTotalMinor == 0 ||
+        firstMinor == 0 ||
+        remaining == 0 ||
+        firstMinor.isNegative != original.lineTotalMinor.isNegative ||
+        remaining.isNegative != original.lineTotalMinor.isNegative) {
+      throw ArgumentError('Split must preserve the line total sign');
+    }
+    final firstQuantity = original.quantity == null
+        ? null
+        : (original.quantity! * DecimalFixed.fromInt(firstMinor)).divide(
+            DecimalFixed.fromInt(original.lineTotalMinor),
+            scale: DecimalFixed.maxFractionDigits,
+          );
     final copy = ReviewLine(
       rawText: original.rawText,
       name: original.name,
       normalizedName: original.normalizedName,
-      quantity: original.quantity,
+      quantity: firstQuantity == null
+          ? null
+          : original.quantity! - firstQuantity,
       unitPriceMinor: original.unitPriceMinor,
       lineTotalMinor: remaining,
       status: ReviewStatus.pending,
       linkedPlannedItemId: original.linkedPlannedItemId,
     );
     original.lineTotalMinor = firstMinor;
+    original.quantity = firstQuantity;
     lines.insert(index + 1, copy);
     notifyListeners();
   }
@@ -259,24 +294,71 @@ class ReceiptReviewController extends ChangeNotifier {
   /// Kullanıcı onayı: yalnız kabul edilen satırlar kayda geçer.
   /// Bağlılar planlanan ürüne, bağlantısızlar plansız ürün olarak yazılır
   /// (spec §6.9: onaydan önce veritabanı değişmez).
-  Future<void> commit() async {
-    final accepted = lines.where((l) => l.status == ReviewStatus.accepted);
-    for (final line in accepted) {
-      await _db.into(_db.purchaseEntries).insert(
-            PurchaseEntriesCompanion.insert(
-              listId: listId,
-              plannedItemId: Value(line.linkedPlannedItemId),
-              name: line.name,
-              normalizedName: line.normalizedName,
-              actualQuantity: line.quantity?.toDbString() ?? '1',
-              actualUnitCode: 'adet',
-              actualLineTotalMinorUnits: line.lineTotalMinor,
-              source: const Value('receiptOcr'),
-              userConfirmed: const Value(true),
+  Future<void>? _commitFuture;
+  Future<List<PurchaseEntry>> replacementEntries() =>
+      (_db.select(_db.purchaseEntries)..where(
+            (t) => t.plannedItemId.isIn(
+              lines
+                  .where((l) => l.status == ReviewStatus.accepted)
+                  .map((l) => l.linkedPlannedItemId)
+                  .whereType<int>(),
             ),
-          );
+          ))
+          .get();
+
+  Future<void> commit() =>
+      _commitFuture ??= _commitOnce().onError((error, stack) {
+        _commitFuture = null;
+        Error.throwWithStackTrace(error!, stack);
+      });
+
+  Future<void> _commitOnce() => _db.transaction(() async {
+    final accepted = lines
+        .where((l) => l.status == ReviewStatus.accepted)
+        .toList();
+    final repo = ShoppingRepository(_db);
+    final list = await repo.getList(listId);
+    if (confirmedCurrency != null && confirmedCurrency != list.currencyCode) {
+      throw ArgumentError('Receipt currency must match the list');
     }
-  }
+    final linked = <int, PlannedItem>{};
+    for (final id
+        in accepted
+            .map((l) => l.linkedPlannedItemId)
+            .whereType<int>()
+            .toSet()) {
+      final item = await (_db.select(
+        _db.plannedItems,
+      )..where((t) => t.id.equals(id))).getSingleOrNull();
+      if (item == null || item.listId != listId) {
+        throw ArgumentError('Receipt item must belong to its list');
+      }
+      linked[id] = item;
+      await repo.removePurchases(id);
+    }
+    for (final line in accepted) {
+      var quantity = line.quantity ?? DecimalFixed.fromInt(1);
+      if (line.isDiscount && line.lineTotalMinor < 0) {
+        quantity = DecimalFixed.zero();
+      }
+      if (line.lineTotalMinor < 0 && quantity.isPositive) {
+        quantity = quantity.negated();
+      }
+      await repo.recordPurchase(
+        listId: listId,
+        plannedItemId: line.linkedPlannedItemId,
+        name: line.name,
+        normalizedName: line.isDiscount && quantity.isZero
+            ? 'discount'
+            : normalizeName(line.name),
+        quantity: quantity,
+        unitCode: linked[line.linkedPlannedItemId]?.plannedUnitCode ?? 'piece',
+        lineTotalMinor: line.lineTotalMinor,
+        source: 'receiptOcr',
+        replaceExisting: false,
+      );
+    }
+  });
 
   DecimalFixed? _sumQty(DecimalFixed? a, DecimalFixed? b) {
     if (a == null) return b;

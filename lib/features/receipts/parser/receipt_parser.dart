@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import '../../../core/money/decimal_fixed.dart';
+import '../../../core/money/currency.dart';
 import '../../../core/util/normalize_name.dart';
 import '../../../data/db/app_database.dart';
 import '../ocr_text_source.dart';
@@ -16,26 +17,54 @@ class ReceiptParser {
   ReceiptParser({this.currency = 'TRY', this.reconciliationToleranceMinor = 2});
 
   final String currency;
+  int get _digits => Currency.fromCode(currency).minorUnitDigits;
+  String get _amountPattern =>
+      r'\d+(?:[.,]\d{3})*' +
+      (_digits == 0 ? r'(?:[.,]\d{2})?' : '[.,]\\d{$_digits}');
 
   /// ±tolerans: satır toplamları ile fiş toplamı arasındaki yuvarlama payı.
   final int reconciliationToleranceMinor;
 
   static const List<String> _totalMarkers = [
-    'toplam', 'genel toplam', 'total', 'nakit', 'kasa', 'kart',
+    'toplam',
+    'genel toplam',
+    'total',
+    'nakit',
+    'kasa',
+    'kart',
   ];
   static const List<String> _subtotalMarkers = ['ara toplam', 'aratoplam'];
   static const List<String> _discountMarkers = ['indirim', 'iskonto'];
   static const List<String> _taxMarkers = ['kdv', 'vergi', 'vat', 'tax'];
   static const List<String> _storeWords = ['market', 'mağaza', 'merk'];
   static const List<String> _skipWords = [
-    'fiş', 'fis', 'no:', 'no :', 'kasiyer', 'yldz', 'yildiz', 'misafir',
-    'tarih', 'saat', 'date', 'kvkk', 'www', '.com', 'mal.hizmet', 'gv.ilk',
-    'geçici', 'gecici', 'bilgileriniz', 'teşekkür', 'tesekkur',
+    'fiş',
+    'fis',
+    'no:',
+    'no :',
+    'kasiyer',
+    'yldz',
+    'yildiz',
+    'misafir',
+    'tarih',
+    'saat',
+    'date',
+    'kvkk',
+    'www',
+    '.com',
+    'mal.hizmet',
+    'gv.ilk',
+    'geçici',
+    'gecici',
+    'bilgileriniz',
+    'teşekkür',
+    'tesekkur',
   ];
 
   /// Ürün satırı olmayan yapısal satırlar.
   static final RegExp _datePattern = RegExp(
-      r'(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})|(\d{1,2}:\d{2})');
+    r'(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})|(\d{1,2}:\d{2})',
+  );
   static final RegExp _phonePattern = RegExp(r'^\+?[\d\s-]{10,}$');
   static final RegExp _cardMaskPattern = RegExp(r'(\*{3,}\d{3,4}|\d{15,16})');
   static final RegExp _taxNoPattern = RegExp(r'\b\d{10,11}\b');
@@ -92,8 +121,7 @@ class ReceiptParser {
           taxMinor ??= amount;
           continue;
         }
-        if (_totalMarkers.any(lower.contains) &&
-            !lower.contains('ara')) {
+        if (_totalMarkers.any(lower.contains) && !lower.contains('ara')) {
           totalMinor = amount;
           continue;
         }
@@ -103,10 +131,10 @@ class ReceiptParser {
       if (storeCandidates.isEmpty &&
           text.length >= 3 &&
           text.length <= 30 &&
-          RegExp(r'^[A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü .&]+$',).hasMatch(text) &&
+          RegExp(r'^[A-ZÇĞİÖŞÜ][A-ZÇĞİÖŞÜa-zçğıöşü .&]+$').hasMatch(text) &&
           !_hasDigits(text)) {
-        final looksStore = _storeWords.any(lower.contains) ||
-            text == text.toUpperCase();
+        final looksStore =
+            _storeWords.any(lower.contains) || text == text.toUpperCase();
         if (looksStore) {
           storeCandidates.add(text);
           continue;
@@ -121,8 +149,7 @@ class ReceiptParser {
     }
 
     final computed = productLines.fold<int>(0, (s, l) => s + l.lineTotalMinor);
-    final difference =
-        totalMinor == null ? 0 : computed - totalMinor;
+    final difference = totalMinor == null ? 0 : computed - totalMinor;
 
     return ReceiptParseResult(
       storeCandidates: storeCandidates,
@@ -152,7 +179,8 @@ class ReceiptParser {
   List<OcrLine> _reconstructRows(List<OcrLine> lines) {
     if (lines.length < 2) return lines;
     if (lines.any((l) => l.boundingBoxTop == null)) return lines;
-    final sorted = [...lines]..sort((a, b) {
+    final sorted = [...lines]
+      ..sort((a, b) {
         final t = a.boundingBoxTop!.compareTo(b.boundingBoxTop!);
         if (t != 0) return t;
         return (a.boundingBoxLeft ?? 0).compareTo(b.boundingBoxLeft ?? 0);
@@ -162,13 +190,16 @@ class ReceiptParser {
     var rowLines = <OcrLine>[];
     void flush() {
       if (rowLines.isEmpty) return;
-      rowLines.sort((a, b) =>
-          (a.boundingBoxLeft ?? 0).compareTo(b.boundingBoxLeft ?? 0));
-      rows.add(OcrLine(
-        text: rowLines.map((l) => l.text).join(' '),
-        boundingBoxTop: rowTop,
-        boundingBoxLeft: rowLines.first.boundingBoxLeft,
-      ));
+      rowLines.sort(
+        (a, b) => (a.boundingBoxLeft ?? 0).compareTo(b.boundingBoxLeft ?? 0),
+      );
+      rows.add(
+        OcrLine(
+          text: rowLines.map((l) => l.text).join(' '),
+          boundingBoxTop: rowTop,
+          boundingBoxLeft: rowLines.first.boundingBoxLeft,
+        ),
+      );
       rowLines = [];
     }
 
@@ -186,7 +217,7 @@ class ReceiptParser {
   }
 
   List<OcrLine> _mergeWrappedLines(List<OcrLine> lines) {
-    final priceOnly = RegExp(r'^\d+[.,]\d{2}$');
+    final priceOnly = RegExp('^$_amountPattern\$');
     final merged = <OcrLine>[];
     final nameBuffer = <String>[];
     for (final line in lines) {
@@ -199,7 +230,8 @@ class ReceiptParser {
           .trim();
       if (text.isEmpty) continue;
       final lower = text.toLowerCase();
-      final structural = _skipWords.any(lower.contains) ||
+      final structural =
+          _skipWords.any(lower.contains) ||
           _subtotalMarkers.any(lower.contains) ||
           _isDiscountLine(lower) ||
           _taxMarkers.any(lower.contains) ||
@@ -216,9 +248,12 @@ class ReceiptParser {
       if (priceOnly.hasMatch(text)) {
         // fiyat-satırı: önceki taşan ad satırlarıyla birleşir.
         if (nameBuffer.isNotEmpty) {
-          merged.add(OcrLine(
+          merged.add(
+            OcrLine(
               text: '${nameBuffer.join(' ')} $text',
-              boundingBoxTop: line.boundingBoxTop));
+              boundingBoxTop: line.boundingBoxTop,
+            ),
+          );
           nameBuffer.clear();
         } else {
           merged.add(line);
@@ -239,8 +274,8 @@ class ReceiptParser {
   }
 
   /// Satır sonunda parasal değer var mı?
-  static bool _hasTrailingPrice(String text) =>
-      RegExp(r'\d+[.,]\d{2}\s*$').hasMatch(text.trim());
+  bool _hasTrailingPrice(String text) =>
+      RegExp(_amountPattern + r'\s*$').hasMatch(text.trim());
 
   /// İndirim satırı: tutar eksiyse ya da işaret kelimesi dışında ürün adı
   /// yoksa ("İNDİRİM 5,00"). "İNDİRİMLİ ELMA 31,50" bir üründür (PB-051).
@@ -257,7 +292,8 @@ class ReceiptParser {
   /// `EKMEK 15,00`. Dönüşüm: name + opsiyonel miktar/birim fiyat + son fiyat.
   ReceiptLineCandidate? _parseProductLine(String text) {
     final matches = RegExp(
-      r'(\d+(?:[.,]\d+)?)(kg|g|lt|l|adet|x)?\s*(?:x|X|×)\s*(\d+[.,]\d{2})\s+(\d+[.,]\d{2})$',
+      r'(\d+(?:[.,]\d+)?)(kg|g|lt|l|adet|x)?\s*(?:x|X|×)\s*'
+      '($_amountPattern)\\s+($_amountPattern)\$',
       caseSensitive: false,
     ).allMatches(text);
     if (matches.isNotEmpty) {
@@ -281,15 +317,15 @@ class ReceiptParser {
     }
 
     // Basit satır: ad + sondaki fiyat (açgözlü ad yakalar: EKMEK).
-    final simple = RegExp(r'^(.+)\s+(\d+[.,]\d{2})$').firstMatch(text);
+    final simple = RegExp('^(.+)\\s+($_amountPattern)\$').firstMatch(text);
     if (simple != null) {
       final name = simple.group(1)!.trim();
       if (name.isEmpty) return null;
       final lineTotal = _minorFrom(simple.group(2)!);
       if (lineTotal == null) return null;
       // Kısa/harfsiz adlar düşük güvenle korunur: düşürülmez, incelenir.
-      final low = name.length < 3 ||
-          !name.contains(RegExp(r'[A-Za-zÇĞİÖŞÜçğıöşü]'));
+      final low =
+          name.length < 3 || !name.contains(RegExp(r'[A-Za-zÇĞİÖŞÜçğıöşü]'));
       return ReceiptLineCandidate(
         rawText: text,
         name: name,
@@ -302,9 +338,10 @@ class ReceiptParser {
   }
 
   int? _lastAmountMinor(String text) {
-    final match =
-        RegExp(r'(\d{1,3}(?:[.,]\d{3})*[.,]\d{2})\s*(TL|₺|TRY)?\s*$')
-            .firstMatch(text);
+    final match = RegExp(
+      '($_amountPattern)'
+      r'\s*(TL|₺|TRY)?\s*$',
+    ).firstMatch(text);
     if (match == null) return null;
     return _minorFrom(match.group(1)!);
   }
@@ -321,16 +358,13 @@ class ReceiptParser {
       raw = raw.replaceAll(',', '.');
     } else if (hasDot) {
       final frac = raw.substring(raw.lastIndexOf('.') + 1);
-      if (frac.length != 2) raw = raw.replaceAll('.', '');
+      if (frac.length != (_digits == 0 ? 2 : _digits)) {
+        raw = raw.replaceAll('.', '');
+      }
     }
     final value = DecimalFixed.tryParse(raw);
     if (value == null) return null;
-    final digits = currency == 'JPY' || currency == 'KRW' || currency == 'CLP'
-        ? 0
-        : (currency == 'KWD' || currency == 'BHD' || currency == 'OMR'
-            ? 3
-            : 2);
-    return value.toMinorUnits(digits);
+    return value.toMinorUnits(_digits);
   }
 
   DateTime? _tryParseDate(String text) {
@@ -358,11 +392,12 @@ class ReceiptMatcher {
 
   /// Satır adayı ↔ planlanan ürün eşleşmesi döndürür.
   Future<List<(ReceiptLineCandidate, PlannedItem?, String)>> match(
-      List<ReceiptLineCandidate> lines,
-      {required int listId}) async {
-    final items = await (_db.select(_db.plannedItems)
-          ..where((t) => t.listId.equals(listId)))
-        .get();
+    List<ReceiptLineCandidate> lines, {
+    required int listId,
+  }) async {
+    final items = await (_db.select(
+      _db.plannedItems,
+    )..where((t) => t.listId.equals(listId))).get();
     return [
       for (final line in lines)
         (

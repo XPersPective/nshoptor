@@ -1,4 +1,5 @@
 import '../../../core/money/format_locale.dart';
+
 import 'dart:async' show unawaited;
 
 import 'package:flutter/material.dart';
@@ -40,6 +41,8 @@ class ReceiptReviewScreen extends StatefulWidget {
 
 class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
   late final ReceiptReviewController _c = widget.controller;
+  bool _saving = false;
+  bool _saveFailed = false;
 
   @override
   void dispose() {
@@ -54,10 +57,12 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     // Öneriler (PB-040): yüksek güvenli eşleşmeler bağlanmış gelir;
     // kullanıcı tek dokunuşla onaylar/değiştirir (C-003: onaysız DB yok).
     unawaited(_c.prefillSuggestions());
-    unawaited(widget.plannedItems.then((items) {
-      if (!mounted) return;
-      setState(() => _plannedNames = {for (final p in items) p.id: p.name});
-    }));
+    unawaited(
+      widget.plannedItems.then((items) {
+        if (!mounted) return;
+        setState(() => _plannedNames = {for (final p in items) p.id: p.name});
+      }),
+    );
   }
 
   Map<int, String> _plannedNames = const {};
@@ -78,20 +83,37 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
       appBar: AppBar(title: Text(l10n.receiptReviewTitle)),
       body: Column(
         children: [
+          if (_saveFailed)
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                l10n.aiFailed,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
+            ),
           if (_c.aiMatched || _c.aiProblem != null)
             MaterialBanner(
               key: const Key('receipt_ai_banner'),
-              leading: Icon(_c.aiMatched ? Icons.auto_awesome : Icons.info_outline),
-              content: Text(_c.aiMatched
-                  ? l10n.receiptAiMatched
-                  : switch (_c.aiProblem) {
-                      AiQuota(:final used, :final limit) => l10n.aiQuotaReached(used, limit),
-                      AiOffline() => l10n.aiOffline,
-                      _ => l10n.aiFailed,
-                    }),
+              leading: Icon(
+                _c.aiMatched ? Icons.auto_awesome : Icons.info_outline,
+              ),
+              content: Text(
+                _c.aiMatched
+                    ? l10n.receiptAiMatched
+                    : switch (_c.aiProblem) {
+                        AiQuota(:final used, :final limit) =>
+                          l10n.aiQuotaReached(used, limit),
+                        AiOffline() => l10n.aiOffline,
+                        _ => l10n.aiFailed,
+                      },
+              ),
               actions: [
-                if (_c.aiProblem is AiQuota && SubscriptionService.instance != null)
-                  TextButton(onPressed: () => openPlans(context), child: Text(l10n.plansTitle))
+                if (_c.aiProblem is AiQuota &&
+                    SubscriptionService.instance != null)
+                  TextButton(
+                    onPressed: () => openPlans(context),
+                    child: Text(l10n.plansTitle),
+                  )
                 else
                   const SizedBox.shrink(),
               ],
@@ -128,27 +150,42 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                 return Card(
                   child: ListTile(
                     key: Key('receipt_line_$i'),
-                    title: Text(line.name),
+                    title: Text(
+                      line.isDiscount && line.lineTotalMinor < 0
+                          ? l10n.receiptDiscountLine
+                          : line.name,
+                    ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${_lineQty(line)} · ${money(line.lineTotalMinor)}'),
+                        Text(
+                          '${_lineQty(line)} · ${money(line.lineTotalMinor)}',
+                        ),
                         if (line.linkedPlannedItemId != null &&
                             _plannedNames[line.linkedPlannedItemId] != null)
                           Text(
                             '→ ${_plannedNames[line.linkedPlannedItemId]}',
                             key: Key('receipt_line_link_$i'),
-                            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
                           ),
                         if (line.needsCheck || line.isDiscount)
                           Wrap(
                             spacing: 6,
                             children: [
                               if (line.needsCheck)
-                                Text(l10n.receiptNeedsCheck,
-                                    key: Key('receipt_line_check_$i'),
-                                    style: TextStyle(color: Theme.of(context).colorScheme.tertiary)),
-                              if (line.isDiscount) Text(l10n.receiptDiscountLine),
+                                Text(
+                                  l10n.receiptNeedsCheck,
+                                  key: Key('receipt_line_check_$i'),
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .tertiary,
+                                  ),
+                                ),
+                              if (line.isDiscount)
+                                Text(l10n.receiptDiscountLine),
                             ],
                           ),
                       ],
@@ -193,7 +230,8 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
               child: FilledButton(
                 key: const Key('receipt_commit_button'),
                 onPressed:
-                    _c.lines.any((l) => l.status == ReviewStatus.accepted)
+                    !_saving &&
+                        _c.lines.any((l) => l.status == ReviewStatus.accepted)
                     ? () => _commit(context)
                     : null,
                 child: Text(l10n.receiptCommit),
@@ -270,11 +308,66 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
   }
 
   Future<void> _commit(BuildContext context) async {
+    if (_saving) return;
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
-    await _c.commit();
-    if (!context.mounted) return;
-    messenger.showSnackBar(SnackBar(content: Text(l10n.receiptCommitted)));
-    Navigator.of(context).maybePop();
+    setState(() {
+      _saving = true;
+      _saveFailed = false;
+    });
+    try {
+      final previous = await _c.replacementEntries();
+      if (!context.mounted) return;
+      if (previous.isNotEmpty) {
+        final currency = Currency.fromCode(widget.currency);
+        String money(int minor) => formatMoney(
+          Money.fromMinorUnits(minor, currency),
+          locale: formatLocaleCode(context),
+        );
+        final before = previous.fold<int>(
+          0,
+          (s, e) => s + e.actualLineTotalMinorUnits,
+        );
+        final after = _c.lines
+            .where(
+              (l) =>
+                  l.status == ReviewStatus.accepted &&
+                  l.linkedPlannedItemId != null,
+            )
+            .fold<int>(0, (s, l) => s + l.lineTotalMinor);
+        final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text(l10n.receiptReviewTitle),
+            content: Text(
+              '${previous.map((e) => e.name).toSet().join(', ')}\n${l10n.actualTotalLabel}: ${money(before)} → ${money(after)}',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: Text(l10n.cancelButton),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(ctx, true),
+                child: Text(l10n.receiptCommit),
+              ),
+            ],
+          ),
+        );
+        if (confirmed != true) return;
+      }
+      await _c.commit();
+      if (!context.mounted) return;
+      messenger
+        ..clearSnackBars()
+        ..showSnackBar(
+          SnackBar(content: Text(l10n.receiptCommitted), showCloseIcon: true),
+        );
+      Navigator.of(context).maybePop();
+    } catch (_) {
+      if (mounted) setState(() => _saveFailed = true);
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
   }
 }

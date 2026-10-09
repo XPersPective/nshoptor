@@ -1,12 +1,12 @@
 # Current Architecture
 ## 2026-10-09 kaynak denetimi
 - Mevcut sürüm pubspec.yaml: 1.1.4+6; aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
-- Bu oturum başında flutter test: 295 passed. Yeni hedefi karşılayan testler henüz yazılmadı.
+- Devralma baseline: 295 passed; PB-063 sonrası 304 passed ve analyze 0. Diğer hedeflerin kabulü halen görevlerdedir.
 - Plan/market ekranları ayrı; ürün formu insert-only, UI silme eksik; home/history kartlarının bir kısmında onTap yok.
-- Fiş commit insert-only; recordPurchase replace adımları ortak transaction içinde değil. Mikrofon ikinci init callback yaşam döngüsü riski doğrulandı.
+- PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. Mikrofon ikinci init callback riski halen açık.
 - 71 ARB var; ilk kurulum country→currency main.dart içinde zaten var. Settings keepAwake listede okunmuyor.
 - Server mevcut varsayılan: free15/pro200/max1000, Qwen Token Plan. PDF özelliği yok. PB-062..069 yalnız hedef ve plan.
-- Kullanıcının sadece plan talebi üzerine deneme kodları tamamen geri alındı; bu bölüm yeni mimarinin uygulanmış olduğunu iddia etmez.
+- Kullanıcı devralma/tamamlama yetkisi verdi; yalnız kanıtlanan checkpointler burada mevcut durumdur.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
