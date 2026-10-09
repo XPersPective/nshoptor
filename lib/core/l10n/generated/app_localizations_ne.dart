@@ -1079,4 +1079,8 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'सुन्न बन्द गर्नुहोस्';
+
+  @override
+  String get keepAwakeFailed =>
+      'स्क्रीन जागे राख्न सकिएन। कृपया पुनः प्रयास गर्नुहोस्।';
 }

@@ -1078,4 +1078,8 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Prestani slušati';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nije moguće zadržati ekran aktivnim. Molimo pokušajte ponovo.';
 }

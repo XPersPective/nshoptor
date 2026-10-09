@@ -1077,4 +1077,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Ustavi poslušanje';
+
+  @override
+  String get keepAwakeFailed => 'Zaslon ni ostal vklopljen. Poskusite znova.';
 }

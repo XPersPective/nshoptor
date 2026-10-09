@@ -13,6 +13,7 @@ import '../features/lists/reminders/reminder_scheduler.dart';
 import '../features/lists/list_repository.dart';
 import '../features/settings/settings_repository.dart';
 import 'language_controller.dart';
+import 'navigation.dart';
 import 'theme_mode_controller.dart';
 
 /// Uygulamanın kök bileşeni: l10n, tema ve dil tercihini birleştirir.
@@ -97,6 +98,7 @@ class NShoptorApp extends StatelessWidget {
           Listenable.merge([languageController, ?themeModeController]),
       builder: (context, _) {
         return MaterialApp(
+          navigatorObservers: [appRouteObserver],
           title: 'NShoptor',
           locale: fixedLocale ?? languageController.locale,
           localeResolutionCallback: _resolveLocale,

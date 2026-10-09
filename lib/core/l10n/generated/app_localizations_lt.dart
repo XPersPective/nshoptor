@@ -1080,4 +1080,8 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Nustoti klausytis';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nepavyko išlaikyti ekrano įjungto. Bandykite dar kartą.';
 }

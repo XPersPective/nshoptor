@@ -1080,4 +1080,8 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Entzuten gelditu';
+
+  @override
+  String get keepAwakeFailed =>
+      'Ezin izan da pantaila piztuta mantendu. Saiatu berriro.';
 }

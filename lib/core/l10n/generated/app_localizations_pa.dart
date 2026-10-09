@@ -1077,4 +1077,8 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'ਸੁਣਨਾ ਬੰਦ ਕਰੋ';
+
+  @override
+  String get keepAwakeFailed =>
+      'ਸਕ੍ਰੀਨ ਨੂੰ ਜਾਗਦਾ ਰੱਖਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
 }

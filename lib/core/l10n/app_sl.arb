@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Nakupi ne merijo porabe. Valute in enote so prikazane ločeno.",
   "receiptReplaces": "Povezane vrstice računa nadomestijo obstoječe nakupe; nepovezane vrstice se dodajo.",
   "voiceUnsupportedLanguage": "Ta jezik na tej napravi ni podprt za glasovni vnos. Namesto tega lahko tipkate.",
-  "voiceStopListening": "Ustavi poslušanje"
+  "voiceStopListening": "Ustavi poslušanje",
+  "keepAwakeFailed": "Zaslon ni ostal vklopljen. Poskusite znova."
 }

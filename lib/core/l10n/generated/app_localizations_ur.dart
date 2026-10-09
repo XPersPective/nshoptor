@@ -1076,4 +1076,8 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'سننا بند کریں';
+
+  @override
+  String get keepAwakeFailed =>
+      'اسکرین کو زندہ نہیں رکھا جا سکا۔ براہ کرم دوبارہ کوشش کریں۔';
 }

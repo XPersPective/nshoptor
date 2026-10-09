@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Gli acquisti non misurano il consumo. Valute e unità vengono mostrate separatamente.",
   "receiptReplaces": "Le righe del scontrino collegate sostituiscono gli acquisti esistenti; le righe non collegate vengono aggiunte.",
   "voiceUnsupportedLanguage": "Questa lingua non è disponibile per l'input vocale su questo dispositivo. Puoi digitare invece.",
-  "voiceStopListening": "Ferma l'ascolto"
+  "voiceStopListening": "Ferma l'ascolto",
+  "keepAwakeFailed": "Ecrin ei pysynyt päällä. Yritä uudelleen."
 }

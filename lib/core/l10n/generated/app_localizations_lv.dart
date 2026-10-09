@@ -1079,4 +1079,8 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Pārtraukt klausīšanos';
+
+  @override
+  String get keepAwakeFailed =>
+      'Neizdevās noturēt ekrānu aktīvu. Lūdzu, mēģiniet vēlreiz.';
 }

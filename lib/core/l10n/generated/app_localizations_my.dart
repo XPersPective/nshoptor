@@ -1082,4 +1082,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'နားထောင်ခြင်း ရပ်မည်';
+
+  @override
+  String get keepAwakeFailed => 'စکرဉ်ကို မိတ်ဆက်မရပါ။ ပြန်လည်ကြိုးစားပါ။';
 }

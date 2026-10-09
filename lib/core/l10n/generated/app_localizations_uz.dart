@@ -1082,4 +1082,8 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Eshitishni to\'xtatish';
+
+  @override
+  String get keepAwakeFailed =>
+      'Ekran yorug\'ligini ushlab turishda xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.';
 }

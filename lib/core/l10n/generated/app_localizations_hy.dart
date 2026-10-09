@@ -1081,4 +1081,8 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Դադարեցնել լսելը';
+
+  @override
+  String get keepAwakeFailed =>
+      'Հնարավոր չեղավ պահպանել էկրանի ակտիվությունը: Խնդրում ենք փորձել նորից:';
 }

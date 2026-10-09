@@ -1079,4 +1079,8 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Zatrzymaj słuchanie';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nie udało się utrzymać włączonego ekranu. Spróbuj ponownie.';
 }

@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "As compras non miden o consumo. As moedas e unidades móstranse por separado.",
   "receiptReplaces": "As liñas do recibo vinculadas substitúen as compras existentes; as liñas sen vincular engádense.",
   "voiceUnsupportedLanguage": "Este idioma non está dispoñible para a entrada por voz neste dispositivo. Podes escribir en seu lugar.",
-  "voiceStopListening": "Deixa de escoitar"
+  "voiceStopListening": "Deixa de escoitar",
+  "keepAwakeFailed": "Non foi posible manter a pantalla activa. Téntao de novo."
 }

@@ -1081,4 +1081,8 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Deixa d\'escoltar';
+
+  @override
+  String get keepAwakeFailed =>
+      'No s\'ha pogut mantenir la pantalla encesa. Si us plau, torna-ho a provar.';
 }

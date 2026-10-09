@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Ostud ei mõõda tarbimist. Valuutad ja ühikud kuvatakse eraldi.",
   "receiptReplaces": "Seotud kviitungiread asendavad olemasolevad ostud; seostamata read lisatakse.",
   "voiceUnsupportedLanguage": "Seda keele varianti pole selles seadmes häälsisestamiseks saadaval. Saad selle asemel tekstina sisestada.",
-  "voiceStopListening": "Lõpeta kuulamine"
+  "voiceStopListening": "Lõpeta kuulamine",
+  "keepAwakeFailed": "Ekraani hoidmine ärkvelolekus ei õnnestunud. Palun proovi uuesti."
 }

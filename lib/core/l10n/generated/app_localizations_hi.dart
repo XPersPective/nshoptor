@@ -1080,4 +1080,8 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'सुनना बंद करें';
+
+  @override
+  String get keepAwakeFailed =>
+      'स्क्रीन को जगाए रखने में विफल रहा। कृपया पुनः प्रयास करें।';
 }

@@ -1083,4 +1083,8 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Itigil ang pakinggan';
+
+  @override
+  String get keepAwakeFailed =>
+      'Hindi maaaring panatilihing gising ang screen. Subukan ulit.';
 }

@@ -2257,6 +2257,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stop listening'**
   String get voiceStopListening;
+
+  /// No description provided for @keepAwakeFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not keep the screen awake. Please try again.'**
+  String get keepAwakeFailed;
 }
 
 class _AppLocalizationsDelegate

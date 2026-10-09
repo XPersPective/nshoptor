@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Innkaup mæla ekki neyslu. Gjaldmiðlar og einingar eru sýndir aðskild.",
   "receiptReplaces": "Línur tengd kvittingu koma í stað núverandi kaupa; ótengdar línur eru bættar við.",
   "voiceUnsupportedLanguage": "Þetta tungumál er ekki tiltækt fyrir raddinntak á þessu tæki. Þú getur skrifað í staðinn.",
-  "voiceStopListening": "Hætta að hlusta"
+  "voiceStopListening": "Hætta að hlusta",
+  "keepAwakeFailed": "Gat ekki haldið skjánum vakandi. Vinsamlegast reyndu aftur."
 }

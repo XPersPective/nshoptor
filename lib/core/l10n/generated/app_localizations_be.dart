@@ -1080,4 +1080,8 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Спыніць слуханне';
+
+  @override
+  String get keepAwakeFailed =>
+      'Не ўдалося захаваць экран уключаным. Калі ласка, паспрабуйце яшчэ раз.';
 }

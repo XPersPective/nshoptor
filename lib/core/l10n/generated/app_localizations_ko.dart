@@ -1051,4 +1051,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get voiceStopListening => '듣기 중지';
+
+  @override
+  String get keepAwakeFailed => '화면을 켜두지 못했습니다. 다시 시도해 주세요.';
 }

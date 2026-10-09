@@ -1078,4 +1078,8 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Угуп алууну токтотуу';
+
+  @override
+  String get keepAwakeFailed =>
+      'Экранды өчпөй турган кылуу ишке ашкан жок. Кайра аракет кылып көрүңүз.';
 }

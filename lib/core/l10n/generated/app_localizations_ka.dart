@@ -1076,4 +1076,8 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'ჩვენება შეწყვეტა';
+
+  @override
+  String get keepAwakeFailed =>
+      'ეკრანის გათიშვის თავიდან აცილება ვერ მოხერხდა. გთხოვთ, სცადოთ ხელახლა.';
 }

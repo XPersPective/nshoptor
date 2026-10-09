@@ -1081,4 +1081,8 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Oprește ascultarea';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nu s-a putut menține ecranul activ. Te rugăm să încerci din nou.';
 }

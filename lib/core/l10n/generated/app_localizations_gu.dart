@@ -1075,4 +1075,8 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'સાંભળવાનું બંધ કરો';
+
+  @override
+  String get keepAwakeFailed =>
+      'સ્ક્રીન જાગૃત રાખવામાં નિષ્ફળતા. કૃપા કરીને ફરી પ્રયાસ કરો.';
 }

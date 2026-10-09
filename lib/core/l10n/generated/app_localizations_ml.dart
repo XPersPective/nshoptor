@@ -1077,4 +1077,8 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'കേൾക്കൽ നിർത്തുക';
+
+  @override
+  String get keepAwakeFailed =>
+      'സ്ക്രീൻ ജാഗ്രത നിലനിർത്താൻ കഴിഞ്ഞില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.';
 }

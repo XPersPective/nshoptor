@@ -1076,4 +1076,8 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Přestat poslouchat';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nepodařilo se udržet obrazovku zapnutou. Zkuste to prosím znovu.';
 }

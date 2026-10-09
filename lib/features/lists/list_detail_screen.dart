@@ -1,5 +1,8 @@
 import '../../core/money/format_locale.dart';
 import 'package:flutter/material.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
+import '../../app/app_defaults.dart';
+import '../../app/navigation.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
@@ -81,7 +84,16 @@ class ListDetailScreen extends StatefulWidget {
   State<ListDetailScreen> createState() => _ListDetailScreenState();
 }
 
-class _ListDetailScreenState extends State<ListDetailScreen> {
+class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, WidgetsBindingObserver {
+  static _ListDetailScreenState? _visibleList;
+  static Future<void>? _lockUpdates;
+  static bool? _appliedAwake;
+  static int _openLists = 0;
+  ModalRoute<dynamic>? _route;
+  bool _resumed = true;
+  bool _keepAwake = false;
+  bool _awake = false;
+  bool _lockBusy = false;
   late final ShoppingRepository _shoppingRepo = ShoppingRepository(widget.db);
   late Future<ShoppingList> _listFuture;
   bool _busy = false;
@@ -89,17 +101,86 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
   @override
   void initState() {
     super.initState();
-    AdGate.shoppingModeActive = true;
+    AdGate.shoppingModeActive = ++_openLists > 0;
+    _keepAwake = AppDefaults.keepScreenAwake();
+    _resumed = WidgetsBinding.instance.lifecycleState == null || WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
+    WidgetsBinding.instance.addObserver(this);
     _listFuture = widget.listRepository.getById(widget.listId);
   }
 
   @override
   void dispose() {
-    AdGate.shoppingModeActive = false;
+    AdGate.shoppingModeActive = --_openLists > 0;
+    WidgetsBinding.instance.removeObserver(this);
+    appRouteObserver.unsubscribe(this);
+    if (identical(_visibleList, this)) _visibleList = null;
+    _syncLock();
     super.dispose();
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context);
+    if (route != _route) {
+      appRouteObserver.unsubscribe(this);
+      _route = route;
+      if (route != null) appRouteObserver.subscribe(this, route);
+    }
+  }
+
+  void _visible(bool visible) {
+    if (visible) { _visibleList = this; _keepAwake = AppDefaults.keepScreenAwake(); }
+    else if (identical(_visibleList, this)) { _visibleList = null; }
+    _syncLock();
+  }
+
+  @override
+  void didPush() => _visible(true);
+  @override
+  void didPopNext() => _visible(true);
+  @override
+  void didPushNext() => _visible(false);
+  @override
+  void didPop() => _visible(false);
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _resumed = state == AppLifecycleState.resumed;
+    _syncLock();
+  }
+
+  // Native operations are global; serialize across nested list routes and use the latest owner.
+  Future<void> _syncLock() {
+    final update = (_lockUpdates ?? Future<void>.value()).then((_) async {
+    final owner = _visibleList;
+    final want = owner != null && owner._resumed && owner._keepAwake;
+    try {
+      if (_appliedAwake != want) { await WakelockPlus.toggle(enable: want); _appliedAwake = want; }
+      if (owner != null && owner.mounted && identical(owner, _visibleList)) owner.setState(() => owner._awake = want);
+    } catch (_) {
+      if (owner != null && owner.mounted && identical(owner, _visibleList)) {
+        owner.setState(() => owner._awake = _appliedAwake ?? false);
+        if (want || _appliedAwake == true) {
+          ScaffoldMessenger.of(owner.context)..clearSnackBars()..showSnackBar(SnackBar(
+            content: Text(AppLocalizations.of(owner.context).keepAwakeFailed), showCloseIcon: true));
+        }
+      }
+    }
+    });
+    _lockUpdates = update;
+    return update.whenComplete(() { if (identical(_lockUpdates, update)) _lockUpdates = null; });
+  }
+
+  Future<void> _toggleAwake() async {
+    if (_lockBusy) return;
+    final desired = !_awake;
+    setState(() { _lockBusy = true; _keepAwake = desired; });
+    try { await _syncLock(); if (mounted && _awake == desired) AppDefaults.setKeepScreenAwake(desired); }
+    finally { if (mounted) setState(() => _lockBusy = false); }
+  }
+
   void _refresh() {
+    if (!mounted) return;
     setState(() {
       _listFuture = widget.listRepository.getById(widget.listId);
     });
@@ -175,6 +256,9 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(l10n.listsTitle), actions: [
+        IconButton.filledTonal(key: const Key('list_keep_awake'), tooltip: l10n.keepAwakeLabel,
+          isSelected: _awake, icon: const Icon(Icons.screen_lock_portrait_outlined),
+          selectedIcon: const Icon(Icons.screen_lock_portrait), onPressed: _lockBusy ? null : _toggleAwake),
         PopupMenuButton<String>(key: const Key('detail_more_menu'), tooltip: l10n.detailsSection,
           onSelected: (action) async {
             if (action == 'pdf') {

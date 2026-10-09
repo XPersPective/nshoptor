@@ -1075,4 +1075,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'หยุดฟัง';
+
+  @override
+  String get keepAwakeFailed => 'ไม่สามารถเปิดหน้าจอไว้ได้ กรุณาลองอีกครั้ง';
 }

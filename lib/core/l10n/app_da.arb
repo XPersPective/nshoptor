@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Indkøb måler ikke forbrug. Valutaer og enheder vises separat.",
   "receiptReplaces": "Linkede kvitteringslinjer erstatter eksisterende køb; ulinkede linjer tilføjes.",
   "voiceUnsupportedLanguage": "Dette sprog er ikke tilgængeligt til stemmeinput på denne enhed. Du kan i stedet skrive.",
-  "voiceStopListening": "Stop med at lytte"
+  "voiceStopListening": "Stop med at lytte",
+  "keepAwakeFailed": "Skærmen kunne ikke holdes vågen. Prøv venligst igen."
 }

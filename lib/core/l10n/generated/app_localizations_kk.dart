@@ -1076,4 +1076,8 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Тыңдауды тоқтату';
+
+  @override
+  String get keepAwakeFailed =>
+      'Экранды ұйықтамау режимінде ұстау мүмкін болмады. Қайталап көріңіз.';
 }

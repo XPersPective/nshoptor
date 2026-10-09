@@ -1086,4 +1086,8 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Misa ukuzwa';
+
+  @override
+  String get keepAwakeFailed =>
+      'Ayikwazanga ukugcina isikrini sivulekile. Sicela uzame futhi.';
 }

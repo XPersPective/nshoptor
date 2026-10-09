@@ -1079,4 +1079,8 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Зупинити прослуховування';
+
+  @override
+  String get keepAwakeFailed =>
+      'Не вдалося залишити екран увімкненим. Спробуйте ще раз.';
 }

@@ -16,7 +16,7 @@ import 'package:nshoptor/data/db/app_database.dart';
 
 void main() {
   test('new flow messages are translated in every app language', () {
-    const keys = ['voiceStopListening', 'formatLocaleSystem', 'saveFailed', 'deleteItemConfirm', 'clearPurchaseConfirm',
+    const keys = ['voiceStopListening', 'keepAwakeFailed', 'formatLocaleSystem', 'saveFailed', 'deleteItemConfirm', 'clearPurchaseConfirm',
       'reportPdfAction', 'reportNotInvoice', 'purchaseVisits', 'purchaseInterval',
       'purchasedQuantity', 'purchaseAnalyticsHint', 'receiptReplaces', 'voiceUnsupportedLanguage'];
     final en = jsonDecode(File('lib/core/l10n/app_en.arb').readAsStringSync()) as Map;

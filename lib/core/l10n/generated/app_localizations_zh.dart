@@ -1044,4 +1044,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get voiceStopListening => '停止聆听';
+
+  @override
+  String get keepAwakeFailed => '无法保持屏幕常亮，请重试。';
 }

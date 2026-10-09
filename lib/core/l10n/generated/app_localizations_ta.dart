@@ -1084,4 +1084,8 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'கேட்பதை நிறுத்து';
+
+  @override
+  String get keepAwakeFailed =>
+      'திரையை எழுப்பியிருக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
 }

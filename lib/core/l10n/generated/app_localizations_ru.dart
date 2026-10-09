@@ -1077,4 +1077,8 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Прекратить прослушивание';
+
+  @override
+  String get keepAwakeFailed =>
+      'Не удалось удерживать экран включённым. Попробуйте ещё раз.';
 }

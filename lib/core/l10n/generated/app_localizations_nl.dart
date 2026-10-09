@@ -1081,4 +1081,8 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Stop met luisteren';
+
+  @override
+  String get keepAwakeFailed =>
+      'Het is niet gelukt om het scherm actief te houden. Probeer het opnieuw.';
 }

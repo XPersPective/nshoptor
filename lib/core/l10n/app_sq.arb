@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Blerjet nuk matin konsumin. Monedhat dhe njësitë shfaqen veçmas.",
   "receiptReplaces": "Rreshtat e lidhur të faturës zëvendësojnë blerjet ekzistuese; rreshtat e palidhur shtohen.",
   "voiceUnsupportedLanguage": "Ky gjuhë nuk është e disponueshme për hyrjen me zë në këtë pajisje. Mund të shkruani në vend të kësaj.",
-  "voiceStopListening": "Ndalo dëgjimin"
+  "voiceStopListening": "Ndalo dëgjimin",
+  "keepAwakeFailed": "Nuk mund të mbahet e ndezur ekrani. Ju lutem, provoni përsëri."
 }

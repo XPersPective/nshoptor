@@ -1076,4 +1076,8 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Lõpeta kuulamine';
+
+  @override
+  String get keepAwakeFailed =>
+      'Ekraani hoidmine ärkvelolekus ei õnnestunud. Palun proovi uuesti.';
 }

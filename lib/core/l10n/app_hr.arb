@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Kupnje ne mjere potrošnju. Valute i jedinice prikazuju se odvojeno.",
   "receiptReplaces": "Povezane linije računa zamjenjuju postojeće kupnje; nepovezane linije dodaju se.",
   "voiceUnsupportedLanguage": "Ovaj jezik nije dostupan za glasovni unos na ovom uređaju. Umjesto toga možete tipkati.",
-  "voiceStopListening": "Zaustavi slušanje"
+  "voiceStopListening": "Zaustavi slušanje",
+  "keepAwakeFailed": "Nije moguće zadržati ekran aktivnim. Pokušajte ponovno."
 }

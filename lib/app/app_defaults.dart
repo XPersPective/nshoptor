@@ -26,6 +26,9 @@ class AppDefaults {
     }
   }
 
+  static bool keepScreenAwake() => _store?.getBool(SettingsRepository.keepAwakeKey) ?? false;
+  static void setKeepScreenAwake(bool value) => _store?.setBool(SettingsRepository.keepAwakeKey, value);
+
   /// Ayarlar'dan varsayılan para birimi; geçersizse TRY.
   static String defaultCurrency() {
     final code = _store?.getString(SettingsRepository.currencyKey);

@@ -1082,4 +1082,8 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Тэнцвэрлэхийг зогсоох';
+
+  @override
+  String get keepAwakeFailed =>
+      'Дэлгэцийг идэвхтэй байлгаж чадсангүй. Дахин оролдоно уу.';
 }

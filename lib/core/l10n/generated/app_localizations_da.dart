@@ -1077,4 +1077,8 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Stop med at lytte';
+
+  @override
+  String get keepAwakeFailed =>
+      'Skærmen kunne ikke holdes vågen. Prøv venligst igen.';
 }

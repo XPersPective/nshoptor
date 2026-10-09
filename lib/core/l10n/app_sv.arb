@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Inköp mäter inte konsumtion. Valutor och enheter visas separat.",
   "receiptReplaces": "Länkade rader i kvitto ersätter befintliga inköp; olänkade rader läggs till.",
   "voiceUnsupportedLanguage": "Detta språk stöder inte röstinskrivning på den här enheten. Du kan skriva istället.",
-  "voiceStopListening": "Sluta lyssna"
+  "voiceStopListening": "Sluta lyssna",
+  "keepAwakeFailed": "Det gick inte att hålla skärmen vaken. Försök igen."
 }

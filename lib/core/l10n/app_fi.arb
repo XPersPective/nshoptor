@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Ostokset eivät mittaa kulutusta. Valuutat ja yksiköt näytetään erikseen.",
   "receiptReplaces": "Linkitetyt kuitin rivit korvaavat olemassa olevat ostokset; linkittömät rivit lisätään.",
   "voiceUnsupportedLanguage": "Tätä kieltä ei tueta ääntunnistukseen tällä laitteella. Voit kirjoittaa tekstiä sen sijaan.",
-  "voiceStopListening": "Lopeta kuuntelu"
+  "voiceStopListening": "Lopeta kuuntelu",
+  "keepAwakeFailed": "Näytön pysyminen päällä epäonnistui. Yritä uudelleen."
 }

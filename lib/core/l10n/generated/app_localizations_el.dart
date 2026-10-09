@@ -1080,4 +1080,8 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Διακοπή ακρόασης';
+
+  @override
+  String get keepAwakeFailed =>
+      'Δεν ήταν δυνατόν να παραμείνει η οθόνη ενεργή. Παρακαλώ προσπαθήστε ξανά.';
 }

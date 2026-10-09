@@ -1077,4 +1077,8 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Dinlemeyi durdur';
+
+  @override
+  String get keepAwakeFailed =>
+      'Ekran açık tutulamadı. Lütfen yeniden deneyin.';
 }

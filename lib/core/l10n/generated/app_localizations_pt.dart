@@ -1081,4 +1081,8 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Parar de ouvir';
+
+  @override
+  String get keepAwakeFailed =>
+      'Não foi possível manter a tela ligada. Tente novamente.';
 }

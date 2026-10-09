@@ -1081,4 +1081,8 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Ndalo dëgjimin';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nuk mund të mbahet e ndezur ekrani. Ju lutem, provoni përsëri.';
 }

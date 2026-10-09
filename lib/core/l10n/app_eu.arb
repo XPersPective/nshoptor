@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Erosketek ez dute kontsumoa neurtzen. Dirulaguntzak eta unitateak bereizita erakusten dira.",
   "receiptReplaces": "Lotutako errezeptu-lerroek lehendik dauden erosketak ordezkatzen dituzte; loturarik gabeko lerroak gehitzen dira.",
   "voiceUnsupportedLanguage": "Hau ez da hizkuntza hori ahots-sarrerarako gailu honetan erabilgarria. Ordez, idatz dezakezu.",
-  "voiceStopListening": "Entzuten gelditu"
+  "voiceStopListening": "Entzuten gelditu",
+  "keepAwakeFailed": "Ezin izan da pantaila piztuta mantendu. Saiatu berriro."
 }

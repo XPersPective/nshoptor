@@ -1078,4 +1078,8 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Zaustavi slušanje';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nije moguće zadržati ekran aktivnim. Pokušajte ponovno.';
 }

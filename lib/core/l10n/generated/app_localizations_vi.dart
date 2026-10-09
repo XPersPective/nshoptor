@@ -1078,4 +1078,8 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Dừng nghe';
+
+  @override
+  String get keepAwakeFailed =>
+      'Không thể giữ màn hình luôn sáng. Vui lòng thử lại.';
 }

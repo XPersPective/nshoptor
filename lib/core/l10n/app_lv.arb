@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Pirkumi nemēra patēriņu. Valūtas un vienības tiek rādītas atsevišķi.",
   "receiptReplaces": "Saistītās čeka pozīcijas aizvieto esošos pirkumus; nesaistītās pozīcijas tiek pievienotas.",
   "voiceUnsupportedLanguage": "Šī valoda nav pieejama balss ievadei šajā ierīcē. Varat rakstīt tekstu.",
-  "voiceStopListening": "Pārtraukt klausīšanos"
+  "voiceStopListening": "Pārtraukt klausīšanos",
+  "keepAwakeFailed": "Neizdevās noturēt ekrānu aktīvu. Lūdzu, mēģiniet vēlreiz."
 }

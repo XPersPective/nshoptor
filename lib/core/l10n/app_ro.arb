@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Achizițiile nu măsoară consumul. Monedele și unitățile sunt afișate separat.",
   "receiptReplaces": "Linii din chitanță legate înlocuiesc achizițiile existente; liniile nelegate se adaugă.",
   "voiceUnsupportedLanguage": "Această limbă nu este disponibilă pentru input vocal pe acest dispozitiv. Poți scrie în schimb.",
-  "voiceStopListening": "Oprește ascultarea"
+  "voiceStopListening": "Oprește ascultarea",
+  "keepAwakeFailed": "Nu s-a putut menține ecranul activ. Te rugăm să încerci din nou."
 }

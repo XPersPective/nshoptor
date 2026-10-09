@@ -1073,4 +1073,8 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'قطع شنیدن';
+
+  @override
+  String get keepAwakeFailed =>
+      'نمی‌توان صفحه را روشن نگه داشت. لطفاً دوباره تلاش کنید.';
 }

@@ -1079,4 +1079,8 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Figyelés leállítása';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nem sikerült aktívan tartani a képernyőt. Kérjük, próbálja újra.';
 }

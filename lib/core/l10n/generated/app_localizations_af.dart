@@ -1079,4 +1079,8 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Stop met luister';
+
+  @override
+  String get keepAwakeFailed =>
+      'Kon nie die skerm wakker hou nie. Probeer asseblief weer.';
 }

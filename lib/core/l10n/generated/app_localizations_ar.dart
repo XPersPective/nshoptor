@@ -1067,4 +1067,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'توقف عن الاستماع';
+
+  @override
+  String get keepAwakeFailed =>
+      'تعذر إبقاء الشاشة مفعّلة. يرجى المحاولة مرة أخرى.';
 }

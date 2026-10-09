@@ -1082,4 +1082,8 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Lopeta kuuntelu';
+
+  @override
+  String get keepAwakeFailed =>
+      'Näytön pysyminen päällä epäonnistui. Yritä uudelleen.';
 }

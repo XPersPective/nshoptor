@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Nákupy nemusia zodpovedať spotrebe. Meny a jednotky sú zobrazené oddelene.",
   "receiptReplaces": "Prepojené riadky účtenky nahradia existujúce nákupy; neprepojené riadky sa pridajú.",
   "voiceUnsupportedLanguage": "Tento jazyk nie je na tomto zariadení dostupný pre hlasový vstup. Môžete namiesto toho písať.",
-  "voiceStopListening": "Zastaviť počúvanie"
+  "voiceStopListening": "Zastaviť počúvanie",
+  "keepAwakeFailed": "Nepodarilo sa udržať obrazovku zapnutú. Skúste to prosím znova."
 }

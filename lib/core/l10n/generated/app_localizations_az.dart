@@ -1080,4 +1080,8 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Dinləməni dayandır';
+
+  @override
+  String get keepAwakeFailed =>
+      'Ekranı oyuda saxlamaq mümkün olmadı. Zəhmət olmasa, yenidən cəhd edin.';
 }

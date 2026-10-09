@@ -357,5 +357,6 @@
   "purchaseAnalyticsHint": "Satın alımlar tüketimi ölçmez. Para ve birimler ayrı gösterilir.",
   "receiptReplaces": "Bağlı fiş satırları mevcut alımları değiştirir; bağlantısız satırlar eklenir.",
   "voiceUnsupportedLanguage": "Bu cihazda bu dil için sesli giriş yok. Bunun yerine yazabilirsin.",
-  "voiceStopListening": "Dinlemeyi durdur"
+  "voiceStopListening": "Dinlemeyi durdur",
+  "keepAwakeFailed": "Ekran açık tutulamadı. Lütfen yeniden deneyin."
 }

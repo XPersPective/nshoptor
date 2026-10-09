@@ -1080,4 +1080,8 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Berhenti mendengar';
+
+  @override
+  String get keepAwakeFailed =>
+      'Gagal mengekalkan skrin aktif. Sila cuba lagi.';
 }

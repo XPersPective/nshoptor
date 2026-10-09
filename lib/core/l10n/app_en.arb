@@ -398,5 +398,6 @@
   "purchaseAnalyticsHint": "Purchases do not measure consumption. Currencies and units are shown separately.",
   "receiptReplaces": "Linked receipt lines replace existing purchases; unlinked lines are added.",
   "voiceUnsupportedLanguage": "This language is not available for voice input on this device. You can type instead.",
-  "voiceStopListening": "Stop listening"
+  "voiceStopListening": "Stop listening",
+  "keepAwakeFailed": "Could not keep the screen awake. Please try again."
 }

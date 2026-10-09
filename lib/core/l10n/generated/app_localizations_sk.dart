@@ -1079,4 +1079,8 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Zastaviť počúvanie';
+
+  @override
+  String get keepAwakeFailed =>
+      'Nepodarilo sa udržať obrazovku zapnutú. Skúste to prosím znova.';
 }

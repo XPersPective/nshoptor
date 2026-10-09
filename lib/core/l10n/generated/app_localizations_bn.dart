@@ -1077,4 +1077,8 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'শোনা বন্ধ করুন';
+
+  @override
+  String get keepAwakeFailed =>
+      'স্ক্রিন জাগিয়ে রাখা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।';
 }

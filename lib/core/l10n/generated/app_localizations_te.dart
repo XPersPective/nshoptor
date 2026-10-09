@@ -1084,4 +1084,8 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'వింటున్నాను ఆపండి';
+
+  @override
+  String get keepAwakeFailed =>
+      'స్క్రీన్ ని మేల్కొని ఉంచలేకపోయింది. దయచేసి మళ్ళీ ప్రయత్నించండి.';
 }

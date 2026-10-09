@@ -1070,4 +1070,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'הפסק להקשיב';
+
+  @override
+  String get keepAwakeFailed => 'לא הצלחנו לשמור על התצוגה דלוקה. נסה שוב.';
 }

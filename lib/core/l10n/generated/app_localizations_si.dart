@@ -1076,4 +1076,8 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'අසන්න නතර කරන්න';
+
+  @override
+  String get keepAwakeFailed =>
+      'තිරය අවදි තත්ත්වයෙන් තබා ගත නොහැක. කරුණාකර නැවත උත්සාහ කරන්න.';
 }

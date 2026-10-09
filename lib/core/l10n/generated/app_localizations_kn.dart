@@ -1080,4 +1080,8 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'ಕೇಳುವುದನ್ನು ನಿಲ್ಲಿಸಿ';
+
+  @override
+  String get keepAwakeFailed =>
+      'ಸ್ಕ್ರೀನ್ ಅನ್ನು ಜಾಗೃತವಾಗಿ ಇಡಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
 }

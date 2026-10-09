@@ -1076,4 +1076,8 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Sluta lyssna';
+
+  @override
+  String get keepAwakeFailed =>
+      'Det gick inte att hålla skärmen vaken. Försök igen.';
 }

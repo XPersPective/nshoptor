@@ -336,5 +336,6 @@
   "purchaseAnalyticsHint": "Aankope meet nie verbruik nie. Geldeenhede en eenhede word apart vertoon.",
   "receiptReplaces": "Geskakelde bonlyne vervang bestaande aankope; ongeskakelde lyne word bygevoeg.",
   "voiceUnsupportedLanguage": "Hierdie taal is nie beskikbaar vir stemintyding op hierdie toestel nie. Jy kan tik.",
-  "voiceStopListening": "Stop met luister"
+  "voiceStopListening": "Stop met luister",
+  "keepAwakeFailed": "Kon nie die skerm wakker hou nie. Probeer asseblief weer."
 }

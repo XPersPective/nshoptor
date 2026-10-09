@@ -5,16 +5,17 @@
 - PB-070 home/history/draft/completed tek ListDetailScreen açar; yeni liste editörü doğrudan açılır ve yeni kayıt detaya gider; ay kartı para kodunu korur. PB-071 form mevcut ID günceller; plan/gerçek bağımsız, kamera yalnız gerçek alanını doldurur, yazım atomic/hata görünür. Ortak removeItem bağlı alım/gözlemi kaldırır; PB-062 tek kanonik detayda satır CRUD, fiyat düzeltme, checkbox ve onaylı silme; ShoppingModeScreen uyumluluk kabuğudur.
 - PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. PB-074 oturum sahipliği ve geç callback korumasıyla mikrofon ikinci init riski kapatıldı.
 - PB-073 sonuç farkı yalnız bilinen tahmin+gerçek alımlardan; alınmayan/plansız ayrı. Bilinmeyen gerçek/tahmin —, ücretsiz 0 farklı; karma birim miktarı toplanmaz. Full suite 316 + son görünüm delta domain 20 passed; analyze 0.
-- 71 ARB var; ilk kurulum country→currency main.dart içinde zaten var. Settings keepAwake listede okunmuyor.
+- 71 ARB var; ilk kurulum country→currency main.dart içinde zaten var. Settings keepAwake kanonik listeye bağlı (PB-077).
 - Server mevcut varsayılan: free15/pro200/max1000, Qwen Token Plan. PB-066 PDF yerel Android yazdırma ile var. PDF/ayarlar/AI geliştirmeleri açık görevlerdedir.
 - Kullanıcı devralma/tamamlama yetkisi verdi; yalnız kanıtlanan checkpointler burada mevcut durumdur.
 - PB-062 doğrulama: 321 full-suite passed, analyze 0; 320dp/2x tr/ar taşmasız, 48dp erişilebilir eylemler. Büyük yazıda başlık ürünlerle birlikte kayar. Tamamlanmış listede yeniden başlatma yok.
 - PB-066 liste menüsü/sonuç PDF raporu: atomic snapshot, kaçırılmış HTML, null/para/birim dürüst; Android native print lifecycle. API36 emülatörde cancel→repeat→save→open 5 sayfa/Türkçe görsel kanıtlı; docs/audits/pdf-report-2026-10-09.md. 74 domain +2 son delta passed, debug APK, analyze 0.
-- PB-067 system sayı biçimi cihaz ülke yerelinden (Latin dışı rakamda en), UI dili bağımsız; 71 dilde açıklama güncel. MoneyParser intl ayraç/gruplama (en_IN3/2, fr ince boşluk) ve büyük ondalık için ortak doğru yol. Limitler currency key ile saklanır; eski değer mevcut tercihe bir kez bağlanır, prefill hassasiyet/küsurat korunur, invalid kalır; plansız aylık kart/geri dönüş refresh testli. Full335 passed, analyze0. Wakelock PB-077, feedback PB-078 halen açık.
+- PB-067 system sayı biçimi cihaz ülke yerelinden (Latin dışı rakamda en), UI dili bağımsız; 71 dilde açıklama güncel. MoneyParser intl ayraç/gruplama (en_IN3/2, fr ince boşluk) ve büyük ondalık için ortak doğru yol. Limitler currency key ile saklanır; eski değer mevcut tercihe bir kez bağlanır, prefill hassasiyet/küsurat korunur, invalid kalır; plansız aylık kart/geri dönüş refresh testli. Full335 passed, analyze0. Wakelock PB-077 tamam; feedback PB-078 halen açık.
 - PB-074: 339 full-suite passed, analyze 0, Android debug APK built; actual API36 native bridge integration 1 passed. Speech partial/final/status/error, exact/same-language locale, second tap stop and disposal preserve text; physical audio remains unverified.
 - PB-075: AI schema title/brand/category; editable title and product fields with price mode. Approval resolves/reuses category and saves selected items atomically; failure keeps draft, source change invalidates it. Home list creation and items share transaction. Local numeric/decimal quantities preserved. Full342 passed, server9 passed, analyze0. Worker schema source updated; live deployment still pending PB-065.
 - PB-076: shared photo candidate carries productName/unit/actual price; selected €/kg and per-item values use the correct actual quantity/mode, estimate stays unchanged. Local name heuristic is editable; KWD3/free0 supported. Standalone Home receipt preview allocates list only on atomic approval; cancellation/error/concurrent retry leave no orphan/duplicates. Controllers disposed by route owners. Full348 passed, analyze0.
-- PB-064 input acceptance: 93 voice/receipt/wiring/form checks and server9 passed, analyze0; single-item voice metadata/line-total approval covered. Standard AI provider replacement required: configured Token Plan forbids app backends (official terms, PB-065); user provider/key choice pending.
+- PB-064 input acceptance: 93 voice/receipt/wiring/form checks and server9 passed, analyze0; single-item voice metadata/line-total approval covered. User explicitly retained the current Qwen Token account for this revision; provider replacement deferred (PB-065).
+- PB-077 (2026-10-10): appRouteObserver includes modal sheets; canonical list reads keepAwake preference, selected control reflects native success, releases on covering route/pause/dispose, restores on pop/resume. Nested AdGate ownership preserved. 86 domain passed, analyze0; native Android flag still PB-069.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -23,7 +24,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/main.dart` — boot: settings, Pro/Ads (napp_kit), DB, runApp
 - `lib/app/` — NShoptorApp, dil/tema denetleyicileri, varsayılanlar
 - `lib/core/money|quantity|calc` — decimal para, birim, plan-gerçek hesapları (double yok)
-- `lib/core/l10n/` — tr/en ARB + üretilmiş AppLocalizations
+- `lib/core/l10n/` — 71 ARB + üretilmiş AppLocalizations
 - `lib/core/theme/` — M3 tema, SemanticDelta renkleri
 - `lib/core/config/env_config.dart` — AppIdentity, dart-define adresleri, Pro ürün kimliği
 - `lib/data/db/` — drift şeması (14 tablo) + üretilmiş kod
@@ -53,6 +54,7 @@ AppThemeModeController + AppDefaults) + napp_kit katmanı (ADR-002):
 AppIdentity/env_config (dart-define), PurchaseRepository+ProController
 (`com.crazypenguin.nshoptor.pro_lifetime`), AdPolicy+UMP onayı (SDK'dan önce),
 BannerAdController, napp sözlük delegesi. Boot: SettingsStore yüklenir,
+ModalRoute observer in app/navigation.dart drives list ownership.
 dil + tema + biçim-yereli (AppFormatLocale: dil'den BAĞIMSIZ, C-001)
 runApp'ten önce okunur. State: stream-based repositories +
 StatefulWidget; no external state framework. Persistence: drift 2.35
@@ -106,7 +108,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   doğrulaması PB-043'te bekliyor), `lists/attachments/` (file storage +
   orphan sweep). `list_detail_screen.dart`: canonical checkbox rows for every status, unknown price —, independent planned/actual edit+scan, confirmation for delete/undo, fixed bottom input/receipt/finish actions; header scrolls at large type. Completed lists have no restart.
 - `shopping_mode/`: 5 item statuses, unplanned purchases, controlled returns,
-  projection summary; canonical wakelock implementation still pending PB-077; satıra dokunuş → hızlı giriş alt sayfası
+  projection summary; canonical RouteAware/lifecycle wakelock with global serialized owner updates (PB-077); satıra dokunuş → hızlı giriş alt sayfası
   (fiyat alanı ilk + autofocus; indirim/alternatif katlanır) — C-004;
   `shopping_mode/summary/`: ResultRepository + SummaryScreen (price vs
   quantity effect rows; comparable known prices only).

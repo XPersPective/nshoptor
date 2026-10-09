@@ -1083,4 +1083,8 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Arrêter l\'écoute';
+
+  @override
+  String get keepAwakeFailed =>
+      'Impossible de maintenir l\'écran allumé. Veuillez réessayer.';
 }

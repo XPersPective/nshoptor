@@ -1080,4 +1080,8 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Спри слушането';
+
+  @override
+  String get keepAwakeFailed =>
+      'Неуспешно задържане на екрана. Моля, опитайте отново.';
 }

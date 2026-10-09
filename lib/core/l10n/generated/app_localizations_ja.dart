@@ -1048,4 +1048,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get voiceStopListening => '録音を停止';
+
+  @override
+  String get keepAwakeFailed => '画面を点灯したままにできませんでした。もう一度お試しください。';
 }

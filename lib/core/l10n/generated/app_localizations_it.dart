@@ -1081,4 +1081,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Ferma l\'ascolto';
+
+  @override
+  String get keepAwakeFailed => 'Ecrin ei pysynyt päällä. Yritä uudelleen.';
 }

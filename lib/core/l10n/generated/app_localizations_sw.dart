@@ -1079,4 +1079,8 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Simamisha kusikiliza';
+
+  @override
+  String get keepAwakeFailed =>
+      'Haikuweza kushikilia skrini ikiwa imewaka. Tafadhali jaribu tena.';
 }

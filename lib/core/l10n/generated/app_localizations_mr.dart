@@ -1076,4 +1076,8 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'ऐकणे थांबवा';
+
+  @override
+  String get keepAwakeFailed =>
+      'स्क्रीन जागृत ठेवता आली नाही. कृपया पुन्हा प्रयत्न करा.';
 }

@@ -52,4 +52,4 @@ Tam DB/state-management yeniden yazımı; gereksiz bağımlılık; hesap/bulut s
 ## Open Target Decisions
 Gerçek Play net gelir/vergi raporu ve gerçek sağlayıcı token ölçümü henüz yok: maliyet tabloları varsayımdır. Fiziksel mikrofon çalışması henüz doğrulanmadı. Bunlar bağımsız uygulama görevlerini durdurmaz; ticari/canlı başarı iddiasını sınırlar.
 
-AI sağlayıcı kararı (2026-10-09): Qwen Token Plan resmî koşulları özel uygulama backend kullanımını yasaklıyor. Standart API hesabı/anahtar yolu kullanıcıya soruldu; kaynak: https://docs.qwencloud.com/token-plan/personal/token-plan-personal-overview . Yerel kota/istemci/test işi bağımsızdır; bu endpoint ile yeni backend çağrısı veya canlı yayın yapılmaz.
+AI sağlayıcı kararı (kullanıcı, 2026-10-09): “Ben ileride onu değiştireceğim zaten. Şimdilik mevcut kuvent token hesabı var ya o hesap üzerinden işle.” Mevcut Qwen Token hesabı/endpoint/model korunur; standart API hesabı değişimi bu revizyonun ön koşulu değildir. Sağlayıcı kredi maliyeti ancak gerçek kullanım kaydıyla ölçülür.

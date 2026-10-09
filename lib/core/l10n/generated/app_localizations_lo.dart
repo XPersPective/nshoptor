@@ -1074,4 +1074,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'ຢຸດການຟັງ';
+
+  @override
+  String get keepAwakeFailed => 'ບໍ່ສາມາດຮັກສາໜ້າຈໍໃຫ້ຕົດໄດ້. ກະລຸນາລອງໃໝ່.';
 }

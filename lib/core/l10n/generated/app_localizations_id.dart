@@ -1076,4 +1076,8 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'Berhenti mendengarkan';
+
+  @override
+  String get keepAwakeFailed =>
+      'Layar tidak dapat tetap menyala. Silakan coba lagi.';
 }

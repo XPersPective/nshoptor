@@ -1074,4 +1074,8 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get voiceStopListening => 'اوریدل ودرول';
+
+  @override
+  String get keepAwakeFailed =>
+      'د سکرین ژوند ساتلو کې پاتې راغلو. مهرباني وکړئ بیا هڅه وکړئ.';
 }
