@@ -14,6 +14,7 @@
 - PB-074: 339 full-suite passed, analyze 0, Android debug APK built; actual API36 native bridge integration 1 passed. Speech partial/final/status/error, exact/same-language locale, second tap stop and disposal preserve text; physical audio remains unverified.
 - PB-075: AI schema title/brand/category; editable title and product fields with price mode. Approval resolves/reuses category and saves selected items atomically; failure keeps draft, source change invalidates it. Home list creation and items share transaction. Local numeric/decimal quantities preserved. Full342 passed, server9 passed, analyze0. Worker schema source updated; live deployment still pending PB-065.
 - PB-076: shared photo candidate carries productName/unit/actual price; selected €/kg and per-item values use the correct actual quantity/mode, estimate stays unchanged. Local name heuristic is editable; KWD3/free0 supported. Standalone Home receipt preview allocates list only on atomic approval; cancellation/error/concurrent retry leave no orphan/duplicates. Controllers disposed by route owners. Full348 passed, analyze0.
+- PB-064 input acceptance: 93 voice/receipt/wiring/form checks and server9 passed, analyze0; single-item voice metadata/line-total approval covered. Standard AI provider replacement required: configured Token Plan forbids app backends (official terms, PB-065); user provider/key choice pending.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).

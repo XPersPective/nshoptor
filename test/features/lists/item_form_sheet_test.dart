@@ -12,6 +12,8 @@ import 'package:nshoptor/features/lists/starter_categories.dart';
 import 'package:nshoptor/features/lists/item_repository.dart';
 import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
 import 'package:nshoptor/core/money/decimal_fixed.dart';
+import 'package:nshoptor/features/voice_input/parser/parsed_item_candidate.dart';
+import 'package:nshoptor/core/quantity/unit_code.dart';
 
 void main() {
   setUp(() => AppFormatLocale.attach('tr'));
@@ -31,7 +33,7 @@ void main() {
   }
 
   Future<void> openForm(WidgetTester tester, int listId, {PlannedItem? existing,
-      List<PurchaseEntry> entries = const [], Future<String?> Function(BuildContext)? scan}) async {
+      List<PurchaseEntry> entries = const [], Future<String?> Function(BuildContext)? scan, ParsedItemCandidate? candidate}) async {
     await StarterCategories().seedIfEmpty(db);
     await tester.pumpWidget(MaterialApp(
       locale: const Locale('tr'),
@@ -47,7 +49,7 @@ void main() {
           db: db,
           starterCategories: StarterCategories(),
           listId: listId,
-          existing: existing, entries: entries, onShelfPricePressed: scan,
+          existing: existing, entries: entries, onShelfPricePressed: scan, initialCandidate: candidate,
         ),
       ),
     ));
@@ -56,6 +58,24 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(800, 1600));
     await tester.pumpAndSettle();
   }
+
+  testWidgets('single voice candidate retains brand/custom category and total mode until approval', (tester) async {
+    final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    await openForm(tester, listId, candidate: ParsedItemCandidate(name: 'Pear', rawText: '',
+      quantity: DecimalFixed.parse('1.5'), unitCode: UnitCode.kilogram,
+      unitPrice: DecimalFixed.fromInt(40), isUnitPrice: false, brand: 'Farm', category: 'New category'));
+    expect(await db.select(db.plannedItems).get(), isEmpty);
+    expect((await db.select(db.categories).get()).any((c) => c.name == 'New category'), isFalse);
+    expect(tester.widget<TextField>(find.byKey(const Key('item_price_field'))).controller!.text, '40');
+    await settleAndSave(tester);
+    final item = (await db.select(db.plannedItems).get()).single;
+    expect(item.name, 'Pear'); expect(item.brand, 'Farm'); expect(item.plannedQuantity, '1.5');
+    expect(item.plannedUnitCode, 'kilogram'); expect(item.pricingInputMode, 'lineTotal'); expect(item.plannedLineTotalMinorUnits, 4000);
+    final category = (await db.select(db.categories).get()).singleWhere((c) => c.id == item.categoryId);
+    expect(category.name, 'New category');
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    await disposeApp(tester);
+  });
 
   testWidgets('edit keeps plan quantity and estimate independent from actual', (tester) async {
     final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
