@@ -16,6 +16,7 @@
 - PB-076: shared photo candidate carries productName/unit/actual price; selected €/kg and per-item values use the correct actual quantity/mode, estimate stays unchanged. Local name heuristic is editable; KWD3/free0 supported. Standalone Home receipt preview allocates list only on atomic approval; cancellation/error/concurrent retry leave no orphan/duplicates. Controllers disposed by route owners. Full348 passed, analyze0.
 - PB-064 input acceptance: 93 voice/receipt/wiring/form checks and server9 passed, analyze0; single-item voice metadata/line-total approval covered. User explicitly retained the current Qwen Token account for this revision; provider replacement deferred (PB-065).
 - PB-077 (2026-10-10): appRouteObserver includes modal sheets; canonical list reads keepAwake preference, selected control reflects native success, releases on covering route/pause/dispose, restores on pop/resume. Nested AdGate ownership preserved. 86 domain passed, analyze0; native Android flag still PB-069.
+- PB-079: DecimalFixed.toMinorUnits uses checked int.parse at native signed storage boundary; large products no longer silently clamp. Overflow preview/save preserve manual input and replacement keeps existing purchase/observation. Full354 passed, analyze0.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).

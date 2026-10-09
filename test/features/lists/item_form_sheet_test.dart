@@ -77,6 +77,21 @@ void main() {
     await disposeApp(tester);
   });
 
+  testWidgets('overflow preview and save preserve typed input without writing', (tester) async {
+    final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    await openForm(tester, listId);
+    await tester.enterText(find.byKey(const Key('item_name_field')), 'Large quantity');
+    await tester.enterText(find.byKey(const Key('item_quantity_field')), '999999999999999');
+    await tester.enterText(find.byKey(const Key('item_price_field')), '999999999999999');
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    await settleAndSave(tester);
+    expect(await db.select(db.plannedItems).get(), isEmpty);
+    expect(find.text('999999999999999'), findsNWidgets(2));
+    expect(find.text(AppLocalizations.of(tester.element(find.byType(ItemFormSheet))).saveFailed), findsOneWidget);
+    await disposeApp(tester);
+  });
+
   testWidgets('edit keeps plan quantity and estimate independent from actual', (tester) async {
     final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
     final id = await ItemRepository(db).addItem(listId: listId, name: 'Tomato', quantity: DecimalFixed.fromInt(2),

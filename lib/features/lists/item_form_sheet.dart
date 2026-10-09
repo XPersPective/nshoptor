@@ -231,6 +231,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     final currency = Currency.fromCode(_currencyCode);
     final digits = currency.minorUnitDigits;
     final l10n = _l10n;
+    try {
     if (_priceIsUnitPrice) {
       final total = LineCalc.plannedLineTotal(qty, price);
       return l10n.lineTotalCalculated(
@@ -247,6 +248,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
         locale: formatLocaleCode(context),
       ),
     );
+      } on FormatException { return l10n.invalidAmountError; }
   }
 
   Future<void> _save() async {

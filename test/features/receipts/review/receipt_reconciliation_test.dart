@@ -74,6 +74,20 @@ void main() {
         lineTotalMinor: 3000,
       );
 
+  test('overflowing replacement preserves the existing purchase and price observation', () async {
+    await manual();
+    final before = (await db.select(db.purchaseEntries).get()).single;
+    final observation = (await db.select(db.priceObservations).get()).single;
+    await expectLater(ShoppingRepository(db).recordPurchase(listId: listId, plannedItemId: itemId,
+      name: 'Tomato', normalizedName: 'tomato', unitCode: 'kilogram',
+      quantity: DecimalFixed.parse('999999999999999'), unitPrice: DecimalFixed.parse('999999999999999')),
+      throwsFormatException);
+    final after = (await db.select(db.purchaseEntries).get()).single;
+    expect(after.id, before.id); expect(after.actualLineTotalMinorUnits, before.actualLineTotalMinorUnits);
+    final preserved = (await db.select(db.priceObservations).get()).single;
+    expect(preserved.id, observation.id); expect(preserved.unitPrice, observation.unitPrice);
+  });
+
   ReceiptReviewController receipt() {
     final c = ReceiptReviewController(
       db: db,

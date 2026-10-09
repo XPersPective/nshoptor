@@ -93,6 +93,21 @@ void main() {
   });
 
   group('minor units dönüşümü', () {
+    test('native signed boundaries round-trip; overflowing products never clamp', () {
+      const max = 9223372036854775807, min = -9223372036854775808;
+      for (final value in [max, min]) {
+        for (final digits in [0, 2, 3]) {
+          expect(DecimalFixed.fromMinorUnits(value, digits).toMinorUnits(digits), value);
+        }
+      }
+      final positive = DecimalFixed.fromMinorUnits(max, 0) + DecimalFixed.fromInt(1);
+      final negative = DecimalFixed.fromMinorUnits(min, 0) - DecimalFixed.fromInt(1);
+      expect(() => positive.toMinorUnits(0), throwsFormatException);
+      expect(() => negative.toMinorUnits(0), throwsFormatException);
+      final product = DecimalFixed.parse('999999999999999') * DecimalFixed.parse('999999999999999');
+      expect(() => product.toMinorUnits(2), throwsFormatException);
+      expect(() => product.negated().toMinorUnits(2), throwsFormatException);
+    });
     test('toMinorUnits yarıdan uzağa yuvarlar', () {
       expect(DecimalFixed.parse('64.35').toMinorUnits(2), 6435);
       expect(DecimalFixed.parse('64.355').toMinorUnits(2), 6436);

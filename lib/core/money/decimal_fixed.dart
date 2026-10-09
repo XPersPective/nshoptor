@@ -124,7 +124,7 @@ class DecimalFixed implements Comparable<DecimalFixed> {
 
   /// [digits] minor unit basamağına yarıdan uzağa yuvarlayarak minor unit
   /// değerini döndürür — Money'a dönüşümün tek noktası.
-  int toMinorUnits(int digits) => rescale(digits).unscaled.toInt();
+  int toMinorUnits(int digits) => int.parse(rescale(digits).unscaled.toString());
 
   /// Kanonik dize gösterimi (veritabanı saklaması için kararlı): `1234.5600`.
   String toDbString() {
