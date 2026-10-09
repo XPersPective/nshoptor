@@ -24,21 +24,24 @@ export const TASKS = {
     },
     system: locale =>
       'You turn a spoken or typed shopping sentence into list items. ' +
-      'Return JSON {"items":[{"name":string,"quantity":string|null,' +
+      'Return JSON {"title":string|null,"items":[{"name":string,"brand":string|null,"category":string|null,"quantity":string|null,' +
       `"unit":one of ${JSON.stringify(UNITS)}|null,"estimatedPrice":string|null,` +
       '"priceIsUnitPrice":boolean}]}. quantity/estimatedPrice are plain decimal ' +
       'strings with a dot ("1.5", "20"). estimatedPrice is the price the user ' +
       'said; if they said "kilosu 45" or "per kilo" set priceIsUnitPrice true. ' +
       'A number written right after an item (e.g. "2 kg tomatoes 30") is the price of that item: ' +
       'put it in estimatedPrice (a total unless the user says per unit). Quantity words like "2 kg" are not prices. ' +
-      'Never invent prices. Max 40 items. ' + LOCALE_NOTE(locale),
+      'Never invent prices or brands. Use a short list title only if suggested by the input. Categories: produce, dairy, meat, bakery, drinks, cleaning, personalCare, home, other, or a user-specified custom category. Max 40 items. ' + LOCALE_NOTE(locale),
     user: input => input.text,
     clean(out) {
       const items = Array.isArray(out?.items) ? out.items.slice(0, 40) : [];
       return {
+        title: text(out?.title, 80) || null,
         items: items
           .map(i => ({
             name: text(i?.name, 60),
+            brand: text(i?.brand, 60) || null,
+            category: text(i?.category, 60) || null,
             quantity: decimal(i?.quantity),
             unit: UNITS.includes(i?.unit) ? i.unit : null,
             estimatedPrice: decimal(i?.estimatedPrice),

@@ -90,7 +90,7 @@ class VoiceCommandParser {
     final raw = text.trim();
     var tokens = raw
         .toLowerCase()
-        .split(RegExp(r'[\s,;]+'))
+        .split(RegExp(r'[\s;]+|(?<!\d),|,(?!\d)'))
         .where((t) => t.isNotEmpty)
         .toList();
 
@@ -208,6 +208,9 @@ class VoiceCommandParser {
     String hundredWord,
   ) {
     if (tokens.isEmpty) return null;
+    if (RegExp(_isTr ? r'^\d{1,9}(?:[.,]\d{1,3})?$' : r'^\d{1,9}(?:\.\d{1,3})?$').hasMatch(tokens.first)) {
+      return (DecimalFixed.parse(tokens.first.replaceAll(',', '.')), tokens.sublist(1));
+    }
     if (tens.containsKey(tokens.first)) {
       var value = DecimalFixed.fromInt(tens[tokens.first]!);
       var consumed = 1;
@@ -287,7 +290,7 @@ class VoiceCommandParser {
         var start = i - 1;
         while (start > 0 &&
             (_enOnes.containsKey(tokens[start - 1]) ||
-                _enTens.containsKey(tokens[start - 1]))) {
+                _enTens.containsKey(tokens[start - 1]) || RegExp(r'^\d{1,9}(?:\.\d{1,3})?$').hasMatch(tokens[start - 1]))) {
           start--;
         }
         if (start == i - 1) continue; // sayı yok → bu kalıp değil

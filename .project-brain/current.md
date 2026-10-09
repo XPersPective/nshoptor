@@ -12,6 +12,7 @@
 - PB-066 liste menüsü/sonuç PDF raporu: atomic snapshot, kaçırılmış HTML, null/para/birim dürüst; Android native print lifecycle. API36 emülatörde cancel→repeat→save→open 5 sayfa/Türkçe görsel kanıtlı; docs/audits/pdf-report-2026-10-09.md. 74 domain +2 son delta passed, debug APK, analyze 0.
 - PB-067 system sayı biçimi cihaz ülke yerelinden (Latin dışı rakamda en), UI dili bağımsız; 71 dilde açıklama güncel. MoneyParser intl ayraç/gruplama (en_IN3/2, fr ince boşluk) ve büyük ondalık için ortak doğru yol. Limitler currency key ile saklanır; eski değer mevcut tercihe bir kez bağlanır, prefill hassasiyet/küsurat korunur, invalid kalır; plansız aylık kart/geri dönüş refresh testli. Full335 passed, analyze0. Wakelock PB-077, feedback PB-078 halen açık.
 - PB-074: 339 full-suite passed, analyze 0, Android debug APK built; actual API36 native bridge integration 1 passed. Speech partial/final/status/error, exact/same-language locale, second tap stop and disposal preserve text; physical audio remains unverified.
+- PB-075: AI schema title/brand/category; editable title and product fields with price mode. Approval resolves/reuses category and saves selected items atomically; failure keeps draft, source change invalidates it. Home list creation and items share transaction. Local numeric/decimal quantities preserved. Full342 passed, server9 passed, analyze0. Worker schema source updated; live deployment still pending PB-065.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -86,7 +87,7 @@ cascade/set-null, PRAGMA foreign_keys, migration v0→v1, transaction rollback
 tested. Generated `app_database.g.dart` committed to repo (ADR-001).
 ### Features
 
-**Status:** VERIFIED (2026-10-03, PB-036..045 checkpoint)
+**Status:** VERIFIED (2026-10-09 canonical lists, native voice, approved AI draft checkpoint)
 
 **Sources:** `lib/features/**`, `test/features/**`, `integration_test/**`
 
@@ -101,9 +102,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   flutter_local_notifications üretim adaptörü — izin yalnız hatırlatma
   kurulurken istenir, tam alarm izni yoksa inexact fallback; cihaz
   doğrulaması PB-043'te bekliyor), `lists/attachments/` (file storage +
-  orphan sweep). `list_detail_screen.dart`: özet kartı ("Planlanan ₺X ·
-  n ürün" + durum çipi), fiyatsız ürün satırında soluk "—", altta
-  "Alışverişe başla" CTA + FAB "Ürün ekle".
+  orphan sweep). `list_detail_screen.dart`: canonical checkbox rows for every status, unknown price —, independent planned/actual edit+scan, confirmation for delete/undo, fixed bottom input/receipt/finish actions; header scrolls at large type. Completed lists have no restart.
 - `shopping_mode/`: 5 item statuses, unplanned purchases, controlled returns,
   projection summary, wakelock; satıra dokunuş → hızlı giriş alt sayfası
   (fiyat alanı ilk + autofocus; indirim/alternatif katlanır) — C-004;
@@ -181,14 +180,14 @@ Historical device evidence (2026-10-03/04): 259 unit/widget + 3 integration, rel
 - Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.1.1 (3) completed (71 dil, PB-061), test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444.
 - Yayın kökü `D:\AppPublishing\apps\nshoptor` (imza, kimlikler, 73 Play dili mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py` (+ `listing_extra.json`, `listing_translate.py`); toplu görsel `tool/store/capture_all.py`; uygulama çevirisi `tool/i18n/translate.py`. 71 uygulama dili (ARB), napp_pro/napp_ads kendi metinleri tr/en (diğerlerinde İngilizce). 1.1 mağaza metni/görselleri henüz Play'e yüklenmedi (üretime alırken `push_metadata`).
 - Ürünler: `nshoptor_pro`, `nshoptor_max` (abonelik), `com.crazypenguin.nshoptor.pro_lifetime` (ömür boyu reklamsız). Ödüllü reklam birimi app-ids.env'de (ADMOB_REWARDED_ANDROID).
-### Server (AI vekili)
+### Server
 
-**Status:** VERIFIED (2026-10-08, PB-048)
+**Status:** VERIFIED (2026-10-09 source schema/worker; live configuration historical)
 
 **Sources:** `server/**`
 
 Cloudflare Worker `nshoptor-api` (workers.dev) + D1 `nshoptor`. `POST /v1/ai`
-görevleri `parse_list`, `match_receipt`, `read_label`; çıktı `tasks.js`'te
+görevleri `parse_list`, `match_receipt`, `read_label`; parse_list title/brand/category bounded metadata (PB-075); çıktı `tasks.js`'te
 şemaya göre temizlenir (bilinmeyen plan kimliği/birim atılır). Kota aylık
 (free 15 / pro 200 / max 1000) + günlük global tavan; Pro/Max yalnız
 Play `subscriptionsv2` doğrulamasıyla (hata → free). Sağlayıcı OpenAI

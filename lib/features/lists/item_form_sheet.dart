@@ -34,6 +34,7 @@ class ItemFormSheet extends StatefulWidget {
     required this.starterCategories,
     required this.listId,
     this.initialName,
+    this.initialCandidate,
     this.initialQuantity,
     this.initialUnitCode,
     this.initialUnitPrice,
@@ -56,6 +57,7 @@ class ItemFormSheet extends StatefulWidget {
   /// Ses önizlemesi gibi akışlardan öndoldurulan değerler (spec §6.7:
   /// sonuç düzenlenebilir önizlemeye gider, doğrudan kaydedilmez).
   final String? initialName;
+  final ParsedItemCandidate? initialCandidate;
   final String? initialQuantity;
   final UnitCode? initialUnitCode;
   final String? initialUnitPrice;
@@ -87,6 +89,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
 
   late UnitCode _unit = widget.initialUnitCode ?? AppDefaults.defaultUnit();
   bool _priceIsUnitPrice = true;
+  String? _categoryName;
   bool _required = false;
   int? _categoryId;
   List<Category> _categories = const [];
@@ -111,6 +114,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   @override
   void initState() {
     super.initState();
+    final c = widget.initialCandidate;
+    if (c != null) _applyCandidate(c);
     (_db.select(
       _db.categories,
     )..orderBy([(t) => OrderingTerm.asc(t.sortOrder)])).get().then((rows) {
@@ -289,7 +294,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
         final id = await ItemRepository(_db).addItem(listId: widget.listId,
           existingId: widget.existing?.id, name: name, quantity: quantity,
           unitCode: _unit.dbCode, priceIsUnitPrice: _priceIsUnitPrice, price: price,
-          brand: _brand.text.trim().isEmpty ? null : _brand.text.trim(), categoryId: _categoryId,
+          brand: _brand.text.trim().isEmpty ? null : _brand.text.trim(), categoryId: _categoryId, categoryName: _categoryName,
           maxAcceptablePrice: _tryParse(_maxPrice.text), requiredFlag: _required,
           note: _note.text.trim().isEmpty ? null : _note.text.trim());
         if (_actualChanged) {
@@ -317,16 +322,21 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     if (handler == null) return;
     final candidate = await handler(context);
     if (candidate == null || !mounted) return;
-    setState(() {
-      _name.text = candidate.name;
-      if (candidate.quantity != null) {
-        _quantity.text = candidate.quantity!.toDbString().replaceAll('.', _separators.decimal);
-      }
-      if (candidate.unitCode != null) _unit = candidate.unitCode!;
-      if (candidate.unitPrice != null) {
-        _price.text = candidate.unitPrice!.toDbString().replaceAll('.', _separators.decimal);
-      }
-    });
+    setState(() => _applyCandidate(candidate));
+  }
+
+  void _applyCandidate(ParsedItemCandidate candidate) {
+    _name.text = candidate.name;
+    if (candidate.quantity != null) _quantity.text = candidate.quantity!.toDbString();
+    if (candidate.unitCode != null) _unit = candidate.unitCode!;
+    if (candidate.unitPrice != null) _price.text = candidate.unitPrice!.toDbString();
+    if (candidate.isUnitPrice != null) _priceIsUnitPrice = candidate.isUnitPrice!;
+    if (candidate.brand != null) _brand.text = candidate.brand!;
+    if (candidate.category != null) { _categoryName = candidate.category; _categoryId = null; }
+    // Initial values are localized by _prefillFields after context is available.
+    if (_prefilled) {
+      for (final field in [_quantity, _price]) { field.text = field.text.replaceAll('.', _separators.decimal); }
+    }
   }
 
   Future<void> _onShelfPricePressed() async {
@@ -530,9 +540,14 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                   decoration: InputDecoration(labelText: l10n.brandLabel),
                 ),
                 const SizedBox(height: 12),
+                if (_categoryName != null) TextFormField(
+                  key: const Key('item_candidate_category'), initialValue: widget.starterCategories.labelOf(l10n, _categoryName!),
+                  decoration: InputDecoration(labelText: l10n.categoryLabel),
+                  onChanged: (value) => _categoryName = value.trim().isEmpty ? null : value.trim(),
+                ),
                 DropdownButtonFormField<int>(
                   isExpanded: true,
-                  key: const Key('item_category_field'),
+                  key: ValueKey('item_category_$_categoryId'),
                   initialValue: _categoryId,
                   decoration: InputDecoration(labelText: l10n.categoryLabel),
                   items: _categories
@@ -545,7 +560,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                         ),
                       )
                       .toList(),
-                  onChanged: (v) => setState(() => _categoryId = v),
+                  onChanged: (v) => setState(() { _categoryId = v; _categoryName = null; }),
                 ),
                 const SizedBox(height: 12),
                 TextField(

@@ -33,8 +33,7 @@ import '../voice_input/stt_speech_service.dart';
 import '../voice_input/voice_input_service.dart';
 import '../voice_input/voice_preview_sheet.dart';
 import '../voice_input/list_draft_sheet.dart';
-import '../../app/app_defaults.dart';
-import '../../core/money/decimal_fixed.dart';
+import '../voice_input/ai_list_parser.dart';
 import 'item_repository.dart';
 import '../ai/ai_client.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
@@ -333,6 +332,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
         listId: widget.listId,
         existing: existing, entries: existing == null ? const [] : entries.where((e) => e.plannedItemId == existing.id).toList(),
         initialActualPrice: initialActualPrice, focusActual: focusActual,
+        initialCandidate: prefill,
         initialName: prefill?.name,
         initialQuantity: prefill?.quantity?.toDbString(),
         initialUnitCode: prefill?.unitCode,
@@ -346,26 +346,16 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
 
   /// Cümleden/sesten çok ürün (PB-050): önizlemede seçilenler eklenir.
   Future<void> _openQuickList(BuildContext context) async {
-    final picked = await showModalBottomSheet<List<ParsedItemCandidate>>(
+    final picked = await showModalBottomSheet<ListDraft>(
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
       builder: (_) => ListDraftSheet(
         speechService: widget.speechService ?? SttSpeechService(),
+        onApprove: (draft) => ItemRepository(widget.db).addCandidates(widget.listId, draft.items),
       ),
     );
-    if (picked == null || picked.isEmpty) return;
-    final repo = ItemRepository(widget.db);
-    for (final c in picked) {
-      await repo.addItem(
-        listId: widget.listId,
-        name: c.name,
-        quantity: c.quantity ?? DecimalFixed.fromInt(1),
-        unitCode: (c.unitCode ?? AppDefaults.defaultUnit()).dbCode,
-        priceIsUnitPrice: c.isUnitPrice ?? false,
-        price: c.unitPrice,
-      );
-    }
+    if (picked == null || !mounted) return;
     _refresh();
   }
 

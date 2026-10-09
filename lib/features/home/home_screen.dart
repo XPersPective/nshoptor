@@ -15,10 +15,9 @@ import '../history/insights/spending_screen.dart';
 import '../subscription/subscription_service.dart';
 import '../assistant/assistant_bubble.dart';
 import '../voice_input/list_draft_sheet.dart';
-import '../voice_input/parser/parsed_item_candidate.dart';
+import '../voice_input/ai_list_parser.dart';
 import '../voice_input/stt_speech_service.dart';
 import '../lists/item_repository.dart';
-import '../../core/money/decimal_fixed.dart';
 
 import '../../app/app_defaults.dart';
 import '../settings/settings_repository.dart';
@@ -206,7 +205,8 @@ class _HomeShellState extends State<HomeShell> {
           MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: widget.db)),
         );
       case AssistantAction.voiceList || AssistantAction.textList:
-        final picked = await showModalBottomSheet<List<ParsedItemCandidate>>(
+        int? createdId;
+        final picked = await showModalBottomSheet<ListDraft>(
           context: context,
           isScrollControlled: true,
           showDragHandle: true,
@@ -214,24 +214,18 @@ class _HomeShellState extends State<HomeShell> {
             speechService: SttSpeechService(),
             initialText: choice.text,
             autoListen: choice.action == AssistantAction.voiceList,
+            onApprove: (draft) async {
+              createdId = await widget.db.transaction(() async {
+                final id = await widget.listRepository.createList(title: draft.title,
+                  currencyCode: AppDefaults.defaultCurrency(), generatedTitle: l10n.quickListTitle);
+                await ItemRepository(widget.db).addCandidates(id, draft.items);
+                return id;
+              });
+            },
           ),
         );
-        if (picked == null || picked.isEmpty || !context.mounted) return;
-        final listId = await widget.listRepository.createList(
-          currencyCode: AppDefaults.defaultCurrency(),
-          generatedTitle: l10n.quickListTitle,
-        );
-        final repo = ItemRepository(widget.db);
-        for (final c in picked) {
-          await repo.addItem(
-            listId: listId,
-            name: c.name,
-            quantity: c.quantity ?? DecimalFixed.fromInt(1),
-            unitCode: (c.unitCode ?? AppDefaults.defaultUnit()).dbCode,
-            priceIsUnitPrice: c.isUnitPrice ?? false,
-            price: c.unitPrice,
-          );
-        }
+        if (picked == null || createdId == null || !context.mounted) return;
+        final listId = createdId!;
         // Önce liste açılır: fiyatları düzenle, sonra "Alışverişe başla" (plan → alışveriş).
         if (context.mounted) {
           await Navigator.of(context).push(

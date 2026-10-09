@@ -15,10 +15,14 @@ class ParsedItemCandidate {
     this.unitPrice,
     this.currencyCode,
     this.isUnitPrice,
+    this.brand,
+    this.category,
   });
 
   final String name;
   final String rawText;
+  final String? brand;
+  final String? category;
   final DecimalFixed? quantity;
   final UnitCode? unitCode;
   final DecimalFixed? unitPrice;

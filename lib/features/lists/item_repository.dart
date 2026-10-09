@@ -8,6 +8,8 @@ import '../../core/quantity/unit_code.dart';
 import '../../data/db/app_database.dart';
 import '../shopping_mode/shopping_repository.dart';
 import 'starter_categories.dart';
+import '../voice_input/parser/parsed_item_candidate.dart';
+import '../../app/app_defaults.dart';
 
 /// Planlanan ürünler üzerinde işlemler (spec §6.2).
 class ItemRepository {
@@ -24,6 +26,7 @@ class ItemRepository {
     required String name,
     String? brand,
     int? categoryId,
+    String? categoryName,
     required DecimalFixed quantity,
     required String unitCode,
     required bool priceIsUnitPrice,
@@ -41,6 +44,13 @@ class ItemRepository {
     if (existingId != null) {
       final item = await (_db.select(_db.plannedItems)..where((t) => t.id.equals(existingId))).getSingle();
       if (item.listId != listId) throw ArgumentError('Item must belong to its list');
+    }
+    if (categoryId == null && categoryName != null && categoryName.trim().isNotEmpty) {
+      final categories = await _db.select(_db.categories).get();
+      final normalized = normalizeName(categoryName);
+      final matching = categories.where((c) => normalizeName(c.name) == normalized);
+      categoryId = matching.isNotEmpty ? matching.first.id : await _db.into(_db.categories)
+          .insert(CategoriesCompanion.insert(name: categoryName.trim()));
     }
     final normalizedName = normalizeName(name);
     final mode = priceIsUnitPrice ? 'unitPrice' : 'lineTotal';
@@ -79,6 +89,15 @@ class ItemRepository {
     if (existingId == null) return _db.into(_db.plannedItems).insert(values);
     await (_db.update(_db.plannedItems)..where((t) => t.id.equals(existingId))).write(values);
     return existingId;
+  });
+
+  Future<void> addCandidates(int listId, List<ParsedItemCandidate> items) => _db.transaction(() async {
+    for (final c in items) {
+      await addItem(listId: listId, name: c.name, brand: c.brand, categoryName: c.category,
+        quantity: c.quantity ?? DecimalFixed.fromInt(1),
+        unitCode: (c.unitCode ?? AppDefaults.defaultUnit()).dbCode,
+        priceIsUnitPrice: c.isUnitPrice ?? false, price: c.unitPrice);
+    }
   });
 
   Stream<List<PlannedItem>> watchItems(int listId) =>
