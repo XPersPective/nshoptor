@@ -1077,4 +1077,7 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Bahasa ini tidak tersedia untuk input suara pada peranti ini. Anda boleh menaip sebagai gantinya.';
+
+  @override
+  String get voiceStopListening => 'Berhenti mendengar';
 }

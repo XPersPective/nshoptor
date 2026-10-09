@@ -1064,4 +1064,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'هذه اللغة غير متاحة للإدخال الصوتي على هذا الجهاز. يمكنك الكتابة بدلاً من ذلك.';
+
+  @override
+  String get voiceStopListening => 'توقف عن الاستماع';
 }

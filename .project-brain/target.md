@@ -21,7 +21,7 @@ Fiş mevcut elle girilmiş alımı uzlaştırır, ikinci kez toplamaz. Çok sat�
 
 ### Girdi
 Ses ve yazı aynı düzenlenebilir AI önizlemesine gider: başlık, ürün, miktar/birim, tahmini fiyatın toplam/birim anlamı, marka, kategori. Kategori yalnız onaylanan yeni öğelere uygulanır; eski kayıtlar otomatik yeniden sınıflandırılmaz.
-Fotoğraf cihazda OCR edilir; metinden ad+gerçek fiyat adayı çıkar. Tahmin otomatik doldurulmaz. AI/izin/ağ hatası görünür, elle giriş çalışır. Tek mikrofon yaşam döngüsü; mevcut recognizer singleton sözleşmesi izlenir.
+Fotoğraf cihazda OCR edilir; metinden ad+gerçek fiyat adayı çıkar. Tahmin otomatik doldurulmaz. AI/izin/ağ hatası görünür, elle giriş çalışır. Tek mikrofon yaşam döngüsü; native on-device oturum sahipliği izlenir; ağ fallback yok (ADR-006).
 Fiş plansız başlayabilir veya mevcut listeye eklenir; iptalde satın alım oluşmaz. Kamera yalnız gerçek fiyatın yanında bulunur.
 
 ### Yerelleştirme ve geri bildirim

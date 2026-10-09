@@ -1074,4 +1074,7 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Ta jezik na tej napravi ni podprt za glasovni vnos. Namesto tega lahko tipkate.';
+
+  @override
+  String get voiceStopListening => 'Ustavi poslušanje';
 }

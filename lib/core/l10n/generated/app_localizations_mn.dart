@@ -1079,4 +1079,7 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Энэ хэлээр дуут оруулга энэ төхөөрөмжид боломжгүй. Та гарчилгаар оруулж болно.';
+
+  @override
+  String get voiceStopListening => 'Тэнцвэрлэхийг зогсоох';
 }

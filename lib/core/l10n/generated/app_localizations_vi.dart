@@ -1075,4 +1075,7 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Ngôn ngữ này không hỗ trợ nhập giọng nói trên thiết bị này. Bạn có thể gõ văn bản thay thế.';
+
+  @override
+  String get voiceStopListening => 'Dừng nghe';
 }

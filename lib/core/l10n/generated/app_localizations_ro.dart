@@ -1078,4 +1078,7 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Această limbă nu este disponibilă pentru input vocal pe acest dispozitiv. Poți scrie în schimb.';
+
+  @override
+  String get voiceStopListening => 'Oprește ascultarea';
 }

@@ -335,5 +335,6 @@
   "purchasedQuantity": "購入数量",
   "purchaseAnalyticsHint": "購入データは消費量を直接示すものではありません。通貨と単位は別に表示されます。",
   "receiptReplaces": "紐付けられたレシート行は既存の購入データを上書きし、紐付けられていない行は追加されます。",
-  "voiceUnsupportedLanguage": "このデバイスでは、この言語での音声入力はサポートされていません。代わりにテキスト入力してください。"
+  "voiceUnsupportedLanguage": "このデバイスでは、この言語での音声入力はサポートされていません。代わりにテキスト入力してください。",
+  "voiceStopListening": "録音を停止"
 }

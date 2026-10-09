@@ -1076,4 +1076,7 @@ class AppLocalizationsAf extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Hierdie taal is nie beskikbaar vir stemintyding op hierdie toestel nie. Jy kan tik.';
+
+  @override
+  String get voiceStopListening => 'Stop met luister';
 }

@@ -1077,4 +1077,7 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Αυτή η γλώσσα δεν υποστηρίζεται για φωνητική είσοδο σε αυτή τη συσκευή. Μπορείτε να πληκτρολογήσετε αντίθετα.';
+
+  @override
+  String get voiceStopListening => 'Διακοπή ακρόασης';
 }

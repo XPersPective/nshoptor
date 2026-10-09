@@ -1071,4 +1071,7 @@ class AppLocalizationsLo extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'ພາສານີ້ບໍ່ສາມາດໃຊ້ສຳລັບການປ້ອນຂໍ້ຄວາມດ້ວຍສຽງໃນອຸປະກອນນີ້. ທ່ານສາມາດພິມແທນໄດ້.';
+
+  @override
+  String get voiceStopListening => 'ຢຸດການຟັງ';
 }

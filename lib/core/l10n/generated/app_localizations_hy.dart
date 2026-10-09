@@ -1078,4 +1078,7 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Այս լեզուն հասանելի չէ ձայնային մուտքագրման համար այս սարքում։ Կարող եք փոխարենը տպել:';
+
+  @override
+  String get voiceStopListening => 'Դադարեցնել լսելը';
 }

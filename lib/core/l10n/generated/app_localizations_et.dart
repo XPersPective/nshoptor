@@ -1073,4 +1073,7 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Seda keele varianti pole selles seadmes häälsisestamiseks saadaval. Saad selle asemel tekstina sisestada.';
+
+  @override
+  String get voiceStopListening => 'Lõpeta kuulamine';
 }

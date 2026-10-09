@@ -335,5 +335,6 @@
   "purchasedQuantity": "Quantité achetée",
   "purchaseAnalyticsHint": "Les achats ne mesurent pas la consommation. Les devises et unités sont affichées séparément.",
   "receiptReplaces": "Les lignes du reçu lié remplacent les achats existants ; les lignes non liées sont ajoutées.",
-  "voiceUnsupportedLanguage": "Cette langue n'est pas disponible pour la saisie vocale sur cet appareil. Vous pouvez taper à la place."
+  "voiceUnsupportedLanguage": "Cette langue n'est pas disponible pour la saisie vocale sur cet appareil. Vous pouvez taper à la place.",
+  "voiceStopListening": "Arrêter l'écoute"
 }

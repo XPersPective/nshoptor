@@ -335,5 +335,6 @@
   "purchasedQuantity": "Koupěné množství",
   "purchaseAnalyticsHint": "Nákupy neměřují spotřebu. Měny a jednotky jsou zobrazovány odděleně.",
   "receiptReplaces": "Řádky propojeného účtenky nahradí existující nákupy; nespojené řádky budou přidány.",
-  "voiceUnsupportedLanguage": "Tento jazyk není na tomto zařízení dostupný pro hlasový vstup. Můžete místo toho psát."
+  "voiceUnsupportedLanguage": "Tento jazyk není na tomto zařízení dostupný pro hlasový vstup. Můžete místo toho psát.",
+  "voiceStopListening": "Přestat poslouchat"
 }

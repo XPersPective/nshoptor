@@ -335,5 +335,6 @@
   "purchasedQuantity": "Ilość zakupiona",
   "purchaseAnalyticsHint": "Zakupy nie mierzą spożycia. Waluty i jednostki są wyświetlane oddzielnie.",
   "receiptReplaces": "Połączone pozycje z paragonu zastępują istniejące zakupy; niepołączone pozycje są dodawane.",
-  "voiceUnsupportedLanguage": "Ten język nie jest obsługiwany dla głosu na tym urządzeniu. Możesz wpisać tekst ręcznie."
+  "voiceUnsupportedLanguage": "Ten język nie jest obsługiwany dla głosu na tym urządzeniu. Możesz wpisać tekst ręcznie.",
+  "voiceStopListening": "Zatrzymaj słuchanie"
 }

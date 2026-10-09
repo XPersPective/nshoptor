@@ -335,5 +335,6 @@
   "purchasedQuantity": "Kuantiti dibeli",
   "purchaseAnalyticsHint": "Pembelian tidak mengukur penggunaan. Mata wang dan unit dipaparkan secara berasingan.",
   "receiptReplaces": "Baris resit yang disambungkan menggantikan pembelian sedia ada; baris yang tidak disambungkan akan ditambah.",
-  "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara pada peranti ini. Anda boleh menaip sebagai gantinya."
+  "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara pada peranti ini. Anda boleh menaip sebagai gantinya.",
+  "voiceStopListening": "Berhenti mendengar"
 }

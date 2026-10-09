@@ -1077,4 +1077,7 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'ಈ ಭಾಷೆಯನ್ನು ಈ ಸಾಧನದಲ್ಲಿ ಧ್ವನಿ ಇನ್‌ಪುಟ್‌ಗೆ ಬಳಸಲಾಗುವುದಿಲ್ಲ. ನೀವು ಟೈಪ್ ಮಾಡಬಹುದು.';
+
+  @override
+  String get voiceStopListening => 'ಕೇಳುವುದನ್ನು ನಿಲ್ಲಿಸಿ';
 }

@@ -1076,4 +1076,7 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Šī valoda nav pieejama balss ievadei šajā ierīcē. Varat rakstīt tekstu.';
+
+  @override
+  String get voiceStopListening => 'Pārtraukt klausīšanos';
 }

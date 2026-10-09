@@ -1073,4 +1073,7 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'මෙම භාෂාව මෙම උපාංගයේ හඬ ඇතුළත් කිරීම සඳහා ලබා දී නැත. ඔබට ටයිප් කළ හැක.';
+
+  @override
+  String get voiceStopListening => 'අසන්න නතර කරන්න';
 }

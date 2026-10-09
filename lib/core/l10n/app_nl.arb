@@ -335,5 +335,6 @@
   "purchasedQuantity": "Aangekochte hoeveelheid",
   "purchaseAnalyticsHint": "Aankopen meten geen verbruik. Valuta's en eenheden worden apart weergegeven.",
   "receiptReplaces": "Gekoppelde bonregels vervangen bestaande aankopen; niet-gekoppelde regels worden toegevoegd.",
-  "voiceUnsupportedLanguage": "Deze taal is niet beschikbaar voor spraakinvoer op dit apparaat. Je kunt in plaats daarvan typen."
+  "voiceUnsupportedLanguage": "Deze taal is niet beschikbaar voor spraakinvoer op dit apparaat. Je kunt in plaats daarvan typen.",
+  "voiceStopListening": "Stop met luisteren"
 }

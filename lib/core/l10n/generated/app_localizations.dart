@@ -2251,6 +2251,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This language is not available for voice input on this device. You can type instead.'**
   String get voiceUnsupportedLanguage;
+
+  /// No description provided for @voiceStopListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop listening'**
+  String get voiceStopListening;
 }
 
 class _AppLocalizationsDelegate

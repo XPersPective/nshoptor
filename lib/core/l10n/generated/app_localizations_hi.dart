@@ -1077,4 +1077,7 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'इस डिवाइस पर इस भाषा के लिए वॉइस इनपुट उपलब्ध नहीं है। आप टाइप कर सकते हैं।';
+
+  @override
+  String get voiceStopListening => 'सुनना बंद करें';
 }

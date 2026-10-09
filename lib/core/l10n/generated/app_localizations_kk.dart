@@ -1073,4 +1073,7 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Бұл тіл бұл құрылғыда дауыспен енгізу үшін қолжетімсіз. Оның орнына мәтінмен теруге болады.';
+
+  @override
+  String get voiceStopListening => 'Тыңдауды тоқтату';
 }

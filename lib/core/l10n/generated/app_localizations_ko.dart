@@ -1048,4 +1048,7 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       '이 기기는 음성 입력을 지원하지 않는 언어입니다. 대신 텍스트로 입력할 수 있습니다.';
+
+  @override
+  String get voiceStopListening => '듣기 중지';
 }

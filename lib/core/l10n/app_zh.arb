@@ -335,5 +335,6 @@
   "purchasedQuantity": "购买数量",
   "purchaseAnalyticsHint": "消费数据不反映实际消耗量。货币和单位将分别显示。",
   "receiptReplaces": "关联的收据行将替换现有消费记录；未关联的行将被添加。",
-  "voiceUnsupportedLanguage": "此设备不支持该语言的语音输入。您可以改为手动输入。"
+  "voiceUnsupportedLanguage": "此设备不支持该语言的语音输入。您可以改为手动输入。",
+  "voiceStopListening": "停止聆听"
 }

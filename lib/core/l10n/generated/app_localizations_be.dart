@@ -1077,4 +1077,7 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Гэтая мова не даступная для голасавога ўводу на гэтым прыладзе. Вы можаце пісаць тэкстам.';
+
+  @override
+  String get voiceStopListening => 'Спыніць слуханне';
 }

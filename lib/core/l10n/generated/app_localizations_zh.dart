@@ -1041,4 +1041,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get voiceUnsupportedLanguage => '此设备不支持该语言的语音输入。您可以改为手动输入。';
+
+  @override
+  String get voiceStopListening => '停止聆听';
 }

@@ -335,5 +335,6 @@
   "purchasedQuantity": "Dami ng binili",
   "purchaseAnalyticsHint": "Hindi sinusukat ng mga pagbili ang konsumpsyon. Hiwalay na ipinapakita ang mga currency at yunit.",
   "receiptReplaces": "Ang mga linked receipt line ay papalitan ang umiiral na pagbili; ang mga unlinked line ay idadagdag.",
-  "voiceUnsupportedLanguage": "Hindi available ang wika na ito para sa voice input sa device na ito. Maaari kang mag-type."
+  "voiceUnsupportedLanguage": "Hindi available ang wika na ito para sa voice input sa device na ito. Maaari kang mag-type.",
+  "voiceStopListening": "Itigil ang pakinggan"
 }

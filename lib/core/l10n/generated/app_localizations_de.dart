@@ -1079,4 +1079,7 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Diese Sprache ist für die Spracheingabe auf diesem Gerät nicht verfügbar. Du kannst stattdessen tippen.';
+
+  @override
+  String get voiceStopListening => 'Hören stoppen';
 }

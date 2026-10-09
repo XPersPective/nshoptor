@@ -1080,4 +1080,7 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Hindi available ang wika na ito para sa voice input sa device na ito. Maaari kang mag-type.';
+
+  @override
+  String get voiceStopListening => 'Itigil ang pakinggan';
 }

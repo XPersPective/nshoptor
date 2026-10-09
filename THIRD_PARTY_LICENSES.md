@@ -18,7 +18,6 @@ Sürüm notları: her paket eklenip çıkarıldığında bu liste güncellenir
 | flutter_localizations, intl | Yerelleştirme | BSD-3-Clause |
 | flutter_local_notifications | Hatırlatma bildirimleri | Apache-2.0 |
 | timezone | DST-güvenli planlama | Apache-2.0 |
-| speech_to_text | Sesle ürün girişi (platform tanıyıcısı) | BSD-3-Clause |
 | google_mlkit_text_recognition | Cihaz içi fiş OCR (ücretsiz, çevrimdışı) | Apache-2.0 |
 | image_picker | Fiş/raf fotoğrafı seçimi | Apache-2.0 |
 | path_provider | Uygulama dizinleri | BSD-3-Clause |

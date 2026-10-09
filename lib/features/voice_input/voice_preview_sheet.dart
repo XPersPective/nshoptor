@@ -23,6 +23,7 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
   );
   final TextEditingController _text = TextEditingController();
   ParsedItemCandidate? _parsed;
+  bool _micBusy = false;
 
   String get _lang => Localizations.localeOf(context).languageCode;
 
@@ -41,15 +42,23 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
   }
 
   void _onChange() {
-    if (_controller.transcript.isNotEmpty) {
+    if (_controller.transcript.isNotEmpty && _controller.transcript != _text.text) {
       _text.text = _controller.transcript;
+      _parsed = null;
     }
     setState(() {});
   }
 
   Future<void> _listen() async {
-    if (!await _controller.initialize()) return;
-    await _controller.start(locale: _lang == 'tr' ? 'tr_TR' : 'en_US');
+    if (_micBusy) return;
+    setState(() => _micBusy = true);
+    _controller.transcript = _text.text;
+    try {
+      if (_controller.state == VoiceInputState.listening) { await _controller.stop(); }
+      else if (await _controller.initialize() && mounted) {
+        await _controller.start(locale: Localizations.localeOf(context).toLanguageTag());
+      }
+    } finally { if (mounted) setState(() => _micBusy = false); }
   }
 
   void _parse() {
@@ -84,26 +93,26 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                 ),
                 IconButton(
                   key: const Key('voice_mic_button'),
-                  icon: Icon(
+                  icon: _micBusy ? const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)) : Icon(
                     _controller.state == VoiceInputState.listening
-                        ? Icons.mic
+                        ? Icons.stop
                         : Icons.mic_none,
                   ),
-                  tooltip: l10n.voiceStartListening,
-                  onPressed: _listen,
+                  tooltip: _controller.state == VoiceInputState.listening ? l10n.voiceStopListening : l10n.voiceStartListening,
+                  onPressed: _micBusy ? null : _listen,
                 ),
               ],
             ),
             if (_controller.state == VoiceInputState.error)
               Text(
-                l10n.voiceUnavailable,
+                _controller.errorMessage == 'unsupportedLanguage' ? l10n.voiceUnsupportedLanguage : l10n.voiceUnavailable,
                 key: const Key('voice_unavailable'),
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             TextField(
               key: const Key('voice_transcript_field'),
               controller: _text,
-              onChanged: (_) => setState(() {}),
+              onChanged: (text) { _controller.transcript = text; setState(() => _parsed = null); },
               decoration: InputDecoration(labelText: l10n.voiceTranscriptLabel),
             ),
             const SizedBox(height: 12),
@@ -117,7 +126,7 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                 const Spacer(),
                 FilledButton(
                   key: const Key('voice_confirm_button'),
-                  onPressed: parsed == null
+                  onPressed: parsed == null || _micBusy || _controller.state == VoiceInputState.listening
                       ? null
                       : () => Navigator.of(context).pop(parsed),
                   child: Text(l10n.saveButton),

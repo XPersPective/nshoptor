@@ -1073,4 +1073,7 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Tento jazyk není na tomto zařízení dostupný pro hlasový vstup. Můžete místo toho psát.';
+
+  @override
+  String get voiceStopListening => 'Přestat poslouchat';
 }

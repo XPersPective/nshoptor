@@ -1073,4 +1073,7 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'या डिव्हाइसवर आवाजी इनपुटसाठी ही भाषा उपलब्ध नाही. तुम्ही टायप करू शकता.';
+
+  @override
+  String get voiceStopListening => 'ऐकणे थांबवा';
 }

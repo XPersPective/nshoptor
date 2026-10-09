@@ -42,6 +42,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
   ListDraft? _draft;
   final _selected = <int>{};
   bool _busy = false;
+  bool _micBusy = false;
 
   String get _lang => Localizations.localeOf(context).languageCode;
 
@@ -75,14 +76,21 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
 
   void _onVoice() {
     final t = _voice!.transcript;
-    if (t.isNotEmpty) _text.text = t;
+    if (t.isNotEmpty && t != _text.text) { _text.text = t; _draft = null; _selected.clear(); }
     setState(() {});
   }
 
   Future<void> _listen() async {
     final voice = _voice;
-    if (voice == null || !await voice.initialize()) return;
-    await voice.start(locale: _lang == 'tr' ? 'tr_TR' : 'en_US');
+    if (voice == null || _micBusy || _busy) return;
+    setState(() => _micBusy = true);
+    voice.transcript = _text.text;
+    try {
+      if (voice.state == VoiceInputState.listening) { await voice.stop(); }
+      else if (await voice.initialize() && mounted) {
+        await voice.start(locale: Localizations.localeOf(context).toLanguageTag());
+      }
+    } finally { if (mounted) setState(() => _micBusy = false); }
   }
 
   Future<void> _convert() async {
@@ -149,19 +157,22 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
                 if (_voice != null)
                   IconButton.filledTonal(
                     key: const Key('draft_mic_button'),
-                    tooltip: l10n.voiceStartListening,
-                    icon: Icon(_voice!.state == VoiceInputState.listening ? Icons.mic : Icons.mic_none),
-                    onPressed: _listen,
+                    tooltip: _voice!.state == VoiceInputState.listening ? l10n.voiceStopListening : l10n.voiceStartListening,
+                    icon: _micBusy ? const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)) : Icon(_voice!.state == VoiceInputState.listening ? Icons.stop : Icons.mic_none),
+                    onPressed: _micBusy || _busy ? null : _listen,
                   ),
               ],
             ),
+            if (_voice?.state == VoiceInputState.error) Text(
+              _voice?.errorMessage == 'unsupportedLanguage' ? l10n.voiceUnsupportedLanguage : l10n.voiceUnavailable,
+              key: const Key('draft_voice_unavailable'), style: TextStyle(color: Theme.of(context).colorScheme.error)),
             const SizedBox(height: 8),
             TextField(
               key: const Key('draft_text_field'),
               controller: _text,
               minLines: 2,
               maxLines: 5,
-              onChanged: (_) => setState(() {}),
+              onChanged: (text) { _voice?.transcript = text; setState(() {}); },
               decoration: InputDecoration(hintText: l10n.quickListHint),
             ),
             const SizedBox(height: 12),
@@ -211,7 +222,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
               const SizedBox(height: 8),
               FilledButton(
                 key: const Key('draft_add_button'),
-                onPressed: _selected.isEmpty
+                onPressed: _selected.isEmpty || _micBusy || _voice?.state == VoiceInputState.listening
                     ? null
                     : () => Navigator.of(context).pop([
                           for (final i in _selected.toList()..sort()) draft.items[i],

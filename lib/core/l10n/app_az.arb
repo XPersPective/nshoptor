@@ -335,5 +335,6 @@
   "purchasedQuantity": "Alınan miqdar",
   "purchaseAnalyticsHint": "Alışlar istehlakı ölçmür. Valyutalar və vahidlər ayrıca göstərilir.",
   "receiptReplaces": "Əlaqələndirilmiş çeki sətirləri mövcud alışları əvəz edir; əlaqələndirilməmiş sətirlər isə əlavə edilir.",
-  "voiceUnsupportedLanguage": "Bu dil bu cihazda səsli giriş üçün mövcud deyil. Bunun əvəzinə yazmaq mümkündür."
+  "voiceUnsupportedLanguage": "Bu dil bu cihazda səsli giriş üçün mövcud deyil. Bunun əvəzinə yazmaq mümkündür.",
+  "voiceStopListening": "Dinləməni dayandır"
 }

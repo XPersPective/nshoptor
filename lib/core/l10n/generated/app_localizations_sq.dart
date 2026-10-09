@@ -1078,4 +1078,7 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Ky gjuhë nuk është e disponueshme për hyrjen me zë në këtë pajisje. Mund të shkruani në vend të kësaj.';
+
+  @override
+  String get voiceStopListening => 'Ndalo dëgjimin';
 }

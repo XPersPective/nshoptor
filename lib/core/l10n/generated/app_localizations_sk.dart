@@ -1076,4 +1076,7 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Tento jazyk nie je na tomto zariadení dostupný pre hlasový vstup. Môžete namiesto toho písať.';
+
+  @override
+  String get voiceStopListening => 'Zastaviť počúvanie';
 }

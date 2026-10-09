@@ -335,5 +335,6 @@
   "purchasedQuantity": "Megvásárolt mennyiség",
   "purchaseAnalyticsHint": "A vásárlások nem mérik a fogyasztást. A pénznemek és egységek külön jelennek meg.",
   "receiptReplaces": "A társított nyugta sorok felülírják a meglévő vásárlásokat; a nem társított sorok hozzáadódnak.",
-  "voiceUnsupportedLanguage": "Ez a nyelv nem érhető el hangbemenetre ezen az eszközön. Ehelyett gépelheted."
+  "voiceUnsupportedLanguage": "Ez a nyelv nem érhető el hangbemenetre ezen az eszközön. Ehelyett gépelheted.",
+  "voiceStopListening": "Figyelés leállítása"
 }

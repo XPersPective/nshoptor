@@ -335,5 +335,6 @@
   "purchasedQuantity": "Inani elithengisiwe",
   "purchaseAnalyticsHint": "Izithengiso azilinganisa ukusetshenziswa. Izimali namayunithi ziboniswa ngokuhlukile.",
   "receiptReplaces": "Imigqa yesiphetho esixhumanisayo isusa izithengiso ezikhona; imigqa engaxhumaniswe iyengezwa.",
-  "voiceUnsupportedLanguage": "Lolu lwimi alukhona ekufakeni ngezwi kulawula lokhu. Ungabhala endaweni."
+  "voiceUnsupportedLanguage": "Lolu lwimi alukhona ekufakeni ngezwi kulawula lokhu. Ungabhala endaweni.",
+  "voiceStopListening": "Misa ukuzwa"
 }

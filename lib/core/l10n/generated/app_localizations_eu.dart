@@ -1077,4 +1077,7 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Hau ez da hizkuntza hori ahots-sarrerarako gailu honetan erabilgarria. Ordez, idatz dezakezu.';
+
+  @override
+  String get voiceStopListening => 'Entzuten gelditu';
 }

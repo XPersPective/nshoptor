@@ -1078,4 +1078,7 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Deze taal is niet beschikbaar voor spraakinvoer op dit apparaat. Je kunt in plaats daarvan typen.';
+
+  @override
+  String get voiceStopListening => 'Stop met luisteren';
 }

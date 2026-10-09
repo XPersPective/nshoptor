@@ -1074,4 +1074,7 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'এই ডিভাইসে ভয়েস ইনপুটের জন্য এই ভাষা উপলব্ধ নেই। আপনি টাইপ করতে পারেন।';
+
+  @override
+  String get voiceStopListening => 'শোনা বন্ধ করুন';
 }

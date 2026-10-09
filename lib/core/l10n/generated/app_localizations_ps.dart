@@ -1071,4 +1071,7 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'دا ژبه په دې وسیله کې د غږیزو داخلولو لپاره شتون نلري. تاسو کولی شئ تایپ وکړئ.';
+
+  @override
+  String get voiceStopListening => 'اوریدل ودرول';
 }

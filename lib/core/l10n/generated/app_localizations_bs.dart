@@ -1075,4 +1075,7 @@ class AppLocalizationsBs extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Ovaj jezik nije dostupan za glasovni unos na ovom uređaju. Umjesto toga možete tipkati.';
+
+  @override
+  String get voiceStopListening => 'Prestani slušati';
 }

@@ -335,5 +335,6 @@
   "purchasedQuantity": "Gekaufte Menge",
   "purchaseAnalyticsHint": "Einkäufe messen nicht den Verbrauch. Währungen und Einheiten werden separat angezeigt.",
   "receiptReplaces": "Verknüpfte Belegzeilen ersetzen bestehende Einkäufe; nicht verknüpfte Zeilen werden hinzugefügt.",
-  "voiceUnsupportedLanguage": "Diese Sprache ist für die Spracheingabe auf diesem Gerät nicht verfügbar. Du kannst stattdessen tippen."
+  "voiceUnsupportedLanguage": "Diese Sprache ist für die Spracheingabe auf diesem Gerät nicht verfügbar. Du kannst stattdessen tippen.",
+  "voiceStopListening": "Hören stoppen"
 }

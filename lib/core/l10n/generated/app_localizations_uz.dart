@@ -1079,4 +1079,7 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Bu til ushbu qurilmada ovozli kiritish uchun mavjud emas. Buning o\'rniga matn kiritishingiz mumkin.';
+
+  @override
+  String get voiceStopListening => 'Eshitishni to\'xtatish';
 }

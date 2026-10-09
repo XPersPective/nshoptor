@@ -1079,4 +1079,7 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Tätä kieltä ei tueta ääntunnistukseen tällä laitteella. Voit kirjoittaa tekstiä sen sijaan.';
+
+  @override
+  String get voiceStopListening => 'Lopeta kuuntelu';
 }

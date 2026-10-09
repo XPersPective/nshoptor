@@ -1074,4 +1074,7 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'ഈ ഭാഷ ഈ ഉപകരണത്തിൽ വോയ്സ് ഇൻപുട്ടിന് ലഭ്യമല്ല. പകരം ടൈപ്പ് ചെയ്യാം.';
+
+  @override
+  String get voiceStopListening => 'കേൾക്കൽ നിർത്തുക';
 }

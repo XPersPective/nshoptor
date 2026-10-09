@@ -1075,4 +1075,7 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Бул түзмөктө бул тил үчүн үн киргизүү мүмкүн эмес. Ордуна терип жазсаңыз болот.';
+
+  @override
+  String get voiceStopListening => 'Угуп алууну токтотуу';
 }

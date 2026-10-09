@@ -3,7 +3,7 @@
 - Mevcut sürüm pubspec.yaml: 1.1.4+6; aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
 - Devralma baseline: 295 passed; PB-063 sonrası 304 passed ve analyze 0. Diğer hedeflerin kabulü halen görevlerdedir.
 - PB-070 home/history/draft/completed tek ListDetailScreen açar; yeni liste editörü doğrudan açılır ve yeni kayıt detaya gider; ay kartı para kodunu korur. PB-071 form mevcut ID günceller; plan/gerçek bağımsız, kamera yalnız gerçek alanını doldurur, yazım atomic/hata görünür. Ortak removeItem bağlı alım/gözlemi kaldırır; PB-062 tek kanonik detayda satır CRUD, fiyat düzeltme, checkbox ve onaylı silme; ShoppingModeScreen uyumluluk kabuğudur.
-- PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. Mikrofon ikinci init callback riski halen açık.
+- PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. PB-074 oturum sahipliği ve geç callback korumasıyla mikrofon ikinci init riski kapatıldı.
 - PB-073 sonuç farkı yalnız bilinen tahmin+gerçek alımlardan; alınmayan/plansız ayrı. Bilinmeyen gerçek/tahmin —, ücretsiz 0 farklı; karma birim miktarı toplanmaz. Full suite 316 + son görünüm delta domain 20 passed; analyze 0.
 - 71 ARB var; ilk kurulum country→currency main.dart içinde zaten var. Settings keepAwake listede okunmuyor.
 - Server mevcut varsayılan: free15/pro200/max1000, Qwen Token Plan. PB-066 PDF yerel Android yazdırma ile var. PDF/ayarlar/AI geliştirmeleri açık görevlerdedir.
@@ -11,6 +11,7 @@
 - PB-062 doğrulama: 321 full-suite passed, analyze 0; 320dp/2x tr/ar taşmasız, 48dp erişilebilir eylemler. Büyük yazıda başlık ürünlerle birlikte kayar. Tamamlanmış listede yeniden başlatma yok.
 - PB-066 liste menüsü/sonuç PDF raporu: atomic snapshot, kaçırılmış HTML, null/para/birim dürüst; Android native print lifecycle. API36 emülatörde cancel→repeat→save→open 5 sayfa/Türkçe görsel kanıtlı; docs/audits/pdf-report-2026-10-09.md. 74 domain +2 son delta passed, debug APK, analyze 0.
 - PB-067 system sayı biçimi cihaz ülke yerelinden (Latin dışı rakamda en), UI dili bağımsız; 71 dilde açıklama güncel. MoneyParser intl ayraç/gruplama (en_IN3/2, fr ince boşluk) ve büyük ondalık için ortak doğru yol. Limitler currency key ile saklanır; eski değer mevcut tercihe bir kez bağlanır, prefill hassasiyet/küsurat korunur, invalid kalır; plansız aylık kart/geri dönüş refresh testli. Full335 passed, analyze0. Wakelock PB-077, feedback PB-078 halen açık.
+- PB-074: 339 full-suite passed, analyze 0, Android debug APK built; actual API36 native bridge integration 1 passed. Speech partial/final/status/error, exact/same-language locale, second tap stop and disposal preserve text; physical audio remains unverified.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -27,7 +28,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/features/lists/` — listeler, liste detayı, ürün formu, hatırlatma, şablonlar
 - `lib/features/shopping_mode/` — alışveriş modu, sonuç ekranı (summary/)
 - `lib/features/receipts/` — cihaz içi OCR (ML Kit), fiş ayrıştırma/eşleştirme, raf etiketi
-- `lib/features/voice_input/` — speech_to_text + kural tabanlı komut ayrıştırıcı
+- `lib/features/voice_input/` — Android cihaz içi MethodChannel ses + kural tabanlı komut ayrıştırıcı
 - `lib/features/history/` — geçmiş, fiyat geçmişi, içgörüler
 - `lib/features/settings/` — ayarlar, yedek/CSV, AI anahtarı
 - `lib/features/ai/ai_client.dart` — AI vekiline tek kapı (AiService.client, kurulum kimliği, AiResult)
@@ -54,7 +55,7 @@ runApp'ten önce okunur. State: stream-based repositories +
 StatefulWidget; no external state framework. Persistence: drift 2.35
 over sqlite (ADR-001).
 ## Domains
-### Core (para / birim / hesap / tema)
+### Core
 
 **Status:** VERIFIED (structure), test counts STALE (from legacy audit record)
 
@@ -121,7 +122,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   observations only (stats not yet shown).
   `history/insights/`: monthly/category/store breakdowns, deviations.
 - `voice_input/`: SpeechService abstraction + controller; SttSpeechService
-  (speech_to_text adapter); VoicePreviewSheet (editable transcript, manual
+  (native on-device channel, session ownership); VoicePreviewSheet (editable transcript, manual
   fallback when service unavailable); `voice_input/parser/`: deterministic
   tr/en voice command parser.
 - `receipts/`: OcrTextSource + MlKitTextSource (bundled Latin, no model
@@ -141,13 +142,14 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   (AboutPage: açık kaynak/GPL-3.0), Lisanslar, Paylaş, Puan ver
   (napp_core); `settings/backup/` BackupRepository (13-table
   export/import, CSV export — CSV serbest).
-### Platform shells & CI
+### Platform
 
-**Status:** VERIFIED (native PDF 2026-10-09; other shell notes historical)
+**Status:** VERIFIED (native PDF/speech 2026-10-09; other shell notes historical)
 
 **Sources:** `android/**`, `.github/**`, `tool/pdf_probe.dart`, `docs/audits/pdf-report-2026-10-09.md`
 
 Android: PDF MethodChannel → no-network/no-JS WebView → PrintManager; adapter finish/timeout/destroy cleanup, no false saved message. API36 5-page save/open evidence.
+Android: native speech channel, API31+ on-device only; permission/language/manual fallback, per-session + recognizer generation callback guards, stop final-result await and lifecycle destroy. API36 native bridge integration passed without recording.
 Android: RECORD_AUDIO + RecognitionService query; hatırlatma izinleri
 + flutter_local_notifications alıcıları; AdMob APPLICATION_ID manifest
 placeholder'ı key.properties'ten (yoksa Google TEST kimliği; gerçek
@@ -160,7 +162,7 @@ gerçeğiyle yasal taslaklar (docs/store/) çapraz kontrolü tamam.
 ## External Dependencies
 
 per `pubspec.yaml` (HEAD): drift 2.35, drift_flutter, flutter_localizations,
-speech_to_text 7.5.0, google_mlkit_text_recognition 0.17.1, image_picker,
+google_mlkit_text_recognition 0.17.1, image_picker,
 path_provider, flutter_local_notifications 22.3.1, timezone, wakelock_plus,
 share_plus, file_picker.
 
@@ -168,9 +170,8 @@ Historical device evidence (2026-10-03/04): 259 unit/widget + 3 integration, rel
 
 ## Known Unknowns
 
-- Voice: gerçek tanıma cihazda denenmedi (emülatörde platform tanıyıcı
-  yok → manuel fallback kanıtlı); cihazda tek kontrol önerilir.
-- ADR-006 denetimi: kurulu speech_to_text onDevice=true bile destek yoksa normal recognizer'a düşer; bu mevcut kodun privacy sınırıdır. Native düzeltme PB-074'te HEDEF, henüz uygulanmadı.
+- Voice: native köprünün API36 emülatörde init/cancel/reopen testi geçti; fiziksel cihazda gerçek transcript henüz doğrulanmadı (PB-069).
+- ADR-006/PB-074: yalnız createOnDeviceSpeechRecognizer (API31+); installed languages (API33+), ağ/model indirme fallback yok. Eski paket kaldırıldı; gerçek ses tanıma fiziksel cihazda henüz doğrulanmadı.
 - Reklam/Pro: test kimlikleriyle tam akış canlı; gerçek AdMob kimliği
   ve paywall fiyatı Crazy Penguin'de; apps.json besleme repo adresi
   bilinmiyor (docs/store/apps-json-entry.md).

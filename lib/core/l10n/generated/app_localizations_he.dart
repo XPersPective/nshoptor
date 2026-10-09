@@ -1067,4 +1067,7 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'שפה זו אינה זמינה לקלט קולי במכשיר זה. ניתן להקליד במקום זאת.';
+
+  @override
+  String get voiceStopListening => 'הפסק להקשיב';
 }

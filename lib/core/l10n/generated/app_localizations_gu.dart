@@ -1072,4 +1072,7 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'આ ભાષા આ ડિવાઇસ પર વૉઇસ ઇનપુટ માટે ઉપલબ્ધ નથી. તમે ટાઇપ કરી શકો છો.';
+
+  @override
+  String get voiceStopListening => 'સાંભળવાનું બંધ કરો';
 }

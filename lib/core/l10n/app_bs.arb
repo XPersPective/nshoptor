@@ -335,5 +335,6 @@
   "purchasedQuantity": "Količina kupljena",
   "purchaseAnalyticsHint": "Kupnje ne mjere potrošnju. Valute i jedinice prikazuju se odvojeno.",
   "receiptReplaces": "Povezane linije računa zamjenjuju postojeće kupnje; nepovezane linije se dodaju.",
-  "voiceUnsupportedLanguage": "Ovaj jezik nije dostupan za glasovni unos na ovom uređaju. Umjesto toga možete tipkati."
+  "voiceUnsupportedLanguage": "Ovaj jezik nije dostupan za glasovni unos na ovom uređaju. Umjesto toga možete tipkati.",
+  "voiceStopListening": "Prestani slušati"
 }

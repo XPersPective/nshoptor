@@ -335,5 +335,6 @@
   "purchasedQuantity": "Perkama kiekis",
   "purchaseAnalyticsHint": "Pirkiniai nematuojami kaip vartojimas. Valiutos ir vienetai rodomi atskirai.",
   "receiptReplaces": "Susietos čekio eilutės pakeičia esamus pirkinius; nesusietos eilutės pridedamos.",
-  "voiceUnsupportedLanguage": "Ši kalba šiame įrenginyje nepalaikoma balso įvesties funkcijai. Vietoj to galite rašyti."
+  "voiceUnsupportedLanguage": "Ši kalba šiame įrenginyje nepalaikoma balso įvesties funkcijai. Vietoj to galite rašyti.",
+  "voiceStopListening": "Nustoti klausytis"
 }

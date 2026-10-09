@@ -1073,4 +1073,7 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Þetta tungumál er ekki tiltækt fyrir raddinntak á þessu tæki. Þú getur skrifað í staðinn.';
+
+  @override
+  String get voiceStopListening => 'Hætta að hlusta';
 }

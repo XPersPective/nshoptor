@@ -1074,4 +1074,7 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Этот язык недоступен для голосового ввода на этом устройстве. Можно ввести текст.';
+
+  @override
+  String get voiceStopListening => 'Прекратить прослушивание';
 }

@@ -335,5 +335,6 @@
   "purchasedQuantity": "Kiasi kilichonunuliwa",
   "purchaseAnalyticsHint": "Ununuzi haupimi matumizi. Viwango vya sarafu na vitengo vinaonyeshwa tofauti.",
   "receiptReplaces": "Mistari ya risiti iliyounganishwa inabadilisha ununuzi uliopo; mistari isiyo yaunganishwa inaongezwa.",
-  "voiceUnsupportedLanguage": "Lugha hii haipatikani kwa ingizo la sauti kwenye kifaa hiki. Unaweza kuandika badala yake."
+  "voiceUnsupportedLanguage": "Lugha hii haipatikani kwa ingizo la sauti kwenye kifaa hiki. Unaweza kuandika badala yake.",
+  "voiceStopListening": "Simamisha kusikiliza"
 }

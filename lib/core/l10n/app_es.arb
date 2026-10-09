@@ -335,5 +335,6 @@
   "purchasedQuantity": "Cantidad comprada",
   "purchaseAnalyticsHint": "Las compras no miden el consumo. Las monedas y las unidades se muestran por separado.",
   "receiptReplaces": "Las líneas del recibo vinculado reemplazan las compras existentes; las líneas no vinculadas se agregan.",
-  "voiceUnsupportedLanguage": "Este idioma no está disponible para entrada por voz en este dispositivo. Puedes escribir en su lugar."
+  "voiceUnsupportedLanguage": "Este idioma no está disponible para entrada por voz en este dispositivo. Puedes escribir en su lugar.",
+  "voiceStopListening": "Dejar de escuchar"
 }

@@ -1076,4 +1076,7 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Lugha hii haipatikani kwa ingizo la sauti kwenye kifaa hiki. Unaweza kuandika badala yake.';
+
+  @override
+  String get voiceStopListening => 'Simamisha kusikiliza';
 }

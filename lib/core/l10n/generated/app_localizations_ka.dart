@@ -1073,4 +1073,7 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'ეს ენა ამ მოწყობილობაზე ხმოვანი შეყვანისთვის არ არის ხელმისაწვდომი. შეგიძლიათ, ტექსტით ჩაწეროთ.';
+
+  @override
+  String get voiceStopListening => 'ჩვენება შეწყვეტა';
 }

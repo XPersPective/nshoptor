@@ -1078,4 +1078,7 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Este idioma não está disponível para entrada por voz neste dispositivo. Você pode digitar.';
+
+  @override
+  String get voiceStopListening => 'Parar de ouvir';
 }

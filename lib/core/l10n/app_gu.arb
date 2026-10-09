@@ -335,5 +335,6 @@
   "purchasedQuantity": "ખરીદેલ માત્રા",
   "purchaseAnalyticsHint": "ખરીદીઓ ખપતને માપતી નથી. કરન્સી અને એકમો અલગ દર્શાવવામાં આવે છે.",
   "receiptReplaces": "લિંકેડ રસીદ લાઇન્સ existing ખરીદીઓને બદલે છે; અનલિંકેડ લાઇન્સ ઉમેરાય છે.",
-  "voiceUnsupportedLanguage": "આ ભાષા આ ડિવાઇસ પર વૉઇસ ઇનપુટ માટે ઉપલબ્ધ નથી. તમે ટાઇપ કરી શકો છો."
+  "voiceUnsupportedLanguage": "આ ભાષા આ ડિવાઇસ પર વૉઇસ ઇનપુટ માટે ઉપલબ્ધ નથી. તમે ટાઇપ કરી શકો છો.",
+  "voiceStopListening": "સાંભળવાનું બંધ કરો"
 }

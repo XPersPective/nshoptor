@@ -1077,4 +1077,7 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Bu dil bu cihazda səsli giriş üçün mövcud deyil. Bunun əvəzinə yazmaq mümkündür.';
+
+  @override
+  String get voiceStopListening => 'Dinləməni dayandır';
 }

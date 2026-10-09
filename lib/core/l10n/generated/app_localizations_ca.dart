@@ -1078,4 +1078,7 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Aquest idioma no està disponible per a l\'entrada per veu en aquest dispositiu. Pots escriure en el seu lloc.';
+
+  @override
+  String get voiceStopListening => 'Deixa d\'escoltar';
 }

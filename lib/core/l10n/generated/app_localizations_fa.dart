@@ -1070,4 +1070,7 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'این زبان برای ورود صوتی در این دستگاه در دسترس نیست. می‌توانید تایپ کنید.';
+
+  @override
+  String get voiceStopListening => 'قطع شنیدن';
 }

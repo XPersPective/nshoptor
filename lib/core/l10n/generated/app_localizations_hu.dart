@@ -1076,4 +1076,7 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Ez a nyelv nem érhető el hangbemenetre ezen az eszközön. Ehelyett gépelheted.';
+
+  @override
+  String get voiceStopListening => 'Figyelés leállítása';
 }

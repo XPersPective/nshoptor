@@ -1073,4 +1073,7 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Detta språk stöder inte röstinskrivning på den här enheten. Du kan skriva istället.';
+
+  @override
+  String get voiceStopListening => 'Sluta lyssna';
 }

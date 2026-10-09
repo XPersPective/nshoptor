@@ -1083,4 +1083,7 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Lolu lwimi alukhona ekufakeni ngezwi kulawula lokhu. Ungabhala endaweni.';
+
+  @override
+  String get voiceStopListening => 'Misa ukuzwa';
 }

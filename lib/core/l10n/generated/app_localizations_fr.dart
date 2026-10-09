@@ -1080,4 +1080,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'Cette langue n\'est pas disponible pour la saisie vocale sur cet appareil. Vous pouvez taper à la place.';
+
+  @override
+  String get voiceStopListening => 'Arrêter l\'écoute';
 }

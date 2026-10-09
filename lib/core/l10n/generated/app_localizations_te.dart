@@ -1081,4 +1081,7 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'ఈ భాష ఈ డివైజ్‌లో వాయిస్ ఇన్‌పుట్ కోసం అందుబాటులో లేదు. మీరు టైప్ చేయవచ్చు.';
+
+  @override
+  String get voiceStopListening => 'వింటున్నాను ఆపండి';
 }

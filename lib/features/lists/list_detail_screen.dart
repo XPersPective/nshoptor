@@ -62,7 +62,7 @@ class ListDetailScreen extends StatefulWidget {
   final ListRepository listRepository;
   final int listId;
 
-  /// Test enjeksiyonu; verilmezse platform servisi (speech_to_text).
+  /// Test enjeksiyonu; verilmezse Android cihaz içi platform servisi.
   final SpeechService? speechService;
 
   /// Test enjeksiyonu; verilmezse ML Kit (cihazda, model indirmesiz).

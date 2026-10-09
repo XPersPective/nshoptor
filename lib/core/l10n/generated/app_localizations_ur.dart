@@ -1073,4 +1073,7 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'اس ڈیوائس پر آواز کے ذریعے ان زبان کے لیے ان پٹ دستیاب نہیں ہے۔ آپ ٹائپ کر سکتے ہیں۔';
+
+  @override
+  String get voiceStopListening => 'سننا بند کریں';
 }

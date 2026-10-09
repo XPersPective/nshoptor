@@ -397,5 +397,6 @@
   "purchasedQuantity": "Purchased quantity",
   "purchaseAnalyticsHint": "Purchases do not measure consumption. Currencies and units are shown separately.",
   "receiptReplaces": "Linked receipt lines replace existing purchases; unlinked lines are added.",
-  "voiceUnsupportedLanguage": "This language is not available for voice input on this device. You can type instead."
+  "voiceUnsupportedLanguage": "This language is not available for voice input on this device. You can type instead.",
+  "voiceStopListening": "Stop listening"
 }

@@ -1079,4 +1079,7 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'ဤဘာသာစကားကို ဤစက်ပစ္စည်းတွင် အသံဖြင့် ထည့်သွင်းရန် မရရှိနိုင်ပါ။ အစားထိုး၍ ရိုက်ထည့်နိုင်ပါသည်။';
+
+  @override
+  String get voiceStopListening => 'နားထောင်ခြင်း ရပ်မည်';
 }

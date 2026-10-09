@@ -1072,4 +1072,7 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'ภาษานี้ไม่รองรับการป้อนข้อมูลด้วยเสียงบนอุปกรณ์นี้ คุณสามารถพิมพ์แทนได้';
+
+  @override
+  String get voiceStopListening => 'หยุดฟัง';
 }

@@ -335,5 +335,6 @@
   "purchasedQuantity": "Quantitat comprada",
   "purchaseAnalyticsHint": "Les compres no mesuren el consum. Les monedes i les unitats es mostren per separat.",
   "receiptReplaces": "Les línies del rebuig vinculades substitueixen les compres existents; les línies sense vincular s'afegeixen.",
-  "voiceUnsupportedLanguage": "Aquest idioma no està disponible per a l'entrada per veu en aquest dispositiu. Pots escriure en el seu lloc."
+  "voiceUnsupportedLanguage": "Aquest idioma no està disponible per a l'entrada per veu en aquest dispositiu. Pots escriure en el seu lloc.",
+  "voiceStopListening": "Deixa d'escoltar"
 }

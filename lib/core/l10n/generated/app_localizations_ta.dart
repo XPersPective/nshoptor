@@ -1081,4 +1081,7 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'இந்த மொழி இந்த கருவியில் குரல் உள்ளீட்டிற்கு கிடைக்கவில்லை. நீங்கள் டைப் செய்யலாம்.';
+
+  @override
+  String get voiceStopListening => 'கேட்பதை நிறுத்து';
 }

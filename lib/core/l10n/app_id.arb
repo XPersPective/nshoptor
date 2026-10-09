@@ -335,5 +335,6 @@
   "purchasedQuantity": "Jumlah yang dibeli",
   "purchaseAnalyticsHint": "Pembelian tidak mengukur konsumsi. Mata uang dan satuan ditampilkan secara terpisah.",
   "receiptReplaces": "Baris struk yang terhubung akan menggantikan pembelian yang sudah ada; baris yang tidak terhubung akan ditambahkan.",
-  "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara di perangkat ini. Anda bisa mengetik sebagai gantinya."
+  "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara di perangkat ini. Anda bisa mengetik sebagai gantinya.",
+  "voiceStopListening": "Berhenti mendengarkan"
 }

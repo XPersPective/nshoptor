@@ -1074,4 +1074,7 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'ਇਹ ਭਾਸ਼ਾ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਵੌਇਸ ਇਨਪੁਟ ਲਈ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਤੁਸੀਂ ਟਾਈਪ ਕਰ ਸਕਦੇ ਹੋ।';
+
+  @override
+  String get voiceStopListening => 'ਸੁਣਨਾ ਬੰਦ ਕਰੋ';
 }

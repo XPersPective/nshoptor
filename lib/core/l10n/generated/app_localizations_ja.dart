@@ -1045,4 +1045,7 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get voiceUnsupportedLanguage =>
       'このデバイスでは、この言語での音声入力はサポートされていません。代わりにテキスト入力してください。';
+
+  @override
+  String get voiceStopListening => '録音を停止';
 }

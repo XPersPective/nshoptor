@@ -335,5 +335,6 @@
   "purchasedQuantity": "Sotib olingan miqdor",
   "purchaseAnalyticsHint": "Xaridlar iste'molni o'lchamaydi. Valyutalar va birliklar alohida ko'rsatiladi.",
   "receiptReplaces": "Bog'langan chek qatorlari mavjud xaridlarni almashtiradi; bog'lanmagan qatorlar qo'shiladi.",
-  "voiceUnsupportedLanguage": "Bu til ushbu qurilmada ovozli kiritish uchun mavjud emas. Buning o'rniga matn kiritishingiz mumkin."
+  "voiceUnsupportedLanguage": "Bu til ushbu qurilmada ovozli kiritish uchun mavjud emas. Buning o'rniga matn kiritishingiz mumkin.",
+  "voiceStopListening": "Eshitishni to'xtatish"
 }

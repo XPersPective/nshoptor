@@ -335,5 +335,6 @@
   "purchasedQuantity": "Ostetud kogus",
   "purchaseAnalyticsHint": "Ostud ei mõõda tarbimist. Valuutad ja ühikud kuvatakse eraldi.",
   "receiptReplaces": "Seotud kviitungiread asendavad olemasolevad ostud; seostamata read lisatakse.",
-  "voiceUnsupportedLanguage": "Seda keele varianti pole selles seadmes häälsisestamiseks saadaval. Saad selle asemel tekstina sisestada."
+  "voiceUnsupportedLanguage": "Seda keele varianti pole selles seadmes häälsisestamiseks saadaval. Saad selle asemel tekstina sisestada.",
+  "voiceStopListening": "Lõpeta kuulamine"
 }
