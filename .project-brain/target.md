@@ -4,9 +4,9 @@ Status: CONFIRMED
 ## Goal
 “her zaman alışveriş modundaki tikli yapı olması gerekiyor … ürün adı … miktarı … tahmini fiyatı … gerçek fiyatı … Gerçek fiyatının yanında … Fotoğraf … Sesle de ürün girebilmeliyim … kapsamlı bir rapor … çözümler üret, bunları mimariye dök ve yapılacaklar olarak ekle project brain'e olarak yol haritası ve uygula. Mevcut mimariye bağımlı değilsin yani.”
 
-**Son kapsam talimatı (2026-10-09):** “Sadece Project Brain vasıtasıyla ayrıntılı mimari öner, yol haritası öner, yapılacakları koy yani yapılacakları ayrıntılı bir şekilde yaz. Ben başka bir yapay zekaya yaptıracağım sana. Çok fazla token tüketiyorsun.”
+**Son kapsam talimatı (2026-10-09):** “projeyi devral ve tümünü bitir”. Önceki yalnız plan kapsamı sona erdi; açık yol haritası uygulanıp doğrulanacak.
 
-Bu oturumun çıktısı yalnız analiz/mimari/uygulanabilir görevlerdir. Uygulama kodu değiştirilmez. Aşağıdaki durum HEDEFTİR; mevcut çalışan özellik iddiası değildir.
+Aşağıdaki durum HEDEFTİR; mevcut çalışan özellik iddiası değildir.
 Tam istek: `docs/audits/2026-10-09-user-request.txt`; eleştiri: `docs/audits/2026-10-09-user-experience.md`.
 Başlangıç ve yürütme sırası: `roadmap.md`. Tasarım: `decisions/ADR-005.md`.
 
