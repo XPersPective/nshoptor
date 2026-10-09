@@ -8,6 +8,9 @@ import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/item_form_sheet.dart';
 import 'package:nshoptor/features/lists/starter_categories.dart';
+import 'package:nshoptor/features/lists/item_repository.dart';
+import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
+import 'package:nshoptor/core/money/decimal_fixed.dart';
 
 void main() {
   late AppDatabase db;
@@ -24,7 +27,8 @@ void main() {
     await closing;
   }
 
-  Future<void> openForm(WidgetTester tester, int listId) async {
+  Future<void> openForm(WidgetTester tester, int listId, {PlannedItem? existing,
+      List<PurchaseEntry> entries = const [], Future<String?> Function(BuildContext)? scan}) async {
     await StarterCategories().seedIfEmpty(db);
     await tester.pumpWidget(MaterialApp(
       locale: const Locale('tr'),
@@ -40,6 +44,7 @@ void main() {
           db: db,
           starterCategories: StarterCategories(),
           listId: listId,
+          existing: existing, entries: entries, onShelfPricePressed: scan,
         ),
       ),
     ));
@@ -48,6 +53,59 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(800, 1600));
     await tester.pumpAndSettle();
   }
+
+  testWidgets('edit keeps plan quantity and estimate independent from actual', (tester) async {
+    final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    final id = await ItemRepository(db).addItem(listId: listId, name: 'Tomato', quantity: DecimalFixed.fromInt(2),
+      unitCode: 'kilogram', priceIsUnitPrice: true, price: DecimalFixed.fromInt(40));
+    await ShoppingRepository(db).recordPurchase(listId: listId, plannedItemId: id, name: 'Tomato', normalizedName: 'tomato',
+      quantity: DecimalFixed.parse('1.5'), unitCode: 'kilogram', unitPrice: DecimalFixed.fromInt(45));
+    final item = (await db.select(db.plannedItems).get()).single;
+    await openForm(tester, listId, existing: item, entries: await db.select(db.purchaseEntries).get());
+    expect(tester.widget<TextField>(find.byKey(const Key('item_actual_quantity_field'))).controller!.text, '1,5');
+    await tester.enterText(find.byKey(const Key('item_name_field')), 'Tomatoes');
+    await tester.enterText(find.byKey(const Key('item_actual_quantity_field')), '1,25');
+    await settleAndSave(tester);
+    final items = await db.select(db.plannedItems).get();
+    expect(items, hasLength(1)); expect(items.single.id, id);
+    expect(items.single.name, 'Tomatoes'); expect(items.single.plannedQuantity, '2');
+    expect(items.single.plannedLineTotalMinorUnits, 8000);
+    expect((await db.select(db.purchaseEntries).get()).single.actualLineTotalMinorUnits, 5625);
+    await disposeApp(tester);
+  });
+
+  testWidgets('camera fills only actual; save failure rolls back and can retry', (tester) async {
+    final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    await openForm(tester, listId, scan: (_) async => '45.50');
+    await tester.enterText(find.byKey(const Key('item_name_field')), 'Milk');
+    await tester.enterText(find.byKey(const Key('item_price_field')), '40');
+    await tester.tap(find.byKey(const Key('item_shelf_label_button'))); await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(find.byKey(const Key('item_price_field'))).controller!.text, '40');
+    expect(tester.widget<TextField>(find.byKey(const Key('item_actual_price_field'))).controller!.text, '45,50');
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    await db.customStatement("CREATE TRIGGER reject_purchase BEFORE INSERT ON purchase_entries BEGIN SELECT RAISE(ABORT, 'forced'); END");
+    await settleAndSave(tester);
+    expect(await db.select(db.plannedItems).get(), isEmpty);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Kaydedilemedi'), findsOneWidget);
+    await db.customStatement('DROP TRIGGER reject_purchase');
+    await settleAndSave(tester);
+    expect((await db.select(db.purchaseEntries).get()).single.actualLineTotalMinorUnits, 4550);
+    await disposeApp(tester);
+  });
+
+  testWidgets('KWD line total prefill and preview use three currency digits; cancel stays unchanged', (tester) async {
+    final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'KWD'));
+    await ItemRepository(db).addItem(listId: listId, name: 'Milk', quantity: DecimalFixed.fromInt(3),
+      unitCode: 'piece', priceIsUnitPrice: false, price: DecimalFixed.parse('5.997'));
+    final item = (await db.select(db.plannedItems).get()).single;
+    await openForm(tester, listId, existing: item);
+    expect(tester.widget<TextField>(find.byKey(const Key('item_price_field'))).controller!.text, '5,997');
+    expect(find.textContaining('1,999'), findsOneWidget);
+    await tester.enterText(find.byKey(const Key('item_name_field')), 'Cancelled');
+    expect((await db.select(db.plannedItems).get()).single.name, 'Milk');
+    await disposeApp(tester);
+  });
 
   testWidgets('ondalıklı miktar + birim fiyat ile kayıt; satır toplamı görünür',
       (tester) async {

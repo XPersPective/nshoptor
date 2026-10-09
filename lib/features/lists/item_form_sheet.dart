@@ -1,6 +1,6 @@
 import '../../core/money/format_locale.dart';
 
-import 'package:drift/drift.dart' show OrderingTerm, Value;
+import 'package:drift/drift.dart' show OrderingTerm;
 import 'package:flutter/material.dart';
 
 import '../../core/calc/line_calc.dart';
@@ -16,6 +16,9 @@ import '../../core/quantity/unit_display.dart';
 import '../../data/db/app_database.dart';
 import '../../app/app_defaults.dart';
 import 'starter_categories.dart';
+import 'item_repository.dart';
+import '../shopping_mode/shopping_repository.dart';
+import '../../core/util/normalize_name.dart';
 
 /// Birimlerin varsayılan tam sayı tercihi (spec §6.2): adet/düzine tam sayı
 /// ister; kütle/hacim/uzunluk ondalıklı kabul eder. Model katmanı ondalığı
@@ -36,11 +39,15 @@ class ItemFormSheet extends StatefulWidget {
     this.initialUnitPrice,
     this.onVoicePressed,
     this.onShelfPricePressed,
+    this.existing,
+    this.entries = const [],
   });
 
   final AppDatabase db;
   final StarterCategories starterCategories;
   final int listId;
+  final PlannedItem? existing;
+  final List<PurchaseEntry> entries;
 
   /// Ses önizlemesi gibi akışlardan öndoldurulan değerler (spec §6.7:
   /// sonuç düzenlenebilir önizlemeye gider, doğrudan kaydedilmez).
@@ -83,6 +90,19 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   String? _priceError;
   String? _nameError;
   String _currencyCode = 'TRY';
+  final _actualQuantity = TextEditingController(text: '1');
+  final _actualPrice = TextEditingController();
+  final _discount = TextEditingController();
+  UnitCode? _actualUnit;
+  bool _actualPriceIsUnit = true;
+  bool _actualChanged = false;
+  bool _prefilled = false;
+  bool _currencyLoaded = false;
+  bool _saving = false;
+  String? _actualError;
+  String? _saveError;
+  // ponytail: one actual unit per form; mixed-unit records need a per-unit editor and stay untouched here.
+  bool get _mixedUnits => widget.entries.map((e) => e.actualUnitCode).toSet().length > 1;
 
   @override
   void initState() {
@@ -95,12 +115,56 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     (_db.select(
       _db.shoppingLists,
     )..where((t) => t.id.equals(widget.listId))).getSingle().then((list) {
-      if (mounted) setState(() => _currencyCode = list.currencyCode);
+      if (mounted) { setState(() {
+        _currencyCode = list.currencyCode;
+        _currencyLoaded = true;
+        _prefillFields();
+      }); }
     });
   }
 
   AppDatabase get _db => widget.db;
   AppLocalizations get _l10n => AppLocalizations.of(context);
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _prefillFields();
+  }
+
+  void _prefillFields() {
+    if (_prefilled || !_currencyLoaded) return;
+    _prefilled = true;
+    String local(String value) => value.replaceAll('.', _separators.decimal);
+    final item = widget.existing;
+    if (item != null) {
+      _name.text = item.name; _brand.text = item.brand ?? ''; _note.text = item.note ?? '';
+      _quantity.text = item.plannedQuantity;
+      _unit = UnitCode.values.firstWhere((u) => u.dbCode == item.plannedUnitCode || u.name == item.plannedUnitCode);
+      _priceIsUnitPrice = item.pricingInputMode == 'unitPrice';
+      _price.text = (_priceIsUnitPrice ? item.plannedUnitPrice :
+          item.plannedLineTotalMinorUnits == null ? null : DecimalFixed.fromMinorUnits(
+            item.plannedLineTotalMinorUnits!, Currency.fromCode(_currencyCode).minorUnitDigits).toDbString()) ?? '';
+      _maxPrice.text = item.maxAcceptablePrice ?? ''; _required = item.requiredFlag;
+      _categoryId = item.categoryId;
+    }
+    for (final c in [_quantity, _price, _maxPrice]) { c.text = local(c.text); }
+    _actualQuantity.text = local(item?.plannedQuantity ?? widget.initialQuantity ?? '1');
+    if (widget.entries.isNotEmpty && !_mixedUnits) {
+      final first = widget.entries.first;
+      _actualUnit = UnitCode.values.firstWhere((u) => u.dbCode == first.actualUnitCode || u.name == first.actualUnitCode);
+      _actualQuantity.text = local(widget.entries.fold(DecimalFixed.zero(),
+        (s, e) => s + DecimalFixed.parse(e.actualQuantity)).toDbString());
+      _actualPriceIsUnit = widget.entries.length == 1 && first.actualUnitPrice != null;
+      final digits = Currency.fromCode(_currencyCode).minorUnitDigits;
+      _actualPrice.text = local(_actualPriceIsUnit ? first.actualUnitPrice! :
+        widget.entries.every((e) => e.grossTotalMinorUnits == null && e.source != 'receiptOcr') ? '' :
+        DecimalFixed.fromMinorUnits(widget.entries.fold<int>(0,
+          (s, e) => s + e.actualLineTotalMinorUnits + e.discountMinorUnits), digits).toDbString());
+      _discount.text = local(DecimalFixed.fromMinorUnits(widget.entries.fold<int>(0,
+        (s, e) => s + e.discountMinorUnits), digits).toDbString());
+    }
+  }
 
   @override
   void dispose() {
@@ -110,6 +174,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     _price.dispose();
     _maxPrice.dispose();
     _note.dispose();
+    _actualQuantity.dispose(); _actualPrice.dispose(); _discount.dispose();
     super.dispose();
   }
 
@@ -125,7 +190,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       return MoneyParser.parseDecimal(
         t,
         separators: _separators,
-        requirePositive: true,
+        requirePositive: false,
       );
     } on FormatException {
       return null;
@@ -158,18 +223,20 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     final unitPrice = price.divide(qty, scale: DecimalFixed.maxFractionDigits);
     return l10n.unitPriceCalculated(
       formatMoney(
-        Money.fromMinorUnits(unitPrice.toMinorUnits(digits + 2), currency),
+        Money.fromMinorUnits(unitPrice.toMinorUnits(digits), currency),
         locale: formatLocaleCode(context),
       ),
     );
   }
 
   Future<void> _save() async {
+    if (_saving) return;
     final l10n = _l10n;
     setState(() {
       _quantityError = null;
       _priceError = null;
       _nameError = null;
+      _actualError = null; _saveError = null;
     });
 
     final name = _name.text.trim();
@@ -195,54 +262,45 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     // Fiyat: boş olabilir (fiyatsız plan); doluysa geçerli olmalı.
     final priceState = _fieldState(_price.text);
     final price = _tryParse(_price.text);
-    if (priceState == false || price != null && !price.isPositive) {
+    if (priceState == false || price != null && price.isNegative) {
       setState(() => _priceError = l10n.invalidPriceError);
       return;
     }
 
-    final list = await (_db.select(
-      _db.shoppingLists,
-    )..where((t) => t.id.equals(widget.listId))).getSingle();
-    final digits = Currency.fromCode(list.currencyCode).minorUnitDigits;
-    DecimalFixed? unitPrice;
-    int? lineTotalMinor;
-    if (price != null) {
-      if (_priceIsUnitPrice) {
-        unitPrice = price;
-        lineTotalMinor = LineCalc.plannedLineTotal(
-          quantity,
-          price,
-        ).toMinorUnits(digits);
-      } else {
-        lineTotalMinor = price.toMinorUnits(digits);
-        unitPrice = price.divide(
-          quantity,
-          scale: DecimalFixed.maxFractionDigits,
-        );
-      }
+    final actualPrice = _tryParse(_actualPrice.text);
+    final actualQuantity = _tryParse(_actualQuantity.text);
+    final discount = _tryParse(_discount.text) ?? DecimalFixed.zero();
+    if (_actualChanged && (_mixedUnits || actualQuantity == null || actualQuantity.isZero ||
+        _fieldState(_actualPrice.text) == false || (actualPrice?.isNegative ?? false) ||
+        _fieldState(_discount.text) == false || discount.isNegative)) {
+      setState(() => _actualError = l10n.invalidAmountError); return;
     }
-    await _db
-        .into(_db.plannedItems)
-        .insert(
-          PlannedItemsCompanion.insert(
-            listId: widget.listId,
-            name: name,
-            normalizedName: normalizeItemName(name),
-            brand: Value(
-              _brand.text.trim().isEmpty ? null : _brand.text.trim(),
-            ),
-            categoryId: Value(_categoryId),
-            plannedQuantity: quantity.toDbString(),
-            plannedUnitCode: _unit.dbCode,
-            pricingInputMode: _priceIsUnitPrice ? 'unitPrice' : 'lineTotal',
-            plannedUnitPrice: Value(unitPrice?.toDbString()),
-            plannedLineTotalMinorUnits: Value(lineTotalMinor),
-            maxAcceptablePrice: Value(_tryParse(_maxPrice.text)?.toDbString()),
-            requiredFlag: Value(_required),
-            note: Value(_note.text.trim().isEmpty ? null : _note.text.trim()),
-          ),
-        );
-    if (mounted) Navigator.of(context).pop();
+    setState(() => _saving = true);
+    try {
+      await _db.transaction(() async {
+        final id = await ItemRepository(_db).addItem(listId: widget.listId,
+          existingId: widget.existing?.id, name: name, quantity: quantity,
+          unitCode: _unit.dbCode, priceIsUnitPrice: _priceIsUnitPrice, price: price,
+          brand: _brand.text.trim().isEmpty ? null : _brand.text.trim(), categoryId: _categoryId,
+          maxAcceptablePrice: _tryParse(_maxPrice.text), requiredFlag: _required,
+          note: _note.text.trim().isEmpty ? null : _note.text.trim());
+        if (_actualChanged) {
+          final list = await ShoppingRepository(_db).getList(widget.listId);
+          final digits = Currency.fromCode(list.currencyCode).minorUnitDigits;
+          await ShoppingRepository(_db).recordPurchase(listId: widget.listId, plannedItemId: id,
+            name: name, normalizedName: normalizeName(name), quantity: actualQuantity!,
+            unitCode: (_actualUnit ?? _unit).dbCode,
+            unitPrice: _actualPriceIsUnit ? actualPrice : null,
+            lineTotalMinor: _actualPriceIsUnit ? null : actualPrice?.toMinorUnits(digits),
+            discountMinor: discount.toMinorUnits(digits));
+        }
+      });
+      if (mounted) Navigator.of(context).pop();
+    } catch (_) {
+      if (mounted) setState(() => _saveError = l10n.saveFailed);
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
   }
 
   // Ses girişi çıktısını forma uygular (spec §6.7: doğrulanmadan kaydolmaz).
@@ -250,27 +308,31 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     final handler = widget.onVoicePressed;
     if (handler == null) return;
     final candidate = await handler(context);
-    if (candidate == null) return;
+    if (candidate == null || !mounted) return;
     setState(() {
       _name.text = candidate.name;
       if (candidate.quantity != null) {
-        _quantity.text = candidate.quantity!.toDbString();
+        _quantity.text = candidate.quantity!.toDbString().replaceAll('.', _separators.decimal);
       }
       if (candidate.unitCode != null) _unit = candidate.unitCode!;
       if (candidate.unitPrice != null) {
-        _price.text = candidate.unitPrice!.toDbString();
+        _price.text = candidate.unitPrice!.toDbString().replaceAll('.', _separators.decimal);
       }
     });
   }
 
   Future<void> _onShelfPricePressed() async {
     final price = await widget.onShelfPricePressed!(context);
-    if (price != null && mounted) setState(() => _price.text = price);
+    if (price != null && mounted) { setState(() {
+      _actualPrice.text = price.replaceAll('.', _separators.decimal);
+      _actualPriceIsUnit = true; _actualChanged = true;
+    }); }
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = _l10n;
+    if (!_currencyLoaded) return const Center(child: CircularProgressIndicator());
     return Padding(
       padding: EdgeInsets.only(
         left: 16,
@@ -298,13 +360,6 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                     tooltip: l10n.voiceStartListening,
                     onPressed: () => _onVoicePressed(),
                   ),
-                if (widget.onShelfPricePressed != null)
-                  IconButton(
-                    key: const Key('item_shelf_label_button'),
-                    icon: const Icon(Icons.document_scanner_outlined),
-                    tooltip: l10n.shelfLabelAction,
-                    onPressed: _onShelfPricePressed,
-                  ),
               ],
             ),
             const SizedBox(height: 12),
@@ -329,9 +384,9 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               ),
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
-                labelText: _priceIsUnitPrice
+                labelText: '${l10n.compareEstimated} · ${_priceIsUnitPrice
                     ? l10n.pricingModeUnitPrice
-                    : l10n.pricingModeLineTotal,
+                    : l10n.pricingModeLineTotal}',
                 helperText: l10n.priceOptionalHint,
                 errorText: _priceError,
               ),
@@ -380,7 +435,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                     // Uzun birim adları (ör. de "Schachtel") dar ekranda taşmasın.
                     isExpanded: true,
                     decoration: InputDecoration(labelText: l10n.unitLabel),
-                    items: UnitCode.standard()
+                    items: UnitCode.values
                         .map(
                           (u) => DropdownMenuItem(
                             value: u,
@@ -398,11 +453,52 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             ),
             // Gelişmiş alanlar katlanır: ana akış yalnız ad+fiyat+miktar
             // ister; kalanlar "Ayrıntılar"ta (C-004).
+            TextField(key: const Key('item_actual_price_field'), controller: _actualPrice,
+              enabled: !_mixedUnits,
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              decoration: InputDecoration(labelText: '${l10n.compareActual} · ${_actualPriceIsUnit ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}',
+                errorText: _actualError, helperText: l10n.priceOptionalHint,
+                suffixIcon: widget.onShelfPricePressed == null ? null : IconButton(
+                  key: const Key('item_shelf_label_button'), tooltip: l10n.scanPriceLabel,
+                  onPressed: _mixedUnits ? null : _onShelfPricePressed,
+                  icon: const Icon(Icons.photo_camera_outlined))),
+              onChanged: (_) => setState(() => _actualChanged = true)),
+            const SizedBox(height: 12),
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(child: TextField(key: const Key('item_actual_quantity_field'),
+                controller: _actualQuantity, enabled: !_mixedUnits,
+                keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
+                decoration: InputDecoration(labelText: l10n.actualQuantityLabel),
+                onChanged: (_) => _actualChanged = true)),
+              const SizedBox(width: 8),
+              Expanded(child: DropdownButtonFormField<String>(key: const Key('item_actual_unit_field'),
+                initialValue: (_actualUnit ?? _unit).dbCode, isExpanded: true,
+                decoration: InputDecoration(labelText: l10n.unitLabel),
+                items: UnitCode.values.map((u) => DropdownMenuItem(value: u.dbCode,
+                  child: Text(unitDisplayName(u, l10n)))).toList(),
+                onChanged: _mixedUnits ? null : (v) => setState(() {
+                  _actualUnit = UnitCode.fromDbCode(v!); _actualChanged = true;
+                }))),
+            ]),
+            if (_mixedUnits) Text(l10n.purchaseAnalyticsHint),
             ExpansionTile(
               key: const Key('item_details_expand'),
               title: Text(l10n.itemDetailsSection),
               childrenPadding: const EdgeInsets.only(bottom: 8),
               children: [
+                DropdownButtonFormField<bool>(key: const Key('item_actual_pricing_mode'),
+                  initialValue: _actualPriceIsUnit, isExpanded: true,
+                  decoration: InputDecoration(labelText: l10n.actualPriceLabel),
+                  items: [DropdownMenuItem(value: true, child: Text(l10n.pricingModeUnitPrice)),
+                    DropdownMenuItem(value: false, child: Text(l10n.pricingModeLineTotal))],
+                  onChanged: _mixedUnits ? null : (v) => setState(() {
+                    _actualPriceIsUnit = v!; _actualChanged = true;
+                  })),
+                const SizedBox(height: 12),
+                TextField(key: const Key('item_discount_field'), controller: _discount,
+                  enabled: !_mixedUnits, keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(labelText: l10n.discountLabel),
+                  onChanged: (_) => _actualChanged = true),
                 SegmentedButton<bool>(
                   key: const Key('item_pricing_mode'),
                   segments: [
@@ -467,9 +563,10 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             const SizedBox(height: 8),
             FilledButton(
               key: const Key('item_save_button'),
-              onPressed: _save,
+              onPressed: _saving ? null : _save,
               child: Text(l10n.saveButton),
             ),
+            if (_saveError != null) Text(_saveError!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
           ],
         ),
       ),
@@ -478,17 +575,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
 }
 
 /// Ad normalize etme (ItemRepository ile aynı kural; UI kaydetmede kullanır).
-String normalizeItemName(String name) => name
-    .toLowerCase()
-    .replaceAll('ç', 'c')
-    .replaceAll('ğ', 'g')
-    .replaceAll('ı', 'i')
-    .replaceAll('ö', 'o')
-    .replaceAll('ş', 's')
-    .replaceAll('ü', 'u')
-    .replaceAll(RegExp(r'[^a-z0-9 ]'), '')
-    .replaceAll(RegExp(r'\s+'), ' ')
-    .trim();
+String normalizeItemName(String name) => normalizeName(name);
 
 extension _DecimalEquals on DecimalFixed {
   bool equals(DecimalFixed other) => compareTo(other) == 0;

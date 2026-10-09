@@ -2,7 +2,7 @@
 ## 2026-10-09 kaynak denetimi
 - Mevcut sürüm pubspec.yaml: 1.1.4+6; aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
 - Devralma baseline: 295 passed; PB-063 sonrası 304 passed ve analyze 0. Diğer hedeflerin kabulü halen görevlerdedir.
-- PB-070 home/history/draft/completed tek ListDetailScreen açar; yeni liste editörü doğrudan açılır ve yeni kayıt detaya gider; ay kartı para kodunu korur. Plan/market ekranları halen ayrı; form insert-only, UI silme PB-071/PB-062'de.
+- PB-070 home/history/draft/completed tek ListDetailScreen açar; yeni liste editörü doğrudan açılır ve yeni kayıt detaya gider; ay kartı para kodunu korur. PB-071 form mevcut ID günceller; plan/gerçek bağımsız, kamera yalnız gerçek alanını doldurur, yazım atomic/hata görünür. Ortak removeItem bağlı alım/gözlemi kaldırır; satır UI ve iki ekran birleşimi PB-062'de.
 - PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. Mikrofon ikinci init callback riski halen açık.
 - 71 ARB var; ilk kurulum country→currency main.dart içinde zaten var. Settings keepAwake listede okunmuyor.
 - Server mevcut varsayılan: free15/pro200/max1000, Qwen Token Plan. PDF özelliği yok. PB-062..069 yalnız hedef ve plan.
@@ -66,7 +66,7 @@ over sqlite (ADR-001).
   (kademeli tipografi ağırlıkları, stadium butonlar, 14r girişler, 16r
   kartlar, alt sayfa tutamacı, FadeForwards geçişler), SemanticDelta
   (WCAG AA checked).
-- `core/util/`: normalizeName, combineLatest3 (no rxdart).
+- `core/util/`: normalizeName (Unicode harf/rakam korunur, Türkçe katlama), combineLatest3 (no rxdart).
 ### Data
 
 **Status:** VERIFIED

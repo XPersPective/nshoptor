@@ -9,6 +9,7 @@ import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/item_form_sheet.dart';
 import 'package:nshoptor/features/lists/item_repository.dart';
 import 'package:nshoptor/features/lists/starter_categories.dart';
+import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
 
 void main() {
   late AppDatabase db;
@@ -33,6 +34,38 @@ void main() {
       );
 
   group('ItemRepository (spec §6.2)', () {
+    test('update keeps ID and rejects foreign list; delete removes linked purchases and observations', () async {
+      final listId = await makeList();
+      final id = await repo.addItem(listId: listId, name: 'Milk', quantity: DecimalFixed.fromInt(1),
+        unitCode: 'piece', priceIsUnitPrice: false, price: DecimalFixed.zero());
+      await repo.addItem(listId: listId, existingId: id, name: 'Milk 2', quantity: DecimalFixed.fromInt(2),
+        unitCode: 'piece', priceIsUnitPrice: false, price: DecimalFixed.fromInt(30));
+      expect(await repo.getItems(listId), hasLength(1));
+      final other = await makeList();
+      await expectLater(repo.addItem(listId: other, existingId: id, name: 'Bad', quantity: DecimalFixed.fromInt(1),
+        unitCode: 'piece', priceIsUnitPrice: false), throwsArgumentError);
+      await ShoppingRepository(db).recordPurchase(listId: listId, plannedItemId: id, name: 'Milk 2', normalizedName: 'milk2',
+        quantity: DecimalFixed.fromInt(2), unitCode: 'piece', lineTotalMinor: 3200);
+      await repo.removeItem(id);
+      expect(await db.select(db.plannedItems).get(), isEmpty);
+      expect(await db.select(db.purchaseEntries).get(), isEmpty);
+      expect(await db.select(db.priceObservations).get(), isEmpty);
+    });
+
+    test('null and zero prices differ; boundary rejects zero quantity and negative price', () async {
+      final listId = await makeList();
+      await repo.addItem(listId: listId, name: 'Free', quantity: DecimalFixed.fromInt(1),
+        unitCode: 'piece', priceIsUnitPrice: true, price: DecimalFixed.zero());
+      await repo.addItem(listId: listId, name: 'Unknown', quantity: DecimalFixed.fromInt(1),
+        unitCode: 'piece', priceIsUnitPrice: true);
+      final items = await repo.getItems(listId);
+      expect(items.first.plannedLineTotalMinorUnits, 0);
+      expect(items.last.plannedLineTotalMinorUnits, isNull);
+      await expectLater(repo.addItem(listId: listId, name: 'Bad', quantity: DecimalFixed.zero(),
+        unitCode: 'piece', priceIsUnitPrice: true), throwsArgumentError);
+      await expectLater(repo.addItem(listId: listId, name: 'Bad', quantity: DecimalFixed.fromInt(1),
+        unitCode: 'piece', priceIsUnitPrice: true, price: DecimalFixed.fromInt(-1)), throwsArgumentError);
+    });
     test('birim fiyat girilince satır toplamı hesaplanır', () async {
       final listId = await makeList();
       final id = await repo.addItem(
@@ -77,6 +110,9 @@ void main() {
         normalizeItemName('Türk Çayı Şişe'),
         'turk cayi sise',
       );
+      expect(normalizeItemName('牛乳'), '牛乳');
+      expect(normalizeItemName('حليب'), 'حليب');
+      expect(normalizeItemName('Γάλα'), 'γάλα');
     });
 
     test('planlanan toplam satırların minor toplamıdır', () async {

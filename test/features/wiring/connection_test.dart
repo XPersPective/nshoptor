@@ -190,7 +190,8 @@ void main() {
     await tester.tap(find.byKey(const Key('price_candidate_0')));
     await settle(tester);
 
-    expect(find.widgetWithText(TextField, '42.90'), findsOneWidget);
+    expect(tester.widget<TextField>(find.byKey(const Key('item_actual_price_field'))).controller!.text, '42,90');
+    expect(tester.widget<TextField>(find.byKey(const Key('item_price_field'))).controller!.text, isEmpty);
 
     await disposeApp(tester);
   });
