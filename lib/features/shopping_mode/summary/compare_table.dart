@@ -98,9 +98,9 @@ class CompareTable extends StatelessWidget {
                       if (r.isUnplanned) Text(l10n.compareUnplanned, style: muted),
                     ],
                   ),
-                  Text(r.isUnplanned ? '—' : money(r.plannedLineTotalMinor), textAlign: TextAlign.end),
-                  Text(r.notTaken ? '—' : money(r.actualLineTotalMinor), textAlign: TextAlign.end),
-                  r.notTaken
+                  Text(r.isUnplanned || !r.plannedKnown ? '—' : money(r.plannedLineTotalMinor), textAlign: TextAlign.end),
+                  Text(r.notTaken || !r.actualKnown ? '—' : money(r.actualLineTotalMinor), textAlign: TextAlign.end),
+                  r.notTaken || !r.actualKnown || !r.plannedKnown || r.isUnplanned
                       ? Text('—', textAlign: TextAlign.end, style: muted)
                       : diffCell(r.lineVarianceMinor, key: Key('compare_diff_$i')),
                 ],
@@ -111,9 +111,9 @@ class CompareTable extends StatelessWidget {
             row(
               [
                 Text(l10n.compareTotal, style: bold),
-                Text(money(result.plannedTotalMinor), style: bold, textAlign: TextAlign.end),
-                Text(money(result.actualTotalMinor), style: bold, textAlign: TextAlign.end),
-                diffCell(result.varianceMinor, key: const Key('compare_diff_total')),
+                Text(result.hasKnownPlan ? money(result.plannedTotalMinor) : '—', style: bold, textAlign: TextAlign.end),
+                Text(!result.hasKnownActual ? '—' : '${money(result.actualTotalMinor)}${result.hasUnknownActual ? ' + —' : ''}', style: bold, textAlign: TextAlign.end),
+                result.hasComparison ? diffCell(result.varianceMinor, key: const Key('compare_diff_total')) : const Text('—', key: Key('compare_diff_total')),
               ],
               decoration: BoxDecoration(
                 border: Border(top: BorderSide(color: theme.colorScheme.outline, width: 1.5)),
@@ -146,7 +146,7 @@ class PriceMovers extends StatelessWidget {
     final locale = formatLocaleCode(context);
     String money(int minor) =>
         formatMoney(Money.fromMinorUnits(minor, currency), locale: locale);
-    final planned = result.rows.where((r) => !r.notTaken && !r.isUnplanned).toList();
+    final planned = result.rows.where((r) => !r.notTaken && !r.isUnplanned && r.actualKnown && r.plannedKnown).toList();
     final pricier = (planned.where((r) => r.lineVarianceMinor > 0).toList()
           ..sort((a, b) => b.lineVarianceMinor.compareTo(a.lineVarianceMinor)))
         .take(3)

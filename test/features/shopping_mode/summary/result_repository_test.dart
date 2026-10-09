@@ -4,6 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/shopping_mode/summary/result_repository.dart';
+import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
+import 'package:nshoptor/features/shopping_mode/item_status.dart';
+import 'package:nshoptor/core/money/decimal_fixed.dart';
 
 void main() {
   late AppDatabase db;
@@ -105,7 +108,7 @@ void main() {
     expect(result.plannedTotalMinor, 14335);
     // Gerçek: 9000 + 5600 + 1550 + 2500 = 18650.
     expect(result.actualTotalMinor, 18650);
-    expect(result.varianceMinor, 4315);
+    expect(result.varianceMinor, 1815); // only items with both known prices are compared
     expect(result.unplannedTotalMinor, 2500);
     expect(result.unpurchasedPlannedMinor, 0);
     expect(result.accuracy, isNotNull);
@@ -151,6 +154,37 @@ void main() {
     final tomatoRow = result.rows.firstWhere((r) => r.name == 'Domates');
     expect(tomatoRow.groups, contains(ItemResultGroup.notTaken));
     expect(tomatoRow.notTaken, isTrue);
+    expect(result.varianceMinor, 0); // unbought tomato is not a saving
+  });
+
+  test('unbought estimate never becomes saving; unknown checkbox differs from free purchase', () async {
+    await addItem('Unbought', '1', 'piece', 8000);
+    final bought = await addItem('Bought', '1', 'piece', 3000);
+    await purchase(bought, qty: '1', lineTotalMinor: 3200);
+    final unknown = await addItem('Unknown', '1', 'piece', 500);
+    await ShoppingRepository(db).setItemStatus(unknown.id, ItemStatus.inCart);
+    final result = await repo.compute(listId);
+    expect(result.varianceMinor, 200); expect(result.unpurchasedPlannedMinor, 8000);
+    expect(result.hasUnknownActual, isTrue);
+    expect(result.rows.firstWhere((r) => r.name == 'Unknown').actualKnown, isFalse);
+    await ShoppingRepository(db).recordPurchase(listId: listId, plannedItemId: unknown.id,
+      name: 'Unknown', normalizedName: 'unknown', quantity: DecimalFixed.fromInt(1),
+      unitCode: 'piece', lineTotalMinor: 0);
+    final free = await repo.compute(listId);
+    expect(free.hasUnknownActual, isFalse); expect(free.varianceMinor, -300);
+  });
+
+  test('different units are never added as one quantity or unit-price comparison', () async {
+    final item = await addItem('Tomato', '1', 'kilogram', 3000, unitPrice: '30');
+    for (final unit in ['kilogram', 'piece']) {
+      await db.into(db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(listId: listId,
+        plannedItemId: Value(item.id), name: 'Tomato', normalizedName: 'tomato', actualQuantity: '1',
+        actualUnitCode: unit, actualUnitPrice: const Value('32'), actualLineTotalMinorUnits: 3200,
+        userConfirmed: const Value(true)));
+    }
+    final row = (await repo.compute(listId)).rows.single;
+    expect(row.actualQuantity, isNull); expect(row.actualUnitPrice, isNull);
+    expect(row.priceChanged, isFalse);
   });
 
   test('plan sıfırsa yüzde hesaplanamaz; indirim ayrı raporlanır', () async {

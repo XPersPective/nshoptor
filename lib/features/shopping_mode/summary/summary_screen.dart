@@ -125,11 +125,11 @@ class _SummarySection extends StatelessWidget {
             const SizedBox(height: 8),
             _Row(
               label: l10n.plannedTotalLabel,
-              value: money(result.plannedTotalMinor),
+              value: result.hasKnownPlan ? money(result.plannedTotalMinor) : '—',
             ),
             _Row(
               label: l10n.actualTotalLabel,
-              value: money(result.actualTotalMinor),
+              value: !result.hasKnownActual ? '—' : '${money(result.actualTotalMinor)}${result.hasUnknownActual ? ' + —' : ''}',
             ),
             _Row(
               label: l10n.varianceLabel,
@@ -267,7 +267,7 @@ class _ItemResultTile extends StatelessWidget {
               ),
             _Row(
               label: l10n.lineVarianceLabel,
-              value: money(row.lineVarianceMinor),
+              value: row.actualKnown && row.plannedKnown ? money(row.lineVarianceMinor) : '—',
             ),
           ],
         ),

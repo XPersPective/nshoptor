@@ -6,7 +6,8 @@ import 'package:nshoptor/core/theme/semantic_colors.dart';
 import 'package:nshoptor/features/shopping_mode/summary/compare_table.dart';
 import 'package:nshoptor/features/shopping_mode/summary/result_repository.dart';
 
-ItemResultRow _row(String name, int planned, int actual, {bool notTaken = false, bool unplanned = false}) =>
+ItemResultRow _row(String name, int planned, int actual, {bool notTaken = false, bool unplanned = false,
+    bool actualKnown = true, bool plannedKnown = true}) =>
     ItemResultRow(
       name: name,
       plannedQuantity: null,
@@ -22,9 +23,22 @@ ItemResultRow _row(String name, int planned, int actual, {bool notTaken = false,
       notTaken: notTaken,
       isUnplanned: unplanned,
       userConfirmed: true,
+      actualKnown: actualKnown, plannedKnown: plannedKnown,
     );
 
 void main() {
+  testWidgets('unknown estimate and actual stay dashes in the result table', (tester) async {
+    final result = ListResult(currencyCode: 'TRY', plannedTotalMinor: 0, actualTotalMinor: 0,
+      unplannedTotalMinor: 0, unpurchasedPlannedMinor: 0, totalDiscountMinor: 0, variancePercent: null,
+      accuracy: null, rows: [_row('Unknown', 0, 0, actualKnown: false, plannedKnown: false)]);
+    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+      supportedLocales: AppLocalizations.supportedLocales, home: Scaffold(body: CompareTable(result: result))));
+    expect(find.text('0,00 ₺'), findsNothing);
+    expect(tester.widget<Text>(find.byKey(const Key('compare_diff_total'))).data, '—');
+    expect(find.text('—'), findsWidgets);
+  });
   testWidgets('elma 20→30 +10 (pahalı rengi), ekmek 0, alınmayan —, toplam ve bütçe', (tester) async {
     final result = ListResult(
       currencyCode: 'TRY',

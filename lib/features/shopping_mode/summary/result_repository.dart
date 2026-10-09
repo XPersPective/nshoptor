@@ -28,6 +28,8 @@ class ItemResultRow {
     required this.notTaken,
     required this.isUnplanned,
     required this.userConfirmed,
+    this.actualKnown = true,
+    this.plannedKnown = true,
   });
 
   final String name;
@@ -44,6 +46,8 @@ class ItemResultRow {
   final bool notTaken;
   final bool isUnplanned;
   final bool userConfirmed;
+  final bool actualKnown;
+  final bool plannedKnown;
 
   /// "Pahalandı" yargısı YALNIZ birim fiyat farkına dayanır; miktar artışı
   /// tek başına pahalı grubuna sokmaz (spec §6.11).
@@ -67,6 +71,8 @@ class ListResult {
     required this.accuracy,
     required this.rows,
     this.budgetMinor,
+    this.comparedPlannedMinor,
+    this.comparedActualMinor,
   });
 
   /// Listenin bütçesi (varsa); karşılaştırma tablosunda bütçe satırı.
@@ -76,8 +82,10 @@ class ListResult {
   final int plannedTotalMinor;
   final int actualTotalMinor;
 
-  /// actualTotal − plannedTotal (negatif = tasarruf).
-  int get varianceMinor => actualTotalMinor - plannedTotalMinor;
+  /// Difference for purchased items with both prices known; skipped estimates are excluded.
+  int get varianceMinor => (comparedActualMinor ?? actualTotalMinor) - (comparedPlannedMinor ?? plannedTotalMinor);
+  final int? comparedPlannedMinor;
+  final int? comparedActualMinor;
   final DecimalFixed? variancePercent;
   final int unplannedTotalMinor;
   final int unpurchasedPlannedMinor;
@@ -95,6 +103,11 @@ class ListResult {
     }
     return groups;
   }
+
+  bool get hasComparison => rows.any((r) => !r.notTaken && !r.isUnplanned && r.actualKnown && r.plannedKnown);
+  bool get hasKnownPlan => rows.any((r) => !r.isUnplanned && r.plannedKnown);
+  bool get hasKnownActual => rows.any((r) => !r.notTaken && r.actualKnown);
+  bool get hasUnknownActual => rows.any((r) => !r.notTaken && !r.actualKnown);
 }
 
 /// Tamamlanan alışverişin sonuç hesabı (spec §6.11, §7.3).
@@ -121,6 +134,8 @@ class ResultRepository {
 
     var plannedTotal = 0;
     var unpurchasedPlanned = 0;
+    var comparedPlanned = 0;
+    var comparedActual = 0;
     final rows = <ItemResultRow>[];
 
     for (final item in items) {
@@ -142,30 +157,39 @@ class ResultRepository {
           actualUnitPrice: null,
           plannedLineTotalMinor: plannedLine,
           actualLineTotalMinor: 0,
-          lineVarianceMinor: -plannedLine,
+          lineVarianceMinor: 0,
           variancePercent: null,
           discountMinor: 0,
           groups: {ItemResultGroup.notTaken},
           notTaken: true,
           isUnplanned: false,
           userConfirmed: true,
+          actualKnown: false,
+          plannedKnown: item.plannedLineTotalMinorUnits != null,
         ));
         continue;
       }
 
-      final actualQty = itemEntries.fold<DecimalFixed>(
-          DecimalFixed.zero(), (s, e) => s + DecimalFixed.parse(e.actualQuantity));
+      final sameUnit = itemEntries.map((e) => e.actualUnitCode).toSet().length <= 1;
+      final actualQty = sameUnit ? itemEntries.fold<DecimalFixed>(
+          DecimalFixed.zero(), (s, e) => s + DecimalFixed.parse(e.actualQuantity)) : null;
       final actualLine =
           itemEntries.fold<int>(0, (s, e) => s + e.actualLineTotalMinorUnits);
       final discount = itemEntries
           .fold<int>(0, (s, e) => s + e.discountMinorUnits);
       final plannedQty = DecimalFixed.parse(item.plannedQuantity);
       final plannedUnit = _parseD(item.plannedUnitPrice);
-      final actualUnit = _firstUnitPrice(itemEntries);
+      final actualKnown = itemEntries.isNotEmpty && itemEntries.every((e) =>
+        e.grossTotalMinorUnits != null || e.actualLineTotalMinorUnits != 0 || e.source == 'receiptOcr');
+      final compatible = itemEntries.every((e) => e.actualUnitCode == item.plannedUnitCode);
+      final actualUnit = actualKnown && compatible && actualQty != null && !actualQty.isZero ?
+        DecimalFixed.fromMinorUnits(actualLine + discount, digits).divide(actualQty, scale: DecimalFixed.maxFractionDigits) : null;
+      final comparable = actualKnown && item.plannedLineTotalMinorUnits != null;
+      if (comparable) { comparedPlanned += plannedLine; comparedActual += actualLine; }
 
-      final variance = actualLine - plannedLine;
-      final percent = _percent(variance, plannedLine, digits);
-      final quantityChanged = actualQty.compareTo(plannedQty) != 0;
+      final variance = comparable ? actualLine - plannedLine : 0;
+      final percent = comparable ? _percent(variance, plannedLine, digits) : null;
+      final quantityChanged = !compatible || actualQty == null || actualQty.compareTo(plannedQty) != 0;
       // "Pahalandı/ucuzladı" yargısı birim fiyat farkına dayanır; birim
       // fiyat aynıysa (veya kayıtsızsa) satır farkı yönü bildirmez
       // (spec §6.11: miktar artışı pahalandı demek değildir).
@@ -175,8 +199,9 @@ class ResultRepository {
           ? _direction(variance, percent, list.currencyCode)
           : ItemResultGroup.close;
       final groups = <ItemResultGroup>{
-        directionGroup,
+        if (comparable) directionGroup,
         if (quantityChanged) ItemResultGroup.quantityChanged,
+        if (!actualKnown) ItemResultGroup.unverified,
       };
       final verified = itemEntries.every((e) => e.userConfirmed);
       if (!verified) groups.add(ItemResultGroup.unverified);
@@ -196,6 +221,8 @@ class ResultRepository {
         notTaken: false,
         isUnplanned: false,
         userConfirmed: verified,
+        actualKnown: actualKnown,
+        plannedKnown: item.plannedLineTotalMinorUnits != null,
       ));
     }
 
@@ -218,6 +245,8 @@ class ResultRepository {
         notTaken: false,
         isUnplanned: true,
         userConfirmed: e.userConfirmed,
+        actualKnown: e.grossTotalMinorUnits != null || e.actualLineTotalMinorUnits != 0 || e.source == 'receiptOcr',
+        plannedKnown: false,
       ));
     }
 
@@ -234,8 +263,10 @@ class ResultRepository {
       unpurchasedPlannedMinor: unpurchasedPlanned,
       totalDiscountMinor: totalDiscount,
       variancePercent: _percent(
-          actualTotal - plannedTotal, plannedTotal, digits),
-      accuracy: _accuracy(plannedTotal, actualTotal, list.currencyCode),
+          comparedActual - comparedPlanned, comparedPlanned, digits),
+      accuracy: _accuracy(comparedPlanned, comparedActual, list.currencyCode),
+      comparedPlannedMinor: comparedPlanned,
+      comparedActualMinor: comparedActual,
       rows: rows,
       budgetMinor: list.budgetMinorUnits,
     );
@@ -267,11 +298,4 @@ class ResultRepository {
   DecimalFixed? _parseD(String? value) =>
       value == null ? null : DecimalFixed.tryParse(value);
 
-  DecimalFixed? _firstUnitPrice(List<PurchaseEntry> entries) {
-    for (final e in entries) {
-      final v = _parseD(e.actualUnitPrice);
-      if (v != null) return v;
-    }
-    return null;
-  }
 }
