@@ -6,9 +6,10 @@
 - PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. Mikrofon ikinci init callback riski halen açık.
 - PB-073 sonuç farkı yalnız bilinen tahmin+gerçek alımlardan; alınmayan/plansız ayrı. Bilinmeyen gerçek/tahmin —, ücretsiz 0 farklı; karma birim miktarı toplanmaz. Full suite 316 + son görünüm delta domain 20 passed; analyze 0.
 - 71 ARB var; ilk kurulum country→currency main.dart içinde zaten var. Settings keepAwake listede okunmuyor.
-- Server mevcut varsayılan: free15/pro200/max1000, Qwen Token Plan. PDF özelliği yok. PDF/ayarlar/AI geliştirmeleri açık görevlerdedir.
+- Server mevcut varsayılan: free15/pro200/max1000, Qwen Token Plan. PB-066 PDF yerel Android yazdırma ile var. PDF/ayarlar/AI geliştirmeleri açık görevlerdedir.
 - Kullanıcı devralma/tamamlama yetkisi verdi; yalnız kanıtlanan checkpointler burada mevcut durumdur.
 - PB-062 doğrulama: 321 full-suite passed, analyze 0; 320dp/2x tr/ar taşmasız, 48dp erişilebilir eylemler. Büyük yazıda başlık ürünlerle birlikte kayar. Tamamlanmış listede yeniden başlatma yok.
+- PB-066 liste menüsü/sonuç PDF raporu: atomic snapshot, kaçırılmış HTML, null/para/birim dürüst; Android native print lifecycle. API36 emülatörde cancel→repeat→save→open 5 sayfa/Türkçe görsel kanıtlı; docs/audits/pdf-report-2026-10-09.md. 74 domain +2 son delta passed, debug APK, analyze 0.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -32,8 +33,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/features/subscription/` — Pro/Max abonelik servisi, planlar ekranı, ömür boyu akış süzgeci
 - `tool/play/subscriptions.rb` — Play abonelik/plan/deneme kurulumu (API)
 - `test/`, `integration_test/` — birim/widget/e2e; `test/store_capture_test.dart` mağaza görselleri
-- `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishingpps
-shoptor)
+- `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishing\apps\nshoptor)
 - `docs/store/` — gizlilik politikası, Play beyan taslakları
 - `server/` — Cloudflare Worker AI vekili (`nshoptor-api.devx8585.workers.dev`), D1 kota, Play doğrulama
 ## Runtime
@@ -140,8 +140,11 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   export/import, CSV export — CSV serbest).
 ### Platform shells & CI
 
-**Status:** VERIFIED
+**Status:** VERIFIED (native PDF 2026-10-09; other shell notes historical)
 
+**Sources:** `android/**`, `.github/**`, `tool/pdf_probe.dart`, `docs/audits/pdf-report-2026-10-09.md`
+
+Android: PDF MethodChannel → no-network/no-JS WebView → PrintManager; adapter finish/timeout/destroy cleanup, no false saved message. API36 5-page save/open evidence.
 Android: RECORD_AUDIO + RecognitionService query; hatırlatma izinleri
 + flutter_local_notifications alıcıları; AdMob APPLICATION_ID manifest
 placeholder'ı key.properties'ten (yoksa Google TEST kimliği; gerçek
@@ -178,8 +181,7 @@ güven.
 ## Yayın durumu (VERIFIED 2026-10-08)
 
 - Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.1.1 (3) completed (71 dil, PB-061), test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444.
-- Yayın kökü `D:\AppPublishingpps
-shoptor` (imza, kimlikler, 73 Play dili mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py` (+ `listing_extra.json`, `listing_translate.py`); toplu görsel `tool/store/capture_all.py`; uygulama çevirisi `tool/i18n/translate.py`. 71 uygulama dili (ARB), napp_pro/napp_ads kendi metinleri tr/en (diğerlerinde İngilizce). 1.1 mağaza metni/görselleri henüz Play'e yüklenmedi (üretime alırken `push_metadata`).
+- Yayın kökü `D:\AppPublishing\apps\nshoptor` (imza, kimlikler, 73 Play dili mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py` (+ `listing_extra.json`, `listing_translate.py`); toplu görsel `tool/store/capture_all.py`; uygulama çevirisi `tool/i18n/translate.py`. 71 uygulama dili (ARB), napp_pro/napp_ads kendi metinleri tr/en (diğerlerinde İngilizce). 1.1 mağaza metni/görselleri henüz Play'e yüklenmedi (üretime alırken `push_metadata`).
 - Ürünler: `nshoptor_pro`, `nshoptor_max` (abonelik), `com.crazypenguin.nshoptor.pro_lifetime` (ömür boyu reklamsız). Ödüllü reklam birimi app-ids.env'de (ADMOB_REWARDED_ANDROID).
 ### Server (AI vekili)
 

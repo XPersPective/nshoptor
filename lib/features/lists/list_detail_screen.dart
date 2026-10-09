@@ -21,6 +21,7 @@ import '../shopping_mode/shopping_mode_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
 import '../shopping_mode/summary/summary_screen.dart';
 import '../shopping_mode/summary/result_repository.dart';
+import '../shopping_mode/summary/pdf_report.dart';
 import '../history/price_history/price_history_sheet.dart';
 import '../receipts/ocr_text_source.dart';
 import '../receipts/parser/receipt_parser.dart';
@@ -175,7 +176,12 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
       appBar: AppBar(title: Text(l10n.listsTitle), actions: [
         PopupMenuButton<String>(key: const Key('detail_more_menu'), tooltip: l10n.detailsSection,
           onSelected: (action) async {
-            if (action == 'compare') {
+            if (action == 'pdf') {
+              if (_busy) return;
+              setState(() => _busy = true);
+              await showPdfReport(context, widget.db, widget.listId);
+              if (mounted) setState(() => _busy = false);
+            } else if (action == 'compare') {
               await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) =>
                 CompareScreen(repository: ResultRepository(widget.db), listId: widget.listId)));
             } else if (action == 'reminder') {
@@ -190,6 +196,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
           },
           itemBuilder: (_) => [
             PopupMenuItem(value: 'compare', child: Text(l10n.compareAction)),
+            PopupMenuItem(key: const Key('detail_report_pdf'), value: 'pdf', child: Text(l10n.reportPdfAction)),
             PopupMenuItem(key: const Key('detail_set_reminder'), value: 'reminder', child: Text(l10n.setReminderAction)),
             PopupMenuItem(key: const Key('add_unplanned_button'), value: 'unplanned', child: Text(l10n.unplannedAddButton)),
           ]),

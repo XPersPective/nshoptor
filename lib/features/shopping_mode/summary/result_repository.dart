@@ -116,6 +116,7 @@ class ResultRepository {
       : threshold = threshold ?? VarianceThreshold();
 
   final AppDatabase _db;
+  AppDatabase get db => _db;
   final VarianceThreshold threshold;
 
   Future<ListResult> compute(int listId) async {

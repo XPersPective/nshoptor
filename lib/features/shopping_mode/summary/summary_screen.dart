@@ -10,6 +10,7 @@ import '../../../core/money/money.dart';
 import '../../../core/theme/semantic_colors.dart';
 import 'compare_table.dart';
 import 'result_repository.dart';
+import 'pdf_report.dart';
 
 /// Alışveriş bitiş/sonuç ekranı (spec §6.11).
 ///
@@ -33,7 +34,7 @@ class SummaryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.resultTitle)),
+      appBar: AppBar(title: Text(l10n.resultTitle), actions: [PdfReportButton(db: repository.db, listId: listId)]),
       body: FutureBuilder<ListResult>(
         future: repository.compute(listId),
         builder: (context, snapshot) {
