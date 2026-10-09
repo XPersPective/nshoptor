@@ -1030,4 +1030,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Sağ alttaki küçük yardımcı';
+
+  @override
+  String get scanPriceLabel => 'Fiyat etiketini okut';
 }

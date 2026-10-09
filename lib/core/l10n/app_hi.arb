@@ -323,5 +323,6 @@
   "assistantSpending": "मेरा खर्च",
   "assistantReceiptHint": "अपनी सूची खोलें और उसे स्कैन करने के लिए रसीद आइकन पर टैप करें।",
   "assistantToggleTitle": "सहायक दिखाएं",
-  "assistantToggleSubtitle": "दाहिनी ओर नीचे छोटा सहायक"
+  "assistantToggleSubtitle": "दाहिनी ओर नीचे छोटा सहायक",
+  "scanPriceLabel": "कीमत लेबल स्कैन करें"
 }

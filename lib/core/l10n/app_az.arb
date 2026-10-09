@@ -323,5 +323,6 @@
   "assistantSpending": "Xərclərim",
   "assistantReceiptHint": "Siyahınızı açın və onu skan etmək üçün çek ikonuna toxunun.",
   "assistantToggleTitle": "Assidenti göstər",
-  "assistantToggleSubtitle": "Sağ aşağı küncdəki kiçik köməkçi"
+  "assistantToggleSubtitle": "Sağ aşağı küncdəki kiçik köməkçi",
+  "scanPriceLabel": "Qiymət etiketini skan et"
 }

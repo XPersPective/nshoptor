@@ -1037,4 +1037,7 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'வலது கீழ் மூலையில் உள்ள சிறிய உதவியாளர்';
+
+  @override
+  String get scanPriceLabel => 'விலை லேபிளை ஸ்கேன் செய்யுங்கள்';
 }

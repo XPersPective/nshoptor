@@ -1032,4 +1032,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Die klein helper regs onder';
+
+  @override
+  String get scanPriceLabel => 'Skandeer prysetiket';
 }

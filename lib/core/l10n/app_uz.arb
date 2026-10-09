@@ -323,5 +323,6 @@
   "assistantSpending": "Mening xarajatlarim",
   "assistantReceiptHint": "Ro'yxatingizni oching va chekni skanerlash uchun chek belgisini bosing.",
   "assistantToggleTitle": "Yordamchini ko'rsatish",
-  "assistantToggleSubtitle": "O'ng pastki burchakdagi kichik yordamchi"
+  "assistantToggleSubtitle": "O'ng pastki burchakdagi kichik yordamchi",
+  "scanPriceLabel": "Narx yorlig'ini skanerlang"
 }

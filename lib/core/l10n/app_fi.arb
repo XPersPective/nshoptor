@@ -323,5 +323,6 @@
   "assistantSpending": "Kulutukseni",
   "assistantReceiptHint": "Avaa listasi ja napauta skannataksesi kuitin kuvaketta.",
   "assistantToggleTitle": "Näytä avustaja",
-  "assistantToggleSubtitle": "Pieni apuri oikeassa alakulmassa"
+  "assistantToggleSubtitle": "Pieni apuri oikeassa alakulmassa",
+  "scanPriceLabel": "Skannaa hintalappu"
 }

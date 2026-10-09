@@ -323,5 +323,6 @@
   "assistantSpending": "Minu kulud",
   "assistantReceiptHint": "Ava oma nimekiri ja puuduta skaneerimise ikooni.",
   "assistantToggleTitle": "Kuva assistent",
-  "assistantToggleSubtitle": "Väike abiline paremas nurgas"
+  "assistantToggleSubtitle": "Väike abiline paremas nurgas",
+  "scanPriceLabel": "Skaneeri hinnasilt"
 }

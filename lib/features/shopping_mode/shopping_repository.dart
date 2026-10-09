@@ -112,6 +112,12 @@ class ShoppingRepository {
             ? null
             : (quantity * unitPrice).toMinorUnits(digits));
     final lineTotal = (gross ?? 0) - discountMinor;
+    // Aynı ürüne yeniden fiyat girmek öncekini değiştirir (çift sayılmaz).
+    if (plannedItemId != null) {
+      await (_db.delete(_db.purchaseEntries)
+            ..where((t) => t.plannedItemId.equals(plannedItemId)))
+          .go();
+    }
     await _db.into(_db.purchaseEntries).insert(
           PurchaseEntriesCompanion.insert(
             listId: listId,

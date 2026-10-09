@@ -1035,4 +1035,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'ညာဘက်အောက်ခြေရှိ အကူအညီပေးသူ';
+
+  @override
+  String get scanPriceLabel => 'ဈေးနှုန်းလိပ်စာကို စကင်န်ပါ';
 }

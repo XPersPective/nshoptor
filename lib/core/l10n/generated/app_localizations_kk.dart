@@ -1029,4 +1029,7 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Оң жақ төмендегі кішкентай көмекші';
+
+  @override
+  String get scanPriceLabel => 'Баға жапсырмасын сканерлеу';
 }

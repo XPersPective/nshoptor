@@ -344,5 +344,6 @@
   "assistantSpending": "Harcamalarım",
   "assistantReceiptHint": "Listeni aç ve fiş simgesine dokunarak fişini okut.",
   "assistantToggleTitle": "Asistanı göster",
-  "assistantToggleSubtitle": "Sağ alttaki küçük yardımcı"
+  "assistantToggleSubtitle": "Sağ alttaki küçük yardımcı",
+  "scanPriceLabel": "Fiyat etiketini okut"
 }

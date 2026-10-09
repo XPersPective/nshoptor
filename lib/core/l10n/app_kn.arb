@@ -323,5 +323,6 @@
   "assistantSpending": "ನನ್ನ ವೆಚ್ಚ",
   "assistantReceiptHint": "ನಿಮ್ಮ ಪಟ್ಟಿಯನ್ನು ತೆರೆಯಿರಿ ಮತ್ತು ಅದನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ರಿಸಿಟ್ ಐಕಾನ್‌ನಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ.",
   "assistantToggleTitle": "ಸಹಾಯಕನನ್ನು ತೋರಿಸಿ",
-  "assistantToggleSubtitle": "ಬಲ ಕೆಳಭಾಗದಲ್ಲಿರುವ ಸಣ್ಣ ಸಹಾಯಕ"
+  "assistantToggleSubtitle": "ಬಲ ಕೆಳಭಾಗದಲ್ಲಿರುವ ಸಣ್ಣ ಸಹಾಯಕ",
+  "scanPriceLabel": "ಬೆಲೆ ಲೇಬಲ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ"
 }

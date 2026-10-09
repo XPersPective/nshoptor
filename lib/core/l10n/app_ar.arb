@@ -323,5 +323,6 @@
   "assistantSpending": "مصروفاتي",
   "assistantReceiptHint": "افتح قائمتك واضغط على أيقونة الإيصال لمسحه.",
   "assistantToggleTitle": "إظهار المساعد",
-  "assistantToggleSubtitle": "المساعد الصغير أسفل اليمين"
+  "assistantToggleSubtitle": "المساعد الصغير أسفل اليمين",
+  "scanPriceLabel": "امسح ملصق السعر"
 }

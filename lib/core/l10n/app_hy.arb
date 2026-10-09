@@ -323,5 +323,6 @@
   "assistantSpending": "Իմ ծախսերը",
   "assistantReceiptHint": "Բացեք ձեր ցանկը և սեղմեք հաշվի իկոնկան՝ այն սկանելու համար:",
   "assistantToggleTitle": "Ցույց տալ ասիստենտը",
-  "assistantToggleSubtitle": "Փոքրիկ օգնականը աջ ներքևի անկյունում"
+  "assistantToggleSubtitle": "Փոքրիկ օգնականը աջ ներքևի անկյունում",
+  "scanPriceLabel": "Սկանավորեք գնի փոստը"
 }

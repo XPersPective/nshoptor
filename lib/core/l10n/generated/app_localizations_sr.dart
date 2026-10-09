@@ -1030,4 +1030,7 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Мали помоћник у доњем десном углу';
+
+  @override
+  String get scanPriceLabel => 'Скенирај ознаку цене';
 }

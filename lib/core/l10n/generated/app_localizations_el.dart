@@ -1034,4 +1034,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Ο μικρός βοηθός κάτω δεξιά';
+
+  @override
+  String get scanPriceLabel => 'Σάρωση ετικέτας τιμής';
 }

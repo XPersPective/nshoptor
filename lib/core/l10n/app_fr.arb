@@ -323,5 +323,6 @@
   "assistantSpending": "Mes dépenses",
   "assistantReceiptHint": "Ouvrez votre liste et touchez l'icône du ticket pour le scanner.",
   "assistantToggleTitle": "Afficher l'assistant",
-  "assistantToggleSubtitle": "Le petit assistant en bas à droite"
+  "assistantToggleSubtitle": "Le petit assistant en bas à droite",
+  "scanPriceLabel": "Scanner l'étiquette de prix"
 }

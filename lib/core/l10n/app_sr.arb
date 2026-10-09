@@ -323,5 +323,6 @@
   "assistantSpending": "Моји трошкови",
   "assistantReceiptHint": "Отворите своју листу и додирните икону рачуна да бисте је скенирали.",
   "assistantToggleTitle": "Прикажи асистента",
-  "assistantToggleSubtitle": "Мали помоћник у доњем десном углу"
+  "assistantToggleSubtitle": "Мали помоћник у доњем десном углу",
+  "scanPriceLabel": "Скенирај ознаку цене"
 }

@@ -1026,4 +1026,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'העוזר הקטן בפינה הימנית התחתונה';
+
+  @override
+  String get scanPriceLabel => 'סרוק תווית מחיר';
 }

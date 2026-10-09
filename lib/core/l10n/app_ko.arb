@@ -323,5 +323,6 @@
   "assistantSpending": "내 지출 현황",
   "assistantReceiptHint": "목록을 열고 영수증 아이콘을 탭하여 스캔하세요.",
   "assistantToggleTitle": "어시스턴트 표시",
-  "assistantToggleSubtitle": "오른쪽 하단의 작은 도우미"
+  "assistantToggleSubtitle": "오른쪽 하단의 작은 도우미",
+  "scanPriceLabel": "가격 라벨 스캔"
 }

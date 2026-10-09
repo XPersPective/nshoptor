@@ -1030,4 +1030,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Mali pomočnik v spodnjem desnem kotu';
+
+  @override
+  String get scanPriceLabel => 'Skeniraj cenovno nalepko';
 }

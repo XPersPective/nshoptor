@@ -323,5 +323,6 @@
   "assistantSpending": "Útgjöld mín",
   "assistantReceiptHint": "Opnaðu listann þinn og ýttu á kvittunartáknið til að skanna hann.",
   "assistantToggleTitle": "Sýna aðstoðarmann",
-  "assistantToggleSubtitle": "Líti hjálparmaðurinn neðst til hægri"
+  "assistantToggleSubtitle": "Líti hjálparmaðurinn neðst til hægri",
+  "scanPriceLabel": "Skanna verðmerki"
 }

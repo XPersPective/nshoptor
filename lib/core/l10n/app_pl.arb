@@ -323,5 +323,6 @@
   "assistantSpending": "Moje wydatki",
   "assistantReceiptHint": "Otwórz swoją listę i naciśnij ikonę paragonu, aby ją zeskanować.",
   "assistantToggleTitle": "Pokaż asystenta",
-  "assistantToggleSubtitle": "Mały pomocnik w prawym dolnym rogu"
+  "assistantToggleSubtitle": "Mały pomocnik w prawym dolnym rogu",
+  "scanPriceLabel": "Skanuj cenę"
 }

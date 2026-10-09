@@ -323,5 +323,6 @@
   "assistantSpending": "ການໃຊ້ຈ່າຍຂ້ອຍ",
   "assistantReceiptHint": "ເປີດລາຍການຂອງທ່ານ ແລະ ກົດໄອຄອນໃບເກັບເງິນເພື່ອສະແກນ.",
   "assistantToggleTitle": "ສະແດງຜູ້ຊ່ວຍ",
-  "assistantToggleSubtitle": "ຜູ້ຊ່ວຍນ້ອຍໆຢູ່ມຸມຂວາລຸ່ມ"
+  "assistantToggleSubtitle": "ຜູ້ຊ່ວຍນ້ອຍໆຢູ່ມຸມຂວາລຸ່ມ",
+  "scanPriceLabel": "ສະແກນປ້າຍລາຄາ"
 }

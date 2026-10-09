@@ -1032,4 +1032,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Trợ lý nhỏ ở góc dưới bên phải';
+
+  @override
+  String get scanPriceLabel => 'Quét giá';
 }

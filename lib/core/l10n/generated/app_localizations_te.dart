@@ -1037,4 +1037,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'కుడి కింద ఉన్న చిన్న సహాయకుడు';
+
+  @override
+  String get scanPriceLabel => 'ధర లేబుల్ స్కాన్ చేయండి';
 }

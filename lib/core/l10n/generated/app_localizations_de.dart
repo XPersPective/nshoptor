@@ -1034,4 +1034,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Der kleine Helfer unten rechts';
+
+  @override
+  String get scanPriceLabel => 'Preisschild scannen';
 }

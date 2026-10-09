@@ -323,5 +323,6 @@
   "assistantSpending": "مخارج من",
   "assistantReceiptHint": "لیست خود را باز کنید و برای اسکن، روی آیکون رسید ضربه بزنید.",
   "assistantToggleTitle": "نمایش دستیار",
-  "assistantToggleSubtitle": "کمک‌کننده کوچک در گوشه پایین سمت راست"
+  "assistantToggleSubtitle": "کمک‌کننده کوچک در گوشه پایین سمت راست",
+  "scanPriceLabel": "اسکن برچسب قیمت"
 }

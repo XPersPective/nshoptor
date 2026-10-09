@@ -323,5 +323,6 @@
   "assistantSpending": "Meus gastos",
   "assistantReceiptHint": "Abra sua lista e toque no ícone do cupom para escaneá-lo.",
   "assistantToggleTitle": "Mostrar assistente",
-  "assistantToggleSubtitle": "O pequeno ajudante no canto inferior direito"
+  "assistantToggleSubtitle": "O pequeno ajudante no canto inferior direito",
+  "scanPriceLabel": "Ler etiqueta de preço"
 }

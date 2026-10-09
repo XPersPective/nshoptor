@@ -1028,4 +1028,7 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'જમણી બાજુ નીચેનો નાનો હેલ્પર';
+
+  @override
+  String get scanPriceLabel => 'કિંમત લેબલ સ્કેન કરો';
 }

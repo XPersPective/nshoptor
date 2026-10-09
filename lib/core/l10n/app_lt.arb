@@ -323,5 +323,6 @@
   "assistantSpending": "Mano išlaidos",
   "assistantReceiptHint": "Atidarykite savo sąrašą ir bakstelėkite kvito ikoną, kad jį nuskenuotumėte.",
   "assistantToggleTitle": "Rodyti asistentą",
-  "assistantToggleSubtitle": "Mažas pagalbininkas dešiniajame apačios kampe"
+  "assistantToggleSubtitle": "Mažas pagalbininkas dešiniajame apačios kampe",
+  "scanPriceLabel": "Skenuoti kainos etiketę"
 }

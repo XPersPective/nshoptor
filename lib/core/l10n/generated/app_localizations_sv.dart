@@ -1029,4 +1029,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Den lilla hjälparen nere till höger';
+
+  @override
+  String get scanPriceLabel => 'Skanna prisetikett';
 }

@@ -323,5 +323,6 @@
   "assistantSpending": "Os meus gastos",
   "assistantReceiptHint": "Abre a túa lista e toca o icono do recibo para escanealo.",
   "assistantToggleTitle": "Mostrar asistente",
-  "assistantToggleSubtitle": "O pequeno axudante na esquina inferior dereita"
+  "assistantToggleSubtitle": "O pequeno axudante na esquina inferior dereita",
+  "scanPriceLabel": "Escanear etiqueta de prezo"
 }

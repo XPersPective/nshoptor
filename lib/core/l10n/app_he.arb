@@ -323,5 +323,6 @@
   "assistantSpending": "ההוצאות שלי",
   "assistantReceiptHint": "פתח את הרשימה שלך ולחץ על סמל הקבלה כדי לסרוק אותה.",
   "assistantToggleTitle": "הצג עוזר",
-  "assistantToggleSubtitle": "העוזר הקטן בפינה הימנית התחתונה"
+  "assistantToggleSubtitle": "העוזר הקטן בפינה הימנית התחתונה",
+  "scanPriceLabel": "סרוק תווית מחיר"
 }

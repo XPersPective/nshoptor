@@ -323,5 +323,6 @@
   "assistantSpending": "මගේ වියදම්",
   "assistantReceiptHint": "ඔබේ ලැයිස්තුව විවෘත කර ස්කෑන් කිරීම සඳහා බිල්පත අයිකනය ටැප් කරන්න.",
   "assistantToggleTitle": "සහායක පෙන්වන්න",
-  "assistantToggleSubtitle": "දකුණු පස පහළ ඇති කුඩා සහායකයා"
+  "assistantToggleSubtitle": "දකුණු පස පහළ ඇති කුඩා සහායකයා",
+  "scanPriceLabel": "මිල ලේබලය ස්කෑන් කරන්න"
 }

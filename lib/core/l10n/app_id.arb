@@ -323,5 +323,6 @@
   "assistantSpending": "Pengeluaranku",
   "assistantReceiptHint": "Buka daftar kamu dan ketuk ikon struk untuk memindainya.",
   "assistantToggleTitle": "Tampilkan asisten",
-  "assistantToggleSubtitle": "Si kecil pembantu di kanan bawah"
+  "assistantToggleSubtitle": "Si kecil pembantu di kanan bawah",
+  "scanPriceLabel": "Pindai label harga"
 }

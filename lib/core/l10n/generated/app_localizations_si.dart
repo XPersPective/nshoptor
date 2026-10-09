@@ -1029,4 +1029,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'දකුණු පස පහළ ඇති කුඩා සහායකයා';
+
+  @override
+  String get scanPriceLabel => 'මිල ලේබලය ස්කෑන් කරන්න';
 }

@@ -323,5 +323,6 @@
   "assistantSpending": "என் செலவுகள்",
   "assistantReceiptHint": "உங்கள் பட்டியலைத் திறந்து ஸ்கேன் செய்ய ரசீது ஐகானைத் தட்டவும்.",
   "assistantToggleTitle": "உதவியாளரைக் காட்டு",
-  "assistantToggleSubtitle": "வலது கீழ் மூலையில் உள்ள சிறிய உதவியாளர்"
+  "assistantToggleSubtitle": "வலது கீழ் மூலையில் உள்ள சிறிய உதவியாளர்",
+  "scanPriceLabel": "விலை லேபிளை ஸ்கேன் செய்யுங்கள்"
 }

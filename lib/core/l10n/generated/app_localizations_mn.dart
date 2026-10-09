@@ -1035,4 +1035,7 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Баруун доод буланд жижиг туслагч';
+
+  @override
+  String get scanPriceLabel => 'Үнийн шошгыг сканнердах';
 }

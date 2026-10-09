@@ -323,5 +323,6 @@
   "assistantSpending": "Le mie spese",
   "assistantReceiptHint": "Apri la tua lista e tocca l'icona dello scontrino per scansionarlo.",
   "assistantToggleTitle": "Mostra assistente",
-  "assistantToggleSubtitle": "Il piccolo aiutante in basso a destra"
+  "assistantToggleSubtitle": "Il piccolo aiutante in basso a destra",
+  "scanPriceLabel": "Scansiona l'etichetta del prezzo"
 }

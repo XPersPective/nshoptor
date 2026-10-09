@@ -1028,4 +1028,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'ຜູ້ຊ່ວຍນ້ອຍໆຢູ່ມຸມຂວາລຸ່ມ';
+
+  @override
+  String get scanPriceLabel => 'ສະແກນປ້າຍລາຄາ';
 }

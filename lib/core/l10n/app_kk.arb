@@ -323,5 +323,6 @@
   "assistantSpending": "Менің шығындарым",
   "assistantReceiptHint": "Тізіміңізді ашып, сканерлеу үшін шек белгішесін басыңыз.",
   "assistantToggleTitle": "Көмекшіні көрсету",
-  "assistantToggleSubtitle": "Оң жақ төмендегі кішкентай көмекші"
+  "assistantToggleSubtitle": "Оң жақ төмендегі кішкентай көмекші",
+  "scanPriceLabel": "Баға жапсырмасын сканерлеу"
 }

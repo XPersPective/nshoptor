@@ -3,6 +3,8 @@ import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nshoptor/core/money/decimal_fixed.dart';
+import 'package:nshoptor/features/lists/item_repository.dart';
 
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/data/db/app_database.dart';
@@ -234,7 +236,7 @@ void main() {
     await disposeApp(tester);
   });
 
-  testWidgets('fiyat geçmişi: ürüne dokununca açılır', (tester) async {
+  testWidgets('fiyat geçmişi: ürüne uzun basınca açılır', (tester) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
     final listId = await listRepo.createList(
       title: 'Market',
@@ -265,10 +267,55 @@ void main() {
 
     await tester.pumpWidget(app(detail(listId)));
     await settle(tester);
-    await tester.tap(find.text('Domates'));
+    await tester.longPress(find.text('Domates'));
     await settle(tester);
 
     expect(find.textContaining('42,90'), findsOneWidget);
+
+    await disposeApp(tester);
+  });
+
+  testWidgets('liste satırı: tahmini hep görünür; gerçek fiyat satırdan girilince fark anında görünür',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(800, 1400));
+    final listId = await listRepo.createList(title: 'Market', currencyCode: 'TRY');
+    await ItemRepository(db).addItem(
+      listId: listId,
+      name: 'Elma',
+      quantity: DecimalFixed.fromInt(1),
+      unitCode: 'adet',
+      priceIsUnitPrice: true,
+      price: DecimalFixed.parse('10'),
+    ); // tahmini 10,00
+
+    await tester.pumpWidget(app(detail(listId)));
+    await settle(tester);
+    // Tahmini satırda ve toplamda; gerçek henüz yok.
+    expect(find.byKey(const Key('price_planned')), findsOneWidget);
+    expect(find.textContaining('10,00'), findsWidgets);
+    expect(find.byKey(const Key('price_actual')), findsNothing);
+
+    // Satıra dokun → gerçek fiyat gir (ayrıntı ekranına gitmeden).
+    await tester.tap(find.byKey(const Key('price_enter')));
+    await settle(tester);
+    await tester.enterText(find.byKey(const Key('entry_price_field')), '15');
+    await tester.tap(find.byKey(const Key('entry_save_button')));
+    await settle(tester);
+
+    expect(find.byKey(const Key('price_actual')), findsOneWidget);
+    expect(find.text('15,00 ₺'), findsWidgets); // gerçek (satır + toplam)
+    expect(find.text('+5,00 ₺'), findsWidgets); // fark (satır + toplam)
+    expect(find.byKey(const Key('detail_totals')), findsOneWidget);
+
+    // Yeniden girmek öncekini değiştirir: çift sayılmaz.
+    await tester.tap(find.text('Elma'));
+    await settle(tester);
+    await tester.enterText(find.byKey(const Key('entry_price_field')), '12');
+    await tester.tap(find.byKey(const Key('entry_save_button')));
+    await settle(tester);
+    expect(find.text('12,00 ₺'), findsWidgets);
+    expect(find.text('+2,00 ₺'), findsWidgets);
+    expect(find.text('15,00 ₺'), findsNothing);
 
     await disposeApp(tester);
   });

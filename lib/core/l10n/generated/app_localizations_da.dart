@@ -1030,4 +1030,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Den lille hjælper nederst til højre';
+
+  @override
+  String get scanPriceLabel => 'Scan prislabel';
 }

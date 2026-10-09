@@ -323,5 +323,6 @@
   "assistantSpending": "Οι δαπάνες μου",
   "assistantReceiptHint": "Ανοίξτε τη λίστα σας και πατήστε το εικονίδιο αποδείξεως για σάρωση.",
   "assistantToggleTitle": "Εμφάνιση βοηθού",
-  "assistantToggleSubtitle": "Ο μικρός βοηθός κάτω δεξιά"
+  "assistantToggleSubtitle": "Ο μικρός βοηθός κάτω δεξιά",
+  "scanPriceLabel": "Σάρωση ετικέτας τιμής"
 }

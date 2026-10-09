@@ -258,11 +258,13 @@ class _ListCard extends StatelessWidget {
         subtitle: Text(
           [
             statusLabel(l10n, status),
-            formatMoney(
-              Money.fromMinorUnits(
-                  list.budgetMinorUnits ?? 0, Currency.fromCode(list.currencyCode)),
-              locale: formatLocaleCode(context),
-            ),
+            // Bütçe yoksa "0,00" yazılmaz (yanıltıcıydı).
+            if (list.budgetMinorUnits != null)
+              formatMoney(
+                Money.fromMinorUnits(
+                    list.budgetMinorUnits!, Currency.fromCode(list.currencyCode)),
+                locale: formatLocaleCode(context),
+              ),
           ].join(' · '),
         ),
         trailing: PopupMenuButton<String>(

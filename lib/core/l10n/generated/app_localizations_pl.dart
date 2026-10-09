@@ -1033,4 +1033,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Mały pomocnik w prawym dolnym rogu';
+
+  @override
+  String get scanPriceLabel => 'Skanuj cenę';
 }

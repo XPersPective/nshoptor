@@ -323,5 +323,6 @@
   "assistantSpending": "Mine udgifter",
   "assistantReceiptHint": "Åbn din liste, og tryk på kvitteringsikonet for at scanne den.",
   "assistantToggleTitle": "Vis assistent",
-  "assistantToggleSubtitle": "Den lille hjælper nederst til højre"
+  "assistantToggleSubtitle": "Den lille hjælper nederst til højre",
+  "scanPriceLabel": "Scan prislabel"
 }

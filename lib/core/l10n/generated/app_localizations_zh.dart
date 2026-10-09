@@ -1005,4 +1005,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => '右下角的小帮手';
+
+  @override
+  String get scanPriceLabel => '扫描价格标签';
 }

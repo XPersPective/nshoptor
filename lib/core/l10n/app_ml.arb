@@ -323,5 +323,6 @@
   "assistantSpending": "എന്റെ ചെലവുകൾ",
   "assistantReceiptHint": "നിങ്ങളുടെ ലിസ്റ്റ് തുറന്ന് സ്കാൻ ചെയ്യാൻ റീസീറ്റ് آیکон ടാപ്പ് ചെയ്യുക.",
   "assistantToggleTitle": "അസിസ്റ്റന്റ് കാണിക്കുക",
-  "assistantToggleSubtitle": "വലതുവശത്ത് താഴെയുള്ള ചെറിയ സഹായി"
+  "assistantToggleSubtitle": "വലതുവശത്ത് താഴെയുള്ള ചെറിയ സഹായി",
+  "scanPriceLabel": "വില ലേബൽ സ്കാൻ ചെയ്യുക"
 }

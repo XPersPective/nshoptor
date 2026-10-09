@@ -1031,4 +1031,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'ਹੇਠਾਂ ਸੱਜੇ ਪਾਸੇ ਛੋਟਾ ਸਹਾਇਕ';
+
+  @override
+  String get scanPriceLabel => 'ਮੁੱਲ ਲੇਬਲ ਸਕੈਨ ਕਰੋ';
 }

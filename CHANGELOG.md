@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.3] — 2026-10-09
+
+- Liste ve alışveriş ekranında her satırda tahmini ↔ gerçek fiyat ve fark hep görünür
+  (ayrıntı ekranına gitmeden); başlıkta toplam tahmini / gerçek / fark
+- Gerçek fiyat satırdan girilir: kalem (elle) ya da kamera (raf etiketini şak diye okut);
+  yeniden girmek öncekini değiştirir
+- Liste kartında bütçe yoksa "0,00" gösterilmez
+
 ## [1.1.2] — 2026-10-09
 
 - Cümle/sesle liste önce liste ekranında açılır (fiyatları düzenle, sonra alışverişe başla)

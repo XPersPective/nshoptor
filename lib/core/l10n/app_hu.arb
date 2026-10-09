@@ -323,5 +323,6 @@
   "assistantSpending": "Költségeim",
   "assistantReceiptHint": "Nyisd meg a listádat, és koppints a számla ikonra a beolvasáshoz.",
   "assistantToggleTitle": "Asszisztens megjelenítése",
-  "assistantToggleSubtitle": "A kis segítő az alsó jobb sarokban"
+  "assistantToggleSubtitle": "A kis segítő az alsó jobb sarokban",
+  "scanPriceLabel": "Ár címkéjének beolvasása"
 }

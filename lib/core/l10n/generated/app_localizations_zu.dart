@@ -1039,4 +1039,7 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'Umncintisana omncane ohlangothini lwasekunene';
+
+  @override
+  String get scanPriceLabel => 'Skana isikhwama somanani';
 }

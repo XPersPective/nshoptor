@@ -323,5 +323,6 @@
   "assistantSpending": "Mina utgifter",
   "assistantReceiptHint": "Öppna din lista och tryck på kvittosymbolen för att skanna det.",
   "assistantToggleTitle": "Visa assistent",
-  "assistantToggleSubtitle": "Den lilla hjälparen nere till höger"
+  "assistantToggleSubtitle": "Den lilla hjälparen nere till höger",
+  "scanPriceLabel": "Skanna prisetikett"
 }

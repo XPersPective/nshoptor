@@ -323,5 +323,6 @@
   "assistantSpending": "زما مصرف",
   "assistantReceiptHint": "خپل لیست خلاص کړئ او د سکن کولو لپاره د رسید آیکون ته ټچ وکړئ.",
   "assistantToggleTitle": "مرسته کوونکی ښکاره کړئ",
-  "assistantToggleSubtitle": "د ښي لاندې کوچنی مرسته کوونکی"
+  "assistantToggleSubtitle": "د ښي لاندې کوچنی مرسته کوونکی",
+  "scanPriceLabel": "د بیه لیبل سکین کړئ"
 }

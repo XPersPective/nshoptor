@@ -1033,4 +1033,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'ಬಲ ಕೆಳಭಾಗದಲ್ಲಿರುವ ಸಣ್ಣ ಸಹಾಯಕ';
+
+  @override
+  String get scanPriceLabel => 'ಬೆಲೆ ಲೇಬಲ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ';
 }

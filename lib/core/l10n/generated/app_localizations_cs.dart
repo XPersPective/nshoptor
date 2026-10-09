@@ -1030,4 +1030,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Malý pomocník v pravém dolním rohu';
+
+  @override
+  String get scanPriceLabel => 'Skenovat cenovou etiketu';
 }

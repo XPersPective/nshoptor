@@ -323,5 +323,6 @@
   "assistantSpending": "আমার খরচ",
   "assistantReceiptHint": "আপনার তালিকা খুলুন এবং এটি স্ক্যান করতে রসাইড আইকনে ট্যাপ করুন।",
   "assistantToggleTitle": "অ্যাসিস্ট্যান্ট দেখান",
-  "assistantToggleSubtitle": "ডানদিকে নিচে ছোট্ট সহায়ক"
+  "assistantToggleSubtitle": "ডানদিকে নিচে ছোট্ট সহায়ক",
+  "scanPriceLabel": "মূল্য লেবেল স্ক্যান করুন"
 }

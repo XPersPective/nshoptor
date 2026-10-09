@@ -1033,4 +1033,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Mazais palīgs apakšējā labajā stūrī';
+
+  @override
+  String get scanPriceLabel => 'Skenē cenu etiķeti';
 }

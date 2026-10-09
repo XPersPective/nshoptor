@@ -323,5 +323,6 @@
   "assistantSpending": "私の支出",
   "assistantReceiptHint": "リストを開き、レシートアイコンをタップしてスキャンしてください。",
   "assistantToggleTitle": "アシスタントを表示",
-  "assistantToggleSubtitle": "右下の小さなヘルパー"
+  "assistantToggleSubtitle": "右下の小さなヘルパー",
+  "scanPriceLabel": "価格ラベルをスキャン"
 }

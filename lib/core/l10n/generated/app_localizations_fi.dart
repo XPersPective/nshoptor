@@ -1034,4 +1034,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Pieni apuri oikeassa alakulmassa';
+
+  @override
+  String get scanPriceLabel => 'Skannaa hintalappu';
 }

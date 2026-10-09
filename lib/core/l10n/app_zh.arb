@@ -323,5 +323,6 @@
   "assistantSpending": "我的支出",
   "assistantReceiptHint": "打开你的清单，点击小票图标进行扫描。",
   "assistantToggleTitle": "显示助手",
-  "assistantToggleSubtitle": "右下角的小帮手"
+  "assistantToggleSubtitle": "右下角的小帮手",
+  "scanPriceLabel": "扫描价格标签"
 }

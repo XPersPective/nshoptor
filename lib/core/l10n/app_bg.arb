@@ -323,5 +323,6 @@
   "assistantSpending": "Моите разходи",
   "assistantReceiptHint": "Отворете вашата листа и натиснете иконата за касова бележка, за да я сканирате.",
   "assistantToggleTitle": "Показване на асистента",
-  "assistantToggleSubtitle": "Малкият помощник в долния десен ъгъл"
+  "assistantToggleSubtitle": "Малкият помощник в долния десен ъгъл",
+  "scanPriceLabel": "Сканирай етикета с цената"
 }

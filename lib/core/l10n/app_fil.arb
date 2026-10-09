@@ -323,5 +323,6 @@
   "assistantSpending": "Ang aking gastusin",
   "assistantReceiptHint": "Buksan ang iyong listahan at i-tap ang icon ng resibo para i-scan ito.",
   "assistantToggleTitle": "Ipakita ang assistant",
-  "assistantToggleSubtitle": "Ang maliit na katulong sa kanang ibaba"
+  "assistantToggleSubtitle": "Ang maliit na katulong sa kanang ibaba",
+  "scanPriceLabel": "I-scan ang label ng presyo"
 }

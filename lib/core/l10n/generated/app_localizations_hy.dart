@@ -1034,4 +1034,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Փոքրիկ օգնականը աջ ներքևի անկյունում';
+
+  @override
+  String get scanPriceLabel => 'Սկանավորեք գնի փոստը';
 }

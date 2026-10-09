@@ -323,5 +323,6 @@
   "assistantSpending": "Мої витрати",
   "assistantReceiptHint": "Відкрийте свій список і натисніть значок чека, щоб відсканувати його.",
   "assistantToggleTitle": "Показати асистента",
-  "assistantToggleSubtitle": "Маленький помічник у правому нижньому куті"
+  "assistantToggleSubtitle": "Маленький помічник у правому нижньому куті",
+  "scanPriceLabel": "Сканувати ціну"
 }

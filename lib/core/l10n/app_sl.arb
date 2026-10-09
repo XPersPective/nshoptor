@@ -323,5 +323,6 @@
   "assistantSpending": "Moji stroški",
   "assistantReceiptHint": "Odpri svoj seznam in pritisni ikono računa za skeniranje.",
   "assistantToggleTitle": "Prikaži pomočnika",
-  "assistantToggleSubtitle": "Mali pomočnik v spodnjem desnem kotu"
+  "assistantToggleSubtitle": "Mali pomočnik v spodnjem desnem kotu",
+  "scanPriceLabel": "Skeniraj cenovno nalepko"
 }

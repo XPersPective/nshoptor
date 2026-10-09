@@ -1033,4 +1033,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Sağ aşağı küncdəki kiçik köməkçi';
+
+  @override
+  String get scanPriceLabel => 'Qiymət etiketini skan et';
 }

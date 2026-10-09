@@ -1034,4 +1034,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Laguntzaile txikia behe-eskuinean';
+
+  @override
+  String get scanPriceLabel => 'Eskaneatu prezio etiketa';
 }

@@ -11,7 +11,9 @@ import '../../core/money/money.dart';
 import '../../core/money/money_parser.dart';
 import '../../core/quantity/unit_code.dart';
 import '../../data/db/app_database.dart';
+import '../receipts/shelf_label/shelf_price_flow.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
+import 'item_price_cell.dart';
 import 'item_status.dart';
 import 'shopping_repository.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -20,7 +22,13 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 /// çipleri + ürün satırları. Tek elle kullanım için büyük dokunma
 /// hedefleri; her ürün dokunuşunda gerçek fiyat girişi açılır.
 class ShoppingModeScreen extends StatefulWidget {
-  const ShoppingModeScreen({super.key, required this.repository, required this.listId, this.onVoicePressed});
+  const ShoppingModeScreen({
+    super.key,
+    required this.repository,
+    required this.listId,
+    this.onVoicePressed,
+    this.onShelfPricePressed,
+  });
 
   final ShoppingRepository repository;
   final int listId;
@@ -29,6 +37,10 @@ class ShoppingModeScreen extends StatefulWidget {
   /// hızlı giriş. Verilmezse mikrofon düğmesi görünmez.
   final Future<ParsedItemCandidate?> Function(BuildContext context)?
       onVoicePressed;
+
+  /// Satırdaki kamera düğmesi: raf etiketinden fiyat (PB-062). Verilmezse gerçek
+  /// kamera + ML Kit akışı kullanılır.
+  final Future<String?> Function(BuildContext context)? onShelfPricePressed;
 
   @override
   State<ShoppingModeScreen> createState() => _ShoppingModeScreenState();
@@ -131,10 +143,21 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
                 if (items.isEmpty) {
                   return const SizedBox.shrink();
                 }
-                return ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) =>
-                      _ItemTile(repository: widget.repository, item: items[index]),
+                return StreamBuilder<List<PurchaseEntry>>(
+                  stream: widget.repository.watchEntries(widget.listId),
+                  builder: (context, entriesSnap) {
+                    final entries = entriesSnap.data ?? const <PurchaseEntry>[];
+                    return ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, index) => _ItemTile(
+                        repository: widget.repository,
+                        item: items[index],
+                        entries: entries,
+                        currencyCode: _list?.currencyCode ?? 'TRY',
+                        onShelfPricePressed: widget.onShelfPricePressed ?? _defaultShelfPrice,
+                      ),
+                    );
+                  },
                 );
               },
             ),
@@ -152,6 +175,11 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
       ),
     );
   }
+
+  Future<String?> _defaultShelfPrice(BuildContext context) => readShelfPrice(
+        context,
+        currencyCode: _list?.currencyCode ?? 'TRY',
+      );
 
   bool _matchesFilter(PlannedItem item) {
     final status = ItemStatus.tryFromDb(item.status) ?? ItemStatus.pending;
@@ -182,7 +210,7 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      builder: (_) => _PurchaseEntrySheet(
+      builder: (_) => PurchaseEntrySheet(
         repository: widget.repository,
         list: list,
         item: null,
@@ -199,7 +227,7 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      builder: (_) => _PurchaseEntrySheet(
+      builder: (_) => PurchaseEntrySheet(
         repository: widget.repository,
         list: list,
         item: null,
@@ -288,10 +316,19 @@ class _SummaryCell extends StatelessWidget {
 }
 
 class _ItemTile extends StatelessWidget {
-  const _ItemTile({required this.repository, required this.item});
+  const _ItemTile({
+    required this.repository,
+    required this.item,
+    required this.entries,
+    required this.currencyCode,
+    this.onShelfPricePressed,
+  });
 
   final ShoppingRepository repository;
   final PlannedItem item;
+  final List<PurchaseEntry> entries;
+  final String currencyCode;
+  final Future<String?> Function(BuildContext context)? onShelfPricePressed;
 
   @override
   Widget build(BuildContext context) {
@@ -318,7 +355,16 @@ class _ItemTile extends StatelessWidget {
         semanticsLabel: item.requiredFlag ? '${item.name} (${l10n.filterRequired})' : null,
       ),
       subtitle: Text(_statusLabel(l10n, status)),
-      trailing: PopupMenuButton<String>(
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ItemPriceCell(
+            prices: ItemPrices.of(item, entries),
+            currencyCode: currencyCode,
+            onEnter: () => _openEntry(context),
+            onScan: onShelfPricePressed == null ? null : () => _scanThenEnter(context),
+          ),
+          PopupMenuButton<String>(
         onSelected: (action) async {
           switch (action) {
             case 'notFound':
@@ -335,20 +381,33 @@ class _ItemTile extends StatelessWidget {
           PopupMenuItem(value: 'notFound', child: Text(l10n.statusNotFound)),
           PopupMenuItem(value: 'gaveUp', child: Text(l10n.statusGaveUp)),
         ],
+          ),
+        ],
       ),
     );
   }
 
-  Future<void> _openEntry(BuildContext context) async {
+  /// Kamera: etiketi oku → fiyat dolu giriş sayfası (tek dokunuş + onay).
+  Future<void> _scanThenEnter(BuildContext context) async {
+    final price = await onShelfPricePressed!(context);
+    if (price == null || !context.mounted) return;
+    await _openEntry(context, initialPrice: price);
+  }
+
+  Future<void> _openEntry(BuildContext context, {String? initialPrice}) async {
     final list = await repository.getList(item.listId);
     if (!context.mounted) return;
+    final mine = entries.where((e) => e.plannedItemId == item.id);
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      builder: (_) => _PurchaseEntrySheet(
+      builder: (_) => PurchaseEntrySheet(
         repository: repository,
         list: list,
         item: item,
+        initialPrice: initialPrice,
+        existing: mine.isEmpty ? null : mine.first,
+        onShelfPricePressed: onShelfPricePressed,
       ),
     );
   }
@@ -363,26 +422,39 @@ class _ItemTile extends StatelessWidget {
       };
 }
 
-class _PurchaseEntrySheet extends StatefulWidget {
-  const _PurchaseEntrySheet({
+class PurchaseEntrySheet extends StatefulWidget {
+  const PurchaseEntrySheet({
+    super.key,
     required this.repository,
     required this.list,
     required this.item,
     this.initialCandidate,
+    this.initialPrice,
+    this.existing,
+    this.onShelfPricePressed,
   });
 
   final ShoppingRepository repository;
   final ShoppingList list;
   final PlannedItem? item;
 
+  /// Kamerayla okunmuş birim fiyat (DB biçimi, nokta ondalık); alana yazılır.
+  final String? initialPrice;
+
+  /// Bu ürün için daha önce girilmiş gerçek alım; düzenlemede alanlar dolar.
+  final PurchaseEntry? existing;
+
+  /// Raf etiketini kamerayla okutur ve fiyatı döndürür; null → düğme yok.
+  final Future<String?> Function(BuildContext context)? onShelfPricePressed;
+
   /// Sesle girişte öndoldurulan aday (ad/miktar/birim fiyat).
   final ParsedItemCandidate? initialCandidate;
 
   @override
-  State<_PurchaseEntrySheet> createState() => _PurchaseEntrySheetState();
+  State<PurchaseEntrySheet> createState() => _PurchaseEntrySheetState();
 }
 
-class _PurchaseEntrySheetState extends State<_PurchaseEntrySheet> {
+class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
   late final TextEditingController _name = TextEditingController(
     text: widget.item?.name ?? widget.initialCandidate?.name ?? '',
   );
@@ -423,7 +495,25 @@ class _PurchaseEntrySheetState extends State<_PurchaseEntrySheet> {
         _price.text = voiced!.unitPrice!.toDbString().replaceAll(
             '.', decimalSep);
       }
+      final prev = widget.existing;
+      if (prev != null) {
+        _quantity.text = prev.actualQuantity.replaceAll('.', decimalSep);
+        if (prev.actualUnitPrice != null) {
+          _price.text = prev.actualUnitPrice!.replaceAll('.', decimalSep);
+        }
+      }
+      if (widget.initialPrice != null) {
+        _price.text = widget.initialPrice!.replaceAll('.', decimalSep);
+      }
     }
+  }
+
+  /// Etiketi okutur; okunan fiyat alana yazılır (kullanıcı değiştirip kaydeder).
+  Future<void> _scan() async {
+    final value = await widget.onShelfPricePressed!(context);
+    if (value == null || !mounted) return;
+    final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context)).decimal;
+    setState(() => _price.text = value.replaceAll('.', sep));
   }
 
   Future<void> _save() async {
@@ -513,7 +603,17 @@ class _PurchaseEntrySheetState extends State<_PurchaseEntrySheet> {
             keyboardType:
                 const TextInputType.numberWithOptions(decimal: true),
             textInputAction: TextInputAction.next,
-            decoration: InputDecoration(labelText: l10n.actualPriceLabel),
+            decoration: InputDecoration(
+              labelText: l10n.actualPriceLabel,
+              suffixIcon: widget.onShelfPricePressed == null
+                  ? null
+                  : IconButton(
+                      key: const Key('entry_scan_price'),
+                      tooltip: l10n.scanPriceLabel,
+                      icon: const Icon(Icons.photo_camera_outlined),
+                      onPressed: _scan,
+                    ),
+            ),
           ),
           const SizedBox(height: 12),
           TextField(

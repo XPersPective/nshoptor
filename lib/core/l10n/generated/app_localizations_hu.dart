@@ -1032,4 +1032,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'A kis segítő az alsó jobb sarokban';
+
+  @override
+  String get scanPriceLabel => 'Ár címkéjének beolvasása';
 }

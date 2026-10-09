@@ -1031,4 +1031,7 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'Оң жактын ылдыйкы бурчундагы кичинекей жардамчы';
+
+  @override
+  String get scanPriceLabel => 'Баа этикеткесин сканерлөө';
 }

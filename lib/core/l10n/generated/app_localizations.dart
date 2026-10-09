@@ -2179,6 +2179,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The little helper at the bottom right'**
   String get assistantToggleSubtitle;
+
+  /// No description provided for @scanPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan price label'**
+  String get scanPriceLabel;
 }
 
 class _AppLocalizationsDelegate

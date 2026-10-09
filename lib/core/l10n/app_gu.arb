@@ -323,5 +323,6 @@
   "assistantSpending": "મારો ખર્ચ",
   "assistantReceiptHint": "તમારી લિસ્ટ ખોલો અને તેને સ્કેન કરવા માટે રસીદ આઇકન પર ટેપ કરો.",
   "assistantToggleTitle": "સહાયક દર્શાવો",
-  "assistantToggleSubtitle": "જમણી બાજુ નીચેનો નાનો હેલ્પર"
+  "assistantToggleSubtitle": "જમણી બાજુ નીચેનો નાનો હેલ્પર",
+  "scanPriceLabel": "કિંમત લેબલ સ્કેન કરો"
 }

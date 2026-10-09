@@ -1022,4 +1022,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'المساعد الصغير أسفل اليمين';
+
+  @override
+  String get scanPriceLabel => 'امسح ملصق السعر';
 }

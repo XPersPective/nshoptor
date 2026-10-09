@@ -323,5 +323,6 @@
   "assistantSpending": "Moje výdaje",
   "assistantReceiptHint": "Otevři svůj seznam a klepni na ikonu účtenky pro skenování.",
   "assistantToggleTitle": "Zobrazit asistenta",
-  "assistantToggleSubtitle": "Malý pomocník v pravém dolním rohu"
+  "assistantToggleSubtitle": "Malý pomocník v pravém dolním rohu",
+  "scanPriceLabel": "Skenovat cenovou etiketu"
 }

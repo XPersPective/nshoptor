@@ -323,5 +323,6 @@
   "assistantSpending": "Моите трошоци",
   "assistantReceiptHint": "Отворете ја вашата листа и допрете ја иконата за фискална за да скенирате.",
   "assistantToggleTitle": "Прикажи асистент",
-  "assistantToggleSubtitle": "Малиот помошник во долниот десен агол"
+  "assistantToggleSubtitle": "Малиот помошник во долниот десен агол",
+  "scanPriceLabel": "Скенирај ја цената"
 }

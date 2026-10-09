@@ -1029,4 +1029,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'მცირე დამხმარე მარჯვენა ქვედა კუთხეში';
+
+  @override
+  String get scanPriceLabel => 'ფასის სკანირება';
 }

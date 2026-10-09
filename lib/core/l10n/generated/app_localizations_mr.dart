@@ -1030,4 +1030,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'खाली उजव्या कोपऱ्यातील छोटा मदतनीस';
+
+  @override
+  String get scanPriceLabel => 'किंमत लेबल स्कॅन करा';
 }

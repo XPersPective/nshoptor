@@ -323,5 +323,6 @@
   "assistantSpending": "Manas izmaksas",
   "assistantReceiptHint": "Atveriet savu sarakstu un pieskarieties čekam, lai to ieskenētu.",
   "assistantToggleTitle": "Rādīt asistentu",
-  "assistantToggleSubtitle": "Mazais palīgs apakšējā labajā stūrī"
+  "assistantToggleSubtitle": "Mazais palīgs apakšējā labajā stūrī",
+  "scanPriceLabel": "Skenē cenu etiķeti"
 }

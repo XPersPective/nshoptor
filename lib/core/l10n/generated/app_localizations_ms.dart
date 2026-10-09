@@ -1033,4 +1033,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Pembantu kecil di kanan bawah';
+
+  @override
+  String get scanPriceLabel => 'Imbas label harga';
 }

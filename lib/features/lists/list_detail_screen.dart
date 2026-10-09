@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/money_format.dart';
+import '../../core/theme/semantic_colors.dart';
 import '../../core/money/money.dart';
 import '../../core/quantity/unit_display.dart';
 import '../../data/db/app_database.dart';
@@ -13,6 +14,7 @@ import '../lists/list_repository.dart';
 import '../lists/list_status.dart';
 import '../lists/lists_screen.dart';
 import '../lists/starter_categories.dart';
+import '../shopping_mode/item_price_cell.dart';
 import '../shopping_mode/shopping_mode_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
 import '../shopping_mode/summary/summary_screen.dart';
@@ -23,9 +25,7 @@ import '../receipts/parser/receipt_parser.dart';
 import '../receipts/review/receipt_review_controller.dart';
 import '../receipts/review/receipt_review_screen.dart';
 import '../receipts/shelf_label/mlkit_text_source.dart';
-import '../receipts/shelf_label/price_candidate_sheet.dart';
-import '../receipts/shelf_label/price_candidates.dart';
-import '../receipts/shelf_label/ai_label_reader.dart';
+import '../receipts/shelf_label/shelf_price_flow.dart';
 import '../voice_input/stt_speech_service.dart';
 import '../voice_input/voice_input_service.dart';
 import '../voice_input/voice_preview_sheet.dart';
@@ -201,15 +201,14 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
           if (list == null) {
             return const Center(child: CircularProgressIndicator());
           }
-          final currency = Currency.fromCode(list.currencyCode);
           return StreamBuilder<List<PlannedItem>>(
             stream: _shoppingRepo.watchItems(widget.listId),
             builder: (context, snapshot) {
               final items = snapshot.data ?? const <PlannedItem>[];
-              final plannedMinor = items.fold<int>(
-                0,
-                (a, i) => a + (i.plannedLineTotalMinorUnits ?? 0),
-              );
+              return StreamBuilder<List<PurchaseEntry>>(
+                stream: _shoppingRepo.watchEntries(widget.listId),
+                builder: (context, entriesSnap) {
+              final entries = entriesSnap.data ?? const <PurchaseEntry>[];
               return Column(
                 children: [
                   // Tek satır özet (C-004): jargonsuz "Planlanan ₺X · n ürün".
@@ -232,25 +231,11 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                                       .titleLarge,
                                 ),
                                 const SizedBox(height: 4),
-                                Text(
-                                  l10n.plannedTotalSummary(
-                                    items.length,
-                                    formatMoney(
-                                      Money.fromMinorUnits(
-                                        plannedMinor,
-                                        currency,
-                                      ),
-                                      locale: formatLocaleCode(context),
-                                    ),
-                                  ),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSurfaceVariant,
-                                      ),
+                                const SizedBox(height: 8),
+                                _TotalsRow(
+                                  items: items,
+                                  entries: entries,
+                                  currencyCode: list.currencyCode,
                                 ),
                               ],
                             ),
@@ -326,44 +311,27 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                                 ListTile(
                                   key: Key('detail_item_${item.id}'),
                                   title: Text(item.name),
-                                  onTap: () =>
-                                      _openPriceHistory(context, item),
+                                  // Satıra dokun = gerçek fiyatı gir; uzun bas = fiyat geçmişi.
+                                  onTap: () => _enterActual(context, list, item, entries),
+                                  onLongPress: () => _openPriceHistory(context, item),
                                   subtitle: Text(
                                     '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
                                   ),
-                                  // Tahmini fiyat yoksa soluk tire: fiyat
-                                  // girilmediği net görünür (C-004).
-                                  trailing: item.plannedLineTotalMinorUnits ==
-                                          null
-                                      ? Text(
-                                          '—',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onSurfaceVariant,
-                                              ),
-                                        )
-                                      : Text(
-                                          formatMoney(
-                                            Money.fromMinorUnits(
-                                              item.plannedLineTotalMinorUnits!,
-                                              currency,
-                                            ),
-                                            locale: Localizations.localeOf(
-                                                  context,
-                                                ).languageCode,
-                                          ),
-                                        ),
+                                  trailing: ItemPriceCell(
+                                    prices: ItemPrices.of(item, entries),
+                                    currencyCode: list.currencyCode,
+                                    onEnter: () => _enterActual(context, list, item, entries),
+                                    onScan: () => _enterActual(context, list, item, entries,
+                                        scan: true),
+                                  ),
                                 ),
                             ],
                           ),
                   ),
                   SafeArea(
                     child: Padding(
-                      padding: const EdgeInsets.all(12),
+                      // Sağda yüzen "+" düğmesine yer bırakılır (üst üste binmez).
+                      padding: const EdgeInsets.fromLTRB(12, 12, 84, 12),
                       // Dikey: uzun çevirilerde iki buton yan yana sığmaz (PB-061).
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -395,6 +363,8 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
                   ),
                 ],
               );
+                },
+              );
             },
           );
         },
@@ -419,10 +389,35 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
           repository: ShoppingRepository(widget.db),
           listId: widget.listId,
           onVoicePressed: _voiceCandidate,
+          onShelfPricePressed: _shelfPrice,
         ),
       ),
     );
     _refresh();
+  }
+
+  /// Gerçek fiyatı satırdan gir (PB-062): elle ya da kamerayla; kayıt anında
+  /// satırda tahmini → gerçek ve fark görünür.
+  Future<void> _enterActual(BuildContext context, ShoppingList list, PlannedItem item,
+      List<PurchaseEntry> entries, {bool scan = false}) async {
+    String? price;
+    if (scan) {
+      price = await _shelfPrice(context);
+      if (price == null || !context.mounted) return;
+    }
+    final mine = entries.where((e) => e.plannedItemId == item.id);
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => PurchaseEntrySheet(
+        repository: _shoppingRepo,
+        list: list,
+        item: item,
+        initialPrice: price,
+        existing: mine.isEmpty ? null : mine.first,
+        onShelfPricePressed: _shelfPrice,
+      ),
+    );
   }
 
   Future<void> _openShopping(BuildContext context) async {
@@ -432,6 +427,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
           repository: ShoppingRepository(widget.db),
           listId: widget.listId,
           onVoicePressed: _voiceCandidate,
+          onShelfPricePressed: _shelfPrice,
         ),
       ),
     );
@@ -522,24 +518,13 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
 
   Future<String?> _shelfPrice(BuildContext context) async {
     final list = await widget.listRepository.getById(widget.listId);
-    final scan = await _scan();
-    if (scan == null || !context.mounted) return null;
-    final local = ShelfPriceExtractor(defaultCurrency: list.currencyCode)
-        .extract(scan.lines);
-    final client = AiService.client;
-    final lang = Localizations.localeOf(context).languageCode;
-    final ocrText = scan.lines.map((l) => l.text).join(String.fromCharCode(10));
-    final fromAi = client == null
-        ? const <PriceCandidate>[]
-        : await AiLabelReader(client, localeCode: lang)
-            .read(ocrText, currencyCode: list.currencyCode);
     if (!context.mounted) return null;
-    final candidates = [
-      ...fromAi,
-      ...local.where((c) => !fromAi.any((a) => a.value == c.value)),
-    ];
-    final picked = await showPriceCandidateSheet(context, candidates);
-    return picked?.value.toDbString();
+    return readShelfPrice(
+      context,
+      currencyCode: list.currencyCode,
+      pickImage: widget.pickImage,
+      ocrSource: widget.ocrSource,
+    );
   }
 
   /// Fiş: tara → ayrıştır → inceleme; onaya dek DB yazımı yok (spec §6.9).
@@ -615,5 +600,88 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
       ),
     );
     _refresh();
+  }
+}
+
+
+/// Başlık kartında hep görünen toplamlar: tahmini, gerçek ve fark (PB-062).
+class _TotalsRow extends StatelessWidget {
+  const _TotalsRow({required this.items, required this.entries, required this.currencyCode});
+
+  final List<PlannedItem> items;
+  final List<PurchaseEntry> entries;
+  final String currencyCode;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final currency = Currency.fromCode(currencyCode);
+    final locale = formatLocaleCode(context);
+    String money(int minor) =>
+        formatMoney(Money.fromMinorUnits(minor, currency), locale: locale);
+    var planned = 0;
+    var comparedPlanned = 0; // tahmini de olan ve gerçeği girilen ürünler
+    var comparedActual = 0;
+    var actual = 0;
+    var boughtCount = 0;
+    for (final item in items) {
+      final line = item.plannedLineTotalMinorUnits ?? 0;
+      planned += line;
+      final mine = entries.where((e) => e.plannedItemId == item.id);
+      if (mine.isNotEmpty) {
+        boughtCount++;
+        final sum = mine.fold<int>(0, (a, e) => a + e.actualLineTotalMinorUnits);
+        actual += sum;
+        // Fark yalnız elma-elma: tahmini girilmemiş ürün farkı şişirmez.
+        if (item.plannedLineTotalMinorUnits != null) {
+          comparedPlanned += line;
+          comparedActual += sum;
+        }
+      }
+    }
+    // Plansız alımlar da gerçek toplama girer.
+    for (final e in entries.where((e) => e.plannedItemId == null)) {
+      actual += e.actualLineTotalMinorUnits;
+    }
+    final diff = comparedActual - comparedPlanned;
+    final muted = theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurfaceVariant);
+
+    Widget cell(String label, String value, {Color? color, Key? key}) => Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(label, style: muted, maxLines: 1, overflow: TextOverflow.ellipsis),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(value,
+                    key: key,
+                    style: theme.textTheme.titleMedium?.copyWith(color: color)),
+              ),
+            ],
+          ),
+        );
+
+    final delta = boughtCount == 0 || diff == 0
+        ? null
+        : SemanticDelta.resolve(
+            direction: diff > 0 ? SpendingDirection.overPlan : SpendingDirection.underPlan,
+            brightness: theme.brightness,
+          );
+    return Row(
+      key: const Key('detail_totals'),
+      children: [
+        cell(l10n.compareEstimated, money(planned), key: const Key('total_planned')),
+        cell(l10n.compareActual, boughtCount == 0 && actual == 0 ? '—' : money(actual),
+            key: const Key('total_actual')),
+        cell(
+          l10n.compareDiff,
+          delta == null ? (boughtCount == 0 ? '—' : '0') : '${diff > 0 ? '+' : '−'}${money(diff.abs())}',
+          color: delta?.color,
+          key: const Key('total_diff'),
+        ),
+      ],
+    );
   }
 }

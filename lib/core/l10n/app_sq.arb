@@ -323,5 +323,6 @@
   "assistantSpending": "Shpenzimet e mia",
   "assistantReceiptHint": "Hap listën tënde dhe prek ikonën e faturës për ta skanuar atë.",
   "assistantToggleTitle": "Shfaq asistentin",
-  "assistantToggleSubtitle": "Ndihmësi i vogël në këndin e djathtë poshtë"
+  "assistantToggleSubtitle": "Ndihmësi i vogël në këndin e djathtë poshtë",
+  "scanPriceLabel": "Skano etiketën e çmimit"
 }

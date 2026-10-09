@@ -323,5 +323,6 @@
   "assistantSpending": "Perbelanjaan saya",
   "assistantReceiptHint": "Buka senarai anda dan ketik ikon resit untuk mengimbasnya.",
   "assistantToggleTitle": "Tunjukkan pembantu",
-  "assistantToggleSubtitle": "Pembantu kecil di kanan bawah"
+  "assistantToggleSubtitle": "Pembantu kecil di kanan bawah",
+  "scanPriceLabel": "Imbas label harga"
 }

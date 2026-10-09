@@ -323,5 +323,6 @@
   "assistantSpending": "Mis gastos",
   "assistantReceiptHint": "Abre tu lista y toca el icono del ticket para escanearlo.",
   "assistantToggleTitle": "Mostrar asistente",
-  "assistantToggleSubtitle": "El pequeño ayudante de abajo a la derecha"
+  "assistantToggleSubtitle": "El pequeño ayudante de abajo a la derecha",
+  "scanPriceLabel": "Escanear etiqueta de precio"
 }

@@ -1032,4 +1032,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Msisitizo mdogo upande wa chini kulia';
+
+  @override
+  String get scanPriceLabel => 'Skana bei ya lebo';
 }

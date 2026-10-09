@@ -1028,4 +1028,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'ตัวช่วยเล็กๆ ที่มุมขวาล่าง';
+
+  @override
+  String get scanPriceLabel => 'สแกนราคาสินค้า';
 }

@@ -1010,4 +1010,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => '오른쪽 하단의 작은 도우미';
+
+  @override
+  String get scanPriceLabel => '가격 라벨 스캔';
 }

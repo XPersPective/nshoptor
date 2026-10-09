@@ -323,5 +323,6 @@
   "assistantSpending": "Mijn uitgaven",
   "assistantReceiptHint": "Open je lijst en tik op het bonpictogram om te scannen.",
   "assistantToggleTitle": "Assistent tonen",
-  "assistantToggleSubtitle": "Het kleine hulpje rechtsonder"
+  "assistantToggleSubtitle": "Het kleine hulpje rechtsonder",
+  "scanPriceLabel": "Prijslabel scannen"
 }

@@ -323,5 +323,6 @@
   "assistantSpending": "Nire gastua",
   "assistantReceiptHint": "Ireki zure zerrenda eta sakatu errezeptuaren ikonoa eskaneatzeko.",
   "assistantToggleTitle": "Erakutsi laguntzailea",
-  "assistantToggleSubtitle": "Laguntzaile txikia behe-eskuinean"
+  "assistantToggleSubtitle": "Laguntzaile txikia behe-eskuinean",
+  "scanPriceLabel": "Eskaneatu prezio etiketa"
 }

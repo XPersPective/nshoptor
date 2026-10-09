@@ -1028,4 +1028,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'د ښي لاندې کوچنی مرسته کوونکی';
+
+  @override
+  String get scanPriceLabel => 'د بیه لیبل سکین کړئ';
 }

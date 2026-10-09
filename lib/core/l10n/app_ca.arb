@@ -323,5 +323,6 @@
   "assistantSpending": "El meu despesa",
   "assistantReceiptHint": "Obre la teva llista i toca la icona del rebuig per escanejar-lo.",
   "assistantToggleTitle": "Mostra l'assistent",
-  "assistantToggleSubtitle": "El petit ajudant a la cantonada inferior dreta"
+  "assistantToggleSubtitle": "El petit ajudant a la cantonada inferior dreta",
+  "scanPriceLabel": "Escaneja l'etiqueta de preu"
 }

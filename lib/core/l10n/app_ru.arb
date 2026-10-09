@@ -323,5 +323,6 @@
   "assistantSpending": "Мои расходы",
   "assistantReceiptHint": "Откройте список и нажмите на значок чека, чтобы отсканировать его.",
   "assistantToggleTitle": "Показывать помощника",
-  "assistantToggleSubtitle": "Маленький помощник в правом нижнем углу"
+  "assistantToggleSubtitle": "Маленький помощник в правом нижнем углу",
+  "scanPriceLabel": "Сканировать ценник"
 }

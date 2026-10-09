@@ -323,5 +323,6 @@
   "assistantSpending": "Matumizi yangu",
   "assistantReceiptHint": "Fungua orodha yako na bonyeza ikoni ya risiti ili kupiga picha.",
   "assistantToggleTitle": "Onyesha msaidizi",
-  "assistantToggleSubtitle": "Msisitizo mdogo upande wa chini kulia"
+  "assistantToggleSubtitle": "Msisitizo mdogo upande wa chini kulia",
+  "scanPriceLabel": "Skana bei ya lebo"
 }

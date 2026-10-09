@@ -1031,4 +1031,7 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'Маленький помощник в правом нижнем углу';
+
+  @override
+  String get scanPriceLabel => 'Сканировать ценник';
 }

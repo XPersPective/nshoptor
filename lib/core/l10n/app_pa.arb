@@ -323,5 +323,6 @@
   "assistantSpending": "ਮੇਰੀ ਖਰਚ",
   "assistantReceiptHint": "ਆਪਣੀ ਸੂਚੀ ਖੋਲ੍ਹੋ ਅਤੇ ਇਸਨੂੰ ਸਕੈਨ ਕਰਨ ਲਈ ਰਸੀਦ آئیکਨ 'ਤੇ ਟੈਪ ਕਰੋ।",
   "assistantToggleTitle": "ਸਹਾਇਕ ਦਿਖਾਓ",
-  "assistantToggleSubtitle": "ਹੇਠਾਂ ਸੱਜੇ ਪਾਸੇ ਛੋਟਾ ਸਹਾਇਕ"
+  "assistantToggleSubtitle": "ਹੇਠਾਂ ਸੱਜੇ ਪਾਸੇ ਛੋਟਾ ਸਹਾਇਕ",
+  "scanPriceLabel": "ਮੁੱਲ ਲੇਬਲ ਸਕੈਨ ਕਰੋ"
 }

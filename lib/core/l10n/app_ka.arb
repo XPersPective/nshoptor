@@ -323,5 +323,6 @@
   "assistantSpending": "ჩემი ხარჯები",
   "assistantReceiptHint": "გახსენით თქვენი სია და დააჭირეთ შემოსავლების ბარათის ხატულას მის სკანირებისთვის.",
   "assistantToggleTitle": "დამხმარის ჩვენება",
-  "assistantToggleSubtitle": "მცირე დამხმარე მარჯვენა ქვედა კუთხეში"
+  "assistantToggleSubtitle": "მცირე დამხმარე მარჯვენა ქვედა კუთხეში",
+  "scanPriceLabel": "ფასის სკანირება"
 }

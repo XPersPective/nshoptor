@@ -1030,4 +1030,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Si kecil pembantu di kanan bawah';
+
+  @override
+  String get scanPriceLabel => 'Pindai label harga';
 }

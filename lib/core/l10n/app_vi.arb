@@ -323,5 +323,6 @@
   "assistantSpending": "Chi tiêu của tôi",
   "assistantReceiptHint": "Mở danh sách của bạn và nhấn vào biểu tượng hóa đơn để quét.",
   "assistantToggleTitle": "Hiển thị trợ lý",
-  "assistantToggleSubtitle": "Trợ lý nhỏ ở góc dưới bên phải"
+  "assistantToggleSubtitle": "Trợ lý nhỏ ở góc dưới bên phải",
+  "scanPriceLabel": "Quét giá"
 }

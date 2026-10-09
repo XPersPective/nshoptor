@@ -323,5 +323,6 @@
   "assistantSpending": "My uitgawes",
   "assistantReceiptHint": "Maak jou lys oop en tik op die kwitansie-ikoon om dit te skandeer.",
   "assistantToggleTitle": "Wys assistent",
-  "assistantToggleSubtitle": "Die klein helper regs onder"
+  "assistantToggleSubtitle": "Die klein helper regs onder",
+  "scanPriceLabel": "Skandeer prysetiket"
 }

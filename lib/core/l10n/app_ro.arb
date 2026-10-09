@@ -323,5 +323,6 @@
   "assistantSpending": "Cheltuielile mele",
   "assistantReceiptHint": "Deschide lista ta și atinge pictograma chitanței pentru a o scana.",
   "assistantToggleTitle": "Arată asistentul",
-  "assistantToggleSubtitle": "Micul ajutor în colțul din dreapta jos"
+  "assistantToggleSubtitle": "Micul ajutor în colțul din dreapta jos",
+  "scanPriceLabel": "Scanează eticheta de preț"
 }

@@ -323,5 +323,6 @@
   "assistantSpending": "Ukusetshenziswa kwami",
   "assistantReceiptHint": "Vula uhlu lwakho bese ucinca ikhono le-receipt ukuze usikane.",
   "assistantToggleTitle": "Bonisa usizo",
-  "assistantToggleSubtitle": "Umncintisana omncane ohlangothini lwasekunene"
+  "assistantToggleSubtitle": "Umncintisana omncane ohlangothini lwasekunene",
+  "scanPriceLabel": "Skana isikhwama somanani"
 }

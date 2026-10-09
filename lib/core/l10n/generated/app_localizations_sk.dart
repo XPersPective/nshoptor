@@ -1032,4 +1032,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Malý pomocník v pravom dolnom rohu';
+
+  @override
+  String get scanPriceLabel => 'Skenovať cenu';
 }

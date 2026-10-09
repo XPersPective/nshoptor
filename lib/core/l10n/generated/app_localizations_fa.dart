@@ -1027,4 +1027,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'کمک‌کننده کوچک در گوشه پایین سمت راست';
+
+  @override
+  String get scanPriceLabel => 'اسکن برچسب قیمت';
 }

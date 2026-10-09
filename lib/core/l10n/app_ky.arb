@@ -323,5 +323,6 @@
   "assistantSpending": "Менин чыгымдарым",
   "assistantReceiptHint": "Тизмеңизди ачып, сканерлөө үчүн чек белгисине басыңыз.",
   "assistantToggleTitle": "Ассистентти көрсөтүү",
-  "assistantToggleSubtitle": "Оң жактын ылдыйкы бурчундагы кичинекей жардамчы"
+  "assistantToggleSubtitle": "Оң жактын ылдыйкы бурчундагы кичинекей жардамчы",
+  "scanPriceLabel": "Баа этикеткесин сканерлөө"
 }

@@ -323,5 +323,6 @@
   "assistantSpending": "ကျွန်ုပ်၏ ကုန်ကျစရိတ်",
   "assistantReceiptHint": "သင့်စာရင်းကိုဖွင့်ပြီး လက်ခံငွေပေးချေမှုစာရွက်ကို စကင်န်လုပ်ရန် အိုင်ကွန်ကို နှိပ်ပါ။",
   "assistantToggleTitle": "အကူအညီကို ပြပါ",
-  "assistantToggleSubtitle": "ညာဘက်အောက်ခြေရှိ အကူအညီပေးသူ"
+  "assistantToggleSubtitle": "ညာဘက်အောက်ခြေရှိ အကူအညီပေးသူ",
+  "scanPriceLabel": "ဈေးနှုန်းလိပ်စာကို စကင်န်ပါ"
 }

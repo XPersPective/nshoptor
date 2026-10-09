@@ -1035,4 +1035,7 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'O pequeno axudante na esquina inferior dereita';
+
+  @override
+  String get scanPriceLabel => 'Escanear etiqueta de prezo';
 }

@@ -1034,4 +1034,7 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'Micul ajutor în colțul din dreapta jos';
+
+  @override
+  String get scanPriceLabel => 'Scanează eticheta de preț';
 }

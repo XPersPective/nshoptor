@@ -323,5 +323,6 @@
   "assistantSpending": "मेरो खर्च",
   "assistantReceiptHint": "आफ्नो सूची खोल्नुहोस् र यसलाई स्क्यान गर्न बिल आइकन ट्याप गर्नुहोस्।",
   "assistantToggleTitle": "सहायक देखाउनुहोस्",
-  "assistantToggleSubtitle": "दायाँ तलको सानो सहयोगी"
+  "assistantToggleSubtitle": "दायाँ तलको सानो सहयोगी",
+  "scanPriceLabel": "मूल्य लेबल स्क्यान गर्नुहोस्"
 }

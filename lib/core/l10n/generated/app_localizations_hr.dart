@@ -1031,4 +1031,7 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Mali pomoćnik u donjem desnom kutu';
+
+  @override
+  String get scanPriceLabel => 'Skeniraj cijenu';
 }

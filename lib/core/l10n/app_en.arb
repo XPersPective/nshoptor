@@ -385,5 +385,6 @@
   "assistantSpending": "My spending",
   "assistantReceiptHint": "Open your list and tap the receipt icon to scan it.",
   "assistantToggleTitle": "Show assistant",
-  "assistantToggleSubtitle": "The little helper at the bottom right"
+  "assistantToggleSubtitle": "The little helper at the bottom right",
+  "scanPriceLabel": "Scan price label"
 }

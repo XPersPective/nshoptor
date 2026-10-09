@@ -1033,4 +1033,7 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'Маленькі памочнік у правым ніжнім куце';
+
+  @override
+  String get scanPriceLabel => 'Сканаваць цану';
 }

@@ -323,5 +323,6 @@
   "assistantSpending": "میری خرچہ",
   "assistantReceiptHint": "اپنی فہرست کھولیں اور اسے اسکین کرنے کے لیے رسید آئیکن پر ٹیپ کریں۔",
   "assistantToggleTitle": "اسسٹنٹ دکھائیں",
-  "assistantToggleSubtitle": "نیچے دائیں جانب چھوٹا مددگار"
+  "assistantToggleSubtitle": "نیچے دائیں جانب چھوٹا مددگار",
+  "scanPriceLabel": "قیمت کا لیبل اسکین کریں"
 }

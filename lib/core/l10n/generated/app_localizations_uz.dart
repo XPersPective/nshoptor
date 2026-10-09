@@ -1035,4 +1035,7 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'O\'ng pastki burchakdagi kichik yordamchi';
+
+  @override
+  String get scanPriceLabel => 'Narx yorlig\'ini skanerlang';
 }

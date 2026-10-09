@@ -323,5 +323,6 @@
   "assistantSpending": "माझा खर्च",
   "assistantReceiptHint": "आपली यादी उघडा आणि ती स्कॅन करण्यासाठी बिल आयकॉनवर टॅप करा.",
   "assistantToggleTitle": "सहाय्यक दाखवा",
-  "assistantToggleSubtitle": "खाली उजव्या कोपऱ्यातील छोटा मदतनीस"
+  "assistantToggleSubtitle": "खाली उजव्या कोपऱ्यातील छोटा मदतनीस",
+  "scanPriceLabel": "किंमत लेबल स्कॅन करा"
 }

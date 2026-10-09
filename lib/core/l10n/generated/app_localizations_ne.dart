@@ -1033,4 +1033,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'दायाँ तलको सानो सहयोगी';
+
+  @override
+  String get scanPriceLabel => 'मूल्य लेबल स्क्यान गर्नुहोस्';
 }

@@ -323,5 +323,6 @@
   "assistantSpending": "Мае выдаткі",
   "assistantReceiptHint": "Адкрыйце свой спіс і націсніце значок чэка, каб сканаваць яго.",
   "assistantToggleTitle": "Паказаць асістэнта",
-  "assistantToggleSubtitle": "Маленькі памочнік у правым ніжнім куце"
+  "assistantToggleSubtitle": "Маленькі памочнік у правым ніжнім куце",
+  "scanPriceLabel": "Сканаваць цану"
 }

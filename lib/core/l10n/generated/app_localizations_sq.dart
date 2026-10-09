@@ -1034,4 +1034,7 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'Ndihmësi i vogël në këndin e djathtë poshtë';
+
+  @override
+  String get scanPriceLabel => 'Skano etiketën e çmimit';
 }

@@ -1034,4 +1034,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Het kleine hulpje rechtsonder';
+
+  @override
+  String get scanPriceLabel => 'Prijslabel scannen';
 }

@@ -323,5 +323,6 @@
   "assistantSpending": "ค่าใช้จ่ายของฉัน",
   "assistantReceiptHint": "เปิดรายการของคุณแล้วแตะไอคอนใบเสร็จเพื่อสแกน",
   "assistantToggleTitle": "แสดงผู้ช่วย",
-  "assistantToggleSubtitle": "ตัวช่วยเล็กๆ ที่มุมขวาล่าง"
+  "assistantToggleSubtitle": "ตัวช่วยเล็กๆ ที่มุมขวาล่าง",
+  "scanPriceLabel": "สแกนราคาสินค้า"
 }

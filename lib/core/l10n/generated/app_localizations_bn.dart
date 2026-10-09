@@ -1031,4 +1031,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'ডানদিকে নিচে ছোট্ট সহায়ক';
+
+  @override
+  String get scanPriceLabel => 'মূল্য লেবেল স্ক্যান করুন';
 }

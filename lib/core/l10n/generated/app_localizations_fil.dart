@@ -1036,4 +1036,7 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get assistantToggleSubtitle =>
       'Ang maliit na katulong sa kanang ibaba';
+
+  @override
+  String get scanPriceLabel => 'I-scan ang label ng presyo';
 }

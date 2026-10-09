@@ -1033,4 +1033,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'दाहिनी ओर नीचे छोटा सहायक';
+
+  @override
+  String get scanPriceLabel => 'कीमत लेबल स्कैन करें';
 }

@@ -1030,4 +1030,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'نیچے دائیں جانب چھوٹا مددگار';
+
+  @override
+  String get scanPriceLabel => 'قیمت کا لیبل اسکین کریں';
 }

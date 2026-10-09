@@ -323,5 +323,6 @@
   "assistantSpending": "Meine Ausgaben",
   "assistantReceiptHint": "Öffne deine Liste und tippe auf das Bon-Symbol, um ihn zu scannen.",
   "assistantToggleTitle": "Assistent anzeigen",
-  "assistantToggleSubtitle": "Der kleine Helfer unten rechts"
+  "assistantToggleSubtitle": "Der kleine Helfer unten rechts",
+  "scanPriceLabel": "Preisschild scannen"
 }

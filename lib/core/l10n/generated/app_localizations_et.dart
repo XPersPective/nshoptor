@@ -1029,4 +1029,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get assistantToggleSubtitle => 'Väike abiline paremas nurgas';
+
+  @override
+  String get scanPriceLabel => 'Skaneeri hinnasilt';
 }
