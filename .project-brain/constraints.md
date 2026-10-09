@@ -1,5 +1,4 @@
 # Project Constraints
-
 ## User Requirements
 
 ### C-001: Çok dilli, dil ↔ para bağımsız
@@ -31,7 +30,6 @@ değil, hatadır. (ADR-002)
 
 Ücretli/harici OCR, tanıma veya bildirim servisi YASAK. ML Kit (cihaz
 içi) + speech_to_text + flutter_local_notifications. (ADR-002)
-
 ## Compatibility
 
 ### C-010: Flutter stable 3.47.x + Dart null safety, Material 3
@@ -40,7 +38,6 @@ içi) + speech_to_text + flutter_local_notifications. (ADR-002)
 
 Şema değişimi sürümlü migration ile; çok adımlı yazımlar transaction içinde.
 (spec §8)
-
 ## Security
 
 ### C-020: Gizlilik — fotoğraf/ses cihazda kalır; AI'ya yalnız metin, onaylı ve kotalı (ADR-004)
@@ -53,7 +50,6 @@ fiş metni, ürün listesi, tam dosya yolu veya başka hassas veri yazılmaz.
 
 Para ve ondalıklı miktarlar decimal/fixed-point (core/money); ayrıştırma
 tr+en locale-aware. (spec §7.1)
-
 ## Operations
 
 ### C-030: Paket kimliği placeholder
@@ -88,7 +84,6 @@ uca denenir; doğrulanamayan iş nedeni + test adımlarıyla Brain'e yazılır.
 ### C-035: Kullanıcıya görünen sürüm dizesi jargonsuz
 
 Sürüm dizesinde "Aşama N" gibi geliştirme jargonu YOK (ör. "1.0.0").
-
 ## Development
 
 ### C-040: Bağımlılık disiplini

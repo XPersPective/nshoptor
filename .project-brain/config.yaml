@@ -9,6 +9,6 @@ git:
   push: every-task          # every-task | milestone | session-end | manual
 
 commands:               # exact commands; boot prints them so nobody rediscovers them
-  test: ""
-  lint: ""
-  build: ""
+  test: "flutter test --reporter expanded"
+  lint: "flutter analyze"
+  build: "flutter build apk --debug"

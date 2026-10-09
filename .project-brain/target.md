@@ -2,70 +2,20 @@
 Status: CONFIRMED
 
 ## Goal
-**Revizyon 2026-10-08 (kullanıcı, özet alıntı):** "alışverişe çıkmadan önce bir
-liste yaparsın … tahmini fiyatlar yazarsın … evdeki hesabın çarşıya uyacak mı,
-uymayacak mı onu bilmen lazım … bütçemi aştı mı bunları net görebilmen
-gerekiyor … hangileri pahalı, hangileri ucuz almışsın". Gerçek fiyat: rafta
-elle ya da fotoğrafla, veya fişi okutarak; fiş satırları plandaki ürünlerle
-"yapay zeka ile" doğru eşleşir ("elma" ↔ "indirimli elma") ve kullanıcı
-onaylar (evde de yapılabilir). Liste tıklanınca "elma 20 → 30, +10" gibi
-basit bir karşılaştırma listesi. Alışveriş günleri takvimi, haftalık/aylık
-harcama grafikleri, aylık harcama limiti. Konuşarak liste: Google'ın ücretsiz
-konuşma tanıması + arka planda yapay zekâ ("1 kilo elma alacağım 20 lira").
-AI anahtarı uygulamada değil sunucuda; ücretsiz (reklamlı, ilk 7 gün
-reklamsız, az rahatsız eden açılış reklamı, ödüllü reklam 1 gün reklamsız),
-Pro (≈1 $/ay + KDV), Max Pro (yüksek AI kotası). SEO uyumlu slogan, çok dilli
-mağaza ve uygulama. Sağ altta açılıp kapanabilen küçük asistan avatarı.
-"Ev hanımının kullanabileceği" basit, estetik. Açık kaynak, GPL-3.0, veri
-sızıntısı yok, güvenlik üst planda; anahtarlar D:\AppPublishing'de. Bitince
-dahili teste gönder. Kararlar: ADR-004.
-
-### Önceki hedef (2026-10-02, hâlâ geçerli kısımlar)
-NShoptor: Crazy Penguin'in açık kaynak (GPL-3.0), offline-first, hesapsız
-alışveriş planlayıcısı. Kullanıcının zihinsel modeli ÜRÜNÜN TASARIM
-OTORİTESİDİR (ADR-002, 2026-10-02):
-
-1. **Kendi listesini oluşturur** — hızlı, bariz "Yeni liste".
-2. **Listeye ürün girer** — isim yaz, bitti. Tahmini fiyatını girer
-   ("evdeki hesap"). Gelişmiş alanlar (marka, kategori, min/max, zorunlu)
-   ikincil/katlanır; asla ana akışı bloklamaz.
-3. **Alışverişe başlar** — mağazada/sonrasında gerçek fiyatı girer
-   (hızlı giriş, sesle giriş bariz erişimde), fişini okutur (cihaz içi
-   ücretsiz OCR; fiş satırı plandaki ürünle otomatik eşleşir — "domates"
-   fişte "domates"e yazılır).
-4. **Sonucu görür** — evdeki hesap çarşıya uyuyor mu: planlanan vs gerçek,
-   fiyat/miktar/plan-dışı etkileriyle.
-
-Ticari/şablon hizalaması (ADR-004 ile güncellendi: abonelik + AI sunucu vekili) (kural kaynağı: napp_app_template deposundaki
-`ORTAK_UYGULAMA_STANDARDI.md`; ayarlar REKLAM=EVET, PRO=EVET, VERİ=YEREL):
-
-- **Pro:** ömür boyu tek seferlik (~1 $ + KDV), ürün kimliği
-  `com.crazypenguin.nshoptor.pro_lifetime`; reklamları kaldırır + yedekleme dışa/içe
-  aktarmayı açar (standart §3.8/§5.1). Abonelik yok.
-- **Reklam:** yalnızca küçük banner, bottom bar'ın altında; UMP onayı
-  (AB/İngiltere) SDK'dan ÖNCE; repoda yalnızca Google test kimlikleri.
-- **Keşfet:** bottom bar'da sekme — napp_core `OtherAppsPage` + GitHub
-  `apps.json` protokolü (standart §3.6); NShoptor kendini listede göstermez,
-  ama sahibin apps.json'ına kaydı eklenir (kaynak repo: Crazy Penguin
-  belirler — bilinmiyorsa UNKNOWN).
-- **Hakkında/Lisanslar/Paylaş/Puan:** napp_core sayfaları; açık kaynak ve
-  GPL-3.0 HAKKINDA'DA BELİRGİN bölümle anlatılır; THIRD_PARTY_LICENSES.md.
-- **Marka:** gerçek uygulama ikonu (adaptive + monochrome + splash);
-  Flutter varsayılan logosu hiçbir platformda kalmaz (standart §4).
-- **Çok dil + bağımsız para:** dil ve para birimi AYRI ayarlar; dil
-  seçimi sayı/para biçimini zorlamaz (ör. İngilizce + TRY mümkün).
-  ≥ tr/en tam; yeni dil ekleme yolu belgeli + eksik anahtar testi (ADR-003).
-- **Platform:** Android öncelikli — Play yayını hedefi. iOS ertelenmiş
-  (kullanıcı 2026-10-02); derlemeler öncelikli değil.
-- **Yasal:** GDPR/KVKK uyumu (VERİ=YEREL, reklam SDK'sının verileri
-  politikalara dürüstçe yansır); herkese açık gizlilik politikası sayfası.
-
-Domain ayrıntıları (para/birim/hesap/senkron-olmayan mimari, drift şeması,
-girdi yardımcıları, doğrulama ekranları, spec AC'leri) bir önceki hedeften
-geçerliliğini korur: `docs/spec/master-prompt-tr.md` (bölüm atıflı) —
-yalnızca spec'in UX sunumu yeni kullanıcı modeline tabidir.
-
-**Goal status:** CONFIRMED (v2 — ADR-002 niyet değişikliği).
+“her zaman alışveriş modundaki tikli yapı olması gerekiyor … ürün adı … miktarı … tahmini fiyatı … gerçek fiyatı … Gerçek fiyatının yanında … Fotoğraf … Sesle de ürün girebilmeliyim … kapsamlı bir rapor … çözümler üret, bunları mimariye dök ve yapılacaklar olarak ekle project brain'e olarak yol haritası ve uygula. Mevcut mimariye bağımlı değilsin yani.” (2026-10-09)
+Tam kullanıcı isteği: `docs/audits/2026-10-09-user-request.txt`.
+Önceki offline-first, hesapsız, GPL, Android önceliği korunur. Bu revizyonda:
+- Evde/markette tek tikli liste; ekle/düzenle/sil, ayrı tahmin/gerçek, uzun adlar.
+- Ses/metin aynı AI önizlemesi: başlık, ürün, miktar, birim, fiyat, marka/kategori.
+- Fotoğraf isim+gerçek fiyat önerir; fiş plansız da başlatır, kısmi listeyi uzlaştırır.
+- Alt erişilebilir eylemler; kartlar ayrıntıya gider; bildirim kapanır; ekran kilidi ayarı işler.
+- Ülke varsayılanı ve bağımsız dil/para/sayı ayarı; çoklu para ayrı toplam.
+- Free 10, Pro 100, Max 300 AYLIK AI isteği; yıllıkta aynı aylık kota.
+- Ömür boyu reklamsız: free AI kotası; eski yedek hakkı korunur.
+- Token/mağaza/vergi/yıllık indirimle maliyet hesabı; uydurma kâr taahhüdü yok.
+- PDF dışa aktar, JSON yedek; doğrulanmış vergi oranı olmadan KDV uydurma.
+- Ürün/kategori miktarı ve alış sıklığı; satın alma tüketim diye adlandırılmaz.
+ADR-005 ve inceleme raporu uygulama kararlarının kaynağıdır.
 
 ## Target State
 
@@ -102,7 +52,7 @@ bahanesi yok); CI: analyze+test+gitleaks+release APK.
 
 spec §16 (hesap, bulut senk, web, kazıma, canlı kur, bulut LLM OCR,
 tarif/kiler, rota optimizasyonu, konum hatırlatıcı, sadakat/kupon,
-watch/widget, ticari katalog API'si) + abonelik modeli + iOS önceliği
+watch/widget, ticari katalog API'si) + iOS önceliği
 (ertelendi, iptal edilmedi) + ücretli/harici OCR/bildirim servisi.
 
 ## Open Target Decisions
