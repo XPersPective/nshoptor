@@ -29,7 +29,7 @@ değil, hatadır. (ADR-002)
 ### C-005: OCR ve konuşma tanıma cihaz içi; AI yalnız kendi Worker vekilimiz üzerinden (ADR-004)
 
 Ücretli/harici OCR, tanıma veya bildirim servisi YASAK. ML Kit (cihaz
-içi) + speech_to_text + flutter_local_notifications. (ADR-002)
+içi) + Android native on-device speech (ADR-006; paketin ağ fallback'i kullanılmaz) + flutter_local_notifications. (ADR-002)
 ## Compatibility
 
 ### C-010: Flutter stable 3.47.x + Dart null safety, Material 3

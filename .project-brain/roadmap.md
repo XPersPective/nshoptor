@@ -1,9 +1,9 @@
 # Uygulayıcı yapay zekâ için devir
 
 ## Başlangıç durumu
-- Kullanıcı son mesajında yalnız plan istedi. Bu oturumdaki uygulama denemeleri geri alındı; kod tabanı önceki çalışan sürümdedir.
+- Kullanıcı yeni oturumda “projeyi devral ve tümünü bitir” dedi; önceki yalnız plan kapsamı bitti. Mevcut gerçeklik current.md, tamamlanan görev kanıtları Git checkpointlerinde.
 - Başlangıç `flutter test`: 295 test geçti. Bu, yeni kabul ölçütlerini kanıtlamaz.
-- Deneme kodunun sonuçlarını tamamlanmış görev sayma. Yeni görevlerin hiçbiri uygulanmadı.
+- Eski deneme kodunun sonuçlarını tamamlanmış görev sayma; yalnız kanıtlanan yeni checkpointler tamamdır.
 - Önce `python C:/Users/rubicon/.skills-manager/skills/project-brain/scripts/brain.py boot`.
 - Ardından target → ADR-005 → seçilen görev → yalnız Areas dosyaları. Depoyu baştan tarama, bu sohbeti isteme.
 - PB-061 eski 71 dil/yayın işi olarak korundu. Mevcut sürüm 1.1.4+6; eski versionCode 3 yeniden yayımlanmaz. Yeni akıştan ayrı tut.
@@ -19,6 +19,11 @@
 |4|PB-066|Android PDF raporu|PB-063, PB-062|
 |4|PB-068|Ürün/kategori alış analizi|PB-063, PB-064|
 |5|PB-069|Tüm akışın cihaz ve yayın kabulü|önceki yedi görev|
+
+## 9 Ekim devralma denetimi
+PB-062: PB-070 navigasyon, PB-071 form/CRUD ve PB-073 sonuç hesabı ayrı checkpoint; kanonik satır UI kabulü ana görevde.
+PB-064: PB-074 zorunlu native on-device speech (ADR-006), PB-075 metadata/editable aday, PB-076 fotoğraf/plansız fiş; ana görev bütün input wiring kabulü.
+PB-061 eski localization/release kabulü PB-069 finalden sonra; versionCode 3 yeniden yayımlanmaz.
 
 ## Örnek uçtan uca kabul
 1. İngilizce arayüz + TRY seç. “Pazar alışverişi; 2 kg domates kilosu 40, bir X marka süt” söyle. Başlık, 80 toplam tahmin, marka ve kategori önizlemede görünür; onaydan önce kayıt yok.

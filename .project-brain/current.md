@@ -169,6 +169,7 @@ güven.
 
 - Voice: gerçek tanıma cihazda denenmedi (emülatörde platform tanıyıcı
   yok → manuel fallback kanıtlı); cihazda tek kontrol önerilir.
+- ADR-006 denetimi: kurulu speech_to_text onDevice=true bile destek yoksa normal recognizer'a düşer; bu mevcut kodun privacy sınırıdır. Native düzeltme PB-074'te HEDEF, henüz uygulanmadı.
 - Reklam/Pro: test kimlikleriyle tam akış canlı; gerçek AdMob kimliği
   ve paywall fiyatı Crazy Penguin'de; apps.json besleme repo adresi
   bilinmiyor (docs/store/apps-json-entry.md).
