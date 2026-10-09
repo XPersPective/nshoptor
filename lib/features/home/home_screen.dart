@@ -24,6 +24,12 @@ import '../settings/settings_repository.dart';
 import '../settings/settings_screen.dart';
 import '../lists/templates/template_repository.dart';
 import '../lists/list_detail_screen.dart';
+import 'package:image_picker/image_picker.dart';
+import '../receipts/ocr_text_source.dart';
+import '../receipts/parser/receipt_parser.dart';
+import '../receipts/shelf_label/mlkit_text_source.dart';
+import '../receipts/review/receipt_review_controller.dart';
+import '../receipts/review/receipt_review_screen.dart';
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
@@ -50,6 +56,8 @@ class HomeShell extends StatefulWidget {
     this.bannerController,
     this.giftFlow,
     this.reminderScheduler,
+    this.pickImage,
+    this.ocrSource,
   });
 
   final AppDatabase db;
@@ -80,6 +88,8 @@ class HomeShell extends StatefulWidget {
 
   /// Test dikişi: hatırlatma zamanlayıcısı (ListDetailScreen'e geçer).
   final ReminderScheduler? reminderScheduler;
+  final Future<String?> Function()? pickImage;
+  final OcrTextSource? ocrSource;
 
   @override
   State<HomeShell> createState() => _HomeShellState();
@@ -87,6 +97,7 @@ class HomeShell extends StatefulWidget {
 
 class _HomeShellState extends State<HomeShell> {
   int _tab = 0;
+  bool _inputBusy = false;
 
   @override
   Widget build(BuildContext context) {
@@ -190,16 +201,16 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   Future<void> _onAssistant(BuildContext context, AssistantChoice choice) async {
+    if (_inputBusy) return;
+    setState(() => _inputBusy = true);
     final l10n = AppLocalizations.of(context);
+    try {
     switch (choice.action) {
       case AssistantAction.newList:
         await showListEditor(context, widget.listRepository,
             reminderScheduler: widget.reminderScheduler);
       case AssistantAction.scanReceipt:
-        setState(() => _tab = 1);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.assistantReceiptHint)),
-        );
+        await _scanReceipt(context);
       case AssistantAction.spending:
         await Navigator.of(context).push(
           MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: widget.db)),
@@ -239,6 +250,36 @@ class _HomeShellState extends State<HomeShell> {
             ),
           );
         }
+    }
+      } finally { if (mounted) setState(() => _inputBusy = false); }
+  }
+
+  Future<void> _scanReceipt(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    try {
+      final path = await (widget.pickImage?.call() ?? ImagePicker().pickImage(source: ImageSource.camera).then((x) => x?.path));
+      if (path == null || !mounted) return;
+      final source = widget.ocrSource ?? MlKitTextSource();
+      final OcrScanResult scan;
+      try { scan = await source.scan(path); }
+      finally { if (widget.ocrSource == null) (source as MlKitTextSource).dispose(); }
+      if (!context.mounted) return;
+      final currency = AppDefaults.defaultCurrency();
+      final parsed = ReceiptParser(currency: currency).parse(scan);
+      if (parsed.lines.isEmpty) {
+        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true));
+        return;
+      }
+      final controller = ReceiptReviewController(db: widget.db, currencyCode: currency,
+        title: l10n.receiptReviewTitle, parseResult: parsed);
+      try {
+        await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ReceiptReviewScreen(
+          controller: controller, currency: currency, plannedItems: Future.value(const []))));
+        if (controller.listId != null && context.mounted) await _openShopping(context, controller.listId!);
+      } finally { controller.dispose(); }
+    } catch (_) {
+      if (context.mounted) { ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
+        SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true, duration: const Duration(days: 1))); }
     }
   }
 

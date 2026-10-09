@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 import 'price_candidates.dart';
+import '../../../core/quantity/unit_display.dart';
+import '../../../core/money/format_locale.dart';
+import '../../../core/money/money_parser.dart';
 
 /// Raf etiketi adaylarını listeler; kullanıcının seçtiği değer döner
 /// (spec §6.8: en büyük sayı körlemesine seçilmez, kullanıcı seçer).
@@ -26,10 +29,10 @@ Future<PriceCandidate?> showPriceCandidateSheet(
             ListTile(
               key: Key('price_candidate_$i'),
               title: Text(
-                '${c.value.toDbString()} ${c.currencyCode}'
-                '${c.isUnitPrice ? ' /unit' : ''}',
+                '${c.value.toDbString().replaceAll('.', MoneySeparators.forLocaleCode(formatLocaleCode(context)).decimal)} ${c.currencyCode}'
+                '${c.unitCode != null ? ' / ${unitDisplayName(c.unitCode!, l10n)}' : c.isUnitPrice ? ' · ${l10n.pricingModeUnitPrice}' : ''}',
               ),
-              subtitle: Text(c.sourceLine),
+              subtitle: Text({if (c.productName != null) c.productName!, c.sourceLine}.join(' · ')),
               trailing: c.confidence == 'ai'
                   ? Chip(
                       avatar: const Icon(Icons.auto_awesome, size: 16),

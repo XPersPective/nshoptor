@@ -1,4 +1,5 @@
 import '../../../core/money/decimal_fixed.dart';
+import '../../../core/quantity/unit_code.dart';
 import '../../ai/ai_client.dart';
 import 'price_candidates.dart';
 
@@ -10,15 +11,22 @@ class AiLabelReader {
 
   final AiClient ai;
   final String localeCode;
+  AiResult? lastResult;
 
   static const aiConfidence = 'ai';
 
   Future<List<PriceCandidate>> read(String ocrText, {required String currencyCode}) async {
     final text = ocrText.trim();
     if (!ai.enabled || text.isEmpty) return const [];
-    final r = await ai.request('read_label', {'text': text}, locale: localeCode);
+    final AiResult r;
+    try { r = await ai.request('read_label', {'text': text}, locale: localeCode); }
+    catch (_) { lastResult = const AiFailed('request'); return const []; }
+    lastResult = r;
     if (r is! AiOk) return const [];
-    final name = '${r.result['productName'] ?? ''}'.trim();
+    final data = r.result;
+    final rawName = data['productName'];
+    final name = rawName is String ? rawName.trim() : '';
+    final unit = UnitCode.values.where((u) => u.dbCode == data['unit']).firstOrNull;
     DecimalFixed? dec(Object? v) =>
         v is String && RegExp(r'^\d{1,9}(\.\d{1,3})?$').hasMatch(v) ? DecimalFixed.parse(v) : null;
     final price = dec(r.result['price']);
@@ -29,14 +37,18 @@ class AiLabelReader {
           value: price,
           currencyCode: currencyCode,
           sourceLine: name,
+          productName: name.isEmpty ? null : name.length > 60 ? name.substring(0, 60) : name,
           confidence: aiConfidence,
           isUnitPrice: false,
+          unitCode: UnitCode.adet,
         ),
-      if (unitPrice != null && unitPrice != price)
+      if (unitPrice != null && (unitPrice != price || unit != UnitCode.adet))
         PriceCandidate(
           value: unitPrice,
           currencyCode: currencyCode,
           sourceLine: name,
+          productName: name.isEmpty ? null : name.length > 60 ? name.substring(0, 60) : name,
+          unitCode: unit,
           confidence: aiConfidence,
           isUnitPrice: true,
         ),

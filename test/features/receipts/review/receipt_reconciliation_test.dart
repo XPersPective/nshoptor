@@ -33,6 +33,36 @@ void main() {
   });
   tearDown(() => db.close());
 
+  test('standalone receipt has no list before approval; rollback then concurrent retry is idempotent', () async {
+    final c = ReceiptReviewController(db: db, currencyCode: 'TRY', title: 'Receipt',
+      parseResult: ReceiptParser().parse(const OcrScanResult(lines: [OcrLine(text: 'MILK 10,00'), OcrLine(text: 'BREAD 5,00')])));
+    addTearDown(c.dispose);
+    await c.prefillSuggestions();
+    expect(c.listId, isNull); expect(await db.select(db.shoppingLists).get(), hasLength(1));
+    c.accept(0); c.accept(1); c.lines[1].name = '';
+    await expectLater(c.commit(), throwsArgumentError);
+    expect(c.listId, isNull); expect(await db.select(db.shoppingLists).get(), hasLength(1));
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    c.lines[1].name = 'Bread';
+    await Future.wait([c.commit(), c.commit()]); await c.commit();
+    expect(c.listId, isNotNull); expect(await db.select(db.shoppingLists).get(), hasLength(2));
+    final entries = await db.select(db.purchaseEntries).get();
+    expect(entries, hasLength(2)); expect(entries.fold<int>(0, (s, e) => s + e.actualLineTotalMinorUnits), 1500);
+    expect(entries.every((e) => e.plannedItemId == null && e.listId == c.listId), isTrue);
+    expect((await ShoppingRepository(db).getList(c.listId!)).status, 'shopping');
+  });
+
+  test('empty or foreign-linked standalone receipt cannot allocate a list', () async {
+    final c = ReceiptReviewController(db: db,
+      parseResult: ReceiptParser().parse(const OcrScanResult(lines: [OcrLine(text: 'MILK 10,00')])));
+    addTearDown(c.dispose);
+    await expectLater(c.commit(), throwsArgumentError);
+    c.linkLine(0, itemId);
+    await expectLater(c.commit(), throwsArgumentError);
+    expect(c.listId, isNull); expect(await db.select(db.shoppingLists).get(), hasLength(1));
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+  });
+
   Future<void> manual({int? targetListId, String name = 'Tomato'}) =>
       ShoppingRepository(db).recordPurchase(
         listId: targetListId ?? listId,

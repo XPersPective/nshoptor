@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/features/ai/ai_client.dart';
+import 'package:nshoptor/core/quantity/unit_code.dart';
 import 'package:nshoptor/features/receipts/shelf_label/ai_label_reader.dart';
 
 AiClient _ai(http.Response Function() reply) => AiClient(
@@ -21,6 +22,8 @@ void main() {
     expect(c.first.value.toDbString(), '34.95');
     expect(c.first.confidence, AiLabelReader.aiConfidence);
     expect(c.last.isUnitPrice, isTrue);
+    expect(c.first.productName, 'DOMATES SALKIM'); expect(c.first.unitCode, UnitCode.adet);
+    expect(c.last.productName, 'DOMATES SALKIM'); expect(c.last.unitCode, UnitCode.kilogram);
   });
 
   test('AI hatası → boş liste (yerel adaylar kullanılır)', () async {

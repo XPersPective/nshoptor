@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
+import '../../core/money/decimal_fixed.dart';
 import '../../core/money/money_format.dart';
 import '../../core/theme/semantic_colors.dart';
 import '../../core/money/money.dart';
@@ -29,6 +30,7 @@ import '../receipts/review/receipt_review_controller.dart';
 import '../receipts/review/receipt_review_screen.dart';
 import '../receipts/shelf_label/mlkit_text_source.dart';
 import '../receipts/shelf_label/shelf_price_flow.dart';
+import '../receipts/shelf_label/price_candidates.dart';
 import '../voice_input/stt_speech_service.dart';
 import '../voice_input/voice_input_service.dart';
 import '../voice_input/voice_preview_sheet.dart';
@@ -309,18 +311,22 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
   /// satırda tahmini → gerçek ve fark görünür.
   Future<void> _enterActual(BuildContext context, ShoppingList list, PlannedItem item,
       List<PurchaseEntry> entries, {bool scan = false}) async {
-    String? price;
+    if (_busy) return;
+    setState(() => _busy = true);
+    try {
+    PriceCandidate? candidate;
     if (scan) {
-      price = await _shelfPrice(context);
-      if (price == null || !context.mounted) return;
+      candidate = await _shelfCandidate(context);
+      if (candidate == null || !context.mounted) return;
     }
     await _openItemForm(context, existing: item, entries: entries,
-      initialActualPrice: price, focusActual: true);
+      initialActualCandidate: candidate, focusActual: true);
+    } finally { if (mounted) setState(() => _busy = false); }
   }
 
   Future<void> _openItemForm(BuildContext context,
       {ParsedItemCandidate? prefill, PlannedItem? existing,
-       List<PurchaseEntry> entries = const [], String? initialActualPrice, bool focusActual = false}) async {
+       List<PurchaseEntry> entries = const [], String? initialActualPrice, PriceCandidate? initialActualCandidate, bool focusActual = false}) async {
     await StarterCategories().seedIfEmpty(widget.db);
     if (!context.mounted) return;
     await showModalBottomSheet<void>(
@@ -331,14 +337,14 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
         starterCategories: StarterCategories(),
         listId: widget.listId,
         existing: existing, entries: existing == null ? const [] : entries.where((e) => e.plannedItemId == existing.id).toList(),
-        initialActualPrice: initialActualPrice, focusActual: focusActual,
+        initialActualPrice: initialActualPrice, initialActualCandidate: initialActualCandidate, focusActual: focusActual,
         initialCandidate: prefill,
         initialName: prefill?.name,
         initialQuantity: prefill?.quantity?.toDbString(),
         initialUnitCode: prefill?.unitCode,
         initialUnitPrice: prefill?.unitPrice?.toDbString(),
         onVoicePressed: _voiceCandidate,
-        onShelfPricePressed: _shelfPrice,
+        onShelfCandidatePressed: _shelfCandidate,
       ),
     );
     _refresh();
@@ -394,48 +400,46 @@ class _ListDetailScreenState extends State<ListDetailScreen> {
         ),
       );
 
-  Future<String?> _shelfPrice(BuildContext context) async {
-    if (widget.onShelfPricePressed != null) return widget.onShelfPricePressed!(context);
+  Future<String?> _shelfPrice(BuildContext context) async => (await _shelfCandidate(context))?.value.toDbString();
+
+  Future<PriceCandidate?> _shelfCandidate(BuildContext context) async {
     final list = await widget.listRepository.getById(widget.listId);
     if (!context.mounted) return null;
-    return readShelfPrice(
-      context,
-      currencyCode: list.currencyCode,
-      pickImage: widget.pickImage,
-      ocrSource: widget.ocrSource,
-    );
+    if (widget.onShelfPricePressed != null) {
+      final text = await widget.onShelfPricePressed!(context);
+      final value = text == null ? null : DecimalFixed.tryParse(text);
+      return value == null ? null : PriceCandidate(value: value, currencyCode: list.currencyCode,
+        sourceLine: '', confidence: 'manual', isUnitPrice: true);
+    }
+    return readShelfCandidate(context, currencyCode: list.currencyCode, pickImage: widget.pickImage, ocrSource: widget.ocrSource);
   }
 
   /// Fiş: tara → ayrıştır → inceleme; onaya dek DB yazımı yok (spec §6.9).
   Future<void> _scanReceipt(BuildContext context) async {
+    if (_busy) return;
     final l10n = AppLocalizations.of(context);
-    final list = await widget.listRepository.getById(widget.listId);
-    final scan = await _scan();
-    if (scan == null || !context.mounted) return;
-    if (scan.lines.isEmpty) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(l10n.ocrNoText)));
-      return;
-    }
-    final parsed = ReceiptParser(currency: list.currencyCode).parse(scan);
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => ReceiptReviewScreen(
-          controller: ReceiptReviewController(
-            db: widget.db,
-            listId: widget.listId,
-            parseResult: parsed,
-            ai: AiService.client,
-            localeCode: Localizations.localeOf(context).languageCode,
-          ),
-          currency: list.currencyCode,
-          plannedItems: (widget.db.select(
-            widget.db.plannedItems,
-          )..where((t) => t.listId.equals(widget.listId))).get(),
-        ),
-      ),
-    );
-    _refresh();
+    setState(() => _busy = true);
+    try {
+      final list = await widget.listRepository.getById(widget.listId);
+      final scan = await _scan();
+      if (scan == null || !context.mounted) return;
+      final parsed = ReceiptParser(currency: list.currencyCode).parse(scan);
+      if (parsed.lines.isEmpty) {
+        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true));
+        return;
+      }
+      final controller = ReceiptReviewController(db: widget.db, listId: widget.listId,
+        parseResult: parsed, ai: AiService.client, localeCode: Localizations.localeOf(context).languageCode);
+      try {
+        await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ReceiptReviewScreen(
+          controller: controller, currency: list.currencyCode,
+          plannedItems: ItemRepository(widget.db).getItems(widget.listId))));
+      } finally { controller.dispose(); }
+      if (mounted) _refresh();
+    } catch (_) {
+      if (context.mounted) { ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
+        SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true, duration: const Duration(days: 1))); }
+    } finally { if (mounted) setState(() => _busy = false); }
   }
 
   Future<void> _openPriceHistory(BuildContext context, PlannedItem item) async {

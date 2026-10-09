@@ -13,6 +13,7 @@
 - PB-067 system sayı biçimi cihaz ülke yerelinden (Latin dışı rakamda en), UI dili bağımsız; 71 dilde açıklama güncel. MoneyParser intl ayraç/gruplama (en_IN3/2, fr ince boşluk) ve büyük ondalık için ortak doğru yol. Limitler currency key ile saklanır; eski değer mevcut tercihe bir kez bağlanır, prefill hassasiyet/küsurat korunur, invalid kalır; plansız aylık kart/geri dönüş refresh testli. Full335 passed, analyze0. Wakelock PB-077, feedback PB-078 halen açık.
 - PB-074: 339 full-suite passed, analyze 0, Android debug APK built; actual API36 native bridge integration 1 passed. Speech partial/final/status/error, exact/same-language locale, second tap stop and disposal preserve text; physical audio remains unverified.
 - PB-075: AI schema title/brand/category; editable title and product fields with price mode. Approval resolves/reuses category and saves selected items atomically; failure keeps draft, source change invalidates it. Home list creation and items share transaction. Local numeric/decimal quantities preserved. Full342 passed, server9 passed, analyze0. Worker schema source updated; live deployment still pending PB-065.
+- PB-076: shared photo candidate carries productName/unit/actual price; selected €/kg and per-item values use the correct actual quantity/mode, estimate stays unchanged. Local name heuristic is editable; KWD3/free0 supported. Standalone Home receipt preview allocates list only on atomic approval; cancellation/error/concurrent retry leave no orphan/duplicates. Controllers disposed by route owners. Full348 passed, analyze0.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -131,7 +132,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   uçtan uca kanıtlandı) +
   ReceiptMatcher; `receipts/review/` ReceiptReviewController (no DB write
   before approval) + ReceiptReviewScreen (accept/ignore/link/split/merge,
-  total diff). Shelf label: no crop/rotate UI — ML Kit reads any
+  total diff; nullable new-list controller, create+purchase transaction and retry ownership). Shelf label: no crop/rotate UI — ML Kit reads any
   orientation and user picks among all candidates (C-040: no crop package).
   ReceiptMatcher auto-suggestion not used by the screen (manual link only).
 - `settings/`: SettingsScreen + SettingsRepository (spec §6.15,

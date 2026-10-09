@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../core/calc/line_calc.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
+import '../receipts/shelf_label/price_candidates.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/decimal_fixed.dart';
 import '../../core/money/money_format.dart';
@@ -40,6 +41,8 @@ class ItemFormSheet extends StatefulWidget {
     this.initialUnitPrice,
     this.onVoicePressed,
     this.onShelfPricePressed,
+    this.onShelfCandidatePressed,
+    this.initialActualCandidate,
     this.existing,
     this.entries = const [],
     this.initialActualPrice,
@@ -68,6 +71,8 @@ class ItemFormSheet extends StatefulWidget {
 
   /// Verilince raf etiketi düğmesi çıkar; seçilen birim fiyat dizesi döner.
   final Future<String?> Function(BuildContext context)? onShelfPricePressed;
+  final Future<PriceCandidate?> Function(BuildContext context)? onShelfCandidatePressed;
+  final PriceCandidate? initialActualCandidate;
 
   @override
   State<ItemFormSheet> createState() => _ItemFormSheetState();
@@ -106,6 +111,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   bool _prefilled = false;
   bool _currencyLoaded = false;
   bool _saving = false;
+  bool _scanning = false;
   String? _actualError;
   String? _saveError;
   // ponytail: one actual unit per form; mixed-unit records need a per-unit editor and stay untouched here.
@@ -177,6 +183,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       _actualPrice.text = local(widget.initialActualPrice!);
       _actualPriceIsUnit = true; _actualChanged = true;
     }
+    if (widget.initialActualCandidate != null) _applyPhoto(widget.initialActualCandidate!);
   }
 
   @override
@@ -243,7 +250,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   }
 
   Future<void> _save() async {
-    if (_saving) return;
+    if (_saving || _scanning) return;
     final l10n = _l10n;
     setState(() {
       _quantityError = null;
@@ -339,12 +346,34 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     }
   }
 
+  void _applyPhoto(PriceCandidate c) {
+    if (c.productName != null && c.productName!.isNotEmpty) _name.text = c.productName!;
+    _actualPrice.text = c.value.toDbString().replaceAll('.', _separators.decimal);
+    _actualPriceIsUnit = c.isUnitPrice || c.unitCode == UnitCode.adet;
+    if (c.unitCode != null) {
+      if (c.unitCode != (_actualUnit ?? _unit)) _actualQuantity.text = '1';
+      _actualUnit = c.unitCode;
+    }
+    _actualChanged = true;
+  }
+
   Future<void> _onShelfPricePressed() async {
-    final price = await widget.onShelfPricePressed!(context);
-    if (price != null && mounted) { setState(() {
-      _actualPrice.text = price.replaceAll('.', _separators.decimal);
-      _actualPriceIsUnit = true; _actualChanged = true;
-    }); }
+    if (_scanning || _saving) return;
+    final l10n = _l10n;
+    setState(() => _scanning = true);
+    try {
+      final candidate = await widget.onShelfCandidatePressed?.call(context);
+      if (!mounted) return;
+      if (widget.onShelfCandidatePressed != null) { if (candidate != null) { setState(() => _applyPhoto(candidate)); } }
+      else {
+        final price = await widget.onShelfPricePressed?.call(context);
+        if (price != null && mounted) { setState(() {
+          _actualPrice.text = price.replaceAll('.', _separators.decimal);
+          _actualPriceIsUnit = true; _actualChanged = true;
+        }); }
+      }
+    } catch (_) { if (mounted) setState(() => _saveError = l10n.ocrNoText); }
+    finally { if (mounted) setState(() => _scanning = false); }
   }
 
   @override
@@ -447,7 +476,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: DropdownButtonFormField<UnitCode>(
+                  child: KeyedSubtree(key: ValueKey(_unit), child: DropdownButtonFormField<UnitCode>(
                     key: const Key('item_unit_field'),
                     initialValue: _unit,
                     // Uzun birim adları (ör. de "Schachtel") dar ekranda taşmasın.
@@ -465,7 +494,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                         )
                         .toList(),
                     onChanged: (v) => setState(() => _unit = v ?? _unit),
-                  ),
+                  )),
                 ),
               ],
             ),
@@ -477,10 +506,10 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(labelText: '${l10n.compareActual} · ${_actualPriceIsUnit ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}',
                 errorText: _actualError, helperText: l10n.priceOptionalHint,
-                suffixIcon: widget.onShelfPricePressed == null ? null : IconButton(
+                suffixIcon: widget.onShelfPricePressed == null && widget.onShelfCandidatePressed == null ? null : IconButton(
                   key: const Key('item_shelf_label_button'), tooltip: l10n.scanPriceLabel,
-                  onPressed: _mixedUnits ? null : _onShelfPricePressed,
-                  icon: const Icon(Icons.photo_camera_outlined))),
+                  onPressed: _mixedUnits || _scanning || _saving ? null : _onShelfPricePressed,
+                  icon: _scanning ? TickerMode(enabled: ModalRoute.of(context)?.isCurrent ?? true, child: const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2))) : const Icon(Icons.photo_camera_outlined))),
               onChanged: (_) => setState(() => _actualChanged = true)),
             const SizedBox(height: 12),
             Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -490,7 +519,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 decoration: InputDecoration(labelText: l10n.actualQuantityLabel),
                 onChanged: (_) => _actualChanged = true)),
               const SizedBox(width: 8),
-              Expanded(child: DropdownButtonFormField<String>(key: const Key('item_actual_unit_field'),
+              Expanded(child: DropdownButtonFormField<String>(key: ValueKey('item_actual_unit_${(_actualUnit ?? _unit).dbCode}'),
                 initialValue: (_actualUnit ?? _unit).dbCode, isExpanded: true,
                 decoration: InputDecoration(labelText: l10n.unitLabel),
                 items: UnitCode.values.map((u) => DropdownMenuItem(value: u.dbCode,
@@ -505,7 +534,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               title: Text(l10n.itemDetailsSection),
               childrenPadding: const EdgeInsets.only(bottom: 8),
               children: [
-                DropdownButtonFormField<bool>(key: const Key('item_actual_pricing_mode'),
+                DropdownButtonFormField<bool>(key: ValueKey('item_actual_pricing_mode_$_actualPriceIsUnit'),
                   initialValue: _actualPriceIsUnit, isExpanded: true,
                   decoration: InputDecoration(labelText: l10n.actualPriceLabel),
                   items: [DropdownMenuItem(value: true, child: Text(l10n.pricingModeUnitPrice)),
@@ -587,7 +616,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             const SizedBox(height: 8),
             FilledButton(
               key: const Key('item_save_button'),
-              onPressed: _saving ? null : _save,
+              onPressed: _saving || _scanning ? null : _save,
               child: Text(l10n.saveButton),
             ),
             if (_saveError != null) Text(_saveError!, style: TextStyle(color: Theme.of(context).colorScheme.error)),

@@ -1,4 +1,6 @@
 import '../../../core/money/decimal_fixed.dart';
+import '../../../core/money/currency.dart';
+import '../../../core/quantity/unit_code.dart';
 import '../ocr_text_source.dart';
 
 /// Raf etiketinden çıkarılan fiyat adayı (spec §6.8).
@@ -9,6 +11,8 @@ class PriceCandidate {
     required this.sourceLine,
     required this.confidence,
     required this.isUnitPrice,
+    this.productName,
+    this.unitCode,
   });
 
   /// Etiketteki ham metin (kullanıcı doğrulaması için).
@@ -22,6 +26,8 @@ class PriceCandidate {
 
   /// `₺/kg` gibi birim fiyat kalıbı bulunduysa true.
   final bool isUnitPrice;
+  final String? productName;
+  final UnitCode? unitCode;
 }
 
 /// Raf etiketi fiyat adayı çıkarımı (spec §6.8).
@@ -48,7 +54,7 @@ class ShelfPriceExtractor {
       for (final match in matches) {
         final raw = match.group(1)!;
         final value = DecimalFixed.tryParse(_normalizePriceText(raw));
-        if (value == null || !value.isPositive) continue;
+        if (value == null || value.isNegative) continue;
         if (isQuantityLine && RegExp(r'^\d+$').hasMatch(raw)) continue;
 
         final around = line.text;
@@ -67,12 +73,25 @@ class ShelfPriceExtractor {
           confidence = 'low';
         }
 
+        UnitCode? unit;
+        if (isUnit) {
+          final code = RegExp(r'/\s*(kg|gr|g|lt|l|ml|adet)\b', caseSensitive: false).firstMatch(around)?.group(1)?.toLowerCase();
+          unit = switch (code) { 'kg' => UnitCode.kilogram, 'gr' || 'g' => UnitCode.gram,
+            'lt' || 'l' => UnitCode.litre, 'ml' => UnitCode.mililitre, 'adet' => UnitCode.adet, _ => null };
+        }
+        // ponytail: nearest preceding non-price text may be a brand/promotion; preview is editable. Upgrade to layout-aware extraction if needed.
+        final preceding = lines.takeWhile((l) => !identical(l, line)).where((l) =>
+          RegExp(r'[A-Za-z\u00c0-\uffff]').hasMatch(l.text) &&
+          !RegExp(r'[₺€$]|\d+[.,]\d{2}').hasMatch(l.text));
+        final name = preceding.isEmpty ? null : preceding.last.text.trim();
         candidates.add(PriceCandidate(
           value: value,
           currencyCode: defaultCurrency,
           sourceLine: line.text.trim(),
           confidence: confidence,
           isUnitPrice: isUnit,
+          productName: name == null || name.isEmpty ? null : name.length > 60 ? name.substring(0, 60) : name,
+          unitCode: unit ?? UnitCode.adet,
         ));
       }
     }
@@ -97,7 +116,7 @@ class ShelfPriceExtractor {
   /// - İki ayraç da varsa SONRAKİ ondalıktır, diğeri binlik.
   /// - Yalnız `,` → ondalık. Yalnız `.` ve sonrası 2 basamak → ondalık;
   ///   aksi halde binlik (kaldırılır).
-  static String _normalizePriceText(String raw) {
+  String _normalizePriceText(String raw) {
     final hasComma = raw.contains(',');
     final hasDot = raw.contains('.');
     if (hasComma && hasDot) {
@@ -110,15 +129,16 @@ class ShelfPriceExtractor {
     if (hasComma) return raw.replaceAll(',', '.');
     if (hasDot) {
       final frac = raw.substring(raw.lastIndexOf('.') + 1);
-      return frac.length == 2 ? raw : raw.replaceAll('.', '');
+      return frac.length == 2 || frac.length == 3 && Currency.fromCode(defaultCurrency).minorUnitDigits == 3 ? raw : raw.replaceAll('.', '');
     }
     return raw;
   }
 
   /// `42,90` | `42.90` | `1.234,56` | `1,234.56` | `₺42,90` fiyat çekirdeği.
-  static final RegExp _pricePattern = RegExp(
-    r'(\d{1,3}(?:[.,]\d{3})+[.,]\d{2}|\d+[.,]\d{2}|\d+)',
-  );
+  RegExp get _pricePattern {
+    final fraction = Currency.fromCode(defaultCurrency).minorUnitDigits == 3 ? '{2,3}' : '{2}';
+    return RegExp(r'(\d{1,3}(?:[.,]\d{3})+[.,]\d' + fraction + r'|\d+[.,]\d' + fraction + r'|\d+)');
+  }
 
   static const List<String> _currencyWords = [
     'TL', 'TRY', '₺', 'lira', 'EUR', '€', 'USD', r'$', 'KR', 'kr',

@@ -1,12 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
+import 'package:nshoptor/core/quantity/unit_code.dart';
 import 'package:nshoptor/features/receipts/shelf_label/price_candidates.dart';
 
 OcrLine line(String text, {double top = 0}) =>
     OcrLine(text: text, boundingBoxTop: top);
 
 void main() {
+  test('KWD three-digit decimal and explicitly free price remain exact candidates', () {
+    expect(ShelfPriceExtractor(defaultCurrency: 'KWD').extract([line('1.234 KWD')]).single.value.toDbString(), '1.234');
+    expect(ShelfPriceExtractor().extract([line('0,00 TL')]).single.value.isZero, isTrue);
+  });
+
   late ShelfPriceExtractor extractor;
 
   setUp(() => extractor = ShelfPriceExtractor());
@@ -21,6 +27,7 @@ void main() {
     expect(candidates.single.confidence, 'high');
     expect(candidates.single.currencyCode, 'TRY');
     expect(candidates.single.isUnitPrice, isFalse);
+    expect(candidates.single.productName, 'SÜT 1 LT'); expect(candidates.single.unitCode, UnitCode.adet);
   });
 
   test('birim fiyat kalıbı işaretlenir (/kg)', () {
@@ -30,6 +37,7 @@ void main() {
     ]);
     expect(candidates, hasLength(1));
     expect(candidates.single.isUnitPrice, isTrue);
+    expect(candidates.single.unitCode, UnitCode.kilogram);
     expect(candidates.single.value.toDbString(), '1234.56');
   });
 

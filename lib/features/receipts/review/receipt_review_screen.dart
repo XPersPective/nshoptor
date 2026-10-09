@@ -80,7 +80,9 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
 
     final diff = _c.reconciliationDifference;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.receiptReviewTitle)),
+      appBar: AppBar(title: Text(l10n.receiptReviewTitle), leading: IconButton(
+        key: const Key('receipt_cancel'), tooltip: l10n.cancelButton, icon: const Icon(Icons.close),
+        onPressed: _saving ? null : () => Navigator.of(context).maybePop())),
       body: Column(
         children: [
           if (_saveFailed)

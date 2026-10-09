@@ -4,6 +4,7 @@ import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/util/normalize_name.dart';
 import '../../shopping_mode/shopping_repository.dart';
+import '../../lists/list_repository.dart';
 import '../../../data/db/app_database.dart';
 import '../parser/receipt_parse_result.dart';
 import '../parser/receipt_parser.dart' show ReceiptMatcher;
@@ -54,7 +55,9 @@ class ReviewLine {
 class ReceiptReviewController extends ChangeNotifier {
   ReceiptReviewController({
     required this._db,
-    required this.listId,
+    this.listId,
+    this.currencyCode = 'TRY',
+    this.title,
     required ReceiptParseResult parseResult,
     this.imagePath,
     this.ai,
@@ -89,7 +92,12 @@ class ReceiptReviewController extends ChangeNotifier {
   }
 
   final AppDatabase _db;
-  final int listId;
+  int? listId;
+  final String currencyCode;
+  final String? title;
+  bool _disposed = false;
+  @override
+  void dispose() { _disposed = true; super.dispose(); }
 
   /// AI eşleştirme (PB-051); null ya da başarısızsa kural tabanlı eşleştirici.
   final AiClient? ai;
@@ -154,18 +162,19 @@ class ReceiptReviewController extends ChangeNotifier {
   /// dokunuşla değiştirir/kaldırır. Orta güven yalnız öneridir, bağlamaz.
   /// Onay akışı değişmez (C-003): DB'ye yalnız accept yazımı yazar.
   Future<void> prefillSuggestions() async {
-    if (await _prefillWithAi()) return;
+    if (listId == null || _disposed) return;
+    if (await _prefillWithAi() || _disposed) return;
     await _prefillWithRules();
   }
 
   Future<bool> _prefillWithAi() async {
     final client = ai;
     if (client == null || !client.enabled) return false;
-    final list = await ShoppingRepository(_db).getList(listId);
+    final list = await ShoppingRepository(_db).getList(listId!);
     final digits = Currency.fromCode(list.currencyCode).minorUnitDigits;
     final planned = await (_db.select(
       _db.plannedItems,
-    )..where((t) => t.listId.equals(listId))).get();
+    )..where((t) => t.listId.equals(listId!))).get();
     final outcome = await AiReceiptMatcher(client, localeCode: localeCode)
         .match(
           [
@@ -181,7 +190,7 @@ class ReceiptReviewController extends ChangeNotifier {
           ],
           [for (final p in planned) (id: p.id, name: p.name)],
         );
-    if (outcome == null) return false;
+    if (outcome == null || _disposed) return false;
     if (outcome.result is! AiOk) {
       aiProblem = outcome.result;
       return false;
@@ -212,7 +221,8 @@ class ReceiptReviewController extends ChangeNotifier {
           confidence: 'medium',
         ),
     ];
-    final matches = await ReceiptMatcher(_db).match(candidates, listId: listId);
+    final matches = await ReceiptMatcher(_db).match(candidates, listId: listId!);
+    if (_disposed) return;
     var changed = false;
     for (final (line, item, confidence) in matches) {
       if (confidence != 'high' || item == null) continue;
@@ -295,7 +305,7 @@ class ReceiptReviewController extends ChangeNotifier {
   /// Bağlılar planlanan ürüne, bağlantısızlar plansız ürün olarak yazılır
   /// (spec §6.9: onaydan önce veritabanı değişmez).
   Future<void>? _commitFuture;
-  Future<List<PurchaseEntry>> replacementEntries() =>
+  Future<List<PurchaseEntry>> replacementEntries() => listId == null ? Future.value([]) :
       (_db.select(_db.purchaseEntries)..where(
             (t) => t.plannedItemId.isIn(
               lines
@@ -312,12 +322,15 @@ class ReceiptReviewController extends ChangeNotifier {
         Error.throwWithStackTrace(error!, stack);
       });
 
-  Future<void> _commitOnce() => _db.transaction(() async {
+  Future<void> _commitOnce() async {
+    final committedId = await _db.transaction(() async {
     final accepted = lines
         .where((l) => l.status == ReviewStatus.accepted)
         .toList();
+    if (accepted.isEmpty) throw ArgumentError('Receipt has no accepted lines');
     final repo = ShoppingRepository(_db);
-    final list = await repo.getList(listId);
+    final committedListId = listId ?? await ListRepository(_db).createList(title: title, currencyCode: currencyCode);
+    final list = await repo.getList(committedListId);
     if (confirmedCurrency != null && confirmedCurrency != list.currencyCode) {
       throw ArgumentError('Receipt currency must match the list');
     }
@@ -330,7 +343,7 @@ class ReceiptReviewController extends ChangeNotifier {
       final item = await (_db.select(
         _db.plannedItems,
       )..where((t) => t.id.equals(id))).getSingleOrNull();
-      if (item == null || item.listId != listId) {
+      if (item == null || item.listId != committedListId) {
         throw ArgumentError('Receipt item must belong to its list');
       }
       linked[id] = item;
@@ -345,7 +358,7 @@ class ReceiptReviewController extends ChangeNotifier {
         quantity = quantity.negated();
       }
       await repo.recordPurchase(
-        listId: listId,
+        listId: committedListId,
         plannedItemId: line.linkedPlannedItemId,
         name: line.name,
         normalizedName: line.isDiscount && quantity.isZero
@@ -358,7 +371,11 @@ class ReceiptReviewController extends ChangeNotifier {
         replaceExisting: false,
       );
     }
-  });
+    if (listId == null) await repo.startShopping(committedListId);
+    return committedListId;
+    });
+    listId = committedId;
+  }
 
   DecimalFixed? _sumQty(DecimalFixed? a, DecimalFixed? b) {
     if (a == null) return b;
