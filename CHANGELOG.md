@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.4] — 2026-10-09
+
+- Her satırda "Tahmini" ve "Gerçek" etiketleri yazılı (iki etiketli satır)
+
 ## [1.1.3] — 2026-10-09
 
 - Liste ve alışveriş ekranında her satırda tahmini ↔ gerçek fiyat ve fark hep görünür

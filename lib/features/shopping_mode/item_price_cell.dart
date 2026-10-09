@@ -61,59 +61,78 @@ class ItemPriceCell extends StatelessWidget {
     final locale = formatLocaleCode(context);
     String money(int minor) =>
         formatMoney(Money.fromMinorUnits(minor, currency), locale: locale);
-    final muted = theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant);
+    final label = theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant);
+    final diff = prices.diffMinor;
 
-    final planned = Text(
-      prices.plannedMinor == null ? '—' : money(prices.plannedMinor!),
-      key: const Key('price_planned'),
-      style: muted,
-    );
+    // Etiketli iki satır (PB-062): "Tahmini ₺10" / "Gerçek ₺15 ↗+5"; her satır
+    // sığmazsa küçülür (71 dilde uzun etiketler).
+    Widget line(Widget child) => FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: AlignmentDirectional.centerEnd,
+          child: child,
+        );
 
-    Widget actual;
-    if (prices.hasActual) {
-      final diff = prices.diffMinor;
-      actual = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            money(prices.actualMinor!),
-            key: const Key('price_actual'),
-            style: theme.textTheme.titleSmall,
-          ),
-          if (diff != null && diff != 0) ...[
-            const SizedBox(width: 6),
-            _Diff(diff: diff, text: money(diff.abs())),
-          ],
-        ],
-      );
-    } else {
-      actual = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (onEnter != null)
-            IconButton(
-              key: const Key('price_enter'),
-              tooltip: l10n.actualPriceLabel,
-              visualDensity: VisualDensity.compact,
-              icon: const Icon(Icons.edit_outlined, size: 22),
-              onPressed: onEnter,
-            ),
-          if (onScan != null)
-            IconButton(
-              key: const Key('price_scan'),
-              tooltip: l10n.scanPriceLabel,
-              visualDensity: VisualDensity.compact,
-              icon: const Icon(Icons.photo_camera_outlined, size: 22),
-              onPressed: onScan,
-            ),
-        ],
-      );
-    }
-
-    return Column(
+    final planned = line(Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [planned, actual],
+      children: [
+        Text('${l10n.compareEstimated} ', style: label),
+        Text(
+          prices.plannedMinor == null ? '—' : money(prices.plannedMinor!),
+          key: const Key('price_planned'),
+          style: theme.textTheme.bodyMedium,
+        ),
+      ],
+    ));
+
+    final actual = line(Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text('${l10n.compareActual} ', style: label),
+        Text(
+          prices.hasActual ? money(prices.actualMinor!) : '—',
+          key: prices.hasActual ? const Key('price_actual') : const Key('price_actual_empty'),
+          style: theme.textTheme.titleSmall,
+        ),
+        if (diff != null && diff != 0) ...[
+          const SizedBox(width: 6),
+          _Diff(diff: diff, text: money(diff.abs())),
+        ],
+      ],
+    ));
+
+    // Gerçek fiyat girilmemişse düzenle/kamera düğmeleri yanında durur.
+    final buttons = <Widget>[
+      if (!prices.hasActual && onEnter != null)
+        IconButton(
+          key: const Key('price_enter'),
+          tooltip: l10n.actualPriceLabel,
+          visualDensity: VisualDensity.compact,
+          icon: const Icon(Icons.edit_outlined, size: 22),
+          onPressed: onEnter,
+        ),
+      if (!prices.hasActual && onScan != null)
+        IconButton(
+          key: const Key('price_scan'),
+          tooltip: l10n.scanPriceLabel,
+          visualDensity: VisualDensity.compact,
+          icon: const Icon(Icons.photo_camera_outlined, size: 22),
+          onPressed: onScan,
+        ),
+    ];
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ...buttons,
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 150),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [planned, actual],
+          ),
+        ),
+      ],
     );
   }
 }
