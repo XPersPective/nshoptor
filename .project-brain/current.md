@@ -17,6 +17,7 @@
 - PB-064 input acceptance: 93 voice/receipt/wiring/form checks and server9 passed, analyze0; single-item voice metadata/line-total approval covered. User explicitly retained the current Qwen Token account for this revision; provider replacement deferred (PB-065).
 - PB-077 (2026-10-10): appRouteObserver includes modal sheets; canonical list reads keepAwake preference, selected control reflects native success, releases on covering route/pause/dispose, restores on pop/resume. Nested AdGate ownership preserved. 86 domain passed, analyze0; native Android flag still PB-069.
 - PB-079: DecimalFixed.toMinorUnits uses checked int.parse at native signed storage boundary; large products no longer silently clamp. Overflow preview/save preserve manual input and replacement keeps existing purchase/observation. Full354 passed, analyze0.
+- PB-080 country defaults BG→EUR, BY→BYN(2 digits); existing BGN remains readable and stored user choices unchanged. Official ECB/NBRB/CBR facts verified; money50 passed, analyze0.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -74,10 +75,7 @@ over sqlite (ADR-001).
 - `core/calc/`: LineCalc, EffectSplit (price/quantity effect separation),
   ListCalc, VarianceThreshold (%10 OR 200 minor).
 - `core/l10n/`: 71 ARB + generated AppLocalizations (`l10n.yaml`); PB-072 ortak hata/onay/PDF/istatistik metinlerini bütün dillere ekler. Anahtar/placeholder/İngilizce fallback kontrolü testlidir; çeviriler insan dil denetimi değildir.
-- `core/theme/`: AppTheme (M3, seed 0xFF0B8457), premium görsel katman
-  (kademeli tipografi ağırlıkları, stadium butonlar, 14r girişler, 16r
-  kartlar, alt sayfa tutamacı, FadeForwards geçişler), SemanticDelta
-  (WCAG AA checked).
+- `core/theme/`: M3 AppTheme (seed 0xFF0B8457), SemanticDelta (WCAG AA checked), responsive premium widgets.
 - `core/util/`: normalizeName (Unicode harf/rakam korunur, Türkçe katlama), combineLatest3 (no rxdart).
 ### Data
 
@@ -170,7 +168,6 @@ google_mlkit_text_recognition 0.17.1, image_picker,
 path_provider, flutter_local_notifications 22.3.1, timezone, wakelock_plus,
 share_plus, file_picker.
 
-Historical device evidence (2026-10-03/04): 259 unit/widget + 3 integration, release APK 97.8 MB; five tabs, Pro gate/paywall, live test banner, theme/format, launcher icon, notification after reboot and receipt market_tr_1.png OCR. That APK's 1.0.0 label is historical; current source/version/checks are above.
 
 ## Known Unknowns
 

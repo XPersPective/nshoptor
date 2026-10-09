@@ -58,6 +58,7 @@ class Currency {
     'CZK': Currency._('CZK', 2, 'Kč', ambiguousSymbol: false),
     'HUF': Currency._('HUF', 2, 'Ft', ambiguousSymbol: false),
     'RON': Currency._('RON', 2, 'lei', ambiguousSymbol: false),
+    'BYN': Currency._('BYN', 2, null, ambiguousSymbol: false),
     'BGN': Currency._('BGN', 2, 'лв', ambiguousSymbol: false),
     'RUB': Currency._('RUB', 2, '₽', ambiguousSymbol: false),
     'UAH': Currency._('UAH', 2, '₴', ambiguousSymbol: false),

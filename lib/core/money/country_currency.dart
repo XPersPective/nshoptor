@@ -2,7 +2,7 @@
 /// Tabloda olmayan ülke `null` döner; çağıran dil/USD'ye düşer.
 const _byCountry = <String, String>{
   'TR': 'TRY', 'US': 'USD', 'GB': 'GBP', 'JP': 'JPY', 'CH': 'CHF', 'SE': 'SEK', 'NO': 'NOK', 'DK': 'DKK',
-  'PL': 'PLN', 'CZ': 'CZK', 'HU': 'HUF', 'RO': 'RON', 'BG': 'BGN', 'RU': 'RUB', 'BY': 'RUB', 'UA': 'UAH',
+  'PL': 'PLN', 'CZ': 'CZK', 'HU': 'HUF', 'RO': 'RON', 'BG': 'EUR', 'RU': 'RUB', 'BY': 'BYN', 'UA': 'UAH',
   'AZ': 'AZN', 'KZ': 'KZT', 'CN': 'CNY', 'IN': 'INR', 'ID': 'IDR', 'MY': 'MYR', 'SG': 'SGD', 'KR': 'KRW',
   'TH': 'THB', 'VN': 'VND', 'PH': 'PHP', 'HK': 'HKD', 'TW': 'TWD', 'AU': 'AUD', 'NZ': 'NZD', 'CA': 'CAD',
   'MX': 'MXN', 'BR': 'BRL', 'AR': 'ARS', 'CL': 'CLP', 'CO': 'COP', 'PE': 'PEN', 'ZA': 'ZAR', 'EG': 'EGP',
