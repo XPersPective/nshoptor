@@ -1,5 +1,7 @@
 # NShoptor kullanıcı akışı incelemesi — 9 Ekim 2026
 
+Devir notu: Bu rapordaki kararlar ÖNERİDİR. Kullanıcı son talimatıyla yalnız plan istedi; uygulama denemeleri geri alındı. Başlangıç testi 295/295 yeşil. “Deleted” başlığı kaldırılması önerilen davranışları anlatır, kodda kaldırılmış olduklarını değil.
+
 ## Verdict: architecture fights the requirement, rewrite the offending layer
 
 ### Findings
@@ -46,3 +48,6 @@
 
 ## Kendime uygulanacak eleştiri promptu
 “Yeni bir düğme eklemeden önce kullanıcının evde liste oluşturma, markette plansız ürün ekleme, fotoğraf/sesle giriş, yarım alışveriş, fişle uzlaştırma, geri alma, geçmiş ve PDF senaryolarını kaynak koddan izle. Her iddianın file:line kanıtını yaz. Varsayımı başarı diye sunma. Aynı veri neden iki ekran/formda farklı davranıyor? Bilinmeyen fiyat nerede sıfır oluyor? Fiş ve tekrar dokunuş çift kayıt yaratıyor mu? Kullanıcı iptal edince veri değişiyor mu? Uzun ad, büyük metin, izin reddi, çevrimdışı ve farklı para birimi nasıl davranıyor? En küçük ortak düzeltmeyi seç; gerekli test kırmızıdan yeşile geçmeden bitti deme.”
+
+## Ek doğrulanmış mikrofon bulgusu
+Kurulu speech_to_text 7.5.0 lib/speech_to_text.dart:214 factory singleton; :313 initialize _initWorked ise callbackleri değiştirmeden döner. Uygulama stt_speech_service.dart her instance için yeni stream controller oluşturuyor. İkinci sheet eski error/status callbackine bağlı kalabilir. Bu somut yaşam döngüsü kusurudur; kullanıcının cihazındaki bütün mikrofon sorunlarının tek sebebi olduğu kanıtlanmadı. PB-064 bu sınırı ve cihaz testini içerir.

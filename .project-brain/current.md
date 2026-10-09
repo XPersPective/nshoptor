@@ -1,9 +1,15 @@
 # Current Architecture
-
+## 2026-10-09 kaynak denetimi
+- Mevcut sürüm pubspec.yaml: 1.1.4+6; aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
+- Bu oturum başında flutter test: 295 passed. Yeni hedefi karşılayan testler henüz yazılmadı.
+- Plan/market ekranları ayrı; ürün formu insert-only, UI silme eksik; home/history kartlarının bir kısmında onTap yok.
+- Fiş commit insert-only; recordPurchase replace adımları ortak transaction içinde değil. Mikrofon ikinci init callback yaşam döngüsü riski doğrulandı.
+- 71 ARB var; ilk kurulum country→currency main.dart içinde zaten var. Settings keepAwake listede okunmuyor.
+- Server mevcut varsayılan: free15/pro200/max1000, Qwen Token Plan. PDF özelliği yok. PB-062..069 yalnız hedef ve plan.
+- Kullanıcının sadece plan talebi üzerine deneme kodları tamamen geri alındı; bu bölüm yeni mimarinin uygulanmış olduğunu iddia etmez.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
-
 ## Map
 
 - `lib/main.dart` — boot: settings, Pro/Ads (napp_kit), DB, runApp
@@ -28,7 +34,6 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 shoptor)
 - `docs/store/` — gizlilik politikası, Play beyan taslakları
 - `server/` — Cloudflare Worker AI vekili (`nshoptor-api.devx8585.workers.dev`), D1 kota, Play doğrulama
-
 ## Runtime
 
 **Status:** VERIFIED
@@ -43,9 +48,7 @@ dil + tema + biçim-yereli (AppFormatLocale: dil'den BAĞIMSIZ, C-001)
 runApp'ten önce okunur. State: stream-based repositories +
 StatefulWidget; no external state framework. Persistence: drift 2.35
 over sqlite (ADR-001).
-
 ## Domains
-
 ### Core (para / birim / hesap / tema)
 
 **Status:** VERIFIED (structure), test counts STALE (from legacy audit record)
@@ -64,7 +67,6 @@ over sqlite (ADR-001).
   kartlar, alt sayfa tutamacı, FadeForwards geçişler), SemanticDelta
   (WCAG AA checked).
 - `core/util/`: normalizeName, combineLatest3 (no rxdart).
-
 ### Data
 
 **Status:** VERIFIED
@@ -76,7 +78,6 @@ PurchaseEntry, ProductMemory, ProductAlias, PriceObservation, Store, Category,
 Aisle, Receipt, ReceiptCandidateLine, Attachment, Reminder, AppSettings), FK
 cascade/set-null, PRAGMA foreign_keys, migration v0→v1, transaction rollback
 tested. Generated `app_database.g.dart` committed to repo (ADR-001).
-
 ### Features
 
 **Status:** VERIFIED (2026-10-03, PB-036..045 checkpoint)
@@ -135,7 +136,6 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   (AboutPage: açık kaynak/GPL-3.0), Lisanslar, Paylaş, Puan ver
   (napp_core); `settings/backup/` BackupRepository (13-table
   export/import, CSV export — CSV serbest).
-
 ### Platform shells & CI
 
 **Status:** VERIFIED
@@ -149,7 +149,6 @@ emülatör launcher kanıtı). cleartext off, backup rules, R8
 minify+shrink, key.properties imza, fat APK tüm ABI'ler. iOS: ertelendi
 (C-033). CI: analyze+test, gitleaks, release APK build. Uygulama
 gerçeğiyle yasal taslaklar (docs/store/) çapraz kontrolü tamam.
-
 ## External Dependencies
 
 per `pubspec.yaml` (HEAD): drift 2.35, drift_flutter, flutter_localizations,
@@ -165,7 +164,6 @@ BANNER bottom bar altında test-ad ile canlı (UMP gdprApplies:0),
 bildirim reboot sonrası panelde görüntülendi. Fiş korpusu:
 market_tr_1.txt ile parser/matcher; "domates kg"→"domates" yüksek
 güven.
-
 ## Known Unknowns
 
 - Voice: gerçek tanıma cihazda denenmedi (emülatörde platform tanıyıcı
@@ -174,14 +172,12 @@ güven.
   ve paywall fiyatı Crazy Penguin'de; apps.json besleme repo adresi
   bilinmiyor (docs/store/apps-json-entry.md).
 
-
 ## Yayın durumu (VERIFIED 2026-10-08)
 
 - Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.1.1 (3) completed (71 dil, PB-061), test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444.
 - Yayın kökü `D:\AppPublishingpps
 shoptor` (imza, kimlikler, 73 Play dili mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py` (+ `listing_extra.json`, `listing_translate.py`); toplu görsel `tool/store/capture_all.py`; uygulama çevirisi `tool/i18n/translate.py`. 71 uygulama dili (ARB), napp_pro/napp_ads kendi metinleri tr/en (diğerlerinde İngilizce). 1.1 mağaza metni/görselleri henüz Play'e yüklenmedi (üretime alırken `push_metadata`).
 - Ürünler: `nshoptor_pro`, `nshoptor_max` (abonelik), `com.crazypenguin.nshoptor.pro_lifetime` (ömür boyu reklamsız). Ödüllü reklam birimi app-ids.env'de (ADMOB_REWARDED_ANDROID).
-
 ### Server (AI vekili)
 
 **Status:** VERIFIED (2026-10-08, PB-048)
