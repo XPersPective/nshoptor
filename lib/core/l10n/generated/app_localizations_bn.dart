@@ -1089,4 +1089,7 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'বর্তমান Pro এবং Max সাবস্ক্রিপশনগুলি তাদের মাসিক AI অ্যালোয়েন্স বজায় রাখবে। নতুন অফারে ১০০ এবং ৩০০ রিকোয়েস্ট রয়েছে।';
+
+  @override
+  String get csvExportAction => 'CSV এক্সপোর্ট করুন';
 }

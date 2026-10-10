@@ -1094,4 +1094,7 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Mavjud Pro va Max obunalari o\'zlarining dastlabki oylik AI imkoniyatlarini saqlab qoladi. Yangi takliflar 100 va 300 so\'rovni o\'z ichiga oladi.';
+
+  @override
+  String get csvExportAction => 'CSV eksport qilish';
 }

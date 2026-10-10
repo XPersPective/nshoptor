@@ -360,5 +360,6 @@
   "voiceStopListening": "Dinlemeyi durdur",
   "keepAwakeFailed": "Ekran açık tutulamadı. Lütfen yeniden deneyin.",
   "purchaseHistoryHint": "Tüm tamamlanan alışverişler. İadeler toplamdan düşülür. Tarihler alışverişin tamamlanmasını gösterir. Ortalama aralık için tek alışveriş yeterli değildir.",
-  "planLegacyRights": "Mevcut Pro ve Max abonelikleri ilk aylık AI haklarını korur. Yeni teklifler 100 ve 300 istektir."
+  "planLegacyRights": "Mevcut Pro ve Max abonelikleri ilk aylık AI haklarını korur. Yeni teklifler 100 ve 300 istektir.",
+  "csvExportAction": "CSV dışa aktar"
 }

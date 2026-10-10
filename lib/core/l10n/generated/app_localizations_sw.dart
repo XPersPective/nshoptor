@@ -1091,4 +1091,7 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Usajili wa Pro na Max uliopo unaendelea kuwa na idadi ya maombi ya AI ya kila mwezi kama ilivyokuwepo. Oferta mpya zina maombi 100 na 300.';
+
+  @override
+  String get csvExportAction => 'Tunza CSV';
 }

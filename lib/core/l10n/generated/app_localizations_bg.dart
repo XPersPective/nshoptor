@@ -1092,4 +1092,7 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Съществуващите абонаменти Pro и Max запазват първоначалния месечен лимит за AI. Новите оферти предлагат 100 и 300 заявки.';
+
+  @override
+  String get csvExportAction => 'Експортиране на CSV';
 }

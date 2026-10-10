@@ -1085,4 +1085,7 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'اشتراک‌های Pro و Max موجود، سهمیه ماهانه AI اصلی خود را حفظ می‌کنند. پیشنهادهای جدید ۱۰۰ و ۳۰۰ درخواست دارند.';
+
+  @override
+  String get csvExportAction => 'خروجی CSV';
 }

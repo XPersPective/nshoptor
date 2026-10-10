@@ -1088,4 +1088,7 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Verðandi Pro og Max áskriftir halda upprunalega mánaðarlegu AI leyfi. Nýtilboðin hafa 100 og 300 beiðnir.';
+
+  @override
+  String get csvExportAction => 'Flytja út CSV';
 }

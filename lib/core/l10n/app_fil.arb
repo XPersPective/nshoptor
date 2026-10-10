@@ -339,5 +339,6 @@
   "voiceStopListening": "Itigil ang pakinggan",
   "keepAwakeFailed": "Hindi maaaring panatilihing gising ang screen. Subukan ulit.",
   "purchaseHistoryHint": "Lahat ng natapos na pagbili. Binabawasan ng mga return ang kabuuan. Ang mga petsa ay tumutukoy sa pagkumpleto ng pagbili. Isa lang ang bisita, hindi sapat para kalkulahin ang average interval.",
-  "planLegacyRights": "Ang mga existing na Pro at Max subscription ay pananatili ang kanilang orihinal na buwanang AI allowance. Ang mga bagong offer ay may 100 at 300 requests."
+  "planLegacyRights": "Ang mga existing na Pro at Max subscription ay pananatili ang kanilang orihinal na buwanang AI allowance. Ang mga bagong offer ay may 100 at 300 requests.",
+  "csvExportAction": "I-export ang CSV"
 }

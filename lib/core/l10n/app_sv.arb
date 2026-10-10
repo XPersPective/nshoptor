@@ -339,5 +339,6 @@
   "voiceStopListening": "Sluta lyssna",
   "keepAwakeFailed": "Det gick inte att hålla skärmen vaken. Försök igen.",
   "purchaseHistoryHint": "Alla genomförda shoppingar. Returer minskar totalbeloppet. Datum avser när shoppingen slutfördes. Ett besök räcker inte för att beräkna ett genomsnittligt intervall.",
-  "planLegacyRights": "Befintliga Pro- och Max-prenumerationer behåller sin ursprungliga månatliga AI-begränsning. Nya erbjudanden har 100 och 300 förfrågningar."
+  "planLegacyRights": "Befintliga Pro- och Max-prenumerationer behåller sin ursprungliga månatliga AI-begränsning. Nya erbjudanden har 100 och 300 förfrågningar.",
+  "csvExportAction": "Exportera CSV"
 }

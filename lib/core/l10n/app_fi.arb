@@ -339,5 +339,6 @@
   "voiceStopListening": "Lopeta kuuntelu",
   "keepAwakeFailed": "Näytön pysyminen päällä epäonnistui. Yritä uudelleen.",
   "purchaseHistoryHint": "Kaikki valmiit kaupat. Palautukset vähentävät kokonaissummaa. Päivämäärät viittaavat ostosten suorittamiseen. Yksi käynti ei riitä keskimääräisen väliajan laskemiseen.",
-  "planLegacyRights": "Olemassa olevat Pro- ja Max-tilaukset säilyttävät alkuperäisen kuukausittaisen AI-käyttöoikeuden. Uudet tarjoukset sisältävät 100 ja 300 pyyntöä."
+  "planLegacyRights": "Olemassa olevat Pro- ja Max-tilaukset säilyttävät alkuperäisen kuukausittaisen AI-käyttöoikeuden. Uudet tarjoukset sisältävät 100 ja 300 pyyntöä.",
+  "csvExportAction": "Vie CSV"
 }

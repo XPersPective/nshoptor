@@ -1088,4 +1088,7 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'არსებული Pro და Max სუბსკრიფციები ინარჩუნებენ თავდაპირველ თვიურ AI ლიმიტს. ახალი შეთავაზებები გვთავაზობს 100 და 300 მოთხოვნას.';
+
+  @override
+  String get csvExportAction => 'CSV-ის ექსპორტი';
 }

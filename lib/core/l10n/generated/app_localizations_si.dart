@@ -1088,4 +1088,7 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'පවතින Pro සහ Max ගාස්තුදායක සඳුදාලිත මාසික AI ඉඩකඩ පවත්වා ගනී. නව වට්ටම් 100 සහ 300 ඉල්ලීම් ඇතුළත් වේ.';
+
+  @override
+  String get csvExportAction => 'CSV අපනයනය කරන්න';
 }

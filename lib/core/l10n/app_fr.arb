@@ -339,5 +339,6 @@
   "voiceStopListening": "Arrêter l'écoute",
   "keepAwakeFailed": "Impossible de maintenir l'écran allumé. Veuillez réessayer.",
   "purchaseHistoryHint": "Tous les achats terminés. Les retours réduisent les totaux. Les dates correspondent à la fin des courses. Une seule visite ne suffit pas pour calculer un intervalle moyen.",
-  "planLegacyRights": "Les abonnements Pro et Max existants conservent leur quota mensuel d'IA initial. Les nouvelles offres proposent 100 et 300 requêtes."
+  "planLegacyRights": "Les abonnements Pro et Max existants conservent leur quota mensuel d'IA initial. Les nouvelles offres proposent 100 et 300 requêtes.",
+  "csvExportAction": "Exporter en CSV"
 }

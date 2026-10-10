@@ -1092,4 +1092,7 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Langganan Pro dan Max sedia ada mengekalkan had bulanan AI asal. Tawaran baharu mempunyai 100 dan 300 permintaan.';
+
+  @override
+  String get csvExportAction => 'Eksport CSV';
 }

@@ -1095,4 +1095,7 @@ class AppLocalizationsTl extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Ang mga existing na Pro at Max subscription ay pananatili ang kanilang orihinal na buwanang AI allowance. Ang mga bagong offer ay may 100 at 300 requests.';
+
+  @override
+  String get csvExportAction => 'I-export ang CSV';
 }

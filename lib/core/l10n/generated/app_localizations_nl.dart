@@ -1093,4 +1093,7 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Bestaande Pro- en Max-abonnementen behouden hun oorspronkelijke maandelijkse AI-toelage. Nieuwe aanbiedingen bieden 100 en 300 verzoeken.';
+
+  @override
+  String get csvExportAction => 'CSV exporteren';
 }

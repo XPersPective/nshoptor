@@ -339,5 +339,6 @@
   "voiceStopListening": "Misa ukuzwa",
   "keepAwakeFailed": "Ayikwazanga ukugcina isikrini sivulekile. Sicela uzame futhi.",
   "purchaseHistoryHint": "Konke ukuthenga okuphelelwe. Ukubuyisela kunciphisa amanani. Izinsuku zibhekisela ekupheleni kokuthenga. Isivakashi esisodwa asikwanele ukubala isikhathi esijwayelekile.",
-  "planLegacyRights": "Izibhalo zikaPro neMax ezikhona ziyagcina ukuvumelana kwe-AI kwangenyanga okwakuqala. Izinketho ezintsha zinamaphuzu angu-100 no-300."
+  "planLegacyRights": "Izibhalo zikaPro neMax ezikhona ziyagcina ukuvumelana kwe-AI kwangenyanga okwakuqala. Izinketho ezintsha zinamaphuzu angu-100 no-300.",
+  "csvExportAction": "Thumela i-CSV"
 }

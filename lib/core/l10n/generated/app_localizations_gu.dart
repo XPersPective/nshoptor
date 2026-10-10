@@ -1087,4 +1087,7 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'મوجودાદ Pro અને Max સબ્સ્ક્રિપ્શન તેમની મૂળ માસિક AI અલોવન્સ જાળવી રાખે છે. નવા ઓફરમાં 100 અને 300 રિક્વેસ્ટ્સ છે.';
+
+  @override
+  String get csvExportAction => 'CSV નિકાસ કરો';
 }

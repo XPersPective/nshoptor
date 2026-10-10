@@ -339,5 +339,6 @@
   "voiceStopListening": "Stop med at lytte",
   "keepAwakeFailed": "Skærmen kunne ikke holdes vågen. Prøv venligst igen.",
   "purchaseHistoryHint": "Alle gennemførte indkøb. Tilbageleveringer reducerer totalen. Datoerne refererer til afslutning af indkøbet. Et enkelt besøg er ikke nok til at beregne et gennemsnitligt interval.",
-  "planLegacyRights": "Eksisterende Pro- og Max-abonnementer beholder deres oprindelige månedlige AI-tilladelse. Nye tilbud har 100 og 300 anmodninger."
+  "planLegacyRights": "Eksisterende Pro- og Max-abonnementer beholder deres oprindelige månedlige AI-tilladelse. Nye tilbud har 100 og 300 anmodninger.",
+  "csvExportAction": "Eksporter CSV"
 }

@@ -339,5 +339,6 @@
   "voiceStopListening": "Eshitishni to'xtatish",
   "keepAwakeFailed": "Ekran yorug'ligini ushlab turishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.",
   "purchaseHistoryHint": "Barcha yakunlangan xaridlar. Qaytarishlar umumiy summani kamaytiradi. Sana xarid tugatilgan kunini bildiradi. O'rtacha oraliqni hisoblash uchun bitta tashrif yetarli emas.",
-  "planLegacyRights": "Mavjud Pro va Max obunalari o'zlarining dastlabki oylik AI imkoniyatlarini saqlab qoladi. Yangi takliflar 100 va 300 so'rovni o'z ichiga oladi."
+  "planLegacyRights": "Mavjud Pro va Max obunalari o'zlarining dastlabki oylik AI imkoniyatlarini saqlab qoladi. Yangi takliflar 100 va 300 so'rovni o'z ichiga oladi.",
+  "csvExportAction": "CSV eksport qilish"
 }

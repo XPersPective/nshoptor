@@ -339,5 +339,6 @@
   "voiceStopListening": "Pārtraukt klausīšanos",
   "keepAwakeFailed": "Neizdevās noturēt ekrānu aktīvu. Lūdzu, mēģiniet vēlreiz.",
   "purchaseHistoryHint": "Visi pabeigtie iepirkumi. Atgrieztie produkti samazina kopējos izdevumus. Datumi attiecas uz iepirkumu pabeigšanas brīdi. Viena apmeklējuma nav pietiekami, lai aprēķinātu vidējo intervālu.",
-  "planLegacyRights": "Esošajām Pro un Max abonementiem saglabājas sākotnējais mēneša AI pieprasījumu limits. Jaunajiem piedāvājumiem ir 100 un 300 pieprasījumi."
+  "planLegacyRights": "Esošajām Pro un Max abonementiem saglabājas sākotnējais mēneša AI pieprasījumu limits. Jaunajiem piedāvājumiem ir 100 un 300 pieprasījumi.",
+  "csvExportAction": "Eksportēt CSV"
 }

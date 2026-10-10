@@ -1088,4 +1088,7 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Stávající předplatné Pro a Max si zachovávají původní měsíční limit AI požadavků. Nové nabídky mají 100 a 300 požadavků.';
+
+  @override
+  String get csvExportAction => 'Exportovat CSV';
 }

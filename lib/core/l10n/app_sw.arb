@@ -339,5 +339,6 @@
   "voiceStopListening": "Simamisha kusikiliza",
   "keepAwakeFailed": "Haikuweza kushikilia skrini ikiwa imewaka. Tafadhali jaribu tena.",
   "purchaseHistoryHint": "Mambo yote ya kununua yaliyokamilika. Kurudisha bidhaa hupunguza jumla. Tarehe zinahusu kukamilika kwa ununuzi. Ziara moja si ya kutosha kuhesabu muda wa wastani.",
-  "planLegacyRights": "Usajili wa Pro na Max uliopo unaendelea kuwa na idadi ya maombi ya AI ya kila mwezi kama ilivyokuwepo. Oferta mpya zina maombi 100 na 300."
+  "planLegacyRights": "Usajili wa Pro na Max uliopo unaendelea kuwa na idadi ya maombi ya AI ya kila mwezi kama ilivyokuwepo. Oferta mpya zina maombi 100 na 300.",
+  "csvExportAction": "Tunza CSV"
 }

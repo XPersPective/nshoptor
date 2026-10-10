@@ -339,5 +339,6 @@
   "voiceStopListening": "Dejar de escuchar",
   "keepAwakeFailed": "No se pudo mantener la pantalla encendida. Inténtalo de nuevo.",
   "purchaseHistoryHint": "Todas las compras completadas. Las devoluciones reducen los totales. Las fechas se refieren a la finalización de la compra. Una sola visita no es suficiente para calcular un intervalo promedio.",
-  "planLegacyRights": "Las suscripciones Pro y Max existentes mantienen su cuota mensual original de IA. Las nuevas ofertas incluyen 100 y 300 solicitudes."
+  "planLegacyRights": "Las suscripciones Pro y Max existentes mantienen su cuota mensual original de IA. Las nuevas ofertas incluyen 100 y 300 solicitudes.",
+  "csvExportAction": "Exportar CSV"
 }

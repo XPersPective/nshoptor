@@ -1089,4 +1089,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Existing Pro and Max subscriptions keep their original monthly AI allowance. New offers have 100 and 300 requests.';
+
+  @override
+  String get csvExportAction => 'Export CSV';
 }

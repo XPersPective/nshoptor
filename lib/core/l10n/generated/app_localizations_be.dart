@@ -1092,4 +1092,7 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Дзеючыя падпіскі Pro і Max захоўваюць свае першапачатковыя месячныя ліміты на запыты AI. Новыя прапановы маюць 100 і 300 запытаў.';
+
+  @override
+  String get csvExportAction => 'Экспарт CSV';
 }

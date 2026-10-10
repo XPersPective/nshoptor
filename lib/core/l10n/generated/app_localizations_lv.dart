@@ -1091,4 +1091,7 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Esošajām Pro un Max abonementiem saglabājas sākotnējais mēneša AI pieprasījumu limits. Jaunajiem piedāvājumiem ir 100 un 300 pieprasījumi.';
+
+  @override
+  String get csvExportAction => 'Eksportēt CSV';
 }

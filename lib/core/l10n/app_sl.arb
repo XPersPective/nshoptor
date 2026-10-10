@@ -339,5 +339,6 @@
   "voiceStopListening": "Ustavi poslušanje",
   "keepAwakeFailed": "Zaslon ni ostal vklopljen. Poskusite znova.",
   "purchaseHistoryHint": "Vsa zaključena nakupovanja. Vrnitve zmanjšajo skupne vsote. Datumi se nanašajo na datum zaključka nakupa. En obisk ni dovolj za izračun povprečnega intervala.",
-  "planLegacyRights": "Obstoječe naročnine Pro in Max ohranjajo svoj prvotni mesečni obseg AI zahtevkov. Nova ponudba vključuje 100 in 300 zahtevkov."
+  "planLegacyRights": "Obstoječe naročnine Pro in Max ohranjajo svoj prvotni mesečni obseg AI zahtevkov. Nova ponudba vključuje 100 in 300 zahtevkov.",
+  "csvExportAction": "Izvozi CSV"
 }

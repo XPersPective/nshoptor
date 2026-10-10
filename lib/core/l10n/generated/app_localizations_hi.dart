@@ -1092,4 +1092,7 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'मौजूदा Pro और Max सब्सक्रिप्शन अपनी मूल मासिक AI अनुमति बनाए रखेंगी। नई ऑफ़र्स में 100 और 300 अनुरोध शामिल हैं।';
+
+  @override
+  String get csvExportAction => 'CSV निर्यात करें';
 }

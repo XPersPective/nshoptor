@@ -1092,4 +1092,7 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'ಹಳೆಯ Pro ಮತ್ತು Max ಸದಸ್ಯತ್ವಗಳು ಅವುಗಳ ಮೂಲ ತಿಂಪಿನ AI ಅನುಮತಿಯನ್ನು ಕಾಯ್ದಿರಿಸುತ್ತವೆ. ಹೊಸ ಆಫರ್‌ಗಳು 100 ಮತ್ತು 300 ಬಾರಿಗಳನ್ನು ನೀಡುತ್ತವೆ.';
+
+  @override
+  String get csvExportAction => 'CSV ರಫ್ತು';
 }

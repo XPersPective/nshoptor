@@ -1088,4 +1088,7 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Langganan Pro dan Max yang sudah ada tetap mempertahankan kuota AI bulanan aslinya. Penawaran baru memiliki 100 dan 300 permintaan.';
+
+  @override
+  String get csvExportAction => 'Ekspor CSV';
 }

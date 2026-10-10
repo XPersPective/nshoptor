@@ -1094,4 +1094,7 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Olemassa olevat Pro- ja Max-tilaukset säilyttävät alkuperäisen kuukausittaisen AI-käyttöoikeuden. Uudet tarjoukset sisältävät 100 ja 300 pyyntöä.';
+
+  @override
+  String get csvExportAction => 'Vie CSV';
 }

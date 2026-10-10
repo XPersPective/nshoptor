@@ -1088,4 +1088,7 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Obstoječe naročnine Pro in Max ohranjajo svoj prvotni mesečni obseg AI zahtevkov. Nova ponudba vključuje 100 in 300 zahtevkov.';
+
+  @override
+  String get csvExportAction => 'Izvozi CSV';
 }

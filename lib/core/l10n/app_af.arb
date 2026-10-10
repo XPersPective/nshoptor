@@ -339,5 +339,6 @@
   "voiceStopListening": "Stop met luister",
   "keepAwakeFailed": "Kon nie die skerm wakker hou nie. Probeer asseblief weer.",
   "purchaseHistoryHint": "Alle voltooide inkopies. Terugbetalings verminder die totale bedrae. Datums verwys na die voltooiing van die inkopies. Een besoek is nie genoeg om 'n gemiddelde interval te bereken nie.",
-  "planLegacyRights": "Bestaande Pro- en Max-abonnemente behou hul oorspronklike maandelikse AI-toelaag. Nuwe aanbiedings het 100 en 300 versoeke."
+  "planLegacyRights": "Bestaande Pro- en Max-abonnemente behou hul oorspronklike maandelikse AI-toelaag. Nuwe aanbiedings het 100 en 300 versoeke.",
+  "csvExportAction": "Eksporteer CSV"
 }

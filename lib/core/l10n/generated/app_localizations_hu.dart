@@ -1091,4 +1091,7 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'A meglévő Pro és Max előfizetések megőrzik az eredeti havi AI keretüket. Az új ajánlatok 100 és 300 kérést tartalmaznak.';
+
+  @override
+  String get csvExportAction => 'CSV export';
 }

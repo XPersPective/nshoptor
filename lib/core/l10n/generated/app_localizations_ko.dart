@@ -1062,4 +1062,7 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get planLegacyRights =>
       '기존 Pro 및 Max 구독은 원래 월간 AI 할당량을 유지합니다. 새로운 요금제는 각각 100회와 300회의 요청을 제공합니다.';
+
+  @override
+  String get csvExportAction => 'CSV 내보내기';
 }

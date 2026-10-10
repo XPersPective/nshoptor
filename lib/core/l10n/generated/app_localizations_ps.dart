@@ -1086,4 +1086,7 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'شته پرو او مکس سبسکریپشنونه خپل اصلي میاشتنۍ AI اجازه ساتي. نوي وړاندیزونه ۱۰۰ او ۳۰۰ غوښتنې لري.';
+
+  @override
+  String get csvExportAction => 'CSV صادر کړئ';
 }

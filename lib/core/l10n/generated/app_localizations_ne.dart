@@ -1091,4 +1091,7 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'पुराना Pro र Max सब्सक्रिप्शनहरूले आफ्नो मूल मासिक AI अनुमति जोगाउँछन्। नयाँ अफरहरूमा १०० र ३०० अनुरोधहरू छन्।';
+
+  @override
+  String get csvExportAction => 'CSV निर्यात गर्नुहोस्';
 }

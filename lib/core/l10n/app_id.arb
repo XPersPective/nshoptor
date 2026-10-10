@@ -339,5 +339,6 @@
   "voiceStopListening": "Berhenti mendengarkan",
   "keepAwakeFailed": "Layar tidak dapat tetap menyala. Silakan coba lagi.",
   "purchaseHistoryHint": "Semua belanja yang sudah selesai. Pengembalian barang mengurangi total. Tanggal mengacu pada penyelesaian belanja. Satu kunjungan tidak cukup untuk menghitung interval rata-rata.",
-  "planLegacyRights": "Langganan Pro dan Max yang sudah ada tetap mempertahankan kuota AI bulanan aslinya. Penawaran baru memiliki 100 dan 300 permintaan."
+  "planLegacyRights": "Langganan Pro dan Max yang sudah ada tetap mempertahankan kuota AI bulanan aslinya. Penawaran baru memiliki 100 dan 300 permintaan.",
+  "csvExportAction": "Ekspor CSV"
 }

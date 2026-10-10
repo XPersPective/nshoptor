@@ -16,9 +16,7 @@ void main() {
     backup = BackupRepository(db);
   });
 
-  tearDown(() async {
-    // round-trip testi close sonrası da doğrulama yapabilir.
-  });
+  tearDown(() => db.close());
 
   Future<int> seedOneList() async {
     final listId = await db.into(db.shoppingLists).insert(
@@ -150,6 +148,45 @@ void main() {
   });
 
   group('CSV ve paylaşım metni (spec §6.14)', () {
+    test('CSV preserves signed minor units and quotes formula-like text', () {
+      for (final (currency, minor, expected) in [
+        ('TRY', -50, '-0.50'), ('TRY', -123, '-1.23'),
+        ('KWD', -1, '-0.001'), ('JPY', -1, '-1'),
+        ('TRY', -9223372036854775808, '-92233720368547758.08'),
+      ]) {
+        final result = ListResult(currencyCode: currency, plannedTotalMinor: 0,
+          actualTotalMinor: minor, unplannedTotalMinor: 0, unpurchasedPlannedMinor: 0,
+          totalDiscountMinor: 0, variancePercent: null, accuracy: null, rows: [
+            ItemResultRow(name: '=1+2,"quoted"\r\nline', plannedQuantity: null,
+              actualQuantity: null, plannedUnitPrice: null, actualUnitPrice: null,
+              plannedLineTotalMinor: 0, actualLineTotalMinor: minor,
+              lineVarianceMinor: minor, variancePercent: null, discountMinor: 0,
+              groups: {}, notTaken: false, isUnplanned: false, userConfirmed: true),
+          ]);
+        final csv = listResultToCsv(result);
+        expect(csv, contains(',$expected,$expected,'));
+        expect(csv, contains('"\t=1+2,""quoted""\r\nline"'));
+      }
+    });
+
+    test('CSV distinguishes absent actual/comparison from genuine zero', () {
+      for (final (known, notTaken, unplanned, expected) in [
+        (false, false, false, ',,,""'), (true, true, false, ',,,""'),
+        (true, false, true, ',,0.00,,""'), (true, false, false, ',,0.00,0.00,""'),
+      ]) {
+        final result = ListResult(currencyCode: 'TRY', plannedTotalMinor: 0,
+          actualTotalMinor: 0, unplannedTotalMinor: 0, unpurchasedPlannedMinor: 0,
+          totalDiscountMinor: 0, variancePercent: null, accuracy: null, rows: [
+            ItemResultRow(name: 'sample', plannedQuantity: null, actualQuantity: null,
+              plannedUnitPrice: null, actualUnitPrice: null, plannedLineTotalMinor: 0,
+              actualLineTotalMinor: 0, lineVarianceMinor: 0, variancePercent: null,
+              discountMinor: 0, groups: {}, notTaken: notTaken, isUnplanned: unplanned,
+              userConfirmed: true, actualKnown: known),
+          ]);
+        expect(listResultToCsv(result), contains(expected));
+      }
+    });
+
     test('CSV başlık + satır üretir; virgüllü ad tırnaklanır', () async {
       final listId = await db.into(db.shoppingLists).insert(
             ShoppingListsCompanion.insert(currencyCode: 'TRY'),
@@ -196,7 +233,9 @@ void main() {
       final text = summaryToShareText(result);
       expect(text, contains('NShoptor'));
       expect(text, contains('Planlanan: ₺15.00'));
-      expect(text, contains('Gercek: ₺0.00'));
+      expect(text, contains('Gercek: —'));
+      expect(text, contains('Fark: —'));
+      expect(text, contains('Alinmayan plan: ₺15.00'));
     });
   });
 }

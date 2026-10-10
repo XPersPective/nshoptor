@@ -339,5 +339,6 @@
   "voiceStopListening": "Dừng nghe",
   "keepAwakeFailed": "Không thể giữ màn hình luôn sáng. Vui lòng thử lại.",
   "purchaseHistoryHint": "Tất cả các lần mua sắm đã hoàn tất. Việc trả hàng sẽ làm giảm tổng chi tiêu. Ngày tháng đề cập đến thời điểm hoàn tất mua sắm. Một lần đi mua không đủ để tính khoảng cách trung bình giữa các lần.",
-  "planLegacyRights": "Các gói đăng ký Pro và Max hiện tại sẽ giữ nguyên hạn mức AI hàng tháng ban đầu. Các ưu đãi mới có 100 và 300 yêu cầu."
+  "planLegacyRights": "Các gói đăng ký Pro và Max hiện tại sẽ giữ nguyên hạn mức AI hàng tháng ban đầu. Các ưu đãi mới có 100 và 300 yêu cầu.",
+  "csvExportAction": "Xuất CSV"
 }

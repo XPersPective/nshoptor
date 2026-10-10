@@ -1092,4 +1092,7 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Pro eta Max azkenaldiko harpidetzaileek haien hasierako hilabetero AI eskaera kopurua mantentzen dute. Eskaintza berriek 100 eta 300 eskaera dituzte.';
+
+  @override
+  String get csvExportAction => 'Esportatu CSV';
 }

@@ -1088,4 +1088,7 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Befintliga Pro- och Max-prenumerationer behåller sin ursprungliga månatliga AI-begränsning. Nya erbjudanden har 100 och 300 förfrågningar.';
+
+  @override
+  String get csvExportAction => 'Exportera CSV';
 }

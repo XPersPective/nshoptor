@@ -1094,4 +1094,7 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'As subscricións Pro e Max existentes manteñen a súa asignación mensual orixinal de IA. As novas ofertas inclúen 100 e 300 solicitudes.';
+
+  @override
+  String get csvExportAction => 'Exportar CSV';
 }

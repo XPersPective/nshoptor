@@ -1092,4 +1092,7 @@ class AppLocalizationsMk extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Постоечтите Pro и Max претплати ги задржуваат оригиналните месечни AI дозволи. Новите понуди имаат 100 и 300 барања.';
+
+  @override
+  String get csvExportAction => 'Извези CSV';
 }

@@ -1089,4 +1089,7 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Eksisterende Pro- og Max-abonnementer beholder deres oprindelige månedlige AI-tilladelse. Nye tilbud har 100 og 300 anmodninger.';
+
+  @override
+  String get csvExportAction => 'Eksporter CSV';
 }

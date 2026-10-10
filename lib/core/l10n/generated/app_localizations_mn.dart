@@ -1094,4 +1094,7 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Одоо байгаа Pro болон Max захиалгууд анхны сар бүрийн AI хязгаарлалтаа хадгална. Шинэ сануултууд 100 ба 300 хүсэлт агуулна.';
+
+  @override
+  String get csvExportAction => 'CSV экспортлох';
 }

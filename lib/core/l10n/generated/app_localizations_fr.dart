@@ -1095,4 +1095,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Les abonnements Pro et Max existants conservent leur quota mensuel d\'IA initial. Les nouvelles offres proposent 100 et 300 requêtes.';
+
+  @override
+  String get csvExportAction => 'Exporter en CSV';
 }

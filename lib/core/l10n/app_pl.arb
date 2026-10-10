@@ -339,5 +339,6 @@
   "voiceStopListening": "Zatrzymaj słuchanie",
   "keepAwakeFailed": "Nie udało się utrzymać włączonego ekranu. Spróbuj ponownie.",
   "purchaseHistoryHint": "Wszystkie zakończone zakupy. Zwroty zmniejszają całkowite kwoty. Daty odnoszą się do ukończenia zakupów. Jedna wizyta nie wystarczy, aby obliczyć średni interwał.",
-  "planLegacyRights": "Istniejące subskrypcje Pro i Max zachowują pierwotny miesięczny limit AI. Nowe oferty mają 100 i 300 zapytań."
+  "planLegacyRights": "Istniejące subskrypcje Pro i Max zachowują pierwotny miesięczny limit AI. Nowe oferty mają 100 i 300 zapytań.",
+  "csvExportAction": "Eksportuj CSV"
 }

@@ -1093,4 +1093,7 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Abonamentele Pro și Max existente își păstrează alocarea lunară originală de AI. Ofertele noi au 100 și 300 de solicitări.';
+
+  @override
+  String get csvExportAction => 'Exportare CSV';
 }

@@ -339,5 +339,6 @@
   "voiceStopListening": "Zastaviť počúvanie",
   "keepAwakeFailed": "Nepodarilo sa udržať obrazovku zapnutú. Skúste to prosím znova.",
   "purchaseHistoryHint": "Všetky dokončené nákupy. Vrátenie tovaru znižuje celkové sumy. Dáty sa vzťahujú na dokončenie nákupu. Na výpočet priemerného intervalu nestačí jeden nákup.",
-  "planLegacyRights": "Existujúce predplatné Pro a Max si zachovávajú pôvodný mesačný limit AI požiadaviek. Nové ponuky majú 100 a 300 požiadaviek."
+  "planLegacyRights": "Existujúce predplatné Pro a Max si zachovávajú pôvodný mesačný limit AI požiadaviek. Nové ponuky majú 100 a 300 požiadaviek.",
+  "csvExportAction": "Exportovať CSV"
 }

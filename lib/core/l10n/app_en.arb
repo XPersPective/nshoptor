@@ -401,5 +401,6 @@
   "voiceStopListening": "Stop listening",
   "keepAwakeFailed": "Could not keep the screen awake. Please try again.",
   "purchaseHistoryHint": "All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval.",
-  "planLegacyRights": "Existing Pro and Max subscriptions keep their original monthly AI allowance. New offers have 100 and 300 requests."
+  "planLegacyRights": "Existing Pro and Max subscriptions keep their original monthly AI allowance. New offers have 100 and 300 requests.",
+  "csvExportAction": "Export CSV"
 }

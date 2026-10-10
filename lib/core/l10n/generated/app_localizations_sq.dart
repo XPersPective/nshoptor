@@ -1093,4 +1093,7 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Abonimet ekzistuese Pro dhe Max ruajnë lejen mujore origjinale të AI. Ofertat e reja kanë 100 dhe 300 kërkesa.';
+
+  @override
+  String get csvExportAction => 'Eksporto CSV';
 }

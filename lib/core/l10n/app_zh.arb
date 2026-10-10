@@ -339,5 +339,6 @@
   "voiceStopListening": "停止聆听",
   "keepAwakeFailed": "无法保持屏幕常亮，请重试。",
   "purchaseHistoryHint": "所有已完成的购物。退货会减少总额。日期指的是购物完成时间。一次购物不足以计算平均间隔。",
-  "planLegacyRights": "现有的 Pro 和 Max 订阅保留其原有的每月 AI 使用额度。新套餐分别提供 100 次和 300 次请求。"
+  "planLegacyRights": "现有的 Pro 和 Max 订阅保留其原有的每月 AI 使用额度。新套餐分别提供 100 次和 300 次请求。",
+  "csvExportAction": "导出 CSV"
 }

@@ -339,5 +339,6 @@
   "voiceStopListening": "Hören stoppen",
   "keepAwakeFailed": "Bildschirm konnte nicht wach gehalten werden. Bitte versuchen Sie es erneut.",
   "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückgaben reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.",
-  "planLegacyRights": "Bestehende Pro- und Max-Abonnements behalten ihre ursprüngliche monatliche AI-Nutzung. Neue Angebote bieten 100 bzw. 300 Anfragen."
+  "planLegacyRights": "Bestehende Pro- und Max-Abonnements behalten ihre ursprüngliche monatliche AI-Nutzung. Neue Angebote bieten 100 bzw. 300 Anfragen.",
+  "csvExportAction": "CSV exportieren"
 }

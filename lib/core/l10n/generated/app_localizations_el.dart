@@ -1092,4 +1092,7 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Οι υπάρχουσες συνδρομές Pro και Max διατηρούν το αρχικό μηνιαίο όριο χρήσης AI. Οι νέες προσφορές παρέχουν 100 και 300 αιτήματα.';
+
+  @override
+  String get csvExportAction => 'Εξαγωγή CSV';
 }

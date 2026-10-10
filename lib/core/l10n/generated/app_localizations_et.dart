@@ -1088,4 +1088,7 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Olemasolevad Pro ja Max tellimused säilitavad oma algse igakuise AI luba. Uued pakkumised sisaldavad 100 ja 300 päringut.';
+
+  @override
+  String get csvExportAction => 'Ekspordi CSV';
 }

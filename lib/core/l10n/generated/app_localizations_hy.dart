@@ -1093,4 +1093,7 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Գոյություն ունեցող Pro և Max բաժանորդագրությունները պահպանում են իրենց սկզբնական ամսական AI հնարավորությունները։ Նոր առաջարկներն ունեն 100 և 300 հարցումներ։';
+
+  @override
+  String get csvExportAction => 'Արտահանել CSV';
 }

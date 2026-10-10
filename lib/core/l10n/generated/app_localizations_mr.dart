@@ -1088,4 +1088,7 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'अस्तित्वात असलेल्या Pro आणि Max सबस्क्रिप्शन्स त्यांचे मूळ मासिक AI अलाउंस ठेवतात. नवीन ऑफर्समध्ये 100 आणि 300 विनंत्या आहेत.';
+
+  @override
+  String get csvExportAction => 'CSV एक्सपोर्ट करा';
 }

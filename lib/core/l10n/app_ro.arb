@@ -339,5 +339,6 @@
   "voiceStopListening": "Oprește ascultarea",
   "keepAwakeFailed": "Nu s-a putut menține ecranul activ. Te rugăm să încerci din nou.",
   "purchaseHistoryHint": "Toate cumpărăturile finalizate. Returnările reduc totalurile. Datele se referă la finalizarea cumpărăturilor. O singură vizită nu este suficientă pentru a calcula un interval mediu.",
-  "planLegacyRights": "Abonamentele Pro și Max existente își păstrează alocarea lunară originală de AI. Ofertele noi au 100 și 300 de solicitări."
+  "planLegacyRights": "Abonamentele Pro și Max existente își păstrează alocarea lunară originală de AI. Ofertele noi au 100 și 300 de solicitări.",
+  "csvExportAction": "Exportare CSV"
 }

@@ -1092,4 +1092,7 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Mövcud Pro və Max abunəlikləri ilkin aylıq AI limitini saxlayır. Yeni təkliflər 100 və 300 sorğu ilə gəlir.';
+
+  @override
+  String get csvExportAction => 'CSV ixracat et';
 }

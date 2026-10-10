@@ -1,6 +1,9 @@
 import '../../../core/money/format_locale.dart';
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/money/currency.dart';
@@ -11,12 +14,13 @@ import '../../../core/theme/semantic_colors.dart';
 import 'compare_table.dart';
 import 'result_repository.dart';
 import 'pdf_report.dart';
+import '../../settings/backup/csv_export.dart';
 
 /// Alışveriş bitiş/sonuç ekranı (spec §6.11).
 ///
 /// [items] boş değilse tamamlama öncesi uyarı gösterilir: engellemez,
 /// açıklayıcıdır (spec: tamamlamayı engellemek yerine uyar).
-class SummaryScreen extends StatelessWidget {
+class SummaryScreen extends StatefulWidget {
   const SummaryScreen({
     super.key,
     required this.repository,
@@ -31,12 +35,43 @@ class SummaryScreen extends StatelessWidget {
   final int unpurchasedCount;
 
   @override
+  State<SummaryScreen> createState() => _SummaryScreenState();
+}
+
+class _SummaryScreenState extends State<SummaryScreen> {
+  bool _exportingCsv = false;
+
+  Future<void> _exportCsv() async {
+    if (_exportingCsv) return;
+    final l10n = AppLocalizations.of(context);
+    setState(() => _exportingCsv = true);
+    try {
+      final result = await widget.repository.db.transaction(() => widget.repository.compute(widget.listId));
+      if (!mounted) return;
+      final csv = listResultToCsv(result, headers: [l10n.compareItem, l10n.plannedQtyLabel,
+        l10n.plannedUnitPriceLabel, l10n.actualQtyLabel, l10n.actualUnitPriceLabel,
+        l10n.compareActual, l10n.compareDiff, l10n.detailsSection]);
+      await FilePicker.saveFile(dialogTitle: l10n.csvExportAction,
+        fileName: 'NShoptor-${Currency.fromCode(result.currencyCode).code}.csv',
+        mimeType: 'text/csv',
+        bytes: Uint8List.fromList(utf8.encode('\uFEFF$csv')));
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
+          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1)));
+      }
+    } finally {
+      if (mounted) setState(() => _exportingCsv = false);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.resultTitle), actions: [PdfReportButton(db: repository.db, listId: listId)]),
+      appBar: AppBar(title: Text(l10n.resultTitle), actions: [PdfReportButton(db: widget.repository.db, listId: widget.listId)]),
       body: FutureBuilder<ListResult>(
-        future: repository.compute(listId),
+        future: widget.repository.compute(widget.listId),
         builder: (context, snapshot) {
           final result = snapshot.data;
           if (result == null) {
@@ -45,7 +80,7 @@ class SummaryScreen extends StatelessWidget {
           return ListView(
             padding: const EdgeInsets.all(12),
             children: [
-              if (unverifiedCount > 0 || unpurchasedCount > 0)
+              if (widget.unverifiedCount > 0 || widget.unpurchasedCount > 0)
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.all(12),
@@ -71,6 +106,9 @@ class SummaryScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 children: [
+                  TextButton.icon(key: const Key('summary_csv_export'),
+                    onPressed: _exportingCsv ? null : _exportCsv,
+                    icon: const Icon(Icons.table_chart_outlined), label: Text(l10n.csvExportAction)),
                   for (final row in result.rows)
                     _ItemResultTile(result: result, row: row),
                 ],
@@ -187,14 +225,15 @@ class _Row extends StatelessWidget {
         children: [
           Expanded(child: Text(label)),
           ?icon,
-          Text(
+          Flexible(child: Text(
             value,
+            textAlign: TextAlign.end,
             style: TextStyle(
               color: valueColor,
               fontWeight: FontWeight.w600,
               fontFeatures: const [],
             ),
-          ),
+          )),
         ],
       ),
     );

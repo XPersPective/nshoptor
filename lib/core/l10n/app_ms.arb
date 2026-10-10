@@ -339,5 +339,6 @@
   "voiceStopListening": "Berhenti mendengar",
   "keepAwakeFailed": "Gagal mengekalkan skrin aktif. Sila cuba lagi.",
   "purchaseHistoryHint": "Semua pembelian selesai. Pulangan mengurangkan jumlah. Tarikh merujuk kepada siapnya pembelian. Satu lawatan tidak cukup untuk mengira purata selang.",
-  "planLegacyRights": "Langganan Pro dan Max sedia ada mengekalkan had bulanan AI asal. Tawaran baharu mempunyai 100 dan 300 permintaan."
+  "planLegacyRights": "Langganan Pro dan Max sedia ada mengekalkan had bulanan AI asal. Tawaran baharu mempunyai 100 dan 300 permintaan.",
+  "csvExportAction": "Eksport CSV"
 }

@@ -1079,4 +1079,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'تحتفظ اشتراكات Pro و Max الحالية بحدودها الشهرية الأصلية لاستخدام الذكاء الاصطناعي. العروض الجديدة توفر 100 و300 طلب.';
+
+  @override
+  String get csvExportAction => 'تصدير CSV';
 }

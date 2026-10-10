@@ -1090,4 +1090,7 @@ class AppLocalizationsHr extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Postojeće Pro i Max pretplate zadržavaju izvorni mjesečni AI limit. Nove ponude imaju 100 i 300 zahtjeva.';
+
+  @override
+  String get csvExportAction => 'Izvoz CSV';
 }

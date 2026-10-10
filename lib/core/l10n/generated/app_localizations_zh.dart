@@ -1055,4 +1055,7 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get planLegacyRights =>
       '现有的 Pro 和 Max 订阅保留其原有的每月 AI 使用额度。新套餐分别提供 100 次和 300 次请求。';
+
+  @override
+  String get csvExportAction => '导出 CSV';
 }

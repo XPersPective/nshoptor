@@ -1088,4 +1088,7 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'موجودہ Pro اور Max سبسکرپشنز اپنی اصل ماہانہ AI اجازت برقرار رکھیں گی۔ نئے آفرز میں 100 اور 300 درخواستیں شامل ہیں۔';
+
+  @override
+  String get csvExportAction => 'CSV برآمد کریں';
 }

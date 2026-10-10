@@ -1089,4 +1089,7 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'നിലവിലുള്ള Pro, Max സബ്‌സ്ക്രിപ്ഷനുകൾ അവയുടെ യഥാർത്ഥ മാസിക AI അലോവൻസ് നിലനിർത്തുന്നു. പുതിയ ഓഫറുകളിൽ 100 ഉം 300 ഉം ആവശ്യങ്ങളുണ്ട്.';
+
+  @override
+  String get csvExportAction => 'CSV എക്സ്പോർട്ട് ചെയ്യുക';
 }

@@ -1093,4 +1093,7 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'ရှိပြီးသား Pro နှင့် Max ဆက်တိုက်ဝယ်ယူသူများသည် မူလ လစဉ် AI အခွင့်အရေးကို ဆက်လက်ရရှိမည်။ အသစ်ထွက်ရှိသော ပေးချေမှုပုံစံများတွင် တောင်းဆိုမှု ၁၀၀ နှင့် ၃၀၀ ပါဝင်သည်။';
+
+  @override
+  String get csvExportAction => 'CSV ထုတ်ယူရန်';
 }

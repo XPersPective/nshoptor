@@ -1089,4 +1089,7 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'ਪੁਰਾਣੇ Pro ਅਤੇ Max ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਆਪਣੀ ਮੂਲ ਮਹੀਨਾਵਾਰ AI ਅਲਾਉਂਸ ਰੱਖਦੇ ਹਨ। ਨਵੇਂ ਆਫ਼ਰਾਂ ਵਿੱਚ 100 ਅਤੇ 300 ਬੇਨਤੀਆਂ ਹਨ।';
+
+  @override
+  String get csvExportAction => 'CSV ਐਕਸਪੋਰਟ ਕਰੋ';
 }

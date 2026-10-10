@@ -339,5 +339,6 @@
   "voiceStopListening": "Ferma l'ascolto",
   "keepAwakeFailed": "Ecrin ei pysynyt päällä. Yritä uudelleen.",
   "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückerstattungen reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.",
-  "planLegacyRights": "Le abbonamenti Pro e Max esistenti mantengono il loro allowance mensile AI originale. Le nuove offerte prevedono 100 e 300 richieste."
+  "planLegacyRights": "Le abbonamenti Pro e Max esistenti mantengono il loro allowance mensile AI originale. Le nuove offerte prevedono 100 e 300 richieste.",
+  "csvExportAction": "Esporta CSV"
 }

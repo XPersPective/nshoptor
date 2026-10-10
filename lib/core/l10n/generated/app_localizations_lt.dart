@@ -1092,4 +1092,7 @@ class AppLocalizationsLt extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Esančios „Pro“ ir „Max“ prenumeracijos išlaiko savo pradinį mėnesinį AI leidimą. Naujose pasiūlymuose yra 100 ir 300 užklausų.';
+
+  @override
+  String get csvExportAction => 'Eksportuoti CSV';
 }

@@ -339,5 +339,6 @@
   "voiceStopListening": "Lõpeta kuulamine",
   "keepAwakeFailed": "Ekraani hoidmine ärkvelolekus ei õnnestunud. Palun proovi uuesti.",
   "purchaseHistoryHint": "Kõik lõpetatud ostud. Tagastused vähendavad kogusummasid. Kuupäevad viitavad ostu lõpetamise ajale. Üks külastus ei ole piisav keskmise intervalli arvutamiseks.",
-  "planLegacyRights": "Olemasolevad Pro ja Max tellimused säilitavad oma algse igakuise AI luba. Uued pakkumised sisaldavad 100 ja 300 päringut."
+  "planLegacyRights": "Olemasolevad Pro ja Max tellimused säilitavad oma algse igakuise AI luba. Uued pakkumised sisaldavad 100 ja 300 päringut.",
+  "csvExportAction": "Ekspordi CSV"
 }

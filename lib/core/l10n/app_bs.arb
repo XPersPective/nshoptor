@@ -339,5 +339,6 @@
   "voiceStopListening": "Prestani slušati",
   "keepAwakeFailed": "Nije moguće zadržati ekran aktivnim. Molimo pokušajte ponovo.",
   "purchaseHistoryHint": "Sva završena kupovna. Povratci smanjuju ukupne iznose. Datumi se odnose na završetak kupovine. Jedan posjet nije dovoljan za izračun prosječnog intervala.",
-  "planLegacyRights": "Postojeće Pro i Max pretplate zadržavaju svoj izvorni mjesečni AI limit. Nova ponuda uključuje 100 i 300 zahtjeva."
+  "planLegacyRights": "Postojeće Pro i Max pretplate zadržavaju svoj izvorni mjesečni AI limit. Nova ponuda uključuje 100 i 300 zahtjeva.",
+  "csvExportAction": "Izvezi CSV"
 }

@@ -339,5 +339,6 @@
   "voiceStopListening": "Dinləməni dayandır",
   "keepAwakeFailed": "Ekranı oyuda saxlamaq mümkün olmadı. Zəhmət olmasa, yenidən cəhd edin.",
   "purchaseHistoryHint": "Tamamlanmış bütün alış-verişlər. Qaytarmalar ümumi məbləği azaldır. Tarixlər alış-verişin tamamlanmasına aiddir. Bir ziyarət orta intervalı hesablamaq üçün kifayət deyil.",
-  "planLegacyRights": "Mövcud Pro və Max abunəlikləri ilkin aylıq AI limitini saxlayır. Yeni təkliflər 100 və 300 sorğu ilə gəlir."
+  "planLegacyRights": "Mövcud Pro və Max abunəlikləri ilkin aylıq AI limitini saxlayır. Yeni təkliflər 100 və 300 sorğu ilə gəlir.",
+  "csvExportAction": "CSV ixracat et"
 }

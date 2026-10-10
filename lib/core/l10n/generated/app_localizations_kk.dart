@@ -1088,4 +1088,7 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Ескі Pro және Max жазылымдары өздерінің айлық AI шектеуін сақтайды. Жаңа ұсыныстар 100 және 300 сұраныс береді.';
+
+  @override
+  String get csvExportAction => 'CSV экспорттау';
 }

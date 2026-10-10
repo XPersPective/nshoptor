@@ -1093,4 +1093,7 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Les subscripcions Pro i Max existents mantenen el seu permís mensual original d\'IA. Les noves ofertes tenen 100 i 300 peticions.';
+
+  @override
+  String get csvExportAction => 'Exportar CSV';
 }

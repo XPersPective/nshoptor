@@ -1086,4 +1086,7 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'การสมัครสมาชิก Pro และ Max ที่มีอยู่จะคงสิทธิ์ AI รายเดือนตามเดิม ข้อเสนอใหม่มี 100 และ 300 คำขอ';
+
+  @override
+  String get csvExportAction => 'ส่งออก CSV';
 }

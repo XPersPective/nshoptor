@@ -1091,4 +1091,7 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Existujúce predplatné Pro a Max si zachovávajú pôvodný mesačný limit AI požiadaviek. Nové ponuky majú 100 a 300 požiadaviek.';
+
+  @override
+  String get csvExportAction => 'Exportovať CSV';
 }

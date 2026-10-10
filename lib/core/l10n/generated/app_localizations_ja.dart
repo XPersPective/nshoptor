@@ -1059,4 +1059,7 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get planLegacyRights =>
       '既存のProおよびMaxサブスクリプションは、従来の月間AI利用枠を維持します。新しいオファーでは100件と300件のリクエストが提供されます。';
+
+  @override
+  String get csvExportAction => 'CSVをエクスポート';
 }

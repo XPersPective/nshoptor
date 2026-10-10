@@ -1085,4 +1085,7 @@ class AppLocalizationsLo extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'ສະມາຊິກ Pro ແລະ Max ທີ່ມີຢູ່ແລ້ວຈະຮັກສາຂອບເຂດ AI ໃນແຕ່ລະເດືອນຕາມເດີມ. ການສະເໜີໃໝ່ຈະມີ 100 ແລະ 300 ຄັ້ງ.';
+
+  @override
+  String get csvExportAction => 'ສົ່ງອອກ CSV';
 }

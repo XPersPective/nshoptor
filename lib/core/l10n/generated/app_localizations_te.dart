@@ -1096,4 +1096,7 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'ప్రస్తుత ప్రో మరియు మాక్స్ సబ్‌స్క్రిప్షన్లు వాటి అసలు నెలవారీ AI అనుమతిని కొనసాగిస్తాయి. కొత్త ఆఫర్లు 100 మరియు 300 అభ్యర్థనలతో ఉంటాయి.';
+
+  @override
+  String get csvExportAction => 'CSV ఎగుమతి';
 }

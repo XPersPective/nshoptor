@@ -1090,4 +1090,7 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Các gói đăng ký Pro và Max hiện tại sẽ giữ nguyên hạn mức AI hàng tháng ban đầu. Các ưu đãi mới có 100 và 300 yêu cầu.';
+
+  @override
+  String get csvExportAction => 'Xuất CSV';
 }

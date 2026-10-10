@@ -1091,4 +1091,7 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Istniejące subskrypcje Pro i Max zachowują pierwotny miesięczny limit AI. Nowe oferty mają 100 i 300 zapytań.';
+
+  @override
+  String get csvExportAction => 'Eksportuj CSV';
 }

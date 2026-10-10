@@ -339,5 +339,6 @@
   "voiceStopListening": "Ndalo dëgjimin",
   "keepAwakeFailed": "Nuk mund të mbahet e ndezur ekrani. Ju lutem, provoni përsëri.",
   "purchaseHistoryHint": "Të gjitha blerjet e përfunduara. Kthimet ulin totalin. Datat i referohen përfundimit të shitjes. Një vizitë nuk është mjaftueshme për të llogaritur një interval mesatar.",
-  "planLegacyRights": "Abonimet ekzistuese Pro dhe Max ruajnë lejen mujore origjinale të AI. Ofertat e reja kanë 100 dhe 300 kërkesa."
+  "planLegacyRights": "Abonimet ekzistuese Pro dhe Max ruajnë lejen mujore origjinale të AI. Ofertat e reja kanë 100 dhe 300 kërkesa.",
+  "csvExportAction": "Eksporto CSV"
 }

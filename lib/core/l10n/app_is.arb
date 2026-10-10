@@ -339,5 +339,6 @@
   "voiceStopListening": "Hætta að hlusta",
   "keepAwakeFailed": "Gat ekki haldið skjánum vakandi. Vinsamlegast reyndu aftur.",
   "purchaseHistoryHint": "Allar fullunnar innkaup. Endurheimt dregur úr heildarverði. Dagar vísa til lokunar innkaupa. Eitt ferð er ekki nóg til að reikna út meðalfjöldi.",
-  "planLegacyRights": "Verðandi Pro og Max áskriftir halda upprunalega mánaðarlegu AI leyfi. Nýtilboðin hafa 100 og 300 beiðnir."
+  "planLegacyRights": "Verðandi Pro og Max áskriftir halda upprunalega mánaðarlegu AI leyfi. Nýtilboðin hafa 100 og 300 beiðnir.",
+  "csvExportAction": "Flytja út CSV"
 }

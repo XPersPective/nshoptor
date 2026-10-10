@@ -1089,4 +1089,7 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Действующие подписки Pro и Max сохраняют свой исходный ежемесячный лимит запросов к ИИ. Новые предложения включают 100 и 300 запросов.';
+
+  @override
+  String get csvExportAction => 'Экспорт CSV';
 }

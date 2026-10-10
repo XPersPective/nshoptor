@@ -1091,4 +1091,7 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Існуючі підписки Pro і Max зберігають свій початковий місячний ліміт запитів до ШІ. Нові пропозиції передбачають 100 і 300 запитів.';
+
+  @override
+  String get csvExportAction => 'Експорт CSV';
 }

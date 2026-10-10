@@ -1098,4 +1098,7 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Izibhalo zikaPro neMax ezikhona ziyagcina ukuvumelana kwe-AI kwangenyanga okwakuqala. Izinketho ezintsha zinamaphuzu angu-100 no-300.';
+
+  @override
+  String get csvExportAction => 'Thumela i-CSV';
 }

@@ -1094,4 +1094,7 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Las suscripciones Pro y Max existentes mantienen su cuota mensual original de IA. Las nuevas ofertas incluyen 100 y 300 solicitudes.';
+
+  @override
+  String get csvExportAction => 'Exportar CSV';
 }

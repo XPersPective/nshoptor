@@ -1090,4 +1090,7 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Бардык Pro жана Max абонементтери өзүнүн айлык AI чектөөсүн сактайт. Жаңы сунуштар 100 жана 300 суранычты камтыйт.';
+
+  @override
+  String get csvExportAction => 'CSV экспорттоо';
 }

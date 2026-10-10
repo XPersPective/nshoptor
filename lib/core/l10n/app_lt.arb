@@ -339,5 +339,6 @@
   "voiceStopListening": "Nustoti klausytis",
   "keepAwakeFailed": "Nepavyko išlaikyti ekrano įjungto. Bandykite dar kartą.",
   "purchaseHistoryHint": "Visos užbaigtos pirkinių išvykos. Grąžinimai mažina bendras sumas. Datos nurodo pirkinių išvykų pabaigą. Viena išvyka nepakanka vidurkio intervalui apskaičiuoti.",
-  "planLegacyRights": "Esančios „Pro“ ir „Max“ prenumeracijos išlaiko savo pradinį mėnesinį AI leidimą. Naujose pasiūlymuose yra 100 ir 300 užklausų."
+  "planLegacyRights": "Esančios „Pro“ ir „Max“ prenumeracijos išlaiko savo pradinį mėnesinį AI leidimą. Naujose pasiūlymuose yra 100 ir 300 užklausų.",
+  "csvExportAction": "Eksportuoti CSV"
 }

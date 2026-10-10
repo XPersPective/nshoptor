@@ -1089,4 +1089,7 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Mevcut Pro ve Max abonelikleri ilk aylık AI haklarını korur. Yeni teklifler 100 ve 300 istektir.';
+
+  @override
+  String get csvExportAction => 'CSV dışa aktar';
 }

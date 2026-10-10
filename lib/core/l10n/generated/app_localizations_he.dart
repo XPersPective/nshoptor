@@ -1081,4 +1081,7 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'מנויים קיימים ל-Pro ול-Max שומרים על ההקצאה החודשית המקורית של ה-AI. ההצעות החדשות כוללות 100 ו-300 בקשות.';
+
+  @override
+  String get csvExportAction => 'ייצוא CSV';
 }

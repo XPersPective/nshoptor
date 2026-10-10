@@ -2275,6 +2275,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Existing Pro and Max subscriptions keep their original monthly AI allowance. New offers have 100 and 300 requests.'**
   String get planLegacyRights;
+
+  /// No description provided for @csvExportAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get csvExportAction;
 }
 
 class _AppLocalizationsDelegate

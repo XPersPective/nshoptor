@@ -1092,4 +1092,7 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'Le abbonamenti Pro e Max esistenti mantengono il loro allowance mensile AI originale. Le nuove offerte prevedono 100 e 300 richieste.';
+
+  @override
+  String get csvExportAction => 'Esporta CSV';
 }

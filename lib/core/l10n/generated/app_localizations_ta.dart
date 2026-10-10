@@ -1096,4 +1096,7 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get planLegacyRights =>
       'இருக்கும் Pro மற்றும் Max சந்தாக்கள் அவற்றின் அசல் மாதانه AI அனுமதியைத் தக்கவைத்துக் கொள்ளும். புதிய ஆஃபர்களில் 100 மற்றும் 300 கோரிக்கைகள் உள்ளன.';
+
+  @override
+  String get csvExportAction => 'CSV ஏற்றுமதி';
 }
