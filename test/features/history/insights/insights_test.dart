@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/history/insights/insights_repository.dart';
 import 'package:nshoptor/features/home/home_repository.dart';
+import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
+import 'package:nshoptor/core/money/decimal_fixed.dart';
 
 void main() {
   late AppDatabase db;
@@ -17,16 +19,6 @@ void main() {
 
   Future<int> taxonomyCategory() =>
       db.into(db.categories).insert(CategoriesCompanion.insert(name: 'manav'));
-
-  Future<void> memoryRecord(String name, String normalizedName,
-      {int useCount = 1}) =>
-      db.into(db.productMemory).insert(
-            ProductMemoryCompanion.insert(
-              canonicalName: name,
-              normalizedName: normalizedName,
-              useCount: Value(useCount),
-            ),
-          );
 
   Future<int> addItem(int listId, String name, int? plannedMinor,
       {int? categoryId}) async {
@@ -115,11 +107,11 @@ void main() {
   test('yetersiz veri: tamamlanan alışveriş yoksa tüm listeler boş', () async {
     expect(await repo.watchCompleted().first, isEmpty);
     expect(await repo.monthlyTotals(), isEmpty);
-    expect(await repo.spendingByCategory(), isEmpty);
-    expect(await repo.spendingByStore(), isEmpty);
-    expect(await repo.mostFrequentProducts(), isEmpty);
+    expect(await repo.spendingByCategory('TRY'), isEmpty);
+    expect(await repo.spendingByStore('TRY'), isEmpty);
+    expect(await repo.purchaseStats('TRY'), isEmpty);
     expect(await repo.biggestVariances(), isEmpty);
-    expect(await repo.unplannedTotal(), 0);
+    expect(await repo.unplannedTotal('TRY'), 0);
   });
 
   test('aylık toplamlar ay+para birimi bazında gruplanır', () async {
@@ -202,7 +194,7 @@ void main() {
     await addEntry(l, 'Domates', 5200, plannedItemId: domates);
     await addEntry(l, 'Poşet', 250); // plansız: kategori yok
 
-    final slices = await repo.spendingByCategory();
+    final slices = await repo.spendingByCategory('TRY');
     final manavSlice = slices.firstWhere((s) => s.label == 'manav');
     expect(manavSlice.actualMinor, 5200);
   });
@@ -216,19 +208,63 @@ void main() {
     final l2 = await makeCompletedList(title: 'Mağazasız');
     await addEntry(l2, 'Süt', 3200);
 
-    final slices = await repo.spendingByStore();
+    final slices = await repo.spendingByStore('TRY');
     final marketA = slices.firstWhere((s) => s.label == 'Market A');
     expect(marketA.actualMinor, 1500);
     final nullStore = slices.where((s) => s.label == null).fold<int>(0, (s, x) => s + x.actualMinor);
     expect(nullStore, 3200);
   });
 
-  test('en sık ürünler useCount sırasıyla', () async {
-    await memoryRecord('süt', 'süt', useCount: 3);
-    await memoryRecord('ekmek', 'ekmek', useCount: 5);
-    final frequent = await repo.mostFrequentProducts();
-    expect(frequent.first.name, 'ekmek');
-    expect(frequent.first.useCount, 5);
+  test('quantity and visits use actual completed confirmed purchases; returns and groups stay separate', () async {
+    final first = await makeCompletedList(completedAt: DateTime(2026, 1, 1));
+    final second = await makeCompletedList(completedAt: DateTime(2026, 1, 11));
+    final returned = await makeCompletedList(completedAt: DateTime(2026, 1, 21));
+    Future<void> entry(int list, String qty, String unit, int amount, {bool confirmed = true}) =>
+      db.into(db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(listId: list,
+        name: 'Tomatoes', normalizedName: 'tomatoes', actualQuantity: qty, actualUnitCode: unit,
+        actualLineTotalMinorUnits: amount, grossTotalMinorUnits: Value(amount), userConfirmed: Value(confirmed)));
+    await entry(first, '1.5', 'kilogram', 1500); await entry(first, '0.5', 'kilogram', 500);
+    await entry(second, '3', 'kilogram', 3000);
+    await entry(returned, '-1', 'kilogram', -1000);
+    await entry(first, '1', 'adet', 0); // free purchase counts a visit, old enum alias normalizes
+    await entry(first, '100', 'kilogram', 99999, confirmed: false);
+    final usd = await makeCompletedList(currency: 'USD'); await entry(usd, '9', 'kilogram', 900);
+    final active = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    await entry(active, '100', 'kilogram', 99999);
+    final groups = await repo.purchaseStats('TRY'); expect(groups, hasLength(2));
+    final kg = groups.singleWhere((p) => p.unitCode == 'kilogram');
+    expect(kg.quantity.toDbString(), '4.0'); expect(kg.actualMinor, 4000);
+    expect(kg.visits, hasLength(2)); expect(kg.intervalDays!.toDbString(), '10.00');
+    expect(kg.firstAt, DateTime(2026, 1, 1)); expect(kg.lastAt, DateTime(2026, 1, 11));
+    final piece = groups.singleWhere((p) => p.unitCode == 'piece');
+    expect(piece.quantity.toDbString(), '1'); expect(piece.visits, hasLength(1)); expect(piece.intervalDays, isNull);
+    expect((await repo.purchaseStats('USD')).single.quantity.toDbString(), '9');
+    final categories = await repo.purchaseStats('TRY', byCategory: true);
+    expect(categories.singleWhere((p) => p.unitCode == 'kilogram').quantity, kg.quantity);
+    expect((await repo.spendingByCategory('TRY')).fold<int>(0, (sum, s) => sum + s.actualMinor), 4000);
+    expect((await repo.spendingByStore('TRY')).single.actualMinor, 4000);
+  });
+
+  test('replacement does not inflate purchases; receipt discount stays in category spend only', () async {
+    final list = await makeCompletedList();
+    final category = await taxonomyCategory();
+    final item = await addItem(list, 'Milk', 2000, categoryId: category);
+    final shop = ShoppingRepository(db);
+    for (final qty in [2, 3]) {
+      await shop.recordPurchase(listId: list, plannedItemId: item, name: 'Milk', normalizedName: 'milk',
+        quantity: DecimalFixed.fromInt(qty), unitCode: 'kilogram', unitPrice: DecimalFixed.fromInt(10));
+    }
+    await shop.recordPurchase(listId: list, name: 'Discount', normalizedName: 'discount',
+      quantity: DecimalFixed.zero(), unitCode: 'piece', lineTotalMinor: -100, source: 'receiptOcr');
+    final stats = (await repo.purchaseStats('TRY')).single;
+    expect(stats.quantity.toDbString(), '3'); expect(stats.actualMinor, 3000);
+    expect(stats.visits, hasLength(1)); expect(stats.productId, isNotNull);
+    final categories = await repo.spendingByCategory('TRY');
+    expect(categories.singleWhere((s) => s.label == 'manav').actualMinor, 3000);
+    expect(categories.singleWhere((s) => s.label == 'other').actualMinor, -100);
+    expect(categories.fold<int>(0, (s, v) => s + v.actualMinor),
+      (await repo.completedSpend('TRY')).single.actualMinor);
+    expect((await repo.purchaseStats('TRY', byCategory: true)).single.quantity.toDbString(), '3');
   });
 
   test('en büyük tahmin sapmaları mutlak fark sırasıyla', () async {
@@ -245,6 +281,10 @@ void main() {
     expect(variances.first.varianceAbs, 1800);
     // sapması 0 olanlar da listede ama sonlarda
     expect(variances.last.name, 'Süt');
+    await addItem(l, 'Skipped', 99999);
+    await addEntry(l, 'Unknown part', 0, plannedItemId: domates);
+    final honest = await repo.biggestVariances();
+    expect(honest.map((v) => v.name), ['Ekmek', 'Süt']);
   });
 
   test('plan dışı harcama toplamı', () async {
@@ -254,6 +294,6 @@ void main() {
     await addEntry(l, 'Poşet', 250);
     await addEntry(l, 'Kibrit', 75);
 
-    expect(await repo.unplannedTotal(), 325);
+    expect(await repo.unplannedTotal('TRY'), 325);
   });
 }

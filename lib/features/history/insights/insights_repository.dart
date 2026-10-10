@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 
 import '../../../data/db/app_database.dart';
+import '../../../core/money/decimal_fixed.dart';
+import '../../../core/quantity/unit_code.dart';
 
 /// Aylık toplamlar (para birimi başına, spec §7.1: karışık para toplanmaz).
 class MonthlyBucket {
@@ -35,15 +37,20 @@ class SpendingSlice {
   final int actualMinor;
 }
 
-/// En sık alınan ürün.
-class FrequentProduct {
-  const FrequentProduct({
-    required this.name,
-    required this.useCount,
-  });
-
+/// Net purchases; visits use positive purchases, not receipt lines or edits.
+class PurchaseStats {
+  PurchaseStats({required this.name, required this.unitCode, this.productId});
   final String name;
-  final int useCount;
+  final String unitCode;
+  final int? productId;
+  DecimalFixed quantity = DecimalFixed.zero();
+  int actualMinor = 0;
+  final Map<int, DateTime> visits = {};
+  DateTime? get firstAt => visits.isEmpty ? null : visits.values.reduce((a, b) => a.isBefore(b) ? a : b);
+  DateTime? get lastAt => visits.isEmpty ? null : visits.values.reduce((a, b) => a.isAfter(b) ? a : b);
+  DecimalFixed? get intervalDays => visits.length < 2 ? null :
+    DecimalFixed.fromInt(lastAt!.difference(firstAt!).inSeconds)
+      .divide(DecimalFixed.fromInt((visits.length - 1) * 86400), scale: 2);
 }
 
 /// Tahmin sapması en büyük ürün satırı.
@@ -122,7 +129,7 @@ class InsightsRepository {
     comparedPlannedMinor: row.read<int>('compared_planned'), comparedActualMinor: row.read<int>('compared_actual')));
 
   /// Tamamlanan alışverişlerin kategori bazında gerçek harcaması.
-  Future<List<SpendingSlice>> spendingByCategory() {
+  Future<List<SpendingSlice>> spendingByCategory(String currencyCode) {
     return _db.customSelect(
       '''
       SELECT
@@ -132,10 +139,11 @@ class InsightsRepository {
       JOIN shopping_lists sl ON pe.list_id = sl.id
       LEFT JOIN planned_items pi ON pe.planned_item_id = pi.id
       LEFT JOIN categories c ON pi.category_id = c.id
-      WHERE sl.status = 'completed'
+      WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL AND pe.user_confirmed = 1 AND sl.currency_code = ?
       GROUP BY label
       ORDER BY total DESC
       ''',
+      variables: [Variable.withString(currencyCode)],
       readsFrom: {
         _db.purchaseEntries,
         _db.shoppingLists,
@@ -152,7 +160,7 @@ class InsightsRepository {
   }
 
   /// Mağaza bazında gerçek harcama; mağazasız alımlar null etiketlidir.
-  Future<List<SpendingSlice>> spendingByStore() {
+  Future<List<SpendingSlice>> spendingByStore(String currencyCode) {
     return _db.customSelect(
       '''
       SELECT
@@ -161,10 +169,11 @@ class InsightsRepository {
       FROM purchase_entries pe
       JOIN shopping_lists sl ON pe.list_id = sl.id
       LEFT JOIN stores s ON sl.store_id = s.id
-      WHERE sl.status = 'completed'
+      WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL AND pe.user_confirmed = 1 AND sl.currency_code = ?
       GROUP BY s.name
       ORDER BY total DESC
       ''',
+      variables: [Variable.withString(currencyCode)],
       readsFrom: {_db.purchaseEntries, _db.shoppingLists, _db.stores},
     ).get().then((rows) => [
           for (final row in rows)
@@ -175,17 +184,42 @@ class InsightsRepository {
         ]);
   }
 
-  /// En sık alınan ürünler.
-  Future<List<FrequentProduct>> mostFrequentProducts({int limit = 10}) {
-    return (_db.select(_db.productMemory)
-          ..where((t) => t.useCount.isBiggerThanValue(0))
-          ..orderBy([(t) => OrderingTerm.desc(t.useCount)])
-          ..limit(limit))
-        .get()
-        .then((rows) => [
-              for (final r in rows)
-                FrequentProduct(name: r.canonicalName, useCount: r.useCount),
-            ]);
+  Future<List<PurchaseStats>> purchaseStats(String currencyCode, {bool byCategory = false}) async {
+    final rows = await _db.customSelect(
+      '''SELECT pe.*, sl.completed_at AS completed_at,
+        COALESCE(c.name, 'other') AS category,
+        (SELECT pm.id FROM product_memory pm WHERE pm.normalized_name = pe.normalized_name LIMIT 1) AS product_id
+      FROM purchase_entries pe JOIN shopping_lists sl ON sl.id = pe.list_id
+      LEFT JOIN planned_items pi ON pi.id = pe.planned_item_id AND pi.list_id = pe.list_id
+      LEFT JOIN categories c ON c.id = pi.category_id
+      WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL
+        AND pe.user_confirmed = 1 AND sl.currency_code = ?
+      ORDER BY sl.completed_at, pe.id''',
+      variables: [Variable.withString(currencyCode)],
+      readsFrom: {_db.purchaseEntries, _db.shoppingLists, _db.plannedItems, _db.categories, _db.productMemory},
+    ).get();
+    final groups = <(String, String, int?), PurchaseStats>{};
+    for (final row in rows) {
+      final quantity = DecimalFixed.parse(row.read<String>('actual_quantity'));
+      if (quantity.isZero) continue; // global receipt discount, no product quantity
+      final storedUnit = row.read<String>('actual_unit_code');
+      final unit = UnitCode.values.where((u) => u.dbCode == storedUnit || u.name == storedUnit).firstOrNull;
+      final code = unit?.dbCode ?? storedUnit;
+      final label = row.read<String>(byCategory ? 'category' : 'name');
+      // ponytail: custom/unknown units have no stored label; keep entry-separated
+      // until a unit label exists in the schema rather than summing unlike measures.
+      final key = (row.read<String>(byCategory ? 'category' : 'normalized_name'), code,
+        unit == null || unit == UnitCode.custom ? row.read<int>('id') : null);
+      final group = groups.putIfAbsent(key, () => PurchaseStats(name: label, unitCode: code,
+        productId: byCategory ? null : row.readNullable<int>('product_id')));
+      group.quantity += quantity;
+      group.actualMinor = int.parse((BigInt.from(group.actualMinor) + BigInt.from(row.read<int>('actual_line_total_minor_units'))).toString());
+      if (quantity.isPositive) group.visits[row.read<int>('list_id')] = row.read<DateTime>('completed_at');
+    }
+    return groups.values.toList()..sort((a, b) {
+      final visits = b.visits.length.compareTo(a.visits.length);
+      return visits != 0 ? visits : a.name.compareTo(b.name);
+    });
   }
 
   /// Tahmin sapması en büyük ürünler: plan-gerçek satır farkı mutlak değeri
@@ -197,10 +231,14 @@ class InsightsRepository {
         pi.name AS name,
         COALESCE(pi.planned_line_total_minor_units, 0) AS planned,
         COALESCE((SELECT SUM(pe2.actual_line_total_minor_units)
-          FROM purchase_entries pe2 WHERE pe2.planned_item_id = pi.id), 0) AS actual
+          FROM purchase_entries pe2 WHERE pe2.planned_item_id = pi.id AND pe2.list_id = pi.list_id), 0) AS actual
       FROM planned_items pi
       JOIN shopping_lists sl ON pi.list_id = sl.id
-      WHERE sl.status = 'completed'
+      WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL
+        AND pi.planned_line_total_minor_units IS NOT NULL
+        AND EXISTS(SELECT 1 FROM purchase_entries p WHERE p.planned_item_id = pi.id AND p.list_id = pi.list_id)
+        AND NOT EXISTS(SELECT 1 FROM purchase_entries p WHERE p.planned_item_id = pi.id AND p.list_id = pi.list_id
+          AND p.gross_total_minor_units IS NULL AND p.actual_line_total_minor_units = 0 AND p.source != 'receiptOcr')
       ''',
       readsFrom: {_db.plannedItems, _db.purchaseEntries, _db.shoppingLists},
     ).get().then((rows) {
@@ -217,14 +255,15 @@ class InsightsRepository {
   }
 
   /// Plan dışı harcama toplamı (minor unit, tüm zamanlar).
-  Future<int> unplannedTotal() async {
+  Future<int> unplannedTotal(String currencyCode) async {
     final rows = await _db.customSelect(
       '''
       SELECT COALESCE(SUM(pe.actual_line_total_minor_units), 0) AS total
       FROM purchase_entries pe
       JOIN shopping_lists sl ON pe.list_id = sl.id
-      WHERE pe.planned_item_id IS NULL AND sl.status = 'completed'
+      WHERE pe.planned_item_id IS NULL AND sl.status = 'completed' AND sl.completed_at IS NOT NULL AND pe.user_confirmed = 1 AND sl.currency_code = ?
       ''',
+      variables: [Variable.withString(currencyCode)],
       readsFrom: {_db.purchaseEntries, _db.shoppingLists},
     ).get();
     return rows.single.read<int>('total');
@@ -238,7 +277,7 @@ class InsightsRepository {
       SELECT sl.id AS id, sl.completed_at AS completed_at,
              COALESCE(SUM(pe.actual_line_total_minor_units), 0) AS total
       FROM shopping_lists sl
-      LEFT JOIN purchase_entries pe ON pe.list_id = sl.id
+      LEFT JOIN purchase_entries pe ON pe.list_id = sl.id AND pe.user_confirmed = 1
       WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL
         AND sl.currency_code = ?
       GROUP BY sl.id

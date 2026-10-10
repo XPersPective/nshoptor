@@ -62,7 +62,7 @@ void main() {
           currencyCode: currency, status: const Value('completed'), completedAt: Value(at)));
     await db.into(db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(
           listId: id, name: 'x', normalizedName: 'x', actualQuantity: '1',
-          actualUnitCode: 'adet', actualLineTotalMinorUnits: minor));
+          actualUnitCode: 'adet', actualLineTotalMinorUnits: minor, userConfirmed: const Value(true)));
   }
 
   test('günlük, haftalık, aylık toplamlar; başka para birimi karışmaz', () async {
