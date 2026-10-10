@@ -1,7 +1,6 @@
 # Current Architecture
 ## 2026-10-09 kaynak denetimi
 - Mevcut sürüm pubspec.yaml: 1.1.4+6; aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
-- Devralma baseline: 295 passed; PB-063 sonrası 304 passed ve analyze 0. Diğer hedeflerin kabulü halen görevlerdedir.
 - PB-070 home/history/draft/completed tek ListDetailScreen açar; yeni liste editörü doğrudan açılır ve yeni kayıt detaya gider; ay kartı para kodunu korur. PB-071 form mevcut ID günceller; plan/gerçek bağımsız, kamera yalnız gerçek alanını doldurur, yazım atomic/hata görünür. Ortak removeItem bağlı alım/gözlemi kaldırır; PB-062 tek kanonik detayda satır CRUD, fiyat düzeltme, checkbox ve onaylı silme; ShoppingModeScreen uyumluluk kabuğudur.
 - PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. PB-074 oturum sahipliği ve geç callback korumasıyla mikrofon ikinci init riski kapatıldı.
 - PB-073 sonuç farkı yalnız bilinen tahmin+gerçek alımlardan; alınmayan/plansız ayrı. Bilinmeyen gerçek/tahmin —, ücretsiz 0 farklı; karma birim miktarı toplanmaz. Full suite 316 + son görünüm delta domain 20 passed; analyze 0.
@@ -20,6 +19,7 @@
 - PB-080 country defaults BG→EUR, BY→BYN(2 digits); existing BGN remains readable and stored user choices unchanged. Official ECB/NBRB/CBR facts verified; money50 passed, analyze0.
 - PB-078: all feature Snackbar callers replace queued messages and offer close; important errors remain until closed, Undo keeps native timeout/accessibility. Home assistant visibly busy; voice/assistant previews scroll with keyboard, voice actions wrap. Domain150+8 passed, analyze0.
 - PB-081: shared Insights monthly get/watch SQL aggregates purchases before plans; variance includes only known complete item comparisons, null without samples. Home reuses query and shows neutral —; spending/budget totals preserved, currency/local month separate. Home/history31 passed, analyze0.
+- PB-082 source: D1 batch reserves monthly/global together with conditional updates; paid identity SHA256 of verified token, legacy200/1000 retained, v2 policies supported. Canceled renewal valid through expiry. Stream byte bounds, task output ceilings, truncation/schema rejection and generic DB failure. Server21/full358/analyze0; live vars/deploy and replacement carry-forward remain PB-065.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -192,9 +192,9 @@ share_plus, file_picker.
 
 Cloudflare Worker `nshoptor-api` (workers.dev) + D1 `nshoptor`. `POST /v1/ai`
 görevleri `parse_list`, `match_receipt`, `read_label`; parse_list title/brand/category bounded metadata (PB-075); çıktı `tasks.js`'te
-şemaya göre temizlenir (bilinmeyen plan kimliği/birim atılır). Kota aylık
+şemaya göre temizlenir; eksik/kesik çıktı reddedilir (bilinmeyen kimlik/birim null). Source quota atomic batch, paid verified-token identity; live rollout PB-065. Kota aylık
 (free 15 / pro 200 / max 1000) + günlük global tavan; Pro/Max yalnız
 Play `subscriptionsv2` doğrulamasıyla (hata → free). Sağlayıcı OpenAI
 uyumlu; şu an Qwen Token Plan `qwen3.6-flash` (DeepSeek anahtarı gelince
-yalnız vars/secret değişir). Sırlar: `AI_KEY`, `GOOGLE_SA_JSON` (Worker
+yalnız vars/secret değişir; kullanıcı şimdilik Qwen hesabını korudu). Sırlar: `AI_KEY`, `GOOGLE_SA_JSON` (Worker
 secret; kaynak D:\AppPublishing). Testler: `cd server && npm test`.

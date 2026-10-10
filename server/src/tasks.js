@@ -18,8 +18,10 @@ const LOCALE_NOTE = locale =>
 
 export const TASKS = {
   parse_list: {
+    maxTokens: 4096,
     validate(input) {
-      const t = text(input?.text, 2000);
+      if (typeof input?.text !== 'string' || input.text.length > 2000) return null;
+      const t = text(input.text, 2000);
       return t ? { text: t } : null;
     },
     system: locale =>
@@ -34,7 +36,8 @@ export const TASKS = {
       'Never invent prices or brands. Use a short list title only if suggested by the input. Categories: produce, dairy, meat, bakery, drinks, cleaning, personalCare, home, other, or a user-specified custom category. Max 40 items. ' + LOCALE_NOTE(locale),
     user: input => input.text,
     clean(out) {
-      const items = Array.isArray(out?.items) ? out.items.slice(0, 40) : [];
+      if (!Array.isArray(out?.items) || out.items.length > 40 || out.items.some(i => !text(i?.name, 60))) throw new Error('invalid_items');
+      const items = out.items;
       return {
         title: text(out?.title, 80) || null,
         items: items
@@ -53,16 +56,20 @@ export const TASKS = {
   },
 
   match_receipt: {
+    maxTokens: 8192,
     validate(input) {
-      const lines = Array.isArray(input?.lines) ? input.lines.slice(0, 120) : [];
-      const planned = Array.isArray(input?.planned) ? input.planned.slice(0, 200) : [];
+      if (!Array.isArray(input?.lines) || input.lines.length > 120 || !Array.isArray(input.planned) || input.planned.length > 200) return null;
+      const lines = input.lines;
+      const planned = input.planned;
       const cleanLines = lines
         .map(l => ({ i: Number.isInteger(l?.i) ? l.i : -1, text: text(l?.text, 80), total: decimal(l?.total) }))
         .filter(l => l.i >= 0 && l.text);
       const cleanPlanned = planned
         .map(p => ({ id: Number.isInteger(p?.id) ? p.id : -1, name: text(p?.name, 60) }))
         .filter(p => p.id >= 0 && p.name);
-      return cleanLines.length && cleanPlanned.length ? { lines: cleanLines, planned: cleanPlanned } : null;
+      return cleanLines.length && cleanPlanned.length && cleanLines.length === lines.length && cleanPlanned.length === planned.length
+        && new Set(cleanLines.map(l => l.i)).size === lines.length && new Set(cleanPlanned.map(p => p.id)).size === planned.length
+        ? { lines: cleanLines, planned: cleanPlanned } : null;
     },
     system: locale =>
       'You match grocery receipt lines to the items the user planned. Receipt ' +
@@ -76,6 +83,7 @@ export const TASKS = {
       const lineIds = new Set(input.lines.map(l => l.i));
       const plannedIds = new Set(input.planned.map(p => p.id));
       const matches = Array.isArray(out?.matches) ? out.matches : [];
+      if (matches.length !== lineIds.size || new Set(matches.map(m => m?.i)).size !== lineIds.size || matches.some(m => !lineIds.has(m?.i))) throw new Error('incomplete_matches');
       const seen = new Set();
       return {
         matches: matches
@@ -91,8 +99,10 @@ export const TASKS = {
   },
 
   read_label: {
+    maxTokens: 512,
     validate(input) {
-      const t = text(input?.text, 1500);
+      if (typeof input?.text !== 'string' || input.text.length > 1500) return null;
+      const t = text(input.text, 1500);
       return t ? { text: t } : null;
     },
     system: locale =>
@@ -103,6 +113,7 @@ export const TASKS = {
       'with a dot. If unsure return null fields. ' + LOCALE_NOTE(locale),
     user: input => input.text,
     clean(out) {
+      if (!out || typeof out !== 'object' || Array.isArray(out) || !Object.hasOwn(out, 'price') || !Object.hasOwn(out, 'unitPrice')) throw new Error('invalid_label');
       return {
         productName: text(out?.productName, 60) || null,
         price: decimal(out?.price),

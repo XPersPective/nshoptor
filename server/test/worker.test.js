@@ -1,28 +1,12 @@
-import test from 'node:test';
+import test, { afterEach } from 'node:test';
+import { sqliteDb } from './sqlite_db.js';
 import assert from 'node:assert/strict';
 import { handleAi } from '../src/worker.js';
 import { tierFromSubscription, resolveTier } from '../src/play.js';
 
-// D1 yerine yalnız kullanılan ifadeleri anlayan bellek içi sahte.
-function fakeDb() {
-  const usage = new Map(); const global = new Map(); const cache = new Map();
-  const stmt = (sql, args = []) => ({
-    bind: (...a) => stmt(sql, a),
-    async first() {
-      if (sql.startsWith('SELECT count FROM usage')) return usage.has(args.join('|')) ? { count: usage.get(args.join('|')) } : null;
-      if (sql.startsWith('SELECT count FROM global_usage')) return global.has(args[0]) ? { count: global.get(args[0]) } : null;
-      if (sql.startsWith('SELECT tier')) return cache.get(args[0]) ?? null;
-      throw new Error('unexpected ' + sql);
-    },
-    async run() {
-      if (sql.startsWith('INSERT INTO usage')) usage.set(args.join('|'), (usage.get(args.join('|')) ?? 0) + 1);
-      else if (sql.startsWith('INSERT INTO global_usage')) global.set(args[0], (global.get(args[0]) ?? 0) + 1);
-      else if (sql.startsWith('INSERT INTO entitlement_cache')) cache.set(args[0], { tier: args[1], expires_at: args[2] });
-      else throw new Error('unexpected ' + sql);
-    },
-  });
-  return { prepare: sql => stmt(sql), async batch(list) { for (const s of list) await s.run(); }, usage };
-}
+const databases = [];
+afterEach(() => { for (const db of databases.splice(0)) db.sqlite.close(); });
+function fakeDb() { const db = sqliteDb(); databases.push(db); return db; }
 
 const env = () => ({
   DB: fakeDb(), AI_URL: 'https://ai.example', AI_KEY: 'k', AI_MODEL: 'm',
@@ -38,6 +22,8 @@ const aiReply = content => async () => new Response(JSON.stringify({ choices: [{
 test('geçersiz kurulum kimliği 400', async () => {
   const res = await handleAi(req({ installId: 'x', task: 'parse_list', input: { text: 'elma' } }), env());
   assert.equal(res.status, 400);
+  const array = await handleAi(req({ installId: [ID], task: 'parse_list', input: { text: 'milk' } }), env());
+  assert.equal(array.status, 400);
 });
 
 test('büyük gövde 413', async () => {
@@ -118,4 +104,72 @@ test('parse_list preserves bounded title/brand/category and unit-price meaning',
   assert.equal(result.items[1].brand, null); assert.equal(result.items[1].category.length, 60);
   assert.equal(result.items[1].quantity, null); assert.equal(result.items[1].estimatedPrice, null);
   assert.equal(result.items[1].priceIsUnitPrice, false);
+});
+
+const valid = { installId: ID, task: 'parse_list', input: { text: 'milk' } };
+const reserved = e => e.DB.sqlite.prepare('SELECT SUM(count) AS total FROM global_usage').get().total ?? 0;
+
+test('chunked UTF8 body is byte-bounded; invalid and oversized input never reserve', async () => {
+  const e = env();
+  const encoded = new TextEncoder().encode(JSON.stringify({ ...valid, input: { text: 'é'.repeat(9000) } }));
+  const stream = new ReadableStream({ start(controller) {
+    for (let i = 0; i < encoded.length; i += 1024) controller.enqueue(encoded.slice(i, i + 1024));
+    controller.close();
+  } });
+  const chunked = new Request('https://x/v1/ai', { method: 'POST', body: stream, duplex: 'half' });
+  assert.equal((await handleAi(chunked, e)).status, 413);
+  for (const body of [ { ...valid, task: '__proto__' }, { ...valid, input: { text: 'x'.repeat(2001) } },
+    { ...valid, task: 'match_receipt', input: { lines: Array(121).fill({ i: 0, text: 'x' }), planned: [{ id: 1, name: 'x' }] } } ]) {
+    assert.equal((await handleAi(req(body), e)).status, 400);
+  }
+  assert.equal(reserved(e), 0);
+});
+
+test('missing provider and failing DB fail closed without upstream call', async () => {
+  const e = env(); let calls = 0;
+  const fetchImpl = async () => { calls++; throw new Error('must not call'); };
+  e.AI_KEY = '';
+  assert.equal((await handleAi(req(valid), e, { fetchImpl })).status, 503);
+  assert.equal(reserved(e), 0);
+  e.AI_KEY = 'test';
+  e.DB.batch = async () => { throw new Error('private database details'); };
+  const failed = await handleAi(req(valid), e, { fetchImpl });
+  assert.equal(failed.status, 503); assert.deepEqual(await failed.json(), { error: 'busy' });
+  assert.equal(calls, 0);
+});
+
+test('accepted provider failure consumes one reservation; truncated valid JSON is never success', async () => {
+  for (const finish_reason of ['length', 'content_filter']) {
+    const e = env();
+    const fetchImpl = async () => new Response(JSON.stringify({ choices: [{ finish_reason, message: { content: '{"items":[]}' } }] }));
+    assert.equal((await handleAi(req(valid), e, { fetchImpl })).status, 502);
+    assert.equal(reserved(e), 1);
+  }
+});
+
+test('bounded response, schema and cardinality reject partial outputs', async () => {
+  for (const reply of [{ bad: true }, { items: [{ name: '' }] }, { items: Array(41).fill({ name: 'milk' }) }]) {
+    const e = env();
+    assert.equal((await handleAi(req(valid), e, { fetchImpl: aiReply(reply) })).status, 502);
+  }
+  const e = env();
+  assert.equal((await handleAi(req(valid), e, { fetchImpl: async () => new Response('x'.repeat(65537)) })).status, 502);
+  const input = { lines: [{ i: 0, text: 'A' }, { i: 1, text: 'B' }], planned: [{ id: 1, name: 'milk' }] };
+  const f = env();
+  assert.equal((await handleAi(req({ ...valid, task: 'match_receipt', input }), f,
+    { fetchImpl: aiReply({ matches: [{ i: 0, plannedId: 1 }] }) })).status, 502);
+});
+
+test('each task sends its bounded output allowance to the current provider', async () => {
+  const cases = [
+    ['parse_list', { text: 'milk' }, { items: [] }, 4096],
+    ['read_label', { text: 'MILK 20' }, { price: '20', unitPrice: null }, 512],
+    ['match_receipt', { lines: [{ i: 0, text: 'A' }], planned: [{ id: 1, name: 'milk' }] },
+      { matches: [{ i: 0, plannedId: null }] }, 8192],
+  ];
+  for (const [task, input, out, limit] of cases) {
+    const e = env();
+    const fetchImpl = async (_, init) => { assert.equal(JSON.parse(init.body).max_tokens, limit); return aiReply(out)(); };
+    assert.equal((await handleAi(req({ ...valid, task, input }), e, { fetchImpl })).status, 200);
+  }
 });
