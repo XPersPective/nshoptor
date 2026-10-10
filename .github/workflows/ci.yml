@@ -14,6 +14,17 @@ jobs:
         with:
           channel: stable
           cache: true
+      - name: Private kit read-only access
+        env:
+          NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
+        run: |
+          test -n "$NAPP_KIT_READ_KEY"
+          install -d -m 700 "$RUNNER_TEMP/napp-kit-ssh"
+          printf '%s\n' "$NAPP_KIT_READ_KEY" > "$RUNNER_TEMP/napp-kit-ssh/id"
+          chmod 600 "$RUNNER_TEMP/napp-kit-ssh/id"
+          printf '%s\n' 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$RUNNER_TEMP/napp-kit-ssh/known_hosts"
+          git config --global core.sshCommand "ssh -i $RUNNER_TEMP/napp-kit-ssh/id -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$RUNNER_TEMP/napp-kit-ssh/known_hosts"
+          git config --global url."ssh://git@github.com/XPersPective/napp_kit.git".insteadOf "https://github.com/XPersPective/napp_kit.git"
       - name: Pub get
         run: flutter pub get
       - name: Analyze
@@ -44,6 +55,17 @@ jobs:
         with:
           channel: stable
           cache: true
+      - name: Private kit read-only access
+        env:
+          NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
+        run: |
+          test -n "$NAPP_KIT_READ_KEY"
+          install -d -m 700 "$RUNNER_TEMP/napp-kit-ssh"
+          printf '%s\n' "$NAPP_KIT_READ_KEY" > "$RUNNER_TEMP/napp-kit-ssh/id"
+          chmod 600 "$RUNNER_TEMP/napp-kit-ssh/id"
+          printf '%s\n' 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$RUNNER_TEMP/napp-kit-ssh/known_hosts"
+          git config --global core.sshCommand "ssh -i $RUNNER_TEMP/napp-kit-ssh/id -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$RUNNER_TEMP/napp-kit-ssh/known_hosts"
+          git config --global url."ssh://git@github.com/XPersPective/napp_kit.git".insteadOf "https://github.com/XPersPective/napp_kit.git"
       - name: Pub get
         run: flutter pub get
       - name: Build release APK
