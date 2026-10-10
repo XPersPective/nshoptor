@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/history/insights/insights_repository.dart';
+import 'package:nshoptor/features/home/home_repository.dart';
 
 void main() {
   late AppDatabase db;
@@ -27,7 +28,7 @@ void main() {
             ),
           );
 
-  Future<int> addItem(int listId, String name, int plannedMinor,
+  Future<int> addItem(int listId, String name, int? plannedMinor,
       {int? categoryId}) async {
     final id = await db.into(db.plannedItems).insert(
           PlannedItemsCompanion.insert(
@@ -62,11 +63,10 @@ void main() {
         );
     // completedAt'i doğrudan yaz (drift default'u güncel zaman; test sabitliği
     // için ay bilgisini garantilemek üzere güncel ay kullanılıyor).
-    assert(completedAt == null, 'test güncel ayı kullanır');
     await (db.update(db.shoppingLists)..where((t) => t.id.equals(id))).write(
       ShoppingListsCompanion(
         status: const Value('completed'),
-        completedAt: Value(DateTime.now()),
+        completedAt: Value(completedAt ?? DateTime.now()),
       ),
     );
     return id;
@@ -93,6 +93,8 @@ void main() {
     String name,
     int actualMinor, {
     int? plannedItemId,
+    int? gross,
+    String source = 'manual',
   }) async {
     await db.into(db.purchaseEntries).insert(
           PurchaseEntriesCompanion.insert(
@@ -103,7 +105,8 @@ void main() {
             actualQuantity: '1',
             actualUnitCode: 'adet',
             actualLineTotalMinorUnits: actualMinor,
-            source: const Value('manual'),
+            source: Value(source),
+            grossTotalMinorUnits: Value(gross),
             userConfirmed: const Value(true),
           ),
         );
@@ -146,6 +149,47 @@ void main() {
     expect(usdBuckets.single.actualMinor, 350);
     // completedCount = 3 liste; her biri kendi ay+para anahtarında
     expect(buckets.map((b) => b.currencyCode).toSet(), {'TRY', 'USD'});
+  });
+
+  test('monthly comparison excludes skipped, unplanned and unknown; shared Home totals', () async {
+    final l = await makeCompletedList();
+    await addItem(l, 'Skipped', 10000);
+    final bought = await addItem(l, 'Bought', 2000);
+    await addEntry(l, 'Bought', 1000, plannedItemId: bought);
+    await addEntry(l, 'Bought', 1500, plannedItemId: bought); // estimate counted once
+    final unknown = await addItem(l, 'Unknown', 500);
+    await addEntry(l, 'Unknown', 0, plannedItemId: unknown);
+    await addEntry(l, 'Extra', 3000);
+    final noEstimate = await addItem(l, 'No estimate', null);
+    await addEntry(l, 'No estimate', 0, plannedItemId: noEstimate, source: 'receiptOcr');
+    final b = (await repo.monthlyTotals()).single;
+    expect(b.plannedMinor, 12500); expect(b.actualMinor, 5500);
+    expect(b.comparedCount, 1); expect(b.varianceMinor, 500);
+    final home = (await HomeRepository(db).watchMonthlyTotals().first).single;
+    expect(home.actualMinor, b.actualMinor); expect(home.varianceMinor, b.varianceMinor);
+    // One unknown row excludes the whole item's comparison, not its spending.
+    await addEntry(l, 'Bought unknown', 0, plannedItemId: bought);
+    expect((await repo.monthlyTotals()).single.varianceMinor, isNull);
+    expect((await repo.monthlyTotals()).single.actualMinor, 5500);
+  });
+
+  test('known zero, separate month/currency, and purchase-only bucket', () async {
+    final old = await makeCompletedList(completedAt: DateTime(2025, 1, 15));
+    final free = await addItem(old, 'Free', 2000);
+    await addEntry(old, 'Free', 0, plannedItemId: free, gross: 0);
+    final receipt = await addItem(old, 'Receipt free', 500);
+    await addEntry(old, 'Receipt free', 0, plannedItemId: receipt, source: 'receiptOcr');
+    final usd = await makeCompletedList(currency: 'USD');
+    await addEntry(usd, 'Unplanned', 3000);
+    final buckets = await repo.monthlyTotals();
+    expect(buckets, hasLength(2));
+    final past = buckets.singleWhere((b) => b.month == '2025-01');
+    expect(past.comparedCount, 2); expect(past.varianceMinor, -2500);
+    final current = buckets.singleWhere((b) => b.currencyCode == 'USD');
+    expect(current.plannedMinor, 0); expect(current.actualMinor, 3000);
+    expect(current.varianceMinor, isNull);
+    final home = await HomeRepository(db).watchMonthlyTotals().first;
+    expect(home, hasLength(1)); expect(home.single.currencyCode, 'USD');
   });
 
   test('kategori bazında harcama; plansız alım diğer olarak ayrılır',

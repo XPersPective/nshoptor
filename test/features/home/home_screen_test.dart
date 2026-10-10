@@ -60,6 +60,7 @@ void main() {
     await db.into(db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(listId: id,
       name: 'x', normalizedName: 'x', actualQuantity: '1', actualUnitCode: 'piece', actualLineTotalMinorUnits: 1000));
     await tester.pumpWidget(subject()); await settle(tester);
+    expect(find.text('Fark: —'), findsOneWidget);
     await tester.tap(find.byKey(const Key('home_monthly_card_TRY'))); await settle(tester);
     await tester.tap(find.byKey(const Key('limit_edit'))); await settle(tester);
     await tester.enterText(find.byKey(const Key('limit_field')), '25,50');
@@ -244,8 +245,9 @@ void main() {
     // Her para birimi kendi kartında: karışık toplam yok.
     expect(find.byKey(const Key('home_monthly_card_TRY')), findsOneWidget);
     expect(find.byKey(const Key('home_monthly_card_USD')), findsOneWidget);
-    expect(find.text('Fark: 15,00 ₺'), findsOneWidget);
-    expect(find.text('Fark: 3,00 USD'), findsOneWidget);
+    expect(find.text('Fark: —'), findsNWidgets(2)); // no purchases: no savings
+    expect(find.textContaining('15,00 ₺'), findsWidgets);
+    expect(find.textContaining('3,00 USD'), findsWidgets);
 
     await disposeApp(tester);
   });

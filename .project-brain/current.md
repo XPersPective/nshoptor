@@ -19,6 +19,7 @@
 - PB-079: DecimalFixed.toMinorUnits uses checked int.parse at native signed storage boundary; large products no longer silently clamp. Overflow preview/save preserve manual input and replacement keeps existing purchase/observation. Full354 passed, analyze0.
 - PB-080 country defaults BG→EUR, BY→BYN(2 digits); existing BGN remains readable and stored user choices unchanged. Official ECB/NBRB/CBR facts verified; money50 passed, analyze0.
 - PB-078: all feature Snackbar callers replace queued messages and offer close; important errors remain until closed, Undo keeps native timeout/accessibility. Home assistant visibly busy; voice/assistant previews scroll with keyboard, voice actions wrap. Domain150+8 passed, analyze0.
+- PB-081: shared Insights monthly get/watch SQL aggregates purchases before plans; variance includes only known complete item comparisons, null without samples. Home reuses query and shows neutral —; spending/budget totals preserved, currency/local month separate. Home/history31 passed, analyze0.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).

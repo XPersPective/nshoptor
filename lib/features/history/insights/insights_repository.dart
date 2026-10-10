@@ -9,6 +9,9 @@ class MonthlyBucket {
     required this.currencyCode,
     required this.plannedMinor,
     required this.actualMinor,
+    this.comparedCount = 0,
+    this.comparedPlannedMinor = 0,
+    this.comparedActualMinor = 0,
   });
 
   /// `YYYY-MM`
@@ -17,7 +20,10 @@ class MonthlyBucket {
   final int plannedMinor;
   final int actualMinor;
 
-  int get varianceMinor => actualMinor - plannedMinor;
+  final int comparedCount;
+  final int comparedPlannedMinor;
+  final int comparedActualMinor;
+  int? get varianceMinor => comparedCount == 0 ? null : comparedActualMinor - comparedPlannedMinor;
 }
 
 /// Kategori veya mağaza bazlı harcama kırılımı.
@@ -71,69 +77,49 @@ class InsightsRepository {
             ..orderBy([(t) => OrderingTerm.desc(t.completedAt)]))
           .watch();
 
-  /// Ay + para birimi bazında planlanan/gerçekleşen toplamlar. İki basit
-  /// gruppalmayı Dart'ta birleştirir (SQL derived table içinde dış alias
-  /// referansı SQLite'ta geçersizdir).
-  Future<List<MonthlyBucket>> monthlyTotals() async {
-    final plannedRows = await _db.customSelect(
-      '''
-      SELECT
-        strftime('%Y-%m', sl.completed_at, 'unixepoch') AS month,
-        sl.currency_code AS currency,
-        COALESCE(SUM(pi.planned_line_total_minor_units), 0) AS planned
-      FROM planned_items pi
-      JOIN shopping_lists sl ON pi.list_id = sl.id
-      WHERE sl.status = 'completed'
-      GROUP BY month, sl.currency_code
-      ''',
-      readsFrom: {_db.plannedItems, _db.shoppingLists},
-    ).get();
+  Future<List<MonthlyBucket>> monthlyTotals() => _monthlyQuery().get();
+  Stream<List<MonthlyBucket>> watchMonthlyTotals() => _monthlyQuery().watch();
 
-    final actualRows = await _db.customSelect(
-      '''
-      SELECT
-        strftime('%Y-%m', sl.completed_at, 'unixepoch') AS month,
-        sl.currency_code AS currency,
-        SUM(pe.actual_line_total_minor_units) AS actual
-      FROM purchase_entries pe
-      JOIN shopping_lists sl ON pe.list_id = sl.id
-      WHERE sl.status = 'completed'
-      GROUP BY month, sl.currency_code
-      ''',
-      readsFrom: {_db.purchaseEntries, _db.shoppingLists},
-    ).get();
-
-    final actualByKey = {
-      for (final row in actualRows)
-        (row.read<String>('month'), row.read<String>('currency')):
-            row.read<int>('actual'),
-    };
-
-    final buckets = <MonthlyBucket>[];
-    for (final row in plannedRows) {
-      final key = (row.read<String>('month'), row.read<String>('currency'));
-      buckets.add(MonthlyBucket(
-        month: key.$1,
-        currencyCode: key.$2,
-        plannedMinor: row.read<int>('planned'),
-        actualMinor: actualByKey[key] ?? 0,
-      ));
-    }
-    // Yalnız harcaması olup planı olmayan ay+para kombinasyonları için de
-    // bucket üret (plan 0).
-    for (final entry in actualByKey.entries) {
-      if (!buckets.any((b) => b.month == entry.key.$1 && b.currencyCode == entry.key.$2)) {
-        buckets.add(MonthlyBucket(
-          month: entry.key.$1,
-          currencyCode: entry.key.$2,
-          plannedMinor: 0,
-          actualMinor: entry.value,
-        ));
-      }
-    }
-    buckets.sort((a, b) => b.month.compareTo(a.month));
-    return buckets;
-  }
+  // Aggregate purchases before joining plans: multiple receipt rows count the
+  // estimate once. The known-price predicate matches ResultRepository.
+  Selectable<MonthlyBucket> _monthlyQuery() => _db.customSelect(
+    '''WITH purchases AS (
+      SELECT list_id, planned_item_id, SUM(actual_line_total_minor_units) AS actual,
+        MIN(gross_total_minor_units IS NOT NULL OR actual_line_total_minor_units != 0
+          OR source = 'receiptOcr') AS known
+      FROM purchase_entries GROUP BY list_id, planned_item_id
+    ), plans AS (
+      SELECT list_id, SUM(planned_line_total_minor_units) AS planned
+      FROM planned_items GROUP BY list_id
+    ), actuals AS (
+      SELECT list_id, SUM(actual) AS actual FROM purchases GROUP BY list_id
+    ), compared AS (
+      SELECT pi.list_id, COUNT(*) AS compared_count,
+        SUM(pi.planned_line_total_minor_units) AS compared_planned,
+        SUM(p.actual) AS compared_actual
+      FROM planned_items pi JOIN purchases p
+        ON p.list_id = pi.list_id AND p.planned_item_id = pi.id
+      WHERE pi.planned_line_total_minor_units IS NOT NULL AND p.known = 1
+      GROUP BY pi.list_id
+    )
+    SELECT strftime('%Y-%m', sl.completed_at, 'unixepoch', 'localtime') AS month,
+      sl.currency_code AS currency,
+      COALESCE(SUM(plans.planned), 0) AS planned,
+      COALESCE(SUM(actuals.actual), 0) AS actual,
+      COALESCE(SUM(compared.compared_count), 0) AS compared_count,
+      COALESCE(SUM(compared.compared_planned), 0) AS compared_planned,
+      COALESCE(SUM(compared.compared_actual), 0) AS compared_actual
+    FROM shopping_lists sl
+    LEFT JOIN plans ON plans.list_id = sl.id
+    LEFT JOIN actuals ON actuals.list_id = sl.id
+    LEFT JOIN compared ON compared.list_id = sl.id
+    WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL
+    GROUP BY month, sl.currency_code ORDER BY month DESC, sl.currency_code
+    ''', readsFrom: {_db.plannedItems, _db.purchaseEntries, _db.shoppingLists},
+  ).map((row) => MonthlyBucket(month: row.read<String>('month'),
+    currencyCode: row.read<String>('currency'), plannedMinor: row.read<int>('planned'),
+    actualMinor: row.read<int>('actual'), comparedCount: row.read<int>('compared_count'),
+    comparedPlannedMinor: row.read<int>('compared_planned'), comparedActualMinor: row.read<int>('compared_actual')));
 
   /// Tamamlanan alışverişlerin kategori bazında gerçek harcaması.
   Future<List<SpendingSlice>> spendingByCategory() {

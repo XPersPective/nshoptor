@@ -425,10 +425,10 @@ class HomeScreen extends StatelessWidget {
             },
           ),
           const SizedBox(height: 12),
-          StreamBuilder<List<MonthlyTotals>>(
+          StreamBuilder<List<MonthlyBucket>>(
             stream: repo.watchMonthlyTotals(),
             builder: (context, snapshot) {
-              final totalsList = snapshot.data ?? const <MonthlyTotals>[];
+              final totalsList = snapshot.data ?? const <MonthlyBucket>[];
               if (totalsList.isEmpty) return const SizedBox.shrink();
               return Column(
                 children: [
@@ -570,7 +570,7 @@ Future<void> planFromTemplate(
 class _MonthlyCard extends StatelessWidget {
   const _MonthlyCard({required this.totals, required this.onTap});
 
-  final MonthlyTotals totals;
+  final MonthlyBucket totals;
   final VoidCallback onTap;
 
   @override
@@ -581,9 +581,10 @@ class _MonthlyCard extends StatelessWidget {
       Money.fromMinorUnits(minor, currency),
       locale: formatLocaleCode(context),
     );
-    final direction = totals.varianceMinor < 0
+    final variance = totals.varianceMinor;
+    final direction = (variance ?? 0) < 0
         ? SpendingDirection.underPlan
-        : totals.varianceMinor > 0
+        : (variance ?? 0) > 0
         ? SpendingDirection.overPlan
         : SpendingDirection.nearPlan;
     final delta = SemanticDelta.resolve(
@@ -619,7 +620,7 @@ class _MonthlyCard extends StatelessWidget {
             const SizedBox(height: 4),
             Row(
               children: [
-                Icon(
+                if (variance != null) Icon(
                   delta.icon,
                   size: 16,
                   color: delta.color,
@@ -627,8 +628,8 @@ class _MonthlyCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  '${l10n.monthVarianceLabel}: ${money(totals.varianceMinor.abs())}',
-                  style: TextStyle(color: delta.color),
+                  '${l10n.monthVarianceLabel}: ${variance == null ? '—' : money(variance.abs())}',
+                  style: TextStyle(color: variance == null ? Theme.of(context).colorScheme.onSurface : delta.color),
                 ),
               ],
             ),
