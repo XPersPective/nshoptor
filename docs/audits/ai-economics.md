@@ -111,6 +111,8 @@ CLI proposed_plans bölümü mevcut fiyatlara bağlı varsayımsal teklif ve tip
 
 ## Son yönlendirme: planın esası DeepSeek-V4.1-Flash
 
+Rollout sonrası: yeni teklifler şimdi Play’de ACTIVE; gerçek fiyatlar `play-prices-rollout-2026-10-10.json`, kanıt `ai-rollout-2026-10-10.md`. Yukarıdaki “henüz yayınlanmadı” karşılaştırmaları karar öncesi senaryodur. Mevcut Android internal release henüz PB-069/061 kabulünü bekliyor.
+
 “Dipsik’in en sonki modelinin en düşük fiyatlısına göre” (user). [Resmî fiyat tablosu](https://api-docs.deepseek.com/quick_start/pricing/)10 Ekim2026'da açıldı: en yeni ekonomik model **DeepSeek-V4.1-Flash**, API adı **deepseek-flash**. Karşılaştırılan V4-Pro'dan ucuzdur. Yoğun saatte cache miss giriş0.30USD/M, çıkış1.20; sakin saatte0.15/0.60. Cache hit0.006/0.003; hiçbir isteğin cache hit olacağını varsaymıyorum. Yoğun saatler hafta içi01–04 ve06–10 UTC; diğer saatlerde yarı fiyat. Uygulamanın anlık isteği geciktirilmez: fiyat kararı yoğun saat/cache miss üzerinden, sakin saat tasarrufu ayrıca hesaplanır. Model düşünme modunu varsayılan açar; maliyet senaryosunda faturalanan toplam çıkış düşünmeyi de kapsar.
 
 |Hak|Tam tipik kullanım AI maliyeti yoğun / sakin|Yoğun saat30% hedef yıllık asgari fiyat, tipik /8192 çıkış stresi|
@@ -120,7 +122,7 @@ CLI proposed_plans bölümü mevcut fiyatlara bağlı varsayımsal teklif ve tip
 
 Tablodaki fiyat alt sınırları yukarıdaki vergi/mağaza/0.10 altyapı/10 ücretsiz kullanıcı varsayımlarını içerir. Fiyat teklifinin sınırını göstermek için iki ayrı kullanım senaryosu korunur; düşük model fiyatı her uzun fişte otomatik kâr anlamına gelmez.
 
-**Uygun başlangıç fiyatı önerisi:** yeni Pro100 için1.99USD/ay veya19.99USD/yıl; yeni Max300 için3.99USD/ay veya39.99USD/yıl. Peak/no-cache, tam tipik kullanımda yıllık aylıklaştırılmış katkı Pro0.43197USD(%36.6), Max0.96452USD(%40.9). Aylık planlarda aynı katkı Pro0.66158USD(%46.9), Max1.43025USD(%50.6). Sürekli12k+8192 stresinde yıllık plan aylık katkısı Pro−1.60611USD, Max−3.11164USD; bu fiyatlarla her kullanımda kâr vaadi yok.10:1 ücretsiz kullanıcı yükü aynı stresdeyse Pro hiç, Max15 ücretli ağır istekten sonra%30 hedefini aşar. Büyük fiş kullanım sıklığı ve faturalanan tokenlar ölçülmeli; yayın fiyatı kullanım verisine göre revize edilebilir. Yeni fiyatlar öneridir, Play'e yazılmadı; eski200/1000 sözleşme hakları ve fiyatları korunur. Mevcut Qwen hesabı değişmedi.
+**Uygun başlangıç fiyatı önerisi:** yeni Pro100 için1.99USD/ay veya19.99USD/yıl; yeni Max300 için3.99USD/ay veya39.99USD/yıl. Peak/no-cache, tam tipik kullanımda yıllık aylıklaştırılmış katkı Pro0.43197USD(%36.6), Max0.96452USD(%40.9). Aylık planlarda aynı katkı Pro0.66158USD(%46.9), Max1.43025USD(%50.6). Sürekli12k+8192 stresinde yıllık plan aylık katkısı Pro−1.60611USD, Max−3.11164USD; bu fiyatlarla her kullanımda kâr vaadi yok.10:1 ücretsiz kullanıcı yükü aynı stresdeyse Pro hiç, Max15 ücretli ağır istekten sonra%30 hedefini aşar. Büyük fiş kullanım sıklığı ve faturalanan tokenlar ölçülmeli; yayın fiyatı kullanım verisine göre revize edilebilir. Yeni fiyatlar başlangıç önerisi olarak değerlendirildi ve PB-065 ile Play'e yazıldı; eski200/1000 sözleşme hakları ve fiyatları korunur. Mevcut Qwen hesabı değişmedi.
 
 ```powershell
 python -B tool/ai_economics.py --offers docs/audits/play-prices-2026-10-10.json --infra .10 --free-per-paid 10 --margin .30 --pro-monthly 1.99 --pro-annual 19.99 --max-monthly 3.99 --max-annual 39.99
@@ -128,3 +130,5 @@ python -B tool/ai_economics.py --offers docs/audits/play-prices-2026-10-10.json 
 ```
 
 CLI varsayılanı artık doğrulanmış DeepSeek peak/no-cache. Qwen ve OpenAI/Gemini tabloları adı belirtilmiş karşılaştırma olarak kalır. Sakin saatte300 tipik isteğin maliyeti0.486USD; mevcut24.99/yıl Max fiyatında ücretsiz yük+altyapı sonrası aylık katkı0.7271USD olur. Peak'te aynı fiyat yalnız0.0791USD bırakır ve%30 hedefini karşılamaz. Bu nedenle planı yalnız düşük saat fiyatına bağlamıyorum. Mevcut hesap fatura/kredi tüketimi bilinmeden bu sonucu Qwen gerçek kârı diye sunmuyorum.
+
+Pro7day trial converting in the same month shares100 monthly allowance. Non-converting trials are acquisition cost outside the10-call free-user assumption; see rollout audit. Do not count those users as ordinary Free10 in real margin measurement.

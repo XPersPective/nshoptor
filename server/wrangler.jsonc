@@ -20,9 +20,9 @@
     "AI_MODEL": "qwen3.6-flash",
     "AI_NOTHINK": "1",
     "AI_TIMEOUT_MS": "20000",
-    "QUOTA_FREE": "15",
-    "QUOTA_PRO": "200",
-    "QUOTA_MAX": "1000",
+    "QUOTA_FREE": "10",
+    "QUOTA_PRO": "100",
+    "QUOTA_MAX": "300",
     "GLOBAL_DAILY": "20000",
     "MAX_INPUT_CHARS": "6000",
     "PACKAGE_NAME": "com.crazypenguin.nshoptor"

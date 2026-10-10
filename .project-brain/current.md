@@ -41,7 +41,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/features/settings/` — ayarlar, yedek/CSV, AI anahtarı
 - `lib/features/ai/ai_client.dart` — AI vekiline tek kapı (AiService.client, kurulum kimliği, AiResult)
 - `lib/features/subscription/` — Pro/Max abonelik servisi, planlar ekranı, ömür boyu akış süzgeci
-- `tool/play/subscriptions.rb`, `tool/ai_economics.py` — Play catalog setup/read-only prices, Decimal cost scenarios/self-check
+- `tool/play/subscriptions.rb`, `tool/ai_economics.py`, `tool/ai_rollout_check.py` — Play catalog, Decimal scenarios, live owned-quota check
 - `test/`, `integration_test/` — birim/widget/e2e; `test/store_capture_test.dart` mağaza görselleri
 - `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishing\apps\nshoptor)
 - `docs/store/` — gizlilik politikası, Play beyan taslakları
@@ -139,7 +139,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   total diff; nullable new-list controller, create+purchase transaction and retry ownership). Shelf label: no crop/rotate UI — ML Kit reads any
   orientation and user picks among all candidates (C-040: no crop package).
   ReceiptMatcher auto-suggestion not used by the screen (manual link only).
-- `subscription/`: source offers *_v2 Pro100/Max300, legacy200/1000 retained, free/lifetime10; matching native owner, latest-query guards and pending purchase/restore deduplication. Legacy rights note and quotas all71; domain24 + subscription11 passed, analyze0. Live catalog remains old SKUs until PB-065.
+- `subscription/`: source offers *_v2 Pro100/Max300, legacy200/1000 retained, free/lifetime10; matching native owner, latest-query guards and pending purchase/restore deduplication. Legacy rights note and quotas all71; domain24 + subscription11 passed, analyze0. PB-065 new v2 catalog active (10 October), legacy unchanged; native release QA PB-069.
 - `settings/`: SettingsScreen + SettingsRepository (spec §6.15,
   delete-all double confirm; tema + formatLocale anahtarları repo'da);
   Pro satırı (PaywallPage) + yedek dışa/içe PRO-GATE (standart §3.8:
@@ -186,14 +186,14 @@ share_plus, file_picker.
 - Ürünler: `nshoptor_pro`, `nshoptor_max` (abonelik), `com.crazypenguin.nshoptor.pro_lifetime` (ömür boyu reklamsız). Ödüllü reklam birimi app-ids.env'de (ADMOB_REWARDED_ANDROID).
 ### Server
 
-**Status:** VERIFIED (2026-10-09 source schema/worker; live configuration historical)
+**Status:** VERIFIED (2026-10-09 source schema/worker; live rollout2026-10-10)
 
 **Sources:** `server/**`, `tool/play/subscriptions.rb`, `tool/ai_economics.py`, `docs/audits/ai-economics.md`
 
 Cloudflare Worker `nshoptor-api` (workers.dev) + D1 `nshoptor`. `POST /v1/ai`
 görevleri `parse_list`, `match_receipt`, `read_label`; parse_list title/brand/category bounded metadata (PB-075); çıktı `tasks.js`'te
-şemaya göre temizlenir; eksik/kesik çıktı reddedilir (bilinmeyen kimlik/birim null). Source quota atomic batch, paid verified-token lineage identity; live rollout PB-065. Kota aylık
-(free 15 / pro 200 / max 1000) + günlük global tavan; Pro/Max yalnız
+şemaya göre temizlenir; eksik/kesik çıktı reddedilir (bilinmeyen kimlik/birim null). Source quota atomic batch, paid verified-token lineage identity; live rollout verified PB-065 (health/parallel final-slot real D1). Kota aylık
+(free10 / new Pro100 / new Max300; legacy200/1000) + günlük global tavan; Pro/Max yalnız
 Play `subscriptionsv2` doğrulamasıyla (invalid credential → free; verified lineage failure → busy). Sağlayıcı OpenAI
 uyumlu; şu an Qwen Token Plan `qwen3.6-flash` (kullanıcı şimdilik Qwen hesabını korudu). Sırlar: `AI_KEY`, `GOOGLE_SA_JSON` (Worker
-secret; kaynak D:\AppPublishing). Testler: `cd server && npm test`. PB-086 canonical cache ownership persists across verified linkedPurchaseToken replacements and expiry; bounded lineage failures yield generic503 before quota. Server25/full369/analyze0. PB-083 verified read-only Play catalog and reproducible Decimal scenarios; PB-087 CLI default DeepSeek-V4.1-Flash peak/no-cache by user request; proposed-plan/free subsidy/margin/annual stress calculations and self-check verified. Current Qwen invoice/credits unknown; scenarios are not actual profit.
+secret; kaynak D:\AppPublishing). Testler: `cd server && npm test`. PB-086 canonical cache ownership persists across verified linkedPurchaseToken replacements and expiry; bounded lineage failures yield generic503 before quota. Server25/full369/analyze0. PB-083 verified read-only Play catalog and reproducible Decimal scenarios; PB-065 new v2 products ACTIVE, exact USD1.99/19.99 and3.99/39.99, app-wide Pro trial; legacy snapshot unchanged; audit ai-rollout-2026-10-10.md. PB-087 CLI default DeepSeek-V4.1-Flash peak/no-cache by user request; proposed-plan/free subsidy/margin/annual stress calculations and self-check verified. Current Qwen invoice/credits unknown; scenarios are not actual profit.

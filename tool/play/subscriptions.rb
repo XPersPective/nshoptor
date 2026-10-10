@@ -38,6 +38,22 @@ PLANS = {
   },
 }.freeze
 
+# New offers are separate products; legacy prices and promises are never rewritten.
+V2_PLANS = PLANS.to_h do |pid, cfg|
+  pro = pid == 'nshoptor_pro'
+  allowance = pro ? 100 : 300
+  [pid + '_v2', cfg.merge(
+    benefits: cfg[:benefits].transform_values { |items| items.map { |value| value.gsub(/200|1000/, allowance.to_s) } },
+    base_plans: { 'monthly' => ['P1M', 990_000_000, pro ? 1 : 3],
+                  'yearly' => ['P1Y', 990_000_000, pro ? 19 : 39] }
+  )]
+end.freeze
+
+if ARGV.include?('--preview-v2')
+  puts JSON.pretty_generate(products: V2_PLANS, trial_scope: 'anySubscriptionInApp')
+  exit
+end
+
 def usd(units, nanos) = A::Money.new(currency_code: 'USD', units: units, nanos: nanos)
 
 def convert(svc, money)
@@ -77,9 +93,39 @@ if ARGV.include?('--list')
   exit
 end
 
-existing = (svc.list_monetization_subscriptions(PKG).subscriptions || []).map(&:product_id)
+catalog = svc.list_monetization_subscriptions(PKG).subscriptions || []
+existing = catalog.map(&:product_id)
+verify_v2 = ARGV.include?('--verify-v2')
+v2 = ARGV.include?('--create-v2') || verify_v2
+plans = v2 ? V2_PLANS : PLANS
+# Fail before any mutation if a prior partial rollout conflicts with the reviewed offer.
+if v2
+  catalog.select { |sub| plans.key?(sub.product_id) }.each do |sub|
+    cfg = plans.fetch(sub.product_id)
+    cfg[:benefits].each do |language, benefits|
+      raise 'existing v2 benefits differ' unless sub.listings.any? { |l| l.language_code == language && l.benefits == benefits }
+    end
+    cfg[:base_plans].each do |id, (period, nanos, units)|
+      base = sub.base_plans.find { |b| b.base_plan_id == id }
+      price = base&.regional_configs&.find { |r| r.region_code == 'US' }&.price
+      raise 'existing v2 base plan differs' unless base&.auto_renewing_base_plan_type&.billing_period_duration == period &&
+        price&.currency_code == 'USD' && price.units.to_i == units && price.nanos.to_i == nanos
+    end
+  end
+end
 
-PLANS.each do |pid, cfg|
+if verify_v2
+  raise 'missing v2 product' unless plans.keys.all? { |pid| existing.include?(pid) }
+  catalog.select { |sub| plans.key?(sub.product_id) }.each do |sub|
+    raise 'v2 base not active' unless sub.base_plans.all? { |base| base.state == 'ACTIVE' }
+  end
+  trial = svc.get_monetization_subscription_base_plan_offer(PKG, 'nshoptor_pro_v2', 'monthly', 'trial7')
+  raise 'v2 trial not active/app-wide' unless trial.state == 'ACTIVE' && trial.targeting&.acquisition_rule&.scope&.any_subscription_in_app
+  puts 'verified v2 prices/benefits/active bases and app-wide trial; no catalog mutation'
+  exit
+end
+
+plans.each do |pid, cfg|
   base_plans = cfg[:base_plans].map do |bp_id, (period, nanos, units)|
     conv = convert(svc, usd(units, nanos))
     A::BasePlan.new(
@@ -133,7 +179,8 @@ PLANS.each do |pid, cfg|
       regional_configs: regions.map { |r| A::RegionalSubscriptionOfferConfig.new(region_code: r, new_subscriber_availability: true) },
       other_regions_config: A::OtherRegionsSubscriptionOfferConfig.new(other_regions_new_subscriber_availability: true),
       targeting: A::SubscriptionOfferTargeting.new(
-        acquisition_rule: A::AcquisitionTargetingRule.new(scope: A::TargetingRuleScope.new(this_subscription: A::TargetingRuleScopeThisSubscription.new))
+        acquisition_rule: A::AcquisitionTargetingRule.new(scope: v2 ? A::TargetingRuleScope.new(any_subscription_in_app: A::TargetingRuleScopeAnySubscriptionInApp.new) :
+          A::TargetingRuleScope.new(this_subscription: A::TargetingRuleScopeThisSubscription.new))
       )
     )
     version = convert(svc, usd(0, 990_000_000)).region_version.version
