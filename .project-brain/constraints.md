@@ -84,7 +84,7 @@ uca denenir; doğrulanamayan iş nedeni + test adımlarıyla Brain'e yazılır.
 ### C-035: Kullanıcıya görünen sürüm dizesi jargonsuz
 
 Sürüm dizesinde "Aşama N" gibi geliştirme jargonu YOK (ör. "1.0.0").
-C-036 (user2026-10-10): build/cache C:/CodexBuilds/nshoptor; permanent publishing/evidence E:/AppPublishing/apps/nshoptor; preserve unknown D photos/source.
+C-036 (user2026-10-10 correction): D:/AppPublishing and repository source stay in place; clean only generated Flutter outputs with flutter clean; do not relocate publishing files.
 ## Development
 
 ### C-040: Bağımlılık disiplini
@@ -96,5 +96,5 @@ bağımlılık > yeni kod; en küçük düzeltme diff'i.
 ### C-041: Gizli anahtar asla repo/APK'da yok
 
 AI sağlayıcı anahtarı, Play doğrulama kimliği ve imza bilgileri yalnızca
-Worker secret'ı veya E:\AppPublishing altında. Açık kaynak repo + gitleaks.
+Worker secret'ı veya D:\AppPublishing altında. Açık kaynak repo + gitleaks.
 Pro/Max yetkisi istemci iddiasına değil sunucu doğrulamasına dayanır.
