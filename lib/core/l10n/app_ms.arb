@@ -292,16 +292,16 @@
   "plansYearly": "Tahunan",
   "planFree": "Percuma",
   "planFreePrice": "Selamanya percuma",
-  "planFreeAi": "15 permintaan AI sebulan",
+  "planFreeAi": "10 permintaan AI sebulan",
   "planFreeAds": "Iklan banner kecil (tiada dalam 7 hari pertama anda)",
   "planCoreFeatures": "Senarai, harga, resit, carta perbelanjaan",
   "plansPerYear": "/ tahun",
   "plansPerMonth": "/ bulan",
   "planTrial": "7 hari percuma",
-  "planProAi": "200 permintaan AI sebulan",
+  "planProAi": "100 permintaan AI sebulan",
   "planNoAds": "Tiada iklan",
   "planBackup": "Eksport dan import sandaran",
-  "planMaxAi": "1000 permintaan AI sebulan",
+  "planMaxAi": "300 permintaan AI sebulan",
   "planMaxFamily": "Untuk membeli-belah keluarga besar",
   "plansStoreUnavailable": "Kedai tidak dapat dicapai buat masa ini.",
   "retryAction": "Cuba lagi",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara pada peranti ini. Anda boleh menaip sebagai gantinya.",
   "voiceStopListening": "Berhenti mendengar",
   "keepAwakeFailed": "Gagal mengekalkan skrin aktif. Sila cuba lagi.",
-  "purchaseHistoryHint": "Semua pembelian selesai. Pulangan mengurangkan jumlah. Tarikh merujuk kepada siapnya pembelian. Satu lawatan tidak cukup untuk mengira purata selang."
+  "purchaseHistoryHint": "Semua pembelian selesai. Pulangan mengurangkan jumlah. Tarikh merujuk kepada siapnya pembelian. Satu lawatan tidak cukup untuk mengira purata selang.",
+  "planLegacyRights": "Langganan Pro dan Max sedia ada mengekalkan had bulanan AI asal. Tawaran baharu mempunyai 100 dan 300 permintaan."
 }

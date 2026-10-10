@@ -936,7 +936,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get planFreePrice => 'எப்போதும் இலவசம்';
 
   @override
-  String get planFreeAi => 'மாதத்திற்கு 15 AI கோரிக்கைகள்';
+  String get planFreeAi => 'மாதத்திற்கு 10 AI கோரிக்கைகள்';
 
   @override
   String get planFreeAds =>
@@ -956,7 +956,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get planTrial => '7 நாட்கள் இலவசம்';
 
   @override
-  String get planProAi => 'மாதத்திற்கு 200 AI கோரிக்கைகள்';
+  String get planProAi => 'மாதத்திற்கு 100 AI கோரிக்கைகள்';
 
   @override
   String get planNoAds => 'விளம்பரங்கள் இல்லை';
@@ -965,7 +965,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get planBackup => 'பின்புல ஏற்றுமதி மற்றும் இறக்குமதி';
 
   @override
-  String get planMaxAi => 'மாதத்திற்கு 1000 AI கோரிக்கைகள்';
+  String get planMaxAi => 'மாதத்திற்கு 300 AI கோரிக்கைகள்';
 
   @override
   String get planMaxFamily => 'பெரிய குடும்ப வாங்கல்களுக்கு';
@@ -1092,4 +1092,8 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'முடிந்த அனைத்து வாங்கல்களும். திரும்பப் பெறுதல் மொத்தத்தைக் குறைக்கும். தேதிகள் வாங்கல் முடிவைக் குறிக்கின்றன. சராசரி இடைவெளியைக் கணக்கிட ஒரு பயணம் போதாது.';
+
+  @override
+  String get planLegacyRights =>
+      'இருக்கும் Pro மற்றும் Max சந்தாக்கள் அவற்றின் அசல் மாதانه AI அனுமதியைத் தக்கவைத்துக் கொள்ளும். புதிய ஆஃபர்களில் 100 மற்றும் 300 கோரிக்கைகள் உள்ளன.';
 }

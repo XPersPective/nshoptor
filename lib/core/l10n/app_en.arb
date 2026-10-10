@@ -354,16 +354,16 @@
   "plansYearly": "Yearly",
   "planFree": "Free",
   "planFreePrice": "Free forever",
-  "planFreeAi": "15 AI requests a month",
+  "planFreeAi": "10 AI requests a month",
   "planFreeAds": "Small banner ads (none in your first 7 days)",
   "planCoreFeatures": "Lists, prices, receipts, spending charts",
   "plansPerYear": "/ year",
   "plansPerMonth": "/ month",
   "planTrial": "7 days free",
-  "planProAi": "200 AI requests a month",
+  "planProAi": "100 AI requests a month",
   "planNoAds": "No ads",
   "planBackup": "Backup export and import",
-  "planMaxAi": "1000 AI requests a month",
+  "planMaxAi": "300 AI requests a month",
   "planMaxFamily": "For big family shopping",
   "plansStoreUnavailable": "The store is not reachable right now.",
   "retryAction": "Retry",
@@ -400,5 +400,6 @@
   "voiceUnsupportedLanguage": "This language is not available for voice input on this device. You can type instead.",
   "voiceStopListening": "Stop listening",
   "keepAwakeFailed": "Could not keep the screen awake. Please try again.",
-  "purchaseHistoryHint": "All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval."
+  "purchaseHistoryHint": "All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval.",
+  "planLegacyRights": "Existing Pro and Max subscriptions keep their original monthly AI allowance. New offers have 100 and 300 requests."
 }

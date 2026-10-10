@@ -931,7 +931,7 @@ class AppLocalizationsEt extends AppLocalizations {
   String get planFreePrice => 'Igavesti tasuta';
 
   @override
-  String get planFreeAi => '15 AI päringut kuus';
+  String get planFreeAi => '10 AI päringut kuus';
 
   @override
   String get planFreeAds =>
@@ -951,7 +951,7 @@ class AppLocalizationsEt extends AppLocalizations {
   String get planTrial => '7 päeva tasuta';
 
   @override
-  String get planProAi => '200 AI päringut kuus';
+  String get planProAi => '100 AI päringut kuus';
 
   @override
   String get planNoAds => 'Ilma reklaamita';
@@ -960,7 +960,7 @@ class AppLocalizationsEt extends AppLocalizations {
   String get planBackup => 'Varundamise eksport ja import';
 
   @override
-  String get planMaxAi => '1000 AI päringut kuus';
+  String get planMaxAi => '300 AI päringut kuus';
 
   @override
   String get planMaxFamily => 'Suure pere ostudeks';
@@ -1084,4 +1084,8 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Kõik lõpetatud ostud. Tagastused vähendavad kogusummasid. Kuupäevad viitavad ostu lõpetamise ajale. Üks külastus ei ole piisav keskmise intervalli arvutamiseks.';
+
+  @override
+  String get planLegacyRights =>
+      'Olemasolevad Pro ja Max tellimused säilitavad oma algse igakuise AI luba. Uued pakkumised sisaldavad 100 ja 300 päringut.';
 }

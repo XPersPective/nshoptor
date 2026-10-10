@@ -292,16 +292,16 @@
   "plansYearly": "Rocznie",
   "planFree": "Za darmo",
   "planFreePrice": "Zawsze za darmo",
-  "planFreeAi": "15 żądań AI w miesiącu",
+  "planFreeAi": "10 żądań AI w miesiącu",
   "planFreeAds": "Małe reklamy banerowe (brak przez pierwsze 7 dni)",
   "planCoreFeatures": "Listy, ceny, paragoni, wykresy wydatków",
   "plansPerYear": "/ rok",
   "plansPerMonth": "/ miesiąc",
   "planTrial": "7 dni za darmo",
-  "planProAi": "200 żądań AI w miesiącu",
+  "planProAi": "100 żądań AI w miesiącu",
   "planNoAds": "Bez reklam",
   "planBackup": "Eksport i import kopii zapasowej",
-  "planMaxAi": "1000 zapytań AI miesięcznie",
+  "planMaxAi": "300 zapytań AI miesięcznie",
   "planMaxFamily": "Do dużych zakupów rodzinnych",
   "plansStoreUnavailable": "Sklep jest obecnie niedostępny.",
   "retryAction": "Ponów",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Ten język nie jest obsługiwany dla głosu na tym urządzeniu. Możesz wpisać tekst ręcznie.",
   "voiceStopListening": "Zatrzymaj słuchanie",
   "keepAwakeFailed": "Nie udało się utrzymać włączonego ekranu. Spróbuj ponownie.",
-  "purchaseHistoryHint": "Wszystkie zakończone zakupy. Zwroty zmniejszają całkowite kwoty. Daty odnoszą się do ukończenia zakupów. Jedna wizyta nie wystarczy, aby obliczyć średni interwał."
+  "purchaseHistoryHint": "Wszystkie zakończone zakupy. Zwroty zmniejszają całkowite kwoty. Daty odnoszą się do ukończenia zakupów. Jedna wizyta nie wystarczy, aby obliczyć średni interwał.",
+  "planLegacyRights": "Istniejące subskrypcje Pro i Max zachowują pierwotny miesięczny limit AI. Nowe oferty mają 100 i 300 zapytań."
 }

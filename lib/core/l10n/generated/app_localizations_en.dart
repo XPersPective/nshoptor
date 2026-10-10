@@ -933,7 +933,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get planFreePrice => 'Free forever';
 
   @override
-  String get planFreeAi => '15 AI requests a month';
+  String get planFreeAi => '10 AI requests a month';
 
   @override
   String get planFreeAds => 'Small banner ads (none in your first 7 days)';
@@ -951,7 +951,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get planTrial => '7 days free';
 
   @override
-  String get planProAi => '200 AI requests a month';
+  String get planProAi => '100 AI requests a month';
 
   @override
   String get planNoAds => 'No ads';
@@ -960,7 +960,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get planBackup => 'Backup export and import';
 
   @override
-  String get planMaxAi => '1000 AI requests a month';
+  String get planMaxAi => '300 AI requests a month';
 
   @override
   String get planMaxFamily => 'For big family shopping';
@@ -1085,4 +1085,8 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval.';
+
+  @override
+  String get planLegacyRights =>
+      'Existing Pro and Max subscriptions keep their original monthly AI allowance. New offers have 100 and 300 requests.';
 }

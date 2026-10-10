@@ -292,16 +292,16 @@
   "plansYearly": "Anual",
   "planFree": "Grátis",
   "planFreePrice": "Grátis para sempre",
-  "planFreeAi": "15 solicitações de IA por mês",
+  "planFreeAi": "10 solicitações de IA por mês",
   "planFreeAds": "Pequenos anúncios em banner (nenhum nos primeiros 7 dias)",
   "planCoreFeatures": "Listas, preços, cupons, gráficos de gastos",
   "plansPerYear": "/ ano",
   "plansPerMonth": "/ mês",
   "planTrial": "7 dias grátis",
-  "planProAi": "200 solicitações de IA por mês",
+  "planProAi": "100 solicitações de IA por mês",
   "planNoAds": "Sem anúncios",
   "planBackup": "Exportar e importar backup",
-  "planMaxAi": "1000 solicitações de IA por mês",
+  "planMaxAi": "300 solicitações de IA por mês",
   "planMaxFamily": "Para grandes compras da família",
   "plansStoreUnavailable": "A loja não está acessível agora.",
   "retryAction": "Tentar de novo",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Este idioma não está disponível para entrada por voz neste dispositivo. Você pode digitar.",
   "voiceStopListening": "Parar de ouvir",
   "keepAwakeFailed": "Não foi possível manter a tela ligada. Tente novamente.",
-  "purchaseHistoryHint": "Todas as compras concluídas. Devoluções reduzem os totais. As datas referem-se ao término das compras. Uma única visita não é suficiente para calcular um intervalo médio."
+  "purchaseHistoryHint": "Todas as compras concluídas. Devoluções reduzem os totais. As datas referem-se ao término das compras. Uma única visita não é suficiente para calcular um intervalo médio.",
+  "planLegacyRights": "Assinaturas Pro e Max existentes mantêm sua cota mensal original de IA. Novas ofertas têm 100 e 300 solicitações."
 }

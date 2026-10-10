@@ -931,7 +931,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get planFreePrice => 'සදාකාලිකව නිදහස්';
 
   @override
-  String get planFreeAi => 'මාසයකට AI ඉල්ලීම් 15';
+  String get planFreeAi => 'මාසයකට AI ඉල්ලීම් 10';
 
   @override
   String get planFreeAds =>
@@ -950,7 +950,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get planTrial => 'දින 7 නිදහස්';
 
   @override
-  String get planProAi => 'මාසයකට AI ඉල්ලීම් 200';
+  String get planProAi => 'මාසයකට AI ඉල්ලීම් 100';
 
   @override
   String get planNoAds => 'විज्ञापन නැත';
@@ -959,7 +959,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get planBackup => 'බැකප් අපනයනය සහ ආයාතය';
 
   @override
-  String get planMaxAi => 'මාසයට AI ඉල්ලීම් 1000ක්';
+  String get planMaxAi => 'මාසයට AI ඉල්ලීම් 300ක්';
 
   @override
   String get planMaxFamily => 'විශාල පවුල් මිලදී ගැනීම් සඳහා';
@@ -1084,4 +1084,8 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'සියලුම සම්පූර්ණ කරන ලද ගැනුම්. ආපසු ගෙවීම් මුළු වටිනාකම් අඩු කරයි. දිනා ගැනීමේ දින පෙන්වයි. එක් වරක් පමණක් මධ්‍යන්‍ය කාලය ගණනය කිරීමට ප්‍රමාණවත් නොවේ.';
+
+  @override
+  String get planLegacyRights =>
+      'පවතින Pro සහ Max ගාස්තුදායක සඳුදාලිත මාසික AI ඉඩකඩ පවත්වා ගනී. නව වට්ටම් 100 සහ 300 ඉල්ලීම් ඇතුළත් වේ.';
 }

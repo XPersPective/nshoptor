@@ -935,7 +935,7 @@ class AppLocalizationsMk extends AppLocalizations {
   String get planFreePrice => 'Засекогаш бесплатно';
 
   @override
-  String get planFreeAi => '15 AI барања месечно';
+  String get planFreeAi => '10 AI барања месечно';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsMk extends AppLocalizations {
   String get planTrial => '7 дена бесплатно';
 
   @override
-  String get planProAi => '200 AI барања месечно';
+  String get planProAi => '100 AI барања месечно';
 
   @override
   String get planNoAds => 'Без реклами';
@@ -963,7 +963,7 @@ class AppLocalizationsMk extends AppLocalizations {
   String get planBackup => 'Експорт и увоз на резервна копија';
 
   @override
-  String get planMaxAi => '1000 AI барања месечно';
+  String get planMaxAi => '300 AI барања месечно';
 
   @override
   String get planMaxFamily => 'За купување за голема фамилија';
@@ -1088,4 +1088,8 @@ class AppLocalizationsMk extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Сите завршени купувања. Повратите ги намалуваат вкупните суми. Датумите се однесуваат на завршување на купувањето. Една посета не е доволна за пресметка на просечен интервал.';
+
+  @override
+  String get planLegacyRights =>
+      'Постоечтите Pro и Max претплати ги задржуваат оригиналните месечни AI дозволи. Новите понуди имаат 100 и 300 барања.';
 }

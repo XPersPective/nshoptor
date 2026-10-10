@@ -931,7 +931,7 @@ class AppLocalizationsKk extends AppLocalizations {
   String get planFreePrice => 'Мәңгілік тегін';
 
   @override
-  String get planFreeAi => 'Айына 15 AI сұраныс';
+  String get planFreeAi => 'Айына 10 AI сұраныс';
 
   @override
   String get planFreeAds =>
@@ -951,7 +951,7 @@ class AppLocalizationsKk extends AppLocalizations {
   String get planTrial => '7 күн тегін';
 
   @override
-  String get planProAi => 'Айына 200 AI сұраныс';
+  String get planProAi => 'Айына 100 AI сұраныс';
 
   @override
   String get planNoAds => 'Жарнамасыз';
@@ -960,7 +960,7 @@ class AppLocalizationsKk extends AppLocalizations {
   String get planBackup => 'Сақтау және импорттау';
 
   @override
-  String get planMaxAi => 'Айына 1000 AI сұраныс';
+  String get planMaxAi => 'Айына 300 AI сұраныс';
 
   @override
   String get planMaxFamily => 'Үлкен отбасының шопингіне арналған';
@@ -1084,4 +1084,8 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Барлық аяқталған сатып алулар. Қайтарымдар жалпы соманы азайтады. Күндер сатып алу аяқталған күнмен байланысты. Бір реттік сапар орташа аралықты есептеу үшін жеткіліксіз.';
+
+  @override
+  String get planLegacyRights =>
+      'Ескі Pro және Max жазылымдары өздерінің айлық AI шектеуін сақтайды. Жаңа ұсыныстар 100 және 300 сұраныс береді.';
 }

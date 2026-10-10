@@ -292,16 +292,16 @@
   "plansYearly": "Jaarlijks",
   "planFree": "Gratis",
   "planFreePrice": "Altijd gratis",
-  "planFreeAi": "15 AI-verzoeken per maand",
+  "planFreeAi": "10 AI-verzoeken per maand",
   "planFreeAds": "Kleine banneradvertenties (geen in je eerste 7 dagen)",
   "planCoreFeatures": "Lijsten, prijzen, kwitanties, uitgavenoverzichten",
   "plansPerYear": "/ jaar",
   "plansPerMonth": "/ maand",
   "planTrial": "7 dagen gratis",
-  "planProAi": "200 AI-verzoeken per maand",
+  "planProAi": "100 AI-verzoeken per maand",
   "planNoAds": "Geen advertenties",
   "planBackup": "Back-up export en import",
-  "planMaxAi": "1000 AI-verzoeken per maand",
+  "planMaxAi": "300 AI-verzoeken per maand",
   "planMaxFamily": "Voor grote gezinsboodschappen",
   "plansStoreUnavailable": "De winkel is momenteel niet bereikbaar.",
   "retryAction": "Opnieuw proberen",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Deze taal is niet beschikbaar voor spraakinvoer op dit apparaat. Je kunt in plaats daarvan typen.",
   "voiceStopListening": "Stop met luisteren",
   "keepAwakeFailed": "Het is niet gelukt om het scherm actief te houden. Probeer het opnieuw.",
-  "purchaseHistoryHint": "Alle voltooide boodschappen. Terugbrings verlagen de totalen. Data verwijzen naar het moment van afrekenen. Eén bezoek is niet genoeg om een gemiddelde interval te berekenen."
+  "purchaseHistoryHint": "Alle voltooide boodschappen. Terugbrings verlagen de totalen. Data verwijzen naar het moment van afrekenen. Eén bezoek is niet genoeg om een gemiddelde interval te berekenen.",
+  "planLegacyRights": "Bestaande Pro- en Max-abonnementen behouden hun oorspronkelijke maandelijkse AI-toelage. Nieuwe aanbiedingen bieden 100 en 300 verzoeken."
 }

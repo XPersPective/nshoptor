@@ -934,7 +934,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get planFreePrice => 'Бесплатно навсегда';
 
   @override
-  String get planFreeAi => '15 запросов к ИИ в месяц';
+  String get planFreeAi => '10 запросов к ИИ в месяц';
 
   @override
   String get planFreeAds => 'Небольшие баннеры (первые 7 дней без рекламы)';
@@ -952,7 +952,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get planTrial => '7 дней бесплатно';
 
   @override
-  String get planProAi => '200 запросов к ИИ в месяц';
+  String get planProAi => '100 запросов к ИИ в месяц';
 
   @override
   String get planNoAds => 'Без рекламы';
@@ -961,7 +961,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get planBackup => 'Экспорт и импорт копии';
 
   @override
-  String get planMaxAi => '1000 запросов к ИИ в месяц';
+  String get planMaxAi => '300 запросов к ИИ в месяц';
 
   @override
   String get planMaxFamily => 'Для больших семейных покупок';
@@ -1085,4 +1085,8 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Все завершённые покупки. Возвраты уменьшают итоговую сумму. Даты указывают на завершение покупок. Одного визита недостаточно для расчёта среднего интервала.';
+
+  @override
+  String get planLegacyRights =>
+      'Действующие подписки Pro и Max сохраняют свой исходный ежемесячный лимит запросов к ИИ. Новые предложения включают 100 и 300 запросов.';
 }

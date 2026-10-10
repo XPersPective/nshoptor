@@ -292,16 +292,16 @@
   "plansYearly": "Illik",
   "planFree": "Pulsuz",
   "planFreePrice": "Həmişə pulsuz",
-  "planFreeAi": "Ayda 15 AI sorğusu",
+  "planFreeAi": "Ayda 10 AI sorğusu",
   "planFreeAds": "Kiçik banner reklam (ilk 7 gündə yoxdur)",
   "planCoreFeatures": "Siyahılar, qiymətlər, çeklər, xərcləmə diaqramları",
   "plansPerYear": "/ il",
   "plansPerMonth": "/ ay",
   "planTrial": "7 gün pulsuz",
-  "planProAi": "Ayda 200 AI sorğusu",
+  "planProAi": "Ayda 100 AI sorğusu",
   "planNoAds": "Reklam yoxdur",
   "planBackup": "Yedəkləmə ixrac və idxal",
-  "planMaxAi": "Ayda 1000 AI sorğusu",
+  "planMaxAi": "Ayda 300 AI sorğusu",
   "planMaxFamily": "Böyük ailə alışları üçün",
   "plansStoreUnavailable": "Mağaza hazırkı anda əlçatan deyil.",
   "retryAction": "Təkrar cəhd et",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Bu dil bu cihazda səsli giriş üçün mövcud deyil. Bunun əvəzinə yazmaq mümkündür.",
   "voiceStopListening": "Dinləməni dayandır",
   "keepAwakeFailed": "Ekranı oyuda saxlamaq mümkün olmadı. Zəhmət olmasa, yenidən cəhd edin.",
-  "purchaseHistoryHint": "Tamamlanmış bütün alış-verişlər. Qaytarmalar ümumi məbləği azaldır. Tarixlər alış-verişin tamamlanmasına aiddir. Bir ziyarət orta intervalı hesablamaq üçün kifayət deyil."
+  "purchaseHistoryHint": "Tamamlanmış bütün alış-verişlər. Qaytarmalar ümumi məbləği azaldır. Tarixlər alış-verişin tamamlanmasına aiddir. Bir ziyarət orta intervalı hesablamaq üçün kifayət deyil.",
+  "planLegacyRights": "Mövcud Pro və Max abunəlikləri ilkin aylıq AI limitini saxlayır. Yeni təkliflər 100 və 300 sorğu ilə gəlir."
 }

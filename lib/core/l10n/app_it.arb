@@ -292,16 +292,16 @@
   "plansYearly": "Annuale",
   "planFree": "Gratis",
   "planFreePrice": "Gratis per sempre",
-  "planFreeAi": "15 richieste IA al mese",
+  "planFreeAi": "10 richieste IA al mese",
   "planFreeAds": "Piccoli banner pubblicitari (nessuno nei primi 7 giorni)",
   "planCoreFeatures": "Liste, prezzi, scontrini, grafici delle spese",
   "plansPerYear": "/ anno",
   "plansPerMonth": "/ mese",
   "planTrial": "7 giorni gratis",
-  "planProAi": "200 richieste IA al mese",
+  "planProAi": "100 richieste IA al mese",
   "planNoAds": "Senza pubblicità",
   "planBackup": "Esporta e importa backup",
-  "planMaxAi": "1000 richieste IA al mese",
+  "planMaxAi": "300 richieste IA al mese",
   "planMaxFamily": "Per le grandi spese di famiglia",
   "plansStoreUnavailable": "Lo store non è raggiungibile al momento.",
   "retryAction": "Riprova",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Questa lingua non è disponibile per l'input vocale su questo dispositivo. Puoi digitare invece.",
   "voiceStopListening": "Ferma l'ascolto",
   "keepAwakeFailed": "Ecrin ei pysynyt päällä. Yritä uudelleen.",
-  "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückerstattungen reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen."
+  "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückerstattungen reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.",
+  "planLegacyRights": "Le abbonamenti Pro e Max esistenti mantengono il loro allowance mensile AI originale. Le nuove offerte prevedono 100 e 300 richieste."
 }

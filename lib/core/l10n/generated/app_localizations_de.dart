@@ -935,7 +935,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get planFreePrice => 'Für immer kostenlos';
 
   @override
-  String get planFreeAi => '15 KI-Anfragen pro Monat';
+  String get planFreeAi => '10 KI-Anfragen pro Monat';
 
   @override
   String get planFreeAds =>
@@ -955,7 +955,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get planTrial => '7 Tage gratis';
 
   @override
-  String get planProAi => '200 KI-Anfragen pro Monat';
+  String get planProAi => '100 KI-Anfragen pro Monat';
 
   @override
   String get planNoAds => 'Keine Werbung';
@@ -964,7 +964,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get planBackup => 'Sicherung exportieren und importieren';
 
   @override
-  String get planMaxAi => '1000 KI-Anfragen pro Monat';
+  String get planMaxAi => '300 KI-Anfragen pro Monat';
 
   @override
   String get planMaxFamily => 'Für große Familieneinkäufe';
@@ -1090,4 +1090,8 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Alle abgeschlossenen Einkäufe. Rückgaben reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.';
+
+  @override
+  String get planLegacyRights =>
+      'Bestehende Pro- und Max-Abonnements behalten ihre ursprüngliche monatliche AI-Nutzung. Neue Angebote bieten 100 bzw. 300 Anfragen.';
 }

@@ -932,7 +932,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get planFreePrice => 'ຟຣີຕະຫຼອດໄປ';
 
   @override
-  String get planFreeAi => '15 ຄຳຮ້ອງຂໍ AI ຕໍ່ເດືອນ';
+  String get planFreeAi => '10 ຄຳຮ້ອງຂໍ AI ຕໍ່ເດືອນ';
 
   @override
   String get planFreeAds => 'ໂຄສະນາແບນເນີຂະໜາດນ້ອຍ (ບໍ່ມີໃນ 7 ວັນທຳອິດຂອງທ່ານ)';
@@ -950,7 +950,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get planTrial => 'ຟຣີ 7 ວັນ';
 
   @override
-  String get planProAi => '200 ຄຳຮ້ອງຂໍ AI ຕໍ່ເດືອນ';
+  String get planProAi => '100 ຄຳຮ້ອງຂໍ AI ຕໍ່ເດືອນ';
 
   @override
   String get planNoAds => 'ບໍ່ມີໂຄສະນາ';
@@ -959,7 +959,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get planBackup => 'ສົ່ງອອກ ແລະ ນຳເຂົ້າຂໍ້ມູນ';
 
   @override
-  String get planMaxAi => '1000 ຄຳຖາມ AI ຕໍ່ເດືອນ';
+  String get planMaxAi => '300 ຄຳຖາມ AI ຕໍ່ເດືອນ';
 
   @override
   String get planMaxFamily => 'ສຳລັບການຊື້ຂອງໃຫຍ່ໃນຄອບຄົວ';
@@ -1081,4 +1081,8 @@ class AppLocalizationsLo extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'ການຊື້ຂາຍທີ່ສຳເລັດທຸກຢ່າງ. ການຍອມຮັບຄືນຈະຫຼຸດລວມ. ວັນທີແມ່ນອ້າງອີງຕໍ່ການສຳເລັດການຊື້ຂາຍ. ການໄປຊື້ຄັ້ງດຽວບໍ່ພຽງພໍໃນການຄິດໄລ່ຊ່ວງເວລາສະເລ່ຍ.';
+
+  @override
+  String get planLegacyRights =>
+      'ສະມາຊິກ Pro ແລະ Max ທີ່ມີຢູ່ແລ້ວຈະຮັກສາຂອບເຂດ AI ໃນແຕ່ລະເດືອນຕາມເດີມ. ການສະເໜີໃໝ່ຈະມີ 100 ແລະ 300 ຄັ້ງ.';
 }

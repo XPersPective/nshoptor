@@ -935,7 +935,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get planFreePrice => 'Örökké ingyenes';
 
   @override
-  String get planFreeAi => '15 AI kérés havonta';
+  String get planFreeAi => '10 AI kérés havonta';
 
   @override
   String get planFreeAds => 'Kis banner hirdetések (az első 7 napban nincs)';
@@ -953,7 +953,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get planTrial => '7 nap ingyen';
 
   @override
-  String get planProAi => '200 AI kérés havonta';
+  String get planProAi => '100 AI kérés havonta';
 
   @override
   String get planNoAds => 'Nincsenek hirdetések';
@@ -962,7 +962,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get planBackup => 'Biztonsági mentés export és import';
 
   @override
-  String get planMaxAi => '1000 AI kérés havonta';
+  String get planMaxAi => '300 AI kérés havonta';
 
   @override
   String get planMaxFamily => 'Nagy családok bevásárlásához';
@@ -1087,4 +1087,8 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Az összes befejezett bevásárlás. A visszaküldések csökkentik az összegeket. A dátumok a bevásárlás befejezésére vonatkoznak. Egy vásárlási alkalom nem elegendő az átlagos időköz kiszámításához.';
+
+  @override
+  String get planLegacyRights =>
+      'A meglévő Pro és Max előfizetések megőrzik az eredeti havi AI keretüket. Az új ajánlatok 100 és 300 kérést tartalmaznak.';
 }

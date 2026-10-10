@@ -914,7 +914,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get planFreePrice => '영구 무료';
 
   @override
-  String get planFreeAi => '월 15회 AI 요청';
+  String get planFreeAi => '월 10회 AI 요청';
 
   @override
   String get planFreeAds => '소형 배너 광고 (첫 7일 동안 없음)';
@@ -932,7 +932,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get planTrial => '7일 무료 체험';
 
   @override
-  String get planProAi => '월 200회 AI 요청';
+  String get planProAi => '월 100회 AI 요청';
 
   @override
   String get planNoAds => '광고 없음';
@@ -941,7 +941,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get planBackup => '백업 내보내기 및 가져오기';
 
   @override
-  String get planMaxAi => '월 1000회 AI 요청';
+  String get planMaxAi => '월 300회 AI 요청';
 
   @override
   String get planMaxFamily => '대가족 쇼핑용';
@@ -1058,4 +1058,8 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       '완료된 모든 쇼핑 내역입니다. 반품 시 총액이 감소합니다. 날짜는 쇼핑 완료일을 기준으로 합니다. 한 번의 방문만으로는 평균 간격을 계산할 수 없습니다.';
+
+  @override
+  String get planLegacyRights =>
+      '기존 Pro 및 Max 구독은 원래 월간 AI 할당량을 유지합니다. 새로운 요금제는 각각 100회와 300회의 요청을 제공합니다.';
 }

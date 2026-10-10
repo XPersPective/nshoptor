@@ -292,16 +292,16 @@
   "plansYearly": "Taon-taon",
   "planFree": "Libre",
   "planFreePrice": "Libre forever",
-  "planFreeAi": "15 AI requests kada buwan",
+  "planFreeAi": "10 AI requests kada buwan",
   "planFreeAds": "Maliit na banner ads (walang sa unang 7 araw)",
   "planCoreFeatures": "Mga listahan, presyo, resibo, chart ng gastos",
   "plansPerYear": "/ taon",
   "plansPerMonth": "/ buwan",
   "planTrial": "7 araw libre",
-  "planProAi": "200 AI requests kada buwan",
+  "planProAi": "100 AI requests kada buwan",
   "planNoAds": "Walang ads",
   "planBackup": "I-export at i-import ang backup",
-  "planMaxAi": "1000 AI requests bawat buwan",
+  "planMaxAi": "300 AI requests bawat buwan",
   "planMaxFamily": "Para sa malaking pamilya na pagbili",
   "plansStoreUnavailable": "Hindi maabot ang tindahan ngayon.",
   "retryAction": "Subukan ulit",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Hindi available ang wika na ito para sa voice input sa device na ito. Maaari kang mag-type.",
   "voiceStopListening": "Itigil ang pakinggan",
   "keepAwakeFailed": "Hindi maaaring panatilihing gising ang screen. Subukan ulit.",
-  "purchaseHistoryHint": "Lahat ng natapos na pagbili. Binabawasan ng mga return ang kabuuan. Ang mga petsa ay tumutukoy sa pagkumpleto ng pagbili. Isa lang ang bisita, hindi sapat para kalkulahin ang average interval."
+  "purchaseHistoryHint": "Lahat ng natapos na pagbili. Binabawasan ng mga return ang kabuuan. Ang mga petsa ay tumutukoy sa pagkumpleto ng pagbili. Isa lang ang bisita, hindi sapat para kalkulahin ang average interval.",
+  "planLegacyRights": "Ang mga existing na Pro at Max subscription ay pananatili ang kanilang orihinal na buwanang AI allowance. Ang mga bagong offer ay may 100 at 300 requests."
 }

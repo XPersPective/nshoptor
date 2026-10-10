@@ -292,16 +292,16 @@
   "plansYearly": "Árlega",
   "planFree": "Ókeypis",
   "planFreePrice": "Alltaf ókeypis",
-  "planFreeAi": "15 AI beiðnir á mánuði",
+  "planFreeAi": "10 AI beiðnir á mánuði",
   "planFreeAds": "Lítillar auglýsingar (engrar fyrstu 7 dagana)",
   "planCoreFeatures": "Listar, verð, kvittanir, gjaldagrafar",
   "plansPerYear": "/ ár",
   "plansPerMonth": "/ mánuður",
   "planTrial": "7 dagar ókeypis",
-  "planProAi": "200 AI beiðnir á mánuði",
+  "planProAi": "100 AI beiðnir á mánuði",
   "planNoAds": "Engar auglýsingar",
   "planBackup": "Bakgrunnshermt og innflutningur",
-  "planMaxAi": "1000 AI beiðnir á mánuði",
+  "planMaxAi": "300 AI beiðnir á mánuði",
   "planMaxFamily": "Fyrir stórfjölskylduverslun",
   "plansStoreUnavailable": "Verslunin er ekki til staðar í augnablikinu.",
   "retryAction": "Reyna aftur",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Þetta tungumál er ekki tiltækt fyrir raddinntak á þessu tæki. Þú getur skrifað í staðinn.",
   "voiceStopListening": "Hætta að hlusta",
   "keepAwakeFailed": "Gat ekki haldið skjánum vakandi. Vinsamlegast reyndu aftur.",
-  "purchaseHistoryHint": "Allar fullunnar innkaup. Endurheimt dregur úr heildarverði. Dagar vísa til lokunar innkaupa. Eitt ferð er ekki nóg til að reikna út meðalfjöldi."
+  "purchaseHistoryHint": "Allar fullunnar innkaup. Endurheimt dregur úr heildarverði. Dagar vísa til lokunar innkaupa. Eitt ferð er ekki nóg til að reikna út meðalfjöldi.",
+  "planLegacyRights": "Verðandi Pro og Max áskriftir halda upprunalega mánaðarlegu AI leyfi. Nýtilboðin hafa 100 og 300 beiðnir."
 }

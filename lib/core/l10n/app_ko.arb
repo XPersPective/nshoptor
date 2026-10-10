@@ -292,16 +292,16 @@
   "plansYearly": "연간",
   "planFree": "무료",
   "planFreePrice": "영구 무료",
-  "planFreeAi": "월 15회 AI 요청",
+  "planFreeAi": "월 10회 AI 요청",
   "planFreeAds": "소형 배너 광고 (첫 7일 동안 없음)",
   "planCoreFeatures": "목록, 가격, 영수증, 지출 차트",
   "plansPerYear": "/ 년",
   "plansPerMonth": "/ 월",
   "planTrial": "7일 무료 체험",
-  "planProAi": "월 200회 AI 요청",
+  "planProAi": "월 100회 AI 요청",
   "planNoAds": "광고 없음",
   "planBackup": "백업 내보내기 및 가져오기",
-  "planMaxAi": "월 1000회 AI 요청",
+  "planMaxAi": "월 300회 AI 요청",
   "planMaxFamily": "대가족 쇼핑용",
   "plansStoreUnavailable": "현재 매장에 연결할 수 없습니다.",
   "retryAction": "다시 시도",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "이 기기는 음성 입력을 지원하지 않는 언어입니다. 대신 텍스트로 입력할 수 있습니다.",
   "voiceStopListening": "듣기 중지",
   "keepAwakeFailed": "화면을 켜두지 못했습니다. 다시 시도해 주세요.",
-  "purchaseHistoryHint": "완료된 모든 쇼핑 내역입니다. 반품 시 총액이 감소합니다. 날짜는 쇼핑 완료일을 기준으로 합니다. 한 번의 방문만으로는 평균 간격을 계산할 수 없습니다."
+  "purchaseHistoryHint": "완료된 모든 쇼핑 내역입니다. 반품 시 총액이 감소합니다. 날짜는 쇼핑 완료일을 기준으로 합니다. 한 번의 방문만으로는 평균 간격을 계산할 수 없습니다.",
+  "planLegacyRights": "기존 Pro 및 Max 구독은 원래 월간 AI 할당량을 유지합니다. 새로운 요금제는 각각 100회와 300회의 요청을 제공합니다."
 }

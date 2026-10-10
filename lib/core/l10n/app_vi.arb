@@ -292,16 +292,16 @@
   "plansYearly": "Hàng năm",
   "planFree": "Miễn phí",
   "planFreePrice": "Miễn phí mãi mãi",
-  "planFreeAi": "15 lượt yêu cầu AI mỗi tháng",
+  "planFreeAi": "10 lượt yêu cầu AI mỗi tháng",
   "planFreeAds": "Quảng cáo biểu ngữ nhỏ (không quảng cáo trong 7 ngày đầu tiên của bạn)",
   "planCoreFeatures": "Danh sách, giá cả, hóa đơn, biểu đồ chi tiêu",
   "plansPerYear": "/ năm",
   "plansPerMonth": "/ tháng",
   "planTrial": "Dùng thử miễn phí 7 ngày",
-  "planProAi": "200 lượt yêu cầu AI mỗi tháng",
+  "planProAi": "100 lượt yêu cầu AI mỗi tháng",
   "planNoAds": "Không quảng cáo",
   "planBackup": "Sao lưu, xuất và nhập",
-  "planMaxAi": "1000 yêu cầu AI mỗi tháng",
+  "planMaxAi": "300 yêu cầu AI mỗi tháng",
   "planMaxFamily": "Dành cho mua sắm gia đình đông người",
   "plansStoreUnavailable": "Cửa hàng hiện không thể truy cập.",
   "retryAction": "Thử lại",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Ngôn ngữ này không hỗ trợ nhập giọng nói trên thiết bị này. Bạn có thể gõ văn bản thay thế.",
   "voiceStopListening": "Dừng nghe",
   "keepAwakeFailed": "Không thể giữ màn hình luôn sáng. Vui lòng thử lại.",
-  "purchaseHistoryHint": "Tất cả các lần mua sắm đã hoàn tất. Việc trả hàng sẽ làm giảm tổng chi tiêu. Ngày tháng đề cập đến thời điểm hoàn tất mua sắm. Một lần đi mua không đủ để tính khoảng cách trung bình giữa các lần."
+  "purchaseHistoryHint": "Tất cả các lần mua sắm đã hoàn tất. Việc trả hàng sẽ làm giảm tổng chi tiêu. Ngày tháng đề cập đến thời điểm hoàn tất mua sắm. Một lần đi mua không đủ để tính khoảng cách trung bình giữa các lần.",
+  "planLegacyRights": "Các gói đăng ký Pro và Max hiện tại sẽ giữ nguyên hạn mức AI hàng tháng ban đầu. Các ưu đãi mới có 100 và 300 yêu cầu."
 }

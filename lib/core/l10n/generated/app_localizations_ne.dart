@@ -935,7 +935,7 @@ class AppLocalizationsNe extends AppLocalizations {
   String get planFreePrice => 'सधैं निःशुल्क';
 
   @override
-  String get planFreeAi => 'प्रति महिना १५ AI अनुरोध';
+  String get planFreeAi => 'प्रति महिना 10 AI अनुरोध';
 
   @override
   String get planFreeAds => 'साना ब्यानर विज्ञापन (पहिलो ७ दिनमा कुनै छैन)';
@@ -953,7 +953,7 @@ class AppLocalizationsNe extends AppLocalizations {
   String get planTrial => '७ दिन निःशुल्क';
 
   @override
-  String get planProAi => 'प्रति महिना २०० AI अनुरोध';
+  String get planProAi => 'प्रति महिना 100 AI अनुरोध';
 
   @override
   String get planNoAds => 'विज्ञापन छैन';
@@ -962,7 +962,7 @@ class AppLocalizationsNe extends AppLocalizations {
   String get planBackup => 'ब्याकअप एक्सपोर्ट र इम्पोर्ट';
 
   @override
-  String get planMaxAi => 'प्रति महिना १००० AI अनुरोधहरू';
+  String get planMaxAi => 'प्रति महिना 300 AI अनुरोधहरू';
 
   @override
   String get planMaxFamily => 'ठूलो परिवारको खरिदका लागि';
@@ -1087,4 +1087,8 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'सबै पूरा भएका खरिदहरू। रिटर्नले कुल रकम घटाउँछ। मितिहरूले खरिद सम्पन्न भएको समयलाई जनाउँछन्। औसत अन्तराल गणना गर्न एउटा भ्रमण पर्याप्त हुँदैन।';
+
+  @override
+  String get planLegacyRights =>
+      'पुराना Pro र Max सब्सक्रिप्शनहरूले आफ्नो मूल मासिक AI अनुमति जोगाउँछन्। नयाँ अफरहरूमा १०० र ३०० अनुरोधहरू छन्।';
 }

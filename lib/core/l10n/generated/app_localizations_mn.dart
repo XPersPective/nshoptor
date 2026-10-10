@@ -937,7 +937,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get planFreePrice => 'Мөнхийн үнэгүй';
 
   @override
-  String get planFreeAi => 'Сар бүр 15 AI хүсэлт';
+  String get planFreeAi => 'Сар бүр 10 AI хүсэлт';
 
   @override
   String get planFreeAds => 'Жижиг баннер реклам (эхний 7 хоногт байхгүй)';
@@ -955,7 +955,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get planTrial => '7 хоног үнэгүй';
 
   @override
-  String get planProAi => 'Сар бүр 200 AI хүсэлт';
+  String get planProAi => 'Сар бүр 100 AI хүсэлт';
 
   @override
   String get planNoAds => 'Рекламгүй';
@@ -964,7 +964,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get planBackup => 'Нөөцлөх экспорт, импорт';
 
   @override
-  String get planMaxAi => 'Сард 1000 AI хүсэлт';
+  String get planMaxAi => 'Сард 300 AI хүсэлт';
 
   @override
   String get planMaxFamily => 'Том гэр бүлийн худалдаанд зориулсан';
@@ -1090,4 +1090,8 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Бүх дууссан худалдаа. Буцаан олголт нийт дүнгий бууруулна. Огноо нь худалдааны дуусах хугацааг илэрхийлнэ. Нэг аялал дундаж завсрыг тооцоолоход хангалтгүй.';
+
+  @override
+  String get planLegacyRights =>
+      'Одоо байгаа Pro болон Max захиалгууд анхны сар бүрийн AI хязгаарлалтаа хадгална. Шинэ сануултууд 100 ба 300 хүсэлт агуулна.';
 }

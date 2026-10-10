@@ -292,16 +292,16 @@
   "plansYearly": "Ročne",
   "planFree": "Zdarma",
   "planFreePrice": "Navždy zdarma",
-  "planFreeAi": "15 požiadaviek AI za mesiac",
+  "planFreeAi": "10 požiadaviek AI za mesiac",
   "planFreeAds": "Malé bannerové reklamy (žiadne počas prvých 7 dní)",
   "planCoreFeatures": "Zoznamy, ceny, účty, grafy výdavkov",
   "plansPerYear": "/ rok",
   "plansPerMonth": "/ mesiac",
   "planTrial": "7 dní zdarma",
-  "planProAi": "200 požiadaviek AI za mesiac",
+  "planProAi": "100 požiadaviek AI za mesiac",
   "planNoAds": "Žiadne reklamy",
   "planBackup": "Export a import záloh",
-  "planMaxAi": "1000 AI požiadaviek mesačne",
+  "planMaxAi": "300 AI požiadaviek mesačne",
   "planMaxFamily": "Pre nákupy veľkej rodiny",
   "plansStoreUnavailable": "Obchod je momentálne nedostupný.",
   "retryAction": "Skúsiť znova",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Tento jazyk nie je na tomto zariadení dostupný pre hlasový vstup. Môžete namiesto toho písať.",
   "voiceStopListening": "Zastaviť počúvanie",
   "keepAwakeFailed": "Nepodarilo sa udržať obrazovku zapnutú. Skúste to prosím znova.",
-  "purchaseHistoryHint": "Všetky dokončené nákupy. Vrátenie tovaru znižuje celkové sumy. Dáty sa vzťahujú na dokončenie nákupu. Na výpočet priemerného intervalu nestačí jeden nákup."
+  "purchaseHistoryHint": "Všetky dokončené nákupy. Vrátenie tovaru znižuje celkové sumy. Dáty sa vzťahujú na dokončenie nákupu. Na výpočet priemerného intervalu nestačí jeden nákup.",
+  "planLegacyRights": "Existujúce predplatné Pro a Max si zachovávajú pôvodný mesačný limit AI požiadaviek. Nové ponuky majú 100 a 300 požiadaviek."
 }

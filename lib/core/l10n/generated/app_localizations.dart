@@ -1991,7 +1991,7 @@ abstract class AppLocalizations {
   /// No description provided for @planFreeAi.
   ///
   /// In en, this message translates to:
-  /// **'15 AI requests a month'**
+  /// **'10 AI requests a month'**
   String get planFreeAi;
 
   /// No description provided for @planFreeAds.
@@ -2027,7 +2027,7 @@ abstract class AppLocalizations {
   /// No description provided for @planProAi.
   ///
   /// In en, this message translates to:
-  /// **'200 AI requests a month'**
+  /// **'100 AI requests a month'**
   String get planProAi;
 
   /// No description provided for @planNoAds.
@@ -2045,7 +2045,7 @@ abstract class AppLocalizations {
   /// No description provided for @planMaxAi.
   ///
   /// In en, this message translates to:
-  /// **'1000 AI requests a month'**
+  /// **'300 AI requests a month'**
   String get planMaxAi;
 
   /// No description provided for @planMaxFamily.
@@ -2269,6 +2269,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval.'**
   String get purchaseHistoryHint;
+
+  /// No description provided for @planLegacyRights.
+  ///
+  /// In en, this message translates to:
+  /// **'Existing Pro and Max subscriptions keep their original monthly AI allowance. New offers have 100 and 300 requests.'**
+  String get planLegacyRights;
 }
 
 class _AppLocalizationsDelegate

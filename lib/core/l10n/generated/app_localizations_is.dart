@@ -932,7 +932,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get planFreePrice => 'Alltaf ókeypis';
 
   @override
-  String get planFreeAi => '15 AI beiðnir á mánuði';
+  String get planFreeAi => '10 AI beiðnir á mánuði';
 
   @override
   String get planFreeAds => 'Lítillar auglýsingar (engrar fyrstu 7 dagana)';
@@ -950,7 +950,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get planTrial => '7 dagar ókeypis';
 
   @override
-  String get planProAi => '200 AI beiðnir á mánuði';
+  String get planProAi => '100 AI beiðnir á mánuði';
 
   @override
   String get planNoAds => 'Engar auglýsingar';
@@ -959,7 +959,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get planBackup => 'Bakgrunnshermt og innflutningur';
 
   @override
-  String get planMaxAi => '1000 AI beiðnir á mánuði';
+  String get planMaxAi => '300 AI beiðnir á mánuði';
 
   @override
   String get planMaxFamily => 'Fyrir stórfjölskylduverslun';
@@ -1084,4 +1084,8 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Allar fullunnar innkaup. Endurheimt dregur úr heildarverði. Dagar vísa til lokunar innkaupa. Eitt ferð er ekki nóg til að reikna út meðalfjöldi.';
+
+  @override
+  String get planLegacyRights =>
+      'Verðandi Pro og Max áskriftir halda upprunalega mánaðarlegu AI leyfi. Nýtilboðin hafa 100 og 300 beiðnir.';
 }

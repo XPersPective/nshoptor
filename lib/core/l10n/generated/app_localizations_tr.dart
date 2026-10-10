@@ -932,7 +932,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get planFreePrice => 'Her zaman ücretsiz';
 
   @override
-  String get planFreeAi => 'Ayda 15 yapay zekâ isteği';
+  String get planFreeAi => 'Ayda 10 yapay zekâ isteği';
 
   @override
   String get planFreeAds => 'Küçük banner reklam (ilk 7 gün reklamsız)';
@@ -951,7 +951,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get planTrial => '7 gün ücretsiz';
 
   @override
-  String get planProAi => 'Ayda 200 yapay zekâ isteği';
+  String get planProAi => 'Ayda 100 yapay zekâ isteği';
 
   @override
   String get planNoAds => 'Reklamsız';
@@ -960,7 +960,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get planBackup => 'Yedeği dışa ve içe aktarma';
 
   @override
-  String get planMaxAi => 'Ayda 1000 yapay zekâ isteği';
+  String get planMaxAi => 'Ayda 300 yapay zekâ isteği';
 
   @override
   String get planMaxFamily => 'Büyük aile alışverişleri için';
@@ -1085,4 +1085,8 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Tüm tamamlanan alışverişler. İadeler toplamdan düşülür. Tarihler alışverişin tamamlanmasını gösterir. Ortalama aralık için tek alışveriş yeterli değildir.';
+
+  @override
+  String get planLegacyRights =>
+      'Mevcut Pro ve Max abonelikleri ilk aylık AI haklarını korur. Yeni teklifler 100 ve 300 istektir.';
 }

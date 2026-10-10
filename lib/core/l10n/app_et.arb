@@ -292,16 +292,16 @@
   "plansYearly": "Aastaselt",
   "planFree": "Tasuta",
   "planFreePrice": "Igavesti tasuta",
-  "planFreeAi": "15 AI päringut kuus",
+  "planFreeAi": "10 AI päringut kuus",
   "planFreeAds": "Väikesed bännerireklaamid (esimesel 7 päeval puuduvad)",
   "planCoreFeatures": "Nimekirjad, hinnad, kviidid, kulude graafikud",
   "plansPerYear": "/ aastas",
   "plansPerMonth": "/ kuus",
   "planTrial": "7 päeva tasuta",
-  "planProAi": "200 AI päringut kuus",
+  "planProAi": "100 AI päringut kuus",
   "planNoAds": "Ilma reklaamita",
   "planBackup": "Varundamise eksport ja import",
-  "planMaxAi": "1000 AI päringut kuus",
+  "planMaxAi": "300 AI päringut kuus",
   "planMaxFamily": "Suure pere ostudeks",
   "plansStoreUnavailable": "Pood ei ole praegu kättesaadav.",
   "retryAction": "Proovi uuesti",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Seda keele varianti pole selles seadmes häälsisestamiseks saadaval. Saad selle asemel tekstina sisestada.",
   "voiceStopListening": "Lõpeta kuulamine",
   "keepAwakeFailed": "Ekraani hoidmine ärkvelolekus ei õnnestunud. Palun proovi uuesti.",
-  "purchaseHistoryHint": "Kõik lõpetatud ostud. Tagastused vähendavad kogusummasid. Kuupäevad viitavad ostu lõpetamise ajale. Üks külastus ei ole piisav keskmise intervalli arvutamiseks."
+  "purchaseHistoryHint": "Kõik lõpetatud ostud. Tagastused vähendavad kogusummasid. Kuupäevad viitavad ostu lõpetamise ajale. Üks külastus ei ole piisav keskmise intervalli arvutamiseks.",
+  "planLegacyRights": "Olemasolevad Pro ja Max tellimused säilitavad oma algse igakuise AI luba. Uued pakkumised sisaldavad 100 ja 300 päringut."
 }

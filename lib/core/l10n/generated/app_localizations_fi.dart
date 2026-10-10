@@ -935,7 +935,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get planFreePrice => 'Ikuisesti ilmainen';
 
   @override
-  String get planFreeAi => '15 AI-pyyntöä kuukaudessa';
+  String get planFreeAi => '10 AI-pyyntöä kuukaudessa';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get planTrial => '7 päivää ilmaiseksi';
 
   @override
-  String get planProAi => '200 AI-pyyntöä kuukaudessa';
+  String get planProAi => '100 AI-pyyntöä kuukaudessa';
 
   @override
   String get planNoAds => 'Ei mainoksia';
@@ -963,7 +963,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get planBackup => 'Varmuuskopiointi ja tuonti';
 
   @override
-  String get planMaxAi => '1000 tekoälypyyntöä kuukaudessa';
+  String get planMaxAi => '300 tekoälypyyntöä kuukaudessa';
 
   @override
   String get planMaxFamily => 'Suuren perheen ruokaostoksille';
@@ -1090,4 +1090,8 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Kaikki valmiit kaupat. Palautukset vähentävät kokonaissummaa. Päivämäärät viittaavat ostosten suorittamiseen. Yksi käynti ei riitä keskimääräisen väliajan laskemiseen.';
+
+  @override
+  String get planLegacyRights =>
+      'Olemassa olevat Pro- ja Max-tilaukset säilyttävät alkuperäisen kuukausittaisen AI-käyttöoikeuden. Uudet tarjoukset sisältävät 100 ja 300 pyyntöä.';
 }

@@ -913,7 +913,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get planFreePrice => '永久無料';
 
   @override
-  String get planFreeAi => '月15回のAIリクエスト';
+  String get planFreeAi => '月10回のAIリクエスト';
 
   @override
   String get planFreeAds => 'バナー広告あり（最初の7日間はなし）';
@@ -931,7 +931,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get planTrial => '7日間無料';
 
   @override
-  String get planProAi => '月200回のAIリクエスト';
+  String get planProAi => '月100回のAIリクエスト';
 
   @override
   String get planNoAds => '広告なし';
@@ -940,7 +940,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get planBackup => 'バックアップのエクスポートとインポート';
 
   @override
-  String get planMaxAi => '月間AIリクエスト1000回';
+  String get planMaxAi => '月間AIリクエスト300回';
 
   @override
   String get planMaxFamily => '大家族の買い物に最適';
@@ -1055,4 +1055,8 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'すべての完了したショッピング履歴。返品は合計額を減らします。日付はショッピングの完了日を指します。1回の訪問では平均間隔を計算するには不十分です。';
+
+  @override
+  String get planLegacyRights =>
+      '既存のProおよびMaxサブスクリプションは、従来の月間AI利用枠を維持します。新しいオファーでは100件と300件のリクエストが提供されます。';
 }

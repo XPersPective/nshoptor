@@ -139,6 +139,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   total diff; nullable new-list controller, create+purchase transaction and retry ownership). Shelf label: no crop/rotate UI — ML Kit reads any
   orientation and user picks among all candidates (C-040: no crop package).
   ReceiptMatcher auto-suggestion not used by the screen (manual link only).
+- `subscription/`: source offers *_v2 Pro100/Max300, legacy200/1000 retained, free/lifetime10; matching native owner, latest-query guards and pending purchase/restore deduplication. Legacy rights note and quotas all71; domain24 + subscription11 passed, analyze0. Live catalog remains old SKUs until PB-065.
 - `settings/`: SettingsScreen + SettingsRepository (spec §6.15,
   delete-all double confirm; tema + formatLocale anahtarları repo'da);
   Pro satırı (PaywallPage) + yedek dışa/içe PRO-GATE (standart §3.8:

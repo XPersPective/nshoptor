@@ -292,16 +292,16 @@
   "plansYearly": "Vuosittain",
   "planFree": "Ilmainen",
   "planFreePrice": "Ikuisesti ilmainen",
-  "planFreeAi": "15 AI-pyyntöä kuukaudessa",
+  "planFreeAi": "10 AI-pyyntöä kuukaudessa",
   "planFreeAds": "Pieni mainospalkki (ei ensimmäisten 7 päivän aikana)",
   "planCoreFeatures": "Listat, hinnat, kuitit, kulukaaviot",
   "plansPerYear": "/ vuosi",
   "plansPerMonth": "/ kuukausi",
   "planTrial": "7 päivää ilmaiseksi",
-  "planProAi": "200 AI-pyyntöä kuukaudessa",
+  "planProAi": "100 AI-pyyntöä kuukaudessa",
   "planNoAds": "Ei mainoksia",
   "planBackup": "Varmuuskopiointi ja tuonti",
-  "planMaxAi": "1000 tekoälypyyntöä kuukaudessa",
+  "planMaxAi": "300 tekoälypyyntöä kuukaudessa",
   "planMaxFamily": "Suuren perheen ruokaostoksille",
   "plansStoreUnavailable": "Kauppa ei ole tällä hetkellä tavoitettavissa.",
   "retryAction": "Yritä uudelleen",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Tätä kieltä ei tueta ääntunnistukseen tällä laitteella. Voit kirjoittaa tekstiä sen sijaan.",
   "voiceStopListening": "Lopeta kuuntelu",
   "keepAwakeFailed": "Näytön pysyminen päällä epäonnistui. Yritä uudelleen.",
-  "purchaseHistoryHint": "Kaikki valmiit kaupat. Palautukset vähentävät kokonaissummaa. Päivämäärät viittaavat ostosten suorittamiseen. Yksi käynti ei riitä keskimääräisen väliajan laskemiseen."
+  "purchaseHistoryHint": "Kaikki valmiit kaupat. Palautukset vähentävät kokonaissummaa. Päivämäärät viittaavat ostosten suorittamiseen. Yksi käynti ei riitä keskimääräisen väliajan laskemiseen.",
+  "planLegacyRights": "Olemassa olevat Pro- ja Max-tilaukset säilyttävät alkuperäisen kuukausittaisen AI-käyttöoikeuden. Uudet tarjoukset sisältävät 100 ja 300 pyyntöä."
 }

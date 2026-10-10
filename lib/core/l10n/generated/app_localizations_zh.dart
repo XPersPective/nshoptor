@@ -910,7 +910,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get planFreePrice => '永久免费';
 
   @override
-  String get planFreeAi => '每月 15 次 AI 请求';
+  String get planFreeAi => '每月 10 次 AI 请求';
 
   @override
   String get planFreeAds => '少量横幅广告（前 7 天无广告）';
@@ -928,7 +928,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get planTrial => '7 天免费试用';
 
   @override
-  String get planProAi => '每月 200 次 AI 请求';
+  String get planProAi => '每月 100 次 AI 请求';
 
   @override
   String get planNoAds => '无广告';
@@ -937,7 +937,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get planBackup => '备份导出与导入';
 
   @override
-  String get planMaxAi => '每月 1000 次 AI 请求';
+  String get planMaxAi => '每月 300 次 AI 请求';
 
   @override
   String get planMaxFamily => '适合大家庭购物';
@@ -1051,4 +1051,8 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       '所有已完成的购物。退货会减少总额。日期指的是购物完成时间。一次购物不足以计算平均间隔。';
+
+  @override
+  String get planLegacyRights =>
+      '现有的 Pro 和 Max 订阅保留其原有的每月 AI 使用额度。新套餐分别提供 100 次和 300 次请求。';
 }

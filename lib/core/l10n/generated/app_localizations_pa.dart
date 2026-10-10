@@ -933,7 +933,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get planFreePrice => 'ਹਮੇਸ਼ਾ ਮੁਫ਼ਤ';
 
   @override
-  String get planFreeAi => 'ਮਹੀਨੇ ਵਿੱਚ 15 AI ਰਿਕਵੈਸਟਾਂ';
+  String get planFreeAi => 'ਮਹੀਨੇ ਵਿੱਚ 10 AI ਰਿਕਵੈਸਟਾਂ';
 
   @override
   String get planFreeAds => 'ਛੋਟੀ ਬੈਨਰ ਵਿਗਿਆਪਨ (ਪਹਿਲੇ 7 ਦਿਨਾਂ ਵਿੱਚ ਕੋਈ ਨਹੀਂ)';
@@ -951,7 +951,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get planTrial => '7 ਦਿਨ ਮੁਫ਼ਤ';
 
   @override
-  String get planProAi => 'ਮਹੀਨੇ ਵਿੱਚ 200 AI ਰਿਕਵੈਸਟਾਂ';
+  String get planProAi => 'ਮਹੀਨੇ ਵਿੱਚ 100 AI ਰਿਕਵੈਸਟਾਂ';
 
   @override
   String get planNoAds => 'ਕੋਈ ਵਿਗਿਆਪਨ ਨਹੀਂ';
@@ -960,7 +960,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get planBackup => 'ਬੈਕਅਪ ਐਕਸਪੋਰਟ ਅਤੇ ਇੰਪੋਰਟ';
 
   @override
-  String get planMaxAi => 'ਮਹੀਨੇ ਵਿੱਚ 1000 AI ਰਿਕਵੈਸਟਾਂ';
+  String get planMaxAi => 'ਮਹੀਨੇ ਵਿੱਚ 300 AI ਰਿਕਵੈਸਟਾਂ';
 
   @override
   String get planMaxFamily => 'ਵੱਡੇ ਪਰਿਵਾਰ ਲਈ ਸ਼ਾਪਿੰਗ';
@@ -1085,4 +1085,8 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'ਸਾਰੀਆਂ ਪੂਰੀਆਂ ਹੋਈਆਂ ਸ਼ਾਪਿੰਗਾਂ। ਵਾਪਸੀਆਂ ਕੁੱਲ ਜੋੜ ਨੂੰ ਘਟਾਉਂਦੀਆਂ ਹਨ। ਤਰੀਕਾਂ ਸ਼ਾਪਿੰਗ ਦੀ ਪੂਰਤੀ ਨਾਲ ਸਬੰਧਤ ਹਨ। ਇੱਕ ਦਿਨ ਦੀ ਮਿਥਾਸ ਔਸਤ ਅੰਤਰਾਲ ਦੀ ਗਣਨਾ ਲਈ ਕਾਫ਼ੀ ਨਹੀਂ ਹੈ।';
+
+  @override
+  String get planLegacyRights =>
+      'ਪੁਰਾਣੇ Pro ਅਤੇ Max ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਆਪਣੀ ਮੂਲ ਮਹੀਨਾਵਾਰ AI ਅਲਾਉਂਸ ਰੱਖਦੇ ਹਨ। ਨਵੇਂ ਆਫ਼ਰਾਂ ਵਿੱਚ 100 ਅਤੇ 300 ਬੇਨਤੀਆਂ ਹਨ।';
 }

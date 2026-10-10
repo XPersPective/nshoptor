@@ -934,7 +934,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get planFreePrice => 'Δωρεάν για πάντα';
 
   @override
-  String get planFreeAi => '15 αιτήσεις AI τον μήνα';
+  String get planFreeAi => '10 αιτήσεις AI τον μήνα';
 
   @override
   String get planFreeAds =>
@@ -953,7 +953,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get planTrial => '7 ημέρες δωρεάν';
 
   @override
-  String get planProAi => '200 αιτήσεις AI τον μήνα';
+  String get planProAi => '100 αιτήσεις AI τον μήνα';
 
   @override
   String get planNoAds => 'Χωρίς διαφημίσεις';
@@ -962,7 +962,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get planBackup => 'Εξαγωγή και εισαγωγή αντιγράφων ασφαλείας';
 
   @override
-  String get planMaxAi => '1000 αιτήματα AI το μήνα';
+  String get planMaxAi => '300 αιτήματα AI το μήνα';
 
   @override
   String get planMaxFamily => 'Για ψώνια μεγάλης οικογένειας';
@@ -1088,4 +1088,8 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Όλες οι ολοκληρωμένες αγορές. Οι επιστροφές μειώνουν τα συνολικά ποσά. Οι ημερομηνίες αφορούν την ολοκλήρωση της αγοράς. Μία επίσκεψη δεν αρκεί για τον υπολογισμό του μέσου διαστήματος.';
+
+  @override
+  String get planLegacyRights =>
+      'Οι υπάρχουσες συνδρομές Pro και Max διατηρούν το αρχικό μηνιαίο όριο χρήσης AI. Οι νέες προσφορές παρέχουν 100 και 300 αιτήματα.';
 }

@@ -292,16 +292,16 @@
   "plansYearly": "Yillik",
   "planFree": "Bepul",
   "planFreePrice": "Abadiy bepul",
-  "planFreeAi": "Oyiga 15 ta AI so‘rov",
+  "planFreeAi": "Oyiga 10 ta AI so‘rov",
   "planFreeAds": "Kichik banner reklama (birinchi 7 kunida yo‘q)",
   "planCoreFeatures": "Ro‘yxatlar, narxlar, cheklar, xarajat grafiklari",
   "plansPerYear": "/ yil",
   "plansPerMonth": "/ oy",
   "planTrial": "7 kun bepul",
-  "planProAi": "Oyiga 200 ta AI so‘rov",
+  "planProAi": "Oyiga 100 ta AI so‘rov",
   "planNoAds": "Reklamasiz",
   "planBackup": "Zaxiralash eksport va import",
-  "planMaxAi": "Oyiga 1000 ta AI so'rov",
+  "planMaxAi": "Oyiga 300 ta AI so'rov",
   "planMaxFamily": "Katta oila uchun xaridlar",
   "plansStoreUnavailable": "Do'kon hozircha ulanmagan.",
   "retryAction": "Qayta urinish",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Bu til ushbu qurilmada ovozli kiritish uchun mavjud emas. Buning o'rniga matn kiritishingiz mumkin.",
   "voiceStopListening": "Eshitishni to'xtatish",
   "keepAwakeFailed": "Ekran yorug'ligini ushlab turishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.",
-  "purchaseHistoryHint": "Barcha yakunlangan xaridlar. Qaytarishlar umumiy summani kamaytiradi. Sana xarid tugatilgan kunini bildiradi. O'rtacha oraliqni hisoblash uchun bitta tashrif yetarli emas."
+  "purchaseHistoryHint": "Barcha yakunlangan xaridlar. Qaytarishlar umumiy summani kamaytiradi. Sana xarid tugatilgan kunini bildiradi. O'rtacha oraliqni hisoblash uchun bitta tashrif yetarli emas.",
+  "planLegacyRights": "Mavjud Pro va Max obunalari o'zlarining dastlabki oylik AI imkoniyatlarini saqlab qoladi. Yangi takliflar 100 va 300 so'rovni o'z ichiga oladi."
 }

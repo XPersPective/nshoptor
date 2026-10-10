@@ -934,7 +934,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get planFreePrice => 'Miễn phí mãi mãi';
 
   @override
-  String get planFreeAi => '15 lượt yêu cầu AI mỗi tháng';
+  String get planFreeAi => '10 lượt yêu cầu AI mỗi tháng';
 
   @override
   String get planFreeAds =>
@@ -953,7 +953,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get planTrial => 'Dùng thử miễn phí 7 ngày';
 
   @override
-  String get planProAi => '200 lượt yêu cầu AI mỗi tháng';
+  String get planProAi => '100 lượt yêu cầu AI mỗi tháng';
 
   @override
   String get planNoAds => 'Không quảng cáo';
@@ -962,7 +962,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get planBackup => 'Sao lưu, xuất và nhập';
 
   @override
-  String get planMaxAi => '1000 yêu cầu AI mỗi tháng';
+  String get planMaxAi => '300 yêu cầu AI mỗi tháng';
 
   @override
   String get planMaxFamily => 'Dành cho mua sắm gia đình đông người';
@@ -1086,4 +1086,8 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Tất cả các lần mua sắm đã hoàn tất. Việc trả hàng sẽ làm giảm tổng chi tiêu. Ngày tháng đề cập đến thời điểm hoàn tất mua sắm. Một lần đi mua không đủ để tính khoảng cách trung bình giữa các lần.';
+
+  @override
+  String get planLegacyRights =>
+      'Các gói đăng ký Pro và Max hiện tại sẽ giữ nguyên hạn mức AI hàng tháng ban đầu. Các ưu đãi mới có 100 và 300 yêu cầu.';
 }

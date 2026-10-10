@@ -925,7 +925,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get planFreePrice => 'مجاني دائمًا';
 
   @override
-  String get planFreeAi => '15 طلب ذكاء اصطناعي شهريًا';
+  String get planFreeAi => '10 طلب ذكاء اصطناعي شهريًا';
 
   @override
   String get planFreeAds => 'إعلانات بانر صغيرة (لا إعلانات في أول 7 أيام)';
@@ -943,7 +943,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get planTrial => '7 أيام مجانًا';
 
   @override
-  String get planProAi => '200 طلب ذكاء اصطناعي شهريًا';
+  String get planProAi => '100 طلب ذكاء اصطناعي شهريًا';
 
   @override
   String get planNoAds => 'بلا إعلانات';
@@ -952,7 +952,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get planBackup => 'تصدير واستيراد النسخ الاحتياطية';
 
   @override
-  String get planMaxAi => '1000 طلب ذكاء اصطناعي شهريًا';
+  String get planMaxAi => '300 طلب ذكاء اصطناعي شهريًا';
 
   @override
   String get planMaxFamily => 'لتسوّق العائلات الكبير';
@@ -1075,4 +1075,8 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'جميع عمليات التسوق المكتملة. تُقلل الإرجاع من الإجماليات. تشير التواريخ إلى اكتمال التسوق. زيارة واحدة لا تكفي لحساب متوسط الفترات.';
+
+  @override
+  String get planLegacyRights =>
+      'تحتفظ اشتراكات Pro و Max الحالية بحدودها الشهرية الأصلية لاستخدام الذكاء الاصطناعي. العروض الجديدة توفر 100 و300 طلب.';
 }

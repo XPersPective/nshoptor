@@ -933,7 +933,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get planFreePrice => 'Navždy zdarma';
 
   @override
-  String get planFreeAi => '15 AI požadavků měsíčně';
+  String get planFreeAi => '10 AI požadavků měsíčně';
 
   @override
   String get planFreeAds => 'Malé bannerové reklamy (žádné v prvních 7 dnech)';
@@ -951,7 +951,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get planTrial => '7 dní zdarma';
 
   @override
-  String get planProAi => '200 AI požadavků měsíčně';
+  String get planProAi => '100 AI požadavků měsíčně';
 
   @override
   String get planNoAds => 'Žádné reklamy';
@@ -960,7 +960,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get planBackup => 'Záloha, export a import';
 
   @override
-  String get planMaxAi => '1000 AI požadavků měsíčně';
+  String get planMaxAi => '300 AI požadavků měsíčně';
 
   @override
   String get planMaxFamily => 'Pro nákupy velké rodiny';
@@ -1084,4 +1084,8 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Všechny dokončené nákupy. Vrácení zboží snižuje celkové částky. Data se vztahují k dokončení nákupu. Jedna návštěva nestačí k výpočtu průměrného intervalu.';
+
+  @override
+  String get planLegacyRights =>
+      'Stávající předplatné Pro a Max si zachovávají původní měsíční limit AI požadavků. Nové nabídky mají 100 a 300 požadavků.';
 }

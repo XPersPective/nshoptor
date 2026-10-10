@@ -292,16 +292,16 @@
   "plansYearly": "Nyakenye",
   "planFree": "Mahhala",
   "planFreePrice": "Mahhala unomphela",
-  "planFreeAi": "Imicelo ye-AI engu-15 ngenyanga",
+  "planFreeAi": "Imicelo ye-AI engu-10 ngenyanga",
   "planFreeAds": "Izikhangiso ezincane (azikho ezinsukwini zakho zokuqala ezi-7)",
   "planCoreFeatures": "Izinhlu, amanani, amarekhodi, amachati okusetshenziswa",
   "plansPerYear": "/ unyaka",
   "plansPerMonth": "/ inyanga",
   "planTrial": "Izinsuku ezi-7 mahhala",
-  "planProAi": "Imicelo ye-AI engu-200 ngenyanga",
+  "planProAi": "Imicelo ye-AI engu-100 ngenyanga",
   "planNoAds": "Azikho izikhangiso",
   "planBackup": "Thumela bese ufaka imidwebo",
-  "planMaxAi": "Izicelo ze-AI eziyi-1000 ngenyanga",
+  "planMaxAi": "Izicelo ze-AI eziyi-300 ngenyanga",
   "planMaxFamily": "Kokuthenga kwesizini esikhulu",
   "plansStoreUnavailable": "Umbukiso awufinyeleleki manje.",
   "retryAction": "Zama futhi",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Lolu lwimi alukhona ekufakeni ngezwi kulawula lokhu. Ungabhala endaweni.",
   "voiceStopListening": "Misa ukuzwa",
   "keepAwakeFailed": "Ayikwazanga ukugcina isikrini sivulekile. Sicela uzame futhi.",
-  "purchaseHistoryHint": "Konke ukuthenga okuphelelwe. Ukubuyisela kunciphisa amanani. Izinsuku zibhekisela ekupheleni kokuthenga. Isivakashi esisodwa asikwanele ukubala isikhathi esijwayelekile."
+  "purchaseHistoryHint": "Konke ukuthenga okuphelelwe. Ukubuyisela kunciphisa amanani. Izinsuku zibhekisela ekupheleni kokuthenga. Isivakashi esisodwa asikwanele ukubala isikhathi esijwayelekile.",
+  "planLegacyRights": "Izibhalo zikaPro neMax ezikhona ziyagcina ukuvumelana kwe-AI kwangenyanga okwakuqala. Izinketho ezintsha zinamaphuzu angu-100 no-300."
 }

@@ -935,7 +935,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get planFreePrice => 'Visada nemokamai';
 
   @override
-  String get planFreeAi => '15 AI užklausų per mėnesį';
+  String get planFreeAi => '10 AI užklausų per mėnesį';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get planTrial => '7 dienos nemokamai';
 
   @override
-  String get planProAi => '200 AI užklausų per mėnesį';
+  String get planProAi => '100 AI užklausų per mėnesį';
 
   @override
   String get planNoAds => 'Be reklamų';
@@ -963,7 +963,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get planBackup => 'Atsarginės kopijos eksportas ir importavimas';
 
   @override
-  String get planMaxAi => '1000 AI užklausų per mėnesį';
+  String get planMaxAi => '300 AI užklausų per mėnesį';
 
   @override
   String get planMaxFamily => 'Didelės šeimos pirkiniams';
@@ -1088,4 +1088,8 @@ class AppLocalizationsLt extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Visos užbaigtos pirkinių išvykos. Grąžinimai mažina bendras sumas. Datos nurodo pirkinių išvykų pabaigą. Viena išvyka nepakanka vidurkio intervalui apskaičiuoti.';
+
+  @override
+  String get planLegacyRights =>
+      'Esančios „Pro“ ir „Max“ prenumeracijos išlaiko savo pradinį mėnesinį AI leidimą. Naujose pasiūlymuose yra 100 ir 300 užklausų.';
 }

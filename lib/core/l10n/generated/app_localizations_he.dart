@@ -928,7 +928,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get planFreePrice => 'חינם לנצח';
 
   @override
-  String get planFreeAi => '15 בקשות AI לחודש';
+  String get planFreeAi => '10 בקשות AI לחודש';
 
   @override
   String get planFreeAds =>
@@ -947,7 +947,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get planTrial => '7 ימים חינם';
 
   @override
-  String get planProAi => '200 בקשות AI לחודש';
+  String get planProAi => '100 בקשות AI לחודש';
 
   @override
   String get planNoAds => 'ללא פרסומות';
@@ -956,7 +956,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get planBackup => 'גיבוי ייצוא וייבוא';
 
   @override
-  String get planMaxAi => '1000 בקשות AI בחודש';
+  String get planMaxAi => '300 בקשות AI בחודש';
 
   @override
   String get planMaxFamily => 'לקניות של משפחה גדולה';
@@ -1077,4 +1077,8 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'כל הקניות שהושלמו. החזרים מפחיתים את הסכומים הכוללים. התאריכים מתייחסים להשלמת הקניות. ביקור אחד אינו מספיק לחישוב מרווח ממוצע.';
+
+  @override
+  String get planLegacyRights =>
+      'מנויים קיימים ל-Pro ול-Max שומרים על ההקצאה החודשית המקורית של ה-AI. ההצעות החדשות כוללות 100 ו-300 בקשות.';
 }

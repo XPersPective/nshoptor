@@ -931,7 +931,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get planFreePrice => 'تل وړیا';
 
   @override
-  String get planFreeAi => 'پر میاشت ۱۵ AI غوښتنې';
+  String get planFreeAi => 'پر میاشت 10 AI غوښتنې';
 
   @override
   String get planFreeAds => 'کوچني بانر اعلانات (لومړی ۷ ورځې هیڅ)';
@@ -949,7 +949,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get planTrial => '۷ ورځې وړیا';
 
   @override
-  String get planProAi => 'پر میاشت ۲۰۰ AI غوښتنې';
+  String get planProAi => 'پر میاشت 100 AI غوښتنې';
 
   @override
   String get planNoAds => 'هیڅ اعلان نشته';
@@ -958,7 +958,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get planBackup => 'بیک اپ صادرول او واردول';
 
   @override
-  String get planMaxAi => 'د میاشتې لپاره ۱۰۰۰ AI غوښتنې';
+  String get planMaxAi => 'د میاشتې لپاره 300 AI غوښتنې';
 
   @override
   String get planMaxFamily => 'د لوی کورنۍ د خرید لپاره';
@@ -1082,4 +1082,8 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'ټول بشپړ شوي خریدونه. بیرته ورکړل شوي توکي ټولیز قیمت کموي. نیټې د خرید د بشپړیدو نښه کوي. یوه سفر د اوسط واټن محاسبې لپاره کافی نه ده.';
+
+  @override
+  String get planLegacyRights =>
+      'شته پرو او مکس سبسکریپشنونه خپل اصلي میاشتنۍ AI اجازه ساتي. نوي وړاندیزونه ۱۰۰ او ۳۰۰ غوښتنې لري.';
 }

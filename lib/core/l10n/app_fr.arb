@@ -292,16 +292,16 @@
   "plansYearly": "Annuel",
   "planFree": "Gratuit",
   "planFreePrice": "Gratuit pour toujours",
-  "planFreeAi": "15 requêtes IA par mois",
+  "planFreeAi": "10 requêtes IA par mois",
   "planFreeAds": "Petites bannières publicitaires (aucune les 7 premiers jours)",
   "planCoreFeatures": "Listes, prix, tickets, graphiques de dépenses",
   "plansPerYear": "/ an",
   "plansPerMonth": "/ mois",
   "planTrial": "7 jours gratuits",
-  "planProAi": "200 requêtes IA par mois",
+  "planProAi": "100 requêtes IA par mois",
   "planNoAds": "Sans publicité",
   "planBackup": "Export et import de sauvegarde",
-  "planMaxAi": "1000 requêtes IA par mois",
+  "planMaxAi": "300 requêtes IA par mois",
   "planMaxFamily": "Pour les grosses courses en famille",
   "plansStoreUnavailable": "La boutique est inaccessible pour le moment.",
   "retryAction": "Réessayer",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Cette langue n'est pas disponible pour la saisie vocale sur cet appareil. Vous pouvez taper à la place.",
   "voiceStopListening": "Arrêter l'écoute",
   "keepAwakeFailed": "Impossible de maintenir l'écran allumé. Veuillez réessayer.",
-  "purchaseHistoryHint": "Tous les achats terminés. Les retours réduisent les totaux. Les dates correspondent à la fin des courses. Une seule visite ne suffit pas pour calculer un intervalle moyen."
+  "purchaseHistoryHint": "Tous les achats terminés. Les retours réduisent les totaux. Les dates correspondent à la fin des courses. Une seule visite ne suffit pas pour calculer un intervalle moyen.",
+  "planLegacyRights": "Les abonnements Pro et Max existants conservent leur quota mensuel d'IA initial. Les nouvelles offres proposent 100 et 300 requêtes."
 }

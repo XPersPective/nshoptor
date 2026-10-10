@@ -292,16 +292,16 @@
   "plansYearly": "Godišnje",
   "planFree": "Besplatno",
   "planFreePrice": "Zauvijek besplatno",
-  "planFreeAi": "15 AI zahtjeva mjesečno",
+  "planFreeAi": "10 AI zahtjeva mjesečno",
   "planFreeAds": "Male banner reklame (nijedne prvih 7 dana)",
   "planCoreFeatures": "Liste, cijene, računi, grafikoni troškova",
   "plansPerYear": "/ godišnje",
   "plansPerMonth": "/ mjesečno",
   "planTrial": "7 dana besplatno",
-  "planProAi": "200 AI zahtjeva mjesečno",
+  "planProAi": "100 AI zahtjeva mjesečno",
   "planNoAds": "Bez reklama",
   "planBackup": "Sigurnosna kopija: izvoz i uvoz",
-  "planMaxAi": "1000 AI zahtjeva mjesečno",
+  "planMaxAi": "300 AI zahtjeva mjesečno",
   "planMaxFamily": "Za kupovinu velike porodice",
   "plansStoreUnavailable": "Trgovina trenutno nije dostupna.",
   "retryAction": "Pokušaj ponovo",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Ovaj jezik nije dostupan za glasovni unos na ovom uređaju. Umjesto toga možete tipkati.",
   "voiceStopListening": "Prestani slušati",
   "keepAwakeFailed": "Nije moguće zadržati ekran aktivnim. Molimo pokušajte ponovo.",
-  "purchaseHistoryHint": "Sva završena kupovna. Povratci smanjuju ukupne iznose. Datumi se odnose na završetak kupovine. Jedan posjet nije dovoljan za izračun prosječnog intervala."
+  "purchaseHistoryHint": "Sva završena kupovna. Povratci smanjuju ukupne iznose. Datumi se odnose na završetak kupovine. Jedan posjet nije dovoljan za izračun prosječnog intervala.",
+  "planLegacyRights": "Postojeće Pro i Max pretplate zadržavaju svoj izvorni mjesečni AI limit. Nova ponuda uključuje 100 i 300 zahtjeva."
 }

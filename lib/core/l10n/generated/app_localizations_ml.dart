@@ -933,7 +933,7 @@ class AppLocalizationsMl extends AppLocalizations {
   String get planFreePrice => 'എപ്പോഴും സൗജന്യം';
 
   @override
-  String get planFreeAi => 'മാസത്തിൽ 15 AI അഭ്യർത്ഥനകൾ';
+  String get planFreeAi => 'മാസത്തിൽ 10 AI അഭ്യർത്ഥനകൾ';
 
   @override
   String get planFreeAds => 'ചെറിയ ബാനർ വിജ്ഞാപനങ്ങൾ (ആദ്യ 7 ദിവസങ്ങളിൽ ഇല്ല)';
@@ -951,7 +951,7 @@ class AppLocalizationsMl extends AppLocalizations {
   String get planTrial => '7 ദിവസം സൗജന്യം';
 
   @override
-  String get planProAi => 'മാസത്തിൽ 200 AI അഭ്യർത്ഥനകൾ';
+  String get planProAi => 'മാസത്തിൽ 100 AI അഭ്യർത്ഥനകൾ';
 
   @override
   String get planNoAds => 'വിജ്ഞാപനങ്ങളില്ല';
@@ -960,7 +960,7 @@ class AppLocalizationsMl extends AppLocalizations {
   String get planBackup => 'ബാക്ക്‌അപ്പ് എക്സ്പോർട്ടും ഇംപോർട്ടും';
 
   @override
-  String get planMaxAi => 'മാസത്തിൽ 1000 AI അഭ്യർത്ഥനകൾ';
+  String get planMaxAi => 'മാസത്തിൽ 300 AI അഭ്യർത്ഥനകൾ';
 
   @override
   String get planMaxFamily => 'വലിയ കുടുംബങ്ങളുടെ ഷോപ്പിംഗിന്';
@@ -1085,4 +1085,8 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'പൂർത്തിയായ എല്ലാ ഷോപ്പിംഗുകളും. തിരികെ നൽകിയവ ആകെത്തുക കുറയ്ക്കുന്നു. തീയതികൾ ഷോപ്പിംഗ് പൂർത്തിയായ ദിവസങ്ങളെ സൂചിപ്പിക്കുന്നു. ശരാശരി ഇടവേള കണക്കാക്കാൻ ഒരു സന്ദർശനം മതിയാകില്ല.';
+
+  @override
+  String get planLegacyRights =>
+      'നിലവിലുള്ള Pro, Max സബ്‌സ്ക്രിപ്ഷനുകൾ അവയുടെ യഥാർത്ഥ മാസിക AI അലോവൻസ് നിലനിർത്തുന്നു. പുതിയ ഓഫറുകളിൽ 100 ഉം 300 ഉം ആവശ്യങ്ങളുണ്ട്.';
 }

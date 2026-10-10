@@ -937,7 +937,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get planFreePrice => 'အမြဲတမ်း အခမဲ့';
 
   @override
-  String get planFreeAi => 'တစ်လလျှင် AI တောင်းဆိုမှု ၁၅ ခု';
+  String get planFreeAi => 'တစ်လလျှင် AI တောင်းဆိုမှု 10 ခု';
 
   @override
   String get planFreeAds => 'Banner ads (ပထမ ၇ ရက်တွင် မရှိပါ)';
@@ -956,7 +956,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get planTrial => '၇ ရက် အခမဲ့';
 
   @override
-  String get planProAi => 'တစ်လလျှင် AI တောင်းဆိုမှု ၂၀၀';
+  String get planProAi => 'တစ်လလျှင် AI တောင်းဆိုမှု 100';
 
   @override
   String get planNoAds => 'Ads မရှိ';
@@ -965,7 +965,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get planBackup => 'Backup ထုတ်ယူခြင်းနှင့် ဝင်ရောက်ခြင်း';
 
   @override
-  String get planMaxAi => 'လစဉ် AI တောင်းဆိုမှု ၁၀၀၀';
+  String get planMaxAi => 'လစဉ် AI တောင်းဆိုမှု 300';
 
   @override
   String get planMaxFamily => 'မိသားစုကြီးများအတွက် အစားအစာဝယ်ခြင်း';
@@ -1089,4 +1089,8 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'ပြီးပြည့်စုံသော ဈေးဝယ်မှုအားလုံးပါဝင်သည်။ ပြန်လည်ပေးချေမှုများသည် စုစုပေါင်းကို လျှော့ချပေးသည်။ ရက်စွဲများသည် ဈေးဝယ်မှု ပြီးဆုံးချိန်ကို ဆိုလိုသည်။ တစ်ကြိမ်တည်း ဝယ်ယူခြင်းသည် ပျမ်းမျှကာလကို တွက်ချက်ရန် မလုံလောက်ပါ။';
+
+  @override
+  String get planLegacyRights =>
+      'ရှိပြီးသား Pro နှင့် Max ဆက်တိုက်ဝယ်ယူသူများသည် မူလ လစဉ် AI အခွင့်အရေးကို ဆက်လက်ရရှိမည်။ အသစ်ထွက်ရှိသော ပေးချေမှုပုံစံများတွင် တောင်းဆိုမှု ၁၀၀ နှင့် ၃၀၀ ပါဝင်သည်။';
 }

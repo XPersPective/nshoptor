@@ -935,7 +935,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get planFreePrice => 'Falas përgjithmonë';
 
   @override
-  String get planFreeAi => '15 kërkesa AI në muaj';
+  String get planFreeAi => '10 kërkesa AI në muaj';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get planTrial => '7 ditë falas';
 
   @override
-  String get planProAi => '200 kërkesa AI në muaj';
+  String get planProAi => '100 kërkesa AI në muaj';
 
   @override
   String get planNoAds => 'Pa reklama';
@@ -963,7 +963,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get planBackup => 'Eksportim dhe importim backup-i';
 
   @override
-  String get planMaxAi => '1000 kërkesa AI në muaj';
+  String get planMaxAi => '300 kërkesa AI në muaj';
 
   @override
   String get planMaxFamily => 'Për blerje familjare të madhe';
@@ -1089,4 +1089,8 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Të gjitha blerjet e përfunduara. Kthimet ulin totalin. Datat i referohen përfundimit të shitjes. Një vizitë nuk është mjaftueshme për të llogaritur një interval mesatar.';
+
+  @override
+  String get planLegacyRights =>
+      'Abonimet ekzistuese Pro dhe Max ruajnë lejen mujore origjinale të AI. Ofertat e reja kanë 100 dhe 300 kërkesa.';
 }

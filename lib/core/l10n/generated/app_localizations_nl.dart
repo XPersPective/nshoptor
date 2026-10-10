@@ -935,7 +935,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get planFreePrice => 'Altijd gratis';
 
   @override
-  String get planFreeAi => '15 AI-verzoeken per maand';
+  String get planFreeAi => '10 AI-verzoeken per maand';
 
   @override
   String get planFreeAds =>
@@ -955,7 +955,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get planTrial => '7 dagen gratis';
 
   @override
-  String get planProAi => '200 AI-verzoeken per maand';
+  String get planProAi => '100 AI-verzoeken per maand';
 
   @override
   String get planNoAds => 'Geen advertenties';
@@ -964,7 +964,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get planBackup => 'Back-up export en import';
 
   @override
-  String get planMaxAi => '1000 AI-verzoeken per maand';
+  String get planMaxAi => '300 AI-verzoeken per maand';
 
   @override
   String get planMaxFamily => 'Voor grote gezinsboodschappen';
@@ -1089,4 +1089,8 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Alle voltooide boodschappen. Terugbrings verlagen de totalen. Data verwijzen naar het moment van afrekenen. Eén bezoek is niet genoeg om een gemiddelde interval te berekenen.';
+
+  @override
+  String get planLegacyRights =>
+      'Bestaande Pro- en Max-abonnementen behouden hun oorspronkelijke maandelijkse AI-toelage. Nieuwe aanbiedingen bieden 100 en 300 verzoeken.';
 }

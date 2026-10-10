@@ -292,16 +292,16 @@
   "plansYearly": "Gadā",
   "planFree": "Bezmaksas",
   "planFreePrice": "Bezmaksas uz visiem laikiem",
-  "planFreeAi": "15 AI pieprasījumi mēnesī",
+  "planFreeAi": "10 AI pieprasījumi mēnesī",
   "planFreeAds": "Mazi reklāmas baneri (pirmajās 7 dienās nav neviena)",
   "planCoreFeatures": "Saraksti, cenas, čeki, tēriņu diagrammas",
   "plansPerYear": "/ gadā",
   "plansPerMonth": "/ mēnesī",
   "planTrial": "7 dienas bezmaksas",
-  "planProAi": "200 AI pieprasījumi mēnesī",
+  "planProAi": "100 AI pieprasījumi mēnesī",
   "planNoAds": "Bez reklāmām",
   "planBackup": "Rezerves kopija eksportēšanai un importēšanai",
-  "planMaxAi": "1000 AI pieprasījumu mēnesī",
+  "planMaxAi": "300 AI pieprasījumu mēnesī",
   "planMaxFamily": "Liela ģimenes iepirkumam",
   "plansStoreUnavailable": "Veikals šobrīd nav sasniedzams.",
   "retryAction": "Mēģināt vēlreiz",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Šī valoda nav pieejama balss ievadei šajā ierīcē. Varat rakstīt tekstu.",
   "voiceStopListening": "Pārtraukt klausīšanos",
   "keepAwakeFailed": "Neizdevās noturēt ekrānu aktīvu. Lūdzu, mēģiniet vēlreiz.",
-  "purchaseHistoryHint": "Visi pabeigtie iepirkumi. Atgrieztie produkti samazina kopējos izdevumus. Datumi attiecas uz iepirkumu pabeigšanas brīdi. Viena apmeklējuma nav pietiekami, lai aprēķinātu vidējo intervālu."
+  "purchaseHistoryHint": "Visi pabeigtie iepirkumi. Atgrieztie produkti samazina kopējos izdevumus. Datumi attiecas uz iepirkumu pabeigšanas brīdi. Viena apmeklējuma nav pietiekami, lai aprēķinātu vidējo intervālu.",
+  "planLegacyRights": "Esošajām Pro un Max abonementiem saglabājas sākotnējais mēneša AI pieprasījumu limits. Jaunajiem piedāvājumiem ir 100 un 300 pieprasījumi."
 }

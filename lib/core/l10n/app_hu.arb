@@ -292,16 +292,16 @@
   "plansYearly": "Éves",
   "planFree": "Ingyenes",
   "planFreePrice": "Örökké ingyenes",
-  "planFreeAi": "15 AI kérés havonta",
+  "planFreeAi": "10 AI kérés havonta",
   "planFreeAds": "Kis banner hirdetések (az első 7 napban nincs)",
   "planCoreFeatures": "Listák, árak, nyugták, kiadási diagramok",
   "plansPerYear": "/ év",
   "plansPerMonth": "/ hó",
   "planTrial": "7 nap ingyen",
-  "planProAi": "200 AI kérés havonta",
+  "planProAi": "100 AI kérés havonta",
   "planNoAds": "Nincsenek hirdetések",
   "planBackup": "Biztonsági mentés export és import",
-  "planMaxAi": "1000 AI kérés havonta",
+  "planMaxAi": "300 AI kérés havonta",
   "planMaxFamily": "Nagy családok bevásárlásához",
   "plansStoreUnavailable": "Az üzlet jelenleg nem elérhető.",
   "retryAction": "Újrapróbálkozás",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Ez a nyelv nem érhető el hangbemenetre ezen az eszközön. Ehelyett gépelheted.",
   "voiceStopListening": "Figyelés leállítása",
   "keepAwakeFailed": "Nem sikerült aktívan tartani a képernyőt. Kérjük, próbálja újra.",
-  "purchaseHistoryHint": "Az összes befejezett bevásárlás. A visszaküldések csökkentik az összegeket. A dátumok a bevásárlás befejezésére vonatkoznak. Egy vásárlási alkalom nem elegendő az átlagos időköz kiszámításához."
+  "purchaseHistoryHint": "Az összes befejezett bevásárlás. A visszaküldések csökkentik az összegeket. A dátumok a bevásárlás befejezésére vonatkoznak. Egy vásárlási alkalom nem elegendő az átlagos időköz kiszámításához.",
+  "planLegacyRights": "A meglévő Pro és Max előfizetések megőrzik az eredeti havi AI keretüket. Az új ajánlatok 100 és 300 kérést tartalmaznak."
 }

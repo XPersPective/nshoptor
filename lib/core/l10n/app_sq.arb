@@ -292,16 +292,16 @@
   "plansYearly": "Vjetore",
   "planFree": "Falas",
   "planFreePrice": "Falas përgjithmonë",
-  "planFreeAi": "15 kërkesa AI në muaj",
+  "planFreeAi": "10 kërkesa AI në muaj",
   "planFreeAds": "Reklama banner të vogla (pa asnjë në ditët e para 7)",
   "planCoreFeatures": "Lista, çmime, fatura, grafika shpenzimesh",
   "plansPerYear": "/ vit",
   "plansPerMonth": "/ muaj",
   "planTrial": "7 ditë falas",
-  "planProAi": "200 kërkesa AI në muaj",
+  "planProAi": "100 kërkesa AI në muaj",
   "planNoAds": "Pa reklama",
   "planBackup": "Eksportim dhe importim backup-i",
-  "planMaxAi": "1000 kërkesa AI në muaj",
+  "planMaxAi": "300 kërkesa AI në muaj",
   "planMaxFamily": "Për blerje familjare të madhe",
   "plansStoreUnavailable": "Dyqani nuk është i aksesueshëm tani.",
   "retryAction": "Provo përsëri",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Ky gjuhë nuk është e disponueshme për hyrjen me zë në këtë pajisje. Mund të shkruani në vend të kësaj.",
   "voiceStopListening": "Ndalo dëgjimin",
   "keepAwakeFailed": "Nuk mund të mbahet e ndezur ekrani. Ju lutem, provoni përsëri.",
-  "purchaseHistoryHint": "Të gjitha blerjet e përfunduara. Kthimet ulin totalin. Datat i referohen përfundimit të shitjes. Një vizitë nuk është mjaftueshme për të llogaritur një interval mesatar."
+  "purchaseHistoryHint": "Të gjitha blerjet e përfunduara. Kthimet ulin totalin. Datat i referohen përfundimit të shitjes. Një vizitë nuk është mjaftueshme për të llogaritur një interval mesatar.",
+  "planLegacyRights": "Abonimet ekzistuese Pro dhe Max ruajnë lejen mujore origjinale të AI. Ofertat e reja kanë 100 dhe 300 kërkesa."
 }

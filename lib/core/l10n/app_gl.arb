@@ -292,16 +292,16 @@
   "plansYearly": "Anual",
   "planFree": "Gratuído",
   "planFreePrice": "Gratis para sempre",
-  "planFreeAi": "15 peticións IA ao mes",
+  "planFreeAi": "10 peticións IA ao mes",
   "planFreeAds": "Anuncios pequenos en forma de banner (ningún nos primeiros 7 días)",
   "planCoreFeatures": "Listas, prezos, recibos, gráficos de gasto",
   "plansPerYear": "/ ano",
   "plansPerMonth": "/ mes",
   "planTrial": "7 días gratis",
-  "planProAi": "200 peticións IA ao mes",
+  "planProAi": "100 peticións IA ao mes",
   "planNoAds": "Sen anuncios",
   "planBackup": "Exportación e importación de copias de seguridade",
-  "planMaxAi": "1000 solicitudes IA ao mes",
+  "planMaxAi": "300 solicitudes IA ao mes",
   "planMaxFamily": "Para compras familiares numerosas",
   "plansStoreUnavailable": "A tenda non está accesible no momento.",
   "retryAction": "Reintentar",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Este idioma non está dispoñible para a entrada por voz neste dispositivo. Podes escribir en seu lugar.",
   "voiceStopListening": "Deixa de escoitar",
   "keepAwakeFailed": "Non foi posible manter a pantalla activa. Téntao de novo.",
-  "purchaseHistoryHint": "Todas as compras completadas. As devolucións reducen os totais. As datas refírense á finalización das compras. Unha soa visita non é suficiente para calcular un intervalo medio."
+  "purchaseHistoryHint": "Todas as compras completadas. As devolucións reducen os totais. As datas refírense á finalización das compras. Unha soa visita non é suficiente para calcular un intervalo medio.",
+  "planLegacyRights": "As subscricións Pro e Max existentes manteñen a súa asignación mensual orixinal de IA. As novas ofertas inclúen 100 e 300 solicitudes."
 }

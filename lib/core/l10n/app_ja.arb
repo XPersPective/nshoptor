@@ -292,16 +292,16 @@
   "plansYearly": "年額",
   "planFree": "無料",
   "planFreePrice": "永久無料",
-  "planFreeAi": "月15回のAIリクエスト",
+  "planFreeAi": "月10回のAIリクエスト",
   "planFreeAds": "バナー広告あり（最初の7日間はなし）",
   "planCoreFeatures": "リスト、価格、レシート、支出グラフ",
   "plansPerYear": "/ 年",
   "plansPerMonth": "/ 月",
   "planTrial": "7日間無料",
-  "planProAi": "月200回のAIリクエスト",
+  "planProAi": "月100回のAIリクエスト",
   "planNoAds": "広告なし",
   "planBackup": "バックアップのエクスポートとインポート",
-  "planMaxAi": "月間AIリクエスト1000回",
+  "planMaxAi": "月間AIリクエスト300回",
   "planMaxFamily": "大家族の買い物に最適",
   "plansStoreUnavailable": "現在、ストアに接続できません。",
   "retryAction": "再試行",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "このデバイスでは、この言語での音声入力はサポートされていません。代わりにテキスト入力してください。",
   "voiceStopListening": "録音を停止",
   "keepAwakeFailed": "画面を点灯したままにできませんでした。もう一度お試しください。",
-  "purchaseHistoryHint": "すべての完了したショッピング履歴。返品は合計額を減らします。日付はショッピングの完了日を指します。1回の訪問では平均間隔を計算するには不十分です。"
+  "purchaseHistoryHint": "すべての完了したショッピング履歴。返品は合計額を減らします。日付はショッピングの完了日を指します。1回の訪問では平均間隔を計算するには不十分です。",
+  "planLegacyRights": "既存のProおよびMaxサブスクリプションは、従来の月間AI利用枠を維持します。新しいオファーでは100件と300件のリクエストが提供されます。"
 }

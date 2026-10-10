@@ -931,7 +931,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get planFreePrice => 'همیشه رایگان';
 
   @override
-  String get planFreeAi => '۱۵ درخواست هوش مصنوعی در ماه';
+  String get planFreeAi => '10 درخواست هوش مصنوعی در ماه';
 
   @override
   String get planFreeAds => 'بنر تبلیغاتی کوچک (۷ روز اول هیچ تبلیغی ندارید)';
@@ -949,7 +949,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get planTrial => '۷ روز رایگان';
 
   @override
-  String get planProAi => '۲۰۰ درخواست هوش مصنوعی در ماه';
+  String get planProAi => '100 درخواست هوش مصنوعی در ماه';
 
   @override
   String get planNoAds => 'بدون تبلیغات';
@@ -958,7 +958,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get planBackup => 'پشتیبان‌گیری و بازیابی';
 
   @override
-  String get planMaxAi => '۱۰۰۰ درخواست هوش مصنوعی در ماه';
+  String get planMaxAi => '300 درخواست هوش مصنوعی در ماه';
 
   @override
   String get planMaxFamily => 'برای خریدهای خانوادگی بزرگ';
@@ -1081,4 +1081,8 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'تمام خریدهای تکمیل‌شده. بازگشت کالا، مبالغ را کاهش می‌دهد. تاریخ‌ها مربوط به زمان تکمیل خرید هستند. یک بازدید برای محاسبه میانگین فاصله کافی نیست.';
+
+  @override
+  String get planLegacyRights =>
+      'اشتراک‌های Pro و Max موجود، سهمیه ماهانه AI اصلی خود را حفظ می‌کنند. پیشنهادهای جدید ۱۰۰ و ۳۰۰ درخواست دارند.';
 }

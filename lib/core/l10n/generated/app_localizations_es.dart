@@ -935,7 +935,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get planFreePrice => 'Gratis para siempre';
 
   @override
-  String get planFreeAi => '15 solicitudes de IA al mes';
+  String get planFreeAi => '10 solicitudes de IA al mes';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get planTrial => '7 días gratis';
 
   @override
-  String get planProAi => '200 solicitudes de IA al mes';
+  String get planProAi => '100 solicitudes de IA al mes';
 
   @override
   String get planNoAds => 'Sin anuncios';
@@ -963,7 +963,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get planBackup => 'Exportar e importar copias';
 
   @override
-  String get planMaxAi => '1000 solicitudes de IA al mes';
+  String get planMaxAi => '300 solicitudes de IA al mes';
 
   @override
   String get planMaxFamily => 'Para grandes compras familiares';
@@ -1090,4 +1090,8 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Todas las compras completadas. Las devoluciones reducen los totales. Las fechas se refieren a la finalización de la compra. Una sola visita no es suficiente para calcular un intervalo promedio.';
+
+  @override
+  String get planLegacyRights =>
+      'Las suscripciones Pro y Max existentes mantienen su cuota mensual original de IA. Las nuevas ofertas incluyen 100 y 300 solicitudes.';
 }

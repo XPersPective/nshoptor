@@ -934,7 +934,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get planFreePrice => 'ಎಂದಿಗೂ ಮುಕ್ತ';
 
   @override
-  String get planFreeAi => 'ತಿಂಗಳಿಗೆ 15 AI ವಿನಂತಿಗಳು';
+  String get planFreeAi => 'ತಿಂಗಳಿಗೆ 10 AI ವಿನಂತಿಗಳು';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get planTrial => '7 ದಿನಗಳು ಮುಕ್ತ';
 
   @override
-  String get planProAi => 'ತಿಂಗಳಿಗೆ 200 AI ವಿನಂತಿಗಳು';
+  String get planProAi => 'ತಿಂಗಳಿಗೆ 100 AI ವಿನಂತಿಗಳು';
 
   @override
   String get planNoAds => 'ಯಾವುದೇ ವಿಜ್ಞಾಪನೆಗಳಿಲ್ಲ';
@@ -963,7 +963,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get planBackup => 'ಬ್ಯಾಕಪ್ ರಫ್ತು ಮತ್ತು ಆಮದು';
 
   @override
-  String get planMaxAi => 'ತಿಂಗಳಿಗೆ 1000 AI ಅನುರೋಧಗಳು';
+  String get planMaxAi => 'ತಿಂಗಳಿಗೆ 300 AI ಅನುರೋಧಗಳು';
 
   @override
   String get planMaxFamily => 'ದೊಡ್ಡ ಕುಟುಂಬದ ಖರೀದಿಗೆ';
@@ -1088,4 +1088,8 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'ಎಲ್ಲಾ ಪೂರ್ಣಗೊಂಡ ಖರೀದಿಗಳು. ಹಿಂದಿರುಗಿಸಿದ ವಸ್ತುಗಳಿಂದ ಒಟ್ಟು ಮೊತ್ತ ಕಡಿಮೆಯಾಗುತ್ತದೆ. ದಿನಾಂಕಗಳು ಖರೀದಿ ಪೂರ್ಣಗೊಂಡ ದಿನಗಳನ್ನು ಸೂಚಿಸುತ್ತವೆ. ಸರಾಸರಿ ಅಂತರವನ್ನು ಲೆಕ್ಕಹಾಕಲು ಒಂದು ಬಾರಿಯ ಭೇಟಿ ಸಾಕಾಗುವುದಿಲ್ಲ.';
+
+  @override
+  String get planLegacyRights =>
+      'ಹಳೆಯ Pro ಮತ್ತು Max ಸದಸ್ಯತ್ವಗಳು ಅವುಗಳ ಮೂಲ ತಿಂಪಿನ AI ಅನುಮತಿಯನ್ನು ಕಾಯ್ದಿರಿಸುತ್ತವೆ. ಹೊಸ ಆಫರ್‌ಗಳು 100 ಮತ್ತು 300 ಬಾರಿಗಳನ್ನು ನೀಡುತ್ತವೆ.';
 }

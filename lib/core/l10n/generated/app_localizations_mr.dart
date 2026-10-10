@@ -933,7 +933,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get planFreePrice => 'कायमस्वरूपी मोफत';
 
   @override
-  String get planFreeAi => 'महिनाभरात १५ AI विनंत्या';
+  String get planFreeAi => 'महिनाभरात 10 AI विनंत्या';
 
   @override
   String get planFreeAds => 'लहान बॅनर जाहिराती (पहिल्या ७ दिवसांत नाही)';
@@ -951,7 +951,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get planTrial => '७ दिवस मोफत';
 
   @override
-  String get planProAi => 'महिनाभरात २०० AI विनंत्या';
+  String get planProAi => 'महिनाभरात 100 AI विनंत्या';
 
   @override
   String get planNoAds => 'कोणतीही जाहिरात नाही';
@@ -960,7 +960,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get planBackup => 'बॅकअप एक्सपोर्ट आणि इम्पोर्ट';
 
   @override
-  String get planMaxAi => 'महिन्याला १००० AI विनंत्या';
+  String get planMaxAi => 'महिन्याला 300 AI विनंत्या';
 
   @override
   String get planMaxFamily => 'मोठ्या कुटुंबाच्या खरेदीसाठी';
@@ -1084,4 +1084,8 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'सर्व पूर्ण झालेली शॉपिंग. परताव्यामुळे एकूण रक्कम कमी होते. तारखा शॉपिंग पूर्ण झाल्याच्या दिवसांशी संबंधित आहेत. सरासरी अंतर काढण्यासाठी एक भेट पुरेशी नाही.';
+
+  @override
+  String get planLegacyRights =>
+      'अस्तित्वात असलेल्या Pro आणि Max सबस्क्रिप्शन्स त्यांचे मूळ मासिक AI अलाउंस ठेवतात. नवीन ऑफर्समध्ये 100 आणि 300 विनंत्या आहेत.';
 }

@@ -935,7 +935,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get planFreePrice => 'Заўсёды бясплатна';
 
   @override
-  String get planFreeAi => '15 запытаў AI у месяц';
+  String get planFreeAi => '10 запытаў AI у месяц';
 
   @override
   String get planFreeAds => 'Невялікія банерныя рэкламы (няма ў першыя 7 дзён)';
@@ -953,7 +953,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get planTrial => '7 дзён бясплатна';
 
   @override
-  String get planProAi => '200 запытаў AI у месяц';
+  String get planProAi => '100 запытаў AI у месяц';
 
   @override
   String get planNoAds => 'Без рэкламы';
@@ -962,7 +962,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get planBackup => 'Рэзервовая копія: экспарт і імпорт';
 
   @override
-  String get planMaxAi => '1000 запытаў AI у месяц';
+  String get planMaxAi => '300 запытаў AI у месяц';
 
   @override
   String get planMaxFamily => 'Для вялікай сямейнай закупкі';
@@ -1088,4 +1088,8 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Усе завершаныя пакупкі. Вяртанні змяншаюць агульную суму. Даты адносяцца да дня завяршэння пакупак. Адной наведвання недастаткова для разліку сярэдняга інтэрвалу.';
+
+  @override
+  String get planLegacyRights =>
+      'Дзеючыя падпіскі Pro і Max захоўваюць свае першапачатковыя месячныя ліміты на запыты AI. Новыя прапановы маюць 100 і 300 запытаў.';
 }

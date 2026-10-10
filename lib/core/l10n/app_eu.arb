@@ -292,16 +292,16 @@
   "plansYearly": "Urteko",
   "planFree": "Doakoa",
   "planFreePrice": "Betiko doakoa",
-  "planFreeAi": "15 AI eskari hilabetero",
+  "planFreeAi": "10 AI eskari hilabetero",
   "planFreeAds": "Irrati-iragarki txikiak (ez dago lehenengo 7 egunetan)",
   "planCoreFeatures": "Zerrendak, prezioak, errezeptuak, kostu-grafikoak",
   "plansPerYear": "/ urte",
   "plansPerMonth": "/ hilabete",
   "planTrial": "7 egun doan",
-  "planProAi": "200 AI eskari hilabetero",
+  "planProAi": "100 AI eskari hilabetero",
   "planNoAds": "Iragarkirik ez",
   "planBackup": "Atxapen esportazioa eta inportazioa",
-  "planMaxAi": "Hilabetero AI eskariak 1000",
+  "planMaxAi": "Hilabetero AI eskariak 300",
   "planMaxFamily": "Familia handietarako erosketak",
   "plansStoreUnavailable": "Denda ez dago erabilgarri une honetan.",
   "retryAction": "Saiatu berriro",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Hau ez da hizkuntza hori ahots-sarrerarako gailu honetan erabilgarria. Ordez, idatz dezakezu.",
   "voiceStopListening": "Entzuten gelditu",
   "keepAwakeFailed": "Ezin izan da pantaila piztuta mantendu. Saiatu berriro.",
-  "purchaseHistoryHint": "Erosketa guztiak osatu dira. Itzulpenek totalak murrizten dituzte. Datak erosketaren amaierari buruzkoak dira. Bisita bakarra ez da nahikoa batezbesteko tartea kalkulatze aldera."
+  "purchaseHistoryHint": "Erosketa guztiak osatu dira. Itzulpenek totalak murrizten dituzte. Datak erosketaren amaierari buruzkoak dira. Bisita bakarra ez da nahikoa batezbesteko tartea kalkulatze aldera.",
+  "planLegacyRights": "Pro eta Max azkenaldiko harpidetzaileek haien hasierako hilabetero AI eskaera kopurua mantentzen dute. Eskaintza berriek 100 eta 300 eskaera dituzte."
 }

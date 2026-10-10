@@ -292,16 +292,16 @@
   "plansYearly": "Letno",
   "planFree": "Brezplačno",
   "planFreePrice": "Za vedno brezplačno",
-  "planFreeAi": "15 zahtev AI na mesec",
+  "planFreeAi": "10 zahtev AI na mesec",
   "planFreeAds": "Manjši banerski oglasi (brez v prvih 7 dneh)",
   "planCoreFeatures": "Seznami, cene, računi, grafi porabe",
   "plansPerYear": "/ leto",
   "plansPerMonth": "/ mesec",
   "planTrial": "7 dni brezplačno",
-  "planProAi": "200 zahtev AI na mesec",
+  "planProAi": "100 zahtev AI na mesec",
   "planNoAds": "Brez oglasov",
   "planBackup": "Izvoz in uvoz varnostnih kopij",
-  "planMaxAi": "1000 zahtev AI na mesec",
+  "planMaxAi": "300 zahtev AI na mesec",
   "planMaxFamily": "Za nakupovanje velike družine",
   "plansStoreUnavailable": "Trgovina trenutno ni dosegljiva.",
   "retryAction": "Poskusi znova",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Ta jezik na tej napravi ni podprt za glasovni vnos. Namesto tega lahko tipkate.",
   "voiceStopListening": "Ustavi poslušanje",
   "keepAwakeFailed": "Zaslon ni ostal vklopljen. Poskusite znova.",
-  "purchaseHistoryHint": "Vsa zaključena nakupovanja. Vrnitve zmanjšajo skupne vsote. Datumi se nanašajo na datum zaključka nakupa. En obisk ni dovolj za izračun povprečnega intervala."
+  "purchaseHistoryHint": "Vsa zaključena nakupovanja. Vrnitve zmanjšajo skupne vsote. Datumi se nanašajo na datum zaključka nakupa. En obisk ni dovolj za izračun povprečnega intervala.",
+  "planLegacyRights": "Obstoječe naročnine Pro in Max ohranjajo svoj prvotni mesečni obseg AI zahtevkov. Nova ponudba vključuje 100 in 300 zahtevkov."
 }

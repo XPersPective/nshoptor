@@ -934,7 +934,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get planFreePrice => 'Betiko doakoa';
 
   @override
-  String get planFreeAi => '15 AI eskari hilabetero';
+  String get planFreeAi => '10 AI eskari hilabetero';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get planTrial => '7 egun doan';
 
   @override
-  String get planProAi => '200 AI eskari hilabetero';
+  String get planProAi => '100 AI eskari hilabetero';
 
   @override
   String get planNoAds => 'Iragarkirik ez';
@@ -963,7 +963,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get planBackup => 'Atxapen esportazioa eta inportazioa';
 
   @override
-  String get planMaxAi => 'Hilabetero AI eskariak 1000';
+  String get planMaxAi => 'Hilabetero AI eskariak 300';
 
   @override
   String get planMaxFamily => 'Familia handietarako erosketak';
@@ -1088,4 +1088,8 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Erosketa guztiak osatu dira. Itzulpenek totalak murrizten dituzte. Datak erosketaren amaierari buruzkoak dira. Bisita bakarra ez da nahikoa batezbesteko tartea kalkulatze aldera.';
+
+  @override
+  String get planLegacyRights =>
+      'Pro eta Max azkenaldiko harpidetzaileek haien hasierako hilabetero AI eskaera kopurua mantentzen dute. Eskaintza berriek 100 eta 300 eskaera dituzte.';
 }

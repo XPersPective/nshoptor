@@ -933,7 +933,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get planFreePrice => 'সর্বদা ফ্রি';
 
   @override
-  String get planFreeAi => 'প্রতি মাসে ১৫টি AI অনুরোধ';
+  String get planFreeAi => 'প্রতি মাসে 10টি AI অনুরোধ';
 
   @override
   String get planFreeAds =>
@@ -952,7 +952,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get planTrial => '৭ দিন ফ্রি';
 
   @override
-  String get planProAi => 'প্রতি মাসে ২০০টি AI অনুরোধ';
+  String get planProAi => 'প্রতি মাসে 100টি AI অনুরোধ';
 
   @override
   String get planNoAds => 'কোনো বিজ্ঞাপন নেই';
@@ -961,7 +961,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get planBackup => 'ব্যাকআপ এক্সপোর্ট ও ইম্পোর্ট';
 
   @override
-  String get planMaxAi => 'প্রতি মাসে ১০০০টি AI রিকোয়েস্ট';
+  String get planMaxAi => 'প্রতি মাসে 300টি AI রিকোয়েস্ট';
 
   @override
   String get planMaxFamily => 'বড় পরিবারের শপিংয়ের জন্য';
@@ -1085,4 +1085,8 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'সমস্ত সম্পন্ন কেনাকাটা। রিটার্ন মোটের পরিমাণ কমায়। তারিখগুলো কেনাকাটা শেষ হওয়ার দিন নির্দেশ করে। গড় ব্যবধান বের করতে একটি ভিজিট যথেষ্ট নয়।';
+
+  @override
+  String get planLegacyRights =>
+      'বর্তমান Pro এবং Max সাবস্ক্রিপশনগুলি তাদের মাসিক AI অ্যালোয়েন্স বজায় রাখবে। নতুন অফারে ১০০ এবং ৩০০ রিকোয়েস্ট রয়েছে।';
 }

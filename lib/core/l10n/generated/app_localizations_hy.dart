@@ -936,7 +936,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get planFreePrice => 'Հավերժ անվճար';
 
   @override
-  String get planFreeAi => '15 AI հարցում ամիսը';
+  String get planFreeAi => '10 AI հարցում ամիսը';
 
   @override
   String get planFreeAds => 'Փոքր բաններ (առաջին 7 օրերին՝ առանց)';
@@ -955,7 +955,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get planTrial => '7 օր անվճար';
 
   @override
-  String get planProAi => '200 AI հարցում ամիսը';
+  String get planProAi => '100 AI հարցում ամիսը';
 
   @override
   String get planNoAds => 'Առանց գովազդի';
@@ -964,7 +964,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get planBackup => 'Պատճենահանում և ներմուծում';
 
   @override
-  String get planMaxAi => '1000 AI հարցում ամիսը';
+  String get planMaxAi => '300 AI հարցում ամիսը';
 
   @override
   String get planMaxFamily => 'Ընտանեկան խոշոր գնումների համար';
@@ -1089,4 +1089,8 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Բոլոր ավարտված գնումները։ Վերադարձերը նվազեցնում են ընդհանուր գումարը։ Ամսաթիվները վերաբերում են գնումների ավարտին։ Մեկ այց բավարար չէ միջին միջակայքը հաշվարկելու համար։';
+
+  @override
+  String get planLegacyRights =>
+      'Գոյություն ունեցող Pro և Max բաժանորդագրությունները պահպանում են իրենց սկզբնական ամսական AI հնարավորությունները։ Նոր առաջարկներն ունեն 100 և 300 հարցումներ։';
 }

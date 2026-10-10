@@ -40,6 +40,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final current = widget.service.tier;
+    final busy = widget.service.busy;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.plansTitle)),
       body: FutureBuilder<List<SubscriptionOffer>>(
@@ -55,17 +56,14 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
               Text(l10n.plansHeadline, style: theme.textTheme.headlineSmall),
               const SizedBox(height: 4),
               Text(l10n.plansSubhead, style: theme.textTheme.bodyMedium),
+              if (widget.service.legacy) Padding(padding: const EdgeInsets.only(top: 12), child: Text('${l10n.planLegacyRights}\n${current == Tier.max ? 'Max' : 'Pro'}: ${widget.service.monthlyAllowance}')),
+              if (busy) const LinearProgressIndicator(),
               const SizedBox(height: 16),
-              Center(
-                child: SegmentedButton<bool>(
-                  key: const Key('plans_period'),
-                  segments: [
-                    ButtonSegment(value: false, label: Text(l10n.plansMonthly)),
-                    ButtonSegment(value: true, label: Text(l10n.plansYearly)),
-                  ],
-                  selected: {_yearly},
-                  onSelectionChanged: (s) => setState(() => _yearly = s.first),
-                ),
+              Wrap(key: const Key('plans_period'), alignment: WrapAlignment.center, spacing: 8, runSpacing: 8,
+                children: [for (final yearly in [false, true]) ChoiceChip(
+                  label: Text(yearly ? l10n.plansYearly : l10n.plansMonthly), selected: _yearly == yearly,
+                  onSelected: busy ? null : (_) => setState(() => _yearly = yearly),
+                )],
               ),
               const SizedBox(height: 16),
               _PlanCard(
@@ -85,7 +83,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 current: current == Tier.pro,
                 highlight: true,
                 loading: snap.connectionState != ConnectionState.done,
-                onBuy: find(Tier.pro) == null ? null : () => widget.service.buy(find(Tier.pro)!),
+                onBuy: busy || find(Tier.pro) == null ? null : () => widget.service.buy(find(Tier.pro)!),
               ),
               _PlanCard(
                 key: const Key('plan_max'),
@@ -95,13 +93,13 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 benefits: [l10n.planMaxAi, l10n.planNoAds, l10n.planBackup, l10n.planMaxFamily],
                 current: current == Tier.max,
                 loading: snap.connectionState != ConnectionState.done,
-                onBuy: find(Tier.max) == null ? null : () => widget.service.buy(find(Tier.max)!),
+                onBuy: busy || find(Tier.max) == null ? null : () => widget.service.buy(find(Tier.max)!),
               ),
               if (snap.connectionState == ConnectionState.done && offers.isEmpty)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Row(children: [
-                    Expanded(child: Text(l10n.plansStoreUnavailable)),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(l10n.plansStoreUnavailable),
                     TextButton(
                       onPressed: () => setState(() => _offers = widget.service.loadOffers()),
                       child: Text(l10n.retryAction),
@@ -122,7 +120,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 ),
               TextButton.icon(
                 key: const Key('plans_restore'),
-                onPressed: widget.service.restore,
+                onPressed: busy ? null : widget.service.restore,
                 icon: const Icon(Icons.restore),
                 label: Text(l10n.plansRestore),
               ),
@@ -176,10 +174,10 @@ class _PlanCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            Wrap(
+              alignment: WrapAlignment.spaceBetween, spacing: 8, runSpacing: 8,
               children: [
                 Text(title, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
-                const Spacer(),
                 if (current) Chip(label: Text(l10n.planCurrent)),
                 if (!current && trial != null) Chip(avatar: const Icon(Icons.card_giftcard, size: 16), label: Text(trial!)),
               ],

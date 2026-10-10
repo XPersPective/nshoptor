@@ -932,7 +932,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get planFreePrice => 'Gratis selamanya';
 
   @override
-  String get planFreeAi => '15 permintaan AI per bulan';
+  String get planFreeAi => '10 permintaan AI per bulan';
 
   @override
   String get planFreeAds =>
@@ -951,7 +951,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get planTrial => '7 hari gratis';
 
   @override
-  String get planProAi => '200 permintaan AI per bulan';
+  String get planProAi => '100 permintaan AI per bulan';
 
   @override
   String get planNoAds => 'Tanpa iklan';
@@ -960,7 +960,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get planBackup => 'Cadangan, ekspor, dan impor';
 
   @override
-  String get planMaxAi => '1000 permintaan AI per bulan';
+  String get planMaxAi => '300 permintaan AI per bulan';
 
   @override
   String get planMaxFamily => 'Untuk belanja keluarga besar';
@@ -1084,4 +1084,8 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Semua belanja yang sudah selesai. Pengembalian barang mengurangi total. Tanggal mengacu pada penyelesaian belanja. Satu kunjungan tidak cukup untuk menghitung interval rata-rata.';
+
+  @override
+  String get planLegacyRights =>
+      'Langganan Pro dan Max yang sudah ada tetap mempertahankan kuota AI bulanan aslinya. Penawaran baru memiliki 100 dan 300 permintaan.';
 }

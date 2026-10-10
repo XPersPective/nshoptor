@@ -938,7 +938,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get planFreePrice => 'శాశ్వతంగా ఉచితం';
 
   @override
-  String get planFreeAi => 'నెలకు 15 AI రిక్వెస్ట్‌లు';
+  String get planFreeAi => 'నెలకు 10 AI రిక్వెస్ట్‌లు';
 
   @override
   String get planFreeAds =>
@@ -957,7 +957,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get planTrial => '7 రోజులు ఉచితం';
 
   @override
-  String get planProAi => 'నెలకు 200 AI రిక్వెస్ట్‌లు';
+  String get planProAi => 'నెలకు 100 AI రిక్వెస్ట్‌లు';
 
   @override
   String get planNoAds => 'విజ్ఞاپనాలు లేవు';
@@ -966,7 +966,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get planBackup => 'బ్యాకప్ ఎగుమతి మరియు దిగుమతి';
 
   @override
-  String get planMaxAi => 'నెలకు 1000 AI అభ్యర్థనలు';
+  String get planMaxAi => 'నెలకు 300 AI అభ్యర్థనలు';
 
   @override
   String get planMaxFamily => 'పెద్ద కుటుంబ షాపింగ్‌కు';
@@ -1092,4 +1092,8 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'పూర్తయిన అన్ని షాపింగ్‌లు. తిరిగి ఇచ్చినవి మొత్తాలను తగ్గిస్తాయి. తేదీలు షాపింగ్ పూర్తయిన సమయాన్ని సూచిస్తాయి. ఒక సందర్శన సగటు అంతరాన్ని లెక్కించడానికి సరిపోదు.';
+
+  @override
+  String get planLegacyRights =>
+      'ప్రస్తుత ప్రో మరియు మాక్స్ సబ్‌స్క్రిప్షన్లు వాటి అసలు నెలవారీ AI అనుమతిని కొనసాగిస్తాయి. కొత్త ఆఫర్లు 100 మరియు 300 అభ్యర్థనలతో ఉంటాయి.';
 }

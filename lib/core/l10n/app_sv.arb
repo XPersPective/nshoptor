@@ -292,16 +292,16 @@
   "plansYearly": "Årligen",
   "planFree": "Gratis",
   "planFreePrice": "Alltid gratis",
-  "planFreeAi": "15 AI-förfrågningar i månaden",
+  "planFreeAi": "10 AI-förfrågningar i månaden",
   "planFreeAds": "Små bannerreklam (ingen de första 7 dagarna)",
   "planCoreFeatures": "Listor, priser, kvitton, utgiftsdiagram",
   "plansPerYear": "/ år",
   "plansPerMonth": "/ månad",
   "planTrial": "7 dagar gratis",
-  "planProAi": "200 AI-förfrågningar i månaden",
+  "planProAi": "100 AI-förfrågningar i månaden",
   "planNoAds": "Ingen reklam",
   "planBackup": "Säkerhetskopiera och importera",
-  "planMaxAi": "1000 AI-förfrågningar per månad",
+  "planMaxAi": "300 AI-förfrågningar per månad",
   "planMaxFamily": "För stora familjehandelar",
   "plansStoreUnavailable": "Butiken är inte tillgänglig just nu.",
   "retryAction": "Försök igen",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Detta språk stöder inte röstinskrivning på den här enheten. Du kan skriva istället.",
   "voiceStopListening": "Sluta lyssna",
   "keepAwakeFailed": "Det gick inte att hålla skärmen vaken. Försök igen.",
-  "purchaseHistoryHint": "Alla genomförda shoppingar. Returer minskar totalbeloppet. Datum avser när shoppingen slutfördes. Ett besök räcker inte för att beräkna ett genomsnittligt intervall."
+  "purchaseHistoryHint": "Alla genomförda shoppingar. Returer minskar totalbeloppet. Datum avser när shoppingen slutfördes. Ett besök räcker inte för att beräkna ett genomsnittligt intervall.",
+  "planLegacyRights": "Befintliga Pro- och Max-prenumerationer behåller sin ursprungliga månatliga AI-begränsning. Nya erbjudanden har 100 och 300 förfrågningar."
 }

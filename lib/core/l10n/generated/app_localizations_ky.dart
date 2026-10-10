@@ -932,7 +932,7 @@ class AppLocalizationsKy extends AppLocalizations {
   String get planFreePrice => 'Мүмкүнчүлүккө чейин акысыз';
 
   @override
-  String get planFreeAi => 'Айына 15 AI сурамы';
+  String get planFreeAi => 'Айына 10 AI сурамы';
 
   @override
   String get planFreeAds => 'Кичине баннердик жарнамалар (биринчи 7 күндө жок)';
@@ -951,7 +951,7 @@ class AppLocalizationsKy extends AppLocalizations {
   String get planTrial => '7 күн акысыз';
 
   @override
-  String get planProAi => 'Айына 200 AI сурамы';
+  String get planProAi => 'Айына 100 AI сурамы';
 
   @override
   String get planNoAds => 'Жарнама жок';
@@ -960,7 +960,7 @@ class AppLocalizationsKy extends AppLocalizations {
   String get planBackup => 'Колдоо экспорттоо жана импорттоо';
 
   @override
-  String get planMaxAi => 'Айына 1000 AI сураныч';
+  String get planMaxAi => 'Айына 300 AI сураныч';
 
   @override
   String get planMaxFamily => 'Чоң үй-бүлө сатып алуу үчүн';
@@ -1086,4 +1086,8 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Баардык аяктаган сатып алуулар. Кайтаруулар жалпы сумманы азайтат. Даталар сатып алуунун аяктаган күнүн көрсөтөт. Орточо интервалды эсептөө үчүн бир гана баруу жетишсиз.';
+
+  @override
+  String get planLegacyRights =>
+      'Бардык Pro жана Max абонементтери өзүнүн айлык AI чектөөсүн сактайт. Жаңы сунуштар 100 жана 300 суранычты камтыйт.';
 }

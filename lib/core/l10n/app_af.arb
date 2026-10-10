@@ -292,16 +292,16 @@
   "plansYearly": "Jaarliks",
   "planFree": "Gratis",
   "planFreePrice": "Vir altyd gratis",
-  "planFreeAi": "15 AI-aanvrae per maand",
+  "planFreeAi": "10 AI-aanvrae per maand",
   "planFreeAds": "Klein bannerreklames (geen in jou eerste 7 dae nie)",
   "planCoreFeatures": "Lyste, pryse, kwiteansies, spenderingsgrafieke",
   "plansPerYear": "/ jaar",
   "plansPerMonth": "/ maand",
   "planTrial": "7 dae gratis",
-  "planProAi": "200 AI-aanvrae per maand",
+  "planProAi": "100 AI-aanvrae per maand",
   "planNoAds": "Geen reklames nie",
   "planBackup": "Sleutel- en invoer",
-  "planMaxAi": "1000 AI-aanvrae per maand",
+  "planMaxAi": "300 AI-aanvrae per maand",
   "planMaxFamily": "Vir groot gesinsinkopies",
   "plansStoreUnavailable": "Die winkel is tans nie bereikbaar nie.",
   "retryAction": "Probeer weer",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Hierdie taal is nie beskikbaar vir stemintyding op hierdie toestel nie. Jy kan tik.",
   "voiceStopListening": "Stop met luister",
   "keepAwakeFailed": "Kon nie die skerm wakker hou nie. Probeer asseblief weer.",
-  "purchaseHistoryHint": "Alle voltooide inkopies. Terugbetalings verminder die totale bedrae. Datums verwys na die voltooiing van die inkopies. Een besoek is nie genoeg om 'n gemiddelde interval te bereken nie."
+  "purchaseHistoryHint": "Alle voltooide inkopies. Terugbetalings verminder die totale bedrae. Datums verwys na die voltooiing van die inkopies. Een besoek is nie genoeg om 'n gemiddelde interval te bereken nie.",
+  "planLegacyRights": "Bestaande Pro- en Max-abonnemente behou hul oorspronklike maandelikse AI-toelaag. Nuwe aanbiedings het 100 en 300 versoeke."
 }

@@ -934,7 +934,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get planFreePrice => 'Navždy zdarma';
 
   @override
-  String get planFreeAi => '15 požiadaviek AI za mesiac';
+  String get planFreeAi => '10 požiadaviek AI za mesiac';
 
   @override
   String get planFreeAds =>
@@ -953,7 +953,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get planTrial => '7 dní zdarma';
 
   @override
-  String get planProAi => '200 požiadaviek AI za mesiac';
+  String get planProAi => '100 požiadaviek AI za mesiac';
 
   @override
   String get planNoAds => 'Žiadne reklamy';
@@ -962,7 +962,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get planBackup => 'Export a import záloh';
 
   @override
-  String get planMaxAi => '1000 AI požiadaviek mesačne';
+  String get planMaxAi => '300 AI požiadaviek mesačne';
 
   @override
   String get planMaxFamily => 'Pre nákupy veľkej rodiny';
@@ -1087,4 +1087,8 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Všetky dokončené nákupy. Vrátenie tovaru znižuje celkové sumy. Dáty sa vzťahujú na dokončenie nákupu. Na výpočet priemerného intervalu nestačí jeden nákup.';
+
+  @override
+  String get planLegacyRights =>
+      'Existujúce predplatné Pro a Max si zachovávajú pôvodný mesačný limit AI požiadaviek. Nové ponuky majú 100 a 300 požiadaviek.';
 }

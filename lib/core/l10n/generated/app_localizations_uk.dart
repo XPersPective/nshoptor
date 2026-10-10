@@ -935,7 +935,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get planFreePrice => 'Назавжди безкоштовно';
 
   @override
-  String get planFreeAi => '15 запитів до AI на місяць';
+  String get planFreeAi => '10 запитів до AI на місяць';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get planTrial => '7 днів безкоштовно';
 
   @override
-  String get planProAi => '200 запитів до AI на місяць';
+  String get planProAi => '100 запитів до AI на місяць';
 
   @override
   String get planNoAds => 'Без реклами';
@@ -963,7 +963,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get planBackup => 'Експорт і імпорт резервної копії';
 
   @override
-  String get planMaxAi => '1000 запитів до ШІ на місяць';
+  String get planMaxAi => '300 запитів до ШІ на місяць';
 
   @override
   String get planMaxFamily => 'Для великої сімейної закупівлі';
@@ -1087,4 +1087,8 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Усі завершені покупки. Повернення знижують загальну суму. Дати вказують на завершення покупок. Однієї візти недостатньо для розрахунку середнього інтервалу.';
+
+  @override
+  String get planLegacyRights =>
+      'Існуючі підписки Pro і Max зберігають свій початковий місячний ліміт запитів до ШІ. Нові пропозиції передбачають 100 і 300 запитів.';
 }

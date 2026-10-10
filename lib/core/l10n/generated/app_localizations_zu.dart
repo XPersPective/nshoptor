@@ -938,7 +938,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get planFreePrice => 'Mahhala unomphela';
 
   @override
-  String get planFreeAi => 'Imicelo ye-AI engu-15 ngenyanga';
+  String get planFreeAi => 'Imicelo ye-AI engu-10 ngenyanga';
 
   @override
   String get planFreeAds =>
@@ -958,7 +958,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get planTrial => 'Izinsuku ezi-7 mahhala';
 
   @override
-  String get planProAi => 'Imicelo ye-AI engu-200 ngenyanga';
+  String get planProAi => 'Imicelo ye-AI engu-100 ngenyanga';
 
   @override
   String get planNoAds => 'Azikho izikhangiso';
@@ -967,7 +967,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get planBackup => 'Thumela bese ufaka imidwebo';
 
   @override
-  String get planMaxAi => 'Izicelo ze-AI eziyi-1000 ngenyanga';
+  String get planMaxAi => 'Izicelo ze-AI eziyi-300 ngenyanga';
 
   @override
   String get planMaxFamily => 'Kokuthenga kwesizini esikhulu';
@@ -1094,4 +1094,8 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Konke ukuthenga okuphelelwe. Ukubuyisela kunciphisa amanani. Izinsuku zibhekisela ekupheleni kokuthenga. Isivakashi esisodwa asikwanele ukubala isikhathi esijwayelekile.';
+
+  @override
+  String get planLegacyRights =>
+      'Izibhalo zikaPro neMax ezikhona ziyagcina ukuvumelana kwe-AI kwangenyanga okwakuqala. Izinketho ezintsha zinamaphuzu angu-100 no-300.';
 }

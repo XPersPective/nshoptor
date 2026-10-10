@@ -932,7 +932,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get planFreePrice => 'ฟรีตลอดไป';
 
   @override
-  String get planFreeAi => '15 คำขอ AI ต่อเดือน';
+  String get planFreeAi => '10 คำขอ AI ต่อเดือน';
 
   @override
   String get planFreeAds => 'โฆษณาแบนเนอร์เล็กน้อย (ไม่มีใน 7 วันแรก)';
@@ -950,7 +950,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get planTrial => 'ทดลองใช้ฟรี 7 วัน';
 
   @override
-  String get planProAi => '200 คำขอ AI ต่อเดือน';
+  String get planProAi => '100 คำขอ AI ต่อเดือน';
 
   @override
   String get planNoAds => 'ไม่มีโฆษณา';
@@ -959,7 +959,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get planBackup => 'สำรองและนำเข้าข้อมูล';
 
   @override
-  String get planMaxAi => 'ใช้ AI ได้ 1000 ครั้งต่อเดือน';
+  String get planMaxAi => 'ใช้ AI ได้ 300 ครั้งต่อเดือน';
 
   @override
   String get planMaxFamily => 'เหมาะสำหรับการช้อปสำหรับครอบครัวใหญ่';
@@ -1082,4 +1082,8 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'ประวัติการซื้อทั้งหมด การคืนสินค้าจะลดยอดรวม วันที่หมายถึงวันที่เสร็จสิ้นการช้อปปิ้ง การไปหนึ่งครั้งไม่เพียงพอที่จะคำนวณช่วงเวลาค่าเฉลี่ย';
+
+  @override
+  String get planLegacyRights =>
+      'การสมัครสมาชิก Pro และ Max ที่มีอยู่จะคงสิทธิ์ AI รายเดือนตามเดิม ข้อเสนอใหม่มี 100 และ 300 คำขอ';
 }

@@ -933,7 +933,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get planFreePrice => 'Alltid gratis';
 
   @override
-  String get planFreeAi => '15 AI-förfrågningar i månaden';
+  String get planFreeAi => '10 AI-förfrågningar i månaden';
 
   @override
   String get planFreeAds => 'Små bannerreklam (ingen de första 7 dagarna)';
@@ -951,7 +951,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get planTrial => '7 dagar gratis';
 
   @override
-  String get planProAi => '200 AI-förfrågningar i månaden';
+  String get planProAi => '100 AI-förfrågningar i månaden';
 
   @override
   String get planNoAds => 'Ingen reklam';
@@ -960,7 +960,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get planBackup => 'Säkerhetskopiera och importera';
 
   @override
-  String get planMaxAi => '1000 AI-förfrågningar per månad';
+  String get planMaxAi => '300 AI-förfrågningar per månad';
 
   @override
   String get planMaxFamily => 'För stora familjehandelar';
@@ -1084,4 +1084,8 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Alla genomförda shoppingar. Returer minskar totalbeloppet. Datum avser när shoppingen slutfördes. Ett besök räcker inte för att beräkna ett genomsnittligt intervall.';
+
+  @override
+  String get planLegacyRights =>
+      'Befintliga Pro- och Max-prenumerationer behåller sin ursprungliga månatliga AI-begränsning. Nya erbjudanden har 100 och 300 förfrågningar.';
 }

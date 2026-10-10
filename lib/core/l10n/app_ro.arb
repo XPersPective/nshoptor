@@ -292,16 +292,16 @@
   "plansYearly": "Anual",
   "planFree": "Gratuit",
   "planFreePrice": "Gratuit pentru totdeauna",
-  "planFreeAi": "15 cereri AI pe lună",
+  "planFreeAi": "10 cereri AI pe lună",
   "planFreeAds": "Banner-uri mici (fără primele 7 zile)",
   "planCoreFeatures": "Liste, prețuri, chitanțe, grafice de cheltuieli",
   "plansPerYear": "/ an",
   "plansPerMonth": "/ lună",
   "planTrial": "7 zile gratuite",
-  "planProAi": "200 cereri AI pe lună",
+  "planProAi": "100 cereri AI pe lună",
   "planNoAds": "Fără reclame",
   "planBackup": "Export și import de backup",
-  "planMaxAi": "1000 cereri AI pe lună",
+  "planMaxAi": "300 cereri AI pe lună",
   "planMaxFamily": "Pentru cumpărături mari în familie",
   "plansStoreUnavailable": "Magazinul nu este disponibil momentan.",
   "retryAction": "Reîncearcă",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Această limbă nu este disponibilă pentru input vocal pe acest dispozitiv. Poți scrie în schimb.",
   "voiceStopListening": "Oprește ascultarea",
   "keepAwakeFailed": "Nu s-a putut menține ecranul activ. Te rugăm să încerci din nou.",
-  "purchaseHistoryHint": "Toate cumpărăturile finalizate. Returnările reduc totalurile. Datele se referă la finalizarea cumpărăturilor. O singură vizită nu este suficientă pentru a calcula un interval mediu."
+  "purchaseHistoryHint": "Toate cumpărăturile finalizate. Returnările reduc totalurile. Datele se referă la finalizarea cumpărăturilor. O singură vizită nu este suficientă pentru a calcula un interval mediu.",
+  "planLegacyRights": "Abonamentele Pro și Max existente își păstrează alocarea lunară originală de AI. Ofertele noi au 100 și 300 de solicitări."
 }

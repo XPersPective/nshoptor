@@ -937,7 +937,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get planFreePrice => 'Libre forever';
 
   @override
-  String get planFreeAi => '15 AI requests kada buwan';
+  String get planFreeAi => '10 AI requests kada buwan';
 
   @override
   String get planFreeAds => 'Maliit na banner ads (walang sa unang 7 araw)';
@@ -956,7 +956,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get planTrial => '7 araw libre';
 
   @override
-  String get planProAi => '200 AI requests kada buwan';
+  String get planProAi => '100 AI requests kada buwan';
 
   @override
   String get planNoAds => 'Walang ads';
@@ -965,7 +965,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get planBackup => 'I-export at i-import ang backup';
 
   @override
-  String get planMaxAi => '1000 AI requests bawat buwan';
+  String get planMaxAi => '300 AI requests bawat buwan';
 
   @override
   String get planMaxFamily => 'Para sa malaking pamilya na pagbili';
@@ -1091,4 +1091,8 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Lahat ng natapos na pagbili. Binabawasan ng mga return ang kabuuan. Ang mga petsa ay tumutukoy sa pagkumpleto ng pagbili. Isa lang ang bisita, hindi sapat para kalkulahin ang average interval.';
+
+  @override
+  String get planLegacyRights =>
+      'Ang mga existing na Pro at Max subscription ay pananatili ang kanilang orihinal na buwanang AI allowance. Ang mga bagong offer ay may 100 at 300 requests.';
 }

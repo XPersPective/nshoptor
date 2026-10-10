@@ -935,7 +935,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get planFreePrice => 'Gratuit pentru totdeauna';
 
   @override
-  String get planFreeAi => '15 cereri AI pe lună';
+  String get planFreeAi => '10 cereri AI pe lună';
 
   @override
   String get planFreeAds => 'Banner-uri mici (fără primele 7 zile)';
@@ -954,7 +954,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get planTrial => '7 zile gratuite';
 
   @override
-  String get planProAi => '200 cereri AI pe lună';
+  String get planProAi => '100 cereri AI pe lună';
 
   @override
   String get planNoAds => 'Fără reclame';
@@ -963,7 +963,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get planBackup => 'Export și import de backup';
 
   @override
-  String get planMaxAi => '1000 cereri AI pe lună';
+  String get planMaxAi => '300 cereri AI pe lună';
 
   @override
   String get planMaxFamily => 'Pentru cumpărături mari în familie';
@@ -1089,4 +1089,8 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Toate cumpărăturile finalizate. Returnările reduc totalurile. Datele se referă la finalizarea cumpărăturilor. O singură vizită nu este suficientă pentru a calcula un interval mediu.';
+
+  @override
+  String get planLegacyRights =>
+      'Abonamentele Pro și Max existente își păstrează alocarea lunară originală de AI. Ofertele noi au 100 și 300 de solicitări.';
 }

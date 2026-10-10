@@ -931,7 +931,7 @@ class AppLocalizationsGu extends AppLocalizations {
   String get planFreePrice => 'આખી ઉમર ફ્રી';
 
   @override
-  String get planFreeAi => 'મહિને 15 AI વિનંતીઓ';
+  String get planFreeAi => 'મહિને 10 AI વિનંતીઓ';
 
   @override
   String get planFreeAds => 'નાના બેનર એડ્સ (પહેલા 7 દિવસે કોઈ નહીં)';
@@ -949,7 +949,7 @@ class AppLocalizationsGu extends AppLocalizations {
   String get planTrial => '7 દિવસ ફ્રી';
 
   @override
-  String get planProAi => 'મહિને 200 AI વિનંતીઓ';
+  String get planProAi => 'મહિને 100 AI વિનંતીઓ';
 
   @override
   String get planNoAds => 'કોઈ એડ્સ નહીં';
@@ -958,7 +958,7 @@ class AppLocalizationsGu extends AppLocalizations {
   String get planBackup => 'બેકઅપ એક્સપોર્ટ અને ઇમ્પોર્ટ';
 
   @override
-  String get planMaxAi => 'એક મહિને 1000 AI રિક્વેસ્ટ્સ';
+  String get planMaxAi => 'એક મહિને 300 AI રિક્વેસ્ટ્સ';
 
   @override
   String get planMaxFamily => 'મોટા પરિવારની શોપિંગ માટે';
@@ -1083,4 +1083,8 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'બધી પૂર્ણ થયેલી શોપિંગ. રિટર્નથી કુલ રકમ ઘટે છે. તારીખો શોપિંગ પૂર્ણ થવાની છે. એક વારની મુલાકાત સરેરાશ અંતર ગણવા માટે પૂરતી નથી.';
+
+  @override
+  String get planLegacyRights =>
+      'મوجودાદ Pro અને Max સબ્સ્ક્રિપ્શન તેમની મૂળ માસિક AI અલોવન્સ જાળવી રાખે છે. નવા ઓફરમાં 100 અને 300 રિક્વેસ્ટ્સ છે.';
 }

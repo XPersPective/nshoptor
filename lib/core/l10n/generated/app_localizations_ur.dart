@@ -932,7 +932,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get planFreePrice => 'ہمیشہ مفت';
 
   @override
-  String get planFreeAi => 'ماہانہ 15 AI درخواستیں';
+  String get planFreeAi => 'ماہانہ 10 AI درخواستیں';
 
   @override
   String get planFreeAds => 'چھوٹی بینر اشتہارات (پہلے 7 دنوں میں کوئی نہیں)';
@@ -950,7 +950,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get planTrial => '7 دن مفت';
 
   @override
-  String get planProAi => 'ماہانہ 200 AI درخواستیں';
+  String get planProAi => 'ماہانہ 100 AI درخواستیں';
 
   @override
   String get planNoAds => 'کوئی اشتہار نہیں';
@@ -959,7 +959,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get planBackup => 'بیک اپ ایکسپورٹ اور امپورٹ';
 
   @override
-  String get planMaxAi => 'ماہانہ 1000 AI درخواستیں';
+  String get planMaxAi => 'ماہانہ 300 AI درخواستیں';
 
   @override
   String get planMaxFamily => 'بڑی خاندانی خریداری کے لیے';
@@ -1084,4 +1084,8 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'تمام مکمل شاپنگ۔ واپسی کل رقم میں کمی لاتے ہیں۔ تاریخیں شاپنگ کی تکمیل سے متعلق ہیں۔ ایک دورہ اوسط وقفہ کا حساب لگانے کے لیے کافی نہیں ہے۔';
+
+  @override
+  String get planLegacyRights =>
+      'موجودہ Pro اور Max سبسکرپشنز اپنی اصل ماہانہ AI اجازت برقرار رکھیں گی۔ نئے آفرز میں 100 اور 300 درخواستیں شامل ہیں۔';
 }

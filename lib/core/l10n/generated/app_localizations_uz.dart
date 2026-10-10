@@ -936,7 +936,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get planFreePrice => 'Abadiy bepul';
 
   @override
-  String get planFreeAi => 'Oyiga 15 ta AI so‘rov';
+  String get planFreeAi => 'Oyiga 10 ta AI so‘rov';
 
   @override
   String get planFreeAds => 'Kichik banner reklama (birinchi 7 kunida yo‘q)';
@@ -955,7 +955,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get planTrial => '7 kun bepul';
 
   @override
-  String get planProAi => 'Oyiga 200 ta AI so‘rov';
+  String get planProAi => 'Oyiga 100 ta AI so‘rov';
 
   @override
   String get planNoAds => 'Reklamasiz';
@@ -964,7 +964,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get planBackup => 'Zaxiralash eksport va import';
 
   @override
-  String get planMaxAi => 'Oyiga 1000 ta AI so\'rov';
+  String get planMaxAi => 'Oyiga 300 ta AI so\'rov';
 
   @override
   String get planMaxFamily => 'Katta oila uchun xaridlar';
@@ -1090,4 +1090,8 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Barcha yakunlangan xaridlar. Qaytarishlar umumiy summani kamaytiradi. Sana xarid tugatilgan kunini bildiradi. O\'rtacha oraliqni hisoblash uchun bitta tashrif yetarli emas.';
+
+  @override
+  String get planLegacyRights =>
+      'Mavjud Pro va Max obunalari o\'zlarining dastlabki oylik AI imkoniyatlarini saqlab qoladi. Yangi takliflar 100 va 300 so\'rovni o\'z ichiga oladi.';
 }

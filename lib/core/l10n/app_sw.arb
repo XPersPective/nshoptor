@@ -292,16 +292,16 @@
   "plansYearly": "Mwaka",
   "planFree": "Bure",
   "planFreePrice": "Bure milele",
-  "planFreeAi": "Maombi 15 ya AI kwa mwezi",
+  "planFreeAi": "Maombi 10 ya AI kwa mwezi",
   "planFreeAds": "Matamko madogo ya bango (hakuna katika siku zako za kwanza 7)",
   "planCoreFeatures": "Orodha, bei, risiti, michoro ya matumizi",
   "plansPerYear": "/ mwaka",
   "plansPerMonth": "/ mwezi",
   "planTrial": "Siku 7 bure",
-  "planProAi": "Maombi 200 ya AI kwa mwezi",
+  "planProAi": "Maombi 100 ya AI kwa mwezi",
   "planNoAds": "Hakuna matamko",
   "planBackup": "Hifadhi na uingize nje",
-  "planMaxAi": "Maombi 1000 ya AI kwa mwezi",
+  "planMaxAi": "Maombi 300 ya AI kwa mwezi",
   "planMaxFamily": "Kwa ununuzi wa familia kubwa",
   "plansStoreUnavailable": "Duka halipatikani sasa hivi.",
   "retryAction": "Jaribu tena",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Lugha hii haipatikani kwa ingizo la sauti kwenye kifaa hiki. Unaweza kuandika badala yake.",
   "voiceStopListening": "Simamisha kusikiliza",
   "keepAwakeFailed": "Haikuweza kushikilia skrini ikiwa imewaka. Tafadhali jaribu tena.",
-  "purchaseHistoryHint": "Mambo yote ya kununua yaliyokamilika. Kurudisha bidhaa hupunguza jumla. Tarehe zinahusu kukamilika kwa ununuzi. Ziara moja si ya kutosha kuhesabu muda wa wastani."
+  "purchaseHistoryHint": "Mambo yote ya kununua yaliyokamilika. Kurudisha bidhaa hupunguza jumla. Tarehe zinahusu kukamilika kwa ununuzi. Ziara moja si ya kutosha kuhesabu muda wa wastani.",
+  "planLegacyRights": "Usajili wa Pro na Max uliopo unaendelea kuwa na idadi ya maombi ya AI ya kila mwezi kama ilivyokuwepo. Oferta mpya zina maombi 100 na 300."
 }

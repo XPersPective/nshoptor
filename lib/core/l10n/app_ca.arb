@@ -292,16 +292,16 @@
   "plansYearly": "Anual",
   "planFree": "Gratuït",
   "planFreePrice": "Gratis per sempre",
-  "planFreeAi": "15 sol·licituds d'IA al mes",
+  "planFreeAi": "10 sol·licituds d'IA al mes",
   "planFreeAds": "Petits anuncis en forma de banner (cap durant els primers 7 dies)",
   "planCoreFeatures": "Llistes, preus, rebuts, gràfics de despeses",
   "plansPerYear": "/ any",
   "plansPerMonth": "/ mes",
   "planTrial": "7 dies gratuïts",
-  "planProAi": "200 sol·licituds d'IA al mes",
+  "planProAi": "100 sol·licituds d'IA al mes",
   "planNoAds": "Sense anuncis",
   "planBackup": "Còpia de seguretat, exportació i importació",
-  "planMaxAi": "1000 peticions d'IA al mes",
+  "planMaxAi": "300 peticions d'IA al mes",
   "planMaxFamily": "Per a compres familiars grans",
   "plansStoreUnavailable": "La botiga no és accessible ara mateix.",
   "retryAction": "Torna-ho a provar",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Aquest idioma no està disponible per a l'entrada per veu en aquest dispositiu. Pots escriure en el seu lloc.",
   "voiceStopListening": "Deixa d'escoltar",
   "keepAwakeFailed": "No s'ha pogut mantenir la pantalla encesa. Si us plau, torna-ho a provar.",
-  "purchaseHistoryHint": "Totes les compres completades. Les devolucions redueixen els totals. Les dates fan referència a la finalització de la compra. Una sola visita no és suficient per calcular un interval mitjà."
+  "purchaseHistoryHint": "Totes les compres completades. Les devolucions redueixen els totals. Les dates fan referència a la finalització de la compra. Una sola visita no és suficient per calcular un interval mitjà.",
+  "planLegacyRights": "Les subscripcions Pro i Max existents mantenen el seu permís mensual original d'IA. Les noves ofertes tenen 100 i 300 peticions."
 }

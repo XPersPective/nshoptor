@@ -313,16 +313,16 @@
   "plansYearly": "Yıllık",
   "planFree": "Ücretsiz",
   "planFreePrice": "Her zaman ücretsiz",
-  "planFreeAi": "Ayda 15 yapay zekâ isteği",
+  "planFreeAi": "Ayda 10 yapay zekâ isteği",
   "planFreeAds": "Küçük banner reklam (ilk 7 gün reklamsız)",
   "planCoreFeatures": "Listeler, fiyatlar, fişler, harcama grafikleri",
   "plansPerYear": "/ yıl",
   "plansPerMonth": "/ ay",
   "planTrial": "7 gün ücretsiz",
-  "planProAi": "Ayda 200 yapay zekâ isteği",
+  "planProAi": "Ayda 100 yapay zekâ isteği",
   "planNoAds": "Reklamsız",
   "planBackup": "Yedeği dışa ve içe aktarma",
-  "planMaxAi": "Ayda 1000 yapay zekâ isteği",
+  "planMaxAi": "Ayda 300 yapay zekâ isteği",
   "planMaxFamily": "Büyük aile alışverişleri için",
   "plansStoreUnavailable": "Mağazaya şu an ulaşılamıyor.",
   "retryAction": "Tekrar dene",
@@ -359,5 +359,6 @@
   "voiceUnsupportedLanguage": "Bu cihazda bu dil için sesli giriş yok. Bunun yerine yazabilirsin.",
   "voiceStopListening": "Dinlemeyi durdur",
   "keepAwakeFailed": "Ekran açık tutulamadı. Lütfen yeniden deneyin.",
-  "purchaseHistoryHint": "Tüm tamamlanan alışverişler. İadeler toplamdan düşülür. Tarihler alışverişin tamamlanmasını gösterir. Ortalama aralık için tek alışveriş yeterli değildir."
+  "purchaseHistoryHint": "Tüm tamamlanan alışverişler. İadeler toplamdan düşülür. Tarihler alışverişin tamamlanmasını gösterir. Ortalama aralık için tek alışveriş yeterli değildir.",
+  "planLegacyRights": "Mevcut Pro ve Max abonelikleri ilk aylık AI haklarını korur. Yeni teklifler 100 ve 300 istektir."
 }

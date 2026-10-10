@@ -18,7 +18,7 @@ void main() {
   test('new flow messages are translated in every app language', () {
     const keys = ['voiceStopListening', 'keepAwakeFailed', 'formatLocaleSystem', 'saveFailed', 'deleteItemConfirm', 'clearPurchaseConfirm',
       'reportPdfAction', 'reportNotInvoice', 'purchaseVisits', 'purchaseInterval',
-      'purchasedQuantity', 'purchaseAnalyticsHint', 'purchaseHistoryHint', 'receiptReplaces', 'voiceUnsupportedLanguage'];
+      'purchasedQuantity', 'purchaseAnalyticsHint', 'purchaseHistoryHint', 'planLegacyRights', 'receiptReplaces', 'voiceUnsupportedLanguage'];
     final en = jsonDecode(File('lib/core/l10n/app_en.arb').readAsStringSync()) as Map;
     for (final code in appLanguages.keys.where((c) => c != 'en')) {
       final arb = jsonDecode(File('lib/core/l10n/app_$code.arb').readAsStringSync()) as Map;
@@ -81,6 +81,15 @@ void main() {
     final closing = db.close();
     await tester.pump(const Duration(milliseconds: 1));
     await closing;
+  });
+
+  test('all71 plan quota promises are10/100/300', () {
+    for (final file in Directory('lib/core/l10n').listSync().whereType<File>().where((f) => f.path.endsWith('.arb'))) {
+      final arb = jsonDecode(file.readAsStringSync()) as Map;
+      for (final (key, count) in [('planFreeAi', '10'), ('planProAi', '100'), ('planMaxAi', '300')]) {
+        expect(RegExp(r'\d+').allMatches(arb[key] as String).map((m) => m.group(0)).toList(), [count], reason: file.path);
+      }
+    }
   });
 
   testWidgets('71 dilin hepsinde uygulama açılır; RTL diller sağdan sola', (tester) async {

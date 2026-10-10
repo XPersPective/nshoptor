@@ -292,16 +292,16 @@
   "plansYearly": "Årlig",
   "planFree": "Gratis",
   "planFreePrice": "Gratis for evigt",
-  "planFreeAi": "15 AI-anmodninger om måneden",
+  "planFreeAi": "10 AI-anmodninger om måneden",
   "planFreeAds": "Små bannerannoncer (ingen de første 7 dage)",
   "planCoreFeatures": "Lister, priser, kvitteringer, forbrugsdiagrammer",
   "plansPerYear": "/ år",
   "plansPerMonth": "/ måned",
   "planTrial": "7 dages gratis prøveperiode",
-  "planProAi": "200 AI-anmodninger om måneden",
+  "planProAi": "100 AI-anmodninger om måneden",
   "planNoAds": "Ingen annoncer",
   "planBackup": "Backup-eksport og -import",
-  "planMaxAi": "1000 AI-anmodninger om måneden",
+  "planMaxAi": "300 AI-anmodninger om måneden",
   "planMaxFamily": "Til store familieshoppingture",
   "plansStoreUnavailable": "Butikken er ikke tilgængelig lige nu.",
   "retryAction": "Prøv igen",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Dette sprog er ikke tilgængeligt til stemmeinput på denne enhed. Du kan i stedet skrive.",
   "voiceStopListening": "Stop med at lytte",
   "keepAwakeFailed": "Skærmen kunne ikke holdes vågen. Prøv venligst igen.",
-  "purchaseHistoryHint": "Alle gennemførte indkøb. Tilbageleveringer reducerer totalen. Datoerne refererer til afslutning af indkøbet. Et enkelt besøg er ikke nok til at beregne et gennemsnitligt interval."
+  "purchaseHistoryHint": "Alle gennemførte indkøb. Tilbageleveringer reducerer totalen. Datoerne refererer til afslutning af indkøbet. Et enkelt besøg er ikke nok til at beregne et gennemsnitligt interval.",
+  "planLegacyRights": "Eksisterende Pro- og Max-abonnementer beholder deres oprindelige månedlige AI-tilladelse. Nye tilbud har 100 og 300 anmodninger."
 }

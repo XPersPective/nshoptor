@@ -935,7 +935,7 @@ class AppLocalizationsAz extends AppLocalizations {
   String get planFreePrice => 'Həmişə pulsuz';
 
   @override
-  String get planFreeAi => 'Ayda 15 AI sorğusu';
+  String get planFreeAi => 'Ayda 10 AI sorğusu';
 
   @override
   String get planFreeAds => 'Kiçik banner reklam (ilk 7 gündə yoxdur)';
@@ -954,7 +954,7 @@ class AppLocalizationsAz extends AppLocalizations {
   String get planTrial => '7 gün pulsuz';
 
   @override
-  String get planProAi => 'Ayda 200 AI sorğusu';
+  String get planProAi => 'Ayda 100 AI sorğusu';
 
   @override
   String get planNoAds => 'Reklam yoxdur';
@@ -963,7 +963,7 @@ class AppLocalizationsAz extends AppLocalizations {
   String get planBackup => 'Yedəkləmə ixrac və idxal';
 
   @override
-  String get planMaxAi => 'Ayda 1000 AI sorğusu';
+  String get planMaxAi => 'Ayda 300 AI sorğusu';
 
   @override
   String get planMaxFamily => 'Böyük ailə alışları üçün';
@@ -1088,4 +1088,8 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Tamamlanmış bütün alış-verişlər. Qaytarmalar ümumi məbləği azaldır. Tarixlər alış-verişin tamamlanmasına aiddir. Bir ziyarət orta intervalı hesablamaq üçün kifayət deyil.';
+
+  @override
+  String get planLegacyRights =>
+      'Mövcud Pro və Max abunəlikləri ilkin aylıq AI limitini saxlayır. Yeni təkliflər 100 və 300 sorğu ilə gəlir.';
 }

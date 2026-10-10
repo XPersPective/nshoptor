@@ -935,7 +935,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get planFreePrice => 'Bezmaksas uz visiem laikiem';
 
   @override
-  String get planFreeAi => '15 AI pieprasījumi mēnesī';
+  String get planFreeAi => '10 AI pieprasījumi mēnesī';
 
   @override
   String get planFreeAds =>
@@ -954,7 +954,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get planTrial => '7 dienas bezmaksas';
 
   @override
-  String get planProAi => '200 AI pieprasījumi mēnesī';
+  String get planProAi => '100 AI pieprasījumi mēnesī';
 
   @override
   String get planNoAds => 'Bez reklāmām';
@@ -963,7 +963,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get planBackup => 'Rezerves kopija eksportēšanai un importēšanai';
 
   @override
-  String get planMaxAi => '1000 AI pieprasījumu mēnesī';
+  String get planMaxAi => '300 AI pieprasījumu mēnesī';
 
   @override
   String get planMaxFamily => 'Liela ģimenes iepirkumam';
@@ -1087,4 +1087,8 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Visi pabeigtie iepirkumi. Atgrieztie produkti samazina kopējos izdevumus. Datumi attiecas uz iepirkumu pabeigšanas brīdi. Viena apmeklējuma nav pietiekami, lai aprēķinātu vidējo intervālu.';
+
+  @override
+  String get planLegacyRights =>
+      'Esošajām Pro un Max abonementiem saglabājas sākotnējais mēneša AI pieprasījumu limits. Jaunajiem piedāvājumiem ir 100 un 300 pieprasījumi.';
 }

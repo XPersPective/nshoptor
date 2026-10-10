@@ -292,16 +292,16 @@
   "plansYearly": "Jährlich",
   "planFree": "Kostenlos",
   "planFreePrice": "Für immer kostenlos",
-  "planFreeAi": "15 KI-Anfragen pro Monat",
+  "planFreeAi": "10 KI-Anfragen pro Monat",
   "planFreeAds": "Kleine Bannerwerbung (in den ersten 7 Tagen keine)",
   "planCoreFeatures": "Listen, Preise, Kassenbons, Ausgabendiagramme",
   "plansPerYear": "/ Jahr",
   "plansPerMonth": "/ Monat",
   "planTrial": "7 Tage gratis",
-  "planProAi": "200 KI-Anfragen pro Monat",
+  "planProAi": "100 KI-Anfragen pro Monat",
   "planNoAds": "Keine Werbung",
   "planBackup": "Sicherung exportieren und importieren",
-  "planMaxAi": "1000 KI-Anfragen pro Monat",
+  "planMaxAi": "300 KI-Anfragen pro Monat",
   "planMaxFamily": "Für große Familieneinkäufe",
   "plansStoreUnavailable": "Der Store ist gerade nicht erreichbar.",
   "retryAction": "Erneut versuchen",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Diese Sprache ist für die Spracheingabe auf diesem Gerät nicht verfügbar. Du kannst stattdessen tippen.",
   "voiceStopListening": "Hören stoppen",
   "keepAwakeFailed": "Bildschirm konnte nicht wach gehalten werden. Bitte versuchen Sie es erneut.",
-  "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückgaben reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen."
+  "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückgaben reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.",
+  "planLegacyRights": "Bestehende Pro- und Max-Abonnements behalten ihre ursprüngliche monatliche AI-Nutzung. Neue Angebote bieten 100 bzw. 300 Anfragen."
 }

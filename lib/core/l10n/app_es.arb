@@ -292,16 +292,16 @@
   "plansYearly": "Anual",
   "planFree": "Gratis",
   "planFreePrice": "Gratis para siempre",
-  "planFreeAi": "15 solicitudes de IA al mes",
+  "planFreeAi": "10 solicitudes de IA al mes",
   "planFreeAds": "Pequeños anuncios de banner (ninguno los primeros 7 días)",
   "planCoreFeatures": "Listas, precios, tickets, gráficos de gasto",
   "plansPerYear": "/ año",
   "plansPerMonth": "/ mes",
   "planTrial": "7 días gratis",
-  "planProAi": "200 solicitudes de IA al mes",
+  "planProAi": "100 solicitudes de IA al mes",
   "planNoAds": "Sin anuncios",
   "planBackup": "Exportar e importar copias",
-  "planMaxAi": "1000 solicitudes de IA al mes",
+  "planMaxAi": "300 solicitudes de IA al mes",
   "planMaxFamily": "Para grandes compras familiares",
   "plansStoreUnavailable": "No se puede acceder a la tienda ahora mismo.",
   "retryAction": "Reintentar",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Este idioma no está disponible para entrada por voz en este dispositivo. Puedes escribir en su lugar.",
   "voiceStopListening": "Dejar de escuchar",
   "keepAwakeFailed": "No se pudo mantener la pantalla encendida. Inténtalo de nuevo.",
-  "purchaseHistoryHint": "Todas las compras completadas. Las devoluciones reducen los totales. Las fechas se refieren a la finalización de la compra. Una sola visita no es suficiente para calcular un intervalo promedio."
+  "purchaseHistoryHint": "Todas las compras completadas. Las devoluciones reducen los totales. Las fechas se refieren a la finalización de la compra. Una sola visita no es suficiente para calcular un intervalo promedio.",
+  "planLegacyRights": "Las suscripciones Pro y Max existentes mantienen su cuota mensual original de IA. Las nuevas ofertas incluyen 100 y 300 solicitudes."
 }

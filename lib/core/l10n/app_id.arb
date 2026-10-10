@@ -292,16 +292,16 @@
   "plansYearly": "Tahunan",
   "planFree": "Gratis",
   "planFreePrice": "Gratis selamanya",
-  "planFreeAi": "15 permintaan AI per bulan",
+  "planFreeAi": "10 permintaan AI per bulan",
   "planFreeAds": "Iklan banner kecil (tidak ada dalam 7 hari pertama Anda)",
   "planCoreFeatures": "Daftar, harga, struk, grafik pengeluaran",
   "plansPerYear": "/ tahun",
   "plansPerMonth": "/ bulan",
   "planTrial": "7 hari gratis",
-  "planProAi": "200 permintaan AI per bulan",
+  "planProAi": "100 permintaan AI per bulan",
   "planNoAds": "Tanpa iklan",
   "planBackup": "Cadangan, ekspor, dan impor",
-  "planMaxAi": "1000 permintaan AI per bulan",
+  "planMaxAi": "300 permintaan AI per bulan",
   "planMaxFamily": "Untuk belanja keluarga besar",
   "plansStoreUnavailable": "Toko sedang tidak dapat diakses saat ini.",
   "retryAction": "Coba lagi",
@@ -338,5 +338,6 @@
   "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara di perangkat ini. Anda bisa mengetik sebagai gantinya.",
   "voiceStopListening": "Berhenti mendengarkan",
   "keepAwakeFailed": "Layar tidak dapat tetap menyala. Silakan coba lagi.",
-  "purchaseHistoryHint": "Semua belanja yang sudah selesai. Pengembalian barang mengurangi total. Tanggal mengacu pada penyelesaian belanja. Satu kunjungan tidak cukup untuk menghitung interval rata-rata."
+  "purchaseHistoryHint": "Semua belanja yang sudah selesai. Pengembalian barang mengurangi total. Tanggal mengacu pada penyelesaian belanja. Satu kunjungan tidak cukup untuk menghitung interval rata-rata.",
+  "planLegacyRights": "Langganan Pro dan Max yang sudah ada tetap mempertahankan kuota AI bulanan aslinya. Penawaran baru memiliki 100 dan 300 permintaan."
 }

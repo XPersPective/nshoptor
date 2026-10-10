@@ -934,7 +934,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get planFreePrice => 'Bure milele';
 
   @override
-  String get planFreeAi => 'Maombi 15 ya AI kwa mwezi';
+  String get planFreeAi => 'Maombi 10 ya AI kwa mwezi';
 
   @override
   String get planFreeAds =>
@@ -953,7 +953,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get planTrial => 'Siku 7 bure';
 
   @override
-  String get planProAi => 'Maombi 200 ya AI kwa mwezi';
+  String get planProAi => 'Maombi 100 ya AI kwa mwezi';
 
   @override
   String get planNoAds => 'Hakuna matamko';
@@ -962,7 +962,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get planBackup => 'Hifadhi na uingize nje';
 
   @override
-  String get planMaxAi => 'Maombi 1000 ya AI kwa mwezi';
+  String get planMaxAi => 'Maombi 300 ya AI kwa mwezi';
 
   @override
   String get planMaxFamily => 'Kwa ununuzi wa familia kubwa';
@@ -1087,4 +1087,8 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'Mambo yote ya kununua yaliyokamilika. Kurudisha bidhaa hupunguza jumla. Tarehe zinahusu kukamilika kwa ununuzi. Ziara moja si ya kutosha kuhesabu muda wa wastani.';
+
+  @override
+  String get planLegacyRights =>
+      'Usajili wa Pro na Max uliopo unaendelea kuwa na idadi ya maombi ya AI ya kila mwezi kama ilivyokuwepo. Oferta mpya zina maombi 100 na 300.';
 }

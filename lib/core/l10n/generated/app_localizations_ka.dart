@@ -932,7 +932,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get planFreePrice => 'უფასო სამუდამოდ';
 
   @override
-  String get planFreeAi => '15 AI მოთხოვნა თვეში';
+  String get planFreeAi => '10 AI მოთხოვნა თვეში';
 
   @override
   String get planFreeAds => 'მცირე ბანერული რეკლამა (პირველ 7 დღეში არ არის)';
@@ -950,7 +950,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get planTrial => '7 დღე უფასო';
 
   @override
-  String get planProAi => '200 AI მოთხოვნა თვეში';
+  String get planProAi => '100 AI მოთხოვნა თვეში';
 
   @override
   String get planNoAds => 'რეკლამის გარეშე';
@@ -959,7 +959,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get planBackup => 'ბექაპის ექსპორტი და იმპორტი';
 
   @override
-  String get planMaxAi => '1000 AI მოთხოვნა თვეში';
+  String get planMaxAi => '300 AI მოთხოვნა თვეში';
 
   @override
   String get planMaxFamily => 'დიდი ოჯახის ყიდვებისთვის';
@@ -1084,4 +1084,8 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get purchaseHistoryHint =>
       'ყველა დასრულებული ყიდვა. დაბრუნებები ამცირებს ჯამურ თანხას. თარიღები შეესაბამება ყიდვის დასრულების დროს. ერთი ვიზიტი საკმარისი არ არსად საშუალო ინტერვალის გამოსათვლელად.';
+
+  @override
+  String get planLegacyRights =>
+      'არსებული Pro და Max სუბსკრიფციები ინარჩუნებენ თავდაპირველ თვიურ AI ლიმიტს. ახალი შეთავაზებები გვთავაზობს 100 და 300 მოთხოვნას.';
 }
