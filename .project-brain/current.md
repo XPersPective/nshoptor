@@ -98,7 +98,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
 
 **Sources:** `lib/features/**`, `test/features/**`, `integration_test/**`
 
-- `lists/`: ListStatus machine, ListRepository (undo snapshot), ListsScreen,
+- `lists/`: ListStatus machine, ListRepository (undo snapshot; default native reminder cancellation before deletion), ListsScreen,
   ItemFormSheet (iki kademeli: ad-odaklı + tahmini fiyat + miktar; marka/
   kategori/birim-modu/min-max/not/zorunlu "Ayrıntılar" altında katlanır —
   C-004); `lists/suggestions/` (ProductMemory, paste_parser), `lists/
@@ -143,7 +143,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   ReceiptReviewScreen prefillSuggestions uses enabled AI first, high-confidence local ReceiptMatcher fallback; all links remain editable and require approval.
 - `subscription/`: source offers *_v2 Pro100/Max300, legacy200/1000 retained, free/lifetime10; matching native owner, latest-query guards and pending purchase/restore deduplication. Legacy rights note and quotas all71; domain24 + subscription11 passed, analyze0. PB-065 new v2 catalog active (10 October), legacy unchanged; native release QA PB-069. PB-088 Android debug app_e2e3/device_audit2 passed; canonical store en/tr/ar24 images verified.
 - `settings/`: SettingsScreen + SettingsRepository (spec §6.15,
-  delete-all double confirm; tema + formatLocale anahtarları repo'da);
+  delete-all double confirm; active OS reminders cancelled before deleting DB rows, cancellation failure preserves records; tema + formatLocale anahtarları repo'da);
   Pro satırı (PaywallPage) + yedek dışa/içe PRO-GATE (standart §3.8:
   kilit + paywall; Pro değişince kilit anında kalkar); Hakkında
   (AboutPage: açık kaynak/GPL-3.0), Lisanslar, Paylaş, Puan ver

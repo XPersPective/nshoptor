@@ -1,10 +1,15 @@
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:napp_core/napp_core.dart';
 
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/reminders/reminders_repository.dart';
 import 'package:nshoptor/features/lists/reminders/reminder_scheduler.dart';
+import 'package:nshoptor/features/settings/settings_repository.dart';
 
 /// Çağrıları kaydeden sahte zamanlayıcı (done-when: sahte servis doğrulaması).
 class FakeReminderScheduler implements ReminderScheduler {
@@ -32,6 +37,7 @@ class FakeReminderScheduler implements ReminderScheduler {
 }
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   late AppDatabase db;
   late FakeReminderScheduler fake;
   late RemindersRepository reminders;
@@ -47,6 +53,47 @@ void main() {
   Future<int> makeList() => db
       .into(db.shoppingLists)
       .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+
+  test('default deletion cancels native IDs; cancellation failure retains data', () async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    AndroidFlutterLocalNotificationsPlugin.registerWith();
+    const channel = MethodChannel('dexterous.com/flutter/local_notifications');
+    final calls = <MethodCall>[];
+    var failCancel = true;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (call) async {
+      calls.add(call);
+      if (call.method == 'cancel' && failCancel) throw PlatformException(code: 'qa_cancel');
+      return call.method == 'initialize' ? true : null;
+    });
+    addTearDown(() {
+      debugDefaultTargetPlatformOverride = null;
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, null);
+    });
+    final first = await makeList(), second = await makeList();
+    for (final listId in [first, second]) {
+      await reminders.setReminder(listId: listId, title: 'QA', body: 'QA', atUtc: DateTime.utc(2030));
+    }
+    final ids = (await db.select(db.reminders).get()).map((r) => r.id).toList();
+    final lists = ListRepository(db); // actual default production wiring
+    await expectLater(lists.deleteList(first), throwsA(isA<PlatformException>()));
+    expect(await db.select(db.shoppingLists).get(), hasLength(2));
+    expect(await db.select(db.reminders).get(), hasLength(2));
+    failCancel = false;
+    await lists.deleteList(first);
+    final settings = SettingsRepository(db, NappSettingsStoreOps(SettingsStore()))..confirmDeleteAll();
+    failCancel = true;
+    await expectLater(settings.deleteAllData(), throwsA(isA<PlatformException>()));
+    expect(await db.select(db.shoppingLists).get(), hasLength(1));
+    expect(await db.select(db.reminders).get(), hasLength(1));
+    failCancel = false;
+    settings.confirmDeleteAll();
+    await settings.deleteAllData();
+    expect(await db.select(db.shoppingLists).get(), isEmpty);
+    expect(await db.select(db.reminders).get(), isEmpty);
+    expect(calls.where((c) => c.method == 'cancel').map((c) => (c.arguments as Map)['id']), [ids.first, ids.first, ids.last, ids.last]);
+    expect(calls.where((c) => c.method.toLowerCase().contains('permission')), isEmpty);
+  });
 
   test('hatırlatma kurma: izin istenir, schedule çağrılır, DB satırı aktif',
       () async {

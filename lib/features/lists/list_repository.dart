@@ -2,15 +2,17 @@ import 'package:drift/drift.dart';
 
 import '../../data/db/app_database.dart';
 import 'reminders/reminders_repository.dart';
+import 'reminders/local_notifications_scheduler.dart';
 import 'list_status.dart';
 
 /// Alışveriş listesi işlemleri: CRUD, çoğaltma, para birimi değişimi,
 /// geri alınabilir silme (spec §6.1, §7.1).
 class ListRepository {
-  ListRepository(this._db, {this._reminders});
+  ListRepository(this._db, {RemindersRepository? reminders})
+      : _reminders = reminders ?? RemindersRepository(_db, LocalNotificationsScheduler());
 
   final AppDatabase _db;
-  final RemindersRepository? _reminders;
+  final RemindersRepository _reminders;
 
   /// Detay ekranları gibi aynı veritabanını paylaşan bileşenler için.
   AppDatabase get db => _db;
@@ -187,7 +189,7 @@ class ListRepository {
           ..where((t) => t.listId.equals(listId)))
         .get();
     // OS hatırlatmaları cascade'e takılmaz; açıkça iptal edilir (spec §6.13).
-    await _reminders?.cancelForList(listId);
+    await _reminders.cancelForList(listId);
     await _db.transaction(() async {
       await (_db.delete(_db.plannedItems)
             ..where((t) => t.listId.equals(listId)))

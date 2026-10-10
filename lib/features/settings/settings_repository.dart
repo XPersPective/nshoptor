@@ -7,6 +7,8 @@ import 'package:napp_core/napp_core.dart';
 
 import '../../../data/db/app_database.dart';
 import 'backup/backup_repository.dart';
+import '../lists/reminders/reminders_repository.dart';
+import '../lists/reminders/local_notifications_scheduler.dart';
 
 /// Ayarlar ekranının veri depolaması + sistem eylemleri (spec §6.15, §12).
 ///
@@ -22,12 +24,14 @@ class SettingsRepository {
   /// `settings` bellek tier'ı: üretimde napp_core SettingsStore,
   /// testlerde in-memory taklit.
   SettingsRepository(this._db, this._settings,
-      {BackupRepository? backup, this.mediaDir, this.exportDirOverride})
-      : _backup = backup ?? BackupRepository(_db);
+      {BackupRepository? backup, RemindersRepository? reminders, this.mediaDir, this.exportDirOverride})
+      : _backup = backup ?? BackupRepository(_db),
+        _reminders = reminders ?? RemindersRepository(_db, LocalNotificationsScheduler());
 
   final AppDatabase _db;
   final SettingsStoreOps _settings;
   final BackupRepository _backup;
+  final RemindersRepository _reminders;
   final Directory? mediaDir;
 
   /// Testlerde yol kanalısına gerek kalmadan provizyon için geçersiz kılma.
@@ -112,6 +116,7 @@ class SettingsRepository {
       throw StateError('double onay gerekli');
     }
     _firstConfirmPending = false;
+    await _reminders.cancelAll();
     await _db.transaction(() async {
       for (final t in const [
         'receipt_candidate_lines', 'attachments', 'price_observations',
@@ -178,4 +183,3 @@ class NappSettingsStoreOps implements SettingsStoreOps {
   @override
   void remove(String key) => _inner.remove(key);
 }
-

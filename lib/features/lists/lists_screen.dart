@@ -335,7 +335,16 @@ class _ListCard extends StatelessWidget {
         );
         if (confirmed == true && context.mounted) {
           final messenger = ScaffoldMessenger.of(context);
-          final snapshot = await repository.deleteList(list.id);
+          final DeletedListSnapshot snapshot;
+          try {
+            snapshot = await repository.deleteList(list.id);
+          } catch (_) {
+            if (context.mounted) {
+              messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.saveFailed),
+                showCloseIcon: true, duration: const Duration(days: 1)));
+            }
+            return;
+          }
           if (!context.mounted) return;
           messenger..clearSnackBars()..showSnackBar(
             SnackBar(

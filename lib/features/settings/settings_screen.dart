@@ -540,7 +540,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     // Gerçek silme (ikinci onay sonrası). spec §12: context'i görüntüleme için.
     _repo.confirmDeleteAll();
-    await _repo.deleteAllData();
+    try {
+      await _repo.deleteAllData();
+    } catch (_) {
+      if (context.mounted) {
+        messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.saveFailed),
+          showCloseIcon: true, duration: const Duration(days: 1)));
+      }
+      return;
+    }
     if (!context.mounted) return;
     messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.dataDeleted), showCloseIcon: true));
   }

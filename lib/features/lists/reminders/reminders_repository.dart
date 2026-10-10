@@ -68,6 +68,15 @@ class RemindersRepository {
     }
   }
 
+  /// Tüm aktif OS hatırlatmalarını kayıtları silmeden önce iptal eder.
+  Future<void> cancelAll() async {
+    final rows = await (_db.select(_db.reminders)
+          ..where((t) => t.status.equals('active'))).get();
+    for (final row in rows) {
+      await cancelReminder(row.id);
+    }
+  }
+
   /// Aktif hatırlatma (varsa).
   Future<Reminder?> activeForList(int listId) =>
       (_db.select(_db.reminders)
