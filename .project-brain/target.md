@@ -29,7 +29,7 @@ Fiş plansız başlayabilir veya mevcut listeye eklenir; iptalde satın alım ol
 Ekranı açık tut ayarı aktif liste ekranına bağlanır; seçili durum görünür, arka planda ve çıkışta bırakılır. Snackbar kuyruğu birikmez, kapatılabilir; kayıt hatası formda kalır.
 
 ### Ticari model
-Öneri: ücretsiz/ömür boyu reklamsız 10, Pro 100, Max 300 AYLIK AI isteği. Yıllık plan aynı aylık kotadır. Lifetime mevcut reklam/backup haklarını korur; abonelik AI hakkı vermez. Mağaza fiyatı Play'den gelir.
+Yeni teklifler: ücretsiz/ömür boyu reklamsız 10, Pro 100, Max 300 AYLIK AI isteği. Eski Pro/Max SKU hakları 200/1000 korunur; ADR-007. Yıllık plan aynı aylık kotadır. Lifetime mevcut reklam/backup haklarını korur; abonelik AI hakkı vermez. Mağaza fiyatı Play'den gelir.
 Aylık 300 kararı muhafazakâr başlangıç önerisidir; gerçek token maliyeti ve yıllık indirimle ölçülür. Referans senaryolar: `docs/audits/ai-economics.md`. Kota sunucuda atomik; satın alma istemci beyanıyla yükselmez. Provider key değişimi/yayın yalnız ilgili yürütme yetkisiyle.
 
 ### Rapor
@@ -45,7 +45,7 @@ Tam DB/state-management yeniden yazımı; gereksiz bağımlılık; hesap/bulut s
 - SC3 ses ilk/ikinci açılış, izin reddi, desteklenmeyen dil; fotoğraf adı+gerçeği; iptal veri değiştirmez.
 - SC4 kısmi fiş, tekrar onay ve elle+fiş toplamı; transaction rollback; JPY/KWD hassasiyeti.
 - SC5 ülke varsayılanı, bağımsız biçim, wakelock, kapatılabilir geri bildirim, 320dp/büyük metin/RTL.
-- SC6 aylık 10/100/300 taahhütleri client/server/71 dil/yıllıkta tutarlı; maliyet sınırı ve yayın riski açık.
+- SC6 yeni tekliflerde aylık 10/100/300 ve eski ücretli 200/1000 hakları client/server/71 dil/yıllıkta tutarlı; maliyet sınırı ve yayın riski açık.
 - SC7 PDF gerçek Android'de kaydedilip açılır; miktar/sıklık istatistiği gerçek kayıtlardan hesaplanır.
 - SC8 flutter test/analyze ve server test yeşil; release cihaz kanıtı; sadece derleme başarı sayılmaz.
 
