@@ -30,7 +30,7 @@ Ekranı açık tut ayarı aktif liste ekranına bağlanır; seçili durum görü
 
 ### Ticari model
 Yeni teklifler: ücretsiz/ömür boyu reklamsız 10, Pro 100, Max 300 AYLIK AI isteği. Eski Pro/Max SKU hakları 200/1000 korunur; ADR-007. Yıllık plan aynı aylık kotadır. Lifetime mevcut reklam/backup haklarını korur; abonelik AI hakkı vermez. Mağaza fiyatı Play'den gelir.
-Aylık 300 kararı muhafazakâr başlangıç önerisidir; gerçek token maliyeti ve yıllık indirimle ölçülür. Referans senaryolar: `docs/audits/ai-economics.md`. Kota sunucuda atomik; satın alma istemci beyanıyla yükselmez. Provider key değişimi/yayın yalnız ilgili yürütme yetkisiyle.
+Aylık 300 kararı muhafazakâr başlangıç önerisidir; gerçek token maliyeti ve yıllık indirimle ölçülür. Kullanıcı son yönlendirmesi: “Dipsik’in en sonki modelinin en düşük fiyatlısına göre.” Yeni fiyat senaryosu Pro1.99/19.99, Max3.99/39.99USD; ADR-008. Referans senaryolar: `docs/audits/ai-economics.md`. Kota sunucuda atomik; satın alma istemci beyanıyla yükselmez. Provider key değişimi/yayın yalnız ilgili yürütme yetkisiyle.
 
 ### Rapor
 JSON yedek korunur. PDF liste, tarih, para, miktar, tahmin/gerçek/fark ve eksik fiyat işaretini taşır. Android native print/PDF ilk tercih; yeni paket gerekmeden denenir. Bilinmeyen KDV hesaplanmaz; karışık vergi oranlarında tek varsayılan uygulanmaz.
