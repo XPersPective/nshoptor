@@ -1077,4 +1077,8 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'نمی‌توان صفحه را روشن نگه داشت. لطفاً دوباره تلاش کنید.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'تمام خریدهای تکمیل‌شده. بازگشت کالا، مبالغ را کاهش می‌دهد. تاریخ‌ها مربوط به زمان تکمیل خرید هستند. یک بازدید برای محاسبه میانگین فاصله کافی نیست.';
 }

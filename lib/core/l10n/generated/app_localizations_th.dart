@@ -1078,4 +1078,8 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get keepAwakeFailed => 'ไม่สามารถเปิดหน้าจอไว้ได้ กรุณาลองอีกครั้ง';
+
+  @override
+  String get purchaseHistoryHint =>
+      'ประวัติการซื้อทั้งหมด การคืนสินค้าจะลดยอดรวม วันที่หมายถึงวันที่เสร็จสิ้นการช้อปปิ้ง การไปหนึ่งครั้งไม่เพียงพอที่จะคำนวณช่วงเวลาค่าเฉลี่ย';
 }

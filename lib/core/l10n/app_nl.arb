@@ -337,5 +337,6 @@
   "receiptReplaces": "Gekoppelde bonregels vervangen bestaande aankopen; niet-gekoppelde regels worden toegevoegd.",
   "voiceUnsupportedLanguage": "Deze taal is niet beschikbaar voor spraakinvoer op dit apparaat. Je kunt in plaats daarvan typen.",
   "voiceStopListening": "Stop met luisteren",
-  "keepAwakeFailed": "Het is niet gelukt om het scherm actief te houden. Probeer het opnieuw."
+  "keepAwakeFailed": "Het is niet gelukt om het scherm actief te houden. Probeer het opnieuw.",
+  "purchaseHistoryHint": "Alle voltooide boodschappen. Terugbrings verlagen de totalen. Data verwijzen naar het moment van afrekenen. Eén bezoek is niet genoeg om een gemiddelde interval te berekenen."
 }

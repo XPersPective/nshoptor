@@ -1047,4 +1047,8 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get keepAwakeFailed => '无法保持屏幕常亮，请重试。';
+
+  @override
+  String get purchaseHistoryHint =>
+      '所有已完成的购物。退货会减少总额。日期指的是购物完成时间。一次购物不足以计算平均间隔。';
 }

@@ -337,5 +337,6 @@
   "receiptReplaces": "Baris struk yang terhubung akan menggantikan pembelian yang sudah ada; baris yang tidak terhubung akan ditambahkan.",
   "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara di perangkat ini. Anda bisa mengetik sebagai gantinya.",
   "voiceStopListening": "Berhenti mendengarkan",
-  "keepAwakeFailed": "Layar tidak dapat tetap menyala. Silakan coba lagi."
+  "keepAwakeFailed": "Layar tidak dapat tetap menyala. Silakan coba lagi.",
+  "purchaseHistoryHint": "Semua belanja yang sudah selesai. Pengembalian barang mengurangi total. Tanggal mengacu pada penyelesaian belanja. Satu kunjungan tidak cukup untuk menghitung interval rata-rata."
 }

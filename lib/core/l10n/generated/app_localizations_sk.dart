@@ -1083,4 +1083,8 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Nepodarilo sa udržať obrazovku zapnutú. Skúste to prosím znova.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Všetky dokončené nákupy. Vrátenie tovaru znižuje celkové sumy. Dáty sa vzťahujú na dokončenie nákupu. Na výpočet priemerného intervalu nestačí jeden nákup.';
 }

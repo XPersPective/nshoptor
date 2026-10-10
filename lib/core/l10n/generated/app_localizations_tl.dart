@@ -1087,4 +1087,8 @@ class AppLocalizationsTl extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Hindi maaaring panatilihing gising ang screen. Subukan ulit.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Lahat ng natapos na pagbili. Binabawasan ng mga return ang kabuuan. Ang mga petsa ay tumutukoy sa pagkumpleto ng pagbili. Isa lang ang bisita, hindi sapat para kalkulahin ang average interval.';
 }

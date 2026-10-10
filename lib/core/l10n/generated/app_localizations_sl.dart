@@ -1080,4 +1080,8 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get keepAwakeFailed => 'Zaslon ni ostal vklopljen. Poskusite znova.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Vsa zaključena nakupovanja. Vrnitve zmanjšajo skupne vsote. Datumi se nanašajo na datum zaključka nakupa. En obisk ni dovolj za izračun povprečnega intervala.';
 }

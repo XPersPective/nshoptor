@@ -1081,4 +1081,8 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'സ്ക്രീൻ ജാഗ്രത നിലനിർത്താൻ കഴിഞ്ഞില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'പൂർത്തിയായ എല്ലാ ഷോപ്പിംഗുകളും. തിരികെ നൽകിയവ ആകെത്തുക കുറയ്ക്കുന്നു. തീയതികൾ ഷോപ്പിംഗ് പൂർത്തിയായ ദിവസങ്ങളെ സൂചിപ്പിക്കുന്നു. ശരാശരി ഇടവേള കണക്കാക്കാൻ ഒരു സന്ദർശനം മതിയാകില്ല.';
 }

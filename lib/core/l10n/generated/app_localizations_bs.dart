@@ -1082,4 +1082,8 @@ class AppLocalizationsBs extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Nije moguće zadržati ekran aktivnim. Molimo pokušajte ponovo.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Sva završena kupovna. Povratci smanjuju ukupne iznose. Datumi se odnose na završetak kupovine. Jedan posjet nije dovoljan za izračun prosječnog intervala.';
 }

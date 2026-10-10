@@ -1085,4 +1085,8 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Հնարավոր չեղավ պահպանել էկրանի ակտիվությունը: Խնդրում ենք փորձել նորից:';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Բոլոր ավարտված գնումները։ Վերադարձերը նվազեցնում են ընդհանուր գումարը։ Ամսաթիվները վերաբերում են գնումների ավարտին։ Մեկ այց բավարար չէ միջին միջակայքը հաշվարկելու համար։';
 }

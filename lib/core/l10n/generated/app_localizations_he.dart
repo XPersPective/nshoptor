@@ -1073,4 +1073,8 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get keepAwakeFailed => 'לא הצלחנו לשמור על התצוגה דלוקה. נסה שוב.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'כל הקניות שהושלמו. החזרים מפחיתים את הסכומים הכוללים. התאריכים מתייחסים להשלמת הקניות. ביקור אחד אינו מספיק לחישוב מרווח ממוצע.';
 }

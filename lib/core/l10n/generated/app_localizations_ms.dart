@@ -1084,4 +1084,8 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Gagal mengekalkan skrin aktif. Sila cuba lagi.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Semua pembelian selesai. Pulangan mengurangkan jumlah. Tarikh merujuk kepada siapnya pembelian. Satu lawatan tidak cukup untuk mengira purata selang.';
 }

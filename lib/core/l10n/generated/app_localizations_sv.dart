@@ -1080,4 +1080,8 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Det gick inte att hålla skärmen vaken. Försök igen.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Alla genomförda shoppingar. Returer minskar totalbeloppet. Datum avser när shoppingen slutfördes. Ett besök räcker inte för att beräkna ett genomsnittligt intervall.';
 }

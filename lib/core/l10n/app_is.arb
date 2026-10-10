@@ -337,5 +337,6 @@
   "receiptReplaces": "Línur tengd kvittingu koma í stað núverandi kaupa; ótengdar línur eru bættar við.",
   "voiceUnsupportedLanguage": "Þetta tungumál er ekki tiltækt fyrir raddinntak á þessu tæki. Þú getur skrifað í staðinn.",
   "voiceStopListening": "Hætta að hlusta",
-  "keepAwakeFailed": "Gat ekki haldið skjánum vakandi. Vinsamlegast reyndu aftur."
+  "keepAwakeFailed": "Gat ekki haldið skjánum vakandi. Vinsamlegast reyndu aftur.",
+  "purchaseHistoryHint": "Allar fullunnar innkaup. Endurheimt dregur úr heildarverði. Dagar vísa til lokunar innkaupa. Eitt ferð er ekki nóg til að reikna út meðalfjöldi."
 }

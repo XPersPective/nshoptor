@@ -337,5 +337,6 @@
   "receiptReplaces": "Połączone pozycje z paragonu zastępują istniejące zakupy; niepołączone pozycje są dodawane.",
   "voiceUnsupportedLanguage": "Ten język nie jest obsługiwany dla głosu na tym urządzeniu. Możesz wpisać tekst ręcznie.",
   "voiceStopListening": "Zatrzymaj słuchanie",
-  "keepAwakeFailed": "Nie udało się utrzymać włączonego ekranu. Spróbuj ponownie."
+  "keepAwakeFailed": "Nie udało się utrzymać włączonego ekranu. Spróbuj ponownie.",
+  "purchaseHistoryHint": "Wszystkie zakończone zakupy. Zwroty zmniejszają całkowite kwoty. Daty odnoszą się do ukończenia zakupów. Jedna wizyta nie wystarczy, aby obliczyć średni interwał."
 }

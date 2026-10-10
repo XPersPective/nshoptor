@@ -1088,4 +1088,8 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'திரையை எழுப்பியிருக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'முடிந்த அனைத்து வாங்கல்களும். திரும்பப் பெறுதல் மொத்தத்தைக் குறைக்கும். தேதிகள் வாங்கல் முடிவைக் குறிக்கின்றன. சராசரி இடைவெளியைக் கணக்கிட ஒரு பயணம் போதாது.';
 }

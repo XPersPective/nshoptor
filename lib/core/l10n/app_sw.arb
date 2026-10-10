@@ -337,5 +337,6 @@
   "receiptReplaces": "Mistari ya risiti iliyounganishwa inabadilisha ununuzi uliopo; mistari isiyo yaunganishwa inaongezwa.",
   "voiceUnsupportedLanguage": "Lugha hii haipatikani kwa ingizo la sauti kwenye kifaa hiki. Unaweza kuandika badala yake.",
   "voiceStopListening": "Simamisha kusikiliza",
-  "keepAwakeFailed": "Haikuweza kushikilia skrini ikiwa imewaka. Tafadhali jaribu tena."
+  "keepAwakeFailed": "Haikuweza kushikilia skrini ikiwa imewaka. Tafadhali jaribu tena.",
+  "purchaseHistoryHint": "Mambo yote ya kununua yaliyokamilika. Kurudisha bidhaa hupunguza jumla. Tarehe zinahusu kukamilika kwa ununuzi. Ziara moja si ya kutosha kuhesabu muda wa wastani."
 }

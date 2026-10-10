@@ -358,5 +358,6 @@
   "receiptReplaces": "Bağlı fiş satırları mevcut alımları değiştirir; bağlantısız satırlar eklenir.",
   "voiceUnsupportedLanguage": "Bu cihazda bu dil için sesli giriş yok. Bunun yerine yazabilirsin.",
   "voiceStopListening": "Dinlemeyi durdur",
-  "keepAwakeFailed": "Ekran açık tutulamadı. Lütfen yeniden deneyin."
+  "keepAwakeFailed": "Ekran açık tutulamadı. Lütfen yeniden deneyin.",
+  "purchaseHistoryHint": "Tüm tamamlanan alışverişler. İadeler toplamdan düşülür. Tarihler alışverişin tamamlanmasını gösterir. Ortalama aralık için tek alışveriş yeterli değildir."
 }

@@ -337,5 +337,6 @@
   "receiptReplaces": "Imigqa yesiphetho esixhumanisayo isusa izithengiso ezikhona; imigqa engaxhumaniswe iyengezwa.",
   "voiceUnsupportedLanguage": "Lolu lwimi alukhona ekufakeni ngezwi kulawula lokhu. Ungabhala endaweni.",
   "voiceStopListening": "Misa ukuzwa",
-  "keepAwakeFailed": "Ayikwazanga ukugcina isikrini sivulekile. Sicela uzame futhi."
+  "keepAwakeFailed": "Ayikwazanga ukugcina isikrini sivulekile. Sicela uzame futhi.",
+  "purchaseHistoryHint": "Konke ukuthenga okuphelelwe. Ukubuyisela kunciphisa amanani. Izinsuku zibhekisela ekupheleni kokuthenga. Isivakashi esisodwa asikwanele ukubala isikhathi esijwayelekile."
 }

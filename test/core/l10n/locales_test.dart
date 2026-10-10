@@ -18,7 +18,7 @@ void main() {
   test('new flow messages are translated in every app language', () {
     const keys = ['voiceStopListening', 'keepAwakeFailed', 'formatLocaleSystem', 'saveFailed', 'deleteItemConfirm', 'clearPurchaseConfirm',
       'reportPdfAction', 'reportNotInvoice', 'purchaseVisits', 'purchaseInterval',
-      'purchasedQuantity', 'purchaseAnalyticsHint', 'receiptReplaces', 'voiceUnsupportedLanguage'];
+      'purchasedQuantity', 'purchaseAnalyticsHint', 'purchaseHistoryHint', 'receiptReplaces', 'voiceUnsupportedLanguage'];
     final en = jsonDecode(File('lib/core/l10n/app_en.arb').readAsStringSync()) as Map;
     for (final code in appLanguages.keys.where((c) => c != 'en')) {
       final arb = jsonDecode(File('lib/core/l10n/app_$code.arb').readAsStringSync()) as Map;

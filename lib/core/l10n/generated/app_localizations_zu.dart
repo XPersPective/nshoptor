@@ -1090,4 +1090,8 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Ayikwazanga ukugcina isikrini sivulekile. Sicela uzame futhi.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Konke ukuthenga okuphelelwe. Ukubuyisela kunciphisa amanani. Izinsuku zibhekisela ekupheleni kokuthenga. Isivakashi esisodwa asikwanele ukubala isikhathi esijwayelekile.';
 }

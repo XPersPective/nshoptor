@@ -1081,4 +1081,8 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'স্ক্রিন জাগিয়ে রাখা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।';
+
+  @override
+  String get purchaseHistoryHint =>
+      'সমস্ত সম্পন্ন কেনাকাটা। রিটার্ন মোটের পরিমাণ কমায়। তারিখগুলো কেনাকাটা শেষ হওয়ার দিন নির্দেশ করে। গড় ব্যবধান বের করতে একটি ভিজিট যথেষ্ট নয়।';
 }

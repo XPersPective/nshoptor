@@ -1083,4 +1083,8 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Haikuweza kushikilia skrini ikiwa imewaka. Tafadhali jaribu tena.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Mambo yote ya kununua yaliyokamilika. Kurudisha bidhaa hupunguza jumla. Tarehe zinahusu kukamilika kwa ununuzi. Ziara moja si ya kutosha kuhesabu muda wa wastani.';
 }

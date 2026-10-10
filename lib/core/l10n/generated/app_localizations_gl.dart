@@ -1086,4 +1086,8 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Non foi posible manter a pantalla activa. Téntao de novo.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Todas as compras completadas. As devolucións reducen os totais. As datas refírense á finalización das compras. Unha soa visita non é suficiente para calcular un intervalo medio.';
 }

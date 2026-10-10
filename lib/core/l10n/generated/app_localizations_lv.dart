@@ -1083,4 +1083,8 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Neizdevās noturēt ekrānu aktīvu. Lūdzu, mēģiniet vēlreiz.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Visi pabeigtie iepirkumi. Atgrieztie produkti samazina kopējos izdevumus. Datumi attiecas uz iepirkumu pabeigšanas brīdi. Viena apmeklējuma nav pietiekami, lai aprēķinātu vidējo intervālu.';
 }

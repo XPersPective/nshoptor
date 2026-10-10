@@ -10,6 +10,10 @@ import '../../../core/money/money_format.dart';
 import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 import 'insights_repository.dart';
+import '../../../core/quantity/unit_display.dart';
+import '../../../core/quantity/unit_code.dart';
+import '../../lists/starter_categories.dart';
+import '../price_history/price_history_sheet.dart';
 
 /// Harcamalar (PB-054): alışveriş günleri takvimi, haftalık/aylık grafik,
 /// aylık limit. Varsayılan para biriminde; diğer para birimleri karışmaz.
@@ -31,6 +35,12 @@ class _SpendingScreenState extends State<SpendingScreen> {
   late DateTime _month = DateTime(_now.year, _now.month);
   late final String _currency = widget.currencyCode ?? AppDefaults.defaultCurrency();
   late final Future<List<SpendPoint>> _points = InsightsRepository(widget.db).completedSpend(_currency);
+  late final _analytics = (() async {
+    final repo = InsightsRepository(widget.db);
+    return (categories: await repo.spendingByCategory(_currency), stores: await repo.spendingByStore(_currency),
+      products: await repo.purchaseStats(_currency), categoryProducts: await repo.purchaseStats(_currency, byCategory: true));
+  })();
+  late final _data = (() async => (points: await _points, analytics: await _analytics))();
   late int? _limit = AppDefaults.monthlyLimitMinor(currencyCode: _currency);
 
   String _money(int minor) => formatMoney(
@@ -84,10 +94,11 @@ class _SpendingScreenState extends State<SpendingScreen> {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(l10n.spendingTitle)),
-      body: FutureBuilder<List<SpendPoint>>(
-        future: _points,
+      body: FutureBuilder(
+        future: _data,
         builder: (context, snap) {
-          final points = snap.data;
+          if (snap.hasError) return Center(child: Text(l10n.saveFailed));
+          final points = snap.data?.points;
           if (points == null) return const Center(child: CircularProgressIndicator());
           final days = SpendMath.byDay(points, _month.year, _month.month);
           final monthTotal = days.values.fold<int>(0, (s, v) => s + v);
@@ -140,16 +151,59 @@ class _SpendingScreenState extends State<SpendingScreen> {
               const SizedBox(height: 8),
               _BarChartCard(
                 title: l10n.spendingWeekly,
-                bars: [for (final (d, v) in weeks) ('${d.day}.${d.month}', v)],
-                money: _money,
+                bars: [for (final (d, v) in weeks) ('${d.day}.${d.month}', DecimalFixed.fromInt(v))],
+                valueText: (v) => _money(v.toMinorUnits(0)),
               ),
               const SizedBox(height: 8),
               _BarChartCard(
                 title: l10n.spendingMonthly,
-                bars: [for (final (d, v) in months) (ml.formatMonthYear(d).split(' ').first, v)],
-                money: _money,
+                bars: [for (final (d, v) in months) (ml.formatMonthYear(d).split(' ').first, DecimalFixed.fromInt(v))],
+                valueText: (v) => _money(v.toMinorUnits(0)),
                 limitMinor: _limit,
               ),
+              Padding(padding: const EdgeInsets.all(16), child: Text('$_currency · ${l10n.purchaseAnalyticsHint}\n${l10n.purchaseHistoryHint}')),
+              Builder(builder: (context) {
+                final data = snap.data!.analytics;
+                String category(String label) => StarterCategories().labelOf(l10n, label);
+                String quantity(DecimalFixed value) => value.toDbString().replaceAll('.', MoneySeparators.forLocaleCode(formatLocaleCode(context)).decimal);
+                final children = <Widget>[
+                  _BarChartCard(title: '${l10n.categoryLabel} · ${l10n.actualTotalLabel}', horizontal: true,
+                    bars: [for (final s in data.categories) (category(s.label ?? 'other'), DecimalFixed.fromInt(s.actualMinor))],
+                    valueText: (v) => _money(v.toMinorUnits(0))),
+                  _BarChartCard(title: '${l10n.storeLabel} · ${l10n.actualTotalLabel}', horizontal: true,
+                    bars: [for (final s in data.stores) (s.label ?? category('other'), DecimalFixed.fromInt(s.actualMinor))],
+                    valueText: (v) => _money(v.toMinorUnits(0))),
+                ];
+                for (final byCategory in [false, true]) {
+                  final stats = byCategory ? data.categoryProducts : data.products;
+                  final title = byCategory ? l10n.categoryLabel : l10n.groupsSection;
+                  for (final unit in stats.map((p) => p.unitCode).toSet()) {
+                    if (unit == 'custom' || !UnitCode.standard().any((u) => u.dbCode == unit)) continue;
+                    final group = stats.where((p) => p.unitCode == unit).toList();
+                    final unitLabel = unitDisplayNameFromDb(unit, l10n);
+                    children.add(_BarChartCard(title: '$title · ${l10n.purchasedQuantity} ($unitLabel)', horizontal: true,
+                      bars: [for (final p in group) (byCategory ? category(p.name) : p.name, p.quantity)],
+                      valueText: (v) => '${quantity(v)} $unitLabel'));
+                  }
+                  if (stats.isEmpty) children.add(Padding(padding: const EdgeInsets.all(16), child: Text(l10n.noPurchasesNote)));
+                  for (final p in stats) {
+                    children.add(Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Text(byCategory ? category(p.name) : p.name, style: Theme.of(context).textTheme.titleMedium),
+                        Text('${l10n.purchasedQuantity}: ${quantity(p.quantity)} ${unitDisplayNameFromDb(p.unitCode, l10n)}'),
+                        Text('${l10n.actualTotalLabel}: ${_money(p.actualMinor)}'),
+                        Text('${l10n.purchaseVisits}: ${p.visits.length}'),
+                        Text('${l10n.purchaseInterval}: ${p.intervalDays == null ? '—' : quantity(p.intervalDays!)}'),
+                        if (p.firstAt != null) Text('${ml.formatMediumDate(p.firstAt!.toLocal())} – ${ml.formatMediumDate(p.lastAt!.toLocal())}'),
+                        if (p.productId != null) TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (_) => PriceHistoryScreen(db: widget.db, productId: p.productId!, productName: p.name,
+                            currencyCode: _currency, unitCode: p.unitCode))), child: Text(l10n.priceHistoryAction)),
+                      ],
+                    ))));
+                  }
+                }
+                return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children);
+              }),
             ],
           );
         },
@@ -248,81 +302,67 @@ class _MonthCalendar extends StatelessWidget {
               children: [
                 Text('$d', style: TextStyle(fontWeight: spendByDay[d] == null ? null : FontWeight.w700)),
                 if (spendByDay[d] != null)
-                  Text(
-                    '${spendByDay[d]! ~/ 100}',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(color: scheme.onPrimaryContainer),
-                  ),
+                  const Icon(Icons.circle, size: 6),
               ],
             ),
           ),
         ),
     ];
-    return GridView.count(
-      crossAxisCount: 7,
+    return GridView(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7,
+        mainAxisExtent: MediaQuery.textScalerOf(context).scale(14) * 1.5 + 24),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      childAspectRatio: 0.9,
       children: cells,
     );
   }
 }
 
 class _BarChartCard extends StatelessWidget {
-  const _BarChartCard({required this.title, required this.bars, required this.money, this.limitMinor});
-
+  const _BarChartCard({required this.title, required this.bars, required this.valueText, this.limitMinor, this.horizontal = false});
   final String title;
-  final List<(String, int)> bars;
-  final String Function(int) money;
+  final List<(String, DecimalFixed)> bars;
+  final String Function(DecimalFixed) valueText;
   final int? limitMinor;
+  final bool horizontal;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final maxV = bars.fold<int>(0, (m, b) => b.$2 > m ? b.$2 : m);
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 12),
-            SizedBox(
-              height: 120,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  for (final (label, v) in bars)
-                    Expanded(
-                      child: Tooltip(
-                        message: money(v),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Flexible(
-                              child: FractionallySizedBox(
-                                heightFactor: maxV == 0 ? 0.02 : (v / maxV).clamp(0.02, 1).toDouble(),
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                                  decoration: BoxDecoration(
-                                    color: limitMinor != null && v > limitMinor! ? scheme.error : scheme.primary,
-                                    borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(label, style: Theme.of(context).textTheme.labelSmall, maxLines: 1),
-                          ],
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    final maxV = bars.fold<DecimalFixed>(DecimalFixed.zero(), (m, b) => b.$2.abs() > m ? b.$2.abs() : m);
+    // ponytail: nonzero bars have a 2% visual floor; exact labels remain authoritative.
+    // Use a zoomable axis if very small differences need visual comparison.
+    double fraction(DecimalFixed v) => v.isZero || maxV.isZero ? 0 :
+      (v.abs().divide(maxV, scale: 6).toMinorUnits(6) / 1000000).clamp(0.02, 1);
+    Color color(DecimalFixed v) => v.isNegative || limitMinor != null && v > DecimalFixed.fromInt(limitMinor!) ? scheme.error : scheme.primary;
+    final rows = horizontal || MediaQuery.sizeOf(context).width < 400 || MediaQuery.textScalerOf(context).scale(14) > 18;
+    return Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(title, style: Theme.of(context).textTheme.titleMedium),
+        const SizedBox(height: 12),
+        if (bars.isEmpty) Text(AppLocalizations.of(context).noPurchasesNote)
+        else if (rows) ...[
+          for (final (label, value) in bars) Padding(padding: const EdgeInsets.only(bottom: 12), child: Semantics(
+            label: '$label: ${valueText(value)}', excludeSemantics: true,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Text('$label: ${valueText(value)}'),
+              const SizedBox(height: 4),
+              LinearProgressIndicator(value: fraction(value), minHeight: 8, color: color(value)),
+            ]),
+          )),
+        ] else SizedBox(height: 120, child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+          for (final (label, value) in bars) Expanded(child: Tooltip(message: '$label: ${valueText(value)}', child: Column(
+            mainAxisAlignment: MainAxisAlignment.end, children: [
+              Flexible(child: FractionallySizedBox(heightFactor: fraction(value), child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 4), decoration: BoxDecoration(color: color(value),
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(6))),
+              ))),
+              const SizedBox(height: 4),
+              Text(label, style: Theme.of(context).textTheme.labelSmall, maxLines: 1, overflow: TextOverflow.ellipsis),
+            ],
+          ))),
+        ])),
+      ],
+    )));
   }
 }

@@ -1084,4 +1084,8 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Ekranı oyuda saxlamaq mümkün olmadı. Zəhmət olmasa, yenidən cəhd edin.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Tamamlanmış bütün alış-verişlər. Qaytarmalar ümumi məbləği azaldır. Tarixlər alış-verişin tamamlanmasına aiddir. Bir ziyarət orta intervalı hesablamaq üçün kifayət deyil.';
 }

@@ -1084,4 +1084,8 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Ezin izan da pantaila piztuta mantendu. Saiatu berriro.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Erosketa guztiak osatu dira. Itzulpenek totalak murrizten dituzte. Datak erosketaren amaierari buruzkoak dira. Bisita bakarra ez da nahikoa batezbesteko tartea kalkulatze aldera.';
 }

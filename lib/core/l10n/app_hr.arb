@@ -337,5 +337,6 @@
   "receiptReplaces": "Povezane linije računa zamjenjuju postojeće kupnje; nepovezane linije dodaju se.",
   "voiceUnsupportedLanguage": "Ovaj jezik nije dostupan za glasovni unos na ovom uređaju. Umjesto toga možete tipkati.",
   "voiceStopListening": "Zaustavi slušanje",
-  "keepAwakeFailed": "Nije moguće zadržati ekran aktivnim. Pokušajte ponovno."
+  "keepAwakeFailed": "Nije moguće zadržati ekran aktivnim. Pokušajte ponovno.",
+  "purchaseHistoryHint": "Sva završena kupovna. Povratci smanjuju ukupne iznose. Datumi se odnose na završetak kupovine. Jedan odlazak nije dovoljan za izračun prosječnog intervala."
 }

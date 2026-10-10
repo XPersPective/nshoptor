@@ -1082,4 +1082,8 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Экранды өчпөй турган кылуу ишке ашкан жок. Кайра аракет кылып көрүңүз.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Баардык аяктаган сатып алуулар. Кайтаруулар жалпы сумманы азайтат. Даталар сатып алуунун аяктаган күнүн көрсөтөт. Орточо интервалды эсептөө үчүн бир гана баруу жетишсиз.';
 }

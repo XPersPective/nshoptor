@@ -337,5 +337,6 @@
   "receiptReplaces": "Linhas do recibo vinculadas substituem as compras existentes; linhas não vinculadas são adicionadas.",
   "voiceUnsupportedLanguage": "Este idioma não está disponível para entrada por voz neste dispositivo. Você pode digitar.",
   "voiceStopListening": "Parar de ouvir",
-  "keepAwakeFailed": "Não foi possível manter a tela ligada. Tente novamente."
+  "keepAwakeFailed": "Não foi possível manter a tela ligada. Tente novamente.",
+  "purchaseHistoryHint": "Todas as compras concluídas. Devoluções reduzem os totais. As datas referem-se ao término das compras. Uma única visita não é suficiente para calcular um intervalo médio."
 }

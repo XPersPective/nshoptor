@@ -1084,4 +1084,8 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Не ўдалося захаваць экран уключаным. Калі ласка, паспрабуйце яшчэ раз.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Усе завершаныя пакупкі. Вяртанні змяншаюць агульную суму. Даты адносяцца да дня завяршэння пакупак. Адной наведвання недастаткова для разліку сярэдняга інтэрвалу.';
 }

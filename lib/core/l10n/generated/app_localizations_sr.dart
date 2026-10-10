@@ -1081,4 +1081,8 @@ class AppLocalizationsSr extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Нисмо успели да одржимо екран укљученим. Молимо вас, покушајте поново.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Сви завршени куповини. Поврати смањују укупне износе. Датуми се односе на датуме завршетка куповине. Једна посета није довољна за израчунавање просечног интервала.';
 }

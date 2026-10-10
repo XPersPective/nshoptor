@@ -1054,4 +1054,8 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get keepAwakeFailed => '화면을 켜두지 못했습니다. 다시 시도해 주세요.';
+
+  @override
+  String get purchaseHistoryHint =>
+      '완료된 모든 쇼핑 내역입니다. 반품 시 총액이 감소합니다. 날짜는 쇼핑 완료일을 기준으로 합니다. 한 번의 방문만으로는 평균 간격을 계산할 수 없습니다.';
 }

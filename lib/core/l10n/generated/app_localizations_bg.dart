@@ -1084,4 +1084,8 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Неуспешно задържане на екрана. Моля, опитайте отново.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Всички завършени пазарувания. Връщанията намаляват общите суми. Датите се отнасят за завършване на пазаруването. Една визита не е достатъчна за изчисляване на среден интервал.';
 }

@@ -337,5 +337,6 @@
   "receiptReplaces": "Prepojené riadky účtenky nahradia existujúce nákupy; neprepojené riadky sa pridajú.",
   "voiceUnsupportedLanguage": "Tento jazyk nie je na tomto zariadení dostupný pre hlasový vstup. Môžete namiesto toho písať.",
   "voiceStopListening": "Zastaviť počúvanie",
-  "keepAwakeFailed": "Nepodarilo sa udržať obrazovku zapnutú. Skúste to prosím znova."
+  "keepAwakeFailed": "Nepodarilo sa udržať obrazovku zapnutú. Skúste to prosím znova.",
+  "purchaseHistoryHint": "Všetky dokončené nákupy. Vrátenie tovaru znižuje celkové sumy. Dáty sa vzťahujú na dokončenie nákupu. Na výpočet priemerného intervalu nestačí jeden nákup."
 }

@@ -1051,4 +1051,8 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get keepAwakeFailed => '画面を点灯したままにできませんでした。もう一度お試しください。';
+
+  @override
+  String get purchaseHistoryHint =>
+      'すべての完了したショッピング履歴。返品は合計額を減らします。日付はショッピングの完了日を指します。1回の訪問では平均間隔を計算するには不十分です。';
 }

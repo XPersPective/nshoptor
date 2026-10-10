@@ -1083,4 +1083,8 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Nem sikerült aktívan tartani a képernyőt. Kérjük, próbálja újra.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Az összes befejezett bevásárlás. A visszaküldések csökkentik az összegeket. A dátumok a bevásárlás befejezésére vonatkoznak. Egy vásárlási alkalom nem elegendő az átlagos időköz kiszámításához.';
 }

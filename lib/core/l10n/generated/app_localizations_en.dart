@@ -1081,4 +1081,8 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Could not keep the screen awake. Please try again.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval.';
 }

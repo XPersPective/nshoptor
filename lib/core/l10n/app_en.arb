@@ -399,5 +399,6 @@
   "receiptReplaces": "Linked receipt lines replace existing purchases; unlinked lines are added.",
   "voiceUnsupportedLanguage": "This language is not available for voice input on this device. You can type instead.",
   "voiceStopListening": "Stop listening",
-  "keepAwakeFailed": "Could not keep the screen awake. Please try again."
+  "keepAwakeFailed": "Could not keep the screen awake. Please try again.",
+  "purchaseHistoryHint": "All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval."
 }

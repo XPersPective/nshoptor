@@ -337,5 +337,6 @@
   "receiptReplaces": "Seotud kviitungiread asendavad olemasolevad ostud; seostamata read lisatakse.",
   "voiceUnsupportedLanguage": "Seda keele varianti pole selles seadmes häälsisestamiseks saadaval. Saad selle asemel tekstina sisestada.",
   "voiceStopListening": "Lõpeta kuulamine",
-  "keepAwakeFailed": "Ekraani hoidmine ärkvelolekus ei õnnestunud. Palun proovi uuesti."
+  "keepAwakeFailed": "Ekraani hoidmine ärkvelolekus ei õnnestunud. Palun proovi uuesti.",
+  "purchaseHistoryHint": "Kõik lõpetatud ostud. Tagastused vähendavad kogusummasid. Kuupäevad viitavad ostu lõpetamise ajale. Üks külastus ei ole piisav keskmise intervalli arvutamiseks."
 }

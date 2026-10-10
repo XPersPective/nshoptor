@@ -1079,4 +1079,8 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'સ્ક્રીન જાગૃત રાખવામાં નિષ્ફળતા. કૃપા કરીને ફરી પ્રયાસ કરો.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'બધી પૂર્ણ થયેલી શોપિંગ. રિટર્નથી કુલ રકમ ઘટે છે. તારીખો શોપિંગ પૂર્ણ થવાની છે. એક વારની મુલાકાત સરેરાશ અંતર ગણવા માટે પૂરતી નથી.';
 }

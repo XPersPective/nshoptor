@@ -1081,4 +1081,8 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Skærmen kunne ikke holdes vågen. Prøv venligst igen.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Alle gennemførte indkøb. Tilbageleveringer reducerer totalen. Datoerne refererer til afslutning af indkøbet. Et enkelt besøg er ikke nok til at beregne et gennemsnitligt interval.';
 }

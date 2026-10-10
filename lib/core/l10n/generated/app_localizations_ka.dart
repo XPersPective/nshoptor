@@ -1080,4 +1080,8 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'ეკრანის გათიშვის თავიდან აცილება ვერ მოხერხდა. გთხოვთ, სცადოთ ხელახლა.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'ყველა დასრულებული ყიდვა. დაბრუნებები ამცირებს ჯამურ თანხას. თარიღები შეესაბამება ყიდვის დასრულების დროს. ერთი ვიზიტი საკმარისი არ არსად საშუალო ინტერვალის გამოსათვლელად.';
 }

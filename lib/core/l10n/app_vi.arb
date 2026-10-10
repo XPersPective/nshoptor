@@ -337,5 +337,6 @@
   "receiptReplaces": "Các dòng hóa đơn liên kết sẽ thay thế các lần mua hiện có; các dòng không liên kết sẽ được thêm vào.",
   "voiceUnsupportedLanguage": "Ngôn ngữ này không hỗ trợ nhập giọng nói trên thiết bị này. Bạn có thể gõ văn bản thay thế.",
   "voiceStopListening": "Dừng nghe",
-  "keepAwakeFailed": "Không thể giữ màn hình luôn sáng. Vui lòng thử lại."
+  "keepAwakeFailed": "Không thể giữ màn hình luôn sáng. Vui lòng thử lại.",
+  "purchaseHistoryHint": "Tất cả các lần mua sắm đã hoàn tất. Việc trả hàng sẽ làm giảm tổng chi tiêu. Ngày tháng đề cập đến thời điểm hoàn tất mua sắm. Một lần đi mua không đủ để tính khoảng cách trung bình giữa các lần."
 }

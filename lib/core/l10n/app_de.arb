@@ -337,5 +337,6 @@
   "receiptReplaces": "Verknüpfte Belegzeilen ersetzen bestehende Einkäufe; nicht verknüpfte Zeilen werden hinzugefügt.",
   "voiceUnsupportedLanguage": "Diese Sprache ist für die Spracheingabe auf diesem Gerät nicht verfügbar. Du kannst stattdessen tippen.",
   "voiceStopListening": "Hören stoppen",
-  "keepAwakeFailed": "Bildschirm konnte nicht wach gehalten werden. Bitte versuchen Sie es erneut."
+  "keepAwakeFailed": "Bildschirm konnte nicht wach gehalten werden. Bitte versuchen Sie es erneut.",
+  "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückgaben reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen."
 }

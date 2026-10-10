@@ -337,5 +337,6 @@
   "receiptReplaces": "Linii din chitanță legate înlocuiesc achizițiile existente; liniile nelegate se adaugă.",
   "voiceUnsupportedLanguage": "Această limbă nu este disponibilă pentru input vocal pe acest dispozitiv. Poți scrie în schimb.",
   "voiceStopListening": "Oprește ascultarea",
-  "keepAwakeFailed": "Nu s-a putut menține ecranul activ. Te rugăm să încerci din nou."
+  "keepAwakeFailed": "Nu s-a putut menține ecranul activ. Te rugăm să încerci din nou.",
+  "purchaseHistoryHint": "Toate cumpărăturile finalizate. Returnările reduc totalurile. Datele se referă la finalizarea cumpărăturilor. O singură vizită nu este suficientă pentru a calcula un interval mediu."
 }

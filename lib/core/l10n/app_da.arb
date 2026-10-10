@@ -337,5 +337,6 @@
   "receiptReplaces": "Linkede kvitteringslinjer erstatter eksisterende køb; ulinkede linjer tilføjes.",
   "voiceUnsupportedLanguage": "Dette sprog er ikke tilgængeligt til stemmeinput på denne enhed. Du kan i stedet skrive.",
   "voiceStopListening": "Stop med at lytte",
-  "keepAwakeFailed": "Skærmen kunne ikke holdes vågen. Prøv venligst igen."
+  "keepAwakeFailed": "Skærmen kunne ikke holdes vågen. Prøv venligst igen.",
+  "purchaseHistoryHint": "Alle gennemførte indkøb. Tilbageleveringer reducerer totalen. Datoerne refererer til afslutning af indkøbet. Et enkelt besøg er ikke nok til at beregne et gennemsnitligt interval."
 }

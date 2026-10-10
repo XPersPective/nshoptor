@@ -1084,4 +1084,8 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get keepAwakeFailed => 'Ecrin ei pysynyt päällä. Yritä uudelleen.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Alle abgeschlossenen Einkäufe. Rückerstattungen reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.';
 }

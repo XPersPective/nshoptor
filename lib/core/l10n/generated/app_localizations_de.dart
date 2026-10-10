@@ -1086,4 +1086,8 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Bildschirm konnte nicht wach gehalten werden. Bitte versuchen Sie es erneut.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Alle abgeschlossenen Einkäufe. Rückgaben reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.';
 }

@@ -337,5 +337,6 @@
   "receiptReplaces": "Susietos čekio eilutės pakeičia esamus pirkinius; nesusietos eilutės pridedamos.",
   "voiceUnsupportedLanguage": "Ši kalba šiame įrenginyje nepalaikoma balso įvesties funkcijai. Vietoj to galite rašyti.",
   "voiceStopListening": "Nustoti klausytis",
-  "keepAwakeFailed": "Nepavyko išlaikyti ekrano įjungto. Bandykite dar kartą."
+  "keepAwakeFailed": "Nepavyko išlaikyti ekrano įjungto. Bandykite dar kartą.",
+  "purchaseHistoryHint": "Visos užbaigtos pirkinių išvykos. Grąžinimai mažina bendras sumas. Datos nurodo pirkinių išvykų pabaigą. Viena išvyka nepakanka vidurkio intervalui apskaičiuoti."
 }

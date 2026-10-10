@@ -1083,4 +1083,8 @@ class AppLocalizationsAf extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Kon nie die skerm wakker hou nie. Probeer asseblief weer.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Alle voltooide inkopies. Terugbetalings verminder die totale bedrae. Datums verwys na die voltooiing van die inkopies. Een besoek is nie genoeg om \'n gemiddelde interval te bereken nie.';
 }

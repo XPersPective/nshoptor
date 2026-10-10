@@ -337,5 +337,6 @@
   "receiptReplaces": "Linkitetyt kuitin rivit korvaavat olemassa olevat ostokset; linkittömät rivit lisätään.",
   "voiceUnsupportedLanguage": "Tätä kieltä ei tueta ääntunnistukseen tällä laitteella. Voit kirjoittaa tekstiä sen sijaan.",
   "voiceStopListening": "Lopeta kuuntelu",
-  "keepAwakeFailed": "Näytön pysyminen päällä epäonnistui. Yritä uudelleen."
+  "keepAwakeFailed": "Näytön pysyminen päällä epäonnistui. Yritä uudelleen.",
+  "purchaseHistoryHint": "Kaikki valmiit kaupat. Palautukset vähentävät kokonaissummaa. Päivämäärät viittaavat ostosten suorittamiseen. Yksi käynti ei riitä keskimääräisen väliajan laskemiseen."
 }

@@ -1086,4 +1086,8 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'No se pudo mantener la pantalla encendida. Inténtalo de nuevo.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Todas las compras completadas. Las devoluciones reducen los totales. Las fechas se refieren a la finalización de la compra. Una sola visita no es suficiente para calcular un intervalo promedio.';
 }

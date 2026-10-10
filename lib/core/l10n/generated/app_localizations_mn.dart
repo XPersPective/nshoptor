@@ -1086,4 +1086,8 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Дэлгэцийг идэвхтэй байлгаж чадсангүй. Дахин оролдоно уу.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Бүх дууссан худалдаа. Буцаан олголт нийт дүнгий бууруулна. Огноо нь худалдааны дуусах хугацааг илэрхийлнэ. Нэг аялал дундаж завсрыг тооцоолоход хангалтгүй.';
 }

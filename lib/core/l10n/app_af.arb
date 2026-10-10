@@ -337,5 +337,6 @@
   "receiptReplaces": "Geskakelde bonlyne vervang bestaande aankope; ongeskakelde lyne word bygevoeg.",
   "voiceUnsupportedLanguage": "Hierdie taal is nie beskikbaar vir stemintyding op hierdie toestel nie. Jy kan tik.",
   "voiceStopListening": "Stop met luister",
-  "keepAwakeFailed": "Kon nie die skerm wakker hou nie. Probeer asseblief weer."
+  "keepAwakeFailed": "Kon nie die skerm wakker hou nie. Probeer asseblief weer.",
+  "purchaseHistoryHint": "Alle voltooide inkopies. Terugbetalings verminder die totale bedrae. Datums verwys na die voltooiing van die inkopies. Een besoek is nie genoeg om 'n gemiddelde interval te bereken nie."
 }

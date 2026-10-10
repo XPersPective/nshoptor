@@ -1085,4 +1085,8 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Nuk mund të mbahet e ndezur ekrani. Ju lutem, provoni përsëri.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Të gjitha blerjet e përfunduara. Kthimet ulin totalin. Datat i referohen përfundimit të shitjes. Një vizitë nuk është mjaftueshme për të llogaritur një interval mesatar.';
 }

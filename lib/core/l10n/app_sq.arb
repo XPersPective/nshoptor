@@ -337,5 +337,6 @@
   "receiptReplaces": "Rreshtat e lidhur të faturës zëvendësojnë blerjet ekzistuese; rreshtat e palidhur shtohen.",
   "voiceUnsupportedLanguage": "Ky gjuhë nuk është e disponueshme për hyrjen me zë në këtë pajisje. Mund të shkruani në vend të kësaj.",
   "voiceStopListening": "Ndalo dëgjimin",
-  "keepAwakeFailed": "Nuk mund të mbahet e ndezur ekrani. Ju lutem, provoni përsëri."
+  "keepAwakeFailed": "Nuk mund të mbahet e ndezur ekrani. Ju lutem, provoni përsëri.",
+  "purchaseHistoryHint": "Të gjitha blerjet e përfunduara. Kthimet ulin totalin. Datat i referohen përfundimit të shitjes. Një vizitë nuk është mjaftueshme për të llogaritur një interval mesatar."
 }

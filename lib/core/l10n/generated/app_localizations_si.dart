@@ -1080,4 +1080,8 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'තිරය අවදි තත්ත්වයෙන් තබා ගත නොහැක. කරුණාකර නැවත උත්සාහ කරන්න.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'සියලුම සම්පූර්ණ කරන ලද ගැනුම්. ආපසු ගෙවීම් මුළු වටිනාකම් අඩු කරයි. දිනා ගැනීමේ දින පෙන්වයි. එක් වරක් පමණක් මධ්‍යන්‍ය කාලය ගණනය කිරීමට ප්‍රමාණවත් නොවේ.';
 }

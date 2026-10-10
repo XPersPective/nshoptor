@@ -337,5 +337,6 @@
   "receiptReplaces": "Les línies del rebuig vinculades substitueixen les compres existents; les línies sense vincular s'afegeixen.",
   "voiceUnsupportedLanguage": "Aquest idioma no està disponible per a l'entrada per veu en aquest dispositiu. Pots escriure en el seu lloc.",
   "voiceStopListening": "Deixa d'escoltar",
-  "keepAwakeFailed": "No s'ha pogut mantenir la pantalla encesa. Si us plau, torna-ho a provar."
+  "keepAwakeFailed": "No s'ha pogut mantenir la pantalla encesa. Si us plau, torna-ho a provar.",
+  "purchaseHistoryHint": "Totes les compres completades. Les devolucions redueixen els totals. Les dates fan referència a la finalització de la compra. Una sola visita no és suficient per calcular un interval mitjà."
 }

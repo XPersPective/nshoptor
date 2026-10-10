@@ -2263,6 +2263,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not keep the screen awake. Please try again.'**
   String get keepAwakeFailed;
+
+  /// No description provided for @purchaseHistoryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval.'**
+  String get purchaseHistoryHint;
 }
 
 class _AppLocalizationsDelegate

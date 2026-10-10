@@ -1084,4 +1084,8 @@ class AppLocalizationsLt extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Nepavyko išlaikyti ekrano įjungto. Bandykite dar kartą.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Visos užbaigtos pirkinių išvykos. Grąžinimai mažina bendras sumas. Datos nurodo pirkinių išvykų pabaigą. Viena išvyka nepakanka vidurkio intervalui apskaičiuoti.';
 }

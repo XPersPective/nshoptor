@@ -1081,4 +1081,8 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'ਸਕ੍ਰੀਨ ਨੂੰ ਜਾਗਦਾ ਰੱਖਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get purchaseHistoryHint =>
+      'ਸਾਰੀਆਂ ਪੂਰੀਆਂ ਹੋਈਆਂ ਸ਼ਾਪਿੰਗਾਂ। ਵਾਪਸੀਆਂ ਕੁੱਲ ਜੋੜ ਨੂੰ ਘਟਾਉਂਦੀਆਂ ਹਨ। ਤਰੀਕਾਂ ਸ਼ਾਪਿੰਗ ਦੀ ਪੂਰਤੀ ਨਾਲ ਸਬੰਧਤ ਹਨ। ਇੱਕ ਦਿਨ ਦੀ ਮਿਥਾਸ ਔਸਤ ਅੰਤਰਾਲ ਦੀ ਗਣਨਾ ਲਈ ਕਾਫ਼ੀ ਨਹੀਂ ਹੈ।';
 }

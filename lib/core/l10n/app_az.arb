@@ -337,5 +337,6 @@
   "receiptReplaces": "Əlaqələndirilmiş çeki sətirləri mövcud alışları əvəz edir; əlaqələndirilməmiş sətirlər isə əlavə edilir.",
   "voiceUnsupportedLanguage": "Bu dil bu cihazda səsli giriş üçün mövcud deyil. Bunun əvəzinə yazmaq mümkündür.",
   "voiceStopListening": "Dinləməni dayandır",
-  "keepAwakeFailed": "Ekranı oyuda saxlamaq mümkün olmadı. Zəhmət olmasa, yenidən cəhd edin."
+  "keepAwakeFailed": "Ekranı oyuda saxlamaq mümkün olmadı. Zəhmət olmasa, yenidən cəhd edin.",
+  "purchaseHistoryHint": "Tamamlanmış bütün alış-verişlər. Qaytarmalar ümumi məbləği azaldır. Tarixlər alış-verişin tamamlanmasına aiddir. Bir ziyarət orta intervalı hesablamaq üçün kifayət deyil."
 }

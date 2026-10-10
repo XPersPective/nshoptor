@@ -1082,4 +1082,8 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Không thể giữ màn hình luôn sáng. Vui lòng thử lại.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Tất cả các lần mua sắm đã hoàn tất. Việc trả hàng sẽ làm giảm tổng chi tiêu. Ngày tháng đề cập đến thời điểm hoàn tất mua sắm. Một lần đi mua không đủ để tính khoảng cách trung bình giữa các lần.';
 }

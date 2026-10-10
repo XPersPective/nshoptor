@@ -1080,4 +1080,8 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Ekraani hoidmine ärkvelolekus ei õnnestunud. Palun proovi uuesti.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Kõik lõpetatud ostud. Tagastused vähendavad kogusummasid. Kuupäevad viitavad ostu lõpetamise ajale. Üks külastus ei ole piisav keskmise intervalli arvutamiseks.';
 }

@@ -1080,4 +1080,8 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'اسکرین کو زندہ نہیں رکھا جا سکا۔ براہ کرم دوبارہ کوشش کریں۔';
+
+  @override
+  String get purchaseHistoryHint =>
+      'تمام مکمل شاپنگ۔ واپسی کل رقم میں کمی لاتے ہیں۔ تاریخیں شاپنگ کی تکمیل سے متعلق ہیں۔ ایک دورہ اوسط وقفہ کا حساب لگانے کے لیے کافی نہیں ہے۔';
 }

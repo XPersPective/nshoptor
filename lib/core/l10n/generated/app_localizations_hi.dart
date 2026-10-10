@@ -1084,4 +1084,8 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'स्क्रीन को जगाए रखने में विफल रहा। कृपया पुनः प्रयास करें।';
+
+  @override
+  String get purchaseHistoryHint =>
+      'सभी पूर्ण शॉपिंग। रिटर्न कुल राशि को कम करते हैं। तिथियाँ शॉपिंग पूरा होने की हैं। औसत अंतराल की गणना के लिए एक ही विज़िट पर्याप्त नहीं है।';
 }

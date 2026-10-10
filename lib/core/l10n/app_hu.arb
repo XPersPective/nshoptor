@@ -337,5 +337,6 @@
   "receiptReplaces": "A társított nyugta sorok felülírják a meglévő vásárlásokat; a nem társított sorok hozzáadódnak.",
   "voiceUnsupportedLanguage": "Ez a nyelv nem érhető el hangbemenetre ezen az eszközön. Ehelyett gépelheted.",
   "voiceStopListening": "Figyelés leállítása",
-  "keepAwakeFailed": "Nem sikerült aktívan tartani a képernyőt. Kérjük, próbálja újra."
+  "keepAwakeFailed": "Nem sikerült aktívan tartani a képernyőt. Kérjük, próbálja újra.",
+  "purchaseHistoryHint": "Az összes befejezett bevásárlás. A visszaküldések csökkentik az összegeket. A dátumok a bevásárlás befejezésére vonatkoznak. Egy vásárlási alkalom nem elegendő az átlagos időköz kiszámításához."
 }

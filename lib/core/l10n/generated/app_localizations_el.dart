@@ -1084,4 +1084,8 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Δεν ήταν δυνατόν να παραμείνει η οθόνη ενεργή. Παρακαλώ προσπαθήστε ξανά.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Όλες οι ολοκληρωμένες αγορές. Οι επιστροφές μειώνουν τα συνολικά ποσά. Οι ημερομηνίες αφορούν την ολοκλήρωση της αγοράς. Μία επίσκεψη δεν αρκεί για τον υπολογισμό του μέσου διαστήματος.';
 }

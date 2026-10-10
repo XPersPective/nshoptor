@@ -337,5 +337,6 @@
   "receiptReplaces": "Saistītās čeka pozīcijas aizvieto esošos pirkumus; nesaistītās pozīcijas tiek pievienotas.",
   "voiceUnsupportedLanguage": "Šī valoda nav pieejama balss ievadei šajā ierīcē. Varat rakstīt tekstu.",
   "voiceStopListening": "Pārtraukt klausīšanos",
-  "keepAwakeFailed": "Neizdevās noturēt ekrānu aktīvu. Lūdzu, mēģiniet vēlreiz."
+  "keepAwakeFailed": "Neizdevās noturēt ekrānu aktīvu. Lūdzu, mēģiniet vēlreiz.",
+  "purchaseHistoryHint": "Visi pabeigtie iepirkumi. Atgrieztie produkti samazina kopējos izdevumus. Datumi attiecas uz iepirkumu pabeigšanas brīdi. Viena apmeklējuma nav pietiekami, lai aprēķinātu vidējo intervālu."
 }

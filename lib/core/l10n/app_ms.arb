@@ -337,5 +337,6 @@
   "receiptReplaces": "Baris resit yang disambungkan menggantikan pembelian sedia ada; baris yang tidak disambungkan akan ditambah.",
   "voiceUnsupportedLanguage": "Bahasa ini tidak tersedia untuk input suara pada peranti ini. Anda boleh menaip sebagai gantinya.",
   "voiceStopListening": "Berhenti mendengar",
-  "keepAwakeFailed": "Gagal mengekalkan skrin aktif. Sila cuba lagi."
+  "keepAwakeFailed": "Gagal mengekalkan skrin aktif. Sila cuba lagi.",
+  "purchaseHistoryHint": "Semua pembelian selesai. Pulangan mengurangkan jumlah. Tarikh merujuk kepada siapnya pembelian. Satu lawatan tidak cukup untuk mengira purata selang."
 }

@@ -1080,4 +1080,8 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Layar tidak dapat tetap menyala. Silakan coba lagi.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Semua belanja yang sudah selesai. Pengembalian barang mengurangi total. Tanggal mengacu pada penyelesaian belanja. Satu kunjungan tidak cukup untuk menghitung interval rata-rata.';
 }

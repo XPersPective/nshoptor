@@ -1080,4 +1080,8 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Gat ekki haldið skjánum vakandi. Vinsamlegast reyndu aftur.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Allar fullunnar innkaup. Endurheimt dregur úr heildarverði. Dagar vísa til lokunar innkaupa. Eitt ferð er ekki nóg til að reikna út meðalfjöldi.';
 }

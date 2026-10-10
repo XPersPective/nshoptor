@@ -1081,4 +1081,8 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Ekran açık tutulamadı. Lütfen yeniden deneyin.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Tüm tamamlanan alışverişler. İadeler toplamdan düşülür. Tarihler alışverişin tamamlanmasını gösterir. Ortalama aralık için tek alışveriş yeterli değildir.';
 }

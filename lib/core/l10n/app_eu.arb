@@ -337,5 +337,6 @@
   "receiptReplaces": "Lotutako errezeptu-lerroek lehendik dauden erosketak ordezkatzen dituzte; loturarik gabeko lerroak gehitzen dira.",
   "voiceUnsupportedLanguage": "Hau ez da hizkuntza hori ahots-sarrerarako gailu honetan erabilgarria. Ordez, idatz dezakezu.",
   "voiceStopListening": "Entzuten gelditu",
-  "keepAwakeFailed": "Ezin izan da pantaila piztuta mantendu. Saiatu berriro."
+  "keepAwakeFailed": "Ezin izan da pantaila piztuta mantendu. Saiatu berriro.",
+  "purchaseHistoryHint": "Erosketa guztiak osatu dira. Itzulpenek totalak murrizten dituzte. Datak erosketaren amaierari buruzkoak dira. Bisita bakarra ez da nahikoa batezbesteko tartea kalkulatze aldera."
 }

@@ -1083,4 +1083,8 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'स्क्रीन जागे राख्न सकिएन। कृपया पुनः प्रयास गर्नुहोस्।';
+
+  @override
+  String get purchaseHistoryHint =>
+      'सबै पूरा भएका खरिदहरू। रिटर्नले कुल रकम घटाउँछ। मितिहरूले खरिद सम्पन्न भएको समयलाई जनाउँछन्। औसत अन्तराल गणना गर्न एउटा भ्रमण पर्याप्त हुँदैन।';
 }

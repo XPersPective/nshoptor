@@ -1077,4 +1077,8 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get keepAwakeFailed => 'ບໍ່ສາມາດຮັກສາໜ້າຈໍໃຫ້ຕົດໄດ້. ກະລຸນາລອງໃໝ່.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'ການຊື້ຂາຍທີ່ສຳເລັດທຸກຢ່າງ. ການຍອມຮັບຄືນຈະຫຼຸດລວມ. ວັນທີແມ່ນອ້າງອີງຕໍ່ການສຳເລັດການຊື້ຂາຍ. ການໄປຊື້ຄັ້ງດຽວບໍ່ພຽງພໍໃນການຄິດໄລ່ຊ່ວງເວລາສະເລ່ຍ.';
 }

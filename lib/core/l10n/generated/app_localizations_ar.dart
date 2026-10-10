@@ -1071,4 +1071,8 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'تعذر إبقاء الشاشة مفعّلة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'جميع عمليات التسوق المكتملة. تُقلل الإرجاع من الإجماليات. تشير التواريخ إلى اكتمال التسوق. زيارة واحدة لا تكفي لحساب متوسط الفترات.';
 }

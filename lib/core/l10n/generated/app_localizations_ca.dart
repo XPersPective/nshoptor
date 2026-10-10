@@ -1085,4 +1085,8 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'No s\'ha pogut mantenir la pantalla encesa. Si us plau, torna-ho a provar.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Totes les compres completades. Les devolucions redueixen els totals. Les dates fan referència a la finalització de la compra. Una sola visita no és suficient per calcular un interval mitjà.';
 }

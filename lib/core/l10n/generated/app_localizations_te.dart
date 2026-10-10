@@ -1088,4 +1088,8 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'స్క్రీన్ ని మేల్కొని ఉంచలేకపోయింది. దయచేసి మళ్ళీ ప్రయత్నించండి.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'పూర్తయిన అన్ని షాపింగ్‌లు. తిరిగి ఇచ్చినవి మొత్తాలను తగ్గిస్తాయి. తేదీలు షాపింగ్ పూర్తయిన సమయాన్ని సూచిస్తాయి. ఒక సందర్శన సగటు అంతరాన్ని లెక్కించడానికి సరిపోదు.';
 }

@@ -1085,4 +1085,8 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Het is niet gelukt om het scherm actief te houden. Probeer het opnieuw.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Alle voltooide boodschappen. Terugbrings verlagen de totalen. Data verwijzen naar het moment van afrekenen. Eén bezoek is niet genoeg om een gemiddelde interval te berekenen.';
 }

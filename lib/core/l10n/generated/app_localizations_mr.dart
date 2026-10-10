@@ -1080,4 +1080,8 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'स्क्रीन जागृत ठेवता आली नाही. कृपया पुन्हा प्रयत्न करा.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'सर्व पूर्ण झालेली शॉपिंग. परताव्यामुळे एकूण रक्कम कमी होते. तारखा शॉपिंग पूर्ण झाल्याच्या दिवसांशी संबंधित आहेत. सरासरी अंतर काढण्यासाठी एक भेट पुरेशी नाही.';
 }

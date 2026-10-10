@@ -1086,4 +1086,8 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Ekran yorug\'ligini ushlab turishda xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Barcha yakunlangan xaridlar. Qaytarishlar umumiy summani kamaytiradi. Sana xarid tugatilgan kunini bildiradi. O\'rtacha oraliqni hisoblash uchun bitta tashrif yetarli emas.';
 }

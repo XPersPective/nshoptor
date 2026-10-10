@@ -337,5 +337,6 @@
   "receiptReplaces": "Ang mga linked receipt line ay papalitan ang umiiral na pagbili; ang mga unlinked line ay idadagdag.",
   "voiceUnsupportedLanguage": "Hindi available ang wika na ito para sa voice input sa device na ito. Maaari kang mag-type.",
   "voiceStopListening": "Itigil ang pakinggan",
-  "keepAwakeFailed": "Hindi maaaring panatilihing gising ang screen. Subukan ulit."
+  "keepAwakeFailed": "Hindi maaaring panatilihing gising ang screen. Subukan ulit.",
+  "purchaseHistoryHint": "Lahat ng natapos na pagbili. Binabawasan ng mga return ang kabuuan. Ang mga petsa ay tumutukoy sa pagkumpleto ng pagbili. Isa lang ang bisita, hindi sapat para kalkulahin ang average interval."
 }

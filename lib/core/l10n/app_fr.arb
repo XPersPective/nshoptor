@@ -337,5 +337,6 @@
   "receiptReplaces": "Les lignes du reçu lié remplacent les achats existants ; les lignes non liées sont ajoutées.",
   "voiceUnsupportedLanguage": "Cette langue n'est pas disponible pour la saisie vocale sur cet appareil. Vous pouvez taper à la place.",
   "voiceStopListening": "Arrêter l'écoute",
-  "keepAwakeFailed": "Impossible de maintenir l'écran allumé. Veuillez réessayer."
+  "keepAwakeFailed": "Impossible de maintenir l'écran allumé. Veuillez réessayer.",
+  "purchaseHistoryHint": "Tous les achats terminés. Les retours réduisent les totaux. Les dates correspondent à la fin des courses. Une seule visite ne suffit pas pour calculer un intervalle moyen."
 }

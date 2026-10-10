@@ -1078,4 +1078,8 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'د سکرین ژوند ساتلو کې پاتې راغلو. مهرباني وکړئ بیا هڅه وکړئ.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'ټول بشپړ شوي خریدونه. بیرته ورکړل شوي توکي ټولیز قیمت کموي. نیټې د خرید د بشپړیدو نښه کوي. یوه سفر د اوسط واټن محاسبې لپاره کافی نه ده.';
 }

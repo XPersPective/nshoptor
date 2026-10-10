@@ -1086,4 +1086,8 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Näytön pysyminen päällä epäonnistui. Yritä uudelleen.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Kaikki valmiit kaupat. Palautukset vähentävät kokonaissummaa. Päivämäärät viittaavat ostosten suorittamiseen. Yksi käynti ei riitä keskimääräisen väliajan laskemiseen.';
 }

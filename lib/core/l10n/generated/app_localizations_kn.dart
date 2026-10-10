@@ -1084,4 +1084,8 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'ಸ್ಕ್ರೀನ್ ಅನ್ನು ಜಾಗೃತವಾಗಿ ಇಡಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'ಎಲ್ಲಾ ಪೂರ್ಣಗೊಂಡ ಖರೀದಿಗಳು. ಹಿಂದಿರುಗಿಸಿದ ವಸ್ತುಗಳಿಂದ ಒಟ್ಟು ಮೊತ್ತ ಕಡಿಮೆಯಾಗುತ್ತದೆ. ದಿನಾಂಕಗಳು ಖರೀದಿ ಪೂರ್ಣಗೊಂಡ ದಿನಗಳನ್ನು ಸೂಚಿಸುತ್ತವೆ. ಸರಾಸರಿ ಅಂತರವನ್ನು ಲೆಕ್ಕಹಾಕಲು ಒಂದು ಬಾರಿಯ ಭೇಟಿ ಸಾಕಾಗುವುದಿಲ್ಲ.';
 }

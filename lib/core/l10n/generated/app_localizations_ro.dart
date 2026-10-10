@@ -1085,4 +1085,8 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Nu s-a putut menține ecranul activ. Te rugăm să încerci din nou.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Toate cumpărăturile finalizate. Returnările reduc totalurile. Datele se referă la finalizarea cumpărăturilor. O singură vizită nu este suficientă pentru a calcula un interval mediu.';
 }

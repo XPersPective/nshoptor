@@ -337,5 +337,6 @@
   "receiptReplaces": "Länkade rader i kvitto ersätter befintliga inköp; olänkade rader läggs till.",
   "voiceUnsupportedLanguage": "Detta språk stöder inte röstinskrivning på den här enheten. Du kan skriva istället.",
   "voiceStopListening": "Sluta lyssna",
-  "keepAwakeFailed": "Det gick inte att hålla skärmen vaken. Försök igen."
+  "keepAwakeFailed": "Det gick inte att hålla skärmen vaken. Försök igen.",
+  "purchaseHistoryHint": "Alla genomförda shoppingar. Returer minskar totalbeloppet. Datum avser när shoppingen slutfördes. Ett besök räcker inte för att beräkna ett genomsnittligt intervall."
 }

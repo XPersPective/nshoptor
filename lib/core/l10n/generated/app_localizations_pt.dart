@@ -1085,4 +1085,8 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Não foi possível manter a tela ligada. Tente novamente.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Todas as compras concluídas. Devoluções reduzem os totais. As datas referem-se ao término das compras. Uma única visita não é suficiente para calcular um intervalo médio.';
 }

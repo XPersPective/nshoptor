@@ -337,5 +337,6 @@
   "receiptReplaces": "Povezane vrstice računa nadomestijo obstoječe nakupe; nepovezane vrstice se dodajo.",
   "voiceUnsupportedLanguage": "Ta jezik na tej napravi ni podprt za glasovni vnos. Namesto tega lahko tipkate.",
   "voiceStopListening": "Ustavi poslušanje",
-  "keepAwakeFailed": "Zaslon ni ostal vklopljen. Poskusite znova."
+  "keepAwakeFailed": "Zaslon ni ostal vklopljen. Poskusite znova.",
+  "purchaseHistoryHint": "Vsa zaključena nakupovanja. Vrnitve zmanjšajo skupne vsote. Datumi se nanašajo na datum zaključka nakupa. En obisk ni dovolj za izračun povprečnega intervala."
 }

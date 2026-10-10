@@ -1081,4 +1081,8 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Не удалось удерживать экран включённым. Попробуйте ещё раз.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Все завершённые покупки. Возвраты уменьшают итоговую сумму. Даты указывают на завершение покупок. Одного визита недостаточно для расчёта среднего интервала.';
 }

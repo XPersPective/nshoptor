@@ -123,8 +123,8 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   per currency — T33 fix); premium boş-durum kartı (ikon dairesi + CTA).
 - `history/price_history/`: min/median/max, trend, cheapest store
   (repository); `price_history_sheet.dart` PriceHistoryScreen lists
-  observations only (stats not yet shown).
-  `history/insights/`: monthly known comparisons; confirmed category/store/calendar currency filter; exact unit-grouped net quantity, distinct positive purchase visits and completion-date intervals (PB-084, history22/analyze0).
+  observations only (stats not yet shown), optional currency/unit filters and localized large-text rows.
+  `history/insights/`: confirmed currency-filtered spending; exact unit net quantities and distinct purchase visits/intervals (PB-084). PB-068 graphs/category-store breakdowns and product/category cards in SpendingScreen, filtered price history, all71 time/returns hint; 320dp2x en/ar, history+l10n31/analyze0.
 - `voice_input/`: SpeechService abstraction + controller; SttSpeechService
   (native on-device channel, session ownership); VoicePreviewSheet (editable transcript, manual
   fallback when service unavailable); `voice_input/parser/`: deterministic

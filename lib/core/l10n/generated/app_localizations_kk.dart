@@ -1080,4 +1080,8 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Экранды ұйықтамау режимінде ұстау мүмкін болмады. Қайталап көріңіз.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Барлық аяқталған сатып алулар. Қайтарымдар жалпы соманы азайтады. Күндер сатып алу аяқталған күнмен байланысты. Бір реттік сапар орташа аралықты есептеу үшін жеткіліксіз.';
 }

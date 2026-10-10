@@ -337,5 +337,6 @@
   "receiptReplaces": "Řádky propojeného účtenky nahradí existující nákupy; nespojené řádky budou přidány.",
   "voiceUnsupportedLanguage": "Tento jazyk není na tomto zařízení dostupný pro hlasový vstup. Můžete místo toho psát.",
   "voiceStopListening": "Přestat poslouchat",
-  "keepAwakeFailed": "Nepodařilo se udržet obrazovku zapnutou. Zkuste to prosím znovu."
+  "keepAwakeFailed": "Nepodařilo se udržet obrazovku zapnutou. Zkuste to prosím znovu.",
+  "purchaseHistoryHint": "Všechny dokončené nákupy. Vrácení zboží snižuje celkové částky. Data se vztahují k dokončení nákupu. Jedna návštěva nestačí k výpočtu průměrného intervalu."
 }

@@ -1087,4 +1087,8 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get keepAwakeFailed =>
       'Impossible de maintenir l\'écran allumé. Veuillez réessayer.';
+
+  @override
+  String get purchaseHistoryHint =>
+      'Tous les achats terminés. Les retours réduisent les totaux. Les dates correspondent à la fin des courses. Une seule visite ne suffit pas pour calculer un intervalle moyen.';
 }
