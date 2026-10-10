@@ -151,6 +151,7 @@ class _HomeShellState extends State<HomeShell> {
                     right: 20,
                     bottom: 88,
                     child: AssistantBubble(
+                      busy: _inputBusy,
                       onChoice: (c) => _onAssistant(context, c),
                     ),
                   ),
@@ -251,6 +252,9 @@ class _HomeShellState extends State<HomeShell> {
           );
         }
     }
+      } catch (_) {
+        if (context.mounted) { ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
+          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1))); }
       } finally { if (mounted) setState(() => _inputBusy = false); }
   }
 
@@ -267,7 +271,7 @@ class _HomeShellState extends State<HomeShell> {
       final currency = AppDefaults.defaultCurrency();
       final parsed = ReceiptParser(currency: currency).parse(scan);
       if (parsed.lines.isEmpty) {
-        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true));
+        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true, duration: const Duration(days: 1)));
         return;
       }
       final controller = ReceiptReviewController(db: widget.db, currencyCode: currency,

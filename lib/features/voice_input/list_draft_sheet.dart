@@ -131,7 +131,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     if (note != null && !draft.fromAi) {
       final nav = Navigator.of(context);
       messenger?.clearSnackBars();
-      messenger?.showSnackBar(SnackBar(showCloseIcon: true,
+      messenger?.showSnackBar(SnackBar(showCloseIcon: true, duration: const Duration(days: 1),
         content: Text(note),
         action: why is AiQuota && SubscriptionService.instance != null
             ? SnackBarAction(label: l10n.plansTitle, onPressed: () => openPlans(nav.context))

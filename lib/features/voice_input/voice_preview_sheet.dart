@@ -79,7 +79,7 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
           top: 16,
           bottom: MediaQuery.of(context).viewInsets.bottom + 16,
         ),
-        child: Column(
+        child: SingleChildScrollView(child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -116,14 +116,16 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
               decoration: InputDecoration(labelText: l10n.voiceTranscriptLabel),
             ),
             const SizedBox(height: 12),
-            Row(
+            Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              spacing: 8,
+              runSpacing: 8,
               children: [
                 OutlinedButton(
                   key: const Key('voice_parse_button'),
                   onPressed: _text.text.trim().isEmpty ? null : _parse,
                   child: Text(l10n.parseAction),
                 ),
-                const Spacer(),
                 FilledButton(
                   key: const Key('voice_confirm_button'),
                   onPressed: parsed == null || _micBusy || _controller.state == VoiceInputState.listening
@@ -155,7 +157,7 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                 ),
               ),
           ],
-        ),
+        )),
       ),
     );
   }

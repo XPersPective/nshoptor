@@ -138,6 +138,7 @@ Future<void> disposeApp(WidgetTester tester) async {
     await settle(tester);
 
     expect(find.text('Geçici'), findsNothing);
+    expect(tester.widget<SnackBar>(find.byType(SnackBar)).showCloseIcon, isTrue);
 
     await tester.tap(find.text('Geri al'));
     await settle(tester);

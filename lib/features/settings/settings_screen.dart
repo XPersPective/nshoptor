@@ -421,8 +421,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final l10n = AppLocalizations.of(context);
     final file = await _repo.exportBackupToFile();
     if (!context.mounted) return;
-    messenger.showSnackBar(
-      SnackBar(content: Text('${l10n.backupExported} ${file.path}')),
+    messenger..clearSnackBars()..showSnackBar(
+      SnackBar(content: Text('${l10n.backupExported} ${file.path}'), showCloseIcon: true),
     );
   }
 
@@ -431,7 +431,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final l10n = AppLocalizations.of(context);
     // Dosya seçici açılış noktası minimal tutulur: T30.2 içe aktarma ekranı
     // tamamlanmadan önceki davranış: yalnız bildirim.
-    messenger.showSnackBar(SnackBar(content: Text(l10n.cancelButton)));
+    messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.cancelButton), showCloseIcon: true));
   }
 
   Future<void> _confirmDeleteAll(BuildContext context) async {
@@ -481,7 +481,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _repo.confirmDeleteAll();
     await _repo.deleteAllData();
     if (!context.mounted) return;
-    messenger.showSnackBar(SnackBar(content: Text(l10n.dataDeleted)));
+    messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.dataDeleted), showCloseIcon: true));
   }
 }
 

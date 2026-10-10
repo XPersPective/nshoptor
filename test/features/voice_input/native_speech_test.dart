@@ -26,6 +26,25 @@ void main() {
   }
   tearDown(() => messenger.setMockMethodCallHandler(SttSpeechService.channel, null));
 
+  testWidgets('single voice preview scrolls at 320dp, 2x Arabic with keyboard', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(320, 640));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(MaterialApp(locale: const Locale('ar'),
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate], supportedLocales: AppLocalizations.supportedLocales,
+      builder: (context, child) => MediaQuery(data: MediaQuery.of(context).copyWith(
+        textScaler: const TextScaler.linear(2), viewInsets: const EdgeInsets.only(bottom: 260)), child: child!),
+      home: Scaffold(body: VoicePreviewSheet(service: FakeSpeechService()))));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(const Key('voice_transcript_field')), '2 milk');
+    await tester.ensureVisible(find.byKey(const Key('voice_parse_button')));
+    await tester.tap(find.byKey(const Key('voice_parse_button'))); await tester.pump();
+    await tester.ensureVisible(find.byKey(const Key('voice_confirm_button')));
+    expect(tester.getRect(find.byKey(const Key('voice_confirm_button'))).bottom, lessThanOrEqualTo(380));
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
   test('first/second sheet callbacks and owner cancellation never cross sessions', () async {
     final calls = <MethodCall>[];
     messenger.setMockMethodCallHandler(SttSpeechService.channel, (call) async {

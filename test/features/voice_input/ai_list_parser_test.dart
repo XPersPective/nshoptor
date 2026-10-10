@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:drift/native.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
@@ -38,7 +39,38 @@ class _PreviewParser extends AiListParser {
     unitPrice: DecimalFixed.fromInt(40), isUnitPrice: true)], fromAi: true);
 }
 
+class _DelayedParser extends AiListParser {
+  _DelayedParser() : super(localeCode: 'tr');
+  var calls = 0;
+  Completer<ListDraft> result = Completer<ListDraft>();
+  @override
+  Future<ListDraft> parse(String text) { calls++; return result.future; }
+}
+
 void main() {
+  testWidgets('AI duplicate blocked; failure preserves source and permits retry', (tester) async {
+    final parser = _DelayedParser();
+    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate], supportedLocales: AppLocalizations.supportedLocales,
+      home: Scaffold(body: ListDraftSheet(parser: parser))));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(const Key('draft_text_field')), '2 ekmek');
+    await tester.tap(find.byKey(const Key('draft_convert_button'))); await tester.pump();
+    await tester.tap(find.byKey(const Key('draft_convert_button'))); await tester.pump();
+    expect(parser.calls, 1);
+    parser.result.completeError(StateError('offline')); await tester.pumpAndSettle();
+    expect(find.byKey(const Key('draft_error')), findsOneWidget);
+    expect(tester.widget<TextField>(find.byKey(const Key('draft_text_field'))).controller!.text, '2 ekmek');
+    parser.result = Completer<ListDraft>();
+    await tester.tap(find.byKey(const Key('draft_convert_button'))); await tester.pump();
+    expect(parser.calls, 2);
+    // A completion after dismissal cannot mutate a disposed sheet.
+    await tester.pumpWidget(const SizedBox.shrink());
+    parser.result.complete(const ListDraft([], fromAi: false)); await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
+
   test('local digits and decimal commas retain quantities and per-unit price', () async {
     final draft = await AiListParser(localeCode: 'tr').parse('1,5 kilo elma kilosu 40 lira, 2 ekmek');
     expect(draft.items, hasLength(2));

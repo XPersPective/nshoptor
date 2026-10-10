@@ -336,9 +336,11 @@ class _ListCard extends StatelessWidget {
         if (confirmed == true && context.mounted) {
           final messenger = ScaffoldMessenger.of(context);
           final snapshot = await repository.deleteList(list.id);
-          messenger.showSnackBar(
+          if (!context.mounted) return;
+          messenger..clearSnackBars()..showSnackBar(
             SnackBar(
               content: Text(l10n.listDeleted),
+              showCloseIcon: true,
               action: SnackBarAction(
                 label: l10n.undoButton,
                 onPressed: () => repository.undoDelete(snapshot),

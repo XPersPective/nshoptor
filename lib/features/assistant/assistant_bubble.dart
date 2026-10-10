@@ -29,9 +29,10 @@ typedef AssistantChoice = ({AssistantAction action, String? text});
 
 /// Sağ altta küçük avatar; dokununca "Ne yapmak istiyorsun?" sayfası.
 class AssistantBubble extends StatelessWidget {
-  const AssistantBubble({super.key, required this.onChoice});
+  const AssistantBubble({super.key, required this.onChoice, this.busy = false});
 
   final ValueChanged<AssistantChoice> onChoice;
+  final bool busy;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,7 @@ class AssistantBubble extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Semantics(
       button: true,
+      enabled: !busy,
       label: l10n.assistantTitle,
       child: Material(
         key: const Key('assistant_bubble'),
@@ -47,18 +49,18 @@ class AssistantBubble extends StatelessWidget {
         elevation: 4,
         child: InkWell(
           customBorder: const CircleBorder(),
-          onTap: () async {
+          onTap: busy ? null : () async {
             final choice = await showModalBottomSheet<AssistantChoice>(
               context: context,
               isScrollControlled: true,
               showDragHandle: true,
               builder: (_) => const AssistantSheet(),
             );
-            if (choice != null) onChoice(choice);
+            if (choice != null && context.mounted) onChoice(choice);
           },
           child: SizedBox.square(
             dimension: 52,
-            child: Stack(
+            child: busy ? const Padding(padding: EdgeInsets.all(14), child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2)) : Stack(
               alignment: Alignment.center,
               children: [
                 Icon(Icons.shopping_basket_outlined, color: scheme.onPrimary, size: 26),
@@ -112,7 +114,7 @@ class _AssistantSheetState extends State<AssistantSheet> {
           left: 16, right: 16,
           bottom: MediaQuery.of(context).viewInsets.bottom + 16,
         ),
-        child: Column(
+        child: SingleChildScrollView(child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -149,7 +151,7 @@ class _AssistantSheetState extends State<AssistantSheet> {
               ),
             ),
           ],
-        ),
+        )),
       ),
     );
   }

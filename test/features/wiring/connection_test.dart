@@ -417,6 +417,15 @@ void main() {
 
     expect(find.textContaining('bildirim izni gerekir'), findsOneWidget);
     expect(scheduler.calls, 1);
+    expect(tester.widget<SnackBar>(find.byType(SnackBar)).showCloseIcon, isTrue);
+    await tester.tap(find.byKey(const Key('detail_more_menu'))); await settle(tester);
+    await tester.tap(find.byKey(const Key('detail_set_reminder'))); await settle(tester);
+    expect(scheduler.calls, 2);
+    await tester.tap(find.descendant(of: find.byType(SnackBar), matching: find.byType(IconButton)));
+    await settle(tester);
+    await tester.pump(const Duration(seconds: 5));
+    expect(find.byType(SnackBar), findsNothing); // no previous notice remains queued
+
 
     await disposeApp(tester);
   });

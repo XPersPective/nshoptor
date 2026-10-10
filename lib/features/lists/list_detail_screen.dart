@@ -162,7 +162,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
         owner.setState(() => owner._awake = _appliedAwake ?? false);
         if (want || _appliedAwake == true) {
           ScaffoldMessenger.of(owner.context)..clearSnackBars()..showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(owner.context).keepAwakeFailed), showCloseIcon: true));
+            content: Text(AppLocalizations.of(owner.context).keepAwakeFailed), showCloseIcon: true, duration: const Duration(days: 1)));
         }
       }
     }
@@ -201,8 +201,8 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
       await repo.cancelReminder(active.id);
       if (!context.mounted) return;
       ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(l10n.reminderCancelled)));
+        ..clearSnackBars()
+        ..showSnackBar(SnackBar(content: Text(l10n.reminderCancelled), showCloseIcon: true));
       return;
     }
     final scheduler =
@@ -211,8 +211,8 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
     if (!granted) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(l10n.reminderPermissionDenied)));
+        ..clearSnackBars()
+        ..showSnackBar(SnackBar(content: Text(l10n.reminderPermissionDenied), showCloseIcon: true, duration: const Duration(days: 1)));
       return;
     }
     final list = await _listFuture;
@@ -247,8 +247,8 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
     );
     if (!context.mounted) return;
     ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(l10n.reminderScheduled)));
+      ..clearSnackBars()
+      ..showSnackBar(SnackBar(content: Text(l10n.reminderScheduled), showCloseIcon: true));
   }
 
   @override
@@ -386,7 +386,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
-          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true));
+          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1)));
       }
     } finally { if (mounted) { setState(() => _busy = false); } }
   }
@@ -509,7 +509,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
       if (scan == null || !context.mounted) return;
       final parsed = ReceiptParser(currency: list.currencyCode).parse(scan);
       if (parsed.lines.isEmpty) {
-        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true));
+        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true, duration: const Duration(days: 1)));
         return;
       }
       final controller = ReceiptReviewController(db: widget.db, listId: widget.listId,
@@ -535,8 +535,8 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
             ?.id;
     if (!context.mounted) return;
     if (productId == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context).noObservations)),
+      ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).noObservations), showCloseIcon: true),
       );
       return;
     }
@@ -581,7 +581,7 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
     );
       if (mounted) _refresh();
     } catch (_) {
-      if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true));
+      if (context.mounted) ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1)));
     } finally { if (mounted) { setState(() => _busy = false); } }
   }
 }

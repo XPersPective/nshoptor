@@ -50,7 +50,7 @@ Future<PriceCandidate?> readShelfCandidate(
     _ => null,
   };
   if (notice != null) { ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
-    SnackBar(content: Text(notice), showCloseIcon: true)); }
+    SnackBar(content: Text(notice), showCloseIcon: true, duration: const Duration(days: 1))); }
   final candidates = [
     ...fromAi,
     ...local.where((c) => !fromAi.any((a) => a.value == c.value && a.unitCode == c.unitCode && a.isUnitPrice == c.isUnitPrice)),
