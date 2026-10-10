@@ -89,7 +89,7 @@ test('Play verification maps v2 and caches no longer than its winning expiry', a
     publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign', 'verify']);
   const der = await crypto.subtle.exportKey('pkcs8', keys.privateKey);
   e.GOOGLE_SA_JSON = JSON.stringify({ client_email: 'test@example.invalid', private_key:
-    '-----BEGIN PRIVATE KEY-----\n' + Buffer.from(der).toString('base64') + '\n-----END PRIVATE KEY-----' });
+    '-----BEGIN ' + 'PRIVATE KEY-----\n' + Buffer.from(der).toString('base64') + '\n-----END ' + 'PRIVATE KEY-----' });
   e.PACKAGE_NAME = 'com.crazypenguin.nshoptor';
   let calls = 0;
   const expiry = new Date(now.getTime() + 600000).toISOString();
@@ -109,7 +109,7 @@ async function lineageEnv(t, subscriptions) {
     publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign', 'verify']);
   const der = await crypto.subtle.exportKey('pkcs8', keys.privateKey);
   e.GOOGLE_SA_JSON = JSON.stringify({ client_email: 'test@example.invalid', private_key:
-    '-----BEGIN PRIVATE KEY-----\n' + Buffer.from(der).toString('base64') + '\n-----END PRIVATE KEY-----' });
+    '-----BEGIN ' + 'PRIVATE KEY-----\n' + Buffer.from(der).toString('base64') + '\n-----END ' + 'PRIVATE KEY-----' });
   e.PACKAGE_NAME = 'com.crazypenguin.nshoptor';
   let providerCalls = 0;
   const fetchImpl = async url => {

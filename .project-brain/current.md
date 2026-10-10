@@ -1,6 +1,6 @@
 # Current Architecture
 ## 2026-10-09 kaynak denetimi
-- Mevcut sürüm pubspec.yaml: 1.1.4+6; aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
+- Mevcut sürüm pubspec.yaml: 1.2.0+7; aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
 - PB-070 home/history/draft/completed tek ListDetailScreen açar; yeni liste editörü doğrudan açılır ve yeni kayıt detaya gider; ay kartı para kodunu korur. PB-071 form mevcut ID günceller; plan/gerçek bağımsız, kamera yalnız gerçek alanını doldurur, yazım atomic/hata görünür. Ortak removeItem bağlı alım/gözlemi kaldırır; PB-062 tek kanonik detayda satır CRUD, fiyat düzeltme, checkbox ve onaylı silme; ShoppingModeScreen uyumluluk kabuğudur.
 - PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. PB-074 oturum sahipliği ve geç callback korumasıyla mikrofon ikinci init riski kapatıldı.
 - PB-073 sonuç farkı yalnız bilinen tahmin+gerçek alımlardan; alınmayan/plansız ayrı. Bilinmeyen gerçek/tahmin —, ücretsiz 0 farklı; karma birim miktarı toplanmaz. Full suite 316 + son görünüm delta domain 20 passed; analyze 0.
@@ -20,6 +20,7 @@
 - PB-078: all feature Snackbar callers replace queued messages and offer close; important errors remain until closed, Undo keeps native timeout/accessibility. Home assistant visibly busy; voice/assistant previews scroll with keyboard, voice actions wrap. Domain150+8 passed, analyze0.
 - PB-081: shared Insights monthly get/watch SQL aggregates purchases before plans; variance includes only known complete item comparisons, null without samples. Home reuses query and shows neutral —; spending/budget totals preserved, currency/local month separate. Home/history31 passed, analyze0.
 - PB-082 source: D1 batch reserves monthly/global together with conditional updates; paid identity SHA256 of verified token, legacy200/1000 retained, v2 policies supported. Canceled renewal valid through expiry. Stream byte bounds, task output ceilings, truncation/schema rejection and generic DB failure. Server21/full358/analyze0; live vars/deploy and replacement carry-forward remain PB-065.
+- PB-069 (2026-10-10): full369/server25/analyze0; publisher-signed release APK7 built, optimized normal main release installed with QA debug signing preserving emulator data. Actual amounts, partial completion/cancel, cold restart, native wake flags, denied microphone/manual fallback and real saved/opened PDF verified. Native speech1/offline MLKit1 passed separately in debug integration. Physical transcript/camera capture and real Play test purchase remain bounded external checks; docs/audits/release-2026-10-10.md. Internal upload PB-061 follows.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).

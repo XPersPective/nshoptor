@@ -1,0 +1,4 @@
+# Historical source expressions wrap runtime-generated synthetic RSA keys, not stored private key bytes.
+# Exact historical findings only; current source and any future real key remain scanned.
+1727990bf3e0c69d9c649fae0f5f78e393dfc8cb:server/test/quota.test.js:private-key:112
+a798e44e27890a4e6f676a4651a99d33b2155e0c:server/test/quota.test.js:private-key:92
