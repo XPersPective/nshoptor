@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:flutter/services.dart';
 
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
@@ -195,14 +193,14 @@ void main() {
 
   testWidgets('legacy note, period and retry controls fit320dp2x Arabic', (tester) async {
     await tester.binding.setSurfaceSize(const Size(320, 640)); addTearDown(() => tester.binding.setSurfaceSize(null));
-    final font = File('C:/Windows/Fonts/segoeui.ttf');
-    if (font.existsSync()) await (FontLoader('Roboto')..addFont(Future.value(ByteData.sublistView(font.readAsBytesSync())))).load();
     final service = _NoStoreService(SettingsStore())..applyOwned([(productId: SubscriptionService.legacyProId, token: 'old')]);
     await tester.pumpWidget(MaterialApp(locale: const Locale('ar'), supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
       builder: (context, child) => MediaQuery(data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(2)), child: child!),
       home: SubscriptionPaywall(service: service)));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.textContaining('Pro: 200'), 200);
     await tester.pumpAndSettle(); expect(find.textContaining('Pro: 200'), findsOneWidget);
     final l10n = AppLocalizations.of(tester.element(find.byType(SubscriptionPaywall)));
     await tester.scrollUntilVisible(find.text(l10n.plansYearly), 200); await tester.pumpAndSettle();

@@ -126,7 +126,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
 - `history/price_history/`: min/median/max, trend, cheapest store
   (repository); `price_history_sheet.dart` PriceHistoryScreen lists
   observations only (stats not yet shown), optional currency/unit filters and localized large-text rows.
-  `history/insights/`: confirmed currency-filtered spending; exact unit net quantities and distinct purchase visits/intervals (PB-084). PB-068 graphs/category-store breakdowns and product/category cards in SpendingScreen, filtered price history, all71 time/returns hint; 320dp2x en/ar, history+l10n31/analyze0.
+  `history/insights/`: confirmed currency-filtered spending; exact unit net quantities and distinct purchase visits/intervals (PB-084). PB-068 graphs/category-store breakdowns and product/category cards in SpendingScreen, filtered price history, all71 time/returns hint. PB099 calendar fits complete day/marker within seven columns; no Windows-only font in analytics/paywall checks,320dp2x en/ar +375dp/landscape/light/dark/reduced-motion; full382/server25/analyze0 passed.
 - `voice_input/`: SpeechService abstraction + controller; SttSpeechService
   (native on-device channel, session ownership); VoicePreviewSheet (editable transcript, manual
   fallback when service unavailable); `voice_input/parser/`: deterministic

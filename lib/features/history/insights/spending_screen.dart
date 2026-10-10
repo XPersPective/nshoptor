@@ -297,13 +297,16 @@ class _MonthCalendar extends StatelessWidget {
               color: spendByDay[d] == null ? null : scheme.primaryContainer,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('$d', style: TextStyle(fontWeight: spendByDay[d] == null ? null : FontWeight.w700)),
-                if (spendByDay[d] != null)
-                  const Icon(Icons.circle, size: 6),
-              ],
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('$d', style: TextStyle(fontWeight: spendByDay[d] == null ? null : FontWeight.w700)),
+                  if (spendByDay[d] != null)
+                    const Icon(Icons.circle, size: 6),
+                ],
+              ),
             ),
           ),
         ),
