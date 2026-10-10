@@ -26,7 +26,7 @@ def main():
     parser.add_argument("action", choices=["show", "tap", "point", "field", "type", "replace", "back", "shot", "wake"])
     parser.add_argument("value", nargs="?", default="")
     args = parser.parse_args()
-    assert "nshoptor_test" in adb("emu", "avd", "name").decode(), "wrong emulator"
+    assert adb("emu", "avd", "name").decode().splitlines()[0] == os.environ.get("NSHOPTOR_QA_AVD", "nshoptor_test"), "wrong emulator"
     if args.action == "show":
         for n in nodes():
             a = n.attrib

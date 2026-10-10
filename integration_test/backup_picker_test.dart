@@ -1,5 +1,5 @@
 // Real Android SAF bridge, explicitly fake in-memory Pro entitlement.
-// flutter test integration_test/backup_picker_test.dart -d emulator-5554
+// flutter test integration_test/backup_picker_test.dart -d emulator-5564
 // ADB operator: export cancel, retry/save owned QA filename; import cancel,
 // retry/select that file. The fixture itself confirms separate copy.
 import 'dart:io';
@@ -44,14 +44,16 @@ void main() {
         final finder = find.byKey(Key(key));
         await tester.scrollUntilVisible(finder, 250, scrollable: find.byType(Scrollable).first);
         await Scrollable.ensureVisible(tester.element(finder), alignment: 0.5);
-        await tester.pumpAndSettle(); await tester.tap(finder); await tester.pump();
+        await tester.pumpAndSettle(); await tester.tap(finder);
       }
       Future<void> idle() async {
         final deadline = DateTime.now().add(const Duration(minutes: 3));
         do {
-          await Future<void>.delayed(const Duration(milliseconds: 200)); await tester.pump();
+          // Native SAF pauses Flutter frames; fullyLive renders again on resume.
+          await Future<void>.delayed(const Duration(milliseconds: 200));
           if (DateTime.now().isAfter(deadline)) fail('native backup operation did not return');
-        } while (tester.widget<ListTile>(find.byKey(const Key('export_backup_button'))).onTap == null);
+        } while (binding.lifecycleState != AppLifecycleState.resumed ||
+            tester.widget<ListTile>(find.byKey(const Key('export_backup_button'))).onTap == null);
         await tester.pumpAndSettle();
       }
       debugPrint('BACKUP_NATIVE_CANCEL_SAVE'); await tap('export_backup_button'); await idle();
@@ -64,7 +66,7 @@ void main() {
       debugPrint('BACKUP_NATIVE_PICK_QA'); await tap('import_backup_button');
       final deadline = DateTime.now().add(const Duration(minutes: 3));
       while (find.byKey(const Key('backup_import_dialog')).evaluate().isEmpty) {
-        await Future<void>.delayed(const Duration(milliseconds: 200)); await tester.pump();
+        await Future<void>.delayed(const Duration(milliseconds: 200));
         if (DateTime.now().isAfter(deadline)) fail('native JSON selection did not validate');
       }
       await tester.pumpAndSettle(); await tester.tap(find.byKey(const Key('backup_separate'))); await idle();
