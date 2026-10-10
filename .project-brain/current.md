@@ -1,6 +1,6 @@
 # Current Architecture
 ## 2026-10-09 kaynak denetimi
-- Mevcut sürüm pubspec.yaml: 1.2.0+7; aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
+- Kaynak sürüm pubspec.yaml: 1.2.1+8 (yayın hazırlığı; canlı internal7); aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
 - PB-070 home/history/draft/completed tek ListDetailScreen açar; yeni liste editörü doğrudan açılır ve yeni kayıt detaya gider; ay kartı para kodunu korur. PB-071 form mevcut ID günceller; plan/gerçek bağımsız, kamera yalnız gerçek alanını doldurur, yazım atomic/hata görünür. Ortak removeItem bağlı alım/gözlemi kaldırır; PB-062 tek kanonik detayda satır CRUD, fiyat düzeltme, checkbox ve onaylı silme; ShoppingModeScreen uyumluluk kabuğudur.
 - PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. PB-074 oturum sahipliği ve geç callback korumasıyla mikrofon ikinci init riski kapatıldı.
 - PB-073 sonuç farkı yalnız bilinen tahmin+gerçek alımlardan; alınmayan/plansız ayrı. Bilinmeyen gerçek/tahmin —, ücretsiz 0 farklı; karma birim miktarı toplanmaz. Full suite 316 + son görünüm delta domain 20 passed; analyze 0.

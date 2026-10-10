@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1] — 2026-10-10
+
+- Sonuç ayrıntılarından yerelleştirilmiş CSV kaydı; negatif tutarlar ve bilinmeyen fiyatlar doğru aktarılır.
+- Pro JSON yedeği kullanıcı dosyasına kaydedilir; doğrulama ve onayla birleştirilir veya ayrı kopyalanır.
+- Yedekler daha yeni kayıtları ve ilişkileri korur; bozuk veri ve dış dosya silme girişimleri reddedilir.
+- 71 dilde kayıt/fotoğraf kapsamı ve dosya sınırı açıklanır; büyük yazı ve RTL kontrolleri tamamlandı.
+
 ## [1.2.0] — 2026-10-10
 
 - Planlama, alışveriş ve tamamlananlar için tek tikli liste; tahmin ve gerçek miktar/fiyat bağımsız.
