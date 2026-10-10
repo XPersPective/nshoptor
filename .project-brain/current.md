@@ -40,7 +40,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/features/receipts/` — cihaz içi OCR (ML Kit), fiş ayrıştırma/eşleştirme, raf etiketi
 - `lib/features/voice_input/` — Android cihaz içi MethodChannel ses + kural tabanlı komut ayrıştırıcı
 - `lib/features/history/` — geçmiş, fiyat geçmişi, içgörüler
-- `lib/features/settings/` — ayarlar, yedek/CSV, AI anahtarı
+- `lib/features/settings/` — ayarlar, yedek/CSV, AI aç/kapat
 - `lib/features/ai/ai_client.dart` — AI vekiline tek kapı (AiService.client, kurulum kimliği, AiResult)
 - `lib/features/subscription/` — Pro/Max abonelik servisi, planlar ekranı, ömür boyu akış süzgeci
 - `tool/play/subscriptions.rb`, `tool/ai_economics.py`, `tool/ai_rollout_check.py` — Play catalog, Decimal scenarios, live owned-quota check
@@ -140,7 +140,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   before approval) + ReceiptReviewScreen (accept/ignore/link/split/merge,
   total diff; nullable new-list controller, create+purchase transaction and retry ownership). Shelf label: no crop/rotate UI — ML Kit reads any
   orientation and user picks among all candidates (C-040: no crop package).
-  ReceiptMatcher auto-suggestion not used by the screen (manual link only).
+  ReceiptReviewScreen prefillSuggestions uses enabled AI first, high-confidence local ReceiptMatcher fallback; all links remain editable and require approval.
 - `subscription/`: source offers *_v2 Pro100/Max300, legacy200/1000 retained, free/lifetime10; matching native owner, latest-query guards and pending purchase/restore deduplication. Legacy rights note and quotas all71; domain24 + subscription11 passed, analyze0. PB-065 new v2 catalog active (10 October), legacy unchanged; native release QA PB-069. PB-088 Android debug app_e2e3/device_audit2 passed; canonical store en/tr/ar24 images verified.
 - `settings/`: SettingsScreen + SettingsRepository (spec §6.15,
   delete-all double confirm; tema + formatLocale anahtarları repo'da);
