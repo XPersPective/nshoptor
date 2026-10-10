@@ -177,8 +177,8 @@ share_plus, file_picker.
 
 - Voice: native köprünün API36 emülatörde init/cancel/reopen testi geçti; fiziksel cihazda gerçek transcript henüz doğrulanmadı (PB-069).
 - ADR-006/PB-074: yalnız createOnDeviceSpeechRecognizer (API31+); installed languages (API33+), ağ/model indirme fallback yok. Eski paket kaldırıldı; gerçek ses tanıma fiziksel cihazda henüz doğrulanmadı.
-- Reklam/Pro: test kimlikleriyle tam akış canlı; gerçek AdMob kimliği
-  ve paywall fiyatı Crazy Penguin'de; apps.json besleme EnvConfig.otherAppsUrl GitHub napp_apps/HEAD/apps.json (çevrimdışı fallback).
+- Reklam/Pro: publisher7 gerçek AdMob kimlikleriyle doğrulandı; aktif Play v2 ürün/fiyat SDK kanıtı PB065/083. Gerçek satın alma henüz denenmedi.
+- PB089 docs kaynakla eşleşir:71 dil/native speech/isteğe bağlı metin vekili; sağlayıcı saklaması doğrulanmadı, kota sahipliği süresiz. Veri güvenliği Console taslağıdır.
 
 ## Yayın durumu (VERIFIED 2026-10-10, read-only Play tracks)
 

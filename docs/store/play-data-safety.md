@@ -1,31 +1,35 @@
-# Google Play "Veri güvenliği" formu — NShoptor
+# Google Play Veri güvenliği — NShoptor
 
-> **Durum:** 1.1.0 (PB-059) için güncel. Kaynak: docs/store/privacy-policy.md,
-> server/ (Worker), ADR-004.
+> 2026-10-10, 1.2.1 kaynak koduna göre hazırlanan taslak; Console formunun
+> güncellendiği/yayımlandığı iddia edilmez. Üretim sürümü1 için mevcut form
+> ile yeni sürümün kapsamı yayın öncesinde ayrıca karşılaştırılmalıdır.
 
-## Genel sorular
+## Beyan kapsamı
 
-- Veri topluyor veya paylaşıyor mu? **EVET** (AI metni geçici işlenir; AdMob reklam kimliği).
-- Aktarımda şifreli mi? **EVET** (yalnız HTTPS).
-- Silme talebi yolu: **EVET** — uygulama içi "Tüm verileri sil" + kaldırma; sunucuda kişisel veri yok.
+Veri toplanır/paylaşılır: isteğe bağlı AI metni, kota/abonelik metaverisi ve
+reklam SDK'sı. Uygulama/proxy HTTPS kullanır. Uygulama içi silme sunucu
+kayıtlarını veya dışa aktarılan dosyaları silmez; talepler için
+[politika/iletişim](privacy-policy.md). Kurulum/satın alma özetlerini sırf
+isim içermediği için anonim veya kişisel veri dışı saymayın.
 
-## Veri matrisi
+| Veri | İşleme / alıcı | Amaç / seçim |
+|---|---|---|
+| AI metni (ürün/fiş/cümle) | Cloudflare vekil ve Qwen; Worker metni kalıcı tutmaz, sağlayıcı saklaması doğrulanmadı | İşlevsellik; AI kapatılabilir |
+| Kurulum kimliği / satın alma SHA-256 özeti / plan / bağlı kota sahipliği | Worker/D1; yetki önbelleği süreli, sahiplik süresiz tutulur; kimlikler Qwen'e iletilmez | Kota, işlevsellik ve kötüye kullanım önleme; AI kullanılırken |
+| Satın alma geçmişi / Play jetonu | Google Play doğrulaması; ham jeton kalıcı kaydedilmez | İsteğe bağlı ücretli özellik |
+| IP kaynaklı yaklaşık konum, cihaz/reklam kimlikleri, ürün etkileşimleri, tanılama | AdMob/Google SDK işleme ve paylaşımı; reklamsız hak SDK hiç başlamaz garantisi değildir | Reklam, analitik, dolandırıcılık önleme |
+| Fotoğraf/ses | Uygulamanın OCR/ses akışları yüklemez; cihazda işlenir | Yerel giriş |
+| Kullanıcının dışa aktardığı dosya | Seçilen sistem/bulut dosya sağlayıcısı | Kullanıcının başlattığı kaydetme |
 
-| Play kategorisi | Toplanan | Paylaşılan | Geçici işleme | Amaç | Zorunlu |
-|---|---|---|---|---|---|
-| Uygulama etkinliği › Diğer kullanıcı içeriği (AI'ya giden metin: fiş satırı, ürün adı, cümle) | EVET | HAYIR¹ | **EVET** (saklanmaz) | Uygulama işlevselliği | Hayır (AI kapatılabilir) |
-| Cihaz veya diğer kimlikler (rastgele kurulum kimliği — kota) | EVET | HAYIR | Hayır | Uygulama işlevselliği, kötüye kullanımı önleme | Evet (AI kullanılırken) |
-| Cihaz veya diğer kimlikler (reklam kimliği — AdMob) | EVET | EVET (Google) | Hayır | Reklam | Hayır (ücretli planlarda yok) |
-| Finansal bilgi › Satın alma geçmişi (Play jetonu → plan) | EVET | HAYIR | Hayır (yalnız SHA-256 özeti, kısa önbellek) | Uygulama işlevselliği | Hayır |
-| Fotoğraflar, ses kayıtları, konum, kişisel bilgiler | HAYIR (cihazda işlenir/kalır) | HAYIR | — | — | — |
+AI için "geçici işleme" veya hizmet sağlayıcı paylaşım istisnası otomatik
+seçilmez: sağlayıcının fiilî koşulları doğrulanmadan saklama/paylaşım yok
+denemez. Kaynak matrisi nihai Console cevaplarının yerine geçmez.
 
-¹ Hizmet sağlayıcılar (Cloudflare, AI model sağlayıcısı) adımıza işlediği için
-Play tanımında "paylaşım" sayılmaz.
+## Kaynaklar ve diğer formlar
 
-## Diğer formlar
-
-- **Reklam içeriği:** EVET (AdMob banner, uygulama açılışı, ödüllü).
-- **Uygulama içi satın alma:** EVET — `nshoptor_pro`, `nshoptor_max` (abonelik),
-  `com.crazypenguin.nshoptor.pro_lifetime` (tek seferlik).
-- **Hedef kitle:** 18+ değil, genel; çocuklara yönelik değil.
-- **İzinler:** mikrofon/kamera yalnız kullanım anında; bildirim yalnız hatırlatma kurulurken.
+- [Google Play beyan kapsamı](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en): SDK ve cihaz dışı akışları da değerlendirin.
+- [AdMob açıklaması](https://developers.google.com/admob/android/privacy/play-data-disclosure): güncel kılavuz25.5.0 içindir; yayımlanan AAB'nin gerçek SDK sürümüyle karşılaştırın.
+- Reklam: banner/uygulama açılışı; ödüllü birim yapılandırılmışsa ödüllü reklam.
+- Satın alma: yeni `nshoptor_pro_v2`, `nshoptor_max_v2`; eski `nshoptor_pro`, `nshoptor_max` hakları ve `com.crazypenguin.nshoptor.pro_lifetime` korunur.
+- Çocuklara yönelik değildir. Mikrofon/kamera yalnız ilgili kullanımda;
+  bildirim izni yalnız hatırlatma kurulurken istenir.
