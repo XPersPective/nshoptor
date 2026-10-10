@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/attachments/attachment_repository.dart';
+import 'package:nshoptor/features/settings/backup/backup_repository.dart';
 
 void main() {
   late AppDatabase db;
@@ -65,6 +66,42 @@ void main() {
 
     expect(await File(attachment.filePath).exists(), isFalse);
     expect(await repo.forOwner('plannedItem', 2), isEmpty);
+  });
+
+  test('imported external file path cannot authorize file deletion', () async {
+    final external = makePickedFile();
+    addTearDown(() async { if (await external.exists()) await external.delete(); });
+    final list = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    final id = await db.into(db.attachments).insert(AttachmentsCompanion.insert(
+      ownerType: 'list', ownerId: list, filePath: external.path));
+    final backup = BackupRepository(db);
+    final snapshot = await backup.exportBackup();
+    await db.delete(db.attachments).go();
+    await backup.importBackup(snapshot, ImportMode.merge);
+    await repo.deleteAttachment(id);
+    expect(await external.exists(), isTrue);
+    expect(await repo.forOwner('list', list), isEmpty);
+  });
+
+  test('resolved directory link cannot escape owned media deletion', () async {
+    final outside = await Directory.systemTemp.createTemp('nshoptor_external');
+    final alias = '${mediaDir.path}${Platform.pathSeparator}external_link';
+    try {
+      final protected = await File('${outside.path}/protected.jpg').writeAsString('owned by another directory');
+      if (Platform.isWindows) {
+        final result = await Process.run('cmd', ['/c', 'mklink', '/J', alias, outside.path]);
+        expect(result.exitCode, 0, reason: '${result.stdout} ${result.stderr}');
+      } else {
+        await Link(alias).create(outside.path);
+      }
+      final id = await db.into(db.attachments).insert(AttachmentsCompanion.insert(
+        ownerType: 'list', ownerId: 1, filePath: '$alias/protected.jpg'));
+      await repo.deleteAttachment(id);
+      expect(await protected.exists(), isTrue);
+    } finally {
+      if (await Link(alias).exists()) await Link(alias).delete();
+      await outside.delete(recursive: true);
+    }
   });
 
   test('sweepOrphans DB kaydı olmayan dosyaları temizler', () async {

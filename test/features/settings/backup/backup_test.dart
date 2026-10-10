@@ -182,6 +182,59 @@ void main() {
   });
 
   group('bozuk dosya reddi (spec §6.14)', () {
+    test('malformed rows, IDs, references and arithmetic fail before mutation', () async {
+      final firstList = await seedOneList();
+      await seedOneList();
+      final firstItem = (await db.select(db.plannedItems).get()).first.id;
+      final receipt = await db.into(db.receipts).insert(ReceiptsCompanion.insert(listId: Value(firstList)));
+      await db.into(db.receiptCandidateLines).insert(ReceiptCandidateLinesCompanion.insert(
+        receiptId: receipt, rawText: 'QA', linkedPlannedItemId: Value(firstItem),
+        parsedQuantity: const Value('1'), parsedUnitPrice: const Value('1')));
+      await db.into(db.attachments).insert(AttachmentsCompanion.insert(ownerType: 'list', ownerId: firstList, filePath: 'record-only.jpg'));
+      final snapshot = await backup.exportBackup();
+      final stable = jsonDecode(snapshot) as Map<String, dynamic>..remove('exportedAt');
+      for (final mutate in <void Function(Map<String, dynamic>)>[
+        (d) => d['version'] = 0,
+        (d) => d['version'] = 1.0,
+        (d) => d['stores'] = 'not an array',
+        (d) => (d['plannedItems'] as List).first['name'] = null,
+        (d) => (d['plannedItems'] as List).first['plannedQuantity'] = 'NaN',
+        (d) => (d['plannedItems'] as List).first['id'] = -1,
+        (d) => (d['plannedItems'] as List).add(Map<String, dynamic>.from((d['plannedItems'] as List).first)),
+        (d) => (d['plannedItems'] as List).first['productId'] = 99999,
+        (d) => (d['purchaseEntries'] as List).first['plannedItemId'] = (d['plannedItems'] as List).last['id'],
+        (d) => (d['lists'] as List).first['currencyCode'] = 'ZZZ',
+        (d) => (d['receipts'] as List).first['imagePaths'] = [42],
+        (d) => (d['receiptCandidateLines'] as List).first['parsedQuantity'] = 'NaN',
+        (d) => (d['receiptCandidateLines'] as List).first['linkedPlannedItemId'] = (d['plannedItems'] as List).last['id'],
+        (d) => (d['attachments'] as List).first['ownerType'] = 'unsupported',
+        (d) => (d['attachments'] as List).first['ownerId'] = 99999,
+        (d) { final item = (d['receiptCandidateLines'] as List).first;
+          item['parsedQuantity'] = '999999999999999'; item['parsedUnitPrice'] = '999999999999999'; },
+        (d) { final item = (d['plannedItems'] as List).first;
+          item['plannedQuantity'] = '999999999999999'; item['plannedUnitPrice'] = '999999999999999'; },
+      ]) {
+        final data = jsonDecode(snapshot) as Map<String, dynamic>;
+        mutate(data);
+        final invalid = jsonEncode(data);
+        expect(() => backup.validate(invalid), throwsFormatException);
+        await expectLater(backup.importBackup(invalid, ImportMode.merge), throwsFormatException);
+        final current = jsonDecode(await backup.exportBackup()) as Map<String, dynamic>..remove('exportedAt');
+        expect(current, stable);
+      }
+    });
+
+    test('JPY/KWD genuine zero and signed returns remain valid', () async {
+      for (final (code, price, minor) in [('JPY', '0', 0), ('KWD', '0.001', -1)]) {
+        final id = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: code));
+        await db.into(db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(
+          listId: id, name: 'Return', normalizedName: 'return', actualQuantity: '-1',
+          actualUnitCode: 'piece', actualUnitPrice: Value(price), actualLineTotalMinorUnits: minor));
+      }
+      final snapshot = await backup.exportBackup();
+      await backup.importBackup(snapshot, ImportMode.merge);
+      expect((await db.select(db.purchaseEntries).get()).map((r) => r.actualLineTotalMinorUnits), [0, -1]);
+    });
     test('geçersiz JSON: mevcut veri değişmez', () async {
       await seedOneList();
       final before = await db.select(db.shoppingLists).get();

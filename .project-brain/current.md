@@ -148,7 +148,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   kilit + paywall; Pro değişince kilit anında kalkar); Hakkında
   (AboutPage: açık kaynak/GPL-3.0), Lisanslar, Paylaş, Puan ver
   (napp_core); `settings/backup/` BackupRepository (13-table
-  export/import: atomic snapshot, merge upsert preserves newer children; separate remaps all13 table IDs/FKs/attachment owners, typed receipt imagePaths roundtrip. CSV free in Summary details; native Pro JSON UI still PB093).
+  export/import: atomic snapshot, merge upsert preserves newer children; separate remaps all13 table IDs/FKs/attachment owners, typed receipt imagePaths roundtrip. Shared v1 preflight reuses Drift type/length and checks decimals/overflow, IDs/FKs/owners before writes; attachment deletion requires resolved owned media parent (Windows junction tested). CSV free in Summary details; native Pro JSON UI still PB093).
 ### Platform
 
 **Status:** VERIFIED (native PDF/speech 2026-10-09; other shell notes historical)

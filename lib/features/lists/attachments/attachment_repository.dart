@@ -65,7 +65,10 @@ class AttachmentRepository {
         .go();
     if (row != null) {
       final file = File(row.filePath);
-      if (await file.exists()) {
+      if (await file.exists() && await mediaDirectory.exists() &&
+          await FileSystemEntity.identical(
+            File(await file.resolveSymbolicLinks()).parent.path,
+            await mediaDirectory.resolveSymbolicLinks())) {
         await file.delete();
       }
     }

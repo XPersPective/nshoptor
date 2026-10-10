@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 
 import '../../../data/db/app_database.dart';
+import '../../../core/money/currency.dart';
+import '../../../core/money/decimal_fixed.dart';
+import '../../../core/calc/line_calc.dart';
 
 /// Yedek formatı: sürümlenmiş JSON (spec §6.14).
 class BackupFormat {
@@ -45,7 +48,7 @@ class BackupRepository {
   final AppDatabase _db;
 
   /// Tüm tabloları sürümlenmiş JSON'a döker. Fotoğraf dosyaları (binary)
-  /// dahil değildir; yalnız yollar taşınır — "büyük yedek" uyarısı UI'dadır.
+  /// dahil değildir; yalnız kayıtlar ve dosya yolları taşınır.
   Future<String> exportBackup() => _db.transaction(() async {
     final lists = await _db.select(_db.shoppingLists).get();
     final items = await _db.select(_db.plannedItems).get();
@@ -101,13 +104,94 @@ class BackupRepository {
       throw const FormatException('bu dosya bir NShoptor yedeği değil');
     }
     final version = data['version'];
-    if (version is! int || version > BackupFormat.version) {
+    if (version is! int || version != BackupFormat.version) {
       throw const FormatException('yedek sürümü desteklenmiyor');
     }
     for (final key in const ['lists', 'plannedItems', 'purchaseEntries']) {
       if (data[key] is! List) {
         throw FormatException('eksik bölüm: $key');
       }
+    }
+    try {
+      final sections = <String, Map<int, Map<String, dynamic>>>{};
+      void check<R extends Table, D>(String key, TableInfo<R, D> table,
+          Insertable<D> Function(Map<String, dynamic>) read) {
+        if (data.containsKey(key) && data[key] is! List) {
+          throw const FormatException('invalid section');
+        }
+        final indexed = sections[key] = {};
+        for (final value in data[key] ?? []) {
+          final row = value as Map<String, dynamic>;
+          final id = row['id'] as int;
+          if (id <= 0 || indexed.containsKey(id) ||
+              !table.validateIntegrity(read(row), isInserting: true).dataValid) {
+            throw const FormatException('invalid row');
+          }
+          indexed[id] = row;
+        }
+      }
+      check('stores', _db.stores, Store.fromJson);
+      check('categories', _db.categories, Category.fromJson);
+      check('aisles', _db.aisles, Aisle.fromJson);
+      check('lists', _db.shoppingLists, ShoppingList.fromJson);
+      check('plannedItems', _db.plannedItems, PlannedItem.fromJson);
+      check('purchaseEntries', _db.purchaseEntries, PurchaseEntry.fromJson);
+      check('productMemory', _db.productMemory, ProductMemoryData.fromJson);
+      check('productAliases', _db.productAliases, ProductAliase.fromJson);
+      check('priceObservations', _db.priceObservations, PriceObservation.fromJson);
+      check('receipts', _db.receipts, _receiptFromJson);
+      check('receiptCandidateLines', _db.receiptCandidateLines, ReceiptCandidateLine.fromJson);
+      check('attachments', _db.attachments, Attachment.fromJson);
+      check('reminders', _db.reminders, Reminder.fromJson);
+      const references = {'storeId': 'stores', 'categoryId': 'categories',
+        'defaultCategoryId': 'categories', 'aisleId': 'aisles', 'listId': 'lists',
+        'productId': 'productMemory', 'plannedItemId': 'plannedItems',
+        'linkedPlannedItemId': 'plannedItems', 'receiptId': 'receipts',
+        'purchaseEntryId': 'purchaseEntries'};
+      const decimals = {'plannedQuantity', 'plannedUnitPrice', 'maxAcceptablePrice',
+        'actualQuantity', 'actualUnitPrice', 'quantity', 'normalizedBaseQuantity',
+        'unitPrice', 'parsedQuantity', 'parsedUnitPrice'};
+      for (final rows in sections.values) {
+        for (final row in rows.values) {
+          for (final field in decimals) {
+            if (row[field] != null) DecimalFixed.parse(row[field] as String);
+          }
+          for (final field in ['currencyCode', 'detectedCurrency', 'confirmedCurrency']) {
+            if (row[field] != null) Currency.fromCode(row[field] as String);
+          }
+          for (final reference in references.entries) {
+            if (row[reference.key] != null && !sections[reference.value]!.containsKey(row[reference.key])) {
+              throw const FormatException('missing relation');
+            }
+          }
+          final receipt = sections['receipts']?[row['receiptId']];
+          final listId = row['listId'] ?? receipt?['listId'];
+          for (final field in ['plannedItemId', 'linkedPlannedItemId', 'receiptId']) {
+            final parent = sections[references[field]]?[row[field]];
+            if (listId != null && parent?['listId'] != null && listId != parent!['listId']) {
+              throw const FormatException('cross-list relation');
+            }
+          }
+          final currencyCode = row['currencyCode'] ?? receipt?['confirmedCurrency'] ??
+            receipt?['detectedCurrency'] ?? sections['lists']?[listId]?['currencyCode'];
+          for (final (quantity, price) in [('plannedQuantity', 'plannedUnitPrice'),
+              ('actualQuantity', 'actualUnitPrice'), ('quantity', 'unitPrice'), ('parsedQuantity', 'parsedUnitPrice')]) {
+            if (currencyCode != null && row[quantity] != null && row[price] != null) {
+              LineCalc.actualGrossTotal(DecimalFixed.parse(row[quantity]), DecimalFixed.parse(row[price]))
+                .toMinorUnits(Currency.fromCode(currencyCode).minorUnitDigits);
+            }
+          }
+        }
+      }
+      const owners = {'list': 'lists', 'plannedItem': 'plannedItems',
+        'purchaseEntry': 'purchaseEntries', 'receipt': 'receipts'};
+      for (final row in sections['attachments']!.values) {
+        if (!(sections[owners[row['ownerType']]]?.containsKey(row['ownerId']) ?? false)) {
+          throw const FormatException('invalid attachment owner');
+        }
+      }
+    } catch (_) {
+      throw const FormatException('invalid backup data');
     }
     return BackupPreview(
       version: version,
@@ -319,6 +403,6 @@ class BackupRepository {
 
   // Drift's default serializer casts this converted column to List<String>.
   Receipt _receiptFromJson(Map<String, dynamic> json) => Receipt.fromJson({
-    ...json, 'imagePaths': (json['imagePaths'] as List).cast<String>(),
+    ...json, 'imagePaths': (json['imagePaths'] as List).cast<String>().toList(),
   });
 }
