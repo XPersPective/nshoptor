@@ -106,7 +106,7 @@ tested. Generated `app_database.g.dart` committed to repo (ADR-001).
   (ReminderScheduler abstraction + LocalNotificationsScheduler:
   flutter_local_notifications üretim adaptörü — izin yalnız hatırlatma
   kurulurken istenir, tam alarm izni yoksa inexact fallback; cihaz
-  doğrulaması PB-043'te bekliyor), `lists/attachments/` (file storage +
+  native release doğrulaması PB-069’da), `lists/attachments/` (file storage +
   orphan sweep). `list_detail_screen.dart`: canonical checkbox rows for every status, unknown price —, independent planned/actual edit+scan, confirmation for delete/undo, fixed bottom input/receipt/finish actions; header scrolls at large type. Completed lists have no restart.
 - `shopping_mode/`: 5 item statuses, unplanned purchases, controlled returns,
   projection summary; canonical RouteAware/lifecycle wakelock with global serialized owner updates (PB-077); satıra dokunuş → hızlı giriş alt sayfası
@@ -176,12 +176,11 @@ share_plus, file_picker.
 - Voice: native köprünün API36 emülatörde init/cancel/reopen testi geçti; fiziksel cihazda gerçek transcript henüz doğrulanmadı (PB-069).
 - ADR-006/PB-074: yalnız createOnDeviceSpeechRecognizer (API31+); installed languages (API33+), ağ/model indirme fallback yok. Eski paket kaldırıldı; gerçek ses tanıma fiziksel cihazda henüz doğrulanmadı.
 - Reklam/Pro: test kimlikleriyle tam akış canlı; gerçek AdMob kimliği
-  ve paywall fiyatı Crazy Penguin'de; apps.json besleme repo adresi
-  bilinmiyor (docs/store/apps-json-entry.md).
+  ve paywall fiyatı Crazy Penguin'de; apps.json besleme EnvConfig.otherAppsUrl GitHub napp_apps/HEAD/apps.json (çevrimdışı fallback).
 
-## Yayın durumu (VERIFIED 2026-10-08)
+## Yayın durumu (VERIFIED 2026-10-10, read-only Play tracks)
 
-- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.1.1 (3) completed (71 dil, PB-061), test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444.
+- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.1.4 (6) completed; yeni revizyon PB-069/061 bekliyor, test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444.
 - Yayın kökü `D:\AppPublishing\apps\nshoptor` (imza, kimlikler, 73 Play dili mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py` (+ `listing_extra.json`, `listing_translate.py`); toplu görsel `tool/store/capture_all.py`; uygulama çevirisi `tool/i18n/translate.py`. 71 uygulama dili (ARB), napp_pro/napp_ads kendi metinleri tr/en (diğerlerinde İngilizce). 1.1 mağaza metni/görselleri henüz Play'e yüklenmedi (üretime alırken `push_metadata`).
 - Ürünler: `nshoptor_pro`, `nshoptor_max` (abonelik), `com.crazypenguin.nshoptor.pro_lifetime` (ömür boyu reklamsız). Ödüllü reklam birimi app-ids.env'de (ADMOB_REWARDED_ANDROID).
 ### Server
