@@ -1,4 +1,12 @@
-# Internal Android release — 2026-10-10
+# Internal Android releases — 2026-10-10
+
+## Final release1.2.1+8
+
+`fastlane deploy_internal` finished successfully21:16:48. Independent read-only Android Publisher SDK confirms internal versionCode8 completed; production remains1. No global metadata/images/screenshots or production promotion submitted. Publisher AAB92707807bytes SHA256 `759a9f65daf95af27087437a96ccd21aabfdaecf18f028823c58d2f3a7514a8c`, existing publisher certificate verified, known external secret literals absent. Permanent bundle/report/logs under `D:/AppPublishing/apps/nshoptor/artifacts/releases/1.2.1+8/`.
+
+Full383/server25/analyze0/debug APK and publisher release passed; actual normal main CSV save/cancel/retry/pull and debug native backup roundtrip passed. Detailed source/build/native evidence: `release-1.2.1-2026-10-10.md`. Final app source GitHub CI38074155877 succeeded across all jobs; fixture/helper follow-up715bcf3 analysis/tests/gitleaks passed and release build running at publication.
+
+## Earlier release1.2.0+7
 
 `fastlane build_release` succeeded with external publisher signing and real AdMob IDs; `fastlane deploy_internal` succeeded. Read-only Android Publisher SDK confirms internal versionCode7 completed and production remains versionCode1. App version1.2.0. No global metadata/images or production promotion submitted.
 

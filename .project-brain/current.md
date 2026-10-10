@@ -1,27 +1,13 @@
 # Current Architecture
-## 2026-10-09 kaynak denetimi
-- Kaynak sürüm pubspec.yaml: 1.2.1+8 (yayın hazırlığı; canlı internal7); aşağıdaki eski test/yayın/domain notlarının bir kısmı tarihsel ve STALE.
-- PB-070 home/history/draft/completed tek ListDetailScreen açar; yeni liste editörü doğrudan açılır ve yeni kayıt detaya gider; ay kartı para kodunu korur. PB-071 form mevcut ID günceller; plan/gerçek bağımsız, kamera yalnız gerçek alanını doldurur, yazım atomic/hata görünür. Ortak removeItem bağlı alım/gözlemi kaldırır; PB-062 tek kanonik detayda satır CRUD, fiyat düzeltme, checkbox ve onaylı silme; ShoppingModeScreen uyumluluk kabuğudur.
-- PB-063: recordPurchase ve fiş commit aynı transaction içinde; bağlı alımlar bir kez değiştirilir, controller tekrar/concurrent onay idempotenttir. purchaseEntryId mevcut ilişkisiyle gözlem düzeltme/undo güvenli. JPY/KWD ayrıştırıcı hassasiyeti Currency kaynağından gelir. PB-074 oturum sahipliği ve geç callback korumasıyla mikrofon ikinci init riski kapatıldı.
-- PB-073 sonuç farkı yalnız bilinen tahmin+gerçek alımlardan; alınmayan/plansız ayrı. Bilinmeyen gerçek/tahmin —, ücretsiz 0 farklı; karma birim miktarı toplanmaz. Full suite 316 + son görünüm delta domain 20 passed; analyze 0.
-- 71 ARB var; ilk kurulum country→currency main.dart içinde zaten var. Settings keepAwake kanonik listeye bağlı (PB-077).
-- Kullanıcı devralma/tamamlama yetkisi verdi; yalnız kanıtlanan checkpointler burada mevcut durumdur.
-- PB-062 doğrulama: 321 full-suite passed, analyze 0; 320dp/2x tr/ar taşmasız, 48dp erişilebilir eylemler. Büyük yazıda başlık ürünlerle birlikte kayar. Tamamlanmış listede yeniden başlatma yok.
-- PB-066 liste menüsü/sonuç PDF raporu: atomic snapshot, kaçırılmış HTML, null/para/birim dürüst; Android native print lifecycle. API36 emülatörde cancel→repeat→save→open 5 sayfa/Türkçe görsel kanıtlı; docs/audits/pdf-report-2026-10-09.md. 74 domain +2 son delta passed, debug APK, analyze 0.
-- PB-067 system sayı biçimi cihaz ülke yerelinden (Latin dışı rakamda en), UI dili bağımsız; 71 dilde açıklama güncel. MoneyParser intl ayraç/gruplama (en_IN3/2, fr ince boşluk) ve büyük ondalık için ortak doğru yol. Limitler currency key ile saklanır; eski değer mevcut tercihe bir kez bağlanır, prefill hassasiyet/küsurat korunur, invalid kalır; plansız aylık kart/geri dönüş refresh testli. Full335 passed, analyze0. Wakelock PB-077 tamam; feedback PB-078 tamam.
-- PB-074: 339 full-suite passed, analyze 0, Android debug APK built; actual API36 native bridge integration 1 passed. Speech partial/final/status/error, exact/same-language locale, second tap stop and disposal preserve text; physical audio remains unverified.
-- PB-075: AI schema title/brand/category; editable title and product fields with price mode. Approval resolves/reuses category and saves selected items atomically; failure keeps draft, source change invalidates it. Home list creation and items share transaction. Local numeric/decimal quantities preserved. Full342 passed, server9 passed, analyze0. Worker schema source updated; live deployment still pending PB-065.
-- PB-076: shared photo candidate carries productName/unit/actual price; selected €/kg and per-item values use the correct actual quantity/mode, estimate stays unchanged. Local name heuristic is editable; KWD3/free0 supported. Standalone Home receipt preview allocates list only on atomic approval; cancellation/error/concurrent retry leave no orphan/duplicates. Controllers disposed by route owners. Full348 passed, analyze0.
-- PB-064 input acceptance: 93 voice/receipt/wiring/form checks and server9 passed, analyze0; single-item voice metadata/line-total approval covered. User explicitly retained the current Qwen Token account for this revision; provider replacement deferred (PB-065).
-- PB-077 (2026-10-10): appRouteObserver includes modal sheets; canonical list reads keepAwake preference, selected control reflects native success, releases on covering route/pause/dispose, restores on pop/resume. Nested AdGate ownership preserved. 86 domain passed, analyze0; native Android flag still PB-069.
-- PB-079: DecimalFixed.toMinorUnits uses checked int.parse at native signed storage boundary; large products no longer silently clamp. Overflow preview/save preserve manual input and replacement keeps existing purchase/observation. Full354 passed, analyze0.
-- PB-080 country defaults BG→EUR, BY→BYN(2 digits); existing BGN remains readable and stored user choices unchanged. Official ECB/NBRB/CBR facts verified; money50 passed, analyze0.
-- PB-078: all feature Snackbar callers replace queued messages and offer close; important errors remain until closed, Undo keeps native timeout/accessibility. Home assistant visibly busy; voice/assistant previews scroll with keyboard, voice actions wrap. Domain150+8 passed, analyze0.
-- PB-081: shared Insights monthly get/watch SQL aggregates purchases before plans; variance includes only known complete item comparisons, null without samples. Home reuses query and shows neutral —; spending/budget totals preserved, currency/local month separate. Home/history31 passed, analyze0.
-- PB-082 source: D1 batch reserves monthly/global together with conditional updates; paid identity SHA256 of verified token, legacy200/1000 retained, v2 policies supported. Canceled renewal valid through expiry. Stream byte bounds, task output ceilings, truncation/schema rejection and generic DB failure. Server25/full369/analyze0; live Worker/catalog verification completed PB-065 (rollout audit).
-- PB-069 (2026-10-10): full369/server25/analyze0; publisher-signed release APK7 built, optimized normal main release installed with QA debug signing preserving emulator data. Actual amounts, partial completion/cancel, cold restart, native wake flags, denied microphone/manual fallback and real saved/opened PDF verified. Native speech1/offline MLKit1 passed separately in debug integration. Physical transcript/camera capture and real Play test purchase remain bounded external checks; docs/audits/release-2026-10-10.md. PB-061 signed publisher AAB7 internal completed verified; docs/audits/internal-release-2026-10-10.md.
-- PB-090 source: Summary details exposes free localized CSV with native save/cancel/error/busy guard, atomic snapshot and UTF8 BOM. Shared Money serialization preserves signed0/2/3 digits; unknown/not-bought variance is blank, genuine zero remains0. Formula text is quoted/tab-prefixed for Excel; JSON remains lossless. Shared Summary value wraps at320dp2x en/ar. Domain42/full373 passed; final native binary proof follows PB091.
-- PB-095/096 storage: owned C build and three Dart cache copies removed with native flutter clean; C free16.2GB/D12.5GB. Empty C build target retains repo junction. Fixture APK8 preserved in D app artifacts; publishing1110 SHA256 matches. User correction: D:/AppPublishing stays authoritative; publishing tools/source restored unchanged. Native flutter clean removed D build outputs; about14GB free. Prior signed AAB7 and QA artifacts preserved under D app artifacts. SDK/AVD already C; source8/internal7 unchanged.
+## Final verified state — 2026-10-10
+- Source/pubspec/About1.2.1+8; Google Play internal8 completed, production1 unchanged. Final publisher AAB signed by existing certificate and external-secret literal scan passed. Detailed evidence: docs/audits/release-1.2.1-2026-10-10.md and internal-release-2026-10-10.md.
+- Final Flutter383/server25/analyze0/configured debug APK passed. Native JSON FilePicker fixture1 and normal optimized main8 CSV cancel/retry/save/pull/numeric/cold-reopen checks passed. GitHub final app source CI allgreen (analysis/tests/gitleaks/release APK).
+- Canonical checklist/independent plan-actual quantities/prices, atomic receipt replacement, rollback/undo, editable local speech/OCR and optional AI preview, precise decimal/currency, large-text RTL and native wake lifecycle are verified by source/domain/full/native checks; release-2026-10-10.md maps SC1–SC8 and preserves historical7 proof.
+- PDF/CSV free; Pro JSON native save/select/approval validates bounded16MiB UTF8 and preserves v1/relationships. No photo binary archive. JSON main customer DB never used by QA fixture.
+- New quotas10/100/300 monthly, grandfathered200/1000; actual Play v2 prices/catalog and live atomic Worker/D1 verification complete. Current Qwen remains by explicit user choice; DeepSeek comparison is a pricing scenario, actual provider cost/profit unknown.
+- Shared production list/Delete all paths now cancel active native reminders before deleting rows; cancellation failure preserves records and shows existing localized retry feedback. Calendar complete date/marker fits7 columns at large type; tests no longer rely on Windows fonts.
+- 71 application ARBs,73 store locales/584PNG/73feature validated. Global metadata/images and Data Safety Console publication are deferred from internal scope. Physical transcript/camera and real tester purchase remain explicit external verification limits, not claims of successful execution.
+- User storage correction honored: publishing/source stay D, build target and SDK/AVD on C. Native flutter clean removed old generated caches (PB096); owned temporary QA AVD removed after proof. Permanent evidence under D:/AppPublishing/apps/nshoptor/artifacts/.
 ## Scope
 
 Repository-wide current architecture (NShoptor, single Flutter app).
@@ -32,7 +18,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/core/money|quantity|calc` — decimal para, birim, plan-gerçek hesapları (double yok)
 - `lib/core/l10n/` — 71 ARB + üretilmiş AppLocalizations
 - `lib/core/theme/` — M3 tema, SemanticDelta renkleri
-- `lib/core/config/env_config.dart` — AppIdentity, dart-define adresleri, Pro ürün kimliği
+- `lib/core/config/env_config.dart`, `lib/core/app_version.dart` — AppIdentity, dart-define adresleri, Pro ürün kimliği, pubspec/About sürümü
 - `lib/data/db/` — drift şeması (14 tablo) + üretilmiş kod
 - `lib/features/home/` — HomeShell (5 sekme), ana sayfa kartları
 - `lib/features/lists/` — listeler, liste detayı, ürün formu, hatırlatma, şablonlar
@@ -46,7 +32,9 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `tool/play/subscriptions.rb`, `tool/ai_economics.py`, `tool/ai_rollout_check.py` — Play catalog, Decimal scenarios, live owned-quota check
 - `test/`, `integration_test/` — birim/widget/e2e; `test/store_capture_test.dart` mağaza görselleri
 - `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishing\apps\nshoptor)
-- `docs/store/` — gizlilik politikası, Play beyan taslakları
+- `docs/`, `README.md`, `CHANGELOG.md`, `THIRD_PARTY_LICENSES.md` — architecture, privacy/Play drafts, release audits, usage/version/licenses
+- `tool/store/`, `tool/i18n/`, `tool/release_device_check.py` — permanent D store generation/validation, translations, isolated native QA
+- `.github/`, `.gitleaksignore`, `AGENTS.md` — CI/private-kit access, exact historical scanner exceptions, working protocol
 - `server/` — Cloudflare Worker AI vekili (`nshoptor-api.devx8585.workers.dev`), D1 kota, Play doğrulama
 ## Runtime
 
@@ -68,7 +56,7 @@ over sqlite (ADR-001).
 ## Domains
 ### Core
 
-**Status:** VERIFIED (structure), test counts STALE (from legacy audit record)
+**Status:** VERIFIED (2026-10-10 final source/full checks)
 
 **Sources:** `lib/core/**`, `test/core/**`
 
@@ -94,7 +82,7 @@ cascade/set-null, PRAGMA foreign_keys, migration v0→v1, transaction rollback
 tested. Generated `app_database.g.dart` committed to repo (ADR-001).
 ### Features
 
-**Status:** VERIFIED (2026-10-09 canonical lists, native voice, approved AI draft checkpoint)
+**Status:** VERIFIED (2026-10-10 final source/full/native checks)
 
 **Sources:** `lib/features/**`, `test/features/**`, `integration_test/**`
 
@@ -177,12 +165,12 @@ share_plus, file_picker.
 
 - Voice: native köprünün API36 emülatörde init/cancel/reopen testi geçti; fiziksel cihazda gerçek transcript henüz doğrulanmadı (PB-069).
 - ADR-006/PB-074: yalnız createOnDeviceSpeechRecognizer (API31+); installed languages (API33+), ağ/model indirme fallback yok. Eski paket kaldırıldı; gerçek ses tanıma fiziksel cihazda henüz doğrulanmadı.
-- Reklam/Pro: publisher7 gerçek AdMob kimlikleriyle doğrulandı; aktif Play v2 ürün/fiyat SDK kanıtı PB065/083. Gerçek satın alma henüz denenmedi.
+- Reklam/Pro: publisher8 gerçek AdMob kimlikleriyle doğrulandı; aktif Play v2 ürün/fiyat SDK kanıtı PB065/083. Gerçek satın alma henüz denenmedi.
 - PB089 docs kaynakla eşleşir:71 dil/native speech/isteğe bağlı metin vekili; sağlayıcı saklaması doğrulanmadı, kota sahipliği süresiz. Veri güvenliği Console taslağıdır.
 
 ## Yayın durumu (VERIFIED 2026-10-10, read-only Play tracks)
 
-- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.2.0 (7) completed (10October SDK read-only); PB-061 store73 locales/584 PNG+73feature validated, test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444.
+- Play Console uygulaması com.crazypenguin.nshoptor (hesap crazypenguin). Üretim: 1.0.0 (1). Dahili test: 1.2.1 (8) completed (10October SDK read-only); PB-061 store73 locales/584 PNG+73feature validated, test listesi "teste" seçili, katılım https://play.google.com/apps/internaltest/4700463295417403444.
 - Yayın kökü `D:\AppPublishing\apps\nshoptor` (imza, kimlikler, 73 Play dili mağaza metni/görselleri). Metin kaynağı `tool/store/listing.py` (+ `listing_extra.json`, `listing_translate.py`); toplu görsel `tool/store/capture_all.py`; uygulama çevirisi `tool/i18n/translate.py`. 71 uygulama dili (ARB), napp_pro/napp_ads kendi metinleri tr/en (diğerlerinde İngilizce). 1.2 mağaza metinleri73 locale için doğrulandı; 584 ekran/73 tanıtım görseli doğrulandı; Play'e yüklenmedi (üretime alırken `push_metadata`).
 - Ürünler: `nshoptor_pro_v2`100, `nshoptor_max_v2`300 (yeni abonelik); eski `nshoptor_pro`200 / `nshoptor_max`1000 korunur, `com.crazypenguin.nshoptor.pro_lifetime` (ömür boyu reklamsız). Ödüllü reklam birimi app-ids.env'de (ADMOB_REWARDED_ANDROID).
 ### Server
