@@ -76,12 +76,12 @@ void main() {
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(900, 1800));
     await boot(tester);
+    addTearDown(() => disposeApp(tester));
 
     // 1) Ana ekran premium boş durum: başlık + gövde + slogan + CTA çizildi.
-    expect(find.byIcon(Icons.shopping_basket_outlined), findsOneWidget);
+    expect(find.byKey(const Key('home_new_list_button')), findsOneWidget);
     // Boş-durum CTA + FAB: iki 'New list' beklenir (PB-036).
     expect(find.text('New list'), findsNWidgets(2));
-    try { await binding.takeScreenshot('home_light'); } catch (_) {}
 
     // 2) Ayarlar → tema Koyu → MaterialApp.themeMode anında değişir.
     await tester.tap(find.text('Settings'));
@@ -97,20 +97,18 @@ void main() {
     // Aynı anahtar kalıcıda da: repo okuması aynı değeri görür.
     expect(
         SettingsRepository(db, NappSettingsStoreOps(store)).themeMode, 'dark');
-    try { await binding.takeScreenshot('settings_dark'); } catch (_) {}
 
     // 3) Ana ekrana dön: koyu temada çizim (kareler üretildi).
     await tester.tap(find.text('Home'));
     await settle(tester);
-    try { await binding.takeScreenshot('home_dark'); } catch (_) {}
 
-    await disposeApp(tester);
   });
 
   testWidgets('cihaz: hatırlatma kurma akışı (izin önceden verildi)',
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(900, 1800));
     await boot(tester);
+    addTearDown(() => disposeApp(tester));
 
     // Liste oluştur ve detayına gir.
     await tester.tap(find.text('Lists'));
@@ -121,10 +119,10 @@ void main() {
         find.byKey(const Key('list_title_field')), 'Reminder list');
     await tester.tap(find.byKey(const Key('list_save_button')));
     await settle(tester);
-    await tester.tap(find.text('Reminder list'));
-    await settle(tester);
 
     // Alarm düğmesi → tarih seçici → OK → saat seçici → OK.
+    await tester.tap(find.byKey(const Key('detail_more_menu')));
+    await settle(tester);
     await tester.tap(find.byKey(const Key('detail_set_reminder')));
     await settle(tester);
     final okFinder = find.text('OK');
@@ -136,8 +134,6 @@ void main() {
 
     // Snackbar: hatırlatma kuruldu (OS tarafında dumpsys ile doğrulanır).
     expect(find.text('Reminder set.'), findsOneWidget);
-    try { await binding.takeScreenshot('reminder_set'); } catch (_) {}
 
-    await disposeApp(tester);
   });
 }

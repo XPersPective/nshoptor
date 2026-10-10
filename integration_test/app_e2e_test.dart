@@ -1,5 +1,5 @@
 // Uçtan uca ana akış (spec §13, T14):
-// liste oluştur → ondalıklı ürün ekle → alışverişi başlat → gerçek fiyat gir
+// liste oluştur → ondalıklı ürün ekle → aynı listede gerçek fiyat gir
 // → tamamla → sonuç ekranı → dil değişimi → yeniden başlatma sonrası kalıcılık.
 //
 // `flutter test integration_test/app_e2e_test.dart` ile host üzerinde koşar.
@@ -11,6 +11,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
 import 'package:nshoptor/app/app.dart';
+import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 
 void main() {
@@ -18,6 +19,8 @@ void main() {
   binding.framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive;
 
   late AppDatabase db;
+  setUp(() => AppFormatLocale.attach('tr'));
+  tearDown(AppFormatLocale.attachReset);
 
   Future<void> disposeApp(WidgetTester tester) async {
     await tester.pumpWidget(const SizedBox.shrink());
@@ -42,10 +45,8 @@ void main() {
     ));
     await tester.pumpAndSettle();
 
-    // 1) Yeni liste ana eylemi → Listeler sekmesi → liste oluştur.
+    // 1) Yeni liste ana eylemi → editör → aynı liste.
     await tester.tap(find.byKey(const Key('home_new_list_button')));
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('lists_new_list_button')));
     await settle(tester);
     await tester.enterText(
         find.byKey(const Key('list_title_field')), 'E2E Market');
@@ -53,9 +54,7 @@ void main() {
     await settle(tester);
     expect(find.text('E2E Market'), findsOneWidget);
 
-    // 2) Liste kartı → detay → ondalıklı ürün ekle.
-    await tester.tap(find.text('E2E Market'));
-    await settle(tester);
+    // 2) Aynı liste detayında ondalıklı ürün ekle.
     await tester.tap(find.byKey(const Key('detail_add_item_button')));
     await settle(tester);
     await tester.enterText(find.byKey(const Key('item_name_field')), 'Domates');
@@ -67,29 +66,30 @@ void main() {
     await settle(tester);
     await tester.enterText(find.byKey(const Key('item_price_field')), '42,90');
     await settle(tester);
+    await tester.ensureVisible(find.byKey(const Key('item_save_button')));
     await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
     expect(find.text('Domates'), findsOneWidget);
-    expect(find.text('64,35 ₺'), findsOneWidget); // 1,5 × 42,90
+    expect(find.textContaining('64,35'), findsWidgets); // 1,5 × 42,90
 
-    // 3) Alışverişi başlat → alışveriş modu.
-    await tester.tap(find.byKey(const Key('detail_start_shopping')));
-    await settle(tester);
-    expect(find.byKey(const Key('summary_strip')), findsOneWidget);
-
-    // 4) Gerçek fiyat gir: 1,5 kg × 45,00 = 67,50.
+    // 3) Checkbox does not manufacture a purchase or actual price.
     await tester.tap(find.byType(Checkbox).first);
     await settle(tester);
-    await tester.enterText(
-        find.byKey(const Key('entry_price_field')), '45,00');
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    // 4) The same row opens actual-price fields; plan stays independent.
+    await tester.tap(find.text('Domates'));
     await settle(tester);
-    await tester.tap(find.byKey(const Key('entry_save_button')));
+    await tester.enterText(find.byKey(const Key('item_actual_price_field')), '45,00');
+    await tester.enterText(find.byKey(const Key('item_actual_quantity_field')), '1,5');
     await settle(tester);
-    expect(find.text('67,50 ₺'), findsWidgets); // sepet + tahmini kasa
+    await tester.ensureVisible(find.byKey(const Key('item_save_button')));
+    await tester.tap(find.byKey(const Key('item_save_button')));
+    await settle(tester);
+    expect(find.textContaining('67,50'), findsWidgets);
+    expect((await db.select(db.purchaseEntries).get()).single.actualLineTotalMinorUnits, 6750);
+    expect((await db.select(db.plannedItems).get()).single.plannedQuantity, '1.5');
 
-    // 5) Geri dön → bitir → sonuç ekranı.
-    await tester.tap(find.byType(BackButton).first);
-    await settle(tester);
+    // 5) Aynı liste → bitir → sonuç ekranı.
     await tester.tap(find.byKey(const Key('detail_finish_button')));
     await settle(tester);
     // Sonuç: plan 64,35; gerçek 67,50; fark +3,15 (₺ farkı, %4,9).
@@ -139,8 +139,6 @@ void main() {
     ));
     await settle(tester);
     await tester.tap(find.byKey(const Key('home_new_list_button')));
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('lists_new_list_button')));
     await settle(tester);
     await tester.enterText(
         find.byKey(const Key('list_title_field')), 'Kalıcı liste');

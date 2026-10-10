@@ -18,6 +18,7 @@ import 'package:nshoptor/app/app.dart';
 import 'package:nshoptor/app/app_defaults.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/core/money/locale_conventions.dart';
+import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:nshoptor/features/settings/settings_repository.dart';
 
 const _locale = String.fromEnvironment('STORE_LOCALE');
@@ -186,6 +187,8 @@ void main() {
 
     final store = SettingsStore()..setString(SettingsRepository.currencyKey, data.currency);
     AppDefaults.attach(store);
+    AppFormatLocale.attach(data.items.first.$2.contains(',') ? 'tr' : 'en');
+    addTearDown(AppFormatLocale.attachReset);
     db = AppDatabase(NativeDatabase.memory());
 
     // Takvim ve grafikler dolu görünsün: geçmiş tamamlanmış alışverişler.
@@ -200,7 +203,7 @@ void main() {
             ));
         await db.into(db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(
               listId: id, name: '-', normalizedName: '-', actualQuantity: '1',
-              actualUnitCode: 'piece', actualLineTotalMinorUnits: minor));
+              actualUnitCode: 'piece', actualLineTotalMinorUnits: minor, userConfirmed: const Value(true)));
       }
     });
 
@@ -210,13 +213,9 @@ void main() {
     // Liste oluştur
     await tester.tap(find.byKey(const Key('home_new_list_button')));
     await settle(tester);
-    await tester.tap(find.byKey(const Key('lists_new_list_button')));
-    await settle(tester);
     await tester.enterText(find.byKey(const Key('list_title_field')), data.list);
     await tester.enterText(find.byKey(const Key('list_budget_field')), data.budget);
     await tester.tap(find.byKey(const Key('list_save_button')));
-    await settle(tester);
-    await tester.tap(find.text(data.list).last);
     await settle(tester);
 
     // Ürünler
@@ -231,6 +230,7 @@ void main() {
         await shot(tester, '03'); // ürün formu
         first = false;
       }
+      await tester.ensureVisible(find.byKey(const Key('item_save_button')));
       await tester.tap(find.byKey(const Key('item_save_button')));
       await settle(tester);
     }
@@ -248,30 +248,25 @@ void main() {
     await settle(tester);
 
     // Alışveriş modu: gerçek fiyatlar
-    await tester.tap(find.byKey(const Key('detail_start_shopping')));
-    await settle(tester);
     for (var i = 0; i < data.real.length; i++) {
       if (i == 3) {
         await tester.drag(find.byType(Scrollable).last, const Offset(0, 800));
         await shot(tester, '04'); // alışveriş modu (yarı yolda)
       }
-      // Liste tembeldir: dil/yazı tipi yüksekliğine göre görünen satır sayısı değişir.
-      final box = find.descendant(
-          of: find.widgetWithText(ListTile, data.items[i].$1), matching: find.byType(Checkbox));
-      await tester.scrollUntilVisible(box, 120, scrollable: find.byType(Scrollable).last);
+      final row = find.text(data.items[i].$1);
+      await tester.scrollUntilVisible(row, 120, scrollable: find.byType(Scrollable).last);
       await tester.pumpAndSettle();
-      await tester.tap(box);
+      await tester.tap(row);
       await settle(tester);
-      await tester.enterText(find.byKey(const Key('entry_price_field')), data.real[i]);
+      await tester.enterText(find.byKey(const Key('item_actual_price_field')), data.real[i]);
       await settle(tester);
       if (i == 0) await shot(tester, '05'); // hızlı fiyat girişi
-      await tester.tap(find.byKey(const Key('entry_save_button')));
+      await tester.ensureVisible(find.byKey(const Key('item_save_button')));
+      await tester.tap(find.byKey(const Key('item_save_button')));
       await settle(tester);
     }
 
     // Sonuç: tek bakışta karşılaştırma tablosu
-    await tester.tap(find.byType(BackButton).first);
-    await settle(tester);
     await tester.tap(find.byKey(const Key('detail_finish_button')));
     await settle(tester);
     await shot(tester, '06');
