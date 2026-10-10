@@ -30,9 +30,9 @@ COPIES = {'en': ['en-GB'], 'es': ['es-419', 'es-US'], 'fr': ['fr-CA'], 'pt': ['p
 TMP = pathlib.Path('build/store_tmp')
 
 
-def flutter(test, code, out):
+def flutter(tests, code, out):
     r = subprocess.run(
-        ['flutter', 'test', f'test/{test}', '--update-goldens', f'--dart-define=STORE_LOCALE={code}',
+        ['flutter', 'test', *[f'test/{test}' for test in tests], '--no-pub', '--concurrency=1', '--update-goldens', f'--dart-define=STORE_LOCALE={code}',
          f'--dart-define=STORE_OUT={out}'],
         capture_output=True, text=True, encoding='utf8', errors='replace', shell=True)
     return r.returncode == 0, r.stdout[-600:]
@@ -40,26 +40,39 @@ def flutter(test, code, out):
 
 def main(meta, codes):
     meta = pathlib.Path(meta)
+    failed = []
     for code in codes or PLAY:
-        shots, fg = TMP / code / 'shots', TMP / code / 'fg'
+        shots = fg = TMP / code / 'current'
         # golden yolu test/ dizinine goredir
-        ok1, log1 = flutter('store_capture_test.dart', code, str(shots.resolve()).replace('\\', '/'))
-        ok2, log2 = flutter('store_feature_test.dart', code, str(fg.resolve()).replace('\\', '/'))
-        if not (ok1 and ok2):
-            print('HATA', code, log1 if not ok1 else log2, flush=True)
+        ok, log = flutter(['store_capture_test.dart', 'store_feature_test.dart'], code,
+                          str(shots.resolve()).replace('\\', '/'))
+        if not ok:
+            print('HATA', code, log, flush=True)
+            failed.append(code)
             continue
+        files = sorted(shots.glob('0*.png'))
+        assert len(files) == 8, f'{code}: expected 8 screenshots'
+        for f in files:
+            with Image.open(f) as img:
+                assert img.size == (1080, 1920), f'{code}: wrong screenshot size'
+                img.verify()
+        with Image.open(fg / 'featureGraphic.png') as img:
+            assert img.size == (1024, 500), f'{code}: wrong feature size'
+            img.verify()
         for loc in [PLAY[code]] + COPIES.get(code, []):
             d = meta / loc / 'images'
             (d / 'phoneScreenshots').mkdir(parents=True, exist_ok=True)
             for old in (d / 'phoneScreenshots').glob('*.png'):
                 old.unlink()
-            for f in sorted(shots.glob('0*.png')):
+            for f in files:
                 shutil.copy(f, d / 'phoneScreenshots' / f'{f.stem}_{code}.png')
             Image.open(fg / 'featureGraphic.png').convert('RGB').save(d / 'featureGraphic.jpg', quality=92)
             icon = meta / 'en-US' / 'images' / 'icon.png'
             if not (d / 'icon.png').exists() and icon.exists():
                 shutil.copy(icon, d / 'icon.png')
         print('tamam', code, flush=True)
+    if failed:
+        raise SystemExit('Failed captures: ' + ', '.join(failed))
 
 
 if __name__ == '__main__':

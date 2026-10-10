@@ -53,12 +53,12 @@ def conf():
     return c['AI_URL'].strip(), c['AI_MODEL'].strip(), c['AI_KEY'].strip()
 
 
-def ask(lang, part):
+def ask(lang, part, prompt=None):
     url, model, k = conf()
     body = {
         'model': model,
         'messages': [
-            {'role': 'system', 'content': PROMPT.format(lang=lang)},
+            {'role': 'system', 'content': (prompt or PROMPT).format(lang=lang)},
             {'role': 'user', 'content': json.dumps(part, ensure_ascii=False)},
         ],
         'response_format': {'type': 'json_object'},

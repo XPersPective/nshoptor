@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0] — 2026-10-10
+
+- Planlama, alışveriş ve tamamlananlar için tek tikli liste; tahmin ve gerçek miktar/fiyat bağımsız.
+- Kontrollü ürün düzeltme, fiş uzlaştırma ve geri alma; alınmayan ürünler ayrı gösterilir.
+- Cihaz içi ses/fotoğraf önizlemeleri, PDF alışveriş özeti ve miktar/sıklık grafikleri.
+- 71 dil; dil, sayı biçimi ve para birimi bağımsız.
+- Yeni aylık AI kotaları 10/100/300; eski Pro/Max 200/1000 hakları korunur.
+
 ## [1.1.4] — 2026-10-09
 
 - Her satırda "Tahmini" ve "Gerçek" etiketleri yazılı (iki etiketli satır)
