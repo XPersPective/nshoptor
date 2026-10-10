@@ -46,7 +46,7 @@ class BackupRepository {
 
   /// Tüm tabloları sürümlenmiş JSON'a döker. Fotoğraf dosyaları (binary)
   /// dahil değildir; yalnız yollar taşınır — "büyük yedek" uyarısı UI'dadır.
-  Future<String> exportBackup() async {
+  Future<String> exportBackup() => _db.transaction(() async {
     final lists = await _db.select(_db.shoppingLists).get();
     final items = await _db.select(_db.plannedItems).get();
     final entries = await _db.select(_db.purchaseEntries).get();
@@ -80,7 +80,7 @@ class BackupRepository {
       'reminders': [for (final r in reminders) r.toJson()],
     };
     return jsonEncode(payload);
-  }
+  });
 
   /// İçe aktarmadan önce tam doğrulama: format, sürüm ve ana bölümler.
   /// Geçersizse [FormatException]; bozuk dosya mevcut veriye ASLA dokunmaz.
@@ -132,7 +132,7 @@ class BackupRepository {
     return preview;
   }
 
-  /// Birleştir: kimlikler korunur; insertOrReplace ile üzerine yazılır.
+  /// Birleştir: kimlikler ve yedekte olmayan çocuk kayıtlar korunur.
   /// FK'ya saygı için ebeveyn tablolar önce yazılır.
   Future<void> _importMerge(Map<String, dynamic> data) async {
     Future<void> put<R extends Table, D>(
@@ -142,21 +142,20 @@ class BackupRepository {
       for (final row in rows ?? <Map<String, dynamic>>[]) {
         await _db
             .into(table)
-            .insert(fromJson(row as Map<String, dynamic>),
-                mode: InsertMode.insertOrReplace);
+            .insertOnConflictUpdate(fromJson(row as Map<String, dynamic>));
       }
     }
 
     await put(_db.stores, data['stores'] as List<dynamic>?, Store.fromJson);
     await put(_db.categories, data['categories'] as List<dynamic>?, Category.fromJson);
     await put(_db.aisles, data['aisles'] as List<dynamic>?, Aisle.fromJson);
+    await put(_db.productMemory, data['productMemory'] as List<dynamic>?, ProductMemoryData.fromJson);
     await put(_db.shoppingLists, data['lists'] as List<dynamic>?, ShoppingList.fromJson);
     await put(_db.plannedItems, data['plannedItems'] as List<dynamic>?, PlannedItem.fromJson);
+    await put(_db.receipts, data['receipts'] as List<dynamic>?, _receiptFromJson);
     await put(_db.purchaseEntries, data['purchaseEntries'] as List<dynamic>?, PurchaseEntry.fromJson);
-    await put(_db.productMemory, data['productMemory'] as List<dynamic>?, ProductMemoryData.fromJson);
     await put(_db.productAliases, data['productAliases'] as List<dynamic>?, ProductAliase.fromJson);
     await put(_db.priceObservations, data['priceObservations'] as List<dynamic>?, PriceObservation.fromJson);
-    await put(_db.receipts, data['receipts'] as List<dynamic>?, Receipt.fromJson);
     await put(_db.receiptCandidateLines, data['receiptCandidateLines'] as List<dynamic>?, ReceiptCandidateLine.fromJson);
     await put(_db.attachments, data['attachments'] as List<dynamic>?, Attachment.fromJson);
     await put(_db.reminders, data['reminders'] as List<dynamic>?, Reminder.fromJson);
@@ -180,8 +179,12 @@ class BackupRepository {
       return next + 1;
     }
 
-    int? remap(Map<int, int> map, dynamic oldId) =>
-        oldId == null ? null : map[oldId as int];
+    int? remap(Map<int, int> map, dynamic oldId) {
+      if (oldId == null) return null;
+      final mapped = map[oldId as int];
+      if (mapped == null) throw const FormatException('missing backup relation');
+      return mapped;
+    }
 
     // 1) bağımsız tablolar
     var next = await _nextId(_db.stores);
@@ -200,6 +203,7 @@ class BackupRepository {
     for (final json in _asMaps(data['productMemory'])) {
       allocate(productIds, json, next);
       next++;
+      json['defaultCategoryId'] = remap(categoryIds, json['defaultCategoryId']);
       await _db.into(_db.productMemory).insert(ProductMemoryData.fromJson(json));
     }
 
@@ -208,6 +212,7 @@ class BackupRepository {
     for (final json in _asMaps(data['lists'])) {
       allocate(listIds, json, next);
       next++;
+      json['storeId'] = remap(storeIds, json['storeId']);
       await _db.into(_db.shoppingLists).insert(ShoppingList.fromJson(json));
     }
 
@@ -225,11 +230,19 @@ class BackupRepository {
     for (final json in _asMaps(data['plannedItems'])) {
       allocate(itemIds, json, next);
       next++;
-      json['listId'] = listIds[json['listId'] as int];
+      json['listId'] = remap(listIds, json['listId']);
       json['productId'] = remap(productIds, json['productId']);
       json['categoryId'] = remap(categoryIds, json['categoryId']);
       json['aisleId'] = remap(aisleIds, json['aisleId']);
       await _db.into(_db.plannedItems).insert(PlannedItem.fromJson(json));
+    }
+
+    // Fişler satın alım kayıtlarından önce: receiptId FK'sı hazır olmalı.
+    next = await _nextId(_db.receipts);
+    for (final json in _asMaps(data['receipts'])) {
+      allocate(receiptIds, json, next++);
+      json['listId'] = remap(listIds, json['listId']);
+      await _db.into(_db.receipts).insert(_receiptFromJson(json));
     }
 
     // 5) satın alım kayıtları (yeni id tahsisi ile)
@@ -237,35 +250,34 @@ class BackupRepository {
     for (final json in _asMaps(data['purchaseEntries'])) {
       allocate(entryIds, json, next);
       next++;
-      json['listId'] = listIds[json['listId'] as int];
+      json['listId'] = remap(listIds, json['listId']);
       json['plannedItemId'] = remap(itemIds, json['plannedItemId']);
       json['receiptId'] = remap(receiptIds, json['receiptId']);
       await _db.into(_db.purchaseEntries).insert(PurchaseEntry.fromJson(json));
     }
 
     // 6) alias + gözlemler
+    next = await _nextId(_db.productAliases);
     for (final json in _asMaps(data['productAliases'])) {
-      json['productId'] = productIds[json['productId'] as int];
+      json['id'] = next++;
+      json['productId'] = remap(productIds, json['productId']);
       json['storeId'] = remap(storeIds, json['storeId']);
       await _db.into(_db.productAliases).insert(ProductAliase.fromJson(json));
     }
+    next = await _nextId(_db.priceObservations);
     for (final json in _asMaps(data['priceObservations'])) {
+      json['id'] = next++;
       json['productId'] = remap(productIds, json['productId']);
       json['purchaseEntryId'] = remap(entryIds, json['purchaseEntryId']);
       json['storeId'] = remap(storeIds, json['storeId']);
       await _db.into(_db.priceObservations).insert(PriceObservation.fromJson(json));
     }
 
-    // 7) fişler + aday satırlar
-    next = await _nextId(_db.receipts);
-    for (final json in _asMaps(data['receipts'])) {
-      allocate(receiptIds, json, next);
-      next++;
-      json['listId'] = remap(listIds, json['listId']);
-      await _db.into(_db.receipts).insert(Receipt.fromJson(json));
-    }
+    // 7) fiş aday satırları
+    next = await _nextId(_db.receiptCandidateLines);
     for (final json in _asMaps(data['receiptCandidateLines'])) {
-      json['receiptId'] = receiptIds[json['receiptId'] as int];
+      json['id'] = next++;
+      json['receiptId'] = remap(receiptIds, json['receiptId']);
       json['linkedPlannedItemId'] = remap(itemIds, json['linkedPlannedItemId']);
       await _db
           .into(_db.receiptCandidateLines)
@@ -273,11 +285,23 @@ class BackupRepository {
     }
 
     // 8) ekler + hatırlatmalar
+    next = await _nextId(_db.attachments);
     for (final json in _asMaps(data['attachments'])) {
+      json['id'] = next++;
+      final owners = switch (json['ownerType']) {
+        'list' => listIds,
+        'plannedItem' => itemIds,
+        'purchaseEntry' => entryIds,
+        'receipt' => receiptIds,
+        _ => throw const FormatException('unsupported attachment owner'),
+      };
+      json['ownerId'] = remap(owners, json['ownerId']);
       await _db.into(_db.attachments).insert(Attachment.fromJson(json));
     }
+    next = await _nextId(_db.reminders);
     for (final json in _asMaps(data['reminders'])) {
-      json['listId'] = listIds[json['listId'] as int];
+      json['id'] = next++;
+      json['listId'] = remap(listIds, json['listId']);
       await _db.into(_db.reminders).insert(Reminder.fromJson(json));
     }
   }
@@ -292,4 +316,9 @@ class BackupRepository {
 
   List<Map<String, dynamic>> _asMaps(dynamic value) =>
       [if (value is List) for (final v in value) v as Map<String, dynamic>];
+
+  // Drift's default serializer casts this converted column to List<String>.
+  Receipt _receiptFromJson(Map<String, dynamic> json) => Receipt.fromJson({
+    ...json, 'imagePaths': (json['imagePaths'] as List).cast<String>(),
+  });
 }

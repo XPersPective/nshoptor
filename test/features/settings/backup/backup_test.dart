@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -55,6 +57,101 @@ void main() {
   }
 
   group('round-trip (merge)', () {
+    test('full linked snapshot preserves newer rows and every copied relation', () async {
+      final listId = await seedOneList();
+      final item = (await db.select(db.plannedItems).get()).single;
+      final entry = (await db.select(db.purchaseEntries).get()).single;
+      final store = await db.into(db.stores).insert(StoresCompanion.insert(name: 'Store'));
+      final category = await db.into(db.categories).insert(CategoriesCompanion.insert(name: 'Category'));
+      final aisle = await db.into(db.aisles).insert(AislesCompanion.insert(name: 'Aisle', storeId: Value(store)));
+      final product = await db.into(db.productMemory).insert(ProductMemoryCompanion.insert(
+        canonicalName: 'Domates', normalizedName: 'domates', defaultCategoryId: Value(category)));
+      await (db.update(db.shoppingLists)..where((r) => r.id.equals(listId))).write(ShoppingListsCompanion(storeId: Value(store)));
+      await (db.update(db.plannedItems)..where((r) => r.id.equals(item.id))).write(PlannedItemsCompanion(
+        productId: Value(product), categoryId: Value(category), aisleId: Value(aisle)));
+      final receipt = await db.into(db.receipts).insert(ReceiptsCompanion.insert(
+        listId: Value(listId), imagePaths: const Value(['owned-receipt.jpg'])));
+      await (db.update(db.purchaseEntries)..where((r) => r.id.equals(entry.id))).write(PurchaseEntriesCompanion(receiptId: Value(receipt)));
+      await db.into(db.productAliases).insert(ProductAliasesCompanion.insert(
+        productId: product, alias: 'Tomato', normalizedAlias: 'tomato', storeId: Value(store)));
+      await db.into(db.priceObservations).insert(PriceObservationsCompanion.insert(
+        quantity: '2', unitCode: 'kilogram', unitPrice: '45', lineTotalMinorUnits: 9000,
+        currencyCode: 'TRY', source: 'manual', productId: Value(product),
+        purchaseEntryId: Value(entry.id), storeId: Value(store)));
+      await db.into(db.receiptCandidateLines).insert(ReceiptCandidateLinesCompanion.insert(
+        receiptId: receipt, rawText: 'Tomato', linkedPlannedItemId: Value(item.id)));
+      for (final (type, owner) in [('list', listId), ('plannedItem', item.id), ('purchaseEntry', entry.id), ('receipt', receipt)]) {
+        await db.into(db.attachments).insert(AttachmentsCompanion.insert(
+          ownerType: type, ownerId: owner, filePath: 'record-only-$type.jpg'));
+      }
+      await db.into(db.reminders).insert(RemindersCompanion.insert(listId: listId, scheduledAt: DateTime(2030)));
+      final snapshot = await backup.exportBackup();
+      await db.into(db.plannedItems).insert(PlannedItemsCompanion.insert(
+        listId: listId, name: 'Newer', normalizedName: 'newer', plannedQuantity: '1',
+        plannedUnitCode: 'piece', pricingInputMode: 'unitPrice'));
+      await db.into(db.priceObservations).insert(PriceObservationsCompanion.insert(
+        quantity: '1', unitCode: 'piece', unitPrice: '1', lineTotalMinorUnits: 100,
+        currencyCode: 'TRY', source: 'manual', purchaseEntryId: Value(entry.id)));
+      await backup.importBackup(snapshot, ImportMode.merge);
+      expect((await db.select(db.plannedItems).get()).where((r) => r.name == 'Newer'), hasLength(1));
+      expect(await db.select(db.priceObservations).get(), hasLength(2));
+      expect((await db.select(db.priceObservations).get()).last.purchaseEntryId, entry.id);
+
+      final other = AppDatabase(NativeDatabase.memory());
+      try {
+        await BackupRepository(other).importBackup(snapshot, ImportMode.merge);
+        expect((await other.select(other.purchaseEntries).get()).single.receiptId, receipt);
+      } finally { await other.close(); }
+
+      final before = jsonDecode(await backup.exportBackup()) as Map<String, dynamic>;
+      final saved = jsonDecode(snapshot) as Map<String, dynamic>;
+      await backup.importBackup(snapshot, ImportMode.separate);
+      final after = jsonDecode(await backup.exportBackup()) as Map<String, dynamic>;
+      for (final key in saved.keys.where((k) => saved[k] is List)) {
+        final rows = after[key] as List;
+        expect(rows.length, (before[key] as List).length + (saved[key] as List).length, reason: key);
+        expect(rows.map((r) => r['id']).toSet().length, rows.length, reason: '$key IDs');
+      }
+      final copiedList = (await db.select(db.shoppingLists).get()).last;
+      final copiedItem = (await db.select(db.plannedItems).get()).last;
+      final copiedEntry = (await db.select(db.purchaseEntries).get()).last;
+      final copiedReceipt = (await db.select(db.receipts).get()).last;
+      final copiedProduct = (await db.select(db.productMemory).get()).last;
+      final copiedStore = (await db.select(db.stores).get()).last;
+      final copiedCategory = (await db.select(db.categories).get()).last;
+      final copiedAisle = (await db.select(db.aisles).get()).last;
+      expect(copiedList.storeId, copiedStore.id);
+      expect(copiedAisle.storeId, copiedStore.id);
+      expect(copiedProduct.defaultCategoryId, copiedCategory.id);
+      expect((copiedItem.listId, copiedItem.productId, copiedItem.categoryId, copiedItem.aisleId),
+        (copiedList.id, copiedProduct.id, copiedCategory.id, copiedAisle.id));
+      expect((copiedEntry.listId, copiedEntry.plannedItemId, copiedEntry.receiptId),
+        (copiedList.id, copiedItem.id, copiedReceipt.id));
+      expect(copiedReceipt.listId, copiedList.id);
+      expect(copiedReceipt.imagePaths, ['owned-receipt.jpg']);
+      final alias = (await db.select(db.productAliases).get()).last;
+      expect((alias.productId, alias.storeId), (copiedProduct.id, copiedStore.id));
+      final observation = (await db.select(db.priceObservations).get()).last;
+      expect((observation.productId, observation.purchaseEntryId, observation.storeId),
+        (copiedProduct.id, copiedEntry.id, copiedStore.id));
+      final candidate = (await db.select(db.receiptCandidateLines).get()).last;
+      expect((candidate.receiptId, candidate.linkedPlannedItemId), (copiedReceipt.id, copiedItem.id));
+      final owners = {'list': copiedList.id, 'plannedItem': copiedItem.id,
+        'purchaseEntry': copiedEntry.id, 'receipt': copiedReceipt.id};
+      for (final attachment in (await db.select(db.attachments).get()).skip(4)) {
+        expect(attachment.ownerId, owners[attachment.ownerType]);
+      }
+      expect((await db.select(db.reminders).get()).last.listId, copiedList.id);
+
+      final broken = jsonDecode(snapshot) as Map<String, dynamic>;
+      (broken['plannedItems'] as List).first['productId'] = 9999;
+      final stable = await backup.exportBackup();
+      await expectLater(backup.importBackup(jsonEncode(broken), ImportMode.separate), throwsFormatException);
+      // exportedAt changes, compare records rather than clock metadata.
+      final stableRows = jsonDecode(stable) as Map<String, dynamic>..remove('exportedAt');
+      final currentRows = jsonDecode(await backup.exportBackup()) as Map<String, dynamic>..remove('exportedAt');
+      expect(currentRows, stableRows);
+    });
     test('dışa aktar → içe aktar: aynı kayıtlar gelir', () async {
       await seedOneList();
       final json = await backup.exportBackup();
