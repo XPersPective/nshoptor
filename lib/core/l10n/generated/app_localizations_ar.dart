@@ -491,10 +491,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get backupExported => 'تم تصدير النسخة الاحتياطية بنجاح.';
 
   @override
-  String get backupSizeWarning =>
-      'نسخة كبيرة: قد يكون الملف كبيرًا. هل تريد تضمين الصور أيضًا؟';
-
-  @override
   String get deleteAllSection => 'منطقة الخطر';
 
   @override
@@ -1082,4 +1078,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get csvExportAction => 'تصدير CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'يحتوي ملف JSON على سجلات وليس ملفات صور. حد الاستيراد: 16 ميجابايت.';
+
+  @override
+  String get backupImportFailed =>
+      'تعذر استيراد هذا النسخة الاحتياطية. لم يتم تغيير بياناتك.';
+
+  @override
+  String get backupImported => 'تم استيراد النسخة الاحتياطية بنجاح.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists قوائم · $items عناصر · $entries مشتريات';
+  }
 }

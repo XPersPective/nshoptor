@@ -493,10 +493,6 @@ class AppLocalizationsFa extends AppLocalizations {
   String get backupExported => 'پشتیبان با موفقیت صادر شد.';
 
   @override
-  String get backupSizeWarning =>
-      'پشتیبان بزرگ: فایل ممکن است بزرگ باشد. آیا می‌خواهید عکس‌ها نیز شامل شوند؟';
-
-  @override
   String get deleteAllSection => 'منطقه خطرناک';
 
   @override
@@ -1088,4 +1084,20 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get csvExportAction => 'خروجی CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'فایل JSON شامل رکوردها است، نه عکس‌ها. محدودیت وارد کردن: ۱۶ مگابایت.';
+
+  @override
+  String get backupImportFailed =>
+      'امکان وارد کردن این پشتیبان وجود ندارد. داده‌های شما تغییر نکرده است.';
+
+  @override
+  String get backupImported => 'پشتیبان با موفقیت وارد شد.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists لیست · $items کالا · $entries خرید';
+  }
 }

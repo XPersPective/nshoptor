@@ -156,7 +156,6 @@
   "separateImportLabel": "Nhập dưới dạng bản sao riêng biệt",
   "importCancelled": "Đã hủy nhập.",
   "backupExported": "Sao lưu đã được xuất thành công.",
-  "backupSizeWarning": "Bản sao lưu lớn: tệp có thể khá nặng. Bạn có muốn bao gồm cả ảnh không?",
   "deleteAllSection": "Khu vực nguy hiểm",
   "deleteAllLabel": "Xóa toàn bộ dữ liệu",
   "deleteAllConfirm": "Điều này sẽ xóa tất cả danh sách, lịch sử, ảnh biên lai và giá. Các tệp do bạn xuất vẫn nằm trên ổ đĩa của bạn. Tiếp tục?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Không thể giữ màn hình luôn sáng. Vui lòng thử lại.",
   "purchaseHistoryHint": "Tất cả các lần mua sắm đã hoàn tất. Việc trả hàng sẽ làm giảm tổng chi tiêu. Ngày tháng đề cập đến thời điểm hoàn tất mua sắm. Một lần đi mua không đủ để tính khoảng cách trung bình giữa các lần.",
   "planLegacyRights": "Các gói đăng ký Pro và Max hiện tại sẽ giữ nguyên hạn mức AI hàng tháng ban đầu. Các ưu đãi mới có 100 và 300 yêu cầu.",
-  "csvExportAction": "Xuất CSV"
+  "csvExportAction": "Xuất CSV",
+  "backupSizeWarning": "JSON bao gồm các bản ghi, không phải tệp ảnh. Giới hạn nhập: 16 MB.",
+  "backupImportFailed": "Không thể nhập bản sao lưu này. Dữ liệu của bạn không bị thay đổi.",
+  "backupImported": "Sao lưu đã được nhập thành công.",
+  "backupPreviewCounts": "{lists} danh sách · {items} mặt hàng · {entries} lần mua"
 }

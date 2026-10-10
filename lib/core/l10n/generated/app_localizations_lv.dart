@@ -494,10 +494,6 @@ class AppLocalizationsLv extends AppLocalizations {
   String get backupExported => 'Rezerves kopija veiksmīgi eksportēta.';
 
   @override
-  String get backupSizeWarning =>
-      'Liela rezerves kopija: fails var būt liels. Vai vēlaties iekļaut arī fotogrāfijas?';
-
-  @override
   String get deleteAllSection => 'Bīstamā zona';
 
   @override
@@ -1094,4 +1090,20 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Eksportēt CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON ietver ierakstus, nevis foto failus. Importa limits: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Neizdevās importēt šo rezerves kopiju. Jūsu dati netika mainīti.';
+
+  @override
+  String get backupImported => 'Rezerves kopija veiksmīgi importēta.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists saraksti · $items preces · $entries pirkumi';
+  }
 }

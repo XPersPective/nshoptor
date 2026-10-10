@@ -492,10 +492,6 @@ class AppLocalizationsSi extends AppLocalizations {
   String get backupExported => 'බැකප් සාර්ථකව අපනයනය කරන ලදී.';
 
   @override
-  String get backupSizeWarning =>
-      'විශාල බැකප්: ගොනුව විශාල විය හැක. ඡායාරූප ද ඇතුළත් කිරීමට අවශ්‍යද?';
-
-  @override
   String get deleteAllSection => 'ඛේදවාචක කලාපය';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV අපනයනය කරන්න';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON වලට ලේඛන ඇතුළත් වේ, ඡායාරූප ගොනු නොවේ. අපනයන සීමාව: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'මෙම බැක්අප් එක ආනයන කළ නොහැක. ඔබේ දත්ත වෙනස් කර නැත.';
+
+  @override
+  String get backupImported => 'බැකප් සාර්ථකව ආනයනය කරන ලදී.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists ලැයිස්තු · $items භාණ්ඩ · $entries මිලදී ගැනීම්';
+  }
 }

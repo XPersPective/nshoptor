@@ -493,10 +493,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get backupExported => 'பின்னடைவு வெற்றிகரமாக ஏற்றுமதி செய்யப்பட்டது.';
 
   @override
-  String get backupSizeWarning =>
-      'பெரிய பின்னடைவு: கோப்பு பெரியதாக இருக்கலாம். படங்களையும் சேர்க்க விரும்புகிறீர்களா?';
-
-  @override
   String get deleteAllSection => 'அபாயப் பகுதி';
 
   @override
@@ -1099,4 +1095,20 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV ஏற்றுமதி';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON-ல் பதிவுகள் உள்ளன, படக் கோப்புகள் அல்ல. இறக்குமதி வரம்பு: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'இந்தப் பேக்அப்பை இறக்குவதில் தோல்வி. உங்கள் தரவு மாற்றப்படவில்லை.';
+
+  @override
+  String get backupImported => 'பின்புலம் வெற்றிகரமாக ஏற்றுக்கொள்ளப்பட்டது.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists பட்டியல்கள் · $items பொருட்கள் · $entries வாங்குதல்கள்';
+  }
 }

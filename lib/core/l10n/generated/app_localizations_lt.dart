@@ -494,10 +494,6 @@ class AppLocalizationsLt extends AppLocalizations {
   String get backupExported => 'Atsarginė kopija sėkmingai eksportuota.';
 
   @override
-  String get backupSizeWarning =>
-      'Didelė atsarginė kopija: failas gali būti didelis. Ar norite įtraukti ir nuotraukas?';
-
-  @override
   String get deleteAllSection => 'Pavojinga zona';
 
   @override
@@ -1095,4 +1091,20 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Eksportuoti CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON failas įrašo duomenis, o ne nuotraukų failus. Importavimo limitas: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Nepavyko importuoti šio atsarginio kopijos. Jūsų duomenys nebuvo pakeisti.';
+
+  @override
+  String get backupImported => 'Atsarginė kopija sėkmingai importuota.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists sąrašai · $items prekės · $entries pirkimai';
+  }
 }

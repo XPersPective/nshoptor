@@ -487,9 +487,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get backupExported => '백업이 성공적으로 내보냈습니다.';
 
   @override
-  String get backupSizeWarning => '대용량 백업: 파일이 클 수 있습니다. 사진도 포함하시겠습니까?';
-
-  @override
   String get deleteAllSection => '위험 구역';
 
   @override
@@ -1065,4 +1062,19 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV 내보내기';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON에는 레코드가 포함되어 있으며 사진 파일은 포함되지 않습니다. 가져오기 제한: 16MB.';
+
+  @override
+  String get backupImportFailed => '이 백업을 가져올 수 없습니다. 데이터는 변경되지 않았습니다.';
+
+  @override
+  String get backupImported => '백업이 성공적으로 가져왔습니다.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists 목록 · $items 항목 · $entries 구매';
+  }
 }

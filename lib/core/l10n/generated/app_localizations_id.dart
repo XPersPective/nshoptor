@@ -492,10 +492,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get backupExported => 'Cadangan berhasil diekspor.';
 
   @override
-  String get backupSizeWarning =>
-      'Cadangan besar: file mungkin berukuran besar. Apakah Anda ingin menyertakan foto juga?';
-
-  @override
   String get deleteAllSection => 'Zona bahaya';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Ekspor CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON mencakup catatan, bukan file foto. Batas impor: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Gagal mengimpor cadangan ini. Data Anda tidak berubah.';
+
+  @override
+  String get backupImported => 'Cadangan berhasil diimpor.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists daftar · $items item · $entries pembelian';
+  }
 }

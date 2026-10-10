@@ -493,10 +493,6 @@ class AppLocalizationsIs extends AppLocalizations {
   String get backupExported => 'Öryggisafrit flutt út með góðum árangri.';
 
   @override
-  String get backupSizeWarning =>
-      'Stórt öryggisafrit: skráin getur verið stór. Viltu innihalda einnig myndir?';
-
-  @override
   String get deleteAllSection => 'Hættusvæði';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Flytja út CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON inniheldur skrár, ekki ljósmyndaskrár. Innflutningstakmörk: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Gat ekki flutt inn þessa afritun. Gögnin þín voru ekki breytt.';
+
+  @override
+  String get backupImported => 'Afhending varð successfully.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists listar · $items vörur · $entries kaup';
+  }
 }

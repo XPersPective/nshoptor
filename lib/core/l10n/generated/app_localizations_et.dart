@@ -492,10 +492,6 @@ class AppLocalizationsEt extends AppLocalizations {
   String get backupExported => 'Varukoopia edukalt eksporditud.';
 
   @override
-  String get backupSizeWarning =>
-      'Suur varukoopia: fail võib olla suur. Kas soovid lisada ka pilte?';
-
-  @override
   String get deleteAllSection => 'Ohtlik tsoon';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Ekspordi CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON sisaldab kirjeid, mitte fotofaile. Impordi piirang: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Seda varundust ei saanud importida. Sinu andmed jäid muutumata.';
+
+  @override
+  String get backupImported => 'Varukoopia imporditi edukalt.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists nimekirja · $items toodet · $entries ostu';
+  }
 }

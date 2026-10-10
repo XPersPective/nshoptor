@@ -156,7 +156,6 @@
   "separateImportLabel": "Importar como unha copia separada",
   "importCancelled": "Importación cancelada.",
   "backupExported": "Copia de seguridade exportada correctamente.",
-  "backupSizeWarning": "Copia de seguridade grande: o ficheiro pode ser pesado. Queres incluír tamén as fotos?",
   "deleteAllSection": "Zona de perigo",
   "deleteAllLabel": "Eliminar todos os datos",
   "deleteAllConfirm": "Isto eliminará todas as listas, o historial, as fotos dos recibos e os prezos. Os ficheiros que ti exportaches permanecerán no teu dispositivo. Continuar?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Non foi posible manter a pantalla activa. Téntao de novo.",
   "purchaseHistoryHint": "Todas as compras completadas. As devolucións reducen os totais. As datas refírense á finalización das compras. Unha soa visita non é suficiente para calcular un intervalo medio.",
   "planLegacyRights": "As subscricións Pro e Max existentes manteñen a súa asignación mensual orixinal de IA. As novas ofertas inclúen 100 e 300 solicitudes.",
-  "csvExportAction": "Exportar CSV"
+  "csvExportAction": "Exportar CSV",
+  "backupSizeWarning": "O JSON inclúe rexistros, non ficheiros de fotos. Límite de importación: 16 MB.",
+  "backupImportFailed": "Non se puido importar esta copia de seguridade. Os teus datos non cambiaron.",
+  "backupImported": "Copia de seguridade importada correctamente.",
+  "backupPreviewCounts": "{lists} listas · {items} artigos · {entries} compras"
 }

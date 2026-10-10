@@ -493,10 +493,6 @@ class AppLocalizationsHe extends AppLocalizations {
   String get backupExported => 'הגיבוי ייוצא בהצלחה.';
 
   @override
-  String get backupSizeWarning =>
-      'גיבוי גדול: הקובץ עשוי להיות גדול. האם לכלול גם תמונות?';
-
-  @override
   String get deleteAllSection => 'אזור סכנה';
 
   @override
@@ -1084,4 +1080,20 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get csvExportAction => 'ייצוא CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'קובץ JSON כולל רשומות, לא קבצי תמונה. מגבלת ייבוא: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'לא הצלחנו לייבא את הגיבוי הזה. הנתונים שלך לא השתנו.';
+
+  @override
+  String get backupImported => 'גיבוי יובא בהצלחה.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists רשימות · $items פריטים · $entries קניות';
+  }
 }

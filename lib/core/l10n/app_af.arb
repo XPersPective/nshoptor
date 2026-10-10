@@ -156,7 +156,6 @@
   "separateImportLabel": "Importeer as aparte kopie",
   "importCancelled": "Importering gekanselleer.",
   "backupExported": "Rugsteun suksesvol geëksporteer.",
-  "backupSizeWarning": "Groot rugsteun: die lêer mag groot wees. Wil jy foto's ook insluit?",
   "deleteAllSection": "Gevaarson",
   "deleteAllLabel": "Vee alle data uit",
   "deleteAllConfirm": "Dit sal alle lyste, geskiedenis, resceipt-foto's en pryse verwyder. Lêers wat jy self geëksporteer het, bly op jou skyf. Gaan voort?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Kon nie die skerm wakker hou nie. Probeer asseblief weer.",
   "purchaseHistoryHint": "Alle voltooide inkopies. Terugbetalings verminder die totale bedrae. Datums verwys na die voltooiing van die inkopies. Een besoek is nie genoeg om 'n gemiddelde interval te bereken nie.",
   "planLegacyRights": "Bestaande Pro- en Max-abonnemente behou hul oorspronklike maandelikse AI-toelaag. Nuwe aanbiedings het 100 en 300 versoeke.",
-  "csvExportAction": "Eksporteer CSV"
+  "csvExportAction": "Eksporteer CSV",
+  "backupSizeWarning": "JSON sluit rekords in, nie fotolêers nie. Invoergrens: 16 MB.",
+  "backupImportFailed": "Kon nie hierdie rugsteun invoer nie. Jou data is nie verander nie.",
+  "backupImported": "Rugsteun suksesvol ingevoer.",
+  "backupPreviewCounts": "{lists} lyste · {items} items · {entries} aankope"
 }

@@ -493,10 +493,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get backupExported => 'Back-up succesvol geëxporteerd.';
 
   @override
-  String get backupSizeWarning =>
-      'Grote back-up: het bestand kan groot zijn. Wil je ook foto\'s opnemen?';
-
-  @override
   String get deleteAllSection => 'Gevarenzone';
 
   @override
@@ -1096,4 +1092,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV exporteren';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON bevat records, geen fotobestanden. Importlimiet: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Deze back-up kan niet worden geïmporteerd. Uw gegevens zijn niet gewijzigd.';
+
+  @override
+  String get backupImported => 'Backup succesvol geïmporteerd.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists lijsten · $items items · $entries aankopen';
+  }
 }

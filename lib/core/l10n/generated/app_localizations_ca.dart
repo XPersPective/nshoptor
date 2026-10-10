@@ -493,10 +493,6 @@ class AppLocalizationsCa extends AppLocalizations {
   String get backupExported => 'Còpia de seguretat exportada correctament.';
 
   @override
-  String get backupSizeWarning =>
-      'Còpia de seguretat gran: el fitxer pot ser voluminós. Vols incloure també les fotos?';
-
-  @override
   String get deleteAllSection => 'Zona de perill';
 
   @override
@@ -1096,4 +1092,20 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Exportar CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'El JSON inclou registres, no fitxers d\'imatge. Límit d\'importació: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'No s\'ha pogut importar aquesta còpia de seguretat. Les teves dades no han estat modificades.';
+
+  @override
+  String get backupImported => 'Còpia de seguretat importada correctament.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists llistes · $items articles · $entries compres';
+  }
 }

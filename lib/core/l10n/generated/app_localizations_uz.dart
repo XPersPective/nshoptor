@@ -493,10 +493,6 @@ class AppLocalizationsUz extends AppLocalizations {
   String get backupExported => 'Zaxira nusxa muvaffaqiyatli eksport qilindi.';
 
   @override
-  String get backupSizeWarning =>
-      'Katta zaxira: fayl hajmi katta bo\'lishi mumkin. Rasmlarni ham qo\'shasizmi?';
-
-  @override
   String get deleteAllSection => 'Xavfli zona';
 
   @override
@@ -1097,4 +1093,20 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV eksport qilish';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON fayllarida rasm fayllari emas, yozuvlar mavjud. Import cheklovi: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Bu zaxira nusxasini import qilishda xatolik yuz berdi. Ma\'lumotlaringiz o\'zgarmadi.';
+
+  @override
+  String get backupImported => 'Zaxira muvaffaqiyatli yuklandi.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists ro\'yxat · $items mahsulot · $entries xarid';
+  }
 }

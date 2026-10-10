@@ -156,7 +156,6 @@
   "separateImportLabel": "Uvozi kot ločeno kopijo",
   "importCancelled": "Uvoz preklican.",
   "backupExported": "Varnostna kopija uspešno izvožena.",
-  "backupSizeWarning": "Velika varnostna kopija: datoteka je lahko velika. Želite vključiti tudi fotografije?",
   "deleteAllSection": "Nevarna cona",
   "deleteAllLabel": "Izbriši vse podatke",
   "deleteAllConfirm": "To bo odstranilo vse sezname, zgodovino, fotografije računov in cene. Datoteke, ki ste jih izvozili vi, ostanejo na vašem disku. Nadaljujete?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Zaslon ni ostal vklopljen. Poskusite znova.",
   "purchaseHistoryHint": "Vsa zaključena nakupovanja. Vrnitve zmanjšajo skupne vsote. Datumi se nanašajo na datum zaključka nakupa. En obisk ni dovolj za izračun povprečnega intervala.",
   "planLegacyRights": "Obstoječe naročnine Pro in Max ohranjajo svoj prvotni mesečni obseg AI zahtevkov. Nova ponudba vključuje 100 in 300 zahtevkov.",
-  "csvExportAction": "Izvozi CSV"
+  "csvExportAction": "Izvozi CSV",
+  "backupSizeWarning": "JSON vsebuje zapise, ne datotek s fotografijami. Omejitev uvoza: 16 MB.",
+  "backupImportFailed": "Uvoza te varnostne kopije ni bilo mogoče izvesti. Vaši podatki niso bili spremenjeni.",
+  "backupImported": "Nadzorna kopija je bila uspešno uvožena.",
+  "backupPreviewCounts": "{lists} seznama · {items} izdelkov · {entries} nakupov"
 }

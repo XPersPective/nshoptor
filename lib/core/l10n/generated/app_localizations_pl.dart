@@ -494,10 +494,6 @@ class AppLocalizationsPl extends AppLocalizations {
       'Kopia zapasowa została pomyślnie wyeksportowana.';
 
   @override
-  String get backupSizeWarning =>
-      'Duża kopia zapasowa: plik może być duży. Czy chcesz dołączyć zdjęcia?';
-
-  @override
   String get deleteAllSection => 'Strefa niebezpieczeństwa';
 
   @override
@@ -1094,4 +1090,20 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Eksportuj CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON zawiera rekordy, a nie pliki zdjęć. Limit importu: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Nie udało się zaimportować tej kopii zapasowej. Twoje dane nie zostały zmienione.';
+
+  @override
+  String get backupImported => 'Backup został pomyślnie zaimportowany.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists list · $items produktów · $entries zakupów';
+  }
 }

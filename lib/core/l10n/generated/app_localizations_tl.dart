@@ -494,10 +494,6 @@ class AppLocalizationsTl extends AppLocalizations {
   String get backupExported => 'Matagumpay na na-export ang backup.';
 
   @override
-  String get backupSizeWarning =>
-      'Malaking backup: maaaring malaki ang file. Gusto mo bang isama ang mga litrato?';
-
-  @override
   String get deleteAllSection => 'Danger zone';
 
   @override
@@ -1098,4 +1094,20 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get csvExportAction => 'I-export ang CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'Ang JSON ay naglalaman ng mga rekord, hindi mga file ng larawan. Limitasyon sa pag-import: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Hindi ma-import ang backup na ito. Hindi nabago ang iyong data.';
+
+  @override
+  String get backupImported => 'Matagumpay na na-import ang backup.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists listahan · $items item · $entries pagbili';
+  }
 }

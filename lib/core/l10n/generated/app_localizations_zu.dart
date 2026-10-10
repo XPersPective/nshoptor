@@ -495,10 +495,6 @@ class AppLocalizationsZu extends AppLocalizations {
   String get backupExported => 'Isiphambano sithunyelwe ngempumelelo.';
 
   @override
-  String get backupSizeWarning =>
-      'Isiphambano esikhulu: ifayili ingaba nkulu. Ingabe ufuna ukufaka namafoto?';
-
-  @override
   String get deleteAllSection => 'Indawo engozini';
 
   @override
@@ -1101,4 +1097,20 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Thumela i-CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'I-JSON ihlanganisa amarekhodi, hhayi amafayela ezingcaphulo. Umkhawulo wokungenisa: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Akukwazanga ukungenisa le backup. Idatha yakho ayishintshile.';
+
+  @override
+  String get backupImported => 'Ibhakaki yethusi igcine ngempumelelo.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists amalisti · $items izinto · $entries ukuthenga';
+  }
 }

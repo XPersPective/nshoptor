@@ -156,7 +156,6 @@
   "separateImportLabel": "Impor sebagai salinan terpisah",
   "importCancelled": "Impor dibatalkan.",
   "backupExported": "Cadangan berhasil diekspor.",
-  "backupSizeWarning": "Cadangan besar: file mungkin berukuran besar. Apakah Anda ingin menyertakan foto juga?",
   "deleteAllSection": "Zona bahaya",
   "deleteAllLabel": "Hapus semua data",
   "deleteAllConfirm": "Ini akan menghapus semua daftar, riwayat, foto struk, dan harga. File yang Anda ekspor tetap berada di drive Anda. Lanjutkan?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Layar tidak dapat tetap menyala. Silakan coba lagi.",
   "purchaseHistoryHint": "Semua belanja yang sudah selesai. Pengembalian barang mengurangi total. Tanggal mengacu pada penyelesaian belanja. Satu kunjungan tidak cukup untuk menghitung interval rata-rata.",
   "planLegacyRights": "Langganan Pro dan Max yang sudah ada tetap mempertahankan kuota AI bulanan aslinya. Penawaran baru memiliki 100 dan 300 permintaan.",
-  "csvExportAction": "Ekspor CSV"
+  "csvExportAction": "Ekspor CSV",
+  "backupSizeWarning": "JSON mencakup catatan, bukan file foto. Batas impor: 16 MB.",
+  "backupImportFailed": "Gagal mengimpor cadangan ini. Data Anda tidak berubah.",
+  "backupImported": "Cadangan berhasil diimpor.",
+  "backupPreviewCounts": "{lists} daftar · {items} item · {entries} pembelian"
 }

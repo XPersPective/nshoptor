@@ -493,10 +493,6 @@ class AppLocalizationsMl extends AppLocalizations {
   String get backupExported => 'ബാക്ക്അപ്പ് വിജയകരമായി എക്സ്പോർട്ട് ചെയ്തു.';
 
   @override
-  String get backupSizeWarning =>
-      'വലിയ ബാക്ക്അപ്പ്: ഫയൽ വലുതാകാം. ഫോട്ടോകളും ഉൾപ്പെടുത്തണോ?';
-
-  @override
   String get deleteAllSection => 'അപകട മേഖല';
 
   @override
@@ -1092,4 +1088,20 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV എക്സ്പോർട്ട് ചെയ്യുക';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON-ൽ റെക്കോർഡുകൾ ഉണ്ട്, ഫോട്ടോ ഫയലുകൾ അല്ല. ഇംപോർട്ട് പരിധി: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'ഈ ബാക്കപ്പ് ഇറക്കുമതി ചെയ്യാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ ഡാറ്റ മാറ്റമില്ല.';
+
+  @override
+  String get backupImported => 'ബാക്ക്‌അപ്പ് വിജയകരമായി ഇറക്കുമതി ചെയ്തു.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists ലിസ്റ്റുകൾ · $items വസ്തുക്കൾ · $entries വാങ്ങലുകൾ';
+  }
 }

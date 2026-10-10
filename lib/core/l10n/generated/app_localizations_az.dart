@@ -493,10 +493,6 @@ class AppLocalizationsAz extends AppLocalizations {
   String get backupExported => 'Yedək uğurla ixrac edildi.';
 
   @override
-  String get backupSizeWarning =>
-      'Böyük yedək: fayl böyük ola bilər. Şəkilləri də daxil etmək istəyirsiniz?';
-
-  @override
   String get deleteAllSection => 'Təhlükəli zona';
 
   @override
@@ -1095,4 +1091,20 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV ixracat et';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON faylı şəkil faylları əvəzinə qeydlər daşıyır. İdxal həddi: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Bu ehtiyat nüsxəsini idxal etmək mümkün olmadı. Məlumatlarınız dəyişdirilmədi.';
+
+  @override
+  String get backupImported => 'Yedək uğurla idxal edildi.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists siyahı · $items məhsul · $entries alış';
+  }
 }

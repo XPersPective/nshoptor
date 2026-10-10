@@ -156,7 +156,6 @@
   "separateImportLabel": "Importer som en separat kopi",
   "importCancelled": "Import annulleret.",
   "backupExported": "Backup eksporteret succesfuldt.",
-  "backupSizeWarning": "Stor backup: filen kan være stor. Vil du inkludere fotos?",
   "deleteAllSection": "Farlig zone",
   "deleteAllLabel": "Slet alle data",
   "deleteAllConfirm": "Dette vil fjerne alle lister, historik, kvitteringsfotos og priser. Filer, du har eksporteret, bliver på din harddisk. Fortsæt?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Skærmen kunne ikke holdes vågen. Prøv venligst igen.",
   "purchaseHistoryHint": "Alle gennemførte indkøb. Tilbageleveringer reducerer totalen. Datoerne refererer til afslutning af indkøbet. Et enkelt besøg er ikke nok til at beregne et gennemsnitligt interval.",
   "planLegacyRights": "Eksisterende Pro- og Max-abonnementer beholder deres oprindelige månedlige AI-tilladelse. Nye tilbud har 100 og 300 anmodninger.",
-  "csvExportAction": "Eksporter CSV"
+  "csvExportAction": "Eksporter CSV",
+  "backupSizeWarning": "JSON indeholder poster, ikke fotofiler. Importgrænse: 16 MB.",
+  "backupImportFailed": "Kunne ikke importere denne backup. Dine data er ikke blevet ændret.",
+  "backupImported": "Backup importeret succesfuldt.",
+  "backupPreviewCounts": "{lists} lister · {items} varer · {entries} køb"
 }

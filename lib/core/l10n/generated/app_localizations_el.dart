@@ -494,10 +494,6 @@ class AppLocalizationsEl extends AppLocalizations {
   String get backupExported => 'Το αντίγραφο ασφαλείας εξήχθη επιτυχώς.';
 
   @override
-  String get backupSizeWarning =>
-      'Μεγάλο αρχείο: το αρχείο μπορεί να είναι μεγάλο. Θέλετε να συμπεριλάβετε και φωτογραφίες;';
-
-  @override
   String get deleteAllSection => 'Ζώνη κινδύνου';
 
   @override
@@ -1095,4 +1091,20 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Εξαγωγή CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'Το JSON περιλαμβάνει αρχεία καταγραφών, όχι φωτογραφίες. Όριο εισαγωγής: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Δεν ήταν δυνατή η εισαγωγή αυτού του αρχείου αντιγράφου ασφαλείας. Τα δεδομένα σας δεν άλλαξαν.';
+
+  @override
+  String get backupImported => 'Το αντίγραφο ασφαλείας εισήχθη με επιτυχία.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists λίστες · $items αντικείμενα · $entries αγορές';
+  }
 }

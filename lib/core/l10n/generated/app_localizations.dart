@@ -1172,12 +1172,6 @@ abstract class AppLocalizations {
   /// **'Backup exported successfully.'**
   String get backupExported;
 
-  /// No description provided for @backupSizeWarning.
-  ///
-  /// In en, this message translates to:
-  /// **'Large backup: the file may be big. Do you want to include photos too?'**
-  String get backupSizeWarning;
-
   /// No description provided for @deleteAllSection.
   ///
   /// In en, this message translates to:
@@ -2281,6 +2275,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Export CSV'**
   String get csvExportAction;
+
+  /// No description provided for @backupSizeWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'JSON includes records, not photo files. Import limit: 16 MB.'**
+  String get backupSizeWarning;
+
+  /// No description provided for @backupImportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not import this backup. Your data was not changed.'**
+  String get backupImportFailed;
+
+  /// No description provided for @backupImported.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup imported successfully.'**
+  String get backupImported;
+
+  /// No description provided for @backupPreviewCounts.
+  ///
+  /// In en, this message translates to:
+  /// **'{lists} lists · {items} items · {entries} purchases'**
+  String backupPreviewCounts(Object entries, Object items, Object lists);
 }
 
 class _AppLocalizationsDelegate

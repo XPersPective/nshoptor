@@ -487,9 +487,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get backupExported => '备份已成功导出。';
 
   @override
-  String get backupSizeWarning => '备份文件较大：文件可能很大。您是否要包含照片？';
-
-  @override
   String get deleteAllSection => '危险区域';
 
   @override
@@ -1058,4 +1055,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get csvExportAction => '导出 CSV';
+
+  @override
+  String get backupSizeWarning => 'JSON 包含记录，而非照片文件。导入限制：16 MB。';
+
+  @override
+  String get backupImportFailed => '无法导入此备份。您的数据未更改。';
+
+  @override
+  String get backupImported => '备份已成功导入。';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists 个列表 · $items 件商品 · $entries 笔购买';
+  }
 }

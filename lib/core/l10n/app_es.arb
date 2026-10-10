@@ -156,7 +156,6 @@
   "separateImportLabel": "Importar como copia aparte",
   "importCancelled": "Importación cancelada.",
   "backupExported": "Copia exportada correctamente.",
-  "backupSizeWarning": "Copia grande: el archivo puede ocupar mucho. ¿Incluir también las fotos?",
   "deleteAllSection": "Zona de peligro",
   "deleteAllLabel": "Eliminar todos los datos",
   "deleteAllConfirm": "Se eliminarán todas las listas, el historial, las fotos de tickets y los precios. Los archivos que exportaste se conservan. ¿Continuar?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "No se pudo mantener la pantalla encendida. Inténtalo de nuevo.",
   "purchaseHistoryHint": "Todas las compras completadas. Las devoluciones reducen los totales. Las fechas se refieren a la finalización de la compra. Una sola visita no es suficiente para calcular un intervalo promedio.",
   "planLegacyRights": "Las suscripciones Pro y Max existentes mantienen su cuota mensual original de IA. Las nuevas ofertas incluyen 100 y 300 solicitudes.",
-  "csvExportAction": "Exportar CSV"
+  "csvExportAction": "Exportar CSV",
+  "backupSizeWarning": "El JSON incluye registros, no archivos de foto. Límite de importación: 16 MB.",
+  "backupImportFailed": "No se pudo importar esta copia de seguridad. Tus datos no han cambiado.",
+  "backupImported": "Copia de seguridad importada correctamente.",
+  "backupPreviewCounts": "{lists} listas · {items} artículos · {entries} compras"
 }

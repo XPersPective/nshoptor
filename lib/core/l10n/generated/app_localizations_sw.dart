@@ -493,10 +493,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get backupExported => 'Hifadhi ya salama imepatikana kwa mafanikio.';
 
   @override
-  String get backupSizeWarning =>
-      'Hifadhi kubwa: faili inaweza kuwa kubwa. Je, unataka kujumuisha picha pia?';
-
-  @override
   String get deleteAllSection => 'Eneo la hatari';
 
   @override
@@ -1094,4 +1090,20 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Tunza CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON inarekodi, si faili za picha. Kikomo cha uingizaji: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Haiweza kuingiza hili backup. Data yako haimebadilishwa.';
+
+  @override
+  String get backupImported => 'Backup imewekwa kwa mafanikio.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists orodha · $items vitu · $entries ununuzi';
+  }
 }

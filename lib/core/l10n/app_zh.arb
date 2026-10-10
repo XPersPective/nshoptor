@@ -156,7 +156,6 @@
   "separateImportLabel": "作为独立副本导入",
   "importCancelled": "导入已取消。",
   "backupExported": "备份已成功导出。",
-  "backupSizeWarning": "备份文件较大：文件可能很大。您是否要包含照片？",
   "deleteAllSection": "危险区域",
   "deleteAllLabel": "删除所有数据",
   "deleteAllConfirm": "这将移除所有清单、历史记录、收据照片和价格。您导出的文件仍保留在您的驱动器中。继续吗？",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "无法保持屏幕常亮，请重试。",
   "purchaseHistoryHint": "所有已完成的购物。退货会减少总额。日期指的是购物完成时间。一次购物不足以计算平均间隔。",
   "planLegacyRights": "现有的 Pro 和 Max 订阅保留其原有的每月 AI 使用额度。新套餐分别提供 100 次和 300 次请求。",
-  "csvExportAction": "导出 CSV"
+  "csvExportAction": "导出 CSV",
+  "backupSizeWarning": "JSON 包含记录，而非照片文件。导入限制：16 MB。",
+  "backupImportFailed": "无法导入此备份。您的数据未更改。",
+  "backupImported": "备份已成功导入。",
+  "backupPreviewCounts": "{lists} 个列表 · {items} 件商品 · {entries} 笔购买"
 }

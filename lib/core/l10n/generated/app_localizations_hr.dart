@@ -494,10 +494,6 @@ class AppLocalizationsHr extends AppLocalizations {
   String get backupExported => 'Sigurnosna kopija uspješno izvezena.';
 
   @override
-  String get backupSizeWarning =>
-      'Velika sigurnosna kopija: datoteka može biti velika. Želite li uključiti i fotografije?';
-
-  @override
   String get deleteAllSection => 'Opasna zona';
 
   @override
@@ -1093,4 +1089,20 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Izvoz CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON sadrži zapise, a ne datoteke fotografija. Ograničenje uvoza: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Nije moguće uvesti ovu sigurnosnu kopiju. Vaši podaci nisu promijenjeni.';
+
+  @override
+  String get backupImported => 'Sigurnosna kopija uspješno uvezena.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists popisa · $items stavki · $entries kupnji';
+  }
 }

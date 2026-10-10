@@ -494,10 +494,6 @@ class AppLocalizationsUr extends AppLocalizations {
   String get backupExported => 'بیک اپ کامیابی سے ایکسپورٹ ہو گیا۔';
 
   @override
-  String get backupSizeWarning =>
-      'بڑا بیک اپ: فائل بڑی ہو سکتی ہے۔ کیا آپ تصاویر بھی شامل کرنا چاہتے ہیں؟';
-
-  @override
   String get deleteAllSection => 'خطرناک زون';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV برآمد کریں';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON میں ریکارڈز شامل ہیں، فائلیں نہیں۔ امپورٹ کی حد: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'اس بیک اپ کو درآمد نہیں کیا جا سکا۔ آپ کا ڈیٹا تبدیل نہیں ہوا۔';
+
+  @override
+  String get backupImported => 'بیک اپ کامیابی سے درآمد ہو گیا۔';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists لسٹیں · $items آئٹمز · $entries خریداریاں';
+  }
 }

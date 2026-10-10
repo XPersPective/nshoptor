@@ -493,10 +493,6 @@ class AppLocalizationsKn extends AppLocalizations {
   String get backupExported => 'ಬ್ಯಾಕಪ್ ಯಶಸ್ವಿಯಾಗಿ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಆಗಿದೆ.';
 
   @override
-  String get backupSizeWarning =>
-      'ದೊಡ್ಡ ಬ್ಯಾಕಪ್: ಫೈಲ್ ದೊಡ್ಡದಾಗಿರಬಹುದು. ಫೋಟೋಗಳನ್ನೂ ಸೇರಿಸಬೇಕೇ?';
-
-  @override
   String get deleteAllSection => 'ಅಪಾಯಕಾರಿ ವಲಯ';
 
   @override
@@ -1095,4 +1091,20 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV ರಫ್ತು';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON ನಲ್ಲಿ ದಾಖಲೆಗಳಿವೆ, ಫೋಟೊ ಫೈಲ್‌ಗಳಲ್ಲ. ಆಮದು ಮಿತಿ: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'ಈ ಬ್ಯಾಕಪ್‌ನ್ನು ಆಮದು ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಡೇಟಾ ಬದಲಾಗಿಲ್ಲ.';
+
+  @override
+  String get backupImported => 'ಬ್ಯಾಕಪ್ ಯಶಸ್ವಿಯಾಗಿ ಆಮದು ಮಾಡಲಾಗಿದೆ.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists ಪಟ್ಟಿಗಳು · $items ವಸ್ತುಗಳು · $entries ಖರೀದಿಗಳು';
+  }
 }

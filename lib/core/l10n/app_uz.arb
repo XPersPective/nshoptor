@@ -156,7 +156,6 @@
   "separateImportLabel": "Alohida nusxa sifatida import qilish",
   "importCancelled": "Import bekor qilindi.",
   "backupExported": "Zaxira nusxa muvaffaqiyatli eksport qilindi.",
-  "backupSizeWarning": "Katta zaxira: fayl hajmi katta bo'lishi mumkin. Rasmlarni ham qo'shasizmi?",
   "deleteAllSection": "Xavfli zona",
   "deleteAllLabel": "Barcha ma'lumotlarni o'chirish",
   "deleteAllConfirm": "Bu barcha ro'yxatlar, tarix, cheklar rasmlari va narxlarni o'chiradi. Siz eksport qilgan fayllar diskingizda saqlanib qoladi. Davom etasizmi?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Ekran yorug'ligini ushlab turishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.",
   "purchaseHistoryHint": "Barcha yakunlangan xaridlar. Qaytarishlar umumiy summani kamaytiradi. Sana xarid tugatilgan kunini bildiradi. O'rtacha oraliqni hisoblash uchun bitta tashrif yetarli emas.",
   "planLegacyRights": "Mavjud Pro va Max obunalari o'zlarining dastlabki oylik AI imkoniyatlarini saqlab qoladi. Yangi takliflar 100 va 300 so'rovni o'z ichiga oladi.",
-  "csvExportAction": "CSV eksport qilish"
+  "csvExportAction": "CSV eksport qilish",
+  "backupSizeWarning": "JSON fayllarida rasm fayllari emas, yozuvlar mavjud. Import cheklovi: 16 MB.",
+  "backupImportFailed": "Bu zaxira nusxasini import qilishda xatolik yuz berdi. Ma'lumotlaringiz o'zgarmadi.",
+  "backupImported": "Zaxira muvaffaqiyatli yuklandi.",
+  "backupPreviewCounts": "{lists} ro'yxat · {items} mahsulot · {entries} xarid"
 }

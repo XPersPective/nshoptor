@@ -492,10 +492,6 @@ class AppLocalizationsKk extends AppLocalizations {
   String get backupExported => 'Сақтандыру сәтті экспортталды.';
 
   @override
-  String get backupSizeWarning =>
-      'Үлкен сақтандыру: файл үлкен болуы мүмкін. Суреттерді де қосу керек пе?';
-
-  @override
   String get deleteAllSection => 'Қауіпті аймақ';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV экспорттау';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON сурет файлдарын қамтиды, жазбаларды емес. Импорттау шегі: 16 МБ.';
+
+  @override
+  String get backupImportFailed =>
+      'Бұл резервтік көшірмені импорттау мүмкін болмады. Деректеріңіз өзгертілмеді.';
+
+  @override
+  String get backupImported => 'Сақтық көшірме сәтті импортталды.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists тізім · $items тауар · $entries сатылым';
+  }
 }

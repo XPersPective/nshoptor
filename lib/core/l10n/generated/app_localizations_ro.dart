@@ -493,10 +493,6 @@ class AppLocalizationsRo extends AppLocalizations {
   String get backupExported => 'Backup exportat cu succes.';
 
   @override
-  String get backupSizeWarning =>
-      'Backup mare: fișierul poate fi voluminos. Dorești să incluzi și poze?';
-
-  @override
   String get deleteAllSection => 'Zona periculoasă';
 
   @override
@@ -1096,4 +1092,20 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Exportare CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON include înregistrări, nu fișiere foto. Limita de import: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Nu s-a putut importa acest backup. Datele tale nu au fost modificate.';
+
+  @override
+  String get backupImported => 'Backup importat cu succes.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists liste · $items articole · $entries achiziții';
+  }
 }

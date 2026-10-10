@@ -492,10 +492,6 @@ class AppLocalizationsSv extends AppLocalizations {
   String get backupExported => 'Säkerhetskopia exporterad framgångsrikt.';
 
   @override
-  String get backupSizeWarning =>
-      'Stor säkerhetskopia: filen kan bli stor. Vill du inkludera bilder också?';
-
-  @override
   String get deleteAllSection => 'Farozon';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Exportera CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON innehåller poster, inte bildfiler. Importgräns: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Kunde inte importera denna säkerhetskopia. Dina data har inte ändrats.';
+
+  @override
+  String get backupImported => 'Säkerhetskopiering importerad.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists listor · $items varor · $entries inköp';
+  }
 }

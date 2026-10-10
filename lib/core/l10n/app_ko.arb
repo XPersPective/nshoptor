@@ -156,7 +156,6 @@
   "separateImportLabel": "별도 사본으로 가져오기",
   "importCancelled": "가져오기가 취소되었습니다.",
   "backupExported": "백업이 성공적으로 내보냈습니다.",
-  "backupSizeWarning": "대용량 백업: 파일이 클 수 있습니다. 사진도 포함하시겠습니까?",
   "deleteAllSection": "위험 구역",
   "deleteAllLabel": "모든 데이터 삭제",
   "deleteAllConfirm": "모든 리스트, 기록, 영수증 사진 및 가격이 제거됩니다. 사용자가 내보낸 파일은 저장소에 그대로 남아 있습니다. 계속하시겠습니까?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "화면을 켜두지 못했습니다. 다시 시도해 주세요.",
   "purchaseHistoryHint": "완료된 모든 쇼핑 내역입니다. 반품 시 총액이 감소합니다. 날짜는 쇼핑 완료일을 기준으로 합니다. 한 번의 방문만으로는 평균 간격을 계산할 수 없습니다.",
   "planLegacyRights": "기존 Pro 및 Max 구독은 원래 월간 AI 할당량을 유지합니다. 새로운 요금제는 각각 100회와 300회의 요청을 제공합니다.",
-  "csvExportAction": "CSV 내보내기"
+  "csvExportAction": "CSV 내보내기",
+  "backupSizeWarning": "JSON에는 레코드가 포함되어 있으며 사진 파일은 포함되지 않습니다. 가져오기 제한: 16MB.",
+  "backupImportFailed": "이 백업을 가져올 수 없습니다. 데이터는 변경되지 않았습니다.",
+  "backupImported": "백업이 성공적으로 가져왔습니다.",
+  "backupPreviewCounts": "{lists} 목록 · {items} 항목 · {entries} 구매"
 }

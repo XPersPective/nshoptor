@@ -495,10 +495,6 @@ class AppLocalizationsHy extends AppLocalizations {
   String get backupExported => 'Պատճենահանումը հաջողությամբ արտահանվել է։';
 
   @override
-  String get backupSizeWarning =>
-      'Մեծ պատճենահանում․ ֆայլը կարող է լինել մեծ։ Ցանկանո՞ւմ եք ներառել նաև լուսանկարները։';
-
-  @override
   String get deleteAllSection => 'Վտանգավիր գոտի';
 
   @override
@@ -1096,4 +1092,20 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Արտահանել CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON-ը ներառում է գրառումներ, ոչ թե լուսանկարների ֆայլեր: Ներման սահմանաչափը՝ 16 MB:';
+
+  @override
+  String get backupImportFailed =>
+      'Չհաջողվեց ներմուծել այս պահեստավորումը։ Ձեր տվյալները չեն փոխվել։';
+
+  @override
+  String get backupImported => 'Պատճենը հաջողությամբ ներմուծվել է։';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists ցուցակ · $items ապրանք · $entries գնում';
+  }
 }

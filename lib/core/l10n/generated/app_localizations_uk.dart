@@ -494,10 +494,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get backupExported => 'Резервну копію успішно експортовано.';
 
   @override
-  String get backupSizeWarning =>
-      'Великий файл резервної копії: він може бути значним. Додати фотографії?';
-
-  @override
   String get deleteAllSection => 'Небезпечна зона';
 
   @override
@@ -1094,4 +1090,20 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Експорт CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON містить записи, а не файли фото. Ліміт імпорту: 16 МБ.';
+
+  @override
+  String get backupImportFailed =>
+      'Не вдалося імпортувати цю резервну копію. Ваші дані не змінилися.';
+
+  @override
+  String get backupImported => 'Резервну копію успішно імпортовано.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists списки · $items товари · $entries покупки';
+  }
 }

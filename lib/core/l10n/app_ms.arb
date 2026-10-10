@@ -156,7 +156,6 @@
   "separateImportLabel": "Import sebagai salinan berasingan",
   "importCancelled": "Import dibatalkan.",
   "backupExported": "Sandaran berjaya dieksport.",
-  "backupSizeWarning": "Sandaran besar: fail mungkin besar. Adakah anda mahu termasuk foto juga?",
   "deleteAllSection": "Zon bahaya",
   "deleteAllLabel": "Padam semua data",
   "deleteAllConfirm": "Ini akan membuang semua senarai, sejarah, foto resit dan harga. Fail yang dieksport oleh anda kekal pada pemacu anda. Teruskan?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Gagal mengekalkan skrin aktif. Sila cuba lagi.",
   "purchaseHistoryHint": "Semua pembelian selesai. Pulangan mengurangkan jumlah. Tarikh merujuk kepada siapnya pembelian. Satu lawatan tidak cukup untuk mengira purata selang.",
   "planLegacyRights": "Langganan Pro dan Max sedia ada mengekalkan had bulanan AI asal. Tawaran baharu mempunyai 100 dan 300 permintaan.",
-  "csvExportAction": "Eksport CSV"
+  "csvExportAction": "Eksport CSV",
+  "backupSizeWarning": "JSON mengandungi rekod, bukan fail foto. Had import: 16 MB.",
+  "backupImportFailed": "Gagal mengimport sandaran ini. Data anda tidak diubah.",
+  "backupImported": "Backup berjaya diimport.",
+  "backupPreviewCounts": "{lists} senarai · {items} item · {entries} pembelian"
 }

@@ -493,10 +493,6 @@ class AppLocalizationsFi extends AppLocalizations {
   String get backupExported => 'Varmuuskopio viety onnistuneesti.';
 
   @override
-  String get backupSizeWarning =>
-      'Suuri varmuuskopio: tiedosto voi olla iso. Haluatko sisällyttää myös valokuvat?';
-
-  @override
   String get deleteAllSection => 'Vaarallinen alue';
 
   @override
@@ -1097,4 +1093,20 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Vie CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON sisältää tietueita, ei valokuvatiedostoja. Tuontiraja: 16 Mt.';
+
+  @override
+  String get backupImportFailed =>
+      'Tämän varmuuskopion tuonti epäonnistui. Tietojasi ei muutettu.';
+
+  @override
+  String get backupImported => 'Varmuuskopio tuotu onnistuneesti.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists listaa · $items tuotetta · $entries ostosta';
+  }
 }

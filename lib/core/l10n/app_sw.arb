@@ -156,7 +156,6 @@
   "separateImportLabel": "Ingiza kama nakala tofauti",
   "importCancelled": "Uingizaji ulighairiwa.",
   "backupExported": "Hifadhi ya salama imepatikana kwa mafanikio.",
-  "backupSizeWarning": "Hifadhi kubwa: faili inaweza kuwa kubwa. Je, unataka kujumuisha picha pia?",
   "deleteAllSection": "Eneo la hatari",
   "deleteAllLabel": "Futa data yote",
   "deleteAllConfirm": "Hii itaondoa orodha zote, historia, picha za risiti na bei. Faili ulizotoa zitabaki kwenye disk yako. Unaendelea?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Haikuweza kushikilia skrini ikiwa imewaka. Tafadhali jaribu tena.",
   "purchaseHistoryHint": "Mambo yote ya kununua yaliyokamilika. Kurudisha bidhaa hupunguza jumla. Tarehe zinahusu kukamilika kwa ununuzi. Ziara moja si ya kutosha kuhesabu muda wa wastani.",
   "planLegacyRights": "Usajili wa Pro na Max uliopo unaendelea kuwa na idadi ya maombi ya AI ya kila mwezi kama ilivyokuwepo. Oferta mpya zina maombi 100 na 300.",
-  "csvExportAction": "Tunza CSV"
+  "csvExportAction": "Tunza CSV",
+  "backupSizeWarning": "JSON inarekodi, si faili za picha. Kikomo cha uingizaji: 16 MB.",
+  "backupImportFailed": "Haiweza kuingiza hili backup. Data yako haimebadilishwa.",
+  "backupImported": "Backup imewekwa kwa mafanikio.",
+  "backupPreviewCounts": "{lists} orodha · {items} vitu · {entries} ununuzi"
 }

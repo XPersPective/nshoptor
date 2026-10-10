@@ -493,10 +493,6 @@ class AppLocalizationsEu extends AppLocalizations {
   String get backupExported => 'Backup-a ondo esportatu da.';
 
   @override
-  String get backupSizeWarning =>
-      'Backup handia: fitxategia handia izan daiteke. Argazkiak ere sartu nahi dituzu?';
-
-  @override
   String get deleteAllSection => 'Arriskuko eremua';
 
   @override
@@ -1095,4 +1091,20 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Esportatu CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON-k erregistroak ditu, ez argazki-fitxategiak. Inportazio muga: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Ezin izan da babeskopia hau inportatu. Zure datuak ez dira aldatu.';
+
+  @override
+  String get backupImported => 'Backupa arrakastaz inportatu da.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists zerrenda · $items elementu · $entries erosketa';
+  }
 }

@@ -15,8 +15,7 @@ import 'backup/backup_repository.dart';
 ///   de siler, DB tablolarını boşaltır, silinmiş dosyalar app dizininde
 ///   geride kalmaz.
 /// - Yedekleme: tam yerel JSON (spec: sürümlenmiş JSON), paylaşılır.
-/// - Fotoğraflar: [includePhotos] ile dahil edilebilir; büyük yedek bu durumda
-///   uyarı verir.
+/// - JSON yalnız kayıtları/yolları içerir; fotoğraf dosyaları dahil değildir.
 /// - `double` parasal girişe girmemek için paradan bailout yok; burada
 ///   yalnız ayaralar ve dosya dizinleri yönetilir.
 class SettingsRepository {

@@ -493,10 +493,6 @@ class AppLocalizationsAf extends AppLocalizations {
   String get backupExported => 'Rugsteun suksesvol geëksporteer.';
 
   @override
-  String get backupSizeWarning =>
-      'Groot rugsteun: die lêer mag groot wees. Wil jy foto\'s ook insluit?';
-
-  @override
   String get deleteAllSection => 'Gevaarson';
 
   @override
@@ -1094,4 +1090,20 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Eksporteer CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON sluit rekords in, nie fotolêers nie. Invoergrens: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Kon nie hierdie rugsteun invoer nie. Jou data is nie verander nie.';
+
+  @override
+  String get backupImported => 'Rugsteun suksesvol ingevoer.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists lyste · $items items · $entries aankope';
+  }
 }

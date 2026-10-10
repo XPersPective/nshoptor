@@ -492,10 +492,6 @@ class AppLocalizationsTh extends AppLocalizations {
   String get backupExported => 'ส่งออกการสำรองข้อมูลสำเร็จ';
 
   @override
-  String get backupSizeWarning =>
-      'ไฟล์สำรองข้อมูลขนาดใหญ่: ไฟล์อาจมีขนาดใหญ่อยากที่จะรวมรูปภาพด้วยหรือไม่?';
-
-  @override
   String get deleteAllSection => 'โซนอันตราย';
 
   @override
@@ -1089,4 +1085,20 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get csvExportAction => 'ส่งออก CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON มีบันทึกข้อมูล ไม่ใช่ไฟล์รูปภาพ ขีดจำกัดการนำเข้า: 16 MB';
+
+  @override
+  String get backupImportFailed =>
+      'ไม่สามารถนำเข้าข้อมูลสำรองนี้ ข้อมูลของคุณไม่มีการเปลี่ยนแปลง';
+
+  @override
+  String get backupImported => 'สำรองข้อมูลนำเข้าเรียบร้อยแล้ว';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists รายการ · $items สินค้า · $entries การซื้อ';
+  }
 }

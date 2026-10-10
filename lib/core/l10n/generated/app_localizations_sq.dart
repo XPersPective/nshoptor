@@ -494,10 +494,6 @@ class AppLocalizationsSq extends AppLocalizations {
   String get backupExported => 'Backup u eksportua me sukses.';
 
   @override
-  String get backupSizeWarning =>
-      'Backup i madh: skedari mund të jetë i gjatë. Dëshiron të përfshihen edhe fotografitë?';
-
-  @override
   String get deleteAllSection => 'Zona e rrezikshme';
 
   @override
@@ -1096,4 +1092,20 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Eksporto CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON përfshin regjistra, jo skedarë fotoje. Kufiri i importit: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Nuk u importua ky rezervë. Të dhënat tuaja nuk u ndryshuan.';
+
+  @override
+  String get backupImported => 'Backup u importua me sukses.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists lista · $items artikuj · $entries blerje';
+  }
 }

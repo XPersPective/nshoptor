@@ -494,10 +494,6 @@ class AppLocalizationsBe extends AppLocalizations {
   String get backupExported => 'Рэзервовая копія паспяхова экспартавана.';
 
   @override
-  String get backupSizeWarning =>
-      'Вялікі бэкап: файл можа быць вялікім. Дадаць фатаграфіі?';
-
-  @override
   String get deleteAllSection => 'Небяспечная зона';
 
   @override
@@ -1095,4 +1091,20 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Экспарт CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON утрымлівае запісы, а не файлы фатаграфій. Ліміт імпарту: 16 МБ.';
+
+  @override
+  String get backupImportFailed =>
+      'Не ўдалося імпартаваць гэтую рэзервовую копію. Вашы даныя не зменены.';
+
+  @override
+  String get backupImported => 'Рэзервовая копія паспяхова імпартавана.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists спісы · $items прадукты · $entries пакупкі';
+  }
 }

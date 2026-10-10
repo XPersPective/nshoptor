@@ -492,10 +492,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get backupExported => 'Backup exported successfully.';
 
   @override
-  String get backupSizeWarning =>
-      'Large backup: the file may be big. Do you want to include photos too?';
-
-  @override
   String get deleteAllSection => 'Danger zone';
 
   @override
@@ -1092,4 +1088,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Export CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON includes records, not photo files. Import limit: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Could not import this backup. Your data was not changed.';
+
+  @override
+  String get backupImported => 'Backup imported successfully.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists lists · $items items · $entries purchases';
+  }
 }

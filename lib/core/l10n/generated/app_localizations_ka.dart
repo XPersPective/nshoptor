@@ -494,10 +494,6 @@ class AppLocalizationsKa extends AppLocalizations {
   String get backupExported => 'ბექაპ წარმატებით ექსპორტირდა.';
 
   @override
-  String get backupSizeWarning =>
-      'დიდი ბექაპ: ფაილი შესაძლოა დიდია. გსურთ ფოტოების ჩათვლაც?';
-
-  @override
   String get deleteAllSection => 'საშიში ზონა';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV-ის ექსპორტი';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON-ში ჩანაწერებია, არა ფოტოფაილები. იმპორტის ლიმიტი: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'ბექაპის იმპორტი ვერ მოხერხდა. თქვენი მონაცემები არ შეცვლილა.';
+
+  @override
+  String get backupImported => 'ბექაპი წარმატებით იმპორტირდა.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists სია · $items ნივთი · $entries შენაძენი';
+  }
 }

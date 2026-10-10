@@ -494,10 +494,6 @@ class AppLocalizationsCs extends AppLocalizations {
   String get backupExported => 'Záloha úspěšně exportována.';
 
   @override
-  String get backupSizeWarning =>
-      'Velká záloha: soubor může být velký. Chcete zahrnout i fotografie?';
-
-  @override
   String get deleteAllSection => 'Nebezpečná zóna';
 
   @override
@@ -1091,4 +1087,20 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Exportovat CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON obsahuje záznamy, nikoliv soubory fotografií. Limit importu: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Tuto zálohu se nepodařilo importovat. Vaše data nebyla změněna.';
+
+  @override
+  String get backupImported => 'Záloha byla úspěšně importována.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists seznamy · $items položky · $entries nákupy';
+  }
 }

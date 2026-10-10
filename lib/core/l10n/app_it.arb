@@ -156,7 +156,6 @@
   "separateImportLabel": "Importa come copia separata",
   "importCancelled": "Importazione annullata.",
   "backupExported": "Backup esportato correttamente.",
-  "backupSizeWarning": "Backup grande: il file può essere pesante. Includere anche le foto?",
   "deleteAllSection": "Zona pericolosa",
   "deleteAllLabel": "Elimina tutti i dati",
   "deleteAllConfirm": "Verranno rimossi tutte le liste, la cronologia, le foto degli scontrini e i prezzi. I file che hai esportato restano dove sono. Continuare?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Ecrin ei pysynyt päällä. Yritä uudelleen.",
   "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückerstattungen reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.",
   "planLegacyRights": "Le abbonamenti Pro e Max esistenti mantengono il loro allowance mensile AI originale. Le nuove offerte prevedono 100 e 300 richieste.",
-  "csvExportAction": "Esporta CSV"
+  "csvExportAction": "Esporta CSV",
+  "backupSizeWarning": "JSON incluye registros, no archivos de foto. Límite de importación: 16 MB.",
+  "backupImportFailed": "El respaldo no se pudo importar. Tus datos no cambiaron.",
+  "backupImported": "Backup importato con successo.",
+  "backupPreviewCounts": "{lists} liste · {items} artiklar · {entries} köp"
 }

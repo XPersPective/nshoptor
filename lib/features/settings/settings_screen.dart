@@ -1,4 +1,8 @@
 import '../../core/l10n/language_names.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../ai/ai_client.dart';
@@ -17,6 +21,7 @@ import '../../../../core/quantity/unit_display.dart';
 import '../../app/language_controller.dart';
 import '../../app/theme_mode_controller.dart';
 import 'settings_repository.dart';
+import 'backup/backup_repository.dart';
 
 /// Ayarlar ekranı (spec §6.15): dil, tema, varsayılanlar, yedekleme,
 /// silme, gizlilik ve hakkında bölümleri. "Double onay" silme akışı
@@ -65,6 +70,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   SettingsRepository get _repo => widget.repository;
+  bool _backupBusy = false;
 
   @override
   void initState() {
@@ -237,6 +243,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
             _SectionTitle(
                 icon: Icons.backup_outlined, label: l10n.backupSection),
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text(l10n.backupSizeWarning)),
             // Yedekleme Pro'ya özeldir (standart §3.8): Pro değilken
             // kilit simgesi + dokunuş paywall açar.
             ListTile(
@@ -246,7 +253,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               trailing: _proUnlocked
                   ? null
                   : const Icon(Icons.lock_outline),
-              onTap: () => _proUnlocked
+              onTap: _backupBusy ? null : () => _proUnlocked
                   ? _exportBackup(context)
                   : (widget.subscriptions != null ? _openPlans(context) : _openPaywall(context)),
             ),
@@ -257,7 +264,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               trailing: _proUnlocked
                   ? null
                   : const Icon(Icons.lock_outline),
-              onTap: () => _proUnlocked
+              onTap: _backupBusy ? null : () => _proUnlocked
                   ? _importBackup(context)
                   : (widget.subscriptions != null ? _openPlans(context) : _openPaywall(context)),
             ),
@@ -417,21 +424,75 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<void> _exportBackup(BuildContext context) async {
+    if (_backupBusy || !_proUnlocked) return;
     final messenger = ScaffoldMessenger.of(context);
     final l10n = AppLocalizations.of(context);
-    final file = await _repo.exportBackupToFile();
-    if (!context.mounted) return;
-    messenger..clearSnackBars()..showSnackBar(
-      SnackBar(content: Text('${l10n.backupExported} ${file.path}'), showCloseIcon: true),
-    );
+    File? file;
+    setState(() => _backupBusy = true);
+    try {
+      file = await _repo.exportBackupToFile();
+      if (!mounted || !_proUnlocked) return;
+      final bytes = await file.readAsBytes();
+      if (!mounted || !_proUnlocked) return;
+      final saved = await FilePicker.saveFile(fileName: 'NShoptor-backup.json',
+        dialogTitle: l10n.exportBackupLabel, mimeType: 'application/json', bytes: bytes);
+      if (!mounted || saved == null) return;
+      messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.backupExported), showCloseIcon: true));
+    } catch (_) {
+      if (mounted) {
+        messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.saveFailed),
+          showCloseIcon: true, duration: const Duration(days: 1)));
+      }
+    } finally {
+      // Only our temporary snapshot is removed; the selected destination belongs to the user.
+      try { await file?.delete(); } on FileSystemException { /* OS cache cleanup can retry. */ }
+      if (mounted) setState(() => _backupBusy = false);
+    }
   }
 
   Future<void> _importBackup(BuildContext context) async {
+    if (_backupBusy || !_proUnlocked) return;
     final messenger = ScaffoldMessenger.of(context);
     final l10n = AppLocalizations.of(context);
-    // Dosya seçici açılış noktası minimal tutulur: T30.2 içe aktarma ekranı
-    // tamamlanmadan önceki davranış: yalnız bildirim.
-    messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.cancelButton), showCloseIcon: true));
+    setState(() => _backupBusy = true);
+    try {
+      final file = await FilePicker.pickFile(dialogTitle: l10n.importBackupLabel,
+        type: FileType.custom, allowedExtensions: ['json']);
+      if (!mounted || !_proUnlocked || file == null) return;
+      // ponytail: 16 MiB bounds decode memory; larger backups need streaming JSON import.
+      const limit = 16 * 1024 * 1024;
+      final knownSize = file.lengthSync();
+      if (knownSize != null && (knownSize < 0 || knownSize > limit)) throw const FormatException('backup size');
+      final bytes = BytesBuilder(copy: false);
+      await for (final chunk in file.readAsByteStream()) {
+        if (!mounted || !_proUnlocked) return;
+        if (bytes.length + chunk.length > limit) throw const FormatException('backup size');
+        bytes.add(chunk);
+      }
+      final json = utf8.decode(bytes.takeBytes());
+      final preview = _repo.validateBackup(json);
+      if (!context.mounted || !_proUnlocked) return;
+      final mode = await showDialog<ImportMode>(context: context, builder: (ctx) => AlertDialog(
+        key: const Key('backup_import_dialog'), title: Text(l10n.importBackupLabel),
+        content: SingleChildScrollView(child: Text('${l10n.backupPreviewCounts(preview.listCount, preview.itemCount, preview.entryCount)}\n\n${l10n.backupSizeWarning}')),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.cancelAction)),
+          TextButton(key: const Key('backup_merge'), onPressed: () => Navigator.pop(ctx, ImportMode.merge), child: Text(l10n.mergeImportLabel)),
+          FilledButton(key: const Key('backup_separate'), onPressed: () => Navigator.pop(ctx, ImportMode.separate), child: Text(l10n.separateImportLabel)),
+        ],
+      ));
+      if (!mounted || !_proUnlocked || mode == null) return;
+      await _repo.importBackupJson(json, mode: mode);
+      if (!mounted) return;
+      messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.backupImported), showCloseIcon: true));
+    } catch (_) {
+      if (mounted) {
+        messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.backupImportFailed),
+          showCloseIcon: true, duration: const Duration(days: 1)));
+      }
+    } finally {
+      if (mounted) setState(() => _backupBusy = false);
+    }
   }
 
   Future<void> _confirmDeleteAll(BuildContext context) async {

@@ -494,10 +494,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get backupExported => 'బ్యాకప్ విజయవంతంగా ఎగుమతి చేయబడింది.';
 
   @override
-  String get backupSizeWarning =>
-      'పెద్ద బ్యాకప్: ఫైల్ పెద్దదిగా ఉండవచ్చు. ఫోటోలను కూడా చేర్చాలా?';
-
-  @override
   String get deleteAllSection => 'అపాయ ప్రాంతం';
 
   @override
@@ -1099,4 +1095,20 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV ఎగుమతి';
+
+  @override
+  String get backupSizeWarning =>
+      'JSONలో రికార్డ్స్ ఉంటాయి, ఫోటో ఫైల్స్ కాదు. ఇంపోర్ట్ పరిమితి: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'ఈ బ్యాకప్‌ను ఇంపోర్ట్ చేయలేము. మీ డేటా మార్చబడలేదు.';
+
+  @override
+  String get backupImported => 'బ్యాకప్ విజయవంతంగా దిగుమతి చేయబడింది.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists జాబితాలు · $items వస్తువులు · $entries కొనుగోళ్లు';
+  }
 }

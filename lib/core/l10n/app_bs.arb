@@ -156,7 +156,6 @@
   "separateImportLabel": "Uvezi kao zasebnu kopiju",
   "importCancelled": "Uvoz je otkazan.",
   "backupExported": "Sigurnosna kopija uspješno izvezena.",
-  "backupSizeWarning": "Velika sigurnosna kopija: datoteka može biti velika. Želite li uključiti i fotografije?",
   "deleteAllSection": "Opasna zona",
   "deleteAllLabel": "Obriši sve podatke",
   "deleteAllConfirm": "Ovo će ukloniti sve popise, povijest, fotografije računa i cijene. Datoteke koje ste vi izvezle/izvezli ostaju na vašem disku. Nastaviti?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Nije moguće zadržati ekran aktivnim. Molimo pokušajte ponovo.",
   "purchaseHistoryHint": "Sva završena kupovna. Povratci smanjuju ukupne iznose. Datumi se odnose na završetak kupovine. Jedan posjet nije dovoljan za izračun prosječnog intervala.",
   "planLegacyRights": "Postojeće Pro i Max pretplate zadržavaju svoj izvorni mjesečni AI limit. Nova ponuda uključuje 100 i 300 zahtjeva.",
-  "csvExportAction": "Izvezi CSV"
+  "csvExportAction": "Izvezi CSV",
+  "backupSizeWarning": "JSON uključuje zapise, a ne datoteke s fotografijama. Ograničenje uvoza: 16 MB.",
+  "backupImportFailed": "Nije moguće uvesti ovu rezervnu kopiju. Vaši podaci nisu promijenjeni.",
+  "backupImported": "Sigurnosna kopija uspješno uvezena.",
+  "backupPreviewCounts": "{lists} liste · {items} stavke · {entries} kupovine"
 }

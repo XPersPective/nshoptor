@@ -156,7 +156,6 @@
   "separateImportLabel": "Importálás külön másolatként",
   "importCancelled": "Importálás megszakítva.",
   "backupExported": "A biztonsági mentés sikeresen exportálva.",
-  "backupSizeWarning": "Nagy méretű mentés: a fájl lehet nagy. Szeretnéd, ha a fotók is benne lennének?",
   "deleteAllSection": "Veszélyes zóna",
   "deleteAllLabel": "Összes adat törlése",
   "deleteAllConfirm": "Ez eltávolítja az összes listát, előzményt, nyugtafotót és árat. A te általad exportált fájlok a meghajtódon maradnak. Folytatod?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Nem sikerült aktívan tartani a képernyőt. Kérjük, próbálja újra.",
   "purchaseHistoryHint": "Az összes befejezett bevásárlás. A visszaküldések csökkentik az összegeket. A dátumok a bevásárlás befejezésére vonatkoznak. Egy vásárlási alkalom nem elegendő az átlagos időköz kiszámításához.",
   "planLegacyRights": "A meglévő Pro és Max előfizetések megőrzik az eredeti havi AI keretüket. Az új ajánlatok 100 és 300 kérést tartalmaznak.",
-  "csvExportAction": "CSV export"
+  "csvExportAction": "CSV export",
+  "backupSizeWarning": "A JSON fájlok rekordokat tartalmaznak, nem képfájlokat. Importálási korlát: 16 MB.",
+  "backupImportFailed": "Nem sikerült importálni ezt a mentést. Az adatai nem változtak.",
+  "backupImported": "A biztonsági mentés sikeresen importálva.",
+  "backupPreviewCounts": "{lists} lista · {items} tétel · {entries} vásárlás"
 }

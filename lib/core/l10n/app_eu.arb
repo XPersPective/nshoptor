@@ -156,7 +156,6 @@
   "separateImportLabel": "Inportatu kopia bereizi gisa",
   "importCancelled": "Inportazioa bertan behera utzi da.",
   "backupExported": "Backup-a ondo esportatu da.",
-  "backupSizeWarning": "Backup handia: fitxategia handia izan daiteke. Argazkiak ere sartu nahi dituzu?",
   "deleteAllSection": "Arriskuko eremua",
   "deleteAllLabel": "Ezabatu datu guztiak",
   "deleteAllConfirm": "Honek zerrenda, historia, jasoeren argazkiak eta prezio guztiak kenduko ditu. Zuk esportatutako fitxategiak zure diskoan geratzen dira. Jarraitu?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Ezin izan da pantaila piztuta mantendu. Saiatu berriro.",
   "purchaseHistoryHint": "Erosketa guztiak osatu dira. Itzulpenek totalak murrizten dituzte. Datak erosketaren amaierari buruzkoak dira. Bisita bakarra ez da nahikoa batezbesteko tartea kalkulatze aldera.",
   "planLegacyRights": "Pro eta Max azkenaldiko harpidetzaileek haien hasierako hilabetero AI eskaera kopurua mantentzen dute. Eskaintza berriek 100 eta 300 eskaera dituzte.",
-  "csvExportAction": "Esportatu CSV"
+  "csvExportAction": "Esportatu CSV",
+  "backupSizeWarning": "JSON-k erregistroak ditu, ez argazki-fitxategiak. Inportazio muga: 16 MB.",
+  "backupImportFailed": "Ezin izan da babeskopia hau inportatu. Zure datuak ez dira aldatu.",
+  "backupImported": "Backupa arrakastaz inportatu da.",
+  "backupPreviewCounts": "{lists} zerrenda · {items} elementu · {entries} erosketa"
 }

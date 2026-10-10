@@ -494,10 +494,6 @@ class AppLocalizationsMn extends AppLocalizations {
   String get backupExported => 'Нөөц хуулбар амжилттай экспортлогдлоо.';
 
   @override
-  String get backupSizeWarning =>
-      'Хэт их хэмжээтэй нөөц: файл том байж магадгүй. Зураг оруулах уу?';
-
-  @override
   String get deleteAllSection => 'Аюултай бүс';
 
   @override
@@ -1097,4 +1093,20 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV экспортлох';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON нь зураг файлуудыг агуулаагүй, бичлэгүүдийг агуулдаг. Импортлох хязгаар: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Энэ нөөцлөлтийг оруулж чадсангүй. Таны өгөгдөл өөрчлөгдөөгүй байна.';
+
+  @override
+  String get backupImported => 'Нөөц амжилттай импортлогдлоо.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists жагсаалт · $items зүйл · $entries худалдан авалт';
+  }
 }

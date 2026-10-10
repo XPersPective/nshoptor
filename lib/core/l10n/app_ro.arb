@@ -156,7 +156,6 @@
   "separateImportLabel": "Importă ca o copie separată",
   "importCancelled": "Import anulată.",
   "backupExported": "Backup exportat cu succes.",
-  "backupSizeWarning": "Backup mare: fișierul poate fi voluminos. Dorești să incluzi și poze?",
   "deleteAllSection": "Zona periculoasă",
   "deleteAllLabel": "Șterge toate datele",
   "deleteAllConfirm": "Aceasta va elimina toate listele, istoricul, pozele de pe chitanțe și prețurile. Fișierele exportate de tine rămân pe dispozitiv. Continuăm?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Nu s-a putut menține ecranul activ. Te rugăm să încerci din nou.",
   "purchaseHistoryHint": "Toate cumpărăturile finalizate. Returnările reduc totalurile. Datele se referă la finalizarea cumpărăturilor. O singură vizită nu este suficientă pentru a calcula un interval mediu.",
   "planLegacyRights": "Abonamentele Pro și Max existente își păstrează alocarea lunară originală de AI. Ofertele noi au 100 și 300 de solicitări.",
-  "csvExportAction": "Exportare CSV"
+  "csvExportAction": "Exportare CSV",
+  "backupSizeWarning": "JSON include înregistrări, nu fișiere foto. Limita de import: 16 MB.",
+  "backupImportFailed": "Nu s-a putut importa acest backup. Datele tale nu au fost modificate.",
+  "backupImported": "Backup importat cu succes.",
+  "backupPreviewCounts": "{lists} liste · {items} articole · {entries} achiziții"
 }

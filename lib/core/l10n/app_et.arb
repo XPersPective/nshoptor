@@ -156,7 +156,6 @@
   "separateImportLabel": "Impordi eraldi koopiana",
   "importCancelled": "Import tühistatud.",
   "backupExported": "Varukoopia edukalt eksporditud.",
-  "backupSizeWarning": "Suur varukoopia: fail võib olla suur. Kas soovid lisada ka pilte?",
   "deleteAllSection": "Ohtlik tsoon",
   "deleteAllLabel": "Kustuta kõik andmed",
   "deleteAllConfirm": "See eemaldab kõik nimekirjad, ajaloost, kviitungipildid ja hinnad. Sinu poolt eksporditud failid jäävad sinu draivi. Jätkad?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Ekraani hoidmine ärkvelolekus ei õnnestunud. Palun proovi uuesti.",
   "purchaseHistoryHint": "Kõik lõpetatud ostud. Tagastused vähendavad kogusummasid. Kuupäevad viitavad ostu lõpetamise ajale. Üks külastus ei ole piisav keskmise intervalli arvutamiseks.",
   "planLegacyRights": "Olemasolevad Pro ja Max tellimused säilitavad oma algse igakuise AI luba. Uued pakkumised sisaldavad 100 ja 300 päringut.",
-  "csvExportAction": "Ekspordi CSV"
+  "csvExportAction": "Ekspordi CSV",
+  "backupSizeWarning": "JSON sisaldab kirjeid, mitte fotofaile. Impordi piirang: 16 MB.",
+  "backupImportFailed": "Seda varundust ei saanud importida. Sinu andmed jäid muutumata.",
+  "backupImported": "Varukoopia imporditi edukalt.",
+  "backupPreviewCounts": "{lists} nimekirja · {items} toodet · {entries} ostu"
 }

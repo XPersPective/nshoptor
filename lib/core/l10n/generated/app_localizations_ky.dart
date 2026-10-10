@@ -494,10 +494,6 @@ class AppLocalizationsKy extends AppLocalizations {
   String get backupExported => 'Резервдик көчүрмө ийгиликтүү экспортталды.';
 
   @override
-  String get backupSizeWarning =>
-      'Чоң резервдик көчүрмө: файл чоң болушу мүмкүн. Сүрөттөрдү да кошосузбу?';
-
-  @override
   String get deleteAllSection => 'Кооптуу зона';
 
   @override
@@ -1093,4 +1089,20 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV экспорттоо';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON файлдарында сүрөт файлдары эмес, жазуулар бар. Импортоонун чеги: 16 МБ.';
+
+  @override
+  String get backupImportFailed =>
+      'Бул резервдик көчүрмөнү импорттоо мүмкүн болбоду. Сиздин маалыматтарыңыз өзгөрүүсүз калды.';
+
+  @override
+  String get backupImported => 'Көчүрмө ийгиликтүү жүктөлдү.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists тизме · $items товар · $entries сатып алуу';
+  }
 }

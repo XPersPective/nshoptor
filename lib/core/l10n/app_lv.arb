@@ -156,7 +156,6 @@
   "separateImportLabel": "Importēt kā atsevišķu kopiju",
   "importCancelled": "Importēšana atcelta.",
   "backupExported": "Rezerves kopija veiksmīgi eksportēta.",
-  "backupSizeWarning": "Liela rezerves kopija: fails var būt liels. Vai vēlaties iekļaut arī fotogrāfijas?",
   "deleteAllSection": "Bīstamā zona",
   "deleteAllLabel": "Dzēst visus datus",
   "deleteAllConfirm": "Tiks dzēsti visi saraksti, vēsture, čeku fotogrāfijas un cenas. Jums eksportētie faili paliks jūsu diskā. Turpināt?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Neizdevās noturēt ekrānu aktīvu. Lūdzu, mēģiniet vēlreiz.",
   "purchaseHistoryHint": "Visi pabeigtie iepirkumi. Atgrieztie produkti samazina kopējos izdevumus. Datumi attiecas uz iepirkumu pabeigšanas brīdi. Viena apmeklējuma nav pietiekami, lai aprēķinātu vidējo intervālu.",
   "planLegacyRights": "Esošajām Pro un Max abonementiem saglabājas sākotnējais mēneša AI pieprasījumu limits. Jaunajiem piedāvājumiem ir 100 un 300 pieprasījumi.",
-  "csvExportAction": "Eksportēt CSV"
+  "csvExportAction": "Eksportēt CSV",
+  "backupSizeWarning": "JSON ietver ierakstus, nevis foto failus. Importa limits: 16 MB.",
+  "backupImportFailed": "Neizdevās importēt šo rezerves kopiju. Jūsu dati netika mainīti.",
+  "backupImported": "Rezerves kopija veiksmīgi importēta.",
+  "backupPreviewCounts": "{lists} saraksti · {items} preces · {entries} pirkumi"
 }

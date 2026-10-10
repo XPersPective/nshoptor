@@ -494,10 +494,6 @@ class AppLocalizationsMy extends AppLocalizations {
   String get backupExported => 'Backup အောင်မြင်စွာ ထုတ်ယူပြီးပါပြီ။';
 
   @override
-  String get backupSizeWarning =>
-      'Backup အရွယ်အစား ကြီးမားနေသည် - ဖိုင်သည် ကြီးမားနိုင်ပါသည်။ ဓာတ်ပုံများကိုပါ ထည့်သွင်းမည်လား?';
-
-  @override
   String get deleteAllSection => 'အန္တရာယ်ရှိသော နေရာ';
 
   @override
@@ -1096,4 +1092,20 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV ထုတ်ယူရန်';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON တွင် photo file များမပါဝင်ဘဲ record များသာ ပါရှိသည်။ Import လုပ်နိုင်သော အများဆုံးအရွယ်အစားမှာ 16 MB ဖြစ်သည်။';
+
+  @override
+  String get backupImportFailed =>
+      'ဤ backup ကို import လုပ်၍မရပါ။ သင့် data များ ပြောင်းလဲခြင်း မရှိပါ။';
+
+  @override
+  String get backupImported => 'Backup ကို အောင်မြင်စွာ ဝင်ရောက်ပြီးပါပြီ။';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists စာရင်းများ · $items ပစ္စည်းများ · $entries ဝယ်ယူမှုများ';
+  }
 }

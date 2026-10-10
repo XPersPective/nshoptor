@@ -177,7 +177,6 @@
   "separateImportLabel": "Ayrı kopya olarak içe aktar",
   "importCancelled": "İçe aktarma iptal edildi.",
   "backupExported": "Yedek başarıyla dışa aktarıldı.",
-  "backupSizeWarning": "Büyük yedek: dosya büyük olabilir. Fotoğrafları da dahil mi etsin",
   "deleteAllSection": "Tehlikeli alan",
   "deleteAllLabel": "Tüm verileri sil",
   "deleteAllConfirm": "Bu, tüm listeleri, geçmişi, fişleri ve fiyatları siler. Dışa aktardığın dosyalar telefonunda kalır. Devam et?",
@@ -361,5 +360,9 @@
   "keepAwakeFailed": "Ekran açık tutulamadı. Lütfen yeniden deneyin.",
   "purchaseHistoryHint": "Tüm tamamlanan alışverişler. İadeler toplamdan düşülür. Tarihler alışverişin tamamlanmasını gösterir. Ortalama aralık için tek alışveriş yeterli değildir.",
   "planLegacyRights": "Mevcut Pro ve Max abonelikleri ilk aylık AI haklarını korur. Yeni teklifler 100 ve 300 istektir.",
-  "csvExportAction": "CSV dışa aktar"
+  "csvExportAction": "CSV dışa aktar",
+  "backupSizeWarning": "JSON yalnız kayıtları içerir; fotoğraf dosyalarını içermez. İçe aktarma sınırı: 16 MB.",
+  "backupImportFailed": "Bu yedek içe aktarılamadı. Verileriniz değiştirilmedi.",
+  "backupImported": "Yedek başarıyla içe aktarıldı.",
+  "backupPreviewCounts": "{lists} liste · {items} ürün · {entries} satın alım"
 }

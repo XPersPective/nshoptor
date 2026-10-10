@@ -156,7 +156,6 @@
   "separateImportLabel": "Importovat jako samostatnou kopii",
   "importCancelled": "Import zrušen.",
   "backupExported": "Záloha úspěšně exportována.",
-  "backupSizeWarning": "Velká záloha: soubor může být velký. Chcete zahrnout i fotografie?",
   "deleteAllSection": "Nebezpečná zóna",
   "deleteAllLabel": "Smazat všechna data",
   "deleteAllConfirm": "Tímto odstraníte všechny seznamy, historii, fotografie účtenek a ceny. Soubory exportované vámi zůstanou na vašem disku. Pokračovat?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Nepodařilo se udržet obrazovku zapnutou. Zkuste to prosím znovu.",
   "purchaseHistoryHint": "Všechny dokončené nákupy. Vrácení zboží snižuje celkové částky. Data se vztahují k dokončení nákupu. Jedna návštěva nestačí k výpočtu průměrného intervalu.",
   "planLegacyRights": "Stávající předplatné Pro a Max si zachovávají původní měsíční limit AI požadavků. Nové nabídky mají 100 a 300 požadavků.",
-  "csvExportAction": "Exportovat CSV"
+  "csvExportAction": "Exportovat CSV",
+  "backupSizeWarning": "JSON obsahuje záznamy, nikoliv soubory fotografií. Limit importu: 16 MB.",
+  "backupImportFailed": "Tuto zálohu se nepodařilo importovat. Vaše data nebyla změněna.",
+  "backupImported": "Záloha byla úspěšně importována.",
+  "backupPreviewCounts": "{lists} seznamy · {items} položky · {entries} nákupy"
 }

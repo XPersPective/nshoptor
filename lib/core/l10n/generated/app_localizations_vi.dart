@@ -493,10 +493,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get backupExported => 'Sao lưu đã được xuất thành công.';
 
   @override
-  String get backupSizeWarning =>
-      'Bản sao lưu lớn: tệp có thể khá nặng. Bạn có muốn bao gồm cả ảnh không?';
-
-  @override
   String get deleteAllSection => 'Khu vực nguy hiểm';
 
   @override
@@ -1093,4 +1089,20 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Xuất CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON bao gồm các bản ghi, không phải tệp ảnh. Giới hạn nhập: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Không thể nhập bản sao lưu này. Dữ liệu của bạn không bị thay đổi.';
+
+  @override
+  String get backupImported => 'Sao lưu đã được nhập thành công.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists danh sách · $items mặt hàng · $entries lần mua';
+  }
 }

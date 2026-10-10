@@ -156,7 +156,6 @@
   "separateImportLabel": "Als separate Kopie importieren",
   "importCancelled": "Import abgebrochen.",
   "backupExported": "Sicherung erfolgreich exportiert.",
-  "backupSizeWarning": "Große Sicherung: Die Datei kann groß sein. Sollen auch Fotos enthalten sein?",
   "deleteAllSection": "Gefahrenbereich",
   "deleteAllLabel": "Alle Daten löschen",
   "deleteAllConfirm": "Dadurch werden alle Listen, der Verlauf, Kassenbonfotos und Preise entfernt. Von dir exportierte Dateien bleiben erhalten. Fortfahren?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Bildschirm konnte nicht wach gehalten werden. Bitte versuchen Sie es erneut.",
   "purchaseHistoryHint": "Alle abgeschlossenen Einkäufe. Rückgaben reduzieren die Gesamtbeträge. Die Daten beziehen sich auf den Abschluss des Einkaufs. Ein einzelner Besuch reicht nicht aus, um ein durchschnittliches Intervall zu berechnen.",
   "planLegacyRights": "Bestehende Pro- und Max-Abonnements behalten ihre ursprüngliche monatliche AI-Nutzung. Neue Angebote bieten 100 bzw. 300 Anfragen.",
-  "csvExportAction": "CSV exportieren"
+  "csvExportAction": "CSV exportieren",
+  "backupSizeWarning": "JSON enthält Datensätze, keine Bilddateien. Importlimit: 16 MB.",
+  "backupImportFailed": "Dieses Backup konnte nicht importiert werden. Deine Daten wurden nicht geändert.",
+  "backupImported": "Backup erfolgreich importiert.",
+  "backupPreviewCounts": "{lists} Listen · {items} Artikel · {entries} Einkäufe"
 }

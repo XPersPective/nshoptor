@@ -156,7 +156,6 @@
   "separateImportLabel": "Importera som en separat kopia",
   "importCancelled": "Import avbruten.",
   "backupExported": "Säkerhetskopia exporterad framgångsrikt.",
-  "backupSizeWarning": "Stor säkerhetskopia: filen kan bli stor. Vill du inkludera bilder också?",
   "deleteAllSection": "Farozon",
   "deleteAllLabel": "Radera all data",
   "deleteAllConfirm": "Detta kommer att ta bort alla listor, historik, kvittobilder och priser. Filer du har exporterat finns kvar på din enhet. Fortsätt?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Det gick inte att hålla skärmen vaken. Försök igen.",
   "purchaseHistoryHint": "Alla genomförda shoppingar. Returer minskar totalbeloppet. Datum avser när shoppingen slutfördes. Ett besök räcker inte för att beräkna ett genomsnittligt intervall.",
   "planLegacyRights": "Befintliga Pro- och Max-prenumerationer behåller sin ursprungliga månatliga AI-begränsning. Nya erbjudanden har 100 och 300 förfrågningar.",
-  "csvExportAction": "Exportera CSV"
+  "csvExportAction": "Exportera CSV",
+  "backupSizeWarning": "JSON innehåller poster, inte bildfiler. Importgräns: 16 MB.",
+  "backupImportFailed": "Kunde inte importera denna säkerhetskopia. Dina data har inte ändrats.",
+  "backupImported": "Säkerhetskopiering importerad.",
+  "backupPreviewCounts": "{lists} listor · {items} varor · {entries} inköp"
 }

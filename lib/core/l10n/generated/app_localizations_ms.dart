@@ -493,10 +493,6 @@ class AppLocalizationsMs extends AppLocalizations {
   String get backupExported => 'Sandaran berjaya dieksport.';
 
   @override
-  String get backupSizeWarning =>
-      'Sandaran besar: fail mungkin besar. Adakah anda mahu termasuk foto juga?';
-
-  @override
   String get deleteAllSection => 'Zon bahaya';
 
   @override
@@ -1095,4 +1091,20 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Eksport CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON mengandungi rekod, bukan fail foto. Had import: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Gagal mengimport sandaran ini. Data anda tidak diubah.';
+
+  @override
+  String get backupImported => 'Backup berjaya diimport.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists senarai · $items item · $entries pembelian';
+  }
 }

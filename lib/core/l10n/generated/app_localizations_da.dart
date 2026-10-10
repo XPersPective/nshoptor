@@ -492,10 +492,6 @@ class AppLocalizationsDa extends AppLocalizations {
   String get backupExported => 'Backup eksporteret succesfuldt.';
 
   @override
-  String get backupSizeWarning =>
-      'Stor backup: filen kan være stor. Vil du inkludere fotos?';
-
-  @override
   String get deleteAllSection => 'Farlig zone';
 
   @override
@@ -1092,4 +1088,20 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Eksporter CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON indeholder poster, ikke fotofiler. Importgrænse: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Kunne ikke importere denne backup. Dine data er ikke blevet ændret.';
+
+  @override
+  String get backupImported => 'Backup importeret succesfuldt.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists lister · $items varer · $entries køb';
+  }
 }

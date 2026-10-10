@@ -156,7 +156,6 @@
   "separateImportLabel": "Importuoti kaip atskirą kopiją",
   "importCancelled": "Importas atšauktas.",
   "backupExported": "Atsarginė kopija sėkmingai eksportuota.",
-  "backupSizeWarning": "Didelė atsarginė kopija: failas gali būti didelis. Ar norite įtraukti ir nuotraukas?",
   "deleteAllSection": "Pavojinga zona",
   "deleteAllLabel": "Ištrinti visus duomenis",
   "deleteAllConfirm": "Tai pašalins visus sąrašus, istoriją, kvitų nuotraukas ir kainas. Jūsų eksportuoti failai liks jūsų diske. Tęsti?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Nepavyko išlaikyti ekrano įjungto. Bandykite dar kartą.",
   "purchaseHistoryHint": "Visos užbaigtos pirkinių išvykos. Grąžinimai mažina bendras sumas. Datos nurodo pirkinių išvykų pabaigą. Viena išvyka nepakanka vidurkio intervalui apskaičiuoti.",
   "planLegacyRights": "Esančios „Pro“ ir „Max“ prenumeracijos išlaiko savo pradinį mėnesinį AI leidimą. Naujose pasiūlymuose yra 100 ir 300 užklausų.",
-  "csvExportAction": "Eksportuoti CSV"
+  "csvExportAction": "Eksportuoti CSV",
+  "backupSizeWarning": "JSON failas įrašo duomenis, o ne nuotraukų failus. Importavimo limitas: 16 MB.",
+  "backupImportFailed": "Nepavyko importuoti šio atsarginio kopijos. Jūsų duomenys nebuvo pakeisti.",
+  "backupImported": "Atsarginė kopija sėkmingai importuota.",
+  "backupPreviewCounts": "{lists} sąrašai · {items} prekės · {entries} pirkimai"
 }

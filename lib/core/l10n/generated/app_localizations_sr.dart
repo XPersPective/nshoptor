@@ -493,10 +493,6 @@ class AppLocalizationsSr extends AppLocalizations {
   String get backupExported => 'Резервна копија је успешно извезена.';
 
   @override
-  String get backupSizeWarning =>
-      'Велика резервна копија: фајл може бити велик. Да ли желите да укључите и фотографије?';
-
-  @override
   String get deleteAllSection => 'Зона опасности';
 
   @override
@@ -1092,4 +1088,20 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Извези CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON садржи записе, а не фајлове фотографија. Ограничење увоза: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Нисмо успели да увеземо ову резервну копију. Ваша подаци нису промењени.';
+
+  @override
+  String get backupImported => 'Бекап је успешно увезен.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists листи · $items ставки · $entries куповине';
+  }
 }

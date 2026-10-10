@@ -156,7 +156,6 @@
   "separateImportLabel": "Flytja inn sem sjálfstæða afrit",
   "importCancelled": "Innflutningi hafnað.",
   "backupExported": "Öryggisafrit flutt út með góðum árangri.",
-  "backupSizeWarning": "Stórt öryggisafrit: skráin getur verið stór. Viltu innihalda einnig myndir?",
   "deleteAllSection": "Hættusvæði",
   "deleteAllLabel": "Eyða öllum gögnum",
   "deleteAllConfirm": "Þetta fjarlægir alla lista, feril, kvittunarmyndir og verð. Skrár sem þú hefur flutt út eru á drifinu þínu. Halda áfram?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Gat ekki haldið skjánum vakandi. Vinsamlegast reyndu aftur.",
   "purchaseHistoryHint": "Allar fullunnar innkaup. Endurheimt dregur úr heildarverði. Dagar vísa til lokunar innkaupa. Eitt ferð er ekki nóg til að reikna út meðalfjöldi.",
   "planLegacyRights": "Verðandi Pro og Max áskriftir halda upprunalega mánaðarlegu AI leyfi. Nýtilboðin hafa 100 og 300 beiðnir.",
-  "csvExportAction": "Flytja út CSV"
+  "csvExportAction": "Flytja út CSV",
+  "backupSizeWarning": "JSON inniheldur skrár, ekki ljósmyndaskrár. Innflutningstakmörk: 16 MB.",
+  "backupImportFailed": "Gat ekki flutt inn þessa afritun. Gögnin þín voru ekki breytt.",
+  "backupImported": "Afhending varð successfully.",
+  "backupPreviewCounts": "{lists} listar · {items} vörur · {entries} kaup"
 }

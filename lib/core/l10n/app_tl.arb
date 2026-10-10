@@ -156,7 +156,6 @@
   "separateImportLabel": "I-import bilang hiwalay na kopya",
   "importCancelled": "Nakansela ang import.",
   "backupExported": "Matagumpay na na-export ang backup.",
-  "backupSizeWarning": "Malaking backup: maaaring malaki ang file. Gusto mo bang isama ang mga litrato?",
   "deleteAllSection": "Danger zone",
   "deleteAllLabel": "Burahin ang lahat ng data",
   "deleteAllConfirm": "Buburahin nito ang lahat ng listahan, kasaysayan, litrato ng resibo at presyo. Ang mga file na i-export mo ay mananatili sa iyong drive. Magpapatuloy ka ba?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Hindi maaaring panatilihing gising ang screen. Subukan ulit.",
   "purchaseHistoryHint": "Lahat ng natapos na pagbili. Binabawasan ng mga return ang kabuuan. Ang mga petsa ay tumutukoy sa pagkumpleto ng pagbili. Isa lang ang bisita, hindi sapat para kalkulahin ang average interval.",
   "planLegacyRights": "Ang mga existing na Pro at Max subscription ay pananatili ang kanilang orihinal na buwanang AI allowance. Ang mga bagong offer ay may 100 at 300 requests.",
-  "csvExportAction": "I-export ang CSV"
+  "csvExportAction": "I-export ang CSV",
+  "backupSizeWarning": "Ang JSON ay naglalaman ng mga rekord, hindi mga file ng larawan. Limitasyon sa pag-import: 16 MB.",
+  "backupImportFailed": "Hindi ma-import ang backup na ito. Hindi nabago ang iyong data.",
+  "backupImported": "Matagumpay na na-import ang backup.",
+  "backupPreviewCounts": "{lists} listahan · {items} item · {entries} pagbili"
 }

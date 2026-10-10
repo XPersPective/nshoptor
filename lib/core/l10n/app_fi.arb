@@ -156,7 +156,6 @@
   "separateImportLabel": "Tuo erillisenä kopiona",
   "importCancelled": "Tuonti peruutettu.",
   "backupExported": "Varmuuskopio viety onnistuneesti.",
-  "backupSizeWarning": "Suuri varmuuskopio: tiedosto voi olla iso. Haluatko sisällyttää myös valokuvat?",
   "deleteAllSection": "Vaarallinen alue",
   "deleteAllLabel": "Poista kaikki tiedot",
   "deleteAllConfirm": "Tämä poistaa kaikki listat, historian, kuitin valokuvat ja hinnat. Sinun vientisi pysyvät levylläsi. Jatketaanko?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Näytön pysyminen päällä epäonnistui. Yritä uudelleen.",
   "purchaseHistoryHint": "Kaikki valmiit kaupat. Palautukset vähentävät kokonaissummaa. Päivämäärät viittaavat ostosten suorittamiseen. Yksi käynti ei riitä keskimääräisen väliajan laskemiseen.",
   "planLegacyRights": "Olemassa olevat Pro- ja Max-tilaukset säilyttävät alkuperäisen kuukausittaisen AI-käyttöoikeuden. Uudet tarjoukset sisältävät 100 ja 300 pyyntöä.",
-  "csvExportAction": "Vie CSV"
+  "csvExportAction": "Vie CSV",
+  "backupSizeWarning": "JSON sisältää tietueita, ei valokuvatiedostoja. Tuontiraja: 16 Mt.",
+  "backupImportFailed": "Tämän varmuuskopion tuonti epäonnistui. Tietojasi ei muutettu.",
+  "backupImported": "Varmuuskopio tuotu onnistuneesti.",
+  "backupPreviewCounts": "{lists} listaa · {items} tuotetta · {entries} ostosta"
 }

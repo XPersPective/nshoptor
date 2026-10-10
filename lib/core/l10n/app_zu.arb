@@ -156,7 +156,6 @@
   "separateImportLabel": "Faka njengesiphiwo esihlukene",
   "importCancelled": "Ukufakwa kwephazamisekile.",
   "backupExported": "Isiphambano sithunyelwe ngempumelelo.",
-  "backupSizeWarning": "Isiphambano esikhulu: ifayili ingaba nkulu. Ingabe ufuna ukufaka namafoto?",
   "deleteAllSection": "Indawo engozini",
   "deleteAllLabel": "Sula yonke idatha",
   "deleteAllConfirm": "Lokhu kususa wonke amalisti, umlando, amafoto emiphumela nezinto ezithengwayo. Amafayili owakhhipha ahlala endaweni yakho yokugcina. Uyaqhubeka?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Ayikwazanga ukugcina isikrini sivulekile. Sicela uzame futhi.",
   "purchaseHistoryHint": "Konke ukuthenga okuphelelwe. Ukubuyisela kunciphisa amanani. Izinsuku zibhekisela ekupheleni kokuthenga. Isivakashi esisodwa asikwanele ukubala isikhathi esijwayelekile.",
   "planLegacyRights": "Izibhalo zikaPro neMax ezikhona ziyagcina ukuvumelana kwe-AI kwangenyanga okwakuqala. Izinketho ezintsha zinamaphuzu angu-100 no-300.",
-  "csvExportAction": "Thumela i-CSV"
+  "csvExportAction": "Thumela i-CSV",
+  "backupSizeWarning": "I-JSON ihlanganisa amarekhodi, hhayi amafayela ezingcaphulo. Umkhawulo wokungenisa: 16 MB.",
+  "backupImportFailed": "Akukwazanga ukungenisa le backup. Idatha yakho ayishintshile.",
+  "backupImported": "Ibhakaki yethusi igcine ngempumelelo.",
+  "backupPreviewCounts": "{lists} amalisti · {items} izinto · {entries} ukuthenga"
 }

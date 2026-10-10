@@ -492,10 +492,6 @@ class AppLocalizationsLo extends AppLocalizations {
   String get backupExported => 'ສົ່ງອອກການສຳຮອງຂໍ້ມູນສຳເລັດແລ້ວ.';
 
   @override
-  String get backupSizeWarning =>
-      'ການສຳຮອງຂໍ້ມູນໃຫຍ່: ໄຟລ໌ອາດຈະໃຫຍ່. ທ່ານຕ້ອງການລວມຮູບພາບບໍ?';
-
-  @override
   String get deleteAllSection => 'ເຂດອັນຕະລາຍ';
 
   @override
@@ -1088,4 +1084,20 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get csvExportAction => 'ສົ່ງອອກ CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON ລວມມີຂໍ້ມູນບັນທຶກ, ບໍ່ແມ່ນໄຟລ໌ຮູບພາບ. ຂອບເຂດການນຳເຂົ້າ: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'ບໍ່ສາມາດນຳເຂົ້າຂໍ້ມູນກັບຄືນນີ້ໄດ້. ຂໍ້ມູນຂອງທ່ານບໍ່ໄດ້ຖືກປ່ຽນແປງ.';
+
+  @override
+  String get backupImported => 'ການສຳຮອງຂໍ້ມູນໄດ້ຖືກນຳເຂົ້າແລ້ວ.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists ລາຍການ · $items ສິນຄ້າ · $entries ການຊື້';
+  }
 }

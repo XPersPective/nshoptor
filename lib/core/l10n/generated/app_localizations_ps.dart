@@ -492,10 +492,6 @@ class AppLocalizationsPs extends AppLocalizations {
   String get backupExported => 'بیک اپ په بریالیتوب سره صادر شو.';
 
   @override
-  String get backupSizeWarning =>
-      'لوی بیک اپ: فایل ممکن لوی وي. غواړئ چې عکس هم شامل کړئ؟';
-
-  @override
   String get deleteAllSection => 'خطرناکه سیمه';
 
   @override
@@ -1089,4 +1085,20 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV صادر کړئ';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON کې ریکارډونه شامل دي، د عکس فایلونه نه. د واردولو حد: ۱۶ MB.';
+
+  @override
+  String get backupImportFailed =>
+      'د دې بیک اپ ایمپورٹ نشو کړی. ستاسو ډاټا نه ده بدله شوې.';
+
+  @override
+  String get backupImported => 'بیک اپ په بریالیتوب سره وارد شو.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists لیستونه · $items توکي · $entries خریدونه';
+  }
 }

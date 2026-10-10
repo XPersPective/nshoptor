@@ -156,7 +156,6 @@
   "separateImportLabel": "Importuj jako osobną kopię",
   "importCancelled": "Import anulowany.",
   "backupExported": "Kopia zapasowa została pomyślnie wyeksportowana.",
-  "backupSizeWarning": "Duża kopia zapasowa: plik może być duży. Czy chcesz dołączyć zdjęcia?",
   "deleteAllSection": "Strefa niebezpieczeństwa",
   "deleteAllLabel": "Usuń wszystkie dane",
   "deleteAllConfirm": "Spowoduje to usunięcie wszystkich list, historii, zdjęć paragonów i cen. Pliki wyeksportowane przez Ciebie pozostaną na dysku. Kontynuować?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Nie udało się utrzymać włączonego ekranu. Spróbuj ponownie.",
   "purchaseHistoryHint": "Wszystkie zakończone zakupy. Zwroty zmniejszają całkowite kwoty. Daty odnoszą się do ukończenia zakupów. Jedna wizyta nie wystarczy, aby obliczyć średni interwał.",
   "planLegacyRights": "Istniejące subskrypcje Pro i Max zachowują pierwotny miesięczny limit AI. Nowe oferty mają 100 i 300 zapytań.",
-  "csvExportAction": "Eksportuj CSV"
+  "csvExportAction": "Eksportuj CSV",
+  "backupSizeWarning": "JSON zawiera rekordy, a nie pliki zdjęć. Limit importu: 16 MB.",
+  "backupImportFailed": "Nie udało się zaimportować tej kopii zapasowej. Twoje dane nie zostały zmienione.",
+  "backupImported": "Backup został pomyślnie zaimportowany.",
+  "backupPreviewCounts": "{lists} list · {items} produktów · {entries} zakupów"
 }

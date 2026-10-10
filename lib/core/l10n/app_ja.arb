@@ -156,7 +156,6 @@
   "separateImportLabel": "別のコピーとしてインポート",
   "importCancelled": "インポートがキャンセルされました。",
   "backupExported": "バックアップのエクスポートに成功しました。",
-  "backupSizeWarning": "バックアップファイルが大きいです。写真も含めますか？",
   "deleteAllSection": "危険ゾーン",
   "deleteAllLabel": "すべてのデータを削除",
   "deleteAllConfirm": "すべてのリスト、履歴、レシート写真、価格情報が削除されます。あなたがエクスポートしたファイルはデバイスに残ります。続行しますか？",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "画面を点灯したままにできませんでした。もう一度お試しください。",
   "purchaseHistoryHint": "すべての完了したショッピング履歴。返品は合計額を減らします。日付はショッピングの完了日を指します。1回の訪問では平均間隔を計算するには不十分です。",
   "planLegacyRights": "既存のProおよびMaxサブスクリプションは、従来の月間AI利用枠を維持します。新しいオファーでは100件と300件のリクエストが提供されます。",
-  "csvExportAction": "CSVをエクスポート"
+  "csvExportAction": "CSVをエクスポート",
+  "backupSizeWarning": "JSONにはレコードが含まれており、写真ファイルは含まれていません。インポート制限：16 MB。",
+  "backupImportFailed": "このバックアップはインポートできませんでした。データは変更されていません。",
+  "backupImported": "バックアップが正常にインポートされました。",
+  "backupPreviewCounts": "{lists}件のリスト · {items}個のアイテム · {entries}件の購入"
 }

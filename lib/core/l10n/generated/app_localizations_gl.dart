@@ -493,10 +493,6 @@ class AppLocalizationsGl extends AppLocalizations {
   String get backupExported => 'Copia de seguridade exportada correctamente.';
 
   @override
-  String get backupSizeWarning =>
-      'Copia de seguridade grande: o ficheiro pode ser pesado. Queres incluír tamén as fotos?';
-
-  @override
   String get deleteAllSection => 'Zona de perigo';
 
   @override
@@ -1097,4 +1093,20 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Exportar CSV';
+
+  @override
+  String get backupSizeWarning =>
+      'O JSON inclúe rexistros, non ficheiros de fotos. Límite de importación: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Non se puido importar esta copia de seguridade. Os teus datos non cambiaron.';
+
+  @override
+  String get backupImported => 'Copia de seguridade importada correctamente.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists listas · $items artigos · $entries compras';
+  }
 }

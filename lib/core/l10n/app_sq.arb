@@ -156,7 +156,6 @@
   "separateImportLabel": "Importo si kopje të veçantë",
   "importCancelled": "Importi u anulua.",
   "backupExported": "Backup u eksportua me sukses.",
-  "backupSizeWarning": "Backup i madh: skedari mund të jetë i gjatë. Dëshiron të përfshihen edhe fotografitë?",
   "deleteAllSection": "Zona e rrezikshme",
   "deleteAllLabel": "Fshi të gjitha të dhënat",
   "deleteAllConfirm": "Kjo do të heqë të gjitha listat, historinë, fotografitë e faturave dhe çmimet. Skedarët e eksportuar nga ju mbeten në diskun tuaj. Vazhdon?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Nuk mund të mbahet e ndezur ekrani. Ju lutem, provoni përsëri.",
   "purchaseHistoryHint": "Të gjitha blerjet e përfunduara. Kthimet ulin totalin. Datat i referohen përfundimit të shitjes. Një vizitë nuk është mjaftueshme për të llogaritur një interval mesatar.",
   "planLegacyRights": "Abonimet ekzistuese Pro dhe Max ruajnë lejen mujore origjinale të AI. Ofertat e reja kanë 100 dhe 300 kërkesa.",
-  "csvExportAction": "Eksporto CSV"
+  "csvExportAction": "Eksporto CSV",
+  "backupSizeWarning": "JSON përfshin regjistra, jo skedarë fotoje. Kufiri i importit: 16 MB.",
+  "backupImportFailed": "Nuk u importua ky rezervë. Të dhënat tuaja nuk u ndryshuan.",
+  "backupImported": "Backup u importua me sukses.",
+  "backupPreviewCounts": "{lists} lista · {items} artikuj · {entries} blerje"
 }

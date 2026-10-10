@@ -492,10 +492,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get backupExported => 'Yedek başarıyla dışa aktarıldı.';
 
   @override
-  String get backupSizeWarning =>
-      'Büyük yedek: dosya büyük olabilir. Fotoğrafları da dahil mi etsin';
-
-  @override
   String get deleteAllSection => 'Tehlikeli alan';
 
   @override
@@ -1092,4 +1088,20 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV dışa aktar';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON yalnız kayıtları içerir; fotoğraf dosyalarını içermez. İçe aktarma sınırı: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Bu yedek içe aktarılamadı. Verileriniz değiştirilmedi.';
+
+  @override
+  String get backupImported => 'Yedek başarıyla içe aktarıldı.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists liste · $items ürün · $entries satın alım';
+  }
 }

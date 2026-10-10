@@ -493,10 +493,6 @@ class AppLocalizationsHu extends AppLocalizations {
   String get backupExported => 'A biztonsági mentés sikeresen exportálva.';
 
   @override
-  String get backupSizeWarning =>
-      'Nagy méretű mentés: a fájl lehet nagy. Szeretnéd, ha a fotók is benne lennének?';
-
-  @override
   String get deleteAllSection => 'Veszélyes zóna';
 
   @override
@@ -1094,4 +1090,20 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV export';
+
+  @override
+  String get backupSizeWarning =>
+      'A JSON fájlok rekordokat tartalmaznak, nem képfájlokat. Importálási korlát: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'Nem sikerült importálni ezt a mentést. Az adatai nem változtak.';
+
+  @override
+  String get backupImported => 'A biztonsági mentés sikeresen importálva.';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists lista · $items tétel · $entries vásárlás';
+  }
 }

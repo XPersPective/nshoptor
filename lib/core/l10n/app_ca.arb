@@ -156,7 +156,6 @@
   "separateImportLabel": "Importa com una còpia separada",
   "importCancelled": "Importació cancel·lada.",
   "backupExported": "Còpia de seguretat exportada correctament.",
-  "backupSizeWarning": "Còpia de seguretat gran: el fitxer pot ser voluminós. Vols incloure també les fotos?",
   "deleteAllSection": "Zona de perill",
   "deleteAllLabel": "Esborra totes les dades",
   "deleteAllConfirm": "Això eliminarà totes les llistes, l'historial, les fotos dels rebuts i els preus. Els fitxers que hagis exportat es mantindran al teu dispositiu. Continues?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "No s'ha pogut mantenir la pantalla encesa. Si us plau, torna-ho a provar.",
   "purchaseHistoryHint": "Totes les compres completades. Les devolucions redueixen els totals. Les dates fan referència a la finalització de la compra. Una sola visita no és suficient per calcular un interval mitjà.",
   "planLegacyRights": "Les subscripcions Pro i Max existents mantenen el seu permís mensual original d'IA. Les noves ofertes tenen 100 i 300 peticions.",
-  "csvExportAction": "Exportar CSV"
+  "csvExportAction": "Exportar CSV",
+  "backupSizeWarning": "El JSON inclou registres, no fitxers d'imatge. Límit d'importació: 16 MB.",
+  "backupImportFailed": "No s'ha pogut importar aquesta còpia de seguretat. Les teves dades no han estat modificades.",
+  "backupImported": "Còpia de seguretat importada correctament.",
+  "backupPreviewCounts": "{lists} llistes · {items} articles · {entries} compres"
 }

@@ -156,7 +156,6 @@
   "separateImportLabel": "Importeren als aparte kopie",
   "importCancelled": "Importeren geannuleerd.",
   "backupExported": "Back-up succesvol geëxporteerd.",
-  "backupSizeWarning": "Grote back-up: het bestand kan groot zijn. Wil je ook foto's opnemen?",
   "deleteAllSection": "Gevarenzone",
   "deleteAllLabel": "Alle gegevens verwijderen",
   "deleteAllConfirm": "Hiermee worden alle lijsten, geschiedenis, bonfoto's en prijzen verwijderd. Door jou geëxporteerde bestanden blijven op je schijf. Doorgaan?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Het is niet gelukt om het scherm actief te houden. Probeer het opnieuw.",
   "purchaseHistoryHint": "Alle voltooide boodschappen. Terugbrings verlagen de totalen. Data verwijzen naar het moment van afrekenen. Eén bezoek is niet genoeg om een gemiddelde interval te berekenen.",
   "planLegacyRights": "Bestaande Pro- en Max-abonnementen behouden hun oorspronkelijke maandelijkse AI-toelage. Nieuwe aanbiedingen bieden 100 en 300 verzoeken.",
-  "csvExportAction": "CSV exporteren"
+  "csvExportAction": "CSV exporteren",
+  "backupSizeWarning": "JSON bevat records, geen fotobestanden. Importlimiet: 16 MB.",
+  "backupImportFailed": "Deze back-up kan niet worden geïmporteerd. Uw gegevens zijn niet gewijzigd.",
+  "backupImported": "Backup succesvol geïmporteerd.",
+  "backupPreviewCounts": "{lists} lijsten · {items} items · {entries} aankopen"
 }

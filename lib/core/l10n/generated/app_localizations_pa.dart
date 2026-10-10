@@ -494,10 +494,6 @@ class AppLocalizationsPa extends AppLocalizations {
   String get backupExported => 'ਬੈਕਅਪ ਸਫਲਤਾ ਨਾਲ ਨਿਰਯਾਤ ਹੋ ਗਿਆ।';
 
   @override
-  String get backupSizeWarning =>
-      'ਵੱਡਾ ਬੈਕਅਪ: ਫ਼ਾਈਲ ਵੱਡੀ ਹੋ ਸਕਦੀ ਹੈ। ਕੀ ਤੁਸੀਂ ਫ਼ੋਟੋਆਂ ਵੀ ਸ਼ਾਮਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?';
-
-  @override
   String get deleteAllSection => 'ਖ਼ਤਰਨਾਕ ਖੇਤਰ';
 
   @override
@@ -1092,4 +1088,20 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV ਐਕਸਪੋਰਟ ਕਰੋ';
+
+  @override
+  String get backupSizeWarning =>
+      'JSON ਵਿੱਚ ਰਿਕਾਰਡ ਹਨ, ਫੋਟੋ ਫਾਈਲਾਂ ਨਹੀਂ। ਇੰਪੋਰਟ ਲਿਮਿਟ: 16 MB.';
+
+  @override
+  String get backupImportFailed =>
+      'ਇਹ ਬੈਕਅਪ ਇੰਪੋਰਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਤੁਹਾਡਾ ਡੇਟਾ ਨਹੀਂ ਬਦਲਿਆ ਗਿਆ।';
+
+  @override
+  String get backupImported => 'ਬੈਕਅਪ ਸਫਲਤਾ ਨਾਲ ਇੰਪੋਰਟ ਕੀਤਾ ਗਿਆ ਹੈ।';
+
+  @override
+  String backupPreviewCounts(Object entries, Object items, Object lists) {
+    return '$lists ਸੂਚੀਆਂ · $items ਆਈਟਮਾਂ · $entries ਖਰੀਦ';
+  }
 }

@@ -156,7 +156,6 @@
   "separateImportLabel": "Ayrı kopya kimi idxal et",
   "importCancelled": "Idxal ləğv edildi.",
   "backupExported": "Yedək uğurla ixrac edildi.",
-  "backupSizeWarning": "Böyük yedək: fayl böyük ola bilər. Şəkilləri də daxil etmək istəyirsiniz?",
   "deleteAllSection": "Təhlükəli zona",
   "deleteAllLabel": "Bütün məlumatları sil",
   "deleteAllConfirm": "Bu, bütün siyahıları, tarixçəni, qəbul şəkillərini və qiymətləri siləcək. Sizin tərəfinizdən ixrac edilmiş fayllar diskdə qalacaq. Davam etmək istəyirsiniz?",
@@ -340,5 +339,9 @@
   "keepAwakeFailed": "Ekranı oyuda saxlamaq mümkün olmadı. Zəhmət olmasa, yenidən cəhd edin.",
   "purchaseHistoryHint": "Tamamlanmış bütün alış-verişlər. Qaytarmalar ümumi məbləği azaldır. Tarixlər alış-verişin tamamlanmasına aiddir. Bir ziyarət orta intervalı hesablamaq üçün kifayət deyil.",
   "planLegacyRights": "Mövcud Pro və Max abunəlikləri ilkin aylıq AI limitini saxlayır. Yeni təkliflər 100 və 300 sorğu ilə gəlir.",
-  "csvExportAction": "CSV ixracat et"
+  "csvExportAction": "CSV ixracat et",
+  "backupSizeWarning": "JSON faylı şəkil faylları əvəzinə qeydlər daşıyır. İdxal həddi: 16 MB.",
+  "backupImportFailed": "Bu ehtiyat nüsxəsini idxal etmək mümkün olmadı. Məlumatlarınız dəyişdirilmədi.",
+  "backupImported": "Yedək uğurla idxal edildi.",
+  "backupPreviewCounts": "{lists} siyahı · {items} məhsul · {entries} alış"
 }
