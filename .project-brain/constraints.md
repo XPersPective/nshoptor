@@ -10,9 +10,9 @@ ekleme yolu belgeli, eksik anahtar testi zorunlu. (spec §3 + ADR-002)
 
 ### C-002: Offline-first, hesapsız, VERİ=YEREL (ADR-004: tek istisna AI metin vekili)
 
-Hesap yok, sunucu yok, analiz/çökme SDK'sı yok. Uçak modunda tam işlev
-(OCR dahil, kurulumdan sonra). Tek uzak çağrı: Keşfet apps.json (HTTPS,
-standart §3.6). (spec §12 + standart §6.1)
+Hesap girişi yok; alışveriş/yerel OCR çevrimdışı çalışır. Onaylı ağ
+akışları: isteğe bağlı AI metin vekili, Play doğrulama/satın alma, AdMob
+ve Keşfet. Ayrı analitik/çökme SDK'sı yok; reklam SDK'sı metaveri işleyebilir.
 
 ### C-003: Kullanıcı onayı olmadan veri değişmez
 
@@ -42,7 +42,8 @@ içi) + Android native on-device speech (ADR-006; paketin ağ fallback'i kullan�
 
 ### C-020: Gizlilik — fotoğraf/ses cihazda kalır; AI'ya yalnız metin, onaylı ve kotalı (ADR-004)
 
-Fiş, fotoğraf ve tüm kullanıcı verisi cihazdan ağa gönderilmez. Günlüklere
+Fotoğraf/ses OCR/tanıma akışlarında yüklenmez; AI'ya yalnız kullanıcı
+seçimiyle metin gider. Dosya kaydı seçilen sağlayıcıya verilir. Günlüklere
 fiş metni, ürün listesi, tam dosya yolu veya başka hassas veri yazılmaz.
 (spec §12)
 
@@ -52,10 +53,10 @@ Para ve ondalıklı miktarlar decimal/fixed-point (core/money); ayrıştırma
 tr+en locale-aware. (spec §7.1)
 ## Operations
 
-### C-030: Paket kimliği placeholder
+### C-030: Mevcut Play paket kimliği korunur
 
-Android app id / iOS bundle id `com.crazypenguin.nshoptor` kalır; production
-kimliğini Crazy Penguin sağlayacak. (spec §2)
+Android app id `com.crazypenguin.nshoptor` mevcut Play kimliğidir ve korunur;
+iOS yayını ertelendi. İmza/kimlik dosyaları D:/AppPublishing altında.
 
 ### C-031: Lisans GPL-3.0 + bağımlılık lisans disiplini
 

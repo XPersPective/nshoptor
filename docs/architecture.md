@@ -12,15 +12,15 @@ lib/
 │   ├── money/           # Currency, DecimalFixed, Money, MoneyParser, formatMoney
 │   ├── quantity/        # UnitCode, UnitConversion, PackagingContent
 │   ├── calc/            # LineCalc, ListCalc, EffectSplit, VarianceThreshold
-│   ├── l10n/            # tr/en ARB + üretilmiş AppLocalizations
+│   ├── l10n/            # 71 dil ARB + üretilmiş AppLocalizations
 │   ├── theme/           # AppTheme (M3), SemanticDelta (WCAG AA)
 │   └── util/            # normalizeName, combineLatest3
 ├── data/db/             # drift şeması (14 tablo), migration
 └── features/
-    ├── home/            # HomeShell (4 sekme), HomeScreen, şablon kartı
+    ├── home/            # HomeShell (5 sekme), HomeScreen, şablon kartı
     ├── lists/           # listeler, ürün formu, liste detayı, öneriler,
     │                    # taksonomi, şablonlar, hatırlatmalar, ekler
-    ├── shopping_mode/   # alışveriş modu + summary/ (sonuç ekranı)
+    ├── shopping_mode/   # kanonik liste uyumluluğu + summary/ (PDF/CSV sonuç)
     ├── history/         # price_history/, insights/
     ├── voice_input/     # SpeechService, VoicePreviewSheet, parser/
     ├── receipts/        # OcrTextSource, shelf_label/, parser/, review/
@@ -33,7 +33,7 @@ lib/
 - Her feature kendi repository'sini (`*_repository.dart`) drift üzerinden
   tutar; ekranlar repository akışlarını dinler.
 - Platform servisleri soyutlamanın arkasındadır ve testte sahtesi verilir:
-  `SpeechService` (→ `SttSpeechService`), `OcrTextSource`
+  `SpeechService` (→ native Android cihaz içi `SttSpeechService`), `OcrTextSource`
   (→ `MlKitTextSource`), `ReminderScheduler`. `ListDetailScreen` bu
   servisleri isteğe bağlı parametre olarak alır.
 - OCR/ses çıktısı yalnız onay ekranından sonra veriye dönüşür
