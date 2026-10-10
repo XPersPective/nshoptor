@@ -1,6 +1,5 @@
 # Project Constraints
 ## User Requirements
-
 ### C-001: Çok dilli, dil ↔ para bağımsız
 
 Tüm kullanıcı akışları tr ve en ile tam çalışır; resmi flutter l10n/ARB +
@@ -8,7 +7,7 @@ intl (ADR-003). Slogan seçili dile göre değişir. Dil seçimi para/sayı
 biçimini ZORLAMAZ: para birimi ve biçimlendirme ayrı ayar; yeni dil
 ekleme yolu belgeli, eksik anahtar testi zorunlu. (spec §3 + ADR-002)
 
-### C-002: Offline-first, hesapsız, VERİ=YEREL (ADR-004: tek istisna AI metin vekili)
+### C-002: Offline-first, hesapsız, VERİ=YEREL (onaylı ağ akışları aşağıda)
 
 Hesap girişi yok; alışveriş/yerel OCR çevrimdışı çalışır. Onaylı ağ
 akışları: isteğe bağlı AI metin vekili, Play doğrulama/satın alma, AdMob

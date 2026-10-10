@@ -164,7 +164,7 @@ kimlik repoya GİRMEZ). Gerçek uygulama ikonu: marka yeşili sepet
 (tool/brand/make_source_icon.py → adaptive + monochrome + splash;
 emülatör launcher kanıtı). cleartext off, backup rules, R8
 minify+shrink, key.properties imza, fat APK tüm ABI'ler. iOS: ertelendi
-(C-033). CI: analyze+test, gitleaks, release APK build. Uygulama
+(C-033). CI: analyze+test, gitleaks, release APK build allgreen on final app source (PB098). Private napp_kit uses dedicated read-only deploy key/Actions secret, strict pinned GitHub host and kit-only URL rewrite. Uygulama
 gerçeğiyle yasal taslaklar (docs/store/) çapraz kontrolü tamam.
 ## External Dependencies
 
