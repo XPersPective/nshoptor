@@ -1,13 +1,14 @@
 """Owned Android release QA helper; taps only nodes from a freshly observed UI dump."""
 import argparse
+import os
 from pathlib import Path
 import re
 import subprocess
 import xml.etree.ElementTree as ET
 
 ADB = "C:/Users/rubicon/AppData/Local/Android/Sdk/platform-tools/adb.exe"
-DEVICE = "emulator-5554"
-OUT = Path(__file__).resolve().parent.parent / "build/audits/release"
+DEVICE = os.environ.get("NSHOPTOR_QA_DEVICE", "emulator-5554")
+OUT = Path(os.environ.get("APP_PUBLISHING_ROOT", "D:/AppPublishing")) / "apps/nshoptor/artifacts/release-qa"
 
 
 def adb(*args):
