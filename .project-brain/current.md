@@ -1,7 +1,7 @@
 # Current Architecture
 ## Final verified state — 2026-10-10
 - Source/pubspec/About1.2.1+8; Google Play internal8 completed, production1 unchanged. Final publisher AAB signed by existing certificate and external-secret literal scan passed. Detailed evidence: docs/audits/release-1.2.1-2026-10-10.md and internal-release-2026-10-10.md.
-- Final Flutter383/server25/analyze0/configured debug APK passed. Native JSON FilePicker fixture1 and normal optimized main8 CSV cancel/retry/save/pull/numeric/cold-reopen checks passed. GitHub final app source CI allgreen (analysis/tests/gitleaks/release APK).
+- Final Flutter383/server25/analyze0/configured debug APK passed. Native JSON FilePicker fixture1 and normal optimized main8 CSV cancel/retry/save/pull/numeric/cold-reopen checks passed. GitHub final code/fixture/helper CI38074516588 allgreen (analysis/tests/gitleaks/release APK).
 - Canonical checklist/independent plan-actual quantities/prices, atomic receipt replacement, rollback/undo, editable local speech/OCR and optional AI preview, precise decimal/currency, large-text RTL and native wake lifecycle are verified by source/domain/full/native checks; release-2026-10-10.md maps SC1–SC8 and preserves historical7 proof.
 - PDF/CSV free; Pro JSON native save/select/approval validates bounded16MiB UTF8 and preserves v1/relationships. No photo binary archive. JSON main customer DB never used by QA fixture.
 - New quotas10/100/300 monthly, grandfathered200/1000; actual Play v2 prices/catalog and live atomic Worker/D1 verification complete. Current Qwen remains by explicit user choice; DeepSeek comparison is a pricing scenario, actual provider cost/profit unknown.
@@ -38,7 +38,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `server/` — Cloudflare Worker AI vekili (`nshoptor-api.devx8585.workers.dev`), D1 kota, Play doğrulama
 ## Runtime
 
-**Status:** VERIFIED (2026-10-09 boot/defaults/format checkpoint)
+**Status:** VERIFIED (2026-10-10 final source/defaults/native release checkpoint)
 
 **Sources:** `lib/main.dart`, `lib/app/**`, `pubspec.yaml`, `pubspec.lock`
 

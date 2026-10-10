@@ -32,6 +32,23 @@ Permanent D release-qa: main-optimized-1.2.1+8.apk, CSV above, csv_native_cancel
 
 ## Google Play and cleanup
 
-`fastlane deploy_internal` completed21:16:48; independent read-only Android Publisher SDK confirms internal8 completed, production1 unchanged. No production promotion or global metadata/images submitted. Final app source CI38074155877 allgreen; fixture/helper follow-up715bcf3 same app source already passed Analyze/Test/gitleaks and build verification was running at publication. Prepared store notes8 remain in permanent D metadata root.
+`fastlane deploy_internal` completed21:16:48; independent read-only Android Publisher SDK confirms internal8 completed, production1 unchanged. No production promotion or global metadata/images submitted. Final app source CI38074155877 allgreen; final code/fixture/helper CI38074516588 also completed success across Analyze/Test/gitleaks/release APK. Prepared store notes8 remain in permanent D metadata root.
 
 Owned temporary AVD `nshoptor_release_check_20261010` was stopped after proof and removed using native avdmanager after verifying its exact non-junction C path. Only synthetic QA data removed; shared AVDs/publishing/source preserved. Source stays D; build junction targets `C:/CodexBuilds/nshoptor/build`. Final disk free C15.6GB/D10GB (current generated build retained for Fastlane; old cleanup PB096).
+
+## Final audit against confirmed target
+
+| Success condition | Verified evidence |
+|---|---|
+| SC1 canonical routes | PB070/PB062 route assertions and native main8 cold reopen retained completed list/monthly totals; historical main7 completed route proof. |
+| SC2 independent amounts/CRUD | Full383 includes shared CRUD, null-vs-zero/quantity/decimal checks; main8 quantity1/12.34 plan/13.00 actual/0.66 difference and CSV agree. |
+| SC3 input/cancellation | Native on-device speech init/cancel/reopen1 and offline MLKit1; main7 denied microphone/manual preservation/camera cancellation. Physical transcript/capture limits remain explicit. |
+| SC4 receipt integrity | Full suite asserts manual+receipt replacement, repeated/concurrent confirmation, partial rows, rollback, undo, JPY/KWD precision; backup validation/relationships add separate regression coverage. |
+| SC5 locale/accessibility | Independent currency/format/default and native wake lifecycle checks;320dp/2x en/ar,375dp portrait/landscape/light/dark/reduced-motion and native cancellation/retry. |
+| SC6 commercial/quota | Server25 plus actual Worker/D1 race/verified owner/catalog rollout audit; new10/100/300 and legacy200/1000; current Qwen unchanged, DeepSeek economics self-check, costs remain assumptions. |
+| SC7 reports | Native saved/opened PDF main7 exact amounts and multi-page fixture; actual main8 saved/pulled CSV; quantity/visit/currency-unit-filter analytics assertions. |
+| SC8 final execution | Full383/server25/analyze0/debug, optimized main and signed AAB; all jobs green in CI38074516588; Publisher SDK internal8 completed/production1 unchanged; no generic physical/billing claim. |
+
+All confirmed Android/internal work complete. Global store metadata/Data Safety publication, production promotion and iOS are outside this internal release; physical transcript/capture, real tester purchase and actual provider invoice remain documented verification limits. No new dependencies/schema or user/source/publishing relocation. Final review since Brain genesis: security/input bounds, transaction rollback, controlled external file ownership, docs/current map, dead-code/TODO scan and redacted full-history scan. Documentation-only closure commits skip redundant CI; application/test/tool source is the successful CI commit.
+
+Queue-empty configured final audit rerun: `flutter test --reporter expanded`383 passed55s; `flutter analyze`0 issues54.9s; `flutter build apk --debug`built14.9s. Server25 unchanged/passed. Permanent `ci-verification.json` proves final code/fixture/helper run38074516588 all3jobs success. Logs copied to permanent release8 artifacts. Brain validate0open/0fail/0warn; completed task evidence committed before task-file cleanup.
