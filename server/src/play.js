@@ -1,5 +1,5 @@
 // Pro/Max yetkisi: istemci iddiası değil, Play Developer API doğrulaması
-// (ADR-004 §7, C-041). Her hata ücretsiz katmana düşer; asla yükseltmez.
+// (ADR-004 §7, C-041). Invalid credentials cannot elevate; verified lineage failures are busy.
 
 const enc = new TextEncoder();
 const b64url = bytes =>
@@ -28,7 +28,7 @@ async function accessToken(sa, fetchImpl) {
     'pkcs8', der, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
   const sig = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, enc.encode(`${header}.${claims}`));
   const res = await fetchImpl('https://oauth2.googleapis.com/token', {
-    method: 'POST',
+    method: 'POST', signal: AbortSignal.timeout(10_000),
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
     body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${header}.${claims}.${b64url(sig)}`,
   });
@@ -54,32 +54,69 @@ export function tierFromSubscription(sub, now = Date.now()) {
   return { tier: publicTier(policy), policy, expiresAt };
 }
 
+function cachePolicy(row, hash) {
+  if (!row) return null;
+  if (Object.hasOwn(rank, row.tier)) return { policy: row.tier, ownerHash: hash };
+  try {
+    const data = JSON.parse(row.tier);
+    if (data && Object.keys(data).length === 2 && typeof data.policy === 'string' && Object.hasOwn(rank, data.policy) &&
+        typeof data.ownerHash === 'string' && /^[a-f0-9]{64}$/.test(data.ownerHash)) return data;
+  } catch { /* Invalid metadata never grants entitlement. */ }
+  return null;
+}
+
 export async function resolveEntitlement(env, purchaseToken, { fetchImpl = fetch, now = Date.now() } = {}) {
   const free = { tier: 'free', policy: 'free', identity: null };
-  if (typeof purchaseToken !== 'string' || purchaseToken.length < 20 || purchaseToken.length > 4096) return free;
+  const validToken = value => typeof value === 'string' && value.length >= 20 && value.length <= 4096;
+  if (!validToken(purchaseToken)) return free;
+  let verifiedPaid = false;
   try {
     const hash = await sha256Hex(purchaseToken);
-    const cached = await env.DB.prepare(
-      'SELECT tier, expires_at FROM entitlement_cache WHERE token_hash = ?').bind(hash).first();
-    let policy;
-    if (cached && cached.expires_at > now && Object.hasOwn(rank, cached.tier)) policy = cached.tier;
+    const readCache = key => env.DB.prepare(
+      'SELECT tier, expires_at FROM entitlement_cache WHERE token_hash = ?').bind(key).first();
+    const cached = await readCache(hash), metadata = cachePolicy(cached, hash);
+    let policy, ownerHash = metadata?.ownerHash ?? hash;
+    if (metadata && cached.expires_at > now) policy = metadata.policy;
     else {
-      const sa = JSON.parse(env.GOOGLE_SA_JSON);
-      const token = await accessToken(sa, fetchImpl);
-      const url = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${
-        encodeURIComponent(env.PACKAGE_NAME)}/purchases/subscriptionsv2/tokens/${encodeURIComponent(purchaseToken)}`;
-      const res = await fetchImpl(url, { headers: { authorization: 'Bearer ' + token } });
+      const token = await accessToken(JSON.parse(env.GOOGLE_SA_JSON), fetchImpl);
+      const lookup = value => fetchImpl(`https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${
+        encodeURIComponent(env.PACKAGE_NAME)}/purchases/subscriptionsv2/tokens/${encodeURIComponent(value)}`,
+        { headers: { authorization: 'Bearer ' + token }, signal: AbortSignal.timeout(10_000) });
+      const res = await lookup(purchaseToken);
       if (!res.ok) return free;
-      const entitlement = tierFromSubscription(await res.json(), now);
+      const sub = await res.json(), entitlement = tierFromSubscription(sub, now);
       policy = entitlement.policy;
+      verifiedPaid = policy !== 'free';
+      if (verifiedPaid && ownerHash === hash) {
+        let parent = sub.linkedPurchaseToken;
+        const seen = new Set([hash]);
+        for (let depth = 0; parent; depth++) {
+          if (depth >= 8 || !validToken(parent)) throw new Error('lineage_unavailable');
+          const parentHash = await sha256Hex(parent);
+          if (seen.has(parentHash)) throw new Error('lineage_unavailable');
+          seen.add(parentHash);
+          const previous = cachePolicy(await readCache(parentHash), parentHash);
+          // ponytail: cache rows retain canonical ownership indefinitely; migrate aliases before any future purge.
+          if (previous) { ownerHash = previous.ownerHash; break; }
+          const prior = await lookup(parent);
+          if (prior.status === 404 || prior.status === 410) { ownerHash = parentHash; break; }
+          if (!prior.ok) throw new Error('lineage_unavailable');
+          const old = await prior.json();
+          ownerHash = parentHash;
+          parent = old.linkedPurchaseToken;
+        }
+      }
       const cacheUntil = Math.min(entitlement.expiresAt || now + 600_000, now + 6 * 3600_000);
       await env.DB.prepare(
         'INSERT INTO entitlement_cache(token_hash, tier, expires_at) VALUES(?, ?, ?) ' +
         'ON CONFLICT(token_hash) DO UPDATE SET tier = excluded.tier, expires_at = excluded.expires_at',
-      ).bind(hash, policy, cacheUntil).run();
+      ).bind(hash, ownerHash === hash ? policy : JSON.stringify({ policy, ownerHash }), cacheUntil).run();
     }
-    return policy === 'free' ? free : { tier: publicTier(policy), policy, identity: 'paid:' + hash };
-  } catch { return free; }
+    return policy === 'free' ? free : { tier: publicTier(policy), policy, identity: 'paid:' + ownerHash };
+  } catch {
+    if (verifiedPaid) throw new Error('entitlement_busy');
+    return free;
+  }
 }
 
 export async function resolveTier(env, purchaseToken, options) {

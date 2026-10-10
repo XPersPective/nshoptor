@@ -102,3 +102,85 @@ test('Play verification maps v2 and caches no longer than its winning expiry', a
   assert.equal(calls, 2);
   assert.equal(e.DB.sqlite.prepare('SELECT expires_at FROM entitlement_cache').get().expires_at, Date.parse(expiry));
 });
+
+async function lineageEnv(t, subscriptions) {
+  const e = env(t);
+  const keys = await crypto.subtle.generateKey({ name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048,
+    publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign', 'verify']);
+  const der = await crypto.subtle.exportKey('pkcs8', keys.privateKey);
+  e.GOOGLE_SA_JSON = JSON.stringify({ client_email: 'test@example.invalid', private_key:
+    '-----BEGIN PRIVATE KEY-----\n' + Buffer.from(der).toString('base64') + '\n-----END PRIVATE KEY-----' });
+  e.PACKAGE_NAME = 'com.crazypenguin.nshoptor';
+  let providerCalls = 0;
+  const fetchImpl = async url => {
+    if (url.includes('oauth2')) return new Response('{"access_token":"synthetic"}');
+    if (url.includes('subscriptionsv2')) {
+      const value = subscriptions[decodeURIComponent(url.split('/').at(-1))];
+      return typeof value === 'number' ? new Response('{}', { status: value }) : new Response(JSON.stringify(value));
+    }
+    providerCalls++;
+    return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { content: '{"items":[]}' } }] }));
+  };
+  return { e, fetchImpl, providerCalls: () => providerCalls };
+}
+const activeSub = linkedPurchaseToken => ({ subscriptionState: 'SUBSCRIPTION_STATE_ACTIVE', linkedPurchaseToken,
+  lineItems: [{ productId: 'nshoptor_pro_v2', expiryTime: '2026-11-10T12:00:00Z' }] });
+const withToken = (token, id = 'a'.repeat(32)) => new Request('https://x/v1/ai', { method: 'POST', body: JSON.stringify({
+  installId: id, purchaseToken: token, task: 'parse_list', input: { text: 'milk' } }) });
+
+test('replacement and expired cache revalidation retain canonical quota across installs', async t => {
+  const root = 'root-purchase-token-12345', child = 'child-purchase-token-12345', grand = 'grand-purchase-token-12345';
+  const { e, fetchImpl, providerCalls } = await lineageEnv(t, { [child]: activeSub(root), [grand]: activeSub(child) });
+  const rootHash = await sha256Hex(root), childHash = await sha256Hex(child);
+  e.DB.sqlite.prepare('INSERT INTO entitlement_cache VALUES(?, ?, ?)').run(rootHash, 'pro', now.getTime() - 1);
+  e.DB.sqlite.prepare('INSERT INTO usage VALUES(?, ?, ?)').run('paid:' + rootHash, '2026-10', 99);
+  const first = await handleAi(withToken(child), e, { now, fetchImpl });
+  assert.equal(first.status, 200); assert.equal((await first.json()).used, 100);
+  e.DB.sqlite.prepare('UPDATE entitlement_cache SET expires_at = ? WHERE token_hash = ?').run(now.getTime() - 1, childHash);
+  // Google may no longer return the old link; persisted canonical metadata must survive.
+  const fresh = await lineageEnv(t, { [child]: activeSub(), [grand]: activeSub(child) });
+  const rechecked = await resolveEntitlement(e, child, { now: now.getTime(), fetchImpl: fresh.fetchImpl });
+  assert.equal(rechecked.identity, 'paid:' + rootHash);
+  const blocked = await handleAi(withToken(grand, 'b'.repeat(32)), e, { now, fetchImpl });
+  assert.equal(blocked.status, 429); assert.equal((await blocked.json()).used, 100);
+  assert.equal(providerCalls(), 1); assert.equal(count(e, 'global_usage'), 1);
+  assert.equal(e.DB.sqlite.prepare('SELECT tier FROM entitlement_cache WHERE token_hash=?').get(childHash).tier.includes(root), false);
+});
+
+test('uncached two-step lineage, unavailable historical boundary and expired metadata do not grant rights', async t => {
+  const root = 'root-purchase-token-12345', parent = 'parent-purchase-token-12345', child = 'child-purchase-token-12345';
+  const { e, fetchImpl } = await lineageEnv(t, { [child]: activeSub(parent), [parent]: activeSub(root), [root]: 410 });
+  const result = await resolveEntitlement(e, child, { now: now.getTime(), fetchImpl });
+  assert.equal(result.identity, 'paid:' + await sha256Hex(root));
+  const hash = await sha256Hex(child);
+  e.DB.sqlite.prepare('UPDATE entitlement_cache SET expires_at=?').run(now.getTime() - 1);
+  const expired = await lineageEnv(t, { [child]: { ...activeSub(parent), subscriptionState: 'SUBSCRIPTION_STATE_EXPIRED' } });
+  assert.equal((await resolveEntitlement(e, child, { now: now.getTime(), fetchImpl: expired.fetchImpl })).tier, 'free');
+  assert.equal(JSON.parse(e.DB.sqlite.prepare('SELECT tier FROM entitlement_cache WHERE token_hash=?').get(hash).tier).ownerHash,
+    await sha256Hex(root));
+});
+
+test('lineage cycles, depth and transient lookup fail busy before quota/provider', async t => {
+  const child = 'child-purchase-token-12345', parent = 'parent-purchase-token-12345';
+  const deep = Object.fromEntries(Array.from({ length: 10 }, (_, i) => ['deep-purchase-token-' + i.toString().padStart(4, '0'),
+    activeSub('deep-purchase-token-' + (i + 1).toString().padStart(4, '0'))]));
+  for (const [token, subscriptions] of [[child, { [child]: activeSub(parent), [parent]: activeSub(child) }],
+    [child, { [child]: activeSub(parent), [parent]: 503 }], ['deep-purchase-token-0000', deep]]) {
+    const { e, fetchImpl, providerCalls } = await lineageEnv(t, subscriptions);
+    const res = await handleAi(withToken(token), e, { now, fetchImpl });
+    assert.equal(res.status, 503); assert.deepEqual(await res.json(), { error: 'busy' });
+    assert.equal(count(e, 'usage'), 0); assert.equal(count(e, 'global_usage'), 0); assert.equal(providerCalls(), 0);
+  }
+});
+
+test('cache JSON requires a known policy and exact hash; malformed metadata cannot elevate', async t => {
+  const e = env(t), token = 'cache-purchase-token-12345', hash = await sha256Hex(token), rootHash = 'c'.repeat(64);
+  const insert = e.DB.sqlite.prepare('INSERT OR REPLACE INTO entitlement_cache VALUES(?, ?, ?)');
+  for (const value of ['{}', 'null', JSON.stringify({ policy: ['max'], ownerHash: rootHash }), '{"policy":"max","ownerHash":"bad"}', JSON.stringify({ policy: 'admin', ownerHash: rootHash }),
+    JSON.stringify({ policy: 'max', ownerHash: rootHash, extra: true })]) {
+    insert.run(hash, value, now.getTime() + 60000);
+    assert.equal((await resolveEntitlement(e, token, { now: now.getTime() })).tier, 'free');
+  }
+  insert.run(hash, JSON.stringify({ policy: 'max', ownerHash: rootHash }), now.getTime() + 60000);
+  assert.equal((await resolveEntitlement(e, token, { now: now.getTime() })).identity, 'paid:' + rootHash);
+});

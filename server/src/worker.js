@@ -32,7 +32,9 @@ export async function handleAi(request, env, { fetchImpl = fetch, now = new Date
   if (!input) return json(400, { error: 'invalid_input' });
 
   if (!configured(env)) return json(503, { error: 'busy' });
-  const entitlement = await resolveEntitlement(env, body.purchaseToken, { fetchImpl, now: now.getTime() });
+  let entitlement;
+  try { entitlement = await resolveEntitlement(env, body.purchaseToken, { fetchImpl, now: now.getTime() }); }
+  catch { return json(503, { error: 'busy' }); }
   const { tier, policy, identity } = entitlement;
   let quota;
   try { quota = await consume(env, identity ?? body.installId, policy, now, { legacyInstallId: body.installId }); }

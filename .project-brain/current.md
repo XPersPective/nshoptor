@@ -171,7 +171,6 @@ google_mlkit_text_recognition 0.17.1, image_picker,
 path_provider, flutter_local_notifications 22.3.1, timezone, wakelock_plus,
 share_plus, file_picker.
 
-
 ## Known Unknowns
 
 - Voice: native köprünün API36 emülatörde init/cancel/reopen testi geçti; fiziksel cihazda gerçek transcript henüz doğrulanmadı (PB-069).
@@ -193,9 +192,8 @@ share_plus, file_picker.
 
 Cloudflare Worker `nshoptor-api` (workers.dev) + D1 `nshoptor`. `POST /v1/ai`
 görevleri `parse_list`, `match_receipt`, `read_label`; parse_list title/brand/category bounded metadata (PB-075); çıktı `tasks.js`'te
-şemaya göre temizlenir; eksik/kesik çıktı reddedilir (bilinmeyen kimlik/birim null). Source quota atomic batch, paid verified-token identity; live rollout PB-065. Kota aylık
+şemaya göre temizlenir; eksik/kesik çıktı reddedilir (bilinmeyen kimlik/birim null). Source quota atomic batch, paid verified-token lineage identity; live rollout PB-065. Kota aylık
 (free 15 / pro 200 / max 1000) + günlük global tavan; Pro/Max yalnız
-Play `subscriptionsv2` doğrulamasıyla (hata → free). Sağlayıcı OpenAI
-uyumlu; şu an Qwen Token Plan `qwen3.6-flash` (DeepSeek anahtarı gelince
-yalnız vars/secret değişir; kullanıcı şimdilik Qwen hesabını korudu). Sırlar: `AI_KEY`, `GOOGLE_SA_JSON` (Worker
-secret; kaynak D:\AppPublishing). Testler: `cd server && npm test`. PB-083 verified read-only Play catalog and reproducible Decimal scenarios; current Qwen invoice/credits unknown, comparator cost is not actual profit.
+Play `subscriptionsv2` doğrulamasıyla (invalid credential → free; verified lineage failure → busy). Sağlayıcı OpenAI
+uyumlu; şu an Qwen Token Plan `qwen3.6-flash` (kullanıcı şimdilik Qwen hesabını korudu). Sırlar: `AI_KEY`, `GOOGLE_SA_JSON` (Worker
+secret; kaynak D:\AppPublishing). Testler: `cd server && npm test`. PB-086 canonical cache ownership persists across verified linkedPurchaseToken replacements and expiry; bounded lineage failures yield generic503 before quota. Server25/full369/analyze0. PB-083 verified read-only Play catalog and reproducible Decimal scenarios; current Qwen invoice/credits unknown, comparator cost is not actual profit.
