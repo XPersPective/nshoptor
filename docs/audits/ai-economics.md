@@ -1,34 +1,55 @@
-# AI ekonomisi — 9 Ekim 2026
+# AI ekonomisi — 10 Ekim 2026
 
-Karar: ücretsiz ve ömür boyu reklamsız 10/ay, Pro 100/ay, Max 300/ay. Yıllık ödeme aylık kotayı değiştirmez; haftalık 300 önerilmiyor. Fiyatlar Play teklifinden okunur, TL/USD kuru uydurulmaz.
+Mevcut Qwen Token hesabı/endpoint/model kullanıcı kararıyla korunur. Yeni teklifler Free/lifetime10, Pro100, Max300/ay; eski Pro200/Max1000 hakları korunur (ADR-007). Yıllık ödeme aylık kotayı değiştirmez.
 
-## Kaynaklar ve varsayımlar
-- [DeepSeek resmi fiyatı](https://api-docs.deepseek.com/quick_start/pricing/): deepseek-flash (V4.1), yoğun saat/cache miss 1M giriş $0.30, 1M çıkış $1.20; yoğun olmayan $0.15/$0.60. Hesap muhafazakâr yoğun saat, cache indirimi yok.
-- [Google Play service fees](https://support.google.com/googleplay/android-developer/answer/112622): otomatik yenilenen abonelik için %15 taban senaryosu; ülke/program koşulları ayrıca uygulanabilir.
-- %20 vergi, $3 müşteri fiyatı, yıllık %20 indirim yalnız duyarlılık varsayımıdır; gerçek Play vergi/ödeme raporu yerine geçmez. Kullanıcının 174 TL ≈ $3 ifadesi döviz kuru kanıtı değildir.
-- Repo şu an Qwen Token Plan kullanıyor (`server/wrangler.jsonc`); aşağıdaki DeepSeek modeli geçiş senaryosudur, mevcut faturanın ölçümü değildir. Sağlayıcı/anahtar değiştirilmedi.
+## Gerçek mağaza verisi
 
-## Tekrar üretilebilir hesap
-PB-065 uygulayıcısı şu parametrelerle küçük bir hesap betiği eklemeli: fiyat=3 USD, vergi=0.20, kesinti=0.15, yıllık indirim=0.20, altyapı=0. Bu oturumda betik teslim edilmedi.
+Salt okunur Android Publisher API çıktısı: `play-prices-2026-10-10.json`. Bu, yayınlanmış katalog fiyatıdır; müşterinin vergi/indirim dahil ekrandaki teklifi ve Play net ödeme raporu değildir. Uygulama teklifi Billing SDK'dan gösterir.
 
-Net = müşteri fiyatı / (1+vergi) × (1−mağaza kesintisi).
-AI = istek × (giriş token × giriş fiyatı + çıkış token × çıkış fiyatı) / 1 milyon.
-Kalan = net − AI − tahsis edilmiş altyapı. Bu işletme kârı değildir; iadeler, ücretsiz kullanıcılar, destek, muhasebe ve gelir vergisi ayrıca vardır.
-
-| Aylık istek | 2k giriş + 500 çıkış | 6k giriş + 1200 çıkış | 12k giriş + 1200 çıkış stres |
+| Mevcut ürün | USD aylık / yıllık | TRY aylık / yıllık | Gerçek mevcut aylık hak |
 |---|---:|---:|---:|
-|10|$0.012|$0.0324|$0.0504|
-|100|$0.120|$0.324|$0.504|
-|300|$0.360|$0.972|$1.512|
-|1000|$1.200|$3.240|$5.040|
+|nshoptor_pro|0.99 / 7.99|57.99 / 469.99|200|
+|nshoptor_max|2.99 / 24.99|174.99 / 1479.99|1000|
 
-$3 senaryosunda kesinti sonrası $2.125, yıllık indirimde aylık eşdeğer $1.700 kalır. 300 büyük istekten sonra $1.153/$0.728; 1000 büyük istekten sonra −$1.115/−$1.540. Dolayısıyla 1000 taahhüdü güvenli değil; 300 de stres/yıllık indirimde yalnız $0.188 tampon bırakır. Pro $1 olsaydı net $0.708, 100 büyük istekten sonra $0.384 kalır. Sıfır altyapı varsayımı kârı yüksek gösterir.
+USD yıllık indirimleri katalogdan hesaplanır: Pro yaklaşık%32.7441, Max%30.3512; eski%20 yalnız varsayımdı. TRY ve USD arasında kur türetilmez. Yeni v2 SKU fiyatı, katalog oluşturulup okunana kadar bu tablodaki fiyatla ancak öneri/senaryodur.
 
-## Maliyet kontrolünün gerçek sınırları
-1200 max output ve 6000 input karakter sınırı var; karakter token değildir. Tablodaki sayılar garantili üst sınır değil, senaryodur. Büyük fiş çıktısı 1200 tokenı aşarsa model JSON tamamlayamaz; hata görünür olmalı, sessiz eksik kayıt olmamalı. Sağlayıcının gerçek usage alanlarıyla fiyatı ölçmeden daha yüksek kota açılmamalı.
-Önerilen kota rezervasyonu D1 transaction içinde olmalı; eşzamanlı son hak çift harcanamaz. Başarısız sağlayıcı isteği de hakkı tüketir (mevcut davranış): sağlayıcı maliyeti oluşabilir. Kullanıcı taahhüdü “istek” olarak kalır.
-Rastgele kurulum ID'si kimlik doğrulaması değildir; yeniden kurulum/özel istemci ücretsiz sayacı yenileyebilir. Global günlük tavan maliyet sınırıdır, bot savunması yerine geçmez. 20 bin büyük isteklik global tavan bu DeepSeek senaryosunda $64.80/gün olabilir. Canlı ticari açılıştan önce gerçek sağlayıcı bütçe/rate limit ve Play Integrity tasarımı ayrı güvenlik işi olarak kalır.
-Ömür boyu ödeme yalnız reklam hakkını kalıcı yapar; AI her ay 10 ile sınırlıdır. Mevcut satın alanların yedek hakkı korunur.
+## Mevcut hesabın maliyeti
 
-## Vergili PDF
-Market KDV oranı ülke/ürün bazında değişir. Fişte ayrıştırılmış ve doğrulanmış vergi verisi olmadığı için uygulama KDV uydurmaz. PDF mevcut tutarları taşır; mali belge/vergisel fatura olarak sunulmaz.
+[Qwen Token Plan](https://docs.qwencloud.com/token-plan/personal/token-plan-personal-overview) kredi bazlı aboneliktir. Kredi tüketimi model/token/thinking/tool kullanımına göre değişir; gerçek tüketim konsol kullanım ayrıntısından alınır. Kullanıcının paket/fatura/ortalama kredi-istek ölçümü yok: mevcut hesabın istek başına maliyeti ve marjı **bilinmiyor**, sıfır değil. Paket kotası ve varsa önceden alınmış kredi paketleri bittikten sonra hizmet durabilir; yerel ayrıştırma/elle giriş korunur. Hesap/sağlayıcı değiştirilmedi.
+
+Aşağıdaki dolar hesabı **standart API karşılaştırmasıdır**, mevcut Token hesabının faturası değildir. [Qwen3.6-Flash resmi Model Studio fiyatı](https://www.alibabacloud.com/help/en/model-studio/qwen3-6-flash), Singapore International≤256k: giriş$0.25/M, çıkış$1.50/M (10 Ekim doğrulandı). Cache indirimi varsayılmaz. Cache/yoğun saat senaryosu için ayrı doğrulanmış efektif giriş/çıkış fiyatları CLI'ya verilir.
+
+## Tekrar üretim
+
+```powershell
+ruby tool/play/subscriptions.rb --prices-json > docs/audits/play-prices-2026-10-10.json
+python tool/ai_economics.py --self-check
+python tool/ai_economics.py --offers docs/audits/play-prices-2026-10-10.json --tax .20 --fee .15 --infra 0
+```
+
+Net senaryo = fiyat/(1+vergi)×(1−mağaza kesintisi), yıllıkta önce fiyat/12. AI karşılaştırması = istek×(giriş token×giriş oranı+çıkış token×çıkış oranı)/1M. Kalan = net−AI−tahsis edilmiş altyapı. Vergi%20, kesinti%15, altyapı0 **varsayımdır**; iade, destek, ücretsiz kullanıcılar, muhasebe ve gelir vergisi hariç olduğundan işletme kârı değildir. [Play abonelik kesintisi](https://support.google.com/googleplay/android-developer/answer/112622) koşulları hesap/ülke/programla doğrulanmalıdır.
+
+| Aylık istek | 2k giriş+500 çıkış | 6k+1200 | 12k+1200 | 12k+8192 fiş çıkış tavanı senaryosu |
+|---|---:|---:|---:|---:|
+|10|0.0125|0.033|0.048|0.15288|
+|100|0.125|0.33|0.48|1.5288|
+|300|0.375|0.99|1.44|4.5864|
+|1000|1.25|3.30|4.80|15.288|
+
+Bu değerler USD standart API senaryosudur. Örneğin Max yeni300 hakkı eski$2.99 fiyatında sunulursa varsayımsal aylık net$2.117917; 300 büyük istekte kalan$1.127917, çıkış tavanı senaryosunda−$2.468483. Yıllık$24.99 için aylık net$1.475104; aynı senaryolarda$0.485104/−$3.111296. Bu yeni teklifin yayınlandığı veya mevcut Qwen faturasında bu marjın oluştuğu iddiası değildir. CLI mevcut legacy200/1000 hakları için de yıllık/aylık kalanları üretir.
+
+Önceki DeepSeek tablosu, aşağıdaki **eski duyarlılık parametreleriyle** tekrar üretilebilir; resmi fiyat sayfası 10 Ekimde zaman aşımı verdi, bugünkü doğrulanmış fiyat diye sunulmaz:
+
+```powershell
+python tool/ai_economics.py --offers docs/audits/play-prices-2026-10-10.json --input-rate .30 --output-rate 1.20 --scenario-name "Legacy DeepSeek sensitivity; current rate not verified"
+```
+
+Gerçek kredi ölçümü edinilirse üç parametre birlikte verilir: `--credit-price <aylık USD fatura> --credit-budget <aylık kredi> --credit-per-request <ölçülen ortalama>`. CLI kapasite ve tahsis edilmiş nakit/istek hesaplar; bu marjinal fatura değildir. Eksik ölçümde unknown üretir; örnek paket değerini gerçek kullanıcı hesabı gibi kabul etmez.
+
+## Uygulanan sınırlar ve kalan ölçüm
+
+PB-082 atomik D1 rezervasyon: kullanıcı aylık ve global günlük hak birlikte alınır. Ücretli hak, doğrulanmış jetonun SHA256 kimliğine bağlı; ücretsiz kurulum kimliği sıfırlanabilir. Global20000/gün bot savunmasının yerine geçmez. Standart API 12k+8192 stresinde$305.76/gün; bu mevcut kredi hesabının günlük faturası veya karakterden türetilmiş garantili token sınırı değildir.
+
+İstek gövdesi16KiB, giriş6000 karakter, parse metni2000, etiket1500; çıktı token tavanları liste4096/fiş8192/etiket512, yanıt64KiB. Kesik ve eksik şema reddedilir; kabul edilmiş sağlayıcı denemesi hata verse de hak tüketir. Hatalı girdi/eksik sağlayıcı yapılandırması tüketmez. Gerçek Qwen konsol kredi tüketimi ve Play net ödeme raporu olmadan kazanç garantisi verilmez.
+
+PDF yalnız kayıtlı miktar/tutarları taşır; doğrulanmış vergi bilgisi olmadığı için KDV uydurulmaz ve mali fatura diye sunulmaz.

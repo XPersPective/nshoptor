@@ -41,7 +41,7 @@ Repository-wide current architecture (NShoptor, single Flutter app).
 - `lib/features/settings/` — ayarlar, yedek/CSV, AI anahtarı
 - `lib/features/ai/ai_client.dart` — AI vekiline tek kapı (AiService.client, kurulum kimliği, AiResult)
 - `lib/features/subscription/` — Pro/Max abonelik servisi, planlar ekranı, ömür boyu akış süzgeci
-- `tool/play/subscriptions.rb` — Play abonelik/plan/deneme kurulumu (API)
+- `tool/play/subscriptions.rb`, `tool/ai_economics.py` — Play catalog setup/read-only prices, Decimal cost scenarios/self-check
 - `test/`, `integration_test/` — birim/widget/e2e; `test/store_capture_test.dart` mağaza görselleri
 - `fastlane/` — Play yayın lane'leri (imza/kimlik yayın kökünde: D:\AppPublishing\apps\nshoptor)
 - `docs/store/` — gizlilik politikası, Play beyan taslakları
@@ -188,7 +188,7 @@ share_plus, file_picker.
 
 **Status:** VERIFIED (2026-10-09 source schema/worker; live configuration historical)
 
-**Sources:** `server/**`
+**Sources:** `server/**`, `tool/play/subscriptions.rb`, `tool/ai_economics.py`, `docs/audits/ai-economics.md`
 
 Cloudflare Worker `nshoptor-api` (workers.dev) + D1 `nshoptor`. `POST /v1/ai`
 görevleri `parse_list`, `match_receipt`, `read_label`; parse_list title/brand/category bounded metadata (PB-075); çıktı `tasks.js`'te
@@ -197,4 +197,4 @@ görevleri `parse_list`, `match_receipt`, `read_label`; parse_list title/brand/c
 Play `subscriptionsv2` doğrulamasıyla (hata → free). Sağlayıcı OpenAI
 uyumlu; şu an Qwen Token Plan `qwen3.6-flash` (DeepSeek anahtarı gelince
 yalnız vars/secret değişir; kullanıcı şimdilik Qwen hesabını korudu). Sırlar: `AI_KEY`, `GOOGLE_SA_JSON` (Worker
-secret; kaynak D:\AppPublishing). Testler: `cd server && npm test`.
+secret; kaynak D:\AppPublishing). Testler: `cd server && npm test`. PB-083 verified read-only Play catalog and reproducible Decimal scenarios; current Qwen invoice/credits unknown, comparator cost is not actual profit.

@@ -1,0 +1,140 @@
+{
+  "captured_at": "2026-10-10T01:49:08Z",
+  "package": "com.crazypenguin.nshoptor",
+  "subscriptions": [
+    {
+      "product_id": "nshoptor_max",
+      "listings": [
+        {
+          "language": "en-US",
+          "title": "NShoptor Max",
+          "benefits": [
+            "No ads",
+            "1000 AI requests a month",
+            "For big family shopping"
+          ]
+        },
+        {
+          "language": "tr-TR",
+          "title": "NShoptor Max",
+          "benefits": [
+            "Reklamsız",
+            "Ayda 1000 yapay zekâ isteği",
+            "Büyük aile alışverişleri için"
+          ]
+        }
+      ],
+      "base_plans": [
+        {
+          "id": "monthly",
+          "state": "ACTIVE",
+          "period": "P1M",
+          "prices": [
+            {
+              "region": "TR",
+              "available": true,
+              "currency": "TRY",
+              "units": "174",
+              "nanos": 990000000
+            },
+            {
+              "region": "US",
+              "available": true,
+              "currency": "USD",
+              "units": "2",
+              "nanos": 990000000
+            }
+          ]
+        },
+        {
+          "id": "yearly",
+          "state": "ACTIVE",
+          "period": "P1Y",
+          "prices": [
+            {
+              "region": "TR",
+              "available": true,
+              "currency": "TRY",
+              "units": "1479",
+              "nanos": 990000000
+            },
+            {
+              "region": "US",
+              "available": true,
+              "currency": "USD",
+              "units": "24",
+              "nanos": 990000000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "nshoptor_pro",
+      "listings": [
+        {
+          "language": "en-US",
+          "title": "NShoptor Pro",
+          "benefits": [
+            "No ads",
+            "200 AI requests a month",
+            "Backup export and import"
+          ]
+        },
+        {
+          "language": "tr-TR",
+          "title": "NShoptor Pro",
+          "benefits": [
+            "Reklamsız",
+            "Ayda 200 yapay zekâ isteği",
+            "Yedeği dışa ve içe aktarma"
+          ]
+        }
+      ],
+      "base_plans": [
+        {
+          "id": "monthly",
+          "state": "ACTIVE",
+          "period": "P1M",
+          "prices": [
+            {
+              "region": "TR",
+              "available": true,
+              "currency": "TRY",
+              "units": "57",
+              "nanos": 990000000
+            },
+            {
+              "region": "US",
+              "available": true,
+              "currency": "USD",
+              "units": "0",
+              "nanos": 990000000
+            }
+          ]
+        },
+        {
+          "id": "yearly",
+          "state": "ACTIVE",
+          "period": "P1Y",
+          "prices": [
+            {
+              "region": "TR",
+              "available": true,
+              "currency": "TRY",
+              "units": "469",
+              "nanos": 990000000
+            },
+            {
+              "region": "US",
+              "available": true,
+              "currency": "USD",
+              "units": "7",
+              "nanos": 990000000
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

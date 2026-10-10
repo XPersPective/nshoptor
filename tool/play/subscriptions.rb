@@ -4,6 +4,8 @@
 # Servis hesabı yayın kökünde (repo dışı): APP_PUBLISHING_ROOT.
 require 'google/apis/androidpublisher_v3'
 require 'googleauth'
+require 'json'
+require 'time'
 
 A = Google::Apis::AndroidpublisherV3
 ROOT = ENV.fetch('APP_PUBLISHING_ROOT', 'D:/AppPublishing')
@@ -40,6 +42,26 @@ def usd(units, nanos) = A::Money.new(currency_code: 'USD', units: units, nanos: 
 
 def convert(svc, money)
   svc.convert_monetization_region_prices(PKG, A::ConvertRegionPricesRequest.new(price: money))
+end
+
+# Read only, exits before any catalog/base-plan mutation.
+if ARGV.include?('--prices-json')
+  products = (svc.list_monetization_subscriptions(PKG).subscriptions || []).map do |sub|
+    {
+      product_id: sub.product_id,
+      listings: (sub.listings || []).map { |l| { language: l.language_code, title: l.title, benefits: l.benefits } },
+      base_plans: (sub.base_plans || []).map do |base|
+        { id: base.base_plan_id, state: base.state,
+          period: base.auto_renewing_base_plan_type&.billing_period_duration,
+          prices: (base.regional_configs || []).select { |r| %w[US TR].include?(r.region_code) }.map do |r|
+            { region: r.region_code, available: r.new_subscriber_availability,
+              currency: r.price&.currency_code, units: (r.price&.units || 0).to_s, nanos: r.price&.nanos || 0 }
+          end }
+      end,
+    }
+  end
+  puts JSON.pretty_generate(captured_at: Time.now.utc.iso8601, package: PKG, subscriptions: products)
+  exit
 end
 
 if ARGV.include?('--list')
