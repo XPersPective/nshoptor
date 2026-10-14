@@ -1,4 +1,5 @@
 import '../../core/money/format_locale.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
@@ -51,105 +52,125 @@ class ListsScreen extends StatefulWidget {
 
 class _ListsScreenState extends State<ListsScreen> {
   String _query = '';
+  int _page = 0;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(l10n.listsTitle),
-          bottom: TabBar(
-            tabs: [
-              Tab(text: l10n.listsTabActive),
-              Tab(text: l10n.listsTabCompleted),
-              Tab(text: l10n.listsTabArchived),
-            ],
+    final pageLabels = [
+      l10n.listsTabActive,
+      l10n.listsTabCompleted,
+      l10n.listsTabArchived,
+    ];
+    return Scaffold(
+      appBar: AppBar(title: Text(l10n.listsTitle)),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+            child: TextField(
+              key: const Key('lists_search_field'),
+              decoration: InputDecoration(
+                hintText: l10n.searchListHint,
+                prefixIcon: const Icon(Icons.search),
+              ),
+              onChanged: (v) => setState(() => _query = v.trim()),
+            ),
           ),
-        ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-              child: TextField(
-                key: const Key('lists_search_field'),
-                decoration: InputDecoration(
-                  hintText: l10n.searchListHint,
-                  prefixIcon: const Icon(Icons.search),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Text(
+                pageLabels[_page],
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+          ),
+          Expanded(
+            child: PageView(
+              onPageChanged: (page) => setState(() => _page = page),
+              children: [
+                _ListsTab(
+                  repository: widget.repository,
+                  query: _query,
+                  statuses: const {
+                    ListStatus.draft,
+                    ListStatus.planned,
+                    ListStatus.shopping,
+                  },
+                  emptyText: l10n.listsEmpty,
+                  onOpenListDetail: widget.onOpenListDetail,
+                  reminderScheduler: widget.reminderScheduler,
                 ),
-                onChanged: (v) => setState(() => _query = v.trim()),
-              ),
+                _ListsTab(
+                  repository: widget.repository,
+                  query: _query,
+                  statuses: const {ListStatus.completed},
+                  emptyText: l10n.listsEmpty,
+                  onOpenListDetail: widget.onOpenListDetail,
+                  reminderScheduler: widget.reminderScheduler,
+                ),
+                _ListsTab(
+                  repository: widget.repository,
+                  query: _query,
+                  statuses: const {ListStatus.archived},
+                  emptyText: l10n.listsEmpty,
+                  onOpenListDetail: widget.onOpenListDetail,
+                  reminderScheduler: widget.reminderScheduler,
+                ),
+              ],
             ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    statuses: const {
-                      ListStatus.draft,
-                      ListStatus.planned,
-                      ListStatus.shopping,
-                    },
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                  ),
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    statuses: const {ListStatus.completed},
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                  ),
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    statuses: const {ListStatus.archived},
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          key: const Key('lists_new_list_button'),
-          heroTag: 'listsFab',
-          onPressed: () => _openEditor(context),
-          icon: const Icon(Icons.add),
-          label: Text(l10n.newListButton),
-        ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        key: const Key('lists_new_list_button'),
+        heroTag: 'listsFab',
+        onPressed: () => _openEditor(context),
+        icon: const Icon(Icons.add),
+        label: Text(l10n.newListButton),
       ),
     );
   }
 
   Future<void> _openEditor(BuildContext context, {ShoppingList? existing}) {
-    return showListEditor(context, widget.repository, existing: existing,
-        reminderScheduler: widget.reminderScheduler);
+    return showListEditor(
+      context,
+      widget.repository,
+      existing: existing,
+      reminderScheduler: widget.reminderScheduler,
+    );
   }
 }
 
-Future<void> showListEditor(BuildContext context, ListRepository repository,
-    {ShoppingList? existing, ReminderScheduler? reminderScheduler}) async {
-    final id = await showModalBottomSheet<int>(
-      context: context,
-      isScrollControlled: true,
-      builder: (_) => _ListEditorSheet(
-        repository: repository,
-        l10n: AppLocalizations.of(context),
-        existing: existing,
+Future<void> showListEditor(
+  BuildContext context,
+  ListRepository repository, {
+  ShoppingList? existing,
+  ReminderScheduler? reminderScheduler,
+}) async {
+  final id = await showModalBottomSheet<int>(
+    context: context,
+    isScrollControlled: true,
+    builder: (_) => _ListEditorSheet(
+      repository: repository,
+      l10n: AppLocalizations.of(context),
+      existing: existing,
+    ),
+  );
+  if (existing == null && id != null && context.mounted) {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ListDetailScreen(
+          db: repository.db,
+          listRepository: repository,
+          listId: id,
+          reminderScheduler: reminderScheduler,
+        ),
       ),
     );
-    if (existing == null && id != null && context.mounted) {
-      await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) =>
-        ListDetailScreen(db: repository.db, listRepository: repository,
-          listId: id, reminderScheduler: reminderScheduler)));
-    }
+  }
 }
 
 class _ListsTab extends StatelessWidget {
@@ -174,15 +195,18 @@ class _ListsTab extends StatelessWidget {
     return StreamBuilder<List<ShoppingList>>(
       stream: repository.watchAll(),
       builder: (context, snapshot) {
-        final lists = (snapshot.data ?? const <ShoppingList>[])
-            .where((l) => statuses.contains(ListStatus.tryFromDb(l.status)))
-            .where((l) =>
-                query.isEmpty ||
-                (l.title ?? l.generatedTitle ?? '')
-                    .toLowerCase()
-                    .contains(query.toLowerCase()))
-            .toList()
-          ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+        final lists =
+            (snapshot.data ?? const <ShoppingList>[])
+                .where((l) => statuses.contains(ListStatus.tryFromDb(l.status)))
+                .where(
+                  (l) =>
+                      query.isEmpty ||
+                      (l.title ?? l.generatedTitle ?? '')
+                          .toLowerCase()
+                          .contains(query.toLowerCase()),
+                )
+                .toList()
+              ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
         if (lists.isEmpty) {
           final colors = Theme.of(context).colorScheme;
           return Center(
@@ -207,9 +231,8 @@ class _ListsTab extends StatelessWidget {
                   Text(
                     emptyText,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: colors.onSurfaceVariant,
-                        ),
+                    style: Theme.of(context).textTheme.titleMedium
+                        ?.copyWith(color: colors.onSurfaceVariant),
                   ),
                 ],
               ),
@@ -247,50 +270,103 @@ class _ListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final status = ListStatus.tryFromDb(list.status)!;
-    return Card(
-      child: ListTile(
-        onTap: () {
-          final open = onOpen;
-          if (open != null) {
-            open(context, list.id);
-          } else {
-            Navigator.of(context).push(MaterialPageRoute<void>(
-              builder: (_) => ListDetailScreen(
-                db: repository.db,
-                listRepository: repository,
-                listId: list.id,
-                reminderScheduler: reminderScheduler,
-              ),
-            ));
-          }
-        },
-        title: Text(listDisplayTitle(l10n, list),
-            overflow: TextOverflow.ellipsis),
-        subtitle: Text(
-          [
-            statusLabel(l10n, status),
-            // Bütçe yoksa "0,00" yazılmaz (yanıltıcıydı).
-            if (list.budgetMinorUnits != null)
-              formatMoney(
-                Money.fromMinorUnits(
-                    list.budgetMinorUnits!, Currency.fromCode(list.currencyCode)),
-                locale: formatLocaleCode(context),
-              ),
-          ].join(' · '),
+    return Dismissible(
+      key: ValueKey('list_${list.id}'),
+      direction: DismissDirection.horizontal,
+      background: Container(
+        color: Theme.of(context).colorScheme.errorContainer,
+        alignment: AlignmentDirectional.centerStart,
+        padding: const EdgeInsetsDirectional.only(start: 24),
+        child: Icon(
+          Icons.delete_outline,
+          color: Theme.of(context).colorScheme.onErrorContainer,
         ),
-        trailing: PopupMenuButton<String>(
-          tooltip: l10n.editAction,
-          onSelected: (action) => _onAction(context, action),
-          itemBuilder: (_) => [
-            PopupMenuItem(value: 'edit', child: Text(l10n.editAction)),
-            PopupMenuItem(value: 'duplicate', child: Text(l10n.duplicateAction)),
-            if (status != ListStatus.archived)
-              PopupMenuItem(value: 'archive', child: Text(l10n.archiveAction))
-            else
+      ),
+      secondaryBackground: Container(
+        color: Theme.of(context).colorScheme.errorContainer,
+        alignment: AlignmentDirectional.centerEnd,
+        padding: const EdgeInsetsDirectional.only(end: 24),
+        child: Icon(
+          Icons.delete_outline,
+          color: Theme.of(context).colorScheme.onErrorContainer,
+        ),
+      ),
+      confirmDismiss: (_) async {
+        try {
+          final snapshot = await repository.deleteList(list.id);
+          if (context.mounted) {
+            ScaffoldMessenger.of(context)
+              ..clearSnackBars()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(l10n.listDeleted),
+                  showCloseIcon: true,
+                  duration: const Duration(seconds: 3),
+                  action: SnackBarAction(
+                    label: l10n.undoButton,
+                    onPressed: () => repository.undoDelete(snapshot),
+                  ),
+                ),
+              );
+          }
+          return true;
+        } catch (_) {
+          return false;
+        }
+      },
+      child: Card(
+        child: ListTile(
+          onTap: () {
+            final open = onOpen;
+            if (open != null) {
+              open(context, list.id);
+            } else {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => ListDetailScreen(
+                    db: repository.db,
+                    listRepository: repository,
+                    listId: list.id,
+                    reminderScheduler: reminderScheduler,
+                  ),
+                ),
+              );
+            }
+          },
+          title: Text(
+            listDisplayTitle(l10n, list),
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: list.budgetMinorUnits == null
+              ? null
+              : Text(
+                  formatMoney(
+                    Money.fromMinorUnits(
+                      list.budgetMinorUnits!,
+                      Currency.fromCode(list.currencyCode),
+                    ),
+                    locale: formatLocaleCode(context),
+                  ),
+                ),
+          trailing: PopupMenuButton<String>(
+            tooltip: l10n.editAction,
+            onSelected: (action) => _onAction(context, action),
+            itemBuilder: (_) => [
+              PopupMenuItem(value: 'edit', child: Text(l10n.editAction)),
               PopupMenuItem(
-                  value: 'unarchive', child: Text(l10n.unarchiveAction)),
-            PopupMenuItem(value: 'delete', child: Text(l10n.deleteButton)),
-          ],
+                value: 'duplicate',
+                child: Text(l10n.duplicateAction),
+              ),
+              if (status != ListStatus.archived)
+                PopupMenuItem(value: 'archive', child: Text(l10n.archiveAction))
+              else
+                PopupMenuItem(
+                  value: 'unarchive',
+                  child: Text(l10n.unarchiveAction),
+                ),
+              PopupMenuItem(value: 'delete', child: Text(l10n.deleteButton)),
+            ],
+          ),
         ),
       ),
     );
@@ -340,22 +416,31 @@ class _ListCard extends StatelessWidget {
             snapshot = await repository.deleteList(list.id);
           } catch (_) {
             if (context.mounted) {
-              messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.saveFailed),
-                showCloseIcon: true, duration: const Duration(days: 1)));
+              messenger
+                ..clearSnackBars()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text(l10n.saveFailed),
+                    showCloseIcon: true,
+                    duration: const Duration(days: 1),
+                  ),
+                );
             }
             return;
           }
           if (!context.mounted) return;
-          messenger..clearSnackBars()..showSnackBar(
-            SnackBar(
-              content: Text(l10n.listDeleted),
-              showCloseIcon: true,
-              action: SnackBarAction(
-                label: l10n.undoButton,
-                onPressed: () => repository.undoDelete(snapshot),
+          messenger
+            ..clearSnackBars()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(l10n.listDeleted),
+                showCloseIcon: true,
+                action: SnackBarAction(
+                  label: l10n.undoButton,
+                  onPressed: () => repository.undoDelete(snapshot),
+                ),
               ),
-            ),
-          );
+            );
         }
     }
   }
@@ -377,13 +462,16 @@ class _ListEditorSheet extends StatefulWidget {
 }
 
 class _ListEditorSheetState extends State<_ListEditorSheet> {
-  late final TextEditingController _title =
-      TextEditingController(text: widget.existing?.title ?? '');
+  late final TextEditingController _title = TextEditingController(
+    text: widget.existing?.title ?? '',
+  );
   late final TextEditingController _budget = TextEditingController();
   String? _budgetPrefilled;
-  late String _currency = widget.existing?.currencyCode ?? AppDefaults.defaultCurrency();
-  late final TextEditingController _note =
-      TextEditingController(text: widget.existing?.note ?? '');
+  late String _currency =
+      widget.existing?.currencyCode ?? AppDefaults.defaultCurrency();
+  late final TextEditingController _note = TextEditingController(
+    text: widget.existing?.note ?? '',
+  );
   String? _budgetError;
   String? _saveError;
   bool _saving = false;
@@ -407,7 +495,10 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
       final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context))
           .decimal;
       _budget.text = _minorToInput(
-          existing.budgetMinorUnits!, Currency.fromCode(existing.currencyCode), sep);
+        existing.budgetMinorUnits!,
+        Currency.fromCode(existing.currencyCode),
+        sep,
+      );
     }
   }
 
@@ -434,9 +525,11 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
     if (text.isEmpty) return null;
     final localeCode = Localizations.localeOf(context).languageCode;
     try {
-      final value = MoneyParser.parseDecimal(text,
-          separators: MoneySeparators.forLocaleCode(localeCode),
-          requirePositive: true);
+      final value = MoneyParser.parseDecimal(
+        text,
+        separators: MoneySeparators.forLocaleCode(localeCode),
+        requirePositive: true,
+      );
       return value.toMinorUnits(Currency.fromCode(_currency).minorUnitDigits);
     } on FormatException {
       throw const _BudgetFormatException();
@@ -451,8 +544,9 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
     int? createdId;
     if (existing == null) {
       final now = DateTime.now();
-      final generated =
-          title.isEmpty ? widget.l10n.autoListTitle(_formatDate(now)) : null;
+      final generated = title.isEmpty
+          ? widget.l10n.autoListTitle(_formatDate(now))
+          : null;
       createdId = await widget.repository.createList(
         title: title.isEmpty ? null : title,
         generatedTitle: generated,
@@ -466,19 +560,29 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
       if (currencyChanged && hasAmounts) {
         final reset = await _askCurrencyChange();
         if (reset == null) return; // kullanıcı vazgeçti
-        await widget.repository.changeCurrency(existing.id, _currency,
-            resetAmounts: reset);
+        await widget.repository.changeCurrency(
+          existing.id,
+          _currency,
+          resetAmounts: reset,
+        );
       } else if (currencyChanged) {
-        await widget.repository.changeCurrency(existing.id, _currency,
-            resetAmounts: false);
+        await widget.repository.changeCurrency(
+          existing.id,
+          _currency,
+          resetAmounts: false,
+        );
       }
       await widget.repository.updateTitle(
-          existing.id, title.isEmpty ? null : title);
+        existing.id,
+        title.isEmpty ? null : title,
+      );
       if (budgetMinor != existing.budgetMinorUnits) {
         await widget.repository.updateBudget(existing.id, budgetMinor);
       }
       await widget.repository.updateNote(
-          existing.id, _note.text.trim().isEmpty ? null : _note.text.trim());
+        existing.id,
+        _note.text.trim().isEmpty ? null : _note.text.trim(),
+      );
     }
     if (mounted) Navigator.of(context).pop(createdId);
   }
@@ -516,64 +620,86 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
         top: 16,
         bottom: MediaQuery.of(context).viewInsets.bottom + 16,
       ),
-      child: SingleChildScrollView(child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextField(
-            key: const Key('list_title_field'),
-            controller: _title,
-            decoration: InputDecoration(labelText: l10n.listTitleHint),
-          ),
-          const SizedBox(height: 12),
-          DropdownButtonFormField<String>(
-            isExpanded: true,
-            key: const Key('list_currency_field'),
-            initialValue: _currency,
-            decoration: InputDecoration(labelText: l10n.currencyLabel),
-            items: Currency.all
-                .map((c) => DropdownMenuItem(value: c.code, child: Text(c.code)))
-                .toList(),
-            onChanged: (v) => setState(() => _currency = v ?? _currency),
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            key: const Key('list_budget_field'),
-            controller: _budget,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              labelText: l10n.budgetLabel,
-              errorText: _budgetError,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              key: const Key('list_title_field'),
+              controller: _title,
+              decoration: InputDecoration(labelText: l10n.listTitleHint),
             ),
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: _note,
-            decoration: InputDecoration(labelText: l10n.noteLabel),
-          ),
-          const SizedBox(height: 16),
-          FilledButton(
-            key: const Key('list_save_button'),
-            onPressed: _saving ? null : () async {
-              setState(() { _budgetError = null; _saveError = null; _saving = true; });
-              try {
-                await _save();
-              } on _BudgetFormatException {
-                if (mounted) setState(() => _budgetError = l10n.invalidAmountError);
-              } catch (_) {
-                if (mounted) setState(() => _saveError = l10n.saveFailed);
-              } finally {
-                if (mounted) setState(() => _saving = false);
-              }
-            },
-            child: Text(l10n.saveButton),
-          ),
-          if (_saveError != null) Text(_saveError!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-          TextButton(key: const Key('list_cancel_button'),
-            onPressed: _saving ? null : () => Navigator.of(context).pop(),
-            child: Text(l10n.cancelButton)),
-        ],
-      )),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<String>(
+              isExpanded: true,
+              key: const Key('list_currency_field'),
+              initialValue: _currency,
+              decoration: InputDecoration(labelText: l10n.currencyLabel),
+              items: Currency.all
+                  .map(
+                    (c) => DropdownMenuItem(value: c.code, child: Text(c.code)),
+                  )
+                  .toList(),
+              onChanged: (v) => setState(() => _currency = v ?? _currency),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              key: const Key('list_budget_field'),
+              controller: _budget,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: l10n.budgetLabel,
+                errorText: _budgetError,
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _note,
+              decoration: InputDecoration(labelText: l10n.noteLabel),
+            ),
+            const SizedBox(height: 16),
+            FilledButton(
+              key: const Key('list_save_button'),
+              onPressed: _saving
+                  ? null
+                  : () async {
+                      setState(() {
+                        _budgetError = null;
+                        _saveError = null;
+                        _saving = true;
+                      });
+                      try {
+                        await _save();
+                      } on _BudgetFormatException {
+                        if (mounted) {
+                          setState(
+                            () => _budgetError = l10n.invalidAmountError,
+                          );
+                        }
+                      } catch (_) {
+                        if (mounted) {
+                          setState(() => _saveError = l10n.saveFailed);
+                        }
+                      } finally {
+                        if (mounted) setState(() => _saving = false);
+                      }
+                    },
+              child: Text(l10n.saveButton),
+            ),
+            if (_saveError != null)
+              Text(
+                _saveError!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
+            TextButton(
+              key: const Key('list_cancel_button'),
+              onPressed: _saving ? null : () => Navigator.of(context).pop(),
+              child: Text(l10n.cancelButton),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

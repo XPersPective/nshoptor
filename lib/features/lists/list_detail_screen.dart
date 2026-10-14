@@ -1,9 +1,11 @@
 import '../../core/money/format_locale.dart';
+
 import 'package:flutter/material.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:image_picker/image_picker.dart';
+
 import '../../app/app_defaults.dart';
 import '../../app/navigation.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
@@ -16,15 +18,14 @@ import '../../data/db/app_database.dart';
 import '../lists/item_form_sheet.dart';
 import '../lists/list_repository.dart';
 import '../lists/list_status.dart';
-import '../lists/lists_screen.dart';
 import '../lists/starter_categories.dart';
 import '../shopping_mode/item_price_cell.dart';
 import '../shopping_mode/item_status.dart';
 import '../ads/ad_gate.dart';
 import '../shopping_mode/shopping_mode_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
-import '../shopping_mode/summary/summary_screen.dart';
 import '../shopping_mode/summary/result_repository.dart';
+import '../shopping_mode/summary/summary_screen.dart';
 import '../shopping_mode/summary/pdf_report.dart';
 import '../history/price_history/price_history_sheet.dart';
 import '../receipts/ocr_text_source.dart';
@@ -40,8 +41,8 @@ import '../voice_input/voice_preview_sheet.dart';
 import '../voice_input/list_draft_sheet.dart';
 import '../voice_input/ai_list_parser.dart';
 import 'item_repository.dart';
-import '../ai/ai_client.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
+import '../ai/ai_client.dart';
 import 'reminders/local_notifications_scheduler.dart';
 import 'reminders/reminder_scheduler.dart';
 import 'reminders/reminders_repository.dart';
@@ -84,7 +85,8 @@ class ListDetailScreen extends StatefulWidget {
   State<ListDetailScreen> createState() => _ListDetailScreenState();
 }
 
-class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, WidgetsBindingObserver {
+class _ListDetailScreenState extends State<ListDetailScreen>
+    with RouteAware, WidgetsBindingObserver {
   static _ListDetailScreenState? _visibleList;
   static Future<void>? _lockUpdates;
   static bool? _appliedAwake;
@@ -103,7 +105,9 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
     super.initState();
     AdGate.shoppingModeActive = ++_openLists > 0;
     _keepAwake = AppDefaults.keepScreenAwake();
-    _resumed = WidgetsBinding.instance.lifecycleState == null || WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
+    _resumed =
+        WidgetsBinding.instance.lifecycleState == null ||
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
     WidgetsBinding.instance.addObserver(this);
     _listFuture = widget.listRepository.getById(widget.listId);
   }
@@ -130,8 +134,12 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
   }
 
   void _visible(bool visible) {
-    if (visible) { _visibleList = this; _keepAwake = AppDefaults.keepScreenAwake(); }
-    else if (identical(_visibleList, this)) { _visibleList = null; }
+    if (visible) {
+      _visibleList = this;
+      _keepAwake = AppDefaults.keepScreenAwake();
+    } else if (identical(_visibleList, this)) {
+      _visibleList = null;
+    }
     _syncLock();
   }
 
@@ -152,31 +160,54 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
   // Native operations are global; serialize across nested list routes and use the latest owner.
   Future<void> _syncLock() {
     final update = (_lockUpdates ?? Future<void>.value()).then((_) async {
-    final owner = _visibleList;
-    final want = owner != null && owner._resumed && owner._keepAwake;
-    try {
-      if (_appliedAwake != want) { await WakelockPlus.toggle(enable: want); _appliedAwake = want; }
-      if (owner != null && owner.mounted && identical(owner, _visibleList)) owner.setState(() => owner._awake = want);
-    } catch (_) {
-      if (owner != null && owner.mounted && identical(owner, _visibleList)) {
-        owner.setState(() => owner._awake = _appliedAwake ?? false);
-        if (want || _appliedAwake == true) {
-          ScaffoldMessenger.of(owner.context)..clearSnackBars()..showSnackBar(SnackBar(
-            content: Text(AppLocalizations.of(owner.context).keepAwakeFailed), showCloseIcon: true, duration: const Duration(days: 1)));
+      final owner = _visibleList;
+      final want = owner != null && owner._resumed && owner._keepAwake;
+      try {
+        if (_appliedAwake != want) {
+          await WakelockPlus.toggle(enable: want);
+          _appliedAwake = want;
+        }
+        if (owner != null && owner.mounted && identical(owner, _visibleList)) {
+          owner.setState(() => owner._awake = want);
+        }
+      } catch (_) {
+        if (owner != null && owner.mounted && identical(owner, _visibleList)) {
+          owner.setState(() => owner._awake = _appliedAwake ?? false);
+          if (want || _appliedAwake == true) {
+            ScaffoldMessenger.of(owner.context)
+              ..clearSnackBars()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(
+                    AppLocalizations.of(owner.context).keepAwakeFailed,
+                  ),
+                  showCloseIcon: true,
+                  duration: const Duration(days: 1),
+                ),
+              );
+          }
         }
       }
-    }
     });
     _lockUpdates = update;
-    return update.whenComplete(() { if (identical(_lockUpdates, update)) _lockUpdates = null; });
+    return update.whenComplete(() {
+      if (identical(_lockUpdates, update)) _lockUpdates = null;
+    });
   }
 
   Future<void> _toggleAwake() async {
     if (_lockBusy) return;
     final desired = !_awake;
-    setState(() { _lockBusy = true; _keepAwake = desired; });
-    try { await _syncLock(); if (mounted && _awake == desired) AppDefaults.setKeepScreenAwake(desired); }
-    finally { if (mounted) setState(() => _lockBusy = false); }
+    setState(() {
+      _lockBusy = true;
+      _keepAwake = desired;
+    });
+    try {
+      await _syncLock();
+      if (mounted && _awake == desired) AppDefaults.setKeepScreenAwake(desired);
+    } finally {
+      if (mounted) setState(() => _lockBusy = false);
+    }
   }
 
   void _refresh() {
@@ -187,9 +218,9 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
   }
 
   RemindersRepository _remindersRepo() => RemindersRepository(
-        widget.db,
-        widget.reminderScheduler ?? LocalNotificationsScheduler(),
-      );
+    widget.db,
+    widget.reminderScheduler ?? LocalNotificationsScheduler(),
+  );
 
   /// Aktif hatırlatma varsa kaldırır, yoksa tarih+saat seçtirip kurar.
   /// İzin yalnızca bu akışta istenir (spec §6.13).
@@ -202,17 +233,24 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
       if (!context.mounted) return;
       ScaffoldMessenger.of(context)
         ..clearSnackBars()
-        ..showSnackBar(SnackBar(content: Text(l10n.reminderCancelled), showCloseIcon: true));
+        ..showSnackBar(
+          SnackBar(content: Text(l10n.reminderCancelled), showCloseIcon: true),
+        );
       return;
     }
-    final scheduler =
-        widget.reminderScheduler ?? LocalNotificationsScheduler();
+    final scheduler = widget.reminderScheduler ?? LocalNotificationsScheduler();
     final granted = await scheduler.ensurePermission();
     if (!granted) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context)
         ..clearSnackBars()
-        ..showSnackBar(SnackBar(content: Text(l10n.reminderPermissionDenied), showCloseIcon: true, duration: const Duration(days: 1)));
+        ..showSnackBar(
+          SnackBar(
+            content: Text(l10n.reminderPermissionDenied),
+            showCloseIcon: true,
+            duration: const Duration(days: 1),
+          ),
+        );
       return;
     }
     final list = await _listFuture;
@@ -232,7 +270,13 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
       initialTime: TimeOfDay.now(),
     );
     if (time == null || !context.mounted) return;
-    final local = DateTime(date.year, date.month, date.day, time.hour, time.minute);
+    final local = DateTime(
+      date.year,
+      date.month,
+      date.day,
+      time.hour,
+      time.minute,
+    );
     // "Şimdi" seçilirse geçmiş zamana planlamayız: 30 sn sonrasına düşer
     // (OS'un geçmiş tetikleme davranışı cihaza göre değişken).
     final fireAt = local.isAfter(now)
@@ -242,175 +286,466 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
       listId: widget.listId,
       title: l10n.reminderTitle,
       body: l10n.reminderBody(
-          list.title ?? list.generatedTitle ?? l10n.listsTitle),
+        list.title ?? list.generatedTitle ?? l10n.listsTitle,
+      ),
       atUtc: fireAt.toUtc(),
     );
     if (!context.mounted) return;
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
-      ..showSnackBar(SnackBar(content: Text(l10n.reminderScheduled), showCloseIcon: true));
+      ..showSnackBar(
+        SnackBar(content: Text(l10n.reminderScheduled), showCloseIcon: true),
+      );
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.listsTitle), actions: [
-        IconButton.filledTonal(key: const Key('list_keep_awake'), tooltip: l10n.keepAwakeLabel,
-          isSelected: _awake, icon: const Icon(Icons.screen_lock_portrait_outlined),
-          selectedIcon: const Icon(Icons.screen_lock_portrait), onPressed: _lockBusy ? null : _toggleAwake),
-        PopupMenuButton<String>(key: const Key('detail_more_menu'), tooltip: l10n.detailsSection,
-          onSelected: (action) async {
-            if (action == 'pdf') {
-              if (_busy) return;
-              setState(() => _busy = true);
-              await showPdfReport(context, widget.db, widget.listId);
-              if (mounted) setState(() => _busy = false);
-            } else if (action == 'compare') {
-              await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) =>
-                CompareScreen(repository: ResultRepository(widget.db), listId: widget.listId)));
-            } else if (action == 'reminder') {
-              await _toggleReminder(context);
-            } else if (action == 'unplanned') {
-              final list = await _shoppingRepo.getList(widget.listId);
-              if (!context.mounted) return;
-              await showModalBottomSheet<void>(context: context, isScrollControlled: true,
-                builder: (_) => PurchaseEntrySheet(repository: _shoppingRepo, list: list,
-                  item: null, onShelfPricePressed: _shelfPrice));
-            }
-          },
-          itemBuilder: (_) => [
-            PopupMenuItem(value: 'compare', child: Text(l10n.compareAction)),
-            PopupMenuItem(key: const Key('detail_report_pdf'), value: 'pdf', child: Text(l10n.reportPdfAction)),
-            PopupMenuItem(key: const Key('detail_set_reminder'), value: 'reminder', child: Text(l10n.setReminderAction)),
-            PopupMenuItem(key: const Key('add_unplanned_button'), value: 'unplanned', child: Text(l10n.unplannedAddButton)),
-          ]),
-      ]),
-      body: FutureBuilder<ShoppingList>(future: _listFuture, builder: (context, listSnap) {
-        final list = listSnap.data;
-        if (list == null) return const Center(child: CircularProgressIndicator());
-        return StreamBuilder<List<PlannedItem>>(stream: _shoppingRepo.watchItems(widget.listId),
-          builder: (context, itemSnap) => StreamBuilder<List<PurchaseEntry>>(
-            stream: _shoppingRepo.watchEntries(widget.listId), builder: (context, entrySnap) {
-              final items = itemSnap.data ?? const <PlannedItem>[];
-              final entries = entrySnap.data ?? const <PurchaseEntry>[];
-              final active = list.status != 'completed' && list.status != 'archived';
-              return Column(children: [
-                Expanded(child: ListView(padding: const EdgeInsets.symmetric(horizontal: 12), children: [
-                Card(margin: const EdgeInsets.all(12), child: Padding(padding: const EdgeInsets.all(16),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(list.title ?? list.generatedTitle ?? l10n.listsTitle, style: Theme.of(context).textTheme.titleLarge),
-                    Chip(label: Text(statusLabel(l10n, ListStatus.fromDb(list.status)))),
-                    _TotalsRow(items: items, entries: entries, currencyCode: list.currencyCode),
-                  ]))),
-                  if (items.isEmpty && entries.isEmpty) Padding(padding: const EdgeInsets.all(16),
-                    child: Column(children: [Text(l10n.itemsEmptyTitle), Text(l10n.itemsEmptyBody),
-                      OutlinedButton.icon(key: const Key('detail_voice_add_button'),
-                        onPressed: () => _openItemFormWithVoice(context), icon: const Icon(Icons.mic_none),
-                        label: Text(l10n.voiceAddItemAction))])),
-                  for (final item in items) Card(key: Key('detail_item_${item.id}'),
-                    child: Padding(padding: const EdgeInsets.all(12), child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Checkbox(key: Key('detail_check_${item.id}'), value: ItemStatus.fromDb(item.status).isInCart,
-                            semanticLabel: item.name,
-                            onChanged: _busy ? null : (checked) => _changeItem(item, entries, checked: checked!)),
-                          Expanded(child: InkWell(onTap: _busy ? null : () => _enterActual(context, list, item, entries),
-                            onLongPress: () => _openPriceHistory(context, item),
-                            child: Padding(padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text(item.name, style: Theme.of(context).textTheme.titleMedium)))),
-                          PopupMenuButton<String>(key: Key('detail_item_menu_${item.id}'), tooltip: l10n.detailsSection,
-                            onSelected: (action) {
-                              if (action == 'edit') { _openItemForm(context, existing: item, entries: entries); }
-                              else if (action == 'delete') { _changeItem(item, entries, remove: true); }
-                              else if (action == 'history') { _openPriceHistory(context, item); }
-                              else { _changeItem(item, entries, status: ItemStatus.fromDb(action)); }
-                            }, itemBuilder: (_) => [
-                              PopupMenuItem(value: 'edit', child: Text(l10n.editAction)),
-                              PopupMenuItem(value: 'delete', child: Text(l10n.deleteButton)),
-                              PopupMenuItem(value: 'history', child: Text(l10n.priceHistoryTitle)),
-                              PopupMenuItem(value: 'notFound', child: Text(l10n.statusNotFound)),
-                              PopupMenuItem(value: 'gaveUp', child: Text(l10n.statusGaveUp)),
-                            ]),
-                        ]),
-                        Text('${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}'),
-                        if (!ItemStatus.fromDb(item.status).isInCart && item.status != 'pending')
-                          Text(item.status == 'notFound' ? l10n.statusNotFound : l10n.statusGaveUp),
-                        ItemPriceCell(prices: ItemPrices.of(item, entries), currencyCode: list.currencyCode,
-                          onEnter: _busy ? null : () => _enterActual(context, list, item, entries),
-                          onScan: _busy ? null : () => _enterActual(context, list, item, entries, scan: true)),
-                      ]))),
-                  for (final e in entries.where((e) => e.plannedItemId == null)) Card(child: Padding(
-                    padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Text(e.name), Text('${e.actualQuantity} ${unitDisplayNameFromDb(e.actualUnitCode, l10n)}'),
-                      Text('${l10n.compareUnplanned} · ${formatMoney(Money.fromMinorUnits(e.actualLineTotalMinorUnits,
-                        Currency.fromCode(list.currencyCode)), locale: formatLocaleCode(context))}'),
-                    ]))),
-                ])),
-                SafeArea(top: false, child: Padding(padding: const EdgeInsets.all(12),
-                  child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                    Wrap(alignment: WrapAlignment.spaceEvenly, children: [
-                      IconButton.filled(key: const Key('detail_add_item_button'), tooltip: l10n.addItemTooltip,
-                        style: IconButton.styleFrom(minimumSize: const Size(48, 48)),
-                        onPressed: _busy ? null : () => _openItemForm(context), icon: const Icon(Icons.add)),
-                      IconButton(key: const Key('detail_quick_list'), tooltip: l10n.quickListAction,
-                        onPressed: _busy ? null : () => _openQuickList(context), icon: const Icon(Icons.mic_none)),
-                      IconButton(key: const Key('detail_scan_receipt'), tooltip: l10n.scanReceiptAction,
-                        onPressed: _busy ? null : () => _scanReceipt(context), icon: const Icon(Icons.receipt_long)),
-                    ]),
-                    if (active) FilledButton.icon(key: const Key('detail_finish_button'),
-                      onPressed: _busy ? null : () => _finishAndShowResult(context),
-                      icon: const Icon(Icons.check), label: Text(l10n.finishAndSeeResult, textAlign: TextAlign.center)),
-                  ]))),
-              ]);
-            }));
-      }),
+      appBar: AppBar(
+        title: Text(l10n.listsTitle),
+        actions: [
+          IconButton.filledTonal(
+            key: const Key('list_keep_awake'),
+            tooltip: l10n.keepAwakeLabel,
+            isSelected: _awake,
+            icon: const Icon(Icons.screen_lock_portrait_outlined),
+            selectedIcon: const Icon(Icons.screen_lock_portrait),
+            onPressed: _lockBusy ? null : _toggleAwake,
+          ),
+          PopupMenuButton<String>(
+            key: const Key('detail_more_menu'),
+            tooltip: l10n.detailsSection,
+            onSelected: (action) async {
+              if (action == 'pdf') {
+                if (_busy) return;
+                setState(() => _busy = true);
+                await showPdfReport(context, widget.db, widget.listId);
+                if (mounted) setState(() => _busy = false);
+              } else if (action == 'compare') {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => CompareScreen(
+                      repository: ResultRepository(widget.db),
+                      listId: widget.listId,
+                    ),
+                  ),
+                );
+              } else if (action == 'reminder') {
+                await _toggleReminder(context);
+              } else if (action == 'unplanned') {
+                final list = await _shoppingRepo.getList(widget.listId);
+                if (!context.mounted) return;
+                await showModalBottomSheet<void>(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (_) => PurchaseEntrySheet(
+                    repository: _shoppingRepo,
+                    list: list,
+                    item: null,
+                    onShelfPricePressed: _shelfPrice,
+                  ),
+                );
+              } else if (action == 'archive') {
+                await widget.listRepository.changeStatus(
+                  widget.listId,
+                  ListStatus.archived,
+                );
+                if (context.mounted) Navigator.of(context).maybePop();
+              }
+            },
+            itemBuilder: (_) => [
+              PopupMenuItem(value: 'compare', child: Text(l10n.compareAction)),
+              PopupMenuItem(
+                key: const Key('detail_report_pdf'),
+                value: 'pdf',
+                child: Text(l10n.reportPdfAction),
+              ),
+              PopupMenuItem(
+                key: const Key('detail_set_reminder'),
+                value: 'reminder',
+                child: Text(l10n.setReminderAction),
+              ),
+              PopupMenuItem(
+                key: const Key('add_unplanned_button'),
+                value: 'unplanned',
+                child: Text(l10n.unplannedAddButton),
+              ),
+              PopupMenuItem(value: 'archive', child: Text(l10n.archiveAction)),
+            ],
+          ),
+        ],
+      ),
+      body: FutureBuilder<ShoppingList>(
+        future: _listFuture,
+        builder: (context, listSnap) {
+          final list = listSnap.data;
+          if (list == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return StreamBuilder<List<PlannedItem>>(
+            stream: _shoppingRepo.watchItems(widget.listId),
+            builder: (context, itemSnap) => StreamBuilder<List<PurchaseEntry>>(
+              stream: _shoppingRepo.watchEntries(widget.listId),
+              builder: (context, entrySnap) {
+                final items = itemSnap.data ?? const <PlannedItem>[];
+                final entries = entrySnap.data ?? const <PurchaseEntry>[];
+                return Column(
+                  children: [
+                    Expanded(
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        children: [
+                          Card(
+                            margin: const EdgeInsets.all(12),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    list.title ??
+                                        list.generatedTitle ??
+                                        l10n.listsTitle,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge,
+                                  ),
+                                  _TotalsRow(
+                                    items: items,
+                                    entries: entries,
+                                    currencyCode: list.currencyCode,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          if (items.isEmpty && entries.isEmpty)
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  Text(l10n.itemsEmptyTitle),
+                                  Text(l10n.itemsEmptyBody),
+                                  OutlinedButton.icon(
+                                    key: const Key('detail_voice_add_button'),
+                                    onPressed: () =>
+                                        _openItemFormWithVoice(context),
+                                    icon: const Icon(Icons.mic_none),
+                                    label: Text(l10n.voiceAddItemAction),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          for (final item in items)
+                            Card(
+                              key: Key('detail_item_${item.id}'),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Checkbox(
+                                          key: Key('detail_check_${item.id}'),
+                                          value: ItemStatus.fromDb(item.status)
+                                              .isInCart,
+                                          semanticLabel: item.name,
+                                          onChanged: _busy
+                                              ? null
+                                              : (checked) => _changeItem(
+                                                  item,
+                                                  entries,
+                                                  checked: checked!,
+                                                ),
+                                        ),
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: _busy
+                                                ? null
+                                                : () => _openItemForm(
+                                                    context,
+                                                    existing: item,
+                                                    entries: entries,
+                                                  ),
+                                            onLongPress: () =>
+                                                _openPriceHistory(
+                                                  context,
+                                                  item,
+                                                ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    vertical: 12,
+                                                  ),
+                                              child: Text(
+                                                item.name,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        PopupMenuButton<String>(
+                                          key: Key(
+                                            'detail_item_menu_${item.id}',
+                                          ),
+                                          tooltip: l10n.detailsSection,
+                                          onSelected: (action) {
+                                            if (action == 'edit') {
+                                              _openItemForm(
+                                                context,
+                                                existing: item,
+                                                entries: entries,
+                                              );
+                                            } else if (action == 'delete') {
+                                              _changeItem(
+                                                item,
+                                                entries,
+                                                remove: true,
+                                              );
+                                            } else if (action == 'history') {
+                                              _openPriceHistory(context, item);
+                                            } else {
+                                              _changeItem(
+                                                item,
+                                                entries,
+                                                status: ItemStatus.fromDb(
+                                                  action,
+                                                ),
+                                              );
+                                            }
+                                          },
+                                          itemBuilder: (_) => [
+                                            PopupMenuItem(
+                                              value: 'delete',
+                                              child: Text(l10n.deleteButton),
+                                            ),
+                                            PopupMenuItem(
+                                              value: 'history',
+                                              child: Text(
+                                                l10n.priceHistoryTitle,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
+                                    ),
+                                    if (!ItemStatus.fromDb(item.status)
+                                            .isInCart &&
+                                        item.status != 'pending')
+                                      Text(
+                                        item.status == 'notFound'
+                                            ? l10n.statusNotFound
+                                            : l10n.statusGaveUp,
+                                      ),
+                                    ItemPriceCell(
+                                      prices: ItemPrices.of(item, entries),
+                                      currencyCode: list.currencyCode,
+                                      onEnter: _busy
+                                          ? null
+                                          : () => _enterActual(
+                                              context,
+                                              list,
+                                              item,
+                                              entries,
+                                            ),
+                                      onScan: _busy
+                                          ? null
+                                          : () => _enterActual(
+                                              context,
+                                              list,
+                                              item,
+                                              entries,
+                                              scan: true,
+                                            ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          for (final e in entries.where(
+                            (e) => e.plannedItemId == null,
+                          ))
+                            Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(e.name),
+                                    Text(
+                                      '${e.actualQuantity} ${unitDisplayNameFromDb(e.actualUnitCode, l10n)}',
+                                    ),
+                                    Text(
+                                      '${l10n.compareUnplanned} · ${formatMoney(Money.fromMinorUnits(e.actualLineTotalMinorUnits, Currency.fromCode(list.currencyCode)), locale: formatLocaleCode(context))}',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                    SafeArea(
+                      top: false,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Wrap(
+                              alignment: WrapAlignment.spaceEvenly,
+                              children: [
+                                IconButton.filled(
+                                  key: const Key('detail_add_item_button'),
+                                  tooltip: l10n.addItemTooltip,
+                                  style: IconButton.styleFrom(
+                                    minimumSize: const Size(48, 48),
+                                  ),
+                                  onPressed: _busy
+                                      ? null
+                                      : () => _openItemForm(context),
+                                  icon: const Icon(Icons.add),
+                                ),
+                                IconButton(
+                                  key: const Key('detail_quick_list'),
+                                  tooltip: l10n.quickListAction,
+                                  onPressed: _busy
+                                      ? null
+                                      : () => _openQuickList(context),
+                                  icon: const Icon(Icons.mic_none),
+                                ),
+                                IconButton(
+                                  key: const Key('detail_scan_receipt'),
+                                  tooltip: l10n.scanReceiptAction,
+                                  onPressed: _busy
+                                      ? null
+                                      : () => _scanReceipt(context),
+                                  icon: const Icon(Icons.receipt_long),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 
-  Future<void> _changeItem(PlannedItem item, List<PurchaseEntry> entries,
-      {bool checked = false, bool remove = false, ItemStatus? status}) async {
+  Future<void> _changeItem(
+    PlannedItem item,
+    List<PurchaseEntry> entries, {
+    bool checked = false,
+    bool remove = false,
+    ItemStatus? status,
+  }) async {
     if (_busy) return;
     final l10n = AppLocalizations.of(context);
     if (remove || !checked && entries.any((e) => e.plannedItemId == item.id)) {
-      final confirmed = await showDialog<bool>(context: context, builder: (ctx) => AlertDialog(
-        title: Text(item.name), content: Text(remove ? l10n.deleteItemConfirm : l10n.clearPurchaseConfirm),
-        actions: [TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancelButton)),
-          FilledButton(onPressed: () => Navigator.pop(ctx, true), child: Text(remove ? l10n.deleteButton : l10n.saveButton))]));
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(item.name),
+          content: Text(
+            remove ? l10n.deleteItemConfirm : l10n.clearPurchaseConfirm,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: Text(l10n.cancelButton),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: Text(remove ? l10n.deleteButton : l10n.saveButton),
+            ),
+          ],
+        ),
+      );
       if (confirmed != true || !mounted) return;
     }
     setState(() => _busy = true);
     try {
-      if (remove) { await ItemRepository(widget.db).removeItem(item.id); }
-      else { await _shoppingRepo.setItemStatus(item.id, status ?? (checked ? ItemStatus.inCart : ItemStatus.pending)); }
+      if (remove) {
+        await ItemRepository(widget.db).removeItem(item.id);
+      } else {
+        await _shoppingRepo.setItemStatus(
+          item.id,
+          status ?? (checked ? ItemStatus.inCart : ItemStatus.pending),
+        );
+      }
     } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
-          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1)));
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.saveFailed),
+              showCloseIcon: true,
+              duration: const Duration(days: 1),
+            ),
+          );
       }
-    } finally { if (mounted) { setState(() => _busy = false); } }
+    } finally {
+      if (mounted) {
+        setState(() => _busy = false);
+      }
+    }
   }
 
   /// Gerçek fiyatı satırdan gir (PB-062): elle ya da kamerayla; kayıt anında
   /// satırda tahmini → gerçek ve fark görünür.
-  Future<void> _enterActual(BuildContext context, ShoppingList list, PlannedItem item,
-      List<PurchaseEntry> entries, {bool scan = false}) async {
+  Future<void> _enterActual(
+    BuildContext context,
+    ShoppingList list,
+    PlannedItem item,
+    List<PurchaseEntry> entries, {
+    bool scan = false,
+  }) async {
     if (_busy) return;
     setState(() => _busy = true);
     try {
-    PriceCandidate? candidate;
-    if (scan) {
-      candidate = await _shelfCandidate(context);
-      if (candidate == null || !context.mounted) return;
+      PriceCandidate? candidate;
+      if (scan) {
+        candidate = await _shelfCandidate(context);
+        if (candidate == null || !context.mounted) return;
+      }
+      await _openItemForm(
+        context,
+        existing: item,
+        entries: entries,
+        initialActualCandidate: candidate,
+        focusActual: true,
+      );
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
-    await _openItemForm(context, existing: item, entries: entries,
-      initialActualCandidate: candidate, focusActual: true);
-    } finally { if (mounted) setState(() => _busy = false); }
   }
 
-  Future<void> _openItemForm(BuildContext context,
-      {ParsedItemCandidate? prefill, PlannedItem? existing,
-       List<PurchaseEntry> entries = const [], String? initialActualPrice, PriceCandidate? initialActualCandidate, bool focusActual = false}) async {
+  Future<void> _openItemForm(
+    BuildContext context, {
+    ParsedItemCandidate? prefill,
+    PlannedItem? existing,
+    List<PurchaseEntry> entries = const [],
+    String? initialActualPrice,
+    PriceCandidate? initialActualCandidate,
+    bool focusActual = false,
+  }) async {
     await StarterCategories().seedIfEmpty(widget.db);
     if (!context.mounted) return;
     await showModalBottomSheet<void>(
@@ -420,8 +755,13 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
         db: widget.db,
         starterCategories: StarterCategories(),
         listId: widget.listId,
-        existing: existing, entries: existing == null ? const [] : entries.where((e) => e.plannedItemId == existing.id).toList(),
-        initialActualPrice: initialActualPrice, initialActualCandidate: initialActualCandidate, focusActual: focusActual,
+        existing: existing,
+        entries: existing == null
+            ? const []
+            : entries.where((e) => e.plannedItemId == existing.id).toList(),
+        initialActualPrice: initialActualPrice,
+        initialActualCandidate: initialActualCandidate,
+        focusActual: focusActual,
         initialCandidate: prefill,
         initialName: prefill?.name,
         initialQuantity: prefill?.quantity?.toDbString(),
@@ -442,7 +782,8 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
       showDragHandle: true,
       builder: (_) => ListDraftSheet(
         speechService: widget.speechService ?? SttSpeechService(),
-        onApprove: (draft) => ItemRepository(widget.db).addCandidates(widget.listId, draft.items),
+        onApprove: (draft) =>
+            ItemRepository(widget.db).addCandidates(widget.listId, draft.items),
       ),
     );
     if (picked == null || !mounted) return;
@@ -457,12 +798,21 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
     await _openItemForm(context, prefill: candidate);
   }
 
+  Future<ParsedItemCandidate?> _voiceCandidate(BuildContext context) =>
+      widget.onVoicePressed?.call(context) ??
+      showModalBottomSheet<ParsedItemCandidate>(
+        context: context,
+        isScrollControlled: true,
+        builder: (_) => VoicePreviewSheet(
+          service: widget.speechService ?? SttSpeechService(),
+        ),
+      );
+
   Future<String?> _pickImage() async {
     if (widget.pickImage != null) return widget.pickImage!();
     return (await ImagePicker().pickImage(source: ImageSource.camera))?.path;
   }
 
-  /// Görseli okur; ML Kit kaynağı yalnız bu çağrı boyunca açık kalır.
   Future<OcrScanResult?> _scan() async {
     final path = await _pickImage();
     if (path == null) return null;
@@ -475,30 +825,6 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
     }
   }
 
-  Future<ParsedItemCandidate?> _voiceCandidate(BuildContext context) =>
-      widget.onVoicePressed?.call(context) ?? showModalBottomSheet<ParsedItemCandidate>(
-        context: context,
-        isScrollControlled: true,
-        builder: (_) => VoicePreviewSheet(
-          service: widget.speechService ?? SttSpeechService(),
-        ),
-      );
-
-  Future<String?> _shelfPrice(BuildContext context) async => (await _shelfCandidate(context))?.value.toDbString();
-
-  Future<PriceCandidate?> _shelfCandidate(BuildContext context) async {
-    final list = await widget.listRepository.getById(widget.listId);
-    if (!context.mounted) return null;
-    if (widget.onShelfPricePressed != null) {
-      final text = await widget.onShelfPricePressed!(context);
-      final value = text == null ? null : DecimalFixed.tryParse(text);
-      return value == null ? null : PriceCandidate(value: value, currencyCode: list.currencyCode,
-        sourceLine: '', confidence: 'manual', isUnitPrice: true);
-    }
-    return readShelfCandidate(context, currencyCode: list.currencyCode, pickImage: widget.pickImage, ocrSource: widget.ocrSource);
-  }
-
-  /// Fiş: tara → ayrıştır → inceleme; onaya dek DB yazımı yok (spec §6.9).
   Future<void> _scanReceipt(BuildContext context) async {
     if (_busy) return;
     final l10n = AppLocalizations.of(context);
@@ -508,22 +834,66 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
       final scan = await _scan();
       if (scan == null || !context.mounted) return;
       final parsed = ReceiptParser(currency: list.currencyCode).parse(scan);
-      if (parsed.lines.isEmpty) {
-        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true, duration: const Duration(days: 1)));
-        return;
-      }
-      final controller = ReceiptReviewController(db: widget.db, listId: widget.listId,
-        parseResult: parsed, ai: AiService.client, localeCode: Localizations.localeOf(context).languageCode);
+      if (parsed.lines.isEmpty) return;
+      final controller = ReceiptReviewController(
+        db: widget.db,
+        listId: widget.listId,
+        parseResult: parsed,
+        ai: AiService.client,
+        localeCode: Localizations.localeOf(context).languageCode,
+      );
       try {
-        await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ReceiptReviewScreen(
-          controller: controller, currency: list.currencyCode,
-          plannedItems: ItemRepository(widget.db).getItems(widget.listId))));
-      } finally { controller.dispose(); }
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => ReceiptReviewScreen(
+              controller: controller,
+              currency: list.currencyCode,
+              plannedItems: ItemRepository(widget.db).getItems(widget.listId),
+            ),
+          ),
+        );
+      } finally {
+        controller.dispose();
+      }
       if (mounted) _refresh();
     } catch (_) {
-      if (context.mounted) { ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
-        SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true, duration: const Duration(days: 1))); }
-    } finally { if (mounted) setState(() => _busy = false); }
+      if (context.mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true),
+          );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<String?> _shelfPrice(BuildContext context) async =>
+      (await _shelfCandidate(context))?.value.toDbString();
+
+  Future<PriceCandidate?> _shelfCandidate(BuildContext context) async {
+    final list = await widget.listRepository.getById(widget.listId);
+    if (!context.mounted) return null;
+    if (widget.onShelfPricePressed != null) {
+      final text = await widget.onShelfPricePressed!(context);
+      final value = text == null ? null : DecimalFixed.tryParse(text);
+      return value == null
+          ? null
+          : PriceCandidate(
+              value: value,
+              currencyCode: list.currencyCode,
+              sourceLine: '',
+              confidence: 'manual',
+              isUnitPrice: true,
+            );
+    }
+    return readShelfCandidate(
+      context,
+      currencyCode: list.currencyCode,
+      pickImage: widget.pickImage,
+      ocrSource: widget.ocrSource,
+    );
   }
 
   Future<void> _openPriceHistory(BuildContext context, PlannedItem item) async {
@@ -535,9 +905,14 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
             ?.id;
     if (!context.mounted) return;
     if (productId == null) {
-      ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context).noObservations), showCloseIcon: true),
-      );
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context).noObservations),
+            showCloseIcon: true,
+          ),
+        );
       return;
     }
     await Navigator.of(context).push(
@@ -550,46 +925,15 @@ class _ListDetailScreenState extends State<ListDetailScreen> with RouteAware, Wi
       ),
     );
   }
-
-  /// Alışverişi tamamlar ve sonuç ekranını açar (spec §6.11).
-  Future<void> _finishAndShowResult(BuildContext context) async {
-    if (_busy) return;
-    final l10n = AppLocalizations.of(context);
-    final result = await ResultRepository(widget.db).compute(widget.listId);
-    if (!context.mounted) return;
-    if (result.rows.any((r) => r.notTaken || !r.actualKnown)) {
-      final confirmed = await showDialog<bool>(context: context, builder: (ctx) => AlertDialog(
-        content: Text(l10n.completionWarning), actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.cancelButton)),
-          FilledButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.finishAndSeeResult))]));
-      if (confirmed != true || !context.mounted) return;
-    }
-    setState(() => _busy = true);
-    try {
-      await widget.db.transaction(() async {
-        await _shoppingRepo.startShopping(widget.listId);
-        await widget.listRepository.changeStatus(widget.listId, ListStatus.completed);
-      });
-      if (!context.mounted) return;
-      await Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => SummaryScreen(
-          repository: ResultRepository(widget.db),
-          listId: widget.listId,
-        ),
-      ),
-    );
-      if (mounted) _refresh();
-    } catch (_) {
-      if (context.mounted) ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1)));
-    } finally { if (mounted) { setState(() => _busy = false); } }
-  }
 }
-
 
 /// Başlık kartında hep görünen toplamlar: tahmini, gerçek ve fark (PB-062).
 class _TotalsRow extends StatelessWidget {
-  const _TotalsRow({required this.items, required this.entries, required this.currencyCode});
+  const _TotalsRow({
+    required this.items,
+    required this.entries,
+    required this.currencyCode,
+  });
 
   final List<PlannedItem> items;
   final List<PurchaseEntry> entries;
@@ -613,10 +957,14 @@ class _TotalsRow extends StatelessWidget {
       planned += line;
       final mine = entries.where((e) => e.plannedItemId == item.id);
       if (mine.isNotEmpty) {
-        final sum = mine.fold<int>(0, (a, e) => a + e.actualLineTotalMinorUnits);
+        final sum = mine.fold<int>(
+          0,
+          (a, e) => a + e.actualLineTotalMinorUnits,
+        );
         actual += sum;
         // Fark yalnız elma-elma: tahmini girilmemiş ürün farkı şişirmez.
-        if (item.plannedLineTotalMinorUnits != null && ItemPrices.of(item, entries).hasActual) {
+        if (item.plannedLineTotalMinorUnits != null &&
+            ItemPrices.of(item, entries).hasActual) {
           comparedCount++;
           comparedPlanned += line;
           comparedActual += sum;
@@ -628,33 +976,75 @@ class _TotalsRow extends StatelessWidget {
       actual += e.actualLineTotalMinorUnits;
     }
     final diff = comparedActual - comparedPlanned;
-    final muted = theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurfaceVariant);
+    final muted = theme.textTheme.labelSmall?.copyWith(
+      color: theme.colorScheme.onSurfaceVariant,
+    );
 
     final stacked = MediaQuery.textScalerOf(context).scale(14) > 18;
     Widget cell(String label, String value, {Color? color, Key? key}) {
       final content = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [Text(label, style: muted), Text(value, key: key,
-          style: theme.textTheme.titleMedium?.copyWith(color: color))]);
-      return stacked ? Padding(padding: const EdgeInsets.only(bottom: 8), child: content) : Expanded(child: content);
+        children: [
+          Text(label, style: muted),
+          Text(
+            value,
+            key: key,
+            style: theme.textTheme.titleMedium?.copyWith(color: color),
+          ),
+        ],
+      );
+      return stacked
+          ? Padding(padding: const EdgeInsets.only(bottom: 8), child: content)
+          : Expanded(child: content);
     }
 
     final delta = comparedCount == 0 || diff == 0
         ? null
         : SemanticDelta.resolve(
-            direction: diff > 0 ? SpendingDirection.overPlan : SpendingDirection.underPlan,
+            direction: diff > 0
+                ? SpendingDirection.overPlan
+                : SpendingDirection.underPlan,
             brightness: theme.brightness,
           );
-    final known = entries.any((e) => e.grossTotalMinorUnits != null || e.actualLineTotalMinorUnits != 0 || e.source == 'receiptOcr');
-    final unknown = items.any((i) => ItemStatus.fromDb(i.status).isInCart && !ItemPrices.of(i, entries).hasActual);
+    final known = entries.any(
+      (e) =>
+          e.grossTotalMinorUnits != null ||
+          e.actualLineTotalMinorUnits != 0 ||
+          e.source == 'receiptOcr',
+    );
+    final unknown = items.any(
+      (i) =>
+          ItemStatus.fromDb(i.status).isInCart &&
+          !ItemPrices.of(i, entries).hasActual,
+    );
     final cells = [
-        cell(l10n.compareEstimated, items.every((i) => i.plannedLineTotalMinorUnits == null) ? '—' : money(planned), key: const Key('total_planned')),
-        cell(l10n.compareActual, known ? '${money(actual)}${unknown ? ' + —' : ''}' : '—', key: const Key('total_actual')),
-        cell(l10n.compareDiff, delta == null ? (comparedCount == 0 ? '—' : '0') : '${diff > 0 ? '+' : '−'}${money(diff.abs())}',
-          color: delta?.color, key: const Key('total_diff')),
+      cell(
+        l10n.compareEstimated,
+        items.every((i) => i.plannedLineTotalMinorUnits == null)
+            ? '—'
+            : money(planned),
+        key: const Key('total_planned'),
+      ),
+      cell(
+        l10n.compareActual,
+        known ? '${money(actual)}${unknown ? ' + —' : ''}' : '—',
+        key: const Key('total_actual'),
+      ),
+      cell(
+        l10n.compareDiff,
+        delta == null
+            ? (comparedCount == 0 ? '—' : '0')
+            : '${diff > 0 ? '+' : '−'}${money(diff.abs())}',
+        color: delta?.color,
+        key: const Key('total_diff'),
+      ),
     ];
-    return stacked ? Column(key: const Key('detail_totals'), crossAxisAlignment: CrossAxisAlignment.start, children: cells) :
-      Row(key: const Key('detail_totals'), children: cells);
-
+    return stacked
+        ? Column(
+            key: const Key('detail_totals'),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: cells,
+          )
+        : Row(key: const Key('detail_totals'), children: cells);
   }
 }

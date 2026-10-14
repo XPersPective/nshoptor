@@ -21,9 +21,9 @@
 ## Domains
 
 ### Navigation and list UI
-Status: VERIFIED current baseline; target change pending.
+Status: VERIFIED: `ListsScreen` now uses horizontal `PageView`; detail cards no longer show status chip or finish button. Item-level reorder and HomeShell consolidation remain pending.
 Sources: `lib/features/home/**`, `lib/features/lists/**`, `test/features/lists/**`
-- Existing HomeShell and list detail already support a unified list journey but retain legacy status/navigation surfaces.
+- Existing HomeShell still has the legacy multi-tab shell; `ListsScreen` is the first migrated three-page flow.
 
 ### Item and price data
 Status: VERIFIED
@@ -36,5 +36,5 @@ Sources: `lib/features/history/**`, `lib/features/voice_input/**`, `test/feature
 - Price observations and native single-session voice paths exist; new interaction and product-level normalized chart acceptance must be mapped.
 
 ## Known Unknowns
-- Exact current widget entrypoints for the three requested pages and legacy status chips need targeted source read before implementation.
+- Exact HomeShell consolidation and item-level reorder/undo implementation still need a targeted source read.
 - Whether existing price observations already carry enough unit metadata for the requested chart needs domain inspection.

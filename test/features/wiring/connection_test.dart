@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
@@ -79,17 +80,20 @@ void main() {
         ),
       );
 
-  Widget detail(int listId,
-          {OcrTextSource? ocr, SpeechService? speech, ReminderScheduler? scheduler}) =>
-      ListDetailScreen(
-        db: db,
-        listRepository: listRepo,
-        listId: listId,
-        ocrSource: ocr,
-        speechService: speech,
-        reminderScheduler: scheduler,
-        pickImage: () async => 'fake.jpg',
-      );
+  Widget detail(
+    int listId, {
+    OcrTextSource? ocr,
+    SpeechService? speech,
+    ReminderScheduler? scheduler,
+  }) => ListDetailScreen(
+    db: db,
+    listRepository: listRepo,
+    listId: listId,
+    ocrSource: ocr,
+    speechService: speech,
+    reminderScheduler: scheduler,
+    pickImage: () async => 'fake.jpg',
+  );
 
   testWidgets('ana ekran: tamamlanan listeden plan → şablon kartı', (
     tester,
@@ -122,7 +126,7 @@ void main() {
 
     await tester.tap(find.byKey(Key('home_plan_from_$src')));
     await settle(tester);
-    expect(find.byKey(const Key('detail_finish_button')), findsOneWidget);
+    expect(find.byKey(const Key('detail_more_menu')), findsOneWidget);
     expect(find.text('Süt'), findsOneWidget); // plan kopyalandı
     expect(await TemplateRepository(db).templateIds(), [src]);
 
@@ -194,87 +198,202 @@ void main() {
     await tester.tap(find.byKey(const Key('price_candidate_0')));
     await settle(tester);
 
-    expect(tester.widget<TextField>(find.byKey(const Key('item_actual_price_field'))).controller!.text, '42,90');
-    expect(tester.widget<TextField>(find.byKey(const Key('item_name_field'))).controller!.text, 'SÜT 1 LT');
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('item_actual_price_field')))
+          .controller!
+          .text,
+      '42,90',
+    );
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('item_name_field')))
+          .controller!
+          .text,
+      'SÜT 1 LT',
+    );
     expect(await db.select(db.plannedItems).get(), isEmpty);
     expect(await db.select(db.purchaseEntries).get(), isEmpty);
-    expect(tester.widget<TextField>(find.byKey(const Key('item_price_field'))).controller!.text, isEmpty);
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('item_price_field')))
+          .controller!
+          .text,
+      isEmpty,
+    );
 
     await disposeApp(tester);
   });
 
-  testWidgets('camera duplicate and failure preserve editable manual fields', (tester) async {
+  testWidgets('camera duplicate and failure preserve editable manual fields', (
+    tester,
+  ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    final listId = await listRepo.createList(title: 'Market', currencyCode: 'TRY');
-    final image = Completer<String?>(); var calls = 0;
-    await tester.pumpWidget(app(ListDetailScreen(db: db, listRepository: listRepo, listId: listId,
-      pickImage: () { calls++; return image.future; })));
+    final listId = await listRepo.createList(
+      title: 'Market',
+      currencyCode: 'TRY',
+    );
+    final image = Completer<String?>();
+    var calls = 0;
+    await tester.pumpWidget(
+      app(
+        ListDetailScreen(
+          db: db,
+          listRepository: listRepo,
+          listId: listId,
+          pickImage: () {
+            calls++;
+            return image.future;
+          },
+        ),
+      ),
+    );
     await settle(tester);
-    await tester.tap(find.byKey(const Key('detail_add_item_button'))); await settle(tester);
-    await tester.enterText(find.byKey(const Key('item_name_field')), 'Manual milk');
+    await tester.tap(find.byKey(const Key('detail_add_item_button')));
+    await settle(tester);
+    await tester.enterText(
+      find.byKey(const Key('item_name_field')),
+      'Manual milk',
+    );
     await tester.enterText(find.byKey(const Key('item_price_field')), '20');
-    await tester.tap(find.byKey(const Key('item_shelf_label_button'))); await tester.pump();
-    await tester.tap(find.byKey(const Key('item_shelf_label_button'))); await tester.pump();
+    await tester.tap(find.byKey(const Key('item_shelf_label_button')));
+    await tester.pump();
+    await tester.tap(find.byKey(const Key('item_shelf_label_button')));
+    await tester.pump();
     expect(calls, 1);
-    image.completeError(StateError('camera denied')); await settle(tester);
-    expect(tester.widget<TextField>(find.byKey(const Key('item_name_field'))).controller!.text, 'Manual milk');
-    expect(tester.widget<TextField>(find.byKey(const Key('item_price_field'))).controller!.text, '20');
+    image.completeError(StateError('camera denied'));
+    await settle(tester);
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('item_name_field')))
+          .controller!
+          .text,
+      'Manual milk',
+    );
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('item_price_field')))
+          .controller!
+          .text,
+      '20',
+    );
     expect(await db.select(db.purchaseEntries).get(), isEmpty);
-    await tester.enterText(find.byKey(const Key('item_actual_price_field')), '25');
+    await tester.enterText(
+      find.byKey(const Key('item_actual_price_field')),
+      '25',
+    );
     await tester.ensureVisible(find.byKey(const Key('item_save_button')));
-    await tester.tap(find.byKey(const Key('item_save_button'))); await settle(tester);
-    expect((await db.select(db.purchaseEntries).get()).single.actualLineTotalMinorUnits, 2500);
+    await tester.tap(find.byKey(const Key('item_save_button')));
+    await settle(tester);
+    expect(
+      (await db.select(db.purchaseEntries).get())
+          .single
+          .actualLineTotalMinorUnits,
+      2500,
+    );
     await disposeApp(tester);
   });
 
-  testWidgets('row photo preserves estimate and commits the chosen kg unit price', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(800, 1400));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    final listId = await listRepo.createList(title: 'Market', currencyCode: 'TRY');
-    final id = await ItemRepository(db).addItem(listId: listId, name: 'Old apple', quantity: DecimalFixed.fromInt(2),
-      unitCode: 'kilogram', priceIsUnitPrice: true, price: DecimalFixed.fromInt(50));
-    await tester.pumpWidget(app(detail(listId, ocr: _FakeOcr(['ELMA', '40,00 ₺/kg']))));
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('price_scan'))); await settle(tester);
-    await tester.tap(find.byKey(const Key('price_candidate_0'))); await settle(tester);
-    expect(tester.widget<TextField>(find.byKey(const Key('item_name_field'))).controller!.text, 'ELMA');
-    expect(tester.widget<TextField>(find.byKey(const Key('item_actual_price_field'))).controller!.text, '40,00');
-    expect(find.byKey(const ValueKey('item_actual_unit_kilogram')), findsOneWidget);
-    expect(await db.select(db.purchaseEntries).get(), isEmpty);
-    await tester.ensureVisible(find.byKey(const Key('item_save_button')));
-    await tester.tap(find.byKey(const Key('item_save_button'))); await settle(tester);
-    final item = (await ItemRepository(db).getItems(listId)).single;
-    expect(item.id, id); expect(item.plannedLineTotalMinorUnits, 10000);
-    final entry = (await db.select(db.purchaseEntries).get()).single;
-    expect(entry.actualUnitCode, 'kilogram'); expect(entry.actualQuantity, '2'); expect(entry.actualLineTotalMinorUnits, 8000);
-    await disposeApp(tester);
-  });
+  testWidgets(
+    'row photo preserves estimate and commits the chosen kg unit price',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(800, 1400));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final listId = await listRepo.createList(
+        title: 'Market',
+        currencyCode: 'TRY',
+      );
+      final id = await ItemRepository(db).addItem(
+        listId: listId,
+        name: 'Old apple',
+        quantity: DecimalFixed.fromInt(2),
+        unitCode: 'kilogram',
+        priceIsUnitPrice: true,
+        price: DecimalFixed.fromInt(50),
+      );
+      await tester.pumpWidget(
+        app(detail(listId, ocr: _FakeOcr(['ELMA', '40,00 ₺/kg']))),
+      );
+      await settle(tester);
+      await tester.tap(find.byKey(const Key('price_scan')));
+      await settle(tester);
+      await tester.tap(find.byKey(const Key('price_candidate_0')));
+      await settle(tester);
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('item_name_field')))
+            .controller!
+            .text,
+        'ELMA',
+      );
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('item_actual_price_field')))
+            .controller!
+            .text,
+        '40,00',
+      );
+      expect(
+        find.byKey(const ValueKey('item_actual_unit_kilogram')),
+        findsOneWidget,
+      );
+      expect(await db.select(db.purchaseEntries).get(), isEmpty);
+      await tester.ensureVisible(find.byKey(const Key('item_save_button')));
+      await tester.tap(find.byKey(const Key('item_save_button')));
+      await settle(tester);
+      final item = (await ItemRepository(db).getItems(listId)).single;
+      expect(item.id, id);
+      expect(item.plannedLineTotalMinorUnits, 10000);
+      final entry = (await db.select(db.purchaseEntries).get()).single;
+      expect(entry.actualUnitCode, 'kilogram');
+      expect(entry.actualQuantity, '2');
+      expect(entry.actualLineTotalMinorUnits, 8000);
+      await disposeApp(tester);
+    },
+  );
 
-  testWidgets('home receipt opens standalone preview; cancel and empty OCR leave no list', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(800, 1400));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    final ocr = _FakeOcr(['MILK 10,00']);
-    await tester.pumpWidget(app(HomeShell(db: db, listRepository: listRepo, pickImage: () async => 'fake.jpg', ocrSource: ocr)));
-    await settle(tester);
-    Future<void> scan() async {
-      await tester.tap(find.byKey(const Key('assistant_bubble'))); await settle(tester);
-      await tester.tap(find.byKey(const Key('assistant_scanReceipt'))); await settle(tester);
-    }
-    await scan();
-    expect(find.byKey(const Key('receipt_commit_button')), findsOneWidget);
-    expect(await db.select(db.shoppingLists).get(), isEmpty);
-    expect(await db.select(db.purchaseEntries).get(), isEmpty);
-    await tester.binding.handlePopRoute(); await settle(tester);
-    await scan();
-    await tester.tap(find.byKey(const Key('receipt_cancel'))); await settle(tester);
-    expect(await db.select(db.shoppingLists).get(), isEmpty);
-    ocr.lines.clear();
-    await scan();
-    expect(find.byKey(const Key('receipt_commit_button')), findsNothing);
-    expect(await db.select(db.shoppingLists).get(), isEmpty);
-    await disposeApp(tester);
-  });
+  testWidgets(
+    'home receipt opens standalone preview; cancel and empty OCR leave no list',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(800, 1400));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final ocr = _FakeOcr(['MILK 10,00']);
+      await tester.pumpWidget(
+        app(
+          HomeShell(
+            db: db,
+            listRepository: listRepo,
+            pickImage: () async => 'fake.jpg',
+            ocrSource: ocr,
+          ),
+        ),
+      );
+      await settle(tester);
+      Future<void> scan() async {
+        await tester.tap(find.byKey(const Key('assistant_bubble')));
+        await settle(tester);
+        await tester.tap(find.byKey(const Key('assistant_scanReceipt')));
+        await settle(tester);
+      }
+
+      await scan();
+      expect(find.byKey(const Key('receipt_commit_button')), findsOneWidget);
+      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      expect(await db.select(db.purchaseEntries).get(), isEmpty);
+      await tester.binding.handlePopRoute();
+      await settle(tester);
+      await scan();
+      await tester.tap(find.byKey(const Key('receipt_cancel')));
+      await settle(tester);
+      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      ocr.lines.clear();
+      await scan();
+      expect(find.byKey(const Key('receipt_commit_button')), findsNothing);
+      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      await disposeApp(tester);
+    },
+  );
 
   testWidgets('fiş: tarama → inceleme; onaya dek DB yazımı yok', (
     tester,
@@ -356,56 +475,70 @@ void main() {
     await disposeApp(tester);
   });
 
-  testWidgets('liste satırı: tahmini hep görünür; gerçek fiyat satırdan girilince fark anında görünür',
-      (tester) async {
-    await tester.binding.setSurfaceSize(const Size(800, 1400));
-    final listId = await listRepo.createList(title: 'Market', currencyCode: 'TRY');
-    await ItemRepository(db).addItem(
-      listId: listId,
-      name: 'Elma',
-      quantity: DecimalFixed.fromInt(1),
-      unitCode: 'adet',
-      priceIsUnitPrice: true,
-      price: DecimalFixed.parse('10'),
-    ); // tahmini 10,00
+  testWidgets(
+    'liste satırı: tahmini hep görünür; gerçek fiyat satırdan girilince fark anında görünür',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(800, 1400));
+      final listId = await listRepo.createList(
+        title: 'Market',
+        currencyCode: 'TRY',
+      );
+      await ItemRepository(db).addItem(
+        listId: listId,
+        name: 'Elma',
+        quantity: DecimalFixed.fromInt(1),
+        unitCode: 'adet',
+        priceIsUnitPrice: true,
+        price: DecimalFixed.parse('10'),
+      ); // tahmini 10,00
 
-    await tester.pumpWidget(app(detail(listId)));
-    await settle(tester);
-    // Tahmini satırda ve toplamda; gerçek henüz yok.
-    expect(find.byKey(const Key('price_planned')), findsOneWidget);
-    expect(find.textContaining('10,00'), findsWidgets);
-    expect(find.byKey(const Key('price_actual')), findsNothing);
+      await tester.pumpWidget(app(detail(listId)));
+      await settle(tester);
+      // Tahmini satırda ve toplamda; gerçek henüz yok.
+      expect(find.byKey(const Key('price_planned')), findsOneWidget);
+      expect(find.textContaining('10,00'), findsWidgets);
+      expect(find.byKey(const Key('price_actual')), findsNothing);
 
-    // Satıra dokun → gerçek fiyat gir (ayrıntı ekranına gitmeden).
-    await tester.tap(find.byKey(const Key('price_enter')));
-    await settle(tester);
-    await tester.enterText(find.byKey(const Key('item_actual_price_field')), '15');
-    await tester.tap(find.byKey(const Key('item_save_button')));
-    await settle(tester);
+      // Satıra dokun → gerçek fiyat gir (ayrıntı ekranına gitmeden).
+      await tester.tap(find.byKey(const Key('price_enter')));
+      await settle(tester);
+      await tester.enterText(
+        find.byKey(const Key('item_actual_price_field')),
+        '15',
+      );
+      await tester.tap(find.byKey(const Key('item_save_button')));
+      await settle(tester);
 
-    expect(find.byKey(const Key('price_actual')), findsOneWidget);
-    expect(find.text('15,00 ₺'), findsWidgets); // gerçek (satır + toplam)
-    expect(find.text('+5,00 ₺'), findsWidgets); // fark (satır + toplam)
-    expect(find.byKey(const Key('detail_totals')), findsOneWidget);
+      expect(find.byKey(const Key('price_actual')), findsOneWidget);
+      expect(find.text('15,00 ₺'), findsWidgets); // gerçek (satır + toplam)
+      expect(find.text('+5,00 ₺'), findsWidgets); // fark (satır + toplam)
+      expect(find.byKey(const Key('detail_totals')), findsOneWidget);
 
-    // Yeniden girmek öncekini değiştirir: çift sayılmaz.
-    await tester.tap(find.text('Elma'));
-    await settle(tester);
-    await tester.enterText(find.byKey(const Key('item_actual_price_field')), '12');
-    await tester.tap(find.byKey(const Key('item_save_button')));
-    await settle(tester);
-    expect(find.text('12,00 ₺'), findsWidgets);
-    expect(find.text('+2,00 ₺'), findsWidgets);
-    expect(find.text('15,00 ₺'), findsNothing);
+      // Yeniden girmek öncekini değiştirir: çift sayılmaz.
+      await tester.tap(find.text('Elma'));
+      await settle(tester);
+      await tester.enterText(
+        find.byKey(const Key('item_actual_price_field')),
+        '12',
+      );
+      await tester.tap(find.byKey(const Key('item_save_button')));
+      await settle(tester);
+      expect(find.text('12,00 ₺'), findsWidgets);
+      expect(find.text('+2,00 ₺'), findsWidgets);
+      expect(find.text('15,00 ₺'), findsNothing);
 
-    await disposeApp(tester);
-  });
+      await disposeApp(tester);
+    },
+  );
 
   testWidgets('hatırlatma: izin red → açıklayıcı snackbar, kurulum yok', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
-    final listId = await listRepo.createList(title: 'Hatırlatmalı', currencyCode: 'TRY');
+    final listId = await listRepo.createList(
+      title: 'Hatırlatmalı',
+      currencyCode: 'TRY',
+    );
     final scheduler = _DeniedScheduler();
 
     await tester.pumpWidget(app(detail(listId, scheduler: scheduler)));
@@ -417,15 +550,27 @@ void main() {
 
     expect(find.textContaining('bildirim izni gerekir'), findsOneWidget);
     expect(scheduler.calls, 1);
-    expect(tester.widget<SnackBar>(find.byType(SnackBar)).showCloseIcon, isTrue);
-    await tester.tap(find.byKey(const Key('detail_more_menu'))); await settle(tester);
-    await tester.tap(find.byKey(const Key('detail_set_reminder'))); await settle(tester);
+    expect(
+      tester.widget<SnackBar>(find.byType(SnackBar)).showCloseIcon,
+      isTrue,
+    );
+    await tester.tap(find.byKey(const Key('detail_more_menu')));
+    await settle(tester);
+    await tester.tap(find.byKey(const Key('detail_set_reminder')));
+    await settle(tester);
     expect(scheduler.calls, 2);
-    await tester.tap(find.descendant(of: find.byType(SnackBar), matching: find.byType(IconButton)));
+    await tester.tap(
+      find.descendant(
+        of: find.byType(SnackBar),
+        matching: find.byType(IconButton),
+      ),
+    );
     await settle(tester);
     await tester.pump(const Duration(seconds: 5));
-    expect(find.byType(SnackBar), findsNothing); // no previous notice remains queued
-
+    expect(
+      find.byType(SnackBar),
+      findsNothing,
+    ); // no previous notice remains queued
 
     await disposeApp(tester);
   });

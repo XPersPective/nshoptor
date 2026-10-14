@@ -8,6 +8,7 @@ import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/lists_screen.dart';
+import 'package:nshoptor/features/lists/list_status.dart';
 
 void main() {
   setUp(() => AppFormatLocale.attach('tr'));
@@ -15,27 +16,25 @@ void main() {
   late AppDatabase db;
   late ListRepository repo;
 
-/// Test bitiminde drift akışlarının sıfır-süreli kapanış zamanlayıcısının
-/// çalışabilmesi için widget ağacını boşaltır (testWidgets pending-timer
-/// değişmezini sağlar).
-/// Odaklı TextField'ın imleç yanıp sönmeleri pumpAndSettle'ı sonsuza dek
-/// meşgul ettiğinden, önce odağı bırakıp sonra yerleşmeye çalışır.
-Future<void> settle(WidgetTester tester) async {
-  FocusManager.instance.primaryFocus?.unfocus();
-  await tester.pumpAndSettle();
-}
+  /// Test bitiminde drift akışlarının sıfır-süreli kapanış zamanlayıcısının
+  /// çalışabilmesi için widget ağacını boşaltır (testWidgets pending-timer
+  /// değişmezini sağlar).
+  /// Odaklı TextField'ın imleç yanıp sönmeleri pumpAndSettle'ı sonsuza dek
+  /// meşgul ettiğinden, önce odağı bırakıp sonra yerleşmeye çalışır.
+  Future<void> settle(WidgetTester tester) async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle();
+  }
 
-Future<void> disposeApp(WidgetTester tester) async {
-  await tester.pumpWidget(const SizedBox.shrink());
-  // Drift kapanışı, iptal edilen akışların Timer.run geri çağrılarını
-  // bekler; FakeAsync'te bunlar pump ile çalışır. Kapanışı başlatıp
-  // araya pump koyarak tamamla (drift dokümantasyonundaki desen).
-  final closing = db.close();
-  await tester.pump(const Duration(milliseconds: 1));
-  await closing;
-}
-
-
+  Future<void> disposeApp(WidgetTester tester) async {
+    await tester.pumpWidget(const SizedBox.shrink());
+    // Drift kapanışı, iptal edilen akışların Timer.run geri çağrılarını
+    // bekler; FakeAsync'te bunlar pump ile çalışır. Kapanışı başlatıp
+    // araya pump koyarak tamamla (drift dokümantasyonundaki desen).
+    final closing = db.close();
+    await tester.pump(const Duration(milliseconds: 1));
+    await closing;
+  }
 
   setUp(() {
     db = AppDatabase(NativeDatabase.memory());
@@ -45,67 +44,75 @@ Future<void> disposeApp(WidgetTester tester) async {
   tearDown(() async => db.close());
 
   Widget subject() => MaterialApp(
-        locale: const Locale('tr'),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        home: ListsScreen(repository: repo),
+    locale: const Locale('tr'),
+    localizationsDelegates: const [
+      AppLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ],
+    supportedLocales: AppLocalizations.supportedLocales,
+    home: ListsScreen(repository: repo),
+  );
+
+  testWidgets(
+    'iki liste oluşturulur; yeni controller ile de görünür (kalıcılık)',
+    (tester) async {
+      await tester.pumpWidget(subject());
+      await settle(tester);
+
+      await tester.tap(find.byType(FloatingActionButton));
+      await settle(tester);
+      await tester.enterText(
+        find.byKey(const Key('list_title_field')),
+        'Haftalık',
       );
+      await tester.tap(find.byKey(const Key('list_save_button')));
+      await settle(tester);
 
-  testWidgets('iki liste oluşturulur; yeni controller ile de görünür (kalıcılık)',
-      (tester) async {
-    await tester.pumpWidget(subject());
-    await settle(tester);
+      await repo.getById((await db.select(db.shoppingLists).get()).single.id);
+      await settle(tester);
+      await tester.binding.handlePopRoute();
+      await settle(tester);
 
-    await tester.tap(find.byType(FloatingActionButton));
-    await settle(tester);
-    await tester.enterText(find.byKey(const Key('list_title_field')), 'Haftalık');
-    await tester.tap(find.byKey(const Key('list_save_button')));
-    await settle(tester);
+      await tester.tap(find.byType(FloatingActionButton));
+      await settle(tester);
+      await tester.enterText(
+        find.byKey(const Key('list_title_field')),
+        'Market',
+      );
+      await tester.tap(find.byKey(const Key('list_save_button')));
+      await settle(tester);
 
-    await repo.getById((await db.select(db.shoppingLists).get()).single.id);
-    await settle(tester);
-    await tester.binding.handlePopRoute();
-    await settle(tester);
+      await db.select(db.shoppingLists).get();
+      await settle(tester);
+      await tester.binding.handlePopRoute();
+      await settle(tester);
 
-    await tester.tap(find.byType(FloatingActionButton));
-    await settle(tester);
-    await tester.enterText(find.byKey(const Key('list_title_field')), 'Market');
-    await tester.tap(find.byKey(const Key('list_save_button')));
-    await settle(tester);
+      expect(find.text('Haftalık'), findsOneWidget);
+      expect(find.text('Market'), findsOneWidget);
 
-    await db.select(db.shoppingLists).get();
-    await settle(tester);
-    await tester.binding.handlePopRoute();
-    await settle(tester);
-
-    expect(find.text('Haftalık'), findsOneWidget);
-    expect(find.text('Market'), findsOneWidget);
-
-    // Yeni controller (uygulama yeniden başlangıcı benzetimi): aynı db.
-    final freshRepo = ListRepository(db);
-    await tester.pumpWidget(
-      MaterialApp(
-        locale: const Locale('tr'),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        home: ListsScreen(repository: freshRepo),
-      ),
-    );
-    await settle(tester);
-    expect(find.text('Haftalık'), findsOneWidget);
-    expect(find.text('Market'), findsOneWidget);
-    await disposeApp(tester);
-  });
+      // Yeni controller (uygulama yeniden başlangıcı benzetimi): aynı db.
+      final freshRepo = ListRepository(db);
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: ListsScreen(repository: freshRepo),
+        ),
+      );
+      await settle(tester);
+      expect(find.text('Haftalık'), findsOneWidget);
+      expect(find.text('Market'), findsOneWidget);
+      await disposeApp(tester);
+    },
+  );
 
   testWidgets('başlıksız liste otomatik ad alır', (tester) async {
     await tester.pumpWidget(subject());
@@ -138,7 +145,10 @@ Future<void> disposeApp(WidgetTester tester) async {
     await settle(tester);
 
     expect(find.text('Geçici'), findsNothing);
-    expect(tester.widget<SnackBar>(find.byType(SnackBar)).showCloseIcon, isTrue);
+    expect(
+      tester.widget<SnackBar>(find.byType(SnackBar)).showCloseIcon,
+      isTrue,
+    );
 
     await tester.tap(find.text('Geri al'));
     await settle(tester);
@@ -146,10 +156,14 @@ Future<void> disposeApp(WidgetTester tester) async {
     await disposeApp(tester);
   });
 
-  testWidgets('para birimi değişiminde tutarlar varsa onay diyaloğu çıkar',
-      (tester) async {
+  testWidgets('para birimi değişiminde tutarlar varsa onay diyaloğu çıkar', (
+    tester,
+  ) async {
     final id = await repo.createList(
-        title: 'Bütçeli', currencyCode: 'TRY', budgetMinorUnits: 10000);
+      title: 'Bütçeli',
+      currencyCode: 'TRY',
+      budgetMinorUnits: 10000,
+    );
     await tester.pumpWidget(subject());
     await settle(tester);
 
@@ -171,8 +185,10 @@ Future<void> disposeApp(WidgetTester tester) async {
     await settle(tester);
 
     // Onay diyaloğu: Rakamları koru seçilir.
-    expect(find.text('Para birimi değişiyor. Mevcut tutarlar ne yapılsın?'),
-        findsOneWidget);
+    expect(
+      find.text('Para birimi değişiyor. Mevcut tutarlar ne yapılsın?'),
+      findsOneWidget,
+    );
     await tester.tap(find.text('Rakamları koru'));
     await settle(tester);
 
@@ -188,11 +204,38 @@ Future<void> disposeApp(WidgetTester tester) async {
     await tester.pumpWidget(subject());
     await settle(tester);
 
-    await tester.enterText(find.byKey(const Key('lists_search_field')), 'market');
+    await tester.enterText(
+      find.byKey(const Key('lists_search_field')),
+      'market',
+    );
     await settle(tester);
 
     expect(find.text('Pazar market'), findsOneWidget);
     expect(find.text('Bakkal'), findsNothing);
     await disposeApp(tester);
   });
+
+  testWidgets(
+    'liste, tamamlananlar ve arşiv yatay sayfalardır; kart durum etiketi göstermez',
+    (tester) async {
+      await repo.createList(title: 'Aktif', currencyCode: 'TRY');
+      final completed = await repo.createList(
+        title: 'Biten',
+        currencyCode: 'TRY',
+      );
+      await repo.changeStatus(completed, ListStatus.planned);
+      await repo.changeStatus(completed, ListStatus.shopping);
+      await repo.changeStatus(completed, ListStatus.completed);
+      await tester.pumpWidget(subject());
+      await settle(tester);
+
+      expect(find.byType(PageView), findsOneWidget);
+      expect(find.text('Aktif'), findsNWidgets(2));
+      expect(find.text('Taslak'), findsNothing);
+      await tester.drag(find.byType(PageView), const Offset(-500, 0));
+      await settle(tester);
+      expect(find.text('Biten'), findsOneWidget);
+      await disposeApp(tester);
+    },
+  );
 }
