@@ -52,7 +52,6 @@ ios/Flutter/AdsConfig.xcconfig
 .idea/
 
 # Project Brain runtime cache (reconstructable, never committed)
-.project-brain/.cache/
 
 # Kotlin compiler runtime cache
 android/.kotlin/
