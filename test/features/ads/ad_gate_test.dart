@@ -21,14 +21,17 @@ void main() {
     expect(calls, 1);
   });
 
-  test('ad policy dates survive a restart (napp_ads saves them as strings)', () {
+  test('ad policy dates survive a restart, old string and new int formats', () async {
     final store = _Memory();
     final first = DateTime(2026, 10, 1, 9);
     final policy = AdPolicy()..startSession(first);
     policy.recordRewarded(DateTime(2026, 10, 9, 12));
-    AdPolicyPersistence.save(store, policy);
-    // The package's own loader drops the dates: the bug this guards.
-    expect(AdPolicyPersistence.load(store)!.firstLaunchAt, isNull);
+    await AdPolicyPersistence.save(store, policy); // ads-v1.0.1: int dates
+    expect(AdGate.loadPolicy(store)!.firstLaunchAt, first);
+    // ads-v1.0.0 wrote string dates; devices updated from it still load them.
+    store._values['napp_ads.policy_state'] = (store.read('napp_ads.policy_state') as String)
+        .replaceAllMapped(RegExp(r'":(\d{10,})'), (m) => '":"${m[1]}"');
+    expect(store.read('napp_ads.policy_state'), contains('"firstLaunchAt":"'));
     final loaded = AdGate.loadPolicy(store)!;
     expect(loaded.firstLaunchAt, first);
     expect(loaded.sessionCount, 1);

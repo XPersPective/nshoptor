@@ -744,11 +744,11 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/napp_ads"
-      ref: "ads-v1.0.0"
-      resolved-ref: ff837be1ec2173c0418bf99c684b2480155e40ae
+      ref: "ads-v1.0.1"
+      resolved-ref: f6f715e8d04c1cb3c447fd14fe1c801646a2fb66
       url: "https://github.com/XPersPective/napp_kit.git"
     source: git
-    version: "0.0.1"
+    version: "0.0.2"
   napp_core:
     dependency: "direct main"
     description:
