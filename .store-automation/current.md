@@ -25,6 +25,7 @@ Status: VERIFIED: HomeShell opens Lists with three bottom destinations (Lists/Hi
 Sources: `lib/features/home/**`, `lib/features/lists/**`, `test/features/lists/**`
 - Detail shows one list title, compact product/quantity/prices, a single microphone inside the composer and completion after all rows. Completion uses existing transaction/state/result flow; completed/archived details have no mutation controls. Item swipe-delete/undo and long-press reorder remain.
 - Item actual quantity/unit and custom fields are under Details; validation exposes hidden invalid fields. Existing-list quick capture omits redundant title, conversion action after candidates exist and source chip.
+- Android API36 final APK interaction: create default-title list -> type Milk -> approve one candidate (no title/source/second convert control) -> finish warning -> Result -> back -> Completed contains the list. Native screenshots and accessibility readback: `.store-automation/evidence/SA-005/android_*`.
 
 ### Item and price data
 Status: VERIFIED
