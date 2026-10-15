@@ -63,7 +63,12 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  Future<int> addItem(int listId, String name, {int? productId}) => db
+  Future<int> addItem(
+    int listId,
+    String name, {
+    int? productId,
+    String unitCode = 'adet',
+  }) => db
       .into(db.plannedItems)
       .insert(
         PlannedItemsCompanion.insert(
@@ -72,7 +77,7 @@ void main() {
           name: name,
           normalizedName: name.toLowerCase(),
           plannedQuantity: '1',
-          plannedUnitCode: 'adet',
+          plannedUnitCode: unitCode,
           pricingInputMode: 'unitPrice',
           plannedUnitPrice: const Value('10'),
         ),
@@ -414,7 +419,12 @@ void main() {
             normalizedName: 'domates',
           ),
         );
-    final itemId = await addItem(listId, 'Domates', productId: productId);
+    final itemId = await addItem(
+      listId,
+      'Domates',
+      productId: productId,
+      unitCode: 'kilogram',
+    );
     await db
         .into(db.priceObservations)
         .insert(
@@ -428,6 +438,32 @@ void main() {
             source: 'manual',
           ),
         );
+    await db
+        .into(db.priceObservations)
+        .insert(
+          PriceObservationsCompanion.insert(
+            productId: Value(productId),
+            quantity: '1',
+            unitCode: 'kilogram',
+            unitPrice: '2.00',
+            lineTotalMinorUnits: 200,
+            currencyCode: 'EUR',
+            source: 'manual',
+          ),
+        );
+    await db
+        .into(db.priceObservations)
+        .insert(
+          PriceObservationsCompanion.insert(
+            productId: Value(productId),
+            quantity: '1',
+            unitCode: 'adet',
+            unitPrice: '99.00',
+            lineTotalMinorUnits: 9900,
+            currencyCode: 'TRY',
+            source: 'manual',
+          ),
+        );
 
     await tester.pumpWidget(app(detail(listId)));
     await settle(tester);
@@ -437,6 +473,9 @@ void main() {
     await settle(tester);
 
     expect(find.textContaining('42,90'), findsOneWidget);
+    expect(find.byType(Card), findsNWidgets(2));
+    expect(find.textContaining('2,00'), findsNothing);
+    expect(find.textContaining('99,00'), findsNothing);
 
     await disposeApp(tester);
   });

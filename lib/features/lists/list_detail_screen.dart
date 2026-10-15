@@ -589,7 +589,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                         if (action == 'delete') {
                           _changeItem(item, entries, remove: true);
                         } else {
-                          _openPriceHistory(context, item);
+                          _openPriceHistory(context, item, list);
                         }
                       },
                       itemBuilder: (_) => [
@@ -895,7 +895,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     );
   }
 
-  Future<void> _openPriceHistory(BuildContext context, PlannedItem item) async {
+  Future<void> _openPriceHistory(
+    BuildContext context,
+    PlannedItem item,
+    ShoppingList list,
+  ) async {
     final productId =
         item.productId ??
         (await (widget.db.select(widget.db.productMemory)
@@ -920,6 +924,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
           db: widget.db,
           productId: productId,
           productName: item.name,
+          currencyCode: list.currencyCode,
+          unitCode: item.plannedUnitCode,
         ),
       ),
     );
