@@ -6,6 +6,8 @@ import 'package:drift_flutter/drift_flutter.dart';
 import 'dart:ui' show PlatformDispatcher;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kReleaseMode;
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
@@ -88,7 +90,7 @@ Future<void> main() async {
   // Pro'yu izler; UMP onayı SDK başlatmasından ÖNCE.
   final adsAdapter = await SharedPreferencesAdapter.create();
   final policy = AdPolicy();
-  final saved = AdPolicyPersistence.load(adsAdapter);
+  final saved = AdGate.loadPolicy(adsAdapter);
   if (saved != null) policy.restore(saved);
   policy.setOnboardingCompleted(true);
   policy.setPro(adFree());
@@ -99,6 +101,9 @@ Future<void> main() async {
   proController.addListener(syncAds);
   subscriptions.addListener(syncAds);
   policy.startSession(DateTime.now());
+  // Persist first launch/session count: without it every launch looked like
+  // day 0 and the 7-day/5-session guards never opened full-screen ads.
+  AdPolicyPersistence.save(adsAdapter, policy);
 
   final bannerController = BannerAdController(policy: policy);
   final rewardedManager = RewardedAdManager(policy: policy);
@@ -109,11 +114,53 @@ Future<void> main() async {
     if (AdGate.shoppingModeActive) return;
     await appOpen.tryLoad(DateTime.now());
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    if (!AdGate.shoppingModeActive) await appOpen.showIfAvailable();
+    if (!AdGate.shoppingModeActive && await appOpen.showIfAvailable()) {
+      AdPolicyPersistence.save(adsAdapter, policy);
+    }
   }
-  // Ödüllü reklam birimi tanımlı değilse (standart: yalnız banner) hediye akışı
-  // kapalı kalır; üretimde Google test birimi gösterilmez.
-  const hasRewardedUnit = bool.hasEnvironment('ADMOB_REWARDED_ANDROID');
+  // Ödüllü/geçiş birimi tanımlı değilse üretimde kapalı kalır (Google test
+  // birimi yayında gösterilmez); debug/profile test birimleriyle çalışır.
+  const hasRewardedUnit =
+      !kReleaseMode || bool.hasEnvironment('ADMOB_REWARDED_ANDROID');
+  const hasInterstitialUnit =
+      !kReleaseMode || bool.hasEnvironment('ADMOB_INTERSTITIAL_ANDROID');
+
+  // Geçiş reklamı: napp_ads yöneticisi show() çağırmadığı için burada.
+  // ponytail: one preloaded ad; move into napp_ads once its manager calls show().
+  InterstitialAd? interstitial;
+  void loadInterstitial() {
+    if (!hasInterstitialUnit || interstitial != null) return;
+    InterstitialAd.load(
+      adUnitId: AdsConfig.interstitialUnit,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) => interstitial = ad,
+        onAdFailedToLoad: (_) {},
+      ),
+    );
+  }
+
+  AdGate.showInterstitial = () async {
+    policy.setPro(adFree());
+    final ad = interstitial;
+    if (ad == null || !policy.canShowInterstitial(DateTime.now())) return;
+    interstitial = null;
+    ad.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (_) {
+        policy.recordFullscreen(DateTime.now(), isAppOpen: false);
+        AdPolicyPersistence.save(adsAdapter, policy);
+      },
+      onAdDismissedFullScreenContent: (ad) {
+        ad.dispose();
+        loadInterstitial();
+      },
+      onAdFailedToShowFullScreenContent: (ad, _) {
+        ad.dispose();
+        loadInterstitial();
+      },
+    );
+    await ad.show();
+  };
 
   unawaited(() async {
     final ready = await ConsentManager.initialize();
@@ -121,6 +168,7 @@ Future<void> main() async {
     policy.setSdkReady(true);
     bannerController.load();
     if (hasRewardedUnit) await rewardedManager.load();
+    loadInterstitial();
     await maybeShowAppOpen();
   }());
   AppLifecycleListener(onResume: () => unawaited(maybeShowAppOpen()));
@@ -144,8 +192,10 @@ Future<void> main() async {
           : GiftFlow(
               policy: policy,
               rewardedManager: rewardedManager,
-              onRewardEarned: () =>
-                  proController.grantTemporaryPro(const Duration(hours: 24)),
+              onRewardEarned: () {
+                proController.grantTemporaryPro(const Duration(hours: 24));
+                AdPolicyPersistence.save(adsAdapter, policy); // once a day
+              },
             ),
     ),
   );

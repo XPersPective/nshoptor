@@ -102,6 +102,9 @@ class HomeShell extends StatefulWidget {
 class _HomeShellState extends State<HomeShell> {
   int _tab = 0;
   bool _inputBusy = false;
+  // Settings is rebuilt on each visit: ad availability (daily gift) and the
+  // plan badge change outside its own state.
+  int _settingsVisit = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +130,7 @@ class _HomeShellState extends State<HomeShell> {
       widget.settingsRepository == null || widget.languageController == null
           ? const SettingsPlaceholder()
           : SettingsScreen(
+              key: ValueKey('settings_$_settingsVisit'),
               repository: widget.settingsRepository!,
               languageController: widget.languageController!,
               themeModeController: widget.themeModeController,
@@ -146,7 +150,10 @@ class _HomeShellState extends State<HomeShell> {
         children: [
           NavigationBar(
             selectedIndex: _tab,
-            onDestinationSelected: (i) => setState(() => _tab = i),
+            onDestinationSelected: (i) => setState(() {
+              if (i == 2 && _tab != 2) _settingsVisit++;
+              _tab = i;
+            }),
             destinations: [
               NavigationDestination(
                 icon: const Icon(Icons.list_outlined),

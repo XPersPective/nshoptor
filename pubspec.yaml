@@ -48,6 +48,8 @@ dependencies:
       url: https://github.com/XPersPective/napp_kit.git
       path: packages/napp_ads
       ref: ads-v1.0.0
+  # Interstitial is shown app-side (napp_ads manager never calls show()).
+  google_mobile_ads: 9.1.0
   flutter_localizations:
     sdk: flutter
   # The following adds the Cupertino Icons font to your application.

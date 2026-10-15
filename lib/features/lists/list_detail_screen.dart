@@ -281,6 +281,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
               SummaryScreen(repository: repository, listId: widget.listId),
         ),
       );
+      // Natural stop: shopping is over and the result was seen.
+      await AdGate.maybeShowInterstitial();
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
