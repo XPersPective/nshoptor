@@ -1,7 +1,7 @@
 # Current Architecture
 
 ## Runtime
-- VERIFIED: Flutter 3.47.x/Dart null safety, Material 3; `lib/main.dart` -> `lib/app/`. 2026-10-15 devralmada 379 test geçti, 10 test eski global build-dir yüzünden sqlite DLL yükleyemedi; build-dir=build ile UI/domain kontrolleri ve analyze geçti.
+- VERIFIED: Flutter 3.47.x/Dart null safety, Material 3; `lib/main.dart` -> `lib/app/`. 2026-10-15: `flutter test --no-pub` 392 geçti; görüntülü detail/form/klavye/tamamlama kontrolleri 3 viewport geçti, analyze hatasız, Android x64 debug APK derlendi ve emülatöre kuruldu (SA-005).
 
 ## Map
 - `lib/main.dart` — uygulama boot, DB ve root wiring
@@ -23,7 +23,8 @@
 ### Navigation and list UI
 Status: VERIFIED: HomeShell opens Lists with three bottom destinations (Lists/History/Settings); summary, assistant, receipt and Discover are in the list toolbar menu. ListsScreen has tappable/swipeable List/Completed/Archived tabs, collapsible search and one creation FAB. List currency/budget/note are under Details. SA-004 viewport evidence covers 412dp light, 800dp dark and 320dp RTL at 2x text.
 Sources: `lib/features/home/**`, `lib/features/lists/**`, `test/features/lists/**`
-- Detail/form presentation and missing completion path are tracked by SA-005. Item swipe-delete/undo and long-press reorder exist.
+- Detail shows one list title, compact product/quantity/prices, a single microphone inside the composer and completion after all rows. Completion uses existing transaction/state/result flow; completed/archived details have no mutation controls. Item swipe-delete/undo and long-press reorder remain.
+- Item actual quantity/unit and custom fields are under Details; validation exposes hidden invalid fields. Existing-list quick capture omits redundant title, conversion action after candidates exist and source chip.
 
 ### Item and price data
 Status: VERIFIED

@@ -114,6 +114,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   bool _saving = false;
   String? _actualError;
   String? _saveError;
+  final _detailsController = ExpansibleController();
   // ponytail: one actual unit per form; mixed-unit records need a per-unit editor and stay untouched here.
   bool get _mixedUnits =>
       widget.entries.map((e) => e.actualUnitCode).toSet().length > 1;
@@ -238,6 +239,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
 
   @override
   void dispose() {
+    _detailsController.dispose();
     _name.dispose();
     _brand.dispose();
     _quantity.dispose();
@@ -359,6 +361,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             _fieldState(_discount.text) == false ||
             discount.isNegative)) {
       setState(() => _actualError = l10n.invalidAmountError);
+      _detailsController.expand();
       return;
     }
     setState(() => _saving = true);
@@ -479,7 +482,9 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               children: [
                 Expanded(
                   child: Text(
-                    l10n.itemFormTitle,
+                    widget.existing == null
+                        ? l10n.itemFormTitle
+                        : l10n.editAction,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
@@ -516,7 +521,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               decoration: InputDecoration(
                 labelText:
                     '${l10n.compareEstimated} · ${_priceIsUnitPrice ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}',
-                helperText: l10n.priceOptionalHint,
+
                 errorText: _priceError,
               ),
               onChanged: (_) => setState(() {}),
@@ -574,6 +579,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 ),
               ],
             ),
+            const SizedBox(height: 12),
             // Gelişmiş alanlar katlanır: ana akış yalnız ad+fiyat+miktar
             // ister; kalanlar "Ayrıntılar"ta (C-004).
             TextField(
@@ -592,58 +598,60 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               ),
               onChanged: (_) => setState(() => _actualChanged = true),
             ),
-            const SizedBox(height: 12),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: TextField(
-                    key: const Key('item_actual_quantity_field'),
-                    controller: _actualQuantity,
-                    enabled: !_mixedUnits,
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                      signed: true,
-                    ),
-                    decoration: InputDecoration(
-                      labelText: l10n.actualQuantityLabel,
-                    ),
-                    onChanged: (_) => _actualChanged = true,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    key: ValueKey(
-                      'item_actual_unit_${(_actualUnit ?? _unit).dbCode}',
-                    ),
-                    initialValue: (_actualUnit ?? _unit).dbCode,
-                    isExpanded: true,
-                    decoration: InputDecoration(labelText: l10n.unitLabel),
-                    items: UnitCode.values
-                        .map(
-                          (u) => DropdownMenuItem(
-                            value: u.dbCode,
-                            child: Text(unitDisplayName(u, l10n)),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: _mixedUnits
-                        ? null
-                        : (v) => setState(() {
-                            _actualUnit = UnitCode.fromDbCode(v!);
-                            _actualChanged = true;
-                          }),
-                  ),
-                ),
-              ],
-            ),
-            if (_mixedUnits) Text(l10n.purchaseAnalyticsHint),
             ExpansionTile(
               key: const Key('item_details_expand'),
+              controller: _detailsController,
               title: Text(l10n.itemDetailsSection),
-              childrenPadding: const EdgeInsets.only(bottom: 8),
+              childrenPadding: const EdgeInsets.only(top: 12, bottom: 8),
               children: [
+                const SizedBox(height: 12),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        key: const Key('item_actual_quantity_field'),
+                        controller: _actualQuantity,
+                        enabled: !_mixedUnits,
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                          signed: true,
+                        ),
+                        decoration: InputDecoration(
+                          labelText: l10n.actualQuantityLabel,
+                        ),
+                        onChanged: (_) => _actualChanged = true,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: DropdownButtonFormField<String>(
+                        key: ValueKey(
+                          'item_actual_unit_${(_actualUnit ?? _unit).dbCode}',
+                        ),
+                        initialValue: (_actualUnit ?? _unit).dbCode,
+                        isExpanded: true,
+                        decoration: InputDecoration(labelText: l10n.unitLabel),
+                        items: UnitCode.values
+                            .map(
+                              (u) => DropdownMenuItem(
+                                value: u.dbCode,
+                                child: Text(unitDisplayName(u, l10n)),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: _mixedUnits
+                            ? null
+                            : (v) => setState(() {
+                                _actualUnit = UnitCode.fromDbCode(v!);
+                                _actualChanged = true;
+                              }),
+                      ),
+                    ),
+                  ],
+                ),
+                if (_mixedUnits) Text(l10n.purchaseAnalyticsHint),
+
                 DropdownButtonFormField<bool>(
                   key: ValueKey('item_actual_pricing_mode_$_actualPriceIsUnit'),
                   initialValue: _actualPriceIsUnit,

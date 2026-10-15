@@ -303,8 +303,11 @@ void main() {
       );
       expect(
         find.byKey(const ValueKey('item_actual_unit_kilogram')),
-        findsOneWidget,
+        findsNothing,
       );
+      await tester.tap(find.byKey(const Key('item_details_expand')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const ValueKey('item_actual_unit_kilogram')), findsOneWidget);
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
       await tester.ensureVisible(find.byKey(const Key('item_save_button')));
       await tester.tap(find.byKey(const Key('item_save_button')));

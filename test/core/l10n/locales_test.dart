@@ -75,8 +75,8 @@ void main() {
     final db = AppDatabase(NativeDatabase.memory());
     await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: const Locale('ar')));
     await tester.pumpAndSettle();
-    expect(find.text('الرئيسية'), findsWidgets);
-    expect(Directionality.of(tester.element(find.text('الرئيسية').first)), TextDirection.rtl);
+    expect(find.text('القوائم'), findsWidgets);
+    expect(Directionality.of(tester.element(find.text('القوائم').first)), TextDirection.rtl);
     await tester.pumpWidget(const SizedBox.shrink());
     final closing = db.close();
     await tester.pump(const Duration(milliseconds: 1));
@@ -124,7 +124,7 @@ void main() {
       final db = AppDatabase(NativeDatabase.memory());
       await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: Locale(code)));
       await tester.pumpAndSettle();
-      for (var tab = 0; tab < 5; tab++) {
+      for (var tab = 0; tab < 3; tab++) {
         await tester.tap(find.byType(NavigationDestination).at(tab));
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull, reason: '$code sekme $tab');

@@ -73,10 +73,8 @@ void main() {
       await tester.pumpAndSettle();
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
       expect((await db.select(db.plannedItems).get()).single.status, 'inCart');
-      expect(
-        tester.widget<Text>(find.byKey(const Key('price_actual_empty'))).data,
-        '—',
-      );
+      expect(find.byKey(const Key('price_actual')), findsNothing);
+      expect(find.byKey(const Key('price_actual_empty')), findsNothing);
       await ShoppingRepository(db).recordPurchase(
         listId: listId,
         plannedItemId: id,
@@ -158,6 +156,47 @@ void main() {
       await close(tester);
     },
   );
+
+  testWidgets('fresh list completes once and returns to read-only detail', (
+    tester,
+  ) async {
+    final listId = await lists.createList(title: 'Market', currencyCode: 'TRY');
+    final id = await item(listId, 'Domates');
+    await open(tester, listId);
+    await tester.ensureVisible(find.byKey(const Key('detail_finish_button')));
+    await tester.tap(find.byKey(const Key('detail_finish_button')));
+    await tester.pumpAndSettle();
+    expect(find.byType(AlertDialog), findsOneWidget);
+    await tester.tap(
+      find.descendant(
+        of: find.byType(AlertDialog),
+        matching: find.byType(TextButton),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect((await lists.getById(listId)).status, 'draft');
+    await tester.tap(find.byKey(const Key('detail_finish_button')));
+    await tester.pumpAndSettle();
+    final confirm = find.descendant(
+      of: find.byType(AlertDialog),
+      matching: find.byType(FilledButton),
+    );
+    await tester.tap(confirm);
+    await tester.pumpAndSettle();
+    expect((await lists.getById(listId)).status, 'completed');
+    expect((await lists.getById(listId)).completedAt, isNotNull);
+    expect(find.byKey(const Key('summary_details')), findsOneWidget);
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('detail_quick_entry')), findsNothing);
+    expect(find.byKey(const Key('detail_finish_button')), findsNothing);
+    expect(
+      tester.widget<Checkbox>(find.byKey(Key('detail_check_$id'))).onChanged,
+      isNull,
+    );
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    await close(tester);
+  });
 
   testWidgets('swipe deletes an item and undo restores it', (tester) async {
     final listId = await lists.createList(title: 'Market', currencyCode: 'TRY');

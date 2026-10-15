@@ -186,6 +186,8 @@ void main() {
       existing: item,
       entries: await db.select(db.purchaseEntries).get(),
     );
+    await tester.tap(find.byKey(const Key('item_details_expand')));
+    await tester.pumpAndSettle();
     expect(
       tester
           .widget<TextField>(

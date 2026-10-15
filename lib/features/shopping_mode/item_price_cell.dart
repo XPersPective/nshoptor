@@ -61,24 +61,24 @@ class ItemPriceCell extends StatelessWidget {
     final locale = formatLocaleCode(context);
     String money(int minor) =>
         formatMoney(Money.fromMinorUnits(minor, currency), locale: locale);
-    final label = theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant);
+
     final diff = prices.diffMinor;
 
-    // Etiketli iki satır (PB-062): "Tahmini ₺10" / "Gerçek ₺15 ↗+5"; her satır
-    // sığmazsa küçülür (71 dilde uzun etiketler).
+    // Amounts wrap naturally; tooltips and semantics retain the price roles.
     Widget line(List<Widget> children) => Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: children);
 
     final planned = line([
-        Text('${l10n.compareEstimated} ', style: label),
         Text(
           prices.plannedMinor == null ? '—' : money(prices.plannedMinor!),
           key: const Key('price_planned'),
+          semanticsLabel: '${l10n.compareEstimated} ${prices.plannedMinor == null ? '—' : money(prices.plannedMinor!)}',
           style: theme.textTheme.bodyMedium,
         ),
     ]);
 
     final actual = line([
-        Text('${l10n.compareActual} ', style: label),
+        Icon(Icons.arrow_forward, size: 14, semanticLabel: l10n.compareActual),
+        const SizedBox(width: 6),
         Text(
           prices.hasActual ? money(prices.actualMinor!) : '—',
           key: prices.hasActual ? const Key('price_actual') : const Key('price_actual_empty'),
@@ -108,8 +108,8 @@ class ItemPriceCell extends StatelessWidget {
         ),
     ];
 
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      planned, Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [actual, ...buttons]),
+    return Wrap(spacing: 16, runSpacing: 4, crossAxisAlignment: WrapCrossAlignment.center, children: [
+      Tooltip(message: l10n.compareEstimated, child: planned), if (prices.hasActual) Tooltip(message: l10n.compareActual, child: actual), ...buttons,
     ]);
   }
 }
@@ -126,8 +126,8 @@ class _Diff extends StatelessWidget {
       direction: diff > 0 ? SpendingDirection.overPlan : SpendingDirection.underPlan,
       brightness: Theme.of(context).brightness,
     );
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         Icon(delta.icon, size: 14, color: delta.color, semanticLabel: delta.marker),
         Text(

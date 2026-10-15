@@ -25,6 +25,7 @@ class ListDraftSheet extends StatefulWidget {
     this.initialText,
     this.autoListen = false,
     this.showMic = true,
+    this.allowTitle = true,
     this.onApprove,
   });
 
@@ -37,6 +38,7 @@ class ListDraftSheet extends StatefulWidget {
   /// The parent may own the single microphone control (e.g. fixed bottom
   /// composer). The sheet still owns the recognizer lifecycle.
   final bool showMic;
+  final bool allowTitle;
 
   final Future<void> Function(ListDraft)? onApprove;
 
@@ -279,7 +281,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
                 ),
               ),
             const SizedBox(height: 12),
-            FilledButton.tonalIcon(
+            if (draft == null) FilledButton.tonalIcon(
               key: const Key('draft_convert_button'),
               onPressed: _busy || _text.text.trim().isEmpty ? null : _convert,
               icon: _busy
@@ -289,18 +291,9 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
             ),
             if (_error != null) Text(_error!, key: const Key('draft_error'), style: TextStyle(color: Theme.of(context).colorScheme.error)),
             if (draft != null) ...[
-              TextField(key: const Key('draft_title_field'), controller: _title, maxLength: 80, enabled: !_busy,
+              if (widget.allowTitle) TextField(key: const Key('draft_title_field'), controller: _title, maxLength: 80, enabled: !_busy,
                 decoration: InputDecoration(labelText: l10n.listTitleHint)),
               const SizedBox(height: 12),
-              Row(
-                children: [
-                  Chip(
-                    key: const Key('draft_source_chip'),
-                    avatar: Icon(draft.fromAi ? Icons.auto_awesome : Icons.phone_android, size: 16),
-                    label: Text(draft.fromAi ? l10n.aiSourceLabel : l10n.deviceSourceLabel),
-                  ),
-                ],
-              ),
               if (draft.items.isEmpty)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),

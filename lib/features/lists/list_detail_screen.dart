@@ -97,6 +97,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   late Future<ShoppingList> _listFuture;
   final _quickEntry = TextEditingController();
   bool _busy = false;
+  bool _editable = false;
 
   @override
   void initState() {
@@ -107,7 +108,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         WidgetsBinding.instance.lifecycleState == null ||
         WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
     WidgetsBinding.instance.addObserver(this);
-    _listFuture = widget.listRepository.getById(widget.listId);
+    _listFuture = _loadList();
   }
 
   @override
@@ -212,8 +213,72 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   void _refresh() {
     if (!mounted) return;
     setState(() {
-      _listFuture = widget.listRepository.getById(widget.listId);
+      _listFuture = _loadList();
     });
+  }
+
+  Future<ShoppingList> _loadList() async {
+    final list = await widget.listRepository.getById(widget.listId);
+    if (mounted) {
+      setState(
+        () =>
+            _editable = list.status != 'completed' && list.status != 'archived',
+      );
+    }
+    return list;
+  }
+
+  Future<void> _finishAndShowResult() async {
+    if (_busy || !_editable) return;
+    setState(() => _busy = true);
+    final l10n = AppLocalizations.of(context);
+    try {
+      final repository = ResultRepository(widget.db);
+      final result = await repository.compute(widget.listId);
+      if (!mounted) return;
+      if (result.rows.any((row) => row.notTaken || !row.actualKnown)) {
+        final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            content: Text(l10n.completionWarning),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: Text(l10n.cancelButton),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(ctx, true),
+                child: Text(l10n.finishAndSeeResult),
+              ),
+            ],
+          ),
+        );
+        if (confirmed != true || !mounted) return;
+      }
+      await widget.db.transaction(() async {
+        await _shoppingRepo.startShopping(widget.listId);
+        await widget.listRepository.changeStatus(
+          widget.listId,
+          ListStatus.completed,
+        );
+      });
+      if (!mounted) return;
+      _refresh();
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) =>
+              SummaryScreen(repository: repository, listId: widget.listId),
+        ),
+      );
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   RemindersRepository _remindersRepo() => RemindersRepository(
@@ -302,7 +367,16 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.listsTitle),
+        title: FutureBuilder<ShoppingList>(
+          future: _listFuture,
+          builder: (context, snapshot) => Text(
+            snapshot.data?.title ??
+                snapshot.data?.generatedTitle ??
+                l10n.listsTitle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
         actions: [
           IconButton.filledTonal(
             key: const Key('list_keep_awake'),
@@ -367,16 +441,18 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                 value: 'reminder',
                 child: Text(l10n.setReminderAction),
               ),
-              PopupMenuItem(
-                key: const Key('add_unplanned_button'),
-                value: 'unplanned',
-                child: Text(l10n.unplannedAddButton),
-              ),
-              PopupMenuItem(
-                key: const Key('detail_scan_receipt'),
-                value: 'receipt',
-                child: Text(l10n.scanReceiptAction),
-              ),
+              if (_editable)
+                PopupMenuItem(
+                  key: const Key('add_unplanned_button'),
+                  value: 'unplanned',
+                  child: Text(l10n.unplannedAddButton),
+                ),
+              if (_editable)
+                PopupMenuItem(
+                  key: const Key('detail_scan_receipt'),
+                  value: 'receipt',
+                  child: Text(l10n.scanReceiptAction),
+                ),
               PopupMenuItem(value: 'archive', child: Text(l10n.archiveAction)),
             ],
           ),
@@ -385,6 +461,14 @@ class _ListDetailScreenState extends State<ListDetailScreen>
       body: FutureBuilder<ShoppingList>(
         future: _listFuture,
         builder: (context, listSnap) {
+          if (listSnap.hasError) {
+            return Center(
+              child: TextButton(
+                onPressed: _refresh,
+                child: Text(l10n.saveFailed),
+              ),
+            );
+          }
           final list = listSnap.data;
           if (list == null) {
             return const Center(child: CircularProgressIndicator());
@@ -403,20 +487,12 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         children: [
                           Card(
-                            margin: const EdgeInsets.all(12),
+                            margin: const EdgeInsets.symmetric(vertical: 12),
                             child: Padding(
                               padding: const EdgeInsets.all(16),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    list.title ??
-                                        list.generatedTitle ??
-                                        l10n.listsTitle,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge,
-                                  ),
                                   _TotalsRow(
                                     items: items,
                                     entries: entries,
@@ -472,49 +548,64 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                 ),
                               ),
                             ),
-                        ],
-                      ),
-                    ),
-                    SafeArea(
-                      top: false,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                key: const Key('detail_quick_entry'),
-                                controller: _quickEntry,
-                                enabled: !_busy,
-                                textInputAction: TextInputAction.done,
-                                onSubmitted: (text) {
-                                  final value = text.trim();
-                                  if (value.isEmpty) return;
-                                  _quickEntry.clear();
-                                  _openQuickList(context, initialText: value);
-                                },
-                                decoration: InputDecoration(
-                                  hintText: l10n.quickListHint,
-                                  prefixIcon: const Icon(Icons.add),
+                          if (_editable &&
+                              (items.isNotEmpty || entries.isNotEmpty))
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: OutlinedButton.icon(
+                                key: const Key('detail_finish_button'),
+                                onPressed: _busy ? null : _finishAndShowResult,
+                                icon: const Icon(Icons.check),
+                                label: Text(
+                                  l10n.finishAndSeeResult,
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
                             ),
-                            IconButton.filledTonal(
-                              key: const Key('detail_quick_list'),
-                              tooltip: l10n.voiceStartListening,
-                              onPressed: _busy
-                                  ? null
-                                  : () => _openQuickList(
-                                      context,
-                                      autoListen: true,
-                                    ),
-                              icon: const Icon(Icons.mic_none),
-                            ),
-                          ],
-                        ),
+                        ],
                       ),
                     ),
+                    if (_editable)
+                      SafeArea(
+                        top: false,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  key: const Key('detail_quick_entry'),
+                                  controller: _quickEntry,
+                                  enabled: !_busy,
+                                  textInputAction: TextInputAction.done,
+                                  onSubmitted: (text) {
+                                    final value = text.trim();
+                                    if (value.isEmpty) return;
+                                    _quickEntry.clear();
+                                    _openQuickList(context, initialText: value);
+                                  },
+                                  decoration: InputDecoration(
+                                    hintText: l10n.quickListHint,
+                                    prefixIcon: const Icon(Icons.add),
+                                    suffixIcon: IconButton(
+                                      key: const Key('detail_quick_list'),
+                                      tooltip: l10n.voiceStartListening,
+                                      onPressed: _busy
+                                          ? null
+                                          : () => _openQuickList(
+                                              context,
+                                              autoListen: true,
+                                            ),
+                                      icon: const Icon(Icons.mic_none),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                   ],
                 );
               },
@@ -536,7 +627,9 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     final colors = Theme.of(context).colorScheme;
     final card = Dismissible(
       key: ValueKey('detail_item_${item.id}'),
-      direction: DismissDirection.horizontal,
+      direction: _editable
+          ? DismissDirection.horizontal
+          : DismissDirection.none,
       background: Container(
         color: colors.errorContainer,
         alignment: AlignmentDirectional.centerStart,
@@ -553,11 +646,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
       child: Card(
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
-          onTap: _busy
+          onTap: _busy || !_editable
               ? null
               : () => _openItemForm(context, existing: item, entries: entries),
           child: Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -568,17 +661,32 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                       key: Key('detail_check_${item.id}'),
                       value: ItemStatus.fromDb(item.status).isInCart,
                       semanticLabel: item.name,
-                      onChanged: _busy
+                      onChanged: _busy || !_editable
                           ? null
                           : (checked) =>
                                 _changeItem(item, entries, checked: checked!),
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        child: Text(
-                          item.name,
-                          style: Theme.of(context).textTheme.titleMedium,
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item.name,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                            const SizedBox(height: 8),
+                            ItemPriceCell(
+                              prices: ItemPrices.of(item, entries),
+                              currencyCode: list.currencyCode,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -593,10 +701,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                         }
                       },
                       itemBuilder: (_) => [
-                        PopupMenuItem(
-                          value: 'delete',
-                          child: Text(l10n.deleteButton),
-                        ),
+                        if (_editable)
+                          PopupMenuItem(
+                            value: 'delete',
+                            child: Text(l10n.deleteButton),
+                          ),
                         PopupMenuItem(
                           value: 'history',
                           child: Text(l10n.priceHistoryTitle),
@@ -604,13 +713,6 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                       ],
                     ),
                   ],
-                ),
-                Text(
-                  '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
-                ),
-                ItemPriceCell(
-                  prices: ItemPrices.of(item, entries),
-                  currencyCode: list.currencyCode,
                 ),
               ],
             ),
@@ -620,7 +722,9 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     );
     return KeyedSubtree(
       key: ValueKey('detail_reorder_${item.id}'),
-      child: ReorderableDelayedDragStartListener(index: index, child: card),
+      child: _editable
+          ? ReorderableDelayedDragStartListener(index: index, child: card)
+          : card,
     );
   }
 
@@ -799,6 +903,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         initialText: initialText,
         autoListen: autoListen,
         showMic: false,
+        allowTitle: false,
         onApprove: (draft) =>
             ItemRepository(widget.db).addCandidates(widget.listId, draft.items),
       ),

@@ -97,7 +97,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: inputBorder,
-        enabledBorder: inputBorder,
+        enabledBorder: inputBorder.copyWith(borderSide: BorderSide(color: scheme.outlineVariant)),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: scheme.primary, width: 2),
