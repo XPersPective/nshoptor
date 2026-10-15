@@ -1105,4 +1105,10 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'د دې ژبې غږیز ماډل ښکته کېږي. یوه دقیقه وروسته بیا هڅه وکړئ.';
+
+  @override
+  String get historyThisWeek => 'دا اونۍ';
+
+  @override
+  String get historyProductsSection => 'پېرل شوي توکي';
 }

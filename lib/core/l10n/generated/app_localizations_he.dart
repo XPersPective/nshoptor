@@ -1100,4 +1100,10 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'מודל הקול לשפה זו בהורדה. נסו שוב בעוד דקה.';
+
+  @override
+  String get historyThisWeek => 'השבוע';
+
+  @override
+  String get historyProductsSection => 'מוצרים שנקנו';
 }

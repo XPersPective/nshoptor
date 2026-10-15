@@ -344,5 +344,7 @@
   "backupImportFailed": "Bu zaxira nusxasini import qilishda xatolik yuz berdi. Ma'lumotlaringiz o'zgarmadi.",
   "backupImported": "Zaxira muvaffaqiyatli yuklandi.",
   "backupPreviewCounts": "{lists} ro'yxat · {items} mahsulot · {entries} xarid",
-  "voiceModelDownloading": "Bu til uchun ovoz modeli yuklab olinmoqda. Bir daqiqadan so‘ng qayta urinib ko‘ring."
+  "voiceModelDownloading": "Bu til uchun ovoz modeli yuklab olinmoqda. Bir daqiqadan so‘ng qayta urinib ko‘ring.",
+  "historyThisWeek": "Shu hafta",
+  "historyProductsSection": "Sotib olingan mahsulotlar"
 }

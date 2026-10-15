@@ -344,5 +344,7 @@
   "backupImportFailed": "Tämän varmuuskopion tuonti epäonnistui. Tietojasi ei muutettu.",
   "backupImported": "Varmuuskopio tuotu onnistuneesti.",
   "backupPreviewCounts": "{lists} listaa · {items} tuotetta · {entries} ostosta",
-  "voiceModelDownloading": "Tämän kielen puhemallia ladataan. Yritä uudelleen minuutin kuluttua."
+  "voiceModelDownloading": "Tämän kielen puhemallia ladataan. Yritä uudelleen minuutin kuluttua.",
+  "historyThisWeek": "Tämä viikko",
+  "historyProductsSection": "Ostetut tuotteet"
 }

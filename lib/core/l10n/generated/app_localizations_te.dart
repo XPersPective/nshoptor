@@ -1115,4 +1115,10 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'ఈ భాష కోసం వాయిస్ మోడల్ డౌన్‌లోడ్ అవుతోంది. ఒక నిమిషం తర్వాత మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get historyThisWeek => 'ఈ వారం';
+
+  @override
+  String get historyProductsSection => 'కొనుగోలు చేసిన ఉత్పత్తులు';
 }

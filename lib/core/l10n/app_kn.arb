@@ -344,5 +344,7 @@
   "backupImportFailed": "ಈ ಬ್ಯಾಕಪ್‌ನ್ನು ಆಮದು ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಡೇಟಾ ಬದಲಾಗಿಲ್ಲ.",
   "backupImported": "ಬ್ಯಾಕಪ್ ಯಶಸ್ವಿಯಾಗಿ ಆಮದು ಮಾಡಲಾಗಿದೆ.",
   "backupPreviewCounts": "{lists} ಪಟ್ಟಿಗಳು · {items} ವಸ್ತುಗಳು · {entries} ಖರೀದಿಗಳು",
-  "voiceModelDownloading": "ಈ ಭಾಷೆಯ ಧ್ವನಿ ಮಾದರಿ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ. ಒಂದು ನಿಮಿಷದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+  "voiceModelDownloading": "ಈ ಭಾಷೆಯ ಧ್ವನಿ ಮಾದರಿ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ. ಒಂದು ನಿಮಿಷದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+  "historyThisWeek": "ಈ ವಾರ",
+  "historyProductsSection": "ಖರೀದಿಸಿದ ಉತ್ಪನ್ನಗಳು"
 }

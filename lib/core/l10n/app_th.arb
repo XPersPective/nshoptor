@@ -344,5 +344,7 @@
   "backupImportFailed": "ไม่สามารถนำเข้าข้อมูลสำรองนี้ ข้อมูลของคุณไม่มีการเปลี่ยนแปลง",
   "backupImported": "สำรองข้อมูลนำเข้าเรียบร้อยแล้ว",
   "backupPreviewCounts": "{lists} รายการ · {items} สินค้า · {entries} การซื้อ",
-  "voiceModelDownloading": "กำลังดาวน์โหลดโมเดลเสียงสำหรับภาษานี้ ลองอีกครั้งในอีกหนึ่งนาที"
+  "voiceModelDownloading": "กำลังดาวน์โหลดโมเดลเสียงสำหรับภาษานี้ ลองอีกครั้งในอีกหนึ่งนาที",
+  "historyThisWeek": "สัปดาห์นี้",
+  "historyProductsSection": "สินค้าที่ซื้อ"
 }

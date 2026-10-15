@@ -1113,4 +1113,10 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Estase a descargar o modelo de voz deste idioma. Téntao de novo nun minuto.';
+
+  @override
+  String get historyThisWeek => 'Esta semana';
+
+  @override
+  String get historyProductsSection => 'Produtos mercados';
 }

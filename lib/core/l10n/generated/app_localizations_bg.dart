@@ -1111,4 +1111,10 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Гласовият модел за този език се изтегля. Опитайте отново след минута.';
+
+  @override
+  String get historyThisWeek => 'Тази седмица';
+
+  @override
+  String get historyProductsSection => 'Купени продукти';
 }

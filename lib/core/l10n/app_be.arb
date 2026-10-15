@@ -344,5 +344,7 @@
   "backupImportFailed": "Не ўдалося імпартаваць гэтую рэзервовую копію. Вашы даныя не зменены.",
   "backupImported": "Рэзервовая копія паспяхова імпартавана.",
   "backupPreviewCounts": "{lists} спісы · {items} прадукты · {entries} пакупкі",
-  "voiceModelDownloading": "Галасавая мадэль для гэтай мовы спампоўваецца. Паспрабуйце праз хвіліну."
+  "voiceModelDownloading": "Галасавая мадэль для гэтай мовы спампоўваецца. Паспрабуйце праз хвіліну.",
+  "historyThisWeek": "Гэты тыдзень",
+  "historyProductsSection": "Купленыя тавары"
 }

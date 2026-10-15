@@ -344,5 +344,7 @@
   "backupImportFailed": "Túto zálohu sa nepodarilo importovať. Vaše údaje sa nezmenili.",
   "backupImported": "Záloha bola úspešne importovaná.",
   "backupPreviewCounts": "{lists} zoznamov · {items} položiek · {entries} nákupov",
-  "voiceModelDownloading": "Hlasový model pre tento jazyk sa sťahuje. Skúste to znova o minútu."
+  "voiceModelDownloading": "Hlasový model pre tento jazyk sa sťahuje. Skúste to znova o minútu.",
+  "historyThisWeek": "Tento týždeň",
+  "historyProductsSection": "Kúpené produkty"
 }

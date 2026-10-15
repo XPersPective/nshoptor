@@ -344,5 +344,7 @@
   "backupImportFailed": "Kon nie hierdie rugsteun invoer nie. Jou data is nie verander nie.",
   "backupImported": "Rugsteun suksesvol ingevoer.",
   "backupPreviewCounts": "{lists} lyste · {items} items · {entries} aankope",
-  "voiceModelDownloading": "Die stemmodel vir hierdie taal word afgelaai. Probeer oor ’n minuut weer."
+  "voiceModelDownloading": "Die stemmodel vir hierdie taal word afgelaai. Probeer oor ’n minuut weer.",
+  "historyThisWeek": "Hierdie week",
+  "historyProductsSection": "Gekoopte produkte"
 }

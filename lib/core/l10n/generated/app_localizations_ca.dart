@@ -1112,4 +1112,10 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'S’està baixant el model de veu per a aquesta llengua. Torna-ho a provar d’aquí a un minut.';
+
+  @override
+  String get historyThisWeek => 'Aquesta setmana';
+
+  @override
+  String get historyProductsSection => 'Productes comprats';
 }

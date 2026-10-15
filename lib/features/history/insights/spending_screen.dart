@@ -138,7 +138,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                           ),
                         ],
                       ),
-                      _MonthCalendar(month: _month, spendByDay: days, money: _money),
+                      MonthCalendar(month: _month, spendByDay: days, money: _money),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text('${l10n.spendingMonthTotal}: ${_money(monthTotal)}',
@@ -268,8 +268,8 @@ class _LimitCard extends StatelessWidget {
   }
 }
 
-class _MonthCalendar extends StatelessWidget {
-  const _MonthCalendar({required this.month, required this.spendByDay, required this.money});
+class MonthCalendar extends StatelessWidget {
+  const MonthCalendar({super.key, required this.month, required this.spendByDay, required this.money});
 
   final DateTime month;
   final Map<int, int> spendByDay;

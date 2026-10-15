@@ -1111,4 +1111,10 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Model suara untuk bahasa ini sedang dimuat turun. Cuba lagi dalam seminit.';
+
+  @override
+  String get historyThisWeek => 'Minggu ini';
+
+  @override
+  String get historyProductsSection => 'Produk yang dibeli';
 }

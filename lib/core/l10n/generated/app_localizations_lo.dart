@@ -1104,4 +1104,10 @@ class AppLocalizationsLo extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'ກຳລັງດາວໂຫຼດໂມເດວສຽງສຳລັບພາສານີ້. ລອງໃໝ່ອີກຄັ້ງໃນໜຶ່ງນາທີ.';
+
+  @override
+  String get historyThisWeek => 'ອາທິດນີ້';
+
+  @override
+  String get historyProductsSection => 'ສິນຄ້າທີ່ຊື້';
 }

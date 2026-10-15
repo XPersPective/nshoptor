@@ -1107,4 +1107,10 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Загружается голосовая модель для этого языка. Повторите попытку через минуту.';
+
+  @override
+  String get historyThisWeek => 'Эта неделя';
+
+  @override
+  String get historyProductsSection => 'Купленные товары';
 }

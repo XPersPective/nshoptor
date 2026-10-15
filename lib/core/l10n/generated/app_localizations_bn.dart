@@ -1108,4 +1108,10 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'এই ভাষার ভয়েস মডেল ডাউনলোড হচ্ছে। এক মিনিট পরে আবার চেষ্টা করুন।';
+
+  @override
+  String get historyThisWeek => 'এই সপ্তাহ';
+
+  @override
+  String get historyProductsSection => 'কেনা পণ্য';
 }

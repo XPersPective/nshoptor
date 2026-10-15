@@ -1107,4 +1107,10 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'මෙම භාෂාව සඳහා හඬ ආකෘතිය බාගත වෙමින් පවතී. මිනිත්තුවකින් නැවත උත්සාහ කරන්න.';
+
+  @override
+  String get historyThisWeek => 'මෙම සතිය';
+
+  @override
+  String get historyProductsSection => 'මිලදී ගත් නිෂ්පාදන';
 }

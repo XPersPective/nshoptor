@@ -1112,4 +1112,10 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'ဤဘာသာစကားအတွက် အသံမော်ဒယ်ကို ဒေါင်းလုဒ်လုပ်နေသည်။ တစ်မိနစ်အကြာတွင် ထပ်ကြိုးစားပါ။';
+
+  @override
+  String get historyThisWeek => 'ဤအပတ်';
+
+  @override
+  String get historyProductsSection => 'ဝယ်ယူခဲ့သော ပစ္စည်းများ';
 }

@@ -344,5 +344,7 @@
   "backupImportFailed": "Nuk u importua ky rezervë. Të dhënat tuaja nuk u ndryshuan.",
   "backupImported": "Backup u importua me sukses.",
   "backupPreviewCounts": "{lists} lista · {items} artikuj · {entries} blerje",
-  "voiceModelDownloading": "Modeli zanor për këtë gjuhë po shkarkohet. Provo përsëri pas një minute."
+  "voiceModelDownloading": "Modeli zanor për këtë gjuhë po shkarkohet. Provo përsëri pas një minute.",
+  "historyThisWeek": "Këtë javë",
+  "historyProductsSection": "Produktet e blera"
 }

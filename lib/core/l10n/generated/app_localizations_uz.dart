@@ -1113,4 +1113,10 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Bu til uchun ovoz modeli yuklab olinmoqda. Bir daqiqadan so‘ng qayta urinib ko‘ring.';
+
+  @override
+  String get historyThisWeek => 'Shu hafta';
+
+  @override
+  String get historyProductsSection => 'Sotib olingan mahsulotlar';
 }

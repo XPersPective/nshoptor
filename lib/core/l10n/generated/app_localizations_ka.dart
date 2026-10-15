@@ -1107,4 +1107,10 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'ამ ენის ხმოვანი მოდელი იტვირთება. სცადეთ ერთ წუთში.';
+
+  @override
+  String get historyThisWeek => 'ეს კვირა';
+
+  @override
+  String get historyProductsSection => 'ნაყიდი პროდუქტები';
 }

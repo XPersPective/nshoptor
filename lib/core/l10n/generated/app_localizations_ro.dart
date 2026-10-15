@@ -1112,4 +1112,10 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Se descarcă modelul vocal pentru această limbă. Încearcă din nou peste un minut.';
+
+  @override
+  String get historyThisWeek => 'Săptămâna aceasta';
+
+  @override
+  String get historyProductsSection => 'Produse cumpărate';
 }

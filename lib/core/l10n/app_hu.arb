@@ -344,5 +344,7 @@
   "backupImportFailed": "Nem sikerült importálni ezt a mentést. Az adatai nem változtak.",
   "backupImported": "A biztonsági mentés sikeresen importálva.",
   "backupPreviewCounts": "{lists} lista · {items} tétel · {entries} vásárlás",
-  "voiceModelDownloading": "A nyelv hangmodellje letöltés alatt áll. Próbáld újra egy perc múlva."
+  "voiceModelDownloading": "A nyelv hangmodellje letöltés alatt áll. Próbáld újra egy perc múlva.",
+  "historyThisWeek": "Ez a hét",
+  "historyProductsSection": "Vásárolt termékek"
 }

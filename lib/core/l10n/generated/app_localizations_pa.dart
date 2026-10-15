@@ -1108,4 +1108,10 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'ਇਸ ਭਾਸ਼ਾ ਲਈ ਵੌਇਸ ਮਾਡਲ ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ। ਇੱਕ ਮਿੰਟ ਬਾਅਦ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get historyThisWeek => 'ਇਸ ਹਫ਼ਤੇ';
+
+  @override
+  String get historyProductsSection => 'ਖਰੀਦੇ ਉਤਪਾਦ';
 }

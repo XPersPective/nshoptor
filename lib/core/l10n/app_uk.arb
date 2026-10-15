@@ -344,5 +344,7 @@
   "backupImportFailed": "Не вдалося імпортувати цю резервну копію. Ваші дані не змінилися.",
   "backupImported": "Резервну копію успішно імпортовано.",
   "backupPreviewCounts": "{lists} списки · {items} товари · {entries} покупки",
-  "voiceModelDownloading": "Завантажується голосова модель для цієї мови. Спробуйте ще раз за хвилину."
+  "voiceModelDownloading": "Завантажується голосова модель для цієї мови. Спробуйте ще раз за хвилину.",
+  "historyThisWeek": "Цей тиждень",
+  "historyProductsSection": "Куплені товари"
 }

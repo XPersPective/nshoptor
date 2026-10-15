@@ -344,5 +344,7 @@
   "backupImportFailed": "Gagal mengimport sandaran ini. Data anda tidak diubah.",
   "backupImported": "Backup berjaya diimport.",
   "backupPreviewCounts": "{lists} senarai · {items} item · {entries} pembelian",
-  "voiceModelDownloading": "Model suara untuk bahasa ini sedang dimuat turun. Cuba lagi dalam seminit."
+  "voiceModelDownloading": "Model suara untuk bahasa ini sedang dimuat turun. Cuba lagi dalam seminit.",
+  "historyThisWeek": "Minggu ini",
+  "historyProductsSection": "Produk yang dibeli"
 }

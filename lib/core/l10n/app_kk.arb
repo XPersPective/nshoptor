@@ -344,5 +344,7 @@
   "backupImportFailed": "Бұл резервтік көшірмені импорттау мүмкін болмады. Деректеріңіз өзгертілмеді.",
   "backupImported": "Сақтық көшірме сәтті импортталды.",
   "backupPreviewCounts": "{lists} тізім · {items} тауар · {entries} сатылым",
-  "voiceModelDownloading": "Бұл тілдің дауыс моделі жүктелуде. Бір минуттан кейін қайталап көріңіз."
+  "voiceModelDownloading": "Бұл тілдің дауыс моделі жүктелуде. Бір минуттан кейін қайталап көріңіз.",
+  "historyThisWeek": "Осы апта",
+  "historyProductsSection": "Сатып алынған тауарлар"
 }

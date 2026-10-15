@@ -1117,4 +1117,10 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Imodeli yezwi yalolu limi iyalandwa. Zama futhi ngemuva komzuzu owodwa.';
+
+  @override
+  String get historyThisWeek => 'Leli sonto';
+
+  @override
+  String get historyProductsSection => 'Imikhiqizo ethengiwe';
 }

@@ -1107,4 +1107,10 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'اس زبان کا وائس ماڈل ڈاؤن لوڈ ہو رہا ہے۔ ایک منٹ بعد دوبارہ کوشش کریں۔';
+
+  @override
+  String get historyThisWeek => 'اس ہفتے';
+
+  @override
+  String get historyProductsSection => 'خریدی گئی مصنوعات';
 }

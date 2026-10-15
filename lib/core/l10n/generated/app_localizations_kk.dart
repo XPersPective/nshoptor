@@ -1107,4 +1107,10 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Бұл тілдің дауыс моделі жүктелуде. Бір минуттан кейін қайталап көріңіз.';
+
+  @override
+  String get historyThisWeek => 'Осы апта';
+
+  @override
+  String get historyProductsSection => 'Сатып алынған тауарлар';
 }

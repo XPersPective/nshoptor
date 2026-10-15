@@ -1111,4 +1111,10 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Hizkuntza honen ahots-eredua deskargatzen ari da. Saiatu berriro minutu batean.';
+
+  @override
+  String get historyThisWeek => 'Aste hau';
+
+  @override
+  String get historyProductsSection => 'Erositako produktuak';
 }

@@ -344,5 +344,7 @@
   "backupImportFailed": "د دې بیک اپ ایمپورٹ نشو کړی. ستاسو ډاټا نه ده بدله شوې.",
   "backupImported": "بیک اپ په بریالیتوب سره وارد شو.",
   "backupPreviewCounts": "{lists} لیستونه · {items} توکي · {entries} خریدونه",
-  "voiceModelDownloading": "د دې ژبې غږیز ماډل ښکته کېږي. یوه دقیقه وروسته بیا هڅه وکړئ."
+  "voiceModelDownloading": "د دې ژبې غږیز ماډل ښکته کېږي. یوه دقیقه وروسته بیا هڅه وکړئ.",
+  "historyThisWeek": "دا اونۍ",
+  "historyProductsSection": "پېرل شوي توکي"
 }

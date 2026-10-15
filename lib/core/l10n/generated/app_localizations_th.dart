@@ -1105,4 +1105,10 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'กำลังดาวน์โหลดโมเดลเสียงสำหรับภาษานี้ ลองอีกครั้งในอีกหนึ่งนาที';
+
+  @override
+  String get historyThisWeek => 'สัปดาห์นี้';
+
+  @override
+  String get historyProductsSection => 'สินค้าที่ซื้อ';
 }

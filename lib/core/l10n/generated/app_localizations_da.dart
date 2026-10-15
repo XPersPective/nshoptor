@@ -1108,4 +1108,10 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Stemmemodellen til dette sprog downloades. Prøv igen om et minut.';
+
+  @override
+  String get historyThisWeek => 'Denne uge';
+
+  @override
+  String get historyProductsSection => 'Købte varer';
 }

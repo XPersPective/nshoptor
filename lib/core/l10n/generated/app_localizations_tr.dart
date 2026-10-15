@@ -1107,4 +1107,10 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Bu dil için ses modeli indiriliyor. Bir dakika sonra tekrar dene.';
+
+  @override
+  String get historyThisWeek => 'Bu hafta';
+
+  @override
+  String get historyProductsSection => 'Alınan ürünler';
 }

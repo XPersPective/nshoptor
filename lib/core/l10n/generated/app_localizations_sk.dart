@@ -1110,4 +1110,10 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Hlasový model pre tento jazyk sa sťahuje. Skúste to znova o minútu.';
+
+  @override
+  String get historyThisWeek => 'Tento týždeň';
+
+  @override
+  String get historyProductsSection => 'Kúpené produkty';
 }

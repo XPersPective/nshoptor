@@ -296,4 +296,27 @@ void main() {
 
     expect(await repo.unplannedTotal('TRY'), 325);
   });
+
+  test('purchaseStats filters by period; productPurchases pairs home and store prices', () async {
+    final shop = ShoppingRepository(db);
+    final old = await makeCompletedList(completedAt: DateTime.utc(2026, 8, 10));
+    final now = await makeCompletedList(completedAt: DateTime.utc(2026, 10, 5));
+    for (final (list, price) in [(old, 30), (now, 36)]) {
+      final item = await db.into(db.plannedItems).insert(PlannedItemsCompanion.insert(
+        listId: list, name: 'Elma', normalizedName: 'elma', plannedQuantity: '2',
+        plannedUnitCode: 'kilogram', pricingInputMode: 'unitPrice',
+        plannedUnitPrice: const Value('32'), plannedLineTotalMinorUnits: const Value(6400)));
+      await shop.recordPurchase(listId: list, plannedItemId: item, name: 'Elma', normalizedName: 'elma',
+        quantity: DecimalFixed.fromInt(2), unitCode: 'kilogram', unitPrice: DecimalFixed.fromInt(price));
+    }
+    final october = await repo.purchaseStats('TRY',
+        from: DateTime.utc(2026, 10), to: DateTime.utc(2026, 11));
+    expect(october.single.actualMinor, 7200);
+    expect(october.single.normalizedName, 'elma');
+    expect(await repo.purchaseStats('TRY', from: DateTime.utc(2026, 9), to: DateTime.utc(2026, 10)), isEmpty);
+    final rows = await repo.productPurchases('elma', 'TRY');
+    expect(rows.map((r) => r.actualUnitPrice!.toDbString()), ['36', '30']);
+    expect(rows.first.plannedUnitPrice!.toDbString(), '32');
+    expect(rows.first.paidMinor, 7200);
+  });
 }

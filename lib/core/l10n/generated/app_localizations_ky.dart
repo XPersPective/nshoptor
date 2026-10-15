@@ -1109,4 +1109,10 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Бул тилдин үн модели жүктөлүүдө. Бир мүнөттөн кийин кайра аракет кылыңыз.';
+
+  @override
+  String get historyThisWeek => 'Ушул жума';
+
+  @override
+  String get historyProductsSection => 'Сатып алынган товарлар';
 }

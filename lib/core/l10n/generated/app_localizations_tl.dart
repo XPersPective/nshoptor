@@ -1114,4 +1114,10 @@ class AppLocalizationsTl extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Dina-download ang voice model para sa wikang ito. Subukang muli pagkalipas ng isang minuto.';
+
+  @override
+  String get historyThisWeek => 'Ngayong linggo';
+
+  @override
+  String get historyProductsSection => 'Mga biniling produkto';
 }

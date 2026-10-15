@@ -344,5 +344,7 @@
   "backupImportFailed": "Kunde inte importera denna säkerhetskopia. Dina data har inte ändrats.",
   "backupImported": "Säkerhetskopiering importerad.",
   "backupPreviewCounts": "{lists} listor · {items} varor · {entries} inköp",
-  "voiceModelDownloading": "Röstmodellen för det här språket laddas ned. Försök igen om en minut."
+  "voiceModelDownloading": "Röstmodellen för det här språket laddas ned. Försök igen om en minut.",
+  "historyThisWeek": "Den här veckan",
+  "historyProductsSection": "Köpta varor"
 }

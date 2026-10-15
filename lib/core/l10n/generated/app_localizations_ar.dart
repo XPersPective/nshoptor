@@ -1098,4 +1098,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'جارٍ تنزيل نموذج الصوت لهذه اللغة. حاول مرة أخرى بعد دقيقة.';
+
+  @override
+  String get historyThisWeek => 'هذا الأسبوع';
+
+  @override
+  String get historyProductsSection => 'المنتجات المشتراة';
 }

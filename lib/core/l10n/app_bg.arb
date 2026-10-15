@@ -344,5 +344,7 @@
   "backupImportFailed": "Неуспешен импорт на резервното копие. Данните ви не са променени.",
   "backupImported": "Архивът е импортиран успешно.",
   "backupPreviewCounts": "{lists} списъка · {items} артикула · {entries} покупки",
-  "voiceModelDownloading": "Гласовият модел за този език се изтегля. Опитайте отново след минута."
+  "voiceModelDownloading": "Гласовият модел за този език се изтегля. Опитайте отново след минута.",
+  "historyThisWeek": "Тази седмица",
+  "historyProductsSection": "Купени продукти"
 }

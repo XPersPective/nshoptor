@@ -1111,4 +1111,10 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'ಈ ಭಾಷೆಯ ಧ್ವನಿ ಮಾದರಿ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ. ಒಂದು ನಿಮಿಷದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get historyThisWeek => 'ಈ ವಾರ';
+
+  @override
+  String get historyProductsSection => 'ಖರೀದಿಸಿದ ಉತ್ಪನ್ನಗಳು';
 }

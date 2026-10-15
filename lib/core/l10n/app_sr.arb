@@ -344,5 +344,7 @@
   "backupImportFailed": "Нисмо успели да увеземо ову резервну копију. Ваша подаци нису промењени.",
   "backupImported": "Бекап је успешно увезен.",
   "backupPreviewCounts": "{lists} листи · {items} ставки · {entries} куповине",
-  "voiceModelDownloading": "Гласовни модел за овај језик се преузима. Покушајте поново за минут."
+  "voiceModelDownloading": "Гласовни модел за овај језик се преузима. Покушајте поново за минут.",
+  "historyThisWeek": "Ова недеља",
+  "historyProductsSection": "Купљени производи"
 }

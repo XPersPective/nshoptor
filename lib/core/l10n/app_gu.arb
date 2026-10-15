@@ -344,5 +344,7 @@
   "backupImportFailed": "આ બેકઅપ આયાત કરી શકાયા નથી. તમારા ડેટામાં કોઈ ફેરફાર થયો નથી.",
   "backupImported": "બેકઅપ સફળતાપૂર્વક આયાત થયું.",
   "backupPreviewCounts": "{lists} યાદીઓ · {items} આઇટમ્સ · {entries} ખરીદીઓ",
-  "voiceModelDownloading": "આ ભાષા માટે વૉઇસ મોડેલ ડાઉનલોડ થઈ રહ્યું છે. એક મિનિટ પછી ફરી પ્રયાસ કરો."
+  "voiceModelDownloading": "આ ભાષા માટે વૉઇસ મોડેલ ડાઉનલોડ થઈ રહ્યું છે. એક મિનિટ પછી ફરી પ્રયાસ કરો.",
+  "historyThisWeek": "આ અઠવાડિયું",
+  "historyProductsSection": "ખરીદેલા ઉત્પાદનો"
 }

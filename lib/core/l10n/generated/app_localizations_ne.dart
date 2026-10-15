@@ -1110,4 +1110,10 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'यस भाषाको भ्वाइस मोडेल डाउनलोड हुँदैछ। एक मिनेटपछि फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String get historyThisWeek => 'यो हप्ता';
+
+  @override
+  String get historyProductsSection => 'किनिएका उत्पादनहरू';
 }

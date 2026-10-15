@@ -344,5 +344,7 @@
   "backupImportFailed": "El respaldo no se pudo importar. Tus datos no cambiaron.",
   "backupImported": "Backup importato con successo.",
   "backupPreviewCounts": "{lists} liste · {items} artiklar · {entries} köp",
-  "voiceModelDownloading": "Download del modello vocale per questa lingua in corso. Riprova tra un minuto."
+  "voiceModelDownloading": "Download del modello vocale per questa lingua in corso. Riprova tra un minuto.",
+  "historyThisWeek": "Questa settimana",
+  "historyProductsSection": "Prodotti acquistati"
 }

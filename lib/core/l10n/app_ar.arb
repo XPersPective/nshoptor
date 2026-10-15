@@ -344,5 +344,7 @@
   "backupImportFailed": "تعذر استيراد هذا النسخة الاحتياطية. لم يتم تغيير بياناتك.",
   "backupImported": "تم استيراد النسخة الاحتياطية بنجاح.",
   "backupPreviewCounts": "{lists} قوائم · {items} عناصر · {entries} مشتريات",
-  "voiceModelDownloading": "جارٍ تنزيل نموذج الصوت لهذه اللغة. حاول مرة أخرى بعد دقيقة."
+  "voiceModelDownloading": "جارٍ تنزيل نموذج الصوت لهذه اللغة. حاول مرة أخرى بعد دقيقة.",
+  "historyThisWeek": "هذا الأسبوع",
+  "historyProductsSection": "المنتجات المشتراة"
 }

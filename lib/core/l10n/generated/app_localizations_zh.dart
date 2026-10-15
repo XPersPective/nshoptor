@@ -1072,4 +1072,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get voiceModelDownloading => '正在下载该语言的语音模型，请一分钟后重试。';
+
+  @override
+  String get historyThisWeek => '本周';
+
+  @override
+  String get historyProductsSection => '已购商品';
 }

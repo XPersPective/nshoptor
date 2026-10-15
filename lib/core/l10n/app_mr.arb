@@ -344,5 +344,7 @@
   "backupImportFailed": "या बॅकअपचे आयातीकरण करता आले नाही. तुमची डेटा बदलली गेली नाही.",
   "backupImported": "बॅकअप यशस्वीरित्या आयात झाले.",
   "backupPreviewCounts": "{lists} याद्या · {items} वस्तू · {entries} खरेदी",
-  "voiceModelDownloading": "या भाषेचे व्हॉइस मॉडेल डाउनलोड होत आहे. एका मिनिटानंतर पुन्हा प्रयत्न करा."
+  "voiceModelDownloading": "या भाषेचे व्हॉइस मॉडेल डाउनलोड होत आहे. एका मिनिटानंतर पुन्हा प्रयत्न करा.",
+  "historyThisWeek": "हा आठवडा",
+  "historyProductsSection": "खरेदी केलेली उत्पादने"
 }

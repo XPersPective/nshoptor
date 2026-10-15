@@ -344,5 +344,7 @@
   "backupImportFailed": "Nepavyko importuoti šio atsarginio kopijos. Jūsų duomenys nebuvo pakeisti.",
   "backupImported": "Atsarginė kopija sėkmingai importuota.",
   "backupPreviewCounts": "{lists} sąrašai · {items} prekės · {entries} pirkimai",
-  "voiceModelDownloading": "Šios kalbos balso modelis atsisiunčiamas. Bandykite dar kartą po minutės."
+  "voiceModelDownloading": "Šios kalbos balso modelis atsisiunčiamas. Bandykite dar kartą po minutės.",
+  "historyThisWeek": "Ši savaitė",
+  "historyProductsSection": "Pirkti produktai"
 }

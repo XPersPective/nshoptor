@@ -344,5 +344,7 @@
   "backupImportFailed": "Gagal mengimpor cadangan ini. Data Anda tidak berubah.",
   "backupImported": "Cadangan berhasil diimpor.",
   "backupPreviewCounts": "{lists} daftar · {items} item · {entries} pembelian",
-  "voiceModelDownloading": "Model suara untuk bahasa ini sedang diunduh. Coba lagi dalam satu menit."
+  "voiceModelDownloading": "Model suara untuk bahasa ini sedang diunduh. Coba lagi dalam satu menit.",
+  "historyThisWeek": "Minggu ini",
+  "historyProductsSection": "Produk yang dibeli"
 }

@@ -1110,4 +1110,10 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Šīs valodas balss modelis tiek lejupielādēts. Mēģiniet vēlreiz pēc minūtes.';
+
+  @override
+  String get historyThisWeek => 'Šī nedēļa';
+
+  @override
+  String get historyProductsSection => 'Nopirktie produkti';
 }

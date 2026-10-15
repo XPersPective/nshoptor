@@ -344,5 +344,7 @@
   "backupImportFailed": "Dieses Backup konnte nicht importiert werden. Deine Daten wurden nicht geändert.",
   "backupImported": "Backup erfolgreich importiert.",
   "backupPreviewCounts": "{lists} Listen · {items} Artikel · {entries} Einkäufe",
-  "voiceModelDownloading": "Das Sprachmodell für diese Sprache wird heruntergeladen. Versuche es in einer Minute erneut."
+  "voiceModelDownloading": "Das Sprachmodell für diese Sprache wird heruntergeladen. Versuche es in einer Minute erneut.",
+  "historyThisWeek": "Diese Woche",
+  "historyProductsSection": "Gekaufte Produkte"
 }

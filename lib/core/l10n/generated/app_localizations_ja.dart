@@ -1078,4 +1078,10 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'この言語の音声モデルをダウンロードしています。1 分後にもう一度お試しください。';
+
+  @override
+  String get historyThisWeek => '今週';
+
+  @override
+  String get historyProductsSection => '購入した商品';
 }

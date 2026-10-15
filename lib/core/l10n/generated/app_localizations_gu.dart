@@ -1106,4 +1106,10 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'આ ભાષા માટે વૉઇસ મોડેલ ડાઉનલોડ થઈ રહ્યું છે. એક મિનિટ પછી ફરી પ્રયાસ કરો.';
+
+  @override
+  String get historyThisWeek => 'આ અઠવાડિયું';
+
+  @override
+  String get historyProductsSection => 'ખરીદેલા ઉત્પાદનો';
 }

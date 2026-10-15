@@ -344,5 +344,7 @@
   "backupImportFailed": "Uvoza te varnostne kopije ni bilo mogoče izvesti. Vaši podatki niso bili spremenjeni.",
   "backupImported": "Nadzorna kopija je bila uspešno uvožena.",
   "backupPreviewCounts": "{lists} seznama · {items} izdelkov · {entries} nakupov",
-  "voiceModelDownloading": "Glasovni model za ta jezik se prenaša. Poskusite znova čez minuto."
+  "voiceModelDownloading": "Glasovni model za ta jezik se prenaša. Poskusite znova čez minuto.",
+  "historyThisWeek": "Ta teden",
+  "historyProductsSection": "Kupljeni izdelki"
 }

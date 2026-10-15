@@ -344,5 +344,7 @@
   "backupImportFailed": "اس بیک اپ کو درآمد نہیں کیا جا سکا۔ آپ کا ڈیٹا تبدیل نہیں ہوا۔",
   "backupImported": "بیک اپ کامیابی سے درآمد ہو گیا۔",
   "backupPreviewCounts": "{lists} لسٹیں · {items} آئٹمز · {entries} خریداریاں",
-  "voiceModelDownloading": "اس زبان کا وائس ماڈل ڈاؤن لوڈ ہو رہا ہے۔ ایک منٹ بعد دوبارہ کوشش کریں۔"
+  "voiceModelDownloading": "اس زبان کا وائس ماڈل ڈاؤن لوڈ ہو رہا ہے۔ ایک منٹ بعد دوبارہ کوشش کریں۔",
+  "historyThisWeek": "اس ہفتے",
+  "historyProductsSection": "خریدی گئی مصنوعات"
 }

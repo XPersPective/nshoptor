@@ -1107,4 +1107,10 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Röstmodellen för det här språket laddas ned. Försök igen om en minut.';
+
+  @override
+  String get historyThisWeek => 'Den här veckan';
+
+  @override
+  String get historyProductsSection => 'Köpta varor';
 }

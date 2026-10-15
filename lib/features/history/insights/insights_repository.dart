@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 import '../../../data/db/app_database.dart';
+import '../../../core/money/currency.dart';
 import '../../../core/money/decimal_fixed.dart';
 import '../../../core/quantity/unit_code.dart';
 
@@ -39,8 +40,9 @@ class SpendingSlice {
 
 /// Net purchases; visits use positive purchases, not receipt lines or edits.
 class PurchaseStats {
-  PurchaseStats({required this.name, required this.unitCode, this.productId});
+  PurchaseStats({required this.name, required this.unitCode, this.productId, this.normalizedName});
   final String name;
+  final String? normalizedName;
   final String unitCode;
   final int? productId;
   DecimalFixed quantity = DecimalFixed.zero();
@@ -184,7 +186,8 @@ class InsightsRepository {
         ]);
   }
 
-  Future<List<PurchaseStats>> purchaseStats(String currencyCode, {bool byCategory = false}) async {
+  Future<List<PurchaseStats>> purchaseStats(String currencyCode,
+      {bool byCategory = false, DateTime? from, DateTime? to}) async {
     final rows = await _db.customSelect(
       '''SELECT pe.*, sl.completed_at AS completed_at,
         COALESCE(c.name, 'other') AS category,
@@ -194,8 +197,12 @@ class InsightsRepository {
       LEFT JOIN categories c ON c.id = pi.category_id
       WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL
         AND pe.user_confirmed = 1 AND sl.currency_code = ?
+        AND (? IS NULL OR sl.completed_at >= ?) AND (? IS NULL OR sl.completed_at < ?)
       ORDER BY sl.completed_at, pe.id''',
-      variables: [Variable.withString(currencyCode)],
+      variables: [
+        Variable.withString(currencyCode),
+        for (final d in [from, from, to, to]) Variable<DateTime>(d),
+      ],
       readsFrom: {_db.purchaseEntries, _db.shoppingLists, _db.plannedItems, _db.categories, _db.productMemory},
     ).get();
     final groups = <(String, String, int?), PurchaseStats>{};
@@ -211,7 +218,8 @@ class InsightsRepository {
       final key = (row.read<String>(byCategory ? 'category' : 'normalized_name'), code,
         unit == null || unit == UnitCode.custom ? row.read<int>('id') : null);
       final group = groups.putIfAbsent(key, () => PurchaseStats(name: label, unitCode: code,
-        productId: byCategory ? null : row.readNullable<int>('product_id')));
+        productId: byCategory ? null : row.readNullable<int>('product_id'),
+        normalizedName: byCategory ? null : row.read<String>('normalized_name')));
       group.quantity += quantity;
       group.actualMinor = int.parse((BigInt.from(group.actualMinor) + BigInt.from(row.read<int>('actual_line_total_minor_units'))).toString());
       if (quantity.isPositive) group.visits[row.read<int>('list_id')] = row.read<DateTime>('completed_at');
@@ -269,6 +277,49 @@ class InsightsRepository {
     return rows.single.read<int>('total');
   }
 
+  /// Bir ürünün tamamlanan alışverişlerdeki alımları, yeniden eskiye:
+  /// Evdeki (plan) ve Çarşıdaki (gerçek) birim fiyat ile ödenen tutar.
+  Future<List<ProductPurchase>> productPurchases(
+      String normalizedName, String currencyCode) async {
+    final rows = await _db.customSelect(
+      '''SELECT sl.id AS list_id, sl.completed_at AS completed_at,
+        pe.actual_quantity AS quantity, pe.actual_unit_code AS unit_code,
+        pe.actual_unit_price AS actual_unit_price,
+        pe.actual_line_total_minor_units AS paid,
+        pi.planned_unit_price AS planned_unit_price
+      FROM purchase_entries pe JOIN shopping_lists sl ON sl.id = pe.list_id
+      LEFT JOIN planned_items pi ON pi.id = pe.planned_item_id AND pi.list_id = pe.list_id
+      WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL
+        AND pe.user_confirmed = 1 AND sl.currency_code = ? AND pe.normalized_name = ?
+      ORDER BY sl.completed_at DESC, pe.id DESC''',
+      variables: [Variable.withString(currencyCode), Variable.withString(normalizedName)],
+      readsFrom: {_db.purchaseEntries, _db.shoppingLists, _db.plannedItems},
+    ).get();
+    final digits = Currency.fromCode(currencyCode).minorUnitDigits;
+    return [
+      for (final r in rows)
+        () {
+          final quantity = DecimalFixed.parse(r.read<String>('quantity'));
+          final paid = r.read<int>('paid');
+          final unitText = r.readNullable<String>('actual_unit_price');
+          final planned = r.readNullable<String>('planned_unit_price');
+          return ProductPurchase(
+            listId: r.read<int>('list_id'),
+            at: r.read<DateTime>('completed_at'),
+            quantity: quantity,
+            unitCode: r.read<String>('unit_code'),
+            plannedUnitPrice: planned == null ? null : DecimalFixed.parse(planned),
+            actualUnitPrice: unitText != null
+                ? DecimalFixed.parse(unitText)
+                : quantity.isPositive
+                    ? DecimalFixed.fromMinorUnits(paid, digits).divide(quantity, scale: digits)
+                    : null,
+            paidMinor: paid,
+          );
+        }(),
+    ];
+  }
+
   /// Tamamlanan alışverişler: (tarih, gerçek toplam) — tek para biriminde
   /// (spec §7.1: karışık para toplanmaz). Takvim ve grafiklerin kaynağı.
   Future<List<SpendPoint>> completedSpend(String currencyCode) async {
@@ -294,6 +345,20 @@ class InsightsRepository {
         ),
     ]..sort((a, b) => a.at.compareTo(b.at));
   }
+}
+
+/// Bir ürünün tek alımı (ürün geçmişi ekranı).
+class ProductPurchase {
+  const ProductPurchase({required this.listId, required this.at, required this.quantity,
+    required this.unitCode, required this.plannedUnitPrice, required this.actualUnitPrice,
+    required this.paidMinor});
+  final int listId;
+  final DateTime at;
+  final DecimalFixed quantity;
+  final String unitCode;
+  final DecimalFixed? plannedUnitPrice;
+  final DecimalFixed? actualUnitPrice;
+  final int paidMinor;
 }
 
 /// Bir tamamlanmış alışverişin tarihi ve gerçek toplamı.

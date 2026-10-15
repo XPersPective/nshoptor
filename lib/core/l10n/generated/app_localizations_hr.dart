@@ -1109,4 +1109,10 @@ class AppLocalizationsHr extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Glasovni model za ovaj jezik se preuzima. Pokušajte ponovno za minutu.';
+
+  @override
+  String get historyThisWeek => 'Ovaj tjedan';
+
+  @override
+  String get historyProductsSection => 'Kupljeni proizvodi';
 }

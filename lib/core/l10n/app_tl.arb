@@ -344,5 +344,7 @@
   "backupImportFailed": "Hindi ma-import ang backup na ito. Hindi nabago ang iyong data.",
   "backupImported": "Matagumpay na na-import ang backup.",
   "backupPreviewCounts": "{lists} listahan · {items} item · {entries} pagbili",
-  "voiceModelDownloading": "Dina-download ang voice model para sa wikang ito. Subukang muli pagkalipas ng isang minuto."
+  "voiceModelDownloading": "Dina-download ang voice model para sa wikang ito. Subukang muli pagkalipas ng isang minuto.",
+  "historyThisWeek": "Ngayong linggo",
+  "historyProductsSection": "Mga biniling produkto"
 }

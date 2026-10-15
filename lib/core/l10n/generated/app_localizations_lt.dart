@@ -1111,4 +1111,10 @@ class AppLocalizationsLt extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Šios kalbos balso modelis atsisiunčiamas. Bandykite dar kartą po minutės.';
+
+  @override
+  String get historyThisWeek => 'Ši savaitė';
+
+  @override
+  String get historyProductsSection => 'Pirkti produktai';
 }

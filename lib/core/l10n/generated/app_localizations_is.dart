@@ -1107,4 +1107,10 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Verið er að sækja raddlíkanið fyrir þetta tungumál. Reyndu aftur eftir mínútu.';
+
+  @override
+  String get historyThisWeek => 'Þessi vika';
+
+  @override
+  String get historyProductsSection => 'Keyptar vörur';
 }

@@ -1110,4 +1110,10 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Завантажується голосова модель для цієї мови. Спробуйте ще раз за хвилину.';
+
+  @override
+  String get historyThisWeek => 'Цей тиждень';
+
+  @override
+  String get historyProductsSection => 'Куплені товари';
 }

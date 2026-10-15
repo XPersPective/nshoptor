@@ -344,5 +344,7 @@
   "backupImportFailed": "Không thể nhập bản sao lưu này. Dữ liệu của bạn không bị thay đổi.",
   "backupImported": "Sao lưu đã được nhập thành công.",
   "backupPreviewCounts": "{lists} danh sách · {items} mặt hàng · {entries} lần mua",
-  "voiceModelDownloading": "Đang tải mô hình giọng nói cho ngôn ngữ này. Hãy thử lại sau một phút."
+  "voiceModelDownloading": "Đang tải mô hình giọng nói cho ngôn ngữ này. Hãy thử lại sau một phút.",
+  "historyThisWeek": "Tuần này",
+  "historyProductsSection": "Sản phẩm đã mua"
 }

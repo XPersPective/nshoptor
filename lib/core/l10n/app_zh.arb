@@ -344,5 +344,7 @@
   "backupImportFailed": "无法导入此备份。您的数据未更改。",
   "backupImported": "备份已成功导入。",
   "backupPreviewCounts": "{lists} 个列表 · {items} 件商品 · {entries} 笔购买",
-  "voiceModelDownloading": "正在下载该语言的语音模型，请一分钟后重试。"
+  "voiceModelDownloading": "正在下载该语言的语音模型，请一分钟后重试。",
+  "historyThisWeek": "本周",
+  "historyProductsSection": "已购商品"
 }

@@ -1112,4 +1112,10 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Het spraakmodel voor deze taal wordt gedownload. Probeer het over een minuut opnieuw.';
+
+  @override
+  String get historyThisWeek => 'Deze week';
+
+  @override
+  String get historyProductsSection => 'Gekochte producten';
 }

@@ -1107,4 +1107,10 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Selle keele häälmudelit laaditakse alla. Proovi minuti pärast uuesti.';
+
+  @override
+  String get historyThisWeek => 'See nädal';
+
+  @override
+  String get historyProductsSection => 'Ostetud tooted';
 }

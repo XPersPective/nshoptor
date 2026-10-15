@@ -344,5 +344,7 @@
   "backupImportFailed": "Neizdevās importēt šo rezerves kopiju. Jūsu dati netika mainīti.",
   "backupImported": "Rezerves kopija veiksmīgi importēta.",
   "backupPreviewCounts": "{lists} saraksti · {items} preces · {entries} pirkumi",
-  "voiceModelDownloading": "Šīs valodas balss modelis tiek lejupielādēts. Mēģiniet vēlreiz pēc minūtes."
+  "voiceModelDownloading": "Šīs valodas balss modelis tiek lejupielādēts. Mēģiniet vēlreiz pēc minūtes.",
+  "historyThisWeek": "Šī nedēļa",
+  "historyProductsSection": "Nopirktie produkti"
 }

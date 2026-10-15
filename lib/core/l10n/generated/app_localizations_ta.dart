@@ -1115,4 +1115,10 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'இந்த மொழிக்கான குரல் மாதிரி பதிவிறக்கப்படுகிறது. ஒரு நிமிடம் கழித்து மீண்டும் முயலவும்.';
+
+  @override
+  String get historyThisWeek => 'இந்த வாரம்';
+
+  @override
+  String get historyProductsSection => 'வாங்கிய பொருட்கள்';
 }

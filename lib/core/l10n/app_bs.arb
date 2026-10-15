@@ -344,5 +344,7 @@
   "backupImportFailed": "Nije moguće uvesti ovu rezervnu kopiju. Vaši podaci nisu promijenjeni.",
   "backupImported": "Sigurnosna kopija uspješno uvezena.",
   "backupPreviewCounts": "{lists} liste · {items} stavke · {entries} kupovine",
-  "voiceModelDownloading": "Glasovni model za ovaj jezik se preuzima. Pokušajte ponovo za minutu."
+  "voiceModelDownloading": "Glasovni model za ovaj jezik se preuzima. Pokušajte ponovo za minutu.",
+  "historyThisWeek": "Ova sedmica",
+  "historyProductsSection": "Kupljeni proizvodi"
 }

@@ -344,5 +344,7 @@
   "backupImportFailed": "Non se puido importar esta copia de seguridade. Os teus datos non cambiaron.",
   "backupImported": "Copia de seguridade importada correctamente.",
   "backupPreviewCounts": "{lists} listas · {items} artigos · {entries} compras",
-  "voiceModelDownloading": "Estase a descargar o modelo de voz deste idioma. Téntao de novo nun minuto."
+  "voiceModelDownloading": "Estase a descargar o modelo de voz deste idioma. Téntao de novo nun minuto.",
+  "historyThisWeek": "Esta semana",
+  "historyProductsSection": "Produtos mercados"
 }

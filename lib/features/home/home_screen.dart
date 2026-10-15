@@ -12,6 +12,7 @@ import '../lists/list_repository.dart';
 import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
+import '../history/history_screen.dart';
 import '../subscription/subscription_service.dart';
 import '../assistant/assistant_bubble.dart';
 import '../voice_input/list_draft_sheet.dart';
@@ -744,91 +745,14 @@ class _MonthlyCard extends StatelessWidget {
   }
 }
 
-/// Geçmiş sekmesi: tamamlanan alışverişler + aylık toplamlar (T18).
+/// Geçmiş sekmesi: dönem sekmeleri, takvim, alınan ürünler (SA-010).
 class HistoryPlaceholder extends StatelessWidget {
   const HistoryPlaceholder({super.key, required this.db});
 
   final AppDatabase db;
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final repo = InsightsRepository(db);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.navHistory),
-        actions: [
-          IconButton(
-            key: const Key('history_spending'),
-            icon: const Icon(Icons.insights_outlined),
-            tooltip: l10n.spendingAction,
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: db)),
-            ),
-          ),
-        ],
-      ),
-      body: StreamBuilder<List<ShoppingList>>(
-        stream: repo.watchCompleted(),
-        builder: (context, snapshot) {
-          final completed = snapshot.data ?? const <ShoppingList>[];
-          if (completed.isEmpty) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Text(l10n.historyEmpty, textAlign: TextAlign.center),
-              ),
-            );
-          }
-          return ListView(
-            padding: const EdgeInsets.all(12),
-            children: [
-              Card(
-                key: const Key('history_spending_card'),
-                child: ListTile(
-                  leading: const Icon(Icons.insights_outlined),
-                  title: Text(l10n.spendingTitle),
-                  subtitle: Text(
-                    '${l10n.spendingWeekly} · ${l10n.monthlyLimitTitle}',
-                  ),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                      builder: (_) => SpendingScreen(db: db),
-                    ),
-                  ),
-                ),
-              ),
-              for (final list in completed)
-                ListTile(
-                  key: Key('history_list_${list.id}'),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                      builder: (_) => ListDetailScreen(
-                        db: db,
-                        listRepository: ListRepository(db),
-                        listId: list.id,
-                      ),
-                    ),
-                  ),
-                  leading: const Icon(Icons.check_circle_outline),
-                  title: Text(
-                    list.title ?? list.generatedTitle ?? l10n.listsTitle,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  subtitle: Text(
-                    list.completedAt == null
-                        ? ''
-                        : MaterialLocalizations.of(context)
-                              .formatMediumDate(list.completedAt!),
-                  ),
-                ),
-            ],
-          );
-        },
-      ),
-    );
-  }
+  Widget build(BuildContext context) => HistoryScreen(db: db);
 }
 
 /// Ayarlar sekmesi: T30 tam ekran gelene kadar hakkında bilgisi (gerçek içerik).

@@ -2305,6 +2305,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Downloading the voice model for this language. Try again in a minute.'**
   String get voiceModelDownloading;
+
+  /// No description provided for @historyThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get historyThisWeek;
+
+  /// No description provided for @historyProductsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Products bought'**
+  String get historyProductsSection;
 }
 
 class _AppLocalizationsDelegate

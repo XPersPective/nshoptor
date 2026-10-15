@@ -344,5 +344,7 @@
   "backupImportFailed": "このバックアップはインポートできませんでした。データは変更されていません。",
   "backupImported": "バックアップが正常にインポートされました。",
   "backupPreviewCounts": "{lists}件のリスト · {items}個のアイテム · {entries}件の購入",
-  "voiceModelDownloading": "この言語の音声モデルをダウンロードしています。1 分後にもう一度お試しください。"
+  "voiceModelDownloading": "この言語の音声モデルをダウンロードしています。1 分後にもう一度お試しください。",
+  "historyThisWeek": "今週",
+  "historyProductsSection": "購入した商品"
 }

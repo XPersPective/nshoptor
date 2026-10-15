@@ -1113,4 +1113,10 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Энэ хэлний дуу хоолойн загварыг татаж байна. Нэг минутын дараа дахин оролдоно уу.';
+
+  @override
+  String get historyThisWeek => 'Энэ долоо хоног';
+
+  @override
+  String get historyProductsSection => 'Худалдан авсан бараа';
 }

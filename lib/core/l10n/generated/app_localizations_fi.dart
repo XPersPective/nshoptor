@@ -1113,4 +1113,10 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Tämän kielen puhemallia ladataan. Yritä uudelleen minuutin kuluttua.';
+
+  @override
+  String get historyThisWeek => 'Tämä viikko';
+
+  @override
+  String get historyProductsSection => 'Ostetut tuotteet';
 }

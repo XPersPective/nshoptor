@@ -344,5 +344,7 @@
   "backupImportFailed": "Impossible d'importer cette sauvegarde. Vos données n'ont pas été modifiées.",
   "backupImported": "Sauvegarde importée avec succès.",
   "backupPreviewCounts": "{lists} listes · {items} articles · {entries} achats",
-  "voiceModelDownloading": "Le modèle vocal de cette langue est en cours de téléchargement. Réessayez dans une minute."
+  "voiceModelDownloading": "Le modèle vocal de cette langue est en cours de téléchargement. Réessayez dans une minute.",
+  "historyThisWeek": "Cette semaine",
+  "historyProductsSection": "Produits achetés"
 }

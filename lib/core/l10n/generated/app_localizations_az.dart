@@ -1111,4 +1111,10 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Bu dil üçün səs modeli yüklənir. Bir dəqiqədən sonra yenidən cəhd edin.';
+
+  @override
+  String get historyThisWeek => 'Bu həftə';
+
+  @override
+  String get historyProductsSection => 'Alınan məhsullar';
 }

@@ -344,5 +344,7 @@
   "backupImportFailed": "Kunne ikke importere denne backup. Dine data er ikke blevet ændret.",
   "backupImported": "Backup importeret succesfuldt.",
   "backupPreviewCounts": "{lists} lister · {items} varer · {entries} køb",
-  "voiceModelDownloading": "Stemmemodellen til dette sprog downloades. Prøv igen om et minut."
+  "voiceModelDownloading": "Stemmemodellen til dette sprog downloades. Prøv igen om et minut.",
+  "historyThisWeek": "Denne uge",
+  "historyProductsSection": "Købte varer"
 }

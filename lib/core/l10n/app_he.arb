@@ -344,5 +344,7 @@
   "backupImportFailed": "לא הצלחנו לייבא את הגיבוי הזה. הנתונים שלך לא השתנו.",
   "backupImported": "גיבוי יובא בהצלחה.",
   "backupPreviewCounts": "{lists} רשימות · {items} פריטים · {entries} קניות",
-  "voiceModelDownloading": "מודל הקול לשפה זו בהורדה. נסו שוב בעוד דקה."
+  "voiceModelDownloading": "מודל הקול לשפה זו בהורדה. נסו שוב בעוד דקה.",
+  "historyThisWeek": "השבוע",
+  "historyProductsSection": "מוצרים שנקנו"
 }

@@ -344,5 +344,7 @@
   "backupImportFailed": "No s'ha pogut importar aquesta còpia de seguretat. Les teves dades no han estat modificades.",
   "backupImported": "Còpia de seguretat importada correctament.",
   "backupPreviewCounts": "{lists} llistes · {items} articles · {entries} compres",
-  "voiceModelDownloading": "S’està baixant el model de veu per a aquesta llengua. Torna-ho a provar d’aquí a un minut."
+  "voiceModelDownloading": "S’està baixant el model de veu per a aquesta llengua. Torna-ho a provar d’aquí a un minut.",
+  "historyThisWeek": "Aquesta setmana",
+  "historyProductsSection": "Productes comprats"
 }

@@ -1111,4 +1111,10 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Γίνεται λήψη του φωνητικού μοντέλου για αυτή τη γλώσσα. Δοκιμάστε ξανά σε ένα λεπτό.';
+
+  @override
+  String get historyThisWeek => 'Αυτή την εβδομάδα';
+
+  @override
+  String get historyProductsSection => 'Προϊόντα που αγοράστηκαν';
 }

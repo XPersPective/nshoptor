@@ -1107,4 +1107,10 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'या भाषेचे व्हॉइस मॉडेल डाउनलोड होत आहे. एका मिनिटानंतर पुन्हा प्रयत्न करा.';
+
+  @override
+  String get historyThisWeek => 'हा आठवडा';
+
+  @override
+  String get historyProductsSection => 'खरेदी केलेली उत्पादने';
 }

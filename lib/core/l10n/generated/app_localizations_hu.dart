@@ -1110,4 +1110,10 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'A nyelv hangmodellje letöltés alatt áll. Próbáld újra egy perc múlva.';
+
+  @override
+  String get historyThisWeek => 'Ez a hét';
+
+  @override
+  String get historyProductsSection => 'Vásárolt termékek';
 }

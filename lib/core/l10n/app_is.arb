@@ -344,5 +344,7 @@
   "backupImportFailed": "Gat ekki flutt inn þessa afritun. Gögnin þín voru ekki breytt.",
   "backupImported": "Afhending varð successfully.",
   "backupPreviewCounts": "{lists} listar · {items} vörur · {entries} kaup",
-  "voiceModelDownloading": "Verið er að sækja raddlíkanið fyrir þetta tungumál. Reyndu aftur eftir mínútu."
+  "voiceModelDownloading": "Verið er að sækja raddlíkanið fyrir þetta tungumál. Reyndu aftur eftir mínútu.",
+  "historyThisWeek": "Þessi vika",
+  "historyProductsSection": "Keyptar vörur"
 }

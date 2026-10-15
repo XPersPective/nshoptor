@@ -1110,4 +1110,10 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Muundo wa sauti wa lugha hii unapakuliwa. Jaribu tena baada ya dakika moja.';
+
+  @override
+  String get historyThisWeek => 'Wiki hii';
+
+  @override
+  String get historyProductsSection => 'Bidhaa zilizonunuliwa';
 }

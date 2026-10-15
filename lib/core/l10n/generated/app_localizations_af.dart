@@ -1110,4 +1110,10 @@ class AppLocalizationsAf extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Die stemmodel vir hierdie taal word afgelaai. Probeer oor ’n minuut weer.';
+
+  @override
+  String get historyThisWeek => 'Hierdie week';
+
+  @override
+  String get historyProductsSection => 'Gekoopte produkte';
 }

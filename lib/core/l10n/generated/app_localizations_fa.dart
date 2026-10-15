@@ -1104,4 +1104,10 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'مدل صوتی این زبان در حال دانلود است. یک دقیقه دیگر دوباره امتحان کنید.';
+
+  @override
+  String get historyThisWeek => 'این هفته';
+
+  @override
+  String get historyProductsSection => 'محصولات خریداری‌شده';
 }

@@ -1111,4 +1111,10 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Галасавая мадэль для гэтай мовы спампоўваецца. Паспрабуйце праз хвіліну.';
+
+  @override
+  String get historyThisWeek => 'Гэты тыдзень';
+
+  @override
+  String get historyProductsSection => 'Купленыя тавары';
 }

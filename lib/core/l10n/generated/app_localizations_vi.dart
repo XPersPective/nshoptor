@@ -1109,4 +1109,10 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Đang tải mô hình giọng nói cho ngôn ngữ này. Hãy thử lại sau một phút.';
+
+  @override
+  String get historyThisWeek => 'Tuần này';
+
+  @override
+  String get historyProductsSection => 'Sản phẩm đã mua';
 }

@@ -344,5 +344,7 @@
   "backupImportFailed": "امکان وارد کردن این پشتیبان وجود ندارد. داده‌های شما تغییر نکرده است.",
   "backupImported": "پشتیبان با موفقیت وارد شد.",
   "backupPreviewCounts": "{lists} لیست · {items} کالا · {entries} خرید",
-  "voiceModelDownloading": "مدل صوتی این زبان در حال دانلود است. یک دقیقه دیگر دوباره امتحان کنید."
+  "voiceModelDownloading": "مدل صوتی این زبان در حال دانلود است. یک دقیقه دیگر دوباره امتحان کنید.",
+  "historyThisWeek": "این هفته",
+  "historyProductsSection": "محصولات خریداری‌شده"
 }

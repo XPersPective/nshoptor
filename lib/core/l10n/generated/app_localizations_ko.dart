@@ -1081,4 +1081,10 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       '이 언어의 음성 모델을 다운로드하는 중입니다. 1분 후에 다시 시도하세요.';
+
+  @override
+  String get historyThisWeek => '이번 주';
+
+  @override
+  String get historyProductsSection => '구매한 상품';
 }

@@ -344,5 +344,7 @@
   "backupImportFailed": "Bu ehtiyat nüsxəsini idxal etmək mümkün olmadı. Məlumatlarınız dəyişdirilmədi.",
   "backupImported": "Yedək uğurla idxal edildi.",
   "backupPreviewCounts": "{lists} siyahı · {items} məhsul · {entries} alış",
-  "voiceModelDownloading": "Bu dil üçün səs modeli yüklənir. Bir dəqiqədən sonra yenidən cəhd edin."
+  "voiceModelDownloading": "Bu dil üçün səs modeli yüklənir. Bir dəqiqədən sonra yenidən cəhd edin.",
+  "historyThisWeek": "Bu həftə",
+  "historyProductsSection": "Alınan məhsullar"
 }

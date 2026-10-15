@@ -344,5 +344,7 @@
   "backupImportFailed": "Ezin izan da babeskopia hau inportatu. Zure datuak ez dira aldatu.",
   "backupImported": "Backupa arrakastaz inportatu da.",
   "backupPreviewCounts": "{lists} zerrenda · {items} elementu · {entries} erosketa",
-  "voiceModelDownloading": "Hizkuntza honen ahots-eredua deskargatzen ari da. Saiatu berriro minutu batean."
+  "voiceModelDownloading": "Hizkuntza honen ahots-eredua deskargatzen ari da. Saiatu berriro minutu batean.",
+  "historyThisWeek": "Aste hau",
+  "historyProductsSection": "Erositako produktuak"
 }

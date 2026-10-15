@@ -1107,4 +1107,10 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Hlasový model pro tento jazyk se stahuje. Zkuste to znovu za minutu.';
+
+  @override
+  String get historyThisWeek => 'Tento týden';
+
+  @override
+  String get historyProductsSection => 'Koupené produkty';
 }

@@ -1107,4 +1107,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Downloading the voice model for this language. Try again in a minute.';
+
+  @override
+  String get historyThisWeek => 'This week';
+
+  @override
+  String get historyProductsSection => 'Products bought';
 }

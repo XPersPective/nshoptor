@@ -344,5 +344,7 @@
   "backupImportFailed": "Nu s-a putut importa acest backup. Datele tale nu au fost modificate.",
   "backupImported": "Backup importat cu succes.",
   "backupPreviewCounts": "{lists} liste · {items} articole · {entries} achiziții",
-  "voiceModelDownloading": "Se descarcă modelul vocal pentru această limbă. Încearcă din nou peste un minut."
+  "voiceModelDownloading": "Se descarcă modelul vocal pentru această limbă. Încearcă din nou peste un minut.",
+  "historyThisWeek": "Săptămâna aceasta",
+  "historyProductsSection": "Produse cumpărate"
 }

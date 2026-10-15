@@ -1107,4 +1107,10 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Model suara untuk bahasa ini sedang diunduh. Coba lagi dalam satu menit.';
+
+  @override
+  String get historyThisWeek => 'Minggu ini';
+
+  @override
+  String get historyProductsSection => 'Produk yang dibeli';
 }

@@ -1112,4 +1112,10 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Այս լեզվի ձայնային մոդելը ներբեռնվում է։ Փորձեք կրկին մեկ րոպեից։';
+
+  @override
+  String get historyThisWeek => 'Այս շաբաթ';
+
+  @override
+  String get historyProductsSection => 'Գնված ապրանքներ';
 }

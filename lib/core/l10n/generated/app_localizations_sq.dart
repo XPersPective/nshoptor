@@ -1112,4 +1112,10 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get voiceModelDownloading =>
       'Modeli zanor për këtë gjuhë po shkarkohet. Provo përsëri pas një minute.';
+
+  @override
+  String get historyThisWeek => 'Këtë javë';
+
+  @override
+  String get historyProductsSection => 'Produktet e blera';
 }
