@@ -301,13 +301,14 @@ void main() {
             .text,
         '40,00',
       );
-      expect(
-        find.byKey(const ValueKey('item_actual_unit_kilogram')),
-        findsNothing,
-      );
       await tester.tap(find.byKey(const Key('item_details_expand')));
       await tester.pumpAndSettle();
-      expect(find.byKey(const ValueKey('item_actual_unit_kilogram')), findsOneWidget);
+      // Details holds only brand, category and note; the price is per kg.
+      expect(find.byKey(const Key('item_brand_field')), findsOneWidget);
+      expect(find.byKey(const Key('item_note_field')), findsOneWidget);
+      expect(find.byKey(const Key('item_actual_quantity_field')), findsNothing);
+      expect(find.byKey(const Key('item_discount_field')), findsNothing);
+      expect(find.text('Çarşıdaki Fiyat / kg'), findsOneWidget);
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
       await tester.ensureVisible(find.byKey(const Key('item_save_button')));
       await tester.tap(find.byKey(const Key('item_save_button')));

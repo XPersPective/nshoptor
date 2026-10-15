@@ -8,6 +8,7 @@ import '../../core/quantity/unit_code.dart';
 import '../../data/db/app_database.dart';
 import '../shopping_mode/shopping_repository.dart';
 import 'starter_categories.dart';
+import 'taxonomy/category_suggester.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
 import '../../app/app_defaults.dart';
 
@@ -66,6 +67,10 @@ class ItemRepository {
           .insert(CategoriesCompanion.insert(name: categoryName.trim()));
     }
     final normalizedName = normalizeName(name);
+    // No category chosen: the product's remembered category fills it in.
+    if (categoryId == null && (categoryName == null || categoryName.trim().isEmpty)) {
+      categoryId = await CategorySuggester(_db).suggestCategory(normalizedName);
+    }
     final mode = priceIsUnitPrice ? 'unitPrice' : 'lineTotal';
     DecimalFixed? unitPrice;
     int? lineTotalMinor;
@@ -100,6 +105,10 @@ class ItemRepository {
             sortOrder: Value(sortOrder),
             updatedAt: Value(DateTime.now()),
           );
+    final learned = categoryId;
+    if (learned != null) {
+      await CategorySuggester(_db).learnDefaultCategory(name, normalizedName, learned);
+    }
     if (existingId == null) return _db.into(_db.plannedItems).insert(values);
     await (_db.update(_db.plannedItems)..where((t) => t.id.equals(existingId))).write(values);
     return existingId;

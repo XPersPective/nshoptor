@@ -9,14 +9,13 @@ import '../voice_input/parser/parsed_item_candidate.dart';
 import '../receipts/shelf_label/price_candidates.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/decimal_fixed.dart';
-import '../../core/money/money_format.dart';
-import '../../core/money/money.dart';
 import '../../core/money/money_parser.dart';
 import '../../core/quantity/unit_code.dart';
 import '../../core/quantity/unit_display.dart';
 import '../../data/db/app_database.dart';
 import '../../app/app_defaults.dart';
 import 'starter_categories.dart';
+import '../voice_input/dictation_mic_button.dart';
 import 'item_repository.dart';
 import '../shopping_mode/shopping_repository.dart';
 import '../../core/util/normalize_name.dart';
@@ -39,7 +38,6 @@ class ItemFormSheet extends StatefulWidget {
     this.initialQuantity,
     this.initialUnitCode,
     this.initialUnitPrice,
-    this.onVoicePressed,
     this.onShelfPricePressed,
     this.onShelfCandidatePressed,
     this.initialActualCandidate,
@@ -64,10 +62,6 @@ class ItemFormSheet extends StatefulWidget {
   final String? initialQuantity;
   final UnitCode? initialUnitCode;
   final String? initialUnitPrice;
-
-  /// Verilince mikrofon düğmesi çıkar; kullanıcı sesle girişi kontrol eder.
-  final Future<ParsedItemCandidate?> Function(BuildContext context)?
-  onVoicePressed;
 
   /// Verilince raf etiketi düğmesi çıkar; seçilen birim fiyat dizesi döner.
   final Future<String?> Function(BuildContext context)? onShelfPricePressed;
@@ -103,11 +97,9 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   String? _priceError;
   String? _nameError;
   String _currencyCode = 'TRY';
-  final _actualQuantity = TextEditingController(text: '1');
   final _actualPrice = TextEditingController();
-  final _discount = TextEditingController();
-  UnitCode? _actualUnit;
-  bool _actualPriceIsUnit = true;
+  // Hidden from the form; preserved when the store price is re-recorded.
+  int _existingDiscountMinor = 0;
   bool _actualChanged = false;
   bool _prefilled = false;
   bool _currencyLoaded = false;
@@ -165,17 +157,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
         (u) =>
             u.dbCode == item.plannedUnitCode || u.name == item.plannedUnitCode,
       );
-      _priceIsUnitPrice = item.pricingInputMode == 'unitPrice';
-      _price.text =
-          (_priceIsUnitPrice
-              ? item.plannedUnitPrice
-              : item.plannedLineTotalMinorUnits == null
-              ? null
-              : DecimalFixed.fromMinorUnits(
-                  item.plannedLineTotalMinorUnits!,
-                  Currency.fromCode(_currencyCode).minorUnitDigits,
-                ).toDbString()) ??
-          '';
+      // The form speaks only unit prices; line-total items already store one.
+      _price.text = _trimZeros(item.plannedUnitPrice ?? '');
       _maxPrice.text = item.maxAcceptablePrice ?? '';
       _required = item.requiredFlag;
       _categoryId = item.categoryId;
@@ -183,33 +166,24 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     for (final c in [_quantity, _price, _maxPrice]) {
       c.text = local(c.text);
     }
-    _actualQuantity.text = local(
-      item?.plannedQuantity ?? widget.initialQuantity ?? '1',
-    );
     if (widget.entries.isNotEmpty && !_mixedUnits) {
-      final first = widget.entries.first;
-      _actualUnit = UnitCode.values.firstWhere(
-        (u) =>
-            u.dbCode == first.actualUnitCode || u.name == first.actualUnitCode,
-      );
-      _actualQuantity.text = local(
-        widget.entries
-            .fold(
-              DecimalFixed.zero(),
-              (s, e) => s + DecimalFixed.parse(e.actualQuantity),
-            )
-            .toDbString(),
-      );
-      _actualPriceIsUnit =
-          widget.entries.length == 1 && first.actualUnitPrice != null;
       final digits = Currency.fromCode(_currencyCode).minorUnitDigits;
+      _existingDiscountMinor = widget.entries.fold<int>(
+        0,
+        (s, e) => s + e.discountMinorUnits,
+      );
+      final first = widget.entries.first;
+      final quantity = widget.entries.fold(
+        DecimalFixed.zero(),
+        (s, e) => s + DecimalFixed.parse(e.actualQuantity),
+      );
+      final unknown = widget.entries.every(
+        (e) => e.grossTotalMinorUnits == null && e.source != 'receiptOcr',
+      );
       _actualPrice.text = local(
-        _actualPriceIsUnit
+        widget.entries.length == 1 && first.actualUnitPrice != null
             ? first.actualUnitPrice!
-            : widget.entries.every(
-                (e) =>
-                    e.grossTotalMinorUnits == null && e.source != 'receiptOcr',
-              )
+            : unknown || !quantity.isPositive
             ? ''
             : DecimalFixed.fromMinorUnits(
                 widget.entries.fold<int>(
@@ -218,18 +192,11 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                       s + e.actualLineTotalMinorUnits + e.discountMinorUnits,
                 ),
                 digits,
-              ).toDbString(),
-      );
-      _discount.text = local(
-        DecimalFixed.fromMinorUnits(
-          widget.entries.fold<int>(0, (s, e) => s + e.discountMinorUnits),
-          digits,
-        ).toDbString(),
+              ).divide(quantity, scale: digits).toDbString(),
       );
     }
     if (widget.initialActualPrice != null) {
       _actualPrice.text = local(widget.initialActualPrice!);
-      _actualPriceIsUnit = true;
       _actualChanged = true;
     }
     if (widget.initialActualCandidate != null) {
@@ -246,9 +213,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     _price.dispose();
     _maxPrice.dispose();
     _note.dispose();
-    _actualQuantity.dispose();
     _actualPrice.dispose();
-    _discount.dispose();
     super.dispose();
   }
 
@@ -275,39 +240,6 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   bool? _fieldState(String text) {
     if (text.trim().isEmpty) return null;
     return _tryParse(text) != null;
-  }
-
-  /// Girilmeyen tarafın hesaplanmış değeri (spec §6.2: çift yönlü).
-  String _otherSidePreview() {
-    final qty = _tryParse(_quantity.text);
-    final price = _tryParse(_price.text);
-    if (qty == null || price == null || !qty.isPositive) return '';
-    final currency = Currency.fromCode(_currencyCode);
-    final digits = currency.minorUnitDigits;
-    final l10n = _l10n;
-    try {
-      if (_priceIsUnitPrice) {
-        final total = LineCalc.plannedLineTotal(qty, price);
-        return l10n.lineTotalCalculated(
-          formatMoney(
-            Money.fromMinorUnits(total.toMinorUnits(digits), currency),
-            locale: formatLocaleCode(context),
-          ),
-        );
-      }
-      final unitPrice = price.divide(
-        qty,
-        scale: DecimalFixed.maxFractionDigits,
-      );
-      return l10n.unitPriceCalculated(
-        formatMoney(
-          Money.fromMinorUnits(unitPrice.toMinorUnits(digits), currency),
-          locale: formatLocaleCode(context),
-        ),
-      );
-    } on FormatException {
-      return l10n.invalidAmountError;
-    }
   }
 
   Future<void> _save() async {
@@ -350,18 +282,11 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     }
 
     final actualPrice = _tryParse(_actualPrice.text);
-    final actualQuantity = _tryParse(_actualQuantity.text);
-    final discount = _tryParse(_discount.text) ?? DecimalFixed.zero();
     if (_actualChanged &&
         (_mixedUnits ||
-            actualQuantity == null ||
-            actualQuantity.isZero ||
             _fieldState(_actualPrice.text) == false ||
-            (actualPrice?.isNegative ?? false) ||
-            _fieldState(_discount.text) == false ||
-            discount.isNegative)) {
+            (actualPrice?.isNegative ?? false))) {
       setState(() => _actualError = l10n.invalidAmountError);
-      _detailsController.expand();
       return;
     }
     setState(() => _saving = true);
@@ -390,13 +315,20 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             plannedItemId: id,
             name: name,
             normalizedName: normalizeName(name),
-            quantity: actualQuantity!,
-            unitCode: (_actualUnit ?? _unit).dbCode,
-            unitPrice: _actualPriceIsUnit ? actualPrice : null,
-            lineTotalMinor: _actualPriceIsUnit
-                ? null
-                : actualPrice?.toMinorUnits(digits),
-            discountMinor: discount.toMinorUnits(digits),
+            // Store quantity follows the list quantity (user: it may change in
+            // the shop); the form records the store unit price only.
+            quantity: quantity,
+            unitCode: _unit.dbCode,
+            unitPrice: actualPrice,
+            discountMinor: actualPrice == null
+                ? 0
+                : _existingDiscountMinor.clamp(
+                    0,
+                    LineCalc.plannedLineTotal(
+                      quantity,
+                      actualPrice,
+                    ).toMinorUnits(digits),
+                  ),
           );
         }
       });
@@ -408,13 +340,25 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     }
   }
 
-  // Ses girişi çıktısını forma uygular (spec §6.7: doğrulanmadan kaydolmaz).
-  Future<void> _onVoicePressed() async {
-    final handler = widget.onVoicePressed;
-    if (handler == null) return;
-    final candidate = await handler(context);
-    if (candidate == null || !mounted) return;
-    setState(() => _applyCandidate(candidate));
+  /// Derived unit prices keep 6 digits ("1.999000"); show only what matters,
+  /// never fewer than the currency's digits.
+  String _trimZeros(String value) {
+    final dot = value.indexOf('.');
+    if (dot < 0) return value;
+    final keep = dot + 1 + Currency.fromCode(_currencyCode).minorUnitDigits;
+    var end = value.length;
+    while (end > keep && value[end - 1] == '0') {
+      end--;
+    }
+    return value.substring(0, end);
+  }
+
+  void _quantityOrUnitChanged() {
+    // An existing store price is per unit: its line total follows the quantity.
+    if (widget.entries.isNotEmpty && _actualPrice.text.trim().isNotEmpty) {
+      _actualChanged = true;
+    }
+    setState(() {});
   }
 
   void _applyCandidate(ParsedItemCandidate candidate) {
@@ -452,11 +396,6 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       '.',
       _separators.decimal,
     );
-    _actualPriceIsUnit = c.isUnitPrice || c.unitCode == UnitCode.adet;
-    if (c.unitCode != null) {
-      if (c.unitCode != (_actualUnit ?? _unit)) _actualQuantity.text = '1';
-      _actualUnit = c.unitCode;
-    }
     _actualChanged = true;
   }
 
@@ -478,26 +417,6 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    widget.existing == null
-                        ? l10n.itemFormTitle
-                        : l10n.editAction,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-                if (widget.onVoicePressed != null)
-                  IconButton(
-                    key: const Key('item_voice_button'),
-                    icon: const Icon(Icons.mic_none),
-                    tooltip: l10n.voiceStartListening,
-                    onPressed: () => _onVoicePressed(),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 12),
             TextField(
               key: const Key('item_name_field'),
               controller: _name,
@@ -506,34 +425,12 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               decoration: InputDecoration(
                 labelText: l10n.itemNameLabel,
                 errorText: _nameError,
-              ),
-            ),
-            const SizedBox(height: 12),
-            // Tahmini fiyat: ikinci alan — "domates, 14 TL" akışı iki
-            // dokunuşta tamamlanır (C-004). Miktar varsayılanı 1'dir.
-            TextField(
-              key: const Key('item_price_field'),
-              controller: _price,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
-                labelText:
-                    '${l10n.compareEstimated} · ${_priceIsUnitPrice ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}',
-
-                errorText: _priceError,
-              ),
-              onChanged: (_) => setState(() {}),
-            ),
-            if (_otherSidePreview().isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Text(
-                  _otherSidePreview(),
-                  style: Theme.of(context).textTheme.bodySmall,
+                suffixIcon: DictationMicButton(
+                  key: const Key('item_name_mic'),
+                  controller: _name,
                 ),
               ),
+            ),
             const SizedBox(height: 12),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -549,7 +446,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                       labelText: l10n.quantityLabel,
                       errorText: _quantityError,
                     ),
-                    onChanged: (_) => setState(() {}),
+                    onChanged: (_) => _quantityOrUnitChanged(),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -573,15 +470,31 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                             ),
                           )
                           .toList(),
-                      onChanged: (v) => setState(() => _unit = v ?? _unit),
+                      onChanged: (v) {
+                        _unit = v ?? _unit;
+                        _quantityOrUnitChanged();
+                      },
                     ),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 12),
-            // Gelişmiş alanlar katlanır: ana akış yalnız ad+fiyat+miktar
-            // ister; kalanlar "Ayrıntılar"ta (C-004).
+            // Evdeki/Çarşıdaki fiyat hep birim fiyattır: "/ kg" eki bunu söyler.
+            TextField(
+              key: const Key('item_price_field'),
+              controller: _price,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText:
+                    '${l10n.compareEstimated} / ${unitDisplayName(_unit, l10n)}',
+                errorText: _priceError,
+              ),
+            ),
+            const SizedBox(height: 12),
             TextField(
               key: const Key('item_actual_price_field'),
               controller: _actualPrice,
@@ -592,11 +505,11 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               ),
               decoration: InputDecoration(
                 labelText:
-                    '${l10n.compareActual} · ${_actualPriceIsUnit ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}',
+                    '${l10n.compareActual} / ${unitDisplayName(_unit, l10n)}',
                 errorText: _actualError,
-                helperText: l10n.priceOptionalHint,
+                helperText: _mixedUnits ? l10n.purchaseAnalyticsHint : null,
               ),
-              onChanged: (_) => setState(() => _actualChanged = true),
+              onChanged: (_) => _actualChanged = true,
             ),
             ExpansionTile(
               key: const Key('item_details_expand'),
@@ -604,107 +517,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               title: Text(l10n.itemDetailsSection),
               childrenPadding: const EdgeInsets.only(top: 12, bottom: 8),
               children: [
-                const SizedBox(height: 12),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        key: const Key('item_actual_quantity_field'),
-                        controller: _actualQuantity,
-                        enabled: !_mixedUnits,
-                        keyboardType: const TextInputType.numberWithOptions(
-                          decimal: true,
-                          signed: true,
-                        ),
-                        decoration: InputDecoration(
-                          labelText: l10n.actualQuantityLabel,
-                        ),
-                        onChanged: (_) => _actualChanged = true,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: DropdownButtonFormField<String>(
-                        key: ValueKey(
-                          'item_actual_unit_${(_actualUnit ?? _unit).dbCode}',
-                        ),
-                        initialValue: (_actualUnit ?? _unit).dbCode,
-                        isExpanded: true,
-                        decoration: InputDecoration(labelText: l10n.unitLabel),
-                        items: UnitCode.values
-                            .map(
-                              (u) => DropdownMenuItem(
-                                value: u.dbCode,
-                                child: Text(unitDisplayName(u, l10n)),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: _mixedUnits
-                            ? null
-                            : (v) => setState(() {
-                                _actualUnit = UnitCode.fromDbCode(v!);
-                                _actualChanged = true;
-                              }),
-                      ),
-                    ),
-                  ],
-                ),
-                if (_mixedUnits) Text(l10n.purchaseAnalyticsHint),
-
-                DropdownButtonFormField<bool>(
-                  key: ValueKey('item_actual_pricing_mode_$_actualPriceIsUnit'),
-                  initialValue: _actualPriceIsUnit,
-                  isExpanded: true,
-                  decoration: InputDecoration(
-                    labelText: l10n.priceOptionalHint,
-                  ),
-                  items: [
-                    DropdownMenuItem(
-                      value: true,
-                      child: Text(l10n.pricingModeUnitPrice),
-                    ),
-                    DropdownMenuItem(
-                      value: false,
-                      child: Text(l10n.pricingModeLineTotal),
-                    ),
-                  ],
-                  onChanged: _mixedUnits
-                      ? null
-                      : (v) => setState(() {
-                          _actualPriceIsUnit = v!;
-                          _actualChanged = true;
-                        }),
-                ),
-                const SizedBox(height: 12),
                 TextField(
-                  key: const Key('item_discount_field'),
-                  controller: _discount,
-                  enabled: !_mixedUnits,
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  decoration: InputDecoration(labelText: l10n.discountLabel),
-                  onChanged: (_) => _actualChanged = true,
-                ),
-                SegmentedButton<bool>(
-                  key: const Key('item_pricing_mode'),
-                  segments: [
-                    ButtonSegment(
-                      value: true,
-                      label: Text(l10n.pricingModeUnitPrice),
-                    ),
-                    ButtonSegment(
-                      value: false,
-                      label: Text(l10n.pricingModeLineTotal),
-                    ),
-                  ],
-                  selected: {_priceIsUnitPrice},
-                  onSelectionChanged: (s) =>
-                      setState(() => _priceIsUnitPrice = s.first),
-                ),
-                const SizedBox(height: 12),
-                TextField(
+                  key: const Key('item_brand_field'),
                   controller: _brand,
                   decoration: InputDecoration(labelText: l10n.brandLabel),
                 ),
@@ -720,46 +534,33 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                     onChanged: (value) => _categoryName = value.trim().isEmpty
                         ? null
                         : value.trim(),
-                  ),
-                DropdownButtonFormField<int>(
-                  isExpanded: true,
-                  key: ValueKey('item_category_$_categoryId'),
-                  initialValue: _categoryId,
-                  decoration: InputDecoration(labelText: l10n.categoryLabel),
-                  items: _categories
-                      .map(
-                        (c) => DropdownMenuItem(
-                          value: c.id,
-                          child: Text(
-                            widget.starterCategories.labelOf(l10n, c.name),
+                  )
+                else
+                  DropdownButtonFormField<int>(
+                    isExpanded: true,
+                    key: ValueKey('item_category_$_categoryId'),
+                    initialValue: _categoryId,
+                    decoration: InputDecoration(labelText: l10n.categoryLabel),
+                    items: _categories
+                        .map(
+                          (c) => DropdownMenuItem(
+                            value: c.id,
+                            child: Text(
+                              widget.starterCategories.labelOf(l10n, c.name),
+                            ),
                           ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (v) => setState(() {
-                    _categoryId = v;
-                    _categoryName = null;
-                  }),
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _maxPrice,
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
+                        )
+                        .toList(),
+                    onChanged: (v) => setState(() {
+                      _categoryId = v;
+                      _categoryName = null;
+                    }),
                   ),
-                  decoration: InputDecoration(labelText: l10n.maxPriceLabel),
-                ),
                 const SizedBox(height: 12),
                 TextField(
+                  key: const Key('item_note_field'),
                   controller: _note,
                   decoration: InputDecoration(labelText: l10n.itemNoteLabel),
-                ),
-                CheckboxListTile(
-                  key: const Key('item_required_toggle'),
-                  value: _required,
-                  title: Text(l10n.requiredItemToggle),
-                  onChanged: (v) => setState(() => _required = v ?? false),
-                  contentPadding: EdgeInsets.zero,
                 ),
               ],
             ),

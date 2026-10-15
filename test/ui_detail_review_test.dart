@@ -15,6 +15,10 @@ import 'package:nshoptor/features/shopping_mode/summary/summary_screen.dart';
 
 const _enabled = bool.fromEnvironment('UI_REVIEW');
 const _captureKey = Key('ui_detail_review_capture');
+const _captureDir = String.fromEnvironment(
+  'UI_REVIEW_DIR',
+  defaultValue: '.store-automation/evidence/SA-005',
+);
 
 typedef _Scenario = ({
   String name,
@@ -154,10 +158,7 @@ void main() {
         'geçersiz',
       );
       await _tapVisible(tester, 'item_save_button');
-      expect(
-        find.byKey(const Key('item_actual_quantity_field')),
-        findsOneWidget,
-      );
+      expect(find.byKey(const Key('item_actual_quantity_field')), findsNothing);
       expect(
         tester
             .widget<TextField>(find.byKey(const Key('item_actual_price_field')))
@@ -165,7 +166,14 @@ void main() {
             .text,
         'geçersiz',
       );
-      await _capture(tester, '${scenario.name}_invalid_details');
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('item_actual_price_field')))
+            .decoration!
+            .errorText,
+        isNotNull,
+      );
+      await _capture(tester, '${scenario.name}_invalid_price');
 
       final details = find
           .descendant(
@@ -176,7 +184,11 @@ void main() {
       await _center(tester, details);
       await tester.tap(details);
       await _settle(tester);
-      expect(find.byKey(const Key('item_actual_quantity_field')), findsNothing);
+      expect(find.byKey(const Key('item_brand_field')), findsOneWidget);
+      expect(find.byKey(const Key('item_note_field')), findsOneWidget);
+      expect(find.byKey(const Key('item_discount_field')), findsNothing);
+      await _center(tester, find.byKey(const Key('item_note_field')));
+      await _capture(tester, '${scenario.name}_item_details');
       await tester.enterText(
         find.byKey(const Key('item_actual_price_field')),
         '12',
@@ -353,7 +365,7 @@ Future<void> _capture(WidgetTester tester, String name) async {
   await tester.runAsync(() async {
     final image = await boundary.toImage(pixelRatio: 1);
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
-    final directory = Directory('.store-automation/evidence/SA-005');
+    final directory = Directory(_captureDir);
     await directory.create(recursive: true);
     await File('${directory.path}/$name.png')
         .writeAsBytes(data!.buffer.asUint8List());

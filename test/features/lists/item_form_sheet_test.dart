@@ -186,24 +186,20 @@ void main() {
       existing: item,
       entries: await db.select(db.purchaseEntries).get(),
     );
-    await tester.tap(find.byKey(const Key('item_details_expand')));
-    await tester.pumpAndSettle();
     expect(
       tester
-          .widget<TextField>(
-            find.byKey(const Key('item_actual_quantity_field')),
-          )
+          .widget<TextField>(find.byKey(const Key('item_actual_price_field')))
           .controller!
           .text,
-      '1,5',
+      '45',
     );
     await tester.enterText(
       find.byKey(const Key('item_name_field')),
       'Tomatoes',
     );
     await tester.enterText(
-      find.byKey(const Key('item_actual_quantity_field')),
-      '1,25',
+      find.byKey(const Key('item_actual_price_field')),
+      '50',
     );
     await settleAndSave(tester);
     final items = await db.select(db.plannedItems).get();
@@ -212,12 +208,11 @@ void main() {
     expect(items.single.name, 'Tomatoes');
     expect(items.single.plannedQuantity, '2');
     expect(items.single.plannedLineTotalMinorUnits, 8000);
-    expect(
-      (await db.select(db.purchaseEntries).get())
-          .single
-          .actualLineTotalMinorUnits,
-      5625,
-    );
+    // The store price is per unit and follows the list quantity.
+    final entry = (await db.select(db.purchaseEntries).get()).single;
+    expect(entry.actualQuantity, '2');
+    expect(entry.actualUnitPrice, '50');
+    expect(entry.actualLineTotalMinorUnits, 10000);
     await disposeApp(tester);
   });
 
@@ -290,9 +285,9 @@ void main() {
             .widget<TextField>(find.byKey(const Key('item_price_field')))
             .controller!
             .text,
-        '5,997',
+        '1,999',
       );
-      expect(find.textContaining('1,999'), findsOneWidget);
+      expect(find.byKey(const Key('item_pricing_mode')), findsNothing);
       await tester.enterText(
         find.byKey(const Key('item_name_field')),
         'Cancelled',
@@ -344,38 +339,28 @@ void main() {
     },
   );
 
-  testWidgets('satır toplamı modunda birim fiyat hesaplanır', (tester) async {
+  testWidgets('empty category is filled from the product memory', (
+    tester,
+  ) async {
     final listId = await db
         .into(db.shoppingLists)
-        .insert(
-          ShoppingListsCompanion.insert(
-            title: const Value('L'),
-            currencyCode: 'TRY',
-          ),
-        );
-    await openForm(tester, listId);
-
-    await tester.enterText(find.byKey(const Key('item_name_field')), 'Süt');
-    await tester.enterText(find.byKey(const Key('item_quantity_field')), '3');
-    // Fiyat modu anahtarı "Ayrıntılar" altında: önce bölümü aç.
-    await tester.tap(find.byKey(const Key('item_details_expand')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('item_pricing_mode')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Satır toplamı').first);
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byKey(const Key('item_price_field')), '59,97');
-    await settleAndSave(tester);
-
-    final item = await (db.select(db.plannedItems)..limit(1)).getSingle();
-    expect(item.pricingInputMode, 'lineTotal');
-    expect(item.plannedLineTotalMinorUnits, 5997);
-    expect(
-      item.plannedUnitPrice!.startsWith('19.99'),
-      isTrue,
-      reason: 'birim fiyat 19,99 hesaplanmalı: ${item.plannedUnitPrice}',
+        .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    await StarterCategories().seedIfEmpty(db);
+    final category = (await db.select(db.categories).get()).first;
+    await ItemRepository(db).addItem(
+      listId: listId,
+      name: 'Süt',
+      categoryId: category.id,
+      quantity: DecimalFixed.fromInt(1),
+      unitCode: 'piece',
+      priceIsUnitPrice: true,
     );
-
+    await openForm(tester, listId);
+    await tester.enterText(find.byKey(const Key('item_name_field')), 'süt');
+    await settleAndSave(tester);
+    final items = await db.select(db.plannedItems).get();
+    expect(items, hasLength(2));
+    expect(items.last.categoryId, category.id);
     await disposeApp(tester);
   });
 
