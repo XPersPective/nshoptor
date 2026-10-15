@@ -55,3 +55,4 @@ ios/Flutter/AdsConfig.xcconfig
 
 # Kotlin compiler runtime cache
 android/.kotlin/
+__pycache__/
