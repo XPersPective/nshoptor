@@ -104,6 +104,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         title: Text(l10n.navSettings),
         actions: [
+          // Current plan at a glance; tap opens the plans. Large text keeps
+          // only the icon (label in the tooltip) so the app bar never overflows.
+          _PlanBadge(
+            label: _planLabel(l10n),
+            trial: _tier == Tier.pro && widget.subscriptions!.inTrial(),
+            active: _proUnlocked,
+            onPressed: () => widget.subscriptions != null
+                ? _openPlans(context)
+                : _openPaywall(context),
+          ),
           if (widget.giftFlow != null) widget.giftFlow!,
         ],
       ),
@@ -112,6 +122,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
         builder: (context, _) => ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            _SectionTitle(
+                icon: Icons.workspace_premium_outlined,
+                label: 'NShoptor Pro'),
+            ListTile(
+              key: const Key('settings_pro_row'),
+              leading: const Icon(Icons.workspace_premium_outlined),
+              title: Text(widget.subscriptions == null
+                  ? (_proUnlocked ? l10n.proActiveLabel : l10n.proBuyLabel)
+                  : switch (_tier) {
+                      Tier.max => 'NShoptor Max',
+                      Tier.pro => 'NShoptor Pro',
+                      Tier.free => l10n.plansAction,
+                    }),
+              subtitle: _tier == Tier.free ? Text(l10n.proBenefitsLine) : null,
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => widget.subscriptions == null
+                  ? (_proUnlocked ? null : _openPaywall(context))
+                  : _openPlans(context),
+            ),
+
             _SectionTitle(icon: Icons.language, label: l10n.languageLabel),
             DropdownButtonFormField<String>(
               isExpanded: true,
@@ -209,7 +239,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             CheckboxListTile(
-              secondary: const Icon(Icons.screen_lock_portrait),
+              secondary: const Icon(Icons.light_mode_outlined),
               title: Text(l10n.keepAwakeLabel),
               value: _repo.keepScreenAwake,
               onChanged: (v) =>
@@ -219,26 +249,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(l10n.roundingNote,
                   style: Theme.of(context).textTheme.bodySmall),
-            ),
-
-            _SectionTitle(
-                icon: Icons.workspace_premium_outlined,
-                label: 'NShoptor Pro'),
-            ListTile(
-              key: const Key('settings_pro_row'),
-              leading: const Icon(Icons.workspace_premium_outlined),
-              title: Text(widget.subscriptions == null
-                  ? (_proUnlocked ? l10n.proActiveLabel : l10n.proBuyLabel)
-                  : switch (_tier) {
-                      Tier.max => 'NShoptor Max',
-                      Tier.pro => 'NShoptor Pro',
-                      Tier.free => l10n.plansAction,
-                    }),
-              subtitle: _tier == Tier.free ? Text(l10n.proBenefitsLine) : null,
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => widget.subscriptions == null
-                  ? (_proUnlocked ? null : _openPaywall(context))
-                  : _openPlans(context),
             ),
 
             _SectionTitle(
@@ -381,6 +391,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       (widget.subscriptions?.tier ?? Tier.free) != Tier.free;
 
   Tier get _tier => widget.subscriptions?.tier ?? Tier.free;
+
+  String _planLabel(AppLocalizations l10n) => switch (_tier) {
+    Tier.max => 'Max',
+    Tier.pro => 'Pro',
+    Tier.free => _proUnlocked ? 'Pro' : l10n.planFree,
+  };
 
   Future<void> _openPlans(BuildContext context) async {
     final subs = widget.subscriptions!;
@@ -554,6 +570,50 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 }
 
+class _PlanBadge extends StatelessWidget {
+  const _PlanBadge({
+    required this.label,
+    required this.trial,
+    required this.active,
+    required this.onPressed,
+  });
+
+  final String label;
+  final bool trial;
+  final bool active;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final tip = trial
+        ? '$label · ${AppLocalizations.of(context).planTrial}'
+        : label;
+    final icon = Icon(
+      trial ? Icons.hourglass_top : Icons.workspace_premium,
+      size: 18,
+      color: active ? Theme.of(context).colorScheme.primary : null,
+    );
+    if (MediaQuery.textScalerOf(context).scale(14) > 18) {
+      return IconButton(
+        key: const Key('settings_plan_badge'),
+        tooltip: tip,
+        icon: icon,
+        onPressed: onPressed,
+      );
+    }
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(end: 4),
+      child: ActionChip(
+        key: const Key('settings_plan_badge'),
+        avatar: icon,
+        label: Text(label),
+        tooltip: tip,
+        onPressed: onPressed,
+      ),
+    );
+  }
+}
+
 class _SectionTitle extends StatelessWidget {
   const _SectionTitle({required this.icon, required this.label});
 
@@ -568,7 +628,9 @@ class _SectionTitle extends StatelessWidget {
         children: [
           Icon(icon, size: 18),
           const SizedBox(width: 8),
-          Text(label, style: Theme.of(context).textTheme.titleSmall),
+          Expanded(
+            child: Text(label, style: Theme.of(context).textTheme.titleSmall),
+          ),
         ],
       ),
     );

@@ -49,6 +49,9 @@ class SubscriptionService extends ChangeNotifier {
   static const ids = {proId, maxId, legacyProId, legacyMaxId};
   static const _productKey = 'sub_product';
   static const _tokenKey = 'sub_token';
+  static const _trialKey = 'sub_trial_until';
+  static const trialDays = 7;
+  bool _pendingTrial = false;
 
   final SettingsStore store;
   final InAppPurchase? _iapOverride;
@@ -78,6 +81,18 @@ class SubscriptionService extends ChangeNotifier {
       };
 
   Tier get tier => tierOf(_productId);
+
+  /// Ücretsiz deneme süresinde mi (yalnız gösterim; Play faturalar).
+  bool inTrial([DateTime? now]) {
+    final until = store.getInt(_trialKey);
+    return tier != Tier.free && until != null &&
+        (now ?? DateTime.now()).millisecondsSinceEpoch < until;
+  }
+
+  /// Denemeli bir teklif satın alındı: 7 günlük deneme başlar.
+  @visibleForTesting
+  void markTrialStarted(DateTime now) => store.setInt(
+      _trialKey, now.add(const Duration(days: trialDays)).millisecondsSinceEpoch);
 
   /// Reklamsız mı: ömür boyu/geçici Pro ya da herhangi bir abonelik.
   static bool adFree({required bool lifetimeOrTemp, required Tier tier}) =>
@@ -110,6 +125,7 @@ class SubscriptionService extends ChangeNotifier {
     if (best == null) {
       store.remove(_productKey);
       store.remove(_tokenKey);
+      store.remove(_trialKey);
     } else {
       store.setString(_productKey, best.productId);
       store.setString(_tokenKey, best.token);
@@ -166,6 +182,8 @@ class SubscriptionService extends ChangeNotifier {
       switch (p.status) {
         case PurchaseStatus.purchased || PurchaseStatus.restored:
           if (p is GooglePlayPurchaseDetails) purchased.add(p);
+          if (p.status == PurchaseStatus.purchased && _pendingTrial) markTrialStarted(DateTime.now());
+          _pendingTrial = false;
           _purchasePending = false;
         case PurchaseStatus.error:
           _purchasePending = false; lastError = 'error';
@@ -226,6 +244,7 @@ class SubscriptionService extends ChangeNotifier {
       final change = old != null && old.productID != offer.productId
           ? ChangeSubscriptionParam(oldPurchaseDetails: old, replacementMode: ReplacementMode.withTimeProration) : null;
       _purchasePending = true;
+      _pendingTrial = offer.hasTrial;
       final launched = await _iap.buyNonConsumable(purchaseParam: GooglePlayPurchaseParam(
         productDetails: offer.details, changeSubscriptionParam: change));
       if (!launched) throw StateError('purchase_not_launched');

@@ -21,6 +21,7 @@ import 'package:nshoptor/core/money/currency.dart';
 import 'package:nshoptor/core/quantity/unit_code.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/settings/settings_repository.dart';
+import 'package:nshoptor/features/subscription/subscription_service.dart';
 
 void main() {
   late AppDatabase db;
@@ -311,6 +312,78 @@ void main() {
       });
     });
   }
+
+
+  testWidgets('plan badge shows free, trial and max; fits 320dp 2x', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(320, 640));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final store = SettingsStore();
+    final language = LanguageController(store: store)..load();
+    final pro = ProController(
+      store: store,
+      repository: PurchaseRepository(
+        adapter: InAppPurchaseAdapter(),
+        productId: 'nshoptor_pro_lifetime',
+      ),
+    )..load();
+    final subs = SubscriptionService(store: SettingsStore());
+    var scale = 2.0;
+    Future<String> badge() async {
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(
+              context,
+            ).copyWith(textScaler: TextScaler.linear(scale)),
+            child: child!,
+          ),
+          home: SettingsScreen(
+            key: UniqueKey(),
+            repository: settings,
+            languageController: language,
+            proController: pro,
+            subscriptions: subs,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      final badge = tester.widget(find.byKey(const Key('settings_plan_badge')));
+      return badge is ActionChip
+          ? badge.tooltip!
+          : (badge as IconButton).tooltip!;
+    }
+
+    expect(await badge(), 'Ücretsiz');
+    subs.applyOwned([(productId: SubscriptionService.proId, token: 't')]);
+    subs.markTrialStarted(DateTime.now());
+    expect(subs.inTrial(), isTrue);
+    expect(
+      subs.inTrial(DateTime.now().add(const Duration(days: 8))),
+      isFalse,
+    );
+    expect(await badge(), 'Pro · 7 gün ücretsiz');
+    subs.applyOwned([(productId: SubscriptionService.maxId, token: 'm')]);
+    expect(await badge(), 'Max');
+    subs.applyOwned([]);
+    expect(subs.inTrial(), isFalse);
+    expect(await badge(), 'Ücretsiz');
+    scale = 1;
+    subs.applyOwned([(productId: SubscriptionService.proId, token: 't')]);
+    subs.markTrialStarted(DateTime.now());
+    expect(await badge(), 'Pro · 7 gün ücretsiz');
+    subs.dispose();
+  });
 
 }
 
