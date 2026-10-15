@@ -9,6 +9,7 @@ import 'package:nshoptor/features/lists/item_repository.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
+import 'package:nshoptor/features/voice_input/voice_input_service.dart';
 
 void main() {
   late AppDatabase db;
@@ -22,6 +23,7 @@ void main() {
     int listId, {
     String locale = 'tr',
     double scale = 1,
+    SpeechService? speech,
   }) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -38,7 +40,12 @@ void main() {
               .copyWith(textScaler: TextScaler.linear(scale)),
           child: child!,
         ),
-        home: ListDetailScreen(db: db, listRepository: lists, listId: listId),
+        home: ListDetailScreen(
+          db: db,
+          listRepository: lists,
+          listId: listId,
+          speechService: speech,
+        ),
       ),
     );
     await tester.pumpAndSettle();
@@ -263,4 +270,40 @@ void main() {
       },
     );
   }
+
+  testWidgets('composer tap opens the item form; mic dictates many items live', (
+    tester,
+  ) async {
+    final listId = await lists.createList(title: 'Market', currencyCode: 'TRY');
+    final speech = FakeSpeechService();
+    await open(tester, listId, speech: speech);
+
+    await tester.tap(find.byKey(const Key('detail_quick_entry')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('item_name_field')), findsOneWidget);
+    expect(find.byKey(const Key('item_name_mic')), findsOneWidget);
+    await tester.tapAt(const Offset(10, 10));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key('detail_quick_list')));
+    // The listening indicator animates forever: pump frames, do not settle.
+    for (var i = 0; i < 10; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(find.byKey(const Key('draft_listening')), findsOneWidget);
+    speech.emitPartial('1 kilo elma');
+    await tester.pump();
+    expect(find.text('1 kilo elma'), findsOneWidget);
+    speech.emitFinal('1 kilo elma 2 ekmek');
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('draft_listening')), findsNothing);
+    expect(find.text('1 kilo elma 2 ekmek'), findsOneWidget);
+    expect(
+      tester
+          .widget<FilledButton>(find.byKey(const Key('draft_convert_button')))
+          .onPressed,
+      isNotNull,
+    );
+    await close(tester);
+  });
 }

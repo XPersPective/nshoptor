@@ -93,8 +93,14 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     super.dispose();
   }
 
+  // Text typed or spoken before this listening session; new speech appends.
+  String _prefix = '';
+
   void _onVoice() {
-    final t = _voice!.transcript;
+    final spoken = _voice!.transcript;
+    final t = spoken.isEmpty || spoken == _prefix
+        ? ''
+        : _prefix.isEmpty ? spoken : '$_prefix $spoken';
     if (t.isNotEmpty && t != _text.text) { _text.text = t; _draft = null; _selected.clear(); }
     setState(() {});
   }
@@ -103,10 +109,11 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     final voice = _voice;
     if (voice == null || _micBusy || _busy) return;
     setState(() => _micBusy = true);
-    voice.transcript = _text.text;
     try {
       if (voice.state == VoiceInputState.listening) { await voice.stop(); }
       else if (await voice.initialize() && mounted) {
+        _prefix = _text.text.trim();
+        voice.transcript = '';
         await voice.start(locale: Localizations.localeOf(context).toLanguageTag());
       }
     } finally { if (mounted) setState(() => _micBusy = false); }
@@ -251,10 +258,14 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
               voiceErrorText(l10n, _voice?.errorMessage),
               key: const Key('draft_voice_unavailable'), style: TextStyle(color: Theme.of(context).colorScheme.error)),
             const SizedBox(height: 8),
+            // Spoken words appear live in the field while the mic listens.
+            if (_voice?.state == VoiceInputState.listening)
+              const LinearProgressIndicator(key: Key('draft_listening')),
             TextField(
               key: const Key('draft_text_field'),
               controller: _text,
-              enabled: !_busy && !_micBusy && _voice?.state != VoiceInputState.listening,
+              enabled: !_busy && !_micBusy,
+              readOnly: _voice?.state == VoiceInputState.listening,
               minLines: 2,
               maxLines: 5,
               onChanged: (text) { _voice?.transcript = text; setState(() { _draft = null; _selected.clear(); _error = null; }); },

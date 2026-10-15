@@ -95,7 +95,6 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   bool _lockBusy = false;
   late final ShoppingRepository _shoppingRepo = ShoppingRepository(widget.db);
   late Future<ShoppingList> _listFuture;
-  final _quickEntry = TextEditingController();
   bool _busy = false;
   bool _editable = false;
 
@@ -118,7 +117,6 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     appRouteObserver.unsubscribe(this);
     if (identical(_visibleList, this)) _visibleList = null;
     _syncLock();
-    _quickEntry.dispose();
     super.dispose();
   }
 
@@ -574,19 +572,15 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Expanded(
+                                // Tap = one item in the full form; mic = many
+                                // items spoken at once (draft with approval).
                                 child: TextField(
                                   key: const Key('detail_quick_entry'),
-                                  controller: _quickEntry,
+                                  readOnly: true,
                                   enabled: !_busy,
-                                  textInputAction: TextInputAction.done,
-                                  onSubmitted: (text) {
-                                    final value = text.trim();
-                                    if (value.isEmpty) return;
-                                    _quickEntry.clear();
-                                    _openQuickList(context, initialText: value);
-                                  },
+                                  onTap: () => _openItemForm(context),
                                   decoration: InputDecoration(
-                                    hintText: l10n.quickListHint,
+                                    hintText: l10n.itemFormTitle,
                                     prefixIcon: const Icon(Icons.add),
                                     suffixIcon: IconButton(
                                       key: const Key('detail_quick_list'),
@@ -902,7 +896,6 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         speechService: widget.speechService ?? SttSpeechService(),
         initialText: initialText,
         autoListen: autoListen,
-        showMic: false,
         allowTitle: false,
         onApprove: (draft) =>
             ItemRepository(widget.db).addCandidates(widget.listId, draft.items),
