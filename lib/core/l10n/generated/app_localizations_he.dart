@@ -1096,4 +1096,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists רשימות · $items פריטים · $entries קניות';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'מודל הקול לשפה זו בהורדה. נסו שוב בעוד דקה.';
 }

@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSONలో రికార్డ్స్ ఉంటాయి, ఫోటో ఫైల్స్ కాదు. ఇంపోర్ట్ పరిమితి: 16 MB.",
   "backupImportFailed": "ఈ బ్యాకప్‌ను ఇంపోర్ట్ చేయలేము. మీ డేటా మార్చబడలేదు.",
   "backupImported": "బ్యాకప్ విజయవంతంగా దిగుమతి చేయబడింది.",
-  "backupPreviewCounts": "{lists} జాబితాలు · {items} వస్తువులు · {entries} కొనుగోళ్లు"
+  "backupPreviewCounts": "{lists} జాబితాలు · {items} వస్తువులు · {entries} కొనుగోళ్లు",
+  "voiceModelDownloading": "ఈ భాష కోసం వాయిస్ మోడల్ డౌన్‌లోడ్ అవుతోంది. ఒక నిమిషం తర్వాత మళ్లీ ప్రయత్నించండి."
 }

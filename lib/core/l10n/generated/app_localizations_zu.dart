@@ -1113,4 +1113,8 @@ class AppLocalizationsZu extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists amalisti · $items izinto · $entries ukuthenga';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Imodeli yezwi yalolu limi iyalandwa. Zama futhi ngemuva komzuzu owodwa.';
 }

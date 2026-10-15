@@ -12,6 +12,7 @@ import 'ai_list_parser.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
 import 'parser/parsed_item_candidate.dart';
+import 'dictation_mic_button.dart';
 import 'voice_input_service.dart';
 
 /// Cümleden/sesten çok ürünlü taslak (PB-050). Kullanıcı söyler ya da yazar,
@@ -247,7 +248,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
               ],
             ),
             if (_voice?.state == VoiceInputState.error) Text(
-              _voice?.errorMessage == 'unsupportedLanguage' ? l10n.voiceUnsupportedLanguage : l10n.voiceUnavailable,
+              voiceErrorText(l10n, _voice?.errorMessage),
               key: const Key('draft_voice_unavailable'), style: TextStyle(color: Theme.of(context).colorScheme.error)),
             const SizedBox(height: 8),
             TextField(

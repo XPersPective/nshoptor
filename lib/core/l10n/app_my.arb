@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON တွင် photo file များမပါဝင်ဘဲ record များသာ ပါရှိသည်။ Import လုပ်နိုင်သော အများဆုံးအရွယ်အစားမှာ 16 MB ဖြစ်သည်။",
   "backupImportFailed": "ဤ backup ကို import လုပ်၍မရပါ။ သင့် data များ ပြောင်းလဲခြင်း မရှိပါ။",
   "backupImported": "Backup ကို အောင်မြင်စွာ ဝင်ရောက်ပြီးပါပြီ။",
-  "backupPreviewCounts": "{lists} စာရင်းများ · {items} ပစ္စည်းများ · {entries} ဝယ်ယူမှုများ"
+  "backupPreviewCounts": "{lists} စာရင်းများ · {items} ပစ္စည်းများ · {entries} ဝယ်ယူမှုများ",
+  "voiceModelDownloading": "ဤဘာသာစကားအတွက် အသံမော်ဒယ်ကို ဒေါင်းလုဒ်လုပ်နေသည်။ တစ်မိနစ်အကြာတွင် ထပ်ကြိုးစားပါ။"
 }

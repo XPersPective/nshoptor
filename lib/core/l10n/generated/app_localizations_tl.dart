@@ -1110,4 +1110,8 @@ class AppLocalizationsTl extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists listahan · $items item · $entries pagbili';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Dina-download ang voice model para sa wikang ito. Subukang muli pagkalipas ng isang minuto.';
 }

@@ -1108,4 +1108,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists lista · $items artikuj · $entries blerje';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Modeli zanor për këtë gjuhë po shkarkohet. Provo përsëri pas një minute.';
 }

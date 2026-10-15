@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON inarekodi, si faili za picha. Kikomo cha uingizaji: 16 MB.",
   "backupImportFailed": "Haiweza kuingiza hili backup. Data yako haimebadilishwa.",
   "backupImported": "Backup imewekwa kwa mafanikio.",
-  "backupPreviewCounts": "{lists} orodha · {items} vitu · {entries} ununuzi"
+  "backupPreviewCounts": "{lists} orodha · {items} vitu · {entries} ununuzi",
+  "voiceModelDownloading": "Muundo wa sauti wa lugha hii unapakuliwa. Jaribu tena baada ya dakika moja."
 }

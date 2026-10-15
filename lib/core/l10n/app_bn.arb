@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON-এ রেকর্ড রয়েছে, ফটো ফাইল নয়। আমদানির সীমা: ১৬ এমবি।",
   "backupImportFailed": "এই ব্যাকআপটি আমদানি করা যায়নি। আপনার ডেটা পরিবর্তন হয়নি।",
   "backupImported": "ব্যাকআপ সফলভাবে আমদানি করা হয়েছে।",
-  "backupPreviewCounts": "{lists} তালিকা · {items} আইটেম · {entries} ক্রয়"
+  "backupPreviewCounts": "{lists} তালিকা · {items} আইটেম · {entries} ক্রয়",
+  "voiceModelDownloading": "এই ভাষার ভয়েস মডেল ডাউনলোড হচ্ছে। এক মিনিট পরে আবার চেষ্টা করুন।"
 }

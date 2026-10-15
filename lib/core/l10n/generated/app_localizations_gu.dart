@@ -1102,4 +1102,8 @@ class AppLocalizationsGu extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists યાદીઓ · $items આઇટમ્સ · $entries ખરીદીઓ';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'આ ભાષા માટે વૉઇસ મોડેલ ડાઉનલોડ થઈ રહ્યું છે. એક મિનિટ પછી ફરી પ્રયાસ કરો.';
 }

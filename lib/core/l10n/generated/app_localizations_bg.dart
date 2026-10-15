@@ -1107,4 +1107,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists списъка · $items артикула · $entries покупки';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Гласовият модел за този език се изтегля. Опитайте отново след минута.';
 }

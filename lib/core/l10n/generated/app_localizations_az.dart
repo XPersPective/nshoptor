@@ -1107,4 +1107,8 @@ class AppLocalizationsAz extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists siyahı · $items məhsul · $entries alış';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Bu dil üçün səs modeli yüklənir. Bir dəqiqədən sonra yenidən cəhd edin.';
 }

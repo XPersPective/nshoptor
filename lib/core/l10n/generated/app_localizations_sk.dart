@@ -1106,4 +1106,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists zoznamov · $items položiek · $entries nákupov';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Hlasový model pre tento jazyk sa sťahuje. Skúste to znova o minútu.';
 }

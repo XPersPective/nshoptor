@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import 'parser/parsed_item_candidate.dart';
 import 'parser/voice_command_parser.dart';
+import 'dictation_mic_button.dart';
 import 'voice_input_service.dart';
 
 /// Sesle ürün ekleme sayfası: dinleme, düzenlenebilir transcript, parser
@@ -95,7 +96,7 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
             ),
             if (_controller.state == VoiceInputState.error)
               Text(
-                _controller.errorMessage == 'unsupportedLanguage' ? l10n.voiceUnsupportedLanguage : l10n.voiceUnavailable,
+                voiceErrorText(l10n, _controller.errorMessage),
                 key: const Key('voice_unavailable'),
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),

@@ -1103,4 +1103,8 @@ class AppLocalizationsIs extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists listar · $items vörur · $entries kaup';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Verið er að sækja raddlíkanið fyrir þetta tungumál. Reyndu aftur eftir mínútu.';
 }

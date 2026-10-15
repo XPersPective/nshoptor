@@ -16,6 +16,7 @@ import 'list_detail_screen.dart';
 import 'list_repository.dart';
 import 'reminders/reminder_scheduler.dart';
 import 'list_status.dart';
+import '../voice_input/dictation_mic_button.dart';
 
 /// Liste durumlarının görünen adları (kanonik kod → l10n).
 String statusLabel(AppLocalizations l10n, ListStatus status) =>
@@ -787,7 +788,14 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
             TextField(
               key: const Key('list_title_field'),
               controller: _title,
-              decoration: InputDecoration(labelText: l10n.listTitleHint),
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                labelText: l10n.listTitleHint,
+                suffixIcon: DictationMicButton(
+                  key: const Key('list_title_mic'),
+                  controller: _title,
+                ),
+              ),
             ),
             const SizedBox(height: 12),
             ExpansionTile(

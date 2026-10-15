@@ -1103,4 +1103,8 @@ class AppLocalizationsKk extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists тізім · $items тауар · $entries сатылым';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Бұл тілдің дауыс моделі жүктелуде. Бір минуттан кейін қайталап көріңіз.';
 }

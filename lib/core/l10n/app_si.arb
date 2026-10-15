@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON වලට ලේඛන ඇතුළත් වේ, ඡායාරූප ගොනු නොවේ. අපනයන සීමාව: 16 MB.",
   "backupImportFailed": "මෙම බැක්අප් එක ආනයන කළ නොහැක. ඔබේ දත්ත වෙනස් කර නැත.",
   "backupImported": "බැකප් සාර්ථකව ආනයනය කරන ලදී.",
-  "backupPreviewCounts": "{lists} ලැයිස්තු · {items} භාණ්ඩ · {entries} මිලදී ගැනීම්"
+  "backupPreviewCounts": "{lists} ලැයිස්තු · {items} භාණ්ඩ · {entries} මිලදී ගැනීම්",
+  "voiceModelDownloading": "මෙම භාෂාව සඳහා හඬ ආකෘතිය බාගත වෙමින් පවතී. මිනිත්තුවකින් නැවත උත්සාහ කරන්න."
 }

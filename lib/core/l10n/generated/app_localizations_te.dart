@@ -1111,4 +1111,8 @@ class AppLocalizationsTe extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists జాబితాలు · $items వస్తువులు · $entries కొనుగోళ్లు';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'ఈ భాష కోసం వాయిస్ మోడల్ డౌన్‌లోడ్ అవుతోంది. ఒక నిమిషం తర్వాత మళ్లీ ప్రయత్నించండి.';
 }

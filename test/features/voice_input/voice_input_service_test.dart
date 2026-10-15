@@ -80,4 +80,21 @@ void main() {
       expect(locales, contains('tr_TR'));
     });
   });
+
+  test('no speech (recognizer no-match) returns to idle without an error', () async {
+    await controller.initialize();
+    await controller.start();
+    controller.handleError('recognition_7');
+    expect(controller.state, VoiceInputState.idle);
+    expect(controller.errorMessage, isNull);
+  });
+
+  test('missing installed model asks the service to download it', () async {
+    service.locales = ['en_US'];
+    service.modelDownloadable = true;
+    await controller.initialize();
+    await controller.start(locale: 'tr-TR');
+    expect(controller.errorMessage, 'modelDownloading');
+    expect(controller.shouldFallbackToManual, isTrue);
+  });
 }

@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON indeholder poster, ikke fotofiler. Importgrænse: 16 MB.",
   "backupImportFailed": "Kunne ikke importere denne backup. Dine data er ikke blevet ændret.",
   "backupImported": "Backup importeret succesfuldt.",
-  "backupPreviewCounts": "{lists} lister · {items} varer · {entries} køb"
+  "backupPreviewCounts": "{lists} lister · {items} varer · {entries} køb",
+  "voiceModelDownloading": "Stemmemodellen til dette sprog downloades. Prøv igen om et minut."
 }

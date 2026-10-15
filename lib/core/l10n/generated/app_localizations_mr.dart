@@ -1103,4 +1103,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists याद्या · $items वस्तू · $entries खरेदी';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'या भाषेचे व्हॉइस मॉडेल डाउनलोड होत आहे. एका मिनिटानंतर पुन्हा प्रयत्न करा.';
 }

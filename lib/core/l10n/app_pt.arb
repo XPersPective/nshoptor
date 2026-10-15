@@ -343,5 +343,6 @@
   "backupSizeWarning": "O JSON inclui registros, não arquivos de foto. Limite de importação: 16 MB.",
   "backupImportFailed": "Não foi possível importar este backup. Seus dados não foram alterados.",
   "backupImported": "Backup importado com sucesso.",
-  "backupPreviewCounts": "{lists} listas · {items} itens · {entries} compras"
+  "backupPreviewCounts": "{lists} listas · {items} itens · {entries} compras",
+  "voiceModelDownloading": "O modelo de voz deste idioma está sendo baixado. Tente novamente em um minuto."
 }

@@ -1104,4 +1104,8 @@ class AppLocalizationsSr extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists листи · $items ставки · $entries куповине';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Гласовни модел за овај језик се преузима. Покушајте поново за минут.';
 }

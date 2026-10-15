@@ -1108,4 +1108,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists listas · $items artículos · $entries compras';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Se está descargando el modelo de voz de este idioma. Vuelve a intentarlo en un minuto.';
 }

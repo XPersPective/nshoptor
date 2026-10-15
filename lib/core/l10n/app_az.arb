@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON faylı şəkil faylları əvəzinə qeydlər daşıyır. İdxal həddi: 16 MB.",
   "backupImportFailed": "Bu ehtiyat nüsxəsini idxal etmək mümkün olmadı. Məlumatlarınız dəyişdirilmədi.",
   "backupImported": "Yedək uğurla idxal edildi.",
-  "backupPreviewCounts": "{lists} siyahı · {items} məhsul · {entries} alış"
+  "backupPreviewCounts": "{lists} siyahı · {items} məhsul · {entries} alış",
+  "voiceModelDownloading": "Bu dil üçün səs modeli yüklənir. Bir dəqiqədən sonra yenidən cəhd edin."
 }

@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON sisaldab kirjeid, mitte fotofaile. Impordi piirang: 16 MB.",
   "backupImportFailed": "Seda varundust ei saanud importida. Sinu andmed jäid muutumata.",
   "backupImported": "Varukoopia imporditi edukalt.",
-  "backupPreviewCounts": "{lists} nimekirja · {items} toodet · {entries} ostu"
+  "backupPreviewCounts": "{lists} nimekirja · {items} toodet · {entries} ostu",
+  "voiceModelDownloading": "Selle keele häälmudelit laaditakse alla. Proovi minuti pärast uuesti."
 }

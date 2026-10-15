@@ -1104,4 +1104,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists তালিকা · $items আইটেম · $entries ক্রয়';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'এই ভাষার ভয়েস মডেল ডাউনলোড হচ্ছে। এক মিনিট পরে আবার চেষ্টা করুন।';
 }

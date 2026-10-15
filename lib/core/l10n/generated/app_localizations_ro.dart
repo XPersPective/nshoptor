@@ -1108,4 +1108,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists liste · $items articole · $entries achiziții';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Se descarcă modelul vocal pentru această limbă. Încearcă din nou peste un minut.';
 }

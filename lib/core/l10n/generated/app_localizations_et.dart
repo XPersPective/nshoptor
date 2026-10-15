@@ -1103,4 +1103,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists nimekirja · $items toodet · $entries ostu';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Selle keele häälmudelit laaditakse alla. Proovi minuti pärast uuesti.';
 }

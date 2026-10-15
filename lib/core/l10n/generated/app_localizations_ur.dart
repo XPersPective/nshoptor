@@ -1103,4 +1103,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists لسٹیں · $items آئٹمز · $entries خریداریاں';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'اس زبان کا وائس ماڈل ڈاؤن لوڈ ہو رہا ہے۔ ایک منٹ بعد دوبارہ کوشش کریں۔';
 }

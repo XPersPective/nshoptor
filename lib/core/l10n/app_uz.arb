@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON fayllarida rasm fayllari emas, yozuvlar mavjud. Import cheklovi: 16 MB.",
   "backupImportFailed": "Bu zaxira nusxasini import qilishda xatolik yuz berdi. Ma'lumotlaringiz o'zgarmadi.",
   "backupImported": "Zaxira muvaffaqiyatli yuklandi.",
-  "backupPreviewCounts": "{lists} ro'yxat · {items} mahsulot · {entries} xarid"
+  "backupPreviewCounts": "{lists} ro'yxat · {items} mahsulot · {entries} xarid",
+  "voiceModelDownloading": "Bu til uchun ovoz modeli yuklab olinmoqda. Bir daqiqadan so‘ng qayta urinib ko‘ring."
 }

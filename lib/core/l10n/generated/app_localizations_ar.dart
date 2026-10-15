@@ -1094,4 +1094,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists قوائم · $items عناصر · $entries مشتريات';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'جارٍ تنزيل نموذج الصوت لهذه اللغة. حاول مرة أخرى بعد دقيقة.';
 }

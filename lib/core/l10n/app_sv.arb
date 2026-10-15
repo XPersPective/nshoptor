@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON innehåller poster, inte bildfiler. Importgräns: 16 MB.",
   "backupImportFailed": "Kunde inte importera denna säkerhetskopia. Dina data har inte ändrats.",
   "backupImported": "Säkerhetskopiering importerad.",
-  "backupPreviewCounts": "{lists} listor · {items} varor · {entries} inköp"
+  "backupPreviewCounts": "{lists} listor · {items} varor · {entries} inköp",
+  "voiceModelDownloading": "Röstmodellen för det här språket laddas ned. Försök igen om en minut."
 }

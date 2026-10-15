@@ -1108,4 +1108,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists lijsten · $items items · $entries aankopen';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Het spraakmodel voor deze taal wordt gedownload. Probeer het over een minuut opnieuw.';
 }

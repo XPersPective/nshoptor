@@ -1105,4 +1105,8 @@ class AppLocalizationsKy extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists тизме · $items товар · $entries сатып алуу';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Бул тилдин үн модели жүктөлүүдө. Бир мүнөттөн кийин кайра аракет кылыңыз.';
 }

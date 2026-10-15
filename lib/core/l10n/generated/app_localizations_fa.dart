@@ -1100,4 +1100,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists لیست · $items کالا · $entries خرید';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'مدل صوتی این زبان در حال دانلود است. یک دقیقه دیگر دوباره امتحان کنید.';
 }

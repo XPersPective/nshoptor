@@ -34,6 +34,9 @@ abstract class SpeechService {
   Future<void> cancel();
   Stream<bool> get statuses;
 
+  /// Dil modeli kurulu değilse cihaz içi indirmeyi başlatır; başladıysa true.
+  Future<bool> requestLanguageModel(String locale);
+
   bool get isListening;
 
   Stream<SpeechResult> get results;
@@ -68,7 +71,8 @@ class FakeSpeechService implements SpeechService {
   Future<bool> init() async => available && !permissionDenied;
 
   @override
-  Future<List<String>> availableLocales() async => ['tr_TR', 'en_US'];
+  Future<List<String>> availableLocales() async => locales;
+  List<String> locales = ['tr_TR', 'en_US'];
 
   @override
   Future<void> start(String locale) async {
@@ -89,6 +93,12 @@ class FakeSpeechService implements SpeechService {
 
   @override
   Future<void> cancel() => stop();
+
+  /// true: eksik dil modeli için indirme başlatılmış gibi davranır.
+  bool modelDownloadable = false;
+
+  @override
+  Future<bool> requestLanguageModel(String locale) async => modelDownloadable;
 
   void emitStatus(bool active) { listening.value = active; _statuses.add(active); }
 
@@ -133,7 +143,7 @@ class VoiceInputController extends ChangeNotifier {
   /// true: servis kullanılamıyor/izin yok → UI manuel giriş formunu açar.
   bool get shouldFallbackToManual =>
       state == VoiceInputState.error &&
-      ((errorMessage?.startsWith('serviceUnavailable') ?? false) || errorMessage == 'unsupportedLanguage');
+      ((errorMessage?.startsWith('serviceUnavailable') ?? false) || (errorMessage == 'unsupportedLanguage' || errorMessage == 'modelDownloading'));
 
   StreamSubscription<SpeechResult>? _resultSub;
   StreamSubscription<String>? _errorSub;
@@ -163,7 +173,11 @@ class VoiceInputController extends ChangeNotifier {
       final exact = locales.where((s) => tag(s) == requested);
       final sameLanguage = locales.where((s) => tag(s).split('-').first == requested.split('-').first);
       final chosen = exact.isNotEmpty ? exact.first : sameLanguage.firstOrNull;
-      if (chosen == null) { handleError('unsupportedLanguage'); return; }
+      if (chosen == null) {
+        final downloading = await _service.requestLanguageModel(locale);
+        if (!_disposed) handleError(downloading ? 'modelDownloading' : 'unsupportedLanguage');
+        return;
+      }
       state = VoiceInputState.listening;
       errorMessage = null;
       notifyListeners();
@@ -182,6 +196,12 @@ class VoiceInputController extends ChangeNotifier {
 
   void handleError(String message) {
     if (_disposed) return;
+    // Silence/no match is not a failure: the user just did not speak.
+    if (const {'recognition_6', 'recognition_7', 'recognition_no_match'}.contains(message)) {
+      state = VoiceInputState.idle;
+      notifyListeners();
+      return;
+    }
     state = VoiceInputState.error;
     errorMessage = message;
     notifyListeners();

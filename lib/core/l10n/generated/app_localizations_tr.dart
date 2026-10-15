@@ -1103,4 +1103,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists liste · $items ürün · $entries satın alım';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Bu dil için ses modeli indiriliyor. Bir dakika sonra tekrar dene.';
 }

@@ -1106,4 +1106,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists lista · $items tétel · $entries vásárlás';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'A nyelv hangmodellje letöltés alatt áll. Próbáld újra egy perc múlva.';
 }

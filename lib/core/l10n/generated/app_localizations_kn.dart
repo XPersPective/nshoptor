@@ -1107,4 +1107,8 @@ class AppLocalizationsKn extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists ಪಟ್ಟಿಗಳು · $items ವಸ್ತುಗಳು · $entries ಖರೀದಿಗಳು';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'ಈ ಭಾಷೆಯ ಧ್ವನಿ ಮಾದರಿ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ. ಒಂದು ನಿಮಿಷದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
 }

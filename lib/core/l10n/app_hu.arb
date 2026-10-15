@@ -343,5 +343,6 @@
   "backupSizeWarning": "A JSON fájlok rekordokat tartalmaznak, nem képfájlokat. Importálási korlát: 16 MB.",
   "backupImportFailed": "Nem sikerült importálni ezt a mentést. Az adatai nem változtak.",
   "backupImported": "A biztonsági mentés sikeresen importálva.",
-  "backupPreviewCounts": "{lists} lista · {items} tétel · {entries} vásárlás"
+  "backupPreviewCounts": "{lists} lista · {items} tétel · {entries} vásárlás",
+  "voiceModelDownloading": "A nyelv hangmodellje letöltés alatt áll. Próbáld újra egy perc múlva."
 }

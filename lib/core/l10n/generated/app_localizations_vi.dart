@@ -1105,4 +1105,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists danh sách · $items mặt hàng · $entries lần mua';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Đang tải mô hình giọng nói cho ngôn ngữ này. Hãy thử lại sau một phút.';
 }

@@ -343,5 +343,6 @@
   "backupSizeWarning": "קובץ JSON כולל רשומות, לא קבצי תמונה. מגבלת ייבוא: 16 MB.",
   "backupImportFailed": "לא הצלחנו לייבא את הגיבוי הזה. הנתונים שלך לא השתנו.",
   "backupImported": "גיבוי יובא בהצלחה.",
-  "backupPreviewCounts": "{lists} רשימות · {items} פריטים · {entries} קניות"
+  "backupPreviewCounts": "{lists} רשימות · {items} פריטים · {entries} קניות",
+  "voiceModelDownloading": "מודל הקול לשפה זו בהורדה. נסו שוב בעוד דקה."
 }

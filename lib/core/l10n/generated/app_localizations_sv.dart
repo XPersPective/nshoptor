@@ -1103,4 +1103,8 @@ class AppLocalizationsSv extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists listor · $items varor · $entries inköp';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Röstmodellen för det här språket laddas ned. Försök igen om en minut.';
 }

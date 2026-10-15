@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON include înregistrări, nu fișiere foto. Limita de import: 16 MB.",
   "backupImportFailed": "Nu s-a putut importa acest backup. Datele tale nu au fost modificate.",
   "backupImported": "Backup importat cu succes.",
-  "backupPreviewCounts": "{lists} liste · {items} articole · {entries} achiziții"
+  "backupPreviewCounts": "{lists} liste · {items} articole · {entries} achiziții",
+  "voiceModelDownloading": "Se descarcă modelul vocal pentru această limbă. Încearcă din nou peste un minut."
 }

@@ -1107,4 +1107,8 @@ class AppLocalizationsMs extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists senarai · $items item · $entries pembelian';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Model suara untuk bahasa ini sedang dimuat turun. Cuba lagi dalam seminit.';
 }

@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON obsahuje záznamy, nie súborové fotky. Limit importu: 16 MB.",
   "backupImportFailed": "Túto zálohu sa nepodarilo importovať. Vaše údaje sa nezmenili.",
   "backupImported": "Záloha bola úspešne importovaná.",
-  "backupPreviewCounts": "{lists} zoznamov · {items} položiek · {entries} nákupov"
+  "backupPreviewCounts": "{lists} zoznamov · {items} položiek · {entries} nákupov",
+  "voiceModelDownloading": "Hlasový model pre tento jazyk sa sťahuje. Skúste to znova o minútu."
 }

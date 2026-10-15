@@ -1107,4 +1107,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists zerrenda · $items elementu · $entries erosketa';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Hizkuntza honen ahots-eredua deskargatzen ari da. Saiatu berriro minutu batean.';
 }

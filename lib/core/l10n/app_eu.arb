@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON-k erregistroak ditu, ez argazki-fitxategiak. Inportazio muga: 16 MB.",
   "backupImportFailed": "Ezin izan da babeskopia hau inportatu. Zure datuak ez dira aldatu.",
   "backupImported": "Backupa arrakastaz inportatu da.",
-  "backupPreviewCounts": "{lists} zerrenda · {items} elementu · {entries} erosketa"
+  "backupPreviewCounts": "{lists} zerrenda · {items} elementu · {entries} erosketa",
+  "voiceModelDownloading": "Hizkuntza honen ahots-eredua deskargatzen ari da. Saiatu berriro minutu batean."
 }

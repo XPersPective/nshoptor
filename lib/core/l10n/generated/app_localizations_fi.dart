@@ -1109,4 +1109,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists listaa · $items tuotetta · $entries ostosta';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Tämän kielen puhemallia ladataan. Yritä uudelleen minuutin kuluttua.';
 }

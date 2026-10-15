@@ -1103,4 +1103,8 @@ class AppLocalizationsSi extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists ලැයිස්තු · $items භාණ්ඩ · $entries මිලදී ගැනීම්';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'මෙම භාෂාව සඳහා හඬ ආකෘතිය බාගත වෙමින් පවතී. මිනිත්තුවකින් නැවත උත්සාහ කරන්න.';
 }

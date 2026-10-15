@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON sisältää tietueita, ei valokuvatiedostoja. Tuontiraja: 16 Mt.",
   "backupImportFailed": "Tämän varmuuskopion tuonti epäonnistui. Tietojasi ei muutettu.",
   "backupImported": "Varmuuskopio tuotu onnistuneesti.",
-  "backupPreviewCounts": "{lists} listaa · {items} tuotetta · {entries} ostosta"
+  "backupPreviewCounts": "{lists} listaa · {items} tuotetta · {entries} ostosta",
+  "voiceModelDownloading": "Tämän kielen puhemallia ladataan. Yritä uudelleen minuutin kuluttua."
 }

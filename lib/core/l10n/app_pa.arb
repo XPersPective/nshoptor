@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON ਵਿੱਚ ਰਿਕਾਰਡ ਹਨ, ਫੋਟੋ ਫਾਈਲਾਂ ਨਹੀਂ। ਇੰਪੋਰਟ ਲਿਮਿਟ: 16 MB.",
   "backupImportFailed": "ਇਹ ਬੈਕਅਪ ਇੰਪੋਰਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਤੁਹਾਡਾ ਡੇਟਾ ਨਹੀਂ ਬਦਲਿਆ ਗਿਆ।",
   "backupImported": "ਬੈਕਅਪ ਸਫਲਤਾ ਨਾਲ ਇੰਪੋਰਟ ਕੀਤਾ ਗਿਆ ਹੈ।",
-  "backupPreviewCounts": "{lists} ਸੂਚੀਆਂ · {items} ਆਈਟਮਾਂ · {entries} ਖਰੀਦ"
+  "backupPreviewCounts": "{lists} ਸੂਚੀਆਂ · {items} ਆਈਟਮਾਂ · {entries} ਖਰੀਦ",
+  "voiceModelDownloading": "ਇਸ ਭਾਸ਼ਾ ਲਈ ਵੌਇਸ ਮਾਡਲ ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ। ਇੱਕ ਮਿੰਟ ਬਾਅਦ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 }

@@ -1101,4 +1101,8 @@ class AppLocalizationsPs extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists لیستونه · $items توکي · $entries خریدونه';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'د دې ژبې غږیز ماډل ښکته کېږي. یوه دقیقه وروسته بیا هڅه وکړئ.';
 }

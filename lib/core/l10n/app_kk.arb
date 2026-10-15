@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON сурет файлдарын қамтиды, жазбаларды емес. Импорттау шегі: 16 МБ.",
   "backupImportFailed": "Бұл резервтік көшірмені импорттау мүмкін болмады. Деректеріңіз өзгертілмеді.",
   "backupImported": "Сақтық көшірме сәтті импортталды.",
-  "backupPreviewCounts": "{lists} тізім · {items} тауар · {entries} сатылым"
+  "backupPreviewCounts": "{lists} тізім · {items} тауар · {entries} сатылым",
+  "voiceModelDownloading": "Бұл тілдің дауыс моделі жүктелуде. Бір минуттан кейін қайталап көріңіз."
 }

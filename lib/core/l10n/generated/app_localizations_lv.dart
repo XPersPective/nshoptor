@@ -1106,4 +1106,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists saraksti · $items preces · $entries pirkumi';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Šīs valodas balss modelis tiek lejupielādēts. Mēģiniet vēlreiz pēc minūtes.';
 }

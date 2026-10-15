@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON нь зураг файлуудыг агуулаагүй, бичлэгүүдийг агуулдаг. Импортлох хязгаар: 16 MB.",
   "backupImportFailed": "Энэ нөөцлөлтийг оруулж чадсангүй. Таны өгөгдөл өөрчлөгдөөгүй байна.",
   "backupImported": "Нөөц амжилттай импортлогдлоо.",
-  "backupPreviewCounts": "{lists} жагсаалт · {items} зүйл · {entries} худалдан авалт"
+  "backupPreviewCounts": "{lists} жагсаалт · {items} зүйл · {entries} худалдан авалт",
+  "voiceModelDownloading": "Энэ хэлний дуу хоолойн загварыг татаж байна. Нэг минутын дараа дахин оролдоно уу."
 }

@@ -343,5 +343,6 @@
   "backupSizeWarning": "El JSON inclou registres, no fitxers d'imatge. Límit d'importació: 16 MB.",
   "backupImportFailed": "No s'ha pogut importar aquesta còpia de seguretat. Les teves dades no han estat modificades.",
   "backupImported": "Còpia de seguretat importada correctament.",
-  "backupPreviewCounts": "{lists} llistes · {items} articles · {entries} compres"
+  "backupPreviewCounts": "{lists} llistes · {items} articles · {entries} compres",
+  "voiceModelDownloading": "S’està baixant el model de veu per a aquesta llengua. Torna-ho a provar d’aquí a un minut."
 }

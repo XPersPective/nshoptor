@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON утрымлівае запісы, а не файлы фатаграфій. Ліміт імпарту: 16 МБ.",
   "backupImportFailed": "Не ўдалося імпартаваць гэтую рэзервовую копію. Вашы даныя не зменены.",
   "backupImported": "Рэзервовая копія паспяхова імпартавана.",
-  "backupPreviewCounts": "{lists} спісы · {items} прадукты · {entries} пакупкі"
+  "backupPreviewCounts": "{lists} спісы · {items} прадукты · {entries} пакупкі",
+  "voiceModelDownloading": "Галасавая мадэль для гэтай мовы спампоўваецца. Паспрабуйце праз хвіліну."
 }

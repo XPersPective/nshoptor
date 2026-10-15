@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON failas įrašo duomenis, o ne nuotraukų failus. Importavimo limitas: 16 MB.",
   "backupImportFailed": "Nepavyko importuoti šio atsarginio kopijos. Jūsų duomenys nebuvo pakeisti.",
   "backupImported": "Atsarginė kopija sėkmingai importuota.",
-  "backupPreviewCounts": "{lists} sąrašai · {items} prekės · {entries} pirkimai"
+  "backupPreviewCounts": "{lists} sąrašai · {items} prekės · {entries} pirkimai",
+  "voiceModelDownloading": "Šios kalbos balso modelis atsisiunčiamas. Bandykite dar kartą po minutės."
 }

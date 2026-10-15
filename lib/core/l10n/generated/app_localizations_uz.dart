@@ -1109,4 +1109,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists ro\'yxat · $items mahsulot · $entries xarid';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Bu til uchun ovoz modeli yuklab olinmoqda. Bir daqiqadan so‘ng qayta urinib ko‘ring.';
 }

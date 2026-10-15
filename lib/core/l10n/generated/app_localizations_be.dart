@@ -1107,4 +1107,8 @@ class AppLocalizationsBe extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists спісы · $items прадукты · $entries пакупкі';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Галасавая мадэль для гэтай мовы спампоўваецца. Паспрабуйце праз хвіліну.';
 }

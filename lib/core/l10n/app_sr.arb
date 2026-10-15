@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON садржи записе, а не фајлове фотографија. Ограничење увоза: 16 MB.",
   "backupImportFailed": "Нисмо успели да увеземо ову резервну копију. Ваша подаци нису промењени.",
   "backupImported": "Бекап је успешно увезен.",
-  "backupPreviewCounts": "{lists} листи · {items} ставки · {entries} куповине"
+  "backupPreviewCounts": "{lists} листи · {items} ставки · {entries} куповине",
+  "voiceModelDownloading": "Гласовни модел за овај језик се преузима. Покушајте поново за минут."
 }

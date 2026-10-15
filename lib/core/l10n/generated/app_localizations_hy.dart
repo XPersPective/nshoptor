@@ -1108,4 +1108,8 @@ class AppLocalizationsHy extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists ցուցակ · $items ապրանք · $entries գնում';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Այս լեզվի ձայնային մոդելը ներբեռնվում է։ Փորձեք կրկին մեկ րոպեից։';
 }

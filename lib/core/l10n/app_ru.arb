@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON содержит записи, а не файлы фотографий. Лимит импорта: 16 МБ.",
   "backupImportFailed": "Не удалось импортировать эту резервную копию. Ваши данные не были изменены.",
   "backupImported": "Резервная копия успешно импортирована.",
-  "backupPreviewCounts": "{lists} списков · {items} товаров · {entries} покупок"
+  "backupPreviewCounts": "{lists} списков · {items} товаров · {entries} покупок",
+  "voiceModelDownloading": "Загружается голосовая модель для этого языка. Повторите попытку через минуту."
 }

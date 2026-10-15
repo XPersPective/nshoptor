@@ -1107,4 +1107,8 @@ class AppLocalizationsEl extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists λίστες · $items αντικείμενα · $entries αγορές';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Γίνεται λήψη του φωνητικού μοντέλου για αυτή τη γλώσσα. Δοκιμάστε ξανά σε ένα λεπτό.';
 }

@@ -364,5 +364,6 @@
   "backupSizeWarning": "JSON yalnız kayıtları içerir; fotoğraf dosyalarını içermez. İçe aktarma sınırı: 16 MB.",
   "backupImportFailed": "Bu yedek içe aktarılamadı. Verileriniz değiştirilmedi.",
   "backupImported": "Yedek başarıyla içe aktarıldı.",
-  "backupPreviewCounts": "{lists} liste · {items} ürün · {entries} satın alım"
+  "backupPreviewCounts": "{lists} liste · {items} ürün · {entries} satın alım",
+  "voiceModelDownloading": "Bu dil için ses modeli indiriliyor. Bir dakika sonra tekrar dene."
 }

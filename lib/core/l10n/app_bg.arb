@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON включва записи, а не файлове със снимки. Ограничение за импортиране: 16 MB.",
   "backupImportFailed": "Неуспешен импорт на резервното копие. Данните ви не са променени.",
   "backupImported": "Архивът е импортиран успешно.",
-  "backupPreviewCounts": "{lists} списъка · {items} артикула · {entries} покупки"
+  "backupPreviewCounts": "{lists} списъка · {items} артикула · {entries} покупки",
+  "voiceModelDownloading": "Гласовият модел за този език се изтегля. Опитайте отново след минута."
 }

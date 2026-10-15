@@ -1109,4 +1109,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists listes · $items articles · $entries achats';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Le modèle vocal de cette langue est en cours de téléchargement. Réessayez dans une minute.';
 }

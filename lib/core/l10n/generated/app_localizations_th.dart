@@ -1101,4 +1101,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists รายการ · $items สินค้า · $entries การซื้อ';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'กำลังดาวน์โหลดโมเดลเสียงสำหรับภาษานี้ ลองอีกครั้งในอีกหนึ่งนาที';
 }

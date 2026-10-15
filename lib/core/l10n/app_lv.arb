@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON ietver ierakstus, nevis foto failus. Importa limits: 16 MB.",
   "backupImportFailed": "Neizdevās importēt šo rezerves kopiju. Jūsu dati netika mainīti.",
   "backupImported": "Rezerves kopija veiksmīgi importēta.",
-  "backupPreviewCounts": "{lists} saraksti · {items} preces · {entries} pirkumi"
+  "backupPreviewCounts": "{lists} saraksti · {items} preces · {entries} pirkumi",
+  "voiceModelDownloading": "Šīs valodas balss modelis tiek lejupielādēts. Mēģiniet vēlreiz pēc minūtes."
 }

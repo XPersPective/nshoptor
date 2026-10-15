@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON mencakup catatan, bukan file foto. Batas impor: 16 MB.",
   "backupImportFailed": "Gagal mengimpor cadangan ini. Data Anda tidak berubah.",
   "backupImported": "Cadangan berhasil diimpor.",
-  "backupPreviewCounts": "{lists} daftar · {items} item · {entries} pembelian"
+  "backupPreviewCounts": "{lists} daftar · {items} item · {entries} pembelian",
+  "voiceModelDownloading": "Model suara untuk bahasa ini sedang diunduh. Coba lagi dalam satu menit."
 }

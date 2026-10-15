@@ -343,5 +343,6 @@
   "backupSizeWarning": "يحتوي ملف JSON على سجلات وليس ملفات صور. حد الاستيراد: 16 ميجابايت.",
   "backupImportFailed": "تعذر استيراد هذا النسخة الاحتياطية. لم يتم تغيير بياناتك.",
   "backupImported": "تم استيراد النسخة الاحتياطية بنجاح.",
-  "backupPreviewCounts": "{lists} قوائم · {items} عناصر · {entries} مشتريات"
+  "backupPreviewCounts": "{lists} قوائم · {items} عناصر · {entries} مشتريات",
+  "voiceModelDownloading": "جارٍ تنزيل نموذج الصوت لهذه اللغة. حاول مرة أخرى بعد دقيقة."
 }

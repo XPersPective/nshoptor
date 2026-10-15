@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON bevat records, geen fotobestanden. Importlimiet: 16 MB.",
   "backupImportFailed": "Deze back-up kan niet worden geïmporteerd. Uw gegevens zijn niet gewijzigd.",
   "backupImported": "Backup succesvol geïmporteerd.",
-  "backupPreviewCounts": "{lists} lijsten · {items} items · {entries} aankopen"
+  "backupPreviewCounts": "{lists} lijsten · {items} items · {entries} aankopen",
+  "voiceModelDownloading": "Het spraakmodel voor deze taal wordt gedownload. Probeer het over een minuut opnieuw."
 }

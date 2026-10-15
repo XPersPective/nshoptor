@@ -2299,6 +2299,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{lists} lists · {items} items · {entries} purchases'**
   String backupPreviewCounts(Object entries, Object items, Object lists);
+
+  /// No description provided for @voiceModelDownloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading the voice model for this language. Try again in a minute.'**
+  String get voiceModelDownloading;
 }
 
 class _AppLocalizationsDelegate

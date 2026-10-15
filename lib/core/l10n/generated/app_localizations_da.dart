@@ -1104,4 +1104,8 @@ class AppLocalizationsDa extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists lister · $items varer · $entries køb';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Stemmemodellen til dette sprog downloades. Prøv igen om et minut.';
 }

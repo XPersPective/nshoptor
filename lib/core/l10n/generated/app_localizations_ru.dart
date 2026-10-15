@@ -1103,4 +1103,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists списков · $items товаров · $entries покупок';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Загружается голосовая модель для этого языка. Повторите попытку через минуту.';
 }

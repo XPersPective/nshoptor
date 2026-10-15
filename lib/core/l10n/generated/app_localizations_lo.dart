@@ -1100,4 +1100,8 @@ class AppLocalizationsLo extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists ລາຍການ · $items ສິນຄ້າ · $entries ການຊື້';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'ກຳລັງດາວໂຫຼດໂມເດວສຽງສຳລັບພາສານີ້. ລອງໃໝ່ອີກຄັ້ງໃນໜຶ່ງນາທີ.';
 }

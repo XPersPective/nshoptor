@@ -1103,4 +1103,8 @@ class AppLocalizationsKa extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists სია · $items ნივთი · $entries შენაძენი';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'ამ ენის ხმოვანი მოდელი იტვირთება. სცადეთ ერთ წუთში.';
 }

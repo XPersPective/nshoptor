@@ -38,11 +38,14 @@ class MainActivity : FlutterActivity() {
     private var speechOwner = 0L
     private var speechGeneration = 0L
     private var speechActive = false
+    private var recognizerUsed = false
     private var speechResumed = false
     private var speechInitResult: MethodChannel.Result? = null
     private var speechLocalesResult: MethodChannel.Result? = null
     private var speechStopResult: MethodChannel.Result? = null
     private var speechLocales = emptyList<String>()
+    private var speechSupported = emptyList<String>()
+    private var speechPending = emptyList<String>()
     private val speechTimeout = Runnable {
         if (speechActive) {
             emitSpeech("error", mapOf("code" to "recognition_timeout"))
@@ -79,6 +82,7 @@ class MainActivity : FlutterActivity() {
                     when (call.method) {
                         "locales" -> installedSpeechLocales(result)
                         "start" -> startSpeech(call.argument<String>("locale"), result)
+                        "downloadModel" -> result.success(downloadSpeechModel(call.argument<String>("locale")))
                         "stop" -> if (!speechActive) result.success(null) else {
                             speechStopResult?.success(null)
                             speechStopResult = result
@@ -164,7 +168,9 @@ class MainActivity : FlutterActivity() {
     private fun initializeSpeech() {
         if (Build.VERSION.SDK_INT < 31 || speechInitResult == null || !speechResumed) return
         try {
+            recognizer?.destroy()
             recognizer = SpeechRecognizer.createOnDeviceSpeechRecognizer(this)
+            recognizerUsed = false
             recognizer?.setRecognitionListener(speechListener(speechOwner, speechGeneration))
             speechInitResult?.success(true)
         } catch (_: Exception) { speechInitResult?.success(false) }
@@ -195,6 +201,8 @@ class MainActivity : FlutterActivity() {
                     if (generation != speechGeneration || speechLocalesResult !== result) return
                     mainHandler.removeCallbacks(speechTimeout)
                     speechLocales = support.installedOnDeviceLanguages
+                    speechSupported = support.supportedOnDeviceLanguages
+                    speechPending = support.pendingOnDeviceLanguages
                     result.success(speechLocales)
                     speechLocalesResult = null
                 }
@@ -206,6 +214,19 @@ class MainActivity : FlutterActivity() {
                 }
             })
     }
+    // Missing language: ask the on-device provider to download its model (no cloud recognition).
+    private fun downloadSpeechModel(locale: String?): Boolean {
+        val engine = recognizer
+        if (Build.VERSION.SDK_INT < 33 || engine == null || locale == null) return false
+        fun tag(value: String) = value.replace('_', '-').lowercase(Locale.ROOT)
+        val wanted = tag(locale)
+        fun find(list: List<String>) = list.firstOrNull { tag(it) == wanted }
+            ?: list.firstOrNull { tag(it).substringBefore('-') == wanted.substringBefore('-') }
+        if (find(speechPending) != null) return true // already downloading: do not re-prompt
+        val match = find(speechSupported) ?: return false
+        engine.triggerModelDownload(speechIntent(match))
+        return true
+    }
     private fun startSpeech(locale: String?, result: MethodChannel.Result) {
         if (Build.VERSION.SDK_INT < 31 || recognizer == null || !speechResumed) {
             result.error("serviceUnavailable", "On-device speech unavailable", null); return
@@ -216,8 +237,12 @@ class MainActivity : FlutterActivity() {
             result.error("unsupportedLanguage", "No installed model for this language", null); return
         }
         // A fresh recognizer owns its callback binder: old provider events cannot reach a new listener.
-        recognizer?.destroy()
-        recognizer = SpeechRecognizer.createOnDeviceSpeechRecognizer(this)
+        // An unused one is kept: destroying it right after creation disconnects the provider (error 11).
+        if (recognizerUsed) {
+            recognizer?.destroy()
+            recognizer = SpeechRecognizer.createOnDeviceSpeechRecognizer(this)
+        }
+        recognizerUsed = true
         speechGeneration++
         recognizer?.setRecognitionListener(speechListener(speechOwner, speechGeneration))
         speechActive = true
@@ -281,6 +306,8 @@ class MainActivity : FlutterActivity() {
         try { engine?.cancel() } catch (_: Exception) { /* Already disconnected. */ }
         try { engine?.destroy() } catch (_: Exception) { /* Activity teardown still completes. */ }
         speechLocales = emptyList()
+        speechSupported = emptyList()
+        speechPending = emptyList()
     }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

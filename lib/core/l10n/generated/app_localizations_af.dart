@@ -1106,4 +1106,8 @@ class AppLocalizationsAf extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists lyste · $items items · $entries aankope';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Die stemmodel vir hierdie taal word afgelaai. Probeer oor ’n minuut weer.';
 }

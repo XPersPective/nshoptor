@@ -405,5 +405,6 @@
   "backupSizeWarning": "JSON includes records, not photo files. Import limit: 16 MB.",
   "backupImportFailed": "Could not import this backup. Your data was not changed.",
   "backupImported": "Backup imported successfully.",
-  "backupPreviewCounts": "{lists} lists · {items} items · {entries} purchases"
+  "backupPreviewCounts": "{lists} lists · {items} items · {entries} purchases",
+  "voiceModelDownloading": "Downloading the voice model for this language. Try again in a minute."
 }

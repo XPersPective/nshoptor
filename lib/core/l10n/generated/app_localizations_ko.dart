@@ -1077,4 +1077,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists 목록 · $items 항목 · $entries 구매';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      '이 언어의 음성 모델을 다운로드하는 중입니다. 1분 후에 다시 시도하세요.';
 }

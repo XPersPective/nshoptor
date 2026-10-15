@@ -1106,4 +1106,8 @@ class AppLocalizationsNe extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists सूचीहरू · $items वस्तुहरू · $entries खरिदहरू';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'यस भाषाको भ्वाइस मोडेल डाउनलोड हुँदैछ। एक मिनेटपछि फेरि प्रयास गर्नुहोस्।';
 }

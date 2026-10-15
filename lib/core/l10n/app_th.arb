@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON มีบันทึกข้อมูล ไม่ใช่ไฟล์รูปภาพ ขีดจำกัดการนำเข้า: 16 MB",
   "backupImportFailed": "ไม่สามารถนำเข้าข้อมูลสำรองนี้ ข้อมูลของคุณไม่มีการเปลี่ยนแปลง",
   "backupImported": "สำรองข้อมูลนำเข้าเรียบร้อยแล้ว",
-  "backupPreviewCounts": "{lists} รายการ · {items} สินค้า · {entries} การซื้อ"
+  "backupPreviewCounts": "{lists} รายการ · {items} สินค้า · {entries} การซื้อ",
+  "voiceModelDownloading": "กำลังดาวน์โหลดโมเดลเสียงสำหรับภาษานี้ ลองอีกครั้งในอีกหนึ่งนาที"
 }

@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON përfshin regjistra, jo skedarë fotoje. Kufiri i importit: 16 MB.",
   "backupImportFailed": "Nuk u importua ky rezervë. Të dhënat tuaja nuk u ndryshuan.",
   "backupImported": "Backup u importua me sukses.",
-  "backupPreviewCounts": "{lists} lista · {items} artikuj · {entries} blerje"
+  "backupPreviewCounts": "{lists} lista · {items} artikuj · {entries} blerje",
+  "voiceModelDownloading": "Modeli zanor për këtë gjuhë po shkarkohet. Provo përsëri pas një minute."
 }

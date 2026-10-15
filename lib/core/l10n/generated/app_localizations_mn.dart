@@ -1109,4 +1109,8 @@ class AppLocalizationsMn extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists жагсаалт · $items зүйл · $entries худалдан авалт';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Энэ хэлний дуу хоолойн загварыг татаж байна. Нэг минутын дараа дахин оролдоно уу.';
 }

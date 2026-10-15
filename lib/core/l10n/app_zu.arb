@@ -343,5 +343,6 @@
   "backupSizeWarning": "I-JSON ihlanganisa amarekhodi, hhayi amafayela ezingcaphulo. Umkhawulo wokungenisa: 16 MB.",
   "backupImportFailed": "Akukwazanga ukungenisa le backup. Idatha yakho ayishintshile.",
   "backupImported": "Ibhakaki yethusi igcine ngempumelelo.",
-  "backupPreviewCounts": "{lists} amalisti · {items} izinto · {entries} ukuthenga"
+  "backupPreviewCounts": "{lists} amalisti · {items} izinto · {entries} ukuthenga",
+  "voiceModelDownloading": "Imodeli yezwi yalolu limi iyalandwa. Zama futhi ngemuva komzuzu owodwa."
 }

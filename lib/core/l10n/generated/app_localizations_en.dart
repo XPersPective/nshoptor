@@ -1103,4 +1103,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists lists · $items items · $entries purchases';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Downloading the voice model for this language. Try again in a minute.';
 }

@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON کې ریکارډونه شامل دي، د عکس فایلونه نه. د واردولو حد: ۱۶ MB.",
   "backupImportFailed": "د دې بیک اپ ایمپورٹ نشو کړی. ستاسو ډاټا نه ده بدله شوې.",
   "backupImported": "بیک اپ په بریالیتوب سره وارد شو.",
-  "backupPreviewCounts": "{lists} لیستونه · {items} توکي · {entries} خریدونه"
+  "backupPreviewCounts": "{lists} لیستونه · {items} توکي · {entries} خریدونه",
+  "voiceModelDownloading": "د دې ژبې غږیز ماډل ښکته کېږي. یوه دقیقه وروسته بیا هڅه وکړئ."
 }

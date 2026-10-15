@@ -1106,4 +1106,8 @@ class AppLocalizationsSw extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists orodha · $items vitu · $entries ununuzi';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'Muundo wa sauti wa lugha hii unapakuliwa. Jaribu tena baada ya dakika moja.';
 }

@@ -1069,4 +1069,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists 个列表 · $items 件商品 · $entries 笔购买';
   }
+
+  @override
+  String get voiceModelDownloading => '正在下载该语言的语音模型，请一分钟后重试。';
 }

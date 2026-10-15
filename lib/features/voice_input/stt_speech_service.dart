@@ -64,6 +64,13 @@ class SttSpeechService implements SpeechService {
     try { await channel.invokeMethod<void>('cancel', {'sessionId': _session}); } catch (_) { /* Unavailable platform: manual input remains usable. */ }
   }
   @override
+  Future<bool> requestLanguageModel(String locale) async {
+    if (_active != this) return false;
+    try {
+      return await channel.invokeMethod<bool>('downloadModel', {'sessionId': _session, 'locale': locale}) ?? false;
+    } catch (_) { return false; }
+  }
+  @override
   bool get isListening => _listening;
   @override
   Stream<SpeechResult> get results => _results.stream;

@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON mengandungi rekod, bukan fail foto. Had import: 16 MB.",
   "backupImportFailed": "Gagal mengimport sandaran ini. Data anda tidak diubah.",
   "backupImported": "Backup berjaya diimport.",
-  "backupPreviewCounts": "{lists} senarai · {items} item · {entries} pembelian"
+  "backupPreviewCounts": "{lists} senarai · {items} item · {entries} pembelian",
+  "voiceModelDownloading": "Model suara untuk bahasa ini sedang dimuat turun. Cuba lagi dalam seminit."
 }

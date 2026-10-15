@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON zawiera rekordy, a nie pliki zdjęć. Limit importu: 16 MB.",
   "backupImportFailed": "Nie udało się zaimportować tej kopii zapasowej. Twoje dane nie zostały zmienione.",
   "backupImported": "Backup został pomyślnie zaimportowany.",
-  "backupPreviewCounts": "{lists} list · {items} produktów · {entries} zakupów"
+  "backupPreviewCounts": "{lists} list · {items} produktów · {entries} zakupów",
+  "voiceModelDownloading": "Trwa pobieranie modelu głosowego dla tego języka. Spróbuj ponownie za minutę."
 }

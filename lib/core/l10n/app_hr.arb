@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSON sadrži zapise, a ne datoteke fotografija. Ograničenje uvoza: 16 MB.",
   "backupImportFailed": "Nije moguće uvesti ovu sigurnosnu kopiju. Vaši podaci nisu promijenjeni.",
   "backupImported": "Sigurnosna kopija uspješno uvezena.",
-  "backupPreviewCounts": "{lists} popisa · {items} stavki · {entries} kupnji"
+  "backupPreviewCounts": "{lists} popisa · {items} stavki · {entries} kupnji",
+  "voiceModelDownloading": "Glasovni model za ovaj jezik se preuzima. Pokušajte ponovno za minutu."
 }

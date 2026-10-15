@@ -1,0 +1,105 @@
+"""Yeni ARB anahtarlarini elle yazilmis cevirilerle tum dillere ekler (ag yok).
+
+  python tool/i18n/add_keys_local.py
+
+Mevcut anahtara dokunmaz; eksik dil ceviriyse hata verir.
+"""
+import json
+import pathlib
+
+ARB = pathlib.Path(__file__).resolve().parents[2] / 'lib/core/l10n'
+
+KEYS = {
+    'voiceModelDownloading': {
+        'en': 'Downloading the voice model for this language. Try again in a minute.',
+        'tr': 'Bu dil için ses modeli indiriliyor. Bir dakika sonra tekrar dene.',
+        'af': 'Die stemmodel vir hierdie taal word afgelaai. Probeer oor ’n minuut weer.',
+        'ar': 'جارٍ تنزيل نموذج الصوت لهذه اللغة. حاول مرة أخرى بعد دقيقة.',
+        'az': 'Bu dil üçün səs modeli yüklənir. Bir dəqiqədən sonra yenidən cəhd edin.',
+        'be': 'Галасавая мадэль для гэтай мовы спампоўваецца. Паспрабуйце праз хвіліну.',
+        'bg': 'Гласовият модел за този език се изтегля. Опитайте отново след минута.',
+        'bn': 'এই ভাষার ভয়েস মডেল ডাউনলোড হচ্ছে। এক মিনিট পরে আবার চেষ্টা করুন।',
+        'bs': 'Glasovni model za ovaj jezik se preuzima. Pokušajte ponovo za minutu.',
+        'ca': 'S’està baixant el model de veu per a aquesta llengua. Torna-ho a provar d’aquí a un minut.',
+        'cs': 'Hlasový model pro tento jazyk se stahuje. Zkuste to znovu za minutu.',
+        'da': 'Stemmemodellen til dette sprog downloades. Prøv igen om et minut.',
+        'de': 'Das Sprachmodell für diese Sprache wird heruntergeladen. Versuche es in einer Minute erneut.',
+        'el': 'Γίνεται λήψη του φωνητικού μοντέλου για αυτή τη γλώσσα. Δοκιμάστε ξανά σε ένα λεπτό.',
+        'es': 'Se está descargando el modelo de voz de este idioma. Vuelve a intentarlo en un minuto.',
+        'et': 'Selle keele häälmudelit laaditakse alla. Proovi minuti pärast uuesti.',
+        'eu': 'Hizkuntza honen ahots-eredua deskargatzen ari da. Saiatu berriro minutu batean.',
+        'fa': 'مدل صوتی این زبان در حال دانلود است. یک دقیقه دیگر دوباره امتحان کنید.',
+        'fi': 'Tämän kielen puhemallia ladataan. Yritä uudelleen minuutin kuluttua.',
+        'fil': 'Dina-download ang voice model para sa wikang ito. Subukang muli pagkalipas ng isang minuto.',
+        'fr': 'Le modèle vocal de cette langue est en cours de téléchargement. Réessayez dans une minute.',
+        'gl': 'Estase a descargar o modelo de voz deste idioma. Téntao de novo nun minuto.',
+        'gu': 'આ ભાષા માટે વૉઇસ મોડેલ ડાઉનલોડ થઈ રહ્યું છે. એક મિનિટ પછી ફરી પ્રયાસ કરો.',
+        'he': 'מודל הקול לשפה זו בהורדה. נסו שוב בעוד דקה.',
+        'hi': 'इस भाषा का वॉइस मॉडल डाउनलोड हो रहा है। एक मिनट बाद फिर कोशिश करें।',
+        'hr': 'Glasovni model za ovaj jezik se preuzima. Pokušajte ponovno za minutu.',
+        'hu': 'A nyelv hangmodellje letöltés alatt áll. Próbáld újra egy perc múlva.',
+        'hy': 'Այս լեզվի ձայնային մոդելը ներբեռնվում է։ Փորձեք կրկին մեկ րոպեից։',
+        'id': 'Model suara untuk bahasa ini sedang diunduh. Coba lagi dalam satu menit.',
+        'is': 'Verið er að sækja raddlíkanið fyrir þetta tungumál. Reyndu aftur eftir mínútu.',
+        'it': 'Download del modello vocale per questa lingua in corso. Riprova tra un minuto.',
+        'ja': 'この言語の音声モデルをダウンロードしています。1 分後にもう一度お試しください。',
+        'ka': 'ამ ენის ხმოვანი მოდელი იტვირთება. სცადეთ ერთ წუთში.',
+        'kk': 'Бұл тілдің дауыс моделі жүктелуде. Бір минуттан кейін қайталап көріңіз.',
+        'kn': 'ಈ ಭಾಷೆಯ ಧ್ವನಿ ಮಾದರಿ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ. ಒಂದು ನಿಮಿಷದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+        'ko': '이 언어의 음성 모델을 다운로드하는 중입니다. 1분 후에 다시 시도하세요.',
+        'ky': 'Бул тилдин үн модели жүктөлүүдө. Бир мүнөттөн кийин кайра аракет кылыңыз.',
+        'lo': 'ກຳລັງດາວໂຫຼດໂມເດວສຽງສຳລັບພາສານີ້. ລອງໃໝ່ອີກຄັ້ງໃນໜຶ່ງນາທີ.',
+        'lt': 'Šios kalbos balso modelis atsisiunčiamas. Bandykite dar kartą po minutės.',
+        'lv': 'Šīs valodas balss modelis tiek lejupielādēts. Mēģiniet vēlreiz pēc minūtes.',
+        'mk': 'Гласовниот модел за овој јазик се презема. Обидете се повторно за една минута.',
+        'ml': 'ഈ ഭാഷയുടെ വോയ്‌സ് മോഡൽ ഡൗൺലോഡ് ചെയ്യുന്നു. ഒരു മിനിറ്റിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+        'mn': 'Энэ хэлний дуу хоолойн загварыг татаж байна. Нэг минутын дараа дахин оролдоно уу.',
+        'mr': 'या भाषेचे व्हॉइस मॉडेल डाउनलोड होत आहे. एका मिनिटानंतर पुन्हा प्रयत्न करा.',
+        'ms': 'Model suara untuk bahasa ini sedang dimuat turun. Cuba lagi dalam seminit.',
+        'my': 'ဤဘာသာစကားအတွက် အသံမော်ဒယ်ကို ဒေါင်းလုဒ်လုပ်နေသည်။ တစ်မိနစ်အကြာတွင် ထပ်ကြိုးစားပါ။',
+        'ne': 'यस भाषाको भ्वाइस मोडेल डाउनलोड हुँदैछ। एक मिनेटपछि फेरि प्रयास गर्नुहोस्।',
+        'nl': 'Het spraakmodel voor deze taal wordt gedownload. Probeer het over een minuut opnieuw.',
+        'pa': 'ਇਸ ਭਾਸ਼ਾ ਲਈ ਵੌਇਸ ਮਾਡਲ ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ। ਇੱਕ ਮਿੰਟ ਬਾਅਦ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+        'pl': 'Trwa pobieranie modelu głosowego dla tego języka. Spróbuj ponownie za minutę.',
+        'ps': 'د دې ژبې غږیز ماډل ښکته کېږي. یوه دقیقه وروسته بیا هڅه وکړئ.',
+        'pt': 'O modelo de voz deste idioma está sendo baixado. Tente novamente em um minuto.',
+        'ro': 'Se descarcă modelul vocal pentru această limbă. Încearcă din nou peste un minut.',
+        'ru': 'Загружается голосовая модель для этого языка. Повторите попытку через минуту.',
+        'si': 'මෙම භාෂාව සඳහා හඬ ආකෘතිය බාගත වෙමින් පවතී. මිනිත්තුවකින් නැවත උත්සාහ කරන්න.',
+        'sk': 'Hlasový model pre tento jazyk sa sťahuje. Skúste to znova o minútu.',
+        'sl': 'Glasovni model za ta jezik se prenaša. Poskusite znova čez minuto.',
+        'sq': 'Modeli zanor për këtë gjuhë po shkarkohet. Provo përsëri pas një minute.',
+        'sr': 'Гласовни модел за овај језик се преузима. Покушајте поново за минут.',
+        'sv': 'Röstmodellen för det här språket laddas ned. Försök igen om en minut.',
+        'sw': 'Muundo wa sauti wa lugha hii unapakuliwa. Jaribu tena baada ya dakika moja.',
+        'ta': 'இந்த மொழிக்கான குரல் மாதிரி பதிவிறக்கப்படுகிறது. ஒரு நிமிடம் கழித்து மீண்டும் முயலவும்.',
+        'te': 'ఈ భాష కోసం వాయిస్ మోడల్ డౌన్‌లోడ్ అవుతోంది. ఒక నిమిషం తర్వాత మళ్లీ ప్రయత్నించండి.',
+        'th': 'กำลังดาวน์โหลดโมเดลเสียงสำหรับภาษานี้ ลองอีกครั้งในอีกหนึ่งนาที',
+        'tl': 'Dina-download ang voice model para sa wikang ito. Subukang muli pagkalipas ng isang minuto.',
+        'uk': 'Завантажується голосова модель для цієї мови. Спробуйте ще раз за хвилину.',
+        'ur': 'اس زبان کا وائس ماڈل ڈاؤن لوڈ ہو رہا ہے۔ ایک منٹ بعد دوبارہ کوشش کریں۔',
+        'uz': 'Bu til uchun ovoz modeli yuklab olinmoqda. Bir daqiqadan so‘ng qayta urinib ko‘ring.',
+        'vi': 'Đang tải mô hình giọng nói cho ngôn ngữ này. Hãy thử lại sau một phút.',
+        'zh': '正在下载该语言的语音模型，请一分钟后重试。',
+        'zu': 'Imodeli yezwi yalolu limi iyalandwa. Zama futhi ngemuva komzuzu owodwa.',
+    },
+}
+
+
+def main():
+    codes = sorted(p.stem[4:] for p in ARB.glob('app_*.arb'))
+    for key, values in KEYS.items():
+        missing = [c for c in codes if c not in values]
+        if missing:
+            raise SystemExit(f'{key}: missing {missing}')
+        for code in codes:
+            f = ARB / f'app_{code}.arb'
+            d = json.loads(f.read_text(encoding='utf8'))
+            if key in d:
+                continue
+            d[key] = values[code]
+            f.write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n', encoding='utf8')
+
+
+if __name__ == '__main__':
+    main()

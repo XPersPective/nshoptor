@@ -343,5 +343,6 @@
   "backupSizeWarning": "JSONにはレコードが含まれており、写真ファイルは含まれていません。インポート制限：16 MB。",
   "backupImportFailed": "このバックアップはインポートできませんでした。データは変更されていません。",
   "backupImported": "バックアップが正常にインポートされました。",
-  "backupPreviewCounts": "{lists}件のリスト · {items}個のアイテム · {entries}件の購入"
+  "backupPreviewCounts": "{lists}件のリスト · {items}個のアイテム · {entries}件の購入",
+  "voiceModelDownloading": "この言語の音声モデルをダウンロードしています。1 分後にもう一度お試しください。"
 }

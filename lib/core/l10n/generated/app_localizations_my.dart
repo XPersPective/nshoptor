@@ -1108,4 +1108,8 @@ class AppLocalizationsMy extends AppLocalizations {
   String backupPreviewCounts(Object entries, Object items, Object lists) {
     return '$lists စာရင်းများ · $items ပစ္စည်းများ · $entries ဝယ်ယူမှုများ';
   }
+
+  @override
+  String get voiceModelDownloading =>
+      'ဤဘာသာစကားအတွက် အသံမော်ဒယ်ကို ဒေါင်းလုဒ်လုပ်နေသည်။ တစ်မိနစ်အကြာတွင် ထပ်ကြိုးစားပါ။';
 }
