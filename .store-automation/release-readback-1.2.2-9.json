@@ -1,0 +1,23 @@
+{
+  "expected": {
+    "platform": "Google Play Android",
+    "account": "crazypenguin",
+    "app": "com.crazypenguin.nshoptor",
+    "channel": "internal + production draft",
+    "version": "1.2.2+9",
+    "artifact_sha256": "E2C0DF1EA1B51B22C2CDB092BDB420EE8D2D2FC3A895AD8540A0BF232C94688D",
+    "state": "UPLOADED"
+  },
+  "observed": {
+    "platform": "Google Play Android",
+    "account": "crazypenguin",
+    "app": "com.crazypenguin.nshoptor",
+    "channel": "internal + production draft",
+    "version": "1.2.2+9",
+    "artifact_sha256": "E2C0DF1EA1B51B22C2CDB092BDB420EE8D2D2FC3A895AD8540A0BF232C94688D",
+    "state": "UPLOADED",
+    "readback_reference": "internal codes [9]; production codes [9, 1]; production release names [1.2.2, 1.0.0]; promotion status requested draft",
+    "observed_at": "2026-10-15T06:31:23+03:00",
+    "provenance": "verified"
+  }
+}
