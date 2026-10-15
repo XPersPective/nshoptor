@@ -45,6 +45,7 @@ class ItemFormSheet extends StatefulWidget {
     this.entries = const [],
     this.initialActualPrice,
     this.focusActual = false,
+    this.onPriceHistory,
   });
 
   final AppDatabase db;
@@ -68,6 +69,9 @@ class ItemFormSheet extends StatefulWidget {
   final Future<PriceCandidate?> Function(BuildContext context)?
   onShelfCandidatePressed;
   final PriceCandidate? initialActualCandidate;
+
+  /// Mevcut ürünün fiyat geçmişi (satırdaki menünün yerine).
+  final VoidCallback? onPriceHistory;
 
   @override
   State<ItemFormSheet> createState() => _ItemFormSheetState();
@@ -562,6 +566,16 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                   controller: _note,
                   decoration: InputDecoration(labelText: l10n.itemNoteLabel),
                 ),
+                if (widget.onPriceHistory != null && widget.existing != null)
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: TextButton.icon(
+                      key: const Key('item_price_history'),
+                      onPressed: widget.onPriceHistory,
+                      icon: const Icon(Icons.show_chart),
+                      label: Text(l10n.priceHistoryTitle),
+                    ),
+                  ),
               ],
             ),
             const SizedBox(height: 8),

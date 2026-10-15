@@ -202,7 +202,20 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     });
     try {
       await _syncLock();
-      if (mounted && _awake == desired) AppDefaults.setKeepScreenAwake(desired);
+      if (mounted && _awake == desired) {
+        AppDefaults.setKeepScreenAwake(desired);
+        // The icon alone is ambiguous: say what was switched.
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              duration: const Duration(seconds: 2),
+              content: Text(
+                '${desired ? '✓' : '✕'} ${AppLocalizations.of(context).keepAwakeLabel}',
+              ),
+            ),
+          );
+      }
     } finally {
       if (mounted) setState(() => _lockBusy = false);
     }
@@ -380,13 +393,13 @@ class _ListDetailScreenState extends State<ListDetailScreen>
             key: const Key('list_keep_awake'),
             tooltip: l10n.keepAwakeLabel,
             isSelected: _awake,
-            icon: const Icon(Icons.screen_lock_portrait_outlined),
-            selectedIcon: const Icon(Icons.screen_lock_portrait),
+            icon: const Icon(Icons.light_mode_outlined),
+            selectedIcon: const Icon(Icons.light_mode),
             onPressed: _lockBusy ? null : _toggleAwake,
           ),
           PopupMenuButton<String>(
             key: const Key('detail_more_menu'),
-            tooltip: l10n.detailsSection,
+            tooltip: MaterialLocalizations.of(context).moreButtonTooltip,
             onSelected: (action) async {
               if (action == 'pdf') {
                 if (_busy) return;
@@ -684,28 +697,6 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                         ),
                       ),
                     ),
-                    PopupMenuButton<String>(
-                      key: Key('detail_item_menu_${item.id}'),
-                      tooltip: l10n.detailsSection,
-                      onSelected: (action) {
-                        if (action == 'delete') {
-                          _changeItem(item, entries, remove: true);
-                        } else {
-                          _openPriceHistory(context, item, list);
-                        }
-                      },
-                      itemBuilder: (_) => [
-                        if (_editable)
-                          PopupMenuItem(
-                            value: 'delete',
-                            child: Text(l10n.deleteButton),
-                          ),
-                        PopupMenuItem(
-                          value: 'history',
-                          child: Text(l10n.priceHistoryTitle),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ],
@@ -874,9 +865,17 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         initialQuantity: prefill?.quantity?.toDbString(),
         initialUnitCode: prefill?.unitCode,
         initialUnitPrice: prefill?.unitPrice?.toDbString(),
-        // Voice belongs to the fixed bottom quick-entry control. Keeping a
-        // second mic in the edit sheet reintroduces the duplicate-session bug.
         onShelfCandidatePressed: _shelfCandidate,
+        onPriceHistory: existing == null
+            ? null
+            : () async {
+                final list = await widget.listRepository.getById(
+                  widget.listId,
+                );
+                if (context.mounted) {
+                  await _openPriceHistory(context, existing, list);
+                }
+              },
       ),
     );
     _refresh();

@@ -409,7 +409,7 @@ void main() {
     await disposeApp(tester);
   });
 
-  testWidgets('fiyat geçmişi: ürüne uzun basınca açılır', (tester) async {
+  testWidgets('fiyat geçmişi: ürün formundan açılır', (tester) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
     final listId = await listRepo.createList(
       title: 'Market',
@@ -423,7 +423,7 @@ void main() {
             normalizedName: 'domates',
           ),
         );
-    final itemId = await addItem(
+    await addItem(
       listId,
       'Domates',
       productId: productId,
@@ -471,9 +471,13 @@ void main() {
 
     await tester.pumpWidget(app(detail(listId)));
     await settle(tester);
-    await tester.tap(find.byKey(Key('detail_item_menu_$itemId')));
+    // Price history lives in the item form (rows have no menu).
+    await tester.tap(find.text('Domates'));
     await settle(tester);
-    await tester.tap(find.text('Fiyat geçmişi'));
+    await tester.tap(find.byKey(const Key('item_details_expand')));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('item_price_history')));
+    await tester.tap(find.byKey(const Key('item_price_history')));
     await settle(tester);
 
     expect(find.textContaining('42,90'), findsOneWidget);

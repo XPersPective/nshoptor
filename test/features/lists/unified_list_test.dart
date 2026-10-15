@@ -107,37 +107,14 @@ void main() {
             .actualLineTotalMinorUnits,
         6750,
       );
-      await tester.tap(find.byKey(Key('detail_item_menu_$id')));
-      await tester.pumpAndSettle();
-      await tester.tap(
-        find.byWidgetPredicate(
-          (w) => w is PopupMenuItem<String> && w.value == 'delete',
-        ),
+      // Delete is a swipe (no row menu); it removes the purchase too.
+      await tester.fling(
+        find.byKey(Key('detail_item_$id')),
+        const Offset(-500, 0),
+        1000,
       );
       await tester.pumpAndSettle();
-      await tester.tap(
-        find.descendant(
-          of: find.byType(AlertDialog),
-          matching: find.byType(TextButton),
-        ),
-      );
-      await tester.pumpAndSettle();
-      expect(await db.select(db.plannedItems).get(), hasLength(1));
-      await tester.tap(find.byKey(Key('detail_item_menu_$id')));
-      await tester.pumpAndSettle();
-      await tester.tap(
-        find.byWidgetPredicate(
-          (w) => w is PopupMenuItem<String> && w.value == 'delete',
-        ),
-      );
-      await tester.pumpAndSettle();
-      await tester.tap(
-        find.descendant(
-          of: find.byType(AlertDialog),
-          matching: find.byType(FilledButton),
-        ),
-      );
-      await tester.pumpAndSettle();
+      expect(find.byKey(Key('detail_item_menu_$id')), findsNothing);
       expect(await db.select(db.plannedItems).get(), isEmpty);
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
       expect(await db.select(db.priceObservations).get(), isEmpty);
@@ -250,17 +227,10 @@ void main() {
         expect(find.byKey(const Key('detail_quick_entry')), findsOneWidget);
         expect(find.byKey(const Key('detail_add_item_button')), findsNothing);
         expect(find.byKey(const Key('detail_scan_receipt')), findsNothing);
-        await tester.scrollUntilVisible(
-          find.byKey(Key('detail_item_menu_$id')),
-          300,
-          scrollable: find.byType(Scrollable).first,
-        );
-        expect(tester.takeException(), isNull);
+        expect(find.byKey(Key('detail_item_menu_$id')), findsNothing);
         expect(
           tester
-              .widget<PopupMenuButton<String>>(
-                find.byKey(Key('detail_item_menu_$id')).at(0),
-              )
+              .widget<IconButton>(find.byKey(const Key('list_keep_awake')))
               .tooltip,
           isNotEmpty,
         );
