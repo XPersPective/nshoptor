@@ -23,6 +23,7 @@ import 'package:nshoptor/features/settings/settings_repository.dart';
 
 const _locale = String.fromEnvironment('STORE_LOCALE');
 const _out = String.fromEnvironment('STORE_OUT');
+const _rtlLocales = {'ar', 'fa', 'he', 'ur', 'ps'};
 
 /// Dil başına: liste adı, para birimi, bütçe, (ürün, tahmini), gerçek fiyatlar
 /// ve takvim/grafik için geçmiş alışveriş tutarları (minor).
@@ -342,104 +343,114 @@ void main() {
     await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: Locale(_locale)));
     await settle(tester);
 
-    // Liste oluştur
-    await tester.tap(find.byKey(const Key('home_new_list_button')));
-    await settle(tester);
-    await tester.enterText(
-      find.byKey(const Key('list_title_field')),
-      data.list,
-    );
-    await tester.enterText(
-      find.byKey(const Key('list_budget_field')),
-      data.budget,
-    );
-    await tester.tap(find.byKey(const Key('list_save_button')));
-    await settle(tester);
-
-    // Ürünler
-    var first = true;
-    for (final (name, price) in data.items) {
-      await tester.tap(find.byKey(const Key('detail_add_item_button')));
-      await settle(tester);
-      await tester.enterText(find.byKey(const Key('item_name_field')), name);
-      await tester.enterText(find.byKey(const Key('item_price_field')), price);
-      await settle(tester);
-      if (first) {
-        await shot(tester, '03'); // ürün formu
-        first = false;
-      }
-      await tester.ensureVisible(find.byKey(const Key('item_save_button')));
-      await tester.tap(find.byKey(const Key('item_save_button')));
-      await settle(tester);
+    // Görüntüler son üçlü ana akışı gösterir. Örnek veriler doğrudan Drift'e
+    // yazılır; geri kalan yolculuk gerçek widget etkileşimleriyle sürülür.
+    final activeId = await db
+        .into(db.shoppingLists)
+        .insert(
+          ShoppingListsCompanion.insert(
+            currencyCode: data.currency,
+            title: Value(data.list),
+            budgetMinorUnits: Value(data.currency == 'TRY' ? 100000 : 4000),
+          ),
+        );
+    int minor(String value) {
+      final parts = value.replaceAll(',', '.').split('.');
+      final fraction = (parts.length > 1 ? parts[1] : '').padRight(2, '0');
+      return int.parse(parts.first) * 100 + int.parse(fraction.substring(0, 2));
     }
-    await shot(tester, '02'); // liste detayı
 
-    // Ana sayfa: etkin liste + aylık kart + asistan
+    var firstItemId = 0;
+    for (final (index, item) in data.items.indexed) {
+      final id = await db
+          .into(db.plannedItems)
+          .insert(
+            PlannedItemsCompanion.insert(
+              listId: activeId,
+              name: item.$1,
+              normalizedName: item.$1.toLowerCase(),
+              plannedQuantity: '1',
+              plannedUnitCode: 'piece',
+              pricingInputMode: 'unitPrice',
+              plannedUnitPrice: Value(item.$2.replaceAll(',', '.')),
+              plannedLineTotalMinorUnits: Value(minor(item.$2)),
+              sortOrder: Value(index),
+            ),
+          );
+      if (index == 0) firstItemId = id;
+    }
+    await db
+        .into(db.shoppingLists)
+        .insert(
+          ShoppingListsCompanion.insert(
+            currencyCode: data.currency,
+            title: Value('${data.list} · ${data.real.first}'),
+            status: const Value('completed'),
+            completedAt: Value(
+              DateTime.now().subtract(const Duration(days: 1)),
+            ),
+          ),
+        );
+    await db
+        .into(db.shoppingLists)
+        .insert(
+          ShoppingListsCompanion.insert(
+            currencyCode: data.currency,
+            title: Value('${data.list} · ${data.real.last}'),
+            status: const Value('archived'),
+            archivedAt: Value(DateTime.now().subtract(const Duration(days: 2))),
+          ),
+        );
+
+    await shot(tester, '01'); // Liste
+    await tester.tap(find.text(data.list).first);
+    await settle(tester);
+    await shot(tester, '02'); // Birleşik liste detayı
+
+    await tester.tap(find.text(data.items.first.$1).first);
+    await settle(tester);
+    await shot(tester, '03'); // Satır düzenleme
+    await tester.enterText(
+      find.byKey(const Key('item_actual_price_field')),
+      data.real.first,
+    );
+    await settle(tester);
+    await shot(tester, '04'); // Çarşı fiyatı
+    await tester.tap(find.byKey(const Key('item_save_button')));
+    await settle(tester);
+
+    await tester.tap(find.byKey(Key('detail_item_menu_$firstItemId')));
+    await settle(tester);
+    await tester.tap(find.byType(PopupMenuItem<String>).last);
+    await settle(tester);
+    await shot(tester, '05'); // Normalize birim fiyat geçmişi
     await tester.tap(find.byType(BackButton).first);
     await settle(tester);
-    await tester.tap(find.byType(NavigationDestination).at(0));
-    await settle(tester);
-    await shot(tester, '01');
-    await tester.tap(find.byType(NavigationDestination).at(1));
-    await settle(tester);
-    await tester.tap(find.text(data.list).last);
-    await settle(tester);
-
-    // Alışveriş modu: gerçek fiyatlar
-    for (var i = 0; i < data.real.length; i++) {
-      if (i == 3) {
-        await tester.drag(find.byType(Scrollable).last, const Offset(0, 800));
-        await shot(tester, '04'); // alışveriş modu (yarı yolda)
-      }
-      final row = find.text(data.items[i].$1);
-      await tester.scrollUntilVisible(
-        row,
-        120,
-        scrollable: find.byType(Scrollable).last,
-      );
-      await tester.pumpAndSettle();
-      await tester.tap(row);
-      await settle(tester);
-      await tester.enterText(
-        find.byKey(const Key('item_actual_price_field')),
-        data.real[i],
-      );
-      await settle(tester);
-      if (i == 0) await shot(tester, '05'); // hızlı fiyat girişi
-      await tester.ensureVisible(find.byKey(const Key('item_save_button')));
-      await tester.tap(find.byKey(const Key('item_save_button')));
-      await settle(tester);
-    }
-
-    // Sonuç: tek bakışta karşılaştırma tablosu
-    await tester.tap(find.byKey(const Key('detail_more_menu')));
-    await settle(tester);
-    await tester.tap(find.text('Karşılaştır'));
-    await settle(tester);
-    await shot(tester, '06');
-
-    while (find.byType(NavigationBar).evaluate().isEmpty) {
-      await tester.tap(find.byType(BackButton).first);
-      await settle(tester);
-    }
-    Future<void> tab(int i) async {
-      await tester.tap(find.byType(NavigationDestination).at(i));
-      await settle(tester);
-    }
-
-    // Harcamalar: takvim, grafikler
-    await tab(2);
-    await tester.tap(find.byKey(const Key('history_spending')));
-    await settle(tester);
-    await shot(tester, '07');
     await tester.tap(find.byType(BackButton).first);
     await settle(tester);
 
-    // Asistan
-    await tab(0);
-    await tester.tap(find.byKey(const Key('assistant_bubble')));
+    final pageForward = _rtlLocales.contains(_locale)
+        ? const Offset(900, 0)
+        : const Offset(-900, 0);
+    final pageBack = Offset(-pageForward.dx, 0);
+    await tester.drag(find.byType(PageView), pageForward);
     await settle(tester);
-    await shot(tester, '08');
+    await shot(tester, '06'); // Tamamlananlar
+    await tester.drag(find.byType(PageView), pageForward);
+    await settle(tester);
+    await shot(tester, '07'); // Arşiv
+
+    await tester.drag(find.byType(PageView), pageBack.scale(2, 1));
+    await settle(tester);
+    await tester.tap(find.text(data.list).first);
+    await settle(tester);
+    await tester.enterText(
+      find.byKey(const Key('detail_quick_entry')),
+      'milk 2',
+    );
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await settle(tester);
+    await shot(tester, '08'); // Hızlı ekleme önizlemesi
 
     await tester.pumpWidget(const SizedBox.shrink());
     final closing = db.close();

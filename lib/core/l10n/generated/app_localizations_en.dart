@@ -13,13 +13,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'NShoptor';
 
   @override
-  String get slogan => 'Plan at home. Shop as planned.';
+  String get slogan => 'Plan at home, match at checkout.';
 
   @override
   String get listsTitle => 'Lists';
 
   @override
-  String get listsTabActive => 'Active';
+  String get listsTabActive => 'List';
 
   @override
   String get listsTabCompleted => 'Completed';
@@ -712,8 +712,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemDetailsSection => 'Details';
 
   @override
-  String get priceOptionalHint =>
-      'Optional — you\'ll enter the real price in the store';
+  String get priceOptionalHint => 'Market price (optional)';
 
   @override
   String plannedTotalSummary(Object count, Object total) {
@@ -829,10 +828,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get compareItem => 'Item';
 
   @override
-  String get compareEstimated => 'Estimate';
+  String get compareEstimated => 'Home price';
 
   @override
-  String get compareActual => 'Actual';
+  String get compareActual => 'Store price';
 
   @override
   String get compareDiff => 'Difference';

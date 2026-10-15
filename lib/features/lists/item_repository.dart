@@ -45,6 +45,19 @@ class ItemRepository {
       final item = await (_db.select(_db.plannedItems)..where((t) => t.id.equals(existingId))).getSingle();
       if (item.listId != listId) throw ArgumentError('Item must belong to its list');
     }
+    final sortOrder = existingId == null
+        ? ((await (_db.select(_db.plannedItems)
+                      ..where((t) => t.listId.equals(listId))
+                      ..orderBy([(t) => OrderingTerm.desc(t.sortOrder)])
+                      ..limit(1))
+                    .getSingleOrNull())
+                ?.sortOrder ??
+            -1) +
+            1
+        : (await (_db.select(_db.plannedItems)
+                  ..where((t) => t.id.equals(existingId)))
+                .getSingle())
+            .sortOrder;
     if (categoryId == null && categoryName != null && categoryName.trim().isNotEmpty) {
       final categories = await _db.select(_db.categories).get();
       final normalized = normalizeName(categoryName);
@@ -84,6 +97,7 @@ class ItemRepository {
             requiredFlag: Value(requiredFlag),
             note: Value(note),
             maxAcceptablePrice: Value(maxAcceptablePrice?.toDbString()),
+            sortOrder: Value(sortOrder),
             updatedAt: Value(DateTime.now()),
           );
     if (existingId == null) return _db.into(_db.plannedItems).insert(values);
@@ -106,6 +120,25 @@ class ItemRepository {
             ..orderBy([(t) => OrderingTerm.asc(t.sortOrder)]))
           .watch();
 
+  Future<void> reorderItems(int listId, List<int> itemIds) async {
+    final items = await getItems(listId);
+    final known = items.map((item) => item.id).toSet();
+    if (itemIds.length != known.length || itemIds.toSet().length != known.length ||
+        !itemIds.every(known.contains)) {
+      throw ArgumentError('Items must belong to their list');
+    }
+    await _db.transaction(() async {
+      for (var index = 0; index < itemIds.length; index++) {
+        await (_db.update(_db.plannedItems)
+              ..where((t) => t.id.equals(itemIds[index])))
+            .write(PlannedItemsCompanion(
+              sortOrder: Value(index),
+              updatedAt: Value(DateTime.now()),
+            ));
+      }
+    });
+  }
+
   Future<List<PlannedItem>> getItems(int listId) =>
       (_db.select(_db.plannedItems)..where((t) => t.listId.equals(listId)))
           .get();
@@ -113,6 +146,64 @@ class ItemRepository {
   Future<void> removeItem(int itemId) => _db.transaction(() async {
     await ShoppingRepository(_db).removePurchases(itemId);
     await (_db.delete(_db.plannedItems)..where((t) => t.id.equals(itemId))).go();
+  });
+
+  Future<DeletedItemSnapshot> deleteItem(int itemId) async {
+    final item = await (_db.select(_db.plannedItems)
+          ..where((t) => t.id.equals(itemId)))
+        .getSingle();
+    final entries = await (_db.select(_db.purchaseEntries)
+          ..where((t) => t.plannedItemId.equals(itemId)))
+        .get();
+    final entryIds = entries.map((entry) => entry.id).toList();
+    final observations = entryIds.isEmpty
+        ? <PriceObservation>[]
+        : await (_db.select(_db.priceObservations)
+              ..where((t) => t.purchaseEntryId.isIn(entryIds)))
+            .get();
+    await _db.transaction(() async {
+      for (final observation in observations) {
+        if (observation.productId != null) {
+          await _db.customUpdate(
+            'UPDATE product_memory SET use_count = MAX(0, use_count - 1) WHERE id = ?',
+            variables: [Variable<int>(observation.productId!)],
+          );
+        }
+      }
+      if (entryIds.isNotEmpty) {
+        await (_db.delete(_db.priceObservations)
+              ..where((t) => t.purchaseEntryId.isIn(entryIds)))
+            .go();
+        await (_db.delete(_db.purchaseEntries)
+              ..where((t) => t.id.isIn(entryIds)))
+            .go();
+      }
+      await (_db.delete(_db.plannedItems)..where((t) => t.id.equals(itemId))).go();
+    });
+    return DeletedItemSnapshot(
+      item: item,
+      entries: entries,
+      observations: observations,
+    );
+  }
+
+  Future<void> undoDelete(DeletedItemSnapshot snapshot) => _db.transaction(() async {
+    await _db.into(_db.plannedItems).insert(snapshot.item, mode: InsertMode.insertOrReplace);
+    for (final entry in snapshot.entries) {
+      await _db.into(_db.purchaseEntries).insert(entry, mode: InsertMode.insertOrReplace);
+    }
+    for (final observation in snapshot.observations) {
+      if (observation.productId != null) {
+        await _db.customUpdate(
+          'UPDATE product_memory SET use_count = use_count + 1 WHERE id = ?',
+          variables: [Variable<int>(observation.productId!)],
+        );
+      }
+      await _db.into(_db.priceObservations).insert(
+            observation,
+            mode: InsertMode.insertOrReplace,
+          );
+    }
   });
 
   /// Planlanan toplam: satır değerlerinin minor-unit toplamı (spec §7.3).
@@ -125,4 +216,16 @@ class ItemRepository {
   Future<String> _listCurrency(int listId) async =>
       (await (_db.select(_db.shoppingLists)..where((t) => t.id.equals(listId))).getSingle()).currencyCode;
 
+}
+
+class DeletedItemSnapshot {
+  const DeletedItemSnapshot({
+    required this.item,
+    required this.entries,
+    required this.observations,
+  });
+
+  final PlannedItem item;
+  final List<PurchaseEntry> entries;
+  final List<PriceObservation> observations;
 }

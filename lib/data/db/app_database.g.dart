@@ -1081,6 +1081,18 @@ class $ShoppingListsTable extends ShoppingLists
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
   static const VerificationMeta _archivedAtMeta = const VerificationMeta(
     'archivedAt',
   );
@@ -1109,6 +1121,7 @@ class $ShoppingListsTable extends ShoppingLists
     note,
     colorToken,
     iconToken,
+    sortOrder,
     archivedAt,
   ];
   @override
@@ -1224,6 +1237,12 @@ class $ShoppingListsTable extends ShoppingLists
         iconToken.isAcceptableOrUnknown(data['icon_token']!, _iconTokenMeta),
       );
     }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
     if (data.containsKey('archived_at')) {
       context.handle(
         _archivedAtMeta,
@@ -1299,6 +1318,10 @@ class $ShoppingListsTable extends ShoppingLists
         DriftSqlType.string,
         data['${effectivePrefix}icon_token'],
       ),
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
       archivedAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}archived_at'],
@@ -1332,6 +1355,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
   final String? note;
   final String? colorToken;
   final String? iconToken;
+  final int sortOrder;
   final DateTime? archivedAt;
   const ShoppingList({
     required this.id,
@@ -1349,6 +1373,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
     this.note,
     this.colorToken,
     this.iconToken,
+    required this.sortOrder,
     this.archivedAt,
   });
   @override
@@ -1389,6 +1414,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
     if (!nullToAbsent || iconToken != null) {
       map['icon_token'] = Variable<String>(iconToken);
     }
+    map['sort_order'] = Variable<int>(sortOrder);
     if (!nullToAbsent || archivedAt != null) {
       map['archived_at'] = Variable<DateTime>(archivedAt);
     }
@@ -1430,6 +1456,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
       iconToken: iconToken == null && nullToAbsent
           ? const Value.absent()
           : Value(iconToken),
+      sortOrder: Value(sortOrder),
       archivedAt: archivedAt == null && nullToAbsent
           ? const Value.absent()
           : Value(archivedAt),
@@ -1457,6 +1484,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
       note: serializer.fromJson<String?>(json['note']),
       colorToken: serializer.fromJson<String?>(json['colorToken']),
       iconToken: serializer.fromJson<String?>(json['iconToken']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
       archivedAt: serializer.fromJson<DateTime?>(json['archivedAt']),
     );
   }
@@ -1479,6 +1507,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
       'note': serializer.toJson<String?>(note),
       'colorToken': serializer.toJson<String?>(colorToken),
       'iconToken': serializer.toJson<String?>(iconToken),
+      'sortOrder': serializer.toJson<int>(sortOrder),
       'archivedAt': serializer.toJson<DateTime?>(archivedAt),
     };
   }
@@ -1499,6 +1528,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
     Value<String?> note = const Value.absent(),
     Value<String?> colorToken = const Value.absent(),
     Value<String?> iconToken = const Value.absent(),
+    int? sortOrder,
     Value<DateTime?> archivedAt = const Value.absent(),
   }) => ShoppingList(
     id: id ?? this.id,
@@ -1520,6 +1550,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
     note: note.present ? note.value : this.note,
     colorToken: colorToken.present ? colorToken.value : this.colorToken,
     iconToken: iconToken.present ? iconToken.value : this.iconToken,
+    sortOrder: sortOrder ?? this.sortOrder,
     archivedAt: archivedAt.present ? archivedAt.value : this.archivedAt,
   );
   ShoppingList copyWithCompanion(ShoppingListsCompanion data) {
@@ -1549,6 +1580,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
           ? data.colorToken.value
           : this.colorToken,
       iconToken: data.iconToken.present ? data.iconToken.value : this.iconToken,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
       archivedAt: data.archivedAt.present
           ? data.archivedAt.value
           : this.archivedAt,
@@ -1573,6 +1605,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
           ..write('note: $note, ')
           ..write('colorToken: $colorToken, ')
           ..write('iconToken: $iconToken, ')
+          ..write('sortOrder: $sortOrder, ')
           ..write('archivedAt: $archivedAt')
           ..write(')'))
         .toString();
@@ -1595,6 +1628,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
     note,
     colorToken,
     iconToken,
+    sortOrder,
     archivedAt,
   );
   @override
@@ -1616,6 +1650,7 @@ class ShoppingList extends DataClass implements Insertable<ShoppingList> {
           other.note == this.note &&
           other.colorToken == this.colorToken &&
           other.iconToken == this.iconToken &&
+          other.sortOrder == this.sortOrder &&
           other.archivedAt == this.archivedAt);
 }
 
@@ -1635,6 +1670,7 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
   final Value<String?> note;
   final Value<String?> colorToken;
   final Value<String?> iconToken;
+  final Value<int> sortOrder;
   final Value<DateTime?> archivedAt;
   const ShoppingListsCompanion({
     this.id = const Value.absent(),
@@ -1652,6 +1688,7 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
     this.note = const Value.absent(),
     this.colorToken = const Value.absent(),
     this.iconToken = const Value.absent(),
+    this.sortOrder = const Value.absent(),
     this.archivedAt = const Value.absent(),
   });
   ShoppingListsCompanion.insert({
@@ -1670,6 +1707,7 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
     this.note = const Value.absent(),
     this.colorToken = const Value.absent(),
     this.iconToken = const Value.absent(),
+    this.sortOrder = const Value.absent(),
     this.archivedAt = const Value.absent(),
   }) : currencyCode = Value(currencyCode);
   static Insertable<ShoppingList> custom({
@@ -1688,6 +1726,7 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
     Expression<String>? note,
     Expression<String>? colorToken,
     Expression<String>? iconToken,
+    Expression<int>? sortOrder,
     Expression<DateTime>? archivedAt,
   }) {
     return RawValuesInsertable({
@@ -1706,6 +1745,7 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
       if (note != null) 'note': note,
       if (colorToken != null) 'color_token': colorToken,
       if (iconToken != null) 'icon_token': iconToken,
+      if (sortOrder != null) 'sort_order': sortOrder,
       if (archivedAt != null) 'archived_at': archivedAt,
     });
   }
@@ -1726,6 +1766,7 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
     Value<String?>? note,
     Value<String?>? colorToken,
     Value<String?>? iconToken,
+    Value<int>? sortOrder,
     Value<DateTime?>? archivedAt,
   }) {
     return ShoppingListsCompanion(
@@ -1744,6 +1785,7 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
       note: note ?? this.note,
       colorToken: colorToken ?? this.colorToken,
       iconToken: iconToken ?? this.iconToken,
+      sortOrder: sortOrder ?? this.sortOrder,
       archivedAt: archivedAt ?? this.archivedAt,
     );
   }
@@ -1796,6 +1838,9 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
     if (iconToken.present) {
       map['icon_token'] = Variable<String>(iconToken.value);
     }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
     if (archivedAt.present) {
       map['archived_at'] = Variable<DateTime>(archivedAt.value);
     }
@@ -1820,6 +1865,7 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
           ..write('note: $note, ')
           ..write('colorToken: $colorToken, ')
           ..write('iconToken: $iconToken, ')
+          ..write('sortOrder: $sortOrder, ')
           ..write('archivedAt: $archivedAt')
           ..write(')'))
         .toString();
@@ -9960,6 +10006,7 @@ typedef $$ShoppingListsTableCreateCompanionBuilder =
       Value<String?> note,
       Value<String?> colorToken,
       Value<String?> iconToken,
+      Value<int> sortOrder,
       Value<DateTime?> archivedAt,
     });
 typedef $$ShoppingListsTableUpdateCompanionBuilder =
@@ -9979,6 +10026,7 @@ typedef $$ShoppingListsTableUpdateCompanionBuilder =
       Value<String?> note,
       Value<String?> colorToken,
       Value<String?> iconToken,
+      Value<int> sortOrder,
       Value<DateTime?> archivedAt,
     });
 
@@ -10159,6 +10207,11 @@ class $$ShoppingListsTableFilterComposer
 
   ColumnFilters<String> get iconToken => $composableBuilder(
     column: $table.iconToken,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -10370,6 +10423,11 @@ class $$ShoppingListsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<int> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<DateTime> get archivedAt => $composableBuilder(
     column: $table.archivedAt,
     builder: (column) => ColumnOrderings(column),
@@ -10459,6 +10517,9 @@ class $$ShoppingListsTableAnnotationComposer
 
   GeneratedColumn<String> get iconToken =>
       $composableBuilder(column: $table.iconToken, builder: (column) => column);
+
+  GeneratedColumn<int> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
 
   GeneratedColumn<DateTime> get archivedAt => $composableBuilder(
     column: $table.archivedAt,
@@ -10638,6 +10699,7 @@ class $$ShoppingListsTableTableManager
                 Value<String?> note = const Value.absent(),
                 Value<String?> colorToken = const Value.absent(),
                 Value<String?> iconToken = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
                 Value<DateTime?> archivedAt = const Value.absent(),
               }) => ShoppingListsCompanion(
                 id: id,
@@ -10655,6 +10717,7 @@ class $$ShoppingListsTableTableManager
                 note: note,
                 colorToken: colorToken,
                 iconToken: iconToken,
+                sortOrder: sortOrder,
                 archivedAt: archivedAt,
               ),
           createCompanionCallback:
@@ -10674,6 +10737,7 @@ class $$ShoppingListsTableTableManager
                 Value<String?> note = const Value.absent(),
                 Value<String?> colorToken = const Value.absent(),
                 Value<String?> iconToken = const Value.absent(),
+                Value<int> sortOrder = const Value.absent(),
                 Value<DateTime?> archivedAt = const Value.absent(),
               }) => ShoppingListsCompanion.insert(
                 id: id,
@@ -10691,6 +10755,7 @@ class $$ShoppingListsTableTableManager
                 note: note,
                 colorToken: colorToken,
                 iconToken: iconToken,
+                sortOrder: sortOrder,
                 archivedAt: archivedAt,
               ),
           withReferenceMapper: (p0) => p0

@@ -37,7 +37,6 @@ import '../receipts/shelf_label/shelf_price_flow.dart';
 import '../receipts/shelf_label/price_candidates.dart';
 import '../voice_input/stt_speech_service.dart';
 import '../voice_input/voice_input_service.dart';
-import '../voice_input/voice_preview_sheet.dart';
 import '../voice_input/list_draft_sheet.dart';
 import '../voice_input/ai_list_parser.dart';
 import 'item_repository.dart';
@@ -59,7 +58,6 @@ class ListDetailScreen extends StatefulWidget {
     this.ocrSource,
     this.pickImage,
     this.reminderScheduler,
-    this.onVoicePressed,
     this.onShelfPricePressed,
   });
 
@@ -78,7 +76,6 @@ class ListDetailScreen extends StatefulWidget {
 
   /// Test enjeksiyonu; verilmezse flutter_local_notifications adaptörü.
   final ReminderScheduler? reminderScheduler;
-  final Future<ParsedItemCandidate?> Function(BuildContext)? onVoicePressed;
   final Future<String?> Function(BuildContext)? onShelfPricePressed;
 
   @override
@@ -98,6 +95,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   bool _lockBusy = false;
   late final ShoppingRepository _shoppingRepo = ShoppingRepository(widget.db);
   late Future<ShoppingList> _listFuture;
+  final _quickEntry = TextEditingController();
   bool _busy = false;
 
   @override
@@ -119,6 +117,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     appRouteObserver.unsubscribe(this);
     if (identical(_visibleList, this)) _visibleList = null;
     _syncLock();
+    _quickEntry.dispose();
     super.dispose();
   }
 
@@ -346,6 +345,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                     onShelfPricePressed: _shelfPrice,
                   ),
                 );
+              } else if (action == 'receipt') {
+                await _scanReceipt(context);
               } else if (action == 'archive') {
                 await widget.listRepository.changeStatus(
                   widget.listId,
@@ -370,6 +371,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                 key: const Key('add_unplanned_button'),
                 value: 'unplanned',
                 child: Text(l10n.unplannedAddButton),
+              ),
+              PopupMenuItem(
+                key: const Key('detail_scan_receipt'),
+                value: 'receipt',
+                child: Text(l10n.scanReceiptAction),
               ),
               PopupMenuItem(value: 'archive', child: Text(l10n.archiveAction)),
             ],
@@ -427,148 +433,23 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                 children: [
                                   Text(l10n.itemsEmptyTitle),
                                   Text(l10n.itemsEmptyBody),
-                                  OutlinedButton.icon(
-                                    key: const Key('detail_voice_add_button'),
-                                    onPressed: () =>
-                                        _openItemFormWithVoice(context),
-                                    icon: const Icon(Icons.mic_none),
-                                    label: Text(l10n.voiceAddItemAction),
-                                  ),
                                 ],
                               ),
                             ),
-                          for (final item in items)
-                            Card(
-                              key: Key('detail_item_${item.id}'),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Checkbox(
-                                          key: Key('detail_check_${item.id}'),
-                                          value: ItemStatus.fromDb(item.status)
-                                              .isInCart,
-                                          semanticLabel: item.name,
-                                          onChanged: _busy
-                                              ? null
-                                              : (checked) => _changeItem(
-                                                  item,
-                                                  entries,
-                                                  checked: checked!,
-                                                ),
-                                        ),
-                                        Expanded(
-                                          child: InkWell(
-                                            onTap: _busy
-                                                ? null
-                                                : () => _openItemForm(
-                                                    context,
-                                                    existing: item,
-                                                    entries: entries,
-                                                  ),
-                                            onLongPress: () =>
-                                                _openPriceHistory(
-                                                  context,
-                                                  item,
-                                                ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    vertical: 12,
-                                                  ),
-                                              child: Text(
-                                                item.name,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        PopupMenuButton<String>(
-                                          key: Key(
-                                            'detail_item_menu_${item.id}',
-                                          ),
-                                          tooltip: l10n.detailsSection,
-                                          onSelected: (action) {
-                                            if (action == 'edit') {
-                                              _openItemForm(
-                                                context,
-                                                existing: item,
-                                                entries: entries,
-                                              );
-                                            } else if (action == 'delete') {
-                                              _changeItem(
-                                                item,
-                                                entries,
-                                                remove: true,
-                                              );
-                                            } else if (action == 'history') {
-                                              _openPriceHistory(context, item);
-                                            } else {
-                                              _changeItem(
-                                                item,
-                                                entries,
-                                                status: ItemStatus.fromDb(
-                                                  action,
-                                                ),
-                                              );
-                                            }
-                                          },
-                                          itemBuilder: (_) => [
-                                            PopupMenuItem(
-                                              value: 'delete',
-                                              child: Text(l10n.deleteButton),
-                                            ),
-                                            PopupMenuItem(
-                                              value: 'history',
-                                              child: Text(
-                                                l10n.priceHistoryTitle,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
-                                    ),
-                                    if (!ItemStatus.fromDb(item.status)
-                                            .isInCart &&
-                                        item.status != 'pending')
-                                      Text(
-                                        item.status == 'notFound'
-                                            ? l10n.statusNotFound
-                                            : l10n.statusGaveUp,
-                                      ),
-                                    ItemPriceCell(
-                                      prices: ItemPrices.of(item, entries),
-                                      currencyCode: list.currencyCode,
-                                      onEnter: _busy
-                                          ? null
-                                          : () => _enterActual(
-                                              context,
-                                              list,
-                                              item,
-                                              entries,
-                                            ),
-                                      onScan: _busy
-                                          ? null
-                                          : () => _enterActual(
-                                              context,
-                                              list,
-                                              item,
-                                              entries,
-                                              scan: true,
-                                            ),
-                                    ),
-                                  ],
-                                ),
+                          if (items.isNotEmpty)
+                            ReorderableListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              buildDefaultDragHandles: false,
+                              itemCount: items.length,
+                              onReorderItem: (oldIndex, newIndex) =>
+                                  _reorderItems(items, oldIndex, newIndex),
+                              itemBuilder: (context, index) => _buildItemCard(
+                                context,
+                                items[index],
+                                entries,
+                                list,
+                                index,
                               ),
                             ),
                           for (final e in entries.where(
@@ -598,41 +479,37 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                       top: false,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Wrap(
-                              alignment: WrapAlignment.spaceEvenly,
-                              children: [
-                                IconButton.filled(
-                                  key: const Key('detail_add_item_button'),
-                                  tooltip: l10n.addItemTooltip,
-                                  style: IconButton.styleFrom(
-                                    minimumSize: const Size(48, 48),
-                                  ),
-                                  onPressed: _busy
-                                      ? null
-                                      : () => _openItemForm(context),
-                                  icon: const Icon(Icons.add),
+                            Expanded(
+                              child: TextField(
+                                key: const Key('detail_quick_entry'),
+                                controller: _quickEntry,
+                                enabled: !_busy,
+                                textInputAction: TextInputAction.done,
+                                onSubmitted: (text) {
+                                  final value = text.trim();
+                                  if (value.isEmpty) return;
+                                  _quickEntry.clear();
+                                  _openQuickList(context, initialText: value);
+                                },
+                                decoration: InputDecoration(
+                                  hintText: l10n.quickListHint,
+                                  prefixIcon: const Icon(Icons.add),
                                 ),
-                                IconButton(
-                                  key: const Key('detail_quick_list'),
-                                  tooltip: l10n.quickListAction,
-                                  onPressed: _busy
-                                      ? null
-                                      : () => _openQuickList(context),
-                                  icon: const Icon(Icons.mic_none),
-                                ),
-                                IconButton(
-                                  key: const Key('detail_scan_receipt'),
-                                  tooltip: l10n.scanReceiptAction,
-                                  onPressed: _busy
-                                      ? null
-                                      : () => _scanReceipt(context),
-                                  icon: const Icon(Icons.receipt_long),
-                                ),
-                              ],
+                              ),
+                            ),
+                            IconButton.filledTonal(
+                              key: const Key('detail_quick_list'),
+                              tooltip: l10n.voiceStartListening,
+                              onPressed: _busy
+                                  ? null
+                                  : () => _openQuickList(
+                                      context,
+                                      autoListen: true,
+                                    ),
+                              icon: const Icon(Icons.mic_none),
                             ),
                           ],
                         ),
@@ -646,6 +523,167 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         },
       ),
     );
+  }
+
+  Widget _buildItemCard(
+    BuildContext context,
+    PlannedItem item,
+    List<PurchaseEntry> entries,
+    ShoppingList list,
+    int index,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    final colors = Theme.of(context).colorScheme;
+    final card = Dismissible(
+      key: ValueKey('detail_item_${item.id}'),
+      direction: DismissDirection.horizontal,
+      background: Container(
+        color: colors.errorContainer,
+        alignment: AlignmentDirectional.centerStart,
+        padding: const EdgeInsetsDirectional.only(start: 24),
+        child: Icon(Icons.delete_outline, color: colors.onErrorContainer),
+      ),
+      secondaryBackground: Container(
+        color: colors.errorContainer,
+        alignment: AlignmentDirectional.centerEnd,
+        padding: const EdgeInsetsDirectional.only(end: 24),
+        child: Icon(Icons.delete_outline, color: colors.onErrorContainer),
+      ),
+      confirmDismiss: (_) => _deleteItem(item),
+      child: Card(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: _busy
+              ? null
+              : () => _openItemForm(context, existing: item, entries: entries),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Checkbox(
+                      key: Key('detail_check_${item.id}'),
+                      value: ItemStatus.fromDb(item.status).isInCart,
+                      semanticLabel: item.name,
+                      onChanged: _busy
+                          ? null
+                          : (checked) =>
+                                _changeItem(item, entries, checked: checked!),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: Text(
+                          item.name,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ),
+                    ),
+                    PopupMenuButton<String>(
+                      key: Key('detail_item_menu_${item.id}'),
+                      tooltip: l10n.detailsSection,
+                      onSelected: (action) {
+                        if (action == 'delete') {
+                          _changeItem(item, entries, remove: true);
+                        } else {
+                          _openPriceHistory(context, item);
+                        }
+                      },
+                      itemBuilder: (_) => [
+                        PopupMenuItem(
+                          value: 'delete',
+                          child: Text(l10n.deleteButton),
+                        ),
+                        PopupMenuItem(
+                          value: 'history',
+                          child: Text(l10n.priceHistoryTitle),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Text(
+                  '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
+                ),
+                ItemPriceCell(
+                  prices: ItemPrices.of(item, entries),
+                  currencyCode: list.currencyCode,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+    return KeyedSubtree(
+      key: ValueKey('detail_reorder_${item.id}'),
+      child: ReorderableDelayedDragStartListener(index: index, child: card),
+    );
+  }
+
+  Future<bool> _deleteItem(PlannedItem item) async {
+    if (_busy) return false;
+    final l10n = AppLocalizations.of(context);
+    setState(() => _busy = true);
+    try {
+      final snapshot = await ItemRepository(widget.db).deleteItem(item.id);
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.listDeleted),
+              showCloseIcon: true,
+              behavior: SnackBarBehavior.floating,
+              duration: const Duration(seconds: 3),
+              action: SnackBarAction(
+                label: l10n.undoButton,
+                onPressed: () => ItemRepository(widget.db).undoDelete(snapshot),
+              ),
+            ),
+          );
+      }
+      return true;
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
+          );
+      }
+      return false;
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _reorderItems(
+    List<PlannedItem> items,
+    int oldIndex,
+    int newIndex,
+  ) async {
+    final ordered = [...items];
+    final moved = ordered.removeAt(oldIndex);
+    ordered.insert(newIndex, moved);
+    try {
+      await ItemRepository(widget.db)
+          .reorderItems(widget.listId, ordered.map((item) => item.id).toList());
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(AppLocalizations.of(context).saveFailed),
+              showCloseIcon: true,
+            ),
+          );
+      }
+    }
   }
 
   Future<void> _changeItem(
@@ -708,35 +746,6 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     }
   }
 
-  /// Gerçek fiyatı satırdan gir (PB-062): elle ya da kamerayla; kayıt anında
-  /// satırda tahmini → gerçek ve fark görünür.
-  Future<void> _enterActual(
-    BuildContext context,
-    ShoppingList list,
-    PlannedItem item,
-    List<PurchaseEntry> entries, {
-    bool scan = false,
-  }) async {
-    if (_busy) return;
-    setState(() => _busy = true);
-    try {
-      PriceCandidate? candidate;
-      if (scan) {
-        candidate = await _shelfCandidate(context);
-        if (candidate == null || !context.mounted) return;
-      }
-      await _openItemForm(
-        context,
-        existing: item,
-        entries: entries,
-        initialActualCandidate: candidate,
-        focusActual: true,
-      );
-    } finally {
-      if (mounted) setState(() => _busy = false);
-    }
-  }
-
   Future<void> _openItemForm(
     BuildContext context, {
     ParsedItemCandidate? prefill,
@@ -767,7 +776,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         initialQuantity: prefill?.quantity?.toDbString(),
         initialUnitCode: prefill?.unitCode,
         initialUnitPrice: prefill?.unitPrice?.toDbString(),
-        onVoicePressed: _voiceCandidate,
+        // Voice belongs to the fixed bottom quick-entry control. Keeping a
+        // second mic in the edit sheet reintroduces the duplicate-session bug.
         onShelfCandidatePressed: _shelfCandidate,
       ),
     );
@@ -775,13 +785,20 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   }
 
   /// Cümleden/sesten çok ürün (PB-050): önizlemede seçilenler eklenir.
-  Future<void> _openQuickList(BuildContext context) async {
+  Future<void> _openQuickList(
+    BuildContext context, {
+    String? initialText,
+    bool autoListen = false,
+  }) async {
     final picked = await showModalBottomSheet<ListDraft>(
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
       builder: (_) => ListDraftSheet(
         speechService: widget.speechService ?? SttSpeechService(),
+        initialText: initialText,
+        autoListen: autoListen,
+        showMic: false,
         onApprove: (draft) =>
             ItemRepository(widget.db).addCandidates(widget.listId, draft.items),
       ),
@@ -789,24 +806,6 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     if (picked == null || !mounted) return;
     _refresh();
   }
-
-  /// Boş durumun "Sesle ekle" kısayolu (PB-039): doğrulama önizlemesi →
-  /// doldurulmuş ürün formu (C-003: onaysız kayıt yok).
-  Future<void> _openItemFormWithVoice(BuildContext context) async {
-    final candidate = await _voiceCandidate(context);
-    if (candidate == null || !context.mounted) return;
-    await _openItemForm(context, prefill: candidate);
-  }
-
-  Future<ParsedItemCandidate?> _voiceCandidate(BuildContext context) =>
-      widget.onVoicePressed?.call(context) ??
-      showModalBottomSheet<ParsedItemCandidate>(
-        context: context,
-        isScrollControlled: true,
-        builder: (_) => VoicePreviewSheet(
-          service: widget.speechService ?? SttSpeechService(),
-        ),
-      );
 
   Future<String?> _pickImage() async {
     if (widget.pickImage != null) return widget.pickImage!();

@@ -1,6 +1,6 @@
 import '../../core/money/format_locale.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
@@ -17,16 +17,24 @@ import '../lists/list_repository.dart';
 /// çipleri + ürün satırları. Tek elle kullanım için büyük dokunma
 /// hedefleri; her ürün dokunuşunda gerçek fiyat girişi açılır.
 class ShoppingModeScreen extends StatelessWidget {
-  const ShoppingModeScreen({super.key, required this.repository, required this.listId,
-    this.onVoicePressed, this.onShelfPricePressed});
+  const ShoppingModeScreen({
+    super.key,
+    required this.repository,
+    required this.listId,
+    this.onVoicePressed,
+    this.onShelfPricePressed,
+  });
   final ShoppingRepository repository;
   final int listId;
   final Future<ParsedItemCandidate?> Function(BuildContext)? onVoicePressed;
   final Future<String?> Function(BuildContext)? onShelfPricePressed;
   @override
-  Widget build(BuildContext context) => ListDetailScreen(db: repository.db,
-    listRepository: ListRepository(repository.db), listId: listId,
-    onVoicePressed: onVoicePressed, onShelfPricePressed: onShelfPricePressed);
+  Widget build(BuildContext context) => ListDetailScreen(
+    db: repository.db,
+    listRepository: ListRepository(repository.db),
+    listId: listId,
+    onShelfPricePressed: onShelfPricePressed,
+  );
 }
 
 class PurchaseEntrySheet extends StatefulWidget {
@@ -90,17 +98,21 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
     super.didChangeDependencies();
     if (!_quantityPrefilled) {
       _quantityPrefilled = true;
-      final decimalSep = MoneySeparators.forLocaleCode(formatLocaleCode(context))
-          .decimal;
+      final decimalSep = MoneySeparators.forLocaleCode(
+        formatLocaleCode(context),
+      ).decimal;
       // Planlı miktarda kullanıcıya yerel ayracıyla önerilir (1.5 → 1,5).
-      final planned = widget.item?.plannedQuantity ??
+      final planned =
+          widget.item?.plannedQuantity ??
           widget.initialCandidate?.quantity?.toDbString() ??
           '1';
       _quantity.text = planned.replaceAll('.', decimalSep);
       final voiced = widget.initialCandidate;
       if (voiced?.unitPrice != null) {
         _price.text = voiced!.unitPrice!.toDbString().replaceAll(
-            '.', decimalSep);
+          '.',
+          decimalSep,
+        );
       }
       final prev = widget.existing;
       if (prev != null) {
@@ -119,7 +131,8 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
   Future<void> _scan() async {
     final value = await widget.onShelfPricePressed!(context);
     if (value == null || !mounted) return;
-    final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context)).decimal;
+    final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context))
+        .decimal;
     setState(() => _price.text = value.replaceAll('.', sep));
   }
 
@@ -131,16 +144,22 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
     final allowNegative = !_isUnplanned;
     DecimalFixed quantity;
     try {
-      quantity = MoneyParser.parseDecimal(_quantity.text.trim(),
-          separators: separators, requirePositive: !allowNegative);
+      quantity = MoneyParser.parseDecimal(
+        _quantity.text.trim(),
+        separators: separators,
+        requirePositive: !allowNegative,
+      );
     } on FormatException {
       return;
     }
     DecimalFixed? unitPrice;
     if (_price.text.trim().isNotEmpty) {
       try {
-        unitPrice = MoneyParser.parseDecimal(_price.text.trim(),
-            separators: separators, requirePositive: false);
+        unitPrice = MoneyParser.parseDecimal(
+          _price.text.trim(),
+          separators: separators,
+          requirePositive: false,
+        );
       } on FormatException {
         return;
       }
@@ -148,10 +167,14 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
     var discountMinor = 0;
     if (_discount.text.trim().isNotEmpty) {
       try {
-        final d = MoneyParser.parseDecimal(_discount.text.trim(),
-            separators: separators, requirePositive: true);
+        final d = MoneyParser.parseDecimal(
+          _discount.text.trim(),
+          separators: separators,
+          requirePositive: true,
+        );
         discountMinor = d.toMinorUnits(
-            Currency.fromCode(widget.list.currencyCode).minorUnitDigits);
+          Currency.fromCode(widget.list.currencyCode).minorUnitDigits,
+        );
       } on FormatException {
         discountMinor = 0;
       }
@@ -187,9 +210,7 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            _isUnplanned
-                ? l10n.quickEntryTitle
-                : widget.item!.name,
+            _isUnplanned ? l10n.quickEntryTitle : widget.item!.name,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 12),
@@ -207,8 +228,7 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
             key: const Key('entry_price_field'),
             controller: _price,
             autofocus: true,
-            keyboardType:
-                const TextInputType.numberWithOptions(decimal: true),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
               labelText: l10n.actualPriceLabel,
@@ -226,8 +246,7 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
           TextField(
             key: const Key('entry_quantity_field'),
             controller: _quantity,
-            keyboardType:
-                const TextInputType.numberWithOptions(decimal: true),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(labelText: l10n.actualQuantityLabel),
           ),
@@ -239,15 +258,17 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
             children: [
               TextField(
                 controller: _discount,
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 decoration: InputDecoration(labelText: l10n.discountLabel),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: _alternative,
-                decoration:
-                    InputDecoration(labelText: l10n.alternativeNameLabel),
+                decoration: InputDecoration(
+                  labelText: l10n.alternativeNameLabel,
+                ),
               ),
             ],
           ),

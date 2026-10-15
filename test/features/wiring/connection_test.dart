@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
@@ -133,52 +131,30 @@ void main() {
     await disposeApp(tester);
   });
 
-  testWidgets('ürün formu: ses önizlemesi form alanlarını doldurur', (
-    tester,
-  ) async {
+  testWidgets('tek mikrofon: hızlı ekleme sahibi olarak kalır', (tester) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
     final listId = await listRepo.createList(
       title: 'Market',
       currencyCode: 'TRY',
     );
+    await addItem(listId, 'Süt');
 
     await tester.pumpWidget(
       app(detail(listId, speech: FakeSpeechService(available: false))),
     );
     await settle(tester);
-    await tester.tap(find.byKey(const Key('detail_add_item_button')));
+    await tester.tap(find.text('Süt'));
     await settle(tester);
-    await tester.tap(find.byKey(const Key('item_voice_button')));
-    await settle(tester);
-
-    // Servis yok → manuel geri dönüş mesajı; transcript elle yazılabilir.
-    await tester.tap(find.byKey(const Key('voice_mic_button')));
-    await settle(tester);
-    expect(find.byKey(const Key('voice_unavailable')), findsOneWidget);
-
-    await tester.enterText(
-      find.byKey(const Key('voice_transcript_field')),
-      'Üç tane süt, tanesi otuz iki lira',
-    );
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('voice_parse_button')));
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('voice_confirm_button')));
-    await settle(tester);
-
-    final name = tester.widget<TextField>(
-      find.byKey(const Key('item_name_field')),
-    );
-    expect(name.controller!.text.toLowerCase(), contains('süt'));
-    expect(
-      await db.select(db.plannedItems).get(),
-      isEmpty,
-    ); // onaysız kayıt yok
+    expect(find.byKey(const Key('item_voice_button')), findsNothing);
+    expect(find.byKey(const Key('detail_quick_entry')), findsOneWidget);
+    expect(find.byKey(const Key('detail_quick_list')), findsOneWidget);
+    expect(find.byKey(const Key('voice_mic_button')), findsNothing);
+    expect(await db.select(db.plannedItems).get(), hasLength(1));
 
     await disposeApp(tester);
   });
 
-  testWidgets('ürün formu: raf etiketi adayı seçilince fiyat dolar', (
+  testWidgets('ürün formu: kamera kontrolü görünmez, fiyat elle girilir', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
@@ -186,17 +162,19 @@ void main() {
       title: 'Market',
       currencyCode: 'TRY',
     );
+    await addItem(listId, 'Süt');
 
     await tester.pumpWidget(
       app(detail(listId, ocr: _FakeOcr(['SÜT 1 LT', '₺42,90']))),
     );
     await settle(tester);
-    await tester.tap(find.byKey(const Key('detail_add_item_button')));
+    await tester.tap(find.text('Süt'));
     await settle(tester);
-    await tester.tap(find.byKey(const Key('item_shelf_label_button')));
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('price_candidate_0')));
-    await settle(tester);
+    expect(find.byKey(const Key('item_shelf_label_button')), findsNothing);
+    await tester.enterText(
+      find.byKey(const Key('item_actual_price_field')),
+      '42,90',
+    );
 
     expect(
       tester
@@ -210,22 +188,22 @@ void main() {
           .widget<TextField>(find.byKey(const Key('item_name_field')))
           .controller!
           .text,
-      'SÜT 1 LT',
+      'Süt',
     );
-    expect(await db.select(db.plannedItems).get(), isEmpty);
+    expect(await db.select(db.plannedItems).get(), hasLength(1));
     expect(await db.select(db.purchaseEntries).get(), isEmpty);
     expect(
       tester
           .widget<TextField>(find.byKey(const Key('item_price_field')))
           .controller!
           .text,
-      isEmpty,
+      isNotEmpty,
     );
 
     await disposeApp(tester);
   });
 
-  testWidgets('camera duplicate and failure preserve editable manual fields', (
+  testWidgets('kamera kontrolü yok, manuel fiyat girişi alanları korur', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
@@ -234,36 +212,19 @@ void main() {
       title: 'Market',
       currencyCode: 'TRY',
     );
-    final image = Completer<String?>();
-    var calls = 0;
+    await addItem(listId, 'Manual milk');
     await tester.pumpWidget(
-      app(
-        ListDetailScreen(
-          db: db,
-          listRepository: listRepo,
-          listId: listId,
-          pickImage: () {
-            calls++;
-            return image.future;
-          },
-        ),
-      ),
+      app(ListDetailScreen(db: db, listRepository: listRepo, listId: listId)),
     );
     await settle(tester);
-    await tester.tap(find.byKey(const Key('detail_add_item_button')));
+    await tester.tap(find.text('Manual milk'));
     await settle(tester);
     await tester.enterText(
       find.byKey(const Key('item_name_field')),
       'Manual milk',
     );
     await tester.enterText(find.byKey(const Key('item_price_field')), '20');
-    await tester.tap(find.byKey(const Key('item_shelf_label_button')));
-    await tester.pump();
-    await tester.tap(find.byKey(const Key('item_shelf_label_button')));
-    await tester.pump();
-    expect(calls, 1);
-    image.completeError(StateError('camera denied'));
-    await settle(tester);
+    expect(find.byKey(const Key('item_shelf_label_button')), findsNothing);
     expect(
       tester
           .widget<TextField>(find.byKey(const Key('item_name_field')))
@@ -296,7 +257,7 @@ void main() {
   });
 
   testWidgets(
-    'row photo preserves estimate and commits the chosen kg unit price',
+    'row edit preserves estimate and commits the chosen kg unit price',
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(800, 1400));
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -312,20 +273,21 @@ void main() {
         priceIsUnitPrice: true,
         price: DecimalFixed.fromInt(50),
       );
-      await tester.pumpWidget(
-        app(detail(listId, ocr: _FakeOcr(['ELMA', '40,00 ₺/kg']))),
+      await tester.pumpWidget(app(detail(listId)));
+      await settle(tester);
+      await tester.tap(find.text('Old apple'));
+      await settle(tester);
+      expect(find.byKey(const Key('item_shelf_label_button')), findsNothing);
+      await tester.enterText(
+        find.byKey(const Key('item_actual_price_field')),
+        '40,00',
       );
-      await settle(tester);
-      await tester.tap(find.byKey(const Key('price_scan')));
-      await settle(tester);
-      await tester.tap(find.byKey(const Key('price_candidate_0')));
-      await settle(tester);
       expect(
         tester
             .widget<TextField>(find.byKey(const Key('item_name_field')))
             .controller!
             .text,
-        'ELMA',
+        'Old apple',
       );
       expect(
         tester
@@ -414,6 +376,8 @@ void main() {
       ),
     );
     await settle(tester);
+    await tester.tap(find.byKey(const Key('detail_more_menu')));
+    await settle(tester);
     await tester.tap(find.byKey(const Key('detail_scan_receipt')));
     await settle(tester);
     expect(find.text('EKMEK'), findsOneWidget);
@@ -450,7 +414,7 @@ void main() {
             normalizedName: 'domates',
           ),
         );
-    await addItem(listId, 'Domates', productId: productId);
+    final itemId = await addItem(listId, 'Domates', productId: productId);
     await db
         .into(db.priceObservations)
         .insert(
@@ -467,7 +431,9 @@ void main() {
 
     await tester.pumpWidget(app(detail(listId)));
     await settle(tester);
-    await tester.longPress(find.text('Domates'));
+    await tester.tap(find.byKey(Key('detail_item_menu_$itemId')));
+    await settle(tester);
+    await tester.tap(find.text('Fiyat geçmişi'));
     await settle(tester);
 
     expect(find.textContaining('42,90'), findsOneWidget);
@@ -500,7 +466,7 @@ void main() {
       expect(find.byKey(const Key('price_actual')), findsNothing);
 
       // Satıra dokun → gerçek fiyat gir (ayrıntı ekranına gitmeden).
-      await tester.tap(find.byKey(const Key('price_enter')));
+      await tester.tap(find.text('Elma'));
       await settle(tester);
       await tester.enterText(
         find.byKey(const Key('item_actual_price_field')),

@@ -24,6 +24,7 @@ class ListDraftSheet extends StatefulWidget {
     this.parser,
     this.initialText,
     this.autoListen = false,
+    this.showMic = true,
     this.onApprove,
   });
 
@@ -32,6 +33,10 @@ class ListDraftSheet extends StatefulWidget {
 
   /// Asistanın "Sesle liste" eylemi: açılır açılmaz dinlemeye başlar.
   final bool autoListen;
+
+  /// The parent may own the single microphone control (e.g. fixed bottom
+  /// composer). The sheet still owns the recognizer lifecycle.
+  final bool showMic;
 
   final Future<void> Function(ListDraft)? onApprove;
 
@@ -237,7 +242,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
             Row(
               children: [
                 Expanded(child: Text(l10n.quickListTitle, style: Theme.of(context).textTheme.titleMedium)),
-                if (_voice != null)
+                if (_voice != null && widget.showMic)
                   IconButton.filledTonal(
                     key: const Key('draft_mic_button'),
                     tooltip: _voice!.state == VoiceInputState.listening ? l10n.voiceStopListening : l10n.voiceStartListening,

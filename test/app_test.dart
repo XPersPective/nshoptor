@@ -18,22 +18,24 @@ void main() {
   }
 
   testWidgets('uygulama açılır; tr seçiliyken Türkçe slogan', (tester) async {
-    await tester.pumpWidget(NShoptorApp(
-      db: db,
-      fixedLocale: const Locale('tr'),
-    ));
-    await tester.pump();
+    await tester.pumpWidget(
+      NShoptorApp(db: db, fixedLocale: const Locale('tr')),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Ana Sayfa').last);
+    await tester.pumpAndSettle();
     expect(find.text('Evdeki hesap çarşıya uyar.'), findsOneWidget);
     await disposeApp(tester);
   });
 
   testWidgets('en seçiliyken İngilizce slogan', (tester) async {
-    await tester.pumpWidget(NShoptorApp(
-      db: db,
-      fixedLocale: const Locale('en'),
-    ));
-    await tester.pump();
-    expect(find.text('Plan at home. Shop as planned.'), findsOneWidget);
+    await tester.pumpWidget(
+      NShoptorApp(db: db, fixedLocale: const Locale('en')),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Home').last);
+    await tester.pumpAndSettle();
+    expect(find.text('Plan at home, match at checkout.'), findsOneWidget);
     await disposeApp(tester);
   });
 }

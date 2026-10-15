@@ -2,6 +2,8 @@ import 'package:drift/drift.dart';
 
 import '../../../core/money/currency.dart';
 import '../../../core/money/decimal_fixed.dart';
+import '../../../core/quantity/unit_code.dart';
+import '../../../core/quantity/unit_conversion.dart';
 import '../../../data/db/app_database.dart';
 
 /// Fiyat geçmişi istatistikleri (spec §6.10).
@@ -28,6 +30,18 @@ class PriceStats {
   final int sampleCount;
 }
 
+class NormalizedPricePoint {
+  const NormalizedPricePoint({
+    required this.observation,
+    required this.unitPrice,
+    required this.unitCode,
+  });
+
+  final PriceObservation observation;
+  final DecimalFixed unitPrice;
+  final String unitCode;
+}
+
 class PriceHistoryRepository {
   PriceHistoryRepository(this._db);
 
@@ -37,14 +51,37 @@ class PriceHistoryRepository {
   Future<List<PriceObservation>> history(int productId) =>
       (_db.select(_db.priceObservations)
             ..where((t) => t.productId.equals(productId))
-            ..orderBy([(t) => OrderingTerm.desc(t.observedAt)]))
+            ..orderBy([
+              (t) => OrderingTerm.desc(t.observedAt),
+              (t) => OrderingTerm.desc(t.id),
+            ]))
           .get();
+
+  /// Gerçek satın alım gözlemlerini ortak temel birimde, eskiden yeniye
+  /// döndürür. Ambalaj içeriği bilinmeyen birimler karşılaştırılmaz.
+  Future<List<NormalizedPricePoint>> normalizedHistory(
+    int productId, {
+    String? currencyCode,
+    String? unitCode,
+  }) async {
+    final rows = await history(productId);
+    final points = <NormalizedPricePoint>[];
+    for (final row in rows) {
+      if (currencyCode != null && row.currencyCode != currencyCode) continue;
+      final point = _normalize(row);
+      if (point == null || unitCode != null && point.unitCode != unitCode) {
+        continue;
+      }
+      points.add(point);
+    }
+    return points.reversed.toList();
+  }
 
   /// Ürünün gözlemlerinin para birimlerini (tek para birimi beklenir).
   Future<Set<String>> currenciesOf(int productId) async {
-    final rows = await (_db.select(_db.priceObservations)
-          ..where((t) => t.productId.equals(productId)))
-        .get();
+    final rows = await (_db.select(
+      _db.priceObservations,
+    )..where((t) => t.productId.equals(productId))).get();
     return rows.map((r) => r.currencyCode).toSet();
   }
 
@@ -52,20 +89,38 @@ class PriceHistoryRepository {
   /// fiyat dizgesinden minor'a çevrilerek). Para birimi karışıksa en çok
   /// görülen para birimi esas alınır ve yalnız o gözlemler hesaplanır.
   Future<PriceStats?> stats(int productId, {int n = 5}) async {
-    final rows = await history(productId);
+    final rows = await normalizedHistory(productId);
     if (rows.isEmpty) return null;
+    final newest = rows.reversed;
 
     // Para birimi karışımında en baskın olanı seç (diğerleri hesaba girmez).
-    final dominant = _dominantCurrency(rows);
-    final group = rows.where((r) => r.currencyCode == dominant).take(n).toList();
+    final dominant = _dominantCurrency(
+      rows.map((point) => point.observation).toList(),
+    );
+    final dominantUnit = _dominantUnit(
+      rows
+          .where((point) => point.observation.currencyCode == dominant)
+          .toList(),
+    );
+    final group = newest
+        .where(
+          (point) =>
+              point.observation.currencyCode == dominant &&
+              point.unitCode == dominantUnit,
+        )
+        .take(n)
+        .toList();
     if (group.isEmpty) return null;
 
-    final prices = group
-        .map((r) => _unitPriceToMinor(r))
-        .where((v) => v != null)
-        .cast<int>()
-        .toList()
-      ..sort();
+    final prices =
+        group
+            .map(
+              (point) => point.unitPrice.toMinorUnits(
+                _digitsOf(point.observation.currencyCode),
+              ),
+            )
+            .toList()
+          ..sort();
     if (prices.isEmpty) return null;
 
     final median = prices.length.isOdd
@@ -85,26 +140,52 @@ class PriceHistoryRepository {
   /// Görülen en ucuz mağaza: en düşük birim fiyatlı gözlemin mağazası
   /// (aynı para birimi içinde).
   Future<int?> cheapestStore(int productId, {int? withinStore}) async {
-    final rows = await history(productId);
-    final eligible = rows.where((r) => r.storeId != null).toList();
+    final rows = await normalizedHistory(productId);
+    if (rows.isEmpty) return null;
+    final currency = _dominantCurrency(
+      rows.map((point) => point.observation).toList(),
+    );
+    final dominantUnit = _dominantUnit(
+      rows
+          .where((point) => point.observation.currencyCode == currency)
+          .toList(),
+    );
+    final eligible = rows
+        .where(
+          (point) =>
+              point.observation.currencyCode == currency &&
+              point.unitCode == dominantUnit &&
+              point.observation.storeId != null &&
+              (withinStore == null || point.observation.storeId == withinStore),
+        )
+        .toList();
     if (eligible.isEmpty) return null;
-    PriceObservation? best;
-    for (final r in eligible) {
-      if (best == null || _unitPriceToMinor(r)! < _unitPriceToMinor(best)!) {
-        best = r;
+    NormalizedPricePoint? best;
+    for (final point in eligible) {
+      if (best == null || point.unitPrice.compareTo(best.unitPrice) < 0) {
+        best = point;
       }
     }
-    return best!.storeId;
+    return best!.observation.storeId;
   }
 
   /// Basit eğilim: son iki gözlemin birim fiyat karşılaştırması (aynı para
   /// biriminde). Yetersiz veri null döner — yanıltıcı trend üretilmez.
   Future<PriceTrend?> trend(int productId) async {
-    final rows = await history(productId);
+    final rows = await normalizedHistory(productId);
     if (rows.length < 2) return null;
-    if (rows[0].currencyCode != rows[1].currencyCode) return null;
-    final a = _unitPriceToMinor(rows[0])!;
-    final b = _unitPriceToMinor(rows[1])!;
+    final newest = rows.reversed.toList();
+    if (newest[0].observation.currencyCode !=
+            newest[1].observation.currencyCode ||
+        newest[0].unitCode != newest[1].unitCode) {
+      return null;
+    }
+    final a = newest[0].unitPrice.toMinorUnits(
+      _digitsOf(newest[0].observation.currencyCode),
+    );
+    final b = newest[1].unitPrice.toMinorUnits(
+      _digitsOf(newest[1].observation.currencyCode),
+    );
     if (a == b) return PriceTrend.stable;
     return a > b ? PriceTrend.rising : PriceTrend.falling;
   }
@@ -131,16 +212,66 @@ class PriceHistoryRepository {
     return best;
   }
 
-  /// Gözlemin birim fiyatını minor unit'e çevirir; ayrıştırılamıyorsa null.
-  int? _unitPriceToMinor(PriceObservation r) {
-    final value = DecimalFixed.tryParse(r.unitPrice);
-    if (value == null) return null;
-    final digits = _digitsOf(r.currencyCode);
-    return value.toMinorUnits(digits);
+  String _dominantUnit(List<NormalizedPricePoint> rows) {
+    final counts = <String, int>{};
+    for (final point in rows) {
+      counts[point.unitCode] = (counts[point.unitCode] ?? 0) + 1;
+    }
+    var best = rows.first.unitCode;
+    for (final entry in counts.entries) {
+      if (entry.value > counts[best]!) best = entry.key;
+    }
+    return best;
   }
 
-  static int _digitsOf(String code) =>
-      Currency.fromCode(code).minorUnitDigits;
+  static int _digitsOf(String code) => Currency.fromCode(code).minorUnitDigits;
+
+  NormalizedPricePoint? _normalize(PriceObservation row) {
+    final sourceUnit = UnitCode.values
+        .where(
+          (unit) => unit.dbCode == row.unitCode || unit.name == row.unitCode,
+        )
+        .firstOrNull;
+    final quantity = DecimalFixed.tryParse(row.quantity);
+    if (sourceUnit == null || quantity == null || !quantity.isPositive) {
+      return null;
+    }
+    final baseQuantity =
+        DecimalFixed.tryParse(row.normalizedBaseQuantity ?? '') ??
+        UnitConversion.tryConvertToBase(quantity, sourceUnit, allowCount: true);
+    if (baseQuantity == null || !baseQuantity.isPositive) return null;
+    final baseUnit = switch (sourceUnit.dimension) {
+      UnitDimension.mass => UnitCode.kilogram,
+      UnitDimension.volume => UnitCode.litre,
+      UnitDimension.count => UnitCode.adet,
+      UnitDimension.length => UnitCode.metre,
+      UnitDimension.unknown => null,
+    };
+    if (baseUnit == null) return null;
+
+    final sourcePrice = DecimalFixed.tryParse(row.unitPrice);
+    if (sourcePrice == null) return null;
+    final basePrice =
+        row.normalizedBaseQuantity != null || row.lineTotalMinorUnits != 0
+        ? DecimalFixed.fromMinorUnits(
+            row.lineTotalMinorUnits,
+            _digitsOf(row.currencyCode),
+          ).divide(baseQuantity, scale: DecimalFixed.maxFractionDigits)
+        : switch (sourceUnit) {
+            UnitCode.gram ||
+            UnitCode.mililitre => sourcePrice * DecimalFixed.fromInt(1000),
+            UnitCode.duzine => sourcePrice.divide(
+              DecimalFixed.fromInt(12),
+              scale: DecimalFixed.maxFractionDigits,
+            ),
+            _ => sourcePrice,
+          };
+    return NormalizedPricePoint(
+      observation: row,
+      unitPrice: basePrice,
+      unitCode: baseUnit.dbCode,
+    );
+  }
 }
 
 enum PriceTrend { rising, falling, stable }

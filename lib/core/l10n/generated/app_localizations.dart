@@ -245,7 +245,7 @@ abstract class AppLocalizations {
   /// No description provided for @slogan.
   ///
   /// In en, this message translates to:
-  /// **'Plan at home. Shop as planned.'**
+  /// **'Plan at home, match at checkout.'**
   String get slogan;
 
   /// No description provided for @listsTitle.
@@ -257,7 +257,7 @@ abstract class AppLocalizations {
   /// No description provided for @listsTabActive.
   ///
   /// In en, this message translates to:
-  /// **'Active'**
+  /// **'List'**
   String get listsTabActive;
 
   /// No description provided for @listsTabCompleted.
@@ -1595,7 +1595,7 @@ abstract class AppLocalizations {
   /// No description provided for @priceOptionalHint.
   ///
   /// In en, this message translates to:
-  /// **'Optional — you\'ll enter the real price in the store'**
+  /// **'Market price (optional)'**
   String get priceOptionalHint;
 
   /// No description provided for @plannedTotalSummary.
@@ -1799,13 +1799,13 @@ abstract class AppLocalizations {
   /// No description provided for @compareEstimated.
   ///
   /// In en, this message translates to:
-  /// **'Estimate'**
+  /// **'Home price'**
   String get compareEstimated;
 
   /// No description provided for @compareActual.
   ///
   /// In en, this message translates to:
-  /// **'Actual'**
+  /// **'Store price'**
   String get compareActual;
 
   /// No description provided for @compareDiff.

@@ -9,15 +9,15 @@ import sys
 REPO = 'https://github.com/XPersPective/nshoptor'
 
 L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
-           'short': 'Grocery list & budget: real prices, receipt scan, AI. Plan at home, save '
-                    'more.',
-           'full': 'Plan at home. Shop as planned.\n'
+           'short': 'Grocery list & budget: planned vs actual prices, receipt scan and voice.',
+           'full': 'Plan at home, match at checkout.\n'
                    '\n'
                    'ONE LIST, THROUGHOUT YOUR SHOPPING\n'
-                   'Create a named list and add products with planned quantities and estimated '
-                   'prices. Tick items while shopping and enter actual quantities and prices on '
-                   'the same screen. Edit completed lists without restarting the trip. Unknown '
-                   'prices stay unknown; an unbought item is not presented as savings.\n'
+                   'Create one named list for home planning and store checkout. Add products with '
+                   'planned quantities and estimated home prices, then enter optional market '
+                   'prices on the same item when you shop. Swipe to delete, hold to reorder and '
+                   'tap a row to edit. Unknown prices stay unknown; an unbought item is not '
+                   'presented as savings.\n'
                    '\n'
                    'LOCAL INPUT, YOUR APPROVAL\n'
                    'Type or use on-device speech where supported. Read shelf labels and receipts '
@@ -59,14 +59,15 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                     '• 71 languages, independent number format and currency\n'
                     '• New AI plans: 10/100/300 monthly requests; legacy rights preserved'},
  'tr-TR': {'title': 'NShoptor: Alışveriş Listesi',
-           'short': 'Market listesi ve bütçe: gerçek fiyat, fiş okuma, yapay zeka. Evde planla.',
-           'full': 'Evde planla. Planladığın gibi alışveriş yap.\n'
+           'short': 'Alışveriş listesi ve bütçe: tahmini/gerçek fiyat, fiş ve sesli ekleme.',
+           'full': 'Evdeki hesap çarşıya uyar.\n'
                    '\n'
                    'ALIŞVERİŞ BOYUNCA TEK LİSTE\n'
-                   'İsimli bir liste oluştur, ürünleri planlanan miktar ve tahmini fiyatlarıyla '
-                   'ekle. Marketten aldıklarını işaretle, gerçek miktar ve fiyatı aynı ekranda '
-                   'gir. Tamamlanan listeyi alışverişi yeniden başlatmadan düzenle. Bilinmeyen '
-                   'fiyat bilinmeyen kalır; alınmayan ürün tasarruf diye gösterilmez.\n'
+                   'Evdeki hazırlık ve marketteki alışveriş için tek bir liste oluştur. Ürünleri '
+                   'planlanan miktar ve tahmini ev fiyatıyla ekle; alışverişte isteğe bağlı çarşı '
+                   'fiyatını aynı satıra yaz. Satıra dokunarak düzenle, basılı tutarak sırala, '
+                   'yana kaydırarak sil. Bilinmeyen fiyat bilinmeyen kalır; alınmayan ürün '
+                   'tasarruf diye gösterilmez.\n'
                    '\n'
                    'CİHAZDA GİRDİ, SENİN ONAYIN\n'
                    'Yaz veya desteklenen cihazlarda cihaz içi konuşma tanımayı kullan. Raf '
@@ -113,6 +114,96 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
 _extra = pathlib.Path(__file__).with_name('listing_extra.json')
 if _extra.exists():
     L.update(json.loads(_extra.read_text(encoding='utf8')))
+
+# Ana mağaza dillerinde ürünün tek-liste zihinsel modeli ve sloganı doğrudan
+# yerelleştirilir; diğer Play dilleri mevcut çeviri kataloğunu korur.
+L.update({
+    'de-DE': {
+        'title': 'NShoptor: Einkaufsbudget',
+        'short': 'Einkaufsliste & Budget: Planpreis, Kassenpreis, Beleg und Sprache.',
+        'full': "Zuhause geplant, im Laden bewährt.\n\n"
+                "EINE LISTE VON DER PLANUNG BIS ZUR KASSE\n"
+                "Plane Produkte mit Menge und geschätztem Preis zu Hause. Trage beim Einkauf den optionalen Preis an der Kasse in derselben Liste ein. Tippe zum Bearbeiten, halte zum Sortieren und wische zum Löschen. Unbekannte Preise bleiben unbekannt.\n\n"
+                "KLARE VERGLEICHE\n"
+                "Vergleiche Planpreis und tatsächlichen Ladenpreis. Die Preisentwicklung wird pro Einheit wie kg, Liter oder Stück normalisiert, damit unterschiedliche Mengen fair vergleichbar bleiben.\n\n"
+                "SCHNELLE EINGABE\n"
+                "Text und eine einzige, gut erreichbare Spracheingabe helfen beim Hinzufügen. Ergebnisse bleiben bearbeitbar; die manuelle Eingabe bleibt jederzeit verfügbar.\n\n"
+                "PRIVATSPHÄRE UND BERICHTE\n"
+                "Listen, Fotos und Audio bleiben auf dem Gerät. Nutze PDF-Zusammenfassungen, Ausgabenübersichten und Preisverläufe ohne Konto.\n\n"
+                "71 Benutzeroberflächensprachen. Sprache, Zahlenformat und Währung sind unabhängig wählbar.\n\n"
+                "Open Source (GPL-3.0): https://github.com/XPersPective/nshoptor",
+        'notes': 'Neu: eine Liste für Planung und Einkauf; Einheiten-Preisverlauf; neue Sprach- und Gestenführung.'
+    },
+    'es-ES': {
+        'title': 'NShoptor: Lista y presupuesto',
+        'short': 'Lista y presupuesto: precio previsto, precio real, recibos y voz.',
+        'full': "Planifica en casa, acierta en el súper.\n\n"
+                "UNA SOLA LISTA, DE CASA A LA CAJA\n"
+                "Añade productos con cantidad y precio estimado en casa. En la tienda introduce el precio real opcional en la misma lista. Toca para editar, mantén pulsado para ordenar y desliza para borrar. Los precios desconocidos siguen sin inventarse.\n\n"
+                "COMPARA CON UNIDADES JUSTAS\n"
+                "Compara lo previsto con lo pagado. El historial normaliza el precio por kg, litro o unidad para que los tamaños distintos se puedan comparar.\n\n"
+                "AÑADE RÁPIDO\n"
+                "Escribe o usa una única entrada de voz accesible desde abajo. Todo resultado se puede editar y la entrada manual siempre está disponible.\n\n"
+                "PRIVACIDAD Y RESÚMENES\n"
+                "Tus listas, fotos y audio permanecen en el dispositivo. Consulta resúmenes PDF, gastos e historial sin crear una cuenta.\n\n"
+                "71 idiomas de interfaz. Idioma, formato numérico y moneda se eligen por separado.\n\n"
+                "Código abierto (GPL-3.0): https://github.com/XPersPective/nshoptor",
+        'notes': 'Nuevo: una lista para planificar y comprar; historial por unidad; gestos y entrada de voz más claros.'
+    },
+    'fr-FR': {
+        'title': 'NShoptor : liste et budget',
+        'short': 'Liste et budget : prix prévu, prix réel, tickets et voix.',
+        'full': "Prévu à la maison, validé en magasin.\n\n"
+                "UNE SEULE LISTE, DE LA PRÉPARATION À LA CAISSE\n"
+                "Ajoutez les produits avec quantité et prix estimé à la maison. En magasin, saisissez le prix réel facultatif dans la même liste. Touchez pour modifier, maintenez pour trier et balayez pour supprimer. Les prix inconnus restent inconnus.\n\n"
+                "DES PRIX COMPARABLES\n"
+                "Comparez le prévu et le payé. L’historique normalise le prix à l’unité, au kg ou au litre pour comparer des quantités différentes.\n\n"
+                "AJOUT RAPIDE\n"
+                "Saisissez du texte ou utilisez une seule commande vocale accessible en bas. Chaque résultat reste modifiable et la saisie manuelle est toujours possible.\n\n"
+                "CONFIDENTIALITÉ ET RAPPORTS\n"
+                "Listes, photos et audio restent sur l’appareil. Consultez PDF, dépenses et historique sans compte.\n\n"
+                "71 langues d’interface. Langue, format des nombres et devise sont indépendants.\n\n"
+                "Open source (GPL-3.0) : https://github.com/XPersPective/nshoptor",
+        'notes': 'Nouveau : une liste pour prévoir et acheter ; historique au prix unitaire ; gestes et voix simplifiés.'
+    },
+    'it-IT': {
+        'title': 'NShoptor: lista e budget',
+        'short': 'Lista e budget: prezzo previsto, reale, scontrini e voce.',
+        'full': "I conti di casa tornano alla cassa.\n\n"
+                "UNA LISTA, DALLA PREPARAZIONE ALLA SPESA\n"
+                "Aggiungi prodotti con quantità e prezzo stimato a casa. Al supermercato inserisci il prezzo reale facoltativo nella stessa lista. Tocca per modificare, tieni premuto per riordinare e scorri per eliminare. I prezzi sconosciuti restano tali.\n\n"
+                "PREZZI NORMALIZZATI\n"
+                "Confronta il previsto con il pagato. La cronologia usa il prezzo per kg, litro o pezzo per confrontare quantità diverse.\n\n"
+                "AGGIUNTA RAPIDA\n"
+                "Scrivi oppure usa un solo comando vocale, sempre a portata di pollice. Ogni risultato è modificabile e l’inserimento manuale resta disponibile.\n\n"
+                "PRIVACY E REPORT\n"
+                "Liste, foto e audio restano sul dispositivo. Consulta PDF, spese e storico dei prezzi senza account.\n\n"
+                "71 lingue dell’interfaccia. Lingua, formato numerico e valuta sono indipendenti.\n\n"
+                "Open source (GPL-3.0): https://github.com/XPersPective/nshoptor",
+        'notes': 'Novità: una lista per pianificare e fare la spesa; storico per unità; gesti e voce più semplici.'
+    },
+    'ru-RU': {
+        'title': 'NShoptor: список и бюджет',
+        'short': 'Список и бюджет: план, цена в магазине, чеки и голос.',
+        'full': "Посчитано дома — сходится на кассе.\n\n"
+                "ОДИН СПИСОК ОТ ПЛАНА ДО ПОКУПКИ\n"
+                "Добавляйте товары с количеством и примерной ценой дома. В магазине при желании внесите фактическую цену в тот же список. Нажмите для редактирования, удерживайте для сортировки, смахните для удаления. Неизвестные цены не выдумываются.\n\n"
+                "ЧЕСТНАЯ ЦЕНА ЗА ЕДИНИЦУ\n"
+                "Сравнивайте план и оплату. История нормализует цену за кг, литр или штуку, чтобы разные объёмы сравнивались корректно.\n\n"
+                "БЫСТРЫЙ ВВОД\n"
+                "Печатайте или используйте один голосовой ввод внизу экрана. Результат можно исправить, а ручной ввод доступен всегда.\n\n"
+                "КОНФИДЕНЦИАЛЬНОСТЬ И ОТЧЁТЫ\n"
+                "Списки, фото и аудио остаются на устройстве. Смотрите PDF, расходы и историю цен без аккаунта.\n\n"
+                "71 язык интерфейса. Язык, формат чисел и валюта выбираются независимо.\n\n"
+                "Открытый код (GPL-3.0): https://github.com/XPersPective/nshoptor",
+        'notes': 'Новое: один список для плана и покупки; история цены за единицу; понятные жесты и голосовой ввод.'
+    },
+})
+L['de-DE']['full'] += '\n\nTARIFE\nKostenlos: 10 KI-Anfragen pro Monat. Pro: 100, Max: 300. Geeignete neue Abos können 7 Tage testen; ältere Rechte 200 und 1000 bleiben erhalten.'
+L['es-ES']['full'] += '\n\nPLANES\nGratis: 10 solicitudes de IA al mes. Pro: 100, Max: 300. Las nuevas suscripciones elegibles pueden probar 7 días; se conservan los derechos antiguos de 200 y 1000.'
+L['fr-FR']['full'] += '\n\nFORMULES\nGratuit : 10 requêtes IA par mois. Pro : 100, Max : 300. Les nouveaux abonnements éligibles peuvent essayer 7 jours ; les anciens droits 200 et 1000 restent valables.'
+L['it-IT']['full'] += '\n\nPIANI\nGratis: 10 richieste IA al mese. Pro: 100, Max: 300. I nuovi abbonamenti idonei possono provare 7 giorni; i diritti precedenti 200 e 1000 restano validi.'
+L['ru-RU']['full'] += '\n\nПЛАНЫ\nБесплатно: 10 запросов ИИ в месяц. Pro: 100, Max: 300. Подходящую подписку можно попробовать 7 дней; прежние права 200 и 1000 сохраняются.'
 for _to, _from in {'en-GB': 'en-US', 'es-419': 'es-ES', 'es-US': 'es-ES', 'fr-CA': 'fr-FR'}.items():
     L[_to] = L[_from]
 

@@ -1,4 +1,5 @@
 import '../../core/money/format_locale.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
@@ -7,7 +8,6 @@ import '../../core/money/money_format.dart';
 import '../../core/money/money.dart';
 import '../../core/theme/semantic_colors.dart';
 import '../../data/db/app_database.dart';
-import '../lists/list_status.dart';
 import '../lists/list_repository.dart';
 import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
@@ -24,12 +24,15 @@ import '../settings/settings_repository.dart';
 import '../settings/settings_screen.dart';
 import '../lists/templates/template_repository.dart';
 import '../lists/list_detail_screen.dart';
+
 import 'package:image_picker/image_picker.dart';
+
 import '../receipts/ocr_text_source.dart';
 import '../receipts/parser/receipt_parser.dart';
 import '../receipts/shelf_label/mlkit_text_source.dart';
 import '../receipts/review/receipt_review_controller.dart';
 import '../receipts/review/receipt_review_screen.dart';
+
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
@@ -96,7 +99,9 @@ class HomeShell extends StatefulWidget {
 }
 
 class _HomeShellState extends State<HomeShell> {
-  int _tab = 0;
+  // The unified list is the landing surface; the legacy overview remains
+  // available as a secondary summary page for existing users.
+  int _tab = 1;
   bool _inputBusy = false;
 
   @override
@@ -107,8 +112,11 @@ class _HomeShellState extends State<HomeShell> {
         db: widget.db,
         listRepository: widget.listRepository,
         onOpenList: (list) => _openShopping(context, list.id),
-        onNewList: () => showListEditor(context, widget.listRepository,
-            reminderScheduler: widget.reminderScheduler),
+        onNewList: () => showListEditor(
+          context,
+          widget.listRepository,
+          reminderScheduler: widget.reminderScheduler,
+        ),
       ),
       ListsScreen(
         repository: widget.listRepository,
@@ -177,21 +185,21 @@ class _HomeShellState extends State<HomeShell> {
                 selectedIcon: const Icon(Icons.list),
                 label: l10n.navLists,
               ),
-          NavigationDestination(
-            icon: const Icon(Icons.history_outlined),
-            selectedIcon: const Icon(Icons.history),
-            label: l10n.navHistory,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.explore_outlined),
-            selectedIcon: const Icon(Icons.explore),
-            label: l10n.navDiscover,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.settings_outlined),
-            selectedIcon: const Icon(Icons.settings),
-            label: l10n.navSettings,
-          ),
+              NavigationDestination(
+                icon: const Icon(Icons.history_outlined),
+                selectedIcon: const Icon(Icons.history),
+                label: l10n.navHistory,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.explore_outlined),
+                selectedIcon: const Icon(Icons.explore),
+                label: l10n.navDiscover,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.settings_outlined),
+                selectedIcon: const Icon(Icons.settings),
+                label: l10n.navSettings,
+              ),
             ],
           ),
           if (widget.bannerController != null)
@@ -201,89 +209,151 @@ class _HomeShellState extends State<HomeShell> {
     );
   }
 
-  Future<void> _onAssistant(BuildContext context, AssistantChoice choice) async {
+  Future<void> _onAssistant(
+    BuildContext context,
+    AssistantChoice choice,
+  ) async {
     if (_inputBusy) return;
     setState(() => _inputBusy = true);
     final l10n = AppLocalizations.of(context);
     try {
-    switch (choice.action) {
-      case AssistantAction.newList:
-        await showListEditor(context, widget.listRepository,
-            reminderScheduler: widget.reminderScheduler);
-      case AssistantAction.scanReceipt:
-        await _scanReceipt(context);
-      case AssistantAction.spending:
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: widget.db)),
-        );
-      case AssistantAction.voiceList || AssistantAction.textList:
-        int? createdId;
-        final picked = await showModalBottomSheet<ListDraft>(
-          context: context,
-          isScrollControlled: true,
-          showDragHandle: true,
-          builder: (_) => ListDraftSheet(
-            speechService: SttSpeechService(),
-            initialText: choice.text,
-            autoListen: choice.action == AssistantAction.voiceList,
-            onApprove: (draft) async {
-              createdId = await widget.db.transaction(() async {
-                final id = await widget.listRepository.createList(title: draft.title,
-                  currencyCode: AppDefaults.defaultCurrency(), generatedTitle: l10n.quickListTitle);
-                await ItemRepository(widget.db).addCandidates(id, draft.items);
-                return id;
-              });
-            },
-          ),
-        );
-        if (picked == null || createdId == null || !context.mounted) return;
-        final listId = createdId!;
-        // Önce liste açılır: fiyatları düzenle, sonra "Alışverişe başla" (plan → alışveriş).
-        if (context.mounted) {
+      switch (choice.action) {
+        case AssistantAction.newList:
+          await showListEditor(
+            context,
+            widget.listRepository,
+            reminderScheduler: widget.reminderScheduler,
+          );
+        case AssistantAction.scanReceipt:
+          await _scanReceipt(context);
+        case AssistantAction.spending:
           await Navigator.of(context).push(
             MaterialPageRoute<void>(
-              builder: (_) => ListDetailScreen(
-                db: widget.db,
-                listRepository: widget.listRepository,
-                listId: listId,
-                reminderScheduler: widget.reminderScheduler,
-              ),
+              builder: (_) => SpendingScreen(db: widget.db),
             ),
           );
-        }
+        case AssistantAction.voiceList || AssistantAction.textList:
+          int? createdId;
+          final picked = await showModalBottomSheet<ListDraft>(
+            context: context,
+            isScrollControlled: true,
+            showDragHandle: true,
+            builder: (_) => ListDraftSheet(
+              speechService: SttSpeechService(),
+              initialText: choice.text,
+              autoListen: choice.action == AssistantAction.voiceList,
+              onApprove: (draft) async {
+                createdId = await widget.db.transaction(() async {
+                  final id = await widget.listRepository.createList(
+                    title: draft.title,
+                    currencyCode: AppDefaults.defaultCurrency(),
+                    generatedTitle: l10n.quickListTitle,
+                  );
+                  await ItemRepository(widget.db)
+                      .addCandidates(id, draft.items);
+                  return id;
+                });
+              },
+            ),
+          );
+          if (picked == null || createdId == null || !context.mounted) return;
+          final listId = createdId!;
+          // Önce liste açılır: fiyatları düzenle, sonra "Alışverişe başla" (plan → alışveriş).
+          if (context.mounted) {
+            await Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => ListDetailScreen(
+                  db: widget.db,
+                  listRepository: widget.listRepository,
+                  listId: listId,
+                  reminderScheduler: widget.reminderScheduler,
+                ),
+              ),
+            );
+          }
+      }
+    } catch (_) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.saveFailed),
+              showCloseIcon: true,
+              duration: const Duration(days: 1),
+            ),
+          );
+      }
+    } finally {
+      if (mounted) setState(() => _inputBusy = false);
     }
-      } catch (_) {
-        if (context.mounted) { ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
-          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1))); }
-      } finally { if (mounted) setState(() => _inputBusy = false); }
   }
 
   Future<void> _scanReceipt(BuildContext context) async {
     final l10n = AppLocalizations.of(context);
     try {
-      final path = await (widget.pickImage?.call() ?? ImagePicker().pickImage(source: ImageSource.camera).then((x) => x?.path));
+      final path =
+          await (widget.pickImage?.call() ??
+              ImagePicker()
+                  .pickImage(source: ImageSource.camera)
+                  .then((x) => x?.path));
       if (path == null || !mounted) return;
       final source = widget.ocrSource ?? MlKitTextSource();
       final OcrScanResult scan;
-      try { scan = await source.scan(path); }
-      finally { if (widget.ocrSource == null) (source as MlKitTextSource).dispose(); }
+      try {
+        scan = await source.scan(path);
+      } finally {
+        if (widget.ocrSource == null) (source as MlKitTextSource).dispose();
+      }
       if (!context.mounted) return;
       final currency = AppDefaults.defaultCurrency();
       final parsed = ReceiptParser(currency: currency).parse(scan);
       if (parsed.lines.isEmpty) {
-        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true, duration: const Duration(days: 1)));
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.ocrNoText),
+              showCloseIcon: true,
+              duration: const Duration(days: 1),
+            ),
+          );
         return;
       }
-      final controller = ReceiptReviewController(db: widget.db, currencyCode: currency,
-        title: l10n.receiptReviewTitle, parseResult: parsed);
+      final controller = ReceiptReviewController(
+        db: widget.db,
+        currencyCode: currency,
+        title: l10n.receiptReviewTitle,
+        parseResult: parsed,
+      );
       try {
-        await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ReceiptReviewScreen(
-          controller: controller, currency: currency, plannedItems: Future.value(const []))));
-        if (controller.listId != null && context.mounted) await _openShopping(context, controller.listId!);
-      } finally { controller.dispose(); }
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => ReceiptReviewScreen(
+              controller: controller,
+              currency: currency,
+              plannedItems: Future.value(const []),
+            ),
+          ),
+        );
+        if (controller.listId != null && context.mounted) {
+          await _openShopping(context, controller.listId!);
+        }
+      } finally {
+        controller.dispose();
+      }
     } catch (_) {
-      if (context.mounted) { ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
-        SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true, duration: const Duration(days: 1))); }
+      if (context.mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.ocrNoText),
+              showCloseIcon: true,
+              duration: const Duration(days: 1),
+            ),
+          );
+      }
     }
   }
 
@@ -356,15 +426,12 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 16),
                         Text(
                           l10n.homeEmptyTitle,
-                          style:
-                              Theme.of(context).textTheme.headlineSmall,
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const SizedBox(height: 6),
                         Text(
                           l10n.homeEmptyBody,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
+                          style: Theme.of(context).textTheme.bodyMedium
                               ?.copyWith(color: colors.onSurfaceVariant),
                         ),
                         const SizedBox(height: 12),
@@ -402,21 +469,6 @@ class HomeScreen extends StatelessWidget {
                           list.title ?? list.generatedTitle ?? l10n.listsTitle,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        subtitle: Text(
-                          statusLabel(
-                            l10n,
-                            ListStatus.tryFromDb(list.status) ??
-                                ListStatus.draft,
-                          ),
-                        ),
-                        trailing: list.status == 'shopping'
-                            ? TextButton.icon(
-                                key: Key('home_continue_${list.id}'),
-                                onPressed: () => onOpenList(list),
-                                icon: const Icon(Icons.play_arrow),
-                                label: Text(l10n.continueShoppingLabel),
-                              )
-                            : null,
                         onTap: () => onOpenList(list),
                       ),
                     ),
@@ -432,12 +484,23 @@ class HomeScreen extends StatelessWidget {
               if (totalsList.isEmpty) return const SizedBox.shrink();
               return Column(
                 children: [
-                  for (final totals in totalsList) StatefulBuilder(builder: (context, refresh) =>
-                    _MonthlyCard(totals: totals, onTap: () async {
-                      await Navigator.of(context).push(MaterialPageRoute<void>(
-                        builder: (_) => SpendingScreen(db: db, currencyCode: totals.currencyCode)));
-                      if (context.mounted) refresh(() {});
-                    })),
+                  for (final totals in totalsList)
+                    StatefulBuilder(
+                      builder: (context, refresh) => _MonthlyCard(
+                        totals: totals,
+                        onTap: () async {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => SpendingScreen(
+                                db: db,
+                                currencyCode: totals.currencyCode,
+                              ),
+                            ),
+                          );
+                          if (context.mounted) refresh(() {});
+                        },
+                      ),
+                    ),
                 ],
               );
             },
@@ -593,68 +656,104 @@ class _MonthlyCard extends StatelessWidget {
     );
     return Card(
       key: Key('home_monthly_card_${totals.currencyCode}'),
-      child: InkWell(onTap: onTap, child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.homeMonthlySection,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    '${l10n.monthPlannedLabel}: ${money(totals.plannedMinor)}',
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.homeMonthlySection,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      '${l10n.monthPlannedLabel}: ${money(totals.plannedMinor)}',
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Text(
-                    '${l10n.monthActualLabel}: ${money(totals.actualMinor)}',
+                  Expanded(
+                    child: Text(
+                      '${l10n.monthActualLabel}: ${money(totals.actualMinor)}',
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Row(
-              children: [
-                if (variance != null) Icon(
-                  delta.icon,
-                  size: 16,
-                  color: delta.color,
-                  semanticLabel: delta.marker,
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  '${l10n.monthVarianceLabel}: ${variance == null ? '—' : money(variance.abs())}',
-                  style: TextStyle(color: variance == null ? Theme.of(context).colorScheme.onSurface : delta.color),
-                ),
-              ],
-            ),
-            if (AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode) != null) ...[
-              const SizedBox(height: 10),
-              LinearProgressIndicator(
-                key: const Key('home_limit_progress'),
-                value: (totals.actualMinor / AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)!)
-                    .clamp(0, 1)
-                    .toDouble(),
-                color: totals.actualMinor > AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)!
-                    ? Theme.of(context).colorScheme.error
-                    : null,
+                ],
               ),
               const SizedBox(height: 4),
-              Text(
-                totals.actualMinor > AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)!
-                    ? l10n.monthlyLimitOver(money(totals.actualMinor - AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)!))
-                    : l10n.monthlyLimitLeft(money(AppDefaults.monthlyLimitMinor(currencyCode: totals.currencyCode)! - totals.actualMinor)),
-                style: Theme.of(context).textTheme.bodySmall,
+              Row(
+                children: [
+                  if (variance != null)
+                    Icon(
+                      delta.icon,
+                      size: 16,
+                      color: delta.color,
+                      semanticLabel: delta.marker,
+                    ),
+                  const SizedBox(width: 4),
+                  Text(
+                    '${l10n.monthVarianceLabel}: ${variance == null ? '—' : money(variance.abs())}',
+                    style: TextStyle(
+                      color: variance == null
+                          ? Theme.of(context).colorScheme.onSurface
+                          : delta.color,
+                    ),
+                  ),
+                ],
               ),
+              if (AppDefaults.monthlyLimitMinor(
+                    currencyCode: totals.currencyCode,
+                  ) !=
+                  null) ...[
+                const SizedBox(height: 10),
+                LinearProgressIndicator(
+                  key: const Key('home_limit_progress'),
+                  value:
+                      (totals.actualMinor /
+                              AppDefaults.monthlyLimitMinor(
+                                currencyCode: totals.currencyCode,
+                              )!)
+                          .clamp(0, 1)
+                          .toDouble(),
+                  color:
+                      totals.actualMinor >
+                          AppDefaults.monthlyLimitMinor(
+                            currencyCode: totals.currencyCode,
+                          )!
+                      ? Theme.of(context).colorScheme.error
+                      : null,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  totals.actualMinor >
+                          AppDefaults.monthlyLimitMinor(
+                            currencyCode: totals.currencyCode,
+                          )!
+                      ? l10n.monthlyLimitOver(
+                          money(
+                            totals.actualMinor -
+                                AppDefaults.monthlyLimitMinor(
+                                  currencyCode: totals.currencyCode,
+                                )!,
+                          ),
+                        )
+                      : l10n.monthlyLimitLeft(
+                          money(
+                            AppDefaults.monthlyLimitMinor(
+                                  currencyCode: totals.currencyCode,
+                                )! -
+                                totals.actualMinor,
+                          ),
+                        ),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
             ],
-          ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
@@ -703,18 +802,29 @@ class HistoryPlaceholder extends StatelessWidget {
                 child: ListTile(
                   leading: const Icon(Icons.insights_outlined),
                   title: Text(l10n.spendingTitle),
-                  subtitle: Text('${l10n.spendingWeekly} · ${l10n.monthlyLimitTitle}'),
+                  subtitle: Text(
+                    '${l10n.spendingWeekly} · ${l10n.monthlyLimitTitle}',
+                  ),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: db)),
+                    MaterialPageRoute<void>(
+                      builder: (_) => SpendingScreen(db: db),
+                    ),
                   ),
                 ),
               ),
               for (final list in completed)
                 ListTile(
                   key: Key('history_list_${list.id}'),
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) =>
-                    ListDetailScreen(db: db, listRepository: ListRepository(db), listId: list.id))),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => ListDetailScreen(
+                        db: db,
+                        listRepository: ListRepository(db),
+                        listId: list.id,
+                      ),
+                    ),
+                  ),
                   leading: const Icon(Icons.check_circle_outline),
                   title: Text(
                     list.title ?? list.generatedTitle ?? l10n.listsTitle,

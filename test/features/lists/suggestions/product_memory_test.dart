@@ -52,15 +52,27 @@ void main() {
 
     test('son ödenen fiyat: genel ve mağaza bazlı', () async {
       // FK: gözlemlerin mağazaları gerçek kayıt olmalı.
-      await db.into(db.stores).insert(StoresCompanion.insert(name: 'Market A', sortOrder: const Value(1)));
-      await db.into(db.stores).insert(StoresCompanion.insert(name: 'Market B', sortOrder: const Value(2)));
-      final productId = await db.into(db.productMemory).insert(
+      await db
+          .into(db.stores)
+          .insert(
+            StoresCompanion.insert(name: 'Market A', sortOrder: const Value(1)),
+          );
+      await db
+          .into(db.stores)
+          .insert(
+            StoresCompanion.insert(name: 'Market B', sortOrder: const Value(2)),
+          );
+      final productId = await db
+          .into(db.productMemory)
+          .insert(
             ProductMemoryCompanion.insert(
               canonicalName: 'Yumurta',
               normalizedName: 'yumurta',
             ),
           );
-      await db.into(db.priceObservations).insert(
+      await db
+          .into(db.priceObservations)
+          .insert(
             PriceObservationsCompanion.insert(
               productId: Value(productId),
               quantity: '1',
@@ -73,7 +85,9 @@ void main() {
               observedAt: Value(DateTime(2026, 9, 1)),
             ),
           );
-      await db.into(db.priceObservations).insert(
+      await db
+          .into(db.priceObservations)
+          .insert(
             PriceObservationsCompanion.insert(
               productId: Value(productId),
               quantity: '1',
@@ -95,6 +109,25 @@ void main() {
       expect(store1!.unitPrice, '45.00');
       // Mağaza 3: kayıt yok → null (fiyat uydurulmaz).
       expect(await memory.lastObservation(productId, storeId: 3), isNull);
+    });
+
+    test('gram gözlemi kilogram fiyatı ve birimiyle saklanır', () async {
+      await memory.recordObservation(
+        name: 'Domates',
+        normalizedName: 'domates',
+        listId: 1,
+        quantity: '500',
+        unitCode: 'gram',
+        unitPrice: '20.00',
+        lineTotalMinor: 1000,
+        currencyCode: 'TRY',
+      );
+
+      final observation = (await db.select(db.priceObservations).get()).single;
+      expect(observation.quantity, '0.500000');
+      expect(observation.unitCode, 'kilogram');
+      expect(observation.unitPrice, '20.000000');
+      expect(observation.normalizedBaseQuantity, '0.500000');
     });
   });
 
@@ -120,15 +153,20 @@ void main() {
       }
 
       final suggestions = await memory.suggestNames('');
-      expect(suggestions.map((p) => p.canonicalName).toList(),
-          ['ekmek', 'peynir', 'süt']);
+      expect(suggestions.map((p) => p.canonicalName).toList(), [
+        'ekmek',
+        'peynir',
+        'süt',
+      ]);
 
       final e = await memory.suggestNames('ek');
       expect(e.single.canonicalName, 'ekmek');
     });
 
     test('favori işaretlenir ve listelenir', () async {
-      final id = await db.into(db.productMemory).insert(
+      final id = await db
+          .into(db.productMemory)
+          .insert(
             ProductMemoryCompanion.insert(
               canonicalName: 'Kahve',
               normalizedName: 'kahve',
@@ -144,10 +182,12 @@ void main() {
 
   group('yinelenen ürün (spec §6.2)', () {
     test('aynı normalize adda ürün varsa bulunur', () async {
-      final listId = await db.into(db.shoppingLists).insert(
-            ShoppingListsCompanion.insert(currencyCode: 'TRY'),
-          );
-      await db.into(db.plannedItems).insert(
+      final listId = await db
+          .into(db.shoppingLists)
+          .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+      await db
+          .into(db.plannedItems)
+          .insert(
             PlannedItemsCompanion.insert(
               listId: listId,
               name: 'Süt',
@@ -165,10 +205,15 @@ void main() {
 
   group('çok satırlı yapıştırma (spec §6.2)', () {
     test('her boş olmayan satır bir adaydır', () {
-      final candidates =
-          parsePastedLines('Süt\nEkmek\n\n  Peynir  \r\nDomates');
-      expect(candidates.map((c) => c.name).toList(),
-          ['Süt', 'Ekmek', 'Peynir', 'Domates']);
+      final candidates = parsePastedLines(
+        'Süt\nEkmek\n\n  Peynir  \r\nDomates',
+      );
+      expect(candidates.map((c) => c.name).toList(), [
+        'Süt',
+        'Ekmek',
+        'Peynir',
+        'Domates',
+      ]);
     });
 
     test('boş metin aday üretmez', () {

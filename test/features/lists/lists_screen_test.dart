@@ -218,7 +218,7 @@ void main() {
   testWidgets(
     'liste, tamamlananlar ve arşiv yatay sayfalardır; kart durum etiketi göstermez',
     (tester) async {
-      await repo.createList(title: 'Aktif', currencyCode: 'TRY');
+      await repo.createList(title: 'Haftalık', currencyCode: 'TRY');
       final completed = await repo.createList(
         title: 'Biten',
         currencyCode: 'TRY',
@@ -230,7 +230,8 @@ void main() {
       await settle(tester);
 
       expect(find.byType(PageView), findsOneWidget);
-      expect(find.text('Aktif'), findsNWidgets(2));
+      expect(find.text('Liste'), findsOneWidget);
+      expect(find.text('Haftalık'), findsOneWidget);
       expect(find.text('Taslak'), findsNothing);
       await tester.drag(find.byType(PageView), const Offset(-500, 0));
       await settle(tester);

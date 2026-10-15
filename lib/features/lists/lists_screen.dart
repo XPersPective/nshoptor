@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../core/money/format_locale.dart';
 
 import 'package:flutter/material.dart';
@@ -53,6 +55,7 @@ class ListsScreen extends StatefulWidget {
 class _ListsScreenState extends State<ListsScreen> {
   String _query = '';
   int _page = 0;
+  final _orders = <ListStatus, List<int>>{};
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +102,14 @@ class _ListsScreenState extends State<ListsScreen> {
                     ListStatus.planned,
                     ListStatus.shopping,
                   },
+                  orderKey: ListStatus.draft,
+                  order: _orders[ListStatus.draft],
+                  onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                    ListStatus.draft,
+                    lists,
+                    oldIndex,
+                    newIndex,
+                  ),
                   emptyText: l10n.listsEmpty,
                   onOpenListDetail: widget.onOpenListDetail,
                   reminderScheduler: widget.reminderScheduler,
@@ -107,6 +118,14 @@ class _ListsScreenState extends State<ListsScreen> {
                   repository: widget.repository,
                   query: _query,
                   statuses: const {ListStatus.completed},
+                  orderKey: ListStatus.completed,
+                  order: _orders[ListStatus.completed],
+                  onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                    ListStatus.completed,
+                    lists,
+                    oldIndex,
+                    newIndex,
+                  ),
                   emptyText: l10n.listsEmpty,
                   onOpenListDetail: widget.onOpenListDetail,
                   reminderScheduler: widget.reminderScheduler,
@@ -115,6 +134,14 @@ class _ListsScreenState extends State<ListsScreen> {
                   repository: widget.repository,
                   query: _query,
                   statuses: const {ListStatus.archived},
+                  orderKey: ListStatus.archived,
+                  order: _orders[ListStatus.archived],
+                  onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                    ListStatus.archived,
+                    lists,
+                    oldIndex,
+                    newIndex,
+                  ),
                   emptyText: l10n.listsEmpty,
                   onOpenListDetail: widget.onOpenListDetail,
                   reminderScheduler: widget.reminderScheduler,
@@ -141,6 +168,19 @@ class _ListsScreenState extends State<ListsScreen> {
       existing: existing,
       reminderScheduler: widget.reminderScheduler,
     );
+  }
+
+  void _reorderLists(
+    ListStatus status,
+    List<ShoppingList> lists,
+    int oldIndex,
+    int newIndex,
+  ) {
+    final ordered = lists.map((list) => list.id).toList();
+    final moved = ordered.removeAt(oldIndex);
+    ordered.insert(newIndex, moved);
+    setState(() => _orders[status] = ordered);
+    unawaited(widget.repository.reorderLists(ordered));
   }
 }
 
@@ -178,6 +218,9 @@ class _ListsTab extends StatelessWidget {
     required this.repository,
     required this.query,
     required this.statuses,
+    required this.orderKey,
+    required this.order,
+    required this.onReorder,
     required this.emptyText,
     required this.onOpenListDetail,
     this.reminderScheduler,
@@ -186,6 +229,9 @@ class _ListsTab extends StatelessWidget {
   final ListRepository repository;
   final String query;
   final Set<ListStatus> statuses;
+  final ListStatus orderKey;
+  final List<int>? order;
+  final void Function(List<ShoppingList>, int, int) onReorder;
   final String emptyText;
   final void Function(BuildContext, int)? onOpenListDetail;
   final ReminderScheduler? reminderScheduler;
@@ -206,7 +252,12 @@ class _ListsTab extends StatelessWidget {
                           .contains(query.toLowerCase()),
                 )
                 .toList()
-              ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+              ..sort((a, b) {
+                final byOrder = a.sortOrder.compareTo(b.sortOrder);
+                return byOrder == 0
+                    ? b.createdAt.compareTo(a.createdAt)
+                    : byOrder;
+              });
         if (lists.isEmpty) {
           final colors = Theme.of(context).colorScheme;
           return Center(
@@ -239,13 +290,32 @@ class _ListsTab extends StatelessWidget {
             ),
           );
         }
-        return ListView.builder(
+        final customOrder = order ?? const <int>[];
+        lists.sort((a, b) {
+          final ai = customOrder.indexOf(a.id);
+          final bi = customOrder.indexOf(b.id);
+          if (ai >= 0 && bi >= 0) return ai.compareTo(bi);
+          if (ai >= 0) return -1;
+          if (bi >= 0) return 1;
+          final byOrder = a.sortOrder.compareTo(b.sortOrder);
+          return byOrder == 0 ? b.createdAt.compareTo(a.createdAt) : byOrder;
+        });
+        return ReorderableListView.builder(
+          buildDefaultDragHandles: false,
           itemCount: lists.length,
-          itemBuilder: (context, index) => _ListCard(
-            repository: repository,
-            list: lists[index],
-            onOpen: onOpenListDetail,
-            reminderScheduler: reminderScheduler,
+          onReorderItem: (oldIndex, newIndex) =>
+              onReorder(lists, oldIndex, newIndex),
+          itemBuilder: (context, index) => KeyedSubtree(
+            key: ValueKey('reorder_${orderKey.name}_${lists[index].id}'),
+            child: ReorderableDelayedDragStartListener(
+              index: index,
+              child: _ListCard(
+                repository: repository,
+                list: lists[index],
+                onOpen: onOpenListDetail,
+                reminderScheduler: reminderScheduler,
+              ),
+            ),
           ),
         );
       },

@@ -19,10 +19,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get listsTitle => 'Listeler';
 
   @override
-  String get listsTabActive => 'Aktif';
+  String get listsTabActive => 'Liste';
 
   @override
-  String get listsTabCompleted => 'Tamamlanan';
+  String get listsTabCompleted => 'Tamamlananlar';
 
   @override
   String get listsTabArchived => 'Arşiv';
@@ -710,8 +710,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get itemDetailsSection => 'Ayrıntılar';
 
   @override
-  String get priceOptionalHint =>
-      'İsteğe bağlı — mağazada gerçek fiyatı gireceksin';
+  String get priceOptionalHint => 'Çarşı Fiyatı (İsteğe bağlı)';
 
   @override
   String plannedTotalSummary(Object count, Object total) {
@@ -828,10 +827,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get compareItem => 'Ürün';
 
   @override
-  String get compareEstimated => 'Tahmini';
+  String get compareEstimated => 'Evdeki Fiyat';
 
   @override
-  String get compareActual => 'Gerçek';
+  String get compareActual => 'Çarşıdaki Fiyat';
 
   @override
   String get compareDiff => 'Fark';

@@ -159,6 +159,26 @@ void main() {
     },
   );
 
+  testWidgets('swipe deletes an item and undo restores it', (tester) async {
+    final listId = await lists.createList(title: 'Market', currencyCode: 'TRY');
+    final id = await item(listId, 'Domates');
+    await open(tester, listId);
+
+    await tester.fling(
+      find.byKey(Key('detail_item_$id')),
+      const Offset(-500, 0),
+      1000,
+    );
+    await tester.pumpAndSettle();
+
+    expect(await db.select(db.plannedItems).get(), isEmpty);
+    expect(find.byType(SnackBar), findsOneWidget);
+    await tester.tap(find.text('Geri al'));
+    await tester.pumpAndSettle();
+    expect((await db.select(db.plannedItems).get()).single.name, 'Domates');
+    await close(tester);
+  });
+
   for (final locale in ['tr', 'ar']) {
     testWidgets(
       '320dp 2x text long names and labelled 48dp actions ($locale)',
@@ -174,47 +194,32 @@ void main() {
         );
         await open(tester, listId, locale: locale, scale: 2);
         expect(tester.takeException(), isNull);
-        for (final key in [
-          'detail_add_item_button',
-          'detail_quick_list',
-          'detail_scan_receipt',
-        ]) {
+        for (final key in ['detail_quick_list']) {
           final button = tester.widget<IconButton>(find.byKey(Key(key)));
           expect(button.tooltip, isNotEmpty);
           final size = tester.getSize(find.byKey(Key(key)));
           expect(size.width, greaterThanOrEqualTo(48));
           expect(size.height, greaterThanOrEqualTo(48));
         }
+        expect(find.byKey(const Key('detail_quick_entry')), findsOneWidget);
+        expect(find.byKey(const Key('detail_add_item_button')), findsNothing);
+        expect(find.byKey(const Key('detail_scan_receipt')), findsNothing);
         await tester.scrollUntilVisible(
           find.byKey(Key('detail_item_menu_$id')),
-          150,
+          300,
+          scrollable: find.byType(Scrollable).first,
         );
-        await tester.pumpAndSettle();
         expect(tester.takeException(), isNull);
         expect(
           tester
               .widget<PopupMenuButton<String>>(
-                find.byKey(Key('detail_item_menu_$id')),
+                find.byKey(Key('detail_item_menu_$id')).at(0),
               )
               .tooltip,
           isNotEmpty,
         );
-        await tester.scrollUntilVisible(
-          find.byKey(const Key('price_scan')),
-          150,
-        );
-        await tester.pumpAndSettle();
-        expect(tester.takeException(), isNull);
-        for (final key in ['price_enter', 'price_scan']) {
-          expect(
-            tester.widget<IconButton>(find.byKey(Key(key))).tooltip,
-            isNotEmpty,
-          );
-          expect(
-            tester.getSize(find.byKey(Key(key))).shortestSide,
-            greaterThanOrEqualTo(48),
-          );
-        }
+        expect(find.byKey(const Key('price_enter')), findsNothing);
+        expect(find.byKey(const Key('price_scan')), findsNothing);
         await close(tester);
       },
     );

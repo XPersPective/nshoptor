@@ -1,10 +1,12 @@
-import 'package:drift/drift.dart' show Value;
+import 'package:drift/drift.dart' show OrderingTerm, Value;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
+import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
+import 'package:nshoptor/core/money/decimal_fixed.dart';
 
 void main() {
   late AppDatabase db;
@@ -17,9 +19,10 @@ void main() {
 
   tearDown(() async => db.close());
 
-  Future<int> insertItem(int listId, String name,
-      {int lineTotalMinor = 1000}) {
-    return db.into(db.plannedItems).insert(
+  Future<int> insertItem(int listId, String name, {int lineTotalMinor = 1000}) {
+    return db
+        .into(db.plannedItems)
+        .insert(
           PlannedItemsCompanion.insert(
             listId: listId,
             name: name,
@@ -72,7 +75,10 @@ void main() {
   group('çoğaltma', () {
     test('kopya taslaktır; ürünler pending kopyalanır', () async {
       final id = await repo.createList(
-          title: 'Haftalık', currencyCode: 'TRY', budgetMinorUnits: 10000);
+        title: 'Haftalık',
+        currencyCode: 'TRY',
+        budgetMinorUnits: 10000,
+      );
       await repo.changeStatus(id, ListStatus.planned);
       await repo.changeStatus(id, ListStatus.shopping);
       await insertItem(id, 'Süt');
@@ -84,10 +90,9 @@ void main() {
       expect(copy.completedAt, isNull);
       expect(copy.budgetMinorUnits, 10000);
 
-      final copyItems =
-          await (db.select(db.plannedItems)
-                ..where((t) => t.listId.equals(copyId)))
-              .get();
+      final copyItems = await (db.select(
+        db.plannedItems,
+      )..where((t) => t.listId.equals(copyId))).get();
       expect(copyItems, hasLength(1));
       expect(copyItems.single.status, 'pending');
       expect(copyItems.single.name, 'Süt');
@@ -97,7 +102,9 @@ void main() {
   group('para birimi değişimi (spec §7.1)', () {
     test('rakamları koru: değerler aynı kalır', () async {
       final id = await repo.createList(
-          currencyCode: 'TRY', budgetMinorUnits: 25000);
+        currencyCode: 'TRY',
+        budgetMinorUnits: 25000,
+      );
       await insertItem(id, 'Ekmek', lineTotalMinor: 1500);
 
       await repo.changeCurrency(id, 'USD', resetAmounts: false);
@@ -111,7 +118,9 @@ void main() {
 
     test('rakamları sıfırla: bütçe ve planlı tutarlar temizlenir', () async {
       final id = await repo.createList(
-          currencyCode: 'TRY', budgetMinorUnits: 25000);
+        currencyCode: 'TRY',
+        budgetMinorUnits: 25000,
+      );
       await insertItem(id, 'Ekmek', lineTotalMinor: 1500);
 
       await repo.changeCurrency(id, 'USD', resetAmounts: true);
@@ -125,20 +134,88 @@ void main() {
   });
 
   group('silme ve geri alma', () {
-    test('silme çocuk ürünleri kaldırır; undo aynı kimlikle geri yükler',
-        () async {
-      final id = await repo.createList(title: 'Silinecek', currencyCode: 'TRY');
-      final itemId = await insertItem(id, 'Peynir');
+    test('liste sırası veritabanında kalır', () async {
+      final first = await repo.createList(title: 'Bir', currencyCode: 'TRY');
+      final second = await repo.createList(title: 'İki', currencyCode: 'TRY');
 
-      final snapshot = await repo.deleteList(id);
-      expect(await db.select(db.shoppingLists).get(), isEmpty);
-      expect(await db.select(db.plannedItems).get(), isEmpty);
+      await repo.reorderLists([second, first]);
 
-      await repo.undoDelete(snapshot);
-      final restored = await repo.getById(id);
-      expect(restored.title, 'Silinecek');
-      final items = await db.select(db.plannedItems).get();
-      expect(items.single.id, itemId);
+      final rows = await (db.select(
+        db.shoppingLists,
+      )..orderBy([(t) => OrderingTerm.asc(t.sortOrder)])).get();
+      expect(rows.map((row) => row.id).toList(), [second, first]);
     });
+
+    test(
+      'silme çocuk ürünleri kaldırır; undo aynı kimlikle geri yükler',
+      () async {
+        final id = await repo.createList(
+          title: 'Silinecek',
+          currencyCode: 'TRY',
+        );
+        final itemId = await insertItem(id, 'Peynir');
+
+        final snapshot = await repo.deleteList(id);
+        expect(await db.select(db.shoppingLists).get(), isEmpty);
+        expect(await db.select(db.plannedItems).get(), isEmpty);
+
+        await repo.undoDelete(snapshot);
+        final restored = await repo.getById(id);
+        expect(restored.title, 'Silinecek');
+        final items = await db.select(db.plannedItems).get();
+        expect(items.single.id, itemId);
+      },
+    );
+
+    test(
+      'undo satın alım ve fiyat geçmişini de aynı kimlikle geri yükler',
+      () async {
+        final id = await repo.createList(title: 'Geçmiş', currencyCode: 'TRY');
+        final itemId = await insertItem(id, 'Peynir');
+        await ShoppingRepository(db).recordPurchase(
+          listId: id,
+          plannedItemId: itemId,
+          name: 'Peynir',
+          normalizedName: 'peynir',
+          quantity: DecimalFixed.fromInt(1),
+          unitCode: 'adet',
+          unitPrice: DecimalFixed.fromInt(12),
+        );
+        final receiptId = await db
+            .into(db.receipts)
+            .insert(ReceiptsCompanion.insert(listId: Value(id)));
+        final receiptLineId = await db
+            .into(db.receiptCandidateLines)
+            .insert(
+              ReceiptCandidateLinesCompanion.insert(
+                receiptId: receiptId,
+                rawText: 'PEYNIR 12',
+              ),
+            );
+
+        final beforePurchase =
+            (await db.select(db.purchaseEntries).get()).single;
+        final beforeObservation =
+            (await db.select(db.priceObservations).get()).single;
+        final snapshot = await repo.deleteList(id);
+        expect(await db.select(db.purchaseEntries).get(), isEmpty);
+        expect(await db.select(db.priceObservations).get(), isEmpty);
+        expect(await db.select(db.receipts).get(), isEmpty);
+        expect(await db.select(db.receiptCandidateLines).get(), isEmpty);
+
+        await repo.undoDelete(snapshot);
+        final purchase = (await db.select(db.purchaseEntries).get()).single;
+        final observation =
+            (await db.select(db.priceObservations).get()).single;
+        expect(purchase.id, beforePurchase.id);
+        expect(observation.id, beforeObservation.id);
+        expect(observation.purchaseEntryId, purchase.id);
+        expect((await db.select(db.receipts).get()).single.id, receiptId);
+        expect(
+          (await db.select(db.receiptCandidateLines).get()).single.id,
+          receiptLineId,
+        );
+      },
+    );
   });
 }

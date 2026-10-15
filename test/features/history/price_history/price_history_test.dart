@@ -17,11 +17,19 @@ void main() {
   tearDown(() => db.close());
 
   Future<int> seedProductAndStores() async {
-    await db.into(db.stores).insert(
-        StoresCompanion.insert(name: 'Market A', sortOrder: const Value(1)));
-    await db.into(db.stores).insert(
-        StoresCompanion.insert(name: 'Market B', sortOrder: const Value(2)));
-    return db.into(db.productMemory).insert(
+    await db
+        .into(db.stores)
+        .insert(
+          StoresCompanion.insert(name: 'Market A', sortOrder: const Value(1)),
+        );
+    await db
+        .into(db.stores)
+        .insert(
+          StoresCompanion.insert(name: 'Market B', sortOrder: const Value(2)),
+        );
+    return db
+        .into(db.productMemory)
+        .insert(
           ProductMemoryCompanion.insert(
             canonicalName: 'Süt',
             normalizedName: 'sut',
@@ -36,7 +44,9 @@ void main() {
     String currency = 'TRY',
     int? storeId,
   }) {
-    return db.into(db.priceObservations).insert(
+    return db
+        .into(db.priceObservations)
+        .insert(
           PriceObservationsCompanion.insert(
             productId: Value(productId),
             storeId: Value(storeId),
@@ -70,6 +80,45 @@ void main() {
     expect(stats.averageMinor, (3500 + 3600 + 3800 + 4000 + 4200) ~/ 5);
   });
 
+  test('normalize edilmiş seri miktar değişiminden etkilenmez', () async {
+    final productId = await seedProductAndStores();
+    await db
+        .into(db.priceObservations)
+        .insert(
+          PriceObservationsCompanion.insert(
+            productId: Value(productId),
+            quantity: '2',
+            unitCode: 'kilogram',
+            normalizedBaseQuantity: const Value('2'),
+            unitPrice: '20',
+            lineTotalMinorUnits: 4000,
+            currencyCode: 'TRY',
+            source: 'manual',
+          ),
+        );
+    await db
+        .into(db.priceObservations)
+        .insert(
+          PriceObservationsCompanion.insert(
+            productId: Value(productId),
+            quantity: '1',
+            unitCode: 'kilogram',
+            normalizedBaseQuantity: const Value('1'),
+            unitPrice: '25',
+            lineTotalMinorUnits: 2500,
+            currencyCode: 'TRY',
+            source: 'manual',
+          ),
+        );
+
+    final points = await repo.normalizedHistory(productId);
+    expect(points.map((point) => point.unitPrice.toMinorUnits(2)).toList(), [
+      2000,
+      2500,
+    ]);
+    expect(points.every((point) => point.unitCode == 'kilogram'), isTrue);
+  });
+
   test('son N gözlem ile sınırlı hesap', () async {
     final productId = await seedProductAndStores();
     final base = DateTime(2026, 9, 1);
@@ -88,10 +137,18 @@ void main() {
     final productId = await seedProductAndStores();
     final base = DateTime(2026, 9, 1);
     await observe(productId, '32.00', base, currency: 'TRY');
-    await observe(productId, '2.00', base.add(const Duration(days: 1)),
-        currency: 'EUR');
-    await observe(productId, '30.00', base.add(const Duration(days: 2)),
-        currency: 'TRY');
+    await observe(
+      productId,
+      '2.00',
+      base.add(const Duration(days: 1)),
+      currency: 'EUR',
+    );
+    await observe(
+      productId,
+      '30.00',
+      base.add(const Duration(days: 2)),
+      currency: 'TRY',
+    );
 
     // TRY baskın: yalnız TRY gözlemleri hesaba girer.
     final stats = await repo.stats(productId);
@@ -105,10 +162,18 @@ void main() {
     final productId = await seedProductAndStores();
     final base = DateTime(2026, 9, 1);
     await observe(productId, '32.00', base, storeId: 1);
-    await observe(productId, '29.90', base.add(const Duration(days: 1)),
-        storeId: 2);
-    await observe(productId, '31.00', base.add(const Duration(days: 2)),
-        storeId: 1);
+    await observe(
+      productId,
+      '29.90',
+      base.add(const Duration(days: 1)),
+      storeId: 2,
+    );
+    await observe(
+      productId,
+      '31.00',
+      base.add(const Duration(days: 2)),
+      storeId: 1,
+    );
 
     expect(await repo.cheapestStore(productId), 2);
   });
@@ -136,9 +201,15 @@ void main() {
     final now = DateTime(2026, 9, 20);
 
     final old = PriceStubs.observation(
-        productId, '30.00', now.subtract(const Duration(days: 45)));
+      productId,
+      '30.00',
+      now.subtract(const Duration(days: 45)),
+    );
     final fresh = PriceStubs.observation(
-        productId, '30.00', now.subtract(const Duration(days: 3)));
+      productId,
+      '30.00',
+      now.subtract(const Duration(days: 3)),
+    );
 
     expect(repo.isStale(old, now: now), isTrue);
     expect(repo.isStale(fresh, now: now), isFalse);
@@ -151,20 +222,22 @@ class PriceStubs {
   PriceStubs._();
 
   static PriceObservation observation(
-          int productId, String unitPrice, DateTime at) =>
-      PriceObservation(
-        id: 0,
-        productId: productId,
-        purchaseEntryId: null,
-        storeId: null,
-        observedAt: at,
-        quantity: '1',
-        unitCode: 'adet',
-        normalizedBaseQuantity: null,
-        unitPrice: unitPrice,
-        lineTotalMinorUnits: 0,
-        discountMinorUnits: 0,
-        currencyCode: 'TRY',
-        source: 'manual',
-      );
+    int productId,
+    String unitPrice,
+    DateTime at,
+  ) => PriceObservation(
+    id: 0,
+    productId: productId,
+    purchaseEntryId: null,
+    storeId: null,
+    observedAt: at,
+    quantity: '1',
+    unitCode: 'adet',
+    normalizedBaseQuantity: null,
+    unitPrice: unitPrice,
+    lineTotalMinorUnits: 0,
+    discountMinorUnits: 0,
+    currencyCode: 'TRY',
+    source: 'manual',
+  );
 }

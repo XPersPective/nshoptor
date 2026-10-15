@@ -33,14 +33,18 @@ void main() {
   }
 
   Future<int> seedShoppingList() async {
-    final listId = await db.into(db.shoppingLists).insert(
+    final listId = await db
+        .into(db.shoppingLists)
+        .insert(
           ShoppingListsCompanion.insert(
             title: const Value('Market'),
             currencyCode: 'TRY',
             budgetMinorUnits: const Value(20000),
           ),
         );
-    await db.into(db.plannedItems).insert(
+    await db
+        .into(db.plannedItems)
+        .insert(
           PlannedItemsCompanion.insert(
             listId: listId,
             name: 'Domates',
@@ -55,22 +59,23 @@ void main() {
   }
 
   Widget subject(int listId) => MaterialApp(
-        locale: const Locale('tr'),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        home: ShoppingModeScreen(
-          repository: ShoppingRepository(db),
-          listId: listId,
-        ),
-      );
+    locale: const Locale('tr'),
+    localizationsDelegates: const [
+      AppLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ],
+    supportedLocales: AppLocalizations.supportedLocales,
+    home: ShoppingModeScreen(
+      repository: ShoppingRepository(db),
+      listId: listId,
+    ),
+  );
 
-  testWidgets('gerçek fiyat girişi sepeti günceller; özet anında değişir',
-      (tester) async {
+  testWidgets('gerçek fiyat girişi sepeti günceller; özet anında değişir', (
+    tester,
+  ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
     final listId = await seedShoppingList();
     await tester.pumpWidget(subject(listId));
@@ -83,11 +88,13 @@ void main() {
     await tester.tap(find.byType(Checkbox).first);
     await settle(tester);
     expect(await db.select(db.purchaseEntries).get(), isEmpty);
-    await tester.tap(find.byKey(const Key('price_enter')));
+    await tester.tap(find.text('Domates'));
     await settle(tester);
 
     await tester.enterText(
-        find.byKey(const Key('item_actual_price_field')), '45,00');
+      find.byKey(const Key('item_actual_price_field')),
+      '45,00',
+    );
     await settle(tester);
     await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
@@ -107,10 +114,12 @@ void main() {
     await settle(tester);
     await tester.tap(find.byType(Checkbox).first);
     await settle(tester);
-    await tester.tap(find.byKey(const Key('price_enter')));
+    await tester.tap(find.text('Domates'));
     await settle(tester);
     await tester.enterText(
-        find.byKey(const Key('item_actual_price_field')), '45,00');
+      find.byKey(const Key('item_actual_price_field')),
+      '45,00',
+    );
     await settle(tester);
     await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
@@ -120,17 +129,19 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump();
     final freshRepo = ShoppingRepository(db);
-    await tester.pumpWidget(MaterialApp(
-      locale: const Locale('tr'),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: ShoppingModeScreen(repository: freshRepo, listId: listId),
-    ));
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('tr'),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: ShoppingModeScreen(repository: freshRepo, listId: listId),
+      ),
+    );
     await settle(tester);
 
     // Sepet içeriği ve özet korunur.
@@ -139,8 +150,9 @@ void main() {
     await disposeApp(tester);
   });
 
-  testWidgets('plansız ürün ekleme gerçek toplama dahil edilir',
-      (tester) async {
+  testWidgets('plansız ürün ekleme gerçek toplama dahil edilir', (
+    tester,
+  ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
     final listId = await seedShoppingList();
     await tester.pumpWidget(subject(listId));
@@ -159,7 +171,9 @@ void main() {
 
     // Sepet: 5,50 plansız + 0 planlı; tahmini kasa 5,50 + 64,35 = 69,85.
     expect(find.text('5,50 ₺'), findsWidgets);
-    final summary = await tester.runAsync(() => ShoppingRepository(db).watchSummary(listId).first);
+    final summary = await tester.runAsync(
+      () => ShoppingRepository(db).watchSummary(listId).first,
+    );
     expect(summary!.projectedCheckoutMinor, 6985);
 
     await disposeApp(tester);

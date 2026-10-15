@@ -67,10 +67,10 @@ void main() {
   });
 
   group('migration', () {
-    test('v0→v1: kullanıcı sürümü 1 olur ve tüm tablolar var', () async {
-      // Yeni bellek veritabanı onCreate ile v1'e kurulur.
+    test('v0→v2: kullanıcı sürümü 2 olur ve tüm tablolar var', () async {
+      // Yeni bellek veritabanı onCreate ile v2'ye kurulur.
       final version = await db.customSelect('PRAGMA user_version').getSingle();
-      expect(version.data['user_version'], 1);
+      expect(version.data['user_version'], 2);
       final tables = await db.customSelect(
         "SELECT name FROM sqlite_master WHERE type='table'",
       ).get();
@@ -96,13 +96,13 @@ void main() {
     });
 
     test('eski sürüm etiketiyle açılışta onUpgrade çalışır', () async {
-      // user_version'ı 0'a düşür, kapat; yeniden açılış onUpgrade(v0→v1) işletir.
+      // user_version'ı 0'a düşür, kapat; yeniden açılış migration sözleşmesini işletir.
       await db.customStatement('PRAGMA user_version = 0');
       await db.close();
       final reopened = AppDatabase(NativeDatabase.memory());
       final version =
           await reopened.customSelect('PRAGMA user_version').getSingle();
-      expect(version.data['user_version'], 1);
+      expect(version.data['user_version'], 2);
       await reopened.close();
     });
   });

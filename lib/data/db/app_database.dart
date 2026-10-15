@@ -36,7 +36,10 @@ class Aisles extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text().withLength(min: 1, max: 200)();
   IntColumn get storeId => integer().nullable().references(
-      Stores, #id, onDelete: KeyAction.cascade)();
+    Stores,
+    #id,
+    onDelete: KeyAction.cascade,
+  )();
   IntColumn get sortOrder => integer().withDefault(const Constant(0))();
 }
 
@@ -50,25 +53,26 @@ class ShoppingLists extends Table {
   DateTimeColumn get plannedAt => dateTime().nullable()();
   DateTimeColumn get startedAt => dateTime().nullable()();
   DateTimeColumn get completedAt => dateTime().nullable()();
-  IntColumn get storeId =>
-      integer().nullable().references(Stores, #id)();
+  IntColumn get storeId => integer().nullable().references(Stores, #id)();
+
   /// ISO 4217 kodu; liste başına tek para birimi (spec §7.1).
   TextColumn get currencyCode => text().withLength(min: 3, max: 3)();
   IntColumn get budgetMinorUnits => integer().nullable()();
+
   /// draft | planned | shopping | completed | archived
-  TextColumn get status =>
-      text().withDefault(const Constant('draft'))();
+  TextColumn get status => text().withDefault(const Constant('draft'))();
   TextColumn get note => text().nullable()();
   TextColumn get colorToken => text().nullable()();
   TextColumn get iconToken => text().nullable()();
+  IntColumn get sortOrder => integer().withDefault(const Constant(0))();
   DateTimeColumn get archivedAt => dateTime().nullable()();
 }
 
 /// Planlanan ürünler.
 class PlannedItems extends Table {
   IntColumn get id => integer().autoIncrement()();
-  IntColumn get listId => integer().references(ShoppingLists, #id,
-      onDelete: KeyAction.cascade)();
+  IntColumn get listId =>
+      integer().references(ShoppingLists, #id, onDelete: KeyAction.cascade)();
   IntColumn get productId =>
       integer().nullable().references(ProductMemory, #id)();
   TextColumn get name => text().withLength(min: 1, max: 500)();
@@ -77,9 +81,11 @@ class PlannedItems extends Table {
   IntColumn get categoryId =>
       integer().nullable().references(Categories, #id)();
   IntColumn get aisleId => integer().nullable().references(Aisles, #id)();
+
   /// DecimalFixed dizesi (ondalıklı miktar, örn. `1.5`).
   TextColumn get plannedQuantity => text()();
   TextColumn get plannedUnitCode => text()();
+
   /// unitPrice | lineTotal — kullanıcının girdiği taraf (spec §6.2).
   TextColumn get pricingInputMode => text()();
   TextColumn get plannedUnitPrice => text().nullable()();
@@ -88,6 +94,7 @@ class PlannedItems extends Table {
   BoolColumn get requiredFlag => boolean().withDefault(const Constant(false))();
   TextColumn get note => text().nullable()();
   IntColumn get sortOrder => integer().withDefault(const Constant(0))();
+
   /// pending | inCart | notFound | gaveUp | alternativeBought
   TextColumn get status => text().withDefault(const Constant('pending'))();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
@@ -97,25 +104,35 @@ class PlannedItems extends Table {
 /// Gerçek satın alım kayıtları.
 class PurchaseEntries extends Table {
   IntColumn get id => integer().autoIncrement()();
-  IntColumn get listId => integer().references(ShoppingLists, #id,
-      onDelete: KeyAction.cascade)();
+  IntColumn get listId =>
+      integer().references(ShoppingLists, #id, onDelete: KeyAction.cascade)();
   IntColumn get plannedItemId => integer().nullable().references(
-      PlannedItems, #id, onDelete: KeyAction.setNull)();
+    PlannedItems,
+    #id,
+    onDelete: KeyAction.setNull,
+  )();
   IntColumn get receiptId => integer().nullable().references(
-      Receipts, #id, onDelete: KeyAction.setNull)();
+    Receipts,
+    #id,
+    onDelete: KeyAction.setNull,
+  )();
   TextColumn get name => text().withLength(min: 1, max: 500)();
   TextColumn get normalizedName => text()();
   TextColumn get actualQuantity => text()();
   TextColumn get actualUnitCode => text()();
   TextColumn get actualUnitPrice => text().nullable()();
   IntColumn get grossTotalMinorUnits => integer().nullable()();
-  IntColumn get discountMinorUnits => integer().withDefault(const Constant(0))();
+  IntColumn get discountMinorUnits =>
+      integer().withDefault(const Constant(0))();
   IntColumn get actualLineTotalMinorUnits => integer()();
+
   /// manual | voice | shelfOcr | receiptOcr
   TextColumn get source => text().withDefault(const Constant('manual'))();
+
   /// high | medium | low — null = elle giriş
   TextColumn get confidence => text().nullable()();
-  BoolColumn get userConfirmed => boolean().withDefault(const Constant(false))();
+  BoolColumn get userConfirmed =>
+      boolean().withDefault(const Constant(false))();
   BoolColumn get alternativeFlag =>
       boolean().withDefault(const Constant(false))();
   TextColumn get note => text().nullable()();
@@ -139,12 +156,12 @@ class ProductMemory extends Table {
 /// Mağaza bazlı ürün takma adları (fiş kodları dahil).
 class ProductAliases extends Table {
   IntColumn get id => integer().autoIncrement()();
-  IntColumn get productId => integer().references(ProductMemory, #id,
-      onDelete: KeyAction.cascade)();
+  IntColumn get productId =>
+      integer().references(ProductMemory, #id, onDelete: KeyAction.cascade)();
   TextColumn get alias => text()();
   TextColumn get normalizedAlias => text()();
-  IntColumn get storeId =>
-      integer().nullable().references(Stores, #id)();
+  IntColumn get storeId => integer().nullable().references(Stores, #id)();
+
   /// manual | receipt | voice
   TextColumn get source => text().withDefault(const Constant('manual'))();
 }
@@ -155,18 +172,23 @@ class PriceObservations extends Table {
   IntColumn get productId =>
       integer().nullable().references(ProductMemory, #id)();
   IntColumn get purchaseEntryId => integer().nullable().references(
-      PurchaseEntries, #id, onDelete: KeyAction.setNull)();
-  IntColumn get storeId =>
-      integer().nullable().references(Stores, #id)();
+    PurchaseEntries,
+    #id,
+    onDelete: KeyAction.setNull,
+  )();
+  IntColumn get storeId => integer().nullable().references(Stores, #id)();
   DateTimeColumn get observedAt => dateTime().withDefault(currentDateAndTime)();
   TextColumn get quantity => text()();
   TextColumn get unitCode => text()();
+
   /// Ortak temel birime indirilmiş değer; güvenli değilse null (spec §7.2).
   TextColumn get normalizedBaseQuantity => text().nullable()();
   TextColumn get unitPrice => text()();
   IntColumn get lineTotalMinorUnits => integer()();
-  IntColumn get discountMinorUnits => integer().withDefault(const Constant(0))();
+  IntColumn get discountMinorUnits =>
+      integer().withDefault(const Constant(0))();
   TextColumn get currencyCode => text()();
+
   /// manual | voice | shelfOcr | receiptOcr
   TextColumn get source => text()();
 }
@@ -174,12 +196,16 @@ class PriceObservations extends Table {
 /// Fişler; görseller dosya yolu olarak (spec §6.9).
 class Receipts extends Table {
   IntColumn get id => integer().autoIncrement()();
-  IntColumn get listId => integer().nullable().references(ShoppingLists, #id,
-      onDelete: KeyAction.setNull)();
+  IntColumn get listId => integer().nullable().references(
+    ShoppingLists,
+    #id,
+    onDelete: KeyAction.setNull,
+  )();
+
   /// JSON dizisi: ["path1", "path2", ...] (uzun fiş: çok fotoğraf).
-  TextColumn get imagePaths =>
-      text().withDefault(const Constant('[]'))
-          .map(const _StringListConverter())();
+  TextColumn get imagePaths => text()
+      .withDefault(const Constant('[]'))
+      .map(const _StringListConverter())();
   TextColumn get rawOcrText => text().nullable()();
   TextColumn get detectedStore => text().nullable()();
   TextColumn get confirmedStore => text().nullable()();
@@ -190,6 +216,7 @@ class Receipts extends Table {
   IntColumn get detectedTotalMinorUnits => integer().nullable()();
   IntColumn get confirmedTotalMinorUnits => integer().nullable()();
   TextColumn get parserVersion => text().nullable()();
+
   /// pending | ocrDone | reviewed | error
   TextColumn get processingStatus =>
       text().withDefault(const Constant('pending'))();
@@ -199,8 +226,8 @@ class Receipts extends Table {
 /// Fiş ayrıştırıcı aday satırları; onay akışı bunları işler (spec §6.9).
 class ReceiptCandidateLines extends Table {
   IntColumn get id => integer().autoIncrement()();
-  IntColumn get receiptId => integer().references(Receipts, #id,
-      onDelete: KeyAction.cascade)();
+  IntColumn get receiptId =>
+      integer().references(Receipts, #id, onDelete: KeyAction.cascade)();
   TextColumn get rawText => text()();
   TextColumn get bboxMetadata => text().nullable()();
   TextColumn get parsedName => text().nullable()();
@@ -208,10 +235,15 @@ class ReceiptCandidateLines extends Table {
   TextColumn get parsedUnitCode => text().nullable()();
   TextColumn get parsedUnitPrice => text().nullable()();
   IntColumn get parsedLineTotalMinorUnits => integer().nullable()();
+
   /// high | medium | low
   TextColumn get confidence => text().nullable()();
   IntColumn get linkedPlannedItemId => integer().nullable().references(
-      PlannedItems, #id, onDelete: KeyAction.setNull)();
+    PlannedItems,
+    #id,
+    onDelete: KeyAction.setNull,
+  )();
+
   /// pending | accepted | ignored | edited
   TextColumn get reviewStatus =>
       text().withDefault(const Constant('pending'))();
@@ -220,6 +252,7 @@ class ReceiptCandidateLines extends Table {
 /// Fotoğraf/ek dosya yolları (sahipsiz dosya temizliği T24 ile).
 class Attachments extends Table {
   IntColumn get id => integer().autoIncrement()();
+
   /// plannedItem | purchaseEntry | list | receipt
   TextColumn get ownerType => text()();
   IntColumn get ownerId => integer()();
@@ -230,9 +263,10 @@ class Attachments extends Table {
 /// Yerel bildirim hatırlatmaları (spec §6.13).
 class Reminders extends Table {
   IntColumn get id => integer().autoIncrement()();
-  IntColumn get listId => integer().references(ShoppingLists, #id,
-      onDelete: KeyAction.cascade)();
+  IntColumn get listId =>
+      integer().references(ShoppingLists, #id, onDelete: KeyAction.cascade)();
   DateTimeColumn get scheduledAt => dateTime()();
+
   /// active | cancelled | done
   TextColumn get status => text().withDefault(const Constant('active'))();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
@@ -286,21 +320,22 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
-        onCreate: (m) async {
-          await m.createAll();
-          await customStatement(
-              'PRAGMA foreign_keys = ON');
-        },
-        onUpgrade: (m, from, to) async {
-          // v0→v1: ilk sürüm; ileride ALTER'lar buraya eklenir.
-          assert(from < to);
-        },
-        beforeOpen: (details) async {
-          await customStatement('PRAGMA foreign_keys = ON');
-        },
-      );
+    onCreate: (m) async {
+      await m.createAll();
+      await customStatement('PRAGMA foreign_keys = ON');
+    },
+    onUpgrade: (m, from, to) async {
+      if (from < 2) {
+        await m.addColumn(shoppingLists, shoppingLists.sortOrder);
+      }
+      assert(from < to);
+    },
+    beforeOpen: (details) async {
+      await customStatement('PRAGMA foreign_keys = ON');
+    },
+  );
 }

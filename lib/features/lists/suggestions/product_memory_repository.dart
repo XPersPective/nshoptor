@@ -3,6 +3,8 @@ import 'package:drift/drift.dart';
 import '../../../core/util/normalize_name.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/money/decimal_fixed.dart';
+import '../../../core/quantity/unit_code.dart';
+import '../../../core/quantity/unit_conversion.dart';
 import '../../../data/db/app_database.dart';
 
 /// Ürün hafızası ve fiyat gözlemleri (spec §6.2 öneriler, §6.10).
@@ -31,6 +33,36 @@ class ProductMemoryRepository {
     String source = 'manual',
   }) async {
     final productId = await _upsertProduct(name, normalizedName);
+    final quantityValue = DecimalFixed.parse(quantity);
+    final sourceUnit = UnitCode.values.firstWhere(
+      (unit) => unit.dbCode == unitCode || unit.name == unitCode,
+    );
+    final normalizedQuantity = UnitConversion.tryConvertToBase(
+      quantityValue,
+      sourceUnit,
+      allowCount: true,
+    );
+    final sourceUnitPrice = DecimalFixed.tryParse(unitPrice ?? '');
+    final normalizedUnitPrice = normalizedQuantity == null
+        ? sourceUnitPrice ??
+              DecimalFixed.fromMinorUnits(
+                lineTotalMinor,
+                Currency.fromCode(currencyCode).minorUnitDigits,
+              ).divide(quantityValue, scale: DecimalFixed.maxFractionDigits)
+        : DecimalFixed.fromMinorUnits(
+            lineTotalMinor,
+            Currency.fromCode(currencyCode).minorUnitDigits,
+          ).divide(normalizedQuantity, scale: DecimalFixed.maxFractionDigits);
+    final storedUnitCode = normalizedQuantity == null
+        ? unitCode
+        : switch (sourceUnit.dimension) {
+            UnitDimension.mass => UnitCode.kilogram.dbCode,
+            UnitDimension.volume => UnitCode.litre.dbCode,
+            UnitDimension.count => UnitCode.adet.dbCode,
+            UnitDimension.length => UnitCode.metre.dbCode,
+            UnitDimension.unknown => unitCode,
+          };
+    final storedQuantity = normalizedQuantity?.toDbString() ?? quantity;
     await _db
         .into(_db.priceObservations)
         .insert(
@@ -38,19 +70,10 @@ class ProductMemoryRepository {
             productId: Value(productId),
             purchaseEntryId: Value(purchaseEntryId),
             storeId: Value(storeId),
-            quantity: quantity,
-            unitCode: unitCode,
-            unitPrice:
-                unitPrice ??
-                DecimalFixed.fromMinorUnits(
-                      lineTotalMinor,
-                      Currency.fromCode(currencyCode).minorUnitDigits,
-                    )
-                    .divide(
-                      DecimalFixed.parse(quantity),
-                      scale: DecimalFixed.maxFractionDigits,
-                    )
-                    .toDbString(),
+            quantity: storedQuantity,
+            unitCode: storedUnitCode,
+            normalizedBaseQuantity: Value(normalizedQuantity?.toDbString()),
+            unitPrice: normalizedUnitPrice.toDbString(),
             lineTotalMinorUnits: lineTotalMinor,
             discountMinorUnits: Value(discountMinor),
             currencyCode: currencyCode,
