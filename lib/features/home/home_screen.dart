@@ -99,40 +99,30 @@ class HomeShell extends StatefulWidget {
 }
 
 class _HomeShellState extends State<HomeShell> {
-  // The unified list is the landing surface; the legacy overview remains
-  // available as a secondary summary page for existing users.
-  int _tab = 1;
+  int _tab = 0;
   bool _inputBusy = false;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final tabs = [
-      HomeScreen(
-        db: widget.db,
-        listRepository: widget.listRepository,
-        onOpenList: (list) => _openShopping(context, list.id),
-        onNewList: () => showListEditor(
-          context,
-          widget.listRepository,
+      ValueListenableBuilder<bool>(
+        valueListenable: AssistantPrefs.visible,
+        builder: (context, assistantVisible, _) => ListsScreen(
+          repository: widget.listRepository,
           reminderScheduler: widget.reminderScheduler,
+          onOpenSummary: () => _openSummary(context),
+          onScanReceipt: () => _onAssistant(context, (
+            action: AssistantAction.scanReceipt,
+            text: null,
+          )),
+          onOpenDiscover: () => _openDiscover(context),
+          onAssistantChoice: assistantVisible
+              ? (choice) => _onAssistant(context, choice)
+              : null,
         ),
       ),
-      ListsScreen(
-        repository: widget.listRepository,
-        reminderScheduler: widget.reminderScheduler,
-      ),
       HistoryPlaceholder(db: widget.db),
-      // Keşfet (standart §3.6): diğer Crazy Penguin uygulamaları;
-      // kimlik yoksa yer tutucu (testler).
-      widget.appIdentity?.otherAppsUrl == null
-          ? const _DiscoverPlaceholder()
-          : OtherAppsPage(
-              identity: widget.appIdentity!,
-              repository: OtherAppsRepository(
-                appsUrl: widget.appIdentity!.otherAppsUrl!,
-              ),
-            ),
       widget.settingsRepository == null || widget.languageController == null
           ? const SettingsPlaceholder()
           : SettingsScreen(
@@ -147,25 +137,7 @@ class _HomeShellState extends State<HomeShell> {
             ),
     ];
     return Scaffold(
-      body: Stack(
-        children: [
-          IndexedStack(index: _tab, children: tabs),
-          // Asistan (PB-057): sağ altta, sekme FAB'larının üstünde.
-          ValueListenableBuilder<bool>(
-            valueListenable: AssistantPrefs.visible,
-            builder: (context, visible, _) => !visible || _tab > 2
-                ? const SizedBox.shrink()
-                : Positioned(
-                    right: 20,
-                    bottom: 88,
-                    child: AssistantBubble(
-                      busy: _inputBusy,
-                      onChoice: (c) => _onAssistant(context, c),
-                    ),
-                  ),
-          ),
-        ],
-      ),
+      body: IndexedStack(index: _tab, children: tabs),
       // Banner bottom bar'ın altındadır (kullanıcı talebi 2026-10-02);
       // AdPolicy Pro'da hiç yüklemez, kalkınca boşluk kalmaz.
       bottomNavigationBar: Column(
@@ -176,11 +148,6 @@ class _HomeShellState extends State<HomeShell> {
             onDestinationSelected: (i) => setState(() => _tab = i),
             destinations: [
               NavigationDestination(
-                icon: const Icon(Icons.home_outlined),
-                selectedIcon: const Icon(Icons.home),
-                label: l10n.navHome,
-              ),
-              NavigationDestination(
                 icon: const Icon(Icons.list_outlined),
                 selectedIcon: const Icon(Icons.list),
                 label: l10n.navLists,
@@ -189,11 +156,6 @@ class _HomeShellState extends State<HomeShell> {
                 icon: const Icon(Icons.history_outlined),
                 selectedIcon: const Icon(Icons.history),
                 label: l10n.navHistory,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.explore_outlined),
-                selectedIcon: const Icon(Icons.explore),
-                label: l10n.navDiscover,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.settings_outlined),
@@ -208,6 +170,35 @@ class _HomeShellState extends State<HomeShell> {
       ),
     );
   }
+
+  Future<void> _openSummary(BuildContext context) => Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      builder: (_) => HomeScreen(
+        db: widget.db,
+        listRepository: widget.listRepository,
+        onOpenList: (list) => _openShopping(context, list.id),
+        onNewList: () => showListEditor(
+          context,
+          widget.listRepository,
+          reminderScheduler: widget.reminderScheduler,
+        ),
+      ),
+    ),
+  );
+
+  Future<void> _openDiscover(BuildContext context) =>
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => widget.appIdentity?.otherAppsUrl == null
+              ? const _DiscoverPlaceholder()
+              : OtherAppsPage(
+                  identity: widget.appIdentity!,
+                  repository: OtherAppsRepository(
+                    appsUrl: widget.appIdentity!.otherAppsUrl!,
+                  ),
+                ),
+        ),
+      );
 
   Future<void> _onAssistant(
     BuildContext context,
@@ -242,7 +233,7 @@ class _HomeShellState extends State<HomeShell> {
               speechService: SttSpeechService(),
               initialText: choice.text,
               autoListen: choice.action == AssistantAction.voiceList,
-                showMic: false,
+              showMic: false,
               onApprove: (draft) async {
                 createdId = await widget.db.transaction(() async {
                   final id = await widget.listRepository.createList(
@@ -443,12 +434,6 @@ class HomeScreen extends StatelessWidget {
                                 fontStyle: FontStyle.italic,
                                 color: colors.onSurfaceVariant,
                               ),
-                        ),
-                        const SizedBox(height: 12),
-                        FilledButton.icon(
-                          onPressed: onNewList,
-                          icon: const Icon(Icons.add),
-                          label: Text(l10n.newListButton),
                         ),
                       ],
                     ),

@@ -16,16 +16,25 @@ void main() {
     await closing;
   }
 
-  testWidgets('kapalıyken avatar yok; açıkken dokununca 5 eylem', (tester) async {
+  testWidgets('kapalıyken araç yok; açıkken menüden 5 eylem', (tester) async {
     AssistantPrefs.set(false);
-    await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: const Locale('tr')));
+    await tester.pumpWidget(
+      NShoptorApp(db: db, fixedLocale: const Locale('tr')),
+    );
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('assistant_bubble')), findsNothing);
+    await tester.tap(find.byKey(const Key('lists_tools_button')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('lists_tool_assistant')), findsNothing);
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
 
     AssistantPrefs.set(true);
     await tester.pumpAndSettle();
-    expect(find.byKey(const Key('assistant_bubble')), findsOneWidget);
-    await tester.tap(find.byKey(const Key('assistant_bubble')));
+    expect(find.byKey(const Key('assistant_bubble')), findsNothing);
+    await tester.tap(find.byKey(const Key('lists_tools_button')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('lists_tool_assistant')));
     await tester.pumpAndSettle();
     expect(find.text('Merhaba! Ne yapmak istiyorsun?'), findsOneWidget);
     for (final a in AssistantAction.values) {

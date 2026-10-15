@@ -11,6 +11,7 @@ import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/money/money_parser.dart';
 import '../../data/db/app_database.dart';
+import '../assistant/assistant_bubble.dart';
 import 'list_detail_screen.dart';
 import 'list_repository.dart';
 import 'reminders/reminder_scheduler.dart';
@@ -37,6 +38,10 @@ class ListsScreen extends StatefulWidget {
     required this.repository,
     this.onOpenListDetail,
     this.reminderScheduler,
+    this.onOpenSummary,
+    this.onScanReceipt,
+    this.onOpenDiscover,
+    this.onAssistantChoice,
   });
 
   final ListRepository repository;
@@ -47,6 +52,10 @@ class ListsScreen extends StatefulWidget {
   /// Liste kartına dokununca detay ekranını açar; verilmediyse dahili olarak
   /// ListDetailScreen push edilir.
   final void Function(BuildContext context, int listId)? onOpenListDetail;
+  final VoidCallback? onOpenSummary;
+  final VoidCallback? onScanReceipt;
+  final VoidCallback? onOpenDiscover;
+  final ValueChanged<AssistantChoice>? onAssistantChoice;
 
   @override
   State<ListsScreen> createState() => _ListsScreenState();
@@ -54,111 +63,187 @@ class ListsScreen extends StatefulWidget {
 
 class _ListsScreenState extends State<ListsScreen> {
   String _query = '';
-  int _page = 0;
+  bool _searching = false;
   final _orders = <ListStatus, List<int>>{};
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final pageLabels = [
-      l10n.listsTabActive,
-      l10n.listsTabCompleted,
-      l10n.listsTabArchived,
-    ];
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.listsTitle)),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-            child: TextField(
-              key: const Key('lists_search_field'),
-              decoration: InputDecoration(
-                hintText: l10n.searchListHint,
-                prefixIcon: const Icon(Icons.search),
+    final hasTools =
+        widget.onOpenSummary != null ||
+        widget.onScanReceipt != null ||
+        widget.onOpenDiscover != null ||
+        widget.onAssistantChoice != null;
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.listsTitle),
+          actions: [
+            IconButton(
+              key: const Key('lists_search_button'),
+              tooltip: l10n.searchListHint,
+              icon: Icon(_searching ? Icons.close : Icons.search),
+              onPressed: () => setState(() {
+                _searching = !_searching;
+                if (!_searching) _query = '';
+              }),
+            ),
+            if (hasTools)
+              PopupMenuButton<_ListsTool>(
+                key: const Key('lists_tools_button'),
+                tooltip: l10n.detailsSection,
+                onSelected: _openTool,
+                itemBuilder: (_) => [
+                  if (widget.onOpenSummary != null)
+                    PopupMenuItem(
+                      key: const Key('lists_tool_summary'),
+                      value: _ListsTool.summary,
+                      child: Text(l10n.summarySection),
+                    ),
+                  if (widget.onScanReceipt != null)
+                    PopupMenuItem(
+                      key: const Key('lists_tool_receipt'),
+                      value: _ListsTool.receipt,
+                      child: Text(l10n.scanReceiptAction),
+                    ),
+                  if (widget.onAssistantChoice != null)
+                    PopupMenuItem(
+                      key: const Key('lists_tool_assistant'),
+                      value: _ListsTool.assistant,
+                      child: Text(l10n.assistantTitle),
+                    ),
+                  if (widget.onOpenDiscover != null)
+                    PopupMenuItem(
+                      key: const Key('lists_tool_discover'),
+                      value: _ListsTool.discover,
+                      child: Text(l10n.navDiscover),
+                    ),
+                ],
               ),
-              onChanged: (v) => setState(() => _query = v.trim()),
-            ),
+          ],
+          bottom: TabBar(
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            tabs: [
+              Tab(
+                key: const Key('lists_tab_active'),
+                text: l10n.listsTabActive,
+              ),
+              Tab(
+                key: const Key('lists_tab_completed'),
+                text: l10n.listsTabCompleted,
+              ),
+              Tab(
+                key: const Key('lists_tab_archived'),
+                text: l10n.listsTabArchived,
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-            child: Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Text(
-                pageLabels[_page],
-                style: Theme.of(context).textTheme.titleMedium,
+        ),
+        body: Column(
+          children: [
+            if (_searching)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                child: TextField(
+                  key: const Key('lists_search_field'),
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: l10n.searchListHint,
+                    prefixIcon: const Icon(Icons.search),
+                  ),
+                  onChanged: (v) => setState(() => _query = v.trim()),
+                ),
+              ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    statuses: const {
+                      ListStatus.draft,
+                      ListStatus.planned,
+                      ListStatus.shopping,
+                    },
+                    orderKey: ListStatus.draft,
+                    order: _orders[ListStatus.draft],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.draft,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                  ),
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    statuses: const {ListStatus.completed},
+                    orderKey: ListStatus.completed,
+                    order: _orders[ListStatus.completed],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.completed,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                  ),
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    statuses: const {ListStatus.archived},
+                    orderKey: ListStatus.archived,
+                    order: _orders[ListStatus.archived],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.archived,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                  ),
+                ],
               ),
             ),
-          ),
-          Expanded(
-            child: PageView(
-              onPageChanged: (page) => setState(() => _page = page),
-              children: [
-                _ListsTab(
-                  repository: widget.repository,
-                  query: _query,
-                  statuses: const {
-                    ListStatus.draft,
-                    ListStatus.planned,
-                    ListStatus.shopping,
-                  },
-                  orderKey: ListStatus.draft,
-                  order: _orders[ListStatus.draft],
-                  onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                    ListStatus.draft,
-                    lists,
-                    oldIndex,
-                    newIndex,
-                  ),
-                  emptyText: l10n.listsEmpty,
-                  onOpenListDetail: widget.onOpenListDetail,
-                  reminderScheduler: widget.reminderScheduler,
-                ),
-                _ListsTab(
-                  repository: widget.repository,
-                  query: _query,
-                  statuses: const {ListStatus.completed},
-                  orderKey: ListStatus.completed,
-                  order: _orders[ListStatus.completed],
-                  onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                    ListStatus.completed,
-                    lists,
-                    oldIndex,
-                    newIndex,
-                  ),
-                  emptyText: l10n.listsEmpty,
-                  onOpenListDetail: widget.onOpenListDetail,
-                  reminderScheduler: widget.reminderScheduler,
-                ),
-                _ListsTab(
-                  repository: widget.repository,
-                  query: _query,
-                  statuses: const {ListStatus.archived},
-                  orderKey: ListStatus.archived,
-                  order: _orders[ListStatus.archived],
-                  onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                    ListStatus.archived,
-                    lists,
-                    oldIndex,
-                    newIndex,
-                  ),
-                  emptyText: l10n.listsEmpty,
-                  onOpenListDetail: widget.onOpenListDetail,
-                  reminderScheduler: widget.reminderScheduler,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        key: const Key('lists_new_list_button'),
-        heroTag: 'listsFab',
-        onPressed: () => _openEditor(context),
-        icon: const Icon(Icons.add),
-        label: Text(l10n.newListButton),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          key: const Key('lists_new_list_button'),
+          heroTag: 'listsFab',
+          onPressed: () => _openEditor(context),
+          icon: const Icon(Icons.add),
+          label: Text(l10n.newListButton),
+        ),
       ),
     );
+  }
+
+  Future<void> _openTool(_ListsTool tool) async {
+    switch (tool) {
+      case _ListsTool.summary:
+        widget.onOpenSummary?.call();
+      case _ListsTool.receipt:
+        widget.onScanReceipt?.call();
+      case _ListsTool.discover:
+        widget.onOpenDiscover?.call();
+      case _ListsTool.assistant:
+        final choice = await showModalBottomSheet<AssistantChoice>(
+          context: context,
+          isScrollControlled: true,
+          showDragHandle: true,
+          builder: (_) => const AssistantSheet(),
+        );
+        if (choice != null && mounted) widget.onAssistantChoice?.call(choice);
+    }
   }
 
   Future<void> _openEditor(BuildContext context, {ShoppingList? existing}) {
@@ -183,6 +268,8 @@ class _ListsScreenState extends State<ListsScreen> {
     unawaited(widget.repository.reorderLists(ordered));
   }
 }
+
+enum _ListsTool { summary, receipt, assistant, discover }
 
 Future<void> showListEditor(
   BuildContext context,
@@ -301,6 +388,7 @@ class _ListsTab extends StatelessWidget {
           return byOrder == 0 ? b.createdAt.compareTo(a.createdAt) : byOrder;
         });
         return ReorderableListView.builder(
+          padding: const EdgeInsets.only(bottom: 88),
           buildDefaultDragHandles: false,
           itemCount: lists.length,
           onReorderItem: (oldIndex, newIndex) =>
@@ -545,6 +633,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
   String? _budgetError;
   String? _saveError;
   bool _saving = false;
+  final _detailsController = ExpansibleController();
 
   /// Bütçe minor unit değerini, kullanıcının dilindeki ondalık ayracıyla
   /// girdi dizesine çevirir (tr: `100,00`, en: `100.00`).
@@ -701,32 +790,43 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
               decoration: InputDecoration(labelText: l10n.listTitleHint),
             ),
             const SizedBox(height: 12),
-            DropdownButtonFormField<String>(
-              isExpanded: true,
-              key: const Key('list_currency_field'),
-              initialValue: _currency,
-              decoration: InputDecoration(labelText: l10n.currencyLabel),
-              items: Currency.all
-                  .map(
-                    (c) => DropdownMenuItem(value: c.code, child: Text(c.code)),
-                  )
-                  .toList(),
-              onChanged: (v) => setState(() => _currency = v ?? _currency),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              key: const Key('list_budget_field'),
-              controller: _budget,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: l10n.budgetLabel,
-                errorText: _budgetError,
-              ),
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              controller: _note,
-              decoration: InputDecoration(labelText: l10n.noteLabel),
+            ExpansionTile(
+              key: const Key('list_details_expand'),
+              controller: _detailsController,
+              title: Text(l10n.detailsSection),
+              childrenPadding: const EdgeInsets.only(top: 12, bottom: 8),
+              children: [
+                DropdownButtonFormField<String>(
+                  isExpanded: true,
+                  key: const Key('list_currency_field'),
+                  initialValue: _currency,
+                  decoration: InputDecoration(labelText: l10n.currencyLabel),
+                  items: Currency.all
+                      .map(
+                        (c) => DropdownMenuItem(
+                          value: c.code,
+                          child: Text(c.code),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (v) => setState(() => _currency = v ?? _currency),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  key: const Key('list_budget_field'),
+                  controller: _budget,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: l10n.budgetLabel,
+                    errorText: _budgetError,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _note,
+                  decoration: InputDecoration(labelText: l10n.noteLabel),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             FilledButton(
@@ -743,6 +843,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
                         await _save();
                       } on _BudgetFormatException {
                         if (mounted) {
+                          _detailsController.expand();
                           setState(
                             () => _budgetError = l10n.invalidAmountError,
                           );

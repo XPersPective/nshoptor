@@ -20,11 +20,11 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      // Alt navigasyon 5 hedef gösterir (Keşfet dahil, standart §3.6);
-      // ikon butonlarda tooltip vardır.
+      // Alt navigasyon yalnız üç ana hedefi gösterir; ikincil araçlar üst menüdedir.
       final navBar = tester.widget<NavigationBar>(find.byType(NavigationBar));
-      expect(navBar.destinations.length, 5);
-      expect(find.byKey(const Key('lists_search_field')), findsOneWidget);
+      expect(navBar.destinations.length, 3);
+      expect(find.byKey(const Key('lists_search_button')), findsOneWidget);
+      expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
 
       await tester.pumpWidget(const SizedBox.shrink());
       final closing = db.close();
@@ -115,7 +115,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // RTL akışında hata atmamalı.
-      expect(find.byKey(const Key('lists_search_field')), findsOneWidget);
+      expect(find.byKey(const Key('lists_search_button')), findsOneWidget);
 
       await db.close();
     });

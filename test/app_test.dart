@@ -22,7 +22,9 @@ void main() {
       NShoptorApp(db: db, fixedLocale: const Locale('tr')),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Ana Sayfa').last);
+    await tester.tap(find.byKey(const Key('lists_tools_button')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('lists_tool_summary')));
     await tester.pumpAndSettle();
     expect(find.text('Evdeki hesap çarşıya uyar.'), findsOneWidget);
     await disposeApp(tester);
@@ -33,7 +35,9 @@ void main() {
       NShoptorApp(db: db, fixedLocale: const Locale('en')),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Home').last);
+    await tester.tap(find.byKey(const Key('lists_tools_button')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('lists_tool_summary')));
     await tester.pumpAndSettle();
     expect(find.text('Plan at home, match at checkout.'), findsOneWidget);
     await disposeApp(tester);

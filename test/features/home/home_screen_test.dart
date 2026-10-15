@@ -48,10 +48,12 @@ void main() {
     home: HomeShell(db: db, listRepository: ListRepository(db)),
   );
 
-  Future<void> openLegacyHome(WidgetTester tester) async {
+  Future<void> openSummary(WidgetTester tester) async {
     await tester.pumpWidget(subject());
     await settle(tester);
-    await tester.tap(find.text('Ana Sayfa').last);
+    await tester.tap(find.byKey(const Key('lists_tools_button')));
+    await settle(tester);
+    await tester.tap(find.byKey(const Key('lists_tool_summary')));
     await settle(tester);
   }
 
@@ -82,7 +84,7 @@ void main() {
               actualLineTotalMinorUnits: 1000,
             ),
           );
-      await openLegacyHome(tester);
+      await openSummary(tester);
       expect(find.text('Fark: —'), findsOneWidget);
       await tester.tap(find.byKey(const Key('home_monthly_card_TRY')));
       await settle(tester);
@@ -105,7 +107,8 @@ void main() {
     'home creates directly into detail; cancelling leaves no empty list',
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(800, 1400));
-      await openLegacyHome(tester);
+      await openSummary(tester);
+      expect(find.text('Yeni liste'), findsOneWidget);
       await tester.tap(find.byKey(const Key('home_new_list_button')));
       await settle(tester);
       expect(find.byKey(const Key('list_title_field')), findsOneWidget);
@@ -145,7 +148,7 @@ void main() {
                 status: Value(status),
               ),
             );
-        await openLegacyHome(tester);
+        await openSummary(tester);
         await tester.tap(
           find.byKey(
             Key(
@@ -191,13 +194,15 @@ void main() {
             plannedLineTotalMinorUnits: const Value(300),
           ),
         );
-    await openLegacyHome(tester);
+    await openSummary(tester);
     await tester.tap(find.byKey(const Key('home_monthly_card_USD')));
     await settle(tester);
     expect(
       tester.widget<SpendingScreen>(find.byType(SpendingScreen)).currencyCode,
       'USD',
     );
+    await tester.binding.handlePopRoute();
+    await settle(tester);
     await tester.binding.handlePopRoute();
     await settle(tester);
     await tester.tap(find.text('Geçmiş').last);
@@ -216,7 +221,7 @@ void main() {
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
-    await openLegacyHome(tester);
+    await openSummary(tester);
 
     expect(find.text('Alışverişini planla'), findsOneWidget);
     expect(find.text('Evdeki hesap çarşıya uyar.'), findsOneWidget);
@@ -236,7 +241,7 @@ void main() {
     await listRepo.changeStatus(listId, ListStatus.planned);
     await listRepo.changeStatus(listId, ListStatus.shopping);
 
-    await openLegacyHome(tester);
+    await openSummary(tester);
 
     expect(find.text('Market'), findsOneWidget);
     expect(find.byKey(Key('home_list_tile_$listId')), findsOneWidget);
@@ -275,7 +280,7 @@ void main() {
           ),
         );
 
-    await openLegacyHome(tester);
+    await openSummary(tester);
 
     expect(find.byKey(const Key('home_monthly_card_TRY')), findsOneWidget);
     expect(find.text('Pazar'), findsOneWidget);
@@ -286,13 +291,14 @@ void main() {
   testWidgets('alt navigasyon: Listeler sekmesi çalışır', (tester) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
     listRepo = ListRepository(db);
-    await openLegacyHome(tester);
-
-    await tester.tap(find.text('Listeler').last);
+    await tester.pumpWidget(subject());
     await settle(tester);
 
-    // Listeler ekranının arama alanı görünür olur.
-    expect(find.byKey(const Key('lists_search_field')), findsOneWidget);
+    expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
+    expect(
+      tester.widget<NavigationBar>(find.byType(NavigationBar)).destinations,
+      hasLength(3),
+    );
 
     await disposeApp(tester);
   });
@@ -343,7 +349,7 @@ void main() {
           ),
         );
 
-    await openLegacyHome(tester);
+    await openSummary(tester);
 
     // Her para birimi kendi kartında: karışık toplam yok.
     expect(find.byKey(const Key('home_monthly_card_TRY')), findsOneWidget);

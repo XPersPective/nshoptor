@@ -172,6 +172,8 @@ void main() {
     await tester.tap(find.text('Düzenle'));
     await settle(tester);
 
+    await tester.tap(find.byKey(const Key('list_details_expand')));
+    await settle(tester);
     await tester.tap(find.byKey(const Key('list_currency_field')));
     await settle(tester);
     await tester.scrollUntilVisible(
@@ -204,6 +206,8 @@ void main() {
     await tester.pumpWidget(subject());
     await settle(tester);
 
+    await tester.tap(find.byKey(const Key('lists_search_button')));
+    await settle(tester);
     await tester.enterText(
       find.byKey(const Key('lists_search_field')),
       'market',
@@ -229,14 +233,57 @@ void main() {
       await tester.pumpWidget(subject());
       await settle(tester);
 
-      expect(find.byType(PageView), findsOneWidget);
+      expect(find.byType(TabBar), findsOneWidget);
+      expect(find.byType(TabBarView), findsOneWidget);
       expect(find.text('Liste'), findsOneWidget);
       expect(find.text('Haftalık'), findsOneWidget);
       expect(find.text('Taslak'), findsNothing);
-      await tester.drag(find.byType(PageView), const Offset(-500, 0));
+      await tester.tap(find.byKey(const Key('lists_tab_completed')));
       await settle(tester);
       expect(find.text('Biten'), findsOneWidget);
+      await tester.drag(find.byType(TabBarView), const Offset(-500, 0));
+      await settle(tester);
+      expect(find.byKey(const Key('lists_tab_archived')), findsOneWidget);
       await disposeApp(tester);
     },
   );
+
+  testWidgets('liste ayrıntıları kapalıyken varsayılanlarla kaydeder', (
+    tester,
+  ) async {
+    await tester.pumpWidget(subject());
+    await settle(tester);
+
+    await tester.tap(find.byKey(const Key('lists_new_list_button')));
+    await settle(tester);
+    expect(find.byKey(const Key('list_currency_field')), findsNothing);
+    await tester.tap(find.byKey(const Key('list_save_button')));
+    await settle(tester);
+
+    final list = (await db.select(db.shoppingLists).get()).single;
+    expect(list.currencyCode, 'TRY');
+    await disposeApp(tester);
+  });
+
+  testWidgets('geçersiz bütçe ayrıntıları yeniden açar', (tester) async {
+    await tester.pumpWidget(subject());
+    await settle(tester);
+
+    await tester.tap(find.byKey(const Key('lists_new_list_button')));
+    await settle(tester);
+    await tester.tap(find.byKey(const Key('list_details_expand')));
+    await settle(tester);
+    await tester.enterText(
+      find.byKey(const Key('list_budget_field')),
+      'yanlış',
+    );
+    await tester.tap(find.byKey(const Key('list_details_expand')));
+    await settle(tester);
+    await tester.tap(find.byKey(const Key('list_save_button')));
+    await settle(tester);
+
+    expect(find.byKey(const Key('list_budget_field')), findsOneWidget);
+    expect(find.text('Geçersiz tutar'), findsOneWidget);
+    await disposeApp(tester);
+  });
 }

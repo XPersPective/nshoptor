@@ -433,14 +433,14 @@ void main() {
         ? const Offset(900, 0)
         : const Offset(-900, 0);
     final pageBack = Offset(-pageForward.dx, 0);
-    await tester.drag(find.byType(PageView), pageForward);
+    await tester.drag(find.byType(TabBarView), pageForward);
     await settle(tester);
     await shot(tester, '06'); // Tamamlananlar
-    await tester.drag(find.byType(PageView), pageForward);
+    await tester.drag(find.byType(TabBarView), pageForward);
     await settle(tester);
     await shot(tester, '07'); // Arşiv
 
-    await tester.drag(find.byType(PageView), pageBack.scale(2, 1));
+    await tester.drag(find.byType(TabBarView), pageBack.scale(2, 1));
     await settle(tester);
     await tester.tap(find.text(data.list).first);
     await settle(tester);

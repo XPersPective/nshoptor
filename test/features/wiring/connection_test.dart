@@ -338,9 +338,9 @@ void main() {
       );
       await settle(tester);
       Future<void> scan() async {
-        await tester.tap(find.byKey(const Key('assistant_bubble')));
+        await tester.tap(find.byKey(const Key('lists_tools_button')));
         await settle(tester);
-        await tester.tap(find.byKey(const Key('assistant_scanReceipt')));
+        await tester.tap(find.byKey(const Key('lists_tool_receipt')));
         await settle(tester);
       }
 
