@@ -91,16 +91,6 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
-                IconButton(
-                  key: const Key('voice_mic_button'),
-                  icon: _micBusy ? const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)) : Icon(
-                    _controller.state == VoiceInputState.listening
-                        ? Icons.stop
-                        : Icons.mic_none,
-                  ),
-                  tooltip: _controller.state == VoiceInputState.listening ? l10n.voiceStopListening : l10n.voiceStartListening,
-                  onPressed: _micBusy ? null : _listen,
-                ),
               ],
             ),
             if (_controller.state == VoiceInputState.error)
@@ -114,6 +104,26 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
               controller: _text,
               onChanged: (text) { _controller.transcript = text; setState(() => _parsed = null); },
               decoration: InputDecoration(labelText: l10n.voiceTranscriptLabel),
+            ),
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: IconButton.filledTonal(
+                key: const Key('voice_mic_button'),
+                icon: _micBusy
+                    ? const SizedBox.square(
+                        dimension: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : Icon(
+                        _controller.state == VoiceInputState.listening
+                            ? Icons.stop
+                            : Icons.mic_none,
+                      ),
+                tooltip: _controller.state == VoiceInputState.listening
+                    ? l10n.voiceStopListening
+                    : l10n.voiceStartListening,
+                onPressed: _micBusy ? null : _listen,
+              ),
             ),
             const SizedBox(height: 12),
             Wrap(

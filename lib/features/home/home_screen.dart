@@ -242,6 +242,7 @@ class _HomeShellState extends State<HomeShell> {
               speechService: SttSpeechService(),
               initialText: choice.text,
               autoListen: choice.action == AssistantAction.voiceList,
+                showMic: false,
               onApprove: (draft) async {
                 createdId = await widget.db.transaction(() async {
                   final id = await widget.listRepository.createList(

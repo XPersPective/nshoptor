@@ -242,13 +242,6 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
             Row(
               children: [
                 Expanded(child: Text(l10n.quickListTitle, style: Theme.of(context).textTheme.titleMedium)),
-                if (_voice != null && widget.showMic)
-                  IconButton.filledTonal(
-                    key: const Key('draft_mic_button'),
-                    tooltip: _voice!.state == VoiceInputState.listening ? l10n.voiceStopListening : l10n.voiceStartListening,
-                    icon: _micBusy ? const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)) : Icon(_voice!.state == VoiceInputState.listening ? Icons.stop : Icons.mic_none),
-                    onPressed: _micBusy || _busy ? null : _listen,
-                  ),
               ],
             ),
             if (_voice?.state == VoiceInputState.error) Text(
@@ -264,6 +257,27 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
               onChanged: (text) { _voice?.transcript = text; setState(() { _draft = null; _selected.clear(); _error = null; }); },
               decoration: InputDecoration(hintText: l10n.quickListHint),
             ),
+            if (_voice != null && widget.showMic)
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: IconButton.filledTonal(
+                  key: const Key('draft_mic_button'),
+                  tooltip: _voice!.state == VoiceInputState.listening
+                      ? l10n.voiceStopListening
+                      : l10n.voiceStartListening,
+                  icon: _micBusy
+                      ? const SizedBox.square(
+                          dimension: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : Icon(
+                          _voice!.state == VoiceInputState.listening
+                              ? Icons.stop
+                              : Icons.mic_none,
+                        ),
+                  onPressed: _micBusy || _busy ? null : _listen,
+                ),
+              ),
             const SizedBox(height: 12),
             FilledButton.tonalIcon(
               key: const Key('draft_convert_button'),
