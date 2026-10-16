@@ -109,4 +109,32 @@ void main() {
       expect(c.unitCode, UnitCode.sise);
     });
   });
+
+  group('birden çok ürün (bölme)', () {
+    final tr = VoiceCommandParser(localeCode: 'tr');
+
+    test('"1 kilo elma 1 ekmek" iki ürün: elma 1 kg, ekmek 1 adet', () {
+      expect(tr.splitItems('1 kilo elma 1 ekmek'), ['1 kilo elma', '1 ekmek']);
+      final apple = tr.parse('1 kilo elma');
+      expect(apple.name, 'elma');
+      expect(apple.quantity!.toDbString(), '1');
+      expect(apple.unitCode, UnitCode.kilogram);
+      final bread = tr.parse('1 ekmek');
+      expect(bread.name, 'ekmek');
+      expect(bread.quantity!.toDbString(), '1');
+      expect(bread.unitCode, UnitCode.adet);
+    });
+
+    test('fiyat ve cümle sonundaki birim bölünmez', () {
+      expect(tr.splitItems('1 kilo elma kilosu 40 lira'), ['1 kilo elma kilosu 40 lira']);
+      expect(tr.splitItems('elma 20 lira'), ['elma 20 lira']);
+      expect(tr.splitItems('süt 1 litre'), ['süt 1 litre']);
+      expect(tr.splitItems('Coca Cola 2 litre'), ['Coca Cola 2 litre']);
+    });
+
+    test('fiyattan sonra gelen yeni ürün ayrılır', () {
+      expect(tr.splitItems('elma 20 lira 2 ekmek'), ['elma 20 lira', '2 ekmek']);
+      expect(tr.splitItems('1 kilo elma 2 kilo domates'), ['1 kilo elma', '2 kilo domates']);
+    });
+  });
 }

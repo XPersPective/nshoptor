@@ -81,6 +81,15 @@ void main() {
     expect(draft.items.last.quantity!.toDbString(), '2');
   });
 
+  test('"1 kilo elma 1 ekmek" local parse gives two items: elma 1 kg, ekmek 1 adet', () async {
+    final draft = await AiListParser(localeCode: 'tr').parse('1 kilo elma 1 ekmek');
+    expect(draft.items.map((i) => i.name), ['elma', 'ekmek']);
+    expect(draft.items.first.quantity!.toDbString(), '1');
+    expect(draft.items.first.unitCode, UnitCode.kilogram);
+    expect(draft.items.last.quantity!.toDbString(), '1');
+    expect(draft.items.last.unitCode, UnitCode.adet);
+  });
+
   test('AI metadata reaches DB only on approval; category reuse and rollback', () async {
     final db = AppDatabase(NativeDatabase.memory());
     addTearDown(db.close);
