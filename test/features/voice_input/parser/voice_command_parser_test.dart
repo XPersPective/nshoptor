@@ -137,4 +137,31 @@ void main() {
       expect(tr.splitItems('1 kilo elma 2 kilo domates'), ['1 kilo elma', '2 kilo domates']);
     });
   });
+
+  group('satır tahmini (sondaki para)', () {
+    final tr = VoiceCommandParser(localeCode: 'tr');
+
+    test('"1 kilo domates 20 TL": isim domates, tahmin 20 TRY, birim fiyat değil', () {
+      final c = tr.parse('1 kilo domates 20 TL');
+      expect(c.name, 'domates');
+      expect(c.quantity!.toDbString(), '1');
+      expect(c.unitCode, UnitCode.kilogram);
+      expect(c.unitPrice!.toDbString(), '20');
+      expect(c.currencyCode, 'TRY');
+      expect(c.isUnitPrice, isFalse);
+    });
+
+    test('birim fiyat kalıbı (kilosu 40 lira) hâlâ birim fiyat', () {
+      final c = tr.parse('1 kilo elma kilosu 40 lira');
+      expect(c.name, 'elma');
+      expect(c.isUnitPrice, isTrue);
+    });
+
+    test('"elma 20 lira 2 ekmek": iki ürün, ilkinin tahmini 20', () {
+      final parts = tr.splitItems('elma 20 lira 2 ekmek');
+      expect(parts, ['elma 20 lira', '2 ekmek']);
+      expect(tr.parse(parts.first).name, 'elma');
+      expect(tr.parse(parts.first).unitPrice!.toDbString(), '20');
+    });
+  });
 }

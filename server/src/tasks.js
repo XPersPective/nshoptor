@@ -25,17 +25,21 @@ export const TASKS = {
       return t ? { text: t } : null;
     },
     system: locale =>
-      'You turn a spoken or typed shopping sentence into list items. ' +
-      'Return JSON {"title":string|null,"items":[{"name":string,"brand":string|null,"category":string|null,"quantity":string|null,' +
-      `"unit":one of ${JSON.stringify(UNITS)}|null,"estimatedPrice":string|null,` +
-      '"priceIsUnitPrice":boolean}]}. quantity/estimatedPrice are plain decimal ' +
-      'strings with a dot ("1.5", "20"). estimatedPrice is the price the user ' +
-      'said; if they said "kilosu 45" or "per kilo" set priceIsUnitPrice true. ' +
-      'A number written right after an item (e.g. "2 kg tomatoes 30") is the price of that item: ' +
-      'put it in estimatedPrice (a total unless the user says per unit). Quantity words like "2 kg" are not prices. ' +
-      'A number after an item name that is followed by another item name starts a new item: it is that item\'s quantity, not a price ' +
-      '(e.g. "1 kilo apple 1 bread" = {apple, 1 kilogram} and {bread, 1 piece}). A quantity with no unit is "piece". ' +
-      'Never invent prices or brands. Use a short list title only if suggested by the input. Categories: produce, dairy, meat, bakery, drinks, cleaning, personalCare, home, other, or a user-specified custom category. Max 40 items. ' + LOCALE_NOTE(locale),
+      'You convert a spoken or typed shopping sentence into a list of separate products. ' +
+      'Return ONLY JSON: {"title":string|null,"items":[{"name":string,"brand":string|null,"category":string|null,"quantity":string|null,' +
+      `"unit":one of ${JSON.stringify(UNITS)}|null,"estimatedPrice":string|null,"priceIsUnitPrice":boolean}]}. ` +
+      'Rules: ' +
+      '1) One item per product. A new product starts where a number with an optional unit is followed by a product name ("1 kilo elma 1 ekmek" = two items). ' +
+      '2) quantity is the number before the product or its unit ("1 kilo" -> quantity "1", unit "kilogram"; "2 paket" -> "2", "package"). A quantity without a unit is unit "piece". ' +
+      '3) estimatedPrice: a price said after a product ("20 TL", "20 lira", "20 euro") is that product\'s estimated line total: estimatedPrice "20", priceIsUnitPrice false. ' +
+      '"kilosu 40 lira" or "per kilo 40" is a unit price: priceIsUnitPrice true. A price is never part of the name. ' +
+      '4) name is only the product: no quantity, unit, price or filler words ("alacağım", "ekle", "lazım", "add", "buy"). Keep the user\'s language. ' +
+      '5) Never invent prices, brands or quantities: use null when not said. ' +
+      '6) Use a title only if the input suggests one. Categories: produce, dairy, meat, bakery, drinks, cleaning, personalCare, home, other, or a user custom category. Max 40 items. ' +
+      'Examples: "1 kilo elma 1 ekmek" -> [{"name":"elma","quantity":"1","unit":"kilogram"},{"name":"ekmek","quantity":"1","unit":"piece"}]. ' +
+      '"1 kilo domates 20 TL" -> [{"name":"domates","quantity":"1","unit":"kilogram","estimatedPrice":"20","priceIsUnitPrice":false}]. ' +
+      '"elma kilosu 40 lira, 2 süt" -> [{"name":"elma","estimatedPrice":"40","priceIsUnitPrice":true},{"name":"süt","quantity":"2","unit":"piece"}]. ' +
+      LOCALE_NOTE(locale),
     user: input => input.text,
     clean(out) {
       if (!Array.isArray(out?.items) || out.items.length > 40 || out.items.some(i => !text(i?.name, 60))) throw new Error('invalid_items');

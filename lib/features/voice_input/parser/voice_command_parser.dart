@@ -106,7 +106,7 @@ class VoiceCommandParser {
     UnitCode? unit;
     DecimalFixed? unitPrice;
     String? currency;
-    var isUnitPrice = false;
+    bool? isUnitPrice;
 
     // 1) BAŞTAKİ miktar (+ buçuk / and a half / yarım / half a) ve birim.
     final lead = _consumeLeadingQuantity(tokens);
@@ -120,13 +120,21 @@ class VoiceCommandParser {
       }
     }
 
-    // 2) BİTTEKİ birim fiyat kalıbı.
+    // 2) BİTTEKİ birim fiyat kalıbı; yoksa satır tahmini ("1 kilo domates 20 TL").
     final price = _consumeTrailingUnitPrice(tokens);
     if (price != null) {
       unitPrice = price.$1;
       currency = price.$2;
       isUnitPrice = true;
       tokens = price.$3;
+    } else {
+      final total = _consumeTrailingLineTotal(tokens);
+      if (total != null) {
+        unitPrice = total.$1;
+        currency = total.$2;
+        isUnitPrice = false;
+        tokens = total.$3;
+      }
     }
 
     // 3) Dolgu sözcükleri çıkar.
@@ -148,7 +156,7 @@ class VoiceCommandParser {
       unitCode: unit,
       unitPrice: unitPrice,
       currencyCode: currency,
-      isUnitPrice: isUnitPrice ? true : null,
+      isUnitPrice: isUnitPrice,
     );
   }
 
@@ -371,6 +379,20 @@ class VoiceCommandParser {
       }
     }
     return null;
+  }
+
+  /// Satır tahmini: sondaki `<sayı> <para>` ("1 kilo domates 20 TL") → 20 TRY, birim değil.
+  (DecimalFixed, String, List<String>)? _consumeTrailingLineTotal(List<String> tokens) {
+    if (tokens.length < 3) return null;
+    final currency = _trCurrency(tokens.last) ?? _enCurrency(tokens.last);
+    if (currency == null) return null;
+    final amount = tokens[tokens.length - 2];
+    if (!RegExp(r'^\d{1,9}(?:[.,]\d{1,3})?$').hasMatch(amount)) return null;
+    return (
+      DecimalFixed.parse(amount.replaceAll(',', '.')),
+      currency,
+      tokens.sublist(0, tokens.length - 2),
+    );
   }
 
   /// [index]teki sözcüğü çıkarır.
