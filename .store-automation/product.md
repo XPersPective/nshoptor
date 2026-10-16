@@ -21,6 +21,9 @@ Uygulamanın zihinsel modelini tek alışveriş listesinde birleştir: “Evdeki
 - [accessibility] 320dp, büyük yazı, klavye ve RTL düzenlerinde liste ekleme/düzenleme/tikleme yolculuğu tamamlanır.
 - [machine] Çarşı fiyatı olmayan ürün fiili toplamı artırmaz; normalize birim fiyat gözlemi miktar değişiminden bağımsız saklanır.
 - [machine] Ses oturumu ilk ve ikinci açılışta tek mikrofon sahibiyle çalışır; miktar ve birim ayrıştırması testlidir.
+- [machine] Reklam politikası (`ad_gate`) ve Pro durumu (deneme, yaşam boyu) testlidir; test reklam kimliği release derlemesinde reddedilir.
+- [interaction] Ayarlar plan rozeti ve Pro bölümüyle açılır; reklam hediyesi ve paywall tek akışta tamamlanır.
+- [accessibility] Reklam hediyesi ve paywall 320dp, büyük yazı ve RTL'de tamamlanır.
 
 ## Riskiest Assumptions
 - RA-1: Mevcut Drift modeli ve ListDetail akışı tek listeyi üç yatay ekrana dönüştürmek için yeterli -> mevcut controller/repository ve widget testleri üzerinde küçük UI probe.
@@ -35,6 +38,9 @@ Uygulamanın zihinsel modelini tek alışveriş listesinde birleştir: “Evdeki
 - Satıra dokunma editör, basılı tutma sıralama, yana kaydırma silme, kısa kapatılabilir Undo snackbar.
 ### Price history and voice
 - Gerçek fiyatlar ürün/birim bazında normalize edilir; cihaz içi tek ses yaşam döngüsü aday miktarları doğru ayırır.
+### Ads, subscription and settings
+- Geçiş reklamı alışveriş sonunda, günlük ödüllü hediye ayrı bir akışta; Pro plan 7 gün deneme ve yaşam boyu hakkını gösterir; Ayarlarda plan rozeti ve Pro bölümü ilk sırada.
+- Tüm yeni metinler 71 dilde ARB anahtarıyla bulunur; reklam birimleri yalnızca gerçek AdMob kimlikleriyle derlenir.
 
 ## Non-Goals
 - Hesap/bulut senkronizasyonu, döviz kuru dönüşümü, yeni OCR/AI servisi veya tam DB/state-management yeniden yazımı.
@@ -42,3 +48,4 @@ Uygulamanın zihinsel modelini tek alışveriş listesinde birleştir: “Evdeki
 
 ## Open Decisions
 - OD-001 OPEN: Arşivleme hareketi liste kartında mı yoksa sade taşma menüsünde mi görünmeli? -> interaction polish; varsayılan taşma menüsü.
+- OD-002 ANSWERED 2026-10-16: "Reklam ve abonelik ürün hedefinin parçası" -> Target State "Ads, subscription and settings" bölümü ve ilgili Success Conditions.

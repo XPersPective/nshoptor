@@ -17,6 +17,10 @@
 - `test/features/lists/` — liste/form/controller/widget kanıtları
 - `test/features/history/` — fiyat geçmişi ve analiz kanıtları
 - `test/features/voice_input/` — ses yaşam döngüsü ve miktar parser testleri
+- `lib/features/ads/` — geçiş reklamı ve ödüllü hediye politikası (`ad_gate.dart`)
+- `lib/features/subscription/` — abonelik servisi, paywall, lifetime adapter
+- `lib/features/settings/` — ayarlar ekranı, plan rozeti ve Pro bölümü
+- `test/features/ads/`, `test/features/subscription/`, `test/features/settings/` — bu alanların kanıtları
 
 ## Domains
 
@@ -32,8 +36,14 @@ Status: VERIFIED
 Sources: `lib/data/db/**`, `lib/core/money/**`, `lib/core/quantity/**`, `lib/features/lists/**`, `lib/features/shopping_mode/**`
 - Decimal estimate/actual fields, nullable unknown actual price, real quantity separation and transaction-safe repositories exist.
 
+### Ads, subscription and settings
+Status: OBSERVED (SA-011, SA-012; code and tests exist, store-side setup not verified here).
+Sources: `lib/features/ads/**`, `lib/features/subscription/**`, `lib/features/settings/**`, `test/features/ads/**`, `test/features/subscription/**`, `test/features/settings/**`
+- Ad gate: geçiş reklamı alışveriş sonunda, günlük ödüllü hediye; release derlemesinde test reklam kimliği reddedilir (`fastlane/Fastfile`).
+- Subscription: plan rozeti 7 gün deneme durumu; lifetime adapter; Play'de ürün (`IAP_PRO_LIFETIME`) kurulumu mağaza tarafında ayrıca doğrulanmalı.
+
 ### History and voice
-Status: VERIFIED baseline; target copy/normalization and UX gaps pending.
+Status: VERIFIED baseline; normalized chart and single-mic acceptance pending (SA-016, SA-017).
 Sources: `lib/features/history/**`, `lib/features/voice_input/**`, `test/features/history/**`, `test/features/voice_input/**`
 - Price observations and native single-session voice paths exist; new interaction and product-level normalized chart acceptance must be mapped.
 
