@@ -182,6 +182,21 @@ void main() {
     expect(draft.items.length, 2);
   });
 
+  test('AI tek maddede birleştirirse yerel bölme kullanılır', () async {
+    final parser = AiListParser(
+      localeCode: 'tr',
+      ai: _ai(() => _items([
+            {'name': 'elma 1 ekmek', 'quantity': '1', 'unit': 'kilogram', 'estimatedPrice': null},
+          ])),
+    );
+    final draft = await parser.parse('1 kilo elma 1 ekmek');
+    expect(draft.items.map((i) => i.name), ['elma', 'ekmek']);
+    expect(draft.items[0].unitCode, UnitCode.kilogram);
+    expect(draft.items[1].quantity!.toDbString(), '1');
+    expect(draft.items[1].unitCode, UnitCode.adet);
+    expect(draft.fromAi, isFalse);
+  });
+
   test('AI yokken de cümle bölünür', () async {
     final draft = await AiListParser(localeCode: 'tr').parse('domates ve biber');
     expect(draft.items.map((i) => i.name), ['domates', 'biber']);

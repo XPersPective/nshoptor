@@ -33,7 +33,16 @@ class AiListParser {
       result = await client.request('parse_list', {'text': raw}, locale: localeCode);
       if (result is AiOk) {
         final items = _fromAi(result.result, raw);
-        if (items.isNotEmpty) return ListDraft(items, fromAi: true, aiResult: result, title: _text(result.result['title'], 80));
+        final title = _text(result.result['title'], 80);
+        // The model can merge a second item into the first ("elma 1 ekmek"):
+        // when the local rules find more items, keep the local split.
+        if (items.isNotEmpty) {
+          final local = _local(raw);
+          if (local.length > items.length) {
+            return ListDraft(local, fromAi: false, aiResult: result, title: title);
+          }
+          return ListDraft(items, fromAi: true, aiResult: result, title: title);
+        }
       }
     }
     return ListDraft(_local(raw), fromAi: false, aiResult: result);
