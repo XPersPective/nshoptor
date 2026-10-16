@@ -971,13 +971,6 @@ class AppLocalizationsTr extends AppLocalizations {
       'Satın alma tamamlanmadı. Lütfen tekrar dene.';
 
   @override
-  String get planLifetimeTitle => 'Ömür boyu reklamsız';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Tek ödeme: reklamsız, yedekleme; yapay zekâ ücretsiz hakla devam eder';
-
-  @override
   String get plansRestore => 'Satın alımları geri yükle';
 
   @override

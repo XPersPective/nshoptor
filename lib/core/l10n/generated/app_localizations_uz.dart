@@ -976,13 +976,6 @@ class AppLocalizationsUz extends AppLocalizations {
       'Xarid amalga oshmadi. Iltimos, qaytadan urinib ko\'ring.';
 
   @override
-  String get planLifetimeTitle => 'Umrbod reklamasiz';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Bir marta to\'lov: reklama yo\'q, zaxiralash; AI bepul imkoniyatlar doirasida ishlaydi';
-
-  @override
   String get plansRestore => 'Xaridlarni tiklash';
 
   @override

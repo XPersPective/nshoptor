@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Sklep jest obecnie niedostępny.",
   "retryAction": "Ponów",
   "plansPurchaseFailed": "Zakup nie został zrealizowany. Spróbuj ponownie.",
-  "planLifetimeTitle": "Bez reklam na zawsze",
-  "planLifetimeSubtitle": "Płatność jednorazowa: brak reklam, backup; AI pozostaje w darmowym limicie",
   "plansRestore": "Przywróć zakupy",
   "plansLegal": "Subskrypcje odnawiają się automatycznie do momentu anulowania. Anuluj w dowolnym momencie w Google Play › Płatności i subskrypcje. Ceny zawierają podatki wyświetlane przez Google Play.",
   "planCurrent": "Obecna",

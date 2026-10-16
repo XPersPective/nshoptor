@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Obchod je právě nedostupný.",
   "retryAction": "Zkusit znovu",
   "plansPurchaseFailed": "Nákup se nepodařil. Zkuste to prosím znovu.",
-  "planLifetimeTitle": "Bez reklam navždy",
-  "planLifetimeSubtitle": "Jednorázová platba: žádné reklamy, záloha; AI zůstává na bezplatném limitu",
   "plansRestore": "Obnovit nákupy",
   "plansLegal": "Předplatné se automaticky obnovuje, dokud není zrušeno. Zrušit lze kdykoli v Google Play › Platby a předplatná. Ceny zahrnují daně uvedené v Google Play.",
   "planCurrent": "Aktuální",

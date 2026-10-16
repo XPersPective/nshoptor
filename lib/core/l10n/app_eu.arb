@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Denda ez dago erabilgarri une honetan.",
   "retryAction": "Saiatu berriro",
   "plansPurchaseFailed": "Erosketa ez da burutu. Mesedez, saiatu berriro.",
-  "planLifetimeTitle": "Iragarkirik gabe betirako",
-  "planLifetimeSubtitle": "Ordainketa bakarra: iragarkirik gabe, atxapena; AI doan mantenduko da",
   "plansRestore": "Berrezarri erosketak",
   "plansLegal": "Harpidetzak automatikoki berritzen dira bertan behera utzi arte. Edozein unetan bertan behera uzten da Google Play › Ordaintzea eta harpidetzak atalean. Prezioek Google Play-k erakusten dituen zergak barne hartzen dituzte.",
   "planCurrent": "Uneko",

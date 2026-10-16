@@ -975,13 +975,6 @@ class AppLocalizationsMk extends AppLocalizations {
       'Купувањето не беше успешно. Ве молиме обидете се повторно.';
 
   @override
-  String get planLifetimeTitle => 'Без реклами засекогаш';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Еднократно плаќање: без реклами, резервна копија; AI останува во бесплатниот лимит';
-
-  @override
   String get plansRestore => 'Врати ги купените функции';
 
   @override

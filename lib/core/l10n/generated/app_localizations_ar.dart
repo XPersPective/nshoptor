@@ -963,13 +963,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get plansPurchaseFailed => 'لم تكتمل عملية الشراء. حاول مرة أخرى.';
 
   @override
-  String get planLifetimeTitle => 'بلا إعلانات مدى الحياة';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'دفعة واحدة: بلا إعلانات ونسخ احتياطي؛ يبقى الذكاء الاصطناعي ضمن الحصة المجانية';
-
-  @override
   String get plansRestore => 'استعادة المشتريات';
 
   @override

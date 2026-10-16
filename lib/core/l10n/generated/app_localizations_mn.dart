@@ -977,13 +977,6 @@ class AppLocalizationsMn extends AppLocalizations {
       'Худалдан авалт амжилтгүй боллоо. Дахин оролдоно уу.';
 
   @override
-  String get planLifetimeTitle => 'Мэдээж зар сурталчилгаагүй';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Нэг удаа төлбөр: зар сурталчилгаагүй, нөөц; AI үнэ төлбөргүй хязгаарт үлдэнэ';
-
-  @override
   String get plansRestore => 'Худалдан авалтыг сэргээх';
 
   @override

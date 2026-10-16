@@ -127,48 +127,16 @@ class _HomeShellState extends State<HomeShell> {
     final l10n = AppLocalizations.of(context);
     final subs = widget.subscriptions;
     final pro = widget.proController;
-    final repo = widget.purchaseRepository;
-    final identity = widget.appIdentity;
     final tier = subs?.tier ?? Tier.free;
     final proUnlocked = (pro?.isPro ?? false) || tier != Tier.free;
     final label = planLabel(l10n, tier: tier, proUnlocked: proUnlocked);
     final trial = tier == Tier.pro && subs != null && subs.inTrial();
-    final canLifetime = pro != null && repo != null && identity != null;
-
-    void openLifetime(BuildContext ctx) {
-      if (!canLifetime) return;
-      Navigator.of(ctx).push(
-        MaterialPageRoute<void>(
-          builder: (_) => PaywallPage(
-            identity: identity,
-            controller: pro,
-            repository: repo,
-            benefits: [l10n.proBenefitNoAds, l10n.proBenefitBackup],
-          ),
-        ),
-      );
-    }
-
     if (subs != null) {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
           builder: (ctx) => SubscriptionPaywall(
             service: subs,
             currentPlan: planStatusText(l10n, label: label, trial: trial),
-            onLifetime: pro?.hasLifetimePurchase == true || !canLifetime
-                ? null
-                : () => openLifetime(ctx),
-          ),
-        ),
-      );
-    } else if (canLifetime) {
-      await Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (_) => PaywallPage(
-            identity: identity,
-            controller: pro,
-            repository: repo,
-            benefits: [l10n.proBenefitNoAds, l10n.proBenefitBackup],
           ),
         ),
       );

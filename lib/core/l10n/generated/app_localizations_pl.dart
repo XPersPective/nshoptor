@@ -975,13 +975,6 @@ class AppLocalizationsPl extends AppLocalizations {
       'Zakup nie został zrealizowany. Spróbuj ponownie.';
 
   @override
-  String get planLifetimeTitle => 'Bez reklam na zawsze';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Płatność jednorazowa: brak reklam, backup; AI pozostaje w darmowym limicie';
-
-  @override
   String get plansRestore => 'Przywróć zakupy';
 
   @override

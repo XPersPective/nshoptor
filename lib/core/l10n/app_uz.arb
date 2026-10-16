@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Do'kon hozircha ulanmagan.",
   "retryAction": "Qayta urinish",
   "plansPurchaseFailed": "Xarid amalga oshmadi. Iltimos, qaytadan urinib ko'ring.",
-  "planLifetimeTitle": "Umrbod reklamasiz",
-  "planLifetimeSubtitle": "Bir marta to'lov: reklama yo'q, zaxiralash; AI bepul imkoniyatlar doirasida ishlaydi",
   "plansRestore": "Xaridlarni tiklash",
   "plansLegal": "Obunalarni bekor qilmaguningizcha avtomatik yangilanib turadi. Istalgan vaqtda Google Play › To'lovlar va obunalar bo'limidan bekor qilishingiz mumkin. Narxlar Google Play ko'rsatgan soliqni o'z ichiga oladi.",
   "planCurrent": "Joriy",

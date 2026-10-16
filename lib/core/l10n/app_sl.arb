@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Trgovina trenutno ni dosegljiva.",
   "retryAction": "Poskusi znova",
   "plansPurchaseFailed": "Nakup ni bil uspešen. Poskusite znova.",
-  "planLifetimeTitle": "Brez oglasov za vedno",
-  "planLifetimeSubtitle": "Enkratno plačilo: brez oglasov, varnostne kopije; AI ostane v okviru brezplačne dovoljene količine",
   "plansRestore": "Obnovi nakupe",
   "plansLegal": "Naročnine se samodejno obnavljajo, dokler jih ne prekličete. Preklicati jih lahko kadarkoli v Google Play › Plačila in naročnine. Cene vključujejo davke, ki jih prikaže Google Play.",
   "planCurrent": "Trenutna",

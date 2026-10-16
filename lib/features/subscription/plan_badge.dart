@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import 'subscription_service.dart';
 
-/// Plan adı: Ücretsiz, Pro ya da Max. Lifetime/geçici Pro ücretsiz katmanda
-/// bile "Pro" gösterir (Ayarlar ile aynı kural).
+/// Plan adı: Ücretsiz, Pro ya da Max. Geçici Pro (ödüllü hediye) ücretsiz
+/// katmanda "Pro" gösterir (Ayarlar ile aynı kural).
 String planLabel(AppLocalizations l10n, {required Tier tier, required bool proUnlocked}) =>
     switch (tier) {
       Tier.max => 'Max',

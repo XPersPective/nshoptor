@@ -971,13 +971,6 @@ class AppLocalizationsSi extends AppLocalizations {
       'මිලදී ගැනීම සාර්ථක නොවීය. කරුණාකර නැවත උත්සාහ කරන්න.';
 
   @override
-  String get planLifetimeTitle => 'ජීවිත කාලයක් තිරසාරව විज्ञापन රහිතව';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'එක් වරක් ගෙවීම: විज्ञापන නැත, බැකප්; AI නොමිලේ ලබා දෙන ප්‍රමාණය තුළ පවතී';
-
-  @override
   String get plansRestore => 'මිලදී ගැනීම් යළි පිහිටුවන්න';
 
   @override

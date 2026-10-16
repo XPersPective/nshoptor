@@ -974,13 +974,6 @@ class AppLocalizationsAf extends AppLocalizations {
       'Die aankoop kon nie voltooi word nie. Probeer asseblief weer.';
 
   @override
-  String get planLifetimeTitle => 'Reklame-vry vir altyd';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Eenmalige betaling: geen advertensies, rugsteun; AI bly by die gratis toelaat';
-
-  @override
   String get plansRestore => 'Herstel aankope';
 
   @override

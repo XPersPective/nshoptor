@@ -2066,18 +2066,6 @@ abstract class AppLocalizations {
   /// **'The purchase did not go through. Please try again.'**
   String get plansPurchaseFailed;
 
-  /// No description provided for @planLifetimeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Ad-free for life'**
-  String get planLifetimeTitle;
-
-  /// No description provided for @planLifetimeSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'One-time payment: no ads, backup; AI stays on the free allowance'**
-  String get planLifetimeSubtitle;
-
   /// No description provided for @plansRestore.
   ///
   /// In en, this message translates to:

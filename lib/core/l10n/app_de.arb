@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Der Store ist gerade nicht erreichbar.",
   "retryAction": "Erneut versuchen",
   "plansPurchaseFailed": "Der Kauf wurde nicht abgeschlossen. Bitte versuch es erneut.",
-  "planLifetimeTitle": "Lebenslang werbefrei",
-  "planLifetimeSubtitle": "Einmalzahlung: keine Werbung, Sicherung; KI im kostenlosen Kontingent",
   "plansRestore": "Käufe wiederherstellen",
   "plansLegal": "Abos verlängern sich automatisch bis zur Kündigung. Kündigen jederzeit unter Google Play › Zahlungen und Abos. Preise enthalten die von Google Play angezeigten Steuern.",
   "planCurrent": "Aktuell",

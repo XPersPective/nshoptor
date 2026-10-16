@@ -971,13 +971,6 @@ class AppLocalizationsKk extends AppLocalizations {
   String get plansPurchaseFailed => 'Сатып алу орындалмады. Қайталап көріңіз.';
 
   @override
-  String get planLifetimeTitle => 'Өмір бойы жарсыз';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Бір реттік төлем: жарсыз, сақтау; AI тегін лимитте қалады';
-
-  @override
   String get plansRestore => 'Сатылымдарды қалпына келтіру';
 
   @override

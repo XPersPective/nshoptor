@@ -970,13 +970,6 @@ class AppLocalizationsTh extends AppLocalizations {
   String get plansPurchaseFailed => 'การซื้อไม่สำเร็จ กรุณาลองอีกครั้ง';
 
   @override
-  String get planLifetimeTitle => 'ไม่มีโฆษณาตลอดชีพ';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'จ่ายครั้งเดียว: ไม่มีโฆษณา, สำรองข้อมูล; ใช้ AI ตามโควตาฟรี';
-
-  @override
   String get plansRestore => 'คืนค่าการซื้อ';
 
   @override

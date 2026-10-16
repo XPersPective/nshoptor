@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
-import 'package:nshoptor/features/subscription/lifetime_only_adapter.dart';
+import 'package:nshoptor/features/subscription/no_lifetime_adapter.dart';
 import 'package:nshoptor/features/subscription/subscription_paywall.dart';
 import 'package:nshoptor/features/subscription/subscription_service.dart';
 
@@ -237,15 +237,15 @@ void main() {
     expect(SubscriptionService.adFree(lifetimeOrTemp: false, tier: Tier.pro), isTrue);
   });
 
-  test('abonelik olayı ömür boyu Pro yapmaz (akış süzülür)', () async {
+  test('ömür boyu satın alma yok: mağaza olayları ProController a iletilmez', () async {
     final inner = _FakeAdapter();
-    final adapter = LifetimeOnlyAdapter(inner, productId: 'lifetime');
+    final adapter = NoLifetimePurchaseAdapter(inner);
     final seen = <String>[];
     final sub = adapter.updates.listen((l) => seen.addAll(l.map((u) => u.purchase.productId)));
     inner.controller.add([_update(SubscriptionService.proId)]);
-    inner.controller.add([_update('lifetime'), _update(SubscriptionService.maxId)]);
+    inner.controller.add([_update('nshoptor_pro_lifetime'), _update(SubscriptionService.maxId)]);
     await Future<void>.delayed(Duration.zero);
-    expect(seen, ['lifetime']);
+    expect(seen, isEmpty);
     await sub.cancel();
   });
 

@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Kauppa ei ole tällä hetkellä tavoitettavissa.",
   "retryAction": "Yritä uudelleen",
   "plansPurchaseFailed": "Ostoa ei voitu suorittaa. Yritä uudelleen.",
-  "planLifetimeTitle": "Mainoksetta loppuelämäksi",
-  "planLifetimeSubtitle": "Kertamaksu: mainokset pois, varmuuskopio; tekoäly pysyy ilmaisella käyttökiintiöllä",
   "plansRestore": "Palauta ostokset",
   "plansLegal": "Tilaukset uusiutuvat automaattisesti, kunnes ne peruutetaan. Peruuta milloin tahansa Google Playn › Maksut ja tilaukset -kohdassa. Hinnat sisältävät Google Playn näyttämät verot.",
   "planCurrent": "Nykyinen",

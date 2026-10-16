@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "La botiga no és accessible ara mateix.",
   "retryAction": "Torna-ho a provar",
   "plansPurchaseFailed": "La compra no s'ha pogut completar. Si us plau, torna-ho a intentar.",
-  "planLifetimeTitle": "Sense anuncis per sempre",
-  "planLifetimeSubtitle": "Pagament únic: sense anuncis, còpia de seguretat; l'IA es manté dins del límit gratuït",
   "plansRestore": "Restaura les compres",
   "plansLegal": "Les subscripcions es renoven automàticament fins que es cancel·lin. Es poden cancel·lar en qualsevol moment a Google Play › Pagaments i subscripcions. Els preus inclouen els impostos mostrats per Google Play.",
   "planCurrent": "Actual",

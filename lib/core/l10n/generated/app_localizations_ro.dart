@@ -975,13 +975,6 @@ class AppLocalizationsRo extends AppLocalizations {
       'Achiziția nu a reușit. Te rugăm să încerci din nou.';
 
   @override
-  String get planLifetimeTitle => 'Fără reclame pentru totdeauna';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Plată unică: fără reclame, backup; AI rămâne la limita gratuită';
-
-  @override
   String get plansRestore => 'Restabilește achizițiile';
 
   @override

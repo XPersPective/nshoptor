@@ -973,13 +973,6 @@ class AppLocalizationsBn extends AppLocalizations {
       'ক্রয় সম্পন্ন হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।';
 
   @override
-  String get planLifetimeTitle => 'জীবনকাল জুড়ে বিজ্ঞাপনমুক্ত';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'এককালীন পেমেন্ট: কোনো বিজ্ঞাপন নেই, ব্যাকআপ; AI ফ্রি অ্যালোয়েন্সে চালু থাকবে';
-
-  @override
   String get plansRestore => 'ক্রয় পুনরুদ্ধার করুন';
 
   @override

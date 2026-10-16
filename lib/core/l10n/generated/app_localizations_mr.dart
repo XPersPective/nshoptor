@@ -972,13 +972,6 @@ class AppLocalizationsMr extends AppLocalizations {
       'खरेदी पूर्ण झाली नाही. कृपया पुन्हा प्रयत्न करा.';
 
   @override
-  String get planLifetimeTitle => 'आजीवन जाहिरात-मुक्त';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'एकदा भरा: जाहिरात नाही, बॅकअप; AI मोफत मर्यादेवर राहील';
-
-  @override
   String get plansRestore => 'खरेदी रिकव्हर करा';
 
   @override

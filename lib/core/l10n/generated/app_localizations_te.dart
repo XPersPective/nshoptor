@@ -979,13 +979,6 @@ class AppLocalizationsTe extends AppLocalizations {
       'క్రయ విక్రయాలు పూర్తి కాలేదు. దయచేసి మళ్ళీ ప్రయత్నించండి.';
 
   @override
-  String get planLifetimeTitle => 'జీవితకాలం పాటు అడ్స్ లేకుండా';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'ఒకసారి చెల్లింపు: అడ్స్ లేవు, బ్యాకప్; AI ఉచిత అనుమతిపైనే ఉంటుంది';
-
-  @override
   String get plansRestore => 'క్రయ విక్రయాలను పునరుద్ధరించండి';
 
   @override

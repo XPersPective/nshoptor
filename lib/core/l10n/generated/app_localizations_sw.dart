@@ -974,13 +974,6 @@ class AppLocalizationsSw extends AppLocalizations {
       'Ununuzi haukumalizika. Tafadhali jaribu tena.';
 
   @override
-  String get planLifetimeTitle => 'Bila matangazo maishani yote';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Malipo ya mara moja: bila matangazo, hifadhi; AI inaendelea na idhini ya bure';
-
-  @override
   String get plansRestore => 'Rudisha ununuzi';
 
   @override

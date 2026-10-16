@@ -972,13 +972,6 @@ class AppLocalizationsCs extends AppLocalizations {
       'Nákup se nepodařil. Zkuste to prosím znovu.';
 
   @override
-  String get planLifetimeTitle => 'Bez reklam navždy';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Jednorázová platba: žádné reklamy, záloha; AI zůstává na bezplatném limitu';
-
-  @override
   String get plansRestore => 'Obnovit nákupy';
 
   @override

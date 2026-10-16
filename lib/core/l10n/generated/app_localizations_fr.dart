@@ -977,13 +977,6 @@ class AppLocalizationsFr extends AppLocalizations {
       'L\'achat n\'a pas abouti. Veuillez réessayer.';
 
   @override
-  String get planLifetimeTitle => 'Sans pub à vie';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Paiement unique : sans pub, sauvegarde ; l\'IA reste au quota gratuit';
-
-  @override
   String get plansRestore => 'Restaurer les achats';
 
   @override

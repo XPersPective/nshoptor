@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Az üzlet jelenleg nem elérhető.",
   "retryAction": "Újrapróbálkozás",
   "plansPurchaseFailed": "A vásárlás sikertelen. Kérjük, próbálja meg újra.",
-  "planLifetimeTitle": "Reklámmentes életre szólóan",
-  "planLifetimeSubtitle": "Egyszeri fizetés: nincs reklám, biztonsági mentés; az AI a ingyenes keretkorlátig használható",
   "plansRestore": "Vásárlások visszaállítása",
   "plansLegal": "A előfizetések automatikusan megújulnak, amíg le nem mondja őket. Bármikor lemondható a Google Play › Fizetések és előfizetések menüpontban. Az árak tartalmazzák a Google Play által megjelenített adókat.",
   "planCurrent": "Jelenlegi",

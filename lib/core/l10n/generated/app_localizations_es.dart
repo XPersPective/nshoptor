@@ -975,13 +975,6 @@ class AppLocalizationsEs extends AppLocalizations {
       'La compra no se completó. Inténtalo de nuevo.';
 
   @override
-  String get planLifetimeTitle => 'Sin anuncios para siempre';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Pago único: sin anuncios y copia de seguridad; la IA sigue con el cupo gratuito';
-
-  @override
   String get plansRestore => 'Restaurar compras';
 
   @override

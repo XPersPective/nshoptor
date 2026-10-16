@@ -971,13 +971,6 @@ class AppLocalizationsKa extends AppLocalizations {
       'ყიდვა ვერ შესრულდა. გთხოვთ, სცადოთ თავიდან.';
 
   @override
-  String get planLifetimeTitle => 'რეკლამის გარეშე მუდმივად';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'ერთჯერადი გადახდა: რეკლამის გარეშე, ბექაპი; AI უფასო ლიმიტზეა';
-
-  @override
   String get plansRestore => 'ყიდვების აღდგენა';
 
   @override

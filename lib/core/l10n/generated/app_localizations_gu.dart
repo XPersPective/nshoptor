@@ -970,13 +970,6 @@ class AppLocalizationsGu extends AppLocalizations {
       'ખરીદી પૂર્ણ થઈ નથી. કૃપા કરીને ફરી પ્રયાસ કરો.';
 
   @override
-  String get planLifetimeTitle => 'આજીવન વિના એડ્સ';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'એક વખતનો ચુકવણી: વિના એડ્સ, બેકઅપ; AI મફત એલોવન્સ પર રહેશે';
-
-  @override
   String get plansRestore => 'ખરીદીઓ પુનઃસ્થાપિત કરો';
 
   @override

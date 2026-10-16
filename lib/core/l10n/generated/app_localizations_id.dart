@@ -972,13 +972,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get plansPurchaseFailed => 'Pembelian gagal. Silakan coba lagi.';
 
   @override
-  String get planLifetimeTitle => 'Bebas iklan selamanya';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Pembayaran sekali: tanpa iklan, cadangan; AI tetap pada batas gratis';
-
-  @override
   String get plansRestore => 'Pulihkan pembelian';
 
   @override

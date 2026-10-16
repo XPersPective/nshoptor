@@ -970,13 +970,6 @@ class AppLocalizationsPs extends AppLocalizations {
       'خرید ترسره نه شو. مهرباني وکړئ بیا هڅه وکړئ.';
 
   @override
-  String get planLifetimeTitle => 'د تل لپاره پرېکړه شوي اعلانات';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'یو ځای تادیه: پرېکړه شوي اعلانات، بیک اپ؛ AI په وړیا اجازه پاتې کیږي';
-
-  @override
   String get plansRestore => 'خریدونه بیرته راوړئ';
 
   @override

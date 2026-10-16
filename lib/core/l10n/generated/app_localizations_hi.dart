@@ -975,13 +975,6 @@ class AppLocalizationsHi extends AppLocalizations {
       'खरीदारी पूरी नहीं हुई। कृपया फिर से प्रयास करें।';
 
   @override
-  String get planLifetimeTitle => 'जीवन भर विज्ञापन-मुक्त';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'एक बार भुगतान: कोई विज्ञापन नहीं, बैकअप; AI मुफ्त सुविधा पर ही रहेगा';
-
-  @override
   String get plansRestore => 'खरीदारी पुनर्स्थापित करें';
 
   @override

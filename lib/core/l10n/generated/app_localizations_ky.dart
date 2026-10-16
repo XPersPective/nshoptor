@@ -972,13 +972,6 @@ class AppLocalizationsKy extends AppLocalizations {
       'Сатып алуу ишке ашпады. Кайра аракет кылыңыз.';
 
   @override
-  String get planLifetimeTitle => 'Өмүр бою жарнамасыз';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Бир жолку төлөм: жарнасыз, колдоо; AI акысыз мүмкүнчүлүктө калат';
-
-  @override
   String get plansRestore => 'Сатып алууну калыбына келтирүү';
 
   @override

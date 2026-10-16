@@ -974,13 +974,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get plansPurchaseFailed => 'Покупка не пройшла. Спробуйте ще раз.';
 
   @override
-  String get planLifetimeTitle => 'Без реклами назавжди';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Одноразова оплата: без реклами, резервні копії; ШІ залишається у безкоштовному ліміті';
-
-  @override
   String get plansRestore => 'Відновити покупки';
 
   @override

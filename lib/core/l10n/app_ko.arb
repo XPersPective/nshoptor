@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "현재 매장에 연결할 수 없습니다.",
   "retryAction": "다시 시도",
   "plansPurchaseFailed": "구매가 완료되지 않았습니다. 다시 시도해 주세요.",
-  "planLifetimeTitle": "평생 광고 없음",
-  "planLifetimeSubtitle": "일시불: 광고 제거, 백업 지원; AI는 무료 요금제 범위 내에서 사용 가능",
   "plansRestore": "구독 복원",
   "plansLegal": "구독은 취소하기 전까지 자동으로 갱신됩니다. Google Play › 결제 및 구독에서 언제든지 취소할 수 있습니다. 가격은 Google Play에 표시된 세금이 포함된 가격입니다.",
   "planCurrent": "현재",

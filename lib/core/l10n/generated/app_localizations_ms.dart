@@ -975,13 +975,6 @@ class AppLocalizationsMs extends AppLocalizations {
   String get plansPurchaseFailed => 'Pembelian gagal. Sila cuba lagi.';
 
   @override
-  String get planLifetimeTitle => 'Bebas iklan selamanya';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Bayaran sekali: tiada iklan, sandaran; AI kekal pada had percuma';
-
-  @override
   String get plansRestore => 'Pulangkan pembelian';
 
   @override

@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Dyqani nuk është i aksesueshëm tani.",
   "retryAction": "Provo përsëri",
   "plansPurchaseFailed": "Blerja nuk u plotësua. Ju lutemi provoni përsëri.",
-  "planLifetimeTitle": "Pa reklama për gjithë jetën",
-  "planLifetimeSubtitle": "Pagesë njëherësh: pa reklama, backup; AI mbetet në kuotën falas",
   "plansRestore": "Rikthe blerjet",
   "plansLegal": "Abonimet rinovohen automatikisht derisa të anulohen. Anuloni në çdo kohë në Google Play › Pagesat dhe abonimet. Çmimet përfshijnë tatimet e shfaqura nga Google Play.",
   "planCurrent": "Aktuale",

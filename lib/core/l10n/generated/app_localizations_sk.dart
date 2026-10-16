@@ -974,13 +974,6 @@ class AppLocalizationsSk extends AppLocalizations {
       'Nákup sa nepodaril. Skúste to prosím znova.';
 
   @override
-  String get planLifetimeTitle => 'Bez reklám navždy';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Jednorazová platba: žiadne reklamy, zálohy; AI zostáva na bezplatnom limite';
-
-  @override
   String get plansRestore => 'Obnoviť nákupy';
 
   @override

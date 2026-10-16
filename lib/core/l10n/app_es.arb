@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "No se puede acceder a la tienda ahora mismo.",
   "retryAction": "Reintentar",
   "plansPurchaseFailed": "La compra no se completó. Inténtalo de nuevo.",
-  "planLifetimeTitle": "Sin anuncios para siempre",
-  "planLifetimeSubtitle": "Pago único: sin anuncios y copia de seguridad; la IA sigue con el cupo gratuito",
   "plansRestore": "Restaurar compras",
   "plansLegal": "Las suscripciones se renuevan automáticamente hasta que las canceles. Cancela cuando quieras en Google Play › Pagos y suscripciones. Los precios incluyen los impuestos que muestra Google Play.",
   "planCurrent": "Actual",

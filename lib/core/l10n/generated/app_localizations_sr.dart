@@ -972,13 +972,6 @@ class AppLocalizationsSr extends AppLocalizations {
       'Куповина није успела. Молимо покушајте поново.';
 
   @override
-  String get planLifetimeTitle => 'Без реклама доживотно';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Једнократна уплата: без реклама, резервна копија; AI остаје на бесплатном лимиту';
-
-  @override
   String get plansRestore => 'Врати купљене ставке';
 
   @override

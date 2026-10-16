@@ -972,13 +972,6 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਖਰੀਦ ਪੂਰੀ ਨਹੀਂ ਹੋਈ। ਕਿਰਪਾ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
 
   @override
-  String get planLifetimeTitle => 'ਜੀਵਨ ਭਰ ਬਿਨਾਂ ਵਿਗਿਆਪਨ';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'ਇੱਕ ਵਾਰ ਭੁਗਤਾਨ: ਬਿਨਾਂ ਵਿਗਿਆਪਨ, ਬੈਕਅਪ; AI ਮੁਫਤ ਪ੍ਰਤੀਬੰਧ \'ਤੇ ਰਹਿੰਦਾ ਹੈ';
-
-  @override
   String get plansRestore => 'ਖਰੀਦਾਂ ਪੁਨਰਸਥਾਪਿਤ ਕਰੋ';
 
   @override

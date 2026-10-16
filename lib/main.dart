@@ -24,7 +24,7 @@ import 'data/db/app_database.dart';
 import 'features/ads/ad_gate.dart';
 import 'features/assistant/assistant_bubble.dart';
 import 'features/ai/ai_client.dart';
-import 'features/subscription/lifetime_only_adapter.dart';
+import 'features/subscription/no_lifetime_adapter.dart';
 import 'features/subscription/subscription_service.dart';
 import 'features/settings/settings_repository.dart';
 
@@ -59,10 +59,9 @@ Future<void> main() async {
 
   // Pro (standart §5.1): durum önce cihazdan; dinleme satın alma/geri
   // yükleme olaylarını uygular.
-  // Ömür boyu ürün akışı süzülür: abonelik olayları ProController'ı
-  // kalıcı Pro yapmasın (PB-055).
+  // Ömür boyu satın alma yok: mağaza akışı ProController'a iletilmez.
   final purchaseRepository = PurchaseRepository(
-    adapter: LifetimeOnlyAdapter(InAppPurchaseAdapter(), productId: EnvConfig.proProductId),
+    adapter: NoLifetimePurchaseAdapter(InAppPurchaseAdapter()),
     productId: EnvConfig.proProductId,
   );
   final proController = ProController(

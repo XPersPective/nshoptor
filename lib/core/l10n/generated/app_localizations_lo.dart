@@ -970,13 +970,6 @@ class AppLocalizationsLo extends AppLocalizations {
   String get plansPurchaseFailed => 'ການຊື້ບໍ່ສຳເລັດ. ກະລຸນາລອງໃໝ່.';
 
   @override
-  String get planLifetimeTitle => 'ບໍ່ມີໂຄສະນາ ສຳລັບຊີວິດ';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'ຈ່າຍຄ່າທຶນຄັ້ງດຽວ: ບໍ່ມີໂຄສະນາ, ສະໜັບສະໜູນການສົ່ງອອກ; ການໃຊ້ AI ຍັງຢູ່ໃນຂອບເຂດອິດສະຫຼະ';
-
-  @override
   String get plansRestore => 'ກູ້ຄືນການຊື້';
 
   @override

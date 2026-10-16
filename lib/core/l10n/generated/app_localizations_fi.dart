@@ -976,13 +976,6 @@ class AppLocalizationsFi extends AppLocalizations {
       'Ostoa ei voitu suorittaa. Yritä uudelleen.';
 
   @override
-  String get planLifetimeTitle => 'Mainoksetta loppuelämäksi';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Kertamaksu: mainokset pois, varmuuskopio; tekoäly pysyy ilmaisella käyttökiintiöllä';
-
-  @override
   String get plansRestore => 'Palauta ostokset';
 
   @override
