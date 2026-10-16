@@ -33,6 +33,8 @@ export const TASKS = {
       'said; if they said "kilosu 45" or "per kilo" set priceIsUnitPrice true. ' +
       'A number written right after an item (e.g. "2 kg tomatoes 30") is the price of that item: ' +
       'put it in estimatedPrice (a total unless the user says per unit). Quantity words like "2 kg" are not prices. ' +
+      'A number after an item name that is followed by another item name starts a new item: it is that item\'s quantity, not a price ' +
+      '(e.g. "1 kilo apple 1 bread" = {apple, 1 kilogram} and {bread, 1 piece}). A quantity with no unit is "piece". ' +
       'Never invent prices or brands. Use a short list title only if suggested by the input. Categories: produce, dairy, meat, bakery, drinks, cleaning, personalCare, home, other, or a user-specified custom category. Max 40 items. ' + LOCALE_NOTE(locale),
     user: input => input.text,
     clean(out) {
