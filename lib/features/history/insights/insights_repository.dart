@@ -369,9 +369,39 @@ class SpendPoint {
   final int actualMinor;
 }
 
+/// Harcama dönemi: bu hafta (pazartesi başlar), bu ay, bu yıl.
+enum SpendSpan {
+  week,
+  month,
+  year;
+
+  ({DateTime from, DateTime to}) range(DateTime now) {
+    final day = DateTime(now.year, now.month, now.day);
+    return switch (this) {
+      SpendSpan.week => (
+          from: day.subtract(Duration(days: day.weekday - 1)),
+          to: day.subtract(Duration(days: day.weekday - 1)).add(const Duration(days: 7)),
+        ),
+      SpendSpan.month => (from: DateTime(now.year, now.month), to: DateTime(now.year, now.month + 1)),
+      SpendSpan.year => (from: DateTime(now.year), to: DateTime(now.year + 1)),
+    };
+  }
+}
+
 /// Saf toplama yardımcıları (test edilebilir; tarihler yerel saatle).
 class SpendMath {
   SpendMath._();
+
+  /// [from, to) aralığındaki toplam (yerel saat).
+  static int total(List<SpendPoint> points, DateTime from, DateTime to) => points
+      .where((p) => !p.at.toLocal().isBefore(from) && p.at.toLocal().isBefore(to))
+      .fold<int>(0, (s, p) => s + p.actualMinor);
+
+  /// Son [years] yılın toplamları, eskiden yeniye.
+  static List<(DateTime, int)> byYear(List<SpendPoint> points, DateTime now, {int years = 5}) => [
+        for (var y = years - 1; y >= 0; y--)
+          (DateTime(now.year - y), total(points, DateTime(now.year - y), DateTime(now.year - y + 1))),
+      ];
 
   /// Ayın günlerine göre toplam: gün → minor.
   static Map<int, int> byDay(List<SpendPoint> points, int year, int month) {

@@ -422,5 +422,29 @@
   "paletteOcean": "Ocean",
   "paletteSunset": "Sunset",
   "paletteLavender": "Lavender",
-  "darkBlackLabel": "Pure black in dark theme"
+  "darkBlackLabel": "Pure black in dark theme",
+  "spendingOverview": "Overview",
+  "spendingThisYear": "This year",
+  "spendingYearly": "Yearly spending",
+  "productSpending": "Spending by product",
+  "spanWeek": "Week",
+  "spanMonth": "Month",
+  "spanYear": "Year",
+  "weeklyLimitTitle": "Weekly limit",
+  "weeklyLimitHelp": "How much do you want to spend on shopping per week?",
+  "weeklyLimitNone": "Set a weekly limit to see how much is left.",
+  "weeklyLimitLeft": "{amount} left this week",
+  "@weeklyLimitLeft": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "shoppingLimitTitle": "Limit per shopping",
+  "shoppingLimitHelp": "New lists start with this budget.",
+  "shoppingLimitNone": "Set a default budget for each new shopping.",
+  "monthlyReportAction": "Monthly report",
+  "reportShoppingColumn": "Shopping",
+  "reportDateColumn": "Date"
 }

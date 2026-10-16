@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import '../../app/app_defaults.dart';
 
 import '../../data/db/app_database.dart';
 import 'reminders/reminders_repository.dart';
@@ -43,7 +44,9 @@ class ListRepository {
                   generatedTitle: Value(generatedTitle),
                   currencyCode: currencyCode,
                   storeId: Value(storeId),
-                  budgetMinorUnits: Value(budgetMinorUnits),
+                  budgetMinorUnits: Value(
+                    budgetMinorUnits ?? AppDefaults.shoppingLimitMinor(currencyCode: currencyCode),
+                  ),
                   note: Value(note),
                   colorToken: Value(colorToken),
                   iconToken: Value(iconToken),

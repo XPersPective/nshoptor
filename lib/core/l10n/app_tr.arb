@@ -381,5 +381,22 @@
   "paletteOcean": "Okyanus",
   "paletteSunset": "Gün batımı",
   "paletteLavender": "Lavanta",
-  "darkBlackLabel": "Koyu temada tam siyah"
+  "darkBlackLabel": "Koyu temada tam siyah",
+  "spendingOverview": "Genel bakış",
+  "spendingThisYear": "Bu yıl",
+  "spendingYearly": "Yıllık harcama",
+  "productSpending": "Ürünlere göre harcama",
+  "spanWeek": "Hafta",
+  "spanMonth": "Ay",
+  "spanYear": "Yıl",
+  "weeklyLimitTitle": "Haftalık limit",
+  "weeklyLimitHelp": "Alışverişe haftada ne kadar harcamak istiyorsun?",
+  "weeklyLimitNone": "Ne kadar kaldığını görmek için haftalık bir limit belirle.",
+  "weeklyLimitLeft": "Bu hafta {amount} kaldı",
+  "shoppingLimitTitle": "Alışveriş başına limit",
+  "shoppingLimitHelp": "Yeni listeler bu bütçeyle başlar.",
+  "shoppingLimitNone": "Her yeni alışveriş için varsayılan bir bütçe belirle.",
+  "monthlyReportAction": "Aylık rapor",
+  "reportShoppingColumn": "Alışveriş",
+  "reportDateColumn": "Tarih"
 }

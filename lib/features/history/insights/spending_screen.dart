@@ -10,6 +10,7 @@ import '../../../core/money/money_format.dart';
 import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 import 'insights_repository.dart';
+import 'monthly_report.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../core/quantity/unit_code.dart';
 import '../../lists/starter_categories.dart';
@@ -42,17 +43,31 @@ class _SpendingScreenState extends State<SpendingScreen> {
   })();
   late final _data = (() async => (points: await _points, analytics: await _analytics))();
   late int? _limit = AppDefaults.monthlyLimitMinor(currencyCode: _currency);
+  late int? _weekLimit = AppDefaults.weeklyLimitMinor(currencyCode: _currency);
+  late int? _shoppingLimit = AppDefaults.shoppingLimitMinor(currencyCode: _currency);
+  SpendSpan _span = SpendSpan.month;
+  late Future<List<PurchaseStats>> _spanStats = _loadSpan(_span);
+
+  Future<List<PurchaseStats>> _loadSpan(SpendSpan span) {
+    final r = span.range(_now);
+    return InsightsRepository(widget.db).purchaseStats(_currency, from: r.from.toUtc(), to: r.to.toUtc());
+  }
 
   String _money(int minor) => formatMoney(
         Money.fromMinorUnits(minor, Currency.fromCode(_currency)),
         locale: formatLocaleCode(context),
       );
 
-  Future<void> _editLimit() async {
+  Future<void> _editLimit([_LimitKind kind = _LimitKind.month]) async {
     final l10n = AppLocalizations.of(context);
+    final (title, help, current) = switch (kind) {
+      _LimitKind.week => (l10n.weeklyLimitTitle, l10n.weeklyLimitHelp, _weekLimit),
+      _LimitKind.month => (l10n.monthlyLimitTitle, l10n.monthlyLimitHelp, _limit),
+      _LimitKind.shopping => (l10n.shoppingLimitTitle, l10n.shoppingLimitHelp, _shoppingLimit),
+    };
     final digits = Currency.fromCode(_currency).minorUnitDigits;
     final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context));
-    var text = _limit == null ? '' : DecimalFixed.fromMinorUnits(_limit!, digits).toDbString().replaceAll('.', sep.decimal);
+    var text = current == null ? '' : DecimalFixed.fromMinorUnits(current, digits).toDbString().replaceAll('.', sep.decimal);
     final form = GlobalKey<FormState>();
     int parse() {
       final minor = MoneyParser.parseDecimal(text, separators: sep, requirePositive: true).toMinorUnits(digits);
@@ -62,7 +77,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
     final result = await showDialog<int?>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(l10n.monthlyLimitTitle),
+        title: Text(title),
         content: Form(key: form, child: TextFormField(
           validator: (_) { try { parse(); return null; } on FormatException { return l10n.invalidPriceError; } },
           key: const Key('limit_field'),
@@ -70,7 +85,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
           onChanged: (value) => text = value,
           autofocus: true,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
-          decoration: InputDecoration(helperText: l10n.monthlyLimitHelp, suffixText: _currency),
+          decoration: InputDecoration(helperText: help, suffixText: _currency),
         )),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, -1), child: Text(l10n.monthlyLimitRemove)),
@@ -85,8 +100,18 @@ class _SpendingScreenState extends State<SpendingScreen> {
       ),
     );
     if (result == null || !mounted) return;
-    AppDefaults.setMonthlyLimitMinor(result < 0 ? null : result, currencyCode: _currency);
-    setState(() => _limit = result < 0 ? null : result);
+    final value = result < 0 ? null : result;
+    switch (kind) {
+      case _LimitKind.week:
+        AppDefaults.setWeeklyLimitMinor(value, currencyCode: _currency);
+        setState(() => _weekLimit = value);
+      case _LimitKind.month:
+        AppDefaults.setMonthlyLimitMinor(value, currencyCode: _currency);
+        setState(() => _limit = value);
+      case _LimitKind.shopping:
+        AppDefaults.setShoppingLimitMinor(value, currencyCode: _currency);
+        setState(() => _shoppingLimit = value);
+    }
   }
 
   @override
@@ -104,15 +129,59 @@ class _SpendingScreenState extends State<SpendingScreen> {
           final monthTotal = days.values.fold<int>(0, (s, v) => s + v);
           final weeks = SpendMath.byWeek(points, _now);
           final months = SpendMath.byMonth(points, _now);
+          final years = SpendMath.byYear(points, _now);
+          int spent(SpendSpan span) {
+            final r = span.range(_now);
+            return SpendMath.total(points, r.from, r.to);
+          }
           final ml = MaterialLocalizations.of(context);
           return ListView(
             padding: const EdgeInsets.all(12),
             children: [
+              _OverviewCard(
+                week: spent(SpendSpan.week),
+                month: spent(SpendSpan.month),
+                year: spent(SpendSpan.year),
+                weekLimit: _weekLimit,
+                monthLimit: _limit,
+                money: _money,
+              ),
+              const SizedBox(height: 8),
+              _LimitCard(
+                spentMinor: spent(SpendSpan.week),
+                limitMinor: _weekLimit,
+                money: _money,
+                onEdit: () => _editLimit(_LimitKind.week),
+                keyPrefix: 'weekly_',
+                title: l10n.weeklyLimitTitle,
+                noneText: l10n.weeklyLimitNone,
+                leftText: l10n.weeklyLimitLeft,
+              ),
+              const SizedBox(height: 8),
               _LimitCard(
                 spentMinor: monthTotal,
                 limitMinor: _limit,
                 money: _money,
                 onEdit: _editLimit,
+                title: l10n.monthlyLimitTitle,
+                noneText: l10n.monthlyLimitNone,
+                leftText: l10n.monthlyLimitLeft,
+              ),
+              const SizedBox(height: 8),
+              Card(
+                key: const Key('shopping_limit_card'),
+                child: ListTile(
+                  leading: const Icon(Icons.shopping_basket_outlined),
+                  title: Text(l10n.shoppingLimitTitle),
+                  subtitle: Text(_shoppingLimit == null
+                      ? l10n.shoppingLimitNone
+                      : '${_money(_shoppingLimit!)} · ${l10n.shoppingLimitHelp}'),
+                  trailing: TextButton(
+                    key: const Key('shopping_limit_edit'),
+                    onPressed: () => _editLimit(_LimitKind.shopping),
+                    child: Text(_shoppingLimit == null ? l10n.monthlyLimitSet : l10n.monthlyLimitChange),
+                  ),
+                ),
               ),
               const SizedBox(height: 8),
               Card(
@@ -144,6 +213,12 @@ class _SpendingScreenState extends State<SpendingScreen> {
                         child: Text('${l10n.spendingMonthTotal}: ${_money(monthTotal)}',
                             key: const Key('month_total')),
                       ),
+                      TextButton.icon(
+                        key: const Key('monthly_report'),
+                        icon: const Icon(Icons.picture_as_pdf_outlined),
+                        label: Text(l10n.monthlyReportAction),
+                        onPressed: () => showMonthlyReport(context, widget.db, _month, _currency),
+                      ),
                     ],
                   ),
                 ),
@@ -160,6 +235,61 @@ class _SpendingScreenState extends State<SpendingScreen> {
                 bars: [for (final (d, v) in months) (ml.formatMonthYear(d).split(' ').first, DecimalFixed.fromInt(v))],
                 valueText: (v) => _money(v.toMinorUnits(0)),
                 limitMinor: _limit,
+              ),
+              const SizedBox(height: 8),
+              _BarChartCard(
+                title: l10n.spendingYearly,
+                bars: [for (final (d, v) in years) ('${d.year}', DecimalFixed.fromInt(v))],
+                valueText: (v) => _money(v.toMinorUnits(0)),
+              ),
+              const SizedBox(height: 8),
+              Card(
+                key: const Key('product_spending'),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(l10n.productSpending, style: Theme.of(context).textTheme.titleMedium),
+                      const SizedBox(height: 8),
+                      SegmentedButton<SpendSpan>(
+                        key: const Key('product_spending_span'),
+                        segments: [
+                          ButtonSegment(value: SpendSpan.week, label: Text(l10n.spanWeek)),
+                          ButtonSegment(value: SpendSpan.month, label: Text(l10n.spanMonth)),
+                          ButtonSegment(value: SpendSpan.year, label: Text(l10n.spanYear)),
+                        ],
+                        selected: {_span},
+                        onSelectionChanged: (s) => setState(() {
+                          _span = s.first;
+                          _spanStats = _loadSpan(_span);
+                        }),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              FutureBuilder<List<PurchaseStats>>(
+                future: _spanStats,
+                builder: (context, s) {
+                  if (s.connectionState != ConnectionState.done) {
+                    return const Padding(padding: EdgeInsets.all(16), child: LinearProgressIndicator());
+                  }
+                  final top = [...?s.data]
+                    ..removeWhere((p) => p.actualMinor <= 0)
+                    ..sort((a, b) => b.actualMinor.compareTo(a.actualMinor));
+                  return _BarChartCard(
+                    key: const Key('product_spending_chart'),
+                    title: switch (_span) {
+                      SpendSpan.week => l10n.historyThisWeek,
+                      SpendSpan.month => l10n.spendingMonthTotal,
+                      SpendSpan.year => l10n.spendingThisYear,
+                    },
+                    horizontal: true,
+                    bars: [for (final p in top.take(10)) (p.name, DecimalFixed.fromInt(p.actualMinor))],
+                    valueText: (v) => _money(v.toMinorUnits(0)),
+                  );
+                },
               ),
               Padding(padding: const EdgeInsets.all(16), child: Text('$_currency · ${l10n.purchaseAnalyticsHint}\n${l10n.purchaseHistoryHint}')),
               Builder(builder: (context) {
@@ -212,13 +342,116 @@ class _SpendingScreenState extends State<SpendingScreen> {
   }
 }
 
+enum _LimitKind { week, month, shopping }
+
+/// Bir bakışta harcama: bu hafta, bu ay, bu yıl; limit varsa ilerleme çubuğu.
+class _OverviewCard extends StatelessWidget {
+  const _OverviewCard({
+    required this.week,
+    required this.month,
+    required this.year,
+    required this.weekLimit,
+    required this.monthLimit,
+    required this.money,
+  });
+
+  final int week, month, year;
+  final int? weekLimit, monthLimit;
+  final String Function(int) money;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    Widget tile(String label, int amount, int? limit, Key key) {
+      final over = limit != null && amount > limit;
+      return Column(
+        key: key,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: theme.textTheme.bodySmall),
+          const SizedBox(height: 4),
+          Text(
+            money(amount),
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+              color: over ? theme.colorScheme.error : null,
+            ),
+          ),
+          if (limit != null) ...[
+            const SizedBox(height: 6),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: LinearProgressIndicator(
+                value: (amount / limit).clamp(0, 1).toDouble(),
+                minHeight: 6,
+                color: over ? theme.colorScheme.error : theme.colorScheme.primary,
+              ),
+            ),
+          ],
+        ],
+      );
+    }
+
+    final tiles = [
+      tile(l10n.historyThisWeek, week, weekLimit, const Key('overview_week')),
+      tile(l10n.spendingMonthTotal, month, monthLimit, const Key('overview_month')),
+      tile(l10n.spendingThisYear, year, null, const Key('overview_year')),
+    ];
+    final wide = MediaQuery.sizeOf(context).width >= 360 && MediaQuery.textScalerOf(context).scale(14) <= 18;
+    return Card(
+      key: const Key('spending_overview'),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.spendingOverview, style: theme.textTheme.titleMedium),
+            const SizedBox(height: 12),
+            if (wide)
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (final (i, t) in tiles.indexed) ...[
+                    if (i > 0) const SizedBox(width: 12),
+                    Expanded(child: t),
+                  ],
+                ],
+              )
+            else
+              for (final (i, t) in tiles.indexed) ...[
+                if (i > 0) const SizedBox(height: 12),
+                t,
+              ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _LimitCard extends StatelessWidget {
-  const _LimitCard({required this.spentMinor, required this.limitMinor, required this.money, required this.onEdit});
+  const _LimitCard({
+    required this.spentMinor,
+    required this.limitMinor,
+    required this.money,
+    required this.onEdit,
+    required this.title,
+    required this.noneText,
+    required this.leftText,
+    this.keyPrefix = '',
+  });
 
   final int spentMinor;
   final int? limitMinor;
   final String Function(int) money;
   final VoidCallback onEdit;
+  final String title;
+  final String noneText;
+  final String Function(String amount) leftText;
+
+  /// Aylık kart eski anahtarları korur (limit_*); haftalık "weekly_limit_*".
+  final String keyPrefix;
 
   @override
   Widget build(BuildContext context) {
@@ -227,7 +460,7 @@ class _LimitCard extends StatelessWidget {
     final limit = limitMinor;
     final over = limit != null && spentMinor > limit;
     return Card(
-      key: const Key('limit_card'),
+      key: Key('${keyPrefix}limit_card'),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -235,17 +468,17 @@ class _LimitCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Expanded(child: Text(l10n.monthlyLimitTitle, style: Theme.of(context).textTheme.titleMedium)),
-                TextButton(key: const Key('limit_edit'), onPressed: onEdit, child: Text(limit == null ? l10n.monthlyLimitSet : l10n.monthlyLimitChange)),
+                Expanded(child: Text(title, style: Theme.of(context).textTheme.titleMedium)),
+                TextButton(key: Key('${keyPrefix}limit_edit'), onPressed: onEdit, child: Text(limit == null ? l10n.monthlyLimitSet : l10n.monthlyLimitChange)),
               ],
             ),
             if (limit == null)
-              Text(l10n.monthlyLimitNone)
+              Text(noneText)
             else ...[
               ClipRRect(
                 borderRadius: BorderRadius.circular(6),
                 child: LinearProgressIndicator(
-                  key: const Key('limit_progress'),
+                  key: Key('${keyPrefix}limit_progress'),
                   value: (spentMinor / limit).clamp(0, 1).toDouble(),
                   minHeight: 10,
                   color: over ? scheme.error : scheme.primary,
@@ -255,8 +488,8 @@ class _LimitCard extends StatelessWidget {
               Text(
                 over
                     ? l10n.monthlyLimitOver(money(spentMinor - limit))
-                    : l10n.monthlyLimitLeft(money(limit - spentMinor)),
-                key: const Key('limit_text'),
+                    : leftText(money(limit - spentMinor)),
+                key: Key('${keyPrefix}limit_text'),
                 style: TextStyle(color: over ? scheme.error : null, fontWeight: FontWeight.w600),
               ),
               Text('${money(spentMinor)} / ${money(limit)}', style: Theme.of(context).textTheme.bodySmall),
@@ -322,7 +555,7 @@ class MonthCalendar extends StatelessWidget {
 }
 
 class _BarChartCard extends StatelessWidget {
-  const _BarChartCard({required this.title, required this.bars, required this.valueText, this.limitMinor, this.horizontal = false});
+  const _BarChartCard({super.key, required this.title, required this.bars, required this.valueText, this.limitMinor, this.horizontal = false});
   final String title;
   final List<(String, DecimalFixed)> bars;
   final String Function(DecimalFixed) valueText;
