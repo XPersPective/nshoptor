@@ -44,8 +44,6 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                    'Annual subscriptions keep the same monthly quota. Existing legacy Pro and Max '
                    'subscriptions retain 200 and 1000 monthly requests respectively. Prices and '
                    'eligibility are shown by Google Play.\n'
-                   'Ad-free for life: a one-time purchase; includes backup and the free AI quota, '
-                   'not a subscription AI quota.\n'
                    '\n'
                    '71 interface languages. Language, number format and currency can be selected '
                    'independently.\n'
@@ -96,8 +94,6 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                    'Yıllık aboneliklerde aylık kota aynıdır. Eski Pro ve Max abonelerinin '
                    'sırasıyla 200 ve 1000 aylık istek hakları korunur. Fiyat ve uygunluk Google '
                    "Play'de gösterilir.\n"
-                   'Ömür boyu reklamsız: tek seferlik satın alma; yedekleme ve ücretsiz yapay zeka '
-                   'kotası içerir, abonelik yapay zeka kotası vermez.\n'
                    '\n'
                    '71 arayüz dili. Dil, sayı biçimi ve para birimi bağımsız seçilir.\n'
                    '\n'
