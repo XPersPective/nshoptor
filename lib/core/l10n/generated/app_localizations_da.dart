@@ -1145,74 +1145,74 @@ class AppLocalizationsDa extends AppLocalizations {
   String get guideDone => 'Start';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Farvetema';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Skov';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Hav';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Solnedgang';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Lavendel';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Helt sort i mørkt tema';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Overblik';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'I år';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Årligt forbrug';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Forbrug pr. produkt';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Uge';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Måned';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'År';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Ugentlig grænse';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'Hvor meget vil du bruge på indkøb om ugen?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Sæt en ugentlig grænse for at se, hvor meget der er tilbage.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return '$amount tilbage denne uge';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Grænse pr. indkøb';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Nye lister starter med dette budget.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone => 'Sæt et standardbudget for hvert nyt indkøb.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Månedsrapport';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Indkøb';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Dato';
 }

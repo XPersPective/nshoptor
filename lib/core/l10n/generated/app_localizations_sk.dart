@@ -1148,74 +1148,75 @@ class AppLocalizationsSk extends AppLocalizations {
   String get guideDone => 'Začať';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Farebná téma';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Les';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Oceán';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Západ slnka';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Levanduľa';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Čisto čierna v tmavej téme';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Prehľad';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Tento rok';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Ročné výdavky';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Výdavky podľa produktu';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Týždeň';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Mesiac';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Rok';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Týždenný limit';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'Koľko chcete týždenne minúť na nákupy?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Nastavte týždenný limit a uvidíte, koľko zostáva.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'Tento týždeň zostáva $amount';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Limit na nákup';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Nové zoznamy začínajú s týmto rozpočtom.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Nastavte predvolený rozpočet pre každý nový nákup.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Mesačná správa';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Nákup';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Dátum';
 }

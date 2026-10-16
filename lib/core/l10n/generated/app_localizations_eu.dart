@@ -1149,74 +1149,76 @@ class AppLocalizationsEu extends AppLocalizations {
   String get guideDone => 'Hasi';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Kolore-gaia';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Basoa';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Ozeanoa';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Ilunabarra';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Izpilikua';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Beltz hutsa gai ilunean';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Ikuspegi orokorra';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Aurten';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Urteko gastua';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Gastua produktuka';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Astea';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Hilabetea';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Urtea';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Asteko muga';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'Zenbat gastatu nahi duzu erosketetan astean?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Ezarri asteko muga zenbat geratzen den ikusteko.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return '$amount geratzen dira aste honetan';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Erosketa bakoitzeko muga';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp =>
+      'Zerrenda berriak aurrekontu honekin hasten dira.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Ezarri aurrekontu lehenetsia erosketa berri bakoitzerako.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Hileko txostena';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Erosketa';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Data';
 }

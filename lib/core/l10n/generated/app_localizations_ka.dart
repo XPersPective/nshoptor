@@ -1144,74 +1144,75 @@ class AppLocalizationsKa extends AppLocalizations {
   String get guideDone => 'დაწყება';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'ფერის თემა';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'ტყე';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'ოკეანე';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'მზის ჩასვლა';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'ლავანდა';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'სუფთა შავი მუქ თემაში';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'მიმოხილვა';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'წელს';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'წლიური ხარჯი';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'ხარჯი პროდუქტების მიხედვით';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'კვირა';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'თვე';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'წელი';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'კვირის ლიმიტი';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'რამდენის დახარჯვა გსურთ საყიდლებზე კვირაში?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'დააყენეთ კვირის ლიმიტი, რომ ნახოთ რამდენი დარჩა.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'ამ კვირას დარჩა $amount';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'ლიმიტი თითო ყიდვაზე';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'ახალი სიები ამ ბიუჯეტით იწყება.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'დააყენეთ ნაგულისხმევი ბიუჯეტი ყოველი ახალი ყიდვისთვის.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'თვის ანგარიში';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'ყიდვა';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'თარიღი';
 }

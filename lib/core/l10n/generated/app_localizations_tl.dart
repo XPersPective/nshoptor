@@ -1153,74 +1153,77 @@ class AppLocalizationsTl extends AppLocalizations {
   String get guideDone => 'Simulan';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Tema ng kulay';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Kagubatan';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Karagatan';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Paglubog ng araw';
 
   @override
   String get paletteLavender => 'Lavender';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Purong itim sa madilim na tema';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Buod';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Ngayong taon';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Gastos sa isang taon';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Gastos bawat produkto';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Linggo';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Buwan';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Taon';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Lingguhang limitasyon';
 
   @override
   String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+      'Magkano ang gusto mong gastusin sa pamimili kada linggo?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Magtakda ng lingguhang limitasyon para makita ang natitira.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return '$amount ang natitira ngayong linggo';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Limitasyon kada pamimili';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp =>
+      'Nagsisimula ang mga bagong listahan sa badyet na ito.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Magtakda ng default na badyet para sa bawat bagong pamimili.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Buwanang ulat';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Pamimili';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Petsa';
 }

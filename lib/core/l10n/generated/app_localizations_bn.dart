@@ -1145,74 +1145,74 @@ class AppLocalizationsBn extends AppLocalizations {
   String get guideDone => 'শুরু করুন';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'রঙের থিম';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'বন';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'সমুদ্র';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'সূর্যাস্ত';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'ল্যাভেন্ডার';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'ডার্ক থিমে পুরো কালো';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'সারসংক্ষেপ';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'এই বছর';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'বার্ষিক খরচ';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'পণ্য অনুযায়ী খরচ';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'সপ্তাহ';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'মাস';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'বছর';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'সাপ্তাহিক সীমা';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'সপ্তাহে কেনাকাটায় কত খরচ করতে চান?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone => 'কত বাকি আছে দেখতে একটি সাপ্তাহিক সীমা দিন।';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'এই সপ্তাহে $amount বাকি';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'প্রতি কেনাকাটার সীমা';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'নতুন তালিকা এই বাজেট দিয়ে শুরু হয়।';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'প্রতিটি নতুন কেনাকাটার জন্য একটি ডিফল্ট বাজেট দিন।';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'মাসিক রিপোর্ট';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'কেনাকাটা';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'তারিখ';
 }

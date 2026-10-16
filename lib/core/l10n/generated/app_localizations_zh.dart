@@ -1104,74 +1104,73 @@ class AppLocalizationsZh extends AppLocalizations {
   String get guideDone => '开始';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => '颜色主题';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => '森林';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => '海洋';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => '日落';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => '薰衣草';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => '深色主题使用纯黑';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => '概览';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => '今年';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => '年度支出';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => '按商品支出';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => '周';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => '月';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => '年';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => '每周限额';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => '你每周想在购物上花多少？';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone => '设置每周限额即可查看剩余金额。';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return '本周剩余 $amount';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => '每次购物限额';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => '新清单以此预算开始。';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone => '为每次新购物设置默认预算。';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => '月度报告';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => '购物';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => '日期';
 }

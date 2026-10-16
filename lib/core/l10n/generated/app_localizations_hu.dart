@@ -1147,74 +1147,75 @@ class AppLocalizationsHu extends AppLocalizations {
   String get guideDone => 'Indítás';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Színtéma';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Erdő';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Óceán';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Naplemente';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Levendula';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Tiszta fekete sötét témában';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Áttekintés';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Idén';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Éves költés';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Költés termékenként';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Hét';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Hónap';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Év';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Heti limit';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'Mennyit szeretne hetente vásárlásra költeni?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Állítson be heti limitet, hogy lássa, mennyi maradt.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'Ezen a héten $amount maradt';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Vásárlásonkénti limit';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Az új listák ezzel a kerettel indulnak.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Állítson be alapértelmezett keretet minden új vásárláshoz.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Havi jelentés';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Vásárlás';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Dátum';
 }

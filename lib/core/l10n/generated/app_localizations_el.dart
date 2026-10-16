@@ -1150,74 +1150,77 @@ class AppLocalizationsEl extends AppLocalizations {
   String get guideDone => 'Έναρξη';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Θέμα χρωμάτων';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Δάσος';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Ωκεανός';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Ηλιοβασίλεμα';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Λεβάντα';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Καθαρό μαύρο στο σκούρο θέμα';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Επισκόπηση';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Φέτος';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Ετήσια έξοδα';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Έξοδα ανά προϊόν';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Εβδομάδα';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Μήνας';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Έτος';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Εβδομαδιαίο όριο';
 
   @override
   String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+      'Πόσα θέλετε να ξοδεύετε για ψώνια την εβδομάδα;';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Ορίστε εβδομαδιαίο όριο για να βλέπετε πόσα απομένουν.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'Απομένουν $amount αυτή την εβδομάδα';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Όριο ανά αγορά';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp =>
+      'Οι νέες λίστες ξεκινούν με αυτόν τον προϋπολογισμό.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Ορίστε έναν προεπιλεγμένο προϋπολογισμό για κάθε νέα αγορά.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Μηνιαία αναφορά';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Αγορά';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Ημερομηνία';
 }
