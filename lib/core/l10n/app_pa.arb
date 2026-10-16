@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ਹਰ ਨਵੀਂ ਖ਼ਰੀਦਦਾਰੀ ਲਈ ਡਿਫ਼ੌਲਟ ਬਜਟ ਤੈਅ ਕਰੋ।",
   "monthlyReportAction": "ਮਹੀਨਾਵਾਰ ਰਿਪੋਰਟ",
   "reportShoppingColumn": "ਖ਼ਰੀਦਦਾਰੀ",
-  "reportDateColumn": "ਤਾਰੀਖ"
+  "reportDateColumn": "ਤਾਰੀਖ",
+  "planUnavailable": "ਹੁਣ ਸਟੋਰ ਵਿੱਚ ਉਪਲਬਧ ਨਹੀਂ",
+  "demoDataTitle": "ਨਮੂਨਾ ਡਾਟਾ",
+  "demoDataLoad": "ਨਮੂਨਾ ਡਾਟਾ ਨਾਲ ਅਜ਼ਮਾਓ",
+  "demoDataLoadHelp": "ਇਤਿਹਾਸ, ਚਾਰਟ ਅਤੇ ਕੀਮਤ ਇਤਿਹਾਸ ਦੇਖਣ ਲਈ 12 ਮਹੀਨਿਆਂ ਦੀ ਨਮੂਨਾ ਖ਼ਰੀਦਦਾਰੀ ਜੋੜਦਾ ਹੈ।",
+  "demoDataRemove": "ਨਮੂਨਾ ਡਾਟਾ ਹਟਾਓ",
+  "demoDataAdded": "ਨਮੂਨਾ ਡਾਟਾ ਜੋੜਿਆ ਗਿਆ",
+  "demoDataRemoved": "ਨਮੂਨਾ ਡਾਟਾ ਹਟਾਇਆ ਗਿਆ",
+  "demoProductApple": "ਸੇਬ",
+  "demoProductBread": "ਬਰੈੱਡ",
+  "demoProductMilk": "ਦੁੱਧ",
+  "demoProductCheese": "ਪਨੀਰ",
+  "demoProductTomato": "ਟਮਾਟਰ",
+  "demoProductEggs": "ਆਂਡੇ",
+  "demoProductCoffee": "ਕੌਫ਼ੀ",
+  "demoProductDetergent": "ਡਿਟਰਜੈਂਟ"
 }

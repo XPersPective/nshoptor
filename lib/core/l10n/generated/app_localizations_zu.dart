@@ -1225,4 +1225,50 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Usuku';
+
+  @override
+  String get planUnavailable => 'Akutholakali esitolo okwamanje';
+
+  @override
+  String get demoDataTitle => 'Idatha eyisampula';
+
+  @override
+  String get demoDataLoad => 'Zama ngedatha eyisampula';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Yengeza ukuthenga okuyisampula kwezinyanga eziyi-12 ukuze ubone umlando, amashadi nomlando wentengo.';
+
+  @override
+  String get demoDataRemove => 'Susa idatha eyisampula';
+
+  @override
+  String get demoDataAdded => 'Idatha eyisampula yengeziwe';
+
+  @override
+  String get demoDataRemoved => 'Idatha eyisampula isusiwe';
+
+  @override
+  String get demoProductApple => 'Ama-apula';
+
+  @override
+  String get demoProductBread => 'Isinkwa';
+
+  @override
+  String get demoProductMilk => 'Ubisi';
+
+  @override
+  String get demoProductCheese => 'Ushizi';
+
+  @override
+  String get demoProductTomato => 'Utamatisi';
+
+  @override
+  String get demoProductEggs => 'Amaqanda';
+
+  @override
+  String get demoProductCoffee => 'Ikhofi';
+
+  @override
+  String get demoProductDetergent => 'Insipho yokuwasha';
 }

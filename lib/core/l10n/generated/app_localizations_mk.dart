@@ -1221,4 +1221,50 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Датум';
+
+  @override
+  String get planUnavailable => 'Моментално не е достапно во продавницата';
+
+  @override
+  String get demoDataTitle => 'Примерни податоци';
+
+  @override
+  String get demoDataLoad => 'Пробајте со примерни податоци';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Додава примерни купувања за 12 месеци за да ги видите историјата, графиконите и историјата на цени.';
+
+  @override
+  String get demoDataRemove => 'Отстрани примерни податоци';
+
+  @override
+  String get demoDataAdded => 'Примерните податоци се додадени';
+
+  @override
+  String get demoDataRemoved => 'Примерните податоци се отстранети';
+
+  @override
+  String get demoProductApple => 'Јаболка';
+
+  @override
+  String get demoProductBread => 'Леб';
+
+  @override
+  String get demoProductMilk => 'Млеко';
+
+  @override
+  String get demoProductCheese => 'Сирење';
+
+  @override
+  String get demoProductTomato => 'Домати';
+
+  @override
+  String get demoProductEggs => 'Јајца';
+
+  @override
+  String get demoProductCoffee => 'Кафе';
+
+  @override
+  String get demoProductDetergent => 'Детергент';
 }

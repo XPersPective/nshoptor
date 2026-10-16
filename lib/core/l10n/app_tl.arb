@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Magtakda ng default na badyet para sa bawat bagong pamimili.",
   "monthlyReportAction": "Buwanang ulat",
   "reportShoppingColumn": "Pamimili",
-  "reportDateColumn": "Petsa"
+  "reportDateColumn": "Petsa",
+  "planUnavailable": "Wala pa sa store ngayon",
+  "demoDataTitle": "Halimbawang data",
+  "demoDataLoad": "Subukan gamit ang halimbawang data",
+  "demoDataLoadHelp": "Nagdadagdag ng 12 buwan ng halimbawang pamimili para makita ang history, mga chart at kasaysayan ng presyo.",
+  "demoDataRemove": "Alisin ang halimbawang data",
+  "demoDataAdded": "Naidagdag ang halimbawang data",
+  "demoDataRemoved": "Naalis ang halimbawang data",
+  "demoProductApple": "Mansanas",
+  "demoProductBread": "Tinapay",
+  "demoProductMilk": "Gatas",
+  "demoProductCheese": "Keso",
+  "demoProductTomato": "Kamatis",
+  "demoProductEggs": "Itlog",
+  "demoProductCoffee": "Kape",
+  "demoProductDetergent": "Sabong panlaba"
 }

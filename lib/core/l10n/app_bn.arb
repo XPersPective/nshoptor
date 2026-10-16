@@ -377,5 +377,20 @@
   "shoppingLimitNone": "প্রতিটি নতুন কেনাকাটার জন্য একটি ডিফল্ট বাজেট দিন।",
   "monthlyReportAction": "মাসিক রিপোর্ট",
   "reportShoppingColumn": "কেনাকাটা",
-  "reportDateColumn": "তারিখ"
+  "reportDateColumn": "তারিখ",
+  "planUnavailable": "এই মুহূর্তে স্টোরে নেই",
+  "demoDataTitle": "নমুনা ডেটা",
+  "demoDataLoad": "নমুনা ডেটা দিয়ে দেখুন",
+  "demoDataLoadHelp": "ইতিহাস, চার্ট ও দামের ইতিহাস দেখতে ১২ মাসের নমুনা কেনাকাটা যোগ করে।",
+  "demoDataRemove": "নমুনা ডেটা মুছুন",
+  "demoDataAdded": "নমুনা ডেটা যোগ হয়েছে",
+  "demoDataRemoved": "নমুনা ডেটা মুছে ফেলা হয়েছে",
+  "demoProductApple": "আপেল",
+  "demoProductBread": "পাউরুটি",
+  "demoProductMilk": "দুধ",
+  "demoProductCheese": "পনির",
+  "demoProductTomato": "টমেটো",
+  "demoProductEggs": "ডিম",
+  "demoProductCoffee": "কফি",
+  "demoProductDetergent": "ডিটারজেন্ট"
 }

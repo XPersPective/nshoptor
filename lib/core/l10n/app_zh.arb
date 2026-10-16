@@ -377,5 +377,20 @@
   "shoppingLimitNone": "为每次新购物设置默认预算。",
   "monthlyReportAction": "月度报告",
   "reportShoppingColumn": "购物",
-  "reportDateColumn": "日期"
+  "reportDateColumn": "日期",
+  "planUnavailable": "商店暂不可用",
+  "demoDataTitle": "示例数据",
+  "demoDataLoad": "用示例数据试试",
+  "demoDataLoadHelp": "添加 12 个月的示例购物，便于查看历史、图表和价格走势。",
+  "demoDataRemove": "删除示例数据",
+  "demoDataAdded": "已添加示例数据",
+  "demoDataRemoved": "已删除示例数据",
+  "demoProductApple": "苹果",
+  "demoProductBread": "面包",
+  "demoProductMilk": "牛奶",
+  "demoProductCheese": "奶酪",
+  "demoProductTomato": "番茄",
+  "demoProductEggs": "鸡蛋",
+  "demoProductCoffee": "咖啡",
+  "demoProductDetergent": "洗涤剂"
 }

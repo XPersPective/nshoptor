@@ -1215,4 +1215,50 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'ਤਾਰੀਖ';
+
+  @override
+  String get planUnavailable => 'ਹੁਣ ਸਟੋਰ ਵਿੱਚ ਉਪਲਬਧ ਨਹੀਂ';
+
+  @override
+  String get demoDataTitle => 'ਨਮੂਨਾ ਡਾਟਾ';
+
+  @override
+  String get demoDataLoad => 'ਨਮੂਨਾ ਡਾਟਾ ਨਾਲ ਅਜ਼ਮਾਓ';
+
+  @override
+  String get demoDataLoadHelp =>
+      'ਇਤਿਹਾਸ, ਚਾਰਟ ਅਤੇ ਕੀਮਤ ਇਤਿਹਾਸ ਦੇਖਣ ਲਈ 12 ਮਹੀਨਿਆਂ ਦੀ ਨਮੂਨਾ ਖ਼ਰੀਦਦਾਰੀ ਜੋੜਦਾ ਹੈ।';
+
+  @override
+  String get demoDataRemove => 'ਨਮੂਨਾ ਡਾਟਾ ਹਟਾਓ';
+
+  @override
+  String get demoDataAdded => 'ਨਮੂਨਾ ਡਾਟਾ ਜੋੜਿਆ ਗਿਆ';
+
+  @override
+  String get demoDataRemoved => 'ਨਮੂਨਾ ਡਾਟਾ ਹਟਾਇਆ ਗਿਆ';
+
+  @override
+  String get demoProductApple => 'ਸੇਬ';
+
+  @override
+  String get demoProductBread => 'ਬਰੈੱਡ';
+
+  @override
+  String get demoProductMilk => 'ਦੁੱਧ';
+
+  @override
+  String get demoProductCheese => 'ਪਨੀਰ';
+
+  @override
+  String get demoProductTomato => 'ਟਮਾਟਰ';
+
+  @override
+  String get demoProductEggs => 'ਆਂਡੇ';
+
+  @override
+  String get demoProductCoffee => 'ਕੌਫ਼ੀ';
+
+  @override
+  String get demoProductDetergent => 'ਡਿਟਰਜੈਂਟ';
 }

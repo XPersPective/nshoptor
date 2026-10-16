@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Ορίστε έναν προεπιλεγμένο προϋπολογισμό για κάθε νέα αγορά.",
   "monthlyReportAction": "Μηνιαία αναφορά",
   "reportShoppingColumn": "Αγορά",
-  "reportDateColumn": "Ημερομηνία"
+  "reportDateColumn": "Ημερομηνία",
+  "planUnavailable": "Δεν είναι διαθέσιμο στο κατάστημα αυτή τη στιγμή",
+  "demoDataTitle": "Δείγματα δεδομένων",
+  "demoDataLoad": "Δοκιμάστε με δείγματα δεδομένων",
+  "demoDataLoadHelp": "Προσθέτει δείγματα αγορών 12 μηνών για να δείτε ιστορικό, γραφήματα και ιστορικό τιμών.",
+  "demoDataRemove": "Διαγραφή δειγμάτων",
+  "demoDataAdded": "Τα δείγματα προστέθηκαν",
+  "demoDataRemoved": "Τα δείγματα διαγράφηκαν",
+  "demoProductApple": "Μήλα",
+  "demoProductBread": "Ψωμί",
+  "demoProductMilk": "Γάλα",
+  "demoProductCheese": "Τυρί",
+  "demoProductTomato": "Ντομάτες",
+  "demoProductEggs": "Αυγά",
+  "demoProductCoffee": "Καφές",
+  "demoProductDetergent": "Απορρυπαντικό"
 }

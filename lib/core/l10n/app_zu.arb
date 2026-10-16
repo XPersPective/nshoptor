@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Setha isabelomali esizenzakalelayo sokuthenga okusha ngakunye.",
   "monthlyReportAction": "Umbiko wenyanga",
   "reportShoppingColumn": "Ukuthenga",
-  "reportDateColumn": "Usuku"
+  "reportDateColumn": "Usuku",
+  "planUnavailable": "Akutholakali esitolo okwamanje",
+  "demoDataTitle": "Idatha eyisampula",
+  "demoDataLoad": "Zama ngedatha eyisampula",
+  "demoDataLoadHelp": "Yengeza ukuthenga okuyisampula kwezinyanga eziyi-12 ukuze ubone umlando, amashadi nomlando wentengo.",
+  "demoDataRemove": "Susa idatha eyisampula",
+  "demoDataAdded": "Idatha eyisampula yengeziwe",
+  "demoDataRemoved": "Idatha eyisampula isusiwe",
+  "demoProductApple": "Ama-apula",
+  "demoProductBread": "Isinkwa",
+  "demoProductMilk": "Ubisi",
+  "demoProductCheese": "Ushizi",
+  "demoProductTomato": "Utamatisi",
+  "demoProductEggs": "Amaqanda",
+  "demoProductCoffee": "Ikhofi",
+  "demoProductDetergent": "Insipho yokuwasha"
 }

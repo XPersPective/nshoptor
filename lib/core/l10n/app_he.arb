@@ -377,5 +377,20 @@
   "shoppingLimitNone": "הגדר תקציב ברירת מחדל לכל קנייה חדשה.",
   "monthlyReportAction": "דוח חודשי",
   "reportShoppingColumn": "קנייה",
-  "reportDateColumn": "תאריך"
+  "reportDateColumn": "תאריך",
+  "planUnavailable": "לא זמין בחנות כרגע",
+  "demoDataTitle": "נתוני דוגמה",
+  "demoDataLoad": "נסה עם נתוני דוגמה",
+  "demoDataLoadHelp": "מוסיף קניות לדוגמה של 12 חודשים כדי לראות היסטוריה, גרפים והיסטוריית מחירים.",
+  "demoDataRemove": "מחק נתוני דוגמה",
+  "demoDataAdded": "נתוני הדוגמה נוספו",
+  "demoDataRemoved": "נתוני הדוגמה נמחקו",
+  "demoProductApple": "תפוחים",
+  "demoProductBread": "לחם",
+  "demoProductMilk": "חלב",
+  "demoProductCheese": "גבינה",
+  "demoProductTomato": "עגבניות",
+  "demoProductEggs": "ביצים",
+  "demoProductCoffee": "קפה",
+  "demoProductDetergent": "אבקת כביסה"
 }

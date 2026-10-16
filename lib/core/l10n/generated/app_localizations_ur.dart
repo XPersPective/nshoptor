@@ -1216,4 +1216,50 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'تاریخ';
+
+  @override
+  String get planUnavailable => 'ابھی اسٹور میں دستیاب نہیں';
+
+  @override
+  String get demoDataTitle => 'نمونہ ڈیٹا';
+
+  @override
+  String get demoDataLoad => 'نمونہ ڈیٹا کے ساتھ آزمائیں';
+
+  @override
+  String get demoDataLoadHelp =>
+      'تاریخ، چارٹ اور قیمتوں کی تاریخ دیکھنے کے لیے 12 ماہ کی نمونہ خریداری شامل کرتا ہے۔';
+
+  @override
+  String get demoDataRemove => 'نمونہ ڈیٹا ہٹائیں';
+
+  @override
+  String get demoDataAdded => 'نمونہ ڈیٹا شامل ہو گیا';
+
+  @override
+  String get demoDataRemoved => 'نمونہ ڈیٹا ہٹا دیا گیا';
+
+  @override
+  String get demoProductApple => 'سیب';
+
+  @override
+  String get demoProductBread => 'ڈبل روٹی';
+
+  @override
+  String get demoProductMilk => 'دودھ';
+
+  @override
+  String get demoProductCheese => 'پنیر';
+
+  @override
+  String get demoProductTomato => 'ٹماٹر';
+
+  @override
+  String get demoProductEggs => 'انڈے';
+
+  @override
+  String get demoProductCoffee => 'کافی';
+
+  @override
+  String get demoProductDetergent => 'ڈٹرجنٹ';
 }

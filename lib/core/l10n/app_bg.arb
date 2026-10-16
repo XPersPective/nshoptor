@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Задайте бюджет по подразбиране за всяко ново пазаруване.",
   "monthlyReportAction": "Месечен отчет",
   "reportShoppingColumn": "Пазаруване",
-  "reportDateColumn": "Дата"
+  "reportDateColumn": "Дата",
+  "planUnavailable": "В момента не е налично в магазина",
+  "demoDataTitle": "Примерни данни",
+  "demoDataLoad": "Опитайте с примерни данни",
+  "demoDataLoadHelp": "Добавя примерни покупки за 12 месеца, за да видите историята, графиките и историята на цените.",
+  "demoDataRemove": "Изтриване на примерните данни",
+  "demoDataAdded": "Примерните данни са добавени",
+  "demoDataRemoved": "Примерните данни са изтрити",
+  "demoProductApple": "Ябълки",
+  "demoProductBread": "Хляб",
+  "demoProductMilk": "Мляко",
+  "demoProductCheese": "Сирене",
+  "demoProductTomato": "Домати",
+  "demoProductEggs": "Яйца",
+  "demoProductCoffee": "Кафе",
+  "demoProductDetergent": "Перилен препарат"
 }

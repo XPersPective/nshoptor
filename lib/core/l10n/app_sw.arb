@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Weka bajeti chaguo-msingi kwa kila ununuzi mpya.",
   "monthlyReportAction": "Ripoti ya mwezi",
   "reportShoppingColumn": "Ununuzi",
-  "reportDateColumn": "Tarehe"
+  "reportDateColumn": "Tarehe",
+  "planUnavailable": "Haipatikani dukani kwa sasa",
+  "demoDataTitle": "Data ya mfano",
+  "demoDataLoad": "Jaribu na data ya mfano",
+  "demoDataLoadHelp": "Huongeza ununuzi wa mfano wa miezi 12 ili uone historia, chati na historia ya bei.",
+  "demoDataRemove": "Ondoa data ya mfano",
+  "demoDataAdded": "Data ya mfano imeongezwa",
+  "demoDataRemoved": "Data ya mfano imeondolewa",
+  "demoProductApple": "Matufaha",
+  "demoProductBread": "Mkate",
+  "demoProductMilk": "Maziwa",
+  "demoProductCheese": "Jibini",
+  "demoProductTomato": "Nyanya",
+  "demoProductEggs": "Mayai",
+  "demoProductCoffee": "Kahawa",
+  "demoProductDetergent": "Sabuni ya unga"
 }

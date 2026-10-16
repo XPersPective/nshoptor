@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Postavite zadani budžet za svaku novu kupovinu.",
   "monthlyReportAction": "Mjesečni izvještaj",
   "reportShoppingColumn": "Kupovina",
-  "reportDateColumn": "Datum"
+  "reportDateColumn": "Datum",
+  "planUnavailable": "Trenutno nije dostupno u trgovini",
+  "demoDataTitle": "Primjer podataka",
+  "demoDataLoad": "Isprobajte s primjerom podataka",
+  "demoDataLoadHelp": "Dodaje 12 mjeseci primjera kupovina da vidite historiju, grafikone i historiju cijena.",
+  "demoDataRemove": "Ukloni primjer podataka",
+  "demoDataAdded": "Primjer podataka dodan",
+  "demoDataRemoved": "Primjer podataka uklonjen",
+  "demoProductApple": "Jabuke",
+  "demoProductBread": "Hljeb",
+  "demoProductMilk": "Mlijeko",
+  "demoProductCheese": "Sir",
+  "demoProductTomato": "Paradajz",
+  "demoProductEggs": "Jaja",
+  "demoProductCoffee": "Kafa",
+  "demoProductDetergent": "Deterdžent"
 }

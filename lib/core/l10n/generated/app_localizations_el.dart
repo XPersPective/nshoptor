@@ -1223,4 +1223,51 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Ημερομηνία';
+
+  @override
+  String get planUnavailable =>
+      'Δεν είναι διαθέσιμο στο κατάστημα αυτή τη στιγμή';
+
+  @override
+  String get demoDataTitle => 'Δείγματα δεδομένων';
+
+  @override
+  String get demoDataLoad => 'Δοκιμάστε με δείγματα δεδομένων';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Προσθέτει δείγματα αγορών 12 μηνών για να δείτε ιστορικό, γραφήματα και ιστορικό τιμών.';
+
+  @override
+  String get demoDataRemove => 'Διαγραφή δειγμάτων';
+
+  @override
+  String get demoDataAdded => 'Τα δείγματα προστέθηκαν';
+
+  @override
+  String get demoDataRemoved => 'Τα δείγματα διαγράφηκαν';
+
+  @override
+  String get demoProductApple => 'Μήλα';
+
+  @override
+  String get demoProductBread => 'Ψωμί';
+
+  @override
+  String get demoProductMilk => 'Γάλα';
+
+  @override
+  String get demoProductCheese => 'Τυρί';
+
+  @override
+  String get demoProductTomato => 'Ντομάτες';
+
+  @override
+  String get demoProductEggs => 'Αυγά';
+
+  @override
+  String get demoProductCoffee => 'Καφές';
+
+  @override
+  String get demoProductDetergent => 'Απορρυπαντικό';
 }

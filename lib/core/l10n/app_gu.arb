@@ -377,5 +377,20 @@
   "shoppingLimitNone": "દરેક નવી ખરીદી માટે ડિફોલ્ટ બજેટ સેટ કરો.",
   "monthlyReportAction": "માસિક અહેવાલ",
   "reportShoppingColumn": "ખરીદી",
-  "reportDateColumn": "તારીખ"
+  "reportDateColumn": "તારીખ",
+  "planUnavailable": "હાલમાં સ્ટોરમાં ઉપલબ્ધ નથી",
+  "demoDataTitle": "નમૂના ડેટા",
+  "demoDataLoad": "નમૂના ડેટા સાથે અજમાવો",
+  "demoDataLoadHelp": "ઇતિહાસ, ચાર્ટ અને ભાવ ઇતિહાસ જોવા માટે 12 મહિનાની નમૂના ખરીદી ઉમેરે છે.",
+  "demoDataRemove": "નમૂના ડેટા કાઢો",
+  "demoDataAdded": "નમૂના ડેટા ઉમેરાયો",
+  "demoDataRemoved": "નમૂના ડેટા કાઢી નાખ્યો",
+  "demoProductApple": "સફરજન",
+  "demoProductBread": "બ્રેડ",
+  "demoProductMilk": "દૂધ",
+  "demoProductCheese": "ચીઝ",
+  "demoProductTomato": "ટમેટાં",
+  "demoProductEggs": "ઈંડાં",
+  "demoProductCoffee": "કોફી",
+  "demoProductDetergent": "ડિટર્જન્ટ"
 }

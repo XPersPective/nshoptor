@@ -377,5 +377,20 @@
   "shoppingLimitNone": "새 장보기마다 기본 예산을 설정하세요.",
   "monthlyReportAction": "월간 보고서",
   "reportShoppingColumn": "장보기",
-  "reportDateColumn": "날짜"
+  "reportDateColumn": "날짜",
+  "planUnavailable": "현재 스토어에서 이용할 수 없음",
+  "demoDataTitle": "샘플 데이터",
+  "demoDataLoad": "샘플 데이터로 사용해 보기",
+  "demoDataLoadHelp": "기록, 차트, 가격 기록을 볼 수 있도록 12개월치 샘플 장보기를 추가합니다.",
+  "demoDataRemove": "샘플 데이터 삭제",
+  "demoDataAdded": "샘플 데이터를 추가했습니다",
+  "demoDataRemoved": "샘플 데이터를 삭제했습니다",
+  "demoProductApple": "사과",
+  "demoProductBread": "빵",
+  "demoProductMilk": "우유",
+  "demoProductCheese": "치즈",
+  "demoProductTomato": "토마토",
+  "demoProductEggs": "달걀",
+  "demoProductCoffee": "커피",
+  "demoProductDetergent": "세제"
 }

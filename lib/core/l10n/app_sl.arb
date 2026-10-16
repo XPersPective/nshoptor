@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Nastavite privzeti proračun za vsak nov nakup.",
   "monthlyReportAction": "Mesečno poročilo",
   "reportShoppingColumn": "Nakup",
-  "reportDateColumn": "Datum"
+  "reportDateColumn": "Datum",
+  "planUnavailable": "Trenutno ni na voljo v trgovini",
+  "demoDataTitle": "Vzorčni podatki",
+  "demoDataLoad": "Preizkusi z vzorčnimi podatki",
+  "demoDataLoadHelp": "Doda 12 mesecev vzorčnih nakupov, da vidite zgodovino, grafe in zgodovino cen.",
+  "demoDataRemove": "Odstrani vzorčne podatke",
+  "demoDataAdded": "Vzorčni podatki dodani",
+  "demoDataRemoved": "Vzorčni podatki odstranjeni",
+  "demoProductApple": "Jabolka",
+  "demoProductBread": "Kruh",
+  "demoProductMilk": "Mleko",
+  "demoProductCheese": "Sir",
+  "demoProductTomato": "Paradižnik",
+  "demoProductEggs": "Jajca",
+  "demoProductCoffee": "Kava",
+  "demoProductDetergent": "Detergent"
 }

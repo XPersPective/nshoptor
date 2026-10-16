@@ -377,5 +377,20 @@
   "shoppingLimitNone": "प्रत्येक नवीन खरेदीसाठी डीफॉल्ट बजेट ठरवा.",
   "monthlyReportAction": "मासिक अहवाल",
   "reportShoppingColumn": "खरेदी",
-  "reportDateColumn": "तारीख"
+  "reportDateColumn": "तारीख",
+  "planUnavailable": "सध्या स्टोअरमध्ये उपलब्ध नाही",
+  "demoDataTitle": "नमुना डेटा",
+  "demoDataLoad": "नमुना डेटासह वापरून पाहा",
+  "demoDataLoadHelp": "इतिहास, चार्ट आणि किंमत इतिहास पाहण्यासाठी 12 महिन्यांची नमुना खरेदी जोडते.",
+  "demoDataRemove": "नमुना डेटा काढा",
+  "demoDataAdded": "नमुना डेटा जोडला",
+  "demoDataRemoved": "नमुना डेटा काढला",
+  "demoProductApple": "सफरचंद",
+  "demoProductBread": "पाव",
+  "demoProductMilk": "दूध",
+  "demoProductCheese": "चीज",
+  "demoProductTomato": "टोमॅटो",
+  "demoProductEggs": "अंडी",
+  "demoProductCoffee": "कॉफी",
+  "demoProductDetergent": "डिटर्जंट"
 }

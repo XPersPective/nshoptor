@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Määra iga uue ostukorra vaikeeelarve.",
   "monthlyReportAction": "Kuuaruanne",
   "reportShoppingColumn": "Ostlemine",
-  "reportDateColumn": "Kuupäev"
+  "reportDateColumn": "Kuupäev",
+  "planUnavailable": "Praegu poes saadaval pole",
+  "demoDataTitle": "Näidisandmed",
+  "demoDataLoad": "Proovi näidisandmetega",
+  "demoDataLoadHelp": "Lisab 12 kuu näidisostud, et näeksid ajalugu, graafikuid ja hinnaajalugu.",
+  "demoDataRemove": "Eemalda näidisandmed",
+  "demoDataAdded": "Näidisandmed lisatud",
+  "demoDataRemoved": "Näidisandmed eemaldatud",
+  "demoProductApple": "Õunad",
+  "demoProductBread": "Leib",
+  "demoProductMilk": "Piim",
+  "demoProductCheese": "Juust",
+  "demoProductTomato": "Tomatid",
+  "demoProductEggs": "Munad",
+  "demoProductCoffee": "Kohv",
+  "demoProductDetergent": "Pesuaine"
 }

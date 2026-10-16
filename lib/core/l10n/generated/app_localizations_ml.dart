@@ -1217,4 +1217,50 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'തീയതി';
+
+  @override
+  String get planUnavailable => 'ഇപ്പോൾ സ്റ്റോറിൽ ലഭ്യമല്ല';
+
+  @override
+  String get demoDataTitle => 'സാമ്പിൾ ഡാറ്റ';
+
+  @override
+  String get demoDataLoad => 'സാമ്പിൾ ഡാറ്റ ഉപയോഗിച്ച് പരീക്ഷിക്കുക';
+
+  @override
+  String get demoDataLoadHelp =>
+      'ചരിത്രം, ചാർട്ടുകൾ, വില ചരിത്രം കാണാൻ 12 മാസത്തെ സാമ്പിൾ ഷോപ്പിംഗ് ചേർക്കുന്നു.';
+
+  @override
+  String get demoDataRemove => 'സാമ്പിൾ ഡാറ്റ നീക്കുക';
+
+  @override
+  String get demoDataAdded => 'സാമ്പിൾ ഡാറ്റ ചേർത്തു';
+
+  @override
+  String get demoDataRemoved => 'സാമ്പിൾ ഡാറ്റ നീക്കി';
+
+  @override
+  String get demoProductApple => 'ആപ്പിൾ';
+
+  @override
+  String get demoProductBread => 'ബ്രെഡ്';
+
+  @override
+  String get demoProductMilk => 'പാൽ';
+
+  @override
+  String get demoProductCheese => 'ചീസ്';
+
+  @override
+  String get demoProductTomato => 'തക്കാളി';
+
+  @override
+  String get demoProductEggs => 'മുട്ട';
+
+  @override
+  String get demoProductCoffee => 'കാപ്പി';
+
+  @override
+  String get demoProductDetergent => 'ഡിറ്റർജന്റ്';
 }

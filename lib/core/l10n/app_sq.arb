@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Vendosni një buxhet të paracaktuar për çdo blerje të re.",
   "monthlyReportAction": "Raporti mujor",
   "reportShoppingColumn": "Blerje",
-  "reportDateColumn": "Data"
+  "reportDateColumn": "Data",
+  "planUnavailable": "Aktualisht nuk është në dyqan",
+  "demoDataTitle": "Të dhëna shembull",
+  "demoDataLoad": "Provo me të dhëna shembull",
+  "demoDataLoadHelp": "Shton blerje shembull për 12 muaj që të shihni historikun, grafikët dhe historikun e çmimeve.",
+  "demoDataRemove": "Hiq të dhënat shembull",
+  "demoDataAdded": "Të dhënat shembull u shtuan",
+  "demoDataRemoved": "Të dhënat shembull u hoqën",
+  "demoProductApple": "Mollë",
+  "demoProductBread": "Bukë",
+  "demoProductMilk": "Qumësht",
+  "demoProductCheese": "Djathë",
+  "demoProductTomato": "Domate",
+  "demoProductEggs": "Vezë",
+  "demoProductCoffee": "Kafe",
+  "demoProductDetergent": "Detergjent"
 }

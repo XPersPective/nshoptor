@@ -58,9 +58,7 @@ class _SplashPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset('assets/brand/icon_1024.png', width: 128, height: 128),
-                const SizedBox(height: 20),
-                const BrandWordmark(size: 36),
+                const BrandTitle(size: 34),
                 const SizedBox(height: 8),
                 Text(
                   l10n.slogan,

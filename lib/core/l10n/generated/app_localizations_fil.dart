@@ -1226,4 +1226,50 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Petsa';
+
+  @override
+  String get planUnavailable => 'Wala pa sa store ngayon';
+
+  @override
+  String get demoDataTitle => 'Halimbawang data';
+
+  @override
+  String get demoDataLoad => 'Subukan gamit ang halimbawang data';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Nagdadagdag ng 12 buwan ng halimbawang pamimili para makita ang history, mga chart at kasaysayan ng presyo.';
+
+  @override
+  String get demoDataRemove => 'Alisin ang halimbawang data';
+
+  @override
+  String get demoDataAdded => 'Naidagdag ang halimbawang data';
+
+  @override
+  String get demoDataRemoved => 'Naalis ang halimbawang data';
+
+  @override
+  String get demoProductApple => 'Mansanas';
+
+  @override
+  String get demoProductBread => 'Tinapay';
+
+  @override
+  String get demoProductMilk => 'Gatas';
+
+  @override
+  String get demoProductCheese => 'Keso';
+
+  @override
+  String get demoProductTomato => 'Kamatis';
+
+  @override
+  String get demoProductEggs => 'Itlog';
+
+  @override
+  String get demoProductCoffee => 'Kape';
+
+  @override
+  String get demoProductDetergent => 'Sabong panlaba';
 }

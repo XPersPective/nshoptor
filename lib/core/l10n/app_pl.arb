@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Ustaw domyślny budżet dla każdych nowych zakupów.",
   "monthlyReportAction": "Raport miesięczny",
   "reportShoppingColumn": "Zakupy",
-  "reportDateColumn": "Data"
+  "reportDateColumn": "Data",
+  "planUnavailable": "Obecnie niedostępne w sklepie",
+  "demoDataTitle": "Przykładowe dane",
+  "demoDataLoad": "Wypróbuj z przykładowymi danymi",
+  "demoDataLoadHelp": "Dodaje przykładowe zakupy z 12 miesięcy, aby zobaczyć historię, wykresy i historię cen.",
+  "demoDataRemove": "Usuń przykładowe dane",
+  "demoDataAdded": "Dodano przykładowe dane",
+  "demoDataRemoved": "Usunięto przykładowe dane",
+  "demoProductApple": "Jabłka",
+  "demoProductBread": "Chleb",
+  "demoProductMilk": "Mleko",
+  "demoProductCheese": "Ser",
+  "demoProductTomato": "Pomidory",
+  "demoProductEggs": "Jajka",
+  "demoProductCoffee": "Kawa",
+  "demoProductDetergent": "Proszek do prania"
 }

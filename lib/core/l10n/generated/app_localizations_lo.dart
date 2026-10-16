@@ -1209,4 +1209,50 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'ວັນທີ';
+
+  @override
+  String get planUnavailable => 'ບໍ່ມີໃນຮ້ານຄ້າໃນຕອນນີ້';
+
+  @override
+  String get demoDataTitle => 'ຂໍ້ມູນຕົວຢ່າງ';
+
+  @override
+  String get demoDataLoad => 'ລອງດ້ວຍຂໍ້ມູນຕົວຢ່າງ';
+
+  @override
+  String get demoDataLoadHelp =>
+      'ເພີ່ມການຊື້ຕົວຢ່າງ 12 ເດືອນ ເພື່ອເບິ່ງປະຫວັດ, ກຣາຟ ແລະ ປະຫວັດລາຄາ.';
+
+  @override
+  String get demoDataRemove => 'ລຶບຂໍ້ມູນຕົວຢ່າງ';
+
+  @override
+  String get demoDataAdded => 'ເພີ່ມຂໍ້ມູນຕົວຢ່າງແລ້ວ';
+
+  @override
+  String get demoDataRemoved => 'ລຶບຂໍ້ມູນຕົວຢ່າງແລ້ວ';
+
+  @override
+  String get demoProductApple => 'ໝາກແອັບເປິ້ນ';
+
+  @override
+  String get demoProductBread => 'ເຂົ້າຈີ່';
+
+  @override
+  String get demoProductMilk => 'ນົມ';
+
+  @override
+  String get demoProductCheese => 'ເນີຍແຂງ';
+
+  @override
+  String get demoProductTomato => 'ໝາກເລັ່ນ';
+
+  @override
+  String get demoProductEggs => 'ໄຂ່';
+
+  @override
+  String get demoProductCoffee => 'ກາເຟ';
+
+  @override
+  String get demoProductDetergent => 'ຜົງຊັກຟອກ';
 }

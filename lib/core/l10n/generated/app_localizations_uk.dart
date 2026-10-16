@@ -1219,4 +1219,50 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Дата';
+
+  @override
+  String get planUnavailable => 'Зараз недоступно в магазині';
+
+  @override
+  String get demoDataTitle => 'Приклад даних';
+
+  @override
+  String get demoDataLoad => 'Спробувати з прикладом даних';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Додає приклад покупок за 12 місяців, щоб побачити історію, графіки та історію цін.';
+
+  @override
+  String get demoDataRemove => 'Видалити приклад даних';
+
+  @override
+  String get demoDataAdded => 'Приклад даних додано';
+
+  @override
+  String get demoDataRemoved => 'Приклад даних видалено';
+
+  @override
+  String get demoProductApple => 'Яблука';
+
+  @override
+  String get demoProductBread => 'Хліб';
+
+  @override
+  String get demoProductMilk => 'Молоко';
+
+  @override
+  String get demoProductCheese => 'Сир';
+
+  @override
+  String get demoProductTomato => 'Помідори';
+
+  @override
+  String get demoProductEggs => 'Яйця';
+
+  @override
+  String get demoProductCoffee => 'Кава';
+
+  @override
+  String get demoProductDetergent => 'Пральний порошок';
 }

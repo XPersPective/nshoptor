@@ -1219,4 +1219,50 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Tarikh';
+
+  @override
+  String get planUnavailable => 'Tiada di kedai buat masa ini';
+
+  @override
+  String get demoDataTitle => 'Data contoh';
+
+  @override
+  String get demoDataLoad => 'Cuba dengan data contoh';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Menambah 12 bulan belian contoh supaya anda dapat melihat sejarah, carta dan sejarah harga.';
+
+  @override
+  String get demoDataRemove => 'Buang data contoh';
+
+  @override
+  String get demoDataAdded => 'Data contoh ditambah';
+
+  @override
+  String get demoDataRemoved => 'Data contoh dibuang';
+
+  @override
+  String get demoProductApple => 'Epal';
+
+  @override
+  String get demoProductBread => 'Roti';
+
+  @override
+  String get demoProductMilk => 'Susu';
+
+  @override
+  String get demoProductCheese => 'Keju';
+
+  @override
+  String get demoProductTomato => 'Tomato';
+
+  @override
+  String get demoProductEggs => 'Telur';
+
+  @override
+  String get demoProductCoffee => 'Kopi';
+
+  @override
+  String get demoProductDetergent => 'Detergen';
 }

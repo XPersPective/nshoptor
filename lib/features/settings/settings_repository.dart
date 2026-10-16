@@ -29,6 +29,9 @@ class SettingsRepository {
         _reminders = reminders ?? RemindersRepository(_db, LocalNotificationsScheduler());
 
   final AppDatabase _db;
+
+  /// Örnek veriler gibi ayar eylemleri için veritabanı.
+  AppDatabase get db => _db;
   final SettingsStoreOps _settings;
   final BackupRepository _backup;
   final RemindersRepository _reminders;

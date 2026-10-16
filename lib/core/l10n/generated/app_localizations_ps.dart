@@ -1210,4 +1210,50 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'نېټه';
+
+  @override
+  String get planUnavailable => 'اوس مهال په پلورنځي کې نشته';
+
+  @override
+  String get demoDataTitle => 'بېلګه معلومات';
+
+  @override
+  String get demoDataLoad => 'د بېلګې معلوماتو سره یې وازمویئ';
+
+  @override
+  String get demoDataLoadHelp =>
+      'د تاریخچې، چارټونو او د بیو تاریخچې لیدو لپاره د ۱۲ میاشتو بېلګه پیرودونه زیاتوي.';
+
+  @override
+  String get demoDataRemove => 'بېلګه معلومات لرې کړئ';
+
+  @override
+  String get demoDataAdded => 'بېلګه معلومات زیات شول';
+
+  @override
+  String get demoDataRemoved => 'بېلګه معلومات لرې شول';
+
+  @override
+  String get demoProductApple => 'مڼې';
+
+  @override
+  String get demoProductBread => 'ډوډۍ';
+
+  @override
+  String get demoProductMilk => 'شیدې';
+
+  @override
+  String get demoProductCheese => 'پنیر';
+
+  @override
+  String get demoProductTomato => 'رومیان';
+
+  @override
+  String get demoProductEggs => 'هګۍ';
+
+  @override
+  String get demoProductCoffee => 'قهوه';
+
+  @override
+  String get demoProductDetergent => 'صابون';
 }

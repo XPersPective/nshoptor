@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Stel een standaardbudget in voor elke nieuwe boodschappenronde.",
   "monthlyReportAction": "Maandrapport",
   "reportShoppingColumn": "Boodschappen",
-  "reportDateColumn": "Datum"
+  "reportDateColumn": "Datum",
+  "planUnavailable": "Nu niet beschikbaar in de winkel",
+  "demoDataTitle": "Voorbeeldgegevens",
+  "demoDataLoad": "Probeer met voorbeeldgegevens",
+  "demoDataLoadHelp": "Voegt 12 maanden aan voorbeeldboodschappen toe zodat je geschiedenis, grafieken en prijshistorie ziet.",
+  "demoDataRemove": "Voorbeeldgegevens verwijderen",
+  "demoDataAdded": "Voorbeeldgegevens toegevoegd",
+  "demoDataRemoved": "Voorbeeldgegevens verwijderd",
+  "demoProductApple": "Appels",
+  "demoProductBread": "Brood",
+  "demoProductMilk": "Melk",
+  "demoProductCheese": "Kaas",
+  "demoProductTomato": "Tomaten",
+  "demoProductEggs": "Eieren",
+  "demoProductCoffee": "Koffie",
+  "demoProductDetergent": "Wasmiddel"
 }

@@ -2503,6 +2503,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Date'**
   String get reportDateColumn;
+
+  /// No description provided for @planUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available in the store right now'**
+  String get planUnavailable;
+
+  /// No description provided for @demoDataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample data'**
+  String get demoDataTitle;
+
+  /// No description provided for @demoDataLoad.
+  ///
+  /// In en, this message translates to:
+  /// **'Try with sample data'**
+  String get demoDataLoad;
+
+  /// No description provided for @demoDataLoadHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Adds 12 months of sample shopping so you can see history, charts and price history.'**
+  String get demoDataLoadHelp;
+
+  /// No description provided for @demoDataRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove sample data'**
+  String get demoDataRemove;
+
+  /// No description provided for @demoDataAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample data added'**
+  String get demoDataAdded;
+
+  /// No description provided for @demoDataRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample data removed'**
+  String get demoDataRemoved;
+
+  /// No description provided for @demoProductApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Apples'**
+  String get demoProductApple;
+
+  /// No description provided for @demoProductBread.
+  ///
+  /// In en, this message translates to:
+  /// **'Bread'**
+  String get demoProductBread;
+
+  /// No description provided for @demoProductMilk.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk'**
+  String get demoProductMilk;
+
+  /// No description provided for @demoProductCheese.
+  ///
+  /// In en, this message translates to:
+  /// **'Cheese'**
+  String get demoProductCheese;
+
+  /// No description provided for @demoProductTomato.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomatoes'**
+  String get demoProductTomato;
+
+  /// No description provided for @demoProductEggs.
+  ///
+  /// In en, this message translates to:
+  /// **'Eggs'**
+  String get demoProductEggs;
+
+  /// No description provided for @demoProductCoffee.
+  ///
+  /// In en, this message translates to:
+  /// **'Coffee'**
+  String get demoProductCoffee;
+
+  /// No description provided for @demoProductDetergent.
+  ///
+  /// In en, this message translates to:
+  /// **'Detergent'**
+  String get demoProductDetergent;
 }
 
 class _AppLocalizationsDelegate

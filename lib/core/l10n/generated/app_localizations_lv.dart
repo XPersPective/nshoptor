@@ -1218,4 +1218,50 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Datums';
+
+  @override
+  String get planUnavailable => 'Pašlaik veikalā nav pieejams';
+
+  @override
+  String get demoDataTitle => 'Paraugdati';
+
+  @override
+  String get demoDataLoad => 'Izmēģināt ar paraugdatiem';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Pievieno 12 mēnešu paraugpirkumus, lai redzētu vēsturi, grafikus un cenu vēsturi.';
+
+  @override
+  String get demoDataRemove => 'Noņemt paraugdatus';
+
+  @override
+  String get demoDataAdded => 'Paraugdati pievienoti';
+
+  @override
+  String get demoDataRemoved => 'Paraugdati noņemti';
+
+  @override
+  String get demoProductApple => 'Āboli';
+
+  @override
+  String get demoProductBread => 'Maize';
+
+  @override
+  String get demoProductMilk => 'Piens';
+
+  @override
+  String get demoProductCheese => 'Siers';
+
+  @override
+  String get demoProductTomato => 'Tomāti';
+
+  @override
+  String get demoProductEggs => 'Olas';
+
+  @override
+  String get demoProductCoffee => 'Kafija';
+
+  @override
+  String get demoProductDetergent => 'Mazgāšanas līdzeklis';
 }

@@ -1223,4 +1223,50 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Data';
+
+  @override
+  String get planUnavailable => 'Ara no està disponible a la botiga';
+
+  @override
+  String get demoDataTitle => 'Dades d\'exemple';
+
+  @override
+  String get demoDataLoad => 'Prova-ho amb dades d\'exemple';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Afegeix 12 mesos de compres d\'exemple per veure l\'historial, els gràfics i l\'historial de preus.';
+
+  @override
+  String get demoDataRemove => 'Elimina les dades d\'exemple';
+
+  @override
+  String get demoDataAdded => 'S\'han afegit les dades d\'exemple';
+
+  @override
+  String get demoDataRemoved => 'S\'han eliminat les dades d\'exemple';
+
+  @override
+  String get demoProductApple => 'Pomes';
+
+  @override
+  String get demoProductBread => 'Pa';
+
+  @override
+  String get demoProductMilk => 'Llet';
+
+  @override
+  String get demoProductCheese => 'Formatge';
+
+  @override
+  String get demoProductTomato => 'Tomàquets';
+
+  @override
+  String get demoProductEggs => 'Ous';
+
+  @override
+  String get demoProductCoffee => 'Cafè';
+
+  @override
+  String get demoProductDetergent => 'Detergent';
 }

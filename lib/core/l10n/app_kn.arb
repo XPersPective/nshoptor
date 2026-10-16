@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ಪ್ರತಿ ಹೊಸ ಖರೀದಿಗೆ ಡೀಫಾಲ್ಟ್ ಬಜೆಟ್ ಹೊಂದಿಸಿ.",
   "monthlyReportAction": "ಮಾಸಿಕ ವರದಿ",
   "reportShoppingColumn": "ಖರೀದಿ",
-  "reportDateColumn": "ದಿನಾಂಕ"
+  "reportDateColumn": "ದಿನಾಂಕ",
+  "planUnavailable": "ಈಗ ಸ್ಟೋರ್‌ನಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ",
+  "demoDataTitle": "ಮಾದರಿ ಡೇಟಾ",
+  "demoDataLoad": "ಮಾದರಿ ಡೇಟಾದೊಂದಿಗೆ ಪ್ರಯತ್ನಿಸಿ",
+  "demoDataLoadHelp": "ಇತಿಹಾಸ, ಚಾರ್ಟ್‌ಗಳು ಮತ್ತು ಬೆಲೆ ಇತಿಹಾಸವನ್ನು ನೋಡಲು 12 ತಿಂಗಳ ಮಾದರಿ ಖರೀದಿ ಸೇರಿಸುತ್ತದೆ.",
+  "demoDataRemove": "ಮಾದರಿ ಡೇಟಾ ಅಳಿಸಿ",
+  "demoDataAdded": "ಮಾದರಿ ಡೇಟಾ ಸೇರಿಸಲಾಗಿದೆ",
+  "demoDataRemoved": "ಮಾದರಿ ಡೇಟಾ ಅಳಿಸಲಾಗಿದೆ",
+  "demoProductApple": "ಸೇಬು",
+  "demoProductBread": "ಬ್ರೆಡ್",
+  "demoProductMilk": "ಹಾಲು",
+  "demoProductCheese": "ಚೀಸ್",
+  "demoProductTomato": "ಟೊಮೆಟೊ",
+  "demoProductEggs": "ಮೊಟ್ಟೆ",
+  "demoProductCoffee": "ಕಾಫಿ",
+  "demoProductDetergent": "ಡಿಟರ್ಜೆಂಟ್"
 }

@@ -377,5 +377,20 @@
   "shoppingLimitNone": "සෑම නව සාප්පු සවාරියකටම පෙරනිමි අයවැයක් සකසන්න.",
   "monthlyReportAction": "මාසික වාර්තාව",
   "reportShoppingColumn": "සාප්පු සවාරිය",
-  "reportDateColumn": "දිනය"
+  "reportDateColumn": "දිනය",
+  "planUnavailable": "දැනට වෙළඳසැලේ නැත",
+  "demoDataTitle": "නියැදි දත්ත",
+  "demoDataLoad": "නියැදි දත්ත සමඟ උත්සාහ කරන්න",
+  "demoDataLoadHelp": "ඉතිහාසය, ප්‍රස්තාර සහ මිල ඉතිහාසය බැලීමට මාස 12ක නියැදි සාප්පු සවාරි එක් කරයි.",
+  "demoDataRemove": "නියැදි දත්ත ඉවත් කරන්න",
+  "demoDataAdded": "නියැදි දත්ත එක් කළා",
+  "demoDataRemoved": "නියැදි දත්ත ඉවත් කළා",
+  "demoProductApple": "ඇපල්",
+  "demoProductBread": "පාන්",
+  "demoProductMilk": "කිරි",
+  "demoProductCheese": "චීස්",
+  "demoProductTomato": "තක්කාලි",
+  "demoProductEggs": "බිත්තර",
+  "demoProductCoffee": "කෝපි",
+  "demoProductDetergent": "සබන් කුඩු"
 }

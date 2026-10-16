@@ -1215,4 +1215,50 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Kuupäev';
+
+  @override
+  String get planUnavailable => 'Praegu poes saadaval pole';
+
+  @override
+  String get demoDataTitle => 'Näidisandmed';
+
+  @override
+  String get demoDataLoad => 'Proovi näidisandmetega';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Lisab 12 kuu näidisostud, et näeksid ajalugu, graafikuid ja hinnaajalugu.';
+
+  @override
+  String get demoDataRemove => 'Eemalda näidisandmed';
+
+  @override
+  String get demoDataAdded => 'Näidisandmed lisatud';
+
+  @override
+  String get demoDataRemoved => 'Näidisandmed eemaldatud';
+
+  @override
+  String get demoProductApple => 'Õunad';
+
+  @override
+  String get demoProductBread => 'Leib';
+
+  @override
+  String get demoProductMilk => 'Piim';
+
+  @override
+  String get demoProductCheese => 'Juust';
+
+  @override
+  String get demoProductTomato => 'Tomatid';
+
+  @override
+  String get demoProductEggs => 'Munad';
+
+  @override
+  String get demoProductCoffee => 'Kohv';
+
+  @override
+  String get demoProductDetergent => 'Pesuaine';
 }

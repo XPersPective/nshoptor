@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Ezarri aurrekontu lehenetsia erosketa berri bakoitzerako.",
   "monthlyReportAction": "Hileko txostena",
   "reportShoppingColumn": "Erosketa",
-  "reportDateColumn": "Data"
+  "reportDateColumn": "Data",
+  "planUnavailable": "Une honetan ez dago dendan",
+  "demoDataTitle": "Adibide-datuak",
+  "demoDataLoad": "Probatu adibide-datuekin",
+  "demoDataLoadHelp": "12 hilabeteko adibide-erosketak gehitzen ditu historia, grafikoak eta prezioen historia ikusteko.",
+  "demoDataRemove": "Kendu adibide-datuak",
+  "demoDataAdded": "Adibide-datuak gehitu dira",
+  "demoDataRemoved": "Adibide-datuak kendu dira",
+  "demoProductApple": "Sagarrak",
+  "demoProductBread": "Ogia",
+  "demoProductMilk": "Esnea",
+  "demoProductCheese": "Gazta",
+  "demoProductTomato": "Tomateak",
+  "demoProductEggs": "Arrautzak",
+  "demoProductCoffee": "Kafea",
+  "demoProductDetergent": "Garbigarria"
 }

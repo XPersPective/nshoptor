@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Әр жаңа сауда үшін әдепкі бюджет орнатыңыз.",
   "monthlyReportAction": "Айлық есеп",
   "reportShoppingColumn": "Сауда",
-  "reportDateColumn": "Күні"
+  "reportDateColumn": "Күні",
+  "planUnavailable": "Қазір дүкенде жоқ",
+  "demoDataTitle": "Үлгі деректер",
+  "demoDataLoad": "Үлгі деректермен байқап көру",
+  "demoDataLoadHelp": "Тарихты, графиктерді және баға тарихын көру үшін 12 айлық үлгі сауданы қосады.",
+  "demoDataRemove": "Үлгі деректерді жою",
+  "demoDataAdded": "Үлгі деректер қосылды",
+  "demoDataRemoved": "Үлгі деректер жойылды",
+  "demoProductApple": "Алма",
+  "demoProductBread": "Нан",
+  "demoProductMilk": "Сүт",
+  "demoProductCheese": "Ірімшік",
+  "demoProductTomato": "Қызанақ",
+  "demoProductEggs": "Жұмыртқа",
+  "demoProductCoffee": "Кофе",
+  "demoProductDetergent": "Жуғыш зат"
 }

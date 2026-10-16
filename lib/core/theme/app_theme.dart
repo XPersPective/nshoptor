@@ -32,8 +32,8 @@ class AppTheme {
   static ThemeData light({AppPalette palette = AppPalette.forest}) =>
       _base(Brightness.light, palette, black: false);
 
-  /// [black]: koyu temada tam siyah yüzeyler (AMOLED); varsayılan şık koyu.
-  static ThemeData dark({AppPalette palette = AppPalette.forest, bool black = true}) =>
+  /// [black]: koyu temada tam siyah yüzeyler (AMOLED); varsayılan marka tonlu koyu.
+  static ThemeData dark({AppPalette palette = AppPalette.forest, bool black = false}) =>
       _base(Brightness.dark, palette, black: black);
 
   static ThemeData _base(Brightness brightness, AppPalette palette, {required bool black}) {

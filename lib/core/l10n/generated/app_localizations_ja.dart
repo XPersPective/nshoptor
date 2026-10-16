@@ -1179,4 +1179,49 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get reportDateColumn => '日付';
+
+  @override
+  String get planUnavailable => '現在ストアで利用できません';
+
+  @override
+  String get demoDataTitle => 'サンプルデータ';
+
+  @override
+  String get demoDataLoad => 'サンプルデータで試す';
+
+  @override
+  String get demoDataLoadHelp => '履歴・グラフ・価格履歴を確認できるよう、12か月分のサンプル買い物を追加します。';
+
+  @override
+  String get demoDataRemove => 'サンプルデータを削除';
+
+  @override
+  String get demoDataAdded => 'サンプルデータを追加しました';
+
+  @override
+  String get demoDataRemoved => 'サンプルデータを削除しました';
+
+  @override
+  String get demoProductApple => 'りんご';
+
+  @override
+  String get demoProductBread => 'パン';
+
+  @override
+  String get demoProductMilk => '牛乳';
+
+  @override
+  String get demoProductCheese => 'チーズ';
+
+  @override
+  String get demoProductTomato => 'トマト';
+
+  @override
+  String get demoProductEggs => '卵';
+
+  @override
+  String get demoProductCoffee => 'コーヒー';
+
+  @override
+  String get demoProductDetergent => '洗剤';
 }

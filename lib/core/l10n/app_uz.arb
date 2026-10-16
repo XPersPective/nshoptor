@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Har bir yangi xarid uchun standart byudjet belgilang.",
   "monthlyReportAction": "Oylik hisobot",
   "reportShoppingColumn": "Xarid",
-  "reportDateColumn": "Sana"
+  "reportDateColumn": "Sana",
+  "planUnavailable": "Hozircha do'konda yo'q",
+  "demoDataTitle": "Namuna ma'lumotlar",
+  "demoDataLoad": "Namuna ma'lumotlar bilan sinab ko'ring",
+  "demoDataLoadHelp": "Tarix, grafiklar va narx tarixini ko'rish uchun 12 oylik namuna xaridlarni qo'shadi.",
+  "demoDataRemove": "Namuna ma'lumotlarni o'chirish",
+  "demoDataAdded": "Namuna ma'lumotlar qo'shildi",
+  "demoDataRemoved": "Namuna ma'lumotlar o'chirildi",
+  "demoProductApple": "Olma",
+  "demoProductBread": "Non",
+  "demoProductMilk": "Sut",
+  "demoProductCheese": "Pishloq",
+  "demoProductTomato": "Pomidor",
+  "demoProductEggs": "Tuxum",
+  "demoProductCoffee": "Qahva",
+  "demoProductDetergent": "Kir yuvish vositasi"
 }

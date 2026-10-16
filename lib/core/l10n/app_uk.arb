@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Встановіть бюджет за замовчуванням для кожної нової покупки.",
   "monthlyReportAction": "Місячний звіт",
   "reportShoppingColumn": "Покупка",
-  "reportDateColumn": "Дата"
+  "reportDateColumn": "Дата",
+  "planUnavailable": "Зараз недоступно в магазині",
+  "demoDataTitle": "Приклад даних",
+  "demoDataLoad": "Спробувати з прикладом даних",
+  "demoDataLoadHelp": "Додає приклад покупок за 12 місяців, щоб побачити історію, графіки та історію цін.",
+  "demoDataRemove": "Видалити приклад даних",
+  "demoDataAdded": "Приклад даних додано",
+  "demoDataRemoved": "Приклад даних видалено",
+  "demoProductApple": "Яблука",
+  "demoProductBread": "Хліб",
+  "demoProductMilk": "Молоко",
+  "demoProductCheese": "Сир",
+  "demoProductTomato": "Помідори",
+  "demoProductEggs": "Яйця",
+  "demoProductCoffee": "Кава",
+  "demoProductDetergent": "Пральний порошок"
 }

@@ -1216,4 +1216,50 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Tarih';
+
+  @override
+  String get planUnavailable => 'Şu an mağazada yok';
+
+  @override
+  String get demoDataTitle => 'Örnek veriler';
+
+  @override
+  String get demoDataLoad => 'Örnek verilerle dene';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Geçmişi, grafikleri ve fiyat geçmişini görmek için 12 aylık örnek alışveriş ekler.';
+
+  @override
+  String get demoDataRemove => 'Örnek verileri sil';
+
+  @override
+  String get demoDataAdded => 'Örnek veriler eklendi';
+
+  @override
+  String get demoDataRemoved => 'Örnek veriler silindi';
+
+  @override
+  String get demoProductApple => 'Elma';
+
+  @override
+  String get demoProductBread => 'Ekmek';
+
+  @override
+  String get demoProductMilk => 'Süt';
+
+  @override
+  String get demoProductCheese => 'Peynir';
+
+  @override
+  String get demoProductTomato => 'Domates';
+
+  @override
+  String get demoProductEggs => 'Yumurta';
+
+  @override
+  String get demoProductCoffee => 'Kahve';
+
+  @override
+  String get demoProductDetergent => 'Deterjan';
 }

@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ہر نئی خریداری کے لیے پہلے سے طے شدہ بجٹ مقرر کریں۔",
   "monthlyReportAction": "ماہانہ رپورٹ",
   "reportShoppingColumn": "خریداری",
-  "reportDateColumn": "تاریخ"
+  "reportDateColumn": "تاریخ",
+  "planUnavailable": "ابھی اسٹور میں دستیاب نہیں",
+  "demoDataTitle": "نمونہ ڈیٹا",
+  "demoDataLoad": "نمونہ ڈیٹا کے ساتھ آزمائیں",
+  "demoDataLoadHelp": "تاریخ، چارٹ اور قیمتوں کی تاریخ دیکھنے کے لیے 12 ماہ کی نمونہ خریداری شامل کرتا ہے۔",
+  "demoDataRemove": "نمونہ ڈیٹا ہٹائیں",
+  "demoDataAdded": "نمونہ ڈیٹا شامل ہو گیا",
+  "demoDataRemoved": "نمونہ ڈیٹا ہٹا دیا گیا",
+  "demoProductApple": "سیب",
+  "demoProductBread": "ڈبل روٹی",
+  "demoProductMilk": "دودھ",
+  "demoProductCheese": "پنیر",
+  "demoProductTomato": "ٹماٹر",
+  "demoProductEggs": "انڈے",
+  "demoProductCoffee": "کافی",
+  "demoProductDetergent": "ڈٹرجنٹ"
 }

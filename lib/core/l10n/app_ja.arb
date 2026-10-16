@@ -377,5 +377,20 @@
   "shoppingLimitNone": "新しい買い物ごとの既定の予算を設定します。",
   "monthlyReportAction": "月次レポート",
   "reportShoppingColumn": "買い物",
-  "reportDateColumn": "日付"
+  "reportDateColumn": "日付",
+  "planUnavailable": "現在ストアで利用できません",
+  "demoDataTitle": "サンプルデータ",
+  "demoDataLoad": "サンプルデータで試す",
+  "demoDataLoadHelp": "履歴・グラフ・価格履歴を確認できるよう、12か月分のサンプル買い物を追加します。",
+  "demoDataRemove": "サンプルデータを削除",
+  "demoDataAdded": "サンプルデータを追加しました",
+  "demoDataRemoved": "サンプルデータを削除しました",
+  "demoProductApple": "りんご",
+  "demoProductBread": "パン",
+  "demoProductMilk": "牛乳",
+  "demoProductCheese": "チーズ",
+  "demoProductTomato": "トマト",
+  "demoProductEggs": "卵",
+  "demoProductCoffee": "コーヒー",
+  "demoProductDetergent": "洗剤"
 }

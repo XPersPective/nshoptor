@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Aseta oletusbudjetti jokaiselle uudelle ostoskerralle.",
   "monthlyReportAction": "Kuukausiraportti",
   "reportShoppingColumn": "Ostokset",
-  "reportDateColumn": "Päivämäärä"
+  "reportDateColumn": "Päivämäärä",
+  "planUnavailable": "Ei tällä hetkellä saatavilla kaupassa",
+  "demoDataTitle": "Esimerkkitiedot",
+  "demoDataLoad": "Kokeile esimerkkitiedoilla",
+  "demoDataLoadHelp": "Lisää 12 kuukauden esimerkkiostokset, jotta näet historian, kaaviot ja hintahistorian.",
+  "demoDataRemove": "Poista esimerkkitiedot",
+  "demoDataAdded": "Esimerkkitiedot lisätty",
+  "demoDataRemoved": "Esimerkkitiedot poistettu",
+  "demoProductApple": "Omenat",
+  "demoProductBread": "Leipä",
+  "demoProductMilk": "Maito",
+  "demoProductCheese": "Juusto",
+  "demoProductTomato": "Tomaatit",
+  "demoProductEggs": "Kananmunat",
+  "demoProductCoffee": "Kahvi",
+  "demoProductDetergent": "Pesuaine"
 }

@@ -1222,4 +1222,50 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Дата';
+
+  @override
+  String get planUnavailable => 'В момента не е налично в магазина';
+
+  @override
+  String get demoDataTitle => 'Примерни данни';
+
+  @override
+  String get demoDataLoad => 'Опитайте с примерни данни';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Добавя примерни покупки за 12 месеца, за да видите историята, графиките и историята на цените.';
+
+  @override
+  String get demoDataRemove => 'Изтриване на примерните данни';
+
+  @override
+  String get demoDataAdded => 'Примерните данни са добавени';
+
+  @override
+  String get demoDataRemoved => 'Примерните данни са изтрити';
+
+  @override
+  String get demoProductApple => 'Ябълки';
+
+  @override
+  String get demoProductBread => 'Хляб';
+
+  @override
+  String get demoProductMilk => 'Мляко';
+
+  @override
+  String get demoProductCheese => 'Сирене';
+
+  @override
+  String get demoProductTomato => 'Домати';
+
+  @override
+  String get demoProductEggs => 'Яйца';
+
+  @override
+  String get demoProductCoffee => 'Кафе';
+
+  @override
+  String get demoProductDetergent => 'Перилен препарат';
 }

@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ഓരോ പുതിയ ഷോപ്പിംഗിനും സ്ഥിര ബജറ്റ് സജ്ജമാക്കുക.",
   "monthlyReportAction": "പ്രതിമാസ റിപ്പോർട്ട്",
   "reportShoppingColumn": "ഷോപ്പിംഗ്",
-  "reportDateColumn": "തീയതി"
+  "reportDateColumn": "തീയതി",
+  "planUnavailable": "ഇപ്പോൾ സ്റ്റോറിൽ ലഭ്യമല്ല",
+  "demoDataTitle": "സാമ്പിൾ ഡാറ്റ",
+  "demoDataLoad": "സാമ്പിൾ ഡാറ്റ ഉപയോഗിച്ച് പരീക്ഷിക്കുക",
+  "demoDataLoadHelp": "ചരിത്രം, ചാർട്ടുകൾ, വില ചരിത്രം കാണാൻ 12 മാസത്തെ സാമ്പിൾ ഷോപ്പിംഗ് ചേർക്കുന്നു.",
+  "demoDataRemove": "സാമ്പിൾ ഡാറ്റ നീക്കുക",
+  "demoDataAdded": "സാമ്പിൾ ഡാറ്റ ചേർത്തു",
+  "demoDataRemoved": "സാമ്പിൾ ഡാറ്റ നീക്കി",
+  "demoProductApple": "ആപ്പിൾ",
+  "demoProductBread": "ബ്രെഡ്",
+  "demoProductMilk": "പാൽ",
+  "demoProductCheese": "ചീസ്",
+  "demoProductTomato": "തക്കാളി",
+  "demoProductEggs": "മുട്ട",
+  "demoProductCoffee": "കാപ്പി",
+  "demoProductDetergent": "ഡിറ്റർജന്റ്"
 }

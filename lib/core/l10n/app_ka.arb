@@ -377,5 +377,20 @@
   "shoppingLimitNone": "დააყენეთ ნაგულისხმევი ბიუჯეტი ყოველი ახალი ყიდვისთვის.",
   "monthlyReportAction": "თვის ანგარიში",
   "reportShoppingColumn": "ყიდვა",
-  "reportDateColumn": "თარიღი"
+  "reportDateColumn": "თარიღი",
+  "planUnavailable": "ახლა მაღაზიაში არ არის ხელმისაწვდომი",
+  "demoDataTitle": "სანიმუშო მონაცემები",
+  "demoDataLoad": "სანიმუშო მონაცემებით ცდა",
+  "demoDataLoadHelp": "ამატებს 12 თვის სანიმუშო ყიდვებს ისტორიის, გრაფიკებისა და ფასების ისტორიის სანახავად.",
+  "demoDataRemove": "სანიმუშო მონაცემების წაშლა",
+  "demoDataAdded": "სანიმუშო მონაცემები დაემატა",
+  "demoDataRemoved": "სანიმუშო მონაცემები წაიშალა",
+  "demoProductApple": "ვაშლი",
+  "demoProductBread": "პური",
+  "demoProductMilk": "რძე",
+  "demoProductCheese": "ყველი",
+  "demoProductTomato": "პომიდორი",
+  "demoProductEggs": "კვერცხი",
+  "demoProductCoffee": "ყავა",
+  "demoProductDetergent": "სარეცხი საშუალება"
 }

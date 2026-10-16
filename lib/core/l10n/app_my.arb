@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ဈေးဝယ်အသစ်တိုင်းအတွက် မူလဘတ်ဂျက် သတ်မှတ်ပါ။",
   "monthlyReportAction": "လစဉ် အစီရင်ခံစာ",
   "reportShoppingColumn": "ဈေးဝယ်ခြင်း",
-  "reportDateColumn": "ရက်စွဲ"
+  "reportDateColumn": "ရက်စွဲ",
+  "planUnavailable": "ယခု စတိုးတွင် မရနိုင်ပါ",
+  "demoDataTitle": "နမူနာဒေတာ",
+  "demoDataLoad": "နမူနာဒေတာဖြင့် စမ်းကြည့်ရန်",
+  "demoDataLoadHelp": "မှတ်တမ်း၊ ဇယားနှင့် စျေးနှုန်းမှတ်တမ်းကို ကြည့်ရန် ၁၂ လစာ နမူနာဈေးဝယ်မှုများ ထည့်ပေးသည်။",
+  "demoDataRemove": "နမူနာဒေတာ ဖျက်ရန်",
+  "demoDataAdded": "နမူနာဒေတာ ထည့်ပြီး",
+  "demoDataRemoved": "နမူနာဒေတာ ဖျက်ပြီး",
+  "demoProductApple": "ပန်းသီး",
+  "demoProductBread": "ပေါင်မုန့်",
+  "demoProductMilk": "နွားနို့",
+  "demoProductCheese": "ဒိန်ခဲ",
+  "demoProductTomato": "ခရမ်းချဉ်သီး",
+  "demoProductEggs": "ကြက်ဥ",
+  "demoProductCoffee": "ကော်ဖီ",
+  "demoProductDetergent": "ဆပ်ပြာမှုန့်"
 }

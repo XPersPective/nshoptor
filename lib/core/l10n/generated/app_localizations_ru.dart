@@ -1217,4 +1217,50 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Дата';
+
+  @override
+  String get planUnavailable => 'Сейчас недоступно в магазине';
+
+  @override
+  String get demoDataTitle => 'Пример данных';
+
+  @override
+  String get demoDataLoad => 'Попробовать с примером данных';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Добавляет примеры покупок за 12 месяцев, чтобы увидеть историю, графики и историю цен.';
+
+  @override
+  String get demoDataRemove => 'Удалить пример данных';
+
+  @override
+  String get demoDataAdded => 'Пример данных добавлен';
+
+  @override
+  String get demoDataRemoved => 'Пример данных удалён';
+
+  @override
+  String get demoProductApple => 'Яблоки';
+
+  @override
+  String get demoProductBread => 'Хлеб';
+
+  @override
+  String get demoProductMilk => 'Молоко';
+
+  @override
+  String get demoProductCheese => 'Сыр';
+
+  @override
+  String get demoProductTomato => 'Помидоры';
+
+  @override
+  String get demoProductEggs => 'Яйца';
+
+  @override
+  String get demoProductCoffee => 'Кофе';
+
+  @override
+  String get demoProductDetergent => 'Стиральный порошок';
 }

@@ -1181,4 +1181,49 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get reportDateColumn => '날짜';
+
+  @override
+  String get planUnavailable => '현재 스토어에서 이용할 수 없음';
+
+  @override
+  String get demoDataTitle => '샘플 데이터';
+
+  @override
+  String get demoDataLoad => '샘플 데이터로 사용해 보기';
+
+  @override
+  String get demoDataLoadHelp => '기록, 차트, 가격 기록을 볼 수 있도록 12개월치 샘플 장보기를 추가합니다.';
+
+  @override
+  String get demoDataRemove => '샘플 데이터 삭제';
+
+  @override
+  String get demoDataAdded => '샘플 데이터를 추가했습니다';
+
+  @override
+  String get demoDataRemoved => '샘플 데이터를 삭제했습니다';
+
+  @override
+  String get demoProductApple => '사과';
+
+  @override
+  String get demoProductBread => '빵';
+
+  @override
+  String get demoProductMilk => '우유';
+
+  @override
+  String get demoProductCheese => '치즈';
+
+  @override
+  String get demoProductTomato => '토마토';
+
+  @override
+  String get demoProductEggs => '달걀';
+
+  @override
+  String get demoProductCoffee => '커피';
+
+  @override
+  String get demoProductDetergent => '세제';
 }

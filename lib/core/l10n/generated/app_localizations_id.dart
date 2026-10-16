@@ -1216,4 +1216,50 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Tanggal';
+
+  @override
+  String get planUnavailable => 'Belum tersedia di toko saat ini';
+
+  @override
+  String get demoDataTitle => 'Data contoh';
+
+  @override
+  String get demoDataLoad => 'Coba dengan data contoh';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Menambahkan 12 bulan belanja contoh agar Anda bisa melihat riwayat, grafik, dan riwayat harga.';
+
+  @override
+  String get demoDataRemove => 'Hapus data contoh';
+
+  @override
+  String get demoDataAdded => 'Data contoh ditambahkan';
+
+  @override
+  String get demoDataRemoved => 'Data contoh dihapus';
+
+  @override
+  String get demoProductApple => 'Apel';
+
+  @override
+  String get demoProductBread => 'Roti';
+
+  @override
+  String get demoProductMilk => 'Susu';
+
+  @override
+  String get demoProductCheese => 'Keju';
+
+  @override
+  String get demoProductTomato => 'Tomat';
+
+  @override
+  String get demoProductEggs => 'Telur';
+
+  @override
+  String get demoProductCoffee => 'Kopi';
+
+  @override
+  String get demoProductDetergent => 'Deterjen';
 }

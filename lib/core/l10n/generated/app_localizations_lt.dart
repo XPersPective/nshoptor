@@ -1222,4 +1222,50 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Data';
+
+  @override
+  String get planUnavailable => 'Šiuo metu parduotuvėje nėra';
+
+  @override
+  String get demoDataTitle => 'Pavyzdiniai duomenys';
+
+  @override
+  String get demoDataLoad => 'Išbandyti su pavyzdiniais duomenimis';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Prideda 12 mėnesių pavyzdinių pirkinių, kad matytumėte istoriją, grafikus ir kainų istoriją.';
+
+  @override
+  String get demoDataRemove => 'Pašalinti pavyzdinius duomenis';
+
+  @override
+  String get demoDataAdded => 'Pavyzdiniai duomenys pridėti';
+
+  @override
+  String get demoDataRemoved => 'Pavyzdiniai duomenys pašalinti';
+
+  @override
+  String get demoProductApple => 'Obuoliai';
+
+  @override
+  String get demoProductBread => 'Duona';
+
+  @override
+  String get demoProductMilk => 'Pienas';
+
+  @override
+  String get demoProductCheese => 'Sūris';
+
+  @override
+  String get demoProductTomato => 'Pomidorai';
+
+  @override
+  String get demoProductEggs => 'Kiaušiniai';
+
+  @override
+  String get demoProductCoffee => 'Kava';
+
+  @override
+  String get demoProductDetergent => 'Skalbiklis';
 }

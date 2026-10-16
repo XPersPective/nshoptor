@@ -1215,4 +1215,50 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Datum';
+
+  @override
+  String get planUnavailable => 'Momentálně není v obchodě k dispozici';
+
+  @override
+  String get demoDataTitle => 'Ukázková data';
+
+  @override
+  String get demoDataLoad => 'Vyzkoušet s ukázkovými daty';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Přidá ukázkové nákupy za 12 měsíců, abyste viděli historii, grafy a vývoj cen.';
+
+  @override
+  String get demoDataRemove => 'Odstranit ukázková data';
+
+  @override
+  String get demoDataAdded => 'Ukázková data přidána';
+
+  @override
+  String get demoDataRemoved => 'Ukázková data odstraněna';
+
+  @override
+  String get demoProductApple => 'Jablka';
+
+  @override
+  String get demoProductBread => 'Chléb';
+
+  @override
+  String get demoProductMilk => 'Mléko';
+
+  @override
+  String get demoProductCheese => 'Sýr';
+
+  @override
+  String get demoProductTomato => 'Rajčata';
+
+  @override
+  String get demoProductEggs => 'Vejce';
+
+  @override
+  String get demoProductCoffee => 'Káva';
+
+  @override
+  String get demoProductDetergent => 'Prací prostředek';
 }

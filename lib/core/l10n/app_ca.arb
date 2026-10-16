@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Defineix un pressupost per defecte per a cada compra nova.",
   "monthlyReportAction": "Informe mensual",
   "reportShoppingColumn": "Compra",
-  "reportDateColumn": "Data"
+  "reportDateColumn": "Data",
+  "planUnavailable": "Ara no està disponible a la botiga",
+  "demoDataTitle": "Dades d'exemple",
+  "demoDataLoad": "Prova-ho amb dades d'exemple",
+  "demoDataLoadHelp": "Afegeix 12 mesos de compres d'exemple per veure l'historial, els gràfics i l'historial de preus.",
+  "demoDataRemove": "Elimina les dades d'exemple",
+  "demoDataAdded": "S'han afegit les dades d'exemple",
+  "demoDataRemoved": "S'han eliminat les dades d'exemple",
+  "demoProductApple": "Pomes",
+  "demoProductBread": "Pa",
+  "demoProductMilk": "Llet",
+  "demoProductCheese": "Formatge",
+  "demoProductTomato": "Tomàquets",
+  "demoProductEggs": "Ous",
+  "demoProductCoffee": "Cafè",
+  "demoProductDetergent": "Detergent"
 }

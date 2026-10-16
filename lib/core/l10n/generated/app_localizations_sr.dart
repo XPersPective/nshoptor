@@ -1218,4 +1218,50 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Datum';
+
+  @override
+  String get planUnavailable => 'Trenutno nije dostupno u prodavnici';
+
+  @override
+  String get demoDataTitle => 'Primer podataka';
+
+  @override
+  String get demoDataLoad => 'Isprobajte sa primerom podataka';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Dodaje 12 meseci primera kupovina da vidite istoriju, grafikone i istoriju cena.';
+
+  @override
+  String get demoDataRemove => 'Ukloni primer podataka';
+
+  @override
+  String get demoDataAdded => 'Primer podataka dodat';
+
+  @override
+  String get demoDataRemoved => 'Primer podataka uklonjen';
+
+  @override
+  String get demoProductApple => 'Jabuke';
+
+  @override
+  String get demoProductBread => 'Hleb';
+
+  @override
+  String get demoProductMilk => 'Mleko';
+
+  @override
+  String get demoProductCheese => 'Sir';
+
+  @override
+  String get demoProductTomato => 'Paradajz';
+
+  @override
+  String get demoProductEggs => 'Jaja';
+
+  @override
+  String get demoProductCoffee => 'Kafa';
+
+  @override
+  String get demoProductDetergent => 'Deterdžent';
 }

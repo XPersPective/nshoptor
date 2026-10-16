@@ -377,5 +377,20 @@
   "shoppingLimitNone": "हर नई ख़रीदारी के लिए एक डिफ़ॉल्ट बजट तय करें।",
   "monthlyReportAction": "मासिक रिपोर्ट",
   "reportShoppingColumn": "ख़रीदारी",
-  "reportDateColumn": "तारीख"
+  "reportDateColumn": "तारीख",
+  "planUnavailable": "अभी स्टोर में उपलब्ध नहीं",
+  "demoDataTitle": "नमूना डेटा",
+  "demoDataLoad": "नमूना डेटा के साथ आज़माएँ",
+  "demoDataLoadHelp": "इतिहास, चार्ट और कीमत इतिहास देखने के लिए 12 महीने की नमूना ख़रीदारी जोड़ता है।",
+  "demoDataRemove": "नमूना डेटा हटाएँ",
+  "demoDataAdded": "नमूना डेटा जोड़ा गया",
+  "demoDataRemoved": "नमूना डेटा हटाया गया",
+  "demoProductApple": "सेब",
+  "demoProductBread": "ब्रेड",
+  "demoProductMilk": "दूध",
+  "demoProductCheese": "पनीर",
+  "demoProductTomato": "टमाटर",
+  "demoProductEggs": "अंडे",
+  "demoProductCoffee": "कॉफ़ी",
+  "demoProductDetergent": "डिटर्जेंट"
 }

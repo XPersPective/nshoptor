@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Defina um orçamento padrão para cada nova compra.",
   "monthlyReportAction": "Relatório mensal",
   "reportShoppingColumn": "Compra",
-  "reportDateColumn": "Data"
+  "reportDateColumn": "Data",
+  "planUnavailable": "Indisponível na loja no momento",
+  "demoDataTitle": "Dados de exemplo",
+  "demoDataLoad": "Experimentar com dados de exemplo",
+  "demoDataLoadHelp": "Adiciona 12 meses de compras de exemplo para ver o histórico, os gráficos e o histórico de preços.",
+  "demoDataRemove": "Remover dados de exemplo",
+  "demoDataAdded": "Dados de exemplo adicionados",
+  "demoDataRemoved": "Dados de exemplo removidos",
+  "demoProductApple": "Maçãs",
+  "demoProductBread": "Pão",
+  "demoProductMilk": "Leite",
+  "demoProductCheese": "Queijo",
+  "demoProductTomato": "Tomates",
+  "demoProductEggs": "Ovos",
+  "demoProductCoffee": "Café",
+  "demoProductDetergent": "Detergente"
 }

@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Nustatykite numatytąjį biudžetą kiekvienam naujam apsipirkimui.",
   "monthlyReportAction": "Mėnesio ataskaita",
   "reportShoppingColumn": "Apsipirkimas",
-  "reportDateColumn": "Data"
+  "reportDateColumn": "Data",
+  "planUnavailable": "Šiuo metu parduotuvėje nėra",
+  "demoDataTitle": "Pavyzdiniai duomenys",
+  "demoDataLoad": "Išbandyti su pavyzdiniais duomenimis",
+  "demoDataLoadHelp": "Prideda 12 mėnesių pavyzdinių pirkinių, kad matytumėte istoriją, grafikus ir kainų istoriją.",
+  "demoDataRemove": "Pašalinti pavyzdinius duomenis",
+  "demoDataAdded": "Pavyzdiniai duomenys pridėti",
+  "demoDataRemoved": "Pavyzdiniai duomenys pašalinti",
+  "demoProductApple": "Obuoliai",
+  "demoProductBread": "Duona",
+  "demoProductMilk": "Pienas",
+  "demoProductCheese": "Sūris",
+  "demoProductTomato": "Pomidorai",
+  "demoProductEggs": "Kiaušiniai",
+  "demoProductCoffee": "Kava",
+  "demoProductDetergent": "Skalbiklis"
 }

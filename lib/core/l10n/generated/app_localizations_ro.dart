@@ -1223,4 +1223,50 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Dată';
+
+  @override
+  String get planUnavailable => 'Momentan indisponibil în magazin';
+
+  @override
+  String get demoDataTitle => 'Date exemplu';
+
+  @override
+  String get demoDataLoad => 'Încercați cu date exemplu';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Adaugă 12 luni de cumpărături exemplu ca să vedeți istoricul, graficele și istoricul prețurilor.';
+
+  @override
+  String get demoDataRemove => 'Ștergeți datele exemplu';
+
+  @override
+  String get demoDataAdded => 'Datele exemplu au fost adăugate';
+
+  @override
+  String get demoDataRemoved => 'Datele exemplu au fost șterse';
+
+  @override
+  String get demoProductApple => 'Mere';
+
+  @override
+  String get demoProductBread => 'Pâine';
+
+  @override
+  String get demoProductMilk => 'Lapte';
+
+  @override
+  String get demoProductCheese => 'Brânză';
+
+  @override
+  String get demoProductTomato => 'Roșii';
+
+  @override
+  String get demoProductEggs => 'Ouă';
+
+  @override
+  String get demoProductCoffee => 'Cafea';
+
+  @override
+  String get demoProductDetergent => 'Detergent';
 }

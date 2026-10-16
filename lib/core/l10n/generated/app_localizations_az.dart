@@ -1221,4 +1221,50 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Tarix';
+
+  @override
+  String get planUnavailable => 'Hazırda mağazada yoxdur';
+
+  @override
+  String get demoDataTitle => 'Nümunə məlumatlar';
+
+  @override
+  String get demoDataLoad => 'Nümunə məlumatlarla sınayın';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Tarixçəni, qrafikləri və qiymət tarixçəsini görmək üçün 12 aylıq nümunə alış-veriş əlavə edir.';
+
+  @override
+  String get demoDataRemove => 'Nümunə məlumatları silin';
+
+  @override
+  String get demoDataAdded => 'Nümunə məlumatlar əlavə edildi';
+
+  @override
+  String get demoDataRemoved => 'Nümunə məlumatlar silindi';
+
+  @override
+  String get demoProductApple => 'Alma';
+
+  @override
+  String get demoProductBread => 'Çörək';
+
+  @override
+  String get demoProductMilk => 'Süd';
+
+  @override
+  String get demoProductCheese => 'Pendir';
+
+  @override
+  String get demoProductTomato => 'Pomidor';
+
+  @override
+  String get demoProductEggs => 'Yumurta';
+
+  @override
+  String get demoProductCoffee => 'Qəhvə';
+
+  @override
+  String get demoProductDetergent => 'Yuyucu vasitə';
 }

@@ -377,5 +377,20 @@
   "shoppingLimitNone": "برای هر خرید جدید یک بودجه پیش‌فرض تعیین کنید.",
   "monthlyReportAction": "گزارش ماهانه",
   "reportShoppingColumn": "خرید",
-  "reportDateColumn": "تاریخ"
+  "reportDateColumn": "تاریخ",
+  "planUnavailable": "فعلاً در فروشگاه موجود نیست",
+  "demoDataTitle": "داده‌های نمونه",
+  "demoDataLoad": "امتحان با داده‌های نمونه",
+  "demoDataLoadHelp": "۱۲ ماه خرید نمونه اضافه می‌کند تا تاریخچه، نمودارها و تاریخچه قیمت را ببینید.",
+  "demoDataRemove": "حذف داده‌های نمونه",
+  "demoDataAdded": "داده‌های نمونه اضافه شد",
+  "demoDataRemoved": "داده‌های نمونه حذف شد",
+  "demoProductApple": "سیب",
+  "demoProductBread": "نان",
+  "demoProductMilk": "شیر",
+  "demoProductCheese": "پنیر",
+  "demoProductTomato": "گوجه‌فرنگی",
+  "demoProductEggs": "تخم‌مرغ",
+  "demoProductCoffee": "قهوه",
+  "demoProductDetergent": "شوینده"
 }

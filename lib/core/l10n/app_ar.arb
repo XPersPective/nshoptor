@@ -377,5 +377,20 @@
   "shoppingLimitNone": "حدّد ميزانية افتراضية لكل تسوّق جديد.",
   "monthlyReportAction": "التقرير الشهري",
   "reportShoppingColumn": "التسوّق",
-  "reportDateColumn": "التاريخ"
+  "reportDateColumn": "التاريخ",
+  "planUnavailable": "غير متاح في المتجر حاليًا",
+  "demoDataTitle": "بيانات تجريبية",
+  "demoDataLoad": "جرّب ببيانات تجريبية",
+  "demoDataLoadHelp": "يضيف تسوقًا تجريبيًا لمدة 12 شهرًا لتشاهد السجل والرسوم وتاريخ الأسعار.",
+  "demoDataRemove": "حذف البيانات التجريبية",
+  "demoDataAdded": "تمت إضافة البيانات التجريبية",
+  "demoDataRemoved": "تم حذف البيانات التجريبية",
+  "demoProductApple": "تفاح",
+  "demoProductBread": "خبز",
+  "demoProductMilk": "حليب",
+  "demoProductCheese": "جبن",
+  "demoProductTomato": "طماطم",
+  "demoProductEggs": "بيض",
+  "demoProductCoffee": "قهوة",
+  "demoProductDetergent": "منظف"
 }

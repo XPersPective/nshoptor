@@ -1215,4 +1215,50 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Datum';
+
+  @override
+  String get planUnavailable => 'Inte tillgänglig i butiken just nu';
+
+  @override
+  String get demoDataTitle => 'Exempeldata';
+
+  @override
+  String get demoDataLoad => 'Prova med exempeldata';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Lägger till 12 månaders exempelinköp så att du ser historik, diagram och prishistorik.';
+
+  @override
+  String get demoDataRemove => 'Ta bort exempeldata';
+
+  @override
+  String get demoDataAdded => 'Exempeldata tillagda';
+
+  @override
+  String get demoDataRemoved => 'Exempeldata borttagna';
+
+  @override
+  String get demoProductApple => 'Äpplen';
+
+  @override
+  String get demoProductBread => 'Bröd';
+
+  @override
+  String get demoProductMilk => 'Mjölk';
+
+  @override
+  String get demoProductCheese => 'Ost';
+
+  @override
+  String get demoProductTomato => 'Tomater';
+
+  @override
+  String get demoProductEggs => 'Ägg';
+
+  @override
+  String get demoProductCoffee => 'Kaffe';
+
+  @override
+  String get demoProductDetergent => 'Tvättmedel';
 }

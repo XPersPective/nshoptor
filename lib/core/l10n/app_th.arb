@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ตั้งงบเริ่มต้นสำหรับการซื้อครั้งใหม่ทุกครั้ง",
   "monthlyReportAction": "รายงานประจำเดือน",
   "reportShoppingColumn": "การซื้อ",
-  "reportDateColumn": "วันที่"
+  "reportDateColumn": "วันที่",
+  "planUnavailable": "ยังไม่มีในร้านค้าตอนนี้",
+  "demoDataTitle": "ข้อมูลตัวอย่าง",
+  "demoDataLoad": "ลองด้วยข้อมูลตัวอย่าง",
+  "demoDataLoadHelp": "เพิ่มการซื้อของตัวอย่าง 12 เดือน เพื่อดูประวัติ กราฟ และประวัติราคา",
+  "demoDataRemove": "ลบข้อมูลตัวอย่าง",
+  "demoDataAdded": "เพิ่มข้อมูลตัวอย่างแล้ว",
+  "demoDataRemoved": "ลบข้อมูลตัวอย่างแล้ว",
+  "demoProductApple": "แอปเปิล",
+  "demoProductBread": "ขนมปัง",
+  "demoProductMilk": "นม",
+  "demoProductCheese": "ชีส",
+  "demoProductTomato": "มะเขือเทศ",
+  "demoProductEggs": "ไข่",
+  "demoProductCoffee": "กาแฟ",
+  "demoProductDetergent": "ผงซักฟอก"
 }

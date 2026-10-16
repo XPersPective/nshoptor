@@ -1222,4 +1222,50 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Ամսաթիվ';
+
+  @override
+  String get planUnavailable => 'Այժմ խանութում հասանելի չէ';
+
+  @override
+  String get demoDataTitle => 'Օրինակային տվյալներ';
+
+  @override
+  String get demoDataLoad => 'Փորձել օրինակային տվյալներով';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Ավելացնում է 12 ամսվա օրինակային գնումներ՝ պատմությունը, գծապատկերները և գների պատմությունը տեսնելու համար։';
+
+  @override
+  String get demoDataRemove => 'Ջնջել օրինակային տվյալները';
+
+  @override
+  String get demoDataAdded => 'Օրինակային տվյալներն ավելացվեցին';
+
+  @override
+  String get demoDataRemoved => 'Օրինակային տվյալները ջնջվեցին';
+
+  @override
+  String get demoProductApple => 'Խնձոր';
+
+  @override
+  String get demoProductBread => 'Հաց';
+
+  @override
+  String get demoProductMilk => 'Կաթ';
+
+  @override
+  String get demoProductCheese => 'Պանիր';
+
+  @override
+  String get demoProductTomato => 'Լոլիկ';
+
+  @override
+  String get demoProductEggs => 'Ձու';
+
+  @override
+  String get demoProductCoffee => 'Սուրճ';
+
+  @override
+  String get demoProductDetergent => 'Լվացող միջոց';
 }

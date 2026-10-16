@@ -283,6 +283,12 @@ void main() {
     ));
     await tester.pumpAndSettle();
     expect(find.descendant(of: find.byKey(const Key('plan_free')), matching: find.text('Mevcut')), findsOneWidget);
+    // Offers loaded but none for Pro/Max: no endless progress bar, a short note instead.
+    expect(find.descendant(of: find.byKey(const Key('plan_pro')), matching: find.byType(LinearProgressIndicator)), findsNothing);
+    expect(find.descendant(of: find.byKey(const Key('plan_pro')), matching: find.text('Şu an mağazada yok')), findsOneWidget);
+    await tester.tap(find.text('Yıllık'));
+    await tester.pumpAndSettle();
+    expect(find.byType(LinearProgressIndicator), findsNothing);
     await tester.scrollUntilVisible(find.text('Mağazaya şu an ulaşılamıyor.'), 200);
     expect(find.text('Mağazaya şu an ulaşılamıyor.'), findsOneWidget);
     await tester.scrollUntilVisible(find.byKey(const Key('plans_restore')), 200);

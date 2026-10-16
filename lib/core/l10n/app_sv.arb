@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Sätt en standardbudget för varje nytt inköp.",
   "monthlyReportAction": "Månadsrapport",
   "reportShoppingColumn": "Inköp",
-  "reportDateColumn": "Datum"
+  "reportDateColumn": "Datum",
+  "planUnavailable": "Inte tillgänglig i butiken just nu",
+  "demoDataTitle": "Exempeldata",
+  "demoDataLoad": "Prova med exempeldata",
+  "demoDataLoadHelp": "Lägger till 12 månaders exempelinköp så att du ser historik, diagram och prishistorik.",
+  "demoDataRemove": "Ta bort exempeldata",
+  "demoDataAdded": "Exempeldata tillagda",
+  "demoDataRemoved": "Exempeldata borttagna",
+  "demoProductApple": "Äpplen",
+  "demoProductBread": "Bröd",
+  "demoProductMilk": "Mjölk",
+  "demoProductCheese": "Ost",
+  "demoProductTomato": "Tomater",
+  "demoProductEggs": "Ägg",
+  "demoProductCoffee": "Kaffe",
+  "demoProductDetergent": "Tvättmedel"
 }

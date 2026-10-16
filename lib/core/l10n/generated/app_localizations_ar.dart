@@ -1202,4 +1202,50 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'التاريخ';
+
+  @override
+  String get planUnavailable => 'غير متاح في المتجر حاليًا';
+
+  @override
+  String get demoDataTitle => 'بيانات تجريبية';
+
+  @override
+  String get demoDataLoad => 'جرّب ببيانات تجريبية';
+
+  @override
+  String get demoDataLoadHelp =>
+      'يضيف تسوقًا تجريبيًا لمدة 12 شهرًا لتشاهد السجل والرسوم وتاريخ الأسعار.';
+
+  @override
+  String get demoDataRemove => 'حذف البيانات التجريبية';
+
+  @override
+  String get demoDataAdded => 'تمت إضافة البيانات التجريبية';
+
+  @override
+  String get demoDataRemoved => 'تم حذف البيانات التجريبية';
+
+  @override
+  String get demoProductApple => 'تفاح';
+
+  @override
+  String get demoProductBread => 'خبز';
+
+  @override
+  String get demoProductMilk => 'حليب';
+
+  @override
+  String get demoProductCheese => 'جبن';
+
+  @override
+  String get demoProductTomato => 'طماطم';
+
+  @override
+  String get demoProductEggs => 'بيض';
+
+  @override
+  String get demoProductCoffee => 'قهوة';
+
+  @override
+  String get demoProductDetergent => 'منظف';
 }

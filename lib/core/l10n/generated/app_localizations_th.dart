@@ -1210,4 +1210,50 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'วันที่';
+
+  @override
+  String get planUnavailable => 'ยังไม่มีในร้านค้าตอนนี้';
+
+  @override
+  String get demoDataTitle => 'ข้อมูลตัวอย่าง';
+
+  @override
+  String get demoDataLoad => 'ลองด้วยข้อมูลตัวอย่าง';
+
+  @override
+  String get demoDataLoadHelp =>
+      'เพิ่มการซื้อของตัวอย่าง 12 เดือน เพื่อดูประวัติ กราฟ และประวัติราคา';
+
+  @override
+  String get demoDataRemove => 'ลบข้อมูลตัวอย่าง';
+
+  @override
+  String get demoDataAdded => 'เพิ่มข้อมูลตัวอย่างแล้ว';
+
+  @override
+  String get demoDataRemoved => 'ลบข้อมูลตัวอย่างแล้ว';
+
+  @override
+  String get demoProductApple => 'แอปเปิล';
+
+  @override
+  String get demoProductBread => 'ขนมปัง';
+
+  @override
+  String get demoProductMilk => 'นม';
+
+  @override
+  String get demoProductCheese => 'ชีส';
+
+  @override
+  String get demoProductTomato => 'มะเขือเทศ';
+
+  @override
+  String get demoProductEggs => 'ไข่';
+
+  @override
+  String get demoProductCoffee => 'กาแฟ';
+
+  @override
+  String get demoProductDetergent => 'ผงซักฟอก';
 }

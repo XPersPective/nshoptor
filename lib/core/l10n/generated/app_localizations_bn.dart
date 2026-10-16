@@ -1215,4 +1215,50 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'তারিখ';
+
+  @override
+  String get planUnavailable => 'এই মুহূর্তে স্টোরে নেই';
+
+  @override
+  String get demoDataTitle => 'নমুনা ডেটা';
+
+  @override
+  String get demoDataLoad => 'নমুনা ডেটা দিয়ে দেখুন';
+
+  @override
+  String get demoDataLoadHelp =>
+      'ইতিহাস, চার্ট ও দামের ইতিহাস দেখতে ১২ মাসের নমুনা কেনাকাটা যোগ করে।';
+
+  @override
+  String get demoDataRemove => 'নমুনা ডেটা মুছুন';
+
+  @override
+  String get demoDataAdded => 'নমুনা ডেটা যোগ হয়েছে';
+
+  @override
+  String get demoDataRemoved => 'নমুনা ডেটা মুছে ফেলা হয়েছে';
+
+  @override
+  String get demoProductApple => 'আপেল';
+
+  @override
+  String get demoProductBread => 'পাউরুটি';
+
+  @override
+  String get demoProductMilk => 'দুধ';
+
+  @override
+  String get demoProductCheese => 'পনির';
+
+  @override
+  String get demoProductTomato => 'টমেটো';
+
+  @override
+  String get demoProductEggs => 'ডিম';
+
+  @override
+  String get demoProductCoffee => 'কফি';
+
+  @override
+  String get demoProductDetergent => 'ডিটারজেন্ট';
 }

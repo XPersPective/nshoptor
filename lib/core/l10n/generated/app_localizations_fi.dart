@@ -1220,4 +1220,50 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Päivämäärä';
+
+  @override
+  String get planUnavailable => 'Ei tällä hetkellä saatavilla kaupassa';
+
+  @override
+  String get demoDataTitle => 'Esimerkkitiedot';
+
+  @override
+  String get demoDataLoad => 'Kokeile esimerkkitiedoilla';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Lisää 12 kuukauden esimerkkiostokset, jotta näet historian, kaaviot ja hintahistorian.';
+
+  @override
+  String get demoDataRemove => 'Poista esimerkkitiedot';
+
+  @override
+  String get demoDataAdded => 'Esimerkkitiedot lisätty';
+
+  @override
+  String get demoDataRemoved => 'Esimerkkitiedot poistettu';
+
+  @override
+  String get demoProductApple => 'Omenat';
+
+  @override
+  String get demoProductBread => 'Leipä';
+
+  @override
+  String get demoProductMilk => 'Maito';
+
+  @override
+  String get demoProductCheese => 'Juusto';
+
+  @override
+  String get demoProductTomato => 'Tomaatit';
+
+  @override
+  String get demoProductEggs => 'Kananmunat';
+
+  @override
+  String get demoProductCoffee => 'Kahvi';
+
+  @override
+  String get demoProductDetergent => 'Pesuaine';
 }

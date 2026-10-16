@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Atur anggaran bawaan untuk setiap belanja baru.",
   "monthlyReportAction": "Laporan bulanan",
   "reportShoppingColumn": "Belanja",
-  "reportDateColumn": "Tanggal"
+  "reportDateColumn": "Tanggal",
+  "planUnavailable": "Belum tersedia di toko saat ini",
+  "demoDataTitle": "Data contoh",
+  "demoDataLoad": "Coba dengan data contoh",
+  "demoDataLoadHelp": "Menambahkan 12 bulan belanja contoh agar Anda bisa melihat riwayat, grafik, dan riwayat harga.",
+  "demoDataRemove": "Hapus data contoh",
+  "demoDataAdded": "Data contoh ditambahkan",
+  "demoDataRemoved": "Data contoh dihapus",
+  "demoProductApple": "Apel",
+  "demoProductBread": "Roti",
+  "demoProductMilk": "Susu",
+  "demoProductCheese": "Keju",
+  "demoProductTomato": "Tomat",
+  "demoProductEggs": "Telur",
+  "demoProductCoffee": "Kopi",
+  "demoProductDetergent": "Deterjen"
 }
