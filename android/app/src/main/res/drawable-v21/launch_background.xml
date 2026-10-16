@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Launch splash: white background with the app icon, name and slogan.
-     launch_image is localized through drawable-<lang>-nodpi (Turkish provided, English default). -->
+<!-- Launch splash: white background with the app icon. Name and slogan come from the Flutter splash (localized).
+-->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@android:color/white" />
     <item>

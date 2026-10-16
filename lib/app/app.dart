@@ -1,3 +1,4 @@
+import '../features/splash/splash_gate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:napp_ads/napp_ads.dart';
@@ -40,6 +41,7 @@ class NShoptorApp extends StatelessWidget {
     this.bannerController,
     this.giftFlow,
     this.reminderScheduler,
+    this.splash = Duration.zero,
   })  : languageController = languageController ?? LanguageController();
 
   final Locale? fixedLocale;
@@ -72,6 +74,9 @@ class NShoptorApp extends StatelessWidget {
 
   /// Test dikişi: hatırlatma zamanlayıcısı; null = üretim adaptörü.
   final ReminderScheduler? reminderScheduler;
+
+  /// Açılış ekranı süresi (simge, ad, slogan); sıfır ise gösterilmez.
+  final Duration splash;
 
   /// Desteklenen diller; yeni dil yalnız yeni ARB dosyasıyla eklenir.
   static const List<Locale> supportedLocales = AppLocalizations.supportedLocales;
@@ -116,6 +121,7 @@ class NShoptorApp extends StatelessWidget {
           ],
           supportedLocales: supportedLocales,
           home: _Home(
+          splash: splash,
           db: db,
           listRepository: ListRepository(db),
           settingsRepository: settingsRepository ??
@@ -138,6 +144,7 @@ class NShoptorApp extends StatelessWidget {
 
 class _Home extends StatelessWidget {
   const _Home({
+    this.splash = Duration.zero,
     required this.db,
     required this.listRepository,
     required this.languageController,
@@ -152,6 +159,8 @@ class _Home extends StatelessWidget {
     this.reminderScheduler,
   });
 
+  final Duration splash;
+
   final AppDatabase db;
   final ListRepository listRepository;
   final LanguageController languageController;
@@ -165,9 +174,10 @@ class _Home extends StatelessWidget {
   final Widget? giftFlow;
   final ReminderScheduler? reminderScheduler;
 
+
   @override
   Widget build(BuildContext context) {
-    return HomeShell(
+    return SplashGate(duration: splash, child: HomeShell(
       db: db,
       listRepository: listRepository,
       firstRunGuide: true,
@@ -181,7 +191,7 @@ class _Home extends StatelessWidget {
       bannerController: bannerController,
       giftFlow: giftFlow,
       reminderScheduler: reminderScheduler,
-    );
+    ));
   }
 }
 
