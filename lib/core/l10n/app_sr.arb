@@ -354,5 +354,11 @@
   "guideReceiptBody": "Skenirajte račun da uskladite njegove cene sa artiklima na listi.",
   "guidePlanBody": "Dodirnite ikonu plana da vidite plan, pretplatite se ili nadogradite.",
   "guideNext": "U redu",
-  "guideDone": "Počni"
+  "guideDone": "Počni",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

@@ -354,5 +354,11 @@
   "guideReceiptBody": "ສະແກນໃບເສັດເພື່ອຈັບຄູ່ລາຄາກັບສິນຄ້າໃນລາຍການຂອງທ່ານ.",
   "guidePlanBody": "ແຕະໄອຄອນແຜນເພື່ອເບິ່ງແຜນ, ສະໝັກ ຫຼື ອັບເກຣດ.",
   "guideNext": "ຕົກລົງ",
-  "guideDone": "ເລີ່ມ"
+  "guideDone": "ເລີ່ມ",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

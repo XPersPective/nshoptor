@@ -354,5 +354,11 @@
   "guideReceiptBody": "Skannaðu kvittun til að para verðin við hlutina á listanum þínum.",
   "guidePlanBody": "Ýttu á áskriftartáknið til að sjá áskriftina, gerast áskrifandi eða uppfæra.",
   "guideNext": "OK",
-  "guideDone": "Byrja"
+  "guideDone": "Byrja",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

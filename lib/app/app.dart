@@ -107,8 +107,11 @@ class NShoptorApp extends StatelessWidget {
           title: 'NShoptor',
           locale: fixedLocale ?? languageController.locale,
           localeResolutionCallback: _resolveLocale,
-          theme: AppTheme.light(),
-          darkTheme: AppTheme.dark(),
+          theme: AppTheme.light(palette: themeModeController?.palette ?? AppPalette.forest),
+          darkTheme: AppTheme.dark(
+            palette: themeModeController?.palette ?? AppPalette.forest,
+            black: themeModeController?.black ?? true,
+          ),
           themeMode:
               themeModeController?.mode ?? themeMode,
           localizationsDelegates: [

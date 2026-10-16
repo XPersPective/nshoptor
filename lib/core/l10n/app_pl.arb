@@ -354,5 +354,11 @@
   "guideReceiptBody": "Zeskanuj paragon, aby dopasować jego ceny do produktów na liście.",
   "guidePlanBody": "Dotknij ikony planu, aby zobaczyć plan, zasubskrybować lub ulepszyć.",
   "guideNext": "OK",
-  "guideDone": "Start"
+  "guideDone": "Start",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

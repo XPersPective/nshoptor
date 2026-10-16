@@ -354,5 +354,11 @@
   "guideReceiptBody": "रसीद स्कैन करके उसकी कीमतें अपनी सूची के सामान से मिलाएँ।",
   "guidePlanBody": "योजना देखने, सब्सक्राइब करने या अपग्रेड करने के लिए योजना आइकन दबाएँ।",
   "guideNext": "ठीक है",
-  "guideDone": "शुरू करें"
+  "guideDone": "शुरू करें",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

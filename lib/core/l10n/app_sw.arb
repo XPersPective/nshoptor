@@ -354,5 +354,11 @@
   "guideReceiptBody": "Changanua risiti ili kulinganisha bei zake na bidhaa kwenye orodha yako.",
   "guidePlanBody": "Gusa aikoni ya mpango ili kuona mpango wako, kujisajili au kuboresha.",
   "guideNext": "Sawa",
-  "guideDone": "Anza"
+  "guideDone": "Anza",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

@@ -354,5 +354,11 @@
   "guideReceiptBody": "Dixitaliza un recibo para cotexar os seus prezos cos artigos da lista.",
   "guidePlanBody": "Toca a icona do plan para ver o plan, subscribirte ou mellorar.",
   "guideNext": "Vale",
-  "guideDone": "Comezar"
+  "guideDone": "Comezar",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

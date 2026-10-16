@@ -354,5 +354,11 @@
   "guideReceiptBody": "Сканирайте касова бележка, за да съпоставите цените с артикулите в списъка.",
   "guidePlanBody": "Докоснете иконата на плана, за да видите плана, да се абонирате или надстроите.",
   "guideNext": "Добре",
-  "guideDone": "Старт"
+  "guideDone": "Старт",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

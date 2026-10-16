@@ -354,5 +354,11 @@
   "guideReceiptBody": "สแกนใบเสร็จเพื่อจับคู่ราคากับสินค้าในรายการของคุณ",
   "guidePlanBody": "แตะไอคอนแผนเพื่อดูแผน สมัครสมาชิก หรืออัปเกรด",
   "guideNext": "ตกลง",
-  "guideDone": "เริ่มเลย"
+  "guideDone": "เริ่มเลย",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

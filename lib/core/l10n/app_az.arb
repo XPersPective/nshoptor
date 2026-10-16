@@ -354,5 +354,11 @@
   "guideReceiptBody": "Qəbzi skan edərək qiymətləri siyahınızdakı məhsullarla uyğunlaşdırın.",
   "guidePlanBody": "Planınıza baxmaq, abunə olmaq və ya yüksəltmək üçün plan işarəsinə basın.",
   "guideNext": "Tamam",
-  "guideDone": "Başla"
+  "guideDone": "Başla",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

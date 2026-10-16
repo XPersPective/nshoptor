@@ -354,5 +354,11 @@
   "guideReceiptBody": "Skaneeri kviitung, et sobitada selle hinnad nimekirja toodetega.",
   "guidePlanBody": "Puuduta plaani ikooni, et vaadata oma plaani, tellida või uuendada.",
   "guideNext": "OK",
-  "guideDone": "Alusta"
+  "guideDone": "Alusta",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

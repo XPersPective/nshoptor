@@ -354,5 +354,11 @@
   "guideReceiptBody": "Imbas resit untuk memadankan harganya dengan item dalam senarai anda.",
   "guidePlanBody": "Ketik ikon pelan untuk melihat pelan, melanggan atau menaik taraf.",
   "guideNext": "OK",
-  "guideDone": "Mula"
+  "guideDone": "Mula",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

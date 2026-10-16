@@ -354,5 +354,11 @@
   "guideReceiptBody": "রসিদ স্ক্যান করে দামগুলো আপনার তালিকার পণ্যের সাথে মেলান।",
   "guidePlanBody": "প্ল্যান আইকনে চাপুন, প্ল্যান দেখুন, সাবস্ক্রাইব বা আপগ্রেড করুন।",
   "guideNext": "ঠিক আছে",
-  "guideDone": "শুরু করুন"
+  "guideDone": "শুরু করুন",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

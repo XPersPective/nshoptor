@@ -354,5 +354,11 @@
   "guideReceiptBody": "영수증을 스캔해 가격을 목록의 품목과 맞추세요.",
   "guidePlanBody": "요금제 아이콘을 눌러 요금제를 보고, 구독하거나 업그레이드하세요.",
   "guideNext": "확인",
-  "guideDone": "시작"
+  "guideDone": "시작",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

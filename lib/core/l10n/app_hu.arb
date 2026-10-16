@@ -354,5 +354,11 @@
   "guideReceiptBody": "Olvassa be a nyugtát, hogy az árait a listája termékeivel egyeztesse.",
   "guidePlanBody": "Koppintson a csomagikonra a csomag megtekintéséhez, előfizetéshez vagy váltáshoz.",
   "guideNext": "OK",
-  "guideDone": "Indítás"
+  "guideDone": "Indítás",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

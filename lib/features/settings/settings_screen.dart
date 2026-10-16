@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 
 import '../ai/ai_client.dart';
 import '../assistant/assistant_bubble.dart';
+import '../../core/theme/app_theme.dart';
+import '../../core/theme/brand_wordmark.dart';
 import '../subscription/plan_badge.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
@@ -92,6 +94,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (mounted) setState(() {});
   }
 
+  String _paletteName(AppLocalizations l10n, AppPalette p) => switch (p) {
+        AppPalette.forest => l10n.paletteForest,
+        AppPalette.ocean => l10n.paletteOcean,
+        AppPalette.sunset => l10n.paletteSunset,
+        AppPalette.lavender => l10n.paletteLavender,
+      };
+
   void _setThemeMode(String? v) {
     if (v == null) return;
     setState(() {
@@ -129,19 +138,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
         builder: (context, _) => ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            _SectionTitle(
-                icon: Icons.workspace_premium_outlined,
-                label: 'NShoptor Pro'),
+            const Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 8),
+              child: Row(children: [
+                Icon(Icons.workspace_premium_outlined, size: 18),
+                SizedBox(width: 8),
+                BrandWordmark(size: 15, suffix: 'Pro'),
+              ]),
+            ),
             ListTile(
               key: const Key('settings_pro_row'),
               leading: const Icon(Icons.workspace_premium_outlined),
-              title: Text(widget.subscriptions == null
-                  ? (_proUnlocked ? l10n.proActiveLabel : l10n.proBuyLabel)
+              title: widget.subscriptions == null
+                  ? Text(_proUnlocked ? l10n.proActiveLabel : l10n.proBuyLabel)
                   : switch (_tier) {
-                      Tier.max => 'NShoptor Max',
-                      Tier.pro => 'NShoptor Pro',
-                      Tier.free => l10n.plansAction,
-                    }),
+                      Tier.max => const Align(alignment: AlignmentDirectional.centerStart, child: BrandWordmark(size: 16, suffix: 'Max')),
+                      Tier.pro => const Align(alignment: AlignmentDirectional.centerStart, child: BrandWordmark(size: 16, suffix: 'Pro')),
+                      Tier.free => Text(l10n.plansAction),
+                    },
               subtitle: _tier == Tier.free ? Text(l10n.proBenefitsLine) : null,
               trailing: const Icon(Icons.chevron_right),
               onTap: () => widget.subscriptions == null
@@ -209,6 +223,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 DropdownMenuItem(value: 'dark', child: Text(l10n.themeDark)),
               ],
               onChanged: _setThemeMode,
+            ),
+            const SizedBox(height: 12),
+            Text(l10n.paletteLabel, style: Theme.of(context).textTheme.labelLarge),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final p in AppPalette.values)
+                  ChoiceChip(
+                    key: Key('settings_palette_${p.name}'),
+                    avatar: CircleAvatar(backgroundColor: p.seed, radius: 8),
+                    label: Text(_paletteName(l10n, p)),
+                    selected: (widget.themeModeController?.palette ?? AppPalette.forest) == p,
+                    onSelected: (_) => setState(() => widget.themeModeController?.setPalette(p)),
+                  ),
+              ],
+            ),
+            SwitchListTile(
+              key: const Key('settings_dark_black'),
+              contentPadding: EdgeInsets.zero,
+              secondary: const Icon(Icons.contrast),
+              title: Text(l10n.darkBlackLabel),
+              value: widget.themeModeController?.black ?? true,
+              onChanged: (v) => setState(() => widget.themeModeController?.setBlack(v)),
             ),
 
             _SectionTitle(

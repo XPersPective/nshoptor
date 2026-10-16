@@ -354,5 +354,11 @@
   "guideReceiptBody": "扫描小票，将其价格与清单中的商品匹配。",
   "guidePlanBody": "点按套餐图标，查看套餐、订阅或升级。",
   "guideNext": "好的",
-  "guideDone": "开始"
+  "guideDone": "开始",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

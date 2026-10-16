@@ -375,5 +375,11 @@
   "guideReceiptBody": "Fişi tara; fiyatlar listendeki ürünlerle eşleşsin.",
   "guidePlanBody": "Plan simgesine dokunarak planını gör, abone ol ya da yükselt.",
   "guideNext": "Tamam",
-  "guideDone": "Başla"
+  "guideDone": "Başla",
+  "paletteLabel": "Renk teması",
+  "paletteForest": "Orman",
+  "paletteOcean": "Okyanus",
+  "paletteSunset": "Gün batımı",
+  "paletteLavender": "Lavanta",
+  "darkBlackLabel": "Koyu temada tam siyah"
 }

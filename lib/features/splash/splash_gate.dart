@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
+import '../../core/theme/brand_wordmark.dart';
 
 /// Açılışta uygulama simgesi, adı ve sloganı kısa süre gösterir, sonra [child]
 /// açılır. Sloganlar Flutter metniyle çizildiği için her dilde doğru görünür.
@@ -59,13 +60,7 @@ class _SplashPage extends StatelessWidget {
               children: [
                 Image.asset('assets/brand/icon_1024.png', width: 128, height: 128),
                 const SizedBox(height: 20),
-                Text(
-                  l10n.appTitle,
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
+                const BrandWordmark(size: 36),
                 const SizedBox(height: 8),
                 Text(
                   l10n.slogan,

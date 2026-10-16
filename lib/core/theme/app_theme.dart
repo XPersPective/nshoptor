@@ -9,21 +9,48 @@ import 'package:flutter/material.dart';
 /// butonları, yumuşak köşeli girişler/kartlar, alt sayfa tutamacı ve
 /// FadeForwards sayfa geçişleri. Renk rolleri M3 varsayılanında kalır;
 /// kontrast (WCAG AA) SemanticDelta testleriyle korunur.
+/// Renk temaları: marka yeşili varsayılan; diğerleri aynı yapıyla.
+enum AppPalette {
+  forest(Color(0xFF0B8457)),
+  ocean(Color(0xFF0B6E99)),
+  sunset(Color(0xFFC2410C)),
+  lavender(Color(0xFF6E56CF));
+
+  const AppPalette(this.seed);
+  final Color seed;
+
+  static AppPalette fromName(String? name) =>
+      values.firstWhere((p) => p.name == name, orElse: () => forest);
+}
+
 class AppTheme {
   AppTheme._();
 
   /// Marka tohum rengi: sakin yeşil-turkuaz.
   static const Color brandSeed = Color(0xFF0B8457);
 
-  static ThemeData light() => _base(Brightness.light);
+  static ThemeData light({AppPalette palette = AppPalette.forest}) =>
+      _base(Brightness.light, palette, black: false);
 
-  static ThemeData dark() => _base(Brightness.dark);
+  /// [black]: koyu temada tam siyah yüzeyler (AMOLED); varsayılan şık koyu.
+  static ThemeData dark({AppPalette palette = AppPalette.forest, bool black = true}) =>
+      _base(Brightness.dark, palette, black: black);
 
-  static ThemeData _base(Brightness brightness) {
-    final scheme = ColorScheme.fromSeed(
-      seedColor: brandSeed,
+  static ThemeData _base(Brightness brightness, AppPalette palette, {required bool black}) {
+    var scheme = ColorScheme.fromSeed(
+      seedColor: palette.seed,
       brightness: brightness,
     );
+    if (black) {
+      scheme = scheme.copyWith(
+        surface: Colors.black,
+        surfaceContainerLowest: Colors.black,
+        surfaceContainerLow: const Color(0xFF0C0D0D),
+        surfaceContainer: const Color(0xFF131414),
+        surfaceContainerHigh: const Color(0xFF1B1C1C),
+        surfaceContainerHighest: const Color(0xFF242525),
+      );
+    }
     final base = ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
@@ -131,6 +158,23 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       dividerTheme: DividerThemeData(color: scheme.outlineVariant),
+      // Liste ögesindeki tik alanı, ekleme alanıyla aynı çizgi dilinde:
+      // yumuşak köşe, ince kontur, işaretliyken marka dolgusu.
+      checkboxTheme: CheckboxThemeData(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+        side: WidgetStateBorderSide.resolveWith(
+          (states) => BorderSide(
+            color: states.contains(WidgetState.selected) ? scheme.primary : scheme.outline,
+            width: 1.6,
+          ),
+        ),
+        fillColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
+              ? scheme.primary
+              : scheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        ),
+        checkColor: WidgetStatePropertyAll(scheme.onPrimary),
+      ),
     );
   }
 }

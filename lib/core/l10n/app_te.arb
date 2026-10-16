@@ -354,5 +354,11 @@
   "guideReceiptBody": "రసీదును స్కాన్ చేసి దాని ధరలను మీ జాబితాలోని వస్తువులతో సరిపోల్చండి.",
   "guidePlanBody": "ప్లాన్ చూడటానికి, సభ్యత్వం తీసుకోవడానికి లేదా అప్‌గ్రేడ్ చేయడానికి ప్లాన్ ఐకాన్ నొక్కండి.",
   "guideNext": "సరే",
-  "guideDone": "ప్రారంభించు"
+  "guideDone": "ప్రారంభించు",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

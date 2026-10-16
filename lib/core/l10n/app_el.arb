@@ -354,5 +354,11 @@
   "guideReceiptBody": "Σαρώστε μια απόδειξη για να ταιριάξετε τις τιμές της με τα προϊόντα της λίστας σας.",
   "guidePlanBody": "Πατήστε το εικονίδιο προγράμματος για να δείτε το πρόγραμμα, να εγγραφείτε ή να αναβαθμίσετε.",
   "guideNext": "ΟΚ",
-  "guideDone": "Έναρξη"
+  "guideDone": "Έναρξη",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

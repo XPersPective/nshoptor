@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
+import '../../core/theme/brand_wordmark.dart';
 
 /// İlk açılışta bir kez: ana özellikler ve ne işe yaradıkları. "Tamam" ile
 /// adım adım ilerler; son adımda kapanır ve bir daha gösterilmez.
@@ -24,6 +25,7 @@ Future<void> showFirstRunGuide(BuildContext context) async {
         return AlertDialog(
           key: const Key('first_run_guide'),
           icon: Icon(step.icon),
+          title: const BrandWordmark(size: 20),
           content: Text(step.body),
           actions: [
             TextButton(

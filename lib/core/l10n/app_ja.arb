@@ -354,5 +354,11 @@
   "guideReceiptBody": "レシートを読み取り、価格をリストの商品と照合します。",
   "guidePlanBody": "プランアイコンを押して、プランの確認、購読、アップグレードができます。",
   "guideNext": "OK",
-  "guideDone": "始める"
+  "guideDone": "始める",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

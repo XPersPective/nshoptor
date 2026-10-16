@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:napp_core/napp_core.dart';
 
+import '../core/theme/app_theme.dart';
+
 /// Ayarlar'daki tema tercihi: Sistem / Açık / Koyu (spec §6.15).
 /// Değeri SettingsStore'da kalıcı tutar ve MaterialApp'e bildirir.
 class AppThemeModeController extends ChangeNotifier {
@@ -21,6 +23,7 @@ class AppThemeModeController extends ChangeNotifier {
         (stored == 'light' || stored == 'dark' || stored == 'system')) {
       _value = stored;
     }
+    loadStyle();
   }
 
   String get value => _value;
@@ -35,6 +38,35 @@ class AppThemeModeController extends ChangeNotifier {
     if (value == _value) return;
     _value = value;
     _store?.setString(storageKey, value);
+    notifyListeners();
+  }
+
+  /// Renk teması ve koyu temada tam siyah tercihi.
+  static const String paletteKey = 'app.palette';
+  static const String blackKey = 'app.darkBlack';
+
+  AppPalette _palette = AppPalette.forest;
+  bool _black = true;
+
+  AppPalette get palette => _palette;
+  bool get black => _black;
+
+  void loadStyle() {
+    _palette = AppPalette.fromName(_store?.getString(paletteKey));
+    _black = _store?.getBool(blackKey) ?? true;
+  }
+
+  void setPalette(AppPalette palette) {
+    if (palette == _palette) return;
+    _palette = palette;
+    _store?.setString(paletteKey, palette.name);
+    notifyListeners();
+  }
+
+  void setBlack(bool value) {
+    if (value == _black) return;
+    _black = value;
+    _store?.setBool(blackKey, value);
     notifyListeners();
   }
 }

@@ -354,5 +354,11 @@
   "guideReceiptBody": "Escanegeu un tiquet per fer coincidir els preus amb els articles de la llista.",
   "guidePlanBody": "Toqueu la icona del pla per veure el pla, subscriure-us o millorar.",
   "guideNext": "D'acord",
-  "guideDone": "Comença"
+  "guideDone": "Comença",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

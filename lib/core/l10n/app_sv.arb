@@ -354,5 +354,11 @@
   "guideReceiptBody": "Skanna ett kvitto för att matcha priserna med varorna på din lista.",
   "guidePlanBody": "Tryck på plan-ikonen för att se din plan, prenumerera eller uppgradera.",
   "guideNext": "OK",
-  "guideDone": "Starta"
+  "guideDone": "Starta",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

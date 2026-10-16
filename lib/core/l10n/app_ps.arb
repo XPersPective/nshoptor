@@ -354,5 +354,11 @@
   "guideReceiptBody": "رسید سکن کړئ ترڅو د هغې بیې ستاسو د لیست توکو سره سمې شي.",
   "guidePlanBody": "د پلان نښې کېکاږئ ترڅو پلان وګورئ، ګډون وکړئ یا لوړ کړئ.",
   "guideNext": "سم دی",
-  "guideDone": "پیل"
+  "guideDone": "پیل",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

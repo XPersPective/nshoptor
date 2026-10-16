@@ -354,5 +354,11 @@
   "guideReceiptBody": "סרוק קבלה כדי להתאים את מחיריה לפריטים ברשימה שלך.",
   "guidePlanBody": "הקש על סמל התוכנית כדי לראות את התוכנית, להירשם או לשדרג.",
   "guideNext": "אישור",
-  "guideDone": "התחל"
+  "guideDone": "התחל",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

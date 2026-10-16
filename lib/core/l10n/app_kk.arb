@@ -354,5 +354,11 @@
   "guideReceiptBody": "Чекті сканерлеп, оның бағаларын тізімдегі тауарлармен салыстырыңыз.",
   "guidePlanBody": "Жоспарды көру, жазылу немесе жоғарылату үшін жоспар белгішесін басыңыз.",
   "guideNext": "Жарайды",
-  "guideDone": "Бастау"
+  "guideDone": "Бастау",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

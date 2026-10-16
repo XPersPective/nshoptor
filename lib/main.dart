@@ -178,7 +178,7 @@ Future<void> main() async {
   runApp(
     NShoptorApp(
       db: db,
-      splash: const Duration(milliseconds: 1200),
+      splash: const Duration(milliseconds: 1600),
       settingsRepository: SettingsRepository(db, NappSettingsStoreOps(store)),
       languageController: languageController,
       themeModeController: themeController,

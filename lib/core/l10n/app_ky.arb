@@ -354,5 +354,11 @@
   "guideReceiptBody": "Чекти сканерлеп, анын бааларын тизмеңиздеги товарлар менен салыштырыңыз.",
   "guidePlanBody": "Планды көрүү, жазылуу же жогорулатуу үчүн план белгичесин басыңыз.",
   "guideNext": "Жакшы",
-  "guideDone": "Баштоо"
+  "guideDone": "Баштоо",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

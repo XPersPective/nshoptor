@@ -354,5 +354,11 @@
   "guideReceiptBody": "Skandeer 'n kwitansie om die pryse by die items op jou lys te pas.",
   "guidePlanBody": "Tik die plan-ikoon om jou plan te sien, in te teken of op te gradeer.",
   "guideNext": "OK",
-  "guideDone": "Begin"
+  "guideDone": "Begin",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

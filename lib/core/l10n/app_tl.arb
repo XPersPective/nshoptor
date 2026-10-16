@@ -354,5 +354,11 @@
   "guideReceiptBody": "I-scan ang resibo para itugma ang mga presyo nito sa mga item sa listahan mo.",
   "guidePlanBody": "I-tap ang icon ng plano para makita ang plano, mag-subscribe o mag-upgrade.",
   "guideNext": "OK",
-  "guideDone": "Simulan"
+  "guideDone": "Simulan",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

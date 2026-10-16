@@ -354,5 +354,11 @@
   "guideReceiptBody": "Отсканируйте чек, чтобы сопоставить его цены с товарами в списке.",
   "guidePlanBody": "Нажмите значок тарифа, чтобы посмотреть тариф, оформить подписку или перейти на другой.",
   "guideNext": "ОК",
-  "guideDone": "Начать"
+  "guideDone": "Начать",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

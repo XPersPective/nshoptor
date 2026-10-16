@@ -354,5 +354,11 @@
   "guideReceiptBody": "ဖောင်ကို စကင်ဖတ်ပြီး စျေးနှုန်းများကို သင့်စာရင်းရှိ ပစ္စည်းများနှင့် ကိုက်ညီအောင် လုပ်ပါ။",
   "guidePlanBody": "အစီအစဉ်ကို ကြည့်ရန်၊ စာရင်းသွင်းရန် သို့မဟုတ် အဆင့်မြှင့်ရန် အစီအစဉ်အိုင်ကွန်ကို နှိပ်ပါ။",
   "guideNext": "ตกลง",
-  "guideDone": "စတင်"
+  "guideDone": "စတင်",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

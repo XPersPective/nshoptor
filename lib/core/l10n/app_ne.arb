@@ -354,5 +354,11 @@
   "guideReceiptBody": "रसिद स्क्यान गरेर यसका मूल्यहरू तपाईंको सूचीका सामानसँग मिलाउनुहोस्।",
   "guidePlanBody": "योजना हेर्न, सदस्यता लिन वा अपग्रेड गर्न योजना आइकन थिच्नुहोस्।",
   "guideNext": "ठीक छ",
-  "guideDone": "सुरु गर्नुहोस्"
+  "guideDone": "सुरु गर्नुहोस्",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }
