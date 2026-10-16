@@ -33,6 +33,8 @@ def main():
         normalized = ''.join(str(unicodedata.decimal(c)) if c.isdecimal() else c for c in values['full'])
         numbers = set(re.findall(r'\d+', normalized))
         assert {'10', '100', '300', '200', '1000', '71', '7'} <= numbers, (loc, 'quota/language/trial numbers')
+        quota_paragraph = next(p for p in normalized.split('\n\n') if '1000' in p)
+        assert '1000' in quota_paragraph.splitlines()[-1], (loc, 'obsolete offer after legacy quotas')
         assert listing.REPO in values['full'], (loc, 'source link')
     if len(sys.argv) > 1:
         root = Path(sys.argv[1])
