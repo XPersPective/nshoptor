@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} popisa · {items} stavki · {entries} kupnji",
   "voiceModelDownloading": "Glasovni model za ovaj jezik se preuzima. Pokušajte ponovno za minutu.",
   "historyThisWeek": "Ovaj tjedan",
-  "historyProductsSection": "Kupljeni proizvodi"
+  "historyProductsSection": "Kupljeni proizvodi",
+  "tipReceiptScan": "Skenirajte račun da uskladite cijene s popisom",
+  "tipVoiceAdd": "Izgovorite jednu ili više stavki i provjerite ih prije dodavanja",
+  "tipShelfCamera": "Pročitajte cijenu s oznake na polici kamerom",
+  "tipPlan": "Vaš plan: pogledajte pojedinosti, pretplatite se ili nadogradite",
+  "guideAddBody": "Dodirnite + za dodavanje stavke. Unesite planiranu cijenu sada, a tržišnu na blagajni.",
+  "guideVoiceBody": "Dodirnite mikrofon i izgovorite stavke, na primjer: '1 kg jabuka, 1 kruh'.",
+  "guideReceiptBody": "Skenirajte račun da uskladite njegove cijene sa stavkama na popisu.",
+  "guidePlanBody": "Dodirnite ikonu plana da vidite plan, pretplatite se ili nadogradite.",
+  "guideNext": "U redu",
+  "guideDone": "Započni"
 }

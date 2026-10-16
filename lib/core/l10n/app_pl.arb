@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} list · {items} produktów · {entries} zakupów",
   "voiceModelDownloading": "Trwa pobieranie modelu głosowego dla tego języka. Spróbuj ponownie za minutę.",
   "historyThisWeek": "Ten tydzień",
-  "historyProductsSection": "Kupione produkty"
+  "historyProductsSection": "Kupione produkty",
+  "tipReceiptScan": "Zeskanuj paragon, aby dopasować ceny do swojej listy",
+  "tipVoiceAdd": "Powiedz jeden lub więcej produktów i sprawdź je przed dodaniem",
+  "tipShelfCamera": "Odczytaj cenę z etykiety na półce aparatem",
+  "tipPlan": "Twój plan: zobacz szczegóły, subskrybuj lub ulepsz",
+  "guideAddBody": "Dotknij +, aby dodać produkt. Wpisz planowaną cenę teraz, a cenę rynkową przy kasie.",
+  "guideVoiceBody": "Dotknij mikrofonu i powiedz produkty, na przykład: „1 kg jabłek, 1 chleb”.",
+  "guideReceiptBody": "Zeskanuj paragon, aby dopasować jego ceny do produktów na liście.",
+  "guidePlanBody": "Dotknij ikony planu, aby zobaczyć plan, zasubskrybować lub ulepszyć.",
+  "guideNext": "OK",
+  "guideDone": "Start"
 }

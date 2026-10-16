@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} siyahı · {items} məhsul · {entries} alış",
   "voiceModelDownloading": "Bu dil üçün səs modeli yüklənir. Bir dəqiqədən sonra yenidən cəhd edin.",
   "historyThisWeek": "Bu həftə",
-  "historyProductsSection": "Alınan məhsullar"
+  "historyProductsSection": "Alınan məhsullar",
+  "tipReceiptScan": "Qəbzi skan edin və qiymətləri siyahınızla uyğunlaşdırın",
+  "tipVoiceAdd": "Bir və ya bir neçə məhsulu səsləndirin, əlavə etməzdən əvvəl yoxlayın",
+  "tipShelfCamera": "Kamera ilə rəf etiketindən qiyməti oxuyun",
+  "tipPlan": "Planınız: təfərrüatlara baxın, abunə olun və ya yüksəldin",
+  "guideAddBody": "Məhsul əlavə etmək üçün + basın. Planlaşdırılan qiyməti indi, bazar qiymətini kassada daxil edin.",
+  "guideVoiceBody": "Mikrofona basın və məhsulları deyin, məsələn: '1 kiloqram alma, 1 çörək'.",
+  "guideReceiptBody": "Qəbzi skan edərək qiymətləri siyahınızdakı məhsullarla uyğunlaşdırın.",
+  "guidePlanBody": "Planınıza baxmaq, abunə olmaq və ya yüksəltmək üçün plan işarəsinə basın.",
+  "guideNext": "Tamam",
+  "guideDone": "Başla"
 }

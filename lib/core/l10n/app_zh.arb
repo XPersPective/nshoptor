@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} 个列表 · {items} 件商品 · {entries} 笔购买",
   "voiceModelDownloading": "正在下载该语言的语音模型，请一分钟后重试。",
   "historyThisWeek": "本周",
-  "historyProductsSection": "已购商品"
+  "historyProductsSection": "已购商品",
+  "tipReceiptScan": "扫描小票，将价格与清单匹配",
+  "tipVoiceAdd": "说出一个或多个商品，添加前先检查",
+  "tipShelfCamera": "用相机读取货架标签上的价格",
+  "tipPlan": "您的套餐：查看详情、订阅或升级",
+  "guideAddBody": "点按 + 添加商品。现在输入计划价格，结账时输入市场价格。",
+  "guideVoiceBody": "点按麦克风并说出商品，例如：“1 公斤苹果，1 个面包”。",
+  "guideReceiptBody": "扫描小票，将其价格与清单中的商品匹配。",
+  "guidePlanBody": "点按套餐图标，查看套餐、订阅或升级。",
+  "guideNext": "好的",
+  "guideDone": "开始"
 }

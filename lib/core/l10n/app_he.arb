@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} רשימות · {items} פריטים · {entries} קניות",
   "voiceModelDownloading": "מודל הקול לשפה זו בהורדה. נסו שוב בעוד דקה.",
   "historyThisWeek": "השבוע",
-  "historyProductsSection": "מוצרים שנקנו"
+  "historyProductsSection": "מוצרים שנקנו",
+  "tipReceiptScan": "סרוק קבלה כדי להתאים את המחירים לרשימה שלך",
+  "tipVoiceAdd": "אמור פריט אחד או יותר, ובדוק אותם לפני ההוספה",
+  "tipShelfCamera": "קרא את המחיר מתווית המדף במצלמה",
+  "tipPlan": "התוכנית שלך: צפה בפרטים, הירשם או שדרג",
+  "guideAddBody": "הקש + כדי להוסיף פריט. הזן עכשיו את המחיר המתוכנן ואת מחיר השוק בקופה.",
+  "guideVoiceBody": "הקש על המיקרופון ואמור את הפריטים, למשל: 'קילו תפוחים, לחם אחד'.",
+  "guideReceiptBody": "סרוק קבלה כדי להתאים את מחיריה לפריטים ברשימה שלך.",
+  "guidePlanBody": "הקש על סמל התוכנית כדי לראות את התוכנית, להירשם או לשדרג.",
+  "guideNext": "אישור",
+  "guideDone": "התחל"
 }

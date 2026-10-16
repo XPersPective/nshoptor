@@ -1111,4 +1111,41 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Produtos comprados';
+
+  @override
+  String get tipReceiptScan =>
+      'Digitalize o recibo para comparar os preços com a sua lista';
+
+  @override
+  String get tipVoiceAdd =>
+      'Diga um ou mais itens e confira-os antes de adicionar';
+
+  @override
+  String get tipShelfCamera =>
+      'Leia o preço na etiqueta da prateleira com a câmera';
+
+  @override
+  String get tipPlan => 'Seu plano: veja detalhes, assine ou faça upgrade';
+
+  @override
+  String get guideAddBody =>
+      'Toque em + para adicionar um item. Digite o preço planejado agora e o preço de mercado no caixa.';
+
+  @override
+  String get guideVoiceBody =>
+      'Toque no microfone e diga os itens, por exemplo: \'1 kg de maçãs, 1 pão\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Digitalize um recibo para comparar os preços com os itens da sua lista.';
+
+  @override
+  String get guidePlanBody =>
+      'Toque no ícone do plano para ver seu plano, assinar ou fazer upgrade.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Começar';
 }

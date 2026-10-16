@@ -359,9 +359,10 @@ void main() {
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
       final badge = tester.widget(find.byKey(const Key('settings_plan_badge')));
+      // Chip shows the plan name; the tooltip is the plan-page description.
       return badge is ActionChip
-          ? badge.tooltip!
-          : (badge as IconButton).tooltip!;
+          ? (badge.label as Text).data!
+          : (badge as IconButton).tooltip!.split(' · ').first;
     }
 
     expect(await badge(), 'Ücretsiz');
@@ -372,7 +373,8 @@ void main() {
       subs.inTrial(DateTime.now().add(const Duration(days: 8))),
       isFalse,
     );
-    expect(await badge(), 'Pro · 7 gün ücretsiz');
+    expect(await badge(), 'Pro');
+    expect(find.byIcon(Icons.hourglass_top), findsOneWidget);
     subs.applyOwned([(productId: SubscriptionService.maxId, token: 'm')]);
     expect(await badge(), 'Max');
     subs.applyOwned([]);
@@ -381,7 +383,8 @@ void main() {
     scale = 1;
     subs.applyOwned([(productId: SubscriptionService.proId, token: 't')]);
     subs.markTrialStarted(DateTime.now());
-    expect(await badge(), 'Pro · 7 gün ücretsiz');
+    expect(await badge(), 'Pro');
+    expect(find.byIcon(Icons.hourglass_top), findsOneWidget);
     subs.dispose();
   });
 

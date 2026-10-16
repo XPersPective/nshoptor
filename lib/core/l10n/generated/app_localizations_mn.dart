@@ -1112,4 +1112,41 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Худалдан авсан бараа';
+
+  @override
+  String get tipReceiptScan =>
+      'Баримтыг скан хийж үнийг жагсаалттай тааруулна уу';
+
+  @override
+  String get tipVoiceAdd =>
+      'Нэг буюу хэд хэдэн бараагаа хэлээд, нэмэхээс өмнө шалгана уу';
+
+  @override
+  String get tipShelfCamera => 'Камераар тавцангийн шошгоны үнийг уншина уу';
+
+  @override
+  String get tipPlan =>
+      'Таны төлөвлөгөө: дэлгэрэнгүйг харах, бүртгүүлэх эсвэл сайжруулах';
+
+  @override
+  String get guideAddBody =>
+      '+ дарж бараа нэмнэ үү. Төлөвлөсөн үнийг одоо, зах зээлийн үнийг касс дээр оруулна уу.';
+
+  @override
+  String get guideVoiceBody =>
+      'Микрофон дарж барааг хэлнэ үү, жишээ нь: \'1 кг алим, 1 талх\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Баримтыг скан хийж, түүний үнийг жагсаалтын барааны үнэтэй тааруулна уу.';
+
+  @override
+  String get guidePlanBody =>
+      'Төлөвлөгөөгөө харах, бүртгүүлэх эсвэл сайжруулахын тулд төлөвлөгөөний дүрсийг дарна уу.';
+
+  @override
+  String get guideNext => 'За';
+
+  @override
+  String get guideDone => 'Эхлэх';
 }

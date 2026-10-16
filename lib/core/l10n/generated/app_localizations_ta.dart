@@ -1114,4 +1114,42 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'வாங்கிய பொருட்கள்';
+
+  @override
+  String get tipReceiptScan =>
+      'ரசீதை ஸ்கேன் செய்து விலைகளை உங்கள் பட்டியலுடன் பொருத்துங்கள்';
+
+  @override
+  String get tipVoiceAdd =>
+      'ஒன்று அல்லது அதற்கு மேற்பட்ட பொருட்களைச் சொல்லி, சேர்ப்பதற்கு முன் சரிபாருங்கள்';
+
+  @override
+  String get tipShelfCamera =>
+      'கேமராவால் அலமாரி லேபிளில் உள்ள விலையைப் படியுங்கள்';
+
+  @override
+  String get tipPlan =>
+      'உங்கள் திட்டம்: விவரங்களைப் பார்க்கவும், சந்தா செலுத்தவும் அல்லது மேம்படுத்தவும்';
+
+  @override
+  String get guideAddBody =>
+      'பொருள் சேர்க்க + ஐத் தொடவும். திட்டமிட்ட விலையை இப்போதும், சந்தை விலையை கவுன்ட்டரிலும் உள்ளிடுங்கள்.';
+
+  @override
+  String get guideVoiceBody =>
+      'மைக்ரோஃபோனைத் தொட்டு பொருட்களைச் சொல்லுங்கள், எடுத்துக்காட்டு: \'1 கிலோ ஆப்பிள், 1 ரொட்டி\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'ரசீதை ஸ்கேன் செய்து அதன் விலைகளை உங்கள் பட்டியலின் பொருட்களுடன் பொருத்துங்கள்.';
+
+  @override
+  String get guidePlanBody =>
+      'திட்டத்தைப் பார்க்க, சந்தா செலுத்த அல்லது மேம்படுத்த திட்ட ஐகானைத் தொடவும்.';
+
+  @override
+  String get guideNext => 'சரி';
+
+  @override
+  String get guideDone => 'தொடங்கு';
 }

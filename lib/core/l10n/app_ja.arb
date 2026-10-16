@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists}件のリスト · {items}個のアイテム · {entries}件の購入",
   "voiceModelDownloading": "この言語の音声モデルをダウンロードしています。1 分後にもう一度お試しください。",
   "historyThisWeek": "今週",
-  "historyProductsSection": "購入した商品"
+  "historyProductsSection": "購入した商品",
+  "tipReceiptScan": "レシートを読み取って、価格をリストと照合",
+  "tipVoiceAdd": "商品を一つ以上話し、追加する前に確認",
+  "tipShelfCamera": "カメラで棚札の価格を読み取る",
+  "tipPlan": "あなたのプラン：詳細を見る、購読、アップグレード",
+  "guideAddBody": "+ を押して商品を追加。予定価格は今、店頭価格はレジで入力します。",
+  "guideVoiceBody": "マイクを押して商品を話してください。例：「りんご1kg、パン1つ」",
+  "guideReceiptBody": "レシートを読み取り、価格をリストの商品と照合します。",
+  "guidePlanBody": "プランアイコンを押して、プランの確認、購読、アップグレードができます。",
+  "guideNext": "OK",
+  "guideDone": "始める"
 }

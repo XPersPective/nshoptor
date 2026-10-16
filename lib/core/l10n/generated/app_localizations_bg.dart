@@ -1110,4 +1110,42 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Купени продукти';
+
+  @override
+  String get tipReceiptScan =>
+      'Сканирайте касовата бележка, за да съпоставите цените със списъка си';
+
+  @override
+  String get tipVoiceAdd =>
+      'Кажете един или повече артикула и ги прегледайте преди добавяне';
+
+  @override
+  String get tipShelfCamera =>
+      'Прочетете цената от етикета на рафта с камерата';
+
+  @override
+  String get tipPlan =>
+      'Вашият план: вижте подробностите, абонирайте се или надстройте';
+
+  @override
+  String get guideAddBody =>
+      'Докоснете +, за да добавите артикул. Въведете планираната цена сега и пазарната на касата.';
+
+  @override
+  String get guideVoiceBody =>
+      'Докоснете микрофона и кажете артикулите, например: „1 кг ябълки, 1 хляб“.';
+
+  @override
+  String get guideReceiptBody =>
+      'Сканирайте касова бележка, за да съпоставите цените с артикулите в списъка.';
+
+  @override
+  String get guidePlanBody =>
+      'Докоснете иконата на плана, за да видите плана, да се абонирате или надстроите.';
+
+  @override
+  String get guideNext => 'Добре';
+
+  @override
+  String get guideDone => 'Старт';
 }

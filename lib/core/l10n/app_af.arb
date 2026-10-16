@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} lyste · {items} items · {entries} aankope",
   "voiceModelDownloading": "Die stemmodel vir hierdie taal word afgelaai. Probeer oor ’n minuut weer.",
   "historyThisWeek": "Hierdie week",
-  "historyProductsSection": "Gekoopte produkte"
+  "historyProductsSection": "Gekoopte produkte",
+  "tipReceiptScan": "Skandeer 'n kwitansie om die pryse by jou lys te pas",
+  "tipVoiceAdd": "Praat een of meer items in, en kontroleer dit voor jy byvoeg",
+  "tipShelfCamera": "Lees die prys van 'n rakkaartjie met die kamera",
+  "tipPlan": "Jou plan: sien besonderhede, teken in of opgradeer",
+  "guideAddBody": "Tik + om 'n item by te voeg. Tik die beplande prys nou in en die markprys by die kassa.",
+  "guideVoiceBody": "Tik die mikrofoon en sê jou items, byvoorbeeld: '1 kilo appels, 1 brood'.",
+  "guideReceiptBody": "Skandeer 'n kwitansie om die pryse by die items op jou lys te pas.",
+  "guidePlanBody": "Tik die plan-ikoon om jou plan te sien, in te teken of op te gradeer.",
+  "guideNext": "OK",
+  "guideDone": "Begin"
 }

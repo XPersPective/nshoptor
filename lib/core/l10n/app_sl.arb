@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} seznama · {items} izdelkov · {entries} nakupov",
   "voiceModelDownloading": "Glasovni model za ta jezik se prenaša. Poskusite znova čez minuto.",
   "historyThisWeek": "Ta teden",
-  "historyProductsSection": "Kupljeni izdelki"
+  "historyProductsSection": "Kupljeni izdelki",
+  "tipReceiptScan": "Optično preberite račun in ujemajte cene s seznamom",
+  "tipVoiceAdd": "Izgovorite enega ali več izdelkov in jih pred dodajanjem preglejte",
+  "tipShelfCamera": "S kamero preberite ceno z nalepke na polici",
+  "tipPlan": "Vaš načrt: oglejte si podrobnosti, naročite se ali nadgradite",
+  "guideAddBody": "Tapnite +, da dodate izdelek. Vnesite načrtovano ceno zdaj, tržno ceno pa na blagajni.",
+  "guideVoiceBody": "Tapnite mikrofon in povejte izdelke, na primer: »1 kg jabolk, 1 kruh«.",
+  "guideReceiptBody": "Optično preberite račun, da ujamete njegove cene z izdelki na seznamu.",
+  "guidePlanBody": "Tapnite ikono načrta, da si ogledate načrt, se naročite ali nadgradite.",
+  "guideNext": "V redu",
+  "guideDone": "Začni"
 }

@@ -1110,4 +1110,40 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Produk yang dibeli';
+
+  @override
+  String get tipReceiptScan =>
+      'Imbas resit untuk memadankan harga dengan senarai anda';
+
+  @override
+  String get tipVoiceAdd =>
+      'Sebut satu atau lebih item, kemudian semak sebelum menambah';
+
+  @override
+  String get tipShelfCamera => 'Baca harga daripada label rak dengan kamera';
+
+  @override
+  String get tipPlan => 'Pelan anda: lihat butiran, langgan atau naik taraf';
+
+  @override
+  String get guideAddBody =>
+      'Ketik + untuk menambah item. Masukkan harga dirancang sekarang dan harga pasaran di kaunter.';
+
+  @override
+  String get guideVoiceBody =>
+      'Ketik mikrofon dan sebut item, contohnya: \'1 kg epal, 1 roti\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Imbas resit untuk memadankan harganya dengan item dalam senarai anda.';
+
+  @override
+  String get guidePlanBody =>
+      'Ketik ikon pelan untuk melihat pelan, melanggan atau menaik taraf.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Mula';
 }

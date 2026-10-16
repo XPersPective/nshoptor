@@ -2305,6 +2305,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Products bought'**
   String get historyProductsSection;
+
+  /// No description provided for @tipReceiptScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a receipt to match its prices with your list'**
+  String get tipReceiptScan;
+
+  /// No description provided for @tipVoiceAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak one or more items, then review them before adding'**
+  String get tipVoiceAdd;
+
+  /// No description provided for @tipShelfCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the price from a shelf label with the camera'**
+  String get tipShelfCamera;
+
+  /// No description provided for @tipPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Your plan: see details, subscribe or upgrade'**
+  String get tipPlan;
+
+  /// No description provided for @guideAddBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap + to add an item. Enter the planned price now and the market price at checkout.'**
+  String get guideAddBody;
+
+  /// No description provided for @guideVoiceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the microphone and say your items, for example: \'1 kilo apples, 1 bread\'.'**
+  String get guideVoiceBody;
+
+  /// No description provided for @guideReceiptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a receipt to match its prices with the items on your list.'**
+  String get guideReceiptBody;
+
+  /// No description provided for @guidePlanBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the plan icon to see your plan, subscribe or upgrade.'**
+  String get guidePlanBody;
+
+  /// No description provided for @guideNext.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get guideNext;
+
+  /// No description provided for @guideDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get guideDone;
 }
 
 class _AppLocalizationsDelegate

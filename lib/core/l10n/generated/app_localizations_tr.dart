@@ -1106,4 +1106,40 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Alınan ürünler';
+
+  @override
+  String get tipReceiptScan =>
+      'Fiş tara: fişteki fiyatları listendeki ürünlerle eşleştirir';
+
+  @override
+  String get tipVoiceAdd =>
+      'Birden çok ürünü sesle söyle; eklemeden önce kontrol et';
+
+  @override
+  String get tipShelfCamera => 'Raf etiketindeki fiyatı kamerayla oku';
+
+  @override
+  String get tipPlan => 'Planını gör; abone ol ya da yükselt';
+
+  @override
+  String get guideAddBody =>
+      '+ ile ürün ekle. Planlanan fiyatı şimdi, çarşıdaki fiyatı kasada gir.';
+
+  @override
+  String get guideVoiceBody =>
+      'Mikrofona dokun ve ürünleri söyle, örneğin: \'1 kilo elma, 1 ekmek\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Fişi tara; fiyatlar listendeki ürünlerle eşleşsin.';
+
+  @override
+  String get guidePlanBody =>
+      'Plan simgesine dokunarak planını gör, abone ol ya da yükselt.';
+
+  @override
+  String get guideNext => 'Tamam';
+
+  @override
+  String get guideDone => 'Başla';
 }

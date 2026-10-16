@@ -1106,4 +1106,41 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Kupljeni izdelki';
+
+  @override
+  String get tipReceiptScan =>
+      'Optično preberite račun in ujemajte cene s seznamom';
+
+  @override
+  String get tipVoiceAdd =>
+      'Izgovorite enega ali več izdelkov in jih pred dodajanjem preglejte';
+
+  @override
+  String get tipShelfCamera => 'S kamero preberite ceno z nalepke na polici';
+
+  @override
+  String get tipPlan =>
+      'Vaš načrt: oglejte si podrobnosti, naročite se ali nadgradite';
+
+  @override
+  String get guideAddBody =>
+      'Tapnite +, da dodate izdelek. Vnesite načrtovano ceno zdaj, tržno ceno pa na blagajni.';
+
+  @override
+  String get guideVoiceBody =>
+      'Tapnite mikrofon in povejte izdelke, na primer: »1 kg jabolk, 1 kruh«.';
+
+  @override
+  String get guideReceiptBody =>
+      'Optično preberite račun, da ujamete njegove cene z izdelki na seznamu.';
+
+  @override
+  String get guidePlanBody =>
+      'Tapnite ikono načrta, da si ogledate načrt, se naročite ali nadgradite.';
+
+  @override
+  String get guideNext => 'V redu';
+
+  @override
+  String get guideDone => 'Začni';
 }

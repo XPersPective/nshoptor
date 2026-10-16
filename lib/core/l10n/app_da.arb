@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} lister · {items} varer · {entries} køb",
   "voiceModelDownloading": "Stemmemodellen til dette sprog downloades. Prøv igen om et minut.",
   "historyThisWeek": "Denne uge",
-  "historyProductsSection": "Købte varer"
+  "historyProductsSection": "Købte varer",
+  "tipReceiptScan": "Scan en kvittering for at matche priserne med din liste",
+  "tipVoiceAdd": "Sig et eller flere varer, og gennemgå dem før du tilføjer dem",
+  "tipShelfCamera": "Læs prisen fra hyldeskiltet med kameraet",
+  "tipPlan": "Din plan: se detaljer, abonnér eller opgradér",
+  "guideAddBody": "Tryk + for at tilføje en vare. Indtast den planlagte pris nu og markedsprisen ved kassen.",
+  "guideVoiceBody": "Tryk på mikrofonen og sig dine varer, f.eks.: '1 kilo æbler, 1 brød'.",
+  "guideReceiptBody": "Scan en kvittering for at matche priserne med varerne på din liste.",
+  "guidePlanBody": "Tryk på planikonet for at se din plan, abonnere eller opgradere.",
+  "guideNext": "OK",
+  "guideDone": "Start"
 }

@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} liste · {items} artiklar · {entries} köp",
   "voiceModelDownloading": "Download del modello vocale per questa lingua in corso. Riprova tra un minuto.",
   "historyThisWeek": "Questa settimana",
-  "historyProductsSection": "Prodotti acquistati"
+  "historyProductsSection": "Prodotti acquistati",
+  "tipReceiptScan": "Scansiona lo scontrino per confrontare i prezzi con la tua lista",
+  "tipVoiceAdd": "Dì uno o più articoli e controllali prima di aggiungerli",
+  "tipShelfCamera": "Leggi il prezzo dal cartellino dello scaffale con la fotocamera",
+  "tipPlan": "Il tuo piano: vedi i dettagli, abbonati o passa a un piano superiore",
+  "guideAddBody": "Tocca + per aggiungere un articolo. Inserisci ora il prezzo previsto e alla cassa quello di mercato.",
+  "guideVoiceBody": "Tocca il microfono e di' gli articoli, per esempio: '1 kg di mele, 1 pane'.",
+  "guideReceiptBody": "Scansiona uno scontrino per abbinare i suoi prezzi agli articoli della lista.",
+  "guidePlanBody": "Tocca l'icona del piano per vedere il piano, abbonarti o passare a un piano superiore.",
+  "guideNext": "OK",
+  "guideDone": "Inizia"
 }

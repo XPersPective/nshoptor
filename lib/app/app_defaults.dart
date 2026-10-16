@@ -26,6 +26,15 @@ class AppDefaults {
     }
   }
 
+  static const _guideSeenKey = 'guide.seen';
+
+  /// Ilk açılış rehberi bir kez gösterilir; store yoksa (testler) gösterilmez.
+  static bool guideSeen() {
+    final store = _store;
+    return store == null || (store.getBool(_guideSeenKey) ?? false);
+  }
+  static void markGuideSeen() => _store?.setBool(_guideSeenKey, true);
+
   static bool keepScreenAwake() => _store?.getBool(SettingsRepository.keepAwakeKey) ?? false;
   static void setKeepScreenAwake(bool value) => _store?.setBool(SettingsRepository.keepAwakeKey, value);
 

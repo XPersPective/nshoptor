@@ -1110,4 +1110,42 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Pirkti produktai';
+
+  @override
+  String get tipReceiptScan =>
+      'Nuskaitykite kvitą, kad kainos atitiktų jūsų sąrašą';
+
+  @override
+  String get tipVoiceAdd =>
+      'Pasakykite vieną ar daugiau prekių ir patikrinkite prieš pridėdami';
+
+  @override
+  String get tipShelfCamera =>
+      'Perskaitykite kainą nuo lentynos etiketės kamera';
+
+  @override
+  String get tipPlan =>
+      'Jūsų planas: žiūrėkite informaciją, prenumeruokite ar pakelkite';
+
+  @override
+  String get guideAddBody =>
+      'Palieskite +, kad pridėtumėte prekę. Įveskite planuojamą kainą dabar, o rinkos kainą — kasoje.';
+
+  @override
+  String get guideVoiceBody =>
+      'Palieskite mikrofoną ir pasakykite prekes, pavyzdžiui: „1 kg obuolių, 1 duona“.';
+
+  @override
+  String get guideReceiptBody =>
+      'Nuskaitykite kvitą, kad jo kainos atitiktų jūsų sąrašo prekes.';
+
+  @override
+  String get guidePlanBody =>
+      'Palieskite plano piktogramą, kad pamatytumėte planą, prenumeruotumėte ar pakeltumėte.';
+
+  @override
+  String get guideNext => 'Gerai';
+
+  @override
+  String get guideDone => 'Pradėti';
 }

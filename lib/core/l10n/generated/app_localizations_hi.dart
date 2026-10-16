@@ -1110,4 +1110,40 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'खरीदे गए उत्पाद';
+
+  @override
+  String get tipReceiptScan => 'रसीद स्कैन करके कीमतें अपनी सूची से मिलाएँ';
+
+  @override
+  String get tipVoiceAdd =>
+      'एक या अधिक सामान बोलें, फिर जोड़ने से पहले जाँच लें';
+
+  @override
+  String get tipShelfCamera => 'कैमरे से शेल्फ़ लेबल की कीमत पढ़ें';
+
+  @override
+  String get tipPlan =>
+      'आपकी योजना: विवरण देखें, सब्सक्राइब करें या अपग्रेड करें';
+
+  @override
+  String get guideAddBody =>
+      'सामान जोड़ने के लिए + दबाएँ। योजनाबद्ध कीमत अभी और बाज़ार की कीमत काउंटर पर दर्ज करें।';
+
+  @override
+  String get guideVoiceBody =>
+      'माइक्रोफ़ोन दबाकर सामान बोलें, जैसे: \'1 किलो सेब, 1 ब्रेड\'।';
+
+  @override
+  String get guideReceiptBody =>
+      'रसीद स्कैन करके उसकी कीमतें अपनी सूची के सामान से मिलाएँ।';
+
+  @override
+  String get guidePlanBody =>
+      'योजना देखने, सब्सक्राइब करने या अपग्रेड करने के लिए योजना आइकन दबाएँ।';
+
+  @override
+  String get guideNext => 'ठीक है';
+
+  @override
+  String get guideDone => 'शुरू करें';
 }

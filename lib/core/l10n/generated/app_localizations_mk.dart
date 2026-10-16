@@ -1110,4 +1110,42 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Купени производи';
+
+  @override
+  String get tipReceiptScan =>
+      'Скенирајте сметка за да ги усогласите цените со вашата листа';
+
+  @override
+  String get tipVoiceAdd =>
+      'Кажете еден или повеќе производи и проверете ги пред додавање';
+
+  @override
+  String get tipShelfCamera =>
+      'Прочитајте ја цената од етикетата на полицата со камера';
+
+  @override
+  String get tipPlan =>
+      'Вашиот план: погледнете детали, претплатете се или надградете';
+
+  @override
+  String get guideAddBody =>
+      'Допрете + за да додадете производ. Внесете ја планираната цена сега, а пазарната на благајната.';
+
+  @override
+  String get guideVoiceBody =>
+      'Допрете го микрофонот и кажете ги производите, на пример: „1 кг јаболка, 1 леб“.';
+
+  @override
+  String get guideReceiptBody =>
+      'Скенирајте сметка за да ги усогласите нејзините цени со производите на листата.';
+
+  @override
+  String get guidePlanBody =>
+      'Допрете ја иконата на планот за да го видите планот, да се претплатите или надградите.';
+
+  @override
+  String get guideNext => 'Во ред';
+
+  @override
+  String get guideDone => 'Започни';
 }

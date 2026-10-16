@@ -1072,4 +1072,34 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get historyProductsSection => '已购商品';
+
+  @override
+  String get tipReceiptScan => '扫描小票，将价格与清单匹配';
+
+  @override
+  String get tipVoiceAdd => '说出一个或多个商品，添加前先检查';
+
+  @override
+  String get tipShelfCamera => '用相机读取货架标签上的价格';
+
+  @override
+  String get tipPlan => '您的套餐：查看详情、订阅或升级';
+
+  @override
+  String get guideAddBody => '点按 + 添加商品。现在输入计划价格，结账时输入市场价格。';
+
+  @override
+  String get guideVoiceBody => '点按麦克风并说出商品，例如：“1 公斤苹果，1 个面包”。';
+
+  @override
+  String get guideReceiptBody => '扫描小票，将其价格与清单中的商品匹配。';
+
+  @override
+  String get guidePlanBody => '点按套餐图标，查看套餐、订阅或升级。';
+
+  @override
+  String get guideNext => '好的';
+
+  @override
+  String get guideDone => '开始';
 }

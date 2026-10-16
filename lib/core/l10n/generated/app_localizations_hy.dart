@@ -1111,4 +1111,41 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Գնված ապրանքներ';
+
+  @override
+  String get tipReceiptScan =>
+      'Սկանավորեք կտրոնը՝ գները ձեր ցուցակի հետ համեմատելու համար';
+
+  @override
+  String get tipVoiceAdd =>
+      'Ասեք մեկ կամ մի քանի ապրանք և ստուգեք դրանք ավելացնելուց առաջ';
+
+  @override
+  String get tipShelfCamera => 'Կամերայով կարդացեք գինը դարակի պիտակից';
+
+  @override
+  String get tipPlan =>
+      'Ձեր պլանը՝ տեսեք մանրամասները, բաժանորդագրվեք կամ բարձրացրեք';
+
+  @override
+  String get guideAddBody =>
+      'Հպեք + ՝ ապրանք ավելացնելու համար։ Մուտքագրեք պլանավորված գինը հիմա, իսկ շուկայականը՝ դրամարկղում։';
+
+  @override
+  String get guideVoiceBody =>
+      'Հպեք խոսափողին և ասեք ապրանքները, օրինակ՝ «1 կգ խնձոր, 1 հաց»։';
+
+  @override
+  String get guideReceiptBody =>
+      'Սկանավորեք կտրոնը, որ դրա գները համապատասխանեցվեն ձեր ցուցակի ապրանքներին։';
+
+  @override
+  String get guidePlanBody =>
+      'Հպեք պլանի պատկերակին՝ պլանը տեսնելու, բաժանորդագրվելու կամ բարձրացնելու համար։';
+
+  @override
+  String get guideNext => 'Լավ';
+
+  @override
+  String get guideDone => 'Սկսել';
 }

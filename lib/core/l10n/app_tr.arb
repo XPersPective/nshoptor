@@ -365,5 +365,15 @@
   "backupPreviewCounts": "{lists} liste · {items} ürün · {entries} satın alım",
   "voiceModelDownloading": "Bu dil için ses modeli indiriliyor. Bir dakika sonra tekrar dene.",
   "historyThisWeek": "Bu hafta",
-  "historyProductsSection": "Alınan ürünler"
+  "historyProductsSection": "Alınan ürünler",
+  "tipReceiptScan": "Fiş tara: fişteki fiyatları listendeki ürünlerle eşleştirir",
+  "tipVoiceAdd": "Birden çok ürünü sesle söyle; eklemeden önce kontrol et",
+  "tipShelfCamera": "Raf etiketindeki fiyatı kamerayla oku",
+  "tipPlan": "Planını gör; abone ol ya da yükselt",
+  "guideAddBody": "+ ile ürün ekle. Planlanan fiyatı şimdi, çarşıdaki fiyatı kasada gir.",
+  "guideVoiceBody": "Mikrofona dokun ve ürünleri söyle, örneğin: '1 kilo elma, 1 ekmek'.",
+  "guideReceiptBody": "Fişi tara; fiyatlar listendeki ürünlerle eşleşsin.",
+  "guidePlanBody": "Plan simgesine dokunarak planını gör, abone ol ya da yükselt.",
+  "guideNext": "Tamam",
+  "guideDone": "Başla"
 }

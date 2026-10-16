@@ -1106,4 +1106,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Products bought';
+
+  @override
+  String get tipReceiptScan =>
+      'Scan a receipt to match its prices with your list';
+
+  @override
+  String get tipVoiceAdd =>
+      'Speak one or more items, then review them before adding';
+
+  @override
+  String get tipShelfCamera =>
+      'Read the price from a shelf label with the camera';
+
+  @override
+  String get tipPlan => 'Your plan: see details, subscribe or upgrade';
+
+  @override
+  String get guideAddBody =>
+      'Tap + to add an item. Enter the planned price now and the market price at checkout.';
+
+  @override
+  String get guideVoiceBody =>
+      'Tap the microphone and say your items, for example: \'1 kilo apples, 1 bread\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Scan a receipt to match its prices with the items on your list.';
+
+  @override
+  String get guidePlanBody =>
+      'Tap the plan icon to see your plan, subscribe or upgrade.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Start';
 }

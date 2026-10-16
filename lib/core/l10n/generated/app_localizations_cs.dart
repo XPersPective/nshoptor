@@ -1106,4 +1106,40 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Koupené produkty';
+
+  @override
+  String get tipReceiptScan => 'Naskenujte účtenku a spárujte ceny se seznamem';
+
+  @override
+  String get tipVoiceAdd =>
+      'Řekněte jednu nebo více položek a před přidáním je zkontrolujte';
+
+  @override
+  String get tipShelfCamera => 'Přečtěte cenu z cenovky na regálu fotoaparátem';
+
+  @override
+  String get tipPlan =>
+      'Váš tarif: zobrazte podrobnosti, předplaťte si nebo přejděte na vyšší';
+
+  @override
+  String get guideAddBody =>
+      'Klepnutím na + přidáte položku. Plánovanou cenu zadejte hned a tržní cenu u pokladny.';
+
+  @override
+  String get guideVoiceBody =>
+      'Klepněte na mikrofon a řekněte položky, například: \'1 kilo jablek, 1 chleba\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Naskenujte účtenku a spárujte její ceny s položkami na seznamu.';
+
+  @override
+  String get guidePlanBody =>
+      'Klepnutím na ikonu tarifu zobrazíte tarif, předplatíte si ho nebo přejdete na vyšší.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Začít';
 }

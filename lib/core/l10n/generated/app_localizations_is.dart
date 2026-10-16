@@ -1106,4 +1106,41 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Keyptar vörur';
+
+  @override
+  String get tipReceiptScan =>
+      'Skannaðu kvittun til að bera saman verðin við listann þinn';
+
+  @override
+  String get tipVoiceAdd =>
+      'Segðu einn eða fleiri hluti og skoðaðu þá áður en þú bætir þeim við';
+
+  @override
+  String get tipShelfCamera => 'Lestu verðið af hillumerkinu með myndavélinni';
+
+  @override
+  String get tipPlan =>
+      'Áskriftin þín: skoðaðu upplýsingar, gerðu áskrift eða uppfærðu';
+
+  @override
+  String get guideAddBody =>
+      'Ýttu á + til að bæta við hlut. Settu inn áætlað verð núna og markaðsverð við kassann.';
+
+  @override
+  String get guideVoiceBody =>
+      'Ýttu á hljóðnemann og segðu hlutina, til dæmis: \'1 kíló epli, 1 brauð\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Skannaðu kvittun til að para verðin við hlutina á listanum þínum.';
+
+  @override
+  String get guidePlanBody =>
+      'Ýttu á áskriftartáknið til að sjá áskriftina, gerast áskrifandi eða uppfæra.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Byrja';
 }

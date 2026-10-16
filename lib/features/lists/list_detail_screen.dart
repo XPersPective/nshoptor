@@ -599,7 +599,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                     prefixIcon: const Icon(Icons.add),
                                     suffixIcon: IconButton(
                                       key: const Key('detail_quick_list'),
-                                      tooltip: l10n.voiceStartListening,
+                                      tooltip: l10n.tipVoiceAdd,
                                       onPressed: _busy
                                           ? null
                                           : () => _openQuickList(
@@ -614,7 +614,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                               const SizedBox(width: 8),
                               IconButton.filledTonal(
                                 key: const Key('detail_receipt_button'),
-                                tooltip: l10n.scanReceiptAction,
+                                tooltip: l10n.tipReceiptScan,
                                 onPressed: _busy
                                     ? null
                                     : () => _scanReceipt(context),

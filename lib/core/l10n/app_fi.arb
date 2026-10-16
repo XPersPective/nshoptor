@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} listaa · {items} tuotetta · {entries} ostosta",
   "voiceModelDownloading": "Tämän kielen puhemallia ladataan. Yritä uudelleen minuutin kuluttua.",
   "historyThisWeek": "Tämä viikko",
-  "historyProductsSection": "Ostetut tuotteet"
+  "historyProductsSection": "Ostetut tuotteet",
+  "tipReceiptScan": "Skannaa kuitti ja vertaa hintoja ostoslistaasi",
+  "tipVoiceAdd": "Sano yksi tai useampi tuote ja tarkista ne ennen lisäämistä",
+  "tipShelfCamera": "Lue hinta hyllyetiketistä kameralla",
+  "tipPlan": "Tilisi: katso tiedot, tilaa tai päivitä",
+  "guideAddBody": "Lisää tuote painamalla +. Syötä suunniteltu hinta nyt ja markkinahinta kassalla.",
+  "guideVoiceBody": "Paina mikrofonia ja sano tuotteet, esimerkiksi: '1 kg omenoita, 1 leipä'.",
+  "guideReceiptBody": "Skannaa kuitti, jotta sen hinnat täsmäävät listasi tuotteisiin.",
+  "guidePlanBody": "Napauta tilikuvaketta nähdäksesi tilisi, tilataksesi tai päivittääksesi.",
+  "guideNext": "OK",
+  "guideDone": "Aloita"
 }

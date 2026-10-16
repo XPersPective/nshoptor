@@ -306,7 +306,7 @@ void main() {
     ));
     await settle(tester);
     final badge = tester.widget(find.byKey(const Key('home_plan_badge')));
-    expect(badge is ActionChip ? badge.tooltip : (badge as IconButton).tooltip, 'Ücretsiz');
+    expect(badge is ActionChip ? badge.tooltip : (badge as IconButton).tooltip, 'Ücretsiz · Planını gör; abone ol ya da yükselt');
     await tester.tap(find.byKey(const Key('home_plan_badge')));
     // Plan store offers load in the background; pumping avoids waiting on them.
     await tester.pump();

@@ -102,7 +102,7 @@ class ItemPriceCell extends StatelessWidget {
       if (onScan != null)
         IconButton(
           key: const Key('price_scan'),
-          tooltip: l10n.scanPriceLabel,
+          tooltip: l10n.tipShelfCamera,
           icon: const Icon(Icons.photo_camera_outlined, size: 22),
           onPressed: onScan,
         ),

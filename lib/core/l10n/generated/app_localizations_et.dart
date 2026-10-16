@@ -1106,4 +1106,40 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Ostetud tooted';
+
+  @override
+  String get tipReceiptScan =>
+      'Skaneeri kviitung, et sobitada hinnad nimekirjaga';
+
+  @override
+  String get tipVoiceAdd =>
+      'Ütle üks või mitu toodet ja kontrolli neid enne lisamist';
+
+  @override
+  String get tipShelfCamera => 'Loe hind riiulisildilt kaameraga';
+
+  @override
+  String get tipPlan => 'Sinu plaan: vaata üksikasju, telli või uuenda';
+
+  @override
+  String get guideAddBody =>
+      'Puuduta +, et lisada toode. Sisesta kavandatud hind kohe ja turuhind kassas.';
+
+  @override
+  String get guideVoiceBody =>
+      'Puuduta mikrofoni ja ütle tooted, näiteks: \'1 kg õunu, 1 leib\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Skaneeri kviitung, et sobitada selle hinnad nimekirja toodetega.';
+
+  @override
+  String get guidePlanBody =>
+      'Puuduta plaani ikooni, et vaadata oma plaani, tellida või uuendada.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Alusta';
 }

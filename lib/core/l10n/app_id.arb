@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} daftar · {items} item · {entries} pembelian",
   "voiceModelDownloading": "Model suara untuk bahasa ini sedang diunduh. Coba lagi dalam satu menit.",
   "historyThisWeek": "Minggu ini",
-  "historyProductsSection": "Produk yang dibeli"
+  "historyProductsSection": "Produk yang dibeli",
+  "tipReceiptScan": "Pindai struk untuk mencocokkan harga dengan daftar Anda",
+  "tipVoiceAdd": "Ucapkan satu atau lebih barang, lalu periksa sebelum menambahkan",
+  "tipShelfCamera": "Baca harga dari label rak dengan kamera",
+  "tipPlan": "Paket Anda: lihat detail, berlangganan, atau tingkatkan",
+  "guideAddBody": "Ketuk + untuk menambah barang. Isi harga rencana sekarang dan harga pasar saat di kasir.",
+  "guideVoiceBody": "Ketuk mikrofon dan ucapkan barangnya, misalnya: '1 kg apel, 1 roti'.",
+  "guideReceiptBody": "Pindai struk untuk mencocokkan harganya dengan barang di daftar Anda.",
+  "guidePlanBody": "Ketuk ikon paket untuk melihat paket Anda, berlangganan, atau meningkatkan.",
+  "guideNext": "OK",
+  "guideDone": "Mulai"
 }

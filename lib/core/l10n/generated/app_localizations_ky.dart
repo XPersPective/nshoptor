@@ -1108,4 +1108,41 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Сатып алынган товарлар';
+
+  @override
+  String get tipReceiptScan =>
+      'Чекти сканерлеп, бааларды тизмеңиз менен салыштырыңыз';
+
+  @override
+  String get tipVoiceAdd =>
+      'Бир же бир нече товарды айтып, кошоръ алдында текшериңиз';
+
+  @override
+  String get tipShelfCamera => 'Камера менен текчедеги баа этикеткасын окуңуз';
+
+  @override
+  String get tipPlan =>
+      'Сиздин план: чоо-жайын көрүңүз, жазылыңыз же жогорулатыңыз';
+
+  @override
+  String get guideAddBody =>
+      'Товар кошуу үчүн + басыңыз. Пландалган баганы азыр, рыноктук баганы кассада киргизиңиз.';
+
+  @override
+  String get guideVoiceBody =>
+      'Микрофонду басып, товарларды айтыңыз, мисалы: «1 кг алма, 1 нан».';
+
+  @override
+  String get guideReceiptBody =>
+      'Чекти сканерлеп, анын бааларын тизмеңиздеги товарлар менен салыштырыңыз.';
+
+  @override
+  String get guidePlanBody =>
+      'Планды көрүү, жазылуу же жогорулатуу үчүн план белгичесин басыңыз.';
+
+  @override
+  String get guideNext => 'Жакшы';
+
+  @override
+  String get guideDone => 'Баштоо';
 }

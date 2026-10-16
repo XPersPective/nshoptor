@@ -1105,4 +1105,39 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'ખરીદેલા ઉત્પાદનો';
+
+  @override
+  String get tipReceiptScan => 'રસીદ સ્કેન કરીને કિંમતો તમારી યાદી સાથે મેળવો';
+
+  @override
+  String get tipVoiceAdd => 'એક કે વધુ વસ્તુઓ બોલો અને ઉમેરતા પહેલાં તપાસો';
+
+  @override
+  String get tipShelfCamera => 'કૅમેરાથી શેલ્ફ લેબલ પરથી કિંમત વાંચો';
+
+  @override
+  String get tipPlan =>
+      'તમારો પ્લાન: વિગતો જુઓ, સબ્સ્ક્રાઇબ કરો અથવા અપગ્રેડ કરો';
+
+  @override
+  String get guideAddBody =>
+      'વસ્તુ ઉમેરવા + દબાવો. આયોજિત કિંમત હમણાં અને બજાર કિંમત ચેકઆઉટ પર દાખલ કરો.';
+
+  @override
+  String get guideVoiceBody =>
+      'માઇક્રોફોન દબાવો અને વસ્તુઓ બોલો, જેમ કે: \'1 કિલો સફરજન, 1 બ્રેડ\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'તમારી યાદીની વસ્તુઓ સાથે કિંમતો મેળવવા રસીદ સ્કેન કરો.';
+
+  @override
+  String get guidePlanBody =>
+      'તમારો પ્લાન જોવા, સબ્સ્ક્રાઇબ કરવા અથવા અપગ્રેડ કરવા પ્લાન આઇકન દબાવો.';
+
+  @override
+  String get guideNext => 'ઓકે';
+
+  @override
+  String get guideDone => 'શરૂ કરો';
 }

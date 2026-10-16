@@ -1107,4 +1107,41 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'വാങ്ങിയ ഉൽപ്പന്നങ്ങൾ';
+
+  @override
+  String get tipReceiptScan =>
+      'രസീത് സ്കാൻ ചെയ്ത് വില നിങ്ങളുടെ പട്ടികയുമായി ഒത്തുനോക്കുക';
+
+  @override
+  String get tipVoiceAdd =>
+      'ഒന്നോ അതിലധികമോ ഇനങ്ങൾ പറയുക, ചേർക്കുന്നതിന് മുമ്പ് പരിശോധിക്കുക';
+
+  @override
+  String get tipShelfCamera => 'ക്യാമറ ഉപയോഗിച്ച് ഷെൽഫ് ലേബലിലെ വില വായിക്കുക';
+
+  @override
+  String get tipPlan =>
+      'നിങ്ങളുടെ പ്ലാൻ: വിവരങ്ങൾ കാണുക, സബ്സ്ക്രൈബ് ചെയ്യുക അല്ലെങ്കിൽ അപ്ഗ്രേഡ് ചെയ്യുക';
+
+  @override
+  String get guideAddBody =>
+      'ഇനം ചേർക്കാൻ + തൊടുക. ആസൂത്രിത വില ഇപ്പോഴും വിപണി വില ചെക്ക്ഔട്ടിലും നൽകുക.';
+
+  @override
+  String get guideVoiceBody =>
+      'മൈക്രോഫോൺ തൊട്ട് ഇനങ്ങൾ പറയുക, ഉദാഹരണം: \'1 കിലോ ആപ്പിൾ, 1 ബ്രെഡ്\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'രസീത് സ്കാൻ ചെയ്ത് അതിലെ വില നിങ്ങളുടെ പട്ടികയിലെ ഇനങ്ങളുമായി ഒത്തുനോക്കുക.';
+
+  @override
+  String get guidePlanBody =>
+      'പ്ലാൻ കാണാനും സബ്സ്ക്രൈബ് ചെയ്യാനും അപ്ഗ്രേഡ് ചെയ്യാനും പ്ലാൻ ഐക്കൺ തൊടുക.';
+
+  @override
+  String get guideNext => 'ശരി';
+
+  @override
+  String get guideDone => 'ആരംഭിക്കുക';
 }

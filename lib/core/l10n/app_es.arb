@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} listas · {items} artículos · {entries} compras",
   "voiceModelDownloading": "Se está descargando el modelo de voz de este idioma. Vuelve a intentarlo en un minuto.",
   "historyThisWeek": "Esta semana",
-  "historyProductsSection": "Productos comprados"
+  "historyProductsSection": "Productos comprados",
+  "tipReceiptScan": "Escanea un ticket para cruzar sus precios con tu lista",
+  "tipVoiceAdd": "Di uno o más artículos y revísalos antes de añadirlos",
+  "tipShelfCamera": "Lee el precio de la etiqueta del estante con la cámara",
+  "tipPlan": "Tu plan: ver detalles, suscribirte o mejorar",
+  "guideAddBody": "Toca + para añadir un artículo. Escribe ahora el precio previsto y el precio de mercado en caja.",
+  "guideVoiceBody": "Toca el micrófono y di tus artículos, por ejemplo: '1 kilo de manzanas, 1 pan'.",
+  "guideReceiptBody": "Escanea un ticket para cruzar sus precios con los artículos de tu lista.",
+  "guidePlanBody": "Toca el icono del plan para ver tu plan, suscribirte o mejorar.",
+  "guideNext": "Vale",
+  "guideDone": "Empezar"
 }

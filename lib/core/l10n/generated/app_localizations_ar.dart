@@ -1097,4 +1097,38 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'المنتجات المشتراة';
+
+  @override
+  String get tipReceiptScan => 'امسح الإيصال لمطابقة أسعاره مع قائمتك';
+
+  @override
+  String get tipVoiceAdd => 'قل عنصرًا أو أكثر، ثم راجعها قبل الإضافة';
+
+  @override
+  String get tipShelfCamera => 'اقرأ السعر من ملصق الرف بالكاميرا';
+
+  @override
+  String get tipPlan => 'خطتك: اعرض التفاصيل واشترك أو قم بالترقية';
+
+  @override
+  String get guideAddBody =>
+      'اضغط + لإضافة عنصر. أدخل السعر المخطط الآن وسعر السوق عند الدفع.';
+
+  @override
+  String get guideVoiceBody =>
+      'اضغط الميكروفون وقل عناصرك، مثلًا: «كيلو تفاح، رغيف خبز».';
+
+  @override
+  String get guideReceiptBody =>
+      'امسح الإيصال لمطابقة أسعاره مع العناصر في قائمتك.';
+
+  @override
+  String get guidePlanBody =>
+      'اضغط أيقونة الخطة لعرض خطتك أو الاشتراك أو الترقية.';
+
+  @override
+  String get guideNext => 'حسنًا';
+
+  @override
+  String get guideDone => 'ابدأ';
 }

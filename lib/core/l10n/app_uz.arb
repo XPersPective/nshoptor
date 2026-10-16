@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} ro'yxat · {items} mahsulot · {entries} xarid",
   "voiceModelDownloading": "Bu til uchun ovoz modeli yuklab olinmoqda. Bir daqiqadan so‘ng qayta urinib ko‘ring.",
   "historyThisWeek": "Shu hafta",
-  "historyProductsSection": "Sotib olingan mahsulotlar"
+  "historyProductsSection": "Sotib olingan mahsulotlar",
+  "tipReceiptScan": "Chekni skanerlab, narxlarni ro'yxatingiz bilan solishtiring",
+  "tipVoiceAdd": "Bir yoki bir nechta mahsulot ayting va qo'shishdan oldin tekshiring",
+  "tipShelfCamera": "Kamera bilan tokcha yorlig'idagi narxni o'qing",
+  "tipPlan": "Sizning tarifingiz: tafsilotlarni ko'ring, obuna bo'ling yoki yangilang",
+  "guideAddBody": "Mahsulot qo'shish uchun + ni bosing. Rejalashtirilgan narxni hozir, bozor narxini kassada kiriting.",
+  "guideVoiceBody": "Mikrofonni bosing va mahsulotlarni ayting, masalan: '1 kg olma, 1 non'.",
+  "guideReceiptBody": "Chekni skanerlab, narxlarini ro'yxatingizdagi mahsulotlarga moslang.",
+  "guidePlanBody": "Tarifni ko'rish, obuna bo'lish yoki yangilash uchun tarif belgisini bosing.",
+  "guideNext": "OK",
+  "guideDone": "Boshlash"
 }

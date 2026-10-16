@@ -1107,4 +1107,40 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Købte varer';
+
+  @override
+  String get tipReceiptScan =>
+      'Scan en kvittering for at matche priserne med din liste';
+
+  @override
+  String get tipVoiceAdd =>
+      'Sig et eller flere varer, og gennemgå dem før du tilføjer dem';
+
+  @override
+  String get tipShelfCamera => 'Læs prisen fra hyldeskiltet med kameraet';
+
+  @override
+  String get tipPlan => 'Din plan: se detaljer, abonnér eller opgradér';
+
+  @override
+  String get guideAddBody =>
+      'Tryk + for at tilføje en vare. Indtast den planlagte pris nu og markedsprisen ved kassen.';
+
+  @override
+  String get guideVoiceBody =>
+      'Tryk på mikrofonen og sig dine varer, f.eks.: \'1 kilo æbler, 1 brød\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Scan en kvittering for at matche priserne med varerne på din liste.';
+
+  @override
+  String get guidePlanBody =>
+      'Tryk på planikonet for at se din plan, abonnere eller opgradere.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Start';
 }

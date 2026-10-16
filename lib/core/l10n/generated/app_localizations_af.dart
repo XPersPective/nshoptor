@@ -1109,4 +1109,41 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Gekoopte produkte';
+
+  @override
+  String get tipReceiptScan =>
+      'Skandeer \'n kwitansie om die pryse by jou lys te pas';
+
+  @override
+  String get tipVoiceAdd =>
+      'Praat een of meer items in, en kontroleer dit voor jy byvoeg';
+
+  @override
+  String get tipShelfCamera =>
+      'Lees die prys van \'n rakkaartjie met die kamera';
+
+  @override
+  String get tipPlan => 'Jou plan: sien besonderhede, teken in of opgradeer';
+
+  @override
+  String get guideAddBody =>
+      'Tik + om \'n item by te voeg. Tik die beplande prys nou in en die markprys by die kassa.';
+
+  @override
+  String get guideVoiceBody =>
+      'Tik die mikrofoon en sê jou items, byvoorbeeld: \'1 kilo appels, 1 brood\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Skandeer \'n kwitansie om die pryse by die items op jou lys te pas.';
+
+  @override
+  String get guidePlanBody =>
+      'Tik die plan-ikoon om jou plan te sien, in te teken of op te gradeer.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Begin';
 }

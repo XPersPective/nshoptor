@@ -1113,4 +1113,42 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Mga biniling produkto';
+
+  @override
+  String get tipReceiptScan =>
+      'I-scan ang resibo para itugma ang mga presyo sa iyong listahan';
+
+  @override
+  String get tipVoiceAdd =>
+      'Sabihin ang isa o higit pang item, saka suriin bago idagdag';
+
+  @override
+  String get tipShelfCamera =>
+      'Basahin ang presyo sa shelf label gamit ang kamera';
+
+  @override
+  String get tipPlan =>
+      'Ang iyong plano: tingnan ang detalye, mag-subscribe o mag-upgrade';
+
+  @override
+  String get guideAddBody =>
+      'I-tap ang + para magdagdag ng item. I-type ang plano na presyo ngayon at ang presyo sa merkado sa checkout.';
+
+  @override
+  String get guideVoiceBody =>
+      'I-tap ang mikropono at sabihin ang mga item, halimbawa: \'1 kilo na mansanas, 1 tinapay\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'I-scan ang resibo para itugma ang presyo nito sa mga item sa iyong listahan.';
+
+  @override
+  String get guidePlanBody =>
+      'I-tap ang icon ng plano para makita ang plano, mag-subscribe o mag-upgrade.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Simulan';
 }

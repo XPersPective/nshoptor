@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} listes · {items} articles · {entries} achats",
   "voiceModelDownloading": "Le modèle vocal de cette langue est en cours de téléchargement. Réessayez dans une minute.",
   "historyThisWeek": "Cette semaine",
-  "historyProductsSection": "Produits achetés"
+  "historyProductsSection": "Produits achetés",
+  "tipReceiptScan": "Scannez un ticket pour rapprocher les prix de votre liste",
+  "tipVoiceAdd": "Dictez un ou plusieurs articles, puis vérifiez-les avant de les ajouter",
+  "tipShelfCamera": "Lisez le prix sur l'étiquette du rayon avec l'appareil photo",
+  "tipPlan": "Votre forfait : voir les détails, s'abonner ou passer à un forfait supérieur",
+  "guideAddBody": "Touchez + pour ajouter un article. Saisissez le prix prévu maintenant et le prix du marché en caisse.",
+  "guideVoiceBody": "Touchez le micro et dictez vos articles, par exemple : « 1 kilo de pommes, 1 pain ».",
+  "guideReceiptBody": "Scannez un ticket pour rapprocher ses prix des articles de votre liste.",
+  "guidePlanBody": "Touchez l'icône du forfait pour voir votre forfait, vous abonner ou passer à un forfait supérieur.",
+  "guideNext": "OK",
+  "guideDone": "Commencer"
 }

@@ -1106,4 +1106,41 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Produk yang dibeli';
+
+  @override
+  String get tipReceiptScan =>
+      'Pindai struk untuk mencocokkan harga dengan daftar Anda';
+
+  @override
+  String get tipVoiceAdd =>
+      'Ucapkan satu atau lebih barang, lalu periksa sebelum menambahkan';
+
+  @override
+  String get tipShelfCamera => 'Baca harga dari label rak dengan kamera';
+
+  @override
+  String get tipPlan =>
+      'Paket Anda: lihat detail, berlangganan, atau tingkatkan';
+
+  @override
+  String get guideAddBody =>
+      'Ketuk + untuk menambah barang. Isi harga rencana sekarang dan harga pasar saat di kasir.';
+
+  @override
+  String get guideVoiceBody =>
+      'Ketuk mikrofon dan ucapkan barangnya, misalnya: \'1 kg apel, 1 roti\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Pindai struk untuk mencocokkan harganya dengan barang di daftar Anda.';
+
+  @override
+  String get guidePlanBody =>
+      'Ketuk ikon paket untuk melihat paket Anda, berlangganan, atau meningkatkan.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Mulai';
 }

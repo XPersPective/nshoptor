@@ -1109,4 +1109,40 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Kupione produkty';
+
+  @override
+  String get tipReceiptScan =>
+      'Zeskanuj paragon, aby dopasować ceny do swojej listy';
+
+  @override
+  String get tipVoiceAdd =>
+      'Powiedz jeden lub więcej produktów i sprawdź je przed dodaniem';
+
+  @override
+  String get tipShelfCamera => 'Odczytaj cenę z etykiety na półce aparatem';
+
+  @override
+  String get tipPlan => 'Twój plan: zobacz szczegóły, subskrybuj lub ulepsz';
+
+  @override
+  String get guideAddBody =>
+      'Dotknij +, aby dodać produkt. Wpisz planowaną cenę teraz, a cenę rynkową przy kasie.';
+
+  @override
+  String get guideVoiceBody =>
+      'Dotknij mikrofonu i powiedz produkty, na przykład: „1 kg jabłek, 1 chleb”.';
+
+  @override
+  String get guideReceiptBody =>
+      'Zeskanuj paragon, aby dopasować jego ceny do produktów na liście.';
+
+  @override
+  String get guidePlanBody =>
+      'Dotknij ikony planu, aby zobaczyć plan, zasubskrybować lub ulepszyć.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Start';
 }

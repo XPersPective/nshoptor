@@ -1106,4 +1106,41 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'خریدی گئی مصنوعات';
+
+  @override
+  String get tipReceiptScan =>
+      'رسید اسکین کریں اور قیمتیں اپنی فہرست سے ملائیں';
+
+  @override
+  String get tipVoiceAdd =>
+      'ایک یا زیادہ چیزیں بولیں، پھر شامل کرنے سے پہلے جانچ لیں';
+
+  @override
+  String get tipShelfCamera => 'کیمرے سے شیلف لیبل کی قیمت پڑھیں';
+
+  @override
+  String get tipPlan =>
+      'آپ کا پلان: تفصیلات دیکھیں، سبسکرائب کریں یا اپ گریڈ کریں';
+
+  @override
+  String get guideAddBody =>
+      'چیز شامل کرنے کے لیے + دبائیں۔ منصوبہ بند قیمت ابھی اور بازار کی قیمت کاؤنٹر پر درج کریں۔';
+
+  @override
+  String get guideVoiceBody =>
+      'مائیک دبائیں اور چیزیں بولیں، مثلاً: \'1 کلو سیب، 1 ڈبل روٹی\'۔';
+
+  @override
+  String get guideReceiptBody =>
+      'رسید اسکین کریں تاکہ اس کی قیمتیں آپ کی فہرست کی چیزوں سے ملیں۔';
+
+  @override
+  String get guidePlanBody =>
+      'پلان کا آئیکن دبائیں تاکہ پلان دیکھیں، سبسکرائب کریں یا اپ گریڈ کریں۔';
+
+  @override
+  String get guideNext => 'ٹھیک ہے';
+
+  @override
+  String get guideDone => 'شروع کریں';
 }

@@ -1112,4 +1112,42 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Produits achetés';
+
+  @override
+  String get tipReceiptScan =>
+      'Scannez un ticket pour rapprocher les prix de votre liste';
+
+  @override
+  String get tipVoiceAdd =>
+      'Dictez un ou plusieurs articles, puis vérifiez-les avant de les ajouter';
+
+  @override
+  String get tipShelfCamera =>
+      'Lisez le prix sur l\'étiquette du rayon avec l\'appareil photo';
+
+  @override
+  String get tipPlan =>
+      'Votre forfait : voir les détails, s\'abonner ou passer à un forfait supérieur';
+
+  @override
+  String get guideAddBody =>
+      'Touchez + pour ajouter un article. Saisissez le prix prévu maintenant et le prix du marché en caisse.';
+
+  @override
+  String get guideVoiceBody =>
+      'Touchez le micro et dictez vos articles, par exemple : « 1 kilo de pommes, 1 pain ».';
+
+  @override
+  String get guideReceiptBody =>
+      'Scannez un ticket pour rapprocher ses prix des articles de votre liste.';
+
+  @override
+  String get guidePlanBody =>
+      'Touchez l\'icône du forfait pour voir votre forfait, vous abonner ou passer à un forfait supérieur.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Commencer';
 }

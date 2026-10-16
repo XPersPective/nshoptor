@@ -1110,4 +1110,41 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Купленыя тавары';
+
+  @override
+  String get tipReceiptScan =>
+      'Адсканіруйце чэк, каб супаставіць цэны са спісам';
+
+  @override
+  String get tipVoiceAdd =>
+      'Прагаварыце адзін або некалькі тавараў і праверце іх перад даданнем';
+
+  @override
+  String get tipShelfCamera => 'Счытайце цану з цэнніка на паліцы камерай';
+
+  @override
+  String get tipPlan =>
+      'Ваш план: глядзіце падрабязнасці, падпішыцеся або павялічце';
+
+  @override
+  String get guideAddBody =>
+      'Націсніце +, каб дадаць тавар. Увядзіце плануемую цану зараз, а рыначную — на касе.';
+
+  @override
+  String get guideVoiceBody =>
+      'Націсніце мікрафон і назавіце тавары, напрыклад: «кілаграм яблыкаў, батон».';
+
+  @override
+  String get guideReceiptBody =>
+      'Адсканіруйце чэк, каб супаставіць цэны з таварамі вашага спісу.';
+
+  @override
+  String get guidePlanBody =>
+      'Націсніце значок плана, каб убачыць план, падпісацца або павялічыць.';
+
+  @override
+  String get guideNext => 'Добра';
+
+  @override
+  String get guideDone => 'Пачаць';
 }
