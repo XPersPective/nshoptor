@@ -972,13 +972,6 @@ class AppLocalizationsMl extends AppLocalizations {
       'വാങ്ങൽ പൂർത്തിയാകുന്നില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.';
 
   @override
-  String get planLifetimeTitle => 'ജീവിതകാലം മുഴുവൻ അഡ്-ഫ്രീ';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'ഒരിക്കൽ മാത്രം പേയ്‌മെന്റ്: അഡ്‌സ് ഇല്ല, ബാക്ക്‌അപ്പ്; AI സൗജന്യ ലൈംസിറ്റിയിൽ തുടരുന്നു';
-
-  @override
   String get plansRestore => 'വാങ്ങലുകൾ പുനഃസ്ഥാപിക്കുക';
 
   @override

@@ -971,13 +971,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'The purchase did not go through. Please try again.';
 
   @override
-  String get planLifetimeTitle => 'Ad-free for life';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'One-time payment: no ads, backup; AI stays on the free allowance';
-
-  @override
   String get plansRestore => 'Restore purchases';
 
   @override

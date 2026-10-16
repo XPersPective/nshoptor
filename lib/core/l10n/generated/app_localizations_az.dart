@@ -975,13 +975,6 @@ class AppLocalizationsAz extends AppLocalizations {
       'Alış həyata keçirilmədi. Zəhmət olmasa, yenidən cəhd edin.';
 
   @override
-  String get planLifetimeTitle => 'Ömürlük reklamsız';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Bir dəfə ödəniş: reklamsız, yedəkləmə; AI pulsuz limit daxilində qalır';
-
-  @override
   String get plansRestore => 'Alışları bərpa et';
 
   @override

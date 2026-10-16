@@ -972,13 +972,6 @@ class AppLocalizationsDa extends AppLocalizations {
       'Købet blev ikke gennemført. Prøv venligst igen.';
 
   @override
-  String get planLifetimeTitle => 'Reklamefri for livet';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Engangsbetaling: ingen reklamer, backup; AI forbliver på den gratis tilladelse';
-
-  @override
   String get plansRestore => 'Gendan køb';
 
   @override

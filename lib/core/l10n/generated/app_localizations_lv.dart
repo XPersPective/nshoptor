@@ -975,13 +975,6 @@ class AppLocalizationsLv extends AppLocalizations {
       'Pirkums neizdevās. Lūdzu, mēģiniet vēlreiz.';
 
   @override
-  String get planLifetimeTitle => 'Bez reklāmām uz visiem laikiem';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Vienreizēja samaksa: bez reklāmām, rezerves kopijas; AI paliek bezmaksas kvotā';
-
-  @override
   String get plansRestore => 'Atjaunot pirkumus';
 
   @override

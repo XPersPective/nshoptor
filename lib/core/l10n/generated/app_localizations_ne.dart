@@ -974,13 +974,6 @@ class AppLocalizationsNe extends AppLocalizations {
       'खरिद सफल भएन। कृपया फेरि प्रयास गर्नुहोस्।';
 
   @override
-  String get planLifetimeTitle => 'जीवनभर विज्ञापन-मुक्त';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'एकपटक भुक्तानी: विज्ञापन छैन, ब्याकअप; AI निःशुल्क सुविधा सीमामा रहन्छ';
-
-  @override
   String get plansRestore => 'खरिदहरू पुनर्स्थापना गर्नुहोस्';
 
   @override

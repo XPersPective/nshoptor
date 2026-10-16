@@ -971,13 +971,6 @@ class AppLocalizationsUr extends AppLocalizations {
       'خریداری کامیاب نہیں ہوئی۔ براہ کرم دوبارہ کوشش کریں۔';
 
   @override
-  String get planLifetimeTitle => 'زندگی بھر بغیر اشتہارات';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'ایک بار ادائیگی: بغیر اشتہارات، بیک اپ؛ AI مفت الاؤنس پر رہے گا';
-
-  @override
   String get plansRestore => 'خریداری بحال کریں';
 
   @override

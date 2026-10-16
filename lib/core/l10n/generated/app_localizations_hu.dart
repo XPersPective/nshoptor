@@ -974,13 +974,6 @@ class AppLocalizationsHu extends AppLocalizations {
       'A vásárlás sikertelen. Kérjük, próbálja meg újra.';
 
   @override
-  String get planLifetimeTitle => 'Reklámmentes életre szólóan';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Egyszeri fizetés: nincs reklám, biztonsági mentés; az AI a ingyenes keretkorlátig használható';
-
-  @override
   String get plansRestore => 'Vásárlások visszaállítása';
 
   @override

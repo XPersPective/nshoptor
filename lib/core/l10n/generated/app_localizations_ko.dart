@@ -953,13 +953,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get plansPurchaseFailed => '구매가 완료되지 않았습니다. 다시 시도해 주세요.';
 
   @override
-  String get planLifetimeTitle => '평생 광고 없음';
-
-  @override
-  String get planLifetimeSubtitle =>
-      '일시불: 광고 제거, 백업 지원; AI는 무료 요금제 범위 내에서 사용 가능';
-
-  @override
   String get plansRestore => '구독 복원';
 
   @override

@@ -975,13 +975,6 @@ class AppLocalizationsBg extends AppLocalizations {
       'Покупката не беше успешна. Моля, опитайте отново.';
 
   @override
-  String get planLifetimeTitle => 'Без реклами за цял живот';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Еднократно плащане: без реклами, архивиране; AI остава в рамките на безплатния лимит';
-
-  @override
   String get plansRestore => 'Възстановяване на покупки';
 
   @override

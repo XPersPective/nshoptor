@@ -975,13 +975,6 @@ class AppLocalizationsEl extends AppLocalizations {
       'Η αγορά δεν ολοκληρώθηκε. Παρακαλώ δοκιμάστε ξανά.';
 
   @override
-  String get planLifetimeTitle => 'Χωρίς διαφημίσεις για πάντα';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Μία φορά πληρωμή: χωρίς διαφημίσεις, αντίγραφα ασφαλείας· η χρήση AI παραμένει στο δωρεάν όριο';
-
-  @override
   String get plansRestore => 'Επαναφορά αγορών';
 
   @override

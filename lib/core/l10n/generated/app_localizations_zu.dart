@@ -979,14 +979,6 @@ class AppLocalizationsZu extends AppLocalizations {
       'Ukuthengiswa akuphumelelanga. Sicela uzame futhi.';
 
   @override
-  String get planLifetimeTitle =>
-      'Ngaphandle kwezibonakaliso kuze kube phakade';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Ukukhokha okukodwa: azikho izibonakaliso, ukubuyisa; AI ihlala emkhawulweni wamahhala';
-
-  @override
   String get plansRestore => 'Buyisela ukuthenga';
 
   @override

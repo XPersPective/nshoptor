@@ -367,8 +367,6 @@
   "plansStoreUnavailable": "The store is not reachable right now.",
   "retryAction": "Retry",
   "plansPurchaseFailed": "The purchase did not go through. Please try again.",
-  "planLifetimeTitle": "Ad-free for life",
-  "planLifetimeSubtitle": "One-time payment: no ads, backup; AI stays on the free allowance",
   "plansRestore": "Restore purchases",
   "plansLegal": "Subscriptions renew automatically until cancelled. Cancel any time in Google Play › Payments & subscriptions. Prices include the taxes shown by Google Play.",
   "planCurrent": "Current",

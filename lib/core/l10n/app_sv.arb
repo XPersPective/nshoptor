@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Butiken är inte tillgänglig just nu.",
   "retryAction": "Försök igen",
   "plansPurchaseFailed": "Köpet misslyckades. Försök igen.",
-  "planLifetimeTitle": "Reklamfritt för livet",
-  "planLifetimeSubtitle": "Engångsavgift: ingen reklam, säkerhetskopiering; AI kvarstår på gratisnivån",
   "plansRestore": "Återställ köp",
   "plansLegal": "Prenumerationer förnyas automatiskt tills de sägs upp. Avsluta när som helst i Google Play › Betalningar och prenumerationer. Priserna inkluderar de skatter som visas av Google Play.",
   "planCurrent": "Nuvarande",

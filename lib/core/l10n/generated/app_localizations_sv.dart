@@ -971,13 +971,6 @@ class AppLocalizationsSv extends AppLocalizations {
   String get plansPurchaseFailed => 'Köpet misslyckades. Försök igen.';
 
   @override
-  String get planLifetimeTitle => 'Reklamfritt för livet';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Engångsavgift: ingen reklam, säkerhetskopiering; AI kvarstår på gratisnivån';
-
-  @override
   String get plansRestore => 'Återställ köp';
 
   @override

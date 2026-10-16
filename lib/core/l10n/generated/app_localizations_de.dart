@@ -975,13 +975,6 @@ class AppLocalizationsDe extends AppLocalizations {
       'Der Kauf wurde nicht abgeschlossen. Bitte versuch es erneut.';
 
   @override
-  String get planLifetimeTitle => 'Lebenslang werbefrei';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Einmalzahlung: keine Werbung, Sicherung; KI im kostenlosen Kontingent';
-
-  @override
   String get plansRestore => 'Käufe wiederherstellen';
 
   @override

@@ -972,13 +972,6 @@ class AppLocalizationsIs extends AppLocalizations {
       'Kaupið tókst ekki. Vinsamlegast reyndu aftur.';
 
   @override
-  String get planLifetimeTitle => 'Auglýsingalaust fyrir ævi';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Einu sinnis greiðsla: engar auglýsingar, bakgrunnsherm; AI heldur áfram að vera ókeypis';
-
-  @override
   String get plansRestore => 'Endurheimta kaup';
 
   @override

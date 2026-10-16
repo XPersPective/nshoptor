@@ -6,13 +6,11 @@ import 'subscription_service.dart';
 /// Ücretsiz / Pro / Max (PB-055). Fiyatlar mağazadan; dürüst faydalar,
 /// geri yükleme, otomatik yenileme ve iptal bilgisi (Play politikası).
 class SubscriptionPaywall extends StatefulWidget {
-  const SubscriptionPaywall({super.key, required this.service, this.onLifetime, this.currentPlan});
+  const SubscriptionPaywall({super.key, required this.service, this.currentPlan});
 
   final SubscriptionService service;
 
   /// "Ömür boyu reklamsız" (napp_pro paywall'ı); null ise gizli.
-  final VoidCallback? onLifetime;
-
   /// Açık mevcut plan satırı (ör. "Mevcut: Pro · 7 gün ücretsiz").
   final String? currentPlan;
 
@@ -125,15 +123,6 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
               if (widget.service.lastError != null)
                 Text(l10n.plansPurchaseFailed, style: TextStyle(color: theme.colorScheme.error)),
               const SizedBox(height: 8),
-              if (widget.onLifetime != null)
-                ListTile(
-                  key: const Key('plan_lifetime'),
-                  leading: const Icon(Icons.block_outlined),
-                  title: Text(l10n.planLifetimeTitle),
-                  subtitle: Text(l10n.planLifetimeSubtitle),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: widget.onLifetime,
-                ),
               TextButton.icon(
                 key: const Key('plans_restore'),
                 onPressed: busy ? null : widget.service.restore,

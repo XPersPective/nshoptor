@@ -971,13 +971,6 @@ class AppLocalizationsEt extends AppLocalizations {
   String get plansPurchaseFailed => 'Ost ei õnnestunud. Palun proovi uuesti.';
 
   @override
-  String get planLifetimeTitle => 'Reklaamivaba kogu elu';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Ühekordne makse: ilma reklaamita, varundamine; AI jääb tasuta piirangusse';
-
-  @override
   String get plansRestore => 'Taasta ostud';
 
   @override

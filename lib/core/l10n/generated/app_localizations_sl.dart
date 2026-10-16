@@ -972,13 +972,6 @@ class AppLocalizationsSl extends AppLocalizations {
   String get plansPurchaseFailed => 'Nakup ni bil uspešen. Poskusite znova.';
 
   @override
-  String get planLifetimeTitle => 'Brez oglasov za vedno';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Enkratno plačilo: brez oglasov, varnostne kopije; AI ostane v okviru brezplačne dovoljene količine';
-
-  @override
   String get plansRestore => 'Obnovi nakupe';
 
   @override

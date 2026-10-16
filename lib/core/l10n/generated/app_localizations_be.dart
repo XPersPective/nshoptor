@@ -974,13 +974,6 @@ class AppLocalizationsBe extends AppLocalizations {
       'Пакупка не адбылася. Калі ласка, паспрабуйце яшчэ раз.';
 
   @override
-  String get planLifetimeTitle => 'Без рэкламы назаўжды';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Адзінаплатны ўнёсак: без рэкламы, бэкап; AI застаецца на бясплатным ліміце';
-
-  @override
   String get plansRestore => 'Аднавіць пакупкі';
 
   @override

@@ -973,13 +973,6 @@ class AppLocalizationsBs extends AppLocalizations {
       'Kupovina nije uspješna. Molimo pokušajte ponovo.';
 
   @override
-  String get planLifetimeTitle => 'Bez reklama zauvijek';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Jednokratna uplata: bez reklama, sigurnosne kopije; AI ostaje na besplatnom ograničenju';
-
-  @override
   String get plansRestore => 'Obnovi kupovine';
 
   @override

@@ -976,13 +976,6 @@ class AppLocalizationsNl extends AppLocalizations {
       'De aankoop is mislukt. Probeer het opnieuw.';
 
   @override
-  String get planLifetimeTitle => 'Reclamevrij voor altijd';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Eenmalige betaling: geen reclame, back-up; AI blijft binnen de gratis limiet';
-
-  @override
   String get plansRestore => 'Aankopen herstellen';
 
   @override

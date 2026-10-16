@@ -949,12 +949,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get plansPurchaseFailed => '购买未成功，请再试一次。';
 
   @override
-  String get planLifetimeTitle => '终身免广告';
-
-  @override
-  String get planLifetimeSubtitle => '一次性付费：无广告、支持备份；AI 使用仍受免费额度限制';
-
-  @override
   String get plansRestore => '恢复购买';
 
   @override

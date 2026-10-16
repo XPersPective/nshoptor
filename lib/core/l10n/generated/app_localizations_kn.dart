@@ -975,13 +975,6 @@ class AppLocalizationsKn extends AppLocalizations {
       'ಖರೀದಿ ಯಶಸ್ವಿಯಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
 
   @override
-  String get planLifetimeTitle => 'ಜೀವಮಾನದವರೆಗೆ ವಿಜ್ಞಾಪನೆಗಳಿಲ್ಲ';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'ಒಮ್ಮೆ ಪಾವತಿ: ವಿಜ್ಞಾಪನೆಗಳಿಲ್ಲ, ಬ್ಯಾಕಪ್; AI ನಿಃಶುಲ್ಕ ವ್ಯಾಪ್ತಿಯಲ್ಲಿರುತ್ತದೆ';
-
-  @override
   String get plansRestore => 'ಖರೀದಿಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಿ';
 
   @override

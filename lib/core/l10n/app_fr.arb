@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "La boutique est inaccessible pour le moment.",
   "retryAction": "Réessayer",
   "plansPurchaseFailed": "L'achat n'a pas abouti. Veuillez réessayer.",
-  "planLifetimeTitle": "Sans pub à vie",
-  "planLifetimeSubtitle": "Paiement unique : sans pub, sauvegarde ; l'IA reste au quota gratuit",
   "plansRestore": "Restaurer les achats",
   "plansLegal": "Les abonnements se renouvellent automatiquement jusqu'à résiliation. Résiliez à tout moment dans Google Play › Paiements et abonnements. Les prix incluent les taxes indiquées par Google Play.",
   "planCurrent": "Actuelle",

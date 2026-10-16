@@ -974,13 +974,6 @@ class AppLocalizationsVi extends AppLocalizations {
       'Giao dịch chưa thành công. Vui lòng thử lại.';
 
   @override
-  String get planLifetimeTitle => 'Không quảng cáo trọn đời';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Thanh toán một lần: không quảng cáo, sao lưu; AI vẫn dùng gói miễn phí';
-
-  @override
   String get plansRestore => 'Khôi phục giao dịch';
 
   @override

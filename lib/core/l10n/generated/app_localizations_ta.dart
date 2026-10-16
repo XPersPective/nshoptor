@@ -977,13 +977,6 @@ class AppLocalizationsTa extends AppLocalizations {
       'வாங்கல் வெற்றிகரமாக நடைபெறவில்லை. மீண்டும் முயற்சிக்கவும்.';
 
   @override
-  String get planLifetimeTitle => 'நிரந்தர விளம்பரம் இல்லாமல்';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'ஒருமுறை கட்டணம்: விளம்பரங்கள் இல்லை, பின்புலம்; AI இலவச வரம்பில் தொடரும்';
-
-  @override
   String get plansRestore => 'வாங்கல்களை மீட்டமைக்கவும்';
 
   @override

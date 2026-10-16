@@ -971,13 +971,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get plansPurchaseFailed => 'Покупка не прошла. Попробуйте ещё раз.';
 
   @override
-  String get planLifetimeTitle => 'Без рекламы навсегда';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Разовый платёж: без рекламы, резервная копия; ИИ — в бесплатном лимите';
-
-  @override
   String get plansRestore => 'Восстановить покупки';
 
   @override

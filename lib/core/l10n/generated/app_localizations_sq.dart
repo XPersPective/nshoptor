@@ -975,13 +975,6 @@ class AppLocalizationsSq extends AppLocalizations {
       'Blerja nuk u plotësua. Ju lutemi provoni përsëri.';
 
   @override
-  String get planLifetimeTitle => 'Pa reklama për gjithë jetën';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Pagesë njëherësh: pa reklama, backup; AI mbetet në kuotën falas';
-
-  @override
   String get plansRestore => 'Rikthe blerjet';
 
   @override

@@ -976,13 +976,6 @@ class AppLocalizationsHy extends AppLocalizations {
       'Գնումը չհաջողվեց: Խնդրում ենք կրկին փորձել:';
 
   @override
-  String get planLifetimeTitle => 'Առանց գովազդի միշտ';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Մեկանգամյա վճարում. առանց գովազդի, պատճենահանում; AI-ն մնում է անվճար սահմանաչափով';
-
-  @override
   String get plansRestore => 'Վերականգնել գնումները';
 
   @override

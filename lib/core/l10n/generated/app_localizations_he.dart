@@ -967,13 +967,6 @@ class AppLocalizationsHe extends AppLocalizations {
   String get plansPurchaseFailed => 'הרכישה לא הושלמה. אנא נסה שוב.';
 
   @override
-  String get planLifetimeTitle => 'ללא פרסומות לכל החיים';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'תשלום חד־פעמי: ללא פרסומות, גיבוי; AI נשאר במסגרת המותר בחינם';
-
-  @override
   String get plansRestore => 'שחזור רכישות';
 
   @override

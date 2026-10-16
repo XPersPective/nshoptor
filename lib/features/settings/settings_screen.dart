@@ -411,9 +411,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             label: _planLabel(AppLocalizations.of(ctx)),
             trial: _tier == Tier.pro && subs.inTrial(),
           ),
-          onLifetime: widget.proController?.hasLifetimePurchase == true
-              ? null
-              : () => _openPaywall(ctx),
         ),
       ),
     );

@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Pood ei ole praegu kättesaadav.",
   "retryAction": "Proovi uuesti",
   "plansPurchaseFailed": "Ost ei õnnestunud. Palun proovi uuesti.",
-  "planLifetimeTitle": "Reklaamivaba kogu elu",
-  "planLifetimeSubtitle": "Ühekordne makse: ilma reklaamita, varundamine; AI jääb tasuta piirangusse",
   "plansRestore": "Taasta ostud",
   "plansLegal": "Tellimused uuenevad automaatselt, kuni need tühistatakse. Tühistada saab igal ajal Google Play › Maksmine ja tellimused. Hinnad sisaldavad Google Play poolt näidatud makse.",
   "planCurrent": "Praegune",

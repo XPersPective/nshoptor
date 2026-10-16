@@ -977,13 +977,6 @@ class AppLocalizationsFil extends AppLocalizations {
       'Hindi matagumpay ang pagbili. Pakisubukan ulit.';
 
   @override
-  String get planLifetimeTitle => 'Walang ads habambuhay';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Isang beses na bayad: walang ads, may backup; mananatiling libre ang AI allowance';
-
-  @override
   String get plansRestore => 'Ibalik ang mga binili';
 
   @override

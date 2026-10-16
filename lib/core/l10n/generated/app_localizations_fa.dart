@@ -969,13 +969,6 @@ class AppLocalizationsFa extends AppLocalizations {
   String get plansPurchaseFailed => 'خرید انجام نشد. لطفاً دوباره تلاش کنید.';
 
   @override
-  String get planLifetimeTitle => 'بدون تبلیغ برای همیشه';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'پرداخت یک‌باره: بدون تبلیغ، پشتیبان‌گیری؛ استفاده از هوش مصنوعی طبق سهم رایگان';
-
-  @override
   String get plansRestore => 'بازیابی خریدها';
 
   @override

@@ -977,13 +977,6 @@ class AppLocalizationsMy extends AppLocalizations {
       'ဝယ်ယူမှု မအောင်မြင်ပါ။ ကျေးဇူးပြု၍ ပြန်လည်ကြိုးစားပါ။';
 
   @override
-  String get planLifetimeTitle => 'ဘဝတစ်လျှောက်လုံး အော်ဂဲနစ်မဲ့';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'တစ်ကြိမ်သာပေးချေရန်: အော်ဂဲနစ်မဲ့၊ backup; AI သည် အခမဲ့အကန့်အသတ်တွင် ရှိနေမည်';
-
-  @override
   String get plansRestore => 'ဝယ်ယူမှုများကို ပြန်လည်ထူထောင်ခြင်း';
 
   @override

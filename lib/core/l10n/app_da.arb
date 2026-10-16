@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "Butikken er ikke tilgængelig lige nu.",
   "retryAction": "Prøv igen",
   "plansPurchaseFailed": "Købet blev ikke gennemført. Prøv venligst igen.",
-  "planLifetimeTitle": "Reklamefri for livet",
-  "planLifetimeSubtitle": "Engangsbetaling: ingen reklamer, backup; AI forbliver på den gratis tilladelse",
   "plansRestore": "Gendan køb",
   "plansLegal": "Abonnementer fornyes automatisk, indtil de opsiges. Opsig når som helst i Google Play › Betalinger og abonnementer. Priserne inkluderer de skatter, der vises af Google Play.",
   "planCurrent": "Nuværende",

@@ -952,12 +952,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get plansPurchaseFailed => '購入が完了しませんでした。もう一度お試しください。';
 
   @override
-  String get planLifetimeTitle => '一生広告なし';
-
-  @override
-  String get planLifetimeSubtitle => '一括払い：広告なし、バックアップ対応；AIは無料枠のまま利用可能';
-
-  @override
   String get plansRestore => '購入を復元';
 
   @override

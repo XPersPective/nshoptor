@@ -305,8 +305,6 @@
   "plansStoreUnavailable": "現在、ストアに接続できません。",
   "retryAction": "再試行",
   "plansPurchaseFailed": "購入が完了しませんでした。もう一度お試しください。",
-  "planLifetimeTitle": "一生広告なし",
-  "planLifetimeSubtitle": "一括払い：広告なし、バックアップ対応；AIは無料枠のまま利用可能",
   "plansRestore": "購入を復元",
   "plansLegal": "サブスクリプションはキャンセルするまで自動的に更新されます。Google Play › お支払いとサブスクリプションからいつでもキャンセルできます。価格はGoogle Playで表示される税込み価格です。",
   "planCurrent": "現在",

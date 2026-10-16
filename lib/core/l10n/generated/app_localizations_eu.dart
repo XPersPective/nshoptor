@@ -975,13 +975,6 @@ class AppLocalizationsEu extends AppLocalizations {
       'Erosketa ez da burutu. Mesedez, saiatu berriro.';
 
   @override
-  String get planLifetimeTitle => 'Iragarkirik gabe betirako';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Ordainketa bakarra: iragarkirik gabe, atxapena; AI doan mantenduko da';
-
-  @override
   String get plansRestore => 'Berrezarri erosketak';
 
   @override

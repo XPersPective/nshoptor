@@ -975,13 +975,6 @@ class AppLocalizationsCa extends AppLocalizations {
       'La compra no s\'ha pogut completar. Si us plau, torna-ho a intentar.';
 
   @override
-  String get planLifetimeTitle => 'Sense anuncis per sempre';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Pagament únic: sense anuncis, còpia de seguretat; l\'IA es manté dins del límit gratuït';
-
-  @override
   String get plansRestore => 'Restaura les compres';
 
   @override

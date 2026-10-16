@@ -974,13 +974,6 @@ class AppLocalizationsLt extends AppLocalizations {
   String get plansPurchaseFailed => 'Pirkimas nepavyko. Bandykite dar kartą.';
 
   @override
-  String get planLifetimeTitle => 'Be reklamų visam gyvenimui';
-
-  @override
-  String get planLifetimeSubtitle =>
-      'Vienkartinis mokėjimas: be reklamų, atsarginės kopijos; AI paslauga lieka nemokama';
-
-  @override
   String get plansRestore => 'Atkurti pirkinius';
 
   @override
