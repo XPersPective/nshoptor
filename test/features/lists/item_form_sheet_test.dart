@@ -13,6 +13,7 @@ import 'package:nshoptor/features/lists/item_repository.dart';
 import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
 import 'package:nshoptor/core/money/decimal_fixed.dart';
 import 'package:nshoptor/features/voice_input/parser/parsed_item_candidate.dart';
+import 'package:nshoptor/features/receipts/shelf_label/price_candidates.dart';
 import 'package:nshoptor/core/quantity/unit_code.dart';
 
 void main() {
@@ -38,6 +39,7 @@ void main() {
     PlannedItem? existing,
     List<PurchaseEntry> entries = const [],
     Future<String?> Function(BuildContext)? scan,
+    Future<PriceCandidate?> Function(BuildContext)? shelfCandidate,
     ParsedItemCandidate? candidate,
   }) async {
     await StarterCategories().seedIfEmpty(db);
@@ -59,6 +61,7 @@ void main() {
             existing: existing,
             entries: entries,
             onShelfPricePressed: scan,
+            onShelfCandidatePressed: shelfCandidate,
             initialCandidate: candidate,
           ),
         ),
@@ -120,6 +123,30 @@ void main() {
       await disposeApp(tester);
     },
   );
+
+  testWidgets('camera icon in the market price field fills it from a shelf label', (tester) async {
+    final listId = await db
+        .into(db.shoppingLists)
+        .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    await openForm(
+      tester,
+      listId,
+      shelfCandidate: (_) async => PriceCandidate(
+        value: DecimalFixed.parse('45.5'),
+        currencyCode: 'TRY',
+        sourceLine: '45,50',
+        confidence: 'high',
+        isUnitPrice: true,
+      ),
+    );
+    await tester.tap(find.byKey(const Key('item_scan_actual_price')));
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byKey(const Key('item_actual_price_field'))).controller!.text,
+      '45,5',
+    );
+    await disposeApp(tester);
+  });
 
   testWidgets(
     'overflow preview and save preserve typed input without writing',

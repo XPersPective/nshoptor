@@ -611,6 +611,15 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                   ),
                                 ),
                               ),
+                              const SizedBox(width: 8),
+                              IconButton.filledTonal(
+                                key: const Key('detail_receipt_button'),
+                                tooltip: l10n.scanReceiptAction,
+                                onPressed: _busy
+                                    ? null
+                                    : () => _scanReceipt(context),
+                                icon: const Icon(Icons.receipt_long_outlined),
+                              ),
                             ],
                           ),
                         ),
