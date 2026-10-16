@@ -1151,74 +1151,76 @@ class AppLocalizationsMn extends AppLocalizations {
   String get guideDone => 'Эхлэх';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Өнгөний загвар';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Ой';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Далай';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Нар жаргах';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Лаванда';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Бараан загварт цэвэр хар';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Тойм';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Энэ жил';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Жилийн зарлага';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Бараагаар зарлага';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Долоо хоног';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Сар';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Жил';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Долоо хоногийн хязгаар';
 
   @override
   String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+      'Долоо хоногт худалдан авалтад хэдийг зарцуулах вэ?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Хэд үлдсэнийг харахын тулд долоо хоногийн хязгаар тогтооно уу.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'Энэ долоо хоногт $amount үлдсэн';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Нэг худалдан авалтын хязгаар';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Шинэ жагсаалтууд энэ төсвөөр эхэлнэ.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Шинэ худалдан авалт бүрт өгөгдмөл төсөв тогтооно уу.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Сарын тайлан';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Худалдан авалт';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Огноо';
 }

@@ -1147,74 +1147,75 @@ class AppLocalizationsSw extends AppLocalizations {
   String get guideDone => 'Anza';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Mandhari ya rangi';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Msitu';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Bahari';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Machweo';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Lavenda';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Nyeusi kabisa kwenye mandhari meusi';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Muhtasari';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Mwaka huu';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Matumizi ya mwaka';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Matumizi kwa bidhaa';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Wiki';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Mwezi';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Mwaka';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Kikomo cha wiki';
 
   @override
   String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+      'Ungependa kutumia kiasi gani kununua kila wiki?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone => 'Weka kikomo cha wiki ili kuona kilichobaki.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return '$amount zimebaki wiki hii';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Kikomo kwa kila ununuzi';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Orodha mpya huanza na bajeti hii.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Weka bajeti chaguo-msingi kwa kila ununuzi mpya.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Ripoti ya mwezi';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Ununuzi';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Tarehe';
 }

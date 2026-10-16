@@ -1147,74 +1147,75 @@ class AppLocalizationsLv extends AppLocalizations {
   String get guideDone => 'Sākt';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Krāsu tēma';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Mežs';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Okeāns';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Saulriets';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Lavanda';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Tīri melns tumšajā tēmā';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Pārskats';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Šogad';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Gada izdevumi';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Izdevumi pa produktiem';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Nedēļa';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Mēnesis';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Gads';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Nedēļas limits';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'Cik vēlaties nedēļā tērēt iepirkumiem?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Iestatiet nedēļas limitu, lai redzētu, cik palicis.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'Šonedēļ palikuši $amount';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Limits vienam iepirkumam';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Jaunie saraksti sākas ar šo budžetu.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Iestatiet noklusējuma budžetu katram jaunam iepirkumam.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Mēneša pārskats';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Iepirkums';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Datums';
 }

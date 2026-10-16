@@ -1138,74 +1138,75 @@ class AppLocalizationsLo extends AppLocalizations {
   String get guideDone => 'ເລີ່ມ';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'ຮູບແບບສີ';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'ປ່າໄມ້';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'ມະຫາສະໝຸດ';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'ຕາເວັນຕົກ';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'ລາເວນເດີ';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'ສີດຳລ້ວນໃນຮູບແບບມືດ';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'ພາບລວມ';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'ປີນີ້';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'ລາຍຈ່າຍປະຈຳປີ';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'ລາຍຈ່າຍຕາມສິນຄ້າ';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'ອາທິດ';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'ເດືອນ';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'ປີ';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'ຂີດຈຳກັດລາຍອາທິດ';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'ທ່ານຕ້ອງການໃຊ້ຈ່າຍຊື້ເຄື່ອງເທົ່າໃດຕໍ່ອາທິດ?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'ຕັ້ງຂີດຈຳກັດລາຍອາທິດເພື່ອເບິ່ງວ່າເຫຼືອເທົ່າໃດ.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'ອາທິດນີ້ເຫຼືອ $amount';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'ຂີດຈຳກັດຕໍ່ການຊື້';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'ລາຍການໃໝ່ເລີ່ມດ້ວຍງົບປະມານນີ້.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'ຕັ້ງງົບປະມານເລີ່ມຕົ້ນສຳລັບການຊື້ໃໝ່ແຕ່ລະຄັ້ງ.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'ລາຍງານປະຈຳເດືອນ';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'ການຊື້';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'ວັນທີ';
 }

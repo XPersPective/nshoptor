@@ -1145,74 +1145,73 @@ class AppLocalizationsVi extends AppLocalizations {
   String get guideDone => 'Bắt đầu';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Chủ đề màu';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Rừng';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Đại dương';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Hoàng hôn';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Oải hương';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Đen tuyền ở giao diện tối';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Tổng quan';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Năm nay';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Chi tiêu theo năm';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Chi tiêu theo sản phẩm';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Tuần';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Tháng';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Năm';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Hạn mức tuần';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'Bạn muốn chi bao nhiêu cho mua sắm mỗi tuần?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone => 'Đặt hạn mức tuần để xem còn lại bao nhiêu.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'Tuần này còn $amount';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Hạn mức mỗi lần mua';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Danh sách mới bắt đầu với ngân sách này.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone => 'Đặt ngân sách mặc định cho mỗi lần mua mới.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Báo cáo tháng';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Lần mua';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Ngày';
 }

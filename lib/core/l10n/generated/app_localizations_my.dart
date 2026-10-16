@@ -1144,80 +1144,80 @@ class AppLocalizationsMy extends AppLocalizations {
       'အစီအစဉ်ကို ကြည့်ရန်၊ စာရင်းသွင်းရန် သို့မဟုတ် အဆင့်မြှင့်ရန် အစီအစဉ်အိုင်ကွန်ကို နှိပ်ပါ။';
 
   @override
-  String get guideNext => 'ตกลง';
+  String get guideNext => 'အိုကေ';
 
   @override
   String get guideDone => 'စတင်';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'အရောင် ပုံစံ';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'သစ်တော';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'သမုဒ္ဒရာ';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'နေဝင်ချိန်';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'လာဗင်ဒါ';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'အမှောင်ပုံစံတွင် အနက်ရောင်အပြည့်';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'ခြုံငုံသုံးသပ်ချက်';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'ယခုနှစ်';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'နှစ်စဉ် အသုံးစရိတ်';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'ပစ္စည်းအလိုက် အသုံးစရိတ်';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'အပတ်';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'လ';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'နှစ်';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'အပတ်စဉ် ကန့်သတ်ချက်';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'တစ်ပတ်လျှင် ဈေးဝယ်ရန် ဘယ်လောက်သုံးချင်ပါသလဲ?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'ကျန်ငွေကို ကြည့်ရန် အပတ်စဉ် ကန့်သတ်ချက် သတ်မှတ်ပါ။';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'ဤအပတ် $amount ကျန်';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'ဈေးဝယ်တစ်ကြိမ်ချင်း ကန့်သတ်ချက်';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'စာရင်းအသစ်များ ဤဘတ်ဂျက်ဖြင့် စတင်သည်။';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone => 'ဈေးဝယ်အသစ်တိုင်းအတွက် မူလဘတ်ဂျက် သတ်မှတ်ပါ။';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'လစဉ် အစီရင်ခံစာ';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'ဈေးဝယ်ခြင်း';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'ရက်စွဲ';
 }

@@ -1154,74 +1154,75 @@ class AppLocalizationsZu extends AppLocalizations {
   String get guideDone => 'Qala';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Itimu yemibala';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Ihlathi';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Ulwandle';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Ukushona kwelanga';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'I-lavender';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Okumnyama ngokuphelele etimini emnyama';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Ukubuka konke';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Kulo nyaka';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Ukusetshenziswa konyaka';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Ukusetshenziswa ngomkhiqizo';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Isonto';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Inyanga';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Unyaka';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Umkhawulo wesonto';
 
   @override
   String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+      'Ufuna ukusebenzisa malini ekuthengeni ngesonto?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone => 'Setha umkhawulo wesonto ukuze ubone okusele.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'Kusele $amount kuleli sonto';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Umkhawulo ngokuthenga ngakunye';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Izinhlu ezintsha ziqala ngalesi sabelomali.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Setha isabelomali esizenzakalelayo sokuthenga okusha ngakunye.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Umbiko wenyanga';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Ukuthenga';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Usuku';
 }

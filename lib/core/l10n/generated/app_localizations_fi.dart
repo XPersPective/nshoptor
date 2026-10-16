@@ -1149,74 +1149,75 @@ class AppLocalizationsFi extends AppLocalizations {
   String get guideDone => 'Aloita';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Väriteema';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Metsä';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Valtameri';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Auringonlasku';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Laventeli';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Puhdas musta tummassa teemassa';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Yleiskatsaus';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Tänä vuonna';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Vuosikulutus';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Kulutus tuotteittain';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Viikko';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Kuukausi';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Vuosi';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Viikkoraja';
 
   @override
-  String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+  String get weeklyLimitHelp => 'Paljonko haluat käyttää ostoksiin viikossa?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Aseta viikkoraja nähdäksesi, paljonko on jäljellä.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return '$amount jäljellä tällä viikolla';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Raja ostoskertaa kohden';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Uudet listat alkavat tällä budjetilla.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Aseta oletusbudjetti jokaiselle uudelle ostoskerralle.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Kuukausiraportti';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Ostokset';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Päivämäärä';
 }

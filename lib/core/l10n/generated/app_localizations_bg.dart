@@ -1150,74 +1150,76 @@ class AppLocalizationsBg extends AppLocalizations {
   String get guideDone => 'Старт';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'Цветова тема';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'Гора';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'Океан';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'Залез';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'Лавандула';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'Чисто черно в тъмната тема';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'Общ преглед';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'Тази година';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'Годишни разходи';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'Разходи по продукт';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'Седмица';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'Месец';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'Година';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'Седмичен лимит';
 
   @override
   String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+      'Колко искате да харчите за пазаруване седмично?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'Задайте седмичен лимит, за да виждате колко остава.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'Тази седмица остават $amount';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'Лимит за пазаруване';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'Новите списъци започват с този бюджет.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'Задайте бюджет по подразбиране за всяко ново пазаруване.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'Месечен отчет';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'Пазаруване';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'Дата';
 }

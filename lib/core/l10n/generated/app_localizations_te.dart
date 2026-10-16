@@ -1153,74 +1153,76 @@ class AppLocalizationsTe extends AppLocalizations {
   String get guideDone => 'ప్రారంభించు';
 
   @override
-  String get paletteLabel => 'Color theme';
+  String get paletteLabel => 'రంగు థీమ్';
 
   @override
-  String get paletteForest => 'Forest';
+  String get paletteForest => 'అడవి';
 
   @override
-  String get paletteOcean => 'Ocean';
+  String get paletteOcean => 'సముద్రం';
 
   @override
-  String get paletteSunset => 'Sunset';
+  String get paletteSunset => 'సూర్యాస్తమయం';
 
   @override
-  String get paletteLavender => 'Lavender';
+  String get paletteLavender => 'లావెండర్';
 
   @override
-  String get darkBlackLabel => 'Pure black in dark theme';
+  String get darkBlackLabel => 'డార్క్ థీమ్‌లో పూర్తి నలుపు';
 
   @override
-  String get spendingOverview => 'Overview';
+  String get spendingOverview => 'అవలోకనం';
 
   @override
-  String get spendingThisYear => 'This year';
+  String get spendingThisYear => 'ఈ సంవత్సరం';
 
   @override
-  String get spendingYearly => 'Yearly spending';
+  String get spendingYearly => 'వార్షిక ఖర్చు';
 
   @override
-  String get productSpending => 'Spending by product';
+  String get productSpending => 'వస్తువుల వారీ ఖర్చు';
 
   @override
-  String get spanWeek => 'Week';
+  String get spanWeek => 'వారం';
 
   @override
-  String get spanMonth => 'Month';
+  String get spanMonth => 'నెల';
 
   @override
-  String get spanYear => 'Year';
+  String get spanYear => 'సంవత్సరం';
 
   @override
-  String get weeklyLimitTitle => 'Weekly limit';
+  String get weeklyLimitTitle => 'వారపు పరిమితి';
 
   @override
   String get weeklyLimitHelp =>
-      'How much do you want to spend on shopping per week?';
+      'వారానికి షాపింగ్‌పై ఎంత ఖర్చు చేయాలనుకుంటున్నారు?';
 
   @override
-  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+  String get weeklyLimitNone =>
+      'ఎంత మిగిలిందో చూడటానికి వారపు పరిమితిని సెట్ చేయండి.';
 
   @override
   String weeklyLimitLeft(String amount) {
-    return '$amount left this week';
+    return 'ఈ వారం $amount మిగిలింది';
   }
 
   @override
-  String get shoppingLimitTitle => 'Limit per shopping';
+  String get shoppingLimitTitle => 'ప్రతి షాపింగ్‌కు పరిమితి';
 
   @override
-  String get shoppingLimitHelp => 'New lists start with this budget.';
+  String get shoppingLimitHelp => 'కొత్త జాబితాలు ఈ బడ్జెట్‌తో మొదలవుతాయి.';
 
   @override
-  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+  String get shoppingLimitNone =>
+      'ప్రతి కొత్త షాపింగ్‌కు డిఫాల్ట్ బడ్జెట్ సెట్ చేయండి.';
 
   @override
-  String get monthlyReportAction => 'Monthly report';
+  String get monthlyReportAction => 'నెలవారీ నివేదిక';
 
   @override
-  String get reportShoppingColumn => 'Shopping';
+  String get reportShoppingColumn => 'షాపింగ్';
 
   @override
-  String get reportDateColumn => 'Date';
+  String get reportDateColumn => 'తేదీ';
 }
