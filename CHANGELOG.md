@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.5] — 2026-10-16
+
+- Ana sayfada plan simgesi: Ücretsiz, Pro, Max ya da deneme; dokununca plan sayfası ve mevcut plan görünür.
+- Açılış ekranında uygulama simgesi, adı ve slogan.
+- Liste satırına dokununca Çarşıdaki fiyat alanı seçili gelir.
+- Çarşıdaki fiyat alanında kamerayla raf etiketi okuma; liste alt çubuğunda fiş tarama düğmesi.
+- Sesle tek cümlede söylenen birden çok ürün ayrılır ("1 kilo elma 1 ekmek": elma 1 kg, ekmek 1 adet).
+
 ## [1.2.4] — 2026-10-16
 
 - Geçiş reklamı alışveriş sonunda, günlük ödüllü hediye; Pro plan 7 gün deneme ve yaşam boyu hakkı.
