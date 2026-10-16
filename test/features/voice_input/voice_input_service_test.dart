@@ -42,6 +42,19 @@ void main() {
       expect(controller.state, VoiceInputState.idle);
       expect(service.isListening, isFalse);
     });
+
+    test('second open keeps one owner', () async {
+      await controller.initialize();
+      await controller.start();
+      await controller.start();
+      expect(controller.state, VoiceInputState.listening);
+      expect(controller.errorMessage, isNull);
+
+      await controller.stop();
+      await controller.start();
+      expect(controller.state, VoiceInputState.listening);
+      expect(service.isListening, isTrue);
+    });
   });
 
   group('hata yolları ve manuel fallback (spec §6.7)', () {
