@@ -108,6 +108,13 @@ class _HomeShellState extends State<HomeShell> {
   // plan badge change outside its own state.
   int _settingsVisit = 0;
 
+  /// Plan simgesi, abonelik değişince kendini günceller (satın alma, iptal).
+  Widget _planBadgeLive(BuildContext context) {
+    final subs = widget.subscriptions;
+    if (subs == null) return _planBadge(context);
+    return ListenableBuilder(listenable: subs, builder: (context, _) => _planBadge(context));
+  }
+
   /// Plan simgesi: ana sayfanın üstünde. Dokununca plan/abonelik sayfası açılır.
   Widget _planBadge(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -124,20 +131,11 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   Future<void> _openPlanPage(BuildContext context) async {
-    final l10n = AppLocalizations.of(context);
     final subs = widget.subscriptions;
-    final pro = widget.proController;
-    final tier = subs?.tier ?? Tier.free;
-    final proUnlocked = (pro?.isPro ?? false) || tier != Tier.free;
-    final label = planLabel(l10n, tier: tier, proUnlocked: proUnlocked);
-    final trial = tier == Tier.pro && subs != null && subs.inTrial();
     if (subs != null) {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (ctx) => SubscriptionPaywall(
-            service: subs,
-            currentPlan: planStatusText(l10n, label: label, trial: trial),
-          ),
+          builder: (ctx) => SubscriptionPaywall(service: subs),
         ),
       );
     }
@@ -153,7 +151,7 @@ class _HomeShellState extends State<HomeShell> {
         builder: (context, assistantVisible, _) => ListsScreen(
           repository: widget.listRepository,
           reminderScheduler: widget.reminderScheduler,
-          planBadge: _planBadge(context),
+          planBadge: _planBadgeLive(context),
           onOpenSummary: () => _openSummary(context),
           onScanReceipt: () => _onAssistant(context, (
             action: AssistantAction.scanReceipt,

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart' show ReplacementMode;
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
@@ -241,8 +241,15 @@ class SubscriptionService extends ChangeNotifier {
         throw StateError('ownership_not_verified');
       }
       final old = _owned;
+      // Yükseltme: yeni planın kalan süresi hemen tahsil edilir, eski plan kredilenir.
+      // Düşürme: mevcut dönem bitince geçer.
+      final upgrade = old != null && tierOf(offer.productId).index > tierOf(old.productID).index;
       final change = old != null && old.productID != offer.productId
-          ? ChangeSubscriptionParam(oldPurchaseDetails: old, replacementMode: ReplacementMode.withTimeProration) : null;
+          ? ChangeSubscriptionParam(
+              oldPurchaseDetails: old,
+              replacementMode: upgrade ? ReplacementMode.chargeProratedPrice : ReplacementMode.deferred,
+            )
+          : null;
       _purchasePending = true;
       _pendingTrial = offer.hasTrial;
       final launched = await _iap.buyNonConsumable(purchaseParam: GooglePlayPurchaseParam(
@@ -267,5 +274,17 @@ class SubscriptionService extends ChangeNotifier {
     _disposed = true;
     _sub?.cancel();
     super.dispose();
+  }
+}
+
+/// Uygulama öne gelince (ödeme sayfasından dönüş dahil) mağaza sahipliğini yeniler.
+class SubscriptionResumeObserver with WidgetsBindingObserver {
+  SubscriptionResumeObserver(this.service);
+
+  final SubscriptionService service;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) unawaited(service.refresh());
   }
 }

@@ -70,6 +70,8 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  // Stand-in listenable when no subscription service is wired (tests, placeholders).
+  static final Listenable _neverChanges = ChangeNotifier();
   SettingsRepository get _repo => widget.repository;
   bool _backupBusy = false;
 
@@ -107,14 +109,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
         actions: [
           // Current plan at a glance; tap opens the plans. Large text keeps
           // only the icon (label in the tooltip) so the app bar never overflows.
-          PlanBadge(
-            badgeKey: const Key('settings_plan_badge'),
-            label: _planLabel(l10n),
-            trial: _tier == Tier.pro && widget.subscriptions!.inTrial(),
-            active: _proUnlocked,
-            onPressed: () => widget.subscriptions != null
-                ? _openPlans(context)
-                : _openPaywall(context),
+          ListenableBuilder(
+            listenable: widget.subscriptions ?? _neverChanges,
+            builder: (context, _) => PlanBadge(
+              badgeKey: const Key('settings_plan_badge'),
+              label: _planLabel(l10n),
+              trial: _tier == Tier.pro && widget.subscriptions?.inTrial() == true,
+              active: _proUnlocked,
+              onPressed: () => widget.subscriptions != null
+                  ? _openPlans(context)
+                  : _openPaywall(context),
+            ),
           ),
           if (widget.giftFlow != null) widget.giftFlow!,
         ],
@@ -406,11 +411,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       MaterialPageRoute<void>(
         builder: (ctx) => SubscriptionPaywall(
           service: subs,
-          currentPlan: planStatusText(
-            AppLocalizations.of(ctx),
-            label: _planLabel(AppLocalizations.of(ctx)),
-            trial: _tier == Tier.pro && subs.inTrial(),
-          ),
         ),
       ),
     );
