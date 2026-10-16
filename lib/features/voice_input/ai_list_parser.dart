@@ -83,7 +83,8 @@ class AiListParser {
     final parser = VoiceCommandParser(localeCode: localeCode);
     return [
       for (final part in raw.split(splitter))
-        if (part.trim().isNotEmpty) parser.parse(part.trim()),
+        if (part.trim().isNotEmpty)
+          for (final item in parser.splitItems(part.trim())) parser.parse(item),
     ].where((c) => c.name.trim().isNotEmpty).toList();
   }
 }

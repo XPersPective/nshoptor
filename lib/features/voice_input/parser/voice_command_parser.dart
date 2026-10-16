@@ -138,6 +138,9 @@ class VoiceCommandParser {
     final name = _stripPunctuation(tokens.join(' ')).trim();
     final cleanName = name.isEmpty ? _stripPunctuation(raw) : name;
 
+    // Miktar varsa ve birim yoksa adet: "1 ekmek" → 1 adet ekmek.
+    if (quantity != null) unit ??= UnitCode.adet;
+
     return ParsedItemCandidate(
       name: cleanName,
       rawText: raw,
@@ -147,6 +150,68 @@ class VoiceCommandParser {
       currencyCode: currency,
       isUnitPrice: isUnitPrice ? true : null,
     );
+  }
+
+  /// Bir cümledeki birden çok ürünü böler. Bir sayı, önündeki sözcük bir
+  /// ad ise ve arkasında yeni bir ad/birim geliyorsa yeni ürünün miktarıdır:
+  /// "1 kilo elma 1 ekmek" → ["1 kilo elma", "1 ekmek"].
+  /// Sayıdan sonra para birimi (fiyat) ya da cümle sonunda birim varsa bölünmez:
+  /// "elma kilosu 40 lira", "süt 1 litre".
+  List<String> splitItems(String text) {
+    final words = text.trim().split(RegExp(r'\s+'));
+    if (words.length < 2) return [text.trim()];
+    final parts = <String>[];
+    var start = 0;
+    for (var i = 1; i < words.length; i++) {
+      if (_startsNewItem(words, i)) {
+        parts.add(words.sublist(start, i).join(' '));
+        start = i;
+      }
+    }
+    parts.add(words.sublist(start).join(' '));
+    return parts;
+  }
+
+  bool _startsNewItem(List<String> words, int i) {
+    if (!_isNumberWord(words[i].toLowerCase())) return false;
+    final prev = words[i - 1].toLowerCase();
+    if (!_isNameWord(prev) && !_isCurrencyWord(prev)) return false;
+    if (i + 1 >= words.length) return false;
+    final next = words[i + 1].toLowerCase();
+    if (_isCurrencyWord(next)) return false;
+    if (next == 'buçuk' || _isNameWord(next)) return true;
+    if (_isUnitWord(next)) {
+      return i + 2 < words.length && _isNameWord(words[i + 2].toLowerCase());
+    }
+    return false;
+  }
+
+  bool _isNumberWord(String word) {
+    if (RegExp(r'^\d{1,9}(?:[.,]\d{1,3})?$').hasMatch(word)) return true;
+    if (_trOnes.containsKey(word) || _trTens.containsKey(word) ||
+        _enOnes.containsKey(word) || _enTens.containsKey(word)) {
+      return true;
+    }
+    return const {'yüz', 'hundred', 'yarım', 'half'}.contains(word);
+  }
+
+  bool _isUnitWord(String word) {
+    final stem = _trPossessiveStem(word);
+    return _trUnits.containsKey(word) || _enUnits.containsKey(word) ||
+        (stem != null && _trUnits.containsKey(stem));
+  }
+
+  bool _isCurrencyWord(String word) =>
+      _trCurrency(word) != null || _enCurrency(word) != null;
+
+  bool _isNameWord(String word) {
+    if (word.isEmpty || _isNumberWord(word) || _isUnitWord(word) || _isCurrencyWord(word)) {
+      return false;
+    }
+    return !const {
+      'ekle', 'al', 'istiyorum', 'lazım', 'add', 'buy', 'at', 'please', 'of',
+      'per', 've', 'and',
+    }.contains(word);
   }
 
   // ---- miktar ----
