@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.7] — 2026-10-17
+
+- Renk temaları (Orman, Okyanus, Gün batımı, Lavanta); koyu tema marka tonlu, tam siyah isteğe bağlı.
+- Geçmiş genel bakışla açılır: bu hafta, bu ay, bu yıl; yıllık ve ürün bazlı harcama grafikleri.
+- Haftalık, aylık ve alışveriş başına limit; aylık rapor (PDF/yazdır).
+- Ana sayfa başlığında simge ve NShoptor yazısı; küçük plan rozeti; fiş tarama başlıkta.
+- Planlar sayfası: mağaza yanıt vermezse sonsuz yükleme yerine bilgi; küçük "Mevcut" etiketi.
+- Ayarlar'dan 12 aylık örnek verilerle deneme ve silme.
+
 ## [1.2.6] — 2026-10-16
 
 - Ömür boyu seçeneği kaldırıldı; yalnız Ücretsiz, Pro ve Max.

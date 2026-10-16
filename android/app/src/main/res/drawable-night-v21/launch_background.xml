@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Dark mode launch splash: black background with the app icon. -->
+<!-- Dark mode launch splash: app dark surface with the app icon. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@android:color/black" />
+    <item android:drawable="@color/splash_dark" />
     <item>
         <bitmap
             android:gravity="center"
