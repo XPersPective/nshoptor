@@ -12,6 +12,8 @@ import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
 import 'package:nshoptor/features/history/insights/spending_screen.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
+import 'package:nshoptor/features/subscription/subscription_service.dart';
+import 'package:nshoptor/features/subscription/subscription_paywall.dart';
 import 'package:nshoptor/app/app_defaults.dart';
 import 'package:napp_core/napp_core.dart';
 
@@ -285,6 +287,33 @@ void main() {
     expect(find.byKey(const Key('home_monthly_card_TRY')), findsOneWidget);
     expect(find.text('Pazar'), findsOneWidget);
 
+    await disposeApp(tester);
+  });
+
+  testWidgets('ana sayfada plan simgesi: ücretsiz durum, dokununca plan sayfası', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(800, 1400));
+    final subs = SubscriptionService(store: SettingsStore());
+    await tester.pumpWidget(MaterialApp(
+      locale: const Locale('tr'),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: HomeShell(db: db, listRepository: ListRepository(db), subscriptions: subs),
+    ));
+    await settle(tester);
+    final badge = tester.widget(find.byKey(const Key('home_plan_badge')));
+    expect(badge is ActionChip ? badge.tooltip : (badge as IconButton).tooltip, 'Ücretsiz');
+    await tester.tap(find.byKey(const Key('home_plan_badge')));
+    // Plan store offers load in the background; pumping avoids waiting on them.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.byType(SubscriptionPaywall), findsOneWidget);
+    expect(find.byKey(const Key('plans_current_status')), findsOneWidget);
+    expect(find.text('Mevcut: Ücretsiz'), findsOneWidget);
     await disposeApp(tester);
   });
 
