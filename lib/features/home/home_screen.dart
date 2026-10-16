@@ -47,7 +47,7 @@ import '../../app/theme_mode_controller.dart';
 import '../lists/reminders/reminder_scheduler.dart';
 
 /// Alt navigasyonlu uygulama kabuğu (spec §9): Ana Sayfa, Listeler,
-/// Geçmiş, Ayarlar.
+/// Geçmiş, Keşfet, Ayarlar.
 class HomeShell extends StatefulWidget {
   const HomeShell({
     super.key,
@@ -113,7 +113,9 @@ class _HomeShellState extends State<HomeShell> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) showFirstRunGuide(context);
+      if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) {
+        showFirstRunGuide(context);
+      }
     });
   }
 
@@ -171,13 +173,20 @@ class _HomeShellState extends State<HomeShell> {
             action: AssistantAction.scanReceipt,
             text: null,
           )),
-          onOpenDiscover: () => _openDiscover(context),
           onAssistantChoice: assistantVisible
               ? (choice) => _onAssistant(context, choice)
               : null,
         ),
       ),
       HistoryPlaceholder(db: widget.db),
+      widget.appIdentity?.otherAppsUrl == null
+          ? const _DiscoverPlaceholder()
+          : OtherAppsPage(
+              identity: widget.appIdentity!,
+              repository: OtherAppsRepository(
+                appsUrl: widget.appIdentity!.otherAppsUrl!,
+              ),
+            ),
       widget.settingsRepository == null || widget.languageController == null
           ? const SettingsPlaceholder()
           : SettingsScreen(
@@ -202,7 +211,7 @@ class _HomeShellState extends State<HomeShell> {
           NavigationBar(
             selectedIndex: _tab,
             onDestinationSelected: (i) => setState(() {
-              if (i == 2 && _tab != 2) _settingsVisit++;
+              if (i == 3 && _tab != 3) _settingsVisit++;
               _tab = i;
             }),
             destinations: [
@@ -215,6 +224,12 @@ class _HomeShellState extends State<HomeShell> {
                 icon: const Icon(Icons.history_outlined),
                 selectedIcon: const Icon(Icons.history),
                 label: l10n.navHistory,
+              ),
+              NavigationDestination(
+                key: const Key('home_nav_discover'),
+                icon: const Icon(Icons.explore_outlined),
+                selectedIcon: const Icon(Icons.explore),
+                label: l10n.navDiscover,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.settings_outlined),
@@ -244,20 +259,6 @@ class _HomeShellState extends State<HomeShell> {
       ),
     ),
   );
-
-  Future<void> _openDiscover(BuildContext context) =>
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (_) => widget.appIdentity?.otherAppsUrl == null
-              ? const _DiscoverPlaceholder()
-              : OtherAppsPage(
-                  identity: widget.appIdentity!,
-                  repository: OtherAppsRepository(
-                    appsUrl: widget.appIdentity!.otherAppsUrl!,
-                  ),
-                ),
-        ),
-      );
 
   Future<void> _onAssistant(
     BuildContext context,

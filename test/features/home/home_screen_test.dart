@@ -321,8 +321,10 @@ void main() {
     await disposeApp(tester);
   });
 
-  testWidgets('alt navigasyon: Listeler sekmesi çalışır', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(800, 1400));
+  testWidgets('alt navigasyon: Keşfet diğer uygulamalar için görünür', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(320, 700));
     listRepo = ListRepository(db);
     await tester.pumpWidget(subject());
     await settle(tester);
@@ -330,8 +332,17 @@ void main() {
     expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
     expect(
       tester.widget<NavigationBar>(find.byType(NavigationBar)).destinations,
-      hasLength(3),
+      hasLength(4),
     );
+    expect(find.text('Keşfet'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('home_nav_discover')));
+    await settle(tester);
+    expect(
+      tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
+      2,
+    );
+    expect(find.byKey(const Key('lists_tab_active')), findsNothing);
 
     await disposeApp(tester);
   });
