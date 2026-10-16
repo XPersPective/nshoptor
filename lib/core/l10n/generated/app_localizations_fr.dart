@@ -1168,4 +1168,58 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get darkBlackLabel => 'Pure black in dark theme';
+
+  @override
+  String get spendingOverview => 'Overview';
+
+  @override
+  String get spendingThisYear => 'This year';
+
+  @override
+  String get spendingYearly => 'Yearly spending';
+
+  @override
+  String get productSpending => 'Spending by product';
+
+  @override
+  String get spanWeek => 'Week';
+
+  @override
+  String get spanMonth => 'Month';
+
+  @override
+  String get spanYear => 'Year';
+
+  @override
+  String get weeklyLimitTitle => 'Weekly limit';
+
+  @override
+  String get weeklyLimitHelp =>
+      'How much do you want to spend on shopping per week?';
+
+  @override
+  String get weeklyLimitNone => 'Set a weekly limit to see how much is left.';
+
+  @override
+  String weeklyLimitLeft(String amount) {
+    return '$amount left this week';
+  }
+
+  @override
+  String get shoppingLimitTitle => 'Limit per shopping';
+
+  @override
+  String get shoppingLimitHelp => 'New lists start with this budget.';
+
+  @override
+  String get shoppingLimitNone => 'Set a default budget for each new shopping.';
+
+  @override
+  String get monthlyReportAction => 'Monthly report';
+
+  @override
+  String get reportShoppingColumn => 'Shopping';
+
+  @override
+  String get reportDateColumn => 'Date';
 }

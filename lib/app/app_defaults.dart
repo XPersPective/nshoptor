@@ -61,19 +61,39 @@ class AppDefaults {
   /// Aylık harcama limiti (minor unit, varsayılan para biriminde); yoksa null.
   static const monthlyLimitKey = 'monthly_limit_minor';
 
-  static int? monthlyLimitMinor({String? currencyCode}) {
-    final value = _store?.getInt('$monthlyLimitKey.${currencyCode ?? defaultCurrency()}');
+  static int? monthlyLimitMinor({String? currencyCode}) => _limit(monthlyLimitKey, currencyCode);
+
+  static void setMonthlyLimitMinor(int? value, {String? currencyCode}) =>
+      _setLimit(monthlyLimitKey, value, currencyCode);
+
+  /// Haftalık harcama limiti ve alışveriş başına varsayılan bütçe (minor unit).
+  static const weeklyLimitKey = 'weekly_limit_minor';
+  static const shoppingLimitKey = 'shopping_limit_minor';
+
+  static int? weeklyLimitMinor({String? currencyCode}) => _limit(weeklyLimitKey, currencyCode);
+
+  static void setWeeklyLimitMinor(int? value, {String? currencyCode}) =>
+      _setLimit(weeklyLimitKey, value, currencyCode);
+
+  /// Yeni listelerin varsayılan bütçesi; liste kendi bütçesini değiştirebilir.
+  static int? shoppingLimitMinor({String? currencyCode}) => _limit(shoppingLimitKey, currencyCode);
+
+  static void setShoppingLimitMinor(int? value, {String? currencyCode}) =>
+      _setLimit(shoppingLimitKey, value, currencyCode);
+
+  static int? _limit(String key, String? currencyCode) {
+    final value = _store?.getInt('$key.${currencyCode ?? defaultCurrency()}');
     return value != null && value > 0 ? value : null;
   }
 
-  static void setMonthlyLimitMinor(int? value, {String? currencyCode}) {
+  static void _setLimit(String key, int? value, String? currencyCode) {
     final store = _store;
     if (store == null) return;
-    final key = '$monthlyLimitKey.${currencyCode ?? defaultCurrency()}';
+    final full = '$key.${currencyCode ?? defaultCurrency()}';
     if (value == null || value <= 0) {
-      store.remove(key);
+      store.remove(full);
     } else {
-      store.setInt(key, value);
+      store.setInt(full, value);
     }
   }
 }

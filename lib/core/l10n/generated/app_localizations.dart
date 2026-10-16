@@ -2401,6 +2401,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pure black in dark theme'**
   String get darkBlackLabel;
+
+  /// No description provided for @spendingOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get spendingOverview;
+
+  /// No description provided for @spendingThisYear.
+  ///
+  /// In en, this message translates to:
+  /// **'This year'**
+  String get spendingThisYear;
+
+  /// No description provided for @spendingYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly spending'**
+  String get spendingYearly;
+
+  /// No description provided for @productSpending.
+  ///
+  /// In en, this message translates to:
+  /// **'Spending by product'**
+  String get productSpending;
+
+  /// No description provided for @spanWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Week'**
+  String get spanWeek;
+
+  /// No description provided for @spanMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Month'**
+  String get spanMonth;
+
+  /// No description provided for @spanYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get spanYear;
+
+  /// No description provided for @weeklyLimitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly limit'**
+  String get weeklyLimitTitle;
+
+  /// No description provided for @weeklyLimitHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'How much do you want to spend on shopping per week?'**
+  String get weeklyLimitHelp;
+
+  /// No description provided for @weeklyLimitNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a weekly limit to see how much is left.'**
+  String get weeklyLimitNone;
+
+  /// No description provided for @weeklyLimitLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} left this week'**
+  String weeklyLimitLeft(String amount);
+
+  /// No description provided for @shoppingLimitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit per shopping'**
+  String get shoppingLimitTitle;
+
+  /// No description provided for @shoppingLimitHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'New lists start with this budget.'**
+  String get shoppingLimitHelp;
+
+  /// No description provided for @shoppingLimitNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a default budget for each new shopping.'**
+  String get shoppingLimitNone;
+
+  /// No description provided for @monthlyReportAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly report'**
+  String get monthlyReportAction;
+
+  /// No description provided for @reportShoppingColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get reportShoppingColumn;
+
+  /// No description provided for @reportDateColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get reportDateColumn;
 }
 
 class _AppLocalizationsDelegate

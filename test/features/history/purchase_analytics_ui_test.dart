@@ -50,9 +50,11 @@ void main() {
       await tester.runAsync(() => tester.widget<FutureBuilder>(find.byWidgetPredicate((w) => w is FutureBuilder).first).future!);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      expect(find.descendant(of: find.byKey(const Key('cal_day_11')), matching: find.text('11')), findsOneWidget);
       final l10n = AppLocalizations.of(tester.element(find.byType(SpendingScreen)));
       final scroll = find.byType(Scrollable).first;
+      // Overview and limit cards sit above the calendar now.
+      await tester.scrollUntilVisible(find.byKey(const Key('cal_day_11')), 300, scrollable: scroll);
+      expect(find.descendant(of: find.byKey(const Key('cal_day_11')), matching: find.text('11')), findsOneWidget);
       await tester.scrollUntilVisible(find.textContaining(l10n.purchaseHistoryHint), 400, scrollable: scroll);
       expect(tester.takeException(), isNull);
       await tester.scrollUntilVisible(find.widgetWithText(TextButton, l10n.priceHistoryAction), 400, scrollable: scroll);

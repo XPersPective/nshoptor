@@ -1160,4 +1160,60 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get darkBlackLabel => 'Koyu temada tam siyah';
+
+  @override
+  String get spendingOverview => 'Genel bakış';
+
+  @override
+  String get spendingThisYear => 'Bu yıl';
+
+  @override
+  String get spendingYearly => 'Yıllık harcama';
+
+  @override
+  String get productSpending => 'Ürünlere göre harcama';
+
+  @override
+  String get spanWeek => 'Hafta';
+
+  @override
+  String get spanMonth => 'Ay';
+
+  @override
+  String get spanYear => 'Yıl';
+
+  @override
+  String get weeklyLimitTitle => 'Haftalık limit';
+
+  @override
+  String get weeklyLimitHelp =>
+      'Alışverişe haftada ne kadar harcamak istiyorsun?';
+
+  @override
+  String get weeklyLimitNone =>
+      'Ne kadar kaldığını görmek için haftalık bir limit belirle.';
+
+  @override
+  String weeklyLimitLeft(String amount) {
+    return 'Bu hafta $amount kaldı';
+  }
+
+  @override
+  String get shoppingLimitTitle => 'Alışveriş başına limit';
+
+  @override
+  String get shoppingLimitHelp => 'Yeni listeler bu bütçeyle başlar.';
+
+  @override
+  String get shoppingLimitNone =>
+      'Her yeni alışveriş için varsayılan bir bütçe belirle.';
+
+  @override
+  String get monthlyReportAction => 'Aylık rapor';
+
+  @override
+  String get reportShoppingColumn => 'Alışveriş';
+
+  @override
+  String get reportDateColumn => 'Tarih';
 }
