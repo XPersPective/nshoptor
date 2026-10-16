@@ -73,6 +73,7 @@ Future<void> main() async {
   // Pro/Max abonelikleri (ADR-004 §6); AI kotası sunucuda doğrulanır.
   final subscriptions = SubscriptionService(store: store)..load();
   subscriptions.start();
+  WidgetsBinding.instance.addObserver(SubscriptionResumeObserver(subscriptions));
   SubscriptionService.instance = subscriptions;
   AiService.client = AiClient(
     store: store,

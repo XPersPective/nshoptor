@@ -178,6 +178,26 @@ void main() {
     service.dispose(); await native.events.close();
   });
 
+  test('upgrade charges the prorated price; downgrade is deferred to the period end', () async {
+    final native = _NativeStore();
+    native.addition.owned = [_native(SubscriptionService.proId, 'pro-token')];
+    final s = SubscriptionService(store: SettingsStore(), iap: native)..start();
+    await Future<void>.delayed(Duration.zero);
+    expect(s.tier, Tier.pro);
+
+    await s.buy(_offer(SubscriptionService.maxId));
+    final up = native.buys.last.changeSubscriptionParam!;
+    expect(up.replacementMode, ReplacementMode.chargeProratedPrice);
+    expect(up.oldPurchaseDetails.productID, SubscriptionService.proId);
+
+    native.addition.owned = [_native(SubscriptionService.maxId, 'max-token')];
+    s.applyNativeOwned(native.addition.owned);
+    await s.buy(_offer(SubscriptionService.proId));
+    expect(native.buys.last.changeSubscriptionParam!.replacementMode, ReplacementMode.deferred);
+    s.dispose();
+    await native.events.close();
+  });
+
   test('launched purchase stays busy until cancellation event; late refresh after dispose safe', () async {
     final native = _NativeStore(), service = SubscriptionService(store: SettingsStore());
     service.dispose(); await service.refresh(); // no disposal notification
@@ -267,6 +287,7 @@ void main() {
     expect(find.text('Mağazaya şu an ulaşılamıyor.'), findsOneWidget);
     await tester.scrollUntilVisible(find.byKey(const Key('plans_restore')), 200);
     expect(find.byKey(const Key('plans_restore')), findsOneWidget);
+    await tester.scrollUntilVisible(find.textContaining('otomatik yenilenir'), 200);
     expect(find.textContaining('otomatik yenilenir'), findsOneWidget);
   });
 }
