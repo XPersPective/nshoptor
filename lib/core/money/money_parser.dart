@@ -108,6 +108,16 @@ class MoneyParser {
       return '${intPart.replaceAll(t, "")}.$fracPart';
     }
 
+    // Tek "öteki" ayraç ve sağında 3 hane yoksa (27,5 / 1.23) binlik grubu
+    // olamaz: cihaz biçimi farklı olsa da ondalıktır. "1,500" binlik kalır.
+    if (thousandsCount == 1) {
+      final ti = s.indexOf(t);
+      if (ti == 0 || ti == s.length - 1) {
+        throw FormatException('ayraç uçta: "$s"');
+      }
+      if (s.length - ti - 1 != 3) return s.replaceAll(t, '.');
+    }
+
     // Ondalık ayraç yok: görünen tüm ayraçlar binliktir.
     if (thousandsCount > 0) {
       _checkGrouping(s, sep, s);
