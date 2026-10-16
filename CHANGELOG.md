@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.4] — 2026-10-16
+
+- Geçiş reklamı alışveriş sonunda, günlük ödüllü hediye; Pro plan 7 gün deneme ve yaşam boyu hakkı.
+- Ayarlarda plan rozeti ve Pro bölümü ilk sırada.
+- Fiyat geçmişi ürün/birim bazında normalize; ses oturumu tek mikrofon sahibiyle açılır.
+
 ## [1.2.1] — 2026-10-10
 
 - Sonuç ayrıntılarından yerelleştirilmiş CSV kaydı; negatif tutarlar ve bilinmeyen fiyatlar doğru aktarılır.
