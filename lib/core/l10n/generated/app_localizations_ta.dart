@@ -1227,4 +1227,50 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'தேதி';
+
+  @override
+  String get planUnavailable => 'இப்போது ஸ்டோரில் இல்லை';
+
+  @override
+  String get demoDataTitle => 'மாதிரித் தரவு';
+
+  @override
+  String get demoDataLoad => 'மாதிரித் தரவுடன் முயற்சிக்கவும்';
+
+  @override
+  String get demoDataLoadHelp =>
+      'வரலாறு, வரைபடங்கள், விலை வரலாற்றைப் பார்க்க 12 மாத மாதிரி ஷாப்பிங்கைச் சேர்க்கிறது.';
+
+  @override
+  String get demoDataRemove => 'மாதிரித் தரவை நீக்கு';
+
+  @override
+  String get demoDataAdded => 'மாதிரித் தரவு சேர்க்கப்பட்டது';
+
+  @override
+  String get demoDataRemoved => 'மாதிரித் தரவு நீக்கப்பட்டது';
+
+  @override
+  String get demoProductApple => 'ஆப்பிள்';
+
+  @override
+  String get demoProductBread => 'ரொட்டி';
+
+  @override
+  String get demoProductMilk => 'பால்';
+
+  @override
+  String get demoProductCheese => 'சீஸ்';
+
+  @override
+  String get demoProductTomato => 'தக்காளி';
+
+  @override
+  String get demoProductEggs => 'முட்டை';
+
+  @override
+  String get demoProductCoffee => 'காபி';
+
+  @override
+  String get demoProductDetergent => 'சவர்க்காரம்';
 }

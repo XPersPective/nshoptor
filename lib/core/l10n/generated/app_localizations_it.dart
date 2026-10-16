@@ -1221,4 +1221,50 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Data';
+
+  @override
+  String get planUnavailable => 'Al momento non disponibile nello store';
+
+  @override
+  String get demoDataTitle => 'Dati di esempio';
+
+  @override
+  String get demoDataLoad => 'Prova con dati di esempio';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Aggiunge 12 mesi di spese di esempio per vedere cronologia, grafici e storico prezzi.';
+
+  @override
+  String get demoDataRemove => 'Rimuovi dati di esempio';
+
+  @override
+  String get demoDataAdded => 'Dati di esempio aggiunti';
+
+  @override
+  String get demoDataRemoved => 'Dati di esempio rimossi';
+
+  @override
+  String get demoProductApple => 'Mele';
+
+  @override
+  String get demoProductBread => 'Pane';
+
+  @override
+  String get demoProductMilk => 'Latte';
+
+  @override
+  String get demoProductCheese => 'Formaggio';
+
+  @override
+  String get demoProductTomato => 'Pomodori';
+
+  @override
+  String get demoProductEggs => 'Uova';
+
+  @override
+  String get demoProductCoffee => 'Caffè';
+
+  @override
+  String get demoProductDetergent => 'Detersivo';
 }

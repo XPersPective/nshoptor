@@ -1225,4 +1225,50 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'తేదీ';
+
+  @override
+  String get planUnavailable => 'ప్రస్తుతం స్టోర్‌లో అందుబాటులో లేదు';
+
+  @override
+  String get demoDataTitle => 'నమూనా డేటా';
+
+  @override
+  String get demoDataLoad => 'నమూనా డేటాతో ప్రయత్నించండి';
+
+  @override
+  String get demoDataLoadHelp =>
+      'చరిత్ర, చార్ట్‌లు, ధర చరిత్ర చూడటానికి 12 నెలల నమూనా షాపింగ్‌ను జోడిస్తుంది.';
+
+  @override
+  String get demoDataRemove => 'నమూనా డేటాను తొలగించు';
+
+  @override
+  String get demoDataAdded => 'నమూనా డేటా జోడించబడింది';
+
+  @override
+  String get demoDataRemoved => 'నమూనా డేటా తొలగించబడింది';
+
+  @override
+  String get demoProductApple => 'ఆపిల్';
+
+  @override
+  String get demoProductBread => 'బ్రెడ్';
+
+  @override
+  String get demoProductMilk => 'పాలు';
+
+  @override
+  String get demoProductCheese => 'చీజ్';
+
+  @override
+  String get demoProductTomato => 'టమాటాలు';
+
+  @override
+  String get demoProductEggs => 'గుడ్లు';
+
+  @override
+  String get demoProductCoffee => 'కాఫీ';
+
+  @override
+  String get demoProductDetergent => 'డిటర్జెంట్';
 }

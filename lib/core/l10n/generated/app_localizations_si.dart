@@ -1215,4 +1215,50 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'දිනය';
+
+  @override
+  String get planUnavailable => 'දැනට වෙළඳසැලේ නැත';
+
+  @override
+  String get demoDataTitle => 'නියැදි දත්ත';
+
+  @override
+  String get demoDataLoad => 'නියැදි දත්ත සමඟ උත්සාහ කරන්න';
+
+  @override
+  String get demoDataLoadHelp =>
+      'ඉතිහාසය, ප්‍රස්තාර සහ මිල ඉතිහාසය බැලීමට මාස 12ක නියැදි සාප්පු සවාරි එක් කරයි.';
+
+  @override
+  String get demoDataRemove => 'නියැදි දත්ත ඉවත් කරන්න';
+
+  @override
+  String get demoDataAdded => 'නියැදි දත්ත එක් කළා';
+
+  @override
+  String get demoDataRemoved => 'නියැදි දත්ත ඉවත් කළා';
+
+  @override
+  String get demoProductApple => 'ඇපල්';
+
+  @override
+  String get demoProductBread => 'පාන්';
+
+  @override
+  String get demoProductMilk => 'කිරි';
+
+  @override
+  String get demoProductCheese => 'චීස්';
+
+  @override
+  String get demoProductTomato => 'තක්කාලි';
+
+  @override
+  String get demoProductEggs => 'බිත්තර';
+
+  @override
+  String get demoProductCoffee => 'කෝපි';
+
+  @override
+  String get demoProductDetergent => 'සබන් කුඩු';
 }

@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Đặt ngân sách mặc định cho mỗi lần mua mới.",
   "monthlyReportAction": "Báo cáo tháng",
   "reportShoppingColumn": "Lần mua",
-  "reportDateColumn": "Ngày"
+  "reportDateColumn": "Ngày",
+  "planUnavailable": "Hiện chưa có trên cửa hàng",
+  "demoDataTitle": "Dữ liệu mẫu",
+  "demoDataLoad": "Dùng thử với dữ liệu mẫu",
+  "demoDataLoadHelp": "Thêm 12 tháng mua sắm mẫu để bạn xem lịch sử, biểu đồ và lịch sử giá.",
+  "demoDataRemove": "Xóa dữ liệu mẫu",
+  "demoDataAdded": "Đã thêm dữ liệu mẫu",
+  "demoDataRemoved": "Đã xóa dữ liệu mẫu",
+  "demoProductApple": "Táo",
+  "demoProductBread": "Bánh mì",
+  "demoProductMilk": "Sữa",
+  "demoProductCheese": "Phô mai",
+  "demoProductTomato": "Cà chua",
+  "demoProductEggs": "Trứng",
+  "demoProductCoffee": "Cà phê",
+  "demoProductDetergent": "Bột giặt"
 }

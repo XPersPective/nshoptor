@@ -66,26 +66,19 @@ class _HistoryScreenState extends State<HistoryScreen> {
     final db = widget.db;
     final periods = _periods(context, widget.now ?? DateTime.now());
     return DefaultTabController(
-      length: periods.length,
-      initialIndex: 1, // bu ay
+      length: periods.length + 1,
+      initialIndex: 0, // genel bakış
       child: Scaffold(
         appBar: AppBar(
           title: Text(l10n.navHistory),
-          actions: [
-            IconButton(
-              key: const Key('history_spending'),
-              icon: const Icon(Icons.insights_outlined),
-              tooltip: l10n.spendingAction,
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(builder: (_) => SpendingScreen(db: db)),
-              ),
-            ),
-          ],
           bottom: TabBar(
             key: const Key('history_periods'),
             isScrollable: true,
             tabAlignment: TabAlignment.start,
-            tabs: [for (final p in periods) Tab(text: p.label)],
+            tabs: [
+              Tab(key: const Key('history_overview_tab'), text: l10n.spendingOverview),
+              for (final (i, p) in periods.indexed) Tab(key: Key('history_period_tab_$i'), text: p.label),
+            ],
           ),
         ),
         body: StreamBuilder<List<ShoppingList>>(
@@ -97,6 +90,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ]);
             return TabBarView(
               children: [
+                // İlk bakışta genel görünüm: harcama özeti, limitler, grafikler.
+                SpendingScreen(key: ValueKey(version), db: db, now: widget.now, embedded: true),
                 for (final p in periods)
                   _PeriodView(
                     key: ValueKey(Object.hash(p.from, version)),

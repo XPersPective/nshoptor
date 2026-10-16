@@ -1224,4 +1224,50 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Sana';
+
+  @override
+  String get planUnavailable => 'Hozircha do\'konda yo\'q';
+
+  @override
+  String get demoDataTitle => 'Namuna ma\'lumotlar';
+
+  @override
+  String get demoDataLoad => 'Namuna ma\'lumotlar bilan sinab ko\'ring';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Tarix, grafiklar va narx tarixini ko\'rish uchun 12 oylik namuna xaridlarni qo\'shadi.';
+
+  @override
+  String get demoDataRemove => 'Namuna ma\'lumotlarni o\'chirish';
+
+  @override
+  String get demoDataAdded => 'Namuna ma\'lumotlar qo\'shildi';
+
+  @override
+  String get demoDataRemoved => 'Namuna ma\'lumotlar o\'chirildi';
+
+  @override
+  String get demoProductApple => 'Olma';
+
+  @override
+  String get demoProductBread => 'Non';
+
+  @override
+  String get demoProductMilk => 'Sut';
+
+  @override
+  String get demoProductCheese => 'Pishloq';
+
+  @override
+  String get demoProductTomato => 'Pomidor';
+
+  @override
+  String get demoProductEggs => 'Tuxum';
+
+  @override
+  String get demoProductCoffee => 'Qahva';
+
+  @override
+  String get demoProductDetergent => 'Kir yuvish vositasi';
 }

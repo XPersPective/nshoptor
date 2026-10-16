@@ -377,5 +377,20 @@
   "shoppingLimitNone": "हरेक नयाँ किनमेलका लागि पूर्वनिर्धारित बजेट राख्नुहोस्।",
   "monthlyReportAction": "मासिक प्रतिवेदन",
   "reportShoppingColumn": "किनमेल",
-  "reportDateColumn": "मिति"
+  "reportDateColumn": "मिति",
+  "planUnavailable": "अहिले स्टोरमा उपलब्ध छैन",
+  "demoDataTitle": "नमुना डाटा",
+  "demoDataLoad": "नमुना डाटासँग प्रयास गर्नुहोस्",
+  "demoDataLoadHelp": "इतिहास, चार्ट र मूल्य इतिहास हेर्न १२ महिनाको नमुना किनमेल थप्छ।",
+  "demoDataRemove": "नमुना डाटा हटाउनुहोस्",
+  "demoDataAdded": "नमुना डाटा थपियो",
+  "demoDataRemoved": "नमुना डाटा हटाइयो",
+  "demoProductApple": "स्याउ",
+  "demoProductBread": "पाउरोटी",
+  "demoProductMilk": "दूध",
+  "demoProductCheese": "चिज",
+  "demoProductTomato": "गोलभेडा",
+  "demoProductEggs": "अण्डा",
+  "demoProductCoffee": "कफी",
+  "demoProductDetergent": "डिटर्जेन्ट"
 }

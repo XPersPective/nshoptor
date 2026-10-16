@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Sæt et standardbudget for hvert nyt indkøb.",
   "monthlyReportAction": "Månedsrapport",
   "reportShoppingColumn": "Indkøb",
-  "reportDateColumn": "Dato"
+  "reportDateColumn": "Dato",
+  "planUnavailable": "Ikke tilgængelig i butikken lige nu",
+  "demoDataTitle": "Eksempeldata",
+  "demoDataLoad": "Prøv med eksempeldata",
+  "demoDataLoadHelp": "Tilføjer 12 måneders eksempelindkøb, så du kan se historik, grafer og prishistorik.",
+  "demoDataRemove": "Fjern eksempeldata",
+  "demoDataAdded": "Eksempeldata tilføjet",
+  "demoDataRemoved": "Eksempeldata fjernet",
+  "demoProductApple": "Æbler",
+  "demoProductBread": "Brød",
+  "demoProductMilk": "Mælk",
+  "demoProductCheese": "Ost",
+  "demoProductTomato": "Tomater",
+  "demoProductEggs": "Æg",
+  "demoProductCoffee": "Kaffe",
+  "demoProductDetergent": "Vaskemiddel"
 }

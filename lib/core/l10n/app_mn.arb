@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Шинэ худалдан авалт бүрт өгөгдмөл төсөв тогтооно уу.",
   "monthlyReportAction": "Сарын тайлан",
   "reportShoppingColumn": "Худалдан авалт",
-  "reportDateColumn": "Огноо"
+  "reportDateColumn": "Огноо",
+  "planUnavailable": "Одоогоор дэлгүүрт байхгүй",
+  "demoDataTitle": "Жишээ өгөгдөл",
+  "demoDataLoad": "Жишээ өгөгдлөөр туршиж үзэх",
+  "demoDataLoadHelp": "Түүх, график, үнийн түүхийг харахын тулд 12 сарын жишээ худалдан авалт нэмнэ.",
+  "demoDataRemove": "Жишээ өгөгдлийг устгах",
+  "demoDataAdded": "Жишээ өгөгдөл нэмэгдлээ",
+  "demoDataRemoved": "Жишээ өгөгдөл устгагдлаа",
+  "demoProductApple": "Алим",
+  "demoProductBread": "Талх",
+  "demoProductMilk": "Сүү",
+  "demoProductCheese": "Бяслаг",
+  "demoProductTomato": "Улаан лооль",
+  "demoProductEggs": "Өндөг",
+  "demoProductCoffee": "Кофе",
+  "demoProductDetergent": "Угаалгын нунтаг"
 }

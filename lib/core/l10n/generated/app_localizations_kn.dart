@@ -1219,4 +1219,50 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'ದಿನಾಂಕ';
+
+  @override
+  String get planUnavailable => 'ಈಗ ಸ್ಟೋರ್‌ನಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ';
+
+  @override
+  String get demoDataTitle => 'ಮಾದರಿ ಡೇಟಾ';
+
+  @override
+  String get demoDataLoad => 'ಮಾದರಿ ಡೇಟಾದೊಂದಿಗೆ ಪ್ರಯತ್ನಿಸಿ';
+
+  @override
+  String get demoDataLoadHelp =>
+      'ಇತಿಹಾಸ, ಚಾರ್ಟ್‌ಗಳು ಮತ್ತು ಬೆಲೆ ಇತಿಹಾಸವನ್ನು ನೋಡಲು 12 ತಿಂಗಳ ಮಾದರಿ ಖರೀದಿ ಸೇರಿಸುತ್ತದೆ.';
+
+  @override
+  String get demoDataRemove => 'ಮಾದರಿ ಡೇಟಾ ಅಳಿಸಿ';
+
+  @override
+  String get demoDataAdded => 'ಮಾದರಿ ಡೇಟಾ ಸೇರಿಸಲಾಗಿದೆ';
+
+  @override
+  String get demoDataRemoved => 'ಮಾದರಿ ಡೇಟಾ ಅಳಿಸಲಾಗಿದೆ';
+
+  @override
+  String get demoProductApple => 'ಸೇಬು';
+
+  @override
+  String get demoProductBread => 'ಬ್ರೆಡ್';
+
+  @override
+  String get demoProductMilk => 'ಹಾಲು';
+
+  @override
+  String get demoProductCheese => 'ಚೀಸ್';
+
+  @override
+  String get demoProductTomato => 'ಟೊಮೆಟೊ';
+
+  @override
+  String get demoProductEggs => 'ಮೊಟ್ಟೆ';
+
+  @override
+  String get demoProductCoffee => 'ಕಾಫಿ';
+
+  @override
+  String get demoProductDetergent => 'ಡಿಟರ್ಜೆಂಟ್';
 }

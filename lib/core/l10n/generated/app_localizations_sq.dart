@@ -1220,4 +1220,50 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Data';
+
+  @override
+  String get planUnavailable => 'Aktualisht nuk është në dyqan';
+
+  @override
+  String get demoDataTitle => 'Të dhëna shembull';
+
+  @override
+  String get demoDataLoad => 'Provo me të dhëna shembull';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Shton blerje shembull për 12 muaj që të shihni historikun, grafikët dhe historikun e çmimeve.';
+
+  @override
+  String get demoDataRemove => 'Hiq të dhënat shembull';
+
+  @override
+  String get demoDataAdded => 'Të dhënat shembull u shtuan';
+
+  @override
+  String get demoDataRemoved => 'Të dhënat shembull u hoqën';
+
+  @override
+  String get demoProductApple => 'Mollë';
+
+  @override
+  String get demoProductBread => 'Bukë';
+
+  @override
+  String get demoProductMilk => 'Qumësht';
+
+  @override
+  String get demoProductCheese => 'Djathë';
+
+  @override
+  String get demoProductTomato => 'Domate';
+
+  @override
+  String get demoProductEggs => 'Vezë';
+
+  @override
+  String get demoProductCoffee => 'Kafe';
+
+  @override
+  String get demoProductDetergent => 'Detergjent';
 }

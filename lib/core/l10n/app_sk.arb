@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Nastavte predvolený rozpočet pre každý nový nákup.",
   "monthlyReportAction": "Mesačná správa",
   "reportShoppingColumn": "Nákup",
-  "reportDateColumn": "Dátum"
+  "reportDateColumn": "Dátum",
+  "planUnavailable": "Momentálne nie je v obchode k dispozícii",
+  "demoDataTitle": "Ukážkové údaje",
+  "demoDataLoad": "Vyskúšať s ukážkovými údajmi",
+  "demoDataLoadHelp": "Pridá ukážkové nákupy za 12 mesiacov, aby ste videli históriu, grafy a vývoj cien.",
+  "demoDataRemove": "Odstrániť ukážkové údaje",
+  "demoDataAdded": "Ukážkové údaje pridané",
+  "demoDataRemoved": "Ukážkové údaje odstránené",
+  "demoProductApple": "Jablká",
+  "demoProductBread": "Chlieb",
+  "demoProductMilk": "Mlieko",
+  "demoProductCheese": "Syr",
+  "demoProductTomato": "Paradajky",
+  "demoProductEggs": "Vajcia",
+  "demoProductCoffee": "Káva",
+  "demoProductDetergent": "Prací prášok"
 }

@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Hər yeni alış-veriş üçün standart büdcə təyin edin.",
   "monthlyReportAction": "Aylıq hesabat",
   "reportShoppingColumn": "Alış-veriş",
-  "reportDateColumn": "Tarix"
+  "reportDateColumn": "Tarix",
+  "planUnavailable": "Hazırda mağazada yoxdur",
+  "demoDataTitle": "Nümunə məlumatlar",
+  "demoDataLoad": "Nümunə məlumatlarla sınayın",
+  "demoDataLoadHelp": "Tarixçəni, qrafikləri və qiymət tarixçəsini görmək üçün 12 aylıq nümunə alış-veriş əlavə edir.",
+  "demoDataRemove": "Nümunə məlumatları silin",
+  "demoDataAdded": "Nümunə məlumatlar əlavə edildi",
+  "demoDataRemoved": "Nümunə məlumatlar silindi",
+  "demoProductApple": "Alma",
+  "demoProductBread": "Çörək",
+  "demoProductMilk": "Süd",
+  "demoProductCheese": "Pendir",
+  "demoProductTomato": "Pomidor",
+  "demoProductEggs": "Yumurta",
+  "demoProductCoffee": "Qəhvə",
+  "demoProductDetergent": "Yuyucu vasitə"
 }

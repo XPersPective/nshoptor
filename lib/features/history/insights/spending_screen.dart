@@ -19,13 +19,16 @@ import '../price_history/price_history_sheet.dart';
 /// Harcamalar (PB-054): alışveriş günleri takvimi, haftalık/aylık grafik,
 /// aylık limit. Varsayılan para biriminde; diğer para birimleri karışmaz.
 class SpendingScreen extends StatefulWidget {
-  const SpendingScreen({super.key, required this.db, this.now, this.currencyCode});
+  const SpendingScreen({super.key, required this.db, this.now, this.currencyCode, this.embedded = false});
 
   final AppDatabase db;
 
   /// Testlerde sabit "bugün".
   final DateTime? now;
   final String? currencyCode;
+
+  /// Geçmiş sekmesinin içinde: kendi uygulama çubuğu olmadan.
+  final bool embedded;
 
   @override
   State<SpendingScreen> createState() => _SpendingScreenState();
@@ -118,7 +121,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.spendingTitle)),
+      appBar: widget.embedded ? null : AppBar(title: Text(l10n.spendingTitle)),
       body: FutureBuilder(
         future: _data,
         builder: (context, snap) {

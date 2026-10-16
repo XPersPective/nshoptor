@@ -1214,4 +1214,50 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Ngày';
+
+  @override
+  String get planUnavailable => 'Hiện chưa có trên cửa hàng';
+
+  @override
+  String get demoDataTitle => 'Dữ liệu mẫu';
+
+  @override
+  String get demoDataLoad => 'Dùng thử với dữ liệu mẫu';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Thêm 12 tháng mua sắm mẫu để bạn xem lịch sử, biểu đồ và lịch sử giá.';
+
+  @override
+  String get demoDataRemove => 'Xóa dữ liệu mẫu';
+
+  @override
+  String get demoDataAdded => 'Đã thêm dữ liệu mẫu';
+
+  @override
+  String get demoDataRemoved => 'Đã xóa dữ liệu mẫu';
+
+  @override
+  String get demoProductApple => 'Táo';
+
+  @override
+  String get demoProductBread => 'Bánh mì';
+
+  @override
+  String get demoProductMilk => 'Sữa';
+
+  @override
+  String get demoProductCheese => 'Phô mai';
+
+  @override
+  String get demoProductTomato => 'Cà chua';
+
+  @override
+  String get demoProductEggs => 'Trứng';
+
+  @override
+  String get demoProductCoffee => 'Cà phê';
+
+  @override
+  String get demoProductDetergent => 'Bột giặt';
 }

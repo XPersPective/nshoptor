@@ -1211,4 +1211,50 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'تاریخ';
+
+  @override
+  String get planUnavailable => 'فعلاً در فروشگاه موجود نیست';
+
+  @override
+  String get demoDataTitle => 'داده‌های نمونه';
+
+  @override
+  String get demoDataLoad => 'امتحان با داده‌های نمونه';
+
+  @override
+  String get demoDataLoadHelp =>
+      '۱۲ ماه خرید نمونه اضافه می‌کند تا تاریخچه، نمودارها و تاریخچه قیمت را ببینید.';
+
+  @override
+  String get demoDataRemove => 'حذف داده‌های نمونه';
+
+  @override
+  String get demoDataAdded => 'داده‌های نمونه اضافه شد';
+
+  @override
+  String get demoDataRemoved => 'داده‌های نمونه حذف شد';
+
+  @override
+  String get demoProductApple => 'سیب';
+
+  @override
+  String get demoProductBread => 'نان';
+
+  @override
+  String get demoProductMilk => 'شیر';
+
+  @override
+  String get demoProductCheese => 'پنیر';
+
+  @override
+  String get demoProductTomato => 'گوجه‌فرنگی';
+
+  @override
+  String get demoProductEggs => 'تخم‌مرغ';
+
+  @override
+  String get demoProductCoffee => 'قهوه';
+
+  @override
+  String get demoProductDetergent => 'شوینده';
 }

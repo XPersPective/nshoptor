@@ -4,6 +4,8 @@ import '../../core/money/format_locale.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../core/theme/brand_wordmark.dart';
+
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../app/app_defaults.dart';
 import '../../core/money/currency.dart';
@@ -83,9 +85,16 @@ class _ListsScreenState extends State<ListsScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(l10n.listsTitle),
+          title: const BrandTitle(),
           actions: [
             ?widget.planBadge,
+            if (widget.onScanReceipt != null)
+              IconButton(
+                key: const Key('lists_receipt_button'),
+                tooltip: l10n.tipReceiptScan,
+                icon: const Icon(Icons.receipt_long_outlined),
+                onPressed: widget.onScanReceipt,
+              ),
             IconButton(
               key: const Key('lists_search_button'),
               tooltip: l10n.searchListHint,

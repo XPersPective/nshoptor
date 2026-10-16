@@ -1215,4 +1215,50 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Dato';
+
+  @override
+  String get planUnavailable => 'Ikke tilgængelig i butikken lige nu';
+
+  @override
+  String get demoDataTitle => 'Eksempeldata';
+
+  @override
+  String get demoDataLoad => 'Prøv med eksempeldata';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Tilføjer 12 måneders eksempelindkøb, så du kan se historik, grafer og prishistorik.';
+
+  @override
+  String get demoDataRemove => 'Fjern eksempeldata';
+
+  @override
+  String get demoDataAdded => 'Eksempeldata tilføjet';
+
+  @override
+  String get demoDataRemoved => 'Eksempeldata fjernet';
+
+  @override
+  String get demoProductApple => 'Æbler';
+
+  @override
+  String get demoProductBread => 'Brød';
+
+  @override
+  String get demoProductMilk => 'Mælk';
+
+  @override
+  String get demoProductCheese => 'Ost';
+
+  @override
+  String get demoProductTomato => 'Tomater';
+
+  @override
+  String get demoProductEggs => 'Æg';
+
+  @override
+  String get demoProductCoffee => 'Kaffe';
+
+  @override
+  String get demoProductDetergent => 'Vaskemiddel';
 }

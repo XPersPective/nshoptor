@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Define un presupuesto predeterminado para cada compra nueva.",
   "monthlyReportAction": "Informe mensual",
   "reportShoppingColumn": "Compra",
-  "reportDateColumn": "Fecha"
+  "reportDateColumn": "Fecha",
+  "planUnavailable": "No disponible en la tienda ahora",
+  "demoDataTitle": "Datos de ejemplo",
+  "demoDataLoad": "Probar con datos de ejemplo",
+  "demoDataLoadHelp": "Añade 12 meses de compras de ejemplo para ver el historial, los gráficos y el historial de precios.",
+  "demoDataRemove": "Eliminar datos de ejemplo",
+  "demoDataAdded": "Datos de ejemplo añadidos",
+  "demoDataRemoved": "Datos de ejemplo eliminados",
+  "demoProductApple": "Manzanas",
+  "demoProductBread": "Pan",
+  "demoProductMilk": "Leche",
+  "demoProductCheese": "Queso",
+  "demoProductTomato": "Tomates",
+  "demoProductEggs": "Huevos",
+  "demoProductCoffee": "Café",
+  "demoProductDetergent": "Detergente"
 }

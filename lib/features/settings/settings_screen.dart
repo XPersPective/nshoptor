@@ -10,6 +10,8 @@ import '../assistant/assistant_bubble.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/brand_wordmark.dart';
 import '../subscription/plan_badge.dart';
+import 'demo_data.dart';
+import '../../app/app_defaults.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
 import 'package:napp_core/napp_core.dart';
@@ -100,6 +102,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
         AppPalette.sunset => l10n.paletteSunset,
         AppPalette.lavender => l10n.paletteLavender,
       };
+
+  Future<void> _demo({required bool load}) async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final demo = DemoData(widget.repository.db);
+    try {
+      if (load) {
+        await demo.insert(l10n, currencyCode: AppDefaults.defaultCurrency());
+      } else {
+        await demo.remove();
+      }
+      messenger
+        ..clearSnackBars()
+        ..showSnackBar(SnackBar(content: Text(load ? l10n.demoDataAdded : l10n.demoDataRemoved), showCloseIcon: true));
+    } catch (_) {
+      messenger
+        ..clearSnackBars()
+        ..showSnackBar(SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true));
+    }
+  }
 
   void _setThemeMode(String? v) {
     if (v == null) return;
@@ -246,7 +268,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               contentPadding: EdgeInsets.zero,
               secondary: const Icon(Icons.contrast),
               title: Text(l10n.darkBlackLabel),
-              value: widget.themeModeController?.black ?? true,
+              value: widget.themeModeController?.black ?? false,
               onChanged: (v) => setState(() => widget.themeModeController?.setBlack(v)),
             ),
 
@@ -361,6 +383,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(l10n.privacyInfoBody,
                   style: Theme.of(context).textTheme.bodyMedium),
+            ),
+
+            _SectionTitle(icon: Icons.science_outlined, label: l10n.demoDataTitle),
+            ListTile(
+              key: const Key('settings_demo_load'),
+              leading: const Icon(Icons.auto_graph),
+              title: Text(l10n.demoDataLoad),
+              subtitle: Text(l10n.demoDataLoadHelp),
+              onTap: () => _demo(load: true),
+            ),
+            ListTile(
+              key: const Key('settings_demo_remove'),
+              leading: const Icon(Icons.delete_sweep_outlined),
+              title: Text(l10n.demoDataRemove),
+              onTap: () => _demo(load: false),
             ),
 
             _SectionTitle(icon: Icons.info_outline, label: l10n.aboutSection),

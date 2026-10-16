@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Fixez un budget par défaut pour chaque nouvelle course.",
   "monthlyReportAction": "Rapport mensuel",
   "reportShoppingColumn": "Course",
-  "reportDateColumn": "Date"
+  "reportDateColumn": "Date",
+  "planUnavailable": "Indisponible dans la boutique pour l'instant",
+  "demoDataTitle": "Données d'exemple",
+  "demoDataLoad": "Essayer avec des données d'exemple",
+  "demoDataLoadHelp": "Ajoute 12 mois d'achats d'exemple pour voir l'historique, les graphiques et l'historique des prix.",
+  "demoDataRemove": "Supprimer les données d'exemple",
+  "demoDataAdded": "Données d'exemple ajoutées",
+  "demoDataRemoved": "Données d'exemple supprimées",
+  "demoProductApple": "Pommes",
+  "demoProductBread": "Pain",
+  "demoProductMilk": "Lait",
+  "demoProductCheese": "Fromage",
+  "demoProductTomato": "Tomates",
+  "demoProductEggs": "Œufs",
+  "demoProductCoffee": "Café",
+  "demoProductDetergent": "Lessive"
 }

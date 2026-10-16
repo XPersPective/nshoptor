@@ -18,20 +18,20 @@ void main() {
         isNot(AppTheme.light().colorScheme.primary));
   });
 
-  test('black dark style uses pure black surfaces; dim style does not', () {
-    expect(AppTheme.dark().colorScheme.surface, Colors.black);
-    expect(AppTheme.dark(black: false).colorScheme.surface, isNot(Colors.black));
+  test('default dark is brand-tinted, pure black is an option', () {
+    expect(AppTheme.dark().colorScheme.surface, isNot(Colors.black));
+    expect(AppTheme.dark(black: true).colorScheme.surface, Colors.black);
   });
 
   test('controller stores palette and black style', () {
     final store = SettingsStore();
     final c = AppThemeModeController(store: store)..load();
     expect(c.palette, AppPalette.forest);
-    expect(c.black, isTrue);
+    expect(c.black, isFalse);
     c.setPalette(AppPalette.sunset);
-    c.setBlack(false);
+    c.setBlack(true);
     final reloaded = AppThemeModeController(store: store)..load();
     expect(reloaded.palette, AppPalette.sunset);
-    expect(reloaded.black, isFalse);
+    expect(reloaded.black, isTrue);
   });
 }

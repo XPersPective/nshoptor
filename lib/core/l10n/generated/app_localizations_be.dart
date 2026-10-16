@@ -1221,4 +1221,50 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Дата';
+
+  @override
+  String get planUnavailable => 'Зараз недаступна ў краме';
+
+  @override
+  String get demoDataTitle => 'Прыкладныя даныя';
+
+  @override
+  String get demoDataLoad => 'Паспрабаваць з прыкладнымі данымі';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Дадае пакупкі за 12 месяцаў, каб убачыць гісторыю, графікі і гісторыю цэн.';
+
+  @override
+  String get demoDataRemove => 'Выдаліць прыкладныя даныя';
+
+  @override
+  String get demoDataAdded => 'Прыкладныя даныя дададзены';
+
+  @override
+  String get demoDataRemoved => 'Прыкладныя даныя выдалены';
+
+  @override
+  String get demoProductApple => 'Яблыкі';
+
+  @override
+  String get demoProductBread => 'Хлеб';
+
+  @override
+  String get demoProductMilk => 'Малако';
+
+  @override
+  String get demoProductCheese => 'Сыр';
+
+  @override
+  String get demoProductTomato => 'Памідоры';
+
+  @override
+  String get demoProductEggs => 'Яйкі';
+
+  @override
+  String get demoProductCoffee => 'Кава';
+
+  @override
+  String get demoProductDetergent => 'Мыйны сродак';
 }

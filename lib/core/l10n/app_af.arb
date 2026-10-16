@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Stel 'n verstekbegroting vir elke nuwe inkopie.",
   "monthlyReportAction": "Maandverslag",
   "reportShoppingColumn": "Inkopie",
-  "reportDateColumn": "Datum"
+  "reportDateColumn": "Datum",
+  "planUnavailable": "Nie nou in die winkel beskikbaar nie",
+  "demoDataTitle": "Voorbeelddata",
+  "demoDataLoad": "Probeer met voorbeelddata",
+  "demoDataLoadHelp": "Voeg 12 maande se voorbeeldinkopies by sodat jy geskiedenis, grafieke en pryse kan sien.",
+  "demoDataRemove": "Verwyder voorbeelddata",
+  "demoDataAdded": "Voorbeelddata bygevoeg",
+  "demoDataRemoved": "Voorbeelddata verwyder",
+  "demoProductApple": "Appels",
+  "demoProductBread": "Brood",
+  "demoProductMilk": "Melk",
+  "demoProductCheese": "Kaas",
+  "demoProductTomato": "Tamaties",
+  "demoProductEggs": "Eiers",
+  "demoProductCoffee": "Koffie",
+  "demoProductDetergent": "Wasmiddel"
 }

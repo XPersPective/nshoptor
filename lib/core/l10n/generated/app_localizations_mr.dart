@@ -1213,4 +1213,50 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'तारीख';
+
+  @override
+  String get planUnavailable => 'सध्या स्टोअरमध्ये उपलब्ध नाही';
+
+  @override
+  String get demoDataTitle => 'नमुना डेटा';
+
+  @override
+  String get demoDataLoad => 'नमुना डेटासह वापरून पाहा';
+
+  @override
+  String get demoDataLoadHelp =>
+      'इतिहास, चार्ट आणि किंमत इतिहास पाहण्यासाठी 12 महिन्यांची नमुना खरेदी जोडते.';
+
+  @override
+  String get demoDataRemove => 'नमुना डेटा काढा';
+
+  @override
+  String get demoDataAdded => 'नमुना डेटा जोडला';
+
+  @override
+  String get demoDataRemoved => 'नमुना डेटा काढला';
+
+  @override
+  String get demoProductApple => 'सफरचंद';
+
+  @override
+  String get demoProductBread => 'पाव';
+
+  @override
+  String get demoProductMilk => 'दूध';
+
+  @override
+  String get demoProductCheese => 'चीज';
+
+  @override
+  String get demoProductTomato => 'टोमॅटो';
+
+  @override
+  String get demoProductEggs => 'अंडी';
+
+  @override
+  String get demoProductCoffee => 'कॉफी';
+
+  @override
+  String get demoProductDetergent => 'डिटर्जंट';
 }

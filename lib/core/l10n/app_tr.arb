@@ -398,5 +398,20 @@
   "shoppingLimitNone": "Her yeni alışveriş için varsayılan bir bütçe belirle.",
   "monthlyReportAction": "Aylık rapor",
   "reportShoppingColumn": "Alışveriş",
-  "reportDateColumn": "Tarih"
+  "reportDateColumn": "Tarih",
+  "planUnavailable": "Şu an mağazada yok",
+  "demoDataTitle": "Örnek veriler",
+  "demoDataLoad": "Örnek verilerle dene",
+  "demoDataLoadHelp": "Geçmişi, grafikleri ve fiyat geçmişini görmek için 12 aylık örnek alışveriş ekler.",
+  "demoDataRemove": "Örnek verileri sil",
+  "demoDataAdded": "Örnek veriler eklendi",
+  "demoDataRemoved": "Örnek veriler silindi",
+  "demoProductApple": "Elma",
+  "demoProductBread": "Ekmek",
+  "demoProductMilk": "Süt",
+  "demoProductCheese": "Peynir",
+  "demoProductTomato": "Domates",
+  "demoProductEggs": "Yumurta",
+  "demoProductCoffee": "Kahve",
+  "demoProductDetergent": "Deterjan"
 }

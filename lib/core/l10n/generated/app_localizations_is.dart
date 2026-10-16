@@ -1215,4 +1215,50 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Dagsetning';
+
+  @override
+  String get planUnavailable => 'Ekki í boði í versluninni núna';
+
+  @override
+  String get demoDataTitle => 'Sýnigögn';
+
+  @override
+  String get demoDataLoad => 'Prófa með sýnigögnum';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Bætir við 12 mánuðum af sýnikaupum svo þú sjáir sögu, gröf og verðsögu.';
+
+  @override
+  String get demoDataRemove => 'Fjarlægja sýnigögn';
+
+  @override
+  String get demoDataAdded => 'Sýnigögnum bætt við';
+
+  @override
+  String get demoDataRemoved => 'Sýnigögn fjarlægð';
+
+  @override
+  String get demoProductApple => 'Epli';
+
+  @override
+  String get demoProductBread => 'Brauð';
+
+  @override
+  String get demoProductMilk => 'Mjólk';
+
+  @override
+  String get demoProductCheese => 'Ostur';
+
+  @override
+  String get demoProductTomato => 'Tómatar';
+
+  @override
+  String get demoProductEggs => 'Egg';
+
+  @override
+  String get demoProductCoffee => 'Kaffi';
+
+  @override
+  String get demoProductDetergent => 'Þvottaefni';
 }

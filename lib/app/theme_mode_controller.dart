@@ -46,14 +46,14 @@ class AppThemeModeController extends ChangeNotifier {
   static const String blackKey = 'app.darkBlack';
 
   AppPalette _palette = AppPalette.forest;
-  bool _black = true;
+  bool _black = false;
 
   AppPalette get palette => _palette;
   bool get black => _black;
 
   void loadStyle() {
     _palette = AppPalette.fromName(_store?.getString(paletteKey));
-    _black = _store?.getBool(blackKey) ?? true;
+    _black = _store?.getBool(blackKey) ?? false;
   }
 
   void setPalette(AppPalette palette) {

@@ -1218,4 +1218,50 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Tarehe';
+
+  @override
+  String get planUnavailable => 'Haipatikani dukani kwa sasa';
+
+  @override
+  String get demoDataTitle => 'Data ya mfano';
+
+  @override
+  String get demoDataLoad => 'Jaribu na data ya mfano';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Huongeza ununuzi wa mfano wa miezi 12 ili uone historia, chati na historia ya bei.';
+
+  @override
+  String get demoDataRemove => 'Ondoa data ya mfano';
+
+  @override
+  String get demoDataAdded => 'Data ya mfano imeongezwa';
+
+  @override
+  String get demoDataRemoved => 'Data ya mfano imeondolewa';
+
+  @override
+  String get demoProductApple => 'Matufaha';
+
+  @override
+  String get demoProductBread => 'Mkate';
+
+  @override
+  String get demoProductMilk => 'Maziwa';
+
+  @override
+  String get demoProductCheese => 'Jibini';
+
+  @override
+  String get demoProductTomato => 'Nyanya';
+
+  @override
+  String get demoProductEggs => 'Mayai';
+
+  @override
+  String get demoProductCoffee => 'Kahawa';
+
+  @override
+  String get demoProductDetergent => 'Sabuni ya unga';
 }

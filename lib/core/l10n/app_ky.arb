@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Ар бир жаңы соода үчүн демейки бюджет коюңуз.",
   "monthlyReportAction": "Айлык отчёт",
   "reportShoppingColumn": "Соода",
-  "reportDateColumn": "Күнү"
+  "reportDateColumn": "Күнү",
+  "planUnavailable": "Азыр дүкөндө жок",
+  "demoDataTitle": "Үлгү маалыматтар",
+  "demoDataLoad": "Үлгү маалыматтар менен байкап көрүү",
+  "demoDataLoadHelp": "Тарыхты, графиктерди жана баа тарыхын көрүү үчүн 12 айлык үлгү сооданы кошот.",
+  "demoDataRemove": "Үлгү маалыматтарды өчүрүү",
+  "demoDataAdded": "Үлгү маалыматтар кошулду",
+  "demoDataRemoved": "Үлгү маалыматтар өчүрүлдү",
+  "demoProductApple": "Алма",
+  "demoProductBread": "Нан",
+  "demoProductMilk": "Сүт",
+  "demoProductCheese": "Сыр",
+  "demoProductTomato": "Помидор",
+  "demoProductEggs": "Жумуртка",
+  "demoProductCoffee": "Кофе",
+  "demoProductDetergent": "Жуучу каражат"
 }

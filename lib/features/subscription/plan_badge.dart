@@ -35,28 +35,46 @@ class PlanBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
     final tip = '$label · ${AppLocalizations.of(context).tipPlan}';
-    final icon = Icon(
-      trial ? Icons.hourglass_top : Icons.workspace_premium,
-      size: 18,
-      color: active ? Theme.of(context).colorScheme.primary : null,
-    );
-    if (MediaQuery.textScalerOf(context).scale(14) > 18) {
-      return IconButton(
-        key: badgeKey,
-        tooltip: tip,
-        icon: icon,
-        onPressed: onPressed,
-      );
-    }
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(end: 4),
-      child: ActionChip(
-        key: badgeKey,
-        avatar: icon,
-        label: Text(label),
-        tooltip: tip,
-        onPressed: onPressed,
+    final iconOnly = MediaQuery.textScalerOf(context).scale(14) > 18;
+    return Tooltip(
+      key: badgeKey,
+      message: tip,
+      child: InkWell(
+        onTap: onPressed,
+        customBorder: const StadiumBorder(),
+        child: SizedBox(
+          height: 48,
+          child: Center(
+            child: DecoratedBox(
+              decoration: ShapeDecoration(
+                shape: const StadiumBorder(),
+                color: active
+                    ? scheme.primaryContainer.withValues(alpha: 0.7)
+                    : scheme.surfaceContainerHighest.withValues(alpha: 0.7),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: iconOnly ? 8 : 10, vertical: 5),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      trial ? Icons.hourglass_top : Icons.workspace_premium,
+                      size: 14,
+                      color: active ? scheme.primary : scheme.onSurfaceVariant,
+                    ),
+                    if (!iconOnly) ...[
+                      const SizedBox(width: 4),
+                      Text(label, style: theme.textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

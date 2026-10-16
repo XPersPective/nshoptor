@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Imposta un budget predefinito per ogni nuova spesa.",
   "monthlyReportAction": "Report mensile",
   "reportShoppingColumn": "Spesa",
-  "reportDateColumn": "Data"
+  "reportDateColumn": "Data",
+  "planUnavailable": "Al momento non disponibile nello store",
+  "demoDataTitle": "Dati di esempio",
+  "demoDataLoad": "Prova con dati di esempio",
+  "demoDataLoadHelp": "Aggiunge 12 mesi di spese di esempio per vedere cronologia, grafici e storico prezzi.",
+  "demoDataRemove": "Rimuovi dati di esempio",
+  "demoDataAdded": "Dati di esempio aggiunti",
+  "demoDataRemoved": "Dati di esempio rimossi",
+  "demoProductApple": "Mele",
+  "demoProductBread": "Pane",
+  "demoProductMilk": "Latte",
+  "demoProductCheese": "Formaggio",
+  "demoProductTomato": "Pomodori",
+  "demoProductEggs": "Uova",
+  "demoProductCoffee": "Caffè",
+  "demoProductDetergent": "Detersivo"
 }

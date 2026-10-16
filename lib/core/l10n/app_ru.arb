@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Задайте бюджет по умолчанию для каждой новой покупки.",
   "monthlyReportAction": "Отчёт за месяц",
   "reportShoppingColumn": "Покупка",
-  "reportDateColumn": "Дата"
+  "reportDateColumn": "Дата",
+  "planUnavailable": "Сейчас недоступно в магазине",
+  "demoDataTitle": "Пример данных",
+  "demoDataLoad": "Попробовать с примером данных",
+  "demoDataLoadHelp": "Добавляет примеры покупок за 12 месяцев, чтобы увидеть историю, графики и историю цен.",
+  "demoDataRemove": "Удалить пример данных",
+  "demoDataAdded": "Пример данных добавлен",
+  "demoDataRemoved": "Пример данных удалён",
+  "demoProductApple": "Яблоки",
+  "demoProductBread": "Хлеб",
+  "demoProductMilk": "Молоко",
+  "demoProductCheese": "Сыр",
+  "demoProductTomato": "Помидоры",
+  "demoProductEggs": "Яйца",
+  "demoProductCoffee": "Кофе",
+  "demoProductDetergent": "Стиральный порошок"
 }

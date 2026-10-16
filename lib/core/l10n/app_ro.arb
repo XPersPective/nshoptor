@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Setați un buget implicit pentru fiecare cumpărătură nouă.",
   "monthlyReportAction": "Raport lunar",
   "reportShoppingColumn": "Cumpărătură",
-  "reportDateColumn": "Dată"
+  "reportDateColumn": "Dată",
+  "planUnavailable": "Momentan indisponibil în magazin",
+  "demoDataTitle": "Date exemplu",
+  "demoDataLoad": "Încercați cu date exemplu",
+  "demoDataLoadHelp": "Adaugă 12 luni de cumpărături exemplu ca să vedeți istoricul, graficele și istoricul prețurilor.",
+  "demoDataRemove": "Ștergeți datele exemplu",
+  "demoDataAdded": "Datele exemplu au fost adăugate",
+  "demoDataRemoved": "Datele exemplu au fost șterse",
+  "demoProductApple": "Mere",
+  "demoProductBread": "Pâine",
+  "demoProductMilk": "Lapte",
+  "demoProductCheese": "Brânză",
+  "demoProductTomato": "Roșii",
+  "demoProductEggs": "Ouă",
+  "demoProductCoffee": "Cafea",
+  "demoProductDetergent": "Detergent"
 }

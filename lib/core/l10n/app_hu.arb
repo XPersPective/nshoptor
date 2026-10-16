@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Állítson be alapértelmezett keretet minden új vásárláshoz.",
   "monthlyReportAction": "Havi jelentés",
   "reportShoppingColumn": "Vásárlás",
-  "reportDateColumn": "Dátum"
+  "reportDateColumn": "Dátum",
+  "planUnavailable": "Jelenleg nem érhető el az áruházban",
+  "demoDataTitle": "Mintaadatok",
+  "demoDataLoad": "Kipróbálás mintaadatokkal",
+  "demoDataLoadHelp": "12 hónapnyi mintavásárlást ad hozzá, hogy lássa az előzményeket, grafikonokat és ártörténetet.",
+  "demoDataRemove": "Mintaadatok törlése",
+  "demoDataAdded": "Mintaadatok hozzáadva",
+  "demoDataRemoved": "Mintaadatok törölve",
+  "demoProductApple": "Alma",
+  "demoProductBread": "Kenyér",
+  "demoProductMilk": "Tej",
+  "demoProductCheese": "Sajt",
+  "demoProductTomato": "Paradicsom",
+  "demoProductEggs": "Tojás",
+  "demoProductCoffee": "Kávé",
+  "demoProductDetergent": "Mosószer"
 }

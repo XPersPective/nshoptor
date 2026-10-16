@@ -1219,4 +1219,50 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Dátum';
+
+  @override
+  String get planUnavailable => 'Momentálne nie je v obchode k dispozícii';
+
+  @override
+  String get demoDataTitle => 'Ukážkové údaje';
+
+  @override
+  String get demoDataLoad => 'Vyskúšať s ukážkovými údajmi';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Pridá ukážkové nákupy za 12 mesiacov, aby ste videli históriu, grafy a vývoj cien.';
+
+  @override
+  String get demoDataRemove => 'Odstrániť ukážkové údaje';
+
+  @override
+  String get demoDataAdded => 'Ukážkové údaje pridané';
+
+  @override
+  String get demoDataRemoved => 'Ukážkové údaje odstránené';
+
+  @override
+  String get demoProductApple => 'Jablká';
+
+  @override
+  String get demoProductBread => 'Chlieb';
+
+  @override
+  String get demoProductMilk => 'Mlieko';
+
+  @override
+  String get demoProductCheese => 'Syr';
+
+  @override
+  String get demoProductTomato => 'Paradajky';
+
+  @override
+  String get demoProductEggs => 'Vajcia';
+
+  @override
+  String get demoProductCoffee => 'Káva';
+
+  @override
+  String get demoProductDetergent => 'Prací prášok';
 }

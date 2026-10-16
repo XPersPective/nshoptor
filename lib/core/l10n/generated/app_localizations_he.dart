@@ -1204,4 +1204,50 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'תאריך';
+
+  @override
+  String get planUnavailable => 'לא זמין בחנות כרגע';
+
+  @override
+  String get demoDataTitle => 'נתוני דוגמה';
+
+  @override
+  String get demoDataLoad => 'נסה עם נתוני דוגמה';
+
+  @override
+  String get demoDataLoadHelp =>
+      'מוסיף קניות לדוגמה של 12 חודשים כדי לראות היסטוריה, גרפים והיסטוריית מחירים.';
+
+  @override
+  String get demoDataRemove => 'מחק נתוני דוגמה';
+
+  @override
+  String get demoDataAdded => 'נתוני הדוגמה נוספו';
+
+  @override
+  String get demoDataRemoved => 'נתוני הדוגמה נמחקו';
+
+  @override
+  String get demoProductApple => 'תפוחים';
+
+  @override
+  String get demoProductBread => 'לחם';
+
+  @override
+  String get demoProductMilk => 'חלב';
+
+  @override
+  String get demoProductCheese => 'גבינה';
+
+  @override
+  String get demoProductTomato => 'עגבניות';
+
+  @override
+  String get demoProductEggs => 'ביצים';
+
+  @override
+  String get demoProductCoffee => 'קפה';
+
+  @override
+  String get demoProductDetergent => 'אבקת כביסה';
 }

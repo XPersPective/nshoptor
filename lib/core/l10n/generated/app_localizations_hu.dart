@@ -1218,4 +1218,50 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Dátum';
+
+  @override
+  String get planUnavailable => 'Jelenleg nem érhető el az áruházban';
+
+  @override
+  String get demoDataTitle => 'Mintaadatok';
+
+  @override
+  String get demoDataLoad => 'Kipróbálás mintaadatokkal';
+
+  @override
+  String get demoDataLoadHelp =>
+      '12 hónapnyi mintavásárlást ad hozzá, hogy lássa az előzményeket, grafikonokat és ártörténetet.';
+
+  @override
+  String get demoDataRemove => 'Mintaadatok törlése';
+
+  @override
+  String get demoDataAdded => 'Mintaadatok hozzáadva';
+
+  @override
+  String get demoDataRemoved => 'Mintaadatok törölve';
+
+  @override
+  String get demoProductApple => 'Alma';
+
+  @override
+  String get demoProductBread => 'Kenyér';
+
+  @override
+  String get demoProductMilk => 'Tej';
+
+  @override
+  String get demoProductCheese => 'Sajt';
+
+  @override
+  String get demoProductTomato => 'Paradicsom';
+
+  @override
+  String get demoProductEggs => 'Tojás';
+
+  @override
+  String get demoProductCoffee => 'Kávé';
+
+  @override
+  String get demoProductDetergent => 'Mosószer';
 }

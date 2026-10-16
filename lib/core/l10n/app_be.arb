@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Задайце бюджэт па змаўчанні для кожнай новай пакупкі.",
   "monthlyReportAction": "Месячная справаздача",
   "reportShoppingColumn": "Пакупка",
-  "reportDateColumn": "Дата"
+  "reportDateColumn": "Дата",
+  "planUnavailable": "Зараз недаступна ў краме",
+  "demoDataTitle": "Прыкладныя даныя",
+  "demoDataLoad": "Паспрабаваць з прыкладнымі данымі",
+  "demoDataLoadHelp": "Дадае пакупкі за 12 месяцаў, каб убачыць гісторыю, графікі і гісторыю цэн.",
+  "demoDataRemove": "Выдаліць прыкладныя даныя",
+  "demoDataAdded": "Прыкладныя даныя дададзены",
+  "demoDataRemoved": "Прыкладныя даныя выдалены",
+  "demoProductApple": "Яблыкі",
+  "demoProductBread": "Хлеб",
+  "demoProductMilk": "Малако",
+  "demoProductCheese": "Сыр",
+  "demoProductTomato": "Памідоры",
+  "demoProductEggs": "Яйкі",
+  "demoProductCoffee": "Кава",
+  "demoProductDetergent": "Мыйны сродак"
 }

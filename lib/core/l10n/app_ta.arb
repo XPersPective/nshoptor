@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ஒவ்வொரு புதிய ஷாப்பிங்கிற்கும் இயல்புநிலை பட்ஜெட்டை அமைக்கவும்.",
   "monthlyReportAction": "மாதாந்திர அறிக்கை",
   "reportShoppingColumn": "ஷாப்பிங்",
-  "reportDateColumn": "தேதி"
+  "reportDateColumn": "தேதி",
+  "planUnavailable": "இப்போது ஸ்டோரில் இல்லை",
+  "demoDataTitle": "மாதிரித் தரவு",
+  "demoDataLoad": "மாதிரித் தரவுடன் முயற்சிக்கவும்",
+  "demoDataLoadHelp": "வரலாறு, வரைபடங்கள், விலை வரலாற்றைப் பார்க்க 12 மாத மாதிரி ஷாப்பிங்கைச் சேர்க்கிறது.",
+  "demoDataRemove": "மாதிரித் தரவை நீக்கு",
+  "demoDataAdded": "மாதிரித் தரவு சேர்க்கப்பட்டது",
+  "demoDataRemoved": "மாதிரித் தரவு நீக்கப்பட்டது",
+  "demoProductApple": "ஆப்பிள்",
+  "demoProductBread": "ரொட்டி",
+  "demoProductMilk": "பால்",
+  "demoProductCheese": "சீஸ்",
+  "demoProductTomato": "தக்காளி",
+  "demoProductEggs": "முட்டை",
+  "demoProductCoffee": "காபி",
+  "demoProductDetergent": "சவர்க்காரம்"
 }

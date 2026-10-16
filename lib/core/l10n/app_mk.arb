@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Поставете стандарден буџет за секое ново купување.",
   "monthlyReportAction": "Месечен извештај",
   "reportShoppingColumn": "Купување",
-  "reportDateColumn": "Датум"
+  "reportDateColumn": "Датум",
+  "planUnavailable": "Моментално не е достапно во продавницата",
+  "demoDataTitle": "Примерни податоци",
+  "demoDataLoad": "Пробајте со примерни податоци",
+  "demoDataLoadHelp": "Додава примерни купувања за 12 месеци за да ги видите историјата, графиконите и историјата на цени.",
+  "demoDataRemove": "Отстрани примерни податоци",
+  "demoDataAdded": "Примерните податоци се додадени",
+  "demoDataRemoved": "Примерните податоци се отстранети",
+  "demoProductApple": "Јаболка",
+  "demoProductBread": "Леб",
+  "demoProductMilk": "Млеко",
+  "demoProductCheese": "Сирење",
+  "demoProductTomato": "Домати",
+  "demoProductEggs": "Јајца",
+  "demoProductCoffee": "Кафе",
+  "demoProductDetergent": "Детергент"
 }

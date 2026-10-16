@@ -2,6 +2,33 @@ import 'package:flutter/material.dart';
 
 /// NShoptor yazı markası: her yerde aynı tipografi. "N" vurgu renginde,
 /// "Shoptor" yüzey üstü renkte; kalın, sıkı harf aralığı.
+/// Uygulama simgesi ve yazı markası yan yana (ana sayfa başlığı, splash).
+class BrandTitle extends StatelessWidget {
+  const BrandTitle({super.key, this.size = 20});
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) => FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: AlignmentDirectional.centerStart,
+        child: Row(
+          key: const Key('brand_title'),
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/brand/icon_1024.png',
+              width: size * 1.45,
+              height: size * 1.45,
+              excludeFromSemantics: true,
+            ),
+            SizedBox(width: size * 0.45),
+            BrandWordmark(size: size),
+          ],
+        ),
+      );
+}
+
 class BrandWordmark extends StatelessWidget {
   const BrandWordmark({super.key, this.size = 28, this.suffix});
 

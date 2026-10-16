@@ -81,7 +81,18 @@ void main() {
           await tester.pumpAndSettle();
         }
 
-        expect(find.text('Bu hafta'), findsOneWidget);
+        // Geçmiş genel bakışla açılır; bu ayın sekmesine geç.
+        expect(find.byKey(const Key('spending_overview')), findsOneWidget);
+        await tester.ensureVisible(find.byKey(const Key('history_period_tab_1')));
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(const Key('history_period_tab_1')));
+        for (var i = 0; i < 3; i++) {
+          await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 50)),
+          );
+          await tester.pumpAndSettle();
+        }
+        expect(find.byKey(const Key('history_period_tab_0')), findsOneWidget);
         expect(find.text('Alınan ürünler'), findsOneWidget);
         expect(find.byKey(const Key('history_calendar')), findsOneWidget);
         await tester.tap(find.byKey(const Key('history_calendar')));

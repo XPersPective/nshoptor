@@ -377,5 +377,20 @@
   "shoppingLimitNone": "د هر نوي پیرود لپاره ډیفالټ بودیجه وټاکئ.",
   "monthlyReportAction": "میاشتنی راپور",
   "reportShoppingColumn": "پیرود",
-  "reportDateColumn": "نېټه"
+  "reportDateColumn": "نېټه",
+  "planUnavailable": "اوس مهال په پلورنځي کې نشته",
+  "demoDataTitle": "بېلګه معلومات",
+  "demoDataLoad": "د بېلګې معلوماتو سره یې وازمویئ",
+  "demoDataLoadHelp": "د تاریخچې، چارټونو او د بیو تاریخچې لیدو لپاره د ۱۲ میاشتو بېلګه پیرودونه زیاتوي.",
+  "demoDataRemove": "بېلګه معلومات لرې کړئ",
+  "demoDataAdded": "بېلګه معلومات زیات شول",
+  "demoDataRemoved": "بېلګه معلومات لرې شول",
+  "demoProductApple": "مڼې",
+  "demoProductBread": "ډوډۍ",
+  "demoProductMilk": "شیدې",
+  "demoProductCheese": "پنیر",
+  "demoProductTomato": "رومیان",
+  "demoProductEggs": "هګۍ",
+  "demoProductCoffee": "قهوه",
+  "demoProductDetergent": "صابون"
 }

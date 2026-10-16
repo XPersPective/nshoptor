@@ -1173,4 +1173,49 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get reportDateColumn => '日期';
+
+  @override
+  String get planUnavailable => '商店暂不可用';
+
+  @override
+  String get demoDataTitle => '示例数据';
+
+  @override
+  String get demoDataLoad => '用示例数据试试';
+
+  @override
+  String get demoDataLoadHelp => '添加 12 个月的示例购物，便于查看历史、图表和价格走势。';
+
+  @override
+  String get demoDataRemove => '删除示例数据';
+
+  @override
+  String get demoDataAdded => '已添加示例数据';
+
+  @override
+  String get demoDataRemoved => '已删除示例数据';
+
+  @override
+  String get demoProductApple => '苹果';
+
+  @override
+  String get demoProductBread => '面包';
+
+  @override
+  String get demoProductMilk => '牛奶';
+
+  @override
+  String get demoProductCheese => '奶酪';
+
+  @override
+  String get demoProductTomato => '番茄';
+
+  @override
+  String get demoProductEggs => '鸡蛋';
+
+  @override
+  String get demoProductCoffee => '咖啡';
+
+  @override
+  String get demoProductDetergent => '洗涤剂';
 }

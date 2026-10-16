@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Սահմանեք լռելյայն բյուջե յուրաքանչյուր նոր գնումի համար։",
   "monthlyReportAction": "Ամսական հաշվետվություն",
   "reportShoppingColumn": "Գնում",
-  "reportDateColumn": "Ամսաթիվ"
+  "reportDateColumn": "Ամսաթիվ",
+  "planUnavailable": "Այժմ խանութում հասանելի չէ",
+  "demoDataTitle": "Օրինակային տվյալներ",
+  "demoDataLoad": "Փորձել օրինակային տվյալներով",
+  "demoDataLoadHelp": "Ավելացնում է 12 ամսվա օրինակային գնումներ՝ պատմությունը, գծապատկերները և գների պատմությունը տեսնելու համար։",
+  "demoDataRemove": "Ջնջել օրինակային տվյալները",
+  "demoDataAdded": "Օրինակային տվյալներն ավելացվեցին",
+  "demoDataRemoved": "Օրինակային տվյալները ջնջվեցին",
+  "demoProductApple": "Խնձոր",
+  "demoProductBread": "Հաց",
+  "demoProductMilk": "Կաթ",
+  "demoProductCheese": "Պանիր",
+  "demoProductTomato": "Լոլիկ",
+  "demoProductEggs": "Ձու",
+  "demoProductCoffee": "Սուրճ",
+  "demoProductDetergent": "Լվացող միջոց"
 }

@@ -1218,4 +1218,50 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Күнү';
+
+  @override
+  String get planUnavailable => 'Азыр дүкөндө жок';
+
+  @override
+  String get demoDataTitle => 'Үлгү маалыматтар';
+
+  @override
+  String get demoDataLoad => 'Үлгү маалыматтар менен байкап көрүү';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Тарыхты, графиктерди жана баа тарыхын көрүү үчүн 12 айлык үлгү сооданы кошот.';
+
+  @override
+  String get demoDataRemove => 'Үлгү маалыматтарды өчүрүү';
+
+  @override
+  String get demoDataAdded => 'Үлгү маалыматтар кошулду';
+
+  @override
+  String get demoDataRemoved => 'Үлгү маалыматтар өчүрүлдү';
+
+  @override
+  String get demoProductApple => 'Алма';
+
+  @override
+  String get demoProductBread => 'Нан';
+
+  @override
+  String get demoProductMilk => 'Сүт';
+
+  @override
+  String get demoProductCheese => 'Сыр';
+
+  @override
+  String get demoProductTomato => 'Помидор';
+
+  @override
+  String get demoProductEggs => 'Жумуртка';
+
+  @override
+  String get demoProductCoffee => 'Кофе';
+
+  @override
+  String get demoProductDetergent => 'Жуучу каражат';
 }

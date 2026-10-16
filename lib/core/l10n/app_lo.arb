@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ຕັ້ງງົບປະມານເລີ່ມຕົ້ນສຳລັບການຊື້ໃໝ່ແຕ່ລະຄັ້ງ.",
   "monthlyReportAction": "ລາຍງານປະຈຳເດືອນ",
   "reportShoppingColumn": "ການຊື້",
-  "reportDateColumn": "ວັນທີ"
+  "reportDateColumn": "ວັນທີ",
+  "planUnavailable": "ບໍ່ມີໃນຮ້ານຄ້າໃນຕອນນີ້",
+  "demoDataTitle": "ຂໍ້ມູນຕົວຢ່າງ",
+  "demoDataLoad": "ລອງດ້ວຍຂໍ້ມູນຕົວຢ່າງ",
+  "demoDataLoadHelp": "ເພີ່ມການຊື້ຕົວຢ່າງ 12 ເດືອນ ເພື່ອເບິ່ງປະຫວັດ, ກຣາຟ ແລະ ປະຫວັດລາຄາ.",
+  "demoDataRemove": "ລຶບຂໍ້ມູນຕົວຢ່າງ",
+  "demoDataAdded": "ເພີ່ມຂໍ້ມູນຕົວຢ່າງແລ້ວ",
+  "demoDataRemoved": "ລຶບຂໍ້ມູນຕົວຢ່າງແລ້ວ",
+  "demoProductApple": "ໝາກແອັບເປິ້ນ",
+  "demoProductBread": "ເຂົ້າຈີ່",
+  "demoProductMilk": "ນົມ",
+  "demoProductCheese": "ເນີຍແຂງ",
+  "demoProductTomato": "ໝາກເລັ່ນ",
+  "demoProductEggs": "ໄຂ່",
+  "demoProductCoffee": "ກາເຟ",
+  "demoProductDetergent": "ຜົງຊັກຟອກ"
 }

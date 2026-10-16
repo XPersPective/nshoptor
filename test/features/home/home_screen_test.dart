@@ -209,6 +209,8 @@ void main() {
     await settle(tester);
     await tester.tap(find.text('Geçmiş').last);
     await settle(tester);
+    await tester.tap(find.byKey(const Key('history_period_tab_1')));
+    await settle(tester);
     await tester.tap(find.byKey(Key('history_list_$id')));
     await settle(tester);
     expect(
@@ -305,8 +307,8 @@ void main() {
       home: HomeShell(db: db, listRepository: ListRepository(db), subscriptions: subs),
     ));
     await settle(tester);
-    final badge = tester.widget(find.byKey(const Key('home_plan_badge')));
-    expect(badge is ActionChip ? badge.tooltip : (badge as IconButton).tooltip, 'Ücretsiz · Planını gör; abone ol ya da yükselt');
+    final badge = tester.widget<Tooltip>(find.byKey(const Key('home_plan_badge')));
+    expect(badge.message, 'Ücretsiz · Planını gör; abone ol ya da yükselt');
     await tester.tap(find.byKey(const Key('home_plan_badge')));
     // Plan store offers load in the background; pumping avoids waiting on them.
     await tester.pump();
@@ -314,6 +316,8 @@ void main() {
     expect(find.byType(SubscriptionPaywall), findsOneWidget);
     expect(find.byKey(const Key('plans_current_status')), findsOneWidget);
     expect(find.text('Mevcut: Ücretsiz'), findsOneWidget);
+    // Store offers time out after 15 s in tests (no Play); let the timer finish.
+    await tester.pump(const Duration(seconds: 16));
     await disposeApp(tester);
   });
 

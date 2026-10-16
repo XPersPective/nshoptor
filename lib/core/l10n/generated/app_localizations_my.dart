@@ -1220,4 +1220,50 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'ရက်စွဲ';
+
+  @override
+  String get planUnavailable => 'ယခု စတိုးတွင် မရနိုင်ပါ';
+
+  @override
+  String get demoDataTitle => 'နမူနာဒေတာ';
+
+  @override
+  String get demoDataLoad => 'နမူနာဒေတာဖြင့် စမ်းကြည့်ရန်';
+
+  @override
+  String get demoDataLoadHelp =>
+      'မှတ်တမ်း၊ ဇယားနှင့် စျေးနှုန်းမှတ်တမ်းကို ကြည့်ရန် ၁၂ လစာ နမူနာဈေးဝယ်မှုများ ထည့်ပေးသည်။';
+
+  @override
+  String get demoDataRemove => 'နမူနာဒေတာ ဖျက်ရန်';
+
+  @override
+  String get demoDataAdded => 'နမူနာဒေတာ ထည့်ပြီး';
+
+  @override
+  String get demoDataRemoved => 'နမူနာဒေတာ ဖျက်ပြီး';
+
+  @override
+  String get demoProductApple => 'ပန်းသီး';
+
+  @override
+  String get demoProductBread => 'ပေါင်မုန့်';
+
+  @override
+  String get demoProductMilk => 'နွားနို့';
+
+  @override
+  String get demoProductCheese => 'ဒိန်ခဲ';
+
+  @override
+  String get demoProductTomato => 'ခရမ်းချဉ်သီး';
+
+  @override
+  String get demoProductEggs => 'ကြက်ဥ';
+
+  @override
+  String get demoProductCoffee => 'ကော်ဖီ';
+
+  @override
+  String get demoProductDetergent => 'ဆပ်ပြာမှုန့်';
 }

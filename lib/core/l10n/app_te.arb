@@ -377,5 +377,20 @@
   "shoppingLimitNone": "ప్రతి కొత్త షాపింగ్‌కు డిఫాల్ట్ బడ్జెట్ సెట్ చేయండి.",
   "monthlyReportAction": "నెలవారీ నివేదిక",
   "reportShoppingColumn": "షాపింగ్",
-  "reportDateColumn": "తేదీ"
+  "reportDateColumn": "తేదీ",
+  "planUnavailable": "ప్రస్తుతం స్టోర్‌లో అందుబాటులో లేదు",
+  "demoDataTitle": "నమూనా డేటా",
+  "demoDataLoad": "నమూనా డేటాతో ప్రయత్నించండి",
+  "demoDataLoadHelp": "చరిత్ర, చార్ట్‌లు, ధర చరిత్ర చూడటానికి 12 నెలల నమూనా షాపింగ్‌ను జోడిస్తుంది.",
+  "demoDataRemove": "నమూనా డేటాను తొలగించు",
+  "demoDataAdded": "నమూనా డేటా జోడించబడింది",
+  "demoDataRemoved": "నమూనా డేటా తొలగించబడింది",
+  "demoProductApple": "ఆపిల్",
+  "demoProductBread": "బ్రెడ్",
+  "demoProductMilk": "పాలు",
+  "demoProductCheese": "చీజ్",
+  "demoProductTomato": "టమాటాలు",
+  "demoProductEggs": "గుడ్లు",
+  "demoProductCoffee": "కాఫీ",
+  "demoProductDetergent": "డిటర్జెంట్"
 }

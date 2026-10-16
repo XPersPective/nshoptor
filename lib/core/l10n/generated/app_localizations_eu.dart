@@ -1221,4 +1221,50 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Data';
+
+  @override
+  String get planUnavailable => 'Une honetan ez dago dendan';
+
+  @override
+  String get demoDataTitle => 'Adibide-datuak';
+
+  @override
+  String get demoDataLoad => 'Probatu adibide-datuekin';
+
+  @override
+  String get demoDataLoadHelp =>
+      '12 hilabeteko adibide-erosketak gehitzen ditu historia, grafikoak eta prezioen historia ikusteko.';
+
+  @override
+  String get demoDataRemove => 'Kendu adibide-datuak';
+
+  @override
+  String get demoDataAdded => 'Adibide-datuak gehitu dira';
+
+  @override
+  String get demoDataRemoved => 'Adibide-datuak kendu dira';
+
+  @override
+  String get demoProductApple => 'Sagarrak';
+
+  @override
+  String get demoProductBread => 'Ogia';
+
+  @override
+  String get demoProductMilk => 'Esnea';
+
+  @override
+  String get demoProductCheese => 'Gazta';
+
+  @override
+  String get demoProductTomato => 'Tomateak';
+
+  @override
+  String get demoProductEggs => 'Arrautzak';
+
+  @override
+  String get demoProductCoffee => 'Kafea';
+
+  @override
+  String get demoProductDetergent => 'Garbigarria';
 }

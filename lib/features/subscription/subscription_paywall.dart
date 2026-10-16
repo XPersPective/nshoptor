@@ -16,7 +16,11 @@ class SubscriptionPaywall extends StatefulWidget {
 }
 
 class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
-  late Future<List<SubscriptionOffer>> _offers = widget.service.loadOffers();
+  // Mağaza yanıt vermezse sonsuz yükleme yerine 'şu an mağazada yok' ve yeniden dene.
+  late Future<List<SubscriptionOffer>> _offers = _load();
+
+  Future<List<SubscriptionOffer>> _load() =>
+      widget.service.loadOffers().timeout(const Duration(seconds: 15));
   bool _yearly = false;
 
   @override
@@ -68,7 +72,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(l10n.plansHeadline, style: theme.textTheme.headlineSmall),
+              Text(l10n.plansHeadline, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
               const SizedBox(height: 4),
               Text(l10n.plansSubhead, style: theme.textTheme.bodyMedium),
               if (widget.service.legacy) Padding(padding: const EdgeInsets.only(top: 12), child: Text('${l10n.planLegacyRights}\n${current == Tier.max ? 'Max' : 'Pro'}: ${widget.service.monthlyAllowance}')),
@@ -98,6 +102,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 current: current == Tier.pro,
                 highlight: true,
                 loading: snap.connectionState != ConnectionState.done,
+                unavailableText: l10n.planUnavailable,
                 onBuy: busy || find(Tier.pro) == null ? null : () => widget.service.buy(find(Tier.pro)!),
               ),
               _PlanCard(
@@ -108,6 +113,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 benefits: [l10n.planMaxAi, l10n.planNoAds, l10n.planBackup, l10n.planMaxFamily],
                 current: current == Tier.max,
                 loading: snap.connectionState != ConnectionState.done,
+                unavailableText: l10n.planUnavailable,
                 onBuy: busy || find(Tier.max) == null ? null : () => widget.service.buy(find(Tier.max)!),
               ),
               if (snap.connectionState == ConnectionState.done && offers.isEmpty)
@@ -116,7 +122,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(l10n.plansStoreUnavailable),
                     TextButton(
-                      onPressed: () => setState(() => _offers = widget.service.loadOffers()),
+                      onPressed: () => setState(() => _offers = _load()),
                       child: Text(l10n.retryAction),
                     ),
                   ]),
@@ -152,6 +158,7 @@ class _PlanCard extends StatelessWidget {
     this.highlight = false,
     this.loading = false,
     this.onBuy,
+    this.unavailableText,
   });
 
   final String title;
@@ -163,6 +170,9 @@ class _PlanCard extends StatelessWidget {
   final bool highlight;
   final bool loading;
   final VoidCallback? onBuy;
+
+  /// Mağazadan fiyat gelmediyse gösterilir (yükleme bitti, teklif yok).
+  final String? unavailableText;
 
   @override
   Widget build(BuildContext context) {
@@ -184,14 +194,16 @@ class _PlanCard extends StatelessWidget {
               alignment: WrapAlignment.spaceBetween, spacing: 8, runSpacing: 8,
               children: [
                 Text(title, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
-                if (current) Chip(label: Text(l10n.planCurrent)),
-                if (!current && trial != null) Chip(avatar: const Icon(Icons.card_giftcard, size: 16), label: Text(trial!)),
+                if (current) _Badge(key: const Key('plan_current_badge'), text: l10n.planCurrent, strong: true),
+                if (!current && trial != null) _Badge(text: trial!, icon: Icons.card_giftcard),
               ],
             ),
             if (price != null)
               Text('$price${period == null ? '' : ' $period'}', style: theme.textTheme.titleMedium)
             else if (loading)
-              const LinearProgressIndicator(),
+              const LinearProgressIndicator()
+            else if (unavailableText != null)
+              Text(unavailableText!, key: const Key('plan_unavailable'), style: theme.textTheme.bodySmall),
             const SizedBox(height: 8),
             for (final b in benefits)
               Padding(
@@ -211,6 +223,34 @@ class _PlanCard extends StatelessWidget {
             ],
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Küçük etiket (Mevcut, deneme): kart başlığını ezmeyen boyutta.
+class _Badge extends StatelessWidget {
+  const _Badge({super.key, required this.text, this.icon, this.strong = false});
+
+  final String text;
+  final IconData? icon;
+  final bool strong;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final fg = strong ? scheme.onPrimary : scheme.onSecondaryContainer;
+    return DecoratedBox(
+      decoration: ShapeDecoration(
+        shape: const StadiumBorder(),
+        color: strong ? scheme.primary : scheme.secondaryContainer,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          if (icon != null) ...[Icon(icon, size: 12, color: fg), const SizedBox(width: 4)],
+          Text(text, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: fg, fontWeight: FontWeight.w700)),
+        ]),
       ),
     );
   }

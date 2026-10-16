@@ -1220,4 +1220,50 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Datum';
+
+  @override
+  String get planUnavailable => 'Nie nou in die winkel beskikbaar nie';
+
+  @override
+  String get demoDataTitle => 'Voorbeelddata';
+
+  @override
+  String get demoDataLoad => 'Probeer met voorbeelddata';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Voeg 12 maande se voorbeeldinkopies by sodat jy geskiedenis, grafieke en pryse kan sien.';
+
+  @override
+  String get demoDataRemove => 'Verwyder voorbeelddata';
+
+  @override
+  String get demoDataAdded => 'Voorbeelddata bygevoeg';
+
+  @override
+  String get demoDataRemoved => 'Voorbeelddata verwyder';
+
+  @override
+  String get demoProductApple => 'Appels';
+
+  @override
+  String get demoProductBread => 'Brood';
+
+  @override
+  String get demoProductMilk => 'Melk';
+
+  @override
+  String get demoProductCheese => 'Kaas';
+
+  @override
+  String get demoProductTomato => 'Tamaties';
+
+  @override
+  String get demoProductEggs => 'Eiers';
+
+  @override
+  String get demoProductCoffee => 'Koffie';
+
+  @override
+  String get demoProductDetergent => 'Wasmiddel';
 }

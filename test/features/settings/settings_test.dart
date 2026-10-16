@@ -358,11 +358,9 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      final badge = tester.widget(find.byKey(const Key('settings_plan_badge')));
-      // Chip shows the plan name; the tooltip is the plan-page description.
-      return badge is ActionChip
-          ? (badge.label as Text).data!
-          : (badge as IconButton).tooltip!.split(' · ').first;
+      // The tooltip starts with the plan name, then the plan-page description.
+      final badge = tester.widget<Tooltip>(find.byKey(const Key('settings_plan_badge')));
+      return badge.message!.split(' · ').first;
     }
 
     expect(await badge(), 'Ücretsiz');

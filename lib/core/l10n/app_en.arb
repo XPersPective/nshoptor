@@ -446,5 +446,20 @@
   "shoppingLimitNone": "Set a default budget for each new shopping.",
   "monthlyReportAction": "Monthly report",
   "reportShoppingColumn": "Shopping",
-  "reportDateColumn": "Date"
+  "reportDateColumn": "Date",
+  "planUnavailable": "Not available in the store right now",
+  "demoDataTitle": "Sample data",
+  "demoDataLoad": "Try with sample data",
+  "demoDataLoadHelp": "Adds 12 months of sample shopping so you can see history, charts and price history.",
+  "demoDataRemove": "Remove sample data",
+  "demoDataAdded": "Sample data added",
+  "demoDataRemoved": "Sample data removed",
+  "demoProductApple": "Apples",
+  "demoProductBread": "Bread",
+  "demoProductMilk": "Milk",
+  "demoProductCheese": "Cheese",
+  "demoProductTomato": "Tomatoes",
+  "demoProductEggs": "Eggs",
+  "demoProductCoffee": "Coffee",
+  "demoProductDetergent": "Detergent"
 }

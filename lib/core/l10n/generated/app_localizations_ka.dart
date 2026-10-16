@@ -1215,4 +1215,50 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'თარიღი';
+
+  @override
+  String get planUnavailable => 'ახლა მაღაზიაში არ არის ხელმისაწვდომი';
+
+  @override
+  String get demoDataTitle => 'სანიმუშო მონაცემები';
+
+  @override
+  String get demoDataLoad => 'სანიმუშო მონაცემებით ცდა';
+
+  @override
+  String get demoDataLoadHelp =>
+      'ამატებს 12 თვის სანიმუშო ყიდვებს ისტორიის, გრაფიკებისა და ფასების ისტორიის სანახავად.';
+
+  @override
+  String get demoDataRemove => 'სანიმუშო მონაცემების წაშლა';
+
+  @override
+  String get demoDataAdded => 'სანიმუშო მონაცემები დაემატა';
+
+  @override
+  String get demoDataRemoved => 'სანიმუშო მონაცემები წაიშალა';
+
+  @override
+  String get demoProductApple => 'ვაშლი';
+
+  @override
+  String get demoProductBread => 'პური';
+
+  @override
+  String get demoProductMilk => 'რძე';
+
+  @override
+  String get demoProductCheese => 'ყველი';
+
+  @override
+  String get demoProductTomato => 'პომიდორი';
+
+  @override
+  String get demoProductEggs => 'კვერცხი';
+
+  @override
+  String get demoProductCoffee => 'ყავა';
+
+  @override
+  String get demoProductDetergent => 'სარეცხი საშუალება';
 }

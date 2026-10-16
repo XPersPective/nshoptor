@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Settu sjálfgefna fjárhagsáætlun fyrir hver ný innkaup.",
   "monthlyReportAction": "Mánaðarskýrsla",
   "reportShoppingColumn": "Innkaup",
-  "reportDateColumn": "Dagsetning"
+  "reportDateColumn": "Dagsetning",
+  "planUnavailable": "Ekki í boði í versluninni núna",
+  "demoDataTitle": "Sýnigögn",
+  "demoDataLoad": "Prófa með sýnigögnum",
+  "demoDataLoadHelp": "Bætir við 12 mánuðum af sýnikaupum svo þú sjáir sögu, gröf og verðsögu.",
+  "demoDataRemove": "Fjarlægja sýnigögn",
+  "demoDataAdded": "Sýnigögnum bætt við",
+  "demoDataRemoved": "Sýnigögn fjarlægð",
+  "demoProductApple": "Epli",
+  "demoProductBread": "Brauð",
+  "demoProductMilk": "Mjólk",
+  "demoProductCheese": "Ostur",
+  "demoProductTomato": "Tómatar",
+  "demoProductEggs": "Egg",
+  "demoProductCoffee": "Kaffi",
+  "demoProductDetergent": "Þvottaefni"
 }

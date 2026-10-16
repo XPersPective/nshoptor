@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Iestatiet noklusējuma budžetu katram jaunam iepirkumam.",
   "monthlyReportAction": "Mēneša pārskats",
   "reportShoppingColumn": "Iepirkums",
-  "reportDateColumn": "Datums"
+  "reportDateColumn": "Datums",
+  "planUnavailable": "Pašlaik veikalā nav pieejams",
+  "demoDataTitle": "Paraugdati",
+  "demoDataLoad": "Izmēģināt ar paraugdatiem",
+  "demoDataLoadHelp": "Pievieno 12 mēnešu paraugpirkumus, lai redzētu vēsturi, grafikus un cenu vēsturi.",
+  "demoDataRemove": "Noņemt paraugdatus",
+  "demoDataAdded": "Paraugdati pievienoti",
+  "demoDataRemoved": "Paraugdati noņemti",
+  "demoProductApple": "Āboli",
+  "demoProductBread": "Maize",
+  "demoProductMilk": "Piens",
+  "demoProductCheese": "Siers",
+  "demoProductTomato": "Tomāti",
+  "demoProductEggs": "Olas",
+  "demoProductCoffee": "Kafija",
+  "demoProductDetergent": "Mazgāšanas līdzeklis"
 }

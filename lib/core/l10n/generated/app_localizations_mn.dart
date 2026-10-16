@@ -1223,4 +1223,50 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get reportDateColumn => 'Огноо';
+
+  @override
+  String get planUnavailable => 'Одоогоор дэлгүүрт байхгүй';
+
+  @override
+  String get demoDataTitle => 'Жишээ өгөгдөл';
+
+  @override
+  String get demoDataLoad => 'Жишээ өгөгдлөөр туршиж үзэх';
+
+  @override
+  String get demoDataLoadHelp =>
+      'Түүх, график, үнийн түүхийг харахын тулд 12 сарын жишээ худалдан авалт нэмнэ.';
+
+  @override
+  String get demoDataRemove => 'Жишээ өгөгдлийг устгах';
+
+  @override
+  String get demoDataAdded => 'Жишээ өгөгдөл нэмэгдлээ';
+
+  @override
+  String get demoDataRemoved => 'Жишээ өгөгдөл устгагдлаа';
+
+  @override
+  String get demoProductApple => 'Алим';
+
+  @override
+  String get demoProductBread => 'Талх';
+
+  @override
+  String get demoProductMilk => 'Сүү';
+
+  @override
+  String get demoProductCheese => 'Бяслаг';
+
+  @override
+  String get demoProductTomato => 'Улаан лооль';
+
+  @override
+  String get demoProductEggs => 'Өндөг';
+
+  @override
+  String get demoProductCoffee => 'Кофе';
+
+  @override
+  String get demoProductDetergent => 'Угаалгын нунтаг';
 }

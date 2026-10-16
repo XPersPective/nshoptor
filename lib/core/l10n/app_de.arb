@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Lege ein Standardbudget für jeden neuen Einkauf fest.",
   "monthlyReportAction": "Monatsbericht",
   "reportShoppingColumn": "Einkauf",
-  "reportDateColumn": "Datum"
+  "reportDateColumn": "Datum",
+  "planUnavailable": "Derzeit im Store nicht verfügbar",
+  "demoDataTitle": "Beispieldaten",
+  "demoDataLoad": "Mit Beispieldaten ausprobieren",
+  "demoDataLoadHelp": "Fügt 12 Monate Beispieleinkäufe hinzu, damit du Verlauf, Diagramme und Preisverlauf siehst.",
+  "demoDataRemove": "Beispieldaten entfernen",
+  "demoDataAdded": "Beispieldaten hinzugefügt",
+  "demoDataRemoved": "Beispieldaten entfernt",
+  "demoProductApple": "Äpfel",
+  "demoProductBread": "Brot",
+  "demoProductMilk": "Milch",
+  "demoProductCheese": "Käse",
+  "demoProductTomato": "Tomaten",
+  "demoProductEggs": "Eier",
+  "demoProductCoffee": "Kaffee",
+  "demoProductDetergent": "Waschmittel"
 }

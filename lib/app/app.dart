@@ -110,7 +110,7 @@ class NShoptorApp extends StatelessWidget {
           theme: AppTheme.light(palette: themeModeController?.palette ?? AppPalette.forest),
           darkTheme: AppTheme.dark(
             palette: themeModeController?.palette ?? AppPalette.forest,
-            black: themeModeController?.black ?? true,
+            black: themeModeController?.black ?? false,
           ),
           themeMode:
               themeModeController?.mode ?? themeMode,

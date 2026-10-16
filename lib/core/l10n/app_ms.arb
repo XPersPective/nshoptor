@@ -377,5 +377,20 @@
   "shoppingLimitNone": "Tetapkan bajet lalai untuk setiap belian baharu.",
   "monthlyReportAction": "Laporan bulanan",
   "reportShoppingColumn": "Belian",
-  "reportDateColumn": "Tarikh"
+  "reportDateColumn": "Tarikh",
+  "planUnavailable": "Tiada di kedai buat masa ini",
+  "demoDataTitle": "Data contoh",
+  "demoDataLoad": "Cuba dengan data contoh",
+  "demoDataLoadHelp": "Menambah 12 bulan belian contoh supaya anda dapat melihat sejarah, carta dan sejarah harga.",
+  "demoDataRemove": "Buang data contoh",
+  "demoDataAdded": "Data contoh ditambah",
+  "demoDataRemoved": "Data contoh dibuang",
+  "demoProductApple": "Epal",
+  "demoProductBread": "Roti",
+  "demoProductMilk": "Susu",
+  "demoProductCheese": "Keju",
+  "demoProductTomato": "Tomato",
+  "demoProductEggs": "Telur",
+  "demoProductCoffee": "Kopi",
+  "demoProductDetergent": "Detergen"
 }
