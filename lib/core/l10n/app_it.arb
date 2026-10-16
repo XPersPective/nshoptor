@@ -354,5 +354,11 @@
   "guideReceiptBody": "Scansiona uno scontrino per abbinare i suoi prezzi agli articoli della lista.",
   "guidePlanBody": "Tocca l'icona del piano per vedere il piano, abbonarti o passare a un piano superiore.",
   "guideNext": "OK",
-  "guideDone": "Inizia"
+  "guideDone": "Inizia",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

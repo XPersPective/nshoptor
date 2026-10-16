@@ -354,5 +354,11 @@
   "guideReceiptBody": "Skena irisidi ukuze uhlanganise amanani ayo nezinto ohlwini lwakho.",
   "guidePlanBody": "Thepha isithonjana sohlelo ukubona uhlelo, ukubhalisela noma ukuthuthukisa.",
   "guideNext": "Kulungile",
-  "guideDone": "Qala"
+  "guideDone": "Qala",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

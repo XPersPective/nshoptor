@@ -354,5 +354,11 @@
   "guideReceiptBody": "Naskenujte účtenku a spárujte jej ceny s položkami zo zoznamu.",
   "guidePlanBody": "Klepnutím na ikonu tarifu zobrazíte tarif, predplatíte si ho alebo prejdete na vyšší.",
   "guideNext": "OK",
-  "guideDone": "Začať"
+  "guideDone": "Začať",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

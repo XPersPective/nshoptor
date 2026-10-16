@@ -354,5 +354,11 @@
   "guideReceiptBody": "ჩეკის სკანირება, რათა მისი ფასები თქვენი სიის პროდუქტებს შეადაროთ.",
   "guidePlanBody": "შეეხეთ გეგმის ხატულას გეგმის სანახავად, გამოსაწერად ან განსაახლებლად.",
   "guideNext": "კარგი",
-  "guideDone": "დაწყება"
+  "guideDone": "დაწყება",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

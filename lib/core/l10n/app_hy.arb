@@ -354,5 +354,11 @@
   "guideReceiptBody": "Սկանավորեք կտրոնը, որ դրա գները համապատասխանեցվեն ձեր ցուցակի ապրանքներին։",
   "guidePlanBody": "Հպեք պլանի պատկերակին՝ պլանը տեսնելու, բաժանորդագրվելու կամ բարձրացնելու համար։",
   "guideNext": "Լավ",
-  "guideDone": "Սկսել"
+  "guideDone": "Սկսել",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

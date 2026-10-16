@@ -354,5 +354,11 @@
   "guideReceiptBody": "Skanoni një faturë për t'i përputhur çmimet me artikujt në listën tuaj.",
   "guidePlanBody": "Prekni ikonën e planit për të parë planin, për t'u abonuar ose për të përmirësuar.",
   "guideNext": "OK",
-  "guideDone": "Fillo"
+  "guideDone": "Fillo",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

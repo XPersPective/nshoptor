@@ -354,5 +354,11 @@
   "guideReceiptBody": "امسح الإيصال لمطابقة أسعاره مع العناصر في قائمتك.",
   "guidePlanBody": "اضغط أيقونة الخطة لعرض خطتك أو الاشتراك أو الترقية.",
   "guideNext": "حسنًا",
-  "guideDone": "ابدأ"
+  "guideDone": "ابدأ",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

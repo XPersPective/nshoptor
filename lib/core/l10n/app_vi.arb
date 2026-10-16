@@ -354,5 +354,11 @@
   "guideReceiptBody": "Quét hóa đơn để khớp giá của nó với các món trong danh sách.",
   "guidePlanBody": "Chạm biểu tượng gói để xem gói của bạn, đăng ký hoặc nâng cấp.",
   "guideNext": "OK",
-  "guideDone": "Bắt đầu"
+  "guideDone": "Bắt đầu",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

@@ -354,5 +354,11 @@
   "guideReceiptBody": "Noskenējiet čeku, lai saskaņotu tā cenas ar sarakstā esošajiem produktiem.",
   "guidePlanBody": "Pieskarieties plāna ikonai, lai skatītu plānu, abonētu vai uzlabotu.",
   "guideNext": "Labi",
-  "guideDone": "Sākt"
+  "guideDone": "Sākt",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

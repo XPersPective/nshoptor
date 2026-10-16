@@ -354,5 +354,11 @@
   "guideReceiptBody": "രസീത് സ്കാൻ ചെയ്ത് അതിലെ വില നിങ്ങളുടെ പട്ടികയിലെ ഇനങ്ങളുമായി ഒത്തുനോക്കുക.",
   "guidePlanBody": "പ്ലാൻ കാണാനും സബ്സ്ക്രൈബ് ചെയ്യാനും അപ്ഗ്രേഡ് ചെയ്യാനും പ്ലാൻ ഐക്കൺ തൊടുക.",
   "guideNext": "ശരി",
-  "guideDone": "ആരംഭിക്കുക"
+  "guideDone": "ആരംഭിക്കുക",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

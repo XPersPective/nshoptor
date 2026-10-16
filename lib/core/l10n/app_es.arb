@@ -354,5 +354,11 @@
   "guideReceiptBody": "Escanea un ticket para cruzar sus precios con los artículos de tu lista.",
   "guidePlanBody": "Toca el icono del plan para ver tu plan, suscribirte o mejorar.",
   "guideNext": "Vale",
-  "guideDone": "Empezar"
+  "guideDone": "Empezar",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

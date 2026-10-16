@@ -416,5 +416,11 @@
   "guideReceiptBody": "Scan a receipt to match its prices with the items on your list.",
   "guidePlanBody": "Tap the plan icon to see your plan, subscribe or upgrade.",
   "guideNext": "OK",
-  "guideDone": "Start"
+  "guideDone": "Start",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

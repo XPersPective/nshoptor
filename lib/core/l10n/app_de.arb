@@ -354,5 +354,11 @@
   "guideReceiptBody": "Scanne einen Beleg, um seine Preise mit den Artikeln auf deiner Liste abzugleichen.",
   "guidePlanBody": "Tippe auf das Tarifsymbol, um deinen Tarif zu sehen, zu abonnieren oder zu upgraden.",
   "guideNext": "OK",
-  "guideDone": "Los geht's"
+  "guideDone": "Los geht's",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

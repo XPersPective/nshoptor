@@ -354,5 +354,11 @@
   "guideReceiptBody": "Nuskaitykite kvitą, kad jo kainos atitiktų jūsų sąrašo prekes.",
   "guidePlanBody": "Palieskite plano piktogramą, kad pamatytumėte planą, prenumeruotumėte ar pakeltumėte.",
   "guideNext": "Gerai",
-  "guideDone": "Pradėti"
+  "guideDone": "Pradėti",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

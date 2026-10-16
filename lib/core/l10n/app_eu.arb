@@ -354,5 +354,11 @@
   "guideReceiptBody": "Eskaneatu ordainagiri bat prezioak zure zerrendako produktuekin bat egiteko.",
   "guidePlanBody": "Sakatu plan-ikonoa zure plana ikusteko, harpidetzeko edo igotzeko.",
   "guideNext": "Ados",
-  "guideDone": "Hasi"
+  "guideDone": "Hasi",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

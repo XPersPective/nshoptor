@@ -354,5 +354,11 @@
   "guideReceiptBody": "රිසිට්පත ස්කෑන් කර එහි මිල ඔබේ ලැයිස්තුවේ භාණ්ඩ සමඟ ගළපන්න.",
   "guidePlanBody": "සැලැස්ම බැලීමට, දායකත්වය ලබා ගැනීමට හෝ උත්ශ්‍රේණි කිරීමට සැලැස්ම නිරූපකය ඔබන්න.",
   "guideNext": "හරි",
-  "guideDone": "ආරම්භ කරන්න"
+  "guideDone": "ආරම්භ කරන්න",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

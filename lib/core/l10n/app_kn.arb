@@ -354,5 +354,11 @@
   "guideReceiptBody": "ನಿಮ್ಮ ಪಟ್ಟಿಯ ವಸ್ತುಗಳೊಂದಿಗೆ ಬೆಲೆಗಳನ್ನು ಹೊಂದಿಸಲು ರಸೀದಿಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.",
   "guidePlanBody": "ನಿಮ್ಮ ಯೋಜನೆ ನೋಡಲು, ಚಂದಾದಾರರಾಗಲು ಅಥವಾ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲು ಯೋಜನೆ ಐಕಾನ್ ಒತ್ತಿ.",
   "guideNext": "ಸರಿ",
-  "guideDone": "ಪ್ರಾರಂಭಿಸಿ"
+  "guideDone": "ಪ್ರಾರಂಭಿಸಿ",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

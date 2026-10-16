@@ -354,5 +354,11 @@
   "guideReceiptBody": "ਰਸੀਦ ਸਕੈਨ ਕਰਕੇ ਉਸ ਦੀਆਂ ਕੀਮਤਾਂ ਆਪਣੀ ਸੂਚੀ ਦੀਆਂ ਚੀਜ਼ਾਂ ਨਾਲ ਮਿਲਾਓ।",
   "guidePlanBody": "ਪਲਾਨ ਦੇਖਣ, ਸਬਸਕ੍ਰਾਈਬ ਕਰਨ ਜਾਂ ਅੱਪਗ੍ਰੇਡ ਕਰਨ ਲਈ ਪਲਾਨ ਆਈਕਨ ਦਬਾਓ।",
   "guideNext": "ਠੀਕ ਹੈ",
-  "guideDone": "ਸ਼ੁਰੂ ਕਰੋ"
+  "guideDone": "ਸ਼ੁਰੂ ਕਰੋ",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

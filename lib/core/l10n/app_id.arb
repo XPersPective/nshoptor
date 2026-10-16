@@ -354,5 +354,11 @@
   "guideReceiptBody": "Pindai struk untuk mencocokkan harganya dengan barang di daftar Anda.",
   "guidePlanBody": "Ketuk ikon paket untuk melihat paket Anda, berlangganan, atau meningkatkan.",
   "guideNext": "OK",
-  "guideDone": "Mulai"
+  "guideDone": "Mulai",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

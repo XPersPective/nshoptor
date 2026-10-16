@@ -354,5 +354,11 @@
   "guideReceiptBody": "ரசீதை ஸ்கேன் செய்து அதன் விலைகளை உங்கள் பட்டியலின் பொருட்களுடன் பொருத்துங்கள்.",
   "guidePlanBody": "திட்டத்தைப் பார்க்க, சந்தா செலுத்த அல்லது மேம்படுத்த திட்ட ஐகானைத் தொடவும்.",
   "guideNext": "சரி",
-  "guideDone": "தொடங்கு"
+  "guideDone": "தொடங்கு",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

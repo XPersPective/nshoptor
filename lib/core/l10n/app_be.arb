@@ -354,5 +354,11 @@
   "guideReceiptBody": "Адсканіруйце чэк, каб супаставіць цэны з таварамі вашага спісу.",
   "guidePlanBody": "Націсніце значок плана, каб убачыць план, падпісацца або павялічыць.",
   "guideNext": "Добра",
-  "guideDone": "Пачаць"
+  "guideDone": "Пачаць",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

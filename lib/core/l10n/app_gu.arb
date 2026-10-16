@@ -354,5 +354,11 @@
   "guideReceiptBody": "તમારી યાદીની વસ્તુઓ સાથે કિંમતો મેળવવા રસીદ સ્કેન કરો.",
   "guidePlanBody": "તમારો પ્લાન જોવા, સબ્સ્ક્રાઇબ કરવા અથવા અપગ્રેડ કરવા પ્લાન આઇકન દબાવો.",
   "guideNext": "ઓકે",
-  "guideDone": "શરૂ કરો"
+  "guideDone": "શરૂ કરો",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

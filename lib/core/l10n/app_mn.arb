@@ -354,5 +354,11 @@
   "guideReceiptBody": "Баримтыг скан хийж, түүний үнийг жагсаалтын барааны үнэтэй тааруулна уу.",
   "guidePlanBody": "Төлөвлөгөөгөө харах, бүртгүүлэх эсвэл сайжруулахын тулд төлөвлөгөөний дүрсийг дарна уу.",
   "guideNext": "За",
-  "guideDone": "Эхлэх"
+  "guideDone": "Эхлэх",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

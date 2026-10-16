@@ -2365,6 +2365,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start'**
   String get guideDone;
+
+  /// No description provided for @paletteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Color theme'**
+  String get paletteLabel;
+
+  /// No description provided for @paletteForest.
+  ///
+  /// In en, this message translates to:
+  /// **'Forest'**
+  String get paletteForest;
+
+  /// No description provided for @paletteOcean.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean'**
+  String get paletteOcean;
+
+  /// No description provided for @paletteSunset.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunset'**
+  String get paletteSunset;
+
+  /// No description provided for @paletteLavender.
+  ///
+  /// In en, this message translates to:
+  /// **'Lavender'**
+  String get paletteLavender;
+
+  /// No description provided for @darkBlackLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pure black in dark theme'**
+  String get darkBlackLabel;
 }
 
 class _AppLocalizationsDelegate

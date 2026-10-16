@@ -354,5 +354,11 @@
   "guideReceiptBody": "رسید اسکین کریں تاکہ اس کی قیمتیں آپ کی فہرست کی چیزوں سے ملیں۔",
   "guidePlanBody": "پلان کا آئیکن دبائیں تاکہ پلان دیکھیں، سبسکرائب کریں یا اپ گریڈ کریں۔",
   "guideNext": "ٹھیک ہے",
-  "guideDone": "شروع کریں"
+  "guideDone": "شروع کریں",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

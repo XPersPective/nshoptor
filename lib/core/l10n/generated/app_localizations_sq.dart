@@ -1147,4 +1147,22 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get guideDone => 'Fillo';
+
+  @override
+  String get paletteLabel => 'Color theme';
+
+  @override
+  String get paletteForest => 'Forest';
+
+  @override
+  String get paletteOcean => 'Ocean';
+
+  @override
+  String get paletteSunset => 'Sunset';
+
+  @override
+  String get paletteLavender => 'Lavender';
+
+  @override
+  String get darkBlackLabel => 'Pure black in dark theme';
 }

@@ -354,5 +354,11 @@
   "guideReceiptBody": "Скенирајте сметка за да ги усогласите нејзините цени со производите на листата.",
   "guidePlanBody": "Допрете ја иконата на планот за да го видите планот, да се претплатите или надградите.",
   "guideNext": "Во ред",
-  "guideDone": "Започни"
+  "guideDone": "Започни",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

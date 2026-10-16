@@ -354,5 +354,11 @@
   "guideReceiptBody": "Chekni skanerlab, narxlarini ro'yxatingizdagi mahsulotlarga moslang.",
   "guidePlanBody": "Tarifni ko'rish, obuna bo'lish yoki yangilash uchun tarif belgisini bosing.",
   "guideNext": "OK",
-  "guideDone": "Boshlash"
+  "guideDone": "Boshlash",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

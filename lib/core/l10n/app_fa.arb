@@ -354,5 +354,11 @@
   "guideReceiptBody": "رسید را اسکن کنید تا قیمت‌هایش با کالاهای فهرست شما تطبیق داده شود.",
   "guidePlanBody": "برای دیدن طرح، اشتراک یا ارتقا روی نماد طرح بزنید.",
   "guideNext": "باشه",
-  "guideDone": "شروع"
+  "guideDone": "شروع",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

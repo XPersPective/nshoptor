@@ -52,7 +52,8 @@ Future<String> buildPdfReport(AppDatabase db, int listId, AppLocalizations l10n,
 body{font:12px sans-serif;color:#111}h1{font-size:20px;overflow-wrap:anywhere}
 table{border-collapse:collapse;width:100%;table-layout:fixed}th,td{border:1px solid #bbb;padding:7px;text-align:start;overflow-wrap:anywhere}
 th:first-child{width:24%}thead{display:table-header-group}tr{break-inside:avoid}bdi{unicode-bidi:isolate}
-</style><body><h1>${e(title)}</h1><p>${e(list.createdAt.toLocal().toIso8601String().split('T').first)} · ${e(list.currencyCode)}</p>
+.brand{font-weight:800;font-size:16px;letter-spacing:-0.3px;margin:0 0 6px}.brand span{color:#0B8457}
+</style><body><p class="brand"><span>N</span>Shoptor</p><h1>${e(title)}</h1><p>${e(list.createdAt.toLocal().toIso8601String().split('T').first)} · ${e(list.currencyCode)}</p>
 <p>${e(l10n.reportNotInvoice)}</p><table><thead><tr>${headers.map((s) => '<th>${e(s)}</th>').join()}</tr></thead>
 <tbody>${rows.join()}</tbody></table>
 <p>${e(l10n.compareEstimated)}: ${e(money(result.hasKnownPlan ? result.plannedTotalMinor : null))}<br>

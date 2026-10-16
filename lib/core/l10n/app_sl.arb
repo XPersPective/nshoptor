@@ -354,5 +354,11 @@
   "guideReceiptBody": "Optično preberite račun, da ujamete njegove cene z izdelki na seznamu.",
   "guidePlanBody": "Tapnite ikono načrta, da si ogledate načrt, se naročite ali nadgradite.",
   "guideNext": "V redu",
-  "guideDone": "Začni"
+  "guideDone": "Začni",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

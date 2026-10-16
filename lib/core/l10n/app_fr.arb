@@ -354,5 +354,11 @@
   "guideReceiptBody": "Scannez un ticket pour rapprocher ses prix des articles de votre liste.",
   "guidePlanBody": "Touchez l'icône du forfait pour voir votre forfait, vous abonner ou passer à un forfait supérieur.",
   "guideNext": "OK",
-  "guideDone": "Commencer"
+  "guideDone": "Commencer",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

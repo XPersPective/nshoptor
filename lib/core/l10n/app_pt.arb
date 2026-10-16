@@ -354,5 +354,11 @@
   "guideReceiptBody": "Digitalize um recibo para comparar os preços com os itens da sua lista.",
   "guidePlanBody": "Toque no ícone do plano para ver seu plano, assinar ou fazer upgrade.",
   "guideNext": "OK",
-  "guideDone": "Começar"
+  "guideDone": "Começar",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

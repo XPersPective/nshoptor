@@ -354,5 +354,11 @@
   "guideReceiptBody": "Skannaa kuitti, jotta sen hinnat täsmäävät listasi tuotteisiin.",
   "guidePlanBody": "Napauta tilikuvaketta nähdäksesi tilisi, tilataksesi tai päivittääksesi.",
   "guideNext": "OK",
-  "guideDone": "Aloita"
+  "guideDone": "Aloita",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }

@@ -1142,4 +1142,22 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get guideDone => 'Başla';
+
+  @override
+  String get paletteLabel => 'Renk teması';
+
+  @override
+  String get paletteForest => 'Orman';
+
+  @override
+  String get paletteOcean => 'Okyanus';
+
+  @override
+  String get paletteSunset => 'Gün batımı';
+
+  @override
+  String get paletteLavender => 'Lavanta';
+
+  @override
+  String get darkBlackLabel => 'Koyu temada tam siyah';
 }

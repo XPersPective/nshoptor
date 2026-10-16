@@ -354,5 +354,11 @@
   "guideReceiptBody": "Scan een bonnetje om de prijzen af te stemmen op de artikelen op je lijst.",
   "guidePlanBody": "Tik op het abonnementspictogram om je abonnement te bekijken, je te abonneren of te upgraden.",
   "guideNext": "OK",
-  "guideDone": "Start"
+  "guideDone": "Start",
+  "paletteLabel": "Color theme",
+  "paletteForest": "Forest",
+  "paletteOcean": "Ocean",
+  "paletteSunset": "Sunset",
+  "paletteLavender": "Lavender",
+  "darkBlackLabel": "Pure black in dark theme"
 }
