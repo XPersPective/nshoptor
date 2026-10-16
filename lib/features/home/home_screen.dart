@@ -13,6 +13,7 @@ import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
 import '../history/history_screen.dart';
+import '../onboarding/first_run_guide.dart';
 import '../subscription/plan_badge.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
@@ -64,6 +65,7 @@ class HomeShell extends StatefulWidget {
     this.reminderScheduler,
     this.pickImage,
     this.ocrSource,
+    this.firstRunGuide = false,
   });
 
   final AppDatabase db;
@@ -97,12 +99,24 @@ class HomeShell extends StatefulWidget {
   final Future<String?> Function()? pickImage;
   final OcrTextSource? ocrSource;
 
+  /// Uygulama açılışında ilk kullanım rehberini bir kez gösterir (app.dart).
+  final bool firstRunGuide;
+
   @override
   State<HomeShell> createState() => _HomeShellState();
 }
 
 class _HomeShellState extends State<HomeShell> {
   int _tab = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) showFirstRunGuide(context);
+    });
+  }
+
   bool _inputBusy = false;
   // Settings is rebuilt on each visit: ad availability (daily gift) and the
   // plan badge change outside its own state.

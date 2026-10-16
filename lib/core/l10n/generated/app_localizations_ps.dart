@@ -1104,4 +1104,39 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'پېرل شوي توکي';
+
+  @override
+  String get tipReceiptScan => 'رسید سکن کړئ ترڅو بیې ستاسو لیست سره سمې شي';
+
+  @override
+  String get tipVoiceAdd =>
+      'یو یا ډیر توکي ووایاست، بیا یې د اضافه کولو دمخه وګورئ';
+
+  @override
+  String get tipShelfCamera => 'د کیمرې په مرسته د ریک لیبل څخه بیه ولولئ';
+
+  @override
+  String get tipPlan => 'ستاسو پلان: جزییات وګورئ، ګډون وکړئ یا لوړ کړئ';
+
+  @override
+  String get guideAddBody =>
+      'د توکي د اضافه کولو لپاره + کېکاږئ. پلان شوې بیه اوس او د بازار بیه د کاونټر پر مهال ولیکئ.';
+
+  @override
+  String get guideVoiceBody =>
+      'مایکروفون کېکاږئ او توکي ووایاست، د بېلګې په توګه: \'۱ کیلو مڼې، ۱ ډوډۍ\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'رسید سکن کړئ ترڅو د هغې بیې ستاسو د لیست توکو سره سمې شي.';
+
+  @override
+  String get guidePlanBody =>
+      'د پلان نښې کېکاږئ ترڅو پلان وګورئ، ګډون وکړئ یا لوړ کړئ.';
+
+  @override
+  String get guideNext => 'سم دی';
+
+  @override
+  String get guideDone => 'پیل';
 }

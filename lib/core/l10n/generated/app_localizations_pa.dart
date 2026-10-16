@@ -1107,4 +1107,40 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'ਖਰੀਦੇ ਉਤਪਾਦ';
+
+  @override
+  String get tipReceiptScan => 'ਰਸੀਦ ਸਕੈਨ ਕਰਕੇ ਕੀਮਤਾਂ ਆਪਣੀ ਸੂਚੀ ਨਾਲ ਮਿਲਾਓ';
+
+  @override
+  String get tipVoiceAdd =>
+      'ਇੱਕ ਜਾਂ ਵੱਧ ਚੀਜ਼ਾਂ ਬੋਲੋ, ਫਿਰ ਜੋੜਨ ਤੋਂ ਪਹਿਲਾਂ ਜਾਂਚੋ';
+
+  @override
+  String get tipShelfCamera => 'ਕੈਮਰੇ ਨਾਲ ਸ਼ੈਲਫ ਲੇਬਲ ਤੋਂ ਕੀਮਤ ਪੜ੍ਹੋ';
+
+  @override
+  String get tipPlan =>
+      'ਤੁਹਾਡਾ ਪਲਾਨ: ਵੇਰਵੇ ਦੇਖੋ, ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ ਜਾਂ ਅੱਪਗ੍ਰੇਡ ਕਰੋ';
+
+  @override
+  String get guideAddBody =>
+      'ਚੀਜ਼ ਜੋੜਨ ਲਈ + ਦਬਾਓ। ਯੋਜਨਾ ਵਾਲੀ ਕੀਮਤ ਹੁਣ ਅਤੇ ਬਾਜ਼ਾਰ ਵਾਲੀ ਕੀਮਤ ਕਾਊਂਟਰ ’ਤੇ ਦਾਖ਼ਲ ਕਰੋ।';
+
+  @override
+  String get guideVoiceBody =>
+      'ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਦਬਾਓ ਅਤੇ ਚੀਜ਼ਾਂ ਬੋਲੋ, ਜਿਵੇਂ: \'1 ਕਿਲੋ ਸੇਬ, 1 ਬਰੈੱਡ\'।';
+
+  @override
+  String get guideReceiptBody =>
+      'ਰਸੀਦ ਸਕੈਨ ਕਰਕੇ ਉਸ ਦੀਆਂ ਕੀਮਤਾਂ ਆਪਣੀ ਸੂਚੀ ਦੀਆਂ ਚੀਜ਼ਾਂ ਨਾਲ ਮਿਲਾਓ।';
+
+  @override
+  String get guidePlanBody =>
+      'ਪਲਾਨ ਦੇਖਣ, ਸਬਸਕ੍ਰਾਈਬ ਕਰਨ ਜਾਂ ਅੱਪਗ੍ਰੇਡ ਕਰਨ ਲਈ ਪਲਾਨ ਆਈਕਨ ਦਬਾਓ।';
+
+  @override
+  String get guideNext => 'ਠੀਕ ਹੈ';
+
+  @override
+  String get guideDone => 'ਸ਼ੁਰੂ ਕਰੋ';
 }

@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} listas · {items} itens · {entries} compras",
   "voiceModelDownloading": "O modelo de voz deste idioma está sendo baixado. Tente novamente em um minuto.",
   "historyThisWeek": "Esta semana",
-  "historyProductsSection": "Produtos comprados"
+  "historyProductsSection": "Produtos comprados",
+  "tipReceiptScan": "Digitalize o recibo para comparar os preços com a sua lista",
+  "tipVoiceAdd": "Diga um ou mais itens e confira-os antes de adicionar",
+  "tipShelfCamera": "Leia o preço na etiqueta da prateleira com a câmera",
+  "tipPlan": "Seu plano: veja detalhes, assine ou faça upgrade",
+  "guideAddBody": "Toque em + para adicionar um item. Digite o preço planejado agora e o preço de mercado no caixa.",
+  "guideVoiceBody": "Toque no microfone e diga os itens, por exemplo: '1 kg de maçãs, 1 pão'.",
+  "guideReceiptBody": "Digitalize um recibo para comparar os preços com os itens da sua lista.",
+  "guidePlanBody": "Toque no ícone do plano para ver seu plano, assinar ou fazer upgrade.",
+  "guideNext": "OK",
+  "guideDone": "Começar"
 }

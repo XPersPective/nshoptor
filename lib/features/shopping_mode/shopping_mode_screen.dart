@@ -236,7 +236,7 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
                   ? null
                   : IconButton(
                       key: const Key('entry_scan_price'),
-                      tooltip: l10n.scanPriceLabel,
+                      tooltip: l10n.tipShelfCamera,
                       icon: const Icon(Icons.photo_camera_outlined),
                       onPressed: _scan,
                     ),

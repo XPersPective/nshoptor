@@ -1110,4 +1110,42 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Προϊόντα που αγοράστηκαν';
+
+  @override
+  String get tipReceiptScan =>
+      'Σαρώστε την απόδειξη για να ταιριάξετε τις τιμές με τη λίστα σας';
+
+  @override
+  String get tipVoiceAdd =>
+      'Πείτε ένα ή περισσότερα προϊόντα και ελέγξτε τα πριν τα προσθέσετε';
+
+  @override
+  String get tipShelfCamera =>
+      'Διαβάστε την τιμή από την ετικέτα του ραφιού με την κάμερα';
+
+  @override
+  String get tipPlan =>
+      'Το πρόγραμμά σας: δείτε λεπτομέρειες, εγγραφείτε ή αναβαθμίστε';
+
+  @override
+  String get guideAddBody =>
+      'Πατήστε + για να προσθέσετε προϊόν. Εισαγάγετε την προγραμματισμένη τιμή τώρα και την τιμή αγοράς στο ταμείο.';
+
+  @override
+  String get guideVoiceBody =>
+      'Πατήστε το μικρόφωνο και πείτε τα προϊόντα, π.χ.: «1 κιλό μήλα, 1 ψωμί».';
+
+  @override
+  String get guideReceiptBody =>
+      'Σαρώστε μια απόδειξη για να ταιριάξετε τις τιμές της με τα προϊόντα της λίστας σας.';
+
+  @override
+  String get guidePlanBody =>
+      'Πατήστε το εικονίδιο προγράμματος για να δείτε το πρόγραμμα, να εγγραφείτε ή να αναβαθμίσετε.';
+
+  @override
+  String get guideNext => 'ΟΚ';
+
+  @override
+  String get guideDone => 'Έναρξη';
 }

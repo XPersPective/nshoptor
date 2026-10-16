@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} amalisti · {items} izinto · {entries} ukuthenga",
   "voiceModelDownloading": "Imodeli yezwi yalolu limi iyalandwa. Zama futhi ngemuva komzuzu owodwa.",
   "historyThisWeek": "Leli sonto",
-  "historyProductsSection": "Imikhiqizo ethengiwe"
+  "historyProductsSection": "Imikhiqizo ethengiwe",
+  "tipReceiptScan": "Skena irisidi ukuze uhlanganise amanani nohlu lwakho",
+  "tipVoiceAdd": "Shono into eyodwa noma ngaphezulu, bese uyihlola ngaphambi kokungeza",
+  "tipShelfCamera": "Funda inani elisesikhaleni ngekhamera",
+  "tipPlan": "Uhlelo lwakho: bona imininingwane, bhalisela noma uthuthukise",
+  "guideAddBody": "Thepha + ukuze wengeze into. Faka inani eliceliwe manje nenani lemakethe ekhawunteni.",
+  "guideVoiceBody": "Thepha imakrofoni ushilo izinto, isibonelo: 'ikhilo lamaapula, isinkwa esisodwa'.",
+  "guideReceiptBody": "Skena irisidi ukuze uhlanganise amanani ayo nezinto ohlwini lwakho.",
+  "guidePlanBody": "Thepha isithonjana sohlelo ukubona uhlelo, ukubhalisela noma ukuthuthukisa.",
+  "guideNext": "Kulungile",
+  "guideDone": "Qala"
 }

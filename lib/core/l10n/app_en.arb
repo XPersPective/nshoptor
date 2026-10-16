@@ -406,5 +406,15 @@
   "backupPreviewCounts": "{lists} lists · {items} items · {entries} purchases",
   "voiceModelDownloading": "Downloading the voice model for this language. Try again in a minute.",
   "historyThisWeek": "This week",
-  "historyProductsSection": "Products bought"
+  "historyProductsSection": "Products bought",
+  "tipReceiptScan": "Scan a receipt to match its prices with your list",
+  "tipVoiceAdd": "Speak one or more items, then review them before adding",
+  "tipShelfCamera": "Read the price from a shelf label with the camera",
+  "tipPlan": "Your plan: see details, subscribe or upgrade",
+  "guideAddBody": "Tap + to add an item. Enter the planned price now and the market price at checkout.",
+  "guideVoiceBody": "Tap the microphone and say your items, for example: '1 kilo apples, 1 bread'.",
+  "guideReceiptBody": "Scan a receipt to match its prices with the items on your list.",
+  "guidePlanBody": "Tap the plan icon to see your plan, subscribe or upgrade.",
+  "guideNext": "OK",
+  "guideDone": "Start"
 }

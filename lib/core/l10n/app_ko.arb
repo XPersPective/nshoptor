@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} 목록 · {items} 항목 · {entries} 구매",
   "voiceModelDownloading": "이 언어의 음성 모델을 다운로드하는 중입니다. 1분 후에 다시 시도하세요.",
   "historyThisWeek": "이번 주",
-  "historyProductsSection": "구매한 상품"
+  "historyProductsSection": "구매한 상품",
+  "tipReceiptScan": "영수증을 스캔해 가격을 목록과 맞추세요",
+  "tipVoiceAdd": "품목을 하나 이상 말하고 추가하기 전에 확인하세요",
+  "tipShelfCamera": "카메라로 진열대 라벨의 가격을 읽으세요",
+  "tipPlan": "내 요금제: 자세히 보기, 구독 또는 업그레이드",
+  "guideAddBody": "+를 눌러 품목을 추가하세요. 계획 가격은 지금, 시장 가격은 계산대에서 입력하세요.",
+  "guideVoiceBody": "마이크를 누르고 품목을 말하세요. 예: '사과 1kg, 빵 1개'",
+  "guideReceiptBody": "영수증을 스캔해 가격을 목록의 품목과 맞추세요.",
+  "guidePlanBody": "요금제 아이콘을 눌러 요금제를 보고, 구독하거나 업그레이드하세요.",
+  "guideNext": "확인",
+  "guideDone": "시작"
 }

@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} listor · {items} varor · {entries} inköp",
   "voiceModelDownloading": "Röstmodellen för det här språket laddas ned. Försök igen om en minut.",
   "historyThisWeek": "Den här veckan",
-  "historyProductsSection": "Köpta varor"
+  "historyProductsSection": "Köpta varor",
+  "tipReceiptScan": "Skanna ett kvitto för att matcha priserna med din lista",
+  "tipVoiceAdd": "Säg en eller flera varor och granska dem innan du lägger till dem",
+  "tipShelfCamera": "Läs priset från hylletiketten med kameran",
+  "tipPlan": "Din plan: se detaljer, prenumerera eller uppgradera",
+  "guideAddBody": "Tryck på + för att lägga till en vara. Ange det planerade priset nu och marknadspriset vid kassan.",
+  "guideVoiceBody": "Tryck på mikrofonen och säg varorna, till exempel: ”1 kg äpplen, 1 bröd”.",
+  "guideReceiptBody": "Skanna ett kvitto för att matcha priserna med varorna på din lista.",
+  "guidePlanBody": "Tryck på plan-ikonen för att se din plan, prenumerera eller uppgradera.",
+  "guideNext": "OK",
+  "guideDone": "Starta"
 }

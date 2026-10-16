@@ -1103,4 +1103,40 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'محصولات خریداری‌شده';
+
+  @override
+  String get tipReceiptScan =>
+      'رسید را اسکن کنید تا قیمت‌ها با فهرستتان تطبیق داده شوند';
+
+  @override
+  String get tipVoiceAdd =>
+      'یک یا چند کالا را بگویید و قبل از افزودن بررسی کنید';
+
+  @override
+  String get tipShelfCamera => 'قیمت را از برچسب قفسه با دوربین بخوانید';
+
+  @override
+  String get tipPlan => 'طرح شما: جزئیات را ببینید، مشترک شوید یا ارتقا دهید';
+
+  @override
+  String get guideAddBody =>
+      'برای افزودن کالا + را بزنید. قیمت برنامه‌ریزی‌شده را اکنون و قیمت بازار را در صندوق وارد کنید.';
+
+  @override
+  String get guideVoiceBody =>
+      'میکروفون را بزنید و کالاها را بگویید، مثلاً: «یک کیلو سیب، یک نان».';
+
+  @override
+  String get guideReceiptBody =>
+      'رسید را اسکن کنید تا قیمت‌هایش با کالاهای فهرست شما تطبیق داده شود.';
+
+  @override
+  String get guidePlanBody =>
+      'برای دیدن طرح، اشتراک یا ارتقا روی نماد طرح بزنید.';
+
+  @override
+  String get guideNext => 'باشه';
+
+  @override
+  String get guideDone => 'شروع';
 }

@@ -1112,4 +1112,41 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Produtos mercados';
+
+  @override
+  String get tipReceiptScan =>
+      'Dixitaliza o recibo para cotexar os prezos coa túa lista';
+
+  @override
+  String get tipVoiceAdd =>
+      'Di un ou varios artigos e revísaos antes de engadilos';
+
+  @override
+  String get tipShelfCamera =>
+      'Le o prezo da etiqueta da estantería coa cámara';
+
+  @override
+  String get tipPlan => 'O teu plan: ver detalles, subscribirte ou mellorar';
+
+  @override
+  String get guideAddBody =>
+      'Toca + para engadir un artigo. Escribe agora o prezo previsto e o prezo de mercado na caixa.';
+
+  @override
+  String get guideVoiceBody =>
+      'Toca o micrófono e di os artigos, por exemplo: \'1 quilo de mazás, 1 pan\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Dixitaliza un recibo para cotexar os seus prezos cos artigos da lista.';
+
+  @override
+  String get guidePlanBody =>
+      'Toca a icona do plan para ver o plan, subscribirte ou mellorar.';
+
+  @override
+  String get guideNext => 'Vale';
+
+  @override
+  String get guideDone => 'Comezar';
 }

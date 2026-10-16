@@ -1107,4 +1107,40 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'কেনা পণ্য';
+
+  @override
+  String get tipReceiptScan =>
+      'রসিদ স্ক্যান করে দামগুলো আপনার তালিকার সাথে মেলান';
+
+  @override
+  String get tipVoiceAdd => 'এক বা একাধিক পণ্য বলুন, যোগ করার আগে দেখে নিন';
+
+  @override
+  String get tipShelfCamera => 'ক্যামেরা দিয়ে তাকের লেবেল থেকে দাম পড়ুন';
+
+  @override
+  String get tipPlan =>
+      'আপনার প্ল্যান: বিস্তারিত দেখুন, সাবস্ক্রাইব করুন বা আপগ্রেড করুন';
+
+  @override
+  String get guideAddBody =>
+      'পণ্য যোগ করতে + চাপুন। পরিকল্পিত দাম এখন এবং বাজারের দাম কাউন্টারে লিখুন।';
+
+  @override
+  String get guideVoiceBody =>
+      'মাইক্রোফোনে চাপুন ও পণ্যগুলো বলুন, যেমন: \'১ কেজি আপেল, ১টি পাউরুটি\'।';
+
+  @override
+  String get guideReceiptBody =>
+      'রসিদ স্ক্যান করে দামগুলো আপনার তালিকার পণ্যের সাথে মেলান।';
+
+  @override
+  String get guidePlanBody =>
+      'প্ল্যান আইকনে চাপুন, প্ল্যান দেখুন, সাবস্ক্রাইব বা আপগ্রেড করুন।';
+
+  @override
+  String get guideNext => 'ঠিক আছে';
+
+  @override
+  String get guideDone => 'শুরু করুন';
 }

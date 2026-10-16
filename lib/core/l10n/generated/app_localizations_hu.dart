@@ -1109,4 +1109,40 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Vásárolt termékek';
+
+  @override
+  String get tipReceiptScan =>
+      'Olvassa be a nyugtát, hogy az árakat egyeztesse a listájával';
+
+  @override
+  String get tipVoiceAdd =>
+      'Mondjon egy vagy több terméket, és ellenőrizze őket hozzáadás előtt';
+
+  @override
+  String get tipShelfCamera => 'Olvassa le az árat a polccímkéről a kamerával';
+
+  @override
+  String get tipPlan => 'Az Ön csomagja: részletek, előfizetés vagy váltás';
+
+  @override
+  String get guideAddBody =>
+      'Koppintson a +-ra egy termék hozzáadásához. Írja be a tervezett árat most, a piaci árat a pénztárnál.';
+
+  @override
+  String get guideVoiceBody =>
+      'Koppintson a mikrofonra, és mondja el a termékeket, például: \'1 kiló alma, 1 kenyér\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Olvassa be a nyugtát, hogy az árait a listája termékeivel egyeztesse.';
+
+  @override
+  String get guidePlanBody =>
+      'Koppintson a csomagikonra a csomag megtekintéséhez, előfizetéshez vagy váltáshoz.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Indítás';
 }

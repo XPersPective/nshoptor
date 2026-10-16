@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} listar · {items} vörur · {entries} kaup",
   "voiceModelDownloading": "Verið er að sækja raddlíkanið fyrir þetta tungumál. Reyndu aftur eftir mínútu.",
   "historyThisWeek": "Þessi vika",
-  "historyProductsSection": "Keyptar vörur"
+  "historyProductsSection": "Keyptar vörur",
+  "tipReceiptScan": "Skannaðu kvittun til að bera saman verðin við listann þinn",
+  "tipVoiceAdd": "Segðu einn eða fleiri hluti og skoðaðu þá áður en þú bætir þeim við",
+  "tipShelfCamera": "Lestu verðið af hillumerkinu með myndavélinni",
+  "tipPlan": "Áskriftin þín: skoðaðu upplýsingar, gerðu áskrift eða uppfærðu",
+  "guideAddBody": "Ýttu á + til að bæta við hlut. Settu inn áætlað verð núna og markaðsverð við kassann.",
+  "guideVoiceBody": "Ýttu á hljóðnemann og segðu hlutina, til dæmis: '1 kíló epli, 1 brauð'.",
+  "guideReceiptBody": "Skannaðu kvittun til að para verðin við hlutina á listanum þínum.",
+  "guidePlanBody": "Ýttu á áskriftartáknið til að sjá áskriftina, gerast áskrifandi eða uppfæra.",
+  "guideNext": "OK",
+  "guideDone": "Byrja"
 }

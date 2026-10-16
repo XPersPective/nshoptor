@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} saraksti · {items} preces · {entries} pirkumi",
   "voiceModelDownloading": "Šīs valodas balss modelis tiek lejupielādēts. Mēģiniet vēlreiz pēc minūtes.",
   "historyThisWeek": "Šī nedēļa",
-  "historyProductsSection": "Nopirktie produkti"
+  "historyProductsSection": "Nopirktie produkti",
+  "tipReceiptScan": "Noskenējiet čeku, lai salīdzinātu cenas ar sarakstu",
+  "tipVoiceAdd": "Pasakiet vienu vai vairākus produktus un pārbaudiet tos pirms pievienošanas",
+  "tipShelfCamera": "Nolasiet cenu no plaukta etiķetes ar kameru",
+  "tipPlan": "Jūsu plāns: skatīt detaļas, abonēt vai uzlabot",
+  "guideAddBody": "Pieskarieties +, lai pievienotu produktu. Ievadiet plānoto cenu tagad un tirgus cenu kasē.",
+  "guideVoiceBody": "Pieskarieties mikrofonam un pasakiet produktus, piemēram: '1 kg ābolu, 1 maize'.",
+  "guideReceiptBody": "Noskenējiet čeku, lai saskaņotu tā cenas ar sarakstā esošajiem produktiem.",
+  "guidePlanBody": "Pieskarieties plāna ikonai, lai skatītu plānu, abonētu vai uzlabotu.",
+  "guideNext": "Labi",
+  "guideDone": "Sākt"
 }

@@ -1109,4 +1109,40 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Nopirktie produkti';
+
+  @override
+  String get tipReceiptScan =>
+      'Noskenējiet čeku, lai salīdzinātu cenas ar sarakstu';
+
+  @override
+  String get tipVoiceAdd =>
+      'Pasakiet vienu vai vairākus produktus un pārbaudiet tos pirms pievienošanas';
+
+  @override
+  String get tipShelfCamera => 'Nolasiet cenu no plaukta etiķetes ar kameru';
+
+  @override
+  String get tipPlan => 'Jūsu plāns: skatīt detaļas, abonēt vai uzlabot';
+
+  @override
+  String get guideAddBody =>
+      'Pieskarieties +, lai pievienotu produktu. Ievadiet plānoto cenu tagad un tirgus cenu kasē.';
+
+  @override
+  String get guideVoiceBody =>
+      'Pieskarieties mikrofonam un pasakiet produktus, piemēram: \'1 kg ābolu, 1 maize\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Noskenējiet čeku, lai saskaņotu tā cenas ar sarakstā esošajiem produktiem.';
+
+  @override
+  String get guidePlanBody =>
+      'Pieskarieties plāna ikonai, lai skatītu plānu, abonētu vai uzlabotu.';
+
+  @override
+  String get guideNext => 'Labi';
+
+  @override
+  String get guideDone => 'Sākt';
 }

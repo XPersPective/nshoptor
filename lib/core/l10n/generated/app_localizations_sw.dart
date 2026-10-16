@@ -1109,4 +1109,40 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Bidhaa zilizonunuliwa';
+
+  @override
+  String get tipReceiptScan =>
+      'Changanua risiti ili kulinganisha bei na orodha yako';
+
+  @override
+  String get tipVoiceAdd =>
+      'Sema bidhaa moja au zaidi, kisha ukague kabla ya kuongeza';
+
+  @override
+  String get tipShelfCamera => 'Soma bei kutoka kwenye lebo ya rafu kwa kamera';
+
+  @override
+  String get tipPlan => 'Mpango wako: tazama maelezo, jisajili au boresha';
+
+  @override
+  String get guideAddBody =>
+      'Gusa + ili kuongeza bidhaa. Weka bei iliyopangwa sasa na bei ya sokoni kwenye kaunta.';
+
+  @override
+  String get guideVoiceBody =>
+      'Gusa maikrofoni na useme bidhaa, kwa mfano: \'kilo 1 ya tufaha, mkate 1\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Changanua risiti ili kulinganisha bei zake na bidhaa kwenye orodha yako.';
+
+  @override
+  String get guidePlanBody =>
+      'Gusa aikoni ya mpango ili kuona mpango wako, kujisajili au kuboresha.';
+
+  @override
+  String get guideNext => 'Sawa';
+
+  @override
+  String get guideDone => 'Anza';
 }

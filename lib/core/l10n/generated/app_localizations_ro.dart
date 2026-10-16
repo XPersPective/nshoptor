@@ -1111,4 +1111,42 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Produse cumpărate';
+
+  @override
+  String get tipReceiptScan =>
+      'Scanați bonul pentru a potrivi prețurile cu lista dvs.';
+
+  @override
+  String get tipVoiceAdd =>
+      'Spuneți unu sau mai multe produse și verificați-le înainte de adăugare';
+
+  @override
+  String get tipShelfCamera =>
+      'Citiți prețul de pe eticheta raftului cu camera';
+
+  @override
+  String get tipPlan =>
+      'Planul dvs.: vedeți detaliile, abonați-vă sau faceți upgrade';
+
+  @override
+  String get guideAddBody =>
+      'Atingeți + pentru a adăuga un produs. Introduceți prețul planificat acum și prețul de piață la casă.';
+
+  @override
+  String get guideVoiceBody =>
+      'Atingeți microfonul și spuneți produsele, de exemplu: „1 kg mere, 1 pâine”.';
+
+  @override
+  String get guideReceiptBody =>
+      'Scanați un bon pentru a potrivi prețurile acestuia cu produsele din listă.';
+
+  @override
+  String get guidePlanBody =>
+      'Atingeți pictograma planului pentru a vedea planul, a vă abona sau a face upgrade.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Începe';
 }

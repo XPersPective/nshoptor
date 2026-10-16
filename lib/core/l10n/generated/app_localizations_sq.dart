@@ -1111,4 +1111,40 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Produktet e blera';
+
+  @override
+  String get tipReceiptScan =>
+      'Skanoni faturën për t\'i përputhur çmimet me listën tuaj';
+
+  @override
+  String get tipVoiceAdd =>
+      'Thoni një ose më shumë artikuj dhe kontrolloni para se t\'i shtoni';
+
+  @override
+  String get tipShelfCamera => 'Lexoni çmimin nga etiketa e raftit me kamerën';
+
+  @override
+  String get tipPlan => 'Plani juaj: shihni detajet, abonohuni ose përmirësoni';
+
+  @override
+  String get guideAddBody =>
+      'Prekni + për të shtuar një artikull. Shkruani çmimin e planifikuar tani dhe çmimin e tregut në arkë.';
+
+  @override
+  String get guideVoiceBody =>
+      'Prekni mikrofonin dhe thoni artikujt, për shembull: \'1 kg mollë, 1 bukë\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Skanoni një faturë për t\'i përputhur çmimet me artikujt në listën tuaj.';
+
+  @override
+  String get guidePlanBody =>
+      'Prekni ikonën e planit për të parë planin, për t\'u abonuar ose për të përmirësuar.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Fillo';
 }

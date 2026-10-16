@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} llistes · {items} articles · {entries} compres",
   "voiceModelDownloading": "S’està baixant el model de veu per a aquesta llengua. Torna-ho a provar d’aquí a un minut.",
   "historyThisWeek": "Aquesta setmana",
-  "historyProductsSection": "Productes comprats"
+  "historyProductsSection": "Productes comprats",
+  "tipReceiptScan": "Escanegeu un tiquet per fer coincidir els preus amb la llista",
+  "tipVoiceAdd": "Digueu un o més articles i reviseu-los abans d'afegir-los",
+  "tipShelfCamera": "Llegiu el preu de l'etiqueta del prestatge amb la càmera",
+  "tipPlan": "El vostre pla: vegeu els detalls, subscriviu-vos o milloreu",
+  "guideAddBody": "Toqueu + per afegir un article. Introduïu el preu previst ara i el preu de mercat a la caixa.",
+  "guideVoiceBody": "Toqueu el micròfon i digueu els articles, per exemple: '1 quilo de pomes, 1 pa'.",
+  "guideReceiptBody": "Escanegeu un tiquet per fer coincidir els preus amb els articles de la llista.",
+  "guidePlanBody": "Toqueu la icona del pla per veure el pla, subscriure-us o millorar.",
+  "guideNext": "D'acord",
+  "guideDone": "Comença"
 }

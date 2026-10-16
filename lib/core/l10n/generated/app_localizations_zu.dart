@@ -1115,4 +1115,41 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Imikhiqizo ethengiwe';
+
+  @override
+  String get tipReceiptScan =>
+      'Skena irisidi ukuze uhlanganise amanani nohlu lwakho';
+
+  @override
+  String get tipVoiceAdd =>
+      'Shono into eyodwa noma ngaphezulu, bese uyihlola ngaphambi kokungeza';
+
+  @override
+  String get tipShelfCamera => 'Funda inani elisesikhaleni ngekhamera';
+
+  @override
+  String get tipPlan =>
+      'Uhlelo lwakho: bona imininingwane, bhalisela noma uthuthukise';
+
+  @override
+  String get guideAddBody =>
+      'Thepha + ukuze wengeze into. Faka inani eliceliwe manje nenani lemakethe ekhawunteni.';
+
+  @override
+  String get guideVoiceBody =>
+      'Thepha imakrofoni ushilo izinto, isibonelo: \'ikhilo lamaapula, isinkwa esisodwa\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Skena irisidi ukuze uhlanganise amanani ayo nezinto ohlwini lwakho.';
+
+  @override
+  String get guidePlanBody =>
+      'Thepha isithonjana sohlelo ukubona uhlelo, ukubhalisela noma ukuthuthukisa.';
+
+  @override
+  String get guideNext => 'Kulungile';
+
+  @override
+  String get guideDone => 'Qala';
 }

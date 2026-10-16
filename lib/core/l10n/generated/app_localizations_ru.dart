@@ -1106,4 +1106,41 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Купленные товары';
+
+  @override
+  String get tipReceiptScan =>
+      'Отсканируйте чек, чтобы сопоставить цены со списком';
+
+  @override
+  String get tipVoiceAdd =>
+      'Назовите один или несколько товаров и проверьте их перед добавлением';
+
+  @override
+  String get tipShelfCamera => 'Считайте цену с ценника на полке камерой';
+
+  @override
+  String get tipPlan =>
+      'Ваш тариф: смотреть подробности, оформить подписку или перейти на другой';
+
+  @override
+  String get guideAddBody =>
+      'Нажмите +, чтобы добавить товар. Введите плановую цену сейчас, а рыночную — на кассе.';
+
+  @override
+  String get guideVoiceBody =>
+      'Нажмите микрофон и назовите товары, например: «1 кг яблок, батон».';
+
+  @override
+  String get guideReceiptBody =>
+      'Отсканируйте чек, чтобы сопоставить его цены с товарами в списке.';
+
+  @override
+  String get guidePlanBody =>
+      'Нажмите значок тарифа, чтобы посмотреть тариф, оформить подписку или перейти на другой.';
+
+  @override
+  String get guideNext => 'ОК';
+
+  @override
+  String get guideDone => 'Начать';
 }

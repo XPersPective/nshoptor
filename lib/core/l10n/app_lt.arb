@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} sąrašai · {items} prekės · {entries} pirkimai",
   "voiceModelDownloading": "Šios kalbos balso modelis atsisiunčiamas. Bandykite dar kartą po minutės.",
   "historyThisWeek": "Ši savaitė",
-  "historyProductsSection": "Pirkti produktai"
+  "historyProductsSection": "Pirkti produktai",
+  "tipReceiptScan": "Nuskaitykite kvitą, kad kainos atitiktų jūsų sąrašą",
+  "tipVoiceAdd": "Pasakykite vieną ar daugiau prekių ir patikrinkite prieš pridėdami",
+  "tipShelfCamera": "Perskaitykite kainą nuo lentynos etiketės kamera",
+  "tipPlan": "Jūsų planas: žiūrėkite informaciją, prenumeruokite ar pakelkite",
+  "guideAddBody": "Palieskite +, kad pridėtumėte prekę. Įveskite planuojamą kainą dabar, o rinkos kainą — kasoje.",
+  "guideVoiceBody": "Palieskite mikrofoną ir pasakykite prekes, pavyzdžiui: „1 kg obuolių, 1 duona“.",
+  "guideReceiptBody": "Nuskaitykite kvitą, kad jo kainos atitiktų jūsų sąrašo prekes.",
+  "guidePlanBody": "Palieskite plano piktogramą, kad pamatytumėte planą, prenumeruotumėte ar pakeltumėte.",
+  "guideNext": "Gerai",
+  "guideDone": "Pradėti"
 }

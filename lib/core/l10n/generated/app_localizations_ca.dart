@@ -1111,4 +1111,42 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Productes comprats';
+
+  @override
+  String get tipReceiptScan =>
+      'Escanegeu un tiquet per fer coincidir els preus amb la llista';
+
+  @override
+  String get tipVoiceAdd =>
+      'Digueu un o més articles i reviseu-los abans d\'afegir-los';
+
+  @override
+  String get tipShelfCamera =>
+      'Llegiu el preu de l\'etiqueta del prestatge amb la càmera';
+
+  @override
+  String get tipPlan =>
+      'El vostre pla: vegeu els detalls, subscriviu-vos o milloreu';
+
+  @override
+  String get guideAddBody =>
+      'Toqueu + per afegir un article. Introduïu el preu previst ara i el preu de mercat a la caixa.';
+
+  @override
+  String get guideVoiceBody =>
+      'Toqueu el micròfon i digueu els articles, per exemple: \'1 quilo de pomes, 1 pa\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Escanegeu un tiquet per fer coincidir els preus amb els articles de la llista.';
+
+  @override
+  String get guidePlanBody =>
+      'Toqueu la icona del pla per veure el pla, subscriure-us o millorar.';
+
+  @override
+  String get guideNext => 'D\'acord';
+
+  @override
+  String get guideDone => 'Comença';
 }

@@ -1099,4 +1099,38 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'מוצרים שנקנו';
+
+  @override
+  String get tipReceiptScan => 'סרוק קבלה כדי להתאים את המחירים לרשימה שלך';
+
+  @override
+  String get tipVoiceAdd => 'אמור פריט אחד או יותר, ובדוק אותם לפני ההוספה';
+
+  @override
+  String get tipShelfCamera => 'קרא את המחיר מתווית המדף במצלמה';
+
+  @override
+  String get tipPlan => 'התוכנית שלך: צפה בפרטים, הירשם או שדרג';
+
+  @override
+  String get guideAddBody =>
+      'הקש + כדי להוסיף פריט. הזן עכשיו את המחיר המתוכנן ואת מחיר השוק בקופה.';
+
+  @override
+  String get guideVoiceBody =>
+      'הקש על המיקרופון ואמור את הפריטים, למשל: \'קילו תפוחים, לחם אחד\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'סרוק קבלה כדי להתאים את מחיריה לפריטים ברשימה שלך.';
+
+  @override
+  String get guidePlanBody =>
+      'הקש על סמל התוכנית כדי לראות את התוכנית, להירשם או לשדרג.';
+
+  @override
+  String get guideNext => 'אישור';
+
+  @override
+  String get guideDone => 'התחל';
 }

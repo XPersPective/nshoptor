@@ -1112,4 +1112,39 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Ostetut tuotteet';
+
+  @override
+  String get tipReceiptScan => 'Skannaa kuitti ja vertaa hintoja ostoslistaasi';
+
+  @override
+  String get tipVoiceAdd =>
+      'Sano yksi tai useampi tuote ja tarkista ne ennen lisäämistä';
+
+  @override
+  String get tipShelfCamera => 'Lue hinta hyllyetiketistä kameralla';
+
+  @override
+  String get tipPlan => 'Tilisi: katso tiedot, tilaa tai päivitä';
+
+  @override
+  String get guideAddBody =>
+      'Lisää tuote painamalla +. Syötä suunniteltu hinta nyt ja markkinahinta kassalla.';
+
+  @override
+  String get guideVoiceBody =>
+      'Paina mikrofonia ja sano tuotteet, esimerkiksi: \'1 kg omenoita, 1 leipä\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Skannaa kuitti, jotta sen hinnat täsmäävät listasi tuotteisiin.';
+
+  @override
+  String get guidePlanBody =>
+      'Napauta tilikuvaketta nähdäksesi tilisi, tilataksesi tai päivittääksesi.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Aloita';
 }

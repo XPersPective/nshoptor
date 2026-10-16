@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} liste · {items} articole · {entries} achiziții",
   "voiceModelDownloading": "Se descarcă modelul vocal pentru această limbă. Încearcă din nou peste un minut.",
   "historyThisWeek": "Săptămâna aceasta",
-  "historyProductsSection": "Produse cumpărate"
+  "historyProductsSection": "Produse cumpărate",
+  "tipReceiptScan": "Scanați bonul pentru a potrivi prețurile cu lista dvs.",
+  "tipVoiceAdd": "Spuneți unu sau mai multe produse și verificați-le înainte de adăugare",
+  "tipShelfCamera": "Citiți prețul de pe eticheta raftului cu camera",
+  "tipPlan": "Planul dvs.: vedeți detaliile, abonați-vă sau faceți upgrade",
+  "guideAddBody": "Atingeți + pentru a adăuga un produs. Introduceți prețul planificat acum și prețul de piață la casă.",
+  "guideVoiceBody": "Atingeți microfonul și spuneți produsele, de exemplu: „1 kg mere, 1 pâine”.",
+  "guideReceiptBody": "Scanați un bon pentru a potrivi prețurile acestuia cu produsele din listă.",
+  "guidePlanBody": "Atingeți pictograma planului pentru a vedea planul, a vă abona sau a face upgrade.",
+  "guideNext": "OK",
+  "guideDone": "Începe"
 }

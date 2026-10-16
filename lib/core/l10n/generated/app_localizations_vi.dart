@@ -1108,4 +1108,39 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Sản phẩm đã mua';
+
+  @override
+  String get tipReceiptScan => 'Quét hóa đơn để khớp giá với danh sách của bạn';
+
+  @override
+  String get tipVoiceAdd =>
+      'Nói một hoặc nhiều món rồi kiểm tra trước khi thêm';
+
+  @override
+  String get tipShelfCamera => 'Đọc giá trên nhãn kệ bằng camera';
+
+  @override
+  String get tipPlan => 'Gói của bạn: xem chi tiết, đăng ký hoặc nâng cấp';
+
+  @override
+  String get guideAddBody =>
+      'Chạm + để thêm món. Nhập giá dự kiến ngay và giá thị trường khi thanh toán.';
+
+  @override
+  String get guideVoiceBody =>
+      'Chạm micro và nói tên các món, ví dụ: \'1 kg táo, 1 ổ bánh mì\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Quét hóa đơn để khớp giá của nó với các món trong danh sách.';
+
+  @override
+  String get guidePlanBody =>
+      'Chạm biểu tượng gói để xem gói của bạn, đăng ký hoặc nâng cấp.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Bắt đầu';
 }

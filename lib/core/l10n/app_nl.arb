@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} lijsten · {items} items · {entries} aankopen",
   "voiceModelDownloading": "Het spraakmodel voor deze taal wordt gedownload. Probeer het over een minuut opnieuw.",
   "historyThisWeek": "Deze week",
-  "historyProductsSection": "Gekochte producten"
+  "historyProductsSection": "Gekochte producten",
+  "tipReceiptScan": "Scan een bonnetje om de prijzen met je lijst te vergelijken",
+  "tipVoiceAdd": "Zeg een of meer artikelen en controleer ze voor je ze toevoegt",
+  "tipShelfCamera": "Lees de prijs van het schappenlabel met de camera",
+  "tipPlan": "Je abonnement: bekijk details, abonneer je of upgrade",
+  "guideAddBody": "Tik op + om een artikel toe te voegen. Vul nu de geplande prijs in en bij de kassa de marktprijs.",
+  "guideVoiceBody": "Tik op de microfoon en zeg je artikelen, bijvoorbeeld: '1 kilo appels, 1 brood'.",
+  "guideReceiptBody": "Scan een bonnetje om de prijzen af te stemmen op de artikelen op je lijst.",
+  "guidePlanBody": "Tik op het abonnementspictogram om je abonnement te bekijken, je te abonneren of te upgraden.",
+  "guideNext": "OK",
+  "guideDone": "Start"
 }

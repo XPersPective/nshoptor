@@ -522,7 +522,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                     ? null
                     : IconButton(
                         key: const Key('item_scan_actual_price'),
-                        tooltip: l10n.scanPriceLabel,
+                        tooltip: l10n.tipShelfCamera,
                         icon: const Icon(Icons.photo_camera_outlined),
                         onPressed: _scanActualPrice,
                       ),

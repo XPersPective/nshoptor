@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} zerrenda · {items} elementu · {entries} erosketa",
   "voiceModelDownloading": "Hizkuntza honen ahots-eredua deskargatzen ari da. Saiatu berriro minutu batean.",
   "historyThisWeek": "Aste hau",
-  "historyProductsSection": "Erositako produktuak"
+  "historyProductsSection": "Erositako produktuak",
+  "tipReceiptScan": "Eskaneatu ordainagiria prezioak zerrendarekin bat egiteko",
+  "tipVoiceAdd": "Esan produktu bat edo gehiago eta berrikusi gehitu aurretik",
+  "tipShelfCamera": "Irakurri prezioa apalategiko etiketatik kamerarekin",
+  "tipPlan": "Zure plana: ikusi xehetasunak, harpidetu edo igo",
+  "guideAddBody": "Sakatu + produktu bat gehitzeko. Idatzi aurreikusitako prezioa orain eta merkatuko prezioa kasan.",
+  "guideVoiceBody": "Sakatu mikrofonoa eta esan produktuak, adibidez: '1 kilo sagar, ogi bat'.",
+  "guideReceiptBody": "Eskaneatu ordainagiri bat prezioak zure zerrendako produktuekin bat egiteko.",
+  "guidePlanBody": "Sakatu plan-ikonoa zure plana ikusteko, harpidetzeko edo igotzeko.",
+  "guideNext": "Ados",
+  "guideDone": "Hasi"
 }

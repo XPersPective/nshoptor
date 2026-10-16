@@ -1114,4 +1114,41 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'కొనుగోలు చేసిన ఉత్పత్తులు';
+
+  @override
+  String get tipReceiptScan =>
+      'రసీదును స్కాన్ చేసి ధరలను మీ జాబితాతో సరిపోల్చండి';
+
+  @override
+  String get tipVoiceAdd =>
+      'ఒకటి లేదా అంతకంటే ఎక్కువ వస్తువులు చెప్పి, జోడించే ముందు సరిచూడండి';
+
+  @override
+  String get tipShelfCamera => 'కెమెరాతో షెల్ఫ్ లేబుల్‌పై ధరను చదవండి';
+
+  @override
+  String get tipPlan =>
+      'మీ ప్లాన్: వివరాలు చూడండి, సభ్యత్వం తీసుకోండి లేదా అప్‌గ్రేడ్ చేయండి';
+
+  @override
+  String get guideAddBody =>
+      'వస్తువు జోడించడానికి + నొక్కండి. ప్రణాళిక ధరను ఇప్పుడు, మార్కెట్ ధరను చెక్‌అవుట్ వద్ద నమోదు చేయండి.';
+
+  @override
+  String get guideVoiceBody =>
+      'మైక్రోఫోన్ నొక్కి వస్తువులు చెప్పండి, ఉదాహరణకు: \'1 కిలో ఆపిళ్లు, 1 బ్రెడ్\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'రసీదును స్కాన్ చేసి దాని ధరలను మీ జాబితాలోని వస్తువులతో సరిపోల్చండి.';
+
+  @override
+  String get guidePlanBody =>
+      'ప్లాన్ చూడటానికి, సభ్యత్వం తీసుకోవడానికి లేదా అప్‌గ్రేడ్ చేయడానికి ప్లాన్ ఐకాన్ నొక్కండి.';
+
+  @override
+  String get guideNext => 'సరే';
+
+  @override
+  String get guideDone => 'ప్రారంభించు';
 }

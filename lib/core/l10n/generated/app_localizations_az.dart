@@ -1110,4 +1110,41 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Alınan məhsullar';
+
+  @override
+  String get tipReceiptScan =>
+      'Qəbzi skan edin və qiymətləri siyahınızla uyğunlaşdırın';
+
+  @override
+  String get tipVoiceAdd =>
+      'Bir və ya bir neçə məhsulu səsləndirin, əlavə etməzdən əvvəl yoxlayın';
+
+  @override
+  String get tipShelfCamera => 'Kamera ilə rəf etiketindən qiyməti oxuyun';
+
+  @override
+  String get tipPlan =>
+      'Planınız: təfərrüatlara baxın, abunə olun və ya yüksəldin';
+
+  @override
+  String get guideAddBody =>
+      'Məhsul əlavə etmək üçün + basın. Planlaşdırılan qiyməti indi, bazar qiymətini kassada daxil edin.';
+
+  @override
+  String get guideVoiceBody =>
+      'Mikrofona basın və məhsulları deyin, məsələn: \'1 kiloqram alma, 1 çörək\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Qəbzi skan edərək qiymətləri siyahınızdakı məhsullarla uyğunlaşdırın.';
+
+  @override
+  String get guidePlanBody =>
+      'Planınıza baxmaq, abunə olmaq və ya yüksəltmək üçün plan işarəsinə basın.';
+
+  @override
+  String get guideNext => 'Tamam';
+
+  @override
+  String get guideDone => 'Başla';
 }

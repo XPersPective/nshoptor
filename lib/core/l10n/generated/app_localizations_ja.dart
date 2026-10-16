@@ -1078,4 +1078,34 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get historyProductsSection => '購入した商品';
+
+  @override
+  String get tipReceiptScan => 'レシートを読み取って、価格をリストと照合';
+
+  @override
+  String get tipVoiceAdd => '商品を一つ以上話し、追加する前に確認';
+
+  @override
+  String get tipShelfCamera => 'カメラで棚札の価格を読み取る';
+
+  @override
+  String get tipPlan => 'あなたのプラン：詳細を見る、購読、アップグレード';
+
+  @override
+  String get guideAddBody => '+ を押して商品を追加。予定価格は今、店頭価格はレジで入力します。';
+
+  @override
+  String get guideVoiceBody => 'マイクを押して商品を話してください。例：「りんご1kg、パン1つ」';
+
+  @override
+  String get guideReceiptBody => 'レシートを読み取り、価格をリストの商品と照合します。';
+
+  @override
+  String get guidePlanBody => 'プランアイコンを押して、プランの確認、購読、アップグレードができます。';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => '始める';
 }

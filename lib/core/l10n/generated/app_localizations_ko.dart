@@ -1080,4 +1080,34 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get historyProductsSection => '구매한 상품';
+
+  @override
+  String get tipReceiptScan => '영수증을 스캔해 가격을 목록과 맞추세요';
+
+  @override
+  String get tipVoiceAdd => '품목을 하나 이상 말하고 추가하기 전에 확인하세요';
+
+  @override
+  String get tipShelfCamera => '카메라로 진열대 라벨의 가격을 읽으세요';
+
+  @override
+  String get tipPlan => '내 요금제: 자세히 보기, 구독 또는 업그레이드';
+
+  @override
+  String get guideAddBody => '+를 눌러 품목을 추가하세요. 계획 가격은 지금, 시장 가격은 계산대에서 입력하세요.';
+
+  @override
+  String get guideVoiceBody => '마이크를 누르고 품목을 말하세요. 예: \'사과 1kg, 빵 1개\'';
+
+  @override
+  String get guideReceiptBody => '영수증을 스캔해 가격을 목록의 품목과 맞추세요.';
+
+  @override
+  String get guidePlanBody => '요금제 아이콘을 눌러 요금제를 보고, 구독하거나 업그레이드하세요.';
+
+  @override
+  String get guideNext => '확인';
+
+  @override
+  String get guideDone => '시작';
 }

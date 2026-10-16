@@ -1109,4 +1109,42 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Prodotti acquistati';
+
+  @override
+  String get tipReceiptScan =>
+      'Scansiona lo scontrino per confrontare i prezzi con la tua lista';
+
+  @override
+  String get tipVoiceAdd =>
+      'Dì uno o più articoli e controllali prima di aggiungerli';
+
+  @override
+  String get tipShelfCamera =>
+      'Leggi il prezzo dal cartellino dello scaffale con la fotocamera';
+
+  @override
+  String get tipPlan =>
+      'Il tuo piano: vedi i dettagli, abbonati o passa a un piano superiore';
+
+  @override
+  String get guideAddBody =>
+      'Tocca + per aggiungere un articolo. Inserisci ora il prezzo previsto e alla cassa quello di mercato.';
+
+  @override
+  String get guideVoiceBody =>
+      'Tocca il microfono e di\' gli articoli, per esempio: \'1 kg di mele, 1 pane\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Scansiona uno scontrino per abbinare i suoi prezzi agli articoli della lista.';
+
+  @override
+  String get guidePlanBody =>
+      'Tocca l\'icona del piano per vedere il piano, abbonarti o passare a un piano superiore.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Inizia';
 }

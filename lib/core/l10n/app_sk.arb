@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} zoznamov · {items} položiek · {entries} nákupov",
   "voiceModelDownloading": "Hlasový model pre tento jazyk sa sťahuje. Skúste to znova o minútu.",
   "historyThisWeek": "Tento týždeň",
-  "historyProductsSection": "Kúpené produkty"
+  "historyProductsSection": "Kúpené produkty",
+  "tipReceiptScan": "Naskenujte účtenku a spárujte ceny so zoznamom",
+  "tipVoiceAdd": "Povedzte jednu alebo viac položiek a pred pridaním ich skontrolujte",
+  "tipShelfCamera": "Prečítajte cenu z cenovky na regáli fotoaparátom",
+  "tipPlan": "Váš tarif: pozrite si podrobnosti, predplaťte si alebo prejdite na vyšší",
+  "guideAddBody": "Klepnutím na + pridáte položku. Plánovanú cenu zadajte hneď a trhovú pri pokladni.",
+  "guideVoiceBody": "Klepnite na mikrofón a povedzte položky, napríklad: „1 kilo jabĺk, 1 chlieb“.",
+  "guideReceiptBody": "Naskenujte účtenku a spárujte jej ceny s položkami zo zoznamu.",
+  "guidePlanBody": "Klepnutím na ikonu tarifu zobrazíte tarif, predplatíte si ho alebo prejdete na vyšší.",
+  "guideNext": "OK",
+  "guideDone": "Začať"
 }

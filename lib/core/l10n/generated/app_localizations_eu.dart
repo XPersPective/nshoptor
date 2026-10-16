@@ -1110,4 +1110,41 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Erositako produktuak';
+
+  @override
+  String get tipReceiptScan =>
+      'Eskaneatu ordainagiria prezioak zerrendarekin bat egiteko';
+
+  @override
+  String get tipVoiceAdd =>
+      'Esan produktu bat edo gehiago eta berrikusi gehitu aurretik';
+
+  @override
+  String get tipShelfCamera =>
+      'Irakurri prezioa apalategiko etiketatik kamerarekin';
+
+  @override
+  String get tipPlan => 'Zure plana: ikusi xehetasunak, harpidetu edo igo';
+
+  @override
+  String get guideAddBody =>
+      'Sakatu + produktu bat gehitzeko. Idatzi aurreikusitako prezioa orain eta merkatuko prezioa kasan.';
+
+  @override
+  String get guideVoiceBody =>
+      'Sakatu mikrofonoa eta esan produktuak, adibidez: \'1 kilo sagar, ogi bat\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Eskaneatu ordainagiri bat prezioak zure zerrendako produktuekin bat egiteko.';
+
+  @override
+  String get guidePlanBody =>
+      'Sakatu plan-ikonoa zure plana ikusteko, harpidetzeko edo igotzeko.';
+
+  @override
+  String get guideNext => 'Ados';
+
+  @override
+  String get guideDone => 'Hasi';
 }

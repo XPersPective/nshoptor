@@ -1104,4 +1104,38 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'สินค้าที่ซื้อ';
+
+  @override
+  String get tipReceiptScan => 'สแกนใบเสร็จเพื่อจับคู่ราคากับรายการของคุณ';
+
+  @override
+  String get tipVoiceAdd =>
+      'พูดสินค้าหนึ่งรายการหรือมากกว่า แล้วตรวจสอบก่อนเพิ่ม';
+
+  @override
+  String get tipShelfCamera => 'อ่านราคาจากป้ายชั้นวางด้วยกล้อง';
+
+  @override
+  String get tipPlan => 'แผนของคุณ: ดูรายละเอียด สมัครสมาชิก หรืออัปเกรด';
+
+  @override
+  String get guideAddBody =>
+      'แตะ + เพื่อเพิ่มสินค้า ใส่ราคาที่วางแผนไว้ตอนนี้ และราคาตลาดตอนชำระเงิน';
+
+  @override
+  String get guideVoiceBody =>
+      'แตะไมโครโฟนแล้วพูดสินค้า เช่น: \'แอปเปิล 1 กก. ขนมปัง 1 ก้อน\'';
+
+  @override
+  String get guideReceiptBody =>
+      'สแกนใบเสร็จเพื่อจับคู่ราคากับสินค้าในรายการของคุณ';
+
+  @override
+  String get guidePlanBody => 'แตะไอคอนแผนเพื่อดูแผน สมัครสมาชิก หรืออัปเกรด';
+
+  @override
+  String get guideNext => 'ตกลง';
+
+  @override
+  String get guideDone => 'เริ่มเลย';
 }

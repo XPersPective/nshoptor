@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} Listen · {items} Artikel · {entries} Einkäufe",
   "voiceModelDownloading": "Das Sprachmodell für diese Sprache wird heruntergeladen. Versuche es in einer Minute erneut.",
   "historyThisWeek": "Diese Woche",
-  "historyProductsSection": "Gekaufte Produkte"
+  "historyProductsSection": "Gekaufte Produkte",
+  "tipReceiptScan": "Beleg scannen, um die Preise mit deiner Liste abzugleichen",
+  "tipVoiceAdd": "Sage einen oder mehrere Artikel und prüfe sie vor dem Hinzufügen",
+  "tipShelfCamera": "Preis vom Regaletikett mit der Kamera auslesen",
+  "tipPlan": "Dein Tarif: Details ansehen, abonnieren oder upgraden",
+  "guideAddBody": "Tippe auf +, um einen Artikel hinzuzufügen. Trage jetzt den geplanten und an der Kasse den Marktpreis ein.",
+  "guideVoiceBody": "Tippe aufs Mikrofon und sag deine Artikel, z. B.: „1 Kilo Äpfel, 1 Brot“.",
+  "guideReceiptBody": "Scanne einen Beleg, um seine Preise mit den Artikeln auf deiner Liste abzugleichen.",
+  "guidePlanBody": "Tippe auf das Tarifsymbol, um deinen Tarif zu sehen, zu abonnieren oder zu upgraden.",
+  "guideNext": "OK",
+  "guideDone": "Los geht's"
 }

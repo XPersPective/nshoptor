@@ -1111,4 +1111,41 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Gekochte producten';
+
+  @override
+  String get tipReceiptScan =>
+      'Scan een bonnetje om de prijzen met je lijst te vergelijken';
+
+  @override
+  String get tipVoiceAdd =>
+      'Zeg een of meer artikelen en controleer ze voor je ze toevoegt';
+
+  @override
+  String get tipShelfCamera =>
+      'Lees de prijs van het schappenlabel met de camera';
+
+  @override
+  String get tipPlan => 'Je abonnement: bekijk details, abonneer je of upgrade';
+
+  @override
+  String get guideAddBody =>
+      'Tik op + om een artikel toe te voegen. Vul nu de geplande prijs in en bij de kassa de marktprijs.';
+
+  @override
+  String get guideVoiceBody =>
+      'Tik op de microfoon en zeg je artikelen, bijvoorbeeld: \'1 kilo appels, 1 brood\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'Scan een bonnetje om de prijzen af te stemmen op de artikelen op je lijst.';
+
+  @override
+  String get guidePlanBody =>
+      'Tik op het abonnementspictogram om je abonnement te bekijken, je te abonneren of te upgraden.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Start';
 }

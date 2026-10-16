@@ -1109,4 +1109,41 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'किनिएका उत्पादनहरू';
+
+  @override
+  String get tipReceiptScan =>
+      'रसिद स्क्यान गरेर मूल्यहरू तपाईंको सूचीसँग मिलाउनुहोस्';
+
+  @override
+  String get tipVoiceAdd =>
+      'एक वा धेरै सामान भन्नुहोस्, त्यसपछि थप्नु अघि जाँच्नुहोस्';
+
+  @override
+  String get tipShelfCamera => 'क्यामेराले सेल्फ लेबलको मूल्य पढ्नुहोस्';
+
+  @override
+  String get tipPlan =>
+      'तपाईंको योजना: विवरण हेर्नुहोस्, सदस्यता लिनुहोस् वा अपग्रेड गर्नुहोस्';
+
+  @override
+  String get guideAddBody =>
+      'सामान थप्न + थिच्नुहोस्। योजनाबद्ध मूल्य अहिले र बजार मूल्य काउन्टरमा राख्नुहोस्।';
+
+  @override
+  String get guideVoiceBody =>
+      'माइक्रोफोन थिचेर सामान भन्नुहोस्, जस्तै: \'१ केजी स्याउ, १ पाउरोटी\'।';
+
+  @override
+  String get guideReceiptBody =>
+      'रसिद स्क्यान गरेर यसका मूल्यहरू तपाईंको सूचीका सामानसँग मिलाउनुहोस्।';
+
+  @override
+  String get guidePlanBody =>
+      'योजना हेर्न, सदस्यता लिन वा अपग्रेड गर्न योजना आइकन थिच्नुहोस्।';
+
+  @override
+  String get guideNext => 'ठीक छ';
+
+  @override
+  String get guideDone => 'सुरु गर्नुहोस्';
 }

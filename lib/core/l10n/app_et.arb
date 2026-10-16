@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} nimekirja · {items} toodet · {entries} ostu",
   "voiceModelDownloading": "Selle keele häälmudelit laaditakse alla. Proovi minuti pärast uuesti.",
   "historyThisWeek": "See nädal",
-  "historyProductsSection": "Ostetud tooted"
+  "historyProductsSection": "Ostetud tooted",
+  "tipReceiptScan": "Skaneeri kviitung, et sobitada hinnad nimekirjaga",
+  "tipVoiceAdd": "Ütle üks või mitu toodet ja kontrolli neid enne lisamist",
+  "tipShelfCamera": "Loe hind riiulisildilt kaameraga",
+  "tipPlan": "Sinu plaan: vaata üksikasju, telli või uuenda",
+  "guideAddBody": "Puuduta +, et lisada toode. Sisesta kavandatud hind kohe ja turuhind kassas.",
+  "guideVoiceBody": "Puuduta mikrofoni ja ütle tooted, näiteks: '1 kg õunu, 1 leib'.",
+  "guideReceiptBody": "Skaneeri kviitung, et sobitada selle hinnad nimekirja toodetega.",
+  "guidePlanBody": "Puuduta plaani ikooni, et vaadata oma plaani, tellida või uuendada.",
+  "guideNext": "OK",
+  "guideDone": "Alusta"
 }

@@ -170,6 +170,7 @@ class _Home extends StatelessWidget {
     return HomeShell(
       db: db,
       listRepository: listRepository,
+      firstRunGuide: true,
       settingsRepository: settingsRepository,
       languageController: languageController,
       themeModeController: themeModeController,

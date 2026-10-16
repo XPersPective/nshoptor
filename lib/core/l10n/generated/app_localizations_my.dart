@@ -1111,4 +1111,41 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'ဝယ်ယူခဲ့သော ပစ္စည်းများ';
+
+  @override
+  String get tipReceiptScan =>
+      'ဖောင်ကို စကင်ဖတ်ပြီး ဈေးနှုန်းများကို သင့်စာရင်းနှင့် ကိုက်ညီအောင် လုပ်ပါ';
+
+  @override
+  String get tipVoiceAdd =>
+      'ပစ္စည်းတစ်ခု သို့မဟုတ် တစ်ခုထက်ပို ပြောပြီး ထည့်မည့်အကြိုတွင် စစ်ဆေးပါ';
+
+  @override
+  String get tipShelfCamera => 'ကင်မရာဖြင့် ရဖ်လိပ်ဆင်းမှ စျေးနှုန်းကို ဖတ်ပါ';
+
+  @override
+  String get tipPlan =>
+      'သင့်အစီအစဉ်: အသေးစိတ်ကြည့်ရန်၊ စာရင်းသွင်းရန် သို့မဟုတ် အဆင့်မြှင့်ရန်';
+
+  @override
+  String get guideAddBody =>
+      'ပစ္စည်းထည့်ရန် + ကို နှိပ်ပါ။ စီစဉ်ထားသောစျေးကို ယခု၊ ဈေးကွက်စျေးကို ငွေရှင်းတွင် ထည့်ပါ။';
+
+  @override
+  String get guideVoiceBody =>
+      'မိုက်ခရိုဖုန်းကို နှိပ်ပြီး ပစ္စည်းများ ပြောပါ၊ ဥပမာ: \'၁ ကီလို ပန်းသီး၊ ပေါင်မုန့် ၁ ခု\'။';
+
+  @override
+  String get guideReceiptBody =>
+      'ဖောင်ကို စကင်ဖတ်ပြီး စျေးနှုန်းများကို သင့်စာရင်းရှိ ပစ္စည်းများနှင့် ကိုက်ညီအောင် လုပ်ပါ။';
+
+  @override
+  String get guidePlanBody =>
+      'အစီအစဉ်ကို ကြည့်ရန်၊ စာရင်းသွင်းရန် သို့မဟုတ် အဆင့်မြှင့်ရန် အစီအစဉ်အိုင်ကွန်ကို နှိပ်ပါ။';
+
+  @override
+  String get guideNext => 'ตกลง';
+
+  @override
+  String get guideDone => 'စတင်';
 }

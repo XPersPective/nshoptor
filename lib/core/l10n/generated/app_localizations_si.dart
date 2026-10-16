@@ -1106,4 +1106,40 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'මිලදී ගත් නිෂ්පාදන';
+
+  @override
+  String get tipReceiptScan => 'රිසිට්පත ස්කෑන් කර මිල ඔබේ ලැයිස්තුවට ගළපන්න';
+
+  @override
+  String get tipVoiceAdd =>
+      'භාණ්ඩ එකක් හෝ කිහිපයක් කියා එකතු කිරීමට පෙර පරීක්ෂා කරන්න';
+
+  @override
+  String get tipShelfCamera => 'කැමරාවෙන් රාක්ක ලේබලයේ මිල කියවන්න';
+
+  @override
+  String get tipPlan =>
+      'ඔබේ සැලැස්ම: විස්තර බලන්න, දායකත්වය ලබාගන්න හෝ උත්ශ්‍රේණි කරන්න';
+
+  @override
+  String get guideAddBody =>
+      'භාණ්ඩයක් එක් කිරීමට + ඔබන්න. සැලසුම් කළ මිල දැන් ද වෙළඳපල මිල කවුන්ටරයේ ද ඇතුළත් කරන්න.';
+
+  @override
+  String get guideVoiceBody =>
+      'මයික්‍රෆෝනය ඔබා භාණ්ඩ කියන්න, උදා: \'කිලෝ 1 ඇපල්, පාන් 1\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'රිසිට්පත ස්කෑන් කර එහි මිල ඔබේ ලැයිස්තුවේ භාණ්ඩ සමඟ ගළපන්න.';
+
+  @override
+  String get guidePlanBody =>
+      'සැලැස්ම බැලීමට, දායකත්වය ලබා ගැනීමට හෝ උත්ශ්‍රේණි කිරීමට සැලැස්ම නිරූපකය ඔබන්න.';
+
+  @override
+  String get guideNext => 'හරි';
+
+  @override
+  String get guideDone => 'ආරම්භ කරන්න';
 }

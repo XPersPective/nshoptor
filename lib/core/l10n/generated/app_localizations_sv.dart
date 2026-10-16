@@ -1106,4 +1106,40 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'Köpta varor';
+
+  @override
+  String get tipReceiptScan =>
+      'Skanna ett kvitto för att matcha priserna med din lista';
+
+  @override
+  String get tipVoiceAdd =>
+      'Säg en eller flera varor och granska dem innan du lägger till dem';
+
+  @override
+  String get tipShelfCamera => 'Läs priset från hylletiketten med kameran';
+
+  @override
+  String get tipPlan => 'Din plan: se detaljer, prenumerera eller uppgradera';
+
+  @override
+  String get guideAddBody =>
+      'Tryck på + för att lägga till en vara. Ange det planerade priset nu och marknadspriset vid kassan.';
+
+  @override
+  String get guideVoiceBody =>
+      'Tryck på mikrofonen och säg varorna, till exempel: ”1 kg äpplen, 1 bröd”.';
+
+  @override
+  String get guideReceiptBody =>
+      'Skanna ett kvitto för att matcha priserna med varorna på din lista.';
+
+  @override
+  String get guidePlanBody =>
+      'Tryck på plan-ikonen för att se din plan, prenumerera eller uppgradera.';
+
+  @override
+  String get guideNext => 'OK';
+
+  @override
+  String get guideDone => 'Starta';
 }

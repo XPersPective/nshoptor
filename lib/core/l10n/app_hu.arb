@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} lista · {items} tétel · {entries} vásárlás",
   "voiceModelDownloading": "A nyelv hangmodellje letöltés alatt áll. Próbáld újra egy perc múlva.",
   "historyThisWeek": "Ez a hét",
-  "historyProductsSection": "Vásárolt termékek"
+  "historyProductsSection": "Vásárolt termékek",
+  "tipReceiptScan": "Olvassa be a nyugtát, hogy az árakat egyeztesse a listájával",
+  "tipVoiceAdd": "Mondjon egy vagy több terméket, és ellenőrizze őket hozzáadás előtt",
+  "tipShelfCamera": "Olvassa le az árat a polccímkéről a kamerával",
+  "tipPlan": "Az Ön csomagja: részletek, előfizetés vagy váltás",
+  "guideAddBody": "Koppintson a +-ra egy termék hozzáadásához. Írja be a tervezett árat most, a piaci árat a pénztárnál.",
+  "guideVoiceBody": "Koppintson a mikrofonra, és mondja el a termékeket, például: '1 kiló alma, 1 kenyér'.",
+  "guideReceiptBody": "Olvassa be a nyugtát, hogy az árait a listája termékeivel egyeztesse.",
+  "guidePlanBody": "Koppintson a csomagikonra a csomag megtekintéséhez, előfizetéshez vagy váltáshoz.",
+  "guideNext": "OK",
+  "guideDone": "Indítás"
 }

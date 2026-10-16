@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} danh sách · {items} mặt hàng · {entries} lần mua",
   "voiceModelDownloading": "Đang tải mô hình giọng nói cho ngôn ngữ này. Hãy thử lại sau một phút.",
   "historyThisWeek": "Tuần này",
-  "historyProductsSection": "Sản phẩm đã mua"
+  "historyProductsSection": "Sản phẩm đã mua",
+  "tipReceiptScan": "Quét hóa đơn để khớp giá với danh sách của bạn",
+  "tipVoiceAdd": "Nói một hoặc nhiều món rồi kiểm tra trước khi thêm",
+  "tipShelfCamera": "Đọc giá trên nhãn kệ bằng camera",
+  "tipPlan": "Gói của bạn: xem chi tiết, đăng ký hoặc nâng cấp",
+  "guideAddBody": "Chạm + để thêm món. Nhập giá dự kiến ngay và giá thị trường khi thanh toán.",
+  "guideVoiceBody": "Chạm micro và nói tên các món, ví dụ: '1 kg táo, 1 ổ bánh mì'.",
+  "guideReceiptBody": "Quét hóa đơn để khớp giá của nó với các món trong danh sách.",
+  "guidePlanBody": "Chạm biểu tượng gói để xem gói của bạn, đăng ký hoặc nâng cấp.",
+  "guideNext": "OK",
+  "guideDone": "Bắt đầu"
 }

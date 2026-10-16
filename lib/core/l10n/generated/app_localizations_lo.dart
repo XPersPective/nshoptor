@@ -1103,4 +1103,37 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'ສິນຄ້າທີ່ຊື້';
+
+  @override
+  String get tipReceiptScan => 'ສະແກນໃບເສັດເພື່ອຈັບຄູ່ລາຄາກັບລາຍການຂອງທ່ານ';
+
+  @override
+  String get tipVoiceAdd => 'ເວົ້າສິນຄ້າໜຶ່ງ ຫຼື ຫຼາຍລາຍການ ແລ້ວກວດກ່ອນເພີ່ມ';
+
+  @override
+  String get tipShelfCamera => 'ອ່ານລາຄາຈາກປ້າຍຊັ້ນດ້ວຍກ້ອງ';
+
+  @override
+  String get tipPlan => 'ແຜນຂອງທ່ານ: ເບິ່ງລາຍລະອຽດ, ສະໝັກ ຫຼື ອັບເກຣດ';
+
+  @override
+  String get guideAddBody =>
+      'ແຕະ + ເພື່ອເພີ່ມສິນຄ້າ. ປ້ອນລາຄາທີ່ວາງແຜນໄວ້ດຽວນີ້ ແລະລາຄາຕະຫຼາດຕອນຈ່າຍເງິນ.';
+
+  @override
+  String get guideVoiceBody =>
+      'ແຕະໄມໂຄຣໂຟນ ແລ້ວເວົ້າສິນຄ້າ ເຊັ່ນ: \'1 ກິໂລ ແອັບເປິ້ນ, 1 ເຂົ້າຈີ່\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'ສະແກນໃບເສັດເພື່ອຈັບຄູ່ລາຄາກັບສິນຄ້າໃນລາຍການຂອງທ່ານ.';
+
+  @override
+  String get guidePlanBody => 'ແຕະໄອຄອນແຜນເພື່ອເບິ່ງແຜນ, ສະໝັກ ຫຼື ອັບເກຣດ.';
+
+  @override
+  String get guideNext => 'ຕົກລົງ';
+
+  @override
+  String get guideDone => 'ເລີ່ມ';
 }

@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} listahan · {items} item · {entries} pagbili",
   "voiceModelDownloading": "Dina-download ang voice model para sa wikang ito. Subukang muli pagkalipas ng isang minuto.",
   "historyThisWeek": "Ngayong linggo",
-  "historyProductsSection": "Mga biniling produkto"
+  "historyProductsSection": "Mga biniling produkto",
+  "tipReceiptScan": "I-scan ang resibo para itugma ang mga presyo sa listahan mo",
+  "tipVoiceAdd": "Sabihin ang isa o higit pang item, at suriin bago idagdag",
+  "tipShelfCamera": "Basahin ang presyo sa shelf label gamit ang camera",
+  "tipPlan": "Ang plano mo: tingnan ang detalye, mag-subscribe o mag-upgrade",
+  "guideAddBody": "I-tap ang + para magdagdag ng item. I-type ang planong presyo ngayon at ang presyo sa merkado sa checkout.",
+  "guideVoiceBody": "I-tap ang mikropono at sabihin ang mga item, halimbawa: '1 kilo na mansanas, 1 tinapay'.",
+  "guideReceiptBody": "I-scan ang resibo para itugma ang mga presyo nito sa mga item sa listahan mo.",
+  "guidePlanBody": "I-tap ang icon ng plano para makita ang plano, mag-subscribe o mag-upgrade.",
+  "guideNext": "OK",
+  "guideDone": "Simulan"
 }

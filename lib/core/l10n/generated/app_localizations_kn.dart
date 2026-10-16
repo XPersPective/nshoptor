@@ -1110,4 +1110,41 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'ಖರೀದಿಸಿದ ಉತ್ಪನ್ನಗಳು';
+
+  @override
+  String get tipReceiptScan =>
+      'ರಸೀದಿಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಬೆಲೆಗಳನ್ನು ನಿಮ್ಮ ಪಟ್ಟಿಗೆ ಹೊಂದಿಸಿ';
+
+  @override
+  String get tipVoiceAdd =>
+      'ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ವಸ್ತುಗಳನ್ನು ಹೇಳಿ, ಸೇರಿಸುವ ಮೊದಲು ಪರಿಶೀಲಿಸಿ';
+
+  @override
+  String get tipShelfCamera => 'ಕ್ಯಾಮೆರಾದಿಂದ ಶೆಲ್ಫ್ ಲೇಬಲ್‌ನ ಬೆಲೆಯನ್ನು ಓದಿ';
+
+  @override
+  String get tipPlan =>
+      'ನಿಮ್ಮ ಯೋಜನೆ: ವಿವರಗಳನ್ನು ನೋಡಿ, ಚಂದಾದಾರರಾಗಿ ಅಥವಾ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ';
+
+  @override
+  String get guideAddBody =>
+      'ವಸ್ತು ಸೇರಿಸಲು + ಒತ್ತಿ. ಯೋಜಿತ ಬೆಲೆಯನ್ನು ಈಗ ಮತ್ತು ಮಾರುಕಟ್ಟೆ ಬೆಲೆಯನ್ನು ಚೆಕ್‌ಔಟ್‌ನಲ್ಲಿ ನಮೂದಿಸಿ.';
+
+  @override
+  String get guideVoiceBody =>
+      'ಮೈಕ್ರೊಫೋನ್ ಒತ್ತಿ ವಸ್ತುಗಳನ್ನು ಹೇಳಿ, ಉದಾಹರಣೆಗೆ: \'1 ಕಿಲೋ ಸೇಬು, 1 ಬ್ರೆಡ್\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'ನಿಮ್ಮ ಪಟ್ಟಿಯ ವಸ್ತುಗಳೊಂದಿಗೆ ಬೆಲೆಗಳನ್ನು ಹೊಂದಿಸಲು ರಸೀದಿಯನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.';
+
+  @override
+  String get guidePlanBody =>
+      'ನಿಮ್ಮ ಯೋಜನೆ ನೋಡಲು, ಚಂದಾದಾರರಾಗಲು ಅಥವಾ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲು ಯೋಜನೆ ಐಕಾನ್ ಒತ್ತಿ.';
+
+  @override
+  String get guideNext => 'ಸರಿ';
+
+  @override
+  String get guideDone => 'ಪ್ರಾರಂಭಿಸಿ';
 }

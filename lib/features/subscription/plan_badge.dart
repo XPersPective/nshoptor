@@ -35,9 +35,7 @@ class PlanBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tip = trial
-        ? '$label · ${AppLocalizations.of(context).planTrial}'
-        : label;
+    final tip = '$label · ${AppLocalizations.of(context).tipPlan}';
     final icon = Icon(
       trial ? Icons.hourglass_top : Icons.workspace_premium,
       size: 18,

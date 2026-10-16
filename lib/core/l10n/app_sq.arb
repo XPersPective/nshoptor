@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} lista · {items} artikuj · {entries} blerje",
   "voiceModelDownloading": "Modeli zanor për këtë gjuhë po shkarkohet. Provo përsëri pas një minute.",
   "historyThisWeek": "Këtë javë",
-  "historyProductsSection": "Produktet e blera"
+  "historyProductsSection": "Produktet e blera",
+  "tipReceiptScan": "Skanoni faturën për t'i përputhur çmimet me listën tuaj",
+  "tipVoiceAdd": "Thoni një ose më shumë artikuj dhe kontrolloni para se t'i shtoni",
+  "tipShelfCamera": "Lexoni çmimin nga etiketa e raftit me kamerën",
+  "tipPlan": "Plani juaj: shihni detajet, abonohuni ose përmirësoni",
+  "guideAddBody": "Prekni + për të shtuar një artikull. Shkruani çmimin e planifikuar tani dhe çmimin e tregut në arkë.",
+  "guideVoiceBody": "Prekni mikrofonin dhe thoni artikujt, për shembull: '1 kg mollë, 1 bukë'.",
+  "guideReceiptBody": "Skanoni një faturë për t'i përputhur çmimet me artikujt në listën tuaj.",
+  "guidePlanBody": "Prekni ikonën e planit për të parë planin, për t'u abonuar ose për të përmirësuar.",
+  "guideNext": "OK",
+  "guideDone": "Fillo"
 }

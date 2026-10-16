@@ -1106,4 +1106,39 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'खरेदी केलेली उत्पादने';
+
+  @override
+  String get tipReceiptScan => 'पावती स्कॅन करून किमती तुमच्या यादीशी जुळवा';
+
+  @override
+  String get tipVoiceAdd => 'एक किंवा अधिक वस्तू सांगा आणि जोडण्यापूर्वी तपासा';
+
+  @override
+  String get tipShelfCamera => 'कॅमेराने शेल्फ लेबलवरील किंमत वाचा';
+
+  @override
+  String get tipPlan =>
+      'तुमची योजना: तपशील पाहा, सदस्यत्व घ्या किंवा अपग्रेड करा';
+
+  @override
+  String get guideAddBody =>
+      'वस्तू जोडण्यासाठी + दाबा. नियोजित किंमत आता आणि बाजारभाव चेकआउटला भरा.';
+
+  @override
+  String get guideVoiceBody =>
+      'मायक्रोफोन दाबा आणि वस्तू सांगा, उदाहरणार्थ: \'१ किलो सफरचंद, १ पाव\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'पावती स्कॅन करून तिच्या किमती तुमच्या यादीतील वस्तूंशी जुळवा.';
+
+  @override
+  String get guidePlanBody =>
+      'योजना पाहण्यासाठी, सदस्यत्व घेण्यासाठी किंवा अपग्रेड करण्यासाठी योजना चिन्ह दाबा.';
+
+  @override
+  String get guideNext => 'ठीक आहे';
+
+  @override
+  String get guideDone => 'सुरू करा';
 }

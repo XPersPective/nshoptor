@@ -344,5 +344,15 @@
   "backupPreviewCounts": "{lists} senarai · {items} item · {entries} pembelian",
   "voiceModelDownloading": "Model suara untuk bahasa ini sedang dimuat turun. Cuba lagi dalam seminit.",
   "historyThisWeek": "Minggu ini",
-  "historyProductsSection": "Produk yang dibeli"
+  "historyProductsSection": "Produk yang dibeli",
+  "tipReceiptScan": "Imbas resit untuk memadankan harga dengan senarai anda",
+  "tipVoiceAdd": "Sebut satu atau lebih item, kemudian semak sebelum menambah",
+  "tipShelfCamera": "Baca harga daripada label rak dengan kamera",
+  "tipPlan": "Pelan anda: lihat butiran, langgan atau naik taraf",
+  "guideAddBody": "Ketik + untuk menambah item. Masukkan harga dirancang sekarang dan harga pasaran di kaunter.",
+  "guideVoiceBody": "Ketik mikrofon dan sebut item, contohnya: '1 kg epal, 1 roti'.",
+  "guideReceiptBody": "Imbas resit untuk memadankan harganya dengan item dalam senarai anda.",
+  "guidePlanBody": "Ketik ikon pelan untuk melihat pelan, melanggan atau menaik taraf.",
+  "guideNext": "OK",
+  "guideDone": "Mula"
 }

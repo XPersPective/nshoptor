@@ -1106,4 +1106,40 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get historyProductsSection => 'ნაყიდი პროდუქტები';
+
+  @override
+  String get tipReceiptScan =>
+      'ჩეკის სკანირება, რათა ფასები თქვენს სიას შეადაროთ';
+
+  @override
+  String get tipVoiceAdd =>
+      'თქვით ერთი ან მეტი პროდუქტი და შეამოწმეთ დამატებამდე';
+
+  @override
+  String get tipShelfCamera => 'კამერით წაიკითხეთ ფასი თაროს ეტიკეტიდან';
+
+  @override
+  String get tipPlan => 'თქვენი გეგმა: ნახეთ დეტალები, გამოიწერეთ ან განაახლეთ';
+
+  @override
+  String get guideAddBody =>
+      'შეეხეთ +-ს პროდუქტის დასამატებლად. დაგეგმილი ფასი ახლა შეიყვანეთ, ბაზრის ფასი — სალაროსთან.';
+
+  @override
+  String get guideVoiceBody =>
+      'შეეხეთ მიკროფონს და თქვით პროდუქტები, მაგალითად: \'1 კგ ვაშლი, 1 პური\'.';
+
+  @override
+  String get guideReceiptBody =>
+      'ჩეკის სკანირება, რათა მისი ფასები თქვენი სიის პროდუქტებს შეადაროთ.';
+
+  @override
+  String get guidePlanBody =>
+      'შეეხეთ გეგმის ხატულას გეგმის სანახავად, გამოსაწერად ან განსაახლებლად.';
+
+  @override
+  String get guideNext => 'კარგი';
+
+  @override
+  String get guideDone => 'დაწყება';
 }
