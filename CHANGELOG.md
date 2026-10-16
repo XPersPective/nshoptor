@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.6] — 2026-10-16
+
+- Ömür boyu seçeneği kaldırıldı; yalnız Ücretsiz, Pro ve Max.
+- Pro'dan Max'a geçişte kalan süre hesaplanır; plan durumu anında güncellenir.
+- "1 kilo domates 20 TL" gibi girişlerde 20 ürün adına değil tahmini fiyata yazılır.
+- Düğmelere uzun basınca açıklama; ilk açılışta kısa rehber.
+- Açılış ekranında uygulama simgesi, adı ve dilinde slogan.
+
 ## [1.2.5] — 2026-10-16
 
 - Ana sayfada plan simgesi: Ücretsiz, Pro, Max ya da deneme; dokununca plan sayfası ve mevcut plan görünür.
