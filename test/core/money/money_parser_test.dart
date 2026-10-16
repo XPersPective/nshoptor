@@ -47,11 +47,11 @@ void main() {
     });
 
     test('geçersiz gruplama reddedilir', () {
-      // "1.23" tr'de binlik nokta ama grup 2 basamak → tahmin edilmez, hata.
-      expect(() => MoneyParser.parseDecimal('1.23', separators: sep),
-          throwsFormatException);
-      expect(() => MoneyParser.parseDecimal('1234.5', separators: sep),
-          throwsFormatException);
+      // Tek nokta + 3 olmayan hane binlik olamaz: cihaz biçimi farklı da olsa
+      // ondalık kabul edilir (kullanıcı onayı 16.10.2026).
+      expect(MoneyParser.parseDecimal('1.23', separators: sep).toDbString(), '1.23');
+      expect(MoneyParser.parseDecimal('1234.5', separators: sep).toDbString(), '1234.5');
+      expect(MoneyParser.parseDecimal('1.500', separators: sep).toDbString(), '1500');
       expect(() => MoneyParser.parseDecimal('1,5,5', separators: sep),
           throwsFormatException);
     });
@@ -75,9 +75,10 @@ void main() {
     });
 
     test('geçersiz gruplama reddedilir', () {
-      // "1,23" en'de binlik virgül ama grup 2 basamak → hata.
-      expect(() => MoneyParser.parseDecimal('1,23', separators: sep),
-          throwsFormatException);
+      // "27,5" en cihazında Türkçe yazım: ondalık; "1,500" binlik kalır.
+      expect(MoneyParser.parseDecimal('1,23', separators: sep).toDbString(), '1.23');
+      expect(MoneyParser.parseDecimal('27,5', separators: sep).toDbString(), '27.5');
+      expect(MoneyParser.parseDecimal('1,500', separators: sep).toDbString(), '1500');
       // "1.234,5" en'de ondalıktan sonra binlik ayraç → hata.
       expect(() => MoneyParser.parseDecimal('1.234,5', separators: sep),
           throwsFormatException);
