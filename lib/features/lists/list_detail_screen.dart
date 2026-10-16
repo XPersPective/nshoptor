@@ -666,7 +666,12 @@ class _ListDetailScreenState extends State<ListDetailScreen>
           borderRadius: BorderRadius.circular(12),
           onTap: _busy || !_editable
               ? null
-              : () => _openItemForm(context, existing: item, entries: entries),
+              : () => _openItemForm(
+                  context,
+                  existing: item,
+                  entries: entries,
+                  focusActual: true,
+                ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Column(
