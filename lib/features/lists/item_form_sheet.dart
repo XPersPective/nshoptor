@@ -392,6 +392,12 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     }
   }
 
+  Future<void> _scanActualPrice() async {
+    final candidate = await widget.onShelfCandidatePressed?.call(context);
+    if (candidate == null || !mounted) return;
+    setState(() => _applyPhoto(candidate));
+  }
+
   void _applyPhoto(PriceCandidate c) {
     if (c.productName != null && c.productName!.isNotEmpty) {
       _name.text = c.productName!;
@@ -512,6 +518,14 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                     '${l10n.compareActual} / ${unitDisplayName(_unit, l10n)}',
                 errorText: _actualError,
                 helperText: _mixedUnits ? l10n.purchaseAnalyticsHint : null,
+                suffixIcon: widget.onShelfCandidatePressed == null || _mixedUnits
+                    ? null
+                    : IconButton(
+                        key: const Key('item_scan_actual_price'),
+                        tooltip: l10n.scanPriceLabel,
+                        icon: const Icon(Icons.photo_camera_outlined),
+                        onPressed: _scanActualPrice,
+                      ),
               ),
               onChanged: (_) => _actualChanged = true,
             ),

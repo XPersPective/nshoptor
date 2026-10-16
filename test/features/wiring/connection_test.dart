@@ -385,9 +385,8 @@ void main() {
       ),
     );
     await settle(tester);
-    await tester.tap(find.byKey(const Key('detail_more_menu')));
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('detail_scan_receipt')));
+    // Fiş tarama composer'da görünür: menüye gerek yok.
+    await tester.tap(find.byKey(const Key('detail_receipt_button')));
     await settle(tester);
     expect(find.text('EKMEK'), findsOneWidget);
 
