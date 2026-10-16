@@ -43,7 +43,6 @@ class ListsScreen extends StatefulWidget {
     this.reminderScheduler,
     this.onOpenSummary,
     this.onScanReceipt,
-    this.onOpenDiscover,
     this.onAssistantChoice,
     this.planBadge,
   });
@@ -58,7 +57,6 @@ class ListsScreen extends StatefulWidget {
   final void Function(BuildContext context, int listId)? onOpenListDetail;
   final VoidCallback? onOpenSummary;
   final VoidCallback? onScanReceipt;
-  final VoidCallback? onOpenDiscover;
   final ValueChanged<AssistantChoice>? onAssistantChoice;
 
   /// Plan simgesi (ana sayfanın üstünde); verilmezse gösterilmez.
@@ -79,7 +77,6 @@ class _ListsScreenState extends State<ListsScreen> {
     final hasTools =
         widget.onOpenSummary != null ||
         widget.onScanReceipt != null ||
-        widget.onOpenDiscover != null ||
         widget.onAssistantChoice != null;
     return DefaultTabController(
       length: 3,
@@ -127,12 +124,6 @@ class _ListsScreenState extends State<ListsScreen> {
                       key: const Key('lists_tool_assistant'),
                       value: _ListsTool.assistant,
                       child: Text(l10n.assistantTitle),
-                    ),
-                  if (widget.onOpenDiscover != null)
-                    PopupMenuItem(
-                      key: const Key('lists_tool_discover'),
-                      value: _ListsTool.discover,
-                      child: Text(l10n.navDiscover),
                     ),
                 ],
               ),
@@ -248,8 +239,6 @@ class _ListsScreenState extends State<ListsScreen> {
         widget.onOpenSummary?.call();
       case _ListsTool.receipt:
         widget.onScanReceipt?.call();
-      case _ListsTool.discover:
-        widget.onOpenDiscover?.call();
       case _ListsTool.assistant:
         final choice = await showModalBottomSheet<AssistantChoice>(
           context: context,
@@ -284,7 +273,7 @@ class _ListsScreenState extends State<ListsScreen> {
   }
 }
 
-enum _ListsTool { summary, receipt, assistant, discover }
+enum _ListsTool { summary, receipt, assistant }
 
 Future<void> showListEditor(
   BuildContext context,

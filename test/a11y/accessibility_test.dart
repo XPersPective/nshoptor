@@ -20,9 +20,10 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      // Alt navigasyon yalnız üç ana hedefi gösterir; ikincil araçlar üst menüdedir.
+      // Diğer uygulamalar alt navigasyonda doğrudan erişilebilir.
       final navBar = tester.widget<NavigationBar>(find.byType(NavigationBar));
-      expect(navBar.destinations.length, 3);
+      expect(navBar.destinations.length, 4);
+      expect(find.byKey(const Key('home_nav_discover')), findsOneWidget);
       expect(find.byKey(const Key('lists_search_button')), findsOneWidget);
       expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
 
