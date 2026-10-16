@@ -13,6 +13,8 @@ import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
 import '../history/history_screen.dart';
+import '../subscription/plan_badge.dart';
+import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
 import '../assistant/assistant_bubble.dart';
 import '../voice_input/list_draft_sheet.dart';
@@ -106,6 +108,74 @@ class _HomeShellState extends State<HomeShell> {
   // plan badge change outside its own state.
   int _settingsVisit = 0;
 
+  /// Plan simgesi: ana sayfanın üstünde. Dokununca plan/abonelik sayfası açılır.
+  Widget _planBadge(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final subs = widget.subscriptions;
+    final tier = subs?.tier ?? Tier.free;
+    final proUnlocked = (widget.proController?.isPro ?? false) || tier != Tier.free;
+    return PlanBadge(
+      badgeKey: const Key('home_plan_badge'),
+      label: planLabel(l10n, tier: tier, proUnlocked: proUnlocked),
+      trial: tier == Tier.pro && subs != null && subs.inTrial(),
+      active: proUnlocked,
+      onPressed: () => _openPlanPage(context),
+    );
+  }
+
+  Future<void> _openPlanPage(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final subs = widget.subscriptions;
+    final pro = widget.proController;
+    final repo = widget.purchaseRepository;
+    final identity = widget.appIdentity;
+    final tier = subs?.tier ?? Tier.free;
+    final proUnlocked = (pro?.isPro ?? false) || tier != Tier.free;
+    final label = planLabel(l10n, tier: tier, proUnlocked: proUnlocked);
+    final trial = tier == Tier.pro && subs != null && subs.inTrial();
+    final canLifetime = pro != null && repo != null && identity != null;
+
+    void openLifetime(BuildContext ctx) {
+      if (!canLifetime) return;
+      Navigator.of(ctx).push(
+        MaterialPageRoute<void>(
+          builder: (_) => PaywallPage(
+            identity: identity,
+            controller: pro,
+            repository: repo,
+            benefits: [l10n.proBenefitNoAds, l10n.proBenefitBackup],
+          ),
+        ),
+      );
+    }
+
+    if (subs != null) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (ctx) => SubscriptionPaywall(
+            service: subs,
+            currentPlan: planStatusText(l10n, label: label, trial: trial),
+            onLifetime: pro?.hasLifetimePurchase == true || !canLifetime
+                ? null
+                : () => openLifetime(ctx),
+          ),
+        ),
+      );
+    } else if (canLifetime) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => PaywallPage(
+            identity: identity,
+            controller: pro,
+            repository: repo,
+            benefits: [l10n.proBenefitNoAds, l10n.proBenefitBackup],
+          ),
+        ),
+      );
+    }
+    if (mounted) setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -115,6 +185,7 @@ class _HomeShellState extends State<HomeShell> {
         builder: (context, assistantVisible, _) => ListsScreen(
           repository: widget.listRepository,
           reminderScheduler: widget.reminderScheduler,
+          planBadge: _planBadge(context),
           onOpenSummary: () => _openSummary(context),
           onScanReceipt: () => _onAssistant(context, (
             action: AssistantAction.scanReceipt,

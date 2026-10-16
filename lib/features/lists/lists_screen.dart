@@ -43,6 +43,7 @@ class ListsScreen extends StatefulWidget {
     this.onScanReceipt,
     this.onOpenDiscover,
     this.onAssistantChoice,
+    this.planBadge,
   });
 
   final ListRepository repository;
@@ -57,6 +58,9 @@ class ListsScreen extends StatefulWidget {
   final VoidCallback? onScanReceipt;
   final VoidCallback? onOpenDiscover;
   final ValueChanged<AssistantChoice>? onAssistantChoice;
+
+  /// Plan simgesi (ana sayfanın üstünde); verilmezse gösterilmez.
+  final Widget? planBadge;
 
   @override
   State<ListsScreen> createState() => _ListsScreenState();
@@ -81,6 +85,7 @@ class _ListsScreenState extends State<ListsScreen> {
         appBar: AppBar(
           title: Text(l10n.listsTitle),
           actions: [
+            ?widget.planBadge,
             IconButton(
               key: const Key('lists_search_button'),
               tooltip: l10n.searchListHint,

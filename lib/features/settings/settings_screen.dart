@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../ai/ai_client.dart';
 import '../assistant/assistant_bubble.dart';
+import '../subscription/plan_badge.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
 import 'package:napp_core/napp_core.dart';
@@ -106,7 +107,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         actions: [
           // Current plan at a glance; tap opens the plans. Large text keeps
           // only the icon (label in the tooltip) so the app bar never overflows.
-          _PlanBadge(
+          PlanBadge(
+            badgeKey: const Key('settings_plan_badge'),
             label: _planLabel(l10n),
             trial: _tier == Tier.pro && widget.subscriptions!.inTrial(),
             active: _proUnlocked,
@@ -404,6 +406,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       MaterialPageRoute<void>(
         builder: (ctx) => SubscriptionPaywall(
           service: subs,
+          currentPlan: planStatusText(
+            AppLocalizations.of(ctx),
+            label: _planLabel(AppLocalizations.of(ctx)),
+            trial: _tier == Tier.pro && subs.inTrial(),
+          ),
           onLifetime: widget.proController?.hasLifetimePurchase == true
               ? null
               : () => _openPaywall(ctx),
@@ -567,50 +574,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
     if (!context.mounted) return;
     messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.dataDeleted), showCloseIcon: true));
-  }
-}
-
-class _PlanBadge extends StatelessWidget {
-  const _PlanBadge({
-    required this.label,
-    required this.trial,
-    required this.active,
-    required this.onPressed,
-  });
-
-  final String label;
-  final bool trial;
-  final bool active;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final tip = trial
-        ? '$label · ${AppLocalizations.of(context).planTrial}'
-        : label;
-    final icon = Icon(
-      trial ? Icons.hourglass_top : Icons.workspace_premium,
-      size: 18,
-      color: active ? Theme.of(context).colorScheme.primary : null,
-    );
-    if (MediaQuery.textScalerOf(context).scale(14) > 18) {
-      return IconButton(
-        key: const Key('settings_plan_badge'),
-        tooltip: tip,
-        icon: icon,
-        onPressed: onPressed,
-      );
-    }
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(end: 4),
-      child: ActionChip(
-        key: const Key('settings_plan_badge'),
-        avatar: icon,
-        label: Text(label),
-        tooltip: tip,
-        onPressed: onPressed,
-      ),
-    );
   }
 }
 
