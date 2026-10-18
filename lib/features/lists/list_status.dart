@@ -28,12 +28,13 @@ enum ListStatus {
 
   /// İzinli geçişler (spec §6.1 durum makinesi):
   /// taslak→planlandı; planlandı→alışverişte; alışverişte→tamamlandı;
-  /// her aktif durumdan arşive; arşivden tekrar taslağa.
+  /// tamamlanan alışveriş yeniden açılabilir; her aktif durumdan arşive;
+  /// arşivden tekrar taslağa.
   static const Map<ListStatus, Set<ListStatus>> _transitions = {
     draft: {planned, archived},
     planned: {shopping, draft, archived},
     shopping: {completed, planned, archived},
-    completed: {archived},
+    completed: {shopping, archived},
     archived: {draft},
   };
 

@@ -97,6 +97,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   late Future<ShoppingList> _listFuture;
   bool _busy = false;
   bool _editable = false;
+  ListStatus? _status;
 
   @override
   void initState() {
@@ -232,8 +233,10 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     final list = await widget.listRepository.getById(widget.listId);
     if (mounted) {
       setState(
-        () =>
-            _editable = list.status != 'completed' && list.status != 'archived',
+        () {
+          _status = ListStatus.fromDb(list.status);
+          _editable = list.status != 'completed' && list.status != 'archived';
+        },
       );
     }
     return list;
@@ -440,6 +443,24 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                   ListStatus.archived,
                 );
                 if (context.mounted) Navigator.of(context).maybePop();
+              } else if (action == 'continue') {
+                if (_busy || _status != ListStatus.completed) return;
+                setState(() => _busy = true);
+                try {
+                  await widget.listRepository.changeStatus(
+                    widget.listId,
+                    ListStatus.shopping,
+                  );
+                  _refresh();
+                } catch (_) {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
+                    );
+                  }
+                } finally {
+                  if (mounted) setState(() => _busy = false);
+                }
               }
             },
             itemBuilder: (_) => [
@@ -465,6 +486,12 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                   key: const Key('detail_scan_receipt'),
                   value: 'receipt',
                   child: Text(l10n.scanReceiptAction),
+                ),
+              if (_status == ListStatus.completed)
+                PopupMenuItem(
+                  key: const Key('detail_continue_shopping'),
+                  value: 'continue',
+                  child: Text(l10n.continueShoppingLabel),
                 ),
               PopupMenuItem(value: 'archive', child: Text(l10n.archiveAction)),
             ],

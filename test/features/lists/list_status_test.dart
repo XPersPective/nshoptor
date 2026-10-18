@@ -21,7 +21,7 @@ void main() {
     test('kural dışı geçişler reddedilir', () {
       expect(ListStatus.draft.canTransitionTo(ListStatus.completed), isFalse);
       expect(ListStatus.draft.canTransitionTo(ListStatus.shopping), isFalse);
-      expect(ListStatus.completed.canTransitionTo(ListStatus.shopping), isFalse);
+      expect(ListStatus.completed.canTransitionTo(ListStatus.shopping), isTrue);
       expect(ListStatus.archived.canTransitionTo(ListStatus.completed), isFalse);
       expect(ListStatus.planned.canTransitionTo(ListStatus.completed), isFalse);
     });

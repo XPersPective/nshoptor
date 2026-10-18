@@ -67,6 +67,9 @@ void main() {
       await repo.changeStatus(id, ListStatus.shopping);
       await repo.changeStatus(id, ListStatus.completed);
       expect((await repo.getById(id)).completedAt, isNotNull);
+      await repo.changeStatus(id, ListStatus.shopping);
+      expect((await repo.getById(id)).status, 'shopping');
+      expect((await repo.getById(id)).completedAt, isNull);
       await repo.changeStatus(id, ListStatus.archived);
       expect((await repo.getById(id)).archivedAt, isNotNull);
     });

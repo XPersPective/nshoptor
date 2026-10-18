@@ -178,6 +178,16 @@ void main() {
       tester.widget<Checkbox>(find.byKey(Key('detail_check_$id'))).onChanged,
       isNull,
     );
+    await tester.tap(find.byKey(const Key('detail_more_menu')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('detail_continue_shopping')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('detail_continue_shopping')));
+    await tester.pumpAndSettle();
+    expect((await lists.getById(listId)).status, 'shopping');
+    expect(
+      tester.widget<Checkbox>(find.byKey(Key('detail_check_$id'))).onChanged,
+      isNotNull,
+    );
     expect(await db.select(db.purchaseEntries).get(), isEmpty);
     await close(tester);
   });
