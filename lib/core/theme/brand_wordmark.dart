@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// NShoptor yazı markası: her yerde aynı tipografi. "N" vurgu renginde,
-/// "Shoptor" yüzey üstü renkte; kalın, sıkı harf aralığı.
+import 'app_theme.dart';
+
+/// NShoptor yazı markası: her yerde aynı tipografi ve marka yeşili.
+/// "Shoptor" okunabilirlik için temanın yüzey üstü rengini kullanır.
 /// Uygulama simgesi ve yazı markası yan yana (ana sayfa başlığı, splash).
 class BrandTitle extends StatelessWidget {
   const BrandTitle({super.key, this.size = 20});
@@ -47,6 +49,7 @@ class BrandWordmark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    const brandColor = AppTheme.brandSeed;
     final base = style(size);
     final label = suffix == null ? 'NShoptor' : 'NShoptor $suffix';
     return Semantics(
@@ -54,12 +57,12 @@ class BrandWordmark extends StatelessWidget {
       excludeSemantics: true,
       child: Text.rich(
         TextSpan(children: [
-          TextSpan(text: 'N', style: base.copyWith(color: scheme.primary)),
+          TextSpan(text: 'N', style: base.copyWith(color: brandColor)),
           TextSpan(text: 'Shoptor', style: base.copyWith(color: scheme.onSurface)),
           if (suffix != null)
             TextSpan(
               text: ' $suffix',
-              style: base.copyWith(fontWeight: FontWeight.w500, color: scheme.primary),
+              style: base.copyWith(fontWeight: FontWeight.w500, color: brandColor),
             ),
         ]),
         key: const Key('brand_wordmark'),
