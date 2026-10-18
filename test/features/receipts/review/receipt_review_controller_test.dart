@@ -41,7 +41,7 @@ void main() {
     expect(await db.select(db.purchaseEntries).get(), isEmpty);
   });
 
-  test('bağlama: satır planlanan ürüne bağlanır; bağlantısız plansızdır',
+  test('bağlama: satır planlanan ürüne bağlanır; bağlantısız listeye eklenir',
       () async {
     final controller = controllerFrom(['EKMEK 15,00', 'POSET 2,50']);
     await db.into(db.plannedItems).insert(
@@ -68,7 +68,8 @@ void main() {
     final linked = entries.firstWhere((e) => e.name == 'EKMEK');
     expect(linked.plannedItemId, ekmek.id);
     final unplanned = entries.firstWhere((e) => e.name == 'POSET');
-    expect(unplanned.plannedItemId, isNull); // plansız: ayrı raporlanır
+    expect(unplanned.plannedItemId, isNotNull);
+    expect((await db.select(db.plannedItems).get()).where((i) => i.name == 'POSET'), hasLength(1));
   });
 
   test('birleştirme: ad bitişir, tutar toplanır', () async {

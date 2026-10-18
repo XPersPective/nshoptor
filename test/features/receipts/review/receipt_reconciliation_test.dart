@@ -48,7 +48,7 @@ void main() {
     expect(c.listId, isNotNull); expect(await db.select(db.shoppingLists).get(), hasLength(2));
     final entries = await db.select(db.purchaseEntries).get();
     expect(entries, hasLength(2)); expect(entries.fold<int>(0, (s, e) => s + e.actualLineTotalMinorUnits), 1500);
-    expect(entries.every((e) => e.plannedItemId == null && e.listId == c.listId), isTrue);
+    expect(entries.every((e) => e.plannedItemId != null && e.listId == c.listId), isTrue);
     expect((await ShoppingRepository(db).getList(c.listId!)).status, 'shopping');
   });
 

@@ -4,6 +4,7 @@ import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/util/normalize_name.dart';
 import '../../shopping_mode/shopping_repository.dart';
+import '../../lists/item_repository.dart';
 import '../../lists/list_repository.dart';
 import '../../../data/db/app_database.dart';
 import '../parser/receipt_parse_result.dart';
@@ -357,9 +358,22 @@ class ReceiptReviewController extends ChangeNotifier {
       if (line.lineTotalMinor < 0 && quantity.isPositive) {
         quantity = quantity.negated();
       }
+      var plannedItemId = line.linkedPlannedItemId;
+      // Positive receipt lines absent from the plan still belong in the list:
+      // create the smallest valid planned row, then link its purchase so the
+      // completed receipt is visible in the same shopping history.
+      if (plannedItemId == null && !line.isDiscount && quantity.isPositive) {
+        plannedItemId = await ItemRepository(_db).addItem(
+          listId: committedListId,
+          name: line.name,
+          quantity: quantity,
+          unitCode: 'piece',
+          priceIsUnitPrice: false,
+        );
+      }
       await repo.recordPurchase(
         listId: committedListId,
-        plannedItemId: line.linkedPlannedItemId,
+        plannedItemId: plannedItemId,
         name: line.name,
         normalizedName: line.isDiscount && quantity.isZero
             ? 'discount'
