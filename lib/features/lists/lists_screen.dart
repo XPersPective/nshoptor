@@ -791,6 +791,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
             TextField(
               key: const Key('list_title_field'),
               controller: _title,
+              textCapitalization: TextCapitalization.sentences,
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
                 labelText: l10n.listTitleHint,

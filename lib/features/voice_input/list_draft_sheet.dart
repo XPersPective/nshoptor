@@ -303,7 +303,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
             ),
             if (_error != null) Text(_error!, key: const Key('draft_error'), style: TextStyle(color: Theme.of(context).colorScheme.error)),
             if (draft != null) ...[
-              if (widget.allowTitle) TextField(key: const Key('draft_title_field'), controller: _title, maxLength: 80, enabled: !_busy,
+              if (widget.allowTitle) TextField(key: const Key('draft_title_field'), controller: _title, textCapitalization: TextCapitalization.sentences, maxLength: 80, enabled: !_busy,
                 decoration: InputDecoration(labelText: l10n.listTitleHint)),
               const SizedBox(height: 12),
               if (draft.items.isEmpty)
