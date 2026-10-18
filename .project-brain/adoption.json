@@ -1,0 +1,383 @@
+{
+  "schema": 1,
+  "id": "a72ea559-95e4-472d-aa9e-95bf5f8c28e6",
+  "state": "CLEANED",
+  "roots": [
+    ".store-automation/config.json",
+    ".store-automation/constraints.md",
+    ".store-automation/current.md",
+    ".store-automation/product.md",
+    ".store-automation/release-readback-1.2.2-9.json",
+    ".store-automation/release-readback-1.2.3-10.json",
+    ".store-automation/runs/commit004.txt",
+    ".store-automation/runs/commit005.txt",
+    ".store-automation/runs/model-refresh.json",
+    ".store-automation/tasks/SA-015.md",
+    ".store-automation/tasks/SA-016.md",
+    ".store-automation/tasks/SA-017.md",
+    ".store-automation/tasks/SA-018.md",
+    ".store-automation/tasks/SA-019.md",
+    ".store-automation/tasks/SA-020.md",
+    ".store-automation/tasks/SA-021.md",
+    ".store-automation/tasks/SA-022.md",
+    ".store-automation/tasks/SA-023.md",
+    ".store-automation/tasks/SA-024.md",
+    ".store-automation/tasks/SA-025.md",
+    ".store-automation/tasks/SA-026.md",
+    ".store-automation/tasks/SA-027.md",
+    ".store-automation/tasks/SA-028.md",
+    ".store-automation/tasks/SA-029.md",
+    ".store-automation/tasks/SA-030.md",
+    ".store-automation/tasks/SA-031.md",
+    ".store-automation/tasks/SA-032.md",
+    ".store-automation/tasks/SA-033.md",
+    ".store-automation/tasks/SA-034.md",
+    ".store-automation/tasks/SA-035.md",
+    ".store-automation/tasks/SA-037.md"
+  ],
+  "sources": [
+    {
+      "path": ".store-automation/config.json",
+      "sha256": "8a4f8840eecf98c66281b7d27fdc363f035db7931aef664f728ef001670f8e62",
+      "targets": [
+        ".project-brain/config.yaml"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/constraints.md",
+      "sha256": "cf2fe74fc00a89500493251d8a1778e72d7ecd575a3b8e158c6ea7972f99b211",
+      "targets": [
+        ".project-brain/constraints.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/current.md",
+      "sha256": "cbb17b8629cfedeb9cb920012d75ed706ec05a53fb142476958f8e4cd9d4347a",
+      "targets": [
+        ".project-brain/current.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/product.md",
+      "sha256": "b01fe9c075f73fbc23b8d1a89e7dbe18414bebbbfa3e59d18b23125f60008b36",
+      "targets": [
+        ".project-brain/target.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/release-readback-1.2.2-9.json",
+      "sha256": "e4ea353bbad17f71ea74c2e1262ab988829a59799e00deae796ecbbeffd3f79d",
+      "targets": [],
+      "drop_reason": "Historical runtime/release/verification data retained with exact hashes in external full archive; not active plan or current evidence."
+    },
+    {
+      "path": ".store-automation/release-readback-1.2.3-10.json",
+      "sha256": "556e5f852646a25814b989ced0d9d2c5a24d666b3b2a711ea208730cc8a7340e",
+      "targets": [],
+      "drop_reason": "Historical runtime/release/verification data retained with exact hashes in external full archive; not active plan or current evidence."
+    },
+    {
+      "path": ".store-automation/runs/commit004.txt",
+      "sha256": "a320dc8268988173304386f20ab8e4f292e3e2ec5339d34db3d66a9a83b288e6",
+      "targets": [],
+      "drop_reason": "Historical runtime/release/verification data retained with exact hashes in external full archive; not active plan or current evidence."
+    },
+    {
+      "path": ".store-automation/runs/commit005.txt",
+      "sha256": "d8c7c665415388839d580dfb1cd0a8a74152c030a0c2be995d0fe203d5422186",
+      "targets": [],
+      "drop_reason": "Historical runtime/release/verification data retained with exact hashes in external full archive; not active plan or current evidence."
+    },
+    {
+      "path": ".store-automation/runs/model-refresh.json",
+      "sha256": "15ec3b5ceac17d6e7d095f5b2dbf44d7e6e1fa8a6f1b4e332170d516f2cf3132",
+      "targets": [],
+      "drop_reason": "Historical runtime/release/verification data retained with exact hashes in external full archive; not active plan or current evidence."
+    },
+    {
+      "path": ".store-automation/tasks/SA-015.md",
+      "sha256": "6c9df3fea2a4d6aee3c1c77e3f266cfaa288c1aa6f77bc903f03bca2a776178a",
+      "targets": [
+        ".project-brain/tasks/PB-101.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-016.md",
+      "sha256": "9bd3064acf9fc47e5e5cffb1e28fad63066848ae8def232cb4098cce40b0dd39",
+      "targets": [
+        ".project-brain/tasks/PB-102.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-017.md",
+      "sha256": "17dfcb0041139f3a294390dc394b8c5fc5be7f0081cb702aa7ee2b9f8d1f8f34",
+      "targets": [
+        ".project-brain/tasks/PB-103.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-018.md",
+      "sha256": "ee0d295a88b88d9cb1df8a955e093b8a9323012c9033e7fcd5793c8f5968120b",
+      "targets": [
+        ".project-brain/tasks/PB-104.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-019.md",
+      "sha256": "710743f317d2922c0a68a8eda910fdc9061080e393b1d7f2447068b0da5bd29a",
+      "targets": [
+        ".project-brain/tasks/PB-105.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-020.md",
+      "sha256": "d8dda41d64bd015e5f1fa9780ea56ca94f364af1810837bfa6d3d5ab35c833d9",
+      "targets": [
+        ".project-brain/tasks/PB-106.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-021.md",
+      "sha256": "29d88f71b925c4626db92bae2b0e3fdd9c6add20084e7f3fb4818d5f10d4079a",
+      "targets": [],
+      "drop_reason": "Publishing history excluded from active Project Brain scope; original dirty ledger is preserved byte-for-byte in externally verified full archive and migration backup."
+    },
+    {
+      "path": ".store-automation/tasks/SA-022.md",
+      "sha256": "aa1c16999bcd02815bca2b852bc72e54e3444de48fd3d50247ceeb5248932e1e",
+      "targets": [
+        ".project-brain/tasks/PB-107.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-023.md",
+      "sha256": "b196085e5c7e59cda38ad938dad33d1b7925fe3cffd7705754a3818d13ce7001",
+      "targets": [
+        ".project-brain/tasks/PB-108.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-024.md",
+      "sha256": "1daa4b627ccfb79bf6930e650e3fafccb77aef3727532f65b600e8a36b6f1fd9",
+      "targets": [
+        ".project-brain/tasks/PB-122.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-025.md",
+      "sha256": "def2694925d7906cf48167b7f9b460a1a55e786c9e455851ba8f7e6c2a482ebb",
+      "targets": [
+        ".project-brain/tasks/PB-109.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-026.md",
+      "sha256": "b86a5346cf3b4631329ac81f7b07b7f1b6bd85d9de02fe16554388f1a387446d",
+      "targets": [
+        ".project-brain/tasks/PB-110.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-027.md",
+      "sha256": "8b91ccdc6f3040d9e2b5cb8495b070ccb32d4cbdb820202c55474fee0e77b975",
+      "targets": [
+        ".project-brain/tasks/PB-111.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-028.md",
+      "sha256": "7036821c8d335c49e7d42284bc3350f8b398cee4c9f7bdc1b45c9ecb508ad02c",
+      "targets": [
+        ".project-brain/tasks/PB-118.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-029.md",
+      "sha256": "b8779c99a828a0812ee6382feef7426af23d8f38fa1537cd9c478c9918ea4819",
+      "targets": [
+        ".project-brain/tasks/PB-112.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-030.md",
+      "sha256": "fa74c841fc56cbd3904a74667917e7470781be9ca428aadc25b1cd4bcc686d6f",
+      "targets": [
+        ".project-brain/tasks/PB-113.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-031.md",
+      "sha256": "393254d6adca906d2b45e85276cb086999e35f1721c51241635698cd6015f71e",
+      "targets": [
+        ".project-brain/tasks/PB-114.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-032.md",
+      "sha256": "a3f31bc344bbd4b9c67e08d158e92e0873f873f8c22af3774cc8830eef265495",
+      "targets": [
+        ".project-brain/tasks/PB-115.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-033.md",
+      "sha256": "639c54f211ec87811e4ded9690e4c4aee01592cecfaa0207ee29d2471ab3989e",
+      "targets": [
+        ".project-brain/tasks/PB-116.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-034.md",
+      "sha256": "2eff87950a66028552427c4809bce55e5fef8093fd5ade594a048a2d5bb69615",
+      "targets": [
+        ".project-brain/tasks/PB-117.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-035.md",
+      "sha256": "1866b7f5765fff9762b5b6735903653162878e090e5dae9868da76eea7fac3cd",
+      "targets": [
+        ".project-brain/tasks/PB-118.md"
+      ],
+      "drop_reason": ""
+    },
+    {
+      "path": ".store-automation/tasks/SA-037.md",
+      "sha256": "e189a8388951749b9acaf6af68fbace195e69e32dbe5fdea556e1b27ad087fad",
+      "targets": [
+        ".project-brain/tasks/PB-119.md"
+      ],
+      "drop_reason": ""
+    }
+  ],
+  "reviewed_note": "25 open tasks and latest scope reconciled. All 261 source files archived and hashed externally. Exact obsolete AGENTS block removed with separate verified backup because the pointer recognizer refused the descriptive line. Current evidence remains unverified.",
+  "instruction_removals": [],
+  "source_snapshot": {
+    ".store-automation/config.json": "8a4f8840eecf98c66281b7d27fdc363f035db7931aef664f728ef001670f8e62",
+    ".store-automation/constraints.md": "cf2fe74fc00a89500493251d8a1778e72d7ecd575a3b8e158c6ea7972f99b211",
+    ".store-automation/current.md": "cbb17b8629cfedeb9cb920012d75ed706ec05a53fb142476958f8e4cd9d4347a",
+    ".store-automation/product.md": "b01fe9c075f73fbc23b8d1a89e7dbe18414bebbbfa3e59d18b23125f60008b36",
+    ".store-automation/release-readback-1.2.2-9.json": "e4ea353bbad17f71ea74c2e1262ab988829a59799e00deae796ecbbeffd3f79d",
+    ".store-automation/release-readback-1.2.3-10.json": "556e5f852646a25814b989ced0d9d2c5a24d666b3b2a711ea208730cc8a7340e",
+    ".store-automation/runs/commit004.txt": "a320dc8268988173304386f20ab8e4f292e3e2ec5339d34db3d66a9a83b288e6",
+    ".store-automation/runs/commit005.txt": "d8c7c665415388839d580dfb1cd0a8a74152c030a0c2be995d0fe203d5422186",
+    ".store-automation/runs/model-refresh.json": "15ec3b5ceac17d6e7d095f5b2dbf44d7e6e1fa8a6f1b4e332170d516f2cf3132",
+    ".store-automation/tasks/SA-015.md": "6c9df3fea2a4d6aee3c1c77e3f266cfaa288c1aa6f77bc903f03bca2a776178a",
+    ".store-automation/tasks/SA-016.md": "9bd3064acf9fc47e5e5cffb1e28fad63066848ae8def232cb4098cce40b0dd39",
+    ".store-automation/tasks/SA-017.md": "17dfcb0041139f3a294390dc394b8c5fc5be7f0081cb702aa7ee2b9f8d1f8f34",
+    ".store-automation/tasks/SA-018.md": "ee0d295a88b88d9cb1df8a955e093b8a9323012c9033e7fcd5793c8f5968120b",
+    ".store-automation/tasks/SA-019.md": "710743f317d2922c0a68a8eda910fdc9061080e393b1d7f2447068b0da5bd29a",
+    ".store-automation/tasks/SA-020.md": "d8dda41d64bd015e5f1fa9780ea56ca94f364af1810837bfa6d3d5ab35c833d9",
+    ".store-automation/tasks/SA-021.md": "29d88f71b925c4626db92bae2b0e3fdd9c6add20084e7f3fb4818d5f10d4079a",
+    ".store-automation/tasks/SA-022.md": "aa1c16999bcd02815bca2b852bc72e54e3444de48fd3d50247ceeb5248932e1e",
+    ".store-automation/tasks/SA-023.md": "b196085e5c7e59cda38ad938dad33d1b7925fe3cffd7705754a3818d13ce7001",
+    ".store-automation/tasks/SA-024.md": "1daa4b627ccfb79bf6930e650e3fafccb77aef3727532f65b600e8a36b6f1fd9",
+    ".store-automation/tasks/SA-025.md": "def2694925d7906cf48167b7f9b460a1a55e786c9e455851ba8f7e6c2a482ebb",
+    ".store-automation/tasks/SA-026.md": "b86a5346cf3b4631329ac81f7b07b7f1b6bd85d9de02fe16554388f1a387446d",
+    ".store-automation/tasks/SA-027.md": "8b91ccdc6f3040d9e2b5cb8495b070ccb32d4cbdb820202c55474fee0e77b975",
+    ".store-automation/tasks/SA-028.md": "7036821c8d335c49e7d42284bc3350f8b398cee4c9f7bdc1b45c9ecb508ad02c",
+    ".store-automation/tasks/SA-029.md": "b8779c99a828a0812ee6382feef7426af23d8f38fa1537cd9c478c9918ea4819",
+    ".store-automation/tasks/SA-030.md": "fa74c841fc56cbd3904a74667917e7470781be9ca428aadc25b1cd4bcc686d6f",
+    ".store-automation/tasks/SA-031.md": "393254d6adca906d2b45e85276cb086999e35f1721c51241635698cd6015f71e",
+    ".store-automation/tasks/SA-032.md": "a3f31bc344bbd4b9c67e08d158e92e0873f873f8c22af3774cc8830eef265495",
+    ".store-automation/tasks/SA-033.md": "639c54f211ec87811e4ded9690e4c4aee01592cecfaa0207ee29d2471ab3989e",
+    ".store-automation/tasks/SA-034.md": "2eff87950a66028552427c4809bce55e5fef8093fd5ade594a048a2d5bb69615",
+    ".store-automation/tasks/SA-035.md": "1866b7f5765fff9762b5b6735903653162878e090e5dae9868da76eea7fac3cd",
+    ".store-automation/tasks/SA-037.md": "e189a8388951749b9acaf6af68fbace195e69e32dbe5fdea556e1b27ad087fad"
+  },
+  "target_snapshot": {
+    ".project-brain/config.yaml": "2b66173186be385206a4e85273d573b5a211766bf63f95ba2660d318644bb8cd",
+    ".project-brain/constraints.md": "9b9dc780c77c8958516e4ad016436ba3c83acca510ca443f03812ee4ee8b0aba",
+    ".project-brain/current.md": "e26cd9faaec7e6380cb1e58754a13bd1afcf8d70c053f474d4d024ffe375abc5",
+    ".project-brain/target.md": "037418d55b4df025608c90feecc282286abaf6def3cd9c44e80e99b198a9a59a",
+    ".project-brain/tasks/PB-101.md": "8d9d5f86611da0074645084d25f1360e1015fd4fd0ebe6e26e809e79e23b7591",
+    ".project-brain/tasks/PB-102.md": "36b68814273b20e4877d6a42ee6e4052216869e6d4a352290ecf0cf55378b12a",
+    ".project-brain/tasks/PB-103.md": "c7d6fba24451613a0ccf83e4abcf21f3ca9b99bc6d7b2aace2e131d29be4065c",
+    ".project-brain/tasks/PB-104.md": "5699aaf04d7b742be35875a4e5cb13e733db2c4363690b05716a017a3b4f44d6",
+    ".project-brain/tasks/PB-105.md": "497dc251110585b3e93bcab322fbf94da157ffea539fef657680dc323110f8b2",
+    ".project-brain/tasks/PB-106.md": "3bac52158177b86381e0bdd0d82a2fe7ee69d04eb77dfeb091e94416f6d00a1a",
+    ".project-brain/tasks/PB-107.md": "be4c8d9828f8f62be6dbc3c68d36fb9a77917d62443b087d3272010f284dcc42",
+    ".project-brain/tasks/PB-108.md": "1c32353f8726b67e2662fb6bbfe9ff77005eb0f8a7399bd13f3b8b99b5d0d53e",
+    ".project-brain/tasks/PB-122.md": "6985680c9e084891a8abdde52c25e69c1d3fc7eb5e91f6fbc9d4d66cd5abe90a",
+    ".project-brain/tasks/PB-109.md": "ad77d5bef3dd318ac12aa7d29f1eb0d467569c37992ee54162f739be0f4cf2bb",
+    ".project-brain/tasks/PB-110.md": "f8b7c13de0998787830cb64684e8733a7a448f1bf5b0fc0903edf5135961c9f8",
+    ".project-brain/tasks/PB-111.md": "fbc6827b6f3fc69faaa718dfd79680452ce1f86e94fd15ed4b06505a9ee83900",
+    ".project-brain/tasks/PB-118.md": "a44485ac4c637387f7fe6308b73c3faed9b0613ab039d0421c6f4688549b7da2",
+    ".project-brain/tasks/PB-112.md": "cd694f07da230ce0ccf7f4b50ba1b92fa70047ca15b92c4392407d8d89991966",
+    ".project-brain/tasks/PB-113.md": "0634a40e83a700f68d53550c51986f6ca4ac1d124fb5855d36c3075cc2055d79",
+    ".project-brain/tasks/PB-114.md": "830ba5c7577e4c9c9518dbaea9ece2b13bd27f9d107bc38ff575490da98a2120",
+    ".project-brain/tasks/PB-115.md": "7f5c8b411e81c29bf355563607bfb4d01e4338599226c387d13c1f0abd0f7c3e",
+    ".project-brain/tasks/PB-116.md": "d82eef425efca980d4864b14701eae245b8cba171e57650c9d259dcc0f14f5ba",
+    ".project-brain/tasks/PB-117.md": "6e8597e49111b836086b9f445b9217e3e3d4cb83617b590a424796b2bacc3bcb",
+    ".project-brain/tasks/PB-119.md": "6073826c57d6182215ac70b49f34ec74e1b9f5daf99869a0bc8f120974e5337f"
+  },
+  "instruction_snapshot": {},
+  "instruction_after_snapshot": {},
+  "ignore_snapshot": {
+    ".gitignore": "9851ec0a7d4c82f8fcf9e09b6a4adb6329551c9a494791432cb370c5589794fe"
+  },
+  "ignore_after_snapshot": {
+    ".gitignore": "6aa7222a0873868ab9ad2639f613f45019e970459769254cba204609f514ccbc"
+  },
+  "archive": {
+    "path": "D:\\repositories\\.project-brain-archives\\nshoptor-a72ea559-95e4-472d-aa9e-95bf5f8c28e6.zip",
+    "sha256": "c2507849ed2c951043fa2f0c59aeeb71d1ed05f4a140cc94916b4de2e04de2d8",
+    "entries": {
+      "sources/.store-automation/config.json": "8a4f8840eecf98c66281b7d27fdc363f035db7931aef664f728ef001670f8e62",
+      "sources/.store-automation/constraints.md": "cf2fe74fc00a89500493251d8a1778e72d7ecd575a3b8e158c6ea7972f99b211",
+      "sources/.store-automation/current.md": "cbb17b8629cfedeb9cb920012d75ed706ec05a53fb142476958f8e4cd9d4347a",
+      "sources/.store-automation/product.md": "b01fe9c075f73fbc23b8d1a89e7dbe18414bebbbfa3e59d18b23125f60008b36",
+      "sources/.store-automation/release-readback-1.2.2-9.json": "e4ea353bbad17f71ea74c2e1262ab988829a59799e00deae796ecbbeffd3f79d",
+      "sources/.store-automation/release-readback-1.2.3-10.json": "556e5f852646a25814b989ced0d9d2c5a24d666b3b2a711ea208730cc8a7340e",
+      "sources/.store-automation/runs/commit004.txt": "a320dc8268988173304386f20ab8e4f292e3e2ec5339d34db3d66a9a83b288e6",
+      "sources/.store-automation/runs/commit005.txt": "d8c7c665415388839d580dfb1cd0a8a74152c030a0c2be995d0fe203d5422186",
+      "sources/.store-automation/runs/model-refresh.json": "15ec3b5ceac17d6e7d095f5b2dbf44d7e6e1fa8a6f1b4e332170d516f2cf3132",
+      "sources/.store-automation/tasks/SA-015.md": "6c9df3fea2a4d6aee3c1c77e3f266cfaa288c1aa6f77bc903f03bca2a776178a",
+      "sources/.store-automation/tasks/SA-016.md": "9bd3064acf9fc47e5e5cffb1e28fad63066848ae8def232cb4098cce40b0dd39",
+      "sources/.store-automation/tasks/SA-017.md": "17dfcb0041139f3a294390dc394b8c5fc5be7f0081cb702aa7ee2b9f8d1f8f34",
+      "sources/.store-automation/tasks/SA-018.md": "ee0d295a88b88d9cb1df8a955e093b8a9323012c9033e7fcd5793c8f5968120b",
+      "sources/.store-automation/tasks/SA-019.md": "710743f317d2922c0a68a8eda910fdc9061080e393b1d7f2447068b0da5bd29a",
+      "sources/.store-automation/tasks/SA-020.md": "d8dda41d64bd015e5f1fa9780ea56ca94f364af1810837bfa6d3d5ab35c833d9",
+      "sources/.store-automation/tasks/SA-021.md": "29d88f71b925c4626db92bae2b0e3fdd9c6add20084e7f3fb4818d5f10d4079a",
+      "sources/.store-automation/tasks/SA-022.md": "aa1c16999bcd02815bca2b852bc72e54e3444de48fd3d50247ceeb5248932e1e",
+      "sources/.store-automation/tasks/SA-023.md": "b196085e5c7e59cda38ad938dad33d1b7925fe3cffd7705754a3818d13ce7001",
+      "sources/.store-automation/tasks/SA-024.md": "1daa4b627ccfb79bf6930e650e3fafccb77aef3727532f65b600e8a36b6f1fd9",
+      "sources/.store-automation/tasks/SA-025.md": "def2694925d7906cf48167b7f9b460a1a55e786c9e455851ba8f7e6c2a482ebb",
+      "sources/.store-automation/tasks/SA-026.md": "b86a5346cf3b4631329ac81f7b07b7f1b6bd85d9de02fe16554388f1a387446d",
+      "sources/.store-automation/tasks/SA-027.md": "8b91ccdc6f3040d9e2b5cb8495b070ccb32d4cbdb820202c55474fee0e77b975",
+      "sources/.store-automation/tasks/SA-028.md": "7036821c8d335c49e7d42284bc3350f8b398cee4c9f7bdc1b45c9ecb508ad02c",
+      "sources/.store-automation/tasks/SA-029.md": "b8779c99a828a0812ee6382feef7426af23d8f38fa1537cd9c478c9918ea4819",
+      "sources/.store-automation/tasks/SA-030.md": "fa74c841fc56cbd3904a74667917e7470781be9ca428aadc25b1cd4bcc686d6f",
+      "sources/.store-automation/tasks/SA-031.md": "393254d6adca906d2b45e85276cb086999e35f1721c51241635698cd6015f71e",
+      "sources/.store-automation/tasks/SA-032.md": "a3f31bc344bbd4b9c67e08d158e92e0873f873f8c22af3774cc8830eef265495",
+      "sources/.store-automation/tasks/SA-033.md": "639c54f211ec87811e4ded9690e4c4aee01592cecfaa0207ee29d2471ab3989e",
+      "sources/.store-automation/tasks/SA-034.md": "2eff87950a66028552427c4809bce55e5fef8093fd5ade594a048a2d5bb69615",
+      "sources/.store-automation/tasks/SA-035.md": "1866b7f5765fff9762b5b6735903653162878e090e5dae9868da76eea7fac3cd",
+      "sources/.store-automation/tasks/SA-037.md": "e189a8388951749b9acaf6af68fbace195e69e32dbe5fdea556e1b27ad087fad",
+      "backups/.gitignore": "9851ec0a7d4c82f8fcf9e09b6a4adb6329551c9a494791432cb370c5589794fe"
+    }
+  }
+}

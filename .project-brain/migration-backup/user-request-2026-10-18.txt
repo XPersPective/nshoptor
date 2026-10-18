@@ -1,0 +1,237 @@
+# ENSHOP – TÜM HATA KAYITLARI VE DÜZELTME TALEPLERİ
+
+## GENEL TALİMAT
+
+EnShop uygulamasındaki aşağıdaki hataları ve mantık sorunlarını mevcut kaynak kodu inceleyerek düzelt.
+
+Öncelikle mevcut mimariyi, veri modellerini, ekranları, fiyat girişlerini, ses tanıma sistemini ve ayrıştırma mekanizmasını analiz et.
+
+Sorunların kök nedenlerini belirle. Geçici çözümler yerine kalıcı, performanslı ve sürdürülebilir düzeltmeler uygula.
+
+Mevcut çalışan özellikleri bozma. Gereksiz mimari değişiklikler yapma.
+
+---
+
+## 1. LİSTE İSİMLERİNİN İLK HARFİ BÜYÜK OLMUYOR
+
+**Sorun:**
+Yeni bir alışveriş listesi oluştururken liste adının ilk harfi otomatik olarak büyük yapılmıyor.
+
+**İstenen:**
+- Liste adının ilk harfi otomatik büyük olmalı.
+- Türkçe karakterler doğru desteklenmeli.
+- Örnek: "pazar alışverişi" → "Pazar alışverişi"
+- Örnek: "istanbul alışverişi" → "İstanbul alışverişi"
+- Bu işlem kullanıcı deneyimini bozmadan gerçekleştirilmeli.
+
+## 2. SESLİ GİRİŞTE MİKROFON ERKEN KAPANIYOR
+
+**Sorun:**
+Alışveriş listesinin içerisine sesli ürün eklerken mikrofon belirli bir süre sonra kendiliğinden kapanıyor. Kullanıcı konuşmasını bitirmeden kayıt sonlandırılıyor.
+
+**İstenen:**
+- Kullanıcı konuşmaya devam ettiği sürece mikrofon kapanmamalı.
+- Kısa duraklamalar kayıt sonlandırmamalı.
+- Uzun alışveriş listeleri tek sesli oturumda söylenebilmeli.
+- Kullanıcı mikrofonu manuel olarak kapatabilmeli.
+- Kullanılan ses tanıma altyapısının zaman aşımı ve sessizlik algılama ayarları incelenmeli.
+- Teknik sınırlamalar varsa uygun kesintisiz kayıt veya oturum devam ettirme çözümü uygulanmalı.
+- Kayıt sırasında söylenen ürünler kaybolmamalı.
+
+## 3. SESLİ ÜRÜN AYRIŞTIRMA MANTIĞI YETERSİZ
+
+**Sorun:**
+Sesli girilen ürünler mekanik biçimde ayrıştırılıyor. Sistem söylenen cümlelerin anlamını yeterince değerlendirmiyor.
+
+**İstenen:**
+- Ürün adı, miktar, birim, birim fiyat ve toplam fiyat doğru ayrıştırılmalı.
+- Birden fazla ürün tek konuşmada desteklenmeli.
+- Türkçe doğal konuşma biçimleri anlaşılmalı.
+- Kelimeleri yalnızca bölmek yerine bağlam değerlendirmesi yapılmalı.
+- Yanlış ürün oluşturma, miktar karıştırma ve fiyat eşleştirme hataları önlenmeli.
+- Belirsiz ifadelerde tahmin ederek yanlış veri kaydetmek yerine kullanıcıdan kısa doğrulama alınmalı.
+
+**Örnek:**
+"İki kilo domates, üç paket makarna, bir litre süt."
+
+Beklenen:
+- Domates – 2 kg
+- Makarna – 3 paket
+- Süt – 1 litre
+
+## 4. SESLİ AYRIŞTIRMA ÇOK YAVAŞ
+
+**Sorun:**
+Sesli girilen ürünlerin işlenmesi ve listeye aktarılması gereğinden uzun sürüyor.
+
+**İstenen:**
+- Ses tanıma ve ayrıştırma süreleri ölçülmeli.
+- Gereksiz beklemeler kaldırılmalı.
+- Tekrarlanan işlemler ve gereksiz model çağrıları azaltılmalı.
+- Mümkün olan işlemler daha verimli yürütülmeli.
+- Kullanıcıya işlem durumu anlaşılır biçimde gösterilmeli.
+- Hızlandırma sırasında ayrıştırma doğruluğundan ödün verilmemeli.
+
+## 5. ÜRÜNE TIKLANDIĞINDA FİYAT ALANINA OTOMATİK ODAKLANMA
+
+**Sorun:**
+Alışveriş listesindeki bir ürüne dokunulduğunda kullanıcı fiyat girmek için ayrıca input alanına dokunmak zorunda kalıyor.
+
+**İstenen davranış:**
+
+**Durum A: Her iki fiyat da boşsa**
+- Evdeki Fiyat alanına otomatik odaklan.
+- Sayısal klavyeyi aç.
+- Kullanıcı hemen fiyat yazabilsin.
+
+**Durum B: Evdeki Fiyat dolu, Çarşı/Market Fiyatı boşsa**
+- Çarşı/Market Fiyatı alanına otomatik odaklan.
+
+**Durum C: Her iki fiyat da doluysa**
+- Varsayılan olarak Çarşı/Market Fiyatı alanına odaklan.
+- Kullanıcı mevcut fiyatı kolayca düzeltebilsin.
+
+**Durum D: Evdeki Fiyat boş, Çarşı/Market Fiyatı doluysa**
+- Çarşı/Market Fiyatı alanına odaklan.
+- Evdeki fiyatı doldurmak zorunlu olmasın.
+
+**Ek kurallar:**
+- Sayısal klavye otomatik açılmalı.
+- Mevcut fiyatlar yanlışlıkla silinmemeli.
+- Kullanıcı istediği fiyat alanına manuel geçebilmeli.
+- Fiyat girişinde gereksiz dokunma ve işlem sayısı azaltılmalı.
+
+## 6. SESLİ GİRİŞTE BİRİM FİYAT VE TOPLAM FİYAT KARIŞTIRILIYOR
+
+**Sorun:**
+Kullanıcının söylediği fiyatın birim fiyat mı yoksa toplam fiyat mı olduğu doğru anlaşılamıyor.
+
+**Örnek 1:**
+"İki paket sigaranın toplam fiyatı 260 TL."
+
+Beklenen:
+- Ürün: Sigara
+- Miktar: 2 paket
+- Toplam fiyat: 260 TL
+- Birim fiyat: 130 TL
+
+**Örnek 2:**
+"İki paket sigara, tanesi 130 TL."
+
+Beklenen:
+- Miktar: 2 paket
+- Birim fiyat: 130 TL
+- Toplam fiyat: 260 TL
+
+**Örnek 3:**
+"İki paket sigara 260 TL."
+
+Bu ifade belirsiz olabilir. Sistem fiyatı rastgele yorumlamamalı. Mevcut uygulama mantığına uygun güvenilir bir kural uygulanmalı; gerektiğinde kullanıcıya fiyatın toplam mı birim mi olduğu sorulmalı.
+
+**Kurallar:**
+- "Toplam", "ikisi", "hepsi" gibi ifadeler toplam fiyat bağlamında değerlendirilmeli.
+- "Tanesi", "birim fiyatı", "paketi" gibi ifadeler birim fiyat bağlamında değerlendirilmeli.
+- Toplam fiyat belirtilmişse miktara bölünerek birim fiyat hesaplanmalı.
+- Birim fiyat belirtilmişse miktarla çarpılarak toplam hesaplanmalı.
+- Hesaplamalar doğru veri alanlarına kaydedilmeli.
+- Ondalıklı fiyatlar ve Türkçe para biçimleri desteklenmeli.
+
+## 7. ÇARŞI/MARKET FİYATININ ALGILANMASI VE KAYDEDİLMESİ
+
+**Sorun:**
+Kullanıcı markette alışveriş yaparken ürünün fiyatını söyleyebilir veya ürün etiketindeki fiyatı okuyarak sesli giriş yapabilir. Sistem bu fiyatı doğru algılayıp uygun alana kaydetmelidir.
+
+**İstenen:**
+- Sesli söylenen fiyatlar doğru tanınmalı.
+- Market/çarşı fiyatı olarak belirtilen değer ilgili alana yazılmalı.
+- Fiyatın ürünle eşleştirilmesinde hata yapılmamalı.
+- Kullanıcı evdeki fiyatı girmeden doğrudan çarşı fiyatını girebilmeli.
+- Çarşı fiyatı girilmesi için evdeki fiyatın dolu olması şartı aranmamalı.
+- Birim fiyat ve toplam fiyat hesapları tutarlı olmalı.
+
+**Not:** Buradaki talep kamerayla etiket okuma özelliği değildir. Kullanıcının etikette gördüğü fiyatı kendisinin sesli söylemesi durumunda sistemin bu fiyatı doğru anlamasıdır.
+
+## 8. TİKLİ ÜRÜNLERİN MANTIĞI YANLIŞ
+
+**Sorun:**
+Alışveriş listesindeki ürünlerin tikli görünme kriteri yanlış veya belirsiz.
+
+**Kesin iş kuralı:**
+
+Bir ürünün otomatik olarak tikli görünmesi için **Çarşı/Market Fiyatı alanının dolu olması yeterlidir.**
+
+Evdeki fiyatın dolu olması şart değildir.
+
+| Evdeki fiyat | Çarşı fiyatı | Durum |
+|---|---|---|
+| Boş | Boş | Tiksiz |
+| Dolu | Boş | Tiksiz |
+| Boş | Dolu | Tikli |
+| Dolu | Dolu | Tikli |
+
+**Önemli:**
+- Kullanıcı markette ürünü alıp yalnızca çarşı fiyatını girebilir.
+- Evdeki fiyatı hiç girmemiş olabilir.
+- Böyle bir ürünün tiksiz görünmesi mantık hatasıdır.
+- Evdeki fiyat tek başına satın alınmış durumunu belirlememeli.
+- Çarşı fiyatı girildiğinde tik durumu otomatik güncellenmeli.
+- Çarşı fiyatı tamamen silindiğinde, bu kurala göre ürün yeniden tiksiz olmalı.
+- Fiyatın 0 olması ile fiyatın hiç girilmemiş olması teknik olarak birbirinden ayrılmalı.
+- Tüm liste ekranları, sayaçlar ve özetlerde aynı durum mantığı kullanılmalı.
+
+## 9. TİK İŞARETİNİN GÖRSEL TASARIMI KÖTÜ
+
+**Sorun:**
+Mevcut oval seçim göstergesi estetik ve anlaşılabilirlik açısından yetersiz.
+
+**İstenen:**
+- Modern ve premium seviyede bir tik tasarımı oluştur.
+- Tercihen dairesel seçim göstergesi kullan.
+- Tikli durumda dairenin içinde net görünen bir ✓ işareti bulunsun.
+- Tiksiz durumda sade bir boş daire gösterilsin.
+- Tikli ve tiksiz durumlar kolay ayırt edilsin.
+- Renkler uygulamanın tasarım sistemiyle uyumlu olsun.
+- Dokunma alanı mobil kullanım için yeterli büyüklükte olsun.
+- Gereksiz ovalleşme ve görsel bozukluklar olmasın.
+- Küçük ve akıcı durum geçiş animasyonları kullanılabilir.
+- Tasarım hem açık hem koyu temada düzgün görünmeli.
+
+**Önemli:** Görsel tasarım değişikliği, 8. maddede tanımlanan iş mantığını bozmamalı.
+
+---
+
+## 10. TEST VE KALİTE KONTROLÜ
+
+Aşağıdaki senaryolar mutlaka test edilmeli:
+
+1. Türkçe karakterli liste adı oluşturma.
+2. Uzun süre kesintisiz sesli ürün girişi.
+3. Konuşma sırasında kısa duraklamalar.
+4. Tek cümlede birden fazla ürün.
+5. Ürün adı, miktar ve ölçü biriminin ayrıştırılması.
+6. Birim fiyat ve toplam fiyat ayrımı.
+7. Evdeki fiyat boşken çarşı fiyatı girme.
+8. Fiyat girişinde doğru alana otomatik odaklanma.
+9. Çarşı fiyatı girildiğinde otomatik tiklenme.
+10. Çarşı fiyatı silindiğinde tik durumunun güncellenmesi.
+11. Liste kapatılıp yeniden açıldığında durumların korunması.
+12. Sesli giriş ve ayrıştırma performansı.
+13. Tik tasarımının farklı ekran boyutlarında ve temalarda görünümü.
+
+## 11. GELİŞTİRİCİ YAPAY ZEKÂYA SON TALİMAT
+
+Bu talepleri yalnızca öneri olarak sıralama. Mevcut projeyi inceleyerek uygulanabilir düzeltmeleri gerçekleştir.
+
+Çalışma sırası:
+1. Mevcut kodu ve veri akışını incele.
+2. Hataların kök nedenlerini tespit et.
+3. İlgili iş mantığını düzelt.
+4. Gerekli UI/UX iyileştirmelerini yap.
+5. Performans optimizasyonlarını uygula.
+6. Otomatik testleri oluştur veya güncelle.
+7. Uygulamayı derle ve mümkün olan testleri çalıştır.
+8. Hangi hataların giderildiğini, hangi dosyaların değiştiğini ve hangi testlerin başarılı olduğunu raporla.
+
+**Temel prensip:** EnShop hızlı, anlaşılır, mantıklı, güvenilir ve minimum dokunmayla kullanılabilen bir alışveriş uygulaması olmalıdır. Özellikle sesli giriş, fiyat alanları ve satın alınma durumları birbiriyle tutarlı çalışmalıdır.
+
+Doğrulanmamış bir düzeltmeyi tamamlanmış olarak raporlama.
