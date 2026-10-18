@@ -73,6 +73,15 @@ void main() {
       await repo.changeStatus(id, ListStatus.archived);
       expect((await repo.getById(id)).archivedAt, isNotNull);
     });
+
+    test('aynı durum tekrarında zaman damgaları değişmez', () async {
+      final id = await repo.createList(currencyCode: 'TRY');
+      final before = await repo.getById(id);
+      await repo.changeStatus(id, ListStatus.draft);
+      final after = await repo.getById(id);
+      expect(after.updatedAt, before.updatedAt);
+      expect(after.completedAt, before.completedAt);
+    });
   });
 
   group('çoğaltma', () {

@@ -332,6 +332,9 @@ class ReceiptReviewController extends ChangeNotifier {
     final repo = ShoppingRepository(_db);
     final committedListId = listId ?? await ListRepository(_db).createList(title: title, currencyCode: currencyCode);
     final list = await repo.getList(committedListId);
+    if (list.status == 'completed' || list.status == 'archived') {
+      throw StateError('Receipt requires an active shopping list');
+    }
     if (confirmedCurrency != null && confirmedCurrency != list.currencyCode) {
       throw ArgumentError('Receipt currency must match the list');
     }

@@ -118,6 +118,7 @@ class ListRepository {
   /// Arşivleme archivedAt'i, tamamlama completedAt'i damgalar.
   Future<void> changeStatus(int id, ListStatus next) async {
     final current = ListStatus.fromDb((await getById(id)).status);
+    if (current == next) return;
     if (!current.canTransitionTo(next)) {
       throw StateError('geçersiz durum geçişi: ${current.name} → ${next.name}');
     }
