@@ -29,7 +29,7 @@ Status: STALE: HomeShell opens Lists with three bottom destinations (Lists/Histo
 Sources: `lib/features/home/**`, `lib/features/lists/**`, `test/features/lists/**`
 - Detail shows one list title, compact product/quantity/prices, a single microphone inside the composer and completion after all rows. Completion uses existing transaction/state/result flow; completed/archived details have no mutation controls. Item swipe-delete/undo and long-press reorder remain.
 - Item actual quantity/unit and custom fields are under Details; validation exposes hidden invalid fields. Existing-list quick capture omits redundant title, conversion action after candidates exist and source chip.
-- Android API36 final APK interaction: create default-title list -> type Milk -> approve one candidate (no title/source/second convert control) -> finish warning -> Result -> back -> Completed contains the list. Native screenshots and accessibility readback: `.store-automation/evidence/SA-005/android_*`.
+- Android API36 final APK interaction: create default-title list -> type Milk -> approve one candidate (no title/source/second convert control) -> finish warning -> Result -> back -> Completed contains the list. Historical native screenshots are retained in the adoption archive; no current screenshot evidence is claimed.
 
 ### Item and price data
 Status: STALE
@@ -48,7 +48,7 @@ Sources: `lib/features/history/**`, `lib/features/voice_input/**`, `test/feature
 - Price observations and native single-session voice paths exist; new interaction and product-level normalized chart acceptance must be mapped.
 
 ## Known Unknowns
-- Global Flutter build-dir=build-sa010-check conflicts with android/build.gradle.kts outputs under build; verification temporarily uses global build-dir=build. Native assets and plugin manifest need regeneration after changing it.
+- Flutter global build-dir is currently `build`; verification commands should use the repository default and must not depend on the preserved `build-sa*` folders.
 - Whether existing price observations already carry enough unit metadata for the requested chart needs domain inspection.
 
 ## Takeover 2026-10-18
