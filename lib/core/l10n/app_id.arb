@@ -393,4 +393,8 @@
   "demoProductEggs": "Telur",
   "demoProductCoffee": "Kopi",
   "demoProductDetergent": "Deterjen"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

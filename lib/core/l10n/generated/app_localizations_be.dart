@@ -1267,4 +1267,13 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'Мыйны сродак';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

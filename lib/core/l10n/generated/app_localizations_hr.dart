@@ -1263,4 +1263,13 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'Deterdžent';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

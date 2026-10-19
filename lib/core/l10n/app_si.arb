@@ -393,4 +393,8 @@
   "demoProductEggs": "බිත්තර",
   "demoProductCoffee": "කෝපි",
   "demoProductDetergent": "සබන් කුඩු"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

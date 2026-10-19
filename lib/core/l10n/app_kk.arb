@@ -393,4 +393,8 @@
   "demoProductEggs": "Жұмыртқа",
   "demoProductCoffee": "Кофе",
   "demoProductDetergent": "Жуғыш зат"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

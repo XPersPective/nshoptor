@@ -393,4 +393,8 @@
   "demoProductEggs": "鸡蛋",
   "demoProductCoffee": "咖啡",
   "demoProductDetergent": "洗涤剂"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

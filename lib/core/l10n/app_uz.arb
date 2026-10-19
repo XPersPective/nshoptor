@@ -393,4 +393,8 @@
   "demoProductEggs": "Tuxum",
   "demoProductCoffee": "Qahva",
   "demoProductDetergent": "Kir yuvish vositasi"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

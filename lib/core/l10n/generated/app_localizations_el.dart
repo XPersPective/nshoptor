@@ -1270,4 +1270,13 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'Απορρυπαντικό';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

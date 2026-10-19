@@ -393,4 +393,8 @@
   "demoProductEggs": "ઈંડાં",
   "demoProductCoffee": "કોફી",
   "demoProductDetergent": "ડિટર્જન્ટ"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

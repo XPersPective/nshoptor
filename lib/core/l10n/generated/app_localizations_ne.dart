@@ -1264,4 +1264,13 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'डिटर्जेन्ट';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

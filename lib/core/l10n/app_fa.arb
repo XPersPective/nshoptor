@@ -393,4 +393,8 @@
   "demoProductEggs": "تخم‌مرغ",
   "demoProductCoffee": "قهوه",
   "demoProductDetergent": "شوینده"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

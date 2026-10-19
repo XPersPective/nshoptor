@@ -393,4 +393,8 @@
   "demoProductEggs": "Jajka",
   "demoProductCoffee": "Kawa",
   "demoProductDetergent": "Proszek do prania"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

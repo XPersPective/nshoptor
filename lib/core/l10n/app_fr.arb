@@ -393,4 +393,8 @@
   "demoProductEggs": "Œufs",
   "demoProductCoffee": "Café",
   "demoProductDetergent": "Lessive"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

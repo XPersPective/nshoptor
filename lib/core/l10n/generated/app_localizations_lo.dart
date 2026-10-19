@@ -1255,4 +1255,13 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'ຜົງຊັກຟອກ';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

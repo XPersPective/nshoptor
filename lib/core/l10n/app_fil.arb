@@ -393,4 +393,8 @@
   "demoProductEggs": "Itlog",
   "demoProductCoffee": "Kape",
   "demoProductDetergent": "Sabong panlaba"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

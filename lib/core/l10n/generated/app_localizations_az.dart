@@ -1267,4 +1267,13 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'Yuyucu vasitə';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

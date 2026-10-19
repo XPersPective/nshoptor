@@ -393,4 +393,8 @@
   "demoProductEggs": "Яйца",
   "demoProductCoffee": "Кофе",
   "demoProductDetergent": "Стиральный порошок"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

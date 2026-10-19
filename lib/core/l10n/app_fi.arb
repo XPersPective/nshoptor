@@ -393,4 +393,8 @@
   "demoProductEggs": "Kananmunat",
   "demoProductCoffee": "Kahvi",
   "demoProductDetergent": "Pesuaine"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

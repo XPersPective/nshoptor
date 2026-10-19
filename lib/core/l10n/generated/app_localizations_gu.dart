@@ -1258,4 +1258,13 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'ડિટર્જન્ટ';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

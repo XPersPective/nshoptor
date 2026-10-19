@@ -393,4 +393,8 @@
   "demoProductEggs": "Ձու",
   "demoProductCoffee": "Սուրճ",
   "demoProductDetergent": "Լվացող միջոց"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

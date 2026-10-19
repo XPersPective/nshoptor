@@ -393,4 +393,8 @@
   "demoProductEggs": "Tojás",
   "demoProductCoffee": "Kávé",
   "demoProductDetergent": "Mosószer"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

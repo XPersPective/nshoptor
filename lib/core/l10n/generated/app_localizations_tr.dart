@@ -1262,4 +1262,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'Deterjan';
+
+  @override
+  String get sendAction => 'Gönder';
+
+  @override
+  String get previousMonthAction => 'Önceki ay';
+
+  @override
+  String get nextMonthAction => 'Sonraki ay';
 }

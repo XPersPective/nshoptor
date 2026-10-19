@@ -196,6 +196,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                         children: [
                           IconButton(
                             key: const Key('month_prev'),
+                            tooltip: l10n.previousMonthAction,
                             icon: const Icon(Icons.chevron_left),
                             onPressed: () => setState(() => _month = DateTime(_month.year, _month.month - 1)),
                           ),
@@ -205,6 +206,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                           ),
                           IconButton(
                             key: const Key('month_next'),
+                            tooltip: l10n.nextMonthAction,
                             icon: const Icon(Icons.chevron_right),
                             onPressed: () => setState(() => _month = DateTime(_month.year, _month.month + 1)),
                           ),

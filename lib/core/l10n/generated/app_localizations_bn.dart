@@ -1261,4 +1261,13 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'ডিটারজেন্ট';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

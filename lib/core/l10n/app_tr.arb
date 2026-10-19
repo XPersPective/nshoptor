@@ -414,4 +414,8 @@
   "demoProductEggs": "Yumurta",
   "demoProductCoffee": "Kahve",
   "demoProductDetergent": "Deterjan"
+,
+  "sendAction": "Gönder",
+  "previousMonthAction": "Önceki ay",
+  "nextMonthAction": "Sonraki ay"
 }

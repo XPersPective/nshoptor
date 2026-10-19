@@ -393,4 +393,8 @@
   "demoProductEggs": "Trứng",
   "demoProductCoffee": "Cà phê",
   "demoProductDetergent": "Bột giặt"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

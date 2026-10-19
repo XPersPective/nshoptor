@@ -143,6 +143,7 @@ class _AssistantSheetState extends State<AssistantSheet> {
                 hintText: l10n.quickListHint,
                 suffixIcon: IconButton(
                   key: const Key('assistant_send'),
+                  tooltip: l10n.sendAction,
                   icon: const Icon(Icons.send),
                   onPressed: () => _text.text.trim().isEmpty
                       ? null

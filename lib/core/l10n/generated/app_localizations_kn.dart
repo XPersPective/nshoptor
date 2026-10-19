@@ -1265,4 +1265,13 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'ಡಿಟರ್ಜೆಂಟ್';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

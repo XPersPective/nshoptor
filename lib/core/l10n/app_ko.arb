@@ -393,4 +393,8 @@
   "demoProductEggs": "달걀",
   "demoProductCoffee": "커피",
   "demoProductDetergent": "세제"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

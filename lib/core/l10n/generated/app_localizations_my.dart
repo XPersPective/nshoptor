@@ -1266,4 +1266,13 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get demoProductDetergent => 'ဆပ်ပြာမှုန့်';
+
+  @override
+  String get sendAction => 'Send';
+
+  @override
+  String get previousMonthAction => 'Previous month';
+
+  @override
+  String get nextMonthAction => 'Next month';
 }

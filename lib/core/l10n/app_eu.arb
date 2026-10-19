@@ -393,4 +393,8 @@
   "demoProductEggs": "Arrautzak",
   "demoProductCoffee": "Kafea",
   "demoProductDetergent": "Garbigarria"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }

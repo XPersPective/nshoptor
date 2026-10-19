@@ -2593,6 +2593,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Detergent'**
   String get demoProductDetergent;
+
+  /// No description provided for @sendAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get sendAction;
+
+  /// No description provided for @previousMonthAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous month'**
+  String get previousMonthAction;
+
+  /// No description provided for @nextMonthAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next month'**
+  String get nextMonthAction;
 }
 
 class _AppLocalizationsDelegate

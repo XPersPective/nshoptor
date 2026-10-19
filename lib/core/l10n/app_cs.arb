@@ -393,4 +393,8 @@
   "demoProductEggs": "Vejce",
   "demoProductCoffee": "Káva",
   "demoProductDetergent": "Prací prostředek"
+,
+  "sendAction": "Send",
+  "previousMonthAction": "Previous month",
+  "nextMonthAction": "Next month"
 }
