@@ -184,6 +184,7 @@ Future<void> main() async {
       languageController: languageController,
       themeModeController: themeController,
       appIdentity: identity,
+      appsCacheStore: store,
       nappTranslations: nappTranslations,
       proController: proController,
       purchaseRepository: purchaseRepository,
