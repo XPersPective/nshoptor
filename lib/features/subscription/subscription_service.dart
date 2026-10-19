@@ -94,9 +94,9 @@ class SubscriptionService extends ChangeNotifier {
   void markTrialStarted(DateTime now) => store.setInt(
       _trialKey, now.add(const Duration(days: trialDays)).millisecondsSinceEpoch);
 
-  /// Reklamsız mı: ömür boyu/geçici Pro ya da herhangi bir abonelik.
-  static bool adFree({required bool lifetimeOrTemp, required Tier tier}) =>
-      lifetimeOrTemp || tier != Tier.free;
+  /// Reklamsız mı: geçici Pro ya da herhangi bir abonelik.
+  static bool adFree({required bool temporaryPro, required Tier tier}) =>
+      temporaryPro || tier != Tier.free;
   String? get productId => _productId;
 
   /// AI isteğine eklenen doğrulanacak jeton; ücretsizde null.

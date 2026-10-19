@@ -24,7 +24,7 @@ import 'data/db/app_database.dart';
 import 'features/ads/ad_gate.dart';
 import 'features/assistant/assistant_bubble.dart';
 import 'features/ai/ai_client.dart';
-import 'features/subscription/no_lifetime_adapter.dart';
+import 'features/subscription/subscription_purchase_adapter.dart';
 import 'features/subscription/subscription_service.dart';
 import 'features/settings/settings_repository.dart';
 
@@ -59,10 +59,11 @@ Future<void> main() async {
 
   // Pro (standart §5.1): durum önce cihazdan; dinleme satın alma/geri
   // yükleme olaylarını uygular.
-  // Ömür boyu satın alma yok: mağaza akışı ProController'a iletilmez.
+  // ProController yalnızca 24 saatlik geçici Pro ödülünü tutar; abonelik
+  // mağaza akışı SubscriptionService tarafından yönetilir.
   final purchaseRepository = PurchaseRepository(
-    adapter: NoLifetimePurchaseAdapter(InAppPurchaseAdapter()),
-    productId: EnvConfig.proProductId,
+    adapter: SubscriptionPurchaseAdapter(InAppPurchaseAdapter()),
+    productId: SubscriptionService.proId,
   );
   final proController = ProController(
     store: store,
@@ -80,11 +81,11 @@ Future<void> main() async {
     baseUrl: EnvConfig.aiBaseUrl,
     credential: () => subscriptions.credential,
   );
-  // İlk 7 gün reklamsız (AdGate), ömür boyu/geçici Pro ya da abonelik.
+  // İlk 7 gün reklamsız (AdGate), geçici Pro ya da abonelik.
   bool adFree() =>
       AdGate.inGrace(store, DateTime.now()) ||
       SubscriptionService.adFree(
-          lifetimeOrTemp: proController.isPro, tier: subscriptions.tier);
+          temporaryPro: proController.isPro, tier: subscriptions.tier);
 
   // Reklam (standart §5.2): kalıcı durum → oturum → onay/SDK → politika
   // Pro'yu izler; UMP onayı SDK başlatmasından ÖNCE.

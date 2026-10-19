@@ -60,7 +60,7 @@ class SettingsScreen extends StatefulWidget {
   /// Paywall için satın alma deposu; null ise yalnız durum gösterilir.
   final PurchaseRepository? purchaseRepository;
 
-  /// Pro/Max abonelikleri (PB-055); null ise yalnız ömür boyu paywall.
+  /// Pro/Max abonelikleri (PB-055); null ise yalnız durum gösterilir.
   final SubscriptionService? subscriptions;
 
   /// Paywall başlığı/marka için kimlik (napp_core).

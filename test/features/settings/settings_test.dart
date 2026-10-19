@@ -169,7 +169,7 @@ void main() {
       store: store,
       repository: PurchaseRepository(
         adapter: InAppPurchaseAdapter(),
-        productId: 'nshoptor_pro_lifetime',
+        productId: 'nshoptor_pro_v2',
       ),
     )..load(); // startListening YOK: test ortamında mağaza kanalı yok.
 
@@ -325,7 +325,7 @@ void main() {
       store: store,
       repository: PurchaseRepository(
         adapter: InAppPurchaseAdapter(),
-        productId: 'nshoptor_pro_lifetime',
+        productId: 'nshoptor_pro_v2',
       ),
     )..load();
     final subs = SubscriptionService(store: SettingsStore());

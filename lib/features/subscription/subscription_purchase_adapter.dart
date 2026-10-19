@@ -1,10 +1,10 @@
 import 'package:napp_pro/napp_pro.dart';
 
-/// Ömür boyu satın alma yok (yalnız Max, Pro ve ücretsiz). napp_pro'nun
-/// ProController'ı geçici Pro (ödüllü hediye) için kalır; bu sarmalayıcı
-/// mağaza akışını hiçbir ürün için iletmez, böylece kalıcı Pro oluşmaz.
-class NoLifetimePurchaseAdapter implements StoreAdapter {
-  NoLifetimePurchaseAdapter(this.inner);
+/// ProController için satın alma olaylarını kapalı tutar.
+/// Abonelik mağaza akışı SubscriptionService tarafından yönetilir;
+/// ProController yalnızca geçici Pro ödülünü temsil eder.
+class SubscriptionPurchaseAdapter implements StoreAdapter {
+  SubscriptionPurchaseAdapter(this.inner);
 
   final StoreAdapter inner;
 

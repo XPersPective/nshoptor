@@ -37,8 +37,6 @@ class EnvConfig {
     defaultValue: 'https://nshoptor-api.devx8585.workers.dev',
   );
 
-  static const String proProductId = 'com.crazypenguin.nshoptor.pro_lifetime';
-
   static AppIdentity get identity => AppIdentity(
         appName: 'NShoptor',
         packageName: 'com.crazypenguin.nshoptor',

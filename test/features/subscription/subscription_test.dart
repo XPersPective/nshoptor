@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
-import 'package:nshoptor/features/subscription/no_lifetime_adapter.dart';
+import 'package:nshoptor/features/subscription/subscription_purchase_adapter.dart';
 import 'package:nshoptor/features/subscription/subscription_paywall.dart';
 import 'package:nshoptor/features/subscription/subscription_service.dart';
 
@@ -248,22 +248,22 @@ void main() {
     expect((SubscriptionService(store: store)..load()).tier, Tier.free);
   });
 
-  test('ömür boyu + ücretsiz = reklamsız ama AI ücretsiz (jeton yok)', () {
+  test('geçici Pro + ücretsiz = reklamsız ama AI ücretsiz (jeton yok)', () {
     final s = SubscriptionService(store: SettingsStore());
-    expect(SubscriptionService.adFree(lifetimeOrTemp: true, tier: s.tier), isTrue);
+    expect(SubscriptionService.adFree(temporaryPro: true, tier: s.tier), isTrue);
     expect(s.credential, isNull);
     expect(s.monthlyAllowance, 10);
-    expect(SubscriptionService.adFree(lifetimeOrTemp: false, tier: Tier.free), isFalse);
-    expect(SubscriptionService.adFree(lifetimeOrTemp: false, tier: Tier.pro), isTrue);
+    expect(SubscriptionService.adFree(temporaryPro: false, tier: Tier.free), isFalse);
+    expect(SubscriptionService.adFree(temporaryPro: false, tier: Tier.pro), isTrue);
   });
 
-  test('ömür boyu satın alma yok: mağaza olayları ProController a iletilmez', () async {
+  test('satın alma olayları ProController’a iletilmez', () async {
     final inner = _FakeAdapter();
-    final adapter = NoLifetimePurchaseAdapter(inner);
+    final adapter = SubscriptionPurchaseAdapter(inner);
     final seen = <String>[];
     final sub = adapter.updates.listen((l) => seen.addAll(l.map((u) => u.purchase.productId)));
     inner.controller.add([_update(SubscriptionService.proId)]);
-    inner.controller.add([_update('nshoptor_pro_lifetime'), _update(SubscriptionService.maxId)]);
+    inner.controller.add([_update('nshoptor_pro_v2'), _update(SubscriptionService.maxId)]);
     await Future<void>.delayed(Duration.zero);
     expect(seen, isEmpty);
     await sub.cancel();
