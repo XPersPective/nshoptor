@@ -53,4 +53,4 @@ Status: CONFIRMED
 - [integration] Kit katalog güncellemesi, puanlama politikası, satın alma ve PDF gerçek sınırda kanıtlanır; eksik mağaza/cihaz kanıtı tamamlandı sayılmaz.
 
 ## Open Decisions
-- Model havuzu: Astra hariç yerel CLI erişim/kota keşfi sürüyor; kullanıcı yalnız Luna keşfini onayladı.
+- Model havuzu ANSWERED 2026-10-18: "Z kod, Beammax ... Bunları kullanacaksın ... OpenCode'un free modellerini kullanacaksın ... Argon dışındakileri kullanabilirsin Anti Gravity'de ... Cloud'un yüksek modelleri kullan ... sonnet'i kullanabilirsin ... doğruluğunu kanıtlayamasan bile kullanabiliyorsan kullanırsın ... Ücretli çağrı yok." Mevcut abonelik/ücretsiz rotaları bounded dene; Astra yasak; kota bilinmiyorsa tekrar onay isteme.
