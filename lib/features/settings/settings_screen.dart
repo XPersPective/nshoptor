@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import '../ai/ai_client.dart';
 import '../assistant/assistant_bubble.dart';
@@ -437,7 +438,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () => ShareService().shareApp(
                   widget.appIdentity!,
                   message: l10n.shareAction,
-                  isIos: false, // Android öncelikli (C-033); iOS ertelendi
+                  isIos: defaultTargetPlatform == TargetPlatform.iOS,
                 ),
               ),
               ListTile(
@@ -445,7 +446,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 leading: const Icon(Icons.star_outline),
                 title: Text(l10n.rateAction),
                 onTap: () => ReviewService()
-                    .openRatePage(widget.appIdentity!, isIos: false),
+                    .openRatePage(widget.appIdentity!,
+                        isIos: defaultTargetPlatform == TargetPlatform.iOS),
               ),
             ] else
               ListTile(title: Text(l10n.aboutLicenses)),

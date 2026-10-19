@@ -34,6 +34,7 @@ class NShoptorApp extends StatelessWidget {
     this.themeModeController,
     this.themeMode = ThemeMode.system,
     this.appIdentity,
+    this.appsCacheStore,
     this.nappTranslations,
     this.proController,
     this.purchaseRepository,
@@ -57,6 +58,7 @@ class NShoptorApp extends StatelessWidget {
 
   /// napp ortak yüzeyi (Hakkında/Keşfet/paywall kimliği); opsiyonel.
   final AppIdentity? appIdentity;
+  final SettingsStore? appsCacheStore;
 
   /// napp sayfalarının sözlüğü (main'de yüklenir); opsiyonel.
   final NappTranslations? nappTranslations;
@@ -132,6 +134,7 @@ class NShoptorApp extends StatelessWidget {
           languageController: languageController,
           themeModeController: themeModeController,
           appIdentity: appIdentity,
+          appsCacheStore: appsCacheStore,
           proController: proController,
           purchaseRepository: purchaseRepository,
           subscriptions: subscriptions,
@@ -154,6 +157,7 @@ class _Home extends StatelessWidget {
     this.settingsRepository,
     this.themeModeController,
     this.appIdentity,
+    this.appsCacheStore,
     this.proController,
     this.purchaseRepository,
     this.subscriptions,
@@ -170,6 +174,7 @@ class _Home extends StatelessWidget {
   final AppThemeModeController? themeModeController;
   final SettingsRepository? settingsRepository;
   final AppIdentity? appIdentity;
+  final SettingsStore? appsCacheStore;
   final ProController? proController;
   final PurchaseRepository? purchaseRepository;
   final SubscriptionService? subscriptions;
@@ -188,6 +193,7 @@ class _Home extends StatelessWidget {
       languageController: languageController,
       themeModeController: themeModeController,
       appIdentity: appIdentity,
+      appsCacheStore: appsCacheStore,
       proController: proController,
       purchaseRepository: purchaseRepository,
       subscriptions: subscriptions,

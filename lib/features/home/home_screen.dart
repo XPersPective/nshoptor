@@ -57,6 +57,7 @@ class HomeShell extends StatefulWidget {
     this.languageController,
     this.themeModeController,
     this.appIdentity,
+    this.appsCacheStore,
     this.proController,
     this.purchaseRepository,
     this.subscriptions,
@@ -82,6 +83,8 @@ class HomeShell extends StatefulWidget {
 
   /// napp kimliği; Ayarlar/paywall'a devredilir.
   final AppIdentity? appIdentity;
+  /// NAppKit Keşfet listesinin kalıcı ağ önbelleği.
+  final SettingsStore? appsCacheStore;
 
   /// Pro durumu; null = Pro (test dikişi).
   final ProController? proController;
@@ -185,6 +188,7 @@ class _HomeShellState extends State<HomeShell> {
               identity: widget.appIdentity!,
               repository: OtherAppsRepository(
                 appsUrl: widget.appIdentity!.otherAppsUrl!,
+                cacheStore: widget.appsCacheStore,
               ),
             ),
       widget.settingsRepository == null || widget.languageController == null
