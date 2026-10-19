@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
+import '../../core/theme/app_theme.dart';
 import '../../core/theme/brand_wordmark.dart';
 
 /// Açılışta uygulama simgesi, adı ve sloganı kısa süre gösterir, sonra [child]
@@ -63,7 +64,9 @@ class _SplashPage extends StatelessWidget {
                 Text(
                   l10n.slogan,
                   textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyLarge,
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    color: AppTheme.brandSeed,
+                  ),
                 ),
               ],
             ),

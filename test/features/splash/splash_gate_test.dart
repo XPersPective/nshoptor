@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
+import 'package:nshoptor/core/theme/app_theme.dart';
 import 'package:nshoptor/features/splash/splash_gate.dart';
 
 void main() {
@@ -26,6 +27,10 @@ void main() {
     expect(find.byKey(const Key('splash_screen')), findsOneWidget);
     expect(find.text('NShoptor'), findsOneWidget);
     expect(find.text('Evdeki hesap çarşıya uyar.'), findsOneWidget);
+    expect(
+      tester.widget<Text>(find.text('Evdeki hesap çarşıya uyar.')).style?.color,
+      AppTheme.brandSeed,
+    );
     expect(find.byKey(const Key('home_child')), findsNothing);
 
     await tester.pump(const Duration(milliseconds: 400));

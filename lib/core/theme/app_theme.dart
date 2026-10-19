@@ -161,7 +161,7 @@ class AppTheme {
       // Liste ögesindeki tik alanı, ekleme alanıyla aynı çizgi dilinde:
       // yumuşak köşe, ince kontur, işaretliyken marka dolgusu.
       checkboxTheme: CheckboxThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+        shape: const CircleBorder(),
         side: WidgetStateBorderSide.resolveWith(
           (states) => BorderSide(
             color: states.contains(WidgetState.selected) ? scheme.primary : scheme.outline,

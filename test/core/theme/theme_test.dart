@@ -42,6 +42,12 @@ void main() {
         expect(outlined?.height ?? 0, greaterThanOrEqualTo(48));
       }
     });
+
+    test('satın alınan göstergesi daireseldir', () {
+      for (final theme in [AppTheme.light(), AppTheme.dark()]) {
+        expect(theme.checkboxTheme.shape, isA<CircleBorder>());
+      }
+    });
   });
 
   group('WCAG kontrast', () {
