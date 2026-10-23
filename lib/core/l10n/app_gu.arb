@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "મદદ અને સહાય",
+  "howToUseLabel": "કેવી રીતે વાપરવું",
+  "guidePricesBody": "દુકાનની કિંમત લખવાથી વસ્તુ ખરીદેલી ગણાય છે; 0 પણ માન્ય છે. ઘરની કિંમત વૈકલ્પિક છે. નિશાની દૂર કરવા દુકાનની કિંમત ભૂંસો."
 }

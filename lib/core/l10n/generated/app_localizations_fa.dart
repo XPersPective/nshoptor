@@ -1266,4 +1266,14 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'راهنما و پشتیبانی';
+
+  @override
+  String get howToUseLabel => 'روش استفاده';
+
+  @override
+  String get guidePricesBody =>
+      'قیمت فروشگاه، کالا را خریداری‌شده علامت می‌زند؛ 0 هم معتبر است. قیمت خانه اختیاری است. برای برداشتن علامت، قیمت فروشگاه را پاک کنید.';
 }

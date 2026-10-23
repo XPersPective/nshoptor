@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Bantuan dan sokongan",
+  "howToUseLabel": "Cara menggunakan",
+  "guidePricesBody": "Harga kedai menandakan barang telah dibeli; 0 juga diterima. Harga di rumah adalah pilihan. Padam harga kedai untuk membuang tanda semak."
 }

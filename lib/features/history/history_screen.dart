@@ -11,6 +11,7 @@ import '../../data/db/app_database.dart';
 import '../lists/list_detail_screen.dart';
 import '../lists/list_repository.dart';
 import 'insights/insights_repository.dart';
+import 'insights/monthly_report.dart';
 import 'insights/spending_screen.dart';
 import 'product_history_screen.dart';
 
@@ -42,12 +43,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
   List<_Period> _periods(BuildContext context, DateTime today) {
     final ml = MaterialLocalizations.of(context);
     final day = DateTime(today.year, today.month, today.day);
-    final monday = day.subtract(Duration(days: day.weekday - 1));
+    final monday = DateTime(day.year, day.month, day.day - (day.weekday - 1));
     return [
+      (
+        label: ml.currentDateLabel,
+        from: day,
+        to: DateTime(day.year, day.month, day.day + 1),
+        month: false,
+      ),
       (
         label: AppLocalizations.of(context).historyThisWeek,
         from: monday,
-        to: monday.add(const Duration(days: 7)),
+        to: DateTime(monday.year, monday.month, monday.day + 7),
         month: false,
       ),
       for (var m = 0; m < _months; m++)
@@ -64,7 +71,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final db = widget.db;
-    final periods = _periods(context, widget.now ?? DateTime.now());
+    final now = widget.now ?? DateTime.now();
+    final day = DateTime(now.year, now.month, now.day);
+    final periods = _periods(context, now);
     return DefaultTabController(
       length: periods.length + 1,
       initialIndex: 0, // genel bakış
@@ -77,24 +86,24 @@ class _HistoryScreenState extends State<HistoryScreen> {
             tabAlignment: TabAlignment.start,
             tabs: [
               Tab(key: const Key('history_overview_tab'), text: l10n.spendingOverview),
-              for (final (i, p) in periods.indexed) Tab(key: Key('history_period_tab_$i'), text: p.label),
+              for (final (i, p) in periods.indexed)
+                Tab(key: i == 0 ? const Key('history_today_tab') : Key('history_period_tab_${i - 1}'), text: p.label),
             ],
           ),
         ),
         body: StreamBuilder<List<ShoppingList>>(
           stream: _completed,
           builder: (context, snap) {
-            final version = Object.hashAll([
-              for (final l in snap.data ?? const <ShoppingList>[])
-                Object.hash(l.id, l.completedAt, l.currencyCode),
-            ]);
+            // The query emits a fresh list for price/receipt changes too.
+            // Hashing only list IDs/dates left those snapshots stale.
+            final version = snap.data;
             return TabBarView(
               children: [
                 // İlk bakışta genel görünüm: harcama özeti, limitler, grafikler.
-                SpendingScreen(key: ValueKey(version), db: db, now: widget.now, embedded: true),
+                SpendingScreen(key: ValueKey((version, AppDefaults.defaultCurrency(), day)), db: db, now: now, embedded: true),
                 for (final p in periods)
                   _PeriodView(
-                    key: ValueKey(Object.hash(p.from, version)),
+                    key: ValueKey(Object.hash(p.from, p.to, version, AppDefaults.defaultCurrency())),
                     db: db,
                     period: p,
                   ),
@@ -119,8 +128,9 @@ class _PeriodView extends StatefulWidget {
 
 class _PeriodViewState extends State<_PeriodView>
     with AutomaticKeepAliveClientMixin {
+  bool _reportBusy = false;
   late final String _currency = AppDefaults.defaultCurrency();
-  late final _data = () async {
+  late final _data = widget.db.transaction(() async {
     final repo = InsightsRepository(widget.db);
     final from = widget.period.from.toUtc(), to = widget.period.to.toUtc();
     final points = (await repo.completedSpend(_currency))
@@ -130,8 +140,9 @@ class _PeriodViewState extends State<_PeriodView>
     final lists = await (widget.db.select(widget.db.shoppingLists)
           ..where((t) => t.id.isIn([for (final p in points) p.listId])))
         .get();
+    lists.sort((a, b) => b.completedAt!.compareTo(a.completedAt!));
     return (points: points, products: products, lists: lists);
-  }();
+  });
 
   @override
   bool get wantKeepAlive => true;
@@ -153,7 +164,7 @@ class _PeriodViewState extends State<_PeriodView>
         if (data == null) {
           return const Center(child: CircularProgressIndicator());
         }
-        final total = data.points.fold<int>(0, (s, p) => s + p.actualMinor);
+        final total = SpendMath.amount(data.points, widget.period.from, widget.period.to);
         final month = widget.period.from;
         final ml = MaterialLocalizations.of(context);
         return ListView(
@@ -163,12 +174,27 @@ class _PeriodViewState extends State<_PeriodView>
               key: const Key('history_period_total'),
               child: ListTile(
                 title: Text(
-                  money(total),
+                  total.display(money),
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 subtitle: Text(
                   '${l10n.listsTabCompleted}: ${data.points.length}',
                 ),
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: OutlinedButton.icon(
+                key: const Key('history_period_report'),
+                onPressed: _reportBusy ? null : () async {
+                  setState(() => _reportBusy = true);
+                  await showPeriodReport(context, widget.db,
+                    widget.period.from, widget.period.to, _currency,
+                    periodLabel: widget.period.label);
+                  if (mounted) setState(() => _reportBusy = false);
+                },
+                icon: const Icon(Icons.picture_as_pdf_outlined),
+                label: Text(l10n.reportPdfAction),
               ),
             ),
             Card(
@@ -186,6 +212,7 @@ class _PeriodViewState extends State<_PeriodView>
                       month.month,
                     ),
                     money: money,
+                    amounts: SpendMath.amountsByDay(data.points, month.year, month.month),
                   ),
                 ],
               ),
@@ -207,7 +234,7 @@ class _PeriodViewState extends State<_PeriodView>
                     ' · ${p.visits.length}×',
                   ),
                   trailing: Text(
-                    money(p.actualMinor),
+                    p.amount.display(money),
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   onTap: p.normalizedName == null
@@ -246,11 +273,8 @@ class _PeriodViewState extends State<_PeriodView>
                       : ml.formatMediumDate(list.completedAt!.toLocal()),
                 ),
                 trailing: Text(
-                  money(
-                    data.points
-                        .where((p) => p.listId == list.id)
-                        .fold<int>(0, (s, p) => s + p.actualMinor),
-                  ),
+                  SpendMath.amount(data.points.where((p) => p.listId == list.id),
+                    widget.period.from, widget.period.to).display(money),
                 ),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute<void>(

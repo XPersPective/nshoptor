@@ -78,15 +78,21 @@ class ShoppingRepository {
   /// o ürüne bağlı satın alım kayıtları silinir (kullanıcı geri aldı).
   Future<void> setItemStatus(int itemId, ItemStatus next) async {
     await _db.transaction(() async {
+      final entries = await (_db.select(
+        _db.purchaseEntries,
+      )..where((t) => t.plannedItemId.equals(itemId))).get();
+      final effective = next.isInCart && !entries.any(hasMarketPrice)
+          ? ItemStatus.pending
+          : next;
       await (_db.update(
         _db.plannedItems,
       )..where((t) => t.id.equals(itemId))).write(
         PlannedItemsCompanion(
-          status: Value(next.name),
+          status: Value(effective.name),
           updatedAt: Value(DateTime.now()),
         ),
       );
-      if (!next.isInCart) {
+      if (!effective.isInCart) {
         await removePurchases(itemId);
       }
     });
@@ -115,6 +121,17 @@ class ShoppingRepository {
     await (_db.delete(
       _db.purchaseEntries,
     )..where((t) => t.plannedItemId.equals(itemId))).go();
+    await (_db.update(_db.plannedItems)..where(
+          (t) =>
+              t.id.equals(itemId) &
+              t.status.isIn(['inCart', 'alternativeBought']),
+        ))
+        .write(
+          PlannedItemsCompanion(
+            status: const Value('pending'),
+            updatedAt: Value(DateTime.now()),
+          ),
+        );
   });
 
   /// Satın alım kaydı: gerçek miktar/fiyat/indirim; eksi satır (iade)
@@ -177,6 +194,21 @@ class ShoppingRepository {
     if (plannedItemId != null && replaceExisting) {
       await removePurchases(plannedItemId);
     }
+    // Clearing a price removes the purchase rather than inventing a zero.
+    if (plannedItemId != null && gross == null) {
+      if (replaceExisting) {
+        await setItemStatus(plannedItemId, ItemStatus.pending);
+      }
+      return;
+    }
+    final resolvedUnitPrice =
+        unitPrice ??
+        (gross != null && !quantity.isZero
+            ? DecimalFixed.fromMinorUnits(
+                gross,
+                digits,
+              ).divide(quantity, scale: DecimalFixed.maxFractionDigits)
+            : null);
     final purchaseId = await _db
         .into(_db.purchaseEntries)
         .insert(
@@ -187,7 +219,7 @@ class ShoppingRepository {
             normalizedName: normalizedName,
             actualQuantity: quantity.toDbString(),
             actualUnitCode: unitCode,
-            actualUnitPrice: Value(unitPrice?.toDbString()),
+            actualUnitPrice: Value(resolvedUnitPrice?.toDbString()),
             grossTotalMinorUnits: Value(gross),
             discountMinorUnits: Value(discountMinor),
             actualLineTotalMinorUnits: lineTotal,
@@ -209,7 +241,7 @@ class ShoppingRepository {
         listId: listId,
         quantity: quantity.toDbString(),
         unitCode: unitCode,
-        unitPrice: unitPrice?.toDbString(),
+        unitPrice: resolvedUnitPrice?.toDbString(),
         lineTotalMinor: lineTotal,
         discountMinor: discountMinor,
         currencyCode: list.currencyCode,
@@ -252,13 +284,17 @@ class ShoppingRepository {
       var plannedTotal = 0;
       var remainingPlan = 0;
       var doneCount = 0;
+      final purchasedIds = entries
+          .where(hasMarketPrice)
+          .map((e) => e.plannedItemId)
+          .toSet();
       for (final item in items) {
         final line = item.plannedLineTotalMinorUnits ?? 0;
         plannedTotal += line;
         final status = ItemStatus.tryFromDb(item.status) ?? ItemStatus.pending;
-        if (status.isClosed) {
+        if (purchasedIds.contains(item.id)) {
           doneCount++;
-        } else {
+        } else if (!status.isClosed || status.isInCart) {
           remainingPlan += line;
         }
       }

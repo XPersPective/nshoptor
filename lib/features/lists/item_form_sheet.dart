@@ -18,6 +18,7 @@ import 'starter_categories.dart';
 import '../voice_input/dictation_mic_button.dart';
 import 'item_repository.dart';
 import '../shopping_mode/shopping_repository.dart';
+import '../shopping_mode/item_status.dart';
 import '../../core/util/normalize_name.dart';
 
 /// Birimlerin varsayılan tam sayı tercihi (spec §6.2): adet/düzine tam sayı
@@ -102,9 +103,12 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   String? _nameError;
   String _currencyCode = 'TRY';
   final _actualPrice = TextEditingController();
+  final _homePriceFocus = FocusNode();
+  final _marketPriceFocus = FocusNode();
   // Hidden from the form; preserved when the store price is re-recorded.
   int _existingDiscountMinor = 0;
   bool _actualChanged = false;
+  bool _photoCurrencyMismatch = false;
   bool _prefilled = false;
   bool _currencyLoaded = false;
   bool _saving = false;
@@ -181,9 +185,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
         DecimalFixed.zero(),
         (s, e) => s + DecimalFixed.parse(e.actualQuantity),
       );
-      final unknown = widget.entries.every(
-        (e) => e.grossTotalMinorUnits == null && e.source != 'receiptOcr',
-      );
+      final unknown = !widget.entries.every(hasMarketPrice);
       _actualPrice.text = local(
         widget.entries.length == 1 && first.actualUnitPrice != null
             ? first.actualUnitPrice!
@@ -206,6 +208,15 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     if (widget.initialActualCandidate != null) {
       _applyPhoto(widget.initialActualCandidate!);
     }
+    if (widget.focusActual) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        final bothEmpty =
+            _price.text.trim().isEmpty && _actualPrice.text.trim().isEmpty;
+        (bothEmpty || _mixedUnits ? _homePriceFocus : _marketPriceFocus)
+            .requestFocus();
+      });
+    }
   }
 
   @override
@@ -215,6 +226,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     _brand.dispose();
     _quantity.dispose();
     _price.dispose();
+    _homePriceFocus.dispose();
+    _marketPriceFocus.dispose();
     _maxPrice.dispose();
     _note.dispose();
     _actualPrice.dispose();
@@ -286,10 +299,11 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     }
 
     final actualPrice = _tryParse(_actualPrice.text);
-    if (_actualChanged &&
-        (_mixedUnits ||
-            _fieldState(_actualPrice.text) == false ||
-            (actualPrice?.isNegative ?? false))) {
+    if (_photoCurrencyMismatch ||
+        _actualChanged &&
+            (_mixedUnits ||
+                _fieldState(_actualPrice.text) == false ||
+                (actualPrice?.isNegative ?? false))) {
       setState(() => _actualError = l10n.invalidAmountError);
       return;
     }
@@ -399,6 +413,13 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   }
 
   void _applyPhoto(PriceCandidate c) {
+    if (c.currencyCode != _currencyCode) {
+      _photoCurrencyMismatch = true;
+      _actualError = _l10n.invalidAmountError;
+      return;
+    }
+    _photoCurrencyMismatch = false;
+    _actualError = null;
     if (c.productName != null && c.productName!.isNotEmpty) {
       _name.text = c.productName!;
     }
@@ -494,6 +515,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             TextField(
               key: const Key('item_price_field'),
               controller: _price,
+              focusNode: _homePriceFocus,
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
@@ -508,7 +530,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             TextField(
               key: const Key('item_actual_price_field'),
               controller: _actualPrice,
-              autofocus: widget.focusActual,
+              focusNode: _marketPriceFocus,
               enabled: !_mixedUnits,
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
@@ -518,7 +540,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                     '${l10n.compareActual} / ${unitDisplayName(_unit, l10n)}',
                 errorText: _actualError,
                 helperText: _mixedUnits ? l10n.purchaseAnalyticsHint : null,
-                suffixIcon: widget.onShelfCandidatePressed == null || _mixedUnits
+                suffixIcon:
+                    widget.onShelfCandidatePressed == null || _mixedUnits
                     ? null
                     : IconButton(
                         key: const Key('item_scan_actual_price'),
@@ -527,7 +550,10 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                         onPressed: _scanActualPrice,
                       ),
               ),
-              onChanged: (_) => _actualChanged = true,
+              onChanged: (_) {
+                _actualChanged = true;
+                _photoCurrencyMismatch = false;
+              },
             ),
             ExpansionTile(
               key: const Key('item_details_expand'),

@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Βοήθεια και υποστήριξη",
+  "howToUseLabel": "Τρόπος χρήσης",
+  "guidePricesBody": "Η τιμή καταστήματος επισημαίνει το προϊόν ως αγορασμένο· μετρά και το 0. Η τιμή στο σπίτι είναι προαιρετική. Διαγράψτε την τιμή καταστήματος για να αφαιρέσετε τη σήμανση."
 }

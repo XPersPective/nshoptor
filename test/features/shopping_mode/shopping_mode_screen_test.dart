@@ -88,8 +88,7 @@ void main() {
     await tester.tap(find.byType(Checkbox).first);
     await settle(tester);
     expect(await db.select(db.purchaseEntries).get(), isEmpty);
-    await tester.tap(find.text('Domates'));
-    await settle(tester);
+    expect(find.byKey(const Key('item_actual_price_field')), findsOneWidget);
 
     await tester.enterText(
       find.byKey(const Key('item_actual_price_field')),
@@ -114,8 +113,7 @@ void main() {
     await settle(tester);
     await tester.tap(find.byType(Checkbox).first);
     await settle(tester);
-    await tester.tap(find.text('Domates'));
-    await settle(tester);
+    expect(find.byKey(const Key('item_actual_price_field')), findsOneWidget);
     await tester.enterText(
       find.byKey(const Key('item_actual_price_field')),
       '45,00',

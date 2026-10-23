@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Aiuto e supporto",
+  "howToUseLabel": "Come si usa",
+  "guidePricesBody": "Il prezzo in negozio segna l’articolo come acquistato; vale anche 0. Il prezzo a casa è facoltativo. Cancella il prezzo in negozio per togliere la spunta."
 }

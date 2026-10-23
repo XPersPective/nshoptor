@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Hulp en ondersteuning",
+  "howToUseLabel": "Hoe om te gebruik",
+  "guidePricesBody": "’n Winkelprys merk die item as gekoop; 0 tel ook. Die tuisprys is opsioneel. Vee die winkelprys uit om die merk te verwyder."
 }

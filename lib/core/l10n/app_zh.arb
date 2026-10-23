@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "帮助与支持",
+  "howToUseLabel": "使用方法",
+  "guidePricesBody": "输入商店价格后，商品会标记为已购买，0也有效。家中预估价为选填。清除商店价格即可取消勾选。"
 }

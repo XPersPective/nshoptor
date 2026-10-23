@@ -1,3 +1,16 @@
+import '../../data/db/app_database.dart';
+
+/// A missing price differs from an explicitly entered zero. Receipt totals
+/// may have no unit price; older receipt rows also have no gross value.
+bool hasMarketPrice(PurchaseEntry entry) =>
+    entry.actualUnitPrice != null ||
+    entry.grossTotalMinorUnits != null ||
+    entry.actualLineTotalMinorUnits != 0 ||
+    entry.source == 'receiptOcr';
+
+bool isItemPurchased(int itemId, Iterable<PurchaseEntry> entries) => entries
+    .any((entry) => entry.plannedItemId == itemId && hasMarketPrice(entry));
+
 /// Alışveriş modunda ürün durumları (spec §6.5).
 ///
 /// `PlannedItems.status` sütununa db adlarıyla saklanır. `PlannedItems`

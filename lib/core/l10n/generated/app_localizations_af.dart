@@ -1275,4 +1275,14 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Hulp en ondersteuning';
+
+  @override
+  String get howToUseLabel => 'Hoe om te gebruik';
+
+  @override
+  String get guidePricesBody =>
+      '’n Winkelprys merk die item as gekoop; 0 tel ook. Die tuisprys is opsioneel. Vee die winkelprys uit om die merk te verwyder.';
 }

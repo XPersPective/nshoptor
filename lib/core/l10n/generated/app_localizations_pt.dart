@@ -1277,4 +1277,14 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Ajuda e suporte';
+
+  @override
+  String get howToUseLabel => 'Como usar';
+
+  @override
+  String get guidePricesBody =>
+      'O preço da loja marca o produto como comprado; 0 também conta. O preço de casa é opcional. Apague o preço da loja para remover a marca.';
 }

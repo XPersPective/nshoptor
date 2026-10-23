@@ -1273,4 +1273,14 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Pomoć i podrška';
+
+  @override
+  String get howToUseLabel => 'Kako koristiti';
+
+  @override
+  String get guidePricesBody =>
+      'Cijena u prodavnici označava proizvod kao kupljen; i 0 se računa. Kućna cijena nije obavezna. Izbrišite cijenu u prodavnici da uklonite oznaku.';
 }

@@ -1275,4 +1275,14 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Ohjeet ja tuki';
+
+  @override
+  String get howToUseLabel => 'Näin käytät sovellusta';
+
+  @override
+  String get guidePricesBody =>
+      'Kauppahinta merkitsee tuotteen ostetuksi; myös 0 kelpaa. Kotihinta on valinnainen. Poista kauppahinta poistaaksesi valintamerkin.';
 }

@@ -1270,4 +1270,14 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Nápověda a podpora';
+
+  @override
+  String get howToUseLabel => 'Jak používat';
+
+  @override
+  String get guidePricesBody =>
+      'Cena v obchodě označí položku jako koupenou; počítá se i 0. Domácí cena je volitelná. Vymazáním ceny v obchodě zrušíte zaškrtnutí.';
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 import '../../../core/money/decimal_fixed.dart';
+import '../../../core/quantity/unit_code.dart';
+import '../../../core/quantity/unit_conversion.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/util/normalize_name.dart';
 import '../../shopping_mode/shopping_repository.dart';
@@ -22,6 +24,7 @@ class ReviewLine {
     required this.name,
     required this.normalizedName,
     this.quantity,
+    this.unitCode,
     this.unitPriceMinor,
     required this.lineTotalMinor,
     this.status = ReviewStatus.pending,
@@ -33,6 +36,7 @@ class ReviewLine {
   String name;
   final String normalizedName;
   DecimalFixed? quantity;
+  UnitCode? unitCode;
   final int? unitPriceMinor;
   int lineTotalMinor;
   ReviewStatus status;
@@ -71,6 +75,7 @@ class ReceiptReviewController extends ChangeNotifier {
           name: line.name,
           normalizedName: line.normalizedName,
           quantity: line.quantity,
+          unitCode: line.unitCode,
           unitPriceMinor: line.unitPriceMinor,
           lineTotalMinor: line.lineTotalMinor,
         ),
@@ -90,6 +95,7 @@ class ReceiptReviewController extends ChangeNotifier {
     detectedStore = parseResult.storeCandidates.firstOrNull;
     detectedDate = parseResult.dateCandidate;
     detectedCurrency = parseResult.currencyCandidate;
+    currencyNeedsConfirmation = parseResult.currencyNeedsConfirmation;
   }
 
   final AppDatabase _db;
@@ -120,6 +126,7 @@ class ReceiptReviewController extends ChangeNotifier {
   String? detectedStore;
   DateTime? detectedDate;
   String? detectedCurrency;
+  bool currencyNeedsConfirmation = false;
   int? reportedTotalMinor;
 
   /// Kullanıcının düzenlediği doğrulanmış değerler; commit bu değerleri
@@ -217,6 +224,7 @@ class ReceiptReviewController extends ChangeNotifier {
           name: line.name,
           normalizedName: line.normalizedName,
           quantity: line.quantity,
+          unitCode: line.unitCode,
           unitPriceMinor: line.unitPriceMinor,
           lineTotalMinor: line.lineTotalMinor,
           confidence: 'medium',
@@ -257,10 +265,17 @@ class ReceiptReviewController extends ChangeNotifier {
     if (a == b) return;
     final first = lines[a];
     final second = lines[b];
+    DecimalFixed? secondQuantity = second.quantity;
+    if (first.unitCode != second.unitCode) {
+      if (first.unitCode == null || second.unitCode == null || secondQuantity == null) {
+        throw ArgumentError('Receipt units require confirmation before merging');
+      }
+      secondQuantity = UnitConversion.convert(secondQuantity, second.unitCode!, first.unitCode!);
+    }
     first
       ..name = '${first.name} ${second.name}'.trim()
       ..lineTotalMinor = first.lineTotalMinor + second.lineTotalMinor
-      ..quantity = _sumQty(first.quantity, second.quantity)
+      ..quantity = _sumQty(first.quantity, secondQuantity)
       ..status = ReviewStatus.pending;
     lines.removeAt(b);
     notifyListeners();
@@ -288,6 +303,7 @@ class ReceiptReviewController extends ChangeNotifier {
       rawText: original.rawText,
       name: original.name,
       normalizedName: original.normalizedName,
+      unitCode: original.unitCode,
       quantity: firstQuantity == null
           ? null
           : original.quantity! - firstQuantity,
@@ -295,7 +311,7 @@ class ReceiptReviewController extends ChangeNotifier {
       lineTotalMinor: remaining,
       status: ReviewStatus.pending,
       linkedPlannedItemId: original.linkedPlannedItemId,
-    );
+    )..isDiscount = original.isDiscount;
     original.lineTotalMinor = firstMinor;
     original.quantity = firstQuantity;
     lines.insert(index + 1, copy);
@@ -335,7 +351,8 @@ class ReceiptReviewController extends ChangeNotifier {
     if (list.status == 'completed' || list.status == 'archived') {
       throw StateError('Receipt requires an active shopping list');
     }
-    if (confirmedCurrency != null && confirmedCurrency != list.currencyCode) {
+    if (currencyNeedsConfirmation || detectedCurrency != null && detectedCurrency != list.currencyCode ||
+        confirmedCurrency != null && confirmedCurrency != list.currencyCode) {
       throw ArgumentError('Receipt currency must match the list');
     }
     final linked = <int, PlannedItem>{};
@@ -361,6 +378,15 @@ class ReceiptReviewController extends ChangeNotifier {
       if (line.lineTotalMinor < 0 && quantity.isPositive) {
         quantity = quantity.negated();
       }
+      var purchaseUnit = line.unitCode ?? UnitCode.adet;
+      final target = linked[line.linkedPlannedItemId];
+      if (target != null) {
+        final targetUnit = UnitCode.values.firstWhere((u) => u.dbCode == target.plannedUnitCode || u.name == target.plannedUnitCode);
+        if (line.unitCode != null && purchaseUnit != targetUnit) {
+          quantity = UnitConversion.convert(quantity, purchaseUnit, targetUnit);
+        }
+        purchaseUnit = targetUnit;
+      }
       var plannedItemId = line.linkedPlannedItemId;
       // Positive receipt lines absent from the plan still belong in the list:
       // create the smallest valid planned row, then link its purchase so the
@@ -370,7 +396,7 @@ class ReceiptReviewController extends ChangeNotifier {
           listId: committedListId,
           name: line.name,
           quantity: quantity,
-          unitCode: 'piece',
+          unitCode: purchaseUnit.dbCode,
           priceIsUnitPrice: false,
         );
       }
@@ -382,7 +408,7 @@ class ReceiptReviewController extends ChangeNotifier {
             ? 'discount'
             : normalizeName(line.name),
         quantity: quantity,
-        unitCode: linked[line.linkedPlannedItemId]?.plannedUnitCode ?? 'piece',
+        unitCode: purchaseUnit.dbCode,
         lineTotalMinor: line.lineTotalMinor,
         source: 'receiptOcr',
         replaceExisting: false,

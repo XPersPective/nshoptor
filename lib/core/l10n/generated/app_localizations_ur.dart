@@ -1271,4 +1271,14 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'مدد اور معاونت';
+
+  @override
+  String get howToUseLabel => 'استعمال کا طریقہ';
+
+  @override
+  String get guidePricesBody =>
+      'دکان کی قیمت درج کرنے سے چیز خریدی ہوئی نشان زد ہوتی ہے؛ 0 بھی درست ہے۔ گھر کی قیمت اختیاری ہے۔ نشان ہٹانے کے لیے دکان کی قیمت مٹا دیں۔';
 }

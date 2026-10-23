@@ -1279,4 +1279,14 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Yordam va qo‘llab-quvvatlash';
+
+  @override
+  String get howToUseLabel => 'Qanday foydalaniladi';
+
+  @override
+  String get guidePricesBody =>
+      'Do‘kon narxi kiritilsa, mahsulot xarid qilingan deb belgilanadi; 0 ham hisoblanadi. Uydagi narx ixtiyoriy. Belgini olib tashlash uchun do‘kon narxini o‘chiring.';
 }

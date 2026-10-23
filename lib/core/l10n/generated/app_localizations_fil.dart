@@ -1281,4 +1281,14 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Tulong at suporta';
+
+  @override
+  String get howToUseLabel => 'Paano gamitin';
+
+  @override
+  String get guidePricesBody =>
+      'Minamarkahang nabili ang item kapag may presyo sa tindahan; kasama ang 0. Opsyonal ang presyo sa bahay. Burahin ang presyo sa tindahan para alisin ang tsek.';
 }

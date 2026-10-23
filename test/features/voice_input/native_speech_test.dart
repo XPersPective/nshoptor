@@ -74,7 +74,7 @@ void main() {
     await event(next, 'error', {'code': 'unsupportedLanguage'});
     await event(next, 'status', {'listening': false});
     expect(second.state, VoiceInputState.error);
-    expect(second.transcript, 'poires');
+    expect(second.transcript, 'manual poires');
     expect(second.shouldFallbackToManual, isTrue);
     second.dispose(); await Future<void>.delayed(Duration.zero);
     expect((calls.last.arguments as Map)['sessionId'], next);

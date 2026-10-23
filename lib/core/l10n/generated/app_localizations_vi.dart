@@ -1269,4 +1269,14 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Trợ giúp và hỗ trợ';
+
+  @override
+  String get howToUseLabel => 'Cách sử dụng';
+
+  @override
+  String get guidePricesBody =>
+      'Giá tại cửa hàng đánh dấu sản phẩm đã mua; 0 cũng hợp lệ. Giá dự tính ở nhà là tùy chọn. Xóa giá cửa hàng để bỏ dấu tích.';
 }

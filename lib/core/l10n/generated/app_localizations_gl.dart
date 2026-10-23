@@ -1277,4 +1277,14 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Axuda e asistencia';
+
+  @override
+  String get howToUseLabel => 'Como se usa';
+
+  @override
+  String get guidePricesBody =>
+      'O prezo da tenda marca o produto como comprado; 0 tamén conta. O prezo da casa é opcional. Borra o prezo da tenda para quitar a marca.';
 }

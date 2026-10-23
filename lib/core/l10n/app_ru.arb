@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Помощь и поддержка",
+  "howToUseLabel": "Как пользоваться",
+  "guidePricesBody": "Цена в магазине отмечает товар как купленный; 0 тоже учитывается. Домашняя цена необязательна. Удалите цену в магазине, чтобы снять отметку."
 }

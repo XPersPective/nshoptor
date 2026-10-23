@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Помош и поддршка",
+  "howToUseLabel": "Како се користи",
+  "guidePricesBody": "Цената во продавница го означува производот како купен; важи и 0. Домашната цена е незадолжителна. Избришете ја цената во продавница за да ја отстраните ознаката."
 }

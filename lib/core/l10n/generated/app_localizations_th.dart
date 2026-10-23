@@ -1265,4 +1265,14 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'ความช่วยเหลือและการสนับสนุน';
+
+  @override
+  String get howToUseLabel => 'วิธีใช้งาน';
+
+  @override
+  String get guidePricesBody =>
+      'เมื่อกรอกราคาที่ร้าน สินค้าจะถูกทำเครื่องหมายว่าซื้อแล้ว แม้ราคาเป็น 0 ราคาที่บ้านไม่จำเป็นต้องกรอก ลบราคาที่ร้านเพื่อเอาเครื่องหมายออก';
 }

@@ -23,7 +23,6 @@ import 'package:nshoptor/features/settings/settings_repository.dart';
 
 const _locale = String.fromEnvironment('STORE_LOCALE');
 const _out = String.fromEnvironment('STORE_OUT');
-const _rtlLocales = {'ar', 'fa', 'he', 'ur', 'ps'};
 
 /// Dil başına: liste adı, para birimi, bütçe, (ürün, tahmini), gerçek fiyatlar
 /// ve takvim/grafik için geçmiş alışveriş tutarları (minor).
@@ -304,6 +303,7 @@ void main() {
     final store = SettingsStore()
       ..setString(SettingsRepository.currencyKey, data.currency);
     AppDefaults.attach(store);
+    AppDefaults.markGuideSeen(); // Capture product screens; onboarding has its own tests.
     AppFormatLocale.attach(data.items.first.$2.contains(',') ? 'tr' : 'en');
     addTearDown(AppFormatLocale.attachReset);
     db = AppDatabase(NativeDatabase.memory());
@@ -360,9 +360,8 @@ void main() {
       return int.parse(parts.first) * 100 + int.parse(fraction.substring(0, 2));
     }
 
-    var firstItemId = 0;
     for (final (index, item) in data.items.indexed) {
-      final id = await db
+      await db
           .into(db.plannedItems)
           .insert(
             PlannedItemsCompanion.insert(
@@ -377,7 +376,6 @@ void main() {
               sortOrder: Value(index),
             ),
           );
-      if (index == 0) firstItemId = id;
     }
     await db
         .into(db.shoppingLists)
@@ -419,34 +417,37 @@ void main() {
     await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
 
-    await tester.tap(find.byKey(Key('detail_item_menu_$firstItemId')));
+    await tester.tap(find.text(data.items.first.$1).first);
     await settle(tester);
-    await tester.tap(find.byType(PopupMenuItem<String>).last);
+    await tester.tap(find.byKey(const Key('item_details_expand')));
+    await settle(tester);
+    await tester.ensureVisible(find.byKey(const Key('item_price_history')));
+    await tester.tap(find.byKey(const Key('item_price_history')));
     await settle(tester);
     await shot(tester, '05'); // Normalize birim fiyat geçmişi
     await tester.tap(find.byType(BackButton).first);
     await settle(tester);
+    Navigator.of(tester.element(find.byKey(const Key('item_name_field')))).pop();
+    await settle(tester);
     await tester.tap(find.byType(BackButton).first);
     await settle(tester);
 
-    final pageForward = _rtlLocales.contains(_locale)
-        ? const Offset(900, 0)
-        : const Offset(-900, 0);
-    final pageBack = Offset(-pageForward.dx, 0);
-    await tester.drag(find.byType(TabBarView), pageForward);
+    await tester.tap(find.byKey(const Key('lists_tab_completed')));
     await settle(tester);
+    expect(find.text('${data.list} · ${data.real.first}'), findsOneWidget);
     await shot(tester, '06'); // Tamamlananlar
-    await tester.drag(find.byType(TabBarView), pageForward);
+    await tester.tap(find.byKey(const Key('lists_tab_archived')));
     await settle(tester);
+    expect(find.text('${data.list} · ${data.real.last}'), findsOneWidget);
     await shot(tester, '07'); // Arşiv
 
-    await tester.drag(find.byType(TabBarView), pageBack.scale(2, 1));
+    await tester.tap(find.byKey(const Key('lists_tab_active')));
     await settle(tester);
     await tester.tap(find.text(data.list).first);
     await settle(tester);
     await tester.enterText(
       find.byKey(const Key('detail_quick_entry')),
-      'milk 2',
+      '${data.items.first.$1} 2',
     );
     await tester.testTextInput.receiveAction(TextInputAction.done);
     await settle(tester);

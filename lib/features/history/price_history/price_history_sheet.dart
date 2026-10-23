@@ -187,6 +187,9 @@ class _PriceChart extends StatelessWidget {
     ];
     final min = values.reduce((a, b) => a < b ? a : b);
     final max = values.reduce((a, b) => a > b ? a : b);
+    String money(int value) => formatMoney(Money.fromMinorUnits(value, currency),
+      locale: formatLocaleCode(context));
+    final range = min == max ? money(min) : '${money(min)}–${money(max)}';
     final unit = unitDisplayNameFromDb(points.first.unitCode, l10n);
     final summary = '${l10n.priceHistoryTitle}: ${values.length} · $unit';
     return Card(
@@ -195,7 +198,7 @@ class _PriceChart extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Semantics(
           container: true,
-          label: '$summary · $min–$max',
+          label: '$summary · $range',
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -212,7 +215,7 @@ class _PriceChart extends StatelessWidget {
                 ),
               ),
               Text(
-                '$min–$max · $unit',
+                '$range · $unit',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
@@ -232,6 +235,11 @@ class _PriceChartPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     if (values.isEmpty) return;
+    if (values.length == 1) {
+      canvas.drawCircle(Offset(size.width / 2, size.height / 2), 4,
+        Paint()..color = color);
+      return;
+    }
     final min = values.reduce((a, b) => a < b ? a : b);
     final max = values.reduce((a, b) => a > b ? a : b);
     final span = (max - min).toDouble();

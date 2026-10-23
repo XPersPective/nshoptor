@@ -1259,4 +1259,14 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'עזרה ותמיכה';
+
+  @override
+  String get howToUseLabel => 'איך משתמשים';
+
+  @override
+  String get guidePricesBody =>
+      'מחיר בחנות מסמן את הפריט כנרכש; גם 0 נחשב. המחיר בבית הוא רשות. מחקו את מחיר החנות כדי להסיר את הסימון.';
 }

@@ -1273,4 +1273,14 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Жардам жана колдоо';
+
+  @override
+  String get howToUseLabel => 'Кантип колдонуу керек';
+
+  @override
+  String get guidePricesBody =>
+      'Дүкөн баасы киргизилсе, товар сатып алынган деп белгиленет; 0 да эсептелет. Үйдөгү баа милдеттүү эмес. Белгини алып салуу үчүн дүкөн баасын өчүрүңүз.';
 }

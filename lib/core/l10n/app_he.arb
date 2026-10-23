@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "עזרה ותמיכה",
+  "howToUseLabel": "איך משתמשים",
+  "guidePricesBody": "מחיר בחנות מסמן את הפריט כנרכש; גם 0 נחשב. המחיר בבית הוא רשות. מחקו את מחיר החנות כדי להסיר את הסימון."
 }

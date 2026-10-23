@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Hjálp og aðstoð",
+  "howToUseLabel": "Notkunarleiðbeiningar",
+  "guidePricesBody": "Verslunarverð merkir vöruna sem keypta; 0 gildir líka. Verð heima er valfrjálst. Eyddu verslunarverðinu til að fjarlægja hakið."
 }

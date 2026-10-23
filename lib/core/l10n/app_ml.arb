@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "സഹായവും പിന്തുണയും",
+  "howToUseLabel": "എങ്ങനെ ഉപയോഗിക്കാം",
+  "guidePricesBody": "കടയിലെ വില നൽകിയാൽ സാധനം വാങ്ങിയതായി അടയാളപ്പെടുത്തും; 0-വും സാധുവാണ്. വീട്ടിലെ വില നിർബന്ധമല്ല. അടയാളം മാറ്റാൻ കടയിലെ വില മായ്ക്കുക."
 }

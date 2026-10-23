@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Hjælp og support",
+  "howToUseLabel": "Sådan bruger du appen",
+  "guidePricesBody": "En butikspris markerer varen som købt; 0 tæller også. Hjemmeprisen er valgfri. Slet butiksprisen for at fjerne markeringen."
 }

@@ -1274,4 +1274,14 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ';
+
+  @override
+  String get howToUseLabel => 'ಹೇಗೆ ಬಳಸುವುದು';
+
+  @override
+  String get guidePricesBody =>
+      'ಅಂಗಡಿ ಬೆಲೆ ನಮೂದಿಸಿದರೆ ವಸ್ತುವನ್ನು ಖರೀದಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಲಾಗುತ್ತದೆ; 0 ಕೂಡ ಮಾನ್ಯ. ಮನೆಯ ಬೆಲೆ ಐಚ್ಛಿಕ. ಗುರುತು ತೆಗೆಯಲು ಅಂಗಡಿ ಬೆಲೆಯನ್ನು ಅಳಿಸಿ.';
 }

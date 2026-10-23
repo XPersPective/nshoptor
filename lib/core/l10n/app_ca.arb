@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Ajuda i suport",
+  "howToUseLabel": "Com s’utilitza",
+  "guidePricesBody": "El preu de botiga marca el producte com a comprat; 0 també compta. El preu de casa és opcional. Esborreu el preu de botiga per treure la marca."
 }

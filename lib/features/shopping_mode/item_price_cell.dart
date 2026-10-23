@@ -7,6 +7,7 @@ import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/theme/semantic_colors.dart';
 import '../../data/db/app_database.dart';
+import 'item_status.dart';
 
 /// Bir ürünün tahmini ve gerçek tutarı (PB-062): ayrıntı ekranına gitmeden
 /// her satırda "20 → 30, +10" görünür.
@@ -26,7 +27,7 @@ class ItemPrices {
     final mine = entries.where((e) => e.plannedItemId == item.id).toList();
     return ItemPrices(
       plannedMinor: item.plannedLineTotalMinorUnits,
-      actualMinor: mine.isEmpty || mine.any((e) => e.grossTotalMinorUnits == null && e.actualLineTotalMinorUnits == 0 && e.source != 'receiptOcr')
+      actualMinor: mine.isEmpty || !mine.every(hasMarketPrice)
           ? null
           : mine.fold<int>(0, (a, e) => a + e.actualLineTotalMinorUnits),
     );

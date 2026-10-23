@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "সাহায্য ও সহায়তা",
+  "howToUseLabel": "যেভাবে ব্যবহার করবেন",
+  "guidePricesBody": "দোকানের দাম লিখলে পণ্য কেনা হয়েছে বলে চিহ্নিত হয়; 0-ও গণ্য হয়। বাড়ির দাম লেখা ঐচ্ছিক। টিক সরাতে দোকানের দাম মুছুন।"
 }

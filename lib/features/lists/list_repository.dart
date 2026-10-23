@@ -1,5 +1,7 @@
 import 'package:drift/drift.dart';
+
 import '../../app/app_defaults.dart';
+import '../../core/text/list_title.dart';
 
 import '../../data/db/app_database.dart';
 import 'reminders/reminders_repository.dart';
@@ -23,6 +25,7 @@ class ListRepository {
   /// katmanı tarafından üretilip verilir (depoda çeviri üretilmez).
   Future<int> createList({
     String? title,
+    String titleLocaleCode = 'tr',
     String? generatedTitle,
     required String currencyCode,
     int? storeId,
@@ -40,12 +43,22 @@ class ListRepository {
               .into(_db.shoppingLists)
               .insert(
                 ShoppingListsCompanion.insert(
-                  title: Value(title),
-                  generatedTitle: Value(generatedTitle),
+                  title: Value(
+                    normalizedListTitle(title, localeCode: titleLocaleCode),
+                  ),
+                  generatedTitle: Value(
+                    normalizedListTitle(
+                      generatedTitle,
+                      localeCode: titleLocaleCode,
+                    ),
+                  ),
                   currencyCode: currencyCode,
                   storeId: Value(storeId),
                   budgetMinorUnits: Value(
-                    budgetMinorUnits ?? AppDefaults.shoppingLimitMinor(currencyCode: currencyCode),
+                    budgetMinorUnits ??
+                        AppDefaults.shoppingLimitMinor(
+                          currencyCode: currencyCode,
+                        ),
                   ),
                   note: Value(note),
                   colorToken: Value(colorToken),
@@ -82,13 +95,16 @@ class ListRepository {
     });
   }
 
-  Future<void> updateTitle(int id, String? title) =>
-      (_db.update(_db.shoppingLists)..where((t) => t.id.equals(id))).write(
-        ShoppingListsCompanion(
-          title: Value(title),
-          updatedAt: Value(DateTime.now()),
-        ),
-      );
+  Future<void> updateTitle(
+    int id,
+    String? title, {
+    String titleLocaleCode = 'tr',
+  }) => (_db.update(_db.shoppingLists)..where((t) => t.id.equals(id))).write(
+    ShoppingListsCompanion(
+      title: Value(normalizedListTitle(title, localeCode: titleLocaleCode)),
+      updatedAt: Value(DateTime.now()),
+    ),
+  );
 
   Future<void> updateBudget(int id, int? budgetMinorUnits) =>
       (_db.update(_db.shoppingLists)..where((t) => t.id.equals(id))).write(
@@ -143,8 +159,10 @@ class ListRepository {
           .into(_db.shoppingLists)
           .insert(
             ShoppingListsCompanion.insert(
-              title: Value(source.title),
-              generatedTitle: Value(generatedTitle ?? source.generatedTitle),
+              title: Value(normalizedListTitle(source.title)),
+              generatedTitle: Value(
+                normalizedListTitle(generatedTitle ?? source.generatedTitle),
+              ),
               currencyCode: source.currencyCode,
               storeId: Value(source.storeId),
               budgetMinorUnits: Value(source.budgetMinorUnits),

@@ -1274,4 +1274,14 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Допомога та підтримка';
+
+  @override
+  String get howToUseLabel => 'Як користуватися';
+
+  @override
+  String get guidePricesBody =>
+      'Ціна в магазині позначає товар як придбаний; 0 також враховується. Домашня ціна необов’язкова. Видаліть ціну в магазині, щоб зняти позначку.';
 }

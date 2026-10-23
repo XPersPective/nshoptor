@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/money/currency.dart';
+import '../../../core/quantity/unit_display.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
 import '../../../data/db/app_database.dart';
@@ -85,6 +86,10 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         onPressed: _saving ? null : () => Navigator.of(context).maybePop())),
       body: Column(
         children: [
+          if (_c.currencyNeedsConfirmation || _c.detectedCurrency != null && _c.detectedCurrency != widget.currency)
+            Padding(padding: const EdgeInsets.all(12), child: Text(
+              '${l10n.currencyLabel}: ${_c.detectedCurrency ?? '?'} → ${widget.currency}. ${l10n.invalidAmountError}',
+              key: const Key('receipt_currency_mismatch'), style: TextStyle(color: Theme.of(context).colorScheme.error))),
           if (_saveFailed)
             Padding(
               padding: const EdgeInsets.all(12),
@@ -264,6 +269,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         children: [
           for (final (key, label) in [
             ('link', l10n.linkToItem),
+            if (line.linkedPlannedItemId != null) ('unlink', l10n.groupUnplanned),
             if (line.lineTotalMinor > 1) ('split', l10n.splitLine),
             if (index + 1 < _c.lines.length) ('merge', l10n.mergeWithNext),
             ('ignore', l10n.ignoreLine),
@@ -297,8 +303,11 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         if (id != null) _c.linkLine(index, id);
       case 'split':
         _c.splitLine(index, firstMinor: line.lineTotalMinor ~/ 2);
+      case 'unlink':
+        _c.unlinkLine(index);
       case 'merge':
-        _c.mergeLines(index, index + 1);
+        try { _c.mergeLines(index, index + 1); }
+        catch (_) { if (mounted) setState(() => _saveFailed = true); }
       case 'ignore':
         _c.ignore(index);
     }
@@ -306,7 +315,8 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
 
   String _lineQty(ReviewLine line) {
     final q = line.quantity?.toDbString();
-    return q == null ? '' : '$q ×';
+    final unit = line.unitCode == null ? '' : unitDisplayName(line.unitCode!, AppLocalizations.of(context));
+    return q == null ? '' : '$q $unit ×'.trim();
   }
 
   Future<void> _commit(BuildContext context) async {

@@ -1264,4 +1264,14 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'ຄວາມຊ່ວຍເຫຼືອແລະການສະໜັບສະໜູນ';
+
+  @override
+  String get howToUseLabel => 'ວິທີໃຊ້';
+
+  @override
+  String get guidePricesBody =>
+      'ເມື່ອໃສ່ລາຄາຮ້ານຄ້າ ສິນຄ້າຈະຖືກໝາຍວ່າຊື້ແລ້ວ; 0 ກໍໃຊ້ໄດ້. ລາຄາຢູ່ເຮືອນບໍ່ຈຳເປັນຕ້ອງໃສ່. ລຶບລາຄາຮ້ານຄ້າເພື່ອເອົາເຄື່ອງໝາຍອອກ.';
 }

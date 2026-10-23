@@ -1271,4 +1271,14 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Sonraki ay';
+
+  @override
+  String get helpSection => 'Yardım ve destek';
+
+  @override
+  String get howToUseLabel => 'Nasıl kullanılır?';
+
+  @override
+  String get guidePricesBody =>
+      'Market fiyatı girilince ürün tiklenir; 0 da geçerlidir. Evdeki fiyat isteğe bağlıdır. Market fiyatını silince tik kalkar.';
 }

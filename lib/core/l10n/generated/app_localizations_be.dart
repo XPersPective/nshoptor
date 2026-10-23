@@ -1276,4 +1276,14 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Дапамога і падтрымка';
+
+  @override
+  String get howToUseLabel => 'Як карыстацца';
+
+  @override
+  String get guidePricesBody =>
+      'Цана ў краме пазначае тавар як набыты; 0 таксама лічыцца. Хатняя цана неабавязковая. Выдаліце цану ў краме, каб зняць пазнаку.';
 }

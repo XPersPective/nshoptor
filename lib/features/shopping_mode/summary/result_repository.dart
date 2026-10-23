@@ -180,8 +180,7 @@ class ResultRepository {
           .fold<int>(0, (s, e) => s + e.discountMinorUnits);
       final plannedQty = DecimalFixed.parse(item.plannedQuantity);
       final plannedUnit = _parseD(item.plannedUnitPrice);
-      final actualKnown = itemEntries.isNotEmpty && itemEntries.every((e) =>
-        e.grossTotalMinorUnits != null || e.actualLineTotalMinorUnits != 0 || e.source == 'receiptOcr');
+      final actualKnown = itemEntries.isNotEmpty && itemEntries.every(hasMarketPrice);
       final compatible = itemEntries.every((e) => e.actualUnitCode == item.plannedUnitCode);
       final actualUnit = actualKnown && compatible && actualQty != null && !actualQty.isZero ?
         DecimalFixed.fromMinorUnits(actualLine + discount, digits).divide(actualQty, scale: DecimalFixed.maxFractionDigits) : null;
@@ -246,7 +245,7 @@ class ResultRepository {
         notTaken: false,
         isUnplanned: true,
         userConfirmed: e.userConfirmed,
-        actualKnown: e.grossTotalMinorUnits != null || e.actualLineTotalMinorUnits != 0 || e.source == 'receiptOcr',
+        actualKnown: hasMarketPrice(e),
         plannedKnown: false,
       ));
     }

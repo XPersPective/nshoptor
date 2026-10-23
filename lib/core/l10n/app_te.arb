@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "సహాయం మరియు మద్దతు",
+  "howToUseLabel": "ఎలా ఉపయోగించాలి",
+  "guidePricesBody": "దుకాణ ధర నమోదు చేస్తే వస్తువును కొనుగోలు చేసినట్లు గుర్తిస్తుంది; 0 కూడా చెల్లుతుంది. ఇంటి ధర ఐచ్ఛికం. గుర్తు తొలగించడానికి దుకాణ ధరను చెరిపివేయండి."
 }

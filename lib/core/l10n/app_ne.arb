@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "मद्दत र सहयोग",
+  "howToUseLabel": "कसरी प्रयोग गर्ने",
+  "guidePricesBody": "पसलको मूल्य राखेपछि सामान किनेको चिन्ह लाग्छ; 0 पनि मान्य हुन्छ। घरको मूल्य वैकल्पिक हो। चिन्ह हटाउन पसलको मूल्य मेटाउनुहोस्।"
 }

@@ -1274,4 +1274,14 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Pomoc a podpora';
+
+  @override
+  String get howToUseLabel => 'Ako používať';
+
+  @override
+  String get guidePricesBody =>
+      'Cena v obchode označí položku ako kúpenú; platí aj 0. Domáca cena je voliteľná. Vymazaním ceny v obchode odstránite začiarknutie.';
 }

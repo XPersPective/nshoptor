@@ -1270,4 +1270,14 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'උදව් සහ සහාය';
+
+  @override
+  String get howToUseLabel => 'භාවිත කරන ආකාරය';
+
+  @override
+  String get guidePricesBody =>
+      'වෙළඳසැල් මිල ඇතුළත් කළ විට භාණ්ඩය මිලදී ගත් ලෙස සලකුණු වේ; 0 ද වලංගුය. නිවසේ මිල අත්‍යවශ්‍ය නොවේ. සලකුණ ඉවත් කිරීමට වෙළඳසැල් මිල මකන්න.';
 }

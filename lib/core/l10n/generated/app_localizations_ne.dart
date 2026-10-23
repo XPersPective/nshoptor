@@ -1273,4 +1273,14 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'मद्दत र सहयोग';
+
+  @override
+  String get howToUseLabel => 'कसरी प्रयोग गर्ने';
+
+  @override
+  String get guidePricesBody =>
+      'पसलको मूल्य राखेपछि सामान किनेको चिन्ह लाग्छ; 0 पनि मान्य हुन्छ। घरको मूल्य वैकल्पिक हो। चिन्ह हटाउन पसलको मूल्य मेटाउनुहोस्।';
 }

@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Nápověda a podpora",
+  "howToUseLabel": "Jak používat",
+  "guidePricesBody": "Cena v obchodě označí položku jako koupenou; počítá se i 0. Domácí cena je volitelná. Vymazáním ceny v obchodě zrušíte zaškrtnutí."
 }

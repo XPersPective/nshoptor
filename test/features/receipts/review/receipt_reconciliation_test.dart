@@ -259,7 +259,9 @@ void main() {
     },
   );
 
-  test('unknown price has no zero-price observation; undo removes linked observations', () async {
+  test('clearing a price removes its purchase and linked price observation', () async {
+    await manual();
+    expect(await db.select(db.priceObservations).get(), hasLength(1));
     await ShoppingRepository(db).recordPurchase(
       listId: listId,
       plannedItemId: itemId,
@@ -268,10 +270,7 @@ void main() {
       quantity: DecimalFixed.fromInt(2),
       unitCode: 'kilogram',
     );
-    expect(
-      (await db.select(db.purchaseEntries).get()).single.grossTotalMinorUnits,
-      isNull,
-    );
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
     expect(await db.select(db.priceObservations).get(), isEmpty);
   });
 }

@@ -69,6 +69,11 @@ void main() {
       expect(find.byKey(Key('price_obs_${observations[0]}')), findsOneWidget);
       expect(find.byKey(Key('price_obs_${observations[1]}')), findsNothing);
       expect(find.byKey(Key('price_obs_${observations[2]}')), findsNothing);
+      final chart = find.byKey(const Key('price_history_chart'));
+      expect(chart, findsOneWidget);
+      final range = tester.widgetList<Text>(find.descendant(of: chart, matching: find.byType(Text))).last.data!;
+      expect(range, contains('10.00'));
+      expect(range, isNot(contains('1000')));
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
       final closing = db.close(); await tester.pump(); await closing;

@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Ayuda y soporte",
+  "howToUseLabel": "Cómo se usa",
+  "guidePricesBody": "El precio de la tienda marca el producto como comprado; 0 también cuenta. El precio de casa es opcional. Borra el precio de la tienda para quitar la marca."
 }

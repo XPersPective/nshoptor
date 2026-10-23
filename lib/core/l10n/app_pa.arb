@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "ਮਦਦ ਅਤੇ ਸਹਾਇਤਾ",
+  "howToUseLabel": "ਕਿਵੇਂ ਵਰਤਣਾ ਹੈ",
+  "guidePricesBody": "ਦੁਕਾਨ ਦੀ ਕੀਮਤ ਭਰਨ ਨਾਲ ਵਸਤੂ ਖਰੀਦੀ ਹੋਈ ਮੰਨੀ ਜਾਂਦੀ ਹੈ; 0 ਵੀ ਮੰਨਿਆ ਜਾਂਦਾ ਹੈ। ਘਰ ਦੀ ਕੀਮਤ ਚੋਣਵੀਂ ਹੈ। ਨਿਸ਼ਾਨ ਹਟਾਉਣ ਲਈ ਦੁਕਾਨ ਦੀ ਕੀਮਤ ਮਿਟਾਓ।"
 }

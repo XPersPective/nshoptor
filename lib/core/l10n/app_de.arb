@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Hilfe und Unterstützung",
+  "howToUseLabel": "So funktioniert’s",
+  "guidePricesBody": "Ein Ladenpreis markiert den Artikel als gekauft; auch 0 zählt. Der Preis zu Hause ist optional. Lösche den Ladenpreis, um das Häkchen zu entfernen."
 }

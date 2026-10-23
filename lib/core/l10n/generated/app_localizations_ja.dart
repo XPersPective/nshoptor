@@ -1233,4 +1233,14 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'ヘルプとサポート';
+
+  @override
+  String get howToUseLabel => '使い方';
+
+  @override
+  String get guidePricesBody =>
+      '店頭価格を入力すると購入済みになります。0も有効です。自宅での予定価格は任意です。店頭価格を消すとチェックが外れます。';
 }

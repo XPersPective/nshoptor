@@ -176,7 +176,7 @@ void main() {
       localeCode: 'tr',
       ai: _ai(() => http.Response(jsonEncode({'error': 'quota', 'tier': 'free', 'limit': 15, 'used': 15}), 429)),
     );
-    final draft = await parser.parse('2 ekmek, 1 litre süt');
+    final draft = await parser.parse('ekmek, 1 litre süt');
     expect(draft.fromAi, isFalse);
     expect(draft.aiResult, isA<AiQuota>());
     expect(draft.items.length, 2);
@@ -195,6 +195,79 @@ void main() {
     expect(draft.items[1].quantity!.toDbString(), '1');
     expect(draft.items[1].unitCode, UnitCode.adet);
     expect(draft.fromAi, isFalse);
+  });
+
+  test('complete local commands avoid a model call and preserve English fractions', () async {
+    var calls = 0;
+    final draft = await AiListParser(localeCode: 'en', ai: _ai(() {
+      calls++;
+      return _items([]);
+    })).parse('one and a half kilos tomatoes and two packs pasta');
+    expect(calls, 0);
+    expect(draft.modelCalls, 0);
+    expect(draft.items.map((i) => i.name), ['tomatoes', 'pasta']);
+    expect(draft.items.first.quantity!.toDbString(), '1.5');
+  });
+
+  test('valid AI compound name is not replaced by local candidate count', () async {
+    final draft = await AiListParser(localeCode: 'tr', ai: _ai(() => _items([
+      {'name': 'iki renkli makarna', 'quantity': null, 'unit': 'package'},
+    ]))).parse('renkli makarna iki çeşit');
+    expect(draft.fromAi, true);
+    expect(draft.items.single.name, 'iki renkli makarna');
+  });
+
+  test('Turkish shopping examples retain explicit meaning and market destination', () async {
+    final draft = await AiListParser(localeCode: 'tr').parse(
+      'İki kilo domates, üç paket makarna, bir litre süt.');
+    expect(draft.items.map((c) => c.name), ['domates', 'makarna', 'süt']);
+    expect(draft.items.map((c) => c.quantity!.toDbString()), ['2', '3', '1']);
+    final parser = AiListParser(localeCode: 'tr');
+    final total = (await parser.parse('İki paket sigaranın toplam fiyatı 260 TL')).items.single;
+    expect(total.name, 'sigara');
+    expect(total.isUnitPrice, false);
+    expect(total.unitPrice!.toDbString(), '260');
+    final unit = (await parser.parse('İki paket sigara tanesi 130 TL')).items.single;
+    expect(unit.isUnitPrice, true);
+    expect(unit.unitPrice!.toDbString(), '130');
+    final uncertain = (await parser.parse('İki paket sigara 260 TL')).items.single;
+    expect(uncertain.requiresPriceConfirmation, true);
+    final market = (await parser.parse('markette iki paket sigara toplam 1.260,50 TL')).items.single;
+    expect(market.priceDestination, VoicePriceDestination.actual);
+    expect(market.currencyCode, 'TRY');
+    expect(market.unitPrice!.toDbString(), '1260.50');
+    expect(market.isUnitPrice, false);
+  });
+
+  testWidgets('ambiguous money cannot be approved until user chooses its meaning', (tester) async {
+    ListDraft? approved;
+    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate], supportedLocales: AppLocalizations.supportedLocales,
+      home: Scaffold(body: ListDraftSheet(initialText: 'markette iki paket sigara 260 TL',
+        parser: AiListParser(localeCode: 'tr'), onApprove: (draft) async => approved = draft))));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('draft_add_button')));
+    await tester.tap(find.byKey(const Key('draft_add_button')));
+    await tester.pumpAndSettle();
+    expect(approved, isNull);
+    expect(find.byKey(const Key('draft_edit_save')), findsOneWidget);
+    await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
+    await tester.tap(find.byKey(const Key('draft_edit_save')));
+    await tester.pumpAndSettle();
+    expect(approved, isNull);
+    final mode = find.byType(DropdownButtonFormField<bool>);
+    await tester.ensureVisible(mode);
+    await tester.tap(mode);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Satır toplamı').last);
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
+    await tester.tap(find.byKey(const Key('draft_edit_save')));
+    await tester.pumpAndSettle();
+    expect(approved!.items.single.isUnitPrice, false);
+    expect(approved!.items.single.priceDestination, VoicePriceDestination.actual);
+    expect(approved!.items.single.currencyCode, 'TRY');
   });
 
   test('AI yokken de cümle bölünür', () async {

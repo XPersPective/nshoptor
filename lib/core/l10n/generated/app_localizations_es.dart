@@ -1278,4 +1278,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Ayuda y soporte';
+
+  @override
+  String get howToUseLabel => 'Cómo se usa';
+
+  @override
+  String get guidePricesBody =>
+      'El precio de la tienda marca el producto como comprado; 0 también cuenta. El precio de casa es opcional. Borra el precio de la tienda para quitar la marca.';
 }

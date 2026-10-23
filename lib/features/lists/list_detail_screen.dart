@@ -1,6 +1,7 @@
 import '../../core/money/format_locale.dart';
 
 import 'package:flutter/material.dart';
+import '../engagement/review_moments.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -96,6 +97,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   late final ShoppingRepository _shoppingRepo = ShoppingRepository(widget.db);
   late Future<ShoppingList> _listFuture;
   bool _busy = false;
+  bool _reminderBusy = false;
+  bool _itemFormOpen = false;
   bool _editable = false;
   ListStatus? _status;
 
@@ -232,12 +235,10 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   Future<ShoppingList> _loadList() async {
     final list = await widget.listRepository.getById(widget.listId);
     if (mounted) {
-      setState(
-        () {
-          _status = ListStatus.fromDb(list.status);
-          _editable = list.status != 'completed' && list.status != 'archived';
-        },
-      );
+      setState(() {
+        _status = ListStatus.fromDb(list.status);
+        _editable = list.status != 'completed' && list.status != 'archived';
+      });
     }
     return list;
   }
@@ -285,7 +286,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         ),
       );
       // Natural stop: shopping is over and the result was seen.
-      await AdGate.maybeShowInterstitial();
+      final reviewAttempted = await ReviewMoments.instance?.afterShopping() ?? false;
+      if (!reviewAttempted) await AdGate.maybeShowInterstitial();
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -297,85 +299,105 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     }
   }
 
-  RemindersRepository _remindersRepo() => RemindersRepository(
-    widget.db,
-    widget.reminderScheduler ?? LocalNotificationsScheduler(),
-  );
-
   /// Aktif hatırlatma varsa kaldırır, yoksa tarih+saat seçtirip kurar.
   /// İzin yalnızca bu akışta istenir (spec §6.13).
   Future<void> _toggleReminder(BuildContext context) async {
+    if (_reminderBusy) return;
+    _reminderBusy = true;
     final l10n = AppLocalizations.of(context);
-    final repo = _remindersRepo();
-    final active = await repo.activeForList(widget.listId);
-    if (active != null) {
-      await repo.cancelReminder(active.id);
-      if (!context.mounted) return;
-      ScaffoldMessenger.of(context)
-        ..clearSnackBars()
-        ..showSnackBar(
-          SnackBar(content: Text(l10n.reminderCancelled), showCloseIcon: true),
-        );
-      return;
-    }
     final scheduler = widget.reminderScheduler ?? LocalNotificationsScheduler();
-    final granted = await scheduler.ensurePermission();
-    if (!granted) {
+    final repo = RemindersRepository(widget.db, scheduler);
+    try {
+      final active = await repo.activeForList(widget.listId);
+      if (active != null) {
+        await repo.cancelReminder(active.id);
+        if (!context.mounted) return;
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.reminderCancelled),
+              showCloseIcon: true,
+            ),
+          );
+        return;
+      }
+      final granted = await scheduler.ensurePermission();
+      if (!granted) {
+        if (!context.mounted) return;
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.reminderPermissionDenied),
+              showCloseIcon: true,
+              duration: const Duration(days: 1),
+            ),
+          );
+        return;
+      }
+      final list = await _listFuture;
+      if (!context.mounted) return;
+      final now = DateTime.now();
+      final date = await showDatePicker(
+        context: context,
+        helpText: l10n.reminderPickDate,
+        firstDate: now,
+        lastDate: now.add(const Duration(days: 365)),
+        initialDate: now,
+      );
+      if (date == null || !context.mounted) return;
+      final time = await showTimePicker(
+        context: context,
+        helpText: l10n.reminderPickTime,
+        initialTime: TimeOfDay.now(),
+      );
+      if (time == null || !context.mounted) return;
+      final local = DateTime(
+        date.year,
+        date.month,
+        date.day,
+        time.hour,
+        time.minute,
+      );
+      // "Şimdi" seçilirse geçmiş zamana planlamayız: 30 sn sonrasına düşer
+      // (OS'un geçmiş tetikleme davranışı cihaza göre değişken).
+      final schedulingNow = DateTime.now();
+      final fireAt = local.isAfter(schedulingNow)
+          ? local
+          : schedulingNow.add(const Duration(seconds: 30));
+      final scheduled = await repo.setReminder(
+        listId: widget.listId,
+        title: l10n.reminderTitle,
+        body: l10n.reminderBody(
+          list.title ?? list.generatedTitle ?? l10n.listsTitle,
+        ),
+        atUtc: fireAt.toUtc(),
+      );
       if (!context.mounted) return;
       ScaffoldMessenger.of(context)
         ..clearSnackBars()
         ..showSnackBar(
           SnackBar(
-            content: Text(l10n.reminderPermissionDenied),
+            content: Text(
+              scheduled
+                  ? l10n.reminderScheduled
+                  : l10n.reminderPermissionDenied,
+            ),
             showCloseIcon: true,
-            duration: const Duration(days: 1),
           ),
         );
-      return;
+    } catch (_) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
+          );
+      }
+    } finally {
+      _reminderBusy = false;
     }
-    final list = await _listFuture;
-    if (!context.mounted) return;
-    final now = DateTime.now();
-    final date = await showDatePicker(
-      context: context,
-      helpText: l10n.reminderPickDate,
-      firstDate: now,
-      lastDate: now.add(const Duration(days: 365)),
-      initialDate: now,
-    );
-    if (date == null || !context.mounted) return;
-    final time = await showTimePicker(
-      context: context,
-      helpText: l10n.reminderPickTime,
-      initialTime: TimeOfDay.now(),
-    );
-    if (time == null || !context.mounted) return;
-    final local = DateTime(
-      date.year,
-      date.month,
-      date.day,
-      time.hour,
-      time.minute,
-    );
-    // "Şimdi" seçilirse geçmiş zamana planlamayız: 30 sn sonrasına düşer
-    // (OS'un geçmiş tetikleme davranışı cihaza göre değişken).
-    final fireAt = local.isAfter(now)
-        ? local
-        : now.add(const Duration(seconds: 30));
-    await repo.setReminder(
-      listId: widget.listId,
-      title: l10n.reminderTitle,
-      body: l10n.reminderBody(
-        list.title ?? list.generatedTitle ?? l10n.listsTitle,
-      ),
-      atUtc: fireAt.toUtc(),
-    );
-    if (!context.mounted) return;
-    ScaffoldMessenger.of(context)
-      ..clearSnackBars()
-      ..showSnackBar(
-        SnackBar(content: Text(l10n.reminderScheduled), showCloseIcon: true),
-      );
   }
 
   @override
@@ -455,7 +477,10 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                 } catch (_) {
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
+                      SnackBar(
+                        content: Text(l10n.saveFailed),
+                        showCloseIcon: true,
+                      ),
                     );
                   }
                 } finally {
@@ -709,7 +734,9 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                   children: [
                     Checkbox(
                       key: Key('detail_check_${item.id}'),
-                      value: ItemStatus.fromDb(item.status).isInCart,
+                      value: isItemPurchased(item.id, entries),
+                      shape: const CircleBorder(),
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
                       semanticLabel: item.name,
                       onChanged: _busy || !_editable
                           ? null
@@ -826,6 +853,15 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     ItemStatus? status,
   }) async {
     if (_busy) return;
+    if (checked && !isItemPurchased(item.id, entries)) {
+      await _openItemForm(
+        context,
+        existing: item,
+        entries: entries,
+        focusActual: true,
+      );
+      return;
+    }
     final l10n = AppLocalizations.of(context);
     if (remove || !checked && entries.any((e) => e.plannedItemId == item.id)) {
       final confirmed = await showDialog<bool>(
@@ -887,41 +923,47 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     PriceCandidate? initialActualCandidate,
     bool focusActual = false,
   }) async {
-    await StarterCategories().seedIfEmpty(widget.db);
-    if (!context.mounted) return;
-    await showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      builder: (_) => ItemFormSheet(
-        db: widget.db,
-        starterCategories: StarterCategories(),
-        listId: widget.listId,
-        existing: existing,
-        entries: existing == null
-            ? const []
-            : entries.where((e) => e.plannedItemId == existing.id).toList(),
-        initialActualPrice: initialActualPrice,
-        initialActualCandidate: initialActualCandidate,
-        focusActual: focusActual,
-        initialCandidate: prefill,
-        initialName: prefill?.name,
-        initialQuantity: prefill?.quantity?.toDbString(),
-        initialUnitCode: prefill?.unitCode,
-        initialUnitPrice: prefill?.unitPrice?.toDbString(),
-        onShelfCandidatePressed: _shelfCandidate,
-        onPriceHistory: existing == null
-            ? null
-            : () async {
-                final list = await widget.listRepository.getById(
-                  widget.listId,
-                );
-                if (context.mounted) {
-                  await _openPriceHistory(context, existing, list);
-                }
-              },
-      ),
-    );
-    _refresh();
+    if (_itemFormOpen) return;
+    _itemFormOpen = true;
+    try {
+      await StarterCategories().seedIfEmpty(widget.db);
+      if (!context.mounted) return;
+      await showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        builder: (_) => ItemFormSheet(
+          db: widget.db,
+          starterCategories: StarterCategories(),
+          listId: widget.listId,
+          existing: existing,
+          entries: existing == null
+              ? const []
+              : entries.where((e) => e.plannedItemId == existing.id).toList(),
+          initialActualPrice: initialActualPrice,
+          initialActualCandidate: initialActualCandidate,
+          focusActual: focusActual,
+          initialCandidate: prefill,
+          initialName: prefill?.name,
+          initialQuantity: prefill?.quantity?.toDbString(),
+          initialUnitCode: prefill?.unitCode,
+          initialUnitPrice: prefill?.unitPrice?.toDbString(),
+          onShelfCandidatePressed: _shelfCandidate,
+          onPriceHistory: existing == null
+              ? null
+              : () async {
+                  final list = await widget.listRepository.getById(
+                    widget.listId,
+                  );
+                  if (context.mounted) {
+                    await _openPriceHistory(context, existing, list);
+                  }
+                },
+        ),
+      );
+      _refresh();
+    } finally {
+      _itemFormOpen = false;
+    }
   }
 
   /// Cümleden/sesten çok ürün (PB-050): önizlemede seçilenler eklenir.
@@ -1151,12 +1193,7 @@ class _TotalsRow extends StatelessWidget {
                 : SpendingDirection.underPlan,
             brightness: theme.brightness,
           );
-    final known = entries.any(
-      (e) =>
-          e.grossTotalMinorUnits != null ||
-          e.actualLineTotalMinorUnits != 0 ||
-          e.source == 'receiptOcr',
-    );
+    final known = entries.any(hasMarketPrice);
     final unknown = items.any(
       (i) =>
           ItemStatus.fromDb(i.status).isInCart &&

@@ -1273,4 +1273,14 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Palīdzība un atbalsts';
+
+  @override
+  String get howToUseLabel => 'Kā lietot';
+
+  @override
+  String get guidePricesBody =>
+      'Veikala cena atzīmē preci kā nopirktu; der arī 0. Mājas cena nav obligāta. Izdzēsiet veikala cenu, lai noņemtu atzīmi.';
 }

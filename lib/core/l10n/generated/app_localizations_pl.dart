@@ -1273,4 +1273,14 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Pomoc i wsparcie';
+
+  @override
+  String get howToUseLabel => 'Jak korzystać';
+
+  @override
+  String get guidePricesBody =>
+      'Cena w sklepie oznacza produkt jako kupiony; liczy się także 0. Cena domowa jest opcjonalna. Usuń cenę sklepową, aby usunąć zaznaczenie.';
 }

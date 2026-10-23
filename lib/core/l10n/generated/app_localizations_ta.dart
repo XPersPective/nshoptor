@@ -1282,4 +1282,14 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'உதவி மற்றும் ஆதரவு';
+
+  @override
+  String get howToUseLabel => 'பயன்படுத்துவது எப்படி';
+
+  @override
+  String get guidePricesBody =>
+      'கடை விலையை உள்ளிட்டால் பொருள் வாங்கியதாகக் குறிக்கப்படும்; 0-வும் செல்லுபடியாகும். வீட்டு விலை விருப்பமானது. குறியை நீக்க கடை விலையை அழிக்கவும்.';
 }

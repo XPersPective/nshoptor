@@ -1270,4 +1270,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Help and support';
+
+  @override
+  String get howToUseLabel => 'How to use';
+
+  @override
+  String get guidePricesBody =>
+      'A market price marks the item purchased; 0 counts too. The home price is optional. Clear the market price to uncheck the item.';
 }

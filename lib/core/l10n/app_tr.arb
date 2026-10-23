@@ -417,5 +417,8 @@
 ,
   "sendAction": "Gönder",
   "previousMonthAction": "Önceki ay",
-  "nextMonthAction": "Sonraki ay"
+  "nextMonthAction": "Sonraki ay",
+  "helpSection": "Yardım ve destek",
+  "howToUseLabel": "Nasıl kullanılır?",
+  "guidePricesBody": "Market fiyatı girilince ürün tiklenir; 0 da geçerlidir. Evdeki fiyat isteğe bağlıdır. Market fiyatını silince tik kalkar."
 }

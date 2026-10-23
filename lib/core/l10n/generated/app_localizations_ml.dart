@@ -1272,4 +1272,14 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'സഹായവും പിന്തുണയും';
+
+  @override
+  String get howToUseLabel => 'എങ്ങനെ ഉപയോഗിക്കാം';
+
+  @override
+  String get guidePricesBody =>
+      'കടയിലെ വില നൽകിയാൽ സാധനം വാങ്ങിയതായി അടയാളപ്പെടുത്തും; 0-വും സാധുവാണ്. വീട്ടിലെ വില നിർബന്ധമല്ല. അടയാളം മാറ്റാൻ കടയിലെ വില മായ്ക്കുക.';
 }

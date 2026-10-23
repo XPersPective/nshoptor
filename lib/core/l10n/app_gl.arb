@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Axuda e asistencia",
+  "howToUseLabel": "Como se usa",
+  "guidePricesBody": "O prezo da tenda marca o produto como comprado; 0 tamén conta. O prezo da casa é opcional. Borra o prezo da tenda para quitar a marca."
 }

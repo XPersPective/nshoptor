@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Pomoć i podrška",
+  "howToUseLabel": "Kako koristiti",
+  "guidePricesBody": "Cijena u trgovini označava proizvod kao kupljen; računa se i 0. Kućna cijena nije obvezna. Izbrišite cijenu u trgovini da uklonite kvačicu."
 }

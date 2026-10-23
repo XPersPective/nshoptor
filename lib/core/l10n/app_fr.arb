@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Aide et assistance",
+  "howToUseLabel": "Mode d’emploi",
+  "guidePricesBody": "Un prix en magasin marque l’article comme acheté, même à 0. Le prix à la maison est facultatif. Effacez le prix en magasin pour retirer la coche."
 }

@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Ndihmë dhe mbështetje",
+  "howToUseLabel": "Si përdoret",
+  "guidePricesBody": "Çmimi në dyqan e shënon produktin si të blerë; vlen edhe 0. Çmimi në shtëpi është fakultativ. Fshini çmimin në dyqan për të hequr shenjën."
 }

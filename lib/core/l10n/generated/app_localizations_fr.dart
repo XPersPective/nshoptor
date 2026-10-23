@@ -1280,4 +1280,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Aide et assistance';
+
+  @override
+  String get howToUseLabel => 'Mode d’emploi';
+
+  @override
+  String get guidePricesBody =>
+      'Un prix en magasin marque l’article comme acheté, même à 0. Le prix à la maison est facultatif. Effacez le prix en magasin pour retirer la coche.';
 }

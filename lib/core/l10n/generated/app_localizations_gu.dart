@@ -1267,4 +1267,14 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'મદદ અને સહાય';
+
+  @override
+  String get howToUseLabel => 'કેવી રીતે વાપરવું';
+
+  @override
+  String get guidePricesBody =>
+      'દુકાનની કિંમત લખવાથી વસ્તુ ખરીદેલી ગણાય છે; 0 પણ માન્ય છે. ઘરની કિંમત વૈકલ્પિક છે. નિશાની દૂર કરવા દુકાનની કિંમત ભૂંસો.';
 }

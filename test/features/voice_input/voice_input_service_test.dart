@@ -21,7 +21,7 @@ void main() {
       expect(service.isListening, isTrue);
     });
 
-    test('kısmi sonuç transcript günceller; nihai sonuç kapatır', () async {
+    test('kısmi sonuç transcript günceller; nihai segment oturumu kapatmaz', () async {
       await controller.initialize();
       await controller.start();
       service.emitPartial('Bir buçuk kilo domates');
@@ -31,8 +31,10 @@ void main() {
 
       service.emitFinal('Bir buçuk kilo domates, kilosu kırk beş lira');
       await Future<void>.delayed(Duration.zero);
-      expect(controller.state, VoiceInputState.idle);
+      expect(controller.state, VoiceInputState.listening);
       expect(controller.transcript, contains('kırk beş lira'));
+      await controller.stop();
+      expect(controller.state, VoiceInputState.idle);
     });
 
     test('stop dinlemeyi bitirir', () async {
@@ -100,6 +102,26 @@ void main() {
     controller.handleError('recognition_7');
     expect(controller.state, VoiceInputState.idle);
     expect(controller.errorMessage, isNull);
+  });
+
+  test('successive segments accumulate and stop preserves latest partial', () async {
+    await controller.initialize();
+    await controller.start();
+    service.emitPartial('iki kilo');
+    service.emitFinal('iki kilo domates');
+    await Future<void>.delayed(Duration.zero);
+    service.emitPartial('üç paket makarna');
+    await Future<void>.delayed(Duration.zero);
+    expect(controller.transcript, 'iki kilo domates üç paket makarna');
+    service.emitFinal('üç paket makarna');
+    await Future<void>.delayed(Duration.zero);
+    expect(controller.transcript, 'iki kilo domates üç paket makarna');
+    await controller.stop();
+    expect(controller.state, VoiceInputState.idle);
+    service.emitStatus(false);
+    await Future<void>.delayed(Duration.zero);
+    expect(controller.state, VoiceInputState.idle);
+    expect(service.isListening, false);
   });
 
   test('missing installed model asks the service to download it', () async {

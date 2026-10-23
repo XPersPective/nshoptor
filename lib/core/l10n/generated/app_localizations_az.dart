@@ -1276,4 +1276,14 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Kömək və dəstək';
+
+  @override
+  String get howToUseLabel => 'İstifadə qaydası';
+
+  @override
+  String get guidePricesBody =>
+      'Mağaza qiyməti daxil ediləndə məhsul alınmış sayılır; 0 da keçərlidir. Evdəki qiymət istəyə bağlıdır. İşarəni silmək üçün mağaza qiymətini silin.';
 }

@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ",
+  "howToUseLabel": "ಹೇಗೆ ಬಳಸುವುದು",
+  "guidePricesBody": "ಅಂಗಡಿ ಬೆಲೆ ನಮೂದಿಸಿದರೆ ವಸ್ತುವನ್ನು ಖರೀದಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಲಾಗುತ್ತದೆ; 0 ಕೂಡ ಮಾನ್ಯ. ಮನೆಯ ಬೆಲೆ ಐಚ್ಛಿಕ. ಗುರುತು ತೆಗೆಯಲು ಅಂಗಡಿ ಬೆಲೆಯನ್ನು ಅಳಿಸಿ."
 }

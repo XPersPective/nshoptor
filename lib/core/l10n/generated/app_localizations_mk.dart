@@ -1276,4 +1276,14 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Помош и поддршка';
+
+  @override
+  String get howToUseLabel => 'Како се користи';
+
+  @override
+  String get guidePricesBody =>
+      'Цената во продавница го означува производот како купен; важи и 0. Домашната цена е незадолжителна. Избришете ја цената во продавница за да ја отстраните ознаката.';
 }

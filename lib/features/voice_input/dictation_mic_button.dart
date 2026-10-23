@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
@@ -33,6 +34,8 @@ class _DictationMicButtonState extends State<DictationMicButton> {
   VoiceInputController? _voice;
   bool _busy = false;
   String? _error;
+  String _lastWritten = '';
+  bool _userEdited = false;
   final _tooltip = GlobalKey<TooltipState>();
 
   bool get _listening => _voice?.state == VoiceInputState.listening;
@@ -53,8 +56,13 @@ class _DictationMicButtonState extends State<DictationMicButton> {
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => _tooltip.currentState?.ensureTooltipVisible(),
       );
-    } else if (voice.transcript.isNotEmpty &&
+    } else if (!_userEdited && widget.controller.text != _lastWritten) {
+      // A keyboard edit wins over a late recognizer callback.
+      _userEdited = true;
+      unawaited(voice.stop());
+    } else if (!_userEdited && voice.transcript.isNotEmpty &&
         voice.transcript != widget.controller.text) {
+      _lastWritten = voice.transcript;
       widget.controller.value = TextEditingValue(
         text: voice.transcript,
         selection: TextSelection.collapsed(offset: voice.transcript.length),
@@ -73,7 +81,9 @@ class _DictationMicButtonState extends State<DictationMicButton> {
       if (_listening) {
         await voice.stop();
       } else {
-        voice.transcript = '';
+        _lastWritten = widget.controller.text;
+        _userEdited = false;
+        voice.transcript = widget.controller.text.trim();
         _error = null;
         if (await voice.initialize() && mounted) {
           await voice.start(

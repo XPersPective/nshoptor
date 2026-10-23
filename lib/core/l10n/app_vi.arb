@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Trợ giúp và hỗ trợ",
+  "howToUseLabel": "Cách sử dụng",
+  "guidePricesBody": "Giá tại cửa hàng đánh dấu sản phẩm đã mua; 0 cũng hợp lệ. Giá dự tính ở nhà là tùy chọn. Xóa giá cửa hàng để bỏ dấu tích."
 }

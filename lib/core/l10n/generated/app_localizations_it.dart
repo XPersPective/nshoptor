@@ -1276,4 +1276,14 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Aiuto e supporto';
+
+  @override
+  String get howToUseLabel => 'Come si usa';
+
+  @override
+  String get guidePricesBody =>
+      'Il prezzo in negozio segna l’articolo come acquistato; vale anche 0. Il prezzo a casa è facoltativo. Cancella il prezzo in negozio per togliere la spunta.';
 }

@@ -1257,4 +1257,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'المساعدة والدعم';
+
+  @override
+  String get howToUseLabel => 'طريقة الاستخدام';
+
+  @override
+  String get guidePricesBody =>
+      'يُعلَّم المنتج كمشترى عند إدخال سعر المتجر، حتى لو كان 0. سعر المنزل اختياري. امسح سعر المتجر لإزالة العلامة.';
 }

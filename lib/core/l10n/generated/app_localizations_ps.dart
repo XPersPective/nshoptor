@@ -1265,4 +1265,14 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'مرسته او ملاتړ';
+
+  @override
+  String get howToUseLabel => 'د کارولو لارښود';
+
+  @override
+  String get guidePricesBody =>
+      'د پلورنځي بیه توکی د اخیستل شوي په توګه نښه کوي؛ 0 هم منل کېږي. د کور بیه اختیاري ده. د نښې لرې کولو لپاره د پلورنځي بیه پاکه کړئ.';
 }

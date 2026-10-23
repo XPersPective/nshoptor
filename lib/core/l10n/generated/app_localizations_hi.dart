@@ -1275,4 +1275,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'मदद और सहायता';
+
+  @override
+  String get howToUseLabel => 'इस्तेमाल कैसे करें';
+
+  @override
+  String get guidePricesBody =>
+      'दुकान की कीमत भरने पर सामान खरीदा हुआ माना जाता है; 0 भी मान्य है। घर की कीमत वैकल्पिक है। निशान हटाने के लिए दुकान की कीमत मिटाएँ।';
 }

@@ -114,12 +114,79 @@ class ItemRepository {
     return existingId;
   });
 
-  Future<void> addCandidates(int listId, List<ParsedItemCandidate> items) => _db.transaction(() async {
+  Future<void> addCandidates(
+    int listId,
+    List<ParsedItemCandidate> items,
+  ) => _db.transaction(() async {
+    final currencyCode = await _listCurrency(listId);
     for (final c in items) {
-      await addItem(listId: listId, name: c.name, brand: c.brand, categoryName: c.category,
-        quantity: c.quantity ?? DecimalFixed.fromInt(1),
-        unitCode: (c.unitCode ?? AppDefaults.defaultUnit()).dbCode,
-        priceIsUnitPrice: c.isUnitPrice ?? false, price: c.unitPrice);
+      if (c.requiresPriceConfirmation) {
+        throw ArgumentError('Confirm unit price or line total');
+      }
+      if (c.unitPrice != null &&
+          c.currencyCode != null &&
+          c.currencyCode != currencyCode) {
+        throw ArgumentError('Candidate currency differs from list currency');
+      }
+      if (c.priceDestination == VoicePriceDestination.actual) {
+        if (c.unitPrice == null) throw ArgumentError('Market price is missing');
+        final matches =
+            await (_db.select(_db.plannedItems)..where(
+                  (t) =>
+                      t.listId.equals(listId) &
+                      t.normalizedName.equals(normalizeName(c.name)),
+                ))
+                .get();
+        if (matches.length > 1) {
+          throw ArgumentError('Choose which matching product to update');
+        }
+        final existing = matches.firstOrNull;
+        final quantity =
+            c.quantity ??
+            (existing == null
+                ? DecimalFixed.fromInt(1)
+                : DecimalFixed.parse(existing.plannedQuantity));
+        final unit =
+            c.unitCode?.dbCode ??
+            existing?.plannedUnitCode ??
+            AppDefaults.defaultUnit().dbCode;
+        final id =
+            existing?.id ??
+            await addItem(
+              listId: listId,
+              name: c.name,
+              brand: c.brand,
+              categoryName: c.category,
+              quantity: quantity,
+              unitCode: unit,
+              priceIsUnitPrice: true,
+            );
+        await ShoppingRepository(_db).recordPurchase(
+          listId: listId,
+          plannedItemId: id,
+          name: existing?.name ?? c.name,
+          normalizedName: normalizeName(existing?.name ?? c.name),
+          quantity: quantity,
+          unitCode: unit,
+          unitPrice: c.isUnitPrice == true ? c.unitPrice : null,
+          lineTotalMinor: c.isUnitPrice == false
+              ? c.unitPrice!.toMinorUnits(
+                  Currency.fromCode(currencyCode).minorUnitDigits,
+                )
+              : null,
+        );
+      } else {
+        await addItem(
+          listId: listId,
+          name: c.name,
+          brand: c.brand,
+          categoryName: c.category,
+          quantity: c.quantity ?? DecimalFixed.fromInt(1),
+          unitCode: (c.unitCode ?? AppDefaults.defaultUnit()).dbCode,
+          priceIsUnitPrice: c.isUnitPrice ?? false,
+          price: c.unitPrice,
+        );
+      }
     }
   });
 

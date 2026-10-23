@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz_data;
@@ -17,18 +19,55 @@ import 'reminder_scheduler.dart';
 class LocalNotificationsScheduler implements ReminderScheduler {
   LocalNotificationsScheduler();
 
+  static final _selected = StreamController<int>.broadcast();
+  static Stream<int> get selectedReminders => _selected.stream;
+
+  static int? reminderIdFromPayload(String? payload) {
+    final match = RegExp(r'^reminder:([1-9]\d{0,9})$').firstMatch(payload ?? '');
+    final id = match == null ? null : int.tryParse(match.group(1)!);
+    return id != null && id <= 2147483647 ? id : null;
+  }
+
+  Future<int?> initialReminderId() async {
+    await _ensureInit();
+    final launch = await _plugin.getNotificationAppLaunchDetails();
+    return launch?.didNotificationLaunchApp == true
+      ? reminderIdFromPayload(launch?.notificationResponse?.payload)
+      : null;
+  }
+
   final FlutterLocalNotificationsPlugin _plugin =
       FlutterLocalNotificationsPlugin();
   bool _initialized = false;
+  Future<void>? _initializing;
 
-  Future<void> _ensureInit() async {
+  Future<void> _ensureInit() {
+    if (_initialized) return Future<void>.value();
+    return _initializing ??= _initialize().whenComplete(() {
+      _initializing = null;
+    });
+  }
+
+  Future<void> _initialize() async {
     if (_initialized) return;
     tz_data.initializeTimeZones();
-    await _plugin.initialize(
+    final ready = await _plugin.initialize(
       settings: const InitializationSettings(
         android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        // Removing a reminder also initializes the plugin. Ask for permission
+        // only in ensurePermission(), after the user chooses a reminder.
+        iOS: DarwinInitializationSettings(
+          requestAlertPermission: false,
+          requestBadgePermission: false,
+          requestSoundPermission: false,
+        ),
       ),
+      onDidReceiveNotificationResponse: (response) {
+        final id = reminderIdFromPayload(response.payload);
+        if (id != null) _selected.add(id);
+      },
     );
+    if (ready != true) throw PlatformException(code: 'notification_initialization_failed');
     _initialized = true;
   }
 
@@ -37,7 +76,15 @@ class LocalNotificationsScheduler implements ReminderScheduler {
     await _ensureInit();
     final android = _plugin.resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>();
-    return await android?.requestNotificationsPermission() ?? true;
+    if (android != null) {
+      return await android.requestNotificationsPermission() ?? false;
+    }
+    final ios = _plugin.resolvePlatformSpecificImplementation<
+        IOSFlutterLocalNotificationsPlugin>();
+    if (ios != null) {
+      return await ios.requestPermissions(alert: true, sound: true) ?? false;
+    }
+    return false;
   }
 
   @override
@@ -60,6 +107,7 @@ class LocalNotificationsScheduler implements ReminderScheduler {
         importance: Importance.high,
         priority: Priority.high,
       ),
+      iOS: const DarwinNotificationDetails(),
     );
     Future<void> plan(AndroidScheduleMode mode) => _plugin.zonedSchedule(
           id: reminder.id,
@@ -68,10 +116,12 @@ class LocalNotificationsScheduler implements ReminderScheduler {
           scheduledDate: when,
           notificationDetails: details,
           androidScheduleMode: mode,
+          payload: 'reminder:${reminder.id}',
         );
     try {
       await plan(AndroidScheduleMode.exactAllowWhileIdle);
-    } on PlatformException {
+    } on PlatformException catch (error) {
+      if (error.code != 'exact_alarms_not_permitted') rethrow;
       // Tam alarm izni verilmedi: inexact planla (gecikme toleranslı).
       await plan(AndroidScheduleMode.inexactAllowWhileIdle);
     }

@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "အကူအညီနှင့် ပံ့ပိုးမှု",
+  "howToUseLabel": "အသုံးပြုပုံ",
+  "guidePricesBody": "ဆိုင်ဈေးနှုန်းထည့်လျှင် ပစ္စည်းကို ဝယ်ပြီးဟု မှတ်သားသည်။ 0 လည်း အကျုံးဝင်သည်။ အိမ်ဈေးနှုန်းသည် မဖြစ်မနေမဟုတ်ပါ။ အမှန်ခြစ်ဖြုတ်ရန် ဆိုင်ဈေးနှုန်းကို ဖျက်ပါ။"
 }

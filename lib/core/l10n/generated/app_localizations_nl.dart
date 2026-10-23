@@ -1277,4 +1277,14 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Hulp en ondersteuning';
+
+  @override
+  String get howToUseLabel => 'Zo werkt het';
+
+  @override
+  String get guidePricesBody =>
+      'Een winkelprijs markeert het artikel als gekocht; ook 0 telt. De thuisprijs is optioneel. Wis de winkelprijs om het vinkje te verwijderen.';
 }

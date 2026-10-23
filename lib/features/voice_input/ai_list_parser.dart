@@ -6,9 +6,11 @@ import 'parser/voice_command_parser.dart';
 
 /// Taslak sonucu: adaylar + kaynağı + (varsa) AI'nın neden kullanılamadığı.
 class ListDraft {
-  const ListDraft(this.items, {required this.fromAi, this.aiResult, this.title});
+  const ListDraft(this.items, {required this.fromAi, this.aiResult, this.title, this.parseDuration = Duration.zero, this.modelCalls = 0});
   final List<ParsedItemCandidate> items;
   final bool fromAi;
+  final Duration parseDuration;
+  final int modelCalls;
   final String? title;
 
   /// AI denendiyse ve başarısızsa sebep (kota/çevrimdışı/hata); başarılıysa AiOk.
@@ -16,8 +18,8 @@ class ListDraft {
 }
 
 /// "1 kilo elma alacağım 20 lira, 2 ekmek" → ürün adayları (PB-050).
-/// Önce AI vekili; olmazsa cihazdaki kural tabanlı ayrıştırıcı, cümle
-/// virgül/satır/"ve" ile bölünerek. Sonuç yalnız önizlemedir (C-003).
+/// Complete commands use local rules; unfamiliar clauses use the AI proxy.
+/// Both paths return only a preview until explicit approval (C-003).
 class AiListParser {
   AiListParser({this.ai, required this.localeCode});
 
@@ -27,25 +29,29 @@ class AiListParser {
   Future<ListDraft> parse(String text) async {
     final raw = text.trim();
     if (raw.isEmpty) return const ListDraft([], fromAi: false);
+    final watch = Stopwatch()..start();
+    final local = _local(raw);
+    // Complete simple commands need no network call. Unfamiliar language and
+    // incomplete clauses still use the model, with local preview on failure.
+    final locallyCertain = (localeCode.startsWith('tr') || localeCode.startsWith('en')) &&
+        local.isNotEmpty && local.every((c) => c.fullyParsed &&
+          c.name.split(' ').length <= 4 &&
+          !RegExp(r'\d|alacağ|istiyor|\b(and|ve|toplam|fiyatı)\b').hasMatch(c.name));
+    if (locallyCertain) return ListDraft(local, fromAi: false, parseDuration: watch.elapsed);
     AiResult? result;
     final client = ai;
     if (client != null && client.enabled) {
-      result = await client.request('parse_list', {'text': raw}, locale: localeCode);
+      result = await client.request('parse_list', {'text': raw, 'priceSemanticsVersion': 1}, locale: localeCode);
       if (result is AiOk) {
         final items = _fromAi(result.result, raw);
         final title = _text(result.result['title'], 80);
-        // The model can merge a second item into the first ("elma 1 ekmek"):
-        // when the local rules find more items, keep the local split.
         if (items.isNotEmpty) {
-          final local = _local(raw);
-          if (local.length > items.length) {
-            return ListDraft(local, fromAi: false, aiResult: result, title: title);
-          }
-          return ListDraft(items, fromAi: true, aiResult: result, title: title);
+          return ListDraft(items, fromAi: true, aiResult: result, title: title,
+              parseDuration: watch.elapsed, modelCalls: 1);
         }
       }
     }
-    return ListDraft(_local(raw), fromAi: false, aiResult: result);
+    return ListDraft(local, fromAi: false, aiResult: result, parseDuration: watch.elapsed, modelCalls: result == null ? 0 : 1);
   }
 
   List<ParsedItemCandidate> _fromAi(Map<String, dynamic> json, String raw) {
@@ -68,7 +74,9 @@ class AiListParser {
         quantity: _decimal(i['quantity']),
         unitCode: unit,
         unitPrice: _decimal(i['estimatedPrice']),
-        isUnitPrice: i['estimatedPrice'] == null ? null : i['priceIsUnitPrice'] == true,
+        isUnitPrice: i['priceIsUnitPrice'] is bool ? i['priceIsUnitPrice'] as bool : null,
+        currencyCode: i['currencyCode'] is String && RegExp(r'^[A-Z]{3}$').hasMatch(i['currencyCode']) ? i['currencyCode'] as String : null,
+        priceDestination: i['priceDestination'] == 'actual' ? VoicePriceDestination.actual : VoicePriceDestination.planned,
       ));
     }
     return out;
@@ -88,7 +96,7 @@ class AiListParser {
   List<ParsedItemCandidate> _local(String raw) {
     final splitter = localeCode.startsWith('tr')
         ? RegExp(r'(?<!\d),|,(?!\d)|[;\n]+|\s+ve\s+', caseSensitive: false)
-        : RegExp(r'(?<!\d),|,(?!\d)|[;\n]+|\s+and\s+', caseSensitive: false);
+        : RegExp(r'(?<!\d),|,(?!\d)|[;\n]+|\s+and\s+(?!a\s+half\b)', caseSensitive: false);
     final parser = VoiceCommandParser(localeCode: localeCode);
     return [
       for (final part in raw.split(splitter))

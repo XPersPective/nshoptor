@@ -1277,4 +1277,14 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Pagalba ir palaikymas';
+
+  @override
+  String get howToUseLabel => 'Kaip naudotis';
+
+  @override
+  String get guidePricesBody =>
+      'Parduotuvės kaina pažymi prekę kaip nupirktą; tinka ir 0. Namų kaina neprivaloma. Ištrinkite parduotuvės kainą, kad pašalintumėte varnelę.';
 }

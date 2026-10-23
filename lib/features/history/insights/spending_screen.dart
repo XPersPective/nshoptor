@@ -130,12 +130,13 @@ class _SpendingScreenState extends State<SpendingScreen> {
           if (points == null) return const Center(child: CircularProgressIndicator());
           final days = SpendMath.byDay(points, _month.year, _month.month);
           final monthTotal = days.values.fold<int>(0, (s, v) => s + v);
+          final monthAmount = SpendMath.amount(points, DateTime(_month.year, _month.month), DateTime(_month.year, _month.month + 1));
           final weeks = SpendMath.byWeek(points, _now);
           final months = SpendMath.byMonth(points, _now);
           final years = SpendMath.byYear(points, _now);
-          int spent(SpendSpan span) {
+          SpendAmount spent(SpendSpan span) {
             final r = span.range(_now);
-            return SpendMath.total(points, r.from, r.to);
+            return SpendMath.amount(points, r.from, r.to);
           }
           final ml = MaterialLocalizations.of(context);
           return ListView(
@@ -151,7 +152,9 @@ class _SpendingScreenState extends State<SpendingScreen> {
               ),
               const SizedBox(height: 8),
               _LimitCard(
-                spentMinor: spent(SpendSpan.week),
+                spentMinor: spent(SpendSpan.week).minor,
+                spentKnown: spent(SpendSpan.week).known,
+                spentUnknown: spent(SpendSpan.week).unknown,
                 limitMinor: _weekLimit,
                 money: _money,
                 onEdit: () => _editLimit(_LimitKind.week),
@@ -163,6 +166,8 @@ class _SpendingScreenState extends State<SpendingScreen> {
               const SizedBox(height: 8),
               _LimitCard(
                 spentMinor: monthTotal,
+                spentKnown: monthAmount.known,
+                spentUnknown: monthAmount.unknown,
                 limitMinor: _limit,
                 money: _money,
                 onEdit: _editLimit,
@@ -212,10 +217,11 @@ class _SpendingScreenState extends State<SpendingScreen> {
                           ),
                         ],
                       ),
-                      MonthCalendar(month: _month, spendByDay: days, money: _money),
+                      MonthCalendar(month: _month, spendByDay: days, money: _money,
+                        amounts: SpendMath.amountsByDay(points, _month.year, _month.month)),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
-                        child: Text('${l10n.spendingMonthTotal}: ${_money(monthTotal)}',
+                        child: Text('${l10n.spendingMonthTotal}: ${monthAmount.display(_money)}',
                             key: const Key('month_total')),
                       ),
                       TextButton.icon(
@@ -232,12 +238,14 @@ class _SpendingScreenState extends State<SpendingScreen> {
               _BarChartCard(
                 title: l10n.spendingWeekly,
                 bars: [for (final (d, v) in weeks) ('${d.day}.${d.month}', DecimalFixed.fromInt(v))],
+                valueLabels: [for (final (d, _) in weeks) SpendMath.amount(points, d, DateTime(d.year, d.month, d.day + 7)).display(_money)],
                 valueText: (v) => _money(v.toMinorUnits(0)),
               ),
               const SizedBox(height: 8),
               _BarChartCard(
                 title: l10n.spendingMonthly,
                 bars: [for (final (d, v) in months) (ml.formatMonthYear(d).split(' ').first, DecimalFixed.fromInt(v))],
+                valueLabels: [for (final (d, _) in months) SpendMath.amount(points, d, DateTime(d.year, d.month + 1)).display(_money)],
                 valueText: (v) => _money(v.toMinorUnits(0)),
                 limitMinor: _limit,
               ),
@@ -245,6 +253,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
               _BarChartCard(
                 title: l10n.spendingYearly,
                 bars: [for (final (d, v) in years) ('${d.year}', DecimalFixed.fromInt(v))],
+                valueLabels: [for (final (d, _) in years) SpendMath.amount(points, d, DateTime(d.year + 1)).display(_money)],
                 valueText: (v) => _money(v.toMinorUnits(0)),
               ),
               const SizedBox(height: 8),
@@ -326,7 +335,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start, children: [
                         Text(byCategory ? category(p.name) : p.name, style: Theme.of(context).textTheme.titleMedium),
                         Text('${l10n.purchasedQuantity}: ${quantity(p.quantity)} ${unitDisplayNameFromDb(p.unitCode, l10n)}'),
-                        Text('${l10n.actualTotalLabel}: ${_money(p.actualMinor)}'),
+                        Text('${l10n.actualTotalLabel}: ${p.amount.display(_money)}'),
                         Text('${l10n.purchaseVisits}: ${p.visits.length}'),
                         Text('${l10n.purchaseInterval}: ${p.intervalDays == null ? '—' : quantity(p.intervalDays!)}'),
                         if (p.firstAt != null) Text('${ml.formatMediumDate(p.firstAt!.toLocal())} – ${ml.formatMediumDate(p.lastAt!.toLocal())}'),
@@ -360,7 +369,7 @@ class _OverviewCard extends StatelessWidget {
     required this.money,
   });
 
-  final int week, month, year;
+  final SpendAmount week, month, year;
   final int? weekLimit, monthLimit;
   final String Function(int) money;
 
@@ -368,8 +377,8 @@ class _OverviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    Widget tile(String label, int amount, int? limit, Key key) {
-      final over = limit != null && amount > limit;
+    Widget tile(String label, SpendAmount amount, int? limit, Key key) {
+      final over = limit != null && amount.known && amount.minor > limit;
       return Column(
         key: key,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -377,18 +386,18 @@ class _OverviewCard extends StatelessWidget {
           Text(label, style: theme.textTheme.bodySmall),
           const SizedBox(height: 4),
           Text(
-            money(amount),
+            amount.display(money),
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
               color: over ? theme.colorScheme.error : null,
             ),
           ),
-          if (limit != null) ...[
+          if (limit != null && amount.known && !amount.unknown) ...[
             const SizedBox(height: 6),
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
-                value: (amount / limit).clamp(0, 1).toDouble(),
+                value: (amount.minor / limit).clamp(0, 1).toDouble(),
                 minHeight: 6,
                 color: over ? theme.colorScheme.error : theme.colorScheme.primary,
               ),
@@ -445,9 +454,12 @@ class _LimitCard extends StatelessWidget {
     required this.noneText,
     required this.leftText,
     this.keyPrefix = '',
+    this.spentKnown = true,
+    this.spentUnknown = false,
   });
 
   final int spentMinor;
+  final bool spentKnown, spentUnknown;
   final int? limitMinor;
   final String Function(int) money;
   final VoidCallback onEdit;
@@ -480,7 +492,7 @@ class _LimitCard extends StatelessWidget {
             if (limit == null)
               Text(noneText)
             else ...[
-              ClipRRect(
+              if (spentKnown && !spentUnknown) ClipRRect(
                 borderRadius: BorderRadius.circular(6),
                 child: LinearProgressIndicator(
                   key: Key('${keyPrefix}limit_progress'),
@@ -491,13 +503,13 @@ class _LimitCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                over
+                !spentKnown || spentUnknown ? '—' : over
                     ? l10n.monthlyLimitOver(money(spentMinor - limit))
                     : leftText(money(limit - spentMinor)),
                 key: Key('${keyPrefix}limit_text'),
                 style: TextStyle(color: over ? scheme.error : null, fontWeight: FontWeight.w600),
               ),
-              Text('${money(spentMinor)} / ${money(limit)}', style: Theme.of(context).textTheme.bodySmall),
+              Text('${SpendAmount(spentMinor, known: spentKnown, unknown: spentUnknown).display(money)} / ${money(limit)}', style: Theme.of(context).textTheme.bodySmall),
             ],
           ],
         ),
@@ -507,11 +519,12 @@ class _LimitCard extends StatelessWidget {
 }
 
 class MonthCalendar extends StatelessWidget {
-  const MonthCalendar({super.key, required this.month, required this.spendByDay, required this.money});
+  const MonthCalendar({super.key, required this.month, required this.spendByDay, required this.money, this.amounts});
 
   final DateTime month;
   final Map<int, int> spendByDay;
   final String Function(int) money;
+  final Map<int, SpendAmount>? amounts;
 
   @override
   Widget build(BuildContext context) {
@@ -527,7 +540,7 @@ class MonthCalendar extends StatelessWidget {
       for (var i = 0; i < leading; i++) const SizedBox.shrink(),
       for (var d = 1; d <= daysInMonth; d++)
         Tooltip(
-          message: spendByDay[d] == null ? '' : money(spendByDay[d]!),
+          message: spendByDay[d] == null ? '' : amounts?[d]?.display(money) ?? money(spendByDay[d]!),
           child: Container(
             key: Key('cal_day_$d'),
             margin: const EdgeInsets.all(2),
@@ -560,16 +573,18 @@ class MonthCalendar extends StatelessWidget {
 }
 
 class _BarChartCard extends StatelessWidget {
-  const _BarChartCard({super.key, required this.title, required this.bars, required this.valueText, this.limitMinor, this.horizontal = false});
+  const _BarChartCard({super.key, required this.title, required this.bars, required this.valueText, this.limitMinor, this.horizontal = false, this.valueLabels});
   final String title;
   final List<(String, DecimalFixed)> bars;
   final String Function(DecimalFixed) valueText;
   final int? limitMinor;
   final bool horizontal;
+  final List<String>? valueLabels;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    String display(int index, DecimalFixed value) => valueLabels?[index] ?? valueText(value);
     final maxV = bars.fold<DecimalFixed>(DecimalFixed.zero(), (m, b) => b.$2.abs() > m ? b.$2.abs() : m);
     // ponytail: nonzero bars have a 2% visual floor; exact labels remain authoritative.
     // Use a zoomable axis if very small differences need visual comparison.
@@ -583,16 +598,16 @@ class _BarChartCard extends StatelessWidget {
         const SizedBox(height: 12),
         if (bars.isEmpty) Text(AppLocalizations.of(context).noPurchasesNote)
         else if (rows) ...[
-          for (final (label, value) in bars) Padding(padding: const EdgeInsets.only(bottom: 12), child: Semantics(
-            label: '$label: ${valueText(value)}', excludeSemantics: true,
+          for (final (index, (label, value)) in bars.indexed) Padding(padding: const EdgeInsets.only(bottom: 12), child: Semantics(
+            label: '$label: ${display(index, value)}', excludeSemantics: true,
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              Text('$label: ${valueText(value)}'),
+              Text('$label: ${display(index, value)}'),
               const SizedBox(height: 4),
               LinearProgressIndicator(value: fraction(value), minHeight: 8, color: color(value)),
             ]),
           )),
         ] else SizedBox(height: 120, child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          for (final (label, value) in bars) Expanded(child: Tooltip(message: '$label: ${valueText(value)}', child: Column(
+          for (final (index, (label, value)) in bars.indexed) Expanded(child: Tooltip(message: '$label: ${display(index, value)}', child: Column(
             mainAxisAlignment: MainAxisAlignment.end, children: [
               Flexible(child: FractionallySizedBox(heightFactor: fraction(value), child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 4), decoration: BoxDecoration(color: color(value),

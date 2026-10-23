@@ -157,8 +157,19 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     finally { if (mounted) setState(() => _busy = false); }
   }
 
+  bool _resolvingPrices = false;
+
   Future<void> _approve() async {
-    if (_busy || _draft == null || _selected.isEmpty) return;
+    if (_busy || _resolvingPrices || _draft == null || _selected.isEmpty) return;
+    _resolvingPrices = true;
+    try {
+    for (final i in _selected.toList()..sort()) {
+      if (_draft!.items[i].requiresPriceConfirmation) {
+        await _edit(i);
+        if (!mounted || _draft!.items[i].requiresPriceConfirmation) return;
+      }
+    }
+    } finally { _resolvingPrices = false; }
     final l10n = AppLocalizations.of(context);
     final draft = ListDraft([for (final i in _selected.toList()..sort()) _draft!.items[i]],
       fromAi: _draft!.fromAi, aiResult: _draft!.aiResult,
@@ -178,7 +189,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     var quantity = (c.quantity ?? DecimalFixed.fromInt(1)).toDbString().replaceAll('.', separators.decimal);
     var price = c.unitPrice?.toDbString().replaceAll('.', separators.decimal) ?? '';
     var unit = c.unitCode ?? UnitCode.adet;
-    var isUnit = c.isUnitPrice ?? false;
+    bool? isUnit = c.isUnitPrice;
     DecimalFixed? decimal(String text) => text.trim().isEmpty ? null : MoneyParser.parseDecimal(text, separators: separators);
     String? validDecimal(String? value, {bool positive = false}) {
       try { final d = decimal(value ?? ''); return d == null ? (positive ? l10n.invalidQuantityError : null) :
@@ -203,10 +214,11 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
           items: [for (final u in UnitCode.values) DropdownMenuItem(value: u, child: Text(unitDisplayName(u, l10n)))],
           onChanged: (v) => unit = v!),
         TextFormField(key: const Key('draft_edit_price'), initialValue: price,
-          decoration: InputDecoration(labelText: l10n.plannedPriceLabel), onChanged: (v) => price = v,
+          decoration: InputDecoration(labelText: c.priceDestination == VoicePriceDestination.actual ? l10n.actualPriceLabel : l10n.plannedPriceLabel), onChanged: (v) => price = v,
           validator: validDecimal, keyboardType: const TextInputType.numberWithOptions(decimal: true)),
         DropdownButtonFormField<bool>(initialValue: isUnit, isExpanded: true,
           decoration: InputDecoration(labelText: l10n.pricingModeLabel),
+          validator: (v) => price.trim().isNotEmpty && v == null ? l10n.pricingModeLabel : null,
           items: [DropdownMenuItem(value: true, child: Text(l10n.pricingModeUnitPrice)),
             DropdownMenuItem(value: false, child: Text(l10n.pricingModeLineTotal))], onChanged: (v) => isUnit = v!),
       ]))),
@@ -215,7 +227,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
           if (!form.currentState!.validate()) return;
           Navigator.of(ctx).pop(ParsedItemCandidate(name: name.trim(), rawText: c.rawText,
             brand: brand.trim().isEmpty ? null : brand.trim(), category: category.trim().isEmpty ? null : category.trim(),
-            quantity: decimal(quantity), unitCode: unit, unitPrice: decimal(price), isUnitPrice: isUnit, currencyCode: c.currencyCode));
+            quantity: decimal(quantity), unitCode: unit, unitPrice: decimal(price), isUnitPrice: isUnit, currencyCode: c.currencyCode, priceDestination: c.priceDestination));
         }, child: Text(l10n.saveButton))],
     ));
     if (edited != null && mounted) setState(() { _draft!.items[index] = edited; });
@@ -227,6 +239,9 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
       if (c.category != null) StarterCategories().labelOf(l10n, c.category!),
       if (c.quantity != null)
         '${c.quantity!.toDbString()} ${c.unitCode == null ? '' : unitDisplayName(c.unitCode!, l10n)}'.trim(),
+      if (c.unitPrice != null) c.priceDestination == VoicePriceDestination.actual ? l10n.actualPriceLabel : l10n.plannedPriceLabel,
+      if (c.currencyCode != null) c.currencyCode!,
+      if (c.requiresPriceConfirmation) l10n.pricingModeLabel,
       if (c.unitPrice != null)
         c.isUnitPrice == true
             ? '${c.unitPrice!.toDbString()} / ${c.unitCode == null ? '' : unitDisplayName(c.unitCode!, l10n)}'

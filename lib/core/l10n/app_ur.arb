@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "مدد اور معاونت",
+  "howToUseLabel": "استعمال کا طریقہ",
+  "guidePricesBody": "دکان کی قیمت درج کرنے سے چیز خریدی ہوئی نشان زد ہوتی ہے؛ 0 بھی درست ہے۔ گھر کی قیمت اختیاری ہے۔ نشان ہٹانے کے لیے دکان کی قیمت مٹا دیں۔"
 }

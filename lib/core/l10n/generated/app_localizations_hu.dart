@@ -1273,4 +1273,14 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Súgó és támogatás';
+
+  @override
+  String get howToUseLabel => 'Használati útmutató';
+
+  @override
+  String get guidePricesBody =>
+      'A bolti ár megadása megvásároltnak jelöli a tételt; a 0 is érvényes. Az otthoni ár nem kötelező. A jelölés törléséhez töröld a bolti árat.';
 }

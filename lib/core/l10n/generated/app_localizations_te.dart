@@ -1280,4 +1280,14 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'సహాయం మరియు మద్దతు';
+
+  @override
+  String get howToUseLabel => 'ఎలా ఉపయోగించాలి';
+
+  @override
+  String get guidePricesBody =>
+      'దుకాణ ధర నమోదు చేస్తే వస్తువును కొనుగోలు చేసినట్లు గుర్తిస్తుంది; 0 కూడా చెల్లుతుంది. ఇంటి ధర ఐచ్ఛికం. గుర్తు తొలగించడానికి దుకాణ ధరను చెరిపివేయండి.';
 }

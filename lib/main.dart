@@ -22,6 +22,7 @@ import 'core/money/country_currency.dart';
 import 'core/money/format_locale.dart';
 import 'data/db/app_database.dart';
 import 'features/ads/ad_gate.dart';
+import 'features/engagement/review_moments.dart';
 import 'features/assistant/assistant_bubble.dart';
 import 'features/ai/ai_client.dart';
 import 'features/subscription/subscription_purchase_adapter.dart';
@@ -35,6 +36,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final store = await SettingsStore.load();
   AppDefaults.attach(store);
+  ReviewMoments.instance = ReviewMoments(store: store);
   // İlk açılış: para birimi cihaz ülkesinden (tablo dışı: Türkçe cihazda TRY, aksi USD).
   if (store.getString(SettingsRepository.currencyKey) == null) {
     final locale = PlatformDispatcher.instance.locale;

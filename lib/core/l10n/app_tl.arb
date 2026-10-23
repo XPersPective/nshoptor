@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Tulong at suporta",
+  "howToUseLabel": "Paano gamitin",
+  "guidePricesBody": "Minamarkahang nabili ang item kapag may presyo sa tindahan; kasama ang 0. Opsyonal ang presyo sa bahay. Burahin ang presyo sa tindahan para alisin ang tsek."
 }

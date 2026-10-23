@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../ai/ai_client.dart';
 import '../ocr_text_source.dart';
+import '../ocr_currency.dart';
 import 'ai_label_reader.dart';
 import 'mlkit_text_source.dart';
 import 'price_candidate_sheet.dart';
@@ -35,6 +36,13 @@ Future<PriceCandidate?> readShelfCandidate(
     }
   }
   if (!context.mounted) return null;
+  final evidence = detectOcrCurrency(scan.lines.map((l) => l.text).join('\n'), fallback: currencyCode);
+  if (evidence.conflictsWith(currencyCode)) {
+    ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(SnackBar(
+      content: Text('${l10n.currencyLabel}: ${evidence.code ?? '?'} → $currencyCode. ${l10n.invalidAmountError}'),
+      showCloseIcon: true));
+    return null;
+  }
   final local = ShelfPriceExtractor(defaultCurrency: currencyCode).extract(scan.lines);
   final client = AiService.client;
   final lang = Localizations.localeOf(context).languageCode;

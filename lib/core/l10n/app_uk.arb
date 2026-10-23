@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Допомога та підтримка",
+  "howToUseLabel": "Як користуватися",
+  "guidePricesBody": "Ціна в магазині позначає товар як придбаний; 0 також враховується. Домашня ціна необов’язкова. Видаліть ціну в магазині, щоб зняти позначку."
 }

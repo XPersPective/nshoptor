@@ -1273,4 +1273,14 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Msaada na usaidizi';
+
+  @override
+  String get howToUseLabel => 'Jinsi ya kutumia';
+
+  @override
+  String get guidePricesBody =>
+      'Bei ya dukani huweka alama kuwa bidhaa imenunuliwa; 0 pia inakubalika. Bei ya nyumbani si lazima. Futa bei ya dukani kuondoa alama.';
 }

@@ -1274,4 +1274,14 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Bantuan dan sokongan';
+
+  @override
+  String get howToUseLabel => 'Cara menggunakan';
+
+  @override
+  String get guidePricesBody =>
+      'Harga kedai menandakan barang telah dibeli; 0 juga diterima. Harga di rumah adalah pilihan. Padam harga kedai untuk membuang tanda semak.';
 }

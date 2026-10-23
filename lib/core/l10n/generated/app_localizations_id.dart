@@ -1271,4 +1271,14 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Bantuan dan dukungan';
+
+  @override
+  String get howToUseLabel => 'Cara menggunakan';
+
+  @override
+  String get guidePricesBody =>
+      'Harga toko menandai barang sebagai dibeli; 0 juga berlaku. Harga di rumah opsional. Hapus harga toko untuk menghilangkan tanda centang.';
 }

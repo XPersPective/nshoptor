@@ -1268,4 +1268,14 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'मदत आणि सहाय्य';
+
+  @override
+  String get howToUseLabel => 'कसे वापरावे';
+
+  @override
+  String get guidePricesBody =>
+      'दुकानातील किंमत भरल्यावर वस्तू खरेदी केलेली म्हणून चिन्हांकित होते; 0 देखील मान्य आहे. घरची किंमत ऐच्छिक आहे. खूण काढण्यासाठी दुकानातील किंमत पुसा.';
 }

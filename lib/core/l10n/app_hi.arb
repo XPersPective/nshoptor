@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "मदद और सहायता",
+  "howToUseLabel": "इस्तेमाल कैसे करें",
+  "guidePricesBody": "दुकान की कीमत भरने पर सामान खरीदा हुआ माना जाता है; 0 भी मान्य है। घर की कीमत वैकल्पिक है। निशान हटाने के लिए दुकान की कीमत मिटाएँ।"
 }

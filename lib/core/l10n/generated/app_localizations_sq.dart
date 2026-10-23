@@ -1275,4 +1275,14 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Ndihmë dhe mbështetje';
+
+  @override
+  String get howToUseLabel => 'Si përdoret';
+
+  @override
+  String get guidePricesBody =>
+      'Çmimi në dyqan e shënon produktin si të blerë; vlen edhe 0. Çmimi në shtëpi është fakultativ. Fshini çmimin në dyqan për të hequr shenjën.';
 }

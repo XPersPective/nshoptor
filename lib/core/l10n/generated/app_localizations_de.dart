@@ -1276,4 +1276,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Hilfe und Unterstützung';
+
+  @override
+  String get howToUseLabel => 'So funktioniert’s';
+
+  @override
+  String get guidePricesBody =>
+      'Ein Ladenpreis markiert den Artikel als gekauft; auch 0 zählt. Der Preis zu Hause ist optional. Lösche den Ladenpreis, um das Häkchen zu entfernen.';
 }

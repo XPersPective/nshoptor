@@ -1275,4 +1275,14 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'အကူအညီနှင့် ပံ့ပိုးမှု';
+
+  @override
+  String get howToUseLabel => 'အသုံးပြုပုံ';
+
+  @override
+  String get guidePricesBody =>
+      'ဆိုင်ဈေးနှုန်းထည့်လျှင် ပစ္စည်းကို ဝယ်ပြီးဟု မှတ်သားသည်။ 0 လည်း အကျုံးဝင်သည်။ အိမ်ဈေးနှုန်းသည် မဖြစ်မနေမဟုတ်ပါ။ အမှန်ခြစ်ဖြုတ်ရန် ဆိုင်ဈေးနှုန်းကို ဖျက်ပါ။';
 }

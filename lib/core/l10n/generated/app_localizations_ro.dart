@@ -1278,4 +1278,14 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Ajutor și asistență';
+
+  @override
+  String get howToUseLabel => 'Cum se folosește';
+
+  @override
+  String get guidePricesBody =>
+      'Prețul din magazin marchează produsul ca fiind cumpărat; se acceptă și 0. Prețul de acasă este opțional. Ștergeți prețul din magazin pentru a elimina bifa.';
 }

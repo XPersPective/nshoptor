@@ -103,6 +103,7 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
             TextField(
               key: const Key('voice_transcript_field'),
               controller: _text,
+              readOnly: _controller.state == VoiceInputState.listening,
               onChanged: (text) { _controller.transcript = text; setState(() => _parsed = null); },
               decoration: InputDecoration(labelText: l10n.voiceTranscriptLabel),
             ),
@@ -139,7 +140,7 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                 ),
                 FilledButton(
                   key: const Key('voice_confirm_button'),
-                  onPressed: parsed == null || _micBusy || _controller.state == VoiceInputState.listening
+                  onPressed: parsed == null || parsed.requiresPriceConfirmation || _micBusy || _controller.state == VoiceInputState.listening
                       ? null
                       : () => Navigator.of(context).pop(parsed),
                   child: Text(l10n.saveButton),
@@ -152,6 +153,17 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    if (parsed.requiresPriceConfirmation) DropdownButtonFormField<bool>(
+                      key: const Key('voice_price_meaning'),
+                      decoration: InputDecoration(labelText: l10n.pricingModeLabel),
+                      items: [DropdownMenuItem(value: true, child: Text(l10n.pricingModeUnitPrice)),
+                        DropdownMenuItem(value: false, child: Text(l10n.pricingModeLineTotal))],
+                      onChanged: (value) => setState(() => _parsed = ParsedItemCandidate(
+                        name: parsed.name, rawText: parsed.rawText, quantity: parsed.quantity,
+                        unitCode: parsed.unitCode, unitPrice: parsed.unitPrice,
+                        currencyCode: parsed.currencyCode, priceDestination: parsed.priceDestination,
+                        isUnitPrice: value)),
+                    ),
                     Text('${l10n.itemNameLabel}: ${parsed.name}'),
                     Text(
                       '${l10n.quantityLabel}: '

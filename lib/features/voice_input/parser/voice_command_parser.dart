@@ -89,7 +89,8 @@ class VoiceCommandParser {
   ParsedItemCandidate parse(String text) {
     final raw = text.trim();
     var tokens = raw
-        .toLowerCase()
+        .replaceAll('İ', 'i').toLowerCase()
+        .replaceAll(RegExp(r'[.!?]+$'), '')
         .split(RegExp(r'[\s;]+|(?<!\d),|,(?!\d)'))
         .where((t) => t.isNotEmpty)
         .toList();
@@ -107,6 +108,9 @@ class VoiceCommandParser {
     DecimalFixed? unitPrice;
     String? currency;
     bool? isUnitPrice;
+
+    final marketContext = RegExp(r'\b(market(?:te|ten)?|çarşı(?:da|dan)?|actual|store)\b').hasMatch(tokens.join(' '));
+    tokens.removeWhere((t) => const {'markette', 'marketten', 'market', 'çarşı', 'çarşıda', 'çarşıdan', 'actual', 'store', 'fiyatı', 'fiyati', 'fiyat', 'price'}.contains(t));
 
     // 1) BAŞTAKİ miktar (+ buçuk / and a half / yarım / half a) ve birim.
     final lead = _consumeLeadingQuantity(tokens);
@@ -132,8 +136,15 @@ class VoiceCommandParser {
       if (total != null) {
         unitPrice = total.$1;
         currency = total.$2;
-        isUnitPrice = false;
-        tokens = total.$3;
+        final context = total.$3.join(' ');
+        final totalExplicit = RegExp(r'\b(toplam|ikisi|hepsi|total|altogether)\b').hasMatch(context);
+        final unitExplicit = RegExp(r'\b(tanesi|birim|paketi|each)\b').hasMatch(context);
+        isUnitPrice = totalExplicit == unitExplicit
+            ? (quantity == DecimalFixed.fromInt(1) ? false : null)
+            : unitExplicit;
+        tokens = total.$3.where((t) => !const {
+          'toplam', 'ikisi', 'hepsi', 'fiyatı', 'fiyati', 'fiyat', 'birim', 'tanesi', 'paketi', 'total', 'altogether', 'each', 'price',
+        }.contains(t)).toList();
       }
     }
 
@@ -143,7 +154,8 @@ class VoiceCommandParser {
         : {'add', 'buy', 'at', 'please', 'of'};
     tokens = tokens.where((t) => !fillers.contains(t)).toList();
 
-    final name = _stripPunctuation(tokens.join(' ')).trim();
+    var name = _stripPunctuation(tokens.join(' ')).trim();
+    if (_isTr && unitPrice != null) name = name.replaceFirst(RegExp(r'n[ıiuü]n$'), '');
     final cleanName = name.isEmpty ? _stripPunctuation(raw) : name;
 
     // Miktar varsa ve birim yoksa adet: "1 ekmek" → 1 adet ekmek.
@@ -157,6 +169,7 @@ class VoiceCommandParser {
       unitPrice: unitPrice,
       currencyCode: currency,
       isUnitPrice: isUnitPrice,
+      priceDestination: marketContext ? VoicePriceDestination.actual : VoicePriceDestination.planned,
     );
   }
 
@@ -183,6 +196,7 @@ class VoiceCommandParser {
   bool _startsNewItem(List<String> words, int i) {
     if (!_isNumberWord(words[i].toLowerCase())) return false;
     final prev = words[i - 1].toLowerCase();
+    if (const {'toplam', 'fiyatı', 'fiyati', 'tanesi', 'birim', 'hepsi', 'ikisi', 'total', 'each', 'price'}.contains(prev)) return false;
     if (!_isNameWord(prev) && !_isCurrencyWord(prev)) return false;
     if (i + 1 >= words.length) return false;
     final next = words[i + 1].toLowerCase();
@@ -218,7 +232,8 @@ class VoiceCommandParser {
     }
     return !const {
       'ekle', 'al', 'istiyorum', 'lazım', 'add', 'buy', 'at', 'please', 'of',
-      'per', 've', 'and',
+      'market', 'markette', 'marketten', 'çarşı', 'çarşıda', 'çarşıdan', 'actual', 'store',
+      'per', 've', 'and', 'a', 'an', 'buçuk', 'half', 'toplam', 'fiyatı', 'tanesi', 'hepsi', 'ikisi', 'total', 'each', 'price',
     }.contains(word);
   }
 
@@ -226,11 +241,6 @@ class VoiceCommandParser {
 
   (DecimalFixed, List<String>)? _consumeLeadingQuantity(List<String> tokens) {
     if (tokens.isEmpty) return null;
-
-    final digit = int.tryParse(tokens.first);
-    if (digit != null) {
-      return (DecimalFixed.fromInt(digit), tokens.sublist(1));
-    }
 
     if (_isTr && tokens.first == 'yarım') {
       return (DecimalFixed.parse('0.5'), tokens.sublist(1));
@@ -283,6 +293,13 @@ class VoiceCommandParser {
     if (tokens.isEmpty) return null;
     if (RegExp(_isTr ? r'^\d{1,9}(?:[.,]\d{1,3})?$' : r'^\d{1,9}(?:\.\d{1,3})?$').hasMatch(tokens.first)) {
       return (DecimalFixed.parse(tokens.first.replaceAll(',', '.')), tokens.sublist(1));
+    }
+    final hundredIndex = tokens.indexOf(hundredWord);
+    if (hundredIndex == 0 || hundredIndex == 1 && ones.containsKey(tokens.first)) {
+      final base = (hundredIndex == 0 ? 1 : ones[tokens.first]!) * 100;
+      final rest = tokens.sublist(hundredIndex + 1);
+      final tail = _takeNumberFromStart(rest, ones, tens, hundredWord);
+      return (DecimalFixed.fromInt(base) + (tail?.$1 ?? DecimalFixed.zero()), tail?.$2 ?? rest);
     }
     if (tens.containsKey(tokens.first)) {
       var value = DecimalFixed.fromInt(tens[tokens.first]!);
@@ -386,13 +403,20 @@ class VoiceCommandParser {
     if (tokens.length < 3) return null;
     final currency = _trCurrency(tokens.last) ?? _enCurrency(tokens.last);
     if (currency == null) return null;
-    final amount = tokens[tokens.length - 2];
-    if (!RegExp(r'^\d{1,9}(?:[.,]\d{1,3})?$').hasMatch(amount)) return null;
-    return (
-      DecimalFixed.parse(amount.replaceAll(',', '.')),
-      currency,
-      tokens.sublist(0, tokens.length - 2),
-    );
+    for (var start = 1; start < tokens.length - 1; start++) {
+      final moneyTokens = tokens.sublist(start, tokens.length - 1);
+      final compact = moneyTokens.join(' ');
+      DecimalFixed? amount;
+      if (RegExp(r'^\d{1,3}(?:\.\d{3})+,\d{1,3}$').hasMatch(compact)) {
+        amount = DecimalFixed.parse(compact.replaceAll('.', '').replaceAll(',', '.'));
+      } else {
+        final take = _takeNumberFromStart(moneyTokens, _isTr ? _trOnes : _enOnes,
+            _isTr ? _trTens : _enTens, _isTr ? 'yüz' : 'hundred');
+        if (take != null && take.$2.isEmpty) amount = take.$1;
+      }
+      if (amount != null) return (amount, currency, tokens.sublist(0, start));
+    }
+    return null;
   }
 
   /// [index]teki sözcüğü çıkarır.
@@ -401,6 +425,7 @@ class VoiceCommandParser {
 
   /// "kilosu"→"kilo", "tanesi"→"tane", "litresi"→"litre" ...
   String? _trPossessiveStem(String word) {
+    if (word == 'paketi') return 'paket';
     const suffixes = ['sı', 'si', 'su', 'sü'];
     for (final suffix in suffixes) {
       if (word.length > suffix.length && word.endsWith(suffix)) {

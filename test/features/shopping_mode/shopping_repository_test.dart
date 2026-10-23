@@ -150,7 +150,7 @@ void main() {
     final summary = await repo.watchSummary(listId).first;
     expect(summary.cartActualMinor, 0);
     expect(summary.remainingPlanMinor, 7900);
-    expect(summary.doneCount, 1);
+    expect(summary.doneCount, 0);
   });
 }
 

@@ -1277,4 +1277,14 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Օգնություն և աջակցություն';
+
+  @override
+  String get howToUseLabel => 'Ինչպես օգտագործել';
+
+  @override
+  String get guidePricesBody =>
+      'Խանութի գինը մուտքագրելիս ապրանքը նշվում է որպես գնված․ 0-ն էլ է հաշվվում։ Տան գինը պարտադիր չէ։ Նշումը հանելու համար ջնջեք խանութի գինը։';
 }

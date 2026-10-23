@@ -1270,4 +1270,14 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Hjálp og aðstoð';
+
+  @override
+  String get howToUseLabel => 'Notkunarleiðbeiningar';
+
+  @override
+  String get guidePricesBody =>
+      'Verslunarverð merkir vöruna sem keypta; 0 gildir líka. Verð heima er valfrjálst. Eyddu verslunarverðinu til að fjarlægja hakið.';
 }

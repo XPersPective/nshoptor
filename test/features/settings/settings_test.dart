@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:napp_core/napp_core.dart';
@@ -16,6 +18,7 @@ import 'package:nshoptor/app/app_defaults.dart';
 import 'package:nshoptor/app/language_controller.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/features/settings/settings_screen.dart';
+import 'package:nshoptor/features/ai/ai_client.dart';
 import 'package:nshoptor/app/theme_mode_controller.dart';
 import 'package:nshoptor/core/money/currency.dart';
 import 'package:nshoptor/core/quantity/unit_code.dart';
@@ -39,6 +42,122 @@ void main() {
   tearDown(() async {
     await db.close();
     await settings.exportDirOverride!.delete(recursive: true);
+  });
+
+  for (final ios in [false, true]) {
+    testWidgets('safe platform share and rating actions ios=$ios', (tester) async {
+      debugDefaultTargetPlatformOverride = ios ? TargetPlatform.iOS : TargetPlatform.android;
+      addTearDown(() => debugDefaultTargetPlatformOverride = null);
+      await tester.binding.setSurfaceSize(const Size(800, 5000));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final identity = AppIdentity(appName: 'NShoptor', packageName: 'com.crazypenguin.nshoptor',
+        sourceUrl: 'https://example.com/source', privacyPolicyUrl: 'https://example.com/privacy', contactEmail: 'qa@example.com');
+      final shared = <ShareParams>[];
+      var rateCalls = 0;
+      await tester.pumpWidget(MaterialApp(locale: const Locale('en'),
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+        home: SettingsScreen(repository: settings, languageController: LanguageController(store: SettingsStore())..load(),
+          appIdentity: identity,
+          shareApp: (params) async { shared.add(params); throw StateError('share_unavailable'); },
+          openRatePage: () async { rateCalls++; throw StateError('store_unavailable'); }),
+      ));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('settings_share_row')));
+      await tester.pumpAndSettle();
+      expect(shared, hasLength(1));
+      expect(shared.single.text, contains(ios ? 'https://xperspective.github.io/nshoptor/' : 'play.google.com'));
+      expect(shared.single.sharePositionOrigin!.size.isEmpty, isFalse);
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      final rate = find.byKey(const Key('settings_rate_row'));
+      if (ios) {
+        expect(rate, findsNothing);
+      } else {
+        await tester.tap(rate);
+        await tester.pumpAndSettle();
+        expect(rateCalls, 1);
+        expect(tester.takeException(), isNull);
+      }
+      await tester.pumpWidget(const SizedBox.shrink());
+      debugDefaultTargetPlatformOverride = null;
+    });
+  }
+
+  testWidgets('help and AI are separate from final deletion; guide reopens; deletion needs two confirmations', (tester) async {
+    await tester.runAsync(() async {
+      await tester.binding.setSurfaceSize(const Size(1000, 5000));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final store = SettingsStore();
+      AppDefaults.attach(store);
+      AppDefaults.markGuideSeen();
+      final previousAi = AiService.client;
+      AiService.client = AiClient(store: store, baseUrl: 'https://example.invalid');
+      addTearDown(() => AiService.client = previousAi);
+      final language = LanguageController(store: store)..load();
+      await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(
+          title: const Value('Keep unless confirmed'), currencyCode: 'TRY'));
+      await tester.pumpWidget(MaterialApp(
+        locale: const Locale('en'),
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate],
+        home: SettingsScreen(repository: settings, languageController: language),
+      ));
+      await tester.pumpAndSettle();
+      final guide = find.byKey(const Key('settings_guide_row'));
+      final assistant = find.byKey(const Key('assistant_toggle'));
+      final ai = find.byKey(const Key('ai_toggle'));
+      final deletion = find.byKey(const Key('delete_all_button'));
+      expect(find.text('Help and support'), findsOneWidget);
+      expect(find.text('Danger zone'), findsNothing);
+      expect(tester.getTopLeft(guide).dy, lessThan(tester.getTopLeft(assistant).dy));
+      expect(tester.getTopLeft(assistant).dy, lessThan(tester.getTopLeft(ai).dy));
+      expect(tester.getTopLeft(ai).dy, lessThan(tester.getTopLeft(deletion).dy));
+      expect(tester.widget<ListTile>(deletion).onTap, isNotNull);
+      final list = tester.widget<ListView>(find.byType(ListView).first);
+      final children = (list.childrenDelegate as SliverChildListDelegate).children;
+      expect(children.last.key, const Key('delete_all_button'));
+      await tester.tap(ai);
+      await tester.pumpAndSettle();
+      expect(AiService.client!.enabled, isFalse);
+      expect(find.byKey(const Key('delete_all_dialog_1')), findsNothing);
+      await tester.tap(guide);
+      await tester.pumpAndSettle();
+      expect(find.text('1 / 7'), findsOneWidget);
+      await tester.tap(find.byKey(const Key('first_run_guide_close')));
+      await tester.pumpAndSettle();
+      expect(AppDefaults.guideSeen(), isTrue);
+      await tester.tap(guide);
+      await tester.pumpAndSettle();
+      expect(find.text('1 / 7'), findsOneWidget);
+      await tester.tap(find.byKey(const Key('first_run_guide_close')));
+      await tester.pumpAndSettle();
+      Future<void> answer(bool yes) async {
+        await tester.tap(find.descendant(of: find.byType(AlertDialog),
+            matching: find.byType(yes ? FilledButton : TextButton)));
+        await tester.pumpAndSettle();
+      }
+      await tester.tap(deletion);
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('delete_all_dialog_1')), findsOneWidget);
+      await answer(false);
+      expect(await db.select(db.shoppingLists).get(), hasLength(1));
+      await tester.tap(deletion);
+      await tester.pumpAndSettle();
+      await answer(true);
+      expect(find.byKey(const Key('delete_all_dialog_2')), findsOneWidget);
+      await answer(false);
+      expect(await db.select(db.shoppingLists).get(), hasLength(1));
+      await tester.tap(deletion);
+      await tester.pumpAndSettle();
+      await answer(true);
+      await answer(true);
+      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      expect(tester.takeException(), isNull);
+    });
   });
 
   group('ayarlar: dil, para birimi, birim, ekran açık tutma', () {

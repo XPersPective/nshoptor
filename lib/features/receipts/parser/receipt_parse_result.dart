@@ -1,3 +1,4 @@
+import '../../../core/quantity/unit_code.dart';
 import '../../../core/money/decimal_fixed.dart';
 
 /// Fiş ayrıştırıcı çıktı adayları (spec §6.9).
@@ -7,6 +8,7 @@ class ReceiptLineCandidate {
     required this.name,
     required this.normalizedName,
     this.quantity,
+    this.unitCode,
     this.unitPriceMinor,
     required this.lineTotalMinor,
     required this.confidence,
@@ -16,6 +18,7 @@ class ReceiptLineCandidate {
   final String name;
   final String normalizedName;
   final DecimalFixed? quantity;
+  final UnitCode? unitCode;
   final int? unitPriceMinor;
   final int lineTotalMinor;
 
@@ -29,6 +32,7 @@ class ReceiptParseResult {
     required this.storeCandidates,
     required this.dateCandidate,
     required this.currencyCandidate,
+    this.currencyNeedsConfirmation = false,
     required this.subtotalMinor,
     required this.discountMinor,
     required this.taxMinor,
@@ -44,6 +48,7 @@ class ReceiptParseResult {
   final List<String> storeCandidates;
   final DateTime? dateCandidate;
   final String? currencyCandidate;
+  final bool currencyNeedsConfirmation;
   final int? subtotalMinor;
   final int? discountMinor;
   final int? taxMinor;

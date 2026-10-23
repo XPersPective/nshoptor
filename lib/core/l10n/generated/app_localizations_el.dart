@@ -1279,4 +1279,14 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Βοήθεια και υποστήριξη';
+
+  @override
+  String get howToUseLabel => 'Τρόπος χρήσης';
+
+  @override
+  String get guidePricesBody =>
+      'Η τιμή καταστήματος επισημαίνει το προϊόν ως αγορασμένο· μετρά και το 0. Η τιμή στο σπίτι είναι προαιρετική. Διαγράψτε την τιμή καταστήματος για να αφαιρέσετε τη σήμανση.';
 }

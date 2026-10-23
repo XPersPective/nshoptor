@@ -1280,4 +1280,14 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Usizo nokwesekwa';
+
+  @override
+  String get howToUseLabel => 'Indlela yokusebenzisa';
+
+  @override
+  String get guidePricesBody =>
+      'Intengo yasesitolo imaka into njengethengiwe; no-0 uyasebenza. Intengo yasekhaya ayiphoqelekile. Sula intengo yasesitolo ukuze ususe uphawu.';
 }

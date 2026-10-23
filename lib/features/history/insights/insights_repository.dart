@@ -47,6 +47,9 @@ class PurchaseStats {
   final int? productId;
   DecimalFixed quantity = DecimalFixed.zero();
   int actualMinor = 0;
+  bool hasKnownActual = false;
+  bool hasUnknownActual = false;
+  SpendAmount get amount => SpendAmount(actualMinor, known: hasKnownActual, unknown: hasUnknownActual);
   final Map<int, DateTime> visits = {};
   DateTime? get firstAt => visits.isEmpty ? null : visits.values.reduce((a, b) => a.isBefore(b) ? a : b);
   DateTime? get lastAt => visits.isEmpty ? null : visits.values.reduce((a, b) => a.isAfter(b) ? a : b);
@@ -80,11 +83,13 @@ class InsightsRepository {
 
   /// Tamamlanan alışverişler (en yeni önce); başlık/mağaza filtreleri UI
   /// katmanında uygulanır.
-  Stream<List<ShoppingList>> watchCompleted() =>
-      (_db.select(_db.shoppingLists)
-            ..where((t) => t.status.equals('completed'))
-            ..orderBy([(t) => OrderingTerm.desc(t.completedAt)]))
-          .watch();
+  Stream<List<ShoppingList>> watchCompleted() => _db.customSelect(
+    "SELECT * FROM shopping_lists WHERE status = 'completed' ORDER BY completed_at DESC",
+    // A retained history tab must also refresh when a receipt or price changes
+    // without changing the list's completion date.
+    readsFrom: {_db.shoppingLists, _db.plannedItems, _db.purchaseEntries,
+      _db.categories, _db.stores, _db.productMemory},
+  ).map((row) => _db.shoppingLists.map(row.data)).watch();
 
   Future<List<MonthlyBucket>> monthlyTotals() => _monthlyQuery().get();
   Stream<List<MonthlyBucket>> watchMonthlyTotals() => _monthlyQuery().watch();
@@ -94,7 +99,7 @@ class InsightsRepository {
   Selectable<MonthlyBucket> _monthlyQuery() => _db.customSelect(
     '''WITH purchases AS (
       SELECT list_id, planned_item_id, SUM(actual_line_total_minor_units) AS actual,
-        MIN(gross_total_minor_units IS NOT NULL OR actual_line_total_minor_units != 0
+        MIN(gross_total_minor_units IS NOT NULL OR actual_unit_price IS NOT NULL OR actual_line_total_minor_units != 0
           OR source = 'receiptOcr') AS known
       FROM purchase_entries GROUP BY list_id, planned_item_id
     ), plans AS (
@@ -221,6 +226,11 @@ class InsightsRepository {
         productId: byCategory ? null : row.readNullable<int>('product_id'),
         normalizedName: byCategory ? null : row.read<String>('normalized_name')));
       group.quantity += quantity;
+      final known = row.readNullable<String>('actual_unit_price') != null ||
+          row.readNullable<int>('gross_total_minor_units') != null ||
+          row.read<int>('actual_line_total_minor_units') != 0 || row.read<String>('source') == 'receiptOcr';
+      group.hasKnownActual = group.hasKnownActual || known;
+      group.hasUnknownActual = group.hasUnknownActual || !known;
       group.actualMinor = int.parse((BigInt.from(group.actualMinor) + BigInt.from(row.read<int>('actual_line_total_minor_units'))).toString());
       if (quantity.isPositive) group.visits[row.read<int>('list_id')] = row.read<DateTime>('completed_at');
     }
@@ -246,7 +256,7 @@ class InsightsRepository {
         AND pi.planned_line_total_minor_units IS NOT NULL
         AND EXISTS(SELECT 1 FROM purchase_entries p WHERE p.planned_item_id = pi.id AND p.list_id = pi.list_id)
         AND NOT EXISTS(SELECT 1 FROM purchase_entries p WHERE p.planned_item_id = pi.id AND p.list_id = pi.list_id
-          AND p.gross_total_minor_units IS NULL AND p.actual_line_total_minor_units = 0 AND p.source != 'receiptOcr')
+          AND p.gross_total_minor_units IS NULL AND p.actual_unit_price IS NULL AND p.actual_line_total_minor_units = 0 AND p.source != 'receiptOcr')
       ''',
       readsFrom: {_db.plannedItems, _db.purchaseEntries, _db.shoppingLists},
     ).get().then((rows) {
@@ -326,7 +336,18 @@ class InsightsRepository {
     final rows = await _db.customSelect(
       '''
       SELECT sl.id AS id, sl.completed_at AS completed_at,
-             COALESCE(SUM(pe.actual_line_total_minor_units), 0) AS total
+             COALESCE(SUM(pe.actual_line_total_minor_units), 0) AS total,
+             MAX(CASE WHEN pe.id IS NOT NULL AND
+               (pe.actual_unit_price IS NOT NULL OR pe.gross_total_minor_units IS NOT NULL
+                OR pe.actual_line_total_minor_units != 0 OR pe.source = 'receiptOcr')
+               THEN 1 ELSE 0 END) AS known,
+             MAX(CASE WHEN pe.id IS NOT NULL AND pe.actual_unit_price IS NULL
+               AND pe.gross_total_minor_units IS NULL AND pe.actual_line_total_minor_units = 0
+               AND pe.source != 'receiptOcr' THEN 1 ELSE 0 END)
+               OR EXISTS(SELECT 1 FROM planned_items pi WHERE pi.list_id = sl.id
+                 AND pi.status IN ('inCart', 'alternativeBought')
+                 AND NOT EXISTS(SELECT 1 FROM purchase_entries linked
+                   WHERE linked.planned_item_id = pi.id AND linked.list_id = sl.id)) AS unknown
       FROM shopping_lists sl
       LEFT JOIN purchase_entries pe ON pe.list_id = sl.id AND pe.user_confirmed = 1
       WHERE sl.status = 'completed' AND sl.completed_at IS NOT NULL
@@ -334,7 +355,7 @@ class InsightsRepository {
       GROUP BY sl.id
       ''',
       variables: [Variable.withString(currencyCode)],
-      readsFrom: {_db.purchaseEntries, _db.shoppingLists},
+      readsFrom: {_db.purchaseEntries, _db.shoppingLists, _db.plannedItems},
     ).get();
     return [
       for (final r in rows)
@@ -342,6 +363,8 @@ class InsightsRepository {
           listId: r.read<int>('id'),
           at: r.read<DateTime>('completed_at'),
           actualMinor: r.read<int>('total'),
+          hasKnownActual: r.read<int>('known') != 0,
+          hasUnknownActual: r.read<int>('unknown') != 0,
         ),
     ]..sort((a, b) => a.at.compareTo(b.at));
   }
@@ -363,10 +386,24 @@ class ProductPurchase {
 
 /// Bir tamamlanmış alışverişin tarihi ve gerçek toplamı.
 class SpendPoint {
-  const SpendPoint({required this.listId, required this.at, required this.actualMinor});
+  const SpendPoint({required this.listId, required this.at, required this.actualMinor,
+    this.hasKnownActual = true, this.hasUnknownActual = false});
   final int listId;
   final DateTime at;
   final int actualMinor;
+  final bool hasKnownActual;
+  final bool hasUnknownActual;
+}
+
+/// Recorded subtotal plus whether more spending has an unknown amount.
+class SpendAmount {
+  const SpendAmount(this.minor, {required this.known, required this.unknown});
+  final int minor;
+  final bool known;
+  final bool unknown;
+
+  String display(String Function(int) money) =>
+      known ? '${money(minor)}${unknown ? ' + —' : ''}' : '—';
 }
 
 /// Harcama dönemi: bu hafta (pazartesi başlar), bu ay, bu yıl.
@@ -379,8 +416,8 @@ enum SpendSpan {
     final day = DateTime(now.year, now.month, now.day);
     return switch (this) {
       SpendSpan.week => (
-          from: day.subtract(Duration(days: day.weekday - 1)),
-          to: day.subtract(Duration(days: day.weekday - 1)).add(const Duration(days: 7)),
+          from: DateTime(day.year, day.month, day.day - (day.weekday - 1)),
+          to: DateTime(day.year, day.month, day.day - (day.weekday - 1) + 7),
         ),
       SpendSpan.month => (from: DateTime(now.year, now.month), to: DateTime(now.year, now.month + 1)),
       SpendSpan.year => (from: DateTime(now.year), to: DateTime(now.year + 1)),
@@ -391,6 +428,18 @@ enum SpendSpan {
 /// Saf toplama yardımcıları (test edilebilir; tarihler yerel saatle).
 class SpendMath {
   SpendMath._();
+
+  static SpendAmount amount(Iterable<SpendPoint> points, DateTime from, DateTime to) {
+    final selected = points.where((p) => !p.at.toLocal().isBefore(from) && p.at.toLocal().isBefore(to)).toList();
+    return SpendAmount(selected.fold<int>(0, (sum, p) => sum + p.actualMinor),
+      known: selected.isEmpty || selected.any((p) => p.hasKnownActual),
+      unknown: selected.any((p) => p.hasUnknownActual));
+  }
+
+  static Map<int, SpendAmount> amountsByDay(List<SpendPoint> points, int year, int month) => {
+    for (final day in byDay(points, year, month).keys)
+      day: amount(points, DateTime(year, month, day), DateTime(year, month, day + 1)),
+  };
 
   /// [from, to) aralığındaki toplam (yerel saat).
   static int total(List<SpendPoint> points, DateTime from, DateTime to) => points
@@ -418,7 +467,7 @@ class SpendMath {
   /// Son [weeks] haftanın (pazartesi başlangıç) toplamları, eskiden yeniye.
   static List<(DateTime, int)> byWeek(List<SpendPoint> points, DateTime now, {int weeks = 8}) {
     final today = DateTime(now.year, now.month, now.day);
-    final thisMonday = today.subtract(Duration(days: today.weekday - 1));
+    final thisMonday = DateTime(today.year, today.month, today.day - (today.weekday - 1));
     return [
       for (var w = weeks - 1; w >= 0; w--)
         () {

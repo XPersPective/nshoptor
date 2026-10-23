@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Palīdzība un atbalsts",
+  "howToUseLabel": "Kā lietot",
+  "guidePricesBody": "Veikala cena atzīmē preci kā nopirktu; der arī 0. Mājas cena nav obligāta. Izdzēsiet veikala cenu, lai noņemtu atzīmi."
 }

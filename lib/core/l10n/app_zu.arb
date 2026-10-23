@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Usizo nokwesekwa",
+  "howToUseLabel": "Indlela yokusebenzisa",
+  "guidePricesBody": "Intengo yasesitolo imaka into njengethengiwe; no-0 uyasebenza. Intengo yasekhaya ayiphoqelekile. Sula intengo yasesitolo ukuze ususe uphawu."
 }

@@ -56,13 +56,27 @@ void main() {
     service.emitFinal('elma armut');
     await tester.pump();
     expect(controller.text, 'elma armut');
-    expect(find.byIcon(Icons.mic_none), findsOneWidget);
+    expect(find.byIcon(Icons.stop_circle), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('mic')));
     await tester.pumpAndSettle();
+    expect(find.byIcon(Icons.mic_none), findsOneWidget);
+  });
+
+  testWidgets('dictation appends typed text; keyboard edits win over late speech', (tester) async {
+    final service = FakeSpeechService();
+    final controller = await pump(tester, service);
+    controller.text = 'Mevcut';
     await tester.tap(find.byKey(const Key('mic')));
     await tester.pumpAndSettle();
-    expect(find.byIcon(Icons.mic_none), findsOneWidget);
+    service.emitFinal('elma');
+    await tester.pump();
+    expect(controller.text, 'Mevcut elma');
+    await tester.enterText(find.byKey(const Key('field')), 'Elle düzeltildi');
+    service.emitPartial('armut');
+    await tester.pump();
+    expect(controller.text, 'Elle düzeltildi');
+    expect(service.isListening, false);
   });
 
   testWidgets('unavailable recognizer shows its reason on the button', (

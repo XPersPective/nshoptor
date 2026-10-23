@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import '../../core/money/format_locale.dart';
+import '../../core/text/list_title.dart';
 
 import 'package:flutter/material.dart';
 
@@ -639,6 +640,18 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
   bool _saving = false;
   final _detailsController = ExpansibleController();
 
+  @override
+  void initState() {
+    super.initState();
+    _title.addListener(_capitalizeTitle);
+  }
+
+  void _capitalizeTitle() {
+    final value = ListTitleFormatter(localeCode: widget.l10n.localeName)
+        .formatEditUpdate(_title.value, _title.value);
+    if (value != _title.value) _title.value = value;
+  }
+
   /// Bütçe minor unit değerini, kullanıcının dilindeki ondalık ayracıyla
   /// girdi dizesine çevirir (tr: `100,00`, en: `100.00`).
   String _minorToInput(int minor, Currency c, String decimalSep) {
@@ -675,6 +688,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
 
   @override
   void dispose() {
+    _title.removeListener(_capitalizeTitle);
     _title.dispose();
     _budget.dispose();
     _note.dispose();
@@ -712,6 +726,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
           : null;
       createdId = await widget.repository.createList(
         title: title.isEmpty ? null : title,
+        titleLocaleCode: widget.l10n.localeName,
         generatedTitle: generated,
         currencyCode: _currency,
         budgetMinorUnits: budgetMinor,
@@ -738,6 +753,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
       await widget.repository.updateTitle(
         existing.id,
         title.isEmpty ? null : title,
+        titleLocaleCode: widget.l10n.localeName,
       );
       if (budgetMinor != existing.budgetMinorUnits) {
         await widget.repository.updateBudget(existing.id, budgetMinor);
@@ -792,6 +808,9 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
               key: const Key('list_title_field'),
               controller: _title,
               textCapitalization: TextCapitalization.sentences,
+              inputFormatters: [
+                ListTitleFormatter(localeCode: l10n.localeName),
+              ],
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(
                 labelText: l10n.listTitleHint,

@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Көмек және қолдау",
+  "howToUseLabel": "Қалай пайдалану керек",
+  "guidePricesBody": "Дүкен бағасы енгізілсе, тауар сатып алынған деп белгіленеді; 0 да есептеледі. Үйдегі баға міндетті емес. Белгіні алып тастау үшін дүкен бағасын өшіріңіз."
 }

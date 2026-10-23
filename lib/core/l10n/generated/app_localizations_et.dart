@@ -1270,4 +1270,14 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Abi ja tugi';
+
+  @override
+  String get howToUseLabel => 'Kuidas kasutada';
+
+  @override
+  String get guidePricesBody =>
+      'Poehinna sisestamine märgib toote ostetuks; ka 0 loeb. Kodune hind on valikuline. Märke eemaldamiseks kustuta poehind.';
 }

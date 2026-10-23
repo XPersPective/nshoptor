@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "المساعدة والدعم",
+  "howToUseLabel": "طريقة الاستخدام",
+  "guidePricesBody": "يُعلَّم المنتج كمشترى عند إدخال سعر المتجر، حتى لو كان 0. سعر المنزل اختياري. امسح سعر المتجر لإزالة العلامة."
 }

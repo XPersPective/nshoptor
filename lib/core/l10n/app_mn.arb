@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Тусламж ба дэмжлэг",
+  "howToUseLabel": "Хэрхэн ашиглах вэ",
+  "guidePricesBody": "Дэлгүүрийн үнэ оруулбал барааг авсан гэж тэмдэглэнэ; 0 ч хүчинтэй. Гэрийн үнэ заавал оруулах шаардлагагүй. Тэмдэглэгээг арилгахын тулд дэлгүүрийн үнийг устгана уу."
 }

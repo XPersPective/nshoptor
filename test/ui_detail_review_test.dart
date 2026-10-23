@@ -208,6 +208,10 @@ void main() {
       await _center(tester, unchecked);
       await tester.tap(unchecked);
       await _settle(tester);
+      expect(find.byKey(const Key('item_actual_price_field')), findsOneWidget);
+      await tester.binding.handlePopRoute();
+      await _settle(tester);
+      expect(tester.widget<Checkbox>(unchecked).value, isFalse);
       final finish = find.byKey(const Key('detail_finish_button'));
       await tester.scrollUntilVisible(
         finish,

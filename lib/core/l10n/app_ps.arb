@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "مرسته او ملاتړ",
+  "howToUseLabel": "د کارولو لارښود",
+  "guidePricesBody": "د پلورنځي بیه توکی د اخیستل شوي په توګه نښه کوي؛ 0 هم منل کېږي. د کور بیه اختیاري ده. د نښې لرې کولو لپاره د پلورنځي بیه پاکه کړئ."
 }

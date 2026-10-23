@@ -1278,4 +1278,14 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Тусламж ба дэмжлэг';
+
+  @override
+  String get howToUseLabel => 'Хэрхэн ашиглах вэ';
+
+  @override
+  String get guidePricesBody =>
+      'Дэлгүүрийн үнэ оруулбал барааг авсан гэж тэмдэглэнэ; 0 ч хүчинтэй. Гэрийн үнэ заавал оруулах шаардлагагүй. Тэмдэглэгээг арилгахын тулд дэлгүүрийн үнийг устгана уу.';
 }

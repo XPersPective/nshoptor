@@ -87,6 +87,31 @@ void main() {
     expect(html, contains('Limit'));
   });
 
+  test('day and week PDF snapshots use inclusive start, exclusive end and one currency', () async {
+    final day = DateTime(2026, 10, 8);
+    await completed(day, 1500, name: 'DayStart');
+    await completed(DateTime(2026, 10, 8, 23, 59, 59), 2500, name: 'DayEnd');
+    await completed(DateTime(2026, 10, 9), 9900, name: 'NextDay');
+    await completed(DateTime(2026, 10, 7, 23, 59, 59), 100, name: 'PreviousDay');
+    await completed(day, 999999, name: 'OtherCurrency', currency: 'EUR');
+    final l10n = await AppLocalizations.delegate.load(const Locale('tr'));
+    final html = await buildPeriodReport(db, day, DateTime(2026, 10, 9), 'TRY', l10n, 'tr',
+      periodLabel: '<Bugün>');
+    expect(html, contains('&lt;Bugün&gt;'));
+    expect(html, contains('40,00'));
+    expect(html, isNot(contains('99,00')));
+    expect(html, isNot(contains('OtherCurrency')));
+    // No planned price is known: do not invent a zero estimate or saving.
+    expect(html, contains('${l10n.compareEstimated}: <b>—</b>'));
+    expect(html, contains('${l10n.compareDiff}: <b>—</b>'));
+    final week = SpendSpan.week.range(day);
+    final weekly = await buildPeriodReport(db, week.from, week.to, 'TRY', l10n, 'tr',
+      periodLabel: l10n.historyThisWeek);
+    expect(weekly, contains('140,00'));
+    await expectLater(buildPeriodReport(db, day, day, 'TRY', l10n, 'tr', periodLabel: 'invalid'),
+      throwsArgumentError);
+  });
+
   testWidgets('spending screen: overview, weekly and shopping limits, product spending by period', (tester) async {
     await tester.binding.setSurfaceSize(const Size(800, 3200));
     addTearDown(() => tester.binding.setSurfaceSize(null));

@@ -1272,4 +1272,14 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Pomoć i podrška';
+
+  @override
+  String get howToUseLabel => 'Kako koristiti';
+
+  @override
+  String get guidePricesBody =>
+      'Cijena u trgovini označava proizvod kao kupljen; računa se i 0. Kućna cijena nije obvezna. Izbrišite cijenu u trgovini da uklonite kvačicu.';
 }

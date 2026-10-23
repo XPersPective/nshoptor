@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Abi ja tugi",
+  "howToUseLabel": "Kuidas kasutada",
+  "guidePricesBody": "Poehinna sisestamine märgib toote ostetuks; ka 0 loeb. Kodune hind on valikuline. Märke eemaldamiseks kustuta poehind."
 }

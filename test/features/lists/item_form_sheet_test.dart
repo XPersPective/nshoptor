@@ -148,6 +148,25 @@ void main() {
     await disposeApp(tester);
   });
 
+  testWidgets('foreign shelf candidate cannot change name or persist a converted market price', (tester) async {
+    final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+    await openForm(tester, listId, shelfCandidate: (_) async => PriceCandidate(
+      value: DecimalFixed.fromInt(10), currencyCode: 'EUR', sourceLine: '10 EUR',
+      confidence: 'high', isUnitPrice: true, productName: 'Wrong currency product'));
+    await tester.enterText(find.byKey(const Key('item_name_field')), 'Süt');
+    await tester.tap(find.byKey(const Key('item_scan_actual_price')));
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(find.byKey(const Key('item_name_field'))).controller!.text, 'Süt');
+    expect(tester.widget<TextField>(find.byKey(const Key('item_actual_price_field'))).controller!.text, '');
+    await settleAndSave(tester);
+    expect(await db.select(db.plannedItems).get(), isEmpty);
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    await tester.enterText(find.byKey(const Key('item_actual_price_field')), '0');
+    await settleAndSave(tester);
+    expect((await db.select(db.purchaseEntries).get()).single.actualLineTotalMinorUnits, 0);
+    await disposeApp(tester);
+  });
+
   testWidgets(
     'overflow preview and save preserve typed input without writing',
     (tester) async {

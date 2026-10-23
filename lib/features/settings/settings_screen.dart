@@ -5,8 +5,11 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../ai/ai_client.dart';
+import '../engagement/review_moments.dart';
+import '../onboarding/first_run_guide.dart';
 import '../assistant/assistant_bubble.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/brand_wordmark.dart';
@@ -46,6 +49,8 @@ class SettingsScreen extends StatefulWidget {
     this.subscriptions,
     this.appIdentity,
     this.giftFlow,
+    this.shareApp,
+    this.openRatePage,
   });
 
   final SettingsRepository repository;
@@ -69,6 +74,8 @@ class SettingsScreen extends StatefulWidget {
 
   /// Verilirse üst çubukta ödüllü reklam hediye düğmesi (standart §5.2).
   final Widget? giftFlow;
+  final Future<void> Function(ShareParams)? shareApp;
+  final Future<void> Function()? openRatePage;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -79,6 +86,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
   static final Listenable _neverChanges = ChangeNotifier();
   SettingsRepository get _repo => widget.repository;
   bool _backupBusy = false;
+  bool _engagementBusy = false;
+
+  Future<void> _engage({required bool share}) async {
+    if (_engagementBusy) return;
+    setState(() => _engagementBusy = true);
+    try {
+      final identity = widget.appIdentity!;
+      final isIos = defaultTargetPlatform == TargetPlatform.iOS;
+      if (share) {
+        final hasStore = !isIos || (identity.appStoreId?.isNotEmpty ?? false);
+        final url = hasStore
+            ? StoreLinks.forIdentity(identity, isIos: isIos)
+            : 'https://xperspective.github.io/nshoptor/';
+        final box = context.findRenderObject() as RenderBox?;
+        final params = ShareParams(
+          text: '${identity.appName} — ${AppLocalizations.of(context).slogan}\n$url',
+          sharePositionOrigin: box == null ? null : box.localToGlobal(Offset.zero) & box.size,
+        );
+        await (widget.shareApp ?? (params) async { await SharePlus.instance.share(params); })(params);
+      } else {
+        await (widget.openRatePage ?? () => ReviewService().openRatePage(identity, isIos: isIos))();
+        ReviewMoments.instance?.manualRequest();
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context).saveFailed), showCloseIcon: true));
+      }
+    } finally {
+      if (mounted) setState(() => _engagementBusy = false);
+    }
+  }
 
   @override
   void initState() {
@@ -349,13 +388,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             _SectionTitle(
-                icon: Icons.delete_outline, label: l10n.deleteAllSection),
-            SwitchListTile(
-              key: const Key('delete_all_button'),
-              secondary: const Icon(Icons.delete_forever),
-              title: Text(l10n.deleteAllLabel),
-              value: false,
-              onChanged: (_) => _confirmDeleteAll(context),
+                icon: Icons.help_outline, label: l10n.helpSection),
+            ListTile(
+              key: const Key('settings_guide_row'),
+              leading: const Icon(Icons.menu_book_outlined),
+              title: Text(l10n.howToUseLabel),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => showFirstRunGuide(context),
             ),
 
             ValueListenableBuilder<bool>(
@@ -435,19 +474,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 key: const Key('settings_share_row'),
                 leading: const Icon(Icons.share_outlined),
                 title: Text(l10n.shareAction),
-                onTap: () => ShareService().shareApp(
-                  widget.appIdentity!,
-                  message: l10n.shareAction,
-                  isIos: defaultTargetPlatform == TargetPlatform.iOS,
-                ),
+                onTap: _engagementBusy ? null : () => _engage(share: true),
               ),
-              ListTile(
+              if (defaultTargetPlatform != TargetPlatform.iOS ||
+                  (widget.appIdentity!.appStoreId?.isNotEmpty ?? false)) ListTile(
                 key: const Key('settings_rate_row'),
                 leading: const Icon(Icons.star_outline),
                 title: Text(l10n.rateAction),
-                onTap: () => ReviewService()
-                    .openRatePage(widget.appIdentity!,
-                        isIos: defaultTargetPlatform == TargetPlatform.iOS),
+                onTap: _engagementBusy ? null : () => _engage(share: false),
               ),
             ] else
               ListTile(title: Text(l10n.aboutLicenses)),
@@ -458,6 +492,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(l10n.permissionsBody,
                   style: Theme.of(context).textTheme.bodySmall),
+            ),
+
+            // Destructive actions stay separate from optional assistance.
+            _SectionTitle(
+                icon: Icons.delete_outline, label: l10n.deleteAllLabel),
+            ListTile(
+              key: const Key('delete_all_button'),
+              leading: const Icon(Icons.delete_outline),
+              title: Text(l10n.deleteAllLabel),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => _confirmDeleteAll(context),
             ),
           ],
         ),
@@ -600,6 +645,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         key: const Key('delete_all_dialog_1'),
+        scrollable: true,
         title: Text(l10n.deleteAllLabel),
         content: Text(l10n.deleteAllConfirm),
         actions: [
@@ -620,6 +666,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         key: const Key('delete_all_dialog_2'),
+        scrollable: true,
         title: Text(l10n.deleteAllLabel),
         content: Text(l10n.deleteAllConfirm2),
         actions: [

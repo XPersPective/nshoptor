@@ -1270,4 +1270,14 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'ਮਦਦ ਅਤੇ ਸਹਾਇਤਾ';
+
+  @override
+  String get howToUseLabel => 'ਕਿਵੇਂ ਵਰਤਣਾ ਹੈ';
+
+  @override
+  String get guidePricesBody =>
+      'ਦੁਕਾਨ ਦੀ ਕੀਮਤ ਭਰਨ ਨਾਲ ਵਸਤੂ ਖਰੀਦੀ ਹੋਈ ਮੰਨੀ ਜਾਂਦੀ ਹੈ; 0 ਵੀ ਮੰਨਿਆ ਜਾਂਦਾ ਹੈ। ਘਰ ਦੀ ਕੀਮਤ ਚੋਣਵੀਂ ਹੈ। ਨਿਸ਼ਾਨ ਹਟਾਉਣ ਲਈ ਦੁਕਾਨ ਦੀ ਕੀਮਤ ਮਿਟਾਓ।';
 }

@@ -1278,4 +1278,14 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Ajuda i suport';
+
+  @override
+  String get howToUseLabel => 'Com s’utilitza';
+
+  @override
+  String get guidePricesBody =>
+      'El preu de botiga marca el producte com a comprat; 0 també compta. El preu de casa és opcional. Esborreu el preu de botiga per treure la marca.';
 }

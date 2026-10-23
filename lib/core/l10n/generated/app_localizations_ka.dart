@@ -1270,4 +1270,14 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'დახმარება და მხარდაჭერა';
+
+  @override
+  String get howToUseLabel => 'როგორ გამოვიყენოთ';
+
+  @override
+  String get guidePricesBody =>
+      'მაღაზიის ფასის შეყვანისას პროდუქტი ნაყიდად მოინიშნება; 0-იც ითვლება. სახლის ფასი არასავალდებულოა. მონიშვნის მოსახსნელად წაშალეთ მაღაზიის ფასი.';
 }

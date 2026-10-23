@@ -1235,4 +1235,14 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => '도움말 및 지원';
+
+  @override
+  String get howToUseLabel => '사용 방법';
+
+  @override
+  String get guidePricesBody =>
+      '매장 가격을 입력하면 구매한 것으로 표시되며 0도 유효합니다. 집에서 예상한 가격은 선택 사항입니다. 매장 가격을 지우면 체크가 해제됩니다.';
 }

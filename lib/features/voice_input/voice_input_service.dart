@@ -109,9 +109,7 @@ class FakeSpeechService implements SpeechService {
       _results.add(SpeechResult(transcript: text, finalResult: false));
 
   void emitFinal(String text) {
-    listening.value = false;
     _results.add(SpeechResult(transcript: text, finalResult: true));
-    _statuses.add(false);
   }
 
   void emitError(String message) {
@@ -129,6 +127,7 @@ class VoiceInputController extends ChangeNotifier {
     _errorSub = _service.errors.listen(handleError);
     _statusSub = _service.statuses.listen((active) {
       if (!_disposed && !active && state == VoiceInputState.listening) {
+        _sessionWatch.stop();
         state = VoiceInputState.idle; notifyListeners();
       }
     });
@@ -138,6 +137,12 @@ class VoiceInputController extends ChangeNotifier {
   bool _disposed = false;
   VoiceInputState state = VoiceInputState.idle;
   String transcript = '';
+  String _finalized = '';
+  bool _starting = false;
+  final Stopwatch _sessionWatch = Stopwatch();
+  Duration get recognitionDuration => _sessionWatch.elapsed;
+  Duration? firstResultLatency;
+  int finalizedSegments = 0;
   String? errorMessage;
 
   /// true: servis kullanılamıyor/izin yok → UI manuel giriş formunu açar.
@@ -164,7 +169,9 @@ class VoiceInputController extends ChangeNotifier {
   }
 
   Future<void> start({String locale = 'tr_TR'}) async {
-    if (_disposed || state == VoiceInputState.listening) return;
+    if (_disposed || _starting || state == VoiceInputState.listening) return;
+    _starting = true;
+    _finalized = transcript.trim();
     try {
       final locales = await _service.availableLocales();
       if (_disposed) return;
@@ -178,24 +185,33 @@ class VoiceInputController extends ChangeNotifier {
         if (!_disposed) handleError(downloading ? 'modelDownloading' : 'unsupportedLanguage');
         return;
       }
+      _sessionWatch..reset()..start();
+      firstResultLatency = null;
+      finalizedSegments = 0;
       state = VoiceInputState.listening;
       errorMessage = null;
       notifyListeners();
       await _service.start(chosen);
     } catch (_) { if (!_disposed) handleError('serviceUnavailable'); }
+    finally { _starting = false; }
   }
 
   void handleResult(SpeechResult result) {
     if (_disposed) return;
-    if (result.transcript.isNotEmpty) transcript = result.transcript;
-    if (result.finalResult) {
-      state = VoiceInputState.idle;
+    if (result.transcript.isNotEmpty) firstResultLatency ??= _sessionWatch.elapsed;
+    if (result.finalResult && result.transcript.isNotEmpty) {
+      finalizedSegments++;
+      _finalized = [_finalized, result.transcript.trim()].where((s) => s.isNotEmpty).join(' ');
+      transcript = _finalized;
+    } else if (result.transcript.isNotEmpty) {
+      transcript = [_finalized, result.transcript.trim()].where((s) => s.isNotEmpty).join(' ');
     }
     notifyListeners();
   }
 
   void handleError(String message) {
     if (_disposed) return;
+    _sessionWatch.stop();
     // Silence/no match is not a failure: the user just did not speak.
     if (const {'recognition_6', 'recognition_7', 'recognition_no_match'}.contains(message)) {
       state = VoiceInputState.idle;
@@ -208,6 +224,7 @@ class VoiceInputController extends ChangeNotifier {
   }
 
   Future<void> stop() async {
+    _sessionWatch.stop();
     try { await _service.stop(); }
     catch (_) {
       if (!_disposed) handleError('serviceUnavailable');
@@ -219,6 +236,7 @@ class VoiceInputController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    _sessionWatch.stop();
     _statusSub?.cancel();
     unawaited(_service.cancel().catchError((Object _) {}));
     _resultSub?.cancel();

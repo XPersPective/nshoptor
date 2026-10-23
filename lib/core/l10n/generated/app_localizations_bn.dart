@@ -1270,4 +1270,14 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'সাহায্য ও সহায়তা';
+
+  @override
+  String get howToUseLabel => 'যেভাবে ব্যবহার করবেন';
+
+  @override
+  String get guidePricesBody =>
+      'দোকানের দাম লিখলে পণ্য কেনা হয়েছে বলে চিহ্নিত হয়; 0-ও গণ্য হয়। বাড়ির দাম লেখা ঐচ্ছিক। টিক সরাতে দোকানের দাম মুছুন।';
 }

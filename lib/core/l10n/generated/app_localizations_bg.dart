@@ -1277,4 +1277,14 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Помощ и поддръжка';
+
+  @override
+  String get howToUseLabel => 'Как се използва';
+
+  @override
+  String get guidePricesBody =>
+      'Цена в магазина отбелязва продукта като купен; 0 също се зачита. Домашната цена е по избор. Изтрийте магазинната цена, за да махнете отметката.';
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../core/money/format_locale.dart';
 
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ import '../lists/lists_screen.dart';
 import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
 import '../history/history_screen.dart';
+import '../discover/discover_screen.dart';
 import '../onboarding/first_run_guide.dart';
 import '../subscription/plan_badge.dart';
 import '../subscription/subscription_paywall.dart';
@@ -45,6 +48,7 @@ import 'home_repository.dart';
 import '../../app/language_controller.dart';
 import '../../app/theme_mode_controller.dart';
 import '../lists/reminders/reminder_scheduler.dart';
+import '../lists/reminders/local_notifications_scheduler.dart';
 
 /// Alt navigasyonlu uygulama kabuğu (spec §9): Ana Sayfa, Listeler,
 /// Geçmiş, Keşfet, Ayarlar.
@@ -111,15 +115,61 @@ class HomeShell extends StatefulWidget {
 
 class _HomeShellState extends State<HomeShell> {
   int _tab = 0;
+  final _nativeReminders = LocalNotificationsScheduler();
+  StreamSubscription<int>? _notificationSubscription;
+  int? _openedReminder;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) {
-        showFirstRunGuide(context);
+        await showFirstRunGuide(context);
+      }
+      if (!mounted || widget.reminderScheduler != null) return;
+      _notificationSubscription = LocalNotificationsScheduler.selectedReminders.listen(
+        (id) => unawaited(_openReminder(id)),
+      );
+      try {
+        final id = await _nativeReminders.initialReminderId();
+        if (id != null && mounted) await _openReminder(id);
+      } catch (_) {
+        // Unsupported native notification services leave manual lists usable.
       }
     });
+  }
+
+  @override
+  void dispose() {
+    unawaited(_notificationSubscription?.cancel());
+    super.dispose();
+  }
+
+  Future<void> _openReminder(int id) async {
+    if (!mounted || _openedReminder != null) return;
+    _openedReminder = id;
+    try {
+      final reminder = await (widget.db.select(widget.db.reminders)..where((t) => t.id.equals(id))).getSingleOrNull();
+      if (!mounted) return;
+      if (reminder == null || reminder.status == 'cancelled') {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context).reminderCancelled), showCloseIcon: true));
+        return;
+      }
+      await widget.listRepository.getById(reminder.listId);
+      if (!mounted) return;
+      await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ListDetailScreen(
+        db: widget.db, listRepository: widget.listRepository,
+        listId: reminder.listId, reminderScheduler: _nativeReminders,
+      )));
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context).saveFailed), showCloseIcon: true));
+      }
+    } finally {
+      _openedReminder = null;
+    }
   }
 
   bool _inputBusy = false;
@@ -184,7 +234,7 @@ class _HomeShellState extends State<HomeShell> {
       HistoryPlaceholder(db: widget.db),
       widget.appIdentity?.otherAppsUrl == null
           ? const _DiscoverPlaceholder()
-          : OtherAppsPage(
+          : DiscoverScreen(
               identity: widget.appIdentity!,
               repository: OtherAppsRepository(
                 appsUrl: widget.appIdentity!.otherAppsUrl!,

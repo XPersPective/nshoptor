@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/shopping_mode/summary/result_repository.dart';
 import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
-import 'package:nshoptor/features/shopping_mode/item_status.dart';
 import 'package:nshoptor/core/money/decimal_fixed.dart';
 
 void main() {
@@ -162,7 +161,10 @@ void main() {
     final bought = await addItem('Bought', '1', 'piece', 3000);
     await purchase(bought, qty: '1', lineTotalMinor: 3200);
     final unknown = await addItem('Unknown', '1', 'piece', 500);
-    await ShoppingRepository(db).setItemStatus(unknown.id, ItemStatus.inCart);
+    // Historical imported rows may contain an old price-free status.
+    // New UI/repository calls cannot create that state.
+    await (db.update(db.plannedItems)..where((t) => t.id.equals(unknown.id))).write(
+      const PlannedItemsCompanion(status: Value('inCart')));
     final result = await repo.compute(listId);
     expect(result.varianceMinor, 200); expect(result.unpurchasedPlannedMinor, 8000);
     expect(result.hasUnknownActual, isTrue);

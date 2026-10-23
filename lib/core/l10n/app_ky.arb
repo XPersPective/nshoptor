@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Жардам жана колдоо",
+  "howToUseLabel": "Кантип колдонуу керек",
+  "guidePricesBody": "Дүкөн баасы киргизилсе, товар сатып алынган деп белгиленет; 0 да эсептелет. Үйдөгү баа милдеттүү эмес. Белгини алып салуу үчүн дүкөн баасын өчүрүңүз."
 }

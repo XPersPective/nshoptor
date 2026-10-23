@@ -2,6 +2,7 @@ import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/quantity/unit_code.dart';
 import '../ocr_text_source.dart';
+import '../ocr_currency.dart';
 
 /// Raf etiketinden çıkarılan fiyat adayı (spec §6.8).
 class PriceCandidate {
@@ -43,6 +44,11 @@ class ShelfPriceExtractor {
 
   /// Etikette bulunan tüm fiyat adayları; konuma göre (üst-sol) sıralı.
   List<PriceCandidate> extract(List<OcrLine> lines) {
+    final evidence = detectOcrCurrency(lines.map((l) => l.text).join('\n'), fallback: defaultCurrency);
+    if (evidence.needsConfirmation) return const [];
+    if (evidence.code != null && evidence.code != defaultCurrency) {
+      return ShelfPriceExtractor(defaultCurrency: evidence.code!).extract(lines);
+    }
     final candidates = <PriceCandidate>[];
     for (final line in lines) {
       // Hacim/ağırlık miktarı görünen satırlarda (ör. '1 LT SÜT') tam sayı

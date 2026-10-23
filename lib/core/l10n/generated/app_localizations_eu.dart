@@ -1276,4 +1276,14 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Laguntza eta babesa';
+
+  @override
+  String get howToUseLabel => 'Nola erabili';
+
+  @override
+  String get guidePricesBody =>
+      'Dendako prezioak produktua erosita markatzen du; 0 ere baliozkoa da. Etxeko prezioa aukerakoa da. Ezabatu dendako prezioa marka kentzeko.';
 }

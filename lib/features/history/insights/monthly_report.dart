@@ -26,9 +26,27 @@ Future<String> buildMonthlyReport(
   required String monthLabel,
   bool rtl = false,
   int? limitMinor,
-}) async {
-  final from = DateTime(month.year, month.month);
-  final to = DateTime(month.year, month.month + 1);
+}) => buildPeriodReport(
+  db, DateTime(month.year, month.month), DateTime(month.year, month.month + 1),
+  currencyCode, l10n, locale, periodLabel: monthLabel,
+  reportName: l10n.monthlyReportAction, rtl: rtl, limitMinor: limitMinor,
+);
+
+/// A consistent snapshot for a day, week, month or other [from, to) period.
+/// Callers pass local calendar boundaries; currencies are never mixed.
+Future<String> buildPeriodReport(
+  AppDatabase db,
+  DateTime from,
+  DateTime to,
+  String currencyCode,
+  AppLocalizations l10n,
+  String locale, {
+  required String periodLabel,
+  String? reportName,
+  bool rtl = false,
+  int? limitMinor,
+}) => db.transaction(() async {
+  if (!to.isAfter(from)) throw ArgumentError('empty_report_period');
   final insights = InsightsRepository(db);
   final points = (await insights.completedSpend(currencyCode))
       .where((p) => !p.at.toLocal().isBefore(from) && p.at.toLocal().isBefore(to))
@@ -47,18 +65,23 @@ Future<String> buildMonthlyReport(
 
   final rows = <String>[];
   var planned = 0, actual = 0, diff = 0;
+  var hasPlan = false, hasComparison = false, hasActual = false, unknownActual = false;
   for (final p in points) {
     final list = byId[p.listId];
     if (list == null) continue;
     final r = await results.compute(list.id);
     actual += p.actualMinor;
+    hasPlan = hasPlan || r.hasKnownPlan;
+    hasComparison = hasComparison || r.hasComparison;
+    hasActual = hasActual || p.hasKnownActual;
+    unknownActual = unknownActual || p.hasUnknownActual;
     if (r.hasKnownPlan) planned += r.plannedTotalMinor;
     if (r.hasComparison) diff += r.varianceMinor;
     rows.add(row([
       p.at.toLocal().toIso8601String().split('T').first,
       list.title ?? list.generatedTitle ?? l10n.listsTitle,
       money(r.hasKnownPlan ? r.plannedTotalMinor : null),
-      money(p.actualMinor),
+      p.hasKnownActual ? '${money(p.actualMinor)}${p.hasUnknownActual ? ' + —' : ''}' : '—',
       money(r.hasComparison ? r.varianceMinor : null),
     ]));
   }
@@ -71,11 +94,11 @@ Future<String> buildMonthlyReport(
   ];
 
   final limit = limitMinor;
-  final limitLine = limit == null
+  final limitLine = limit == null || !hasActual || unknownActual
       ? ''
       : '<p>${e(l10n.monthlyLimitTitle)}: ${e(money(limit))} · ${e(actual > limit ? l10n.monthlyLimitOver(money(actual - limit)) : l10n.monthlyLimitLeft(money(limit - actual)))}</p>';
   final headers = [l10n.reportDateColumn, l10n.reportShoppingColumn, l10n.compareEstimated, l10n.compareActual, l10n.compareDiff];
-  final title = '${l10n.monthlyReportAction} · $monthLabel';
+  final title = '${reportName ?? l10n.reportPdfAction} · $periodLabel';
   return '''<!doctype html><html lang="${e(l10n.localeName)}" dir="${rtl ? 'rtl' : 'ltr'}">
 <meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
 <title>${e(title)}</title><style>
@@ -85,13 +108,38 @@ body{font:12px sans-serif;color:#111}h1{font-size:20px;overflow-wrap:anywhere}h2
 table{border-collapse:collapse;width:100%;table-layout:fixed}th,td{border:1px solid #bbb;padding:7px;text-align:start;overflow-wrap:anywhere}
 thead{display:table-header-group}tr{break-inside:avoid}bdi{unicode-bidi:isolate}
 </style><body><p class="brand"><span>N</span>Shoptor</p><h1>${e(title)}</h1><p>${e(currencyCode)} · ${e(l10n.reportNotInvoice)}</p>
-<div class="totals"><div>${e(l10n.compareEstimated)}: <b>${e(money(planned))}</b></div>
-<div>${e(l10n.compareActual)}: <b>${e(money(actual))}</b></div>
-<div>${e(l10n.compareDiff)}: <b>${e(money(diff))}</b></div></div>$limitLine
+<div class="totals"><div>${e(l10n.compareEstimated)}: <b>${e(money(hasPlan ? planned : null))}</b></div>
+<div>${e(l10n.compareActual)}: <b>${e(hasActual ? '${money(actual)}${unknownActual ? ' + —' : ''}' : '—')}</b></div>
+<div>${e(l10n.compareDiff)}: <b>${e(money(hasComparison ? diff : null))}</b></div></div>$limitLine
 <table><thead><tr>${headers.map((s) => '<th>${e(s)}</th>').join()}</tr></thead>
 <tbody>${rows.isEmpty ? '<tr><td colspan="5">${e(l10n.noPurchasesNote)}</td></tr>' : rows.join()}</tbody></table>
 ${categoryRows.isEmpty ? '' : '<h2>${e(l10n.categoryLabel)}</h2><table><tbody>${categoryRows.join()}</tbody></table>'}
 </body></html>''';
+});
+
+/// Uses the same native print/save flow as individual shopping reports.
+Future<void> showPeriodReport(
+  BuildContext context, AppDatabase db, DateTime from, DateTime to,
+  String currencyCode, {required String periodLabel}
+) async {
+  final l10n = AppLocalizations.of(context);
+  final locale = formatLocaleCode(context);
+  final rtl = Directionality.of(context) == TextDirection.rtl;
+  try {
+    final html = await buildPeriodReport(db, from, to, currencyCode, l10n, locale,
+      periodLabel: periodLabel, rtl: rtl);
+    if (!context.mounted) return;
+    await pdfPrintChannel.invokeMethod<void>('print', {
+      'html': html,
+      'title': 'NShoptor-${from.toIso8601String().split('T').first}',
+    });
+  } catch (_) {
+    if (context.mounted) {
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..showSnackBar(SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true));
+    }
+  }
 }
 
 /// Android yazdırma iletişim kutusunu açar (alışveriş raporuyla aynı kanal).

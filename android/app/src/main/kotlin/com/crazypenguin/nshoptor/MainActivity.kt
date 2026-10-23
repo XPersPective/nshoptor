@@ -39,6 +39,18 @@ class MainActivity : FlutterActivity() {
     private var speechGeneration = 0L
     private var speechActive = false
     private var recognizerUsed = false
+    private var speechRequested = false
+    private var speechLocale: String? = null
+    private var speechPartial = ""
+    private var segmentRunning = false
+    private val speechRestart = Runnable {
+        if (speechRequested && speechActive && speechResumed) {
+            try { beginSpeechSegment() } catch (_: Exception) {
+                emitSpeech("error", mapOf("code" to "serviceUnavailable"))
+                finishSpeech()
+            }
+        }
+    }
     private var speechResumed = false
     private var speechInitResult: MethodChannel.Result? = null
     private var speechLocalesResult: MethodChannel.Result? = null
@@ -48,7 +60,10 @@ class MainActivity : FlutterActivity() {
     private var speechPending = emptyList<String>()
     private val speechTimeout = Runnable {
         if (speechActive) {
-            emitSpeech("error", mapOf("code" to "recognition_timeout"))
+            if (speechPartial.isNotBlank()) {
+                emitSpeech("result", mapOf("text" to speechPartial, "final" to true))
+                speechPartial = ""
+            }
             finishSpeech()
             recognizer?.cancel()
         } else {
@@ -86,7 +101,13 @@ class MainActivity : FlutterActivity() {
                         "stop" -> if (!speechActive) result.success(null) else {
                             speechStopResult?.success(null)
                             speechStopResult = result
-                            recognizer?.stopListening()
+                            speechRequested = false
+                            mainHandler.removeCallbacks(speechRestart)
+                            if (segmentRunning) {
+                                recognizer?.stopListening()
+                                // Bound only the final-result wait after a manual stop.
+                                mainHandler.postDelayed(speechTimeout, 3_000)
+                            } else { finishSpeech() }
                         }
                         "cancel" -> { cancelSpeech(); result.success(null) }
                         else -> result.notImplemented()
@@ -181,6 +202,8 @@ class MainActivity : FlutterActivity() {
         .putExtra(RecognizerIntent.EXTRA_LANGUAGE, locale)
         .putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
         .putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
+        .putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 5000L)
+        .putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 3000L)
 
     private fun installedSpeechLocales(result: MethodChannel.Result) {
         val engine = recognizer ?: run { result.success(emptyList<String>()); return }
@@ -236,24 +259,33 @@ class MainActivity : FlutterActivity() {
         if (locale == null || speechLocales.none { tag(it) == tag(locale) }) {
             result.error("unsupportedLanguage", "No installed model for this language", null); return
         }
-        // A fresh recognizer owns its callback binder: old provider events cannot reach a new listener.
-        // An unused one is kept: destroying it right after creation disconnects the provider (error 11).
+        speechLocale = locale
+        speechRequested = true
+        speechActive = true
+        emitSpeech("status", mapOf("listening" to true))
+        beginSpeechSegment()
+        result.success(null)
+    }
+    private fun beginSpeechSegment() {
+        // Each segment owns its callbacks. Late provider events are ignored.
         if (recognizerUsed) {
             recognizer?.destroy()
             recognizer = SpeechRecognizer.createOnDeviceSpeechRecognizer(this)
         }
         recognizerUsed = true
         speechGeneration++
+        speechPartial = ""
+        segmentRunning = true
         recognizer?.setRecognitionListener(speechListener(speechOwner, speechGeneration))
-        speechActive = true
-        // ponytail: cap a stuck provider/session at 60s; make configurable for long dictation.
-        mainHandler.postDelayed(speechTimeout, 60_000)
-        emitSpeech("status", mapOf("listening" to true))
-        recognizer?.startListening(speechIntent(locale))
-        result.success(null)
+        recognizer?.startListening(speechIntent(speechLocale!!))
+    }
+    private fun continueSpeech() {
+        segmentRunning = false
+        if (speechRequested && speechResumed) mainHandler.postDelayed(speechRestart, 180)
+        else finishSpeech()
     }
     private fun speechListener(owner: Long, generation: Long) = object : RecognitionListener {
-        fun current() = owner == speechOwner && generation == speechGeneration && speechActive
+        fun current() = owner == speechOwner && generation == speechGeneration && speechActive && segmentRunning
         override fun onReadyForSpeech(params: Bundle?) { if (current()) emitSpeech("status", mapOf("listening" to true)) }
         override fun onBeginningOfSpeech() {}
         override fun onRmsChanged(rms: Float) {}
@@ -262,6 +294,14 @@ class MainActivity : FlutterActivity() {
         override fun onEvent(event: Int, params: Bundle?) {}
         override fun onError(error: Int) {
             if (!current()) return
+            if (error == SpeechRecognizer.ERROR_NO_MATCH || error == SpeechRecognizer.ERROR_SPEECH_TIMEOUT) {
+                if (speechPartial.isNotBlank()) {
+                    emitSpeech("result", mapOf("text" to speechPartial, "final" to true))
+                    speechPartial = ""
+                }
+                continueSpeech()
+                return
+            }
             val code = when (error) {
                 SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED, SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE -> "unsupportedLanguage"
                 SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "serviceUnavailablePermission"
@@ -273,21 +313,28 @@ class MainActivity : FlutterActivity() {
         override fun onResults(results: Bundle?) {
             if (!current()) return
             val text = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull().orEmpty()
-            if (text.isEmpty()) emitSpeech("error", mapOf("code" to "recognition_no_match"))
-            else emitSpeech("result", mapOf("text" to text, "final" to true))
-            finishSpeech()
+            val finalText = text.ifBlank { speechPartial }
+            if (finalText.isNotBlank()) emitSpeech("result", mapOf("text" to finalText, "final" to true))
+            speechPartial = ""
+            continueSpeech()
         }
         override fun onPartialResults(results: Bundle?) {
             if (!current()) return
             val text = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull().orEmpty()
-            if (text.isNotEmpty()) emitSpeech("result", mapOf("text" to text, "final" to false))
+            if (text.isNotEmpty()) {
+                speechPartial = text
+                emitSpeech("result", mapOf("text" to text, "final" to false))
+            }
         }
     }
     private fun emitSpeech(type: String, values: Map<String, Any>) {
         speechChannel?.invokeMethod("event", values + mapOf("type" to type, "sessionId" to speechOwner))
     }
     private fun finishSpeech() {
+        speechRequested = false
         speechActive = false
+        segmentRunning = false
+        mainHandler.removeCallbacks(speechRestart)
         mainHandler.removeCallbacks(speechTimeout)
         emitSpeech("status", mapOf("listening" to false))
         speechStopResult?.success(null)

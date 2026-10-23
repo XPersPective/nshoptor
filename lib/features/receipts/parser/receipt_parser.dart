@@ -5,6 +5,8 @@ import '../../../core/money/currency.dart';
 import '../../../core/util/normalize_name.dart';
 import '../../../data/db/app_database.dart';
 import '../ocr_text_source.dart';
+import '../ocr_currency.dart';
+import '../../../core/quantity/unit_code.dart';
 import 'receipt_parse_result.dart';
 
 /// Deterministik fiş ayrıştırıcı (spec §6.9).
@@ -29,9 +31,7 @@ class ReceiptParser {
     'toplam',
     'genel toplam',
     'total',
-    'nakit',
-    'kasa',
-    'kart',
+    'grand total',
   ];
   static const List<String> _subtotalMarkers = ['ara toplam', 'aratoplam'];
   static const List<String> _discountMarkers = ['indirim', 'iskonto'];
@@ -70,11 +70,15 @@ class ReceiptParser {
   static final RegExp _taxNoPattern = RegExp(r'\b\d{10,11}\b');
 
   ReceiptParseResult parse(OcrScanResult scan) {
+    final evidence = detectOcrCurrency(scan.lines.map((l) => l.text).join('\n'), fallback: currency);
+    if (evidence.code != null && evidence.code != currency) {
+      return ReceiptParser(currency: evidence.code!, reconciliationToleranceMinor: reconciliationToleranceMinor).parse(scan);
+    }
     final lines = _mergeWrappedLines(_reconstructRows(scan.lines));
 
     final storeCandidates = <String>[];
     DateTime? dateCandidate;
-    String? currencyCandidate = currency;
+    String? currencyCandidate = evidence.needsConfirmation ? null : (evidence.code ?? currency);
     int? subtotalMinor;
     int? discountMinor;
     int? taxMinor;
@@ -88,8 +92,10 @@ class ReceiptParser {
           .trim()
           .replaceFirst(RegExp(r'^[\s*#•·-]+$'), '')
           .replaceFirst(RegExp(r'[*\s]+$'), '')
+          .replaceAll(RegExp(r'[₺€£$]'), '')
+          .replaceFirst(RegExp(r'(?<=\d)\s*(?:[A-Z]{3}|TL)\s*$'), '')
           .trim();
-      final lower = text.toLowerCase();
+      final lower = text.replaceAll('İ', 'i').toLowerCase();
       if (text.isEmpty) continue;
 
       // Tarih/saat adayı.
@@ -104,12 +110,12 @@ class ReceiptParser {
         continue;
       }
 
-      if (_skipWords.any(lower.contains)) continue;
+      if (_isStructuralLine(lower) || _isPaymentMetadata(lower)) continue;
 
       // Toplamsal satırlar.
       final amount = _lastAmountMinor(text);
       if (amount != null) {
-        if (_subtotalMarkers.any(lower.contains)) {
+        if (_hasHeader(lower, _subtotalMarkers)) {
           subtotalMinor ??= amount;
           continue;
         }
@@ -117,11 +123,11 @@ class ReceiptParser {
           discountMinor = (discountMinor ?? 0) + amount;
           continue;
         }
-        if (_taxMarkers.any(lower.contains)) {
+        if (_hasHeader(lower, _taxMarkers)) {
           taxMinor ??= amount;
           continue;
         }
-        if (_totalMarkers.any(lower.contains) && !lower.contains('ara')) {
+        if (_isTotalLine(lower)) {
           totalMinor = amount;
           continue;
         }
@@ -155,6 +161,7 @@ class ReceiptParser {
       storeCandidates: storeCandidates,
       dateCandidate: dateCandidate,
       currencyCandidate: currencyCandidate,
+      currencyNeedsConfirmation: evidence.needsConfirmation,
       subtotalMinor: subtotalMinor,
       discountMinor: discountMinor,
       taxMinor: taxMinor,
@@ -229,13 +236,14 @@ class ReceiptParser {
           .replaceFirst(RegExp(r'[\s*]+$'), '')
           .trim();
       if (text.isEmpty) continue;
-      final lower = text.toLowerCase();
+      final lower = text.replaceAll('İ', 'i').toLowerCase();
       final structural =
-          _skipWords.any(lower.contains) ||
-          _subtotalMarkers.any(lower.contains) ||
+          _isStructuralLine(lower) ||
+          _hasHeader(lower, _subtotalMarkers) ||
           _isDiscountLine(lower) ||
-          _taxMarkers.any(lower.contains) ||
-          _totalMarkers.any(lower.contains) ||
+          _hasHeader(lower, _taxMarkers) ||
+          _isTotalLine(lower) ||
+          _isPaymentMetadata(lower) ||
           _phonePattern.hasMatch(text) ||
           _cardMaskPattern.hasMatch(text) ||
           _taxNoPattern.hasMatch(text);
@@ -292,7 +300,7 @@ class ReceiptParser {
   /// `EKMEK 15,00`. Dönüşüm: name + opsiyonel miktar/birim fiyat + son fiyat.
   ReceiptLineCandidate? _parseProductLine(String text) {
     final matches = RegExp(
-      r'(\d+(?:[.,]\d+)?)(kg|g|lt|l|adet|x)?\s*(?:x|X|×)\s*'
+      r'(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml|adet|x)?\s*(?:x|X|×)\s*'
       '($_amountPattern)\\s+($_amountPattern)\$',
       caseSensitive: false,
     ).allMatches(text);
@@ -308,6 +316,11 @@ class ReceiptParser {
         name: name,
         normalizedName: normalizeName(name),
         quantity: qty,
+        unitCode: switch (m.group(2)?.toLowerCase()) {
+          'kg' => UnitCode.kilogram, 'gr' || 'g' => UnitCode.gram,
+          'lt' || 'l' => UnitCode.litre, 'ml' => UnitCode.mililitre,
+          'adet' || 'x' => UnitCode.adet, _ => null,
+        },
         unitPriceMinor: unitPrice,
         lineTotalMinor: lineTotal ?? 0,
         confidence: (qty != null && unitPrice != null && lineTotal != null)
@@ -336,6 +349,19 @@ class ReceiptParser {
     }
     return null;
   }
+
+  bool _isTotalLine(String text) => _totalMarkers.any((marker) =>
+      RegExp(r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|$)', caseSensitive: false).hasMatch(text));
+
+  bool _hasHeader(String text, List<String> markers) => markers.any((marker) =>
+    RegExp(r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|\(|%|$)', caseSensitive: false).hasMatch(text));
+
+  bool _isStructuralLine(String text) => _hasHeader(text, _skipWords) ||
+    text.contains('www.') || text.contains('.com');
+
+  bool _isPaymentMetadata(String text) => RegExp(r'^kasa\s*(?:no\b|:|\d)', caseSensitive: false).hasMatch(text) || RegExp(
+      r'^[*#•\s]*(?:nakit|kredi\s+kart[ıi]|banka\s+kart[ıi]|kart|visa|mastercard|cash|change|para\s*[üu]st[üu]|[öo]denen|payment|paid)(?=\s|:|$)',
+      caseSensitive: false).hasMatch(text);
 
   int? _lastAmountMinor(String text) {
     final match = RegExp(

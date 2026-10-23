@@ -1270,4 +1270,14 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Hjælp og support';
+
+  @override
+  String get howToUseLabel => 'Sådan bruger du appen';
+
+  @override
+  String get guidePricesBody =>
+      'En butikspris markerer varen som købt; 0 tæller også. Hjemmeprisen er valgfri. Slet butiksprisen for at fjerne markeringen.';
 }

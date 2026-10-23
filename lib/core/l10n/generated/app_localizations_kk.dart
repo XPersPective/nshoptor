@@ -1271,4 +1271,14 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Көмек және қолдау';
+
+  @override
+  String get howToUseLabel => 'Қалай пайдалану керек';
+
+  @override
+  String get guidePricesBody =>
+      'Дүкен бағасы енгізілсе, тауар сатып алынған деп белгіленеді; 0 да есептеледі. Үйдегі баға міндетті емес. Белгіні алып тастау үшін дүкен бағасын өшіріңіз.';
 }

@@ -1,6 +1,8 @@
 import '../../../core/money/decimal_fixed.dart';
 import '../../../core/quantity/unit_code.dart';
 
+enum VoicePriceDestination { planned, actual }
+
 /// Ses komutundan çıkarılan ürün adayı (spec §6.7).
 ///
 /// Alanlar adaydır: belirsiz olanlar null kalır ve kullanıcı önizleme
@@ -15,6 +17,7 @@ class ParsedItemCandidate {
     this.unitPrice,
     this.currencyCode,
     this.isUnitPrice,
+    this.priceDestination = VoicePriceDestination.planned,
     this.brand,
     this.category,
   });
@@ -30,7 +33,12 @@ class ParsedItemCandidate {
 
   /// true: fiyat BİRİM fiyat olarak anlaşıldı (ör. "kilosu kırk beş lira");
   /// false: satır toplamı olarak anlaşıldı.
+  /// Null with a price requires the user to choose its meaning before saving.
   final bool? isUnitPrice;
+
+  final VoicePriceDestination priceDestination;
+
+  bool get requiresPriceConfirmation => unitPrice != null && isUnitPrice == null;
 
   bool get fullyParsed =>
       name.trim().isNotEmpty && quantity != null && unitCode != null;

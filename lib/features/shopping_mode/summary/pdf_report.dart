@@ -10,6 +10,7 @@ import '../../../core/money/format_locale.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../data/db/app_database.dart';
 import 'result_repository.dart';
+import '../item_status.dart';
 
 const pdfPrintChannel = MethodChannel('nshoptor/print');
 
@@ -39,7 +40,7 @@ Future<String> buildPdfReport(AppDatabase db, int listId, AppLocalizations l10n,
       money(!r.notTaken && r.actualKnown && r.plannedKnown ? r.lineVarianceMinor : null)]));
   }
   for (final entry in entries.where((entry) => entry.plannedItemId == null)) {
-    final known = entry.grossTotalMinorUnits != null || entry.actualLineTotalMinorUnits != 0 || entry.source == 'receiptOcr';
+    final known = hasMarketPrice(entry);
     rows.add(row([entry.name, l10n.compareUnplanned, qty(entry.actualQuantity, entry.actualUnitCode),
       '—', money(known ? entry.actualLineTotalMinorUnits : null), '—']));
   }

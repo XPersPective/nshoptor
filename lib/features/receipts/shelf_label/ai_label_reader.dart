@@ -2,6 +2,7 @@ import '../../../core/money/decimal_fixed.dart';
 import '../../../core/quantity/unit_code.dart';
 import '../../ai/ai_client.dart';
 import 'price_candidates.dart';
+import '../ocr_currency.dart';
 
 /// Raf etiketi: cihazda okunan OCR metninden fiyatı AI ile çıkarır (PB-052).
 /// Fotoğraf gönderilmez, yalnız metin. Sonuçlar yalnız adaydır; kullanıcı
@@ -18,6 +19,11 @@ class AiLabelReader {
   Future<List<PriceCandidate>> read(String ocrText, {required String currencyCode}) async {
     final text = ocrText.trim();
     if (!ai.enabled || text.isEmpty) return const [];
+    final evidence = detectOcrCurrency(text, fallback: currencyCode);
+    if (evidence.conflictsWith(currencyCode)) {
+      lastResult = const AiFailed('currency_mismatch');
+      return const [];
+    }
     final AiResult r;
     try { r = await ai.request('read_label', {'text': text}, locale: localeCode); }
     catch (_) { lastResult = const AiFailed('request'); return const []; }

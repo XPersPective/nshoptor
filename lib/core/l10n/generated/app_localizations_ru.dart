@@ -1272,4 +1272,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => 'Помощь и поддержка';
+
+  @override
+  String get howToUseLabel => 'Как пользоваться';
+
+  @override
+  String get guidePricesBody =>
+      'Цена в магазине отмечает товар как купленный; 0 тоже учитывается. Домашняя цена необязательна. Удалите цену в магазине, чтобы снять отметку.';
 }

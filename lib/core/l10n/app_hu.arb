@@ -396,5 +396,8 @@
 ,
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
-  "nextMonthAction": "Next month"
+  "nextMonthAction": "Next month",
+  "helpSection": "Súgó és támogatás",
+  "howToUseLabel": "Használati útmutató",
+  "guidePricesBody": "A bolti ár megadása megvásároltnak jelöli a tételt; a 0 is érvényes. Az otthoni ár nem kötelező. A jelölés törléséhez töröld a bolti árat."
 }

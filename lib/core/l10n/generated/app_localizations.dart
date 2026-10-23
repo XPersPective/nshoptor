@@ -2611,6 +2611,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next month'**
   String get nextMonthAction;
+
+  /// No description provided for @helpSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Help and support'**
+  String get helpSection;
+
+  /// No description provided for @howToUseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'How to use'**
+  String get howToUseLabel;
+
+  /// No description provided for @guidePricesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A market price marks the item purchased; 0 counts too. The home price is optional. Clear the market price to uncheck the item.'**
+  String get guidePricesBody;
 }
 
 class _AppLocalizationsDelegate

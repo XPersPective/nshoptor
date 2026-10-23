@@ -1227,4 +1227,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get nextMonthAction => 'Next month';
+
+  @override
+  String get helpSection => '帮助与支持';
+
+  @override
+  String get howToUseLabel => '使用方法';
+
+  @override
+  String get guidePricesBody => '输入商店价格后，商品会标记为已购买，0也有效。家中预估价为选填。清除商店价格即可取消勾选。';
 }
