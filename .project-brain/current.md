@@ -1,10 +1,24 @@
 # Current Architecture
 
 ## Runtime
+- Native followup: existingUSD/TR QA list400g/home350 retained aftersave/reopen, marketfocus=true; market320→800/kg, savedsummary350/320/−30, checked=true (`price-market-saved.xml`). Pages monthlycopy bcc16c3 nowlive, Actions40000016783 success and TR/ENHTTP200 checked. Latest audit: docs/audits/price-contract-2026-10-23.md. Brainvalidate28open/2ADR/0fail/1warn (backlogsize); typedUI criteria nowincludeaccessibility. Production/iOS/realOCR/paymentgates remainopen.
+- Source checkpoint bcc16c3 (R51–R60):535full Flutter tests passed/2opt-in skipped; analyzerclean;37server tests passed;23history/homefollowup tests passed after glyph/date visualfix. TR/EN8screens each recaptured in artifacts/store/2026-10-23-pricing/. Android x64 debug1.2.8+16 built97.1s and adb no-streaming upgrade succeeded; nativeprice journey pending. APK SHA256 D84C539991869487A6A0DB2BAACBAC1D7C4DCFFC19458C02786715CEBC6C391D. Site147checks pass; remote monthlysite/serverv2 not yet published at this exact checkpoint.
+- R51–R60 architecture: monthly-only new offers; optional shopping date/time and date/A–Z/manual sorting; manual price defaults to selected-quantity total. Schema3 nullableactualpricingInputMode preserves legacy money. Current verified results are the newerbcc16c3 checkpoint above; earlier focused45/49test checkpoints are superseded. Website monthlycopy now live: Actions40000016783 success, TR/ENHTTP200 literalmonthlycopyreadback. Serverv2/mobile publicupdate still notdeployed.
+- 2026-10-23 source checkpoint (acceptance still open): Flutter full suite493passed/2opt-in skipped; analyzerclean. NativeAPK com.crazypenguin.nshoptor1.2.8+16 built(targetSDK36) and installed on API36 emulator; native journey checks remain. See docs/audits/production-2026-10-23.md for precise evidence and blockers. Earlier Runtime/STALE sections below are historical and must not override this checkpoint.
 - OBSERVED (historical baseline): Flutter 3.47.x/Dart null safety, Material 3; `lib/main.dart` -> `lib/app/`. 2026-10-15: `flutter test --no-pub` 392 geçti; görüntülü detail/form/klavye/tamamlama kontrolleri 3 viewport geçti, analyze hatasız, Android x64 debug APK derlendi ve emülatöre kuruldu (SA-005).
 
 ## Map
 - `lib/main.dart` — uygulama boot, DB ve root wiring
+- `lib/core/text/list_title.dart` — Turkish-aware list normalization/input formatter
+- `lib/features/discover/`, `lib/features/engagement/` — platform catalogue, safe store actions and persistent review policy
+- `lib/features/lists/reminders/` — on-device notification permission/scheduling, DB compensation and tap payload
+- `website/`, `tool/site/`, `.github/workflows/pages.yml` — deployed TR/EN GitHub Pages site
+- `docs/spec/production-master-prompt-tr.md` — user scope R01–R60 and successor prompt
+- `docs/spec/price-input-contract.md` — total/unit defaults, source bases, discounts, schema3 and separate estimated/actual graph rules
+- `lib/core/calc/price_input.dart`, `lib/features/lists/list_scheduling.dart` — fixed-point price basis conversion and optional-date/sorting UI
+- `docs/store/preview-2026-10-23.md`, `artifacts/store/2026-10-23/` — current TR/EN rendered assets/video drafts
+- `tool/store/read_play.rb`, `tool/store/make_preview.py` — safe release readback and reproducible marketing draft generation
+- `server/src/currencies.js` — literal money currency set, tested against Flutter core
 - `lib/app/` — NShoptorApp, dil/tema/default controller'ları
 - `lib/features/home/` — HomeShell ve ana sayfa sekme/kartları
 - `lib/features/lists/` — listeler, `ListDetailScreen`, `ItemFormSheet`, repository ve gestures

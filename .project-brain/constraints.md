@@ -12,3 +12,11 @@
 - C-009: Never use Astra or Antigravity Argon. User authorizes ZCode/MiniMax/Claude strong subscription models, OpenCode free models and other Antigravity models; Luna remains discovery-only. Unknown quotas do not block bounded attempts; handle provider limits and try another approved route. No separately metered paid API (user 2026-10-18).
 - C-010: Report only verified completion; preserve open checks and offer reopening completed shopping lists (user 2026-10-18).
 - C-011: Keep existing user's untracked build/metadata outputs; no global Flutter configuration changes (source: takeover and legacy SA-018).
+
+- C-012: Kullanıcıya görünen dil nazik ve anlaşılır olsun; YZ ayarı tehlikeli alan içinde bulunmasın (user 2026-10-23).
+- C-013: Bildirim ve sunucu için ücretsiz servis/katman seç; ücretli API veya otomatik ücretli yükseltme açma; sağlayıcıların gelecekte kalıcı ücretsiz kalacağını vaat etme (user 2026-10-23).
+- C-014: Sohbetin bütün talepleri docs/spec/production-master-prompt-tr.md R01–R50 ve görevlerle izlenir; her devralmada açık kanıt/Next/Failing/Dirty ve dış işlem readback korunur (user 2026-10-23).
+
+- C-015: Son kullanıcı sözleşmesi: manuel ve doğal ses fiyatı seçilen miktarın toplamı varsayılanıdır; açık birim bazları ayrıca ele alınır; ev/market bağımsız mod, doğru normalize grafik ve eski veri anlamı korunur (2026-10-23 R54–R60).
+- C-016: Yeni ücretli teklifler yalnız aylık abonelik; GitHub/site/app/71dil açıklamaları doğrulanmış bu sözleşmeye uyar; eski satınalmalar/restore korunur (2026-10-23 R51).
+- C-017: Alışveriş tarih+saat isteğe bağlı; liste varsayılan tarih sıralı ve A–Z seçilebilir (2026-10-23 R52–R53).
