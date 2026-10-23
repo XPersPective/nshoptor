@@ -121,3 +121,15 @@ Sonraki aşama: PB-131 hesap sözleşmesi +regresyonlar → PB-132 aylık metin/
 ## R61 — Tek dokunuşlu fiyat anlamı seçimi
 
 Kullanıcının UX devam talebi: varsayılan toplam fiyat kalsın; ayrıca Ayarlar'da birim/toplam varsayılanı ekleyerek günlük akışı karmaşıklaştırma. Açılır fiyat menüsü yerine iki görünür seçenekten birine tek dokunmayla geçilsin; seçili anlam anlaşılır olsun. Ürün formu ve sesli önizlemeler aynı kontrolü kullansın. Ekonomik tutar, ev/market bağımsızlığı ve klavye odağı korunsun. Yeni kontrol320px/2x TR/DE/AR ve ekran okuyucuda denensin. Bu ilke diğer akışların da minimum gereksiz dokunma açısından incelenmesini gerektirir; küçük kontrol değişikliği tüm uygulama UX kabulü diye raporlanmaz. PB-131/C-018 altında takip edilir.
+
+## R62–R68 — Son kullanıcı kararları (önceki yayın varsayımlarının yerine geçer)
+
+- R62: Slogan Türkçe “Evdeki hesap çarşıya uyar.”; diğer dillerde doğal ve aynı anlamda, uygulama/site/GitHub/mağaza arasında tutarlı olmalı.
+- R63: Ülke/dil bazında dürüst ve kaliteli ASO, güncel rakip incelemesi ve gerçek sürümden premium materyaller. Arama sırası garantisi veya doğrulanmamış işlev iddiası yok.
+- R64: Açık kaynak depoya anahtar/özel kimlik gitmemeli; açıklamalarda samimi ve doğru biçimde anlatılmalı. Ignore dosyası tek başına geçmişin temizliği kanıtı değildir.
+- R65: Kullanıcı yapay zekâsız/lifetime yeni paket fikrini aynı mesajında iptal etti. Bu fikir uygulanmayacak; eski satın alanların mevcut hakları korunacak.
+- R66: Silip yeniden kurarak yedi günlük deneme yeniden kazanılamamalı. Yerel reklamsız başlangıç sayacı ile mağazanın abonelik denemesi ayrıdır; ikisi ayrı doğrulanmalı.
+- R67: Önce mevcut doğrulanmış Android düzeltmeleri Google Play **dahili test** kanalına gönderilecek. Kullanıcı deneyecek; genel Google Play ve App Store yayını kullanıcının sorunsuz test kabulünden sonra yapılacak. iOS eksikleri gizlenmeyecek.
+- R68: Kullanıcının açık seçimi `release-harbor` becerisidir (`C:/Users/rubicon/.skills-manager/skills/release-harbor/SKILL.md`). Kaldırılmış Store Automation'ın önbelleği kullanılmayacak, buna geçiş yapılmayacak. Mevcut dış yayın kökü README ve Fastlane kayıtları korunacak.
+
+Oturumun bütün maddeleri ve durum ayrımı: `docs/audits/session-status-2026-10-23-tr.md`. Kodda bulunma, yerel test, native cihaz gözlemi, yükleme ve genel yayın ayrı durumlardır.
