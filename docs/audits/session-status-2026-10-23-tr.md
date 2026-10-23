@@ -50,10 +50,10 @@ Bu kayıt bütün işlerin tamamlandığı anlamına gelmez. **Düzeltildi/testl
 | R42 | Çok dilli SEO/ASO ve teknik SEO | Site kontrolleri ve mağaza kaynakları var; tüm ülke/dillerde nihai inceleme/yükleme açık. |
 | R43 | Gerçek sürümden rafine ekranlar/banner/video | TR güncel fiyat ekranları var; EN/tüm diller güncellemesi ve nihai video/mağaza yüklemesi açık. |
 | R44 | Android/iOS izin/gizlilik/reklam/mağaza şartları | Kısmi kaynak/politika incelemesi; nihai Console/App Privacy ve iOS kabulü açık. |
-| R45 | Testten sonra mağazaya gönderim | Bu tur hedef Android dahili test. Üretim ancak kullanıcı testinden sonra. iOS henüz gönderilebilir değil. |
+| R45 | Testten sonra mağazaya gönderim | Android1.2.8(16) dahili teste yüklendi; resmi API completed ve aynı SHA256 doğrulandı. Üretim ancak kullanıcı testinden sonra. iOS henüz gönderilebilir değil. |
 | R46 | Ev→market→fiş→geçmiş→rapor→paylaş uçtan uca | Bazı kalıcı native fiyat yolları doğrulandı; bütün zincir açık. |
 | R47 | Büyük liste, sıfır, kısmi, dil/para, izin/ağ/kapanma | Otomatik örnekler mevcut; tüm native senaryo matrisi açık. |
-| R48 | Test/analyze/sunucu/Android build | Önceki 539 Flutter ve 37 sunucu testi geçti; bu gönderim için yeniden çalıştırılıyor. |
+| R48 | Test/analyze/sunucu/Android build | Bu gönderimde yeniden: 539 Flutter testi geçti, 2 opt-in atlandı; 37 sunucu testi geçti; analiz temiz; imzalı release AAB başarılı. |
 | R49 | Diğer hataları bulma ve kök neden düzeltme | Birçok ek hata düzeltildi; bütün olası hataların bulunması doğrulanabilir bir tamamlanma iddiası değildir. |
 | R50 | Sonraki YZ için kapsam/karar/kanıt/devir | Ayrıntılı şartname, audit ve bu durum kaydı mevcut; açık işler korunuyor. |
 | R51 | Uygulama/GitHub/site/diğer dillerde aylık abonelik | Kaynaklar güncellendi; canlı site doğrulandı, Play açıklaması yüklenmedi. Eski yıllık restore hakları korundu. |
@@ -78,3 +78,22 @@ Bu kayıt bütün işlerin tamamlandığı anlamına gelmez. **Düzeltildi/testl
 ## Sonuç
 
 Ürün **tamamlanmış/hatasız/iki mağazada üretime hazır** olarak kabul edilmedi. Android dahili test, mevcut düzeltmeleri kullanıcının deneyebilmesi içindir. iOS için StoreKit, native köprüler, mağaza kimliği ve macOS/Xcode derleme/cihaz kanıtları halen gereklidir. Dahili test yükleme sonucu ve güncel test sayıları ayrı yayın kanıtında kaydedilecektir.
+
+## Güncel aday kontrolleri
+
+- Uygulama kaynak checkpoint: `739b2fb`; bu rapor/araçlar: `eff35b4` ve devamı. Bu gönderimde `lib/`, `test/`, `server/`, `android/` ve pubspec için bekleyen kaynak değişikliği yok.
+- Flutter: **539 geçti, 2 opt-in atlandı**, `.internal16-tests.log`. Analiz: **sorun yok**, `.internal16-analyze.log`. Sunucu: **37 geçti**, `.internal16-server.log`.
+- `fastlane android build_release`: başarılı, 360 saniye; `.internal16-build.log`. `1.2.8+16`, paket `com.crazypenguin.nshoptor`, target SDK36.
+- AAB: `build/app/outputs/bundle/release/app-release.aab`, 94.941.400 byte, SHA256 `40604ab2e1822c8046eef6389b004a55752a63d81b9f3c0b486432dda308bfe3`.
+- JAR imzası doğrulandı; imzalayan sertifika dış yayın kökündeki uygulamaya özgü upload anahtarıyla eşleşti. 12 adet 64-bit native kütüphanenin LOAD hizalaması en az16KB. Ayrıca 6 adet32-bit kütüphane mevcut;64-bit cihaz şartı bunlara uygulanmış gibi raporlanmadı. Dayanak: https://developer.android.com/guide/practices/page-sizes
+- Bunlar APK'nın bütün gerçek cihaz senaryolarını veya Google/App Store onayını kanıtlamaz. Canlı sunucunun yeni fiyat sözleşmesi dağıtımı ve listedeki açık işler halen açık.
+
+## Gerçek mağaza sonucu
+
+- `fastlane android deploy_internal`: exit0, supply111s, 23 Ekim2026 yaklaşık21:51 Türkiye saati.
+- Sonraki bağımsız resmi API okuması: `internal` → `name=1.2.8`, `versionCodes=[16]`, `status=completed`.
+- API'nin16numaralı bundle SHA256 değeri yerel AAB ile aynı: `40604ab2e1822c8046eef6389b004a55752a63d81b9f3c0b486432dda308bfe3`.
+- `production` aynı kaldı:14/1.2.7draft ve1/1.0.0completed. Üretime terfi yapılmadı; mağaza metin/görselleri bu yüklemede değiştirilmedi.
+- Katılım bağlantısı: https://play.google.com/apps/testing/com.crazypenguin.nshoptor . Mevcut test hesabının yetkisi ve mağaza yayılımı cihazda ayrıca görülmelidir; APIcompleted her cihazın güncellemeyi aldığı anlamına gelmez.
+- Özel yayın makbuzu Git dışındaki seçili yayın kökünde `apps/nshoptor/original-notes/internal-16-2026-10-23.json`; durumconfirmed. Anahtar içerikleri kaydedilmedi.
+- Sonraki geliştirici yeni yükleme öncesi uzak sürümü tekrar okumalı;16artık kullanıldı. Sıradaki iş kullanıcı dahili test geri bildirimi ve yukarıdaki açık kabul maddeleridir. Aynı16paketini körlemesine yeniden yükleme.

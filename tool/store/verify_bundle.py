@@ -41,13 +41,13 @@ def fields(data):
 
 def elements(node):
     for number, data in fields(node):
-        if number != 2 or not isinstance(data, bytes):
+        if number != 1 or not isinstance(data, bytes):
             continue
         name = ''
         attrs = {}
         children = []
         for key, value in fields(data):
-            if key == 2:
+            if key == 3:
                 name = value.decode()
             elif key == 4:
                 attr = dict(fields(value))
@@ -87,6 +87,7 @@ def main():
                       actual, re.S)
     assert match and base64.b64decode(match[1]) == expected, 'Upload certificate mismatch'
     native_count = 0
+    native32_count = 0
     with zipfile.ZipFile(aab) as bundle:
         manifest = dict(elements(bundle.read('base/manifest/AndroidManifest.xml')))
         app = manifest['manifest']
@@ -100,6 +101,11 @@ def main():
             assert data[:4] == b'\x7fELF', 'Invalid native library'
             endian = '<' if data[5] == 1 else '>'
             is64 = data[4] == 2
+            # Android's 16KB device requirement applies to 64-bit ABIs.
+            # https://developer.android.com/guide/practices/page-sizes
+            if not is64:
+                native32_count += 1
+                continue
             offset = struct.unpack_from(endian + ('Q' if is64 else 'I'), data, 32 if is64 else 28)[0]
             size, count = struct.unpack_from(endian + 'HH', data, 54 if is64 else 42)
             for index in range(count):
@@ -112,7 +118,8 @@ def main():
                       'version_code': app['versionCode'], 'target_sdk': manifest['uses-sdk']['targetSdkVersion'],
                       'bytes': aab.stat().st_size, 'sha256': hashlib.sha256(aab.read_bytes()).hexdigest(),
                       'upload_certificate_sha256': hashlib.sha256(expected).hexdigest(),
-                      'signature_matches_upload_key': True, 'native_16kb_libraries_checked': native_count}))
+                      'signature_matches_upload_key': True, 'native_64bit_16kb_libraries_checked': native_count,
+                      'native_32bit_libraries_present': native32_count}))
 
 
 if __name__ == '__main__':
