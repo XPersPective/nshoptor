@@ -117,3 +117,7 @@ Bu bölüm önceki varsayımları değiştirir. Yeni teklifler aylık abonelikti
 - R60/PB-131..133: mevcut verileri körlemesine yeniden yorumlama; gerekirse sürümlü migration, yedek/geri-yükleme ve eski kayıt testi. Yeni davranıştan önce üretilen APK/görsel/video son sürüm kanıtı sayılmaz; tekrar üret ve doğrula.
 
 Sonraki aşama: PB-131 hesap sözleşmesi +regresyonlar → PB-132 aylık metin/teklif uyumu → PB-133 tarih/sıralama → birleşik test/analyze/migration → yeni görsel/native/build → mağaza readback. Önceki25açık görev ve fiziksel OCR/iOS/gerçek ödeme açıkları korunur.
+
+## R61 — Tek dokunuşlu fiyat anlamı seçimi
+
+Kullanıcının UX devam talebi: varsayılan toplam fiyat kalsın; ayrıca Ayarlar'da birim/toplam varsayılanı ekleyerek günlük akışı karmaşıklaştırma. Açılır fiyat menüsü yerine iki görünür seçenekten birine tek dokunmayla geçilsin; seçili anlam anlaşılır olsun. Ürün formu ve sesli önizlemeler aynı kontrolü kullansın. Ekonomik tutar, ev/market bağımsızlığı ve klavye odağı korunsun. Yeni kontrol320px/2x TR/DE/AR ve ekran okuyucuda denensin. Bu ilke diğer akışların da minimum gereksiz dokunma açısından incelenmesini gerektirir; küçük kontrol değişikliği tüm uygulama UX kabulü diye raporlanmaz. PB-131/C-018 altında takip edilir.

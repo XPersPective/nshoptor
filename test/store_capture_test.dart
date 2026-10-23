@@ -370,7 +370,7 @@ void main() {
               normalizedName: item.$1.toLowerCase(),
               plannedQuantity: '1',
               plannedUnitCode: 'piece',
-              pricingInputMode: 'unitPrice',
+              pricingInputMode: 'lineTotal',
               plannedUnitPrice: Value(item.$2.replaceAll(',', '.')),
               plannedLineTotalMinorUnits: Value(minor(item.$2)),
               sortOrder: Value(index),

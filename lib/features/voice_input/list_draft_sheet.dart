@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../core/widgets/price_mode_selector.dart';
+import '../../core/calc/price_input.dart';
+
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/quantity/unit_display.dart';
 import '../../core/quantity/unit_code.dart';
@@ -102,8 +105,14 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     final spoken = _voice!.transcript;
     final t = spoken.isEmpty || spoken == _prefix
         ? ''
-        : _prefix.isEmpty ? spoken : '$_prefix $spoken';
-    if (t.isNotEmpty && t != _text.text) { _text.text = t; _draft = null; _selected.clear(); }
+        : _prefix.isEmpty
+        ? spoken
+        : '$_prefix $spoken';
+    if (t.isNotEmpty && t != _text.text) {
+      _text.text = t;
+      _draft = null;
+      _selected.clear();
+    }
     setState(() {});
   }
 
@@ -112,76 +121,111 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     if (voice == null || _micBusy || _busy) return;
     setState(() => _micBusy = true);
     try {
-      if (voice.state == VoiceInputState.listening) { await voice.stop(); }
-      else if (await voice.initialize() && mounted) {
+      if (voice.state == VoiceInputState.listening) {
+        await voice.stop();
+      } else if (await voice.initialize() && mounted) {
         _prefix = _text.text.trim();
         voice.transcript = '';
-        await voice.start(locale: Localizations.localeOf(context).toLanguageTag());
+        await voice.start(
+          locale: Localizations.localeOf(context).toLanguageTag(),
+        );
       }
-    } finally { if (mounted) setState(() => _micBusy = false); }
+    } finally {
+      if (mounted) setState(() => _micBusy = false);
+    }
   }
 
   Future<void> _convert() async {
     if (_busy || _micBusy || _voice?.state == VoiceInputState.listening) return;
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.maybeOf(context);
-    setState(() { _busy = true; _error = null; });
-    final parser = widget.parser ?? AiListParser(ai: AiService.client, localeCode: _lang);
-    try {
-    final draft = await parser.parse(_text.text);
-    if (!mounted) return;
     setState(() {
-      _busy = false;
-      _draft = draft;
-      _title.text = draft.title ?? "";
-      _selected
-        ..clear()
-        ..addAll(List.generate(draft.items.length, (i) => i));
+      _busy = true;
+      _error = null;
     });
-    final why = draft.aiResult;
-    final note = switch (why) {
-      AiQuota(:final used, :final limit) => l10n.aiQuotaReached(used, limit),
-      AiOffline() => l10n.aiOffline,
-      AiFailed(:final reason) when reason != 'disabled' => l10n.aiFailed,
-      _ => null,
-    };
-    if (note != null && !draft.fromAi) {
-      final nav = Navigator.of(context);
-      messenger?.clearSnackBars();
-      messenger?.showSnackBar(SnackBar(showCloseIcon: true, duration: const Duration(days: 1),
-        content: Text(note),
-        action: why is AiQuota && SubscriptionService.instance != null
-            ? SnackBarAction(label: l10n.plansTitle, onPressed: () => openPlans(nav.context))
-            : null,
-      ));
+    final parser =
+        widget.parser ?? AiListParser(ai: AiService.client, localeCode: _lang);
+    try {
+      final draft = await parser.parse(_text.text);
+      if (!mounted) return;
+      setState(() {
+        _busy = false;
+        _draft = draft;
+        _title.text = draft.title ?? "";
+        _selected
+          ..clear()
+          ..addAll(List.generate(draft.items.length, (i) => i));
+      });
+      final why = draft.aiResult;
+      final note = switch (why) {
+        AiQuota(:final used, :final limit) => l10n.aiQuotaReached(used, limit),
+        AiOffline() => l10n.aiOffline,
+        AiFailed(:final reason) when reason != 'disabled' => l10n.aiFailed,
+        _ => null,
+      };
+      if (note != null && !draft.fromAi) {
+        final nav = Navigator.of(context);
+        messenger?.clearSnackBars();
+        messenger?.showSnackBar(
+          SnackBar(
+            showCloseIcon: true,
+            duration: const Duration(days: 1),
+            content: Text(note),
+            action: why is AiQuota && SubscriptionService.instance != null
+                ? SnackBarAction(
+                    label: l10n.plansTitle,
+                    onPressed: () => openPlans(nav.context),
+                  )
+                : null,
+          ),
+        );
+      }
+    } catch (_) {
+      if (mounted) setState(() => _error = l10n.aiFailed);
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
-    } catch (_) { if (mounted) setState(() => _error = l10n.aiFailed); }
-    finally { if (mounted) setState(() => _busy = false); }
   }
 
   bool _resolvingPrices = false;
 
   Future<void> _approve() async {
-    if (_busy || _resolvingPrices || _draft == null || _selected.isEmpty) return;
+    if (_busy || _resolvingPrices || _draft == null || _selected.isEmpty) {
+      return;
+    }
     _resolvingPrices = true;
     try {
-    for (final i in _selected.toList()..sort()) {
-      if (_draft!.items[i].requiresPriceConfirmation) {
-        await _edit(i);
-        if (!mounted || _draft!.items[i].requiresPriceConfirmation) return;
+      for (final i in _selected.toList()..sort()) {
+        if (_draft!.items[i].requiresPriceConfirmation) {
+          await _edit(i);
+          if (!mounted || _draft!.items[i].requiresPriceConfirmation) return;
+        }
       }
+    } finally {
+      _resolvingPrices = false;
     }
-    } finally { _resolvingPrices = false; }
     final l10n = AppLocalizations.of(context);
-    final draft = ListDraft([for (final i in _selected.toList()..sort()) _draft!.items[i]],
-      fromAi: _draft!.fromAi, aiResult: _draft!.aiResult,
+    final draft = ListDraft(
+      [for (final i in _selected.toList()..sort()) _draft!.items[i]],
+      fromAi: _draft!.fromAi,
+      aiResult: _draft!.aiResult,
       plannedAt: widget.allowTitle ? _plannedAt : null,
-      parseDuration: _draft!.parseDuration, modelCalls: _draft!.modelCalls,
-      title: _title.text.trim().isEmpty ? null : _title.text.trim());
-    setState(() { _busy = true; _error = null; });
-    try { await widget.onApprove?.call(draft); if (mounted) Navigator.of(context).pop(draft); }
-    catch (_) { if (mounted) setState(() => _error = l10n.saveFailed); }
-    finally { if (mounted) setState(() => _busy = false); }
+      parseDuration: _draft!.parseDuration,
+      modelCalls: _draft!.modelCalls,
+      title: _title.text.trim().isEmpty ? null : _title.text.trim(),
+    );
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    try {
+      await widget.onApprove?.call(draft);
+      if (mounted) Navigator.of(context).pop(draft);
+    } catch (_) {
+      if (mounted) setState(() => _error = l10n.saveFailed);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   Future<void> _edit(int index) async {
@@ -190,52 +234,196 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     final separators = MoneySeparators.forLocaleCode(formatLocaleCode(context));
     final form = GlobalKey<FormState>();
     var name = c.name, brand = c.brand ?? '', category = c.category ?? '';
-    var quantity = (c.quantity ?? DecimalFixed.fromInt(1)).toDbString().replaceAll('.', separators.decimal);
-    var price = c.unitPrice?.toDbString().replaceAll('.', separators.decimal) ?? '';
+    var quantity = (c.quantity ?? DecimalFixed.fromInt(1))
+        .toDbString()
+        .replaceAll('.', separators.decimal);
+    var price =
+        c.unitPrice?.toDbString().replaceAll('.', separators.decimal) ?? '';
     var unit = c.unitCode ?? UnitCode.adet;
-    bool? isUnit = c.isUnitPrice;
-    DecimalFixed? decimal(String text) => text.trim().isEmpty ? null : MoneyParser.parseDecimal(text, separators: separators);
+    bool? isUnit = c.unitPrice == null ? false : c.isUnitPrice;
+    final priceBasis =
+        c.priceUnitCode ??
+        (c.isUnitPrice == true ? unit : PriceInput.displayUnit(unit));
+    final priceEditor = TextEditingController(text: price);
+    String? conversionError;
+    DecimalFixed? decimal(String text) => text.trim().isEmpty
+        ? null
+        : MoneyParser.parseDecimal(text, separators: separators);
     String? validDecimal(String? value, {bool positive = false}) {
-      try { final d = decimal(value ?? ''); return d == null ? (positive ? l10n.invalidQuantityError : null) :
-        d.isNegative || positive && !d.isPositive ? l10n.invalidAmountError : null; }
-      catch (_) { return l10n.invalidAmountError; }
+      try {
+        final d = decimal(value ?? '');
+        return d == null
+            ? (positive ? l10n.invalidQuantityError : null)
+            : d.isNegative || positive && !d.isPositive
+            ? l10n.invalidAmountError
+            : null;
+      } catch (_) {
+        return l10n.invalidAmountError;
+      }
     }
-    final edited = await showDialog<ParsedItemCandidate>(context: context, builder: (ctx) => AlertDialog(
-      title: Text(l10n.editAction),
-      content: SingleChildScrollView(child: Form(key: form, child: Column(mainAxisSize: MainAxisSize.min, children: [
-        TextFormField(key: const Key('draft_edit_name'), initialValue: name, maxLength: 60,
-          decoration: InputDecoration(labelText: l10n.itemNameLabel), onChanged: (v) => name = v,
-          validator: (v) => v == null || v.trim().isEmpty ? l10n.invalidNameError : null),
-        TextFormField(key: const Key('draft_edit_brand'), initialValue: brand, maxLength: 60,
-          decoration: InputDecoration(labelText: l10n.brandLabel), onChanged: (v) => brand = v),
-        TextFormField(key: const Key('draft_edit_category'), initialValue: StarterCategories().labelOf(l10n, category), maxLength: 60,
-          decoration: InputDecoration(labelText: l10n.categoryLabel), onChanged: (v) => category = v),
-        TextFormField(key: const Key('draft_edit_quantity'), initialValue: quantity,
-          decoration: InputDecoration(labelText: l10n.quantityLabel), onChanged: (v) => quantity = v,
-          validator: (v) => validDecimal(v, positive: true), keyboardType: const TextInputType.numberWithOptions(decimal: true)),
-        DropdownButtonFormField<UnitCode>(initialValue: unit, isExpanded: true,
-          decoration: InputDecoration(labelText: l10n.unitLabel),
-          items: [for (final u in UnitCode.values) DropdownMenuItem(value: u, child: Text(unitDisplayName(u, l10n)))],
-          onChanged: (v) => unit = v!),
-        TextFormField(key: const Key('draft_edit_price'), initialValue: price,
-          decoration: InputDecoration(labelText: c.priceDestination == VoicePriceDestination.actual ? l10n.actualPriceLabel : l10n.plannedPriceLabel), onChanged: (v) => price = v,
-          validator: validDecimal, keyboardType: const TextInputType.numberWithOptions(decimal: true)),
-        DropdownButtonFormField<bool>(initialValue: isUnit, isExpanded: true,
-          decoration: InputDecoration(labelText: l10n.pricingModeLabel),
-          validator: (v) => price.trim().isNotEmpty && v == null ? l10n.pricingModeLabel : null,
-          items: [DropdownMenuItem(value: true, child: Text(l10n.pricingModeUnitPrice)),
-            DropdownMenuItem(value: false, child: Text(l10n.pricingModeLineTotal))], onChanged: (v) => isUnit = v!),
-      ]))),
-      actions: [TextButton(onPressed: () => Navigator.of(ctx).pop(), child: Text(l10n.cancelButton)),
-        FilledButton(key: const Key('draft_edit_save'), onPressed: () {
-          if (!form.currentState!.validate()) return;
-          Navigator.of(ctx).pop(ParsedItemCandidate(name: name.trim(), rawText: c.rawText,
-            brand: brand.trim().isEmpty ? null : brand.trim(), category: category.trim().isEmpty ? null : category.trim(),
-            quantity: decimal(quantity), unitCode: unit, unitPrice: decimal(price), isUnitPrice: isUnit,
-            priceUnitCode: isUnit == true ? c.priceUnitCode : null, currencyCode: c.currencyCode, priceDestination: c.priceDestination));
-        }, child: Text(l10n.saveButton))],
-    ));
-    if (edited != null && mounted) setState(() { _draft!.items[index] = edited; });
+
+    final editRoute = DialogRoute<ParsedItemCandidate>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.editAction),
+        content: SingleChildScrollView(
+          child: Form(
+            key: form,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  key: const Key('draft_edit_name'),
+                  initialValue: name,
+                  maxLength: 60,
+                  decoration: InputDecoration(labelText: l10n.itemNameLabel),
+                  onChanged: (v) => name = v,
+                  validator: (v) => v == null || v.trim().isEmpty
+                      ? l10n.invalidNameError
+                      : null,
+                ),
+                TextFormField(
+                  key: const Key('draft_edit_brand'),
+                  initialValue: brand,
+                  maxLength: 60,
+                  decoration: InputDecoration(labelText: l10n.brandLabel),
+                  onChanged: (v) => brand = v,
+                ),
+                TextFormField(
+                  key: const Key('draft_edit_category'),
+                  initialValue: StarterCategories().labelOf(l10n, category),
+                  maxLength: 60,
+                  decoration: InputDecoration(labelText: l10n.categoryLabel),
+                  onChanged: (v) => category = v,
+                ),
+                TextFormField(
+                  key: const Key('draft_edit_quantity'),
+                  initialValue: quantity,
+                  decoration: InputDecoration(labelText: l10n.quantityLabel),
+                  onChanged: (v) => quantity = v,
+                  validator: (v) => validDecimal(v, positive: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                ),
+                DropdownButtonFormField<UnitCode>(
+                  initialValue: unit,
+                  isExpanded: true,
+                  decoration: InputDecoration(labelText: l10n.unitLabel),
+                  items: [
+                    for (final u in UnitCode.values)
+                      DropdownMenuItem(
+                        value: u,
+                        child: Text(unitDisplayName(u, l10n)),
+                      ),
+                  ],
+                  onChanged: (v) => unit = v!,
+                ),
+                TextFormField(
+                  key: const Key('draft_edit_price'),
+                  controller: priceEditor,
+                  decoration: InputDecoration(
+                    labelText:
+                        c.priceDestination == VoicePriceDestination.actual
+                        ? l10n.actualPriceLabel
+                        : l10n.plannedPriceLabel,
+                  ),
+                  onChanged: (v) {
+                    price = v;
+                    conversionError = null;
+                  },
+                  validator: validDecimal,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                ),
+                PriceModeSelector(
+                  value: isUnit,
+                  keyPrefix: 'draft_price_mode',
+                  unitLabel: unitDisplayName(priceBasis, l10n),
+                  validator: (v) =>
+                      conversionError ??
+                      (price.trim().isNotEmpty && v == null
+                          ? l10n.pricingModeLabel
+                          : null),
+                  onChanged: (v) {
+                    try {
+                      final amount = decimal(price), count = decimal(quantity);
+                      if (isUnit != null &&
+                          isUnit != v &&
+                          amount != null &&
+                          count != null &&
+                          count.isPositive &&
+                          !amount.isNegative) {
+                        final converted = v
+                            ? PriceInput.unitFromTotal(
+                                amount: amount,
+                                quantity: count,
+                                quantityUnit: unit,
+                                priceUnit: priceBasis,
+                              )
+                            : PriceInput.total(
+                                amount: amount,
+                                quantity: count,
+                                quantityUnit: unit,
+                                isUnitPrice: true,
+                                priceUnit: priceBasis,
+                              );
+                        price = converted.toDbString().replaceAll(
+                          '.',
+                          separators.decimal,
+                        );
+                        priceEditor.text = price;
+                      }
+                      conversionError = null;
+                    } catch (_) {
+                      conversionError = l10n.invalidAmountError;
+                    }
+                    isUnit = v;
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: Text(l10n.cancelButton),
+          ),
+          FilledButton(
+            key: const Key('draft_edit_save'),
+            onPressed: () {
+              if (!form.currentState!.validate()) return;
+              Navigator.of(ctx).pop(
+                ParsedItemCandidate(
+                  name: name.trim(),
+                  rawText: c.rawText,
+                  brand: brand.trim().isEmpty ? null : brand.trim(),
+                  category: category.trim().isEmpty ? null : category.trim(),
+                  quantity: decimal(quantity),
+                  unitCode: unit,
+                  unitPrice: decimal(price),
+                  isUnitPrice: isUnit,
+                  priceUnitCode: isUnit == true ? priceBasis : null,
+                  currencyCode: c.currencyCode,
+                  priceDestination: c.priceDestination,
+                ),
+              );
+            },
+            child: Text(l10n.saveButton),
+          ),
+        ],
+      ),
+    );
+    final edited = await Navigator.of(context).push(editRoute);
+    await editRoute.completed;
+    priceEditor.dispose();
+    if (edited != null && mounted) {
+      setState(() {
+        _draft!.items[index] = edited;
+      });
+    }
   }
 
   String _line(ParsedItemCandidate c, AppLocalizations l10n) {
@@ -243,8 +431,12 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
       if (c.brand != null) c.brand!,
       if (c.category != null) StarterCategories().labelOf(l10n, c.category!),
       if (c.quantity != null)
-        '${c.quantity!.toDbString()} ${c.unitCode == null ? '' : unitDisplayName(c.unitCode!, l10n)}'.trim(),
-      if (c.unitPrice != null) c.priceDestination == VoicePriceDestination.actual ? l10n.actualPriceLabel : l10n.plannedPriceLabel,
+        '${c.quantity!.toDbString()} ${c.unitCode == null ? '' : unitDisplayName(c.unitCode!, l10n)}'
+            .trim(),
+      if (c.unitPrice != null)
+        c.priceDestination == VoicePriceDestination.actual
+            ? l10n.actualPriceLabel
+            : l10n.plannedPriceLabel,
       if (c.currencyCode != null) c.currencyCode!,
       if (c.requiresPriceConfirmation) l10n.pricingModeLabel,
       if (c.unitPrice != null)
@@ -262,97 +454,162 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.only(
-          left: 16, right: 16, top: 8,
+          left: 16,
+          right: 16,
+          top: 8,
           bottom: MediaQuery.of(context).viewInsets.bottom + 16,
         ),
-        child: SingleChildScrollView(child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                Expanded(child: Text(l10n.quickListTitle, style: Theme.of(context).textTheme.titleMedium)),
-              ],
-            ),
-            if (_voice?.state == VoiceInputState.error) Text(
-              voiceErrorText(l10n, _voice?.errorMessage),
-              key: const Key('draft_voice_unavailable'), style: TextStyle(color: Theme.of(context).colorScheme.error)),
-            const SizedBox(height: 8),
-            // Spoken words appear live in the field while the mic listens.
-            if (_voice?.state == VoiceInputState.listening)
-              const LinearProgressIndicator(key: Key('draft_listening')),
-            TextField(
-              key: const Key('draft_text_field'),
-              controller: _text,
-              enabled: !_busy && !_micBusy,
-              readOnly: _voice?.state == VoiceInputState.listening,
-              minLines: 2,
-              maxLines: 5,
-              onChanged: (text) { _voice?.transcript = text; setState(() { _draft = null; _selected.clear(); _error = null; }); },
-              decoration: InputDecoration(hintText: l10n.quickListHint),
-            ),
-            if (_voice != null && widget.showMic)
-              Align(
-                alignment: AlignmentDirectional.centerEnd,
-                child: IconButton.filledTonal(
-                  key: const Key('draft_mic_button'),
-                  tooltip: _voice!.state == VoiceInputState.listening
-                      ? l10n.voiceStopListening
-                      : l10n.voiceStartListening,
-                  icon: _micBusy
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      l10n.quickListTitle,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                ],
+              ),
+              if (_voice?.state == VoiceInputState.error)
+                Text(
+                  voiceErrorText(l10n, _voice?.errorMessage),
+                  key: const Key('draft_voice_unavailable'),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              const SizedBox(height: 8),
+              // Spoken words appear live in the field while the mic listens.
+              if (_voice?.state == VoiceInputState.listening)
+                const LinearProgressIndicator(key: Key('draft_listening')),
+              TextField(
+                key: const Key('draft_text_field'),
+                controller: _text,
+                enabled: !_busy && !_micBusy,
+                readOnly: _voice?.state == VoiceInputState.listening,
+                minLines: 2,
+                maxLines: 5,
+                onChanged: (text) {
+                  _voice?.transcript = text;
+                  setState(() {
+                    _draft = null;
+                    _selected.clear();
+                    _error = null;
+                  });
+                },
+                decoration: InputDecoration(hintText: l10n.quickListHint),
+              ),
+              if (_voice != null && widget.showMic)
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: IconButton.filledTonal(
+                    key: const Key('draft_mic_button'),
+                    tooltip: _voice!.state == VoiceInputState.listening
+                        ? l10n.voiceStopListening
+                        : l10n.voiceStartListening,
+                    icon: _micBusy
+                        ? const SizedBox.square(
+                            dimension: 20,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : Icon(
+                            _voice!.state == VoiceInputState.listening
+                                ? Icons.stop
+                                : Icons.mic_none,
+                          ),
+                    onPressed: _micBusy || _busy ? null : _listen,
+                  ),
+                ),
+              const SizedBox(height: 12),
+              if (draft == null)
+                FilledButton.tonalIcon(
+                  key: const Key('draft_convert_button'),
+                  onPressed: _busy || _text.text.trim().isEmpty
+                      ? null
+                      : _convert,
+                  icon: _busy
                       ? const SizedBox.square(
-                          dimension: 20,
+                          dimension: 18,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
-                      : Icon(
-                          _voice!.state == VoiceInputState.listening
-                              ? Icons.stop
-                              : Icons.mic_none,
-                        ),
-                  onPressed: _micBusy || _busy ? null : _listen,
+                      : const Icon(Icons.auto_awesome_outlined),
+                  label: Text(l10n.quickListConvert),
                 ),
-              ),
-            const SizedBox(height: 12),
-            if (draft == null) FilledButton.tonalIcon(
-              key: const Key('draft_convert_button'),
-              onPressed: _busy || _text.text.trim().isEmpty ? null : _convert,
-              icon: _busy
-                  ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                  : const Icon(Icons.auto_awesome_outlined),
-              label: Text(l10n.quickListConvert),
-            ),
-            if (_error != null) Text(_error!, key: const Key('draft_error'), style: TextStyle(color: Theme.of(context).colorScheme.error)),
-            if (draft != null) ...[
-              if (widget.allowTitle) TextField(key: const Key('draft_title_field'), controller: _title, textCapitalization: TextCapitalization.sentences, maxLength: 80, enabled: !_busy,
-                decoration: InputDecoration(labelText: l10n.listTitleHint)),
-              if (widget.allowTitle) ShoppingDateField(value: _plannedAt, enabled: !_busy,
-                onChanged: (value) => setState(() => _plannedAt = value)),
-              const SizedBox(height: 12),
-              if (draft.items.isEmpty)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Text(l10n.quickListEmpty, textAlign: TextAlign.center),
-                )
-              else
-                Column(children: [for (var i = 0; i < draft.items.length; i++) CheckboxListTile(
-                  key: Key('draft_item_$i'), value: _selected.contains(i),
-                  onChanged: _busy ? null : (v) => setState(() => v == true ? _selected.add(i) : _selected.remove(i)),
-                  title: Text(draft.items[i].name), subtitle: Text(_line(draft.items[i], l10n)),
-                  controlAffinity: ListTileControlAffinity.leading,
-                  secondary: IconButton(key: Key('draft_edit_$i'), tooltip: l10n.editAction,
-                    onPressed: _busy ? null : () => _edit(i), icon: const Icon(Icons.edit_outlined)),
-                )]),
-              const SizedBox(height: 8),
-              FilledButton(
-                key: const Key('draft_add_button'),
-                onPressed: _busy || _selected.isEmpty || _micBusy || _voice?.state == VoiceInputState.listening
-                    ? null
-                    : _approve,
-                child: Text(l10n.quickListAdd(_selected.length)),
-              ),
+              if (_error != null)
+                Text(
+                  _error!,
+                  key: const Key('draft_error'),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              if (draft != null) ...[
+                if (widget.allowTitle)
+                  TextField(
+                    key: const Key('draft_title_field'),
+                    controller: _title,
+                    textCapitalization: TextCapitalization.sentences,
+                    maxLength: 80,
+                    enabled: !_busy,
+                    decoration: InputDecoration(labelText: l10n.listTitleHint),
+                  ),
+                if (widget.allowTitle)
+                  ShoppingDateField(
+                    value: _plannedAt,
+                    enabled: !_busy,
+                    onChanged: (value) => setState(() => _plannedAt = value),
+                  ),
+                const SizedBox(height: 12),
+                if (draft.items.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text(
+                      l10n.quickListEmpty,
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                else
+                  Column(
+                    children: [
+                      for (var i = 0; i < draft.items.length; i++)
+                        CheckboxListTile(
+                          key: Key('draft_item_$i'),
+                          value: _selected.contains(i),
+                          onChanged: _busy
+                              ? null
+                              : (v) => setState(
+                                  () => v == true
+                                      ? _selected.add(i)
+                                      : _selected.remove(i),
+                                ),
+                          title: Text(draft.items[i].name),
+                          subtitle: Text(_line(draft.items[i], l10n)),
+                          controlAffinity: ListTileControlAffinity.leading,
+                          secondary: IconButton(
+                            key: Key('draft_edit_$i'),
+                            tooltip: l10n.editAction,
+                            onPressed: _busy ? null : () => _edit(i),
+                            icon: const Icon(Icons.edit_outlined),
+                          ),
+                        ),
+                    ],
+                  ),
+                const SizedBox(height: 8),
+                FilledButton(
+                  key: const Key('draft_add_button'),
+                  onPressed:
+                      _busy ||
+                          _selected.isEmpty ||
+                          _micBusy ||
+                          _voice?.state == VoiceInputState.listening
+                      ? null
+                      : _approve,
+                  child: Text(l10n.quickListAdd(_selected.length)),
+                ),
+              ],
             ],
-          ],
-        )),
+          ),
+        ),
       ),
     );
   }

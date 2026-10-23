@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/widgets/price_mode_selector.dart';
+
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/quantity/unit_display.dart';
 import 'parser/parsed_item_candidate.dart';
@@ -44,7 +46,8 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
   }
 
   void _onChange() {
-    if (_controller.transcript.isNotEmpty && _controller.transcript != _text.text) {
+    if (_controller.transcript.isNotEmpty &&
+        _controller.transcript != _text.text) {
       _text.text = _controller.transcript;
       _parsed = null;
     }
@@ -56,11 +59,16 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
     setState(() => _micBusy = true);
     _controller.transcript = _text.text;
     try {
-      if (_controller.state == VoiceInputState.listening) { await _controller.stop(); }
-      else if (await _controller.initialize() && mounted) {
-        await _controller.start(locale: Localizations.localeOf(context).toLanguageTag());
+      if (_controller.state == VoiceInputState.listening) {
+        await _controller.stop();
+      } else if (await _controller.initialize() && mounted) {
+        await _controller.start(
+          locale: Localizations.localeOf(context).toLanguageTag(),
+        );
       }
-    } finally { if (mounted) setState(() => _micBusy = false); }
+    } finally {
+      if (mounted) setState(() => _micBusy = false);
+    }
   }
 
   void _parse() {
@@ -81,111 +89,134 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
           top: 16,
           bottom: MediaQuery.of(context).viewInsets.bottom + 16,
         ),
-        child: SingleChildScrollView(child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    l10n.voiceInputTitle,
-                    style: Theme.of(context).textTheme.titleMedium,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      l10n.voiceInputTitle,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                ],
+              ),
+              if (_controller.state == VoiceInputState.error)
+                Text(
+                  voiceErrorText(l10n, _controller.errorMessage),
+                  key: const Key('voice_unavailable'),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              TextField(
+                key: const Key('voice_transcript_field'),
+                controller: _text,
+                readOnly: _controller.state == VoiceInputState.listening,
+                onChanged: (text) {
+                  _controller.transcript = text;
+                  setState(() => _parsed = null);
+                },
+                decoration: InputDecoration(
+                  labelText: l10n.voiceTranscriptLabel,
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: IconButton.filledTonal(
+                  key: const Key('voice_mic_button'),
+                  icon: _micBusy
+                      ? const SizedBox.square(
+                          dimension: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : Icon(
+                          _controller.state == VoiceInputState.listening
+                              ? Icons.stop
+                              : Icons.mic_none,
+                        ),
+                  tooltip: _controller.state == VoiceInputState.listening
+                      ? l10n.voiceStopListening
+                      : l10n.voiceStartListening,
+                  onPressed: _micBusy ? null : _listen,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  OutlinedButton(
+                    key: const Key('voice_parse_button'),
+                    onPressed: _text.text.trim().isEmpty ? null : _parse,
+                    child: Text(l10n.parseAction),
+                  ),
+                  FilledButton(
+                    key: const Key('voice_confirm_button'),
+                    onPressed:
+                        parsed == null ||
+                            parsed.requiresPriceConfirmation ||
+                            _micBusy ||
+                            _controller.state == VoiceInputState.listening
+                        ? null
+                        : () => Navigator.of(context).pop(parsed),
+                    child: Text(l10n.saveButton),
+                  ),
+                ],
+              ),
+              if (parsed != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (parsed.requiresPriceConfirmation)
+                        PriceModeSelector(
+                          key: const Key('voice_price_meaning'),
+                          keyPrefix: 'voice_price_meaning',
+                          value: null,
+                          onChanged: (value) => setState(
+                            () => _parsed = ParsedItemCandidate(
+                              name: parsed.name,
+                              rawText: parsed.rawText,
+                              quantity: parsed.quantity,
+                              unitCode: parsed.unitCode,
+                              unitPrice: parsed.unitPrice,
+                              currencyCode: parsed.currencyCode,
+                              priceDestination: parsed.priceDestination,
+                              isUnitPrice: value,
+                              priceUnitCode: value == true
+                                  ? parsed.priceUnitCode ?? parsed.unitCode
+                                  : null,
+                            ),
+                          ),
+                        ),
+                      Text('${l10n.itemNameLabel}: ${parsed.name}'),
+                      Text(
+                        '${l10n.quantityLabel}: '
+                        '${parsed.quantity?.toDbString() ?? '-'}',
+                      ),
+                      Text(
+                        '${l10n.unitLabel}: ${parsed.unitCode?.dbCode ?? '-'}',
+                      ),
+                      Text(
+                        '${parsed.priceDestination == VoicePriceDestination.actual ? l10n.actualPriceLabel : l10n.plannedPriceLabel}: '
+                        '${parsed.unitPrice?.toDbString() ?? '-'} ${parsed.currencyCode ?? ''}',
+                      ),
+                      if (parsed.unitPrice != null &&
+                          !parsed.requiresPriceConfirmation)
+                        Text(
+                          '${l10n.pricingModeLabel}: ${parsed.isUnitPrice == true ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}'
+                          '${parsed.isUnitPrice == true && (parsed.priceUnitCode ?? parsed.unitCode) != null ? ' / ${unitDisplayName((parsed.priceUnitCode ?? parsed.unitCode)!, l10n)}' : ''}',
+                        ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-            if (_controller.state == VoiceInputState.error)
-              Text(
-                voiceErrorText(l10n, _controller.errorMessage),
-                key: const Key('voice_unavailable'),
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
-              ),
-            TextField(
-              key: const Key('voice_transcript_field'),
-              controller: _text,
-              readOnly: _controller.state == VoiceInputState.listening,
-              onChanged: (text) { _controller.transcript = text; setState(() => _parsed = null); },
-              decoration: InputDecoration(labelText: l10n.voiceTranscriptLabel),
-            ),
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: IconButton.filledTonal(
-                key: const Key('voice_mic_button'),
-                icon: _micBusy
-                    ? const SizedBox.square(
-                        dimension: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : Icon(
-                        _controller.state == VoiceInputState.listening
-                            ? Icons.stop
-                            : Icons.mic_none,
-                      ),
-                tooltip: _controller.state == VoiceInputState.listening
-                    ? l10n.voiceStopListening
-                    : l10n.voiceStartListening,
-                onPressed: _micBusy ? null : _listen,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                OutlinedButton(
-                  key: const Key('voice_parse_button'),
-                  onPressed: _text.text.trim().isEmpty ? null : _parse,
-                  child: Text(l10n.parseAction),
-                ),
-                FilledButton(
-                  key: const Key('voice_confirm_button'),
-                  onPressed: parsed == null || parsed.requiresPriceConfirmation || _micBusy || _controller.state == VoiceInputState.listening
-                      ? null
-                      : () => Navigator.of(context).pop(parsed),
-                  child: Text(l10n.saveButton),
-                ),
-              ],
-            ),
-            if (parsed != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (parsed.requiresPriceConfirmation) DropdownButtonFormField<bool>(
-                      key: const Key('voice_price_meaning'),
-                      decoration: InputDecoration(labelText: l10n.pricingModeLabel),
-                      items: [DropdownMenuItem(value: true, child: Text(l10n.pricingModeUnitPrice)),
-                        DropdownMenuItem(value: false, child: Text(l10n.pricingModeLineTotal))],
-                      onChanged: (value) => setState(() => _parsed = ParsedItemCandidate(
-                        name: parsed.name, rawText: parsed.rawText, quantity: parsed.quantity,
-                        unitCode: parsed.unitCode, unitPrice: parsed.unitPrice,
-                        currencyCode: parsed.currencyCode, priceDestination: parsed.priceDestination,
-                        isUnitPrice: value,
-                        priceUnitCode: value == true ? parsed.priceUnitCode ?? parsed.unitCode : null)),
-                    ),
-                    Text('${l10n.itemNameLabel}: ${parsed.name}'),
-                    Text(
-                      '${l10n.quantityLabel}: '
-                      '${parsed.quantity?.toDbString() ?? '-'}',
-                    ),
-                    Text(
-                      '${l10n.unitLabel}: ${parsed.unitCode?.dbCode ?? '-'}',
-                    ),
-                    Text(
-                      '${parsed.priceDestination == VoicePriceDestination.actual ? l10n.actualPriceLabel : l10n.plannedPriceLabel}: '
-                      '${parsed.unitPrice?.toDbString() ?? '-'} ${parsed.currencyCode ?? ''}',
-                    ),
-                    if (parsed.unitPrice != null && !parsed.requiresPriceConfirmation)
-                      Text('${l10n.pricingModeLabel}: ${parsed.isUnitPrice == true ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}'
-                        '${parsed.isUnitPrice == true && (parsed.priceUnitCode ?? parsed.unitCode) != null ? ' / ${unitDisplayName((parsed.priceUnitCode ?? parsed.unitCode)!, l10n)}' : ''}'),
-                  ],
-                ),
-              ),
-          ],
-        )),
+            ],
+          ),
+        ),
       ),
     );
   }

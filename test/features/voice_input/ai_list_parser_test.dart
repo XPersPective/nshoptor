@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+
 import 'package:drift/native.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
@@ -21,22 +22,40 @@ import 'package:nshoptor/features/voice_input/ai_list_parser.dart';
 import 'package:nshoptor/features/voice_input/list_draft_sheet.dart';
 
 AiClient _ai(http.Response Function() reply) => AiClient(
-      store: SettingsStore(),
-      baseUrl: 'https://x',
-      httpClient: MockClient((_) async => reply()),
-    );
+  store: SettingsStore(),
+  baseUrl: 'https://x',
+  httpClient: MockClient((_) async => reply()),
+);
 
 http.Response _items(List<Map<String, Object?>> items) => http.Response(
-      jsonEncode({'tier': 'free', 'used': 1, 'limit': 15, 'result': {'items': items}}),
-      200, headers: {'content-type': 'application/json; charset=utf-8'},
-    );
+  jsonEncode({
+    'tier': 'free',
+    'used': 1,
+    'limit': 15,
+    'result': {'items': items},
+  }),
+  200,
+  headers: {'content-type': 'application/json; charset=utf-8'},
+);
 
 class _PreviewParser extends AiListParser {
-  _PreviewParser() : super(localeCode: 'tr');
+  _PreviewParser({this.legacyGram = false}) : super(localeCode: 'tr');
+  final bool legacyGram;
   @override
-  Future<ListDraft> parse(String text) async => ListDraft([ParsedItemCandidate(name: 'elma', rawText: text,
-    brand: 'Farm', category: 'produce', quantity: DecimalFixed.fromInt(2), unitCode: UnitCode.kilogram,
-    unitPrice: DecimalFixed.fromInt(40), isUnitPrice: true)], fromAi: true);
+  Future<ListDraft> parse(String text) async => ListDraft([
+    ParsedItemCandidate(
+      name: 'elma',
+      rawText: text,
+      brand: 'Farm',
+      category: 'produce',
+      quantity: DecimalFixed.fromInt(legacyGram ? 400 : 2),
+      unitCode: legacyGram ? UnitCode.gram : UnitCode.kilogram,
+      unitPrice: legacyGram
+          ? DecimalFixed.parse('0.875')
+          : DecimalFixed.fromInt(40),
+      isUnitPrice: true,
+    ),
+  ], fromAi: true);
 }
 
 class _DelayedParser extends AiListParser {
@@ -44,45 +63,131 @@ class _DelayedParser extends AiListParser {
   var calls = 0;
   Completer<ListDraft> result = Completer<ListDraft>();
   @override
-  Future<ListDraft> parse(String text) { calls++; return result.future; }
+  Future<ListDraft> parse(String text) {
+    calls++;
+    return result.future;
+  }
 }
 
 void main() {
-  testWidgets('AI duplicate blocked; failure preserves source and permits retry', (tester) async {
-    final parser = _DelayedParser();
-    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
-      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate], supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(body: ListDraftSheet(parser: parser))));
+  testWidgets('one-tap draft editor preserves legacy gram price basis', (
+    tester,
+  ) async {
+    AppFormatLocale.attach('tr');
+    addTearDown(AppFormatLocale.attachReset);
+    ListDraft? approved;
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('tr'),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: Scaffold(
+          body: ListDraftSheet(
+            parser: _PreviewParser(legacyGram: true),
+            initialText: 'elma',
+            onApprove: (draft) async => approved = draft,
+          ),
+        ),
+      ),
+    );
     await tester.pumpAndSettle();
-    await tester.enterText(find.byKey(const Key('draft_text_field')), '2 ekmek');
-    await tester.tap(find.byKey(const Key('draft_convert_button'))); await tester.pump();
-    await tester.tap(find.byKey(const Key('draft_convert_button'))); await tester.pump();
-    expect(parser.calls, 1);
-    parser.result.completeError(StateError('offline')); await tester.pumpAndSettle();
-    expect(find.byKey(const Key('draft_error')), findsOneWidget);
-    expect(tester.widget<TextField>(find.byKey(const Key('draft_text_field'))).controller!.text, '2 ekmek');
-    parser.result = Completer<ListDraft>();
-    await tester.tap(find.byKey(const Key('draft_convert_button'))); await tester.pump();
-    expect(parser.calls, 2);
-    // A completion after dismissal cannot mutate a disposed sheet.
-    await tester.pumpWidget(const SizedBox.shrink());
-    parser.result.complete(const ListDraft([], fromAi: false)); await tester.pump();
-    expect(tester.takeException(), isNull);
+    await tester.tap(find.byKey(const Key('draft_edit_0')));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('draft_price_mode_total')));
+    await tester.tap(find.byKey(const Key('draft_price_mode_total')));
+    await tester.pumpAndSettle();
+    final editor = tester
+        .widget<TextFormField>(find.byKey(const Key('draft_edit_price')))
+        .controller!;
+    expect(
+      DecimalFixed.parse(editor.text.replaceAll(',', '.')),
+      DecimalFixed.fromInt(350),
+    );
+    await tester.tap(find.byKey(const Key('draft_price_mode_unit')));
+    await tester.pumpAndSettle();
+    expect(
+      DecimalFixed.parse(editor.text.replaceAll(',', '.')),
+      DecimalFixed.parse('0.875'),
+    );
+    await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
+    await tester.tap(find.byKey(const Key('draft_edit_save')));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('draft_add_button')));
+    await tester.tap(find.byKey(const Key('draft_add_button')));
+    await tester.pumpAndSettle();
+    expect(approved!.items.single.priceUnitCode, UnitCode.gram);
   });
+  testWidgets(
+    'AI duplicate blocked; failure preserves source and permits retry',
+    (tester) async {
+      final parser = _DelayedParser();
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(body: ListDraftSheet(parser: parser)),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(const Key('draft_text_field')),
+        '2 ekmek',
+      );
+      await tester.tap(find.byKey(const Key('draft_convert_button')));
+      await tester.pump();
+      await tester.tap(find.byKey(const Key('draft_convert_button')));
+      await tester.pump();
+      expect(parser.calls, 1);
+      parser.result.completeError(StateError('offline'));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('draft_error')), findsOneWidget);
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('draft_text_field')))
+            .controller!
+            .text,
+        '2 ekmek',
+      );
+      parser.result = Completer<ListDraft>();
+      await tester.tap(find.byKey(const Key('draft_convert_button')));
+      await tester.pump();
+      expect(parser.calls, 2);
+      // A completion after dismissal cannot mutate a disposed sheet.
+      await tester.pumpWidget(const SizedBox.shrink());
+      parser.result.complete(const ListDraft([], fromAi: false));
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    },
+  );
 
-  test('local digits and decimal commas retain quantities and per-unit price', () async {
-    final draft = await AiListParser(localeCode: 'tr').parse('1,5 kilo elma kilosu 40 lira, 2 ekmek');
-    expect(draft.items, hasLength(2));
-    expect(draft.items.first.name, 'elma');
-    expect(draft.items.first.quantity!.toDbString(), '1.5');
-    expect(draft.items.first.unitPrice!.toDbString(), '40');
-    expect(draft.items.first.isUnitPrice, true);
-    expect(draft.items.last.quantity!.toDbString(), '2');
-  });
+  test(
+    'local digits and decimal commas retain quantities and per-unit price',
+    () async {
+      final draft = await AiListParser(localeCode: 'tr')
+          .parse('1,5 kilo elma kilosu 40 lira, 2 ekmek');
+      expect(draft.items, hasLength(2));
+      expect(draft.items.first.name, 'elma');
+      expect(draft.items.first.quantity!.toDbString(), '1.5');
+      expect(draft.items.first.unitPrice!.toDbString(), '40');
+      expect(draft.items.first.isUnitPrice, true);
+      expect(draft.items.last.quantity!.toDbString(), '2');
+    },
+  );
 
   test('"1 kilo elma 1 ekmek" local parse gives two items: elma 1 kg, ekmek 1 adet', () async {
-    final draft = await AiListParser(localeCode: 'tr').parse('1 kilo elma 1 ekmek');
+    final draft = await AiListParser(localeCode: 'tr')
+        .parse('1 kilo elma 1 ekmek');
     expect(draft.items.map((i) => i.name), ['elma', 'ekmek']);
     expect(draft.items.first.quantity!.toDbString(), '1');
     expect(draft.items.first.unitCode, UnitCode.kilogram);
@@ -90,78 +195,203 @@ void main() {
     expect(draft.items.last.unitCode, UnitCode.adet);
   });
 
-  test('AI metadata reaches DB only on approval; category reuse and rollback', () async {
-    final db = AppDatabase(NativeDatabase.memory());
-    addTearDown(db.close);
-    final parser = AiListParser(localeCode: 'tr', ai: _ai(() => http.Response(jsonEncode({
-      'tier': 'free', 'used': 1, 'limit': 15, 'result': {'title': 'Weekend', 'items': [
-        {'name': 'elma', 'brand': 'Farm', 'category': 'produce', 'quantity': '2', 'unit': 'kilogram', 'estimatedPrice': '40', 'priceIsUnitPrice': true},
-        {'name': 'ekmek', 'category': 'Bakery custom', 'quantity': '2', 'unit': 'piece', 'estimatedPrice': '40', 'priceIsUnitPrice': false},
-      ]}}), 200)));
-    final draft = await parser.parse('elma ve ekmek');
-    expect(await db.select(db.categories).get(), isEmpty);
-    expect(await db.select(db.shoppingLists).get(), isEmpty);
-    final repo = ItemRepository(db);
-    final id = await db.transaction(() async {
-      final id = await ListRepository(db).createList(title: draft.title, currencyCode: 'TRY');
-      await repo.addCandidates(id, draft.items); return id;
-    });
-    expect((await ListRepository(db).getById(id)).title, 'Weekend');
-    final items = await repo.getItems(id);
-    expect(items.first.brand, 'Farm'); expect(items.first.plannedLineTotalMinorUnits, 8000);
-    expect(items.last.plannedLineTotalMinorUnits, 4000);
-    final originalCategory = items.first.categoryId;
-    await repo.addCandidates(id, [ParsedItemCandidate(name: 'pear', rawText: '', category: 'PRODUCE')]);
-    expect((await repo.getItems(id)).last.categoryId, originalCategory);
-    expect(await db.select(db.categories).get(), hasLength(2));
-    await expectLater(db.transaction(() async {
-      final badId = await ListRepository(db).createList(title: 'Bad', currencyCode: 'TRY');
-      await repo.addCandidates(badId, [ParsedItemCandidate(name: 'valid', rawText: '', category: 'should roll back'),
-        ParsedItemCandidate(name: 'bad', rawText: '', quantity: DecimalFixed.zero())]);
-    }), throwsArgumentError);
-    expect(await db.select(db.shoppingLists).get(), hasLength(1));
-    expect(await db.select(db.categories).get(), hasLength(2));
-    expect((await repo.getItems(id)).first.categoryId, originalCategory);
-  });
+  test(
+    'AI metadata reaches DB only on approval; category reuse and rollback',
+    () async {
+      final db = AppDatabase(NativeDatabase.memory());
+      addTearDown(db.close);
+      final parser = AiListParser(
+        localeCode: 'tr',
+        ai: _ai(
+          () => http.Response(
+            jsonEncode({
+              'tier': 'free',
+              'used': 1,
+              'limit': 15,
+              'result': {
+                'title': 'Weekend',
+                'items': [
+                  {
+                    'name': 'elma',
+                    'brand': 'Farm',
+                    'category': 'produce',
+                    'quantity': '2',
+                    'unit': 'kilogram',
+                    'estimatedPrice': '40',
+                    'priceIsUnitPrice': true,
+                  },
+                  {
+                    'name': 'ekmek',
+                    'category': 'Bakery custom',
+                    'quantity': '2',
+                    'unit': 'piece',
+                    'estimatedPrice': '40',
+                    'priceIsUnitPrice': false,
+                  },
+                ],
+              },
+            }),
+            200,
+          ),
+        ),
+      );
+      final draft = await parser.parse('elma ve ekmek');
+      expect(await db.select(db.categories).get(), isEmpty);
+      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      final repo = ItemRepository(db);
+      final id = await db.transaction(() async {
+        final id = await ListRepository(db)
+            .createList(title: draft.title, currencyCode: 'TRY');
+        await repo.addCandidates(id, draft.items);
+        return id;
+      });
+      expect((await ListRepository(db).getById(id)).title, 'Weekend');
+      final items = await repo.getItems(id);
+      expect(items.first.brand, 'Farm');
+      expect(items.first.plannedLineTotalMinorUnits, 8000);
+      expect(items.last.plannedLineTotalMinorUnits, 4000);
+      final originalCategory = items.first.categoryId;
+      await repo.addCandidates(id, [
+        ParsedItemCandidate(name: 'pear', rawText: '', category: 'PRODUCE'),
+      ]);
+      expect((await repo.getItems(id)).last.categoryId, originalCategory);
+      expect(await db.select(db.categories).get(), hasLength(2));
+      await expectLater(
+        db.transaction(() async {
+          final badId = await ListRepository(db)
+              .createList(title: 'Bad', currencyCode: 'TRY');
+          await repo.addCandidates(badId, [
+            ParsedItemCandidate(
+              name: 'valid',
+              rawText: '',
+              category: 'should roll back',
+            ),
+            ParsedItemCandidate(
+              name: 'bad',
+              rawText: '',
+              quantity: DecimalFixed.zero(),
+            ),
+          ]);
+        }),
+        throwsArgumentError,
+      );
+      expect(await db.select(db.shoppingLists).get(), hasLength(1));
+      expect(await db.select(db.categories).get(), hasLength(2));
+      expect((await repo.getItems(id)).first.categoryId, originalCategory);
+    },
+  );
 
-  testWidgets('preview title and metadata editable; failed approval keeps draft for retry', (tester) async {
-    AppFormatLocale.attach('tr'); addTearDown(AppFormatLocale.attachReset);
-    var attempts = 0;
-    ListDraft? approved;
-    final parser = _PreviewParser();
-    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
-      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate], supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(body: ListDraftSheet(parser: parser, initialText: 'elma', onApprove: (draft) async {
-        attempts++; if (attempts == 1) throw StateError('save failed'); approved = draft;
-      }))));
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byKey(const Key('draft_title_field')), 'Edited weekend');
-    await tester.tap(find.byKey(const Key('draft_edit_0'))); await tester.pumpAndSettle();
-    await tester.enterText(find.byKey(const Key('draft_edit_name')), 'Armut');
-    await tester.enterText(find.byKey(const Key('draft_edit_brand')), 'My brand');
-    await tester.enterText(find.byKey(const Key('draft_edit_category')), 'My category');
-    await tester.enterText(find.byKey(const Key('draft_edit_quantity')), '1,5');
-    await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
-    await tester.tap(find.byKey(const Key('draft_edit_save'))); await tester.pumpAndSettle();
-    expect(attempts, 0);
-    await tester.ensureVisible(find.byKey(const Key('draft_add_button')));
-    await tester.tap(find.byKey(const Key('draft_add_button'))); await tester.pumpAndSettle();
-    expect(attempts, 1); expect(find.byKey(const Key('draft_error')), findsOneWidget);
-    expect(find.text('Armut'), findsOneWidget);
-    await tester.tap(find.byKey(const Key('draft_add_button'))); await tester.pumpAndSettle();
-    expect(approved!.title, 'Edited weekend');
-    expect(approved!.items.single.brand, 'My brand'); expect(approved!.items.single.category, 'My category');
-    expect(approved!.items.single.quantity!.toDbString(), '1.5'); expect(approved!.items.single.isUnitPrice, true);
-  });
+  testWidgets(
+    'preview title and metadata editable; failed approval keeps draft for retry',
+    (tester) async {
+      AppFormatLocale.attach('tr');
+      addTearDown(AppFormatLocale.attachReset);
+      var attempts = 0;
+      ListDraft? approved;
+      final parser = _PreviewParser();
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: ListDraftSheet(
+              parser: parser,
+              initialText: 'elma',
+              onApprove: (draft) async {
+                attempts++;
+                if (attempts == 1) throw StateError('save failed');
+                approved = draft;
+              },
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(const Key('draft_title_field')),
+        'Edited weekend',
+      );
+      await tester.tap(find.byKey(const Key('draft_edit_0')));
+      await tester.pumpAndSettle();
+      // One tap changes meaning and preserves the selected quantity's cost.
+      await tester.ensureVisible(
+        find.byKey(const Key('draft_price_mode_total')),
+      );
+      await tester.tap(find.byKey(const Key('draft_price_mode_total')));
+      await tester.pumpAndSettle();
+      final editor = tester
+          .widget<TextFormField>(find.byKey(const Key('draft_edit_price')))
+          .controller!;
+      expect(
+        DecimalFixed.parse(editor.text.replaceAll(',', '.')),
+        DecimalFixed.fromInt(80),
+      );
+      await tester.tap(find.byKey(const Key('draft_price_mode_unit')));
+      await tester.pumpAndSettle();
+      expect(
+        DecimalFixed.parse(editor.text.replaceAll(',', '.')),
+        DecimalFixed.fromInt(40),
+      );
+      await tester.ensureVisible(find.byKey(const Key('draft_edit_name')));
+      await tester.enterText(find.byKey(const Key('draft_edit_name')), 'Armut');
+      await tester.enterText(
+        find.byKey(const Key('draft_edit_brand')),
+        'My brand',
+      );
+      await tester.enterText(
+        find.byKey(const Key('draft_edit_category')),
+        'My category',
+      );
+      await tester.enterText(
+        find.byKey(const Key('draft_edit_quantity')),
+        '1,5',
+      );
+      await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
+      await tester.tap(find.byKey(const Key('draft_edit_save')));
+      await tester.pumpAndSettle();
+      expect(attempts, 0);
+      await tester.ensureVisible(find.byKey(const Key('draft_add_button')));
+      await tester.tap(find.byKey(const Key('draft_add_button')));
+      await tester.pumpAndSettle();
+      expect(attempts, 1);
+      expect(find.byKey(const Key('draft_error')), findsOneWidget);
+      expect(find.text('Armut'), findsOneWidget);
+      await tester.tap(find.byKey(const Key('draft_add_button')));
+      await tester.pumpAndSettle();
+      expect(approved!.title, 'Edited weekend');
+      expect(approved!.items.single.brand, 'My brand');
+      expect(approved!.items.single.category, 'My category');
+      expect(approved!.items.single.quantity!.toDbString(), '1.5');
+      expect(approved!.items.single.isUnitPrice, true);
+    },
+  );
 
   test('AI adayları: miktar, birim, tahmini fiyat', () async {
     final parser = AiListParser(
       localeCode: 'tr',
-      ai: _ai(() => _items([
-            {'name': 'elma', 'quantity': '1', 'unit': 'kilogram', 'estimatedPrice': '20', 'priceIsUnitPrice': false},
-            {'name': 'ekmek', 'quantity': '2', 'unit': 'piece', 'estimatedPrice': null},
-          ])),
+      ai: _ai(
+        () => _items([
+          {
+            'name': 'elma',
+            'quantity': '1',
+            'unit': 'kilogram',
+            'estimatedPrice': '20',
+            'priceIsUnitPrice': false,
+          },
+          {
+            'name': 'ekmek',
+            'quantity': '2',
+            'unit': 'piece',
+            'estimatedPrice': null,
+          },
+        ]),
+      ),
     );
     final draft = await parser.parse('1 kilo elma alacağım 20 lira, 2 ekmek');
     expect(draft.fromAi, isTrue);
@@ -174,7 +404,17 @@ void main() {
   test('AI kota/hata → cihaz ayrıştırıcısı, sebep korunur', () async {
     final parser = AiListParser(
       localeCode: 'tr',
-      ai: _ai(() => http.Response(jsonEncode({'error': 'quota', 'tier': 'free', 'limit': 15, 'used': 15}), 429)),
+      ai: _ai(
+        () => http.Response(
+          jsonEncode({
+            'error': 'quota',
+            'tier': 'free',
+            'limit': 15,
+            'used': 15,
+          }),
+          429,
+        ),
+      ),
     );
     final draft = await parser.parse('ekmek, 1 litre süt');
     expect(draft.fromAi, isFalse);
@@ -185,9 +425,16 @@ void main() {
   test('AI tek maddede birleştirirse yerel bölme kullanılır', () async {
     final parser = AiListParser(
       localeCode: 'tr',
-      ai: _ai(() => _items([
-            {'name': 'elma 1 ekmek', 'quantity': '1', 'unit': 'kilogram', 'estimatedPrice': null},
-          ])),
+      ai: _ai(
+        () => _items([
+          {
+            'name': 'elma 1 ekmek',
+            'quantity': '1',
+            'unit': 'kilogram',
+            'estimatedPrice': null,
+          },
+        ]),
+      ),
     );
     final draft = await parser.parse('1 kilo elma 1 ekmek');
     expect(draft.items.map((i) => i.name), ['elma', 'ekmek']);
@@ -197,94 +444,151 @@ void main() {
     expect(draft.fromAi, isFalse);
   });
 
-  test('complete local commands avoid a model call and preserve English fractions', () async {
-    var calls = 0;
-    final draft = await AiListParser(localeCode: 'en', ai: _ai(() {
-      calls++;
-      return _items([]);
-    })).parse('one and a half kilos tomatoes and two packs pasta');
-    expect(calls, 0);
-    expect(draft.modelCalls, 0);
-    expect(draft.items.map((i) => i.name), ['tomatoes', 'pasta']);
-    expect(draft.items.first.quantity!.toDbString(), '1.5');
-  });
+  test(
+    'complete local commands avoid a model call and preserve English fractions',
+    () async {
+      var calls = 0;
+      final draft = await AiListParser(
+        localeCode: 'en',
+        ai: _ai(() {
+          calls++;
+          return _items([]);
+        }),
+      ).parse('one and a half kilos tomatoes and two packs pasta');
+      expect(calls, 0);
+      expect(draft.modelCalls, 0);
+      expect(draft.items.map((i) => i.name), ['tomatoes', 'pasta']);
+      expect(draft.items.first.quantity!.toDbString(), '1.5');
+    },
+  );
 
-  test('valid AI compound name is not replaced by local candidate count', () async {
-    final draft = await AiListParser(localeCode: 'tr', ai: _ai(() => _items([
-      {'name': 'iki renkli makarna', 'quantity': null, 'unit': 'package'},
-    ]))).parse('renkli makarna iki çeşit');
-    expect(draft.fromAi, true);
-    expect(draft.items.single.name, 'iki renkli makarna');
-  });
+  test(
+    'valid AI compound name is not replaced by local candidate count',
+    () async {
+      final draft = await AiListParser(
+        localeCode: 'tr',
+        ai: _ai(
+          () => _items([
+            {'name': 'iki renkli makarna', 'quantity': null, 'unit': 'package'},
+          ]),
+        ),
+      ).parse('renkli makarna iki çeşit');
+      expect(draft.fromAi, true);
+      expect(draft.items.single.name, 'iki renkli makarna');
+    },
+  );
 
-  test('Turkish shopping examples retain explicit meaning and market destination', () async {
-    final draft = await AiListParser(localeCode: 'tr').parse(
-      'İki kilo domates, üç paket makarna, bir litre süt.');
-    expect(draft.items.map((c) => c.name), ['domates', 'makarna', 'süt']);
-    expect(draft.items.map((c) => c.quantity!.toDbString()), ['2', '3', '1']);
-    final parser = AiListParser(localeCode: 'tr');
-    final total = (await parser.parse('İki paket sigaranın toplam fiyatı 260 TL')).items.single;
-    expect(total.name, 'sigara');
-    expect(total.isUnitPrice, false);
-    expect(total.unitPrice!.toDbString(), '260');
-    final unit = (await parser.parse('İki paket sigara tanesi 130 TL')).items.single;
-    expect(unit.isUnitPrice, true);
-    expect(unit.unitPrice!.toDbString(), '130');
-    final uncertain = (await parser.parse('İki paket sigara 260 TL')).items.single;
-    expect(uncertain.requiresPriceConfirmation, false);
-    expect(uncertain.isUnitPrice, false);
-    final market = (await parser.parse('markette iki paket sigara toplam 1.260,50 TL')).items.single;
-    expect(market.priceDestination, VoicePriceDestination.actual);
-    expect(market.currencyCode, 'TRY');
-    expect(market.unitPrice!.toDbString(), '1260.50');
-    expect(market.isUnitPrice, false);
-  });
+  test(
+    'Turkish shopping examples retain explicit meaning and market destination',
+    () async {
+      final draft = await AiListParser(localeCode: 'tr')
+          .parse('İki kilo domates, üç paket makarna, bir litre süt.');
+      expect(draft.items.map((c) => c.name), ['domates', 'makarna', 'süt']);
+      expect(draft.items.map((c) => c.quantity!.toDbString()), ['2', '3', '1']);
+      final parser = AiListParser(localeCode: 'tr');
+      final total = (await parser.parse(
+        'İki paket sigaranın toplam fiyatı 260 TL',
+      )).items.single;
+      expect(total.name, 'sigara');
+      expect(total.isUnitPrice, false);
+      expect(total.unitPrice!.toDbString(), '260');
+      final unit = (await parser.parse('İki paket sigara tanesi 130 TL'))
+          .items
+          .single;
+      expect(unit.isUnitPrice, true);
+      expect(unit.unitPrice!.toDbString(), '130');
+      final uncertain = (await parser.parse('İki paket sigara 260 TL'))
+          .items
+          .single;
+      expect(uncertain.requiresPriceConfirmation, false);
+      expect(uncertain.isUnitPrice, false);
+      final market = (await parser.parse(
+        'markette iki paket sigara toplam 1.260,50 TL',
+      )).items.single;
+      expect(market.priceDestination, VoicePriceDestination.actual);
+      expect(market.currencyCode, 'TRY');
+      expect(market.unitPrice!.toDbString(), '1260.50');
+      expect(market.isUnitPrice, false);
+    },
+  );
 
-  testWidgets('ambiguous money cannot be approved until user chooses its meaning', (tester) async {
-    ListDraft? approved;
-    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
-      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate], supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(body: ListDraftSheet(initialText: 'markette iki paket sigara toplam tanesi 260 TL',
-        parser: AiListParser(localeCode: 'tr'), onApprove: (draft) async => approved = draft))));
-    await tester.pumpAndSettle();
-    await tester.ensureVisible(find.byKey(const Key('draft_add_button')));
-    await tester.tap(find.byKey(const Key('draft_add_button')));
-    await tester.pumpAndSettle();
-    expect(approved, isNull);
-    expect(find.byKey(const Key('draft_edit_save')), findsOneWidget);
-    await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
-    await tester.tap(find.byKey(const Key('draft_edit_save')));
-    await tester.pumpAndSettle();
-    expect(approved, isNull);
-    final mode = find.byType(DropdownButtonFormField<bool>);
-    await tester.ensureVisible(mode);
-    await tester.tap(mode);
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Satır toplamı').last);
-    await tester.pumpAndSettle();
-    await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
-    await tester.tap(find.byKey(const Key('draft_edit_save')));
-    await tester.pumpAndSettle();
-    expect(approved!.items.single.isUnitPrice, false);
-    expect(approved!.items.single.priceDestination, VoicePriceDestination.actual);
-    expect(approved!.items.single.currencyCode, 'TRY');
-  });
+  testWidgets(
+    'ambiguous money cannot be approved until user chooses its meaning',
+    (tester) async {
+      ListDraft? approved;
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: ListDraftSheet(
+              initialText: 'markette iki paket sigara toplam tanesi 260 TL',
+              parser: AiListParser(localeCode: 'tr'),
+              onApprove: (draft) async => approved = draft,
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.byKey(const Key('draft_add_button')));
+      await tester.tap(find.byKey(const Key('draft_add_button')));
+      await tester.pumpAndSettle();
+      expect(approved, isNull);
+      expect(find.byKey(const Key('draft_edit_save')), findsOneWidget);
+      await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
+      await tester.tap(find.byKey(const Key('draft_edit_save')));
+      await tester.pumpAndSettle();
+      expect(approved, isNull);
+      final mode = find.byKey(const Key('draft_price_mode_total'));
+      await tester.ensureVisible(mode);
+      await tester.tap(mode);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.byKey(const Key('draft_edit_save')));
+      await tester.tap(find.byKey(const Key('draft_edit_save')));
+      await tester.pumpAndSettle();
+      expect(approved!.items.single.isUnitPrice, false);
+      expect(
+        approved!.items.single.priceDestination,
+        VoicePriceDestination.actual,
+      );
+      expect(approved!.items.single.currencyCode, 'TRY');
+    },
+  );
 
   test('AI v2 request preserves gram quantity and kilogram price basis through save', () async {
     final db = AppDatabase(NativeDatabase.memory());
     addTearDown(db.close);
     Map<String, dynamic>? request;
-    final ai = AiClient(store: SettingsStore(), baseUrl: 'https://x', httpClient: MockClient((req) async {
-      request = jsonDecode(req.body) as Map<String, dynamic>;
-      return _items([{
-        'name': 'kıyma', 'quantity': '400', 'unit': 'gram', 'estimatedPrice': '875',
-        'priceIsUnitPrice': true, 'priceUnitCode': 'kilogram', 'currencyCode': 'TRY',
-        'priceDestination': 'actual',
-      }]);
-    }));
+    final ai = AiClient(
+      store: SettingsStore(),
+      baseUrl: 'https://x',
+      httpClient: MockClient((req) async {
+        request = jsonDecode(req.body) as Map<String, dynamic>;
+        return _items([
+          {
+            'name': 'kıyma',
+            'quantity': '400',
+            'unit': 'gram',
+            'estimatedPrice': '875',
+            'priceIsUnitPrice': true,
+            'priceUnitCode': 'kilogram',
+            'currencyCode': 'TRY',
+            'priceDestination': 'actual',
+          },
+        ]);
+      }),
+    );
     // Incomplete natural phrasing intentionally chooses the AI path.
-    final draft = await AiListParser(localeCode: 'tr', ai: ai).parse('markette 400 gram kıyma alacağım kilosu 875 TL');
+    final draft = await AiListParser(
+      localeCode: 'tr',
+      ai: ai,
+    ).parse('markette 400 gram kıyma alacağım kilosu 875 TL');
     expect(request!['input']['priceSemanticsVersion'], 2);
     final c = draft.items.single;
     expect(c.quantity!.toDbString(), '400');
@@ -300,58 +604,77 @@ void main() {
     expect(saved.actualLineTotalMinorUnits, 35000);
   });
 
-  test('spoken selected-quantity default saves the amount as the total', () async {
-    final db = AppDatabase(NativeDatabase.memory());
-    addTearDown(db.close);
-    final list = await ListRepository(db).createList(currencyCode: 'TRY');
-    final draft = await AiListParser(localeCode: 'tr').parse('markette 400 gram kıyma 350 TL');
-    expect(draft.items.single.isUnitPrice, false);
-    await ItemRepository(db).addCandidates(list, draft.items);
-    expect((await db.select(db.purchaseEntries).get()).single.actualLineTotalMinorUnits, 35000);
-  });
+  test(
+    'spoken selected-quantity default saves the amount as the total',
+    () async {
+      final db = AppDatabase(NativeDatabase.memory());
+      addTearDown(db.close);
+      final list = await ListRepository(db).createList(currencyCode: 'TRY');
+      final draft = await AiListParser(localeCode: 'tr')
+          .parse('markette 400 gram kıyma 350 TL');
+      expect(draft.items.single.isUnitPrice, false);
+      await ItemRepository(db).addCandidates(list, draft.items);
+      expect(
+        (await db.select(db.purchaseEntries).get())
+            .single
+            .actualLineTotalMinorUnits,
+        35000,
+      );
+    },
+  );
 
   test('AI yokken de cümle bölünür', () async {
-    final draft = await AiListParser(localeCode: 'tr').parse('domates ve biber');
+    final draft = await AiListParser(localeCode: 'tr')
+        .parse('domates ve biber');
     expect(draft.items.map((i) => i.name), ['domates', 'biber']);
   });
 
-  testWidgets('taslak sayfası: yalnız işaretlenenler döner (onaysız kayıt yok)', (tester) async {
-    ListDraft? result;
-    await tester.pumpWidget(MaterialApp(
-      locale: const Locale('tr'),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: Builder(
-        builder: (context) => Scaffold(
-          body: TextButton(
-            onPressed: () async {
-              result = await showModalBottomSheet<ListDraft>(
-                context: context,
-                isScrollControlled: true,
-                builder: (_) => ListDraftSheet(parser: AiListParser(localeCode: 'tr')),
-              );
-            },
-            child: const Text('aç'),
+  testWidgets(
+    'taslak sayfası: yalnız işaretlenenler döner (onaysız kayıt yok)',
+    (tester) async {
+      ListDraft? result;
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Builder(
+            builder: (context) => Scaffold(
+              body: TextButton(
+                onPressed: () async {
+                  result = await showModalBottomSheet<ListDraft>(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (_) =>
+                        ListDraftSheet(parser: AiListParser(localeCode: 'tr')),
+                  );
+                },
+                child: const Text('aç'),
+              ),
+            ),
           ),
         ),
-      ),
-    ));
-    await tester.tap(find.text('aç'));
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byKey(const Key('draft_text_field')), 'domates, biber, soğan');
-    await tester.pump();
-    await tester.tap(find.byKey(const Key('draft_convert_button')));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key('draft_item_2')), findsOneWidget);
-    await tester.tap(find.byKey(const Key('draft_item_1')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('draft_add_button')));
-    await tester.pumpAndSettle();
-    expect(result!.items.map((c) => c.name), ['domates', 'soğan']);
-  });
+      );
+      await tester.tap(find.text('aç'));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(const Key('draft_text_field')),
+        'domates, biber, soğan',
+      );
+      await tester.pump();
+      await tester.tap(find.byKey(const Key('draft_convert_button')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('draft_item_2')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('draft_item_1')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('draft_add_button')));
+      await tester.pumpAndSettle();
+      expect(result!.items.map((c) => c.name), ['domates', 'soğan']);
+    },
+  );
 }

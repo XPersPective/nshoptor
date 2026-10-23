@@ -101,14 +101,14 @@ void main() {
     required bool actual,
     required bool unit,
   }) async {
-    tester
-        .widget<DropdownButtonFormField<bool>>(
-          find.byKey(
-            Key(actual ? 'item_actual_price_mode' : 'item_price_mode'),
-          ),
-        )
-        .onChanged!(unit);
-    await tester.pump();
+    final option = find.byKey(
+      Key(
+        '${actual ? 'item_actual_price_mode' : 'item_price_mode'}_${unit ? 'unit' : 'total'}',
+      ),
+    );
+    await tester.ensureVisible(option);
+    await tester.tap(option);
+    await tester.pumpAndSettle();
   }
 
   Future<void> save(WidgetTester tester) async {
@@ -175,8 +175,23 @@ void main() {
       await open(tester);
       await values(tester, '2', UnitCode.paket, '260', '260');
       await mode(tester, actual: false, unit: true);
-      await mode(tester, actual: true, unit: true);
       expect(text(tester, 'item_price_field'), '130');
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('item_price_field')))
+            .focusNode!
+            .hasFocus,
+        isTrue,
+      );
+      expect(tester.testTextInput.isVisible, isTrue);
+      await mode(tester, actual: true, unit: true);
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('item_actual_price_field')))
+            .focusNode!
+            .hasFocus,
+        isTrue,
+      );
       expect(text(tester, 'item_actual_price_field'), '130');
       await mode(tester, actual: false, unit: false);
       await mode(tester, actual: true, unit: false);

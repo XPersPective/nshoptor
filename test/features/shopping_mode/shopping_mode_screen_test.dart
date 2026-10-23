@@ -1,4 +1,5 @@
 import 'package:nshoptor/core/money/format_locale.dart';
+import 'package:nshoptor/core/money/decimal_fixed.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
@@ -161,14 +162,36 @@ void main() {
     await tester.tap(find.byKey(const Key('add_unplanned_button')));
     await settle(tester);
     await tester.enterText(find.byKey(const Key('entry_name_field')), 'Poşet');
-    await tester.enterText(find.byKey(const Key('entry_quantity_field')), '1');
+    await tester.enterText(find.byKey(const Key('entry_quantity_field')), '2');
     await tester.enterText(find.byKey(const Key('entry_price_field')), '5,50');
+    expect(
+      tester
+          .widget<SegmentedButton<bool>>(find.byType(SegmentedButton<bool>))
+          .selected,
+      {false},
+    );
+    await tester.ensureVisible(find.byKey(const Key('entry_price_mode_unit')));
+    await tester.tap(find.byKey(const Key('entry_price_mode_unit')));
+    await settle(tester);
+    final price = tester.widget<TextField>(
+      find.byKey(const Key('entry_price_field')),
+    );
+    expect(
+      DecimalFixed.parse(price.controller!.text.replaceAll(',', '.')),
+      DecimalFixed.parse('2.75'),
+    );
+    await tester.ensureVisible(find.byKey(const Key('entry_price_mode_total')));
+    await tester.tap(find.byKey(const Key('entry_price_mode_total')));
     await settle(tester);
     await tester.tap(find.byKey(const Key('entry_save_button')));
     await settle(tester);
 
     // Sepet: 5,50 plansız + 0 planlı; tahmini kasa 5,50 + 64,35 = 69,85.
     expect(find.text('5,50 ₺'), findsWidgets);
+    final entry = (await db.select(db.purchaseEntries).get()).single;
+    expect(entry.actualQuantity, '2');
+    expect(entry.actualLineTotalMinorUnits, 550);
+    expect(entry.pricingInputMode, 'lineTotal');
     final summary = await tester.runAsync(
       () => ShoppingRepository(db).watchSummary(listId).first,
     );

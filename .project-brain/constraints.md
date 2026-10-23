@@ -20,3 +20,4 @@
 - C-015: Son kullanıcı sözleşmesi: manuel ve doğal ses fiyatı seçilen miktarın toplamı varsayılanıdır; açık birim bazları ayrıca ele alınır; ev/market bağımsız mod, doğru normalize grafik ve eski veri anlamı korunur (2026-10-23 R54–R60).
 - C-016: Yeni ücretli teklifler yalnız aylık abonelik; GitHub/site/app/71dil açıklamaları doğrulanmış bu sözleşmeye uyar; eski satınalmalar/restore korunur (2026-10-23 R51).
 - C-017: Alışveriş tarih+saat isteğe bağlı; liste varsayılan tarih sıralı ve A–Z seçilebilir (2026-10-23 R52–R53).
+- C-018: Toplam fiyat varsayılanını ayarlarda yeni seçenekle karmaşıklaştırma. İki fiyat anlamı görünür olsun ve tek dokunuşla seçilsin; fiyat modu için açılır menü açtırma. Ev/market bağımsızlığı, erişilebilirlik ve ekonomik tutar korunur (user 2026-10-23 UX followup).

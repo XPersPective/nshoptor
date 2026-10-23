@@ -283,12 +283,11 @@ void main() {
       await tester.tap(find.text('Old apple'));
       await settle(tester);
       expect(find.byKey(const Key('item_shelf_label_button')), findsNothing);
-      tester
-          .widget<DropdownButtonFormField<bool>>(
-            find.byKey(const Key('item_actual_price_mode')),
-          )
-          .onChanged!(true);
-      await tester.pump();
+      await tester.ensureVisible(
+        find.byKey(const Key('item_actual_price_mode_unit')),
+      );
+      await tester.tap(find.byKey(const Key('item_actual_price_mode_unit')));
+      await tester.pumpAndSettle();
       await tester.enterText(
         find.byKey(const Key('item_actual_price_field')),
         '40,00',

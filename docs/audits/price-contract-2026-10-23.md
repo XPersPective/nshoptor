@@ -34,3 +34,11 @@
 Yeni worker priceSemanticsVersion2 kaynakta ve testte; canlı worker'a bu turda dağıtılmadı. Uygulama mağaza yayınıyla koordineli dağıtım/readback gerekir. Eski istemcilerin yanlış tutar çarpmasını önlemek için eski sözleşmeye fiyat yerine boş fiyat döner.
 
 Mağaza açıklamaları/görselleri yüklenmedi; mevcut videolar yeni fiyat ekranından öncedir ve bu tur için nihai materyal sayılmaz. iOS/StoreKit/native köprüleri, gerçek fiş/etiket korpusu, uzun native ses ve ödeme/reklam cihaz kontrolleri halen kapsamlı üretim planında açık. ProjectBrain Evidence/Review alanları elle doldurulmadı; bu kayıt resmî kabul yerine geçmez.
+
+## R61 — Kullanıcının tek dokunuş UX devamı
+
+Toplam varsayılanı korundu; Ayarlar'a yeni fiyat tercihi eklenmedi. Ortak PriceModeSelector iki anlamı birlikte gösterir. Ürün formu, plansız ürün, sesli önizleme ve taslak editöründe fiyat açılır menüsü yoktur. Alanlar bağımsızdır; bilinen tutar mod değişiminde korunur, belirsiz adayda anlam açıkça seçilir. Ürün formunda fiyat odağı/klavye sürer. Taslakta400g/0.875pergram eski anlamı korunur; toplam350ye geçipgeri döner. DialogRoute.completed sonrasında editörcontrolleri bırakılır.
+
+Plansız ürün yolunda da eski birimvarsayımı bulundu ve düzeltildi:2adet/5.50toplam=>5.50; birimseçimi2.75; tekrar toplam5.50 ve kaydedilenpricingInputMode=lineTotal. İndirimli toplamneti kaydetmede indirim tekrar düşülmez. Mevcut satınalma niyeti korunur; yeni genelayar yoktur.
+
+Sonuç:539fulltestPASS/2opt-inskip (`.one-tap-price-full.log`); fullanalyzeCLEAN6.1s; Androidx64debugPASS66.3s. APK SHA256 `206151C86DA58A67769AAA8DD670BA985C573B539DC169CBEB7BBA84F6AE392C`. TR/DE/AR320px/2x kontrollerinde gerçektekdokunuş, seçilisemantik ve48dp hedef doğrulandı. TR8görsel opt-in testiPASS; root `artifacts/store/2026-10-23-one-tap/tr/04.png` görselini inceledi. Bu APKnativekurulmadı veya mağazaya yüklenmedi; üstteki native400gkontrolleri önceki fiyatmantığı sürümüne aittir. Diğer akışların bütün UX incelemesi bu küçük değişiklikle tamamlanmış sayılmaz.

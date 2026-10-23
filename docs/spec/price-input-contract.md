@@ -5,6 +5,7 @@ Kaynak: kullanıcının R54–R60 talebi. Bu sözleşme önceki “bütün fiyat
 ## Giriş ve depolama
 
 - Yeni manuel ev/market alanları seçilen miktarın **toplamı** ile başlar. Alanların modları bağımsızdır.
+- Kullanıcının son UX kararı: ayarlara ayrıca fiyat varsayılanı eklenmez. Toplam/birim aynı anda görünür, tek dokunuşla seçilir; açılır menü ve ikinci seçim adımı yoktur. Aynı kontrol sesli önizlemede de kullanılır.
 - Açık birim seçimi miktara göre toplamı hesaplar. Gram miktarlar için birim fiyatı kg, mililitre için litre olarak gösterilir.
 - Mod değiştirmek ekonomik tutarı korur. Toplam modunda miktar değişirse toplam korunur; birim modunda birim tutar korunur.
 - Depodaki plannedUnitPrice/actualUnitPrice, satırın kendi miktar birimi başınadır. Örnek: 400 g ve 350 TL toplam → 0,875 TL/g; kullanıcıya 875 TL/kg gösterilebilir.
@@ -40,4 +41,4 @@ Kaynak: kullanıcının R54–R60 talebi. Bu sözleşme önceki “bütün fiyat
 
 ## Doğrulama durumu
 
-Güncel tam Flutter paketi535test geçti,2opt-in görsel testi atlandı (`.price-contract-final-tests-2026-10-23.log`). Analyzer hatasız (`.price-contract-final-analyze-2026-10-23.log`). Sunucu37test geçti. Yeni görsel/cihaz/build ve uzak yayın kabulü ayrıdır; bunlar tamamlanmış sayılmaz.
+R61 sonrası güncel tam Flutter paketi539test geçti,2opt-in görsel testi atlandı (`.one-tap-price-full.log`). Analyzer hatasız (`.one-tap-price-analyze.log`), Androiddebugderlemesi başarılı. TRgüncelkontrol görseli üretildi ve incelendi. R51–R60 sunucu37testi ayrı doğrulamadır. YeniUI cihazkurulumu ve mağaza yayını yapılmadı; geniş üretim kabulü ayrıdır.

@@ -220,9 +220,7 @@ void main() {
       );
       // Exercise a multiplication overflow explicitly; new manual inputs
       // correctly default to a selected-quantity total.
-      await tester.tap(find.byKey(const Key('item_price_mode')));
-      await tester.pumpAndSettle();
-      await tester.tap(find.byType(DropdownMenuItem<bool>).last);
+      await tester.tap(find.byKey(const Key('item_price_mode_unit')));
       await tester.pumpAndSettle();
       await tester.enterText(
         find.byKey(const Key('item_quantity_field')),
@@ -417,12 +415,9 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('kg').last);
       await tester.pumpAndSettle();
-      tester
-          .widget<DropdownButtonFormField<bool>>(
-            find.byKey(const Key('item_price_mode')),
-          )
-          .onChanged!(true);
-      await tester.pump();
+      await tester.ensureVisible(find.byKey(const Key('item_price_mode_unit')));
+      await tester.tap(find.byKey(const Key('item_price_mode_unit')));
+      await tester.pumpAndSettle();
       await tester.enterText(
         find.byKey(const Key('item_price_field')),
         '42,90',

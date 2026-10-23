@@ -1,4 +1,5 @@
 import '../../core/money/format_locale.dart';
+import '../../core/widgets/price_mode_selector.dart';
 
 import 'package:drift/drift.dart' show OrderingTerm;
 import 'package:flutter/material.dart';
@@ -614,6 +615,11 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
         _priceError = null;
       }
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        (actual ? _marketPriceFocus : _homePriceFocus).requestFocus();
+      }
+    });
   }
 
   String? _calculatedHint(bool actual) {
@@ -674,28 +680,18 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     final mode = actual ? _actualPriceIsUnitPrice : _priceIsUnitPrice;
     return KeyedSubtree(
       key: ValueKey('mode_${actual}_${mode}_$required'),
-      child: DropdownButtonFormField<bool>(
+      child: PriceModeSelector(
         key: Key(actual ? 'item_actual_price_mode' : 'item_price_mode'),
-        initialValue: required ? null : mode,
-        isExpanded: true,
-        decoration: InputDecoration(labelText: _l10n.pricingModeLabel),
-        items: [
-          DropdownMenuItem(
-            value: false,
-            child: Text(_l10n.pricingModeLineTotal),
-          ),
-          DropdownMenuItem(
-            value: true,
-            child: Text(
-              '${_l10n.pricingModeUnitPrice} / ${unitDisplayName(PriceInput.displayUnit(actual ? _actualUnit : _unit), _l10n)}',
-            ),
-          ),
-        ],
+        keyPrefix: actual ? 'item_actual_price_mode' : 'item_price_mode',
+        value: required ? null : mode,
+        semanticLabel: actual ? _l10n.compareActual : _l10n.compareEstimated,
+        unitLabel: unitDisplayName(
+          PriceInput.displayUnit(actual ? _actualUnit : _unit),
+          _l10n,
+        ),
         onChanged: _saving || actual && _mixedUnits
             ? null
-            : (value) {
-                if (value != null) _switchPriceMode(actual, value);
-              },
+            : (value) => _switchPriceMode(actual, value),
       ),
     );
   }
@@ -765,7 +761,10 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       }
       final amount = c.priceQuantity != null
           ? _displayUnitAmount(
-              c.value.divide(c.priceQuantity!, scale: DecimalFixed.maxFractionDigits),
+              c.value.divide(
+                c.priceQuantity!,
+                scale: DecimalFixed.maxFractionDigits,
+              ),
               c.unitCode!,
               _actualUnit,
             )
