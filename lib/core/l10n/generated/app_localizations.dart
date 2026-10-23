@@ -1619,7 +1619,7 @@ abstract class AppLocalizations {
   /// No description provided for @proBenefitsLine.
   ///
   /// In en, this message translates to:
-  /// **'No ads, more AI, backup · from a small monthly price'**
+  /// **'No ads · Backup export and import · Monthly'**
   String get proBenefitsLine;
 
   /// No description provided for @proBenefitNoAds.
@@ -2015,7 +2015,7 @@ abstract class AppLocalizations {
   /// No description provided for @planTrial.
   ///
   /// In en, this message translates to:
-  /// **'7 days free'**
+  /// **'Free trial'**
   String get planTrial;
 
   /// No description provided for @planProAi.
@@ -2075,7 +2075,7 @@ abstract class AppLocalizations {
   /// No description provided for @plansLegal.
   ///
   /// In en, this message translates to:
-  /// **'Subscriptions renew automatically until cancelled. Cancel any time in Google Play › Payments & subscriptions. Prices include the taxes shown by Google Play.'**
+  /// **'New Pro and Max subscriptions renew automatically each month until cancelled. Manage or cancel in Google Play. Check the price and any trial eligibility in Play before purchase.'**
   String get plansLegal;
 
   /// No description provided for @planCurrent.
@@ -2087,7 +2087,7 @@ abstract class AppLocalizations {
   /// No description provided for @planStartTrial.
   ///
   /// In en, this message translates to:
-  /// **'Start 7-day free trial'**
+  /// **'Start free trial'**
   String get planStartTrial;
 
   /// No description provided for @planChoose.
@@ -2629,6 +2629,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A market price marks the item purchased; 0 counts too. The home price is optional. Clear the market price to uncheck the item.'**
   String get guidePricesBody;
+
+  /// No description provided for @shoppingDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping date (optional)'**
+  String get shoppingDateLabel;
+
+  /// No description provided for @shoppingDateNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No date selected'**
+  String get shoppingDateNone;
+
+  /// No description provided for @clearShoppingDateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear date'**
+  String get clearShoppingDateAction;
+
+  /// No description provided for @listSortLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'List order'**
+  String get listSortLabel;
+
+  /// No description provided for @listSortDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping date'**
+  String get listSortDate;
+
+  /// No description provided for @listSortAz.
+  ///
+  /// In en, this message translates to:
+  /// **'Name (A–Z)'**
+  String get listSortAz;
+
+  /// No description provided for @listSortManual.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual order'**
+  String get listSortManual;
 }
 
 class _AppLocalizationsDelegate

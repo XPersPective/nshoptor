@@ -43,6 +43,12 @@ class VoiceCommandParser {
   };
 
   static const Map<String, UnitCode> _trUnits = {
+    'kg': UnitCode.kilogram,
+    'g': UnitCode.gram,
+    'gr': UnitCode.gram,
+    'l': UnitCode.litre,
+    'lt': UnitCode.litre,
+    'ml': UnitCode.mililitre,
     'kilo': UnitCode.kilogram,
     'kilogram': UnitCode.kilogram,
     'gram': UnitCode.gram,
@@ -60,6 +66,12 @@ class VoiceCommandParser {
   };
 
   static const Map<String, UnitCode> _enUnits = {
+    'kg': UnitCode.kilogram,
+    'g': UnitCode.gram,
+    'gr': UnitCode.gram,
+    'l': UnitCode.litre,
+    'lt': UnitCode.litre,
+    'ml': UnitCode.mililitre,
     'kilo': UnitCode.kilogram,
     'kilos': UnitCode.kilogram,
     'kilogram': UnitCode.kilogram,
@@ -80,6 +92,8 @@ class VoiceCommandParser {
     'jars': UnitCode.kavanoz,
     'bunch': UnitCode.demet,
     'dozen': UnitCode.duzine,
+    'item': UnitCode.adet,
+    'unit': UnitCode.adet,
     'piece': UnitCode.adet,
     'pieces': UnitCode.adet,
     'meter': UnitCode.metre,
@@ -90,6 +104,7 @@ class VoiceCommandParser {
     final raw = text.trim();
     var tokens = raw
         .replaceAll('İ', 'i').toLowerCase()
+        .replaceAllMapped(RegExp(r'(\d)(kg|gr|g|ml|lt|l|tl|try|eur|usd)\b'), (m) => '${m[1]} ${m[2]}')
         .replaceAll(RegExp(r'[.!?]+$'), '')
         .split(RegExp(r'[\s;]+|(?<!\d),|,(?!\d)'))
         .where((t) => t.isNotEmpty)
@@ -108,6 +123,7 @@ class VoiceCommandParser {
     DecimalFixed? unitPrice;
     String? currency;
     bool? isUnitPrice;
+    UnitCode? priceUnit;
 
     final marketContext = RegExp(r'\b(market(?:te|ten)?|çarşı(?:da|dan)?|actual|store)\b').hasMatch(tokens.join(' '));
     tokens.removeWhere((t) => const {'markette', 'marketten', 'market', 'çarşı', 'çarşıda', 'çarşıdan', 'actual', 'store', 'fiyatı', 'fiyati', 'fiyat', 'price'}.contains(t));
@@ -125,11 +141,15 @@ class VoiceCommandParser {
     }
 
     // 2) BİTTEKİ birim fiyat kalıbı; yoksa satır tahmini ("1 kilo domates 20 TL").
-    final price = _consumeTrailingUnitPrice(tokens);
+    final priceContext = tokens.join(' ');
+    final totalCue = RegExp(r'\b(toplam|ikisi|hepsi|total|altogether)\b').hasMatch(priceContext);
+    final explicitUnitCue = tokens.any((t) => const {'birim', 'each', 'per'}.contains(t) || _trUnits.containsKey(_trPossessiveStem(t)));
+    final price = _consumeTrailingUnitPrice(tokens, unit);
     if (price != null) {
       unitPrice = price.$1;
       currency = price.$2;
-      isUnitPrice = true;
+      isUnitPrice = totalCue && explicitUnitCue ? null : true;
+      priceUnit = price.$4;
       tokens = price.$3;
     } else {
       final total = _consumeTrailingLineTotal(tokens);
@@ -139,15 +159,17 @@ class VoiceCommandParser {
         final context = total.$3.join(' ');
         final totalExplicit = RegExp(r'\b(toplam|ikisi|hepsi|total|altogether)\b').hasMatch(context);
         final unitExplicit = RegExp(r'\b(tanesi|birim|paketi|each)\b').hasMatch(context);
-        isUnitPrice = totalExplicit == unitExplicit
-            ? (quantity == DecimalFixed.fromInt(1) ? false : null)
-            : unitExplicit;
+        isUnitPrice = totalExplicit && unitExplicit ? null : unitExplicit;
+        if (unitExplicit) priceUnit = unit ?? UnitCode.adet;
         tokens = total.$3.where((t) => !const {
           'toplam', 'ikisi', 'hepsi', 'fiyatı', 'fiyati', 'fiyat', 'birim', 'tanesi', 'paketi', 'total', 'altogether', 'each', 'price',
         }.contains(t)).toList();
       }
     }
 
+    if (unitPrice != null) {
+      tokens.removeWhere((t) => const {'toplam', 'ikisi', 'hepsi', 'birim', 'tanesi', 'paketi', 'total', 'altogether', 'each', 'price'}.contains(t));
+    }
     // 3) Dolgu sözcükleri çıkar.
     final fillers = _isTr
         ? {'ekle', 'al', 'istiyorum', 'lazım'}
@@ -169,6 +191,7 @@ class VoiceCommandParser {
       unitPrice: unitPrice,
       currencyCode: currency,
       isUnitPrice: isUnitPrice,
+      priceUnitCode: priceUnit,
       priceDestination: marketContext ? VoicePriceDestination.actual : VoicePriceDestination.planned,
     );
   }
@@ -346,8 +369,12 @@ class VoiceCommandParser {
   /// tr: `... kilosu kırk beş lira` → iyelikli birim + sayı(lar) + para.
   /// en: `... three euros per kilo` → sayı + para + `per` + birim.
   /// Belirsiz fiyatta değer null döner (kullanıcı doldurur); ad korunur.
-  (DecimalFixed?, String, List<String>)? _consumeTrailingUnitPrice(
-      List<String> tokens) {
+  (DecimalFixed?, String, List<String>, UnitCode?)? _consumeTrailingUnitPrice(
+      List<String> tokens, UnitCode? quantityUnit) {
+    if (!_isTr && tokens.isNotEmpty && tokens.last == 'each') {
+      final price = _consumeTrailingLineTotal(tokens.sublist(0, tokens.length - 1));
+      if (price != null) return (price.$1, price.$2, price.$3, quantityUnit ?? UnitCode.adet);
+    }
     for (var i = 0; i < tokens.length; i++) {
       final token = tokens[i];
 
@@ -357,7 +384,7 @@ class VoiceCommandParser {
         final after = tokens.sublist(i + 1);
         if (after.isEmpty || _trCurrency(after.last) == null) {
           // Birim fiyat niyeti var ama sayı/para yok → belirsiz.
-          return (null, 'TRY', _withoutAt(tokens, i));
+          return (null, 'TRY', _withoutAt(tokens, i), null);
         }
         final numberTake = _takeNumberFromStart(
           after.sublist(0, after.length - 1),
@@ -366,12 +393,22 @@ class VoiceCommandParser {
           'yüz',
         );
         if (numberTake == null || numberTake.$2.isNotEmpty) {
-          return (null, 'TRY', _withoutAt(tokens, i));
+          return (null, 'TRY', _withoutAt(tokens, i), null);
         }
         final rest = [...tokens.sublist(0, i), ...numberTake.$2];
-        return (numberTake.$1, _trCurrency(after.last)!, rest);
+        final basis = stem == 'tane' || stem == 'adet' ? quantityUnit ?? UnitCode.adet : _trUnits[stem];
+        return (numberTake.$1, _trCurrency(after.last)!, rest, basis);
       }
 
+      if (!_isTr && token == 'per' && i + 2 < tokens.length && _enUnits[tokens[i + 1]] != null) {
+        final after = tokens.sublist(i + 2);
+        final currency = _enCurrency(after.last) ?? _trCurrency(after.last);
+        final take = _takeNumberFromStart(after.sublist(0, after.length - 1), _enOnes, _enTens, 'hundred');
+        if (currency != null && take != null && take.$2.isEmpty) {
+          final basis = _enUnits[tokens[i + 1]]!;
+          return (take.$1, currency, tokens.sublist(0, i), basis == UnitCode.adet ? quantityUnit ?? basis : basis);
+        }
+      }
       if (!_isTr && token == 'per' && i >= 2 && i + 1 < tokens.length) {
         final unit = _enUnits[tokens[i + 1]];
         final currency = _enCurrency(tokens[i - 1]);
@@ -392,7 +429,7 @@ class VoiceCommandParser {
         );
         if (numberTake == null) continue;
         final rest = [...tokens.sublist(0, start), ...tokens.sublist(i + 2)];
-        return (numberTake.$1, currency, rest);
+        return (numberTake.$1, currency, rest, unit == UnitCode.adet ? quantityUnit ?? unit : unit);
       }
     }
     return null;
@@ -426,6 +463,11 @@ class VoiceCommandParser {
   /// "kilosu"→"kilo", "tanesi"→"tane", "litresi"→"litre" ...
   String? _trPossessiveStem(String word) {
     if (word == 'paketi') return 'paket';
+    if (word == 'kavanozu') return 'kavanoz';
+    if (word == 'demeti') return 'demet';
+    if (word == 'gramı') return 'gram';
+    if (word == 'kilogramı') return 'kilogram';
+    if (word == 'adedi') return 'adet';
     const suffixes = ['sı', 'si', 'su', 'sü'];
     for (final suffix in suffixes) {
       if (word.length > suffix.length && word.endsWith(suffix)) {
@@ -438,12 +480,15 @@ class VoiceCommandParser {
   String? _trCurrency(String word) {
     switch (word) {
       case 'lira':
+      case 'try':
       case 'tl':
       case '₺':
         return 'TRY';
+      case 'eur':
       case 'euro':
       case 'avro':
         return 'EUR';
+      case 'usd':
       case 'dolar':
       case 'dollar':
         return 'USD';
@@ -453,6 +498,7 @@ class VoiceCommandParser {
 
   String? _enCurrency(String word) {
     switch (word) {
+      case 'eur':
       case 'euro':
       case 'euros':
         return 'EUR';

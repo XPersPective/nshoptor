@@ -717,7 +717,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => '광고 없음, AI 기능 강화, 백업 · 월 소액 요금부터';
+  String get proBenefitsLine => '광고 없음 · 백업 내보내기 및 가져오기 · 월간';
 
   @override
   String get proBenefitNoAds => '광고 없는 경험';
@@ -926,7 +926,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get plansPerMonth => '/ 월';
 
   @override
-  String get planTrial => '7일 무료 체험';
+  String get planTrial => '무료 체험';
 
   @override
   String get planProAi => '월 100회 AI 요청';
@@ -957,13 +957,13 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      '구독은 취소하기 전까지 자동으로 갱신됩니다. Google Play › 결제 및 구독에서 언제든지 취소할 수 있습니다. 가격은 Google Play에 표시된 세금이 포함된 가격입니다.';
+      '새로운 Pro 및 Max 구독은 취소할 때까지 매월 자동 갱신됩니다. Google Play에서 관리하거나 취소하세요. 구매 전 Play에서 가격과 체험 자격을 확인하세요.';
 
   @override
   String get planCurrent => '현재';
 
   @override
-  String get planStartTrial => '7일 무료 체험 시작';
+  String get planStartTrial => '무료 체험 시작';
 
   @override
   String get planChoose => '선택';
@@ -1245,4 +1245,25 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get guidePricesBody =>
       '매장 가격을 입력하면 구매한 것으로 표시되며 0도 유효합니다. 집에서 예상한 가격은 선택 사항입니다. 매장 가격을 지우면 체크가 해제됩니다.';
+
+  @override
+  String get shoppingDateLabel => '쇼핑 날짜(선택 사항)';
+
+  @override
+  String get shoppingDateNone => '선택한 날짜 없음';
+
+  @override
+  String get clearShoppingDateAction => '날짜 지우기';
+
+  @override
+  String get listSortLabel => '목록 순서';
+
+  @override
+  String get listSortDate => '쇼핑 날짜';
+
+  @override
+  String get listSortAz => '이름(A–Z)';
+
+  @override
+  String get listSortManual => '수동 순서';
 }

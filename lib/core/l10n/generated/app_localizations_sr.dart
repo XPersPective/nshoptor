@@ -729,7 +729,7 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Без реклама, више AI, резервне копије · од мале месечне цене';
+      'Без реклама · Извоз и увоз резервне копије · Месечно';
 
   @override
   String get proBenefitNoAds => 'Искуство без реклама';
@@ -944,7 +944,7 @@ class AppLocalizationsSr extends AppLocalizations {
   String get plansPerMonth => '/ месец';
 
   @override
-  String get planTrial => '7 дана бесплатно';
+  String get planTrial => 'Бесплатни пробни период';
 
   @override
   String get planProAi => '100 AI захтева месечно';
@@ -976,13 +976,13 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Претплате се аутоматски обнављају до отказивања. Откажите у било ком тренутку у Google Play › Плаћања и претплате. Цена укључује порезе приказане од стране Google Play-ја.';
+      'Нове Pro и Max претплате се обнављају месечно до отказивања. Управљајте или откажите у Google Play-у. Пре куповине проверите цену и услове пробног периода у Play-у.';
 
   @override
   String get planCurrent => 'Тренутни';
 
   @override
-  String get planStartTrial => 'Покрени 7-дневно бесплатно пробно раздобље';
+  String get planStartTrial => 'Започни бесплатни пробни период';
 
   @override
   String get planChoose => 'Изабери';
@@ -1283,4 +1283,25 @@ class AppLocalizationsSr extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Цена у продавници означава производ као купљен; рачуна се и 0. Кућна цена није обавезна. Избришите цену у продавници да уклоните ознаку.';
+
+  @override
+  String get shoppingDateLabel => 'Датум куповине (необавезно)';
+
+  @override
+  String get shoppingDateNone => 'Датум није изабран';
+
+  @override
+  String get clearShoppingDateAction => 'Уклони датум';
+
+  @override
+  String get listSortLabel => 'Редослед списка';
+
+  @override
+  String get listSortDate => 'Датум куповине';
+
+  @override
+  String get listSortAz => 'Назив (А–Ш)';
+
+  @override
+  String get listSortManual => 'Ручни редослед';
 }

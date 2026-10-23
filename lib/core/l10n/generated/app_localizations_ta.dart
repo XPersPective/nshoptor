@@ -731,7 +731,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'விளம்பரங்கள் இல்லை, அதிக AI, பேக்அப் · சிறிய மாத விலையில் தொடங்குகிறது';
+      'விளம்பரங்கள் இல்லை · பின்புல ஏற்றுமதி மற்றும் இறக்குமதி · மாதாந்திர';
 
   @override
   String get proBenefitNoAds => 'விளம்பரங்களற்ற அனுபவம்';
@@ -949,7 +949,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get plansPerMonth => '/ மாதம்';
 
   @override
-  String get planTrial => '7 நாட்கள் இலவசம்';
+  String get planTrial => 'இலவச சோதனை';
 
   @override
   String get planProAi => 'மாதத்திற்கு 100 AI கோரிக்கைகள்';
@@ -981,13 +981,13 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'சந்தாக்கள் ரத்து செய்யப்படும் வரை தானாகவே புதுப்பிக்கப்படும். Google Play › கட்டணங்கள் & சந்தாக்களில் எப்போதும் ரத்து செய்யலாம். விலைகளில் Google Play காட்டுவது போன்ற வரிகள் அடங்கும்.';
+      'ரத்து செய்யும் வரை புதிய Pro மற்றும் Max சந்தாக்கள் மாதந்தோறும் புதுப்பிக்கப்படும். Google Play-இல் நிர்வகிக்கலாம் அல்லது ரத்து செய்யலாம். வாங்கும் முன் Play-இல் விலை மற்றும் சோதனைத் தகுதியைச் சரிபார்க்கவும்.';
 
   @override
   String get planCurrent => 'தற்போதையது';
 
   @override
-  String get planStartTrial => '7 நாள் இலவச சோதனையைத் தொடங்கவும்';
+  String get planStartTrial => 'இலவச சோதனையைத் தொடங்கு';
 
   @override
   String get planChoose => 'தேர்வு செய்';
@@ -1292,4 +1292,25 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'கடை விலையை உள்ளிட்டால் பொருள் வாங்கியதாகக் குறிக்கப்படும்; 0-வும் செல்லுபடியாகும். வீட்டு விலை விருப்பமானது. குறியை நீக்க கடை விலையை அழிக்கவும்.';
+
+  @override
+  String get shoppingDateLabel => 'கடைப்பயண தேதி (விருப்பம்)';
+
+  @override
+  String get shoppingDateNone => 'தேதி தேர்ந்தெடுக்கப்படவில்லை';
+
+  @override
+  String get clearShoppingDateAction => 'தேதியை நீக்கு';
+
+  @override
+  String get listSortLabel => 'பட்டியல் வரிசை';
+
+  @override
+  String get listSortDate => 'கடைப்பயண தேதி';
+
+  @override
+  String get listSortAz => 'பெயர் (அ–ஔ)';
+
+  @override
+  String get listSortManual => 'கைமுறை வரிசை';
 }

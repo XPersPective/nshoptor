@@ -729,7 +729,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Không quảng cáo, nhiều AI hơn, sao lưu · từ một khoản phí hàng tháng nhỏ';
+      'Không quảng cáo · Sao lưu, xuất và nhập · Hàng tháng';
 
   @override
   String get proBenefitNoAds => 'Trải nghiệm không quảng cáo';
@@ -946,7 +946,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get plansPerMonth => '/ tháng';
 
   @override
-  String get planTrial => 'Dùng thử miễn phí 7 ngày';
+  String get planTrial => 'Dùng thử miễn phí';
 
   @override
   String get planProAi => '100 lượt yêu cầu AI mỗi tháng';
@@ -978,13 +978,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Gói đăng ký tự động gia hạn đến khi bạn hủy. Hủy bất cứ lúc nào trong Google Play › Thanh toán & gói đăng ký. Giá đã bao gồm thuế do Google Play hiển thị.';
+      'Các gói đăng ký Pro và Max mới tự gia hạn hằng tháng cho đến khi hủy. Quản lý hoặc hủy trong Google Play. Kiểm tra giá và điều kiện dùng thử trên Play trước khi mua.';
 
   @override
   String get planCurrent => 'Đang dùng';
 
   @override
-  String get planStartTrial => 'Bắt đầu dùng thử 7 ngày miễn phí';
+  String get planStartTrial => 'Bắt đầu dùng thử miễn phí';
 
   @override
   String get planChoose => 'Chọn';
@@ -1279,4 +1279,25 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Giá tại cửa hàng đánh dấu sản phẩm đã mua; 0 cũng hợp lệ. Giá dự tính ở nhà là tùy chọn. Xóa giá cửa hàng để bỏ dấu tích.';
+
+  @override
+  String get shoppingDateLabel => 'Ngày mua sắm (tùy chọn)';
+
+  @override
+  String get shoppingDateNone => 'Chưa chọn ngày';
+
+  @override
+  String get clearShoppingDateAction => 'Xóa ngày';
+
+  @override
+  String get listSortLabel => 'Thứ tự danh sách';
+
+  @override
+  String get listSortDate => 'Ngày mua sắm';
+
+  @override
+  String get listSortAz => 'Tên (A–Z)';
+
+  @override
+  String get listSortManual => 'Sắp xếp thủ công';
 }

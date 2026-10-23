@@ -729,7 +729,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'അഡ്‌സ് ഇല്ല, കൂടുതൽ AI, ബാക്ക്‌അപ്പ് · കുറഞ്ഞ മാസിക വിലയിൽ';
+      'വിജ്ഞാപനങ്ങളില്ല · ബാക്ക്‌അപ്പ് എക്സ്പോർട്ടും ഇംപോർട്ടും · മാസം';
 
   @override
   String get proBenefitNoAds => 'അഡ്‌സ് ഇല്ലാത്ത അനുഭവം';
@@ -944,7 +944,7 @@ class AppLocalizationsMl extends AppLocalizations {
   String get plansPerMonth => '/ മാസം';
 
   @override
-  String get planTrial => '7 ദിവസം സൗജന്യം';
+  String get planTrial => 'സൗജന്യ ട്രയൽ';
 
   @override
   String get planProAi => 'മാസത്തിൽ 100 AI അഭ്യർത്ഥനകൾ';
@@ -976,13 +976,13 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'റദ്ദാക്കുന്നത് വരെ സബ്‌സ്ക്രിപ്ഷനുകൾ സ്വയം പുതുക്കുന്നു. Google Play › Payments & subscriptions-ൽ എപ്പോൾ വേണമെങ്കിലും റദ്ദാക്കാം. വിലകളിൽ Google Play കാണിക്കുന്ന നികുതികൾ ഉൾപ്പെടുന്നു.';
+      'റദ്ദാക്കുന്നതുവരെ പുതിയ Pro, Max സബ്സ്ക്രിപ്ഷനുകൾ ഓരോ മാസവും പുതുക്കും. Google Play-യിൽ നിയന്ത്രിക്കുകയോ റദ്ദാക്കുകയോ ചെയ്യാം. വാങ്ങുന്നതിന് മുമ്പ് Play-യിൽ വിലയും ട്രയൽ യോഗ്യതയും പരിശോധിക്കുക.';
 
   @override
   String get planCurrent => 'നിലവിലുള്ളത്';
 
   @override
-  String get planStartTrial => '7-ദിവസത്തെ സൗജന്യ ട്രയൽ ആരംഭിക്കുക';
+  String get planStartTrial => 'സൗജന്യ ട്രയൽ ആരംഭിക്കുക';
 
   @override
   String get planChoose => 'തിരഞ്ഞെടുക്കുക';
@@ -1282,4 +1282,25 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'കടയിലെ വില നൽകിയാൽ സാധനം വാങ്ങിയതായി അടയാളപ്പെടുത്തും; 0-വും സാധുവാണ്. വീട്ടിലെ വില നിർബന്ധമല്ല. അടയാളം മാറ്റാൻ കടയിലെ വില മായ്ക്കുക.';
+
+  @override
+  String get shoppingDateLabel => 'വാങ്ങൽ തീയതി (നിർബന്ധമല്ല)';
+
+  @override
+  String get shoppingDateNone => 'തീയതി തിരഞ്ഞെടുത്തിട്ടില്ല';
+
+  @override
+  String get clearShoppingDateAction => 'തീയതി നീക്കുക';
+
+  @override
+  String get listSortLabel => 'പട്ടികയുടെ ക്രമം';
+
+  @override
+  String get listSortDate => 'വാങ്ങൽ തീയതി';
+
+  @override
+  String get listSortAz => 'പേര് (അ–ഹ)';
+
+  @override
+  String get listSortManual => 'സ്വമേധയാ ക്രമീകരിക്കുക';
 }

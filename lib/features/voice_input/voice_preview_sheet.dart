@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
+import '../../core/quantity/unit_display.dart';
 import 'parser/parsed_item_candidate.dart';
 import 'parser/voice_command_parser.dart';
 import 'dictation_mic_button.dart';
@@ -162,7 +163,8 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                         name: parsed.name, rawText: parsed.rawText, quantity: parsed.quantity,
                         unitCode: parsed.unitCode, unitPrice: parsed.unitPrice,
                         currencyCode: parsed.currencyCode, priceDestination: parsed.priceDestination,
-                        isUnitPrice: value)),
+                        isUnitPrice: value,
+                        priceUnitCode: value == true ? parsed.priceUnitCode ?? parsed.unitCode : null)),
                     ),
                     Text('${l10n.itemNameLabel}: ${parsed.name}'),
                     Text(
@@ -173,9 +175,12 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                       '${l10n.unitLabel}: ${parsed.unitCode?.dbCode ?? '-'}',
                     ),
                     Text(
-                      '${l10n.plannedPriceLabel}: '
-                      '${parsed.unitPrice?.toDbString() ?? '-'}',
+                      '${parsed.priceDestination == VoicePriceDestination.actual ? l10n.actualPriceLabel : l10n.plannedPriceLabel}: '
+                      '${parsed.unitPrice?.toDbString() ?? '-'} ${parsed.currencyCode ?? ''}',
                     ),
+                    if (parsed.unitPrice != null && !parsed.requiresPriceConfirmation)
+                      Text('${l10n.pricingModeLabel}: ${parsed.isUnitPrice == true ? l10n.pricingModeUnitPrice : l10n.pricingModeLineTotal}'
+                        '${parsed.isUnitPrice == true && (parsed.priceUnitCode ?? parsed.unitCode) != null ? ' / ${unitDisplayName((parsed.priceUnitCode ?? parsed.unitCode)!, l10n)}' : ''}'),
                   ],
                 ),
               ),

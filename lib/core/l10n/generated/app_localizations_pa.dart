@@ -729,7 +729,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ਕੋਈ ਵਿਗਿਆਪਨ ਨਹੀਂ, ਵੱਧ AI, ਬੈਕਅਪ · ਛੋਟੇ ਮਹੀਨਾਵਾਰ ਮੁੱਲ ਤੋਂ';
+      'ਕੋਈ ਵਿਗਿਆਪਨ ਨਹੀਂ · ਬੈਕਅਪ ਐਕਸਪੋਰਟ ਅਤੇ ਇੰਪੋਰਟ · ਮਹੀਨਾਵਾਰੀ';
 
   @override
   String get proBenefitNoAds => 'ਵਿਗਿਆਪਨ-ਮੁਕਤ ਤਜਰਬਾ';
@@ -944,7 +944,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get plansPerMonth => '/ ਮਹੀਨਾ';
 
   @override
-  String get planTrial => '7 ਦਿਨ ਮੁਫ਼ਤ';
+  String get planTrial => 'ਮੁਫ਼ਤ ਟ੍ਰਾਇਲ';
 
   @override
   String get planProAi => 'ਮਹੀਨੇ ਵਿੱਚ 100 AI ਰਿਕਵੈਸਟਾਂ';
@@ -976,13 +976,13 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਰੱਦ ਕਰਨ ਤੱਕ ਆਟੋਮੈਟਿਕ ਤੌਰ \'ਤੇ ਨਵੀਂ ਹੁੰਦੀਆਂ ਹਨ। Google Play › ਭੁਗਤਾਨ ਅਤੇ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਰੱਦ ਕਰੋ। ਕੀਮਤਾਂ ਵਿੱਚ Google Play ਦੁਆਰਾ ਦਿਖਾਏ ਗਏ ਟੈਕਸ ਸ਼ਾਮਲ ਹਨ।';
+      'ਰੱਦ ਕਰਨ ਤੱਕ ਨਵੀਆਂ Pro ਅਤੇ Max ਮੈਂਬਰਸ਼ਿਪਾਂ ਹਰ ਮਹੀਨੇ ਨਵਿਆਏ ਜਾਂਦੇ ਹਨ। Google Play ਵਿੱਚ ਪ੍ਰਬੰਧ ਕਰੋ ਜਾਂ ਰੱਦ ਕਰੋ। ਖਰੀਦਣ ਤੋਂ ਪਹਿਲਾਂ Play ਵਿੱਚ ਕੀਮਤ ਅਤੇ ਟ੍ਰਾਇਲ ਦੀ ਯੋਗਤਾ ਦੇਖੋ।';
 
   @override
   String get planCurrent => 'ਮੌਜੂਦਾ';
 
   @override
-  String get planStartTrial => '7-ਦਿਨਾ ਮੁਫ਼ਤ ਟਰਾਇਲ ਸ਼ੁਰੂ ਕਰੋ';
+  String get planStartTrial => 'ਮੁਫ਼ਤ ਟ੍ਰਾਇਲ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String get planChoose => 'ਚੁਣੋ';
@@ -1280,4 +1280,25 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'ਦੁਕਾਨ ਦੀ ਕੀਮਤ ਭਰਨ ਨਾਲ ਵਸਤੂ ਖਰੀਦੀ ਹੋਈ ਮੰਨੀ ਜਾਂਦੀ ਹੈ; 0 ਵੀ ਮੰਨਿਆ ਜਾਂਦਾ ਹੈ। ਘਰ ਦੀ ਕੀਮਤ ਚੋਣਵੀਂ ਹੈ। ਨਿਸ਼ਾਨ ਹਟਾਉਣ ਲਈ ਦੁਕਾਨ ਦੀ ਕੀਮਤ ਮਿਟਾਓ।';
+
+  @override
+  String get shoppingDateLabel => 'ਖਰੀਦਦਾਰੀ ਦੀ ਤਾਰੀਖ (ਚੋਣਵੀਂ)';
+
+  @override
+  String get shoppingDateNone => 'ਕੋਈ ਤਾਰੀਖ ਨਹੀਂ ਚੁਣੀ';
+
+  @override
+  String get clearShoppingDateAction => 'ਤਾਰੀਖ ਹਟਾਓ';
+
+  @override
+  String get listSortLabel => 'ਸੂਚੀ ਦਾ ਕ੍ਰਮ';
+
+  @override
+  String get listSortDate => 'ਖਰੀਦਦਾਰੀ ਦੀ ਤਾਰੀਖ';
+
+  @override
+  String get listSortAz => 'ਨਾਮ (ੳ–ੜ)';
+
+  @override
+  String get listSortManual => 'ਆਪ ਕ੍ਰਮ ਲਗਾਓ';
 }

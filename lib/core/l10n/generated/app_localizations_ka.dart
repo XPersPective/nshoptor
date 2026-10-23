@@ -729,7 +729,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'რეკლამის გარეშე, მეტი AI, ბექაფი · მცირე თვიური გადასახადით';
+      'რეკლამის გარეშე · ბექაპის ექსპორტი და იმპორტი · თვიური';
 
   @override
   String get proBenefitNoAds => 'რეკლამის გარეშე გამოცდილება';
@@ -943,7 +943,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get plansPerMonth => '/ თვეში';
 
   @override
-  String get planTrial => '7 დღე უფასო';
+  String get planTrial => 'უფასო საცდელი პერიოდი';
 
   @override
   String get planProAi => '100 AI მოთხოვნა თვეში';
@@ -975,13 +975,13 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'გამოწერები ავტომატურად განახლდება გაუქმებამდე. ნებისმიერ დროს შეგიძლიათ გააუქმოთ Google Play › გადახდები და გამოწერები-ში. ფასები მოიცავს Google Play-ის მიერ ჩვენებულ საგადასახადო გადასახადებს.';
+      'Pro-სა და Max-ის ახალი გამოწერები ყოველთვიურად განახლდება გაუქმებამდე. მართეთ ან გააუქმეთ Google Play-ში. შეძენამდე Play-ში შეამოწმეთ ფასი და საცდელი პერიოდის პირობები.';
 
   @override
   String get planCurrent => 'მიმდინარე';
 
   @override
-  String get planStartTrial => '7-დღიანი უფასო ტესტის დაწყება';
+  String get planStartTrial => 'უფასო საცდელი პერიოდის დაწყება';
 
   @override
   String get planChoose => 'აირჩიეთ';
@@ -1280,4 +1280,25 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'მაღაზიის ფასის შეყვანისას პროდუქტი ნაყიდად მოინიშნება; 0-იც ითვლება. სახლის ფასი არასავალდებულოა. მონიშვნის მოსახსნელად წაშალეთ მაღაზიის ფასი.';
+
+  @override
+  String get shoppingDateLabel => 'საყიდლების თარიღი (არასავალდებულო)';
+
+  @override
+  String get shoppingDateNone => 'თარიღი არჩეული არ არის';
+
+  @override
+  String get clearShoppingDateAction => 'თარიღის გასუფთავება';
+
+  @override
+  String get listSortLabel => 'სიის რიგი';
+
+  @override
+  String get listSortDate => 'საყიდლების თარიღი';
+
+  @override
+  String get listSortAz => 'სახელი (ა–ჰ)';
+
+  @override
+  String get listSortManual => 'ხელით დალაგება';
 }

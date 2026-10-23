@@ -730,7 +730,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sense anuncis, més IA, còpia de seguretat · des d\'un petit preu mensual';
+      'Sense anuncis · Còpia de seguretat, exportació i importació · Mensual';
 
   @override
   String get proBenefitNoAds => 'Experiència sense anuncis';
@@ -947,7 +947,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get plansPerMonth => '/ mes';
 
   @override
-  String get planTrial => '7 dies gratuïts';
+  String get planTrial => 'Prova gratuïta';
 
   @override
   String get planProAi => '100 sol·licituds d\'IA al mes';
@@ -979,13 +979,13 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Les subscripcions es renoven automàticament fins que es cancel·lin. Es poden cancel·lar en qualsevol moment a Google Play › Pagaments i subscripcions. Els preus inclouen els impostos mostrats per Google Play.';
+      'Les subscripcions noves Pro i Max es renoven mensualment fins que es cancel·lin. Gestioneu-los o cancel·leu-los a Google Play. Comproveu el preu i l’accés a proves abans de comprar a Play.';
 
   @override
   String get planCurrent => 'Actual';
 
   @override
-  String get planStartTrial => 'Comença la prova gratuïta de 7 dies';
+  String get planStartTrial => 'Comença la prova gratuïta';
 
   @override
   String get planChoose => 'Tria';
@@ -1288,4 +1288,25 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'El preu de botiga marca el producte com a comprat; 0 també compta. El preu de casa és opcional. Esborreu el preu de botiga per treure la marca.';
+
+  @override
+  String get shoppingDateLabel => 'Data de compra (opcional)';
+
+  @override
+  String get shoppingDateNone => 'No s’ha seleccionat cap data';
+
+  @override
+  String get clearShoppingDateAction => 'Esborra la data';
+
+  @override
+  String get listSortLabel => 'Ordre de la llista';
+
+  @override
+  String get listSortDate => 'Data de compra';
+
+  @override
+  String get listSortAz => 'Nom (A–Z)';
+
+  @override
+  String get listSortManual => 'Ordre manual';
 }

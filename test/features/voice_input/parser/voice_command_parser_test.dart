@@ -110,6 +110,52 @@ void main() {
     });
   });
 
+  group('v2 natural prices use selected-quantity totals', () {
+    const tr = VoiceCommandParser(localeCode: 'tr');
+    const en = VoiceCommandParser(localeCode: 'en');
+    test('400g kıyma 350 TL is a total; kg basis is explicit only', () {
+      final total = tr.parse('400g kıyma 350 TL');
+      expect(total.name, 'kıyma');
+      expect(total.quantity!.toDbString(), '400');
+      expect(total.unitCode, UnitCode.gram);
+      expect(total.unitPrice!.toDbString(), '350');
+      expect(total.isUnitPrice, false);
+      expect(total.priceUnitCode, null);
+      final kilo = tr.parse('400 gram kıyma kilosu 875 TL');
+      expect(kilo.quantity!.toDbString(), '400');
+      expect(kilo.unitCode, UnitCode.gram);
+      expect(kilo.unitPrice!.toDbString(), '875');
+      expect(kilo.isUnitPrice, true);
+      expect(kilo.priceUnitCode, UnitCode.kilogram);
+    });
+    test('two packages default total, tanesi keeps product packaging basis', () {
+      final total = tr.parse('İki paket sigara 260 TL');
+      expect(total.isUnitPrice, false);
+      expect(total.requiresPriceConfirmation, false);
+      final unit = tr.parse('İki paket sigara tanesi 130 TL');
+      expect(unit.isUnitPrice, true);
+      expect(unit.priceUnitCode, UnitCode.paket);
+      final contradictory = tr.parse('İki paket sigara toplam tanesi 130 TL');
+      expect(contradictory.name, 'sigara');
+      expect(contradictory.requiresPriceConfirmation, true);
+    });
+    test('English per kilo, each, and plain totals preserve their basis', () {
+      final kilo = en.parse('400 grams mince 875 euros per kilo');
+      expect(kilo.name, 'mince');
+      expect(kilo.unitCode, UnitCode.gram);
+      expect(kilo.priceUnitCode, UnitCode.kilogram);
+      expect(kilo.isUnitPrice, true);
+      final beforeAmount = en.parse('400 grams mince per kilo 875 euros');
+      expect(beforeAmount.priceUnitCode, UnitCode.kilogram);
+      expect(beforeAmount.unitPrice!.toDbString(), '875');
+      final each = en.parse('two packs cigarettes 130 euros each');
+      expect(each.priceUnitCode, UnitCode.paket);
+      expect(each.isUnitPrice, true);
+      final total = en.parse('two packs cigarettes 260 euros');
+      expect(total.isUnitPrice, false);
+    });
+  });
+
   group('birden çok ürün (bölme)', () {
     final tr = VoiceCommandParser(localeCode: 'tr');
 

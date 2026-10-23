@@ -727,8 +727,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine =>
-      'ไม่มีโฆษณา, AI มากขึ้น, สำรองข้อมูล · เริ่มต้นที่ราคาต่อเดือนเล็กน้อย';
+  String get proBenefitsLine => 'ไม่มีโฆษณา · สำรองและนำเข้าข้อมูล · รายเดือน';
 
   @override
   String get proBenefitNoAds => 'ประสบการณ์ไร้โฆษณา';
@@ -943,7 +942,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get plansPerMonth => '/ เดือน';
 
   @override
-  String get planTrial => 'ทดลองใช้ฟรี 7 วัน';
+  String get planTrial => 'ทดลองใช้ฟรี';
 
   @override
   String get planProAi => '100 คำขอ AI ต่อเดือน';
@@ -974,13 +973,13 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'การสมัครสมาชิกจะต่ออายุอัตโนมัติจนกว่าจะยกเลิก ยกเลิกได้ทุกเมื่อที่ Google Play › การชำระเงินและการสมัครสมาชิก ราคาประกอบด้วยภาษีตามที่แสดงโดย Google Play';
+      'การสมัคร Pro และ Max ใหม่ ต่ออายุทุกเดือนจนกว่าจะยกเลิก จัดการหรือยกเลิกใน Google Play ตรวจสอบราคาและสิทธิ์ทดลองใช้ใน Play ก่อนซื้อ';
 
   @override
   String get planCurrent => 'ปัจจุบัน';
 
   @override
-  String get planStartTrial => 'เริ่มทดลองใช้ฟรี 7 วัน';
+  String get planStartTrial => 'เริ่มทดลองใช้ฟรี';
 
   @override
   String get planChoose => 'เลือก';
@@ -1275,4 +1274,25 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'เมื่อกรอกราคาที่ร้าน สินค้าจะถูกทำเครื่องหมายว่าซื้อแล้ว แม้ราคาเป็น 0 ราคาที่บ้านไม่จำเป็นต้องกรอก ลบราคาที่ร้านเพื่อเอาเครื่องหมายออก';
+
+  @override
+  String get shoppingDateLabel => 'วันที่ซื้อของ (ไม่บังคับ)';
+
+  @override
+  String get shoppingDateNone => 'ยังไม่ได้เลือกวันที่';
+
+  @override
+  String get clearShoppingDateAction => 'ล้างวันที่';
+
+  @override
+  String get listSortLabel => 'ลำดับรายการ';
+
+  @override
+  String get listSortDate => 'วันที่ซื้อของ';
+
+  @override
+  String get listSortAz => 'ชื่อ (ก–ฮ)';
+
+  @override
+  String get listSortManual => 'เรียงด้วยตนเอง';
 }

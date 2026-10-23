@@ -730,7 +730,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Χωρίς διαφημίσεις, περισσότερα AI, backup · από μια μικρή μηνιαία χρέωση';
+      'Χωρίς διαφημίσεις · Εξαγωγή και εισαγωγή αντιγράφων ασφαλείας · Μηνιαία';
 
   @override
   String get proBenefitNoAds => 'Εμπειρία χωρίς διαφημίσεις';
@@ -946,7 +946,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get plansPerMonth => '/ μήνα';
 
   @override
-  String get planTrial => '7 ημέρες δωρεάν';
+  String get planTrial => 'Δωρεάν δοκιμή';
 
   @override
   String get planProAi => '100 αιτήσεις AI τον μήνα';
@@ -979,13 +979,13 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Οι συνδρομές ανανεώνονται αυτόματα έως την ακύρωση. Ακυρώστε οποιαδήποτε στιγμή στο Google Play › Πληρωμές & συνδρομές. Οι τιμές περιλαμβάνουν τους φόρους που εμφανίζονται από το Google Play.';
+      'Οι νέες συνδρομές Pro και Max ανανεώνονται μηνιαία μέχρι να ακυρωθούν. Διαχειριστείτε ή ακυρώστε τα στο Google Play. Ελέγξτε εκεί την τιμή και τυχόν δικαίωμα δοκιμής πριν αγοράσετε.';
 
   @override
   String get planCurrent => 'Τρέχουσα';
 
   @override
-  String get planStartTrial => 'Έναρξη δωρεάν δοκιμής 7 ημερών';
+  String get planStartTrial => 'Έναρξη δωρεάν δοκιμής';
 
   @override
   String get planChoose => 'Επιλογή';
@@ -1289,4 +1289,25 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Η τιμή καταστήματος επισημαίνει το προϊόν ως αγορασμένο· μετρά και το 0. Η τιμή στο σπίτι είναι προαιρετική. Διαγράψτε την τιμή καταστήματος για να αφαιρέσετε τη σήμανση.';
+
+  @override
+  String get shoppingDateLabel => 'Ημερομηνία αγορών (προαιρετική)';
+
+  @override
+  String get shoppingDateNone => 'Δεν επιλέχθηκε ημερομηνία';
+
+  @override
+  String get clearShoppingDateAction => 'Εκκαθάριση ημερομηνίας';
+
+  @override
+  String get listSortLabel => 'Σειρά λίστας';
+
+  @override
+  String get listSortDate => 'Ημερομηνία αγορών';
+
+  @override
+  String get listSortAz => 'Όνομα (Α–Ω)';
+
+  @override
+  String get listSortManual => 'Χειροκίνητη σειρά';
 }

@@ -42,6 +42,22 @@ class NormalizedPricePoint {
   final String unitCode;
 }
 
+/// A saved estimate is distinct from a confirmed purchase observation.
+class EstimatedPricePoint {
+  const EstimatedPricePoint({
+    required this.item,
+    required this.at,
+    required this.unitPrice,
+    required this.unitCode,
+    required this.currencyCode,
+  });
+  final PlannedItem item;
+  final DateTime at;
+  final DecimalFixed unitPrice;
+  final String unitCode;
+  final String currencyCode;
+}
+
 class PriceHistoryRepository {
   PriceHistoryRepository(this._db);
 
@@ -75,6 +91,102 @@ class PriceHistoryRepository {
       points.add(point);
     }
     return points.reversed.toList();
+  }
+
+  /// Estimates use the list's scheduled date, falling back to its creation.
+  /// They are never inserted into observations or included in actual statistics.
+  Future<List<EstimatedPricePoint>> estimatedHistory(
+    int productId, {
+    String? currencyCode,
+    String? unitCode,
+  }) async {
+    final product = await (_db.select(
+      _db.productMemory,
+    )..where((p) => p.id.equals(productId))).getSingleOrNull();
+    if (product == null) return const [];
+    final items = _db.plannedItems, lists = _db.shoppingLists;
+    final query = _db.select(items).join([
+      innerJoin(lists, lists.id.equalsExp(items.listId)),
+    ])..where(items.normalizedName.equals(product.normalizedName));
+    if (currencyCode != null) {
+      query.where(lists.currencyCode.equals(currencyCode));
+    }
+    final result = <EstimatedPricePoint>[];
+    for (final row in await query.get()) {
+      final item = row.readTable(items), list = row.readTable(lists);
+      final sourceUnit = UnitCode.values
+          .where(
+            (u) =>
+                u.dbCode == item.plannedUnitCode ||
+                u.name == item.plannedUnitCode,
+          )
+          .firstOrNull;
+      final quantity = DecimalFixed.tryParse(item.plannedQuantity);
+      if (sourceUnit == null || quantity == null || !quantity.isPositive) {
+        continue;
+      }
+      final baseQuantity =
+          UnitConversion.tryConvertToBase(
+            quantity,
+            sourceUnit,
+            allowCount: true,
+          ) ??
+          (sourceUnit.dimension == UnitDimension.unknown &&
+                  sourceUnit != UnitCode.custom
+              ? quantity
+              : null);
+      final oneInBase =
+          UnitConversion.tryConvertToBase(
+            DecimalFixed.fromInt(1),
+            sourceUnit,
+            allowCount: true,
+          ) ??
+          (sourceUnit.dimension == UnitDimension.unknown &&
+                  sourceUnit != UnitCode.custom
+              ? DecimalFixed.fromInt(1)
+              : null);
+      if (baseQuantity == null ||
+          !baseQuantity.isPositive ||
+          oneInBase == null ||
+          !oneInBase.isPositive) {
+        continue;
+      }
+      final baseUnit = switch (sourceUnit.dimension) {
+        UnitDimension.mass => UnitCode.kilogram,
+        UnitDimension.volume => UnitCode.litre,
+        UnitDimension.count => UnitCode.adet,
+        UnitDimension.length => UnitCode.metre,
+        _ => sourceUnit == UnitCode.custom ? null : sourceUnit,
+      };
+      if (baseUnit == null || unitCode != null && baseUnit.dbCode != unitCode) {
+        continue;
+      }
+      final price = DecimalFixed.tryParse(item.plannedUnitPrice ?? '');
+      final total = item.plannedLineTotalMinorUnits;
+      final normalized =
+          price?.divide(oneInBase, scale: DecimalFixed.maxFractionDigits) ??
+          (total == null
+              ? null
+              : DecimalFixed.fromMinorUnits(
+                  total,
+                  _digitsOf(list.currencyCode),
+                ).divide(baseQuantity, scale: DecimalFixed.maxFractionDigits));
+      if (normalized == null || normalized.isNegative) continue;
+      result.add(
+        EstimatedPricePoint(
+          item: item,
+          at: list.plannedAt ?? list.createdAt,
+          unitPrice: normalized,
+          unitCode: baseUnit.dbCode,
+          currencyCode: list.currencyCode,
+        ),
+      );
+    }
+    result.sort((a, b) {
+      final date = a.at.compareTo(b.at);
+      return date == 0 ? a.item.id.compareTo(b.item.id) : date;
+    });
+    return result;
   }
 
   /// Ürünün gözlemlerinin para birimlerini (tek para birimi beklenir).
@@ -238,14 +350,23 @@ class PriceHistoryRepository {
     }
     final baseQuantity =
         DecimalFixed.tryParse(row.normalizedBaseQuantity ?? '') ??
-        UnitConversion.tryConvertToBase(quantity, sourceUnit, allowCount: true);
+        UnitConversion.tryConvertToBase(
+          quantity,
+          sourceUnit,
+          allowCount: true,
+        ) ??
+        (sourceUnit.dimension == UnitDimension.unknown &&
+                sourceUnit != UnitCode.custom
+            ? quantity
+            : null);
     if (baseQuantity == null || !baseQuantity.isPositive) return null;
     final baseUnit = switch (sourceUnit.dimension) {
       UnitDimension.mass => UnitCode.kilogram,
       UnitDimension.volume => UnitCode.litre,
       UnitDimension.count => UnitCode.adet,
       UnitDimension.length => UnitCode.metre,
-      UnitDimension.unknown => null,
+      UnitDimension.unknown =>
+        sourceUnit == UnitCode.custom ? null : sourceUnit,
     };
     if (baseUnit == null) return null;
 

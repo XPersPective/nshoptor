@@ -17,6 +17,7 @@ import '../../data/db/app_database.dart';
 import '../assistant/assistant_bubble.dart';
 import 'list_detail_screen.dart';
 import 'list_repository.dart';
+import 'list_scheduling.dart';
 import 'reminders/reminder_scheduler.dart';
 import 'list_status.dart';
 import '../voice_input/dictation_mic_button.dart';
@@ -33,7 +34,7 @@ String statusLabel(AppLocalizations l10n, ListStatus status) =>
 
 /// Başlığın görünen değeri: kullanıcı başlığı yoksa üretilmiş ad.
 String listDisplayTitle(AppLocalizations l10n, ShoppingList list) =>
-    list.title ?? list.generatedTitle ?? l10n.listsTitle;
+    shoppingListTitle(list, fallback: l10n.listsTitle);
 
 /// Aktif/tamamlanmış/arşiv sekmeli liste ekranı (spec §6.1).
 class ListsScreen extends StatefulWidget {
@@ -70,6 +71,7 @@ class ListsScreen extends StatefulWidget {
 class _ListsScreenState extends State<ListsScreen> {
   String _query = '';
   bool _searching = false;
+  ListSortMode _sort = ListSortMode.fromCode(AppDefaults.listSort());
   final _orders = <ListStatus, List<int>>{};
 
   @override
@@ -79,156 +81,183 @@ class _ListsScreenState extends State<ListsScreen> {
         widget.onOpenSummary != null ||
         widget.onScanReceipt != null ||
         widget.onAssistantChoice != null;
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const BrandTitle(),
-          actions: [
-            ?widget.planBadge,
-            if (widget.onScanReceipt != null)
+    return LayoutBuilder(
+      builder: (context, constraints) => DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const BrandTitle(),
+            actions: [
+              if (constraints.maxWidth >= 400) ?widget.planBadge,
+              if (widget.onScanReceipt != null && constraints.maxWidth >= 400)
+                IconButton(
+                  key: const Key('lists_receipt_button'),
+                  tooltip: l10n.tipReceiptScan,
+                  icon: const Icon(Icons.receipt_long_outlined),
+                  onPressed: widget.onScanReceipt,
+                ),
               IconButton(
-                key: const Key('lists_receipt_button'),
-                tooltip: l10n.tipReceiptScan,
-                icon: const Icon(Icons.receipt_long_outlined),
-                onPressed: widget.onScanReceipt,
+                key: const Key('lists_search_button'),
+                tooltip: l10n.searchListHint,
+                icon: Icon(_searching ? Icons.close : Icons.search),
+                onPressed: () => setState(() {
+                  _searching = !_searching;
+                  if (!_searching) _query = '';
+                }),
               ),
-            IconButton(
-              key: const Key('lists_search_button'),
-              tooltip: l10n.searchListHint,
-              icon: Icon(_searching ? Icons.close : Icons.search),
-              onPressed: () => setState(() {
-                _searching = !_searching;
-                if (!_searching) _query = '';
-              }),
-            ),
-            if (hasTools)
-              PopupMenuButton<_ListsTool>(
-                key: const Key('lists_tools_button'),
-                tooltip: l10n.detailsSection,
-                onSelected: _openTool,
+              PopupMenuButton<ListSortMode>(
+                key: const Key('lists_sort_button'),
+                tooltip: l10n.listSortLabel,
+                icon: const Icon(Icons.sort),
+                onSelected: (mode) => setState(() {
+                  _sort = mode;
+                  AppDefaults.setListSort(mode.name);
+                }),
                 itemBuilder: (_) => [
-                  if (widget.onOpenSummary != null)
-                    PopupMenuItem(
-                      key: const Key('lists_tool_summary'),
-                      value: _ListsTool.summary,
-                      child: Text(l10n.summarySection),
-                    ),
-                  if (widget.onScanReceipt != null)
-                    PopupMenuItem(
-                      key: const Key('lists_tool_receipt'),
-                      value: _ListsTool.receipt,
-                      child: Text(l10n.scanReceiptAction),
-                    ),
-                  if (widget.onAssistantChoice != null)
-                    PopupMenuItem(
-                      key: const Key('lists_tool_assistant'),
-                      value: _ListsTool.assistant,
-                      child: Text(l10n.assistantTitle),
+                  for (final mode in ListSortMode.values)
+                    CheckedPopupMenuItem(
+                      key: Key('lists_sort_${mode.name}'),
+                      value: mode,
+                      checked: _sort == mode,
+                      child: Text(switch (mode) {
+                        ListSortMode.date => l10n.listSortDate,
+                        ListSortMode.title => l10n.listSortAz,
+                        ListSortMode.manual => l10n.listSortManual,
+                      }),
                     ),
                 ],
               ),
-          ],
-          bottom: TabBar(
-            isScrollable: true,
-            tabAlignment: TabAlignment.start,
-            tabs: [
-              Tab(
-                key: const Key('lists_tab_active'),
-                text: l10n.listsTabActive,
-              ),
-              Tab(
-                key: const Key('lists_tab_completed'),
-                text: l10n.listsTabCompleted,
-              ),
-              Tab(
-                key: const Key('lists_tab_archived'),
-                text: l10n.listsTabArchived,
+              if (hasTools)
+                PopupMenuButton<_ListsTool>(
+                  key: const Key('lists_tools_button'),
+                  tooltip: l10n.detailsSection,
+                  onSelected: _openTool,
+                  itemBuilder: (_) => [
+                    if (widget.onOpenSummary != null)
+                      PopupMenuItem(
+                        key: const Key('lists_tool_summary'),
+                        value: _ListsTool.summary,
+                        child: Text(l10n.summarySection),
+                      ),
+                    if (widget.onScanReceipt != null)
+                      PopupMenuItem(
+                        key: const Key('lists_tool_receipt'),
+                        value: _ListsTool.receipt,
+                        child: Text(l10n.scanReceiptAction),
+                      ),
+                    if (widget.onAssistantChoice != null)
+                      PopupMenuItem(
+                        key: const Key('lists_tool_assistant'),
+                        value: _ListsTool.assistant,
+                        child: Text(l10n.assistantTitle),
+                      ),
+                  ],
+                ),
+            ],
+            bottom: TabBar(
+              isScrollable: true,
+              tabAlignment: TabAlignment.start,
+              tabs: [
+                Tab(
+                  key: const Key('lists_tab_active'),
+                  text: l10n.listsTabActive,
+                ),
+                Tab(
+                  key: const Key('lists_tab_completed'),
+                  text: l10n.listsTabCompleted,
+                ),
+                Tab(
+                  key: const Key('lists_tab_archived'),
+                  text: l10n.listsTabArchived,
+                ),
+              ],
+            ),
+          ),
+          body: Column(
+            children: [
+              if (_searching)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                  child: TextField(
+                    key: const Key('lists_search_field'),
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: l10n.searchListHint,
+                      prefixIcon: const Icon(Icons.search),
+                    ),
+                    onChanged: (v) => setState(() => _query = v.trim()),
+                  ),
+                ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    _ListsTab(
+                      repository: widget.repository,
+                      query: _query,
+                      sort: _sort,
+                      statuses: const {
+                        ListStatus.draft,
+                        ListStatus.planned,
+                        ListStatus.shopping,
+                      },
+                      orderKey: ListStatus.draft,
+                      order: _orders[ListStatus.draft],
+                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                        ListStatus.draft,
+                        lists,
+                        oldIndex,
+                        newIndex,
+                      ),
+                      emptyText: l10n.listsEmpty,
+                      onOpenListDetail: widget.onOpenListDetail,
+                      reminderScheduler: widget.reminderScheduler,
+                    ),
+                    _ListsTab(
+                      repository: widget.repository,
+                      query: _query,
+                      sort: _sort,
+                      statuses: const {ListStatus.completed},
+                      orderKey: ListStatus.completed,
+                      order: _orders[ListStatus.completed],
+                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                        ListStatus.completed,
+                        lists,
+                        oldIndex,
+                        newIndex,
+                      ),
+                      emptyText: l10n.listsEmpty,
+                      onOpenListDetail: widget.onOpenListDetail,
+                      reminderScheduler: widget.reminderScheduler,
+                    ),
+                    _ListsTab(
+                      repository: widget.repository,
+                      query: _query,
+                      sort: _sort,
+                      statuses: const {ListStatus.archived},
+                      orderKey: ListStatus.archived,
+                      order: _orders[ListStatus.archived],
+                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                        ListStatus.archived,
+                        lists,
+                        oldIndex,
+                        newIndex,
+                      ),
+                      emptyText: l10n.listsEmpty,
+                      onOpenListDetail: widget.onOpenListDetail,
+                      reminderScheduler: widget.reminderScheduler,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-        ),
-        body: Column(
-          children: [
-            if (_searching)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                child: TextField(
-                  key: const Key('lists_search_field'),
-                  autofocus: true,
-                  decoration: InputDecoration(
-                    hintText: l10n.searchListHint,
-                    prefixIcon: const Icon(Icons.search),
-                  ),
-                  onChanged: (v) => setState(() => _query = v.trim()),
-                ),
-              ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    statuses: const {
-                      ListStatus.draft,
-                      ListStatus.planned,
-                      ListStatus.shopping,
-                    },
-                    orderKey: ListStatus.draft,
-                    order: _orders[ListStatus.draft],
-                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                      ListStatus.draft,
-                      lists,
-                      oldIndex,
-                      newIndex,
-                    ),
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                  ),
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    statuses: const {ListStatus.completed},
-                    orderKey: ListStatus.completed,
-                    order: _orders[ListStatus.completed],
-                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                      ListStatus.completed,
-                      lists,
-                      oldIndex,
-                      newIndex,
-                    ),
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                  ),
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    statuses: const {ListStatus.archived},
-                    orderKey: ListStatus.archived,
-                    order: _orders[ListStatus.archived],
-                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                      ListStatus.archived,
-                      lists,
-                      oldIndex,
-                      newIndex,
-                    ),
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          key: const Key('lists_new_list_button'),
-          heroTag: 'listsFab',
-          onPressed: () => _openEditor(context),
-          icon: const Icon(Icons.add),
-          label: Text(l10n.newListButton),
+          floatingActionButton: FloatingActionButton.extended(
+            key: const Key('lists_new_list_button'),
+            heroTag: 'listsFab',
+            onPressed: () => _openEditor(context),
+            icon: const Icon(Icons.add),
+            label: Text(l10n.newListButton),
+          ),
         ),
       ),
     );
@@ -309,6 +338,7 @@ class _ListsTab extends StatelessWidget {
   const _ListsTab({
     required this.repository,
     required this.query,
+    required this.sort,
     required this.statuses,
     required this.orderKey,
     required this.order,
@@ -320,6 +350,7 @@ class _ListsTab extends StatelessWidget {
 
   final ListRepository repository;
   final String query;
+  final ListSortMode sort;
   final Set<ListStatus> statuses;
   final ListStatus orderKey;
   final List<int>? order;
@@ -333,23 +364,22 @@ class _ListsTab extends StatelessWidget {
     return StreamBuilder<List<ShoppingList>>(
       stream: repository.watchAll(),
       builder: (context, snapshot) {
-        final lists =
-            (snapshot.data ?? const <ShoppingList>[])
-                .where((l) => statuses.contains(ListStatus.tryFromDb(l.status)))
-                .where(
-                  (l) =>
-                      query.isEmpty ||
-                      (l.title ?? l.generatedTitle ?? '')
-                          .toLowerCase()
-                          .contains(query.toLowerCase()),
-                )
-                .toList()
-              ..sort((a, b) {
-                final byOrder = a.sortOrder.compareTo(b.sortOrder);
-                return byOrder == 0
-                    ? b.createdAt.compareTo(a.createdAt)
-                    : byOrder;
-              });
+        final lists = sortShoppingLists(
+          (snapshot.data ?? const <ShoppingList>[])
+              .where(
+                (list) => statuses.contains(ListStatus.tryFromDb(list.status)),
+              )
+              .where(
+                (list) =>
+                    query.isEmpty ||
+                    shoppingListTitle(list)
+                        .toLowerCase()
+                        .contains(query.toLowerCase()),
+              ),
+          mode: sort,
+          localeCode: Localizations.localeOf(context).languageCode,
+          fallbackTitle: AppLocalizations.of(context).listsTitle,
+        );
         if (lists.isEmpty) {
           final colors = Theme.of(context).colorScheme;
           return Center(
@@ -382,6 +412,19 @@ class _ListsTab extends StatelessWidget {
             ),
           );
         }
+        if (sort != ListSortMode.manual) {
+          return ListView.builder(
+            padding: const EdgeInsets.only(bottom: 88),
+            itemCount: lists.length,
+            itemBuilder: (context, index) => _ListCard(
+              key: ValueKey('sorted_${lists[index].id}'),
+              repository: repository,
+              list: lists[index],
+              onOpen: onOpenListDetail,
+              reminderScheduler: reminderScheduler,
+            ),
+          );
+        }
         final customOrder = order ?? const <int>[];
         lists.sort((a, b) {
           final ai = customOrder.indexOf(a.id);
@@ -390,7 +433,9 @@ class _ListsTab extends StatelessWidget {
           if (ai >= 0) return -1;
           if (bi >= 0) return 1;
           final byOrder = a.sortOrder.compareTo(b.sortOrder);
-          return byOrder == 0 ? b.createdAt.compareTo(a.createdAt) : byOrder;
+          if (byOrder != 0) return byOrder;
+          final created = a.createdAt.compareTo(b.createdAt);
+          return created == 0 ? a.id.compareTo(b.id) : created;
         });
         return ReorderableListView.builder(
           padding: const EdgeInsets.only(bottom: 88),
@@ -418,6 +463,7 @@ class _ListsTab extends StatelessWidget {
 
 class _ListCard extends StatelessWidget {
   const _ListCard({
+    super.key,
     required this.repository,
     required this.list,
     this.onOpen,
@@ -500,16 +546,24 @@ class _ListCard extends StatelessWidget {
             listDisplayTitle(l10n, list),
             overflow: TextOverflow.ellipsis,
           ),
-          subtitle: list.budgetMinorUnits == null
+          subtitle: list.plannedAt == null && list.budgetMinorUnits == null
               ? null
-              : Text(
-                  formatMoney(
-                    Money.fromMinorUnits(
-                      list.budgetMinorUnits!,
-                      Currency.fromCode(list.currencyCode),
-                    ),
-                    locale: formatLocaleCode(context),
-                  ),
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (list.plannedAt != null)
+                      Text(shoppingDateText(context, list.plannedAt!)),
+                    if (list.budgetMinorUnits != null)
+                      Text(
+                        formatMoney(
+                          Money.fromMinorUnits(
+                            list.budgetMinorUnits!,
+                            Currency.fromCode(list.currencyCode),
+                          ),
+                          locale: formatLocaleCode(context),
+                        ),
+                      ),
+                  ],
                 ),
           trailing: PopupMenuButton<String>(
             tooltip: l10n.editAction,
@@ -630,6 +684,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
   );
   late final TextEditingController _budget = TextEditingController();
   String? _budgetPrefilled;
+  late DateTime? _plannedAt = widget.existing?.plannedAt;
   late String _currency =
       widget.existing?.currencyCode ?? AppDefaults.defaultCurrency();
   late final TextEditingController _note = TextEditingController(
@@ -729,6 +784,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
         titleLocaleCode: widget.l10n.localeName,
         generatedTitle: generated,
         currencyCode: _currency,
+        plannedAt: _plannedAt,
         budgetMinorUnits: budgetMinor,
         note: _note.text.trim().isEmpty ? null : _note.text.trim(),
       );
@@ -757,6 +813,9 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
       );
       if (budgetMinor != existing.budgetMinorUnits) {
         await widget.repository.updateBudget(existing.id, budgetMinor);
+      }
+      if (_plannedAt != existing.plannedAt) {
+        await widget.repository.updatePlannedAt(existing.id, _plannedAt);
       }
       await widget.repository.updateNote(
         existing.id,
@@ -819,6 +878,12 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
                   controller: _title,
                 ),
               ),
+            ),
+            const SizedBox(height: 12),
+            ShoppingDateField(
+              value: _plannedAt,
+              enabled: !_saving,
+              onChanged: (value) => setState(() => _plannedAt = value),
             ),
             const SizedBox(height: 12),
             ExpansionTile(

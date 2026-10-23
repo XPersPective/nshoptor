@@ -727,7 +727,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ingen reklamer, mere AI, backup · fra en lille månedlig pris';
+      'Ingen annoncer · Backup-eksport og -import · Månedlig';
 
   @override
   String get proBenefitNoAds => 'Reklamefri oplevelse';
@@ -944,7 +944,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get plansPerMonth => '/ måned';
 
   @override
-  String get planTrial => '7 dages gratis prøveperiode';
+  String get planTrial => 'Gratis prøveperiode';
 
   @override
   String get planProAi => '100 AI-anmodninger om måneden';
@@ -976,13 +976,13 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abonnementer fornyes automatisk, indtil de opsiges. Opsig når som helst i Google Play › Betalinger og abonnementer. Priserne inkluderer de skatter, der vises af Google Play.';
+      'Nye Pro- og Max-abonnementer fornyes månedligt, indtil de opsiges. Administrer eller opsig i Google Play. Tjek pris og eventuel prøveberettigelse i Play før køb.';
 
   @override
   String get planCurrent => 'Nuværende';
 
   @override
-  String get planStartTrial => 'Start 7-dages gratis prøveperiode';
+  String get planStartTrial => 'Start gratis prøveperiode';
 
   @override
   String get planChoose => 'Vælg';
@@ -1280,4 +1280,25 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'En butikspris markerer varen som købt; 0 tæller også. Hjemmeprisen er valgfri. Slet butiksprisen for at fjerne markeringen.';
+
+  @override
+  String get shoppingDateLabel => 'Indkøbsdato (valgfri)';
+
+  @override
+  String get shoppingDateNone => 'Ingen dato valgt';
+
+  @override
+  String get clearShoppingDateAction => 'Fjern dato';
+
+  @override
+  String get listSortLabel => 'Listerækkefølge';
+
+  @override
+  String get listSortDate => 'Indkøbsdato';
+
+  @override
+  String get listSortAz => 'Navn (A–Z)';
+
+  @override
+  String get listSortManual => 'Manuel rækkefølge';
 }

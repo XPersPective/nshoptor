@@ -730,7 +730,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Без реклами, повече AI, архив · от малка месечна цена';
+      'Без реклами · Архивиране на експорт и импорт · Месечно';
 
   @override
   String get proBenefitNoAds => 'Опит без реклами';
@@ -947,7 +947,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get plansPerMonth => '/ месец';
 
   @override
-  String get planTrial => '7 дни безплатно';
+  String get planTrial => 'Безплатен пробен период';
 
   @override
   String get planProAi => '100 AI заявки на месец';
@@ -979,13 +979,13 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Абонаментите се обновяват автоматично, докато не бъдат отменени. Можете да отмените по всяко време в Google Play › Плащания и абонаменти. Цените включват данъците, показани от Google Play.';
+      'Новите абонаменти Pro и Max се подновяват ежемесечно до отказване. Управлявайте или отменяйте в Google Play. Проверете цената и правото на пробен период в Play преди покупка.';
 
   @override
   String get planCurrent => 'Текущ';
 
   @override
-  String get planStartTrial => 'Започнете 7-дневен безплатен пробен период';
+  String get planStartTrial => 'Започни безплатен пробен период';
 
   @override
   String get planChoose => 'Избери';
@@ -1287,4 +1287,25 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Цена в магазина отбелязва продукта като купен; 0 също се зачита. Домашната цена е по избор. Изтрийте магазинната цена, за да махнете отметката.';
+
+  @override
+  String get shoppingDateLabel => 'Дата на пазаруване (по избор)';
+
+  @override
+  String get shoppingDateNone => 'Не е избрана дата';
+
+  @override
+  String get clearShoppingDateAction => 'Изчистване на датата';
+
+  @override
+  String get listSortLabel => 'Подредба на списъка';
+
+  @override
+  String get listSortDate => 'Дата на пазаруване';
+
+  @override
+  String get listSortAz => 'Име (А–Я)';
+
+  @override
+  String get listSortManual => 'Ръчна подредба';
 }

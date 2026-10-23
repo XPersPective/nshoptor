@@ -729,7 +729,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Engar auglýsingar, meira AI, öryggisafrit · frá lítilli mánaðargjaldi';
+      'Engar auglýsingar · Bakgrunnshermt og innflutningur · Mánaðarlega';
 
   @override
   String get proBenefitNoAds => 'Auglýsingalaust upplifun';
@@ -943,7 +943,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get plansPerMonth => '/ mánuður';
 
   @override
-  String get planTrial => '7 dagar ókeypis';
+  String get planTrial => 'Ókeypis prufuáskrift';
 
   @override
   String get planProAi => '100 AI beiðnir á mánuði';
@@ -976,13 +976,13 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Áskriftir endurnýjast sjálfkrafa þar til hætt er við þær. Hægt er að hætta hvenær sem er í Google Play › Greiðslur og áskriftir. Verð inniheldur skatta sýnda af Google Play.';
+      'Nýjar Pro- og Max-áskriftir endurnýjast mánaðarlega þar til þeim er sagt upp. Stjórnaðu eða segðu upp í Google Play. Athugaðu verð og rétt á prufu í Play fyrir kaup.';
 
   @override
   String get planCurrent => 'Núverandi';
 
   @override
-  String get planStartTrial => 'Byrja 7 daga ókeypis prófun';
+  String get planStartTrial => 'Hefja ókeypis prufuáskrift';
 
   @override
   String get planChoose => 'Veldu';
@@ -1280,4 +1280,25 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Verslunarverð merkir vöruna sem keypta; 0 gildir líka. Verð heima er valfrjálst. Eyddu verslunarverðinu til að fjarlægja hakið.';
+
+  @override
+  String get shoppingDateLabel => 'Innkaupadagur (valfrjálst)';
+
+  @override
+  String get shoppingDateNone => 'Engin dagsetning valin';
+
+  @override
+  String get clearShoppingDateAction => 'Fjarlægja dagsetningu';
+
+  @override
+  String get listSortLabel => 'Röð lista';
+
+  @override
+  String get listSortDate => 'Innkaupadagur';
+
+  @override
+  String get listSortAz => 'Nafn (A–Ö)';
+
+  @override
+  String get listSortManual => 'Handvirk röð';
 }

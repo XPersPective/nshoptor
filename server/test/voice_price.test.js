@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { TASKS } from '../src/tasks.js';
 import { CURRENCY_CODES } from '../src/currencies.js';
 
-const parsed = (source, item) => TASKS.parse_list.clean({ items: [item] }, { text: source, priceSemanticsVersion: 1 }).items[0];
+const parsed = (source, item) => TASKS.parse_list.clean({ items: [item] }, { text: source, priceSemanticsVersion: 2 }).items[0];
 const item = { name: 'sigara', quantity: '2', unit: 'package', estimatedPrice: '260', currencyCode: 'TRY' };
 
 test('supported currency table stays aligned with the Flutter money core', () => {
@@ -13,10 +13,10 @@ test('supported currency table stays aligned with the Flutter money core', () =>
   assert.deepEqual([...CURRENCY_CODES].sort(), [...new Set(codes)].sort());
 });
 
-test('spoken money remains unresolved without explicit source evidence', () => {
+test('spoken money defaults to the total without an explicit unit cue', () => {
   for (const priceIsUnitPrice of [false, true, null, 'true']) {
     const result = parsed('iki paket sigara 260 TL', { ...item, priceIsUnitPrice });
-    assert.equal(result.priceIsUnitPrice, null);
+    assert.equal(result.priceIsUnitPrice, false);
     assert.equal(result.estimatedPrice, '260');
     assert.equal(result.currencyCode, 'TRY');
   }
@@ -81,4 +81,35 @@ test('legacy clients never receive prices that need new confirmation/currency/de
   const result = TASKS.parse_list.clean({ items: [{ ...item, priceEvidence: source, priceIsUnitPrice: false }] }, { text: source });
   assert.equal(result.items[0].estimatedPrice, null);
   assert.equal(result.items[0].name, 'sigara');
+});
+
+
+test('explicit price basis is independent from the quantity unit and cannot be invented', () => {
+  const source = '400 gram kıyma kilosu 875 TL';
+  const result = parsed(source, { name: 'kıyma', quantity: '400', unit: 'gram', estimatedPrice: '875', priceEvidence: source, priceIsUnitPrice: true, priceUnitCode: 'piece' });
+  assert.equal(result.priceIsUnitPrice, true);
+  assert.equal(result.priceUnitCode, 'kilogram');
+  assert.equal(result.quantity, '400');
+  assert.equal(result.unit, 'gram');
+  const packs = 'two packs cigarettes 130 USD each';
+  assert.equal(parsed(packs, { name: 'cigarettes', quantity: '2', unit: 'package', estimatedPrice: '130', priceEvidence: packs, priceIsUnitPrice: true }).priceUnitCode, 'package');
+  const plain = '400 gram kıyma 350 TL';
+  const total = parsed(plain, { name: 'kıyma', quantity: '400', unit: 'gram', estimatedPrice: '350', priceIsUnitPrice: true });
+  assert.equal(total.priceIsUnitPrice, false);
+  assert.equal(total.priceUnitCode, null);
+});
+
+test('contradictory total and unit price cues require confirmation', () => {
+  const source = 'iki paket sigara toplam tanesi 130 TL';
+  assert.equal(parsed(source, { ...item, estimatedPrice: '130', priceEvidence: source, priceIsUnitPrice: true }).priceIsUnitPrice, null);
+});
+
+test('v1 and absent contracts cannot receive the v2 price default', () => {
+  const source = 'iki paket sigara 260 TL';
+  for (const version of [undefined, 0, 1]) {
+    const result = TASKS.parse_list.clean({ items: [item] }, { text: source, priceSemanticsVersion: version });
+    assert.equal(result.items[0].estimatedPrice, null);
+  }
+  assert.equal(TASKS.parse_list.validate({ text: source, priceSemanticsVersion: 2 }).priceSemanticsVersion, 2);
+  assert.equal(TASKS.parse_list.validate({ text: source, priceSemanticsVersion: 1 }).priceSemanticsVersion, 0);
 });

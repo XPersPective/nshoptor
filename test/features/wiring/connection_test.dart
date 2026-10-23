@@ -283,6 +283,12 @@ void main() {
       await tester.tap(find.text('Old apple'));
       await settle(tester);
       expect(find.byKey(const Key('item_shelf_label_button')), findsNothing);
+      tester
+          .widget<DropdownButtonFormField<bool>>(
+            find.byKey(const Key('item_actual_price_mode')),
+          )
+          .onChanged!(true);
+      await tester.pump();
       await tester.enterText(
         find.byKey(const Key('item_actual_price_field')),
         '40,00',
@@ -481,7 +487,16 @@ void main() {
 
     // Both the formatted chart range and the single observation show money.
     expect(find.textContaining('42,90'), findsNWidgets(2));
-    expect(find.byType(Card), findsNWidgets(2));
+    expect(find.byKey(const Key('price_history_chart')), findsOneWidget);
+    expect(
+      find.byWidgetPredicate(
+        (w) =>
+            w is Card &&
+            w.key is ValueKey<String> &&
+            (w.key as ValueKey<String>).value.startsWith('price_obs_'),
+      ),
+      findsNWidgets(1),
+    );
     expect(find.textContaining('2,00'), findsNothing);
     expect(find.textContaining('99,00'), findsNothing);
 

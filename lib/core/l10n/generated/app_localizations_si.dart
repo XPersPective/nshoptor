@@ -727,8 +727,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine =>
-      'විज्ञापन නැත, වැඩි AI, බැක්අප් · කුඩා මාසික මිලකින්';
+  String get proBenefitsLine => 'විज्ञापन නැත · බැකප් අපනයනය සහ ආයාතය · මාසික';
 
   @override
   String get proBenefitNoAds => 'විज्ञापන රහිත අත්දැකීම';
@@ -943,7 +942,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get plansPerMonth => '/ මාසය';
 
   @override
-  String get planTrial => 'දින 7 නිදහස්';
+  String get planTrial => 'නොමිලේ අත්හදා බැලීම';
 
   @override
   String get planProAi => 'මාසයකට AI ඉල්ලීම් 100';
@@ -975,13 +974,13 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'අදාළ ගිණුම් කල් ඉකුත් වන තෙක් ස්වයංක්‍රීයව නවීකරණය වේ. Google Play › ගෙවීම් සහ අදාළ ගිණුම් හරහා ඕනෑම වේලාවක අවලංගු කළ හැක. මිල ගණන් වලට Google Play මගින් පෙන්වන බදු ඇතුළත් වේ.';
+      'අවලංගු කරන තුරු නව Pro සහ Max දායකත්ව මාසිකව අලුත් වේ. Google Play තුළ කළමනාකරණය හෝ අවලංගු කරන්න. මිලදී ගැනීමට පෙර Play තුළ මිල සහ අත්හදා බැලීමේ සුදුසුකම් පරීක්ෂා කරන්න.';
 
   @override
   String get planCurrent => 'වත්මන්';
 
   @override
-  String get planStartTrial => 'දින 7ක නොමිලේ පරීක්ෂණය ආරම්භ කරන්න';
+  String get planStartTrial => 'නොමිලේ අත්හදා බැලීම අරඹන්න';
 
   @override
   String get planChoose => 'තෝරන්න';
@@ -1280,4 +1279,25 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'වෙළඳසැල් මිල ඇතුළත් කළ විට භාණ්ඩය මිලදී ගත් ලෙස සලකුණු වේ; 0 ද වලංගුය. නිවසේ මිල අත්‍යවශ්‍ය නොවේ. සලකුණ ඉවත් කිරීමට වෙළඳසැල් මිල මකන්න.';
+
+  @override
+  String get shoppingDateLabel => 'සාප්පු සවාරි දිනය (විකල්ප)';
+
+  @override
+  String get shoppingDateNone => 'දිනයක් තෝරා නැත';
+
+  @override
+  String get clearShoppingDateAction => 'දිනය ඉවත් කරන්න';
+
+  @override
+  String get listSortLabel => 'ලැයිස්තු අනුපිළිවෙළ';
+
+  @override
+  String get listSortDate => 'සාප්පු සවාරි දිනය';
+
+  @override
+  String get listSortAz => 'නම (අ–හ)';
+
+  @override
+  String get listSortManual => 'අතින් සකසන්න';
 }

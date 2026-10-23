@@ -152,6 +152,7 @@ class ShoppingRepository {
     String? note,
     String source = 'manual',
     bool replaceExisting = true,
+    String? pricingInputMode,
   }) => _db.transaction(() async {
     if (name.trim().isEmpty ||
         normalizedName.trim().isEmpty ||
@@ -161,6 +162,8 @@ class ShoppingRepository {
                 lineTotalMinor < 0)) ||
         (unitPrice?.isNegative ?? false) ||
         discountMinor < 0 ||
+        (pricingInputMode != null &&
+            !{'unitPrice', 'lineTotal'}.contains(pricingInputMode)) ||
         (quantity.isPositive && lineTotalMinor != null && lineTotalMinor < 0) ||
         (quantity.isNegative && lineTotalMinor != null && lineTotalMinor > 0)) {
       throw ArgumentError('Invalid purchase');
@@ -220,6 +223,10 @@ class ShoppingRepository {
             actualQuantity: quantity.toDbString(),
             actualUnitCode: unitCode,
             actualUnitPrice: Value(resolvedUnitPrice?.toDbString()),
+            pricingInputMode: Value(
+              pricingInputMode ??
+                  (lineTotalMinor != null ? 'lineTotal' : 'unitPrice'),
+            ),
             grossTotalMinorUnits: Value(gross),
             discountMinorUnits: Value(discountMinor),
             actualLineTotalMinorUnits: lineTotal,

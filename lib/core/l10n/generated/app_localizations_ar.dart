@@ -725,7 +725,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'بلا إعلانات، ذكاء اصطناعي أكثر، نسخ احتياطي · بسعر شهري صغير';
+      'بلا إعلانات · تصدير واستيراد النسخ الاحتياطية · شهري';
 
   @override
   String get proBenefitNoAds => 'بلا إعلانات';
@@ -936,7 +936,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get plansPerMonth => '/ شهر';
 
   @override
-  String get planTrial => '7 أيام مجانًا';
+  String get planTrial => 'فترة تجريبية مجانية';
 
   @override
   String get planProAi => '100 طلب ذكاء اصطناعي شهريًا';
@@ -967,13 +967,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'تتجدد الاشتراكات تلقائيًا حتى إلغائها. يمكنك الإلغاء في أي وقت من Google Play › المدفوعات والاشتراكات. تشمل الأسعار الضرائب التي يعرضها Google Play.';
+      'تتجدد اشتراكات Pro وMax الجديدة شهريًا حتى الإلغاء. يمكنك إدارتها أو إلغاؤها في Google Play. تحقّق من السعر وأهلية أي فترة تجريبية في Play قبل الشراء.';
 
   @override
   String get planCurrent => 'الحالية';
 
   @override
-  String get planStartTrial => 'جرّب مجانًا 7 أيام';
+  String get planStartTrial => 'بدء الفترة التجريبية المجانية';
 
   @override
   String get planChoose => 'اختيار';
@@ -1267,4 +1267,25 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'يُعلَّم المنتج كمشترى عند إدخال سعر المتجر، حتى لو كان 0. سعر المنزل اختياري. امسح سعر المتجر لإزالة العلامة.';
+
+  @override
+  String get shoppingDateLabel => 'تاريخ التسوق (اختياري)';
+
+  @override
+  String get shoppingDateNone => 'لم يُحدَّد تاريخ';
+
+  @override
+  String get clearShoppingDateAction => 'إزالة التاريخ';
+
+  @override
+  String get listSortLabel => 'ترتيب القائمة';
+
+  @override
+  String get listSortDate => 'تاريخ التسوق';
+
+  @override
+  String get listSortAz => 'الاسم (أ–ي)';
+
+  @override
+  String get listSortManual => 'ترتيب يدوي';
 }

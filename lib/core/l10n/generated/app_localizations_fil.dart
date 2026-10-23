@@ -731,7 +731,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Walang ads, mas maraming AI, backup · mula sa maliit na buwanang bayarin';
+      'Walang ads · I-export at i-import ang backup · Buwang-buwan';
 
   @override
   String get proBenefitNoAds => 'Walang-ads na karanasan';
@@ -949,7 +949,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get plansPerMonth => '/ buwan';
 
   @override
-  String get planTrial => '7 araw libre';
+  String get planTrial => 'Libreng trial';
 
   @override
   String get planProAi => '100 AI requests kada buwan';
@@ -981,13 +981,13 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Awtomatikong magre-renew ang subscriptions hanggang itatago. Maaaring kanselahin anumang oras sa Google Play › Payments & subscriptions. Kasama sa presyo ang mga tax na ipinapakita ng Google Play.';
+      'Buwanang nagre-renew ang mga bagong Pro at Max subscription hanggang kanselahin. Pamahalaan o kanselahin sa Google Play. Tingnan ang presyo at pagiging kwalipikado sa trial sa Play bago bumili.';
 
   @override
   String get planCurrent => 'Kasalukuyan';
 
   @override
-  String get planStartTrial => 'Simulan ang 7-araw na libreng trial';
+  String get planStartTrial => 'Simulan ang libreng trial';
 
   @override
   String get planChoose => 'Piliin';
@@ -1291,4 +1291,25 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Minamarkahang nabili ang item kapag may presyo sa tindahan; kasama ang 0. Opsyonal ang presyo sa bahay. Burahin ang presyo sa tindahan para alisin ang tsek.';
+
+  @override
+  String get shoppingDateLabel => 'Petsa ng pamimili (opsyonal)';
+
+  @override
+  String get shoppingDateNone => 'Walang napiling petsa';
+
+  @override
+  String get clearShoppingDateAction => 'Alisin ang petsa';
+
+  @override
+  String get listSortLabel => 'Ayos ng listahan';
+
+  @override
+  String get listSortDate => 'Petsa ng pamimili';
+
+  @override
+  String get listSortAz => 'Pangalan (A–Z)';
+
+  @override
+  String get listSortManual => 'Manwal na ayos';
 }

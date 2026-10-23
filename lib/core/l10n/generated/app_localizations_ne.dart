@@ -732,7 +732,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'विज्ञापन रहित, बढी AI, ब्याकअप · सानो मासिक मूल्यबाट';
+      'विज्ञापन छैन · ब्याकअप एक्सपोर्ट र इम्पोर्ट · मासिक';
 
   @override
   String get proBenefitNoAds => 'विज्ञापन रहित अनुभव';
@@ -946,7 +946,7 @@ class AppLocalizationsNe extends AppLocalizations {
   String get plansPerMonth => '/ महिना';
 
   @override
-  String get planTrial => '७ दिन निःशुल्क';
+  String get planTrial => 'निःशुल्क ट्रायल';
 
   @override
   String get planProAi => 'प्रति महिना 100 AI अनुरोध';
@@ -978,13 +978,13 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'सब्सक्रिप्शन रद्द नभएसम्म स्वचालित रूपमा नवीकरण हुन्छ। Google Play › भुक्तानी र सब्सक्रिप्सनमा कुनै पनि समय रद्द गर्न सकिन्छ। मूल्यहरूमा Google Play द्वारा देखाइएका करहरू समावेश छन्।';
+      'रद्द नगरेसम्म नयाँ Pro र Max सदस्यताहरू हरेक महिना नवीकरण हुन्छन्। Google Play मा व्यवस्थापन वा रद्द गर्नुहोस्। किन्नुअघि Play मा मूल्य र ट्रायलको योग्यता जाँच्नुहोस्।';
 
   @override
   String get planCurrent => 'वर्तमान';
 
   @override
-  String get planStartTrial => '७ दिनको निःशुल्क ट्रायल सुरु गर्नुहोस्';
+  String get planStartTrial => 'निःशुल्क ट्रायल सुरु गर्नुहोस्';
 
   @override
   String get planChoose => 'चयन गर्नुहोस्';
@@ -1283,4 +1283,25 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'पसलको मूल्य राखेपछि सामान किनेको चिन्ह लाग्छ; 0 पनि मान्य हुन्छ। घरको मूल्य वैकल्पिक हो। चिन्ह हटाउन पसलको मूल्य मेटाउनुहोस्।';
+
+  @override
+  String get shoppingDateLabel => 'किनमेलको मिति (वैकल्पिक)';
+
+  @override
+  String get shoppingDateNone => 'मिति छानिएको छैन';
+
+  @override
+  String get clearShoppingDateAction => 'मिति हटाउनुहोस्';
+
+  @override
+  String get listSortLabel => 'सूचीको क्रम';
+
+  @override
+  String get listSortDate => 'किनमेलको मिति';
+
+  @override
+  String get listSortAz => 'नाम (अ–ह)';
+
+  @override
+  String get listSortManual => 'आफैँ क्रम मिलाउनुहोस्';
 }

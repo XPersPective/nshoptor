@@ -30,9 +30,18 @@ Future<PriceCandidate?> showPriceCandidateSheet(
               key: Key('price_candidate_$i'),
               title: Text(
                 '${c.value.toDbString().replaceAll('.', MoneySeparators.forLocaleCode(formatLocaleCode(context)).decimal)} ${c.currencyCode}'
-                '${c.unitCode != null ? ' / ${unitDisplayName(c.unitCode!, l10n)}' : c.isUnitPrice ? ' · ${l10n.pricingModeUnitPrice}' : ''}',
+                '${c.unitCode != null
+                    ? ' / ${c.priceQuantity?.toDbString() ?? ''} ${unitDisplayName(c.unitCode!, l10n)}'
+                    : c.isUnitPrice
+                    ? ' · ${l10n.pricingModeUnitPrice}'
+                    : ' · ${l10n.pricingModeLineTotal}'}',
               ),
-              subtitle: Text({if (c.productName != null) c.productName!, c.sourceLine}.join(' · ')),
+              subtitle: Text(
+                {
+                  if (c.productName != null) c.productName!,
+                  c.sourceLine,
+                }.join(' · '),
+              ),
               trailing: c.confidence == 'ai'
                   ? Chip(
                       avatar: const Icon(Icons.auto_awesome, size: 16),

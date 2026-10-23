@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 
-import '../../core/calc/line_calc.dart';
 import '../../core/money/currency.dart';
+import '../../core/calc/price_input.dart';
 import '../../core/money/decimal_fixed.dart';
 import '../../core/util/normalize_name.dart';
 import '../../core/quantity/unit_code.dart';
@@ -15,7 +15,7 @@ import '../../app/app_defaults.dart';
 /// Planlanan ürünler üzerinde işlemler (spec §6.2).
 class ItemRepository {
   ItemRepository(this._db, {StarterCategories? starterCategories})
-      : starterCategories = starterCategories ?? StarterCategories();
+    : starterCategories = starterCategories ?? StarterCategories();
 
   final AppDatabase _db;
   final StarterCategories starterCategories;
@@ -31,44 +31,60 @@ class ItemRepository {
     required DecimalFixed quantity,
     required String unitCode,
     required bool priceIsUnitPrice,
+    String? priceUnitCode,
     DecimalFixed? price,
     bool requiredFlag = false,
     String? note,
     DecimalFixed? maxAcceptablePrice,
     int? existingId,
   }) => _db.transaction(() async {
-    if (name.trim().isEmpty || !quantity.isPositive || (price?.isNegative ?? false) ||
+    if (name.trim().isEmpty ||
+        !quantity.isPositive ||
+        (price?.isNegative ?? false) ||
         (maxAcceptablePrice?.isNegative ?? false) ||
-        !UnitCode.values.any((u) => u.dbCode == unitCode || u.name == unitCode)) {
+        !UnitCode.values.any(
+          (u) => u.dbCode == unitCode || u.name == unitCode,
+        )) {
       throw ArgumentError('Invalid planned item');
     }
     if (existingId != null) {
-      final item = await (_db.select(_db.plannedItems)..where((t) => t.id.equals(existingId))).getSingle();
-      if (item.listId != listId) throw ArgumentError('Item must belong to its list');
+      final item = await (_db.select(
+        _db.plannedItems,
+      )..where((t) => t.id.equals(existingId))).getSingle();
+      if (item.listId != listId) {
+        throw ArgumentError('Item must belong to its list');
+      }
     }
     final sortOrder = existingId == null
         ? ((await (_db.select(_db.plannedItems)
-                      ..where((t) => t.listId.equals(listId))
-                      ..orderBy([(t) => OrderingTerm.desc(t.sortOrder)])
-                      ..limit(1))
-                    .getSingleOrNull())
-                ?.sortOrder ??
-            -1) +
-            1
-        : (await (_db.select(_db.plannedItems)
-                  ..where((t) => t.id.equals(existingId)))
-                .getSingle())
-            .sortOrder;
-    if (categoryId == null && categoryName != null && categoryName.trim().isNotEmpty) {
+                            ..where((t) => t.listId.equals(listId))
+                            ..orderBy([(t) => OrderingTerm.desc(t.sortOrder)])
+                            ..limit(1))
+                          .getSingleOrNull())
+                      ?.sortOrder ??
+                  -1) +
+              1
+        : (await (_db.select(
+            _db.plannedItems,
+          )..where((t) => t.id.equals(existingId))).getSingle()).sortOrder;
+    if (categoryId == null &&
+        categoryName != null &&
+        categoryName.trim().isNotEmpty) {
       final categories = await _db.select(_db.categories).get();
       final normalized = normalizeName(categoryName);
-      final matching = categories.where((c) => normalizeName(c.name) == normalized);
-      categoryId = matching.isNotEmpty ? matching.first.id : await _db.into(_db.categories)
-          .insert(CategoriesCompanion.insert(name: categoryName.trim()));
+      final matching = categories.where(
+        (c) => normalizeName(c.name) == normalized,
+      );
+      categoryId = matching.isNotEmpty
+          ? matching.first.id
+          : await _db
+                .into(_db.categories)
+                .insert(CategoriesCompanion.insert(name: categoryName.trim()));
     }
     final normalizedName = normalizeName(name);
     // No category chosen: the product's remembered category fills it in.
-    if (categoryId == null && (categoryName == null || categoryName.trim().isEmpty)) {
+    if (categoryId == null &&
+        (categoryName == null || categoryName.trim().isEmpty)) {
       categoryId = await CategorySuggester(_db).suggestCategory(normalizedName);
     }
     final mode = priceIsUnitPrice ? 'unitPrice' : 'lineTotal';
@@ -78,39 +94,61 @@ class ItemRepository {
     final digits = Currency.fromCode(currencyCode).minorUnitDigits;
     if (price != null) {
       if (priceIsUnitPrice) {
-        unitPrice = price;
-        lineTotalMinor =
-            LineCalc.plannedLineTotal(quantity, price).toMinorUnits(digits);
+        final quantityUnit = UnitCode.values.firstWhere(
+          (u) => u.dbCode == unitCode || u.name == unitCode,
+        );
+        final basisUnit = priceUnitCode == null
+            ? quantityUnit
+            : UnitCode.values.firstWhere(
+                (u) => u.dbCode == priceUnitCode || u.name == priceUnitCode,
+              );
+        final total = PriceInput.total(
+          amount: price,
+          quantity: quantity,
+          quantityUnit: quantityUnit,
+          isUnitPrice: true,
+          priceUnit: basisUnit,
+        );
+        unitPrice = basisUnit == quantityUnit
+            ? price
+            : total.divide(quantity, scale: DecimalFixed.maxFractionDigits);
+        lineTotalMinor = total.toMinorUnits(digits);
       } else {
         lineTotalMinor = price.toMinorUnits(digits);
         if (quantity.isPositive) {
-          unitPrice = price.divide(quantity, scale: DecimalFixed.maxFractionDigits);
+          unitPrice = price.divide(
+            quantity,
+            scale: DecimalFixed.maxFractionDigits,
+          );
         }
       }
     }
     final values = PlannedItemsCompanion.insert(
-            listId: listId,
-            name: name,
-            normalizedName: normalizedName,
-            brand: Value(brand),
-            categoryId: Value(categoryId),
-            plannedQuantity: quantity.toDbString(),
-            plannedUnitCode: unitCode,
-            pricingInputMode: mode,
-            plannedUnitPrice: Value(unitPrice?.toDbString()),
-            plannedLineTotalMinorUnits: Value(lineTotalMinor),
-            requiredFlag: Value(requiredFlag),
-            note: Value(note),
-            maxAcceptablePrice: Value(maxAcceptablePrice?.toDbString()),
-            sortOrder: Value(sortOrder),
-            updatedAt: Value(DateTime.now()),
-          );
+      listId: listId,
+      name: name,
+      normalizedName: normalizedName,
+      brand: Value(brand),
+      categoryId: Value(categoryId),
+      plannedQuantity: quantity.toDbString(),
+      plannedUnitCode: unitCode,
+      pricingInputMode: mode,
+      plannedUnitPrice: Value(unitPrice?.toDbString()),
+      plannedLineTotalMinorUnits: Value(lineTotalMinor),
+      requiredFlag: Value(requiredFlag),
+      note: Value(note),
+      maxAcceptablePrice: Value(maxAcceptablePrice?.toDbString()),
+      sortOrder: Value(sortOrder),
+      updatedAt: Value(DateTime.now()),
+    );
     final learned = categoryId;
     if (learned != null) {
-      await CategorySuggester(_db).learnDefaultCategory(name, normalizedName, learned);
+      await CategorySuggester(_db)
+          .learnDefaultCategory(name, normalizedName, learned);
     }
     if (existingId == null) return _db.into(_db.plannedItems).insert(values);
-    await (_db.update(_db.plannedItems)..where((t) => t.id.equals(existingId))).write(values);
+    await (_db.update(
+      _db.plannedItems,
+    )..where((t) => t.id.equals(existingId))).write(values);
     return existingId;
   });
 
@@ -168,7 +206,16 @@ class ItemRepository {
           normalizedName: normalizeName(existing?.name ?? c.name),
           quantity: quantity,
           unitCode: unit,
-          unitPrice: c.isUnitPrice == true ? c.unitPrice : null,
+          unitPrice: c.isUnitPrice == true
+              ? PriceInput.total(
+                  amount: c.unitPrice!,
+                  quantity: quantity,
+                  quantityUnit: UnitCode.fromDbCode(unit),
+                  isUnitPrice: true,
+                  priceUnit: c.priceUnitCode,
+                ).divide(quantity, scale: DecimalFixed.maxFractionDigits)
+              : null,
+          pricingInputMode: c.isUnitPrice == true ? 'unitPrice' : 'lineTotal',
           lineTotalMinor: c.isUnitPrice == false
               ? c.unitPrice!.toMinorUnits(
                   Currency.fromCode(currencyCode).minorUnitDigits,
@@ -184,6 +231,7 @@ class ItemRepository {
           quantity: c.quantity ?? DecimalFixed.fromInt(1),
           unitCode: (c.unitCode ?? AppDefaults.defaultUnit()).dbCode,
           priceIsUnitPrice: c.isUnitPrice ?? false,
+          priceUnitCode: c.priceUnitCode?.dbCode,
           price: c.unitPrice,
         );
       }
@@ -199,44 +247,49 @@ class ItemRepository {
   Future<void> reorderItems(int listId, List<int> itemIds) async {
     final items = await getItems(listId);
     final known = items.map((item) => item.id).toSet();
-    if (itemIds.length != known.length || itemIds.toSet().length != known.length ||
+    if (itemIds.length != known.length ||
+        itemIds.toSet().length != known.length ||
         !itemIds.every(known.contains)) {
       throw ArgumentError('Items must belong to their list');
     }
     await _db.transaction(() async {
       for (var index = 0; index < itemIds.length; index++) {
-        await (_db.update(_db.plannedItems)
-              ..where((t) => t.id.equals(itemIds[index])))
-            .write(PlannedItemsCompanion(
-              sortOrder: Value(index),
-              updatedAt: Value(DateTime.now()),
-            ));
+        await (_db.update(
+          _db.plannedItems,
+        )..where((t) => t.id.equals(itemIds[index]))).write(
+          PlannedItemsCompanion(
+            sortOrder: Value(index),
+            updatedAt: Value(DateTime.now()),
+          ),
+        );
       }
     });
   }
 
-  Future<List<PlannedItem>> getItems(int listId) =>
-      (_db.select(_db.plannedItems)..where((t) => t.listId.equals(listId)))
-          .get();
+  Future<List<PlannedItem>> getItems(int listId) => (_db.select(
+    _db.plannedItems,
+  )..where((t) => t.listId.equals(listId))).get();
 
   Future<void> removeItem(int itemId) => _db.transaction(() async {
     await ShoppingRepository(_db).removePurchases(itemId);
-    await (_db.delete(_db.plannedItems)..where((t) => t.id.equals(itemId))).go();
+    await (_db.delete(
+      _db.plannedItems,
+    )..where((t) => t.id.equals(itemId))).go();
   });
 
   Future<DeletedItemSnapshot> deleteItem(int itemId) async {
-    final item = await (_db.select(_db.plannedItems)
-          ..where((t) => t.id.equals(itemId)))
-        .getSingle();
-    final entries = await (_db.select(_db.purchaseEntries)
-          ..where((t) => t.plannedItemId.equals(itemId)))
-        .get();
+    final item = await (_db.select(
+      _db.plannedItems,
+    )..where((t) => t.id.equals(itemId))).getSingle();
+    final entries = await (_db.select(
+      _db.purchaseEntries,
+    )..where((t) => t.plannedItemId.equals(itemId))).get();
     final entryIds = entries.map((entry) => entry.id).toList();
     final observations = entryIds.isEmpty
         ? <PriceObservation>[]
-        : await (_db.select(_db.priceObservations)
-              ..where((t) => t.purchaseEntryId.isIn(entryIds)))
-            .get();
+        : await (_db.select(
+            _db.priceObservations,
+          )..where((t) => t.purchaseEntryId.isIn(entryIds))).get();
     await _db.transaction(() async {
       for (final observation in observations) {
         if (observation.productId != null) {
@@ -247,14 +300,16 @@ class ItemRepository {
         }
       }
       if (entryIds.isNotEmpty) {
-        await (_db.delete(_db.priceObservations)
-              ..where((t) => t.purchaseEntryId.isIn(entryIds)))
-            .go();
-        await (_db.delete(_db.purchaseEntries)
-              ..where((t) => t.id.isIn(entryIds)))
-            .go();
+        await (_db.delete(
+          _db.priceObservations,
+        )..where((t) => t.purchaseEntryId.isIn(entryIds))).go();
+        await (_db.delete(
+          _db.purchaseEntries,
+        )..where((t) => t.id.isIn(entryIds))).go();
       }
-      await (_db.delete(_db.plannedItems)..where((t) => t.id.equals(itemId))).go();
+      await (_db.delete(
+        _db.plannedItems,
+      )..where((t) => t.id.equals(itemId))).go();
     });
     return DeletedItemSnapshot(
       item: item,
@@ -263,35 +318,42 @@ class ItemRepository {
     );
   }
 
-  Future<void> undoDelete(DeletedItemSnapshot snapshot) => _db.transaction(() async {
-    await _db.into(_db.plannedItems).insert(snapshot.item, mode: InsertMode.insertOrReplace);
-    for (final entry in snapshot.entries) {
-      await _db.into(_db.purchaseEntries).insert(entry, mode: InsertMode.insertOrReplace);
-    }
-    for (final observation in snapshot.observations) {
-      if (observation.productId != null) {
-        await _db.customUpdate(
-          'UPDATE product_memory SET use_count = use_count + 1 WHERE id = ?',
-          variables: [Variable<int>(observation.productId!)],
-        );
+  Future<void> undoDelete(DeletedItemSnapshot snapshot) => _db.transaction(
+    () async {
+      await _db
+          .into(_db.plannedItems)
+          .insert(snapshot.item, mode: InsertMode.insertOrReplace);
+      for (final entry in snapshot.entries) {
+        await _db
+            .into(_db.purchaseEntries)
+            .insert(entry, mode: InsertMode.insertOrReplace);
       }
-      await _db.into(_db.priceObservations).insert(
-            observation,
-            mode: InsertMode.insertOrReplace,
+      for (final observation in snapshot.observations) {
+        if (observation.productId != null) {
+          await _db.customUpdate(
+            'UPDATE product_memory SET use_count = use_count + 1 WHERE id = ?',
+            variables: [Variable<int>(observation.productId!)],
           );
-    }
-  });
+        }
+        await _db
+            .into(_db.priceObservations)
+            .insert(observation, mode: InsertMode.insertOrReplace);
+      }
+    },
+  );
 
   /// Planlanan toplam: satır değerlerinin minor-unit toplamı (spec §7.3).
   Future<int> plannedTotalMinor(int listId) async {
     final items = await getItems(listId);
     return items.fold<int>(
-        0, (sum, item) => sum + (item.plannedLineTotalMinorUnits ?? 0));
+      0,
+      (sum, item) => sum + (item.plannedLineTotalMinorUnits ?? 0),
+    );
   }
 
-  Future<String> _listCurrency(int listId) async =>
-      (await (_db.select(_db.shoppingLists)..where((t) => t.id.equals(listId))).getSingle()).currencyCode;
-
+  Future<String> _listCurrency(int listId) async => (await (_db.select(
+    _db.shoppingLists,
+  )..where((t) => t.id.equals(listId))).getSingle()).currencyCode;
 }
 
 class DeletedItemSnapshot {

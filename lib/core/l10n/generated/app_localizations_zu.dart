@@ -733,7 +733,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ama-ads awakhona, AI eningi, backup · kusuka kunani elincane nyakenye';
+      'Azikho izikhangiso · Thumela bese ufaka imidwebo · Ngenyanga';
 
   @override
   String get proBenefitNoAds => 'Ukusetshenziswa ngaphandle kwamapromoshini';
@@ -951,7 +951,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get plansPerMonth => '/ inyanga';
 
   @override
-  String get planTrial => 'Izinsuku ezi-7 mahhala';
+  String get planTrial => 'Isivivinyo samahhala';
 
   @override
   String get planProAi => 'Imicelo ye-AI engu-100 ngenyanga';
@@ -983,13 +983,13 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Amabhalo avuselela ngokuzenzakalelayo kuze kuyekiswe. Yeka noma yini ngesikhathi ku-Google Play › Imali nezinkokhelo. Amanani afaka amahlandla aboniswa yi-Google Play.';
+      'Ukubhalisa okusha kwe-Pro ne-Max kuvuselelwa nyanga zonke uze ukhansele. Phatha noma ukhansele ku-Google Play. Hlola intengo nemibandela yesivivinyo ku-Play ngaphambi kokuthenga.';
 
   @override
   String get planCurrent => 'Okwamanje';
 
   @override
-  String get planStartTrial => 'Qala isivivinyo samahhala sezinsuku ezingu-7';
+  String get planStartTrial => 'Qala isivivinyo samahhala';
 
   @override
   String get planChoose => 'Khetha';
@@ -1290,4 +1290,25 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Intengo yasesitolo imaka into njengethengiwe; no-0 uyasebenza. Intengo yasekhaya ayiphoqelekile. Sula intengo yasesitolo ukuze ususe uphawu.';
+
+  @override
+  String get shoppingDateLabel => 'Usuku lokuthenga (uyazikhethela)';
+
+  @override
+  String get shoppingDateNone => 'Alukho usuku olukhethiwe';
+
+  @override
+  String get clearShoppingDateAction => 'Susa usuku';
+
+  @override
+  String get listSortLabel => 'Ukuhleleka kohlu';
+
+  @override
+  String get listSortDate => 'Usuku lokuthenga';
+
+  @override
+  String get listSortAz => 'Igama (A–Z)';
+
+  @override
+  String get listSortManual => 'Hlela ngesandla';
 }

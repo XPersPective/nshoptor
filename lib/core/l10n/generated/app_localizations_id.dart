@@ -729,7 +729,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Tanpa iklan, lebih banyak AI, cadangan · mulai dari harga bulanan kecil';
+      'Tanpa iklan · Cadangan, ekspor, dan impor · Bulanan';
 
   @override
   String get proBenefitNoAds => 'Pengalaman tanpa iklan';
@@ -944,7 +944,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get plansPerMonth => '/ bulan';
 
   @override
-  String get planTrial => '7 hari gratis';
+  String get planTrial => 'Uji coba gratis';
 
   @override
   String get planProAi => '100 permintaan AI per bulan';
@@ -976,13 +976,13 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Langganan diperbarui secara otomatis hingga dibatalkan. Batalkan kapan saja di Google Play › Pembayaran & langganan. Harga sudah termasuk pajak yang ditampilkan oleh Google Play.';
+      'Langganan Pro dan Max baru diperpanjang setiap bulan hingga dibatalkan. Kelola atau batalkan di Google Play. Periksa harga dan kelayakan uji coba di Play sebelum membeli.';
 
   @override
   String get planCurrent => 'Berlaku';
 
   @override
-  String get planStartTrial => 'Mulai uji coba gratis 7 hari';
+  String get planStartTrial => 'Mulai uji coba gratis';
 
   @override
   String get planChoose => 'Pilih';
@@ -1281,4 +1281,25 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Harga toko menandai barang sebagai dibeli; 0 juga berlaku. Harga di rumah opsional. Hapus harga toko untuk menghilangkan tanda centang.';
+
+  @override
+  String get shoppingDateLabel => 'Tanggal belanja (opsional)';
+
+  @override
+  String get shoppingDateNone => 'Belum ada tanggal dipilih';
+
+  @override
+  String get clearShoppingDateAction => 'Hapus tanggal';
+
+  @override
+  String get listSortLabel => 'Urutan daftar';
+
+  @override
+  String get listSortDate => 'Tanggal belanja';
+
+  @override
+  String get listSortAz => 'Nama (A–Z)';
+
+  @override
+  String get listSortManual => 'Urutan manual';
 }

@@ -728,8 +728,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine =>
-      'Без рекламы, больше ИИ, резервная копия · за небольшую ежемесячную плату';
+  String get proBenefitsLine => 'Без рекламы · Экспорт и импорт копии · Месяц';
 
   @override
   String get proBenefitNoAds => 'Без рекламы';
@@ -944,7 +943,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get plansPerMonth => '/ мес.';
 
   @override
-  String get planTrial => '7 дней бесплатно';
+  String get planTrial => 'Бесплатный пробный период';
 
   @override
   String get planProAi => '100 запросов к ИИ в месяц';
@@ -975,13 +974,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Подписки продлеваются автоматически до отмены. Отменить можно в любое время в Google Play › Платежи и подписки. Цены включают налоги, указанные Google Play.';
+      'Новые подписки Pro и Max продлеваются ежемесячно до отмены. Управляйте подпиской или отменяйте её в Google Play. Перед покупкой проверьте цену и условия пробного периода в Play.';
 
   @override
   String get planCurrent => 'Текущий';
 
   @override
-  String get planStartTrial => '7 дней бесплатно';
+  String get planStartTrial => 'Начать бесплатный пробный период';
 
   @override
   String get planChoose => 'Выбрать';
@@ -1282,4 +1281,25 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Цена в магазине отмечает товар как купленный; 0 тоже учитывается. Домашняя цена необязательна. Удалите цену в магазине, чтобы снять отметку.';
+
+  @override
+  String get shoppingDateLabel => 'Дата покупок (необязательно)';
+
+  @override
+  String get shoppingDateNone => 'Дата не выбрана';
+
+  @override
+  String get clearShoppingDateAction => 'Удалить дату';
+
+  @override
+  String get listSortLabel => 'Порядок списка';
+
+  @override
+  String get listSortDate => 'Дата покупок';
+
+  @override
+  String get listSortAz => 'Название (А–Я)';
+
+  @override
+  String get listSortManual => 'Ручной порядок';
 }

@@ -98,8 +98,8 @@ void main() {
     await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
 
-    // Sepet: 1,5 × 45,00 = 67,50; kalan plan 0; tahmini kasa 67,50.
-    expect(find.text('67,50 ₺'), findsWidgets);
+    // Manual price is the selected quantity's total by default.
+    expect(find.text('45,00 ₺'), findsWidgets);
 
     await disposeApp(tester);
   });
@@ -121,7 +121,7 @@ void main() {
     await settle(tester);
     await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
-    expect(find.text('67,50 ₺'), findsWidgets);
+    expect(find.text('45,00 ₺'), findsWidgets);
 
     // Uygulama kapanıp döner: yeni repo, aynı veritabanı.
     await tester.pumpWidget(const SizedBox.shrink());
@@ -143,7 +143,7 @@ void main() {
     await settle(tester);
 
     // Sepet içeriği ve özet korunur.
-    expect(find.text('67,50 ₺'), findsWidgets);
+    expect(find.text('45,00 ₺'), findsWidgets);
 
     await disposeApp(tester);
   });

@@ -729,7 +729,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ei mainoksia, enemmän tekoälyä, varmuuskopio · pienestä kuukausihinnasta';
+      'Ei mainoksia · Varmuuskopiointi ja tuonti · Kuukausittain';
 
   @override
   String get proBenefitNoAds => 'Mainokseton kokemus';
@@ -947,7 +947,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get plansPerMonth => '/ kuukausi';
 
   @override
-  String get planTrial => '7 päivää ilmaiseksi';
+  String get planTrial => 'Maksuton kokeilu';
 
   @override
   String get planProAi => '100 AI-pyyntöä kuukaudessa';
@@ -980,13 +980,13 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Tilaukset uusiutuvat automaattisesti, kunnes ne peruutetaan. Peruuta milloin tahansa Google Playn › Maksut ja tilaukset -kohdassa. Hinnat sisältävät Google Playn näyttämät verot.';
+      'Uudet Pro- ja Max-tilaukset uusiutuvat kuukausittain, kunnes ne perutaan. Hallitse tai peru Google Playssa. Tarkista hinta ja mahdollisen kokeilun ehdot Playssa ennen ostoa.';
 
   @override
   String get planCurrent => 'Nykyinen';
 
   @override
-  String get planStartTrial => 'Aloita 7 päivän ilmainen kokeilu';
+  String get planStartTrial => 'Aloita maksuton kokeilu';
 
   @override
   String get planChoose => 'Valitse';
@@ -1285,4 +1285,25 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Kauppahinta merkitsee tuotteen ostetuksi; myös 0 kelpaa. Kotihinta on valinnainen. Poista kauppahinta poistaaksesi valintamerkin.';
+
+  @override
+  String get shoppingDateLabel => 'Ostopäivä (valinnainen)';
+
+  @override
+  String get shoppingDateNone => 'Päivää ei ole valittu';
+
+  @override
+  String get clearShoppingDateAction => 'Poista päivä';
+
+  @override
+  String get listSortLabel => 'Listan järjestys';
+
+  @override
+  String get listSortDate => 'Ostopäivä';
+
+  @override
+  String get listSortAz => 'Nimi (A–Ö)';
+
+  @override
+  String get listSortManual => 'Manuaalinen järjestys';
 }

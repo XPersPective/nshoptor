@@ -725,7 +725,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklamsız, daha fazla yapay zekâ, yedekleme · küçük aylık ücretle';
+      'Reklamsız · Yedeği dışa ve içe aktarma · Aylık';
 
   @override
   String get proBenefitNoAds => 'Reklamsız kullanım';
@@ -943,7 +943,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get plansPerMonth => '/ ay';
 
   @override
-  String get planTrial => '7 gün ücretsiz';
+  String get planTrial => 'Ücretsiz deneme';
 
   @override
   String get planProAi => 'Ayda 100 yapay zekâ isteği';
@@ -975,13 +975,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abonelikler iptal edilene kadar otomatik yenilenir. Google Play › Ödemeler ve abonelikler bölümünden istediğin zaman iptal edebilirsin. Fiyatlara Google Play\'in gösterdiği vergiler dahildir.';
+      'Yeni Pro ve Max abonelikleri, iptal edilene kadar her ay otomatik yenilenir. Google Play’den yönetebilir veya iptal edebilirsiniz. Satın almadan önce fiyatı ve varsa deneme uygunluğunu Play’de kontrol edin.';
 
   @override
   String get planCurrent => 'Mevcut';
 
   @override
-  String get planStartTrial => '7 gün ücretsiz dene';
+  String get planStartTrial => 'Ücretsiz denemeyi başlat';
 
   @override
   String get planChoose => 'Seç';
@@ -1281,4 +1281,25 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Market fiyatı girilince ürün tiklenir; 0 da geçerlidir. Evdeki fiyat isteğe bağlıdır. Market fiyatını silince tik kalkar.';
+
+  @override
+  String get shoppingDateLabel => 'Alışveriş tarihi (isteğe bağlı)';
+
+  @override
+  String get shoppingDateNone => 'Tarih belirlenmedi';
+
+  @override
+  String get clearShoppingDateAction => 'Tarihi kaldır';
+
+  @override
+  String get listSortLabel => 'Liste sıralaması';
+
+  @override
+  String get listSortDate => 'Alışveriş tarihine göre';
+
+  @override
+  String get listSortAz => 'Ada göre (A–Z)';
+
+  @override
+  String get listSortManual => 'Elle sırala';
 }

@@ -731,7 +731,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bez reklam, więcej AI, backup · od niskiej miesięcznej opłaty';
+      'Bez reklam · Eksport i import kopii zapasowej · Miesięcznie';
 
   @override
   String get proBenefitNoAds => 'Doświadczenie bez reklam';
@@ -947,7 +947,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get plansPerMonth => '/ miesiąc';
 
   @override
-  String get planTrial => '7 dni za darmo';
+  String get planTrial => 'Bezpłatny okres próbny';
 
   @override
   String get planProAi => '100 żądań AI w miesiącu';
@@ -979,13 +979,13 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Subskrypcje odnawiają się automatycznie do momentu anulowania. Anuluj w dowolnym momencie w Google Play › Płatności i subskrypcje. Ceny zawierają podatki wyświetlane przez Google Play.';
+      'Nowe subskrypcje Pro i Max odnawiają się co miesiąc do anulowania. Zarządzaj lub anuluj w Google Play. Przed zakupem sprawdź w Play cenę i warunki okresu próbnego.';
 
   @override
   String get planCurrent => 'Obecna';
 
   @override
-  String get planStartTrial => 'Rozpocznij 7-dniowy bezpłatny okres próbny';
+  String get planStartTrial => 'Rozpocznij bezpłatny okres próbny';
 
   @override
   String get planChoose => 'Wybierz';
@@ -1283,4 +1283,25 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Cena w sklepie oznacza produkt jako kupiony; liczy się także 0. Cena domowa jest opcjonalna. Usuń cenę sklepową, aby usunąć zaznaczenie.';
+
+  @override
+  String get shoppingDateLabel => 'Data zakupów (opcjonalna)';
+
+  @override
+  String get shoppingDateNone => 'Nie wybrano daty';
+
+  @override
+  String get clearShoppingDateAction => 'Usuń datę';
+
+  @override
+  String get listSortLabel => 'Kolejność listy';
+
+  @override
+  String get listSortDate => 'Data zakupów';
+
+  @override
+  String get listSortAz => 'Nazwa (A–Z)';
+
+  @override
+  String get listSortManual => 'Kolejność ręczna';
 }

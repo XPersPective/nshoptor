@@ -729,7 +729,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Brez oglasov, več AI, varnostna kopija · od majhne mesečne cene';
+      'Brez oglasov · Izvoz in uvoz varnostnih kopij · Mesečno';
 
   @override
   String get proBenefitNoAds => 'Brez oglasov';
@@ -945,7 +945,7 @@ class AppLocalizationsSl extends AppLocalizations {
   String get plansPerMonth => '/ mesec';
 
   @override
-  String get planTrial => '7 dni brezplačno';
+  String get planTrial => 'Brezplačni preizkus';
 
   @override
   String get planProAi => '100 zahtev AI na mesec';
@@ -976,13 +976,13 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Naročnine se samodejno obnavljajo, dokler jih ne prekličete. Preklicati jih lahko kadarkoli v Google Play › Plačila in naročnine. Cene vključujejo davke, ki jih prikaže Google Play.';
+      'Novi naročnini Pro in Max se obnavljata mesečno do preklica. Upravljajte ali prekličite v Google Play. Pred nakupom v Play preverite ceno in pogoje preizkusa.';
 
   @override
   String get planCurrent => 'Trenutna';
 
   @override
-  String get planStartTrial => 'Začni 7-dnevno brezplačno preizkušnjo';
+  String get planStartTrial => 'Začni brezplačni preizkus';
 
   @override
   String get planChoose => 'Izberi';
@@ -1281,4 +1281,25 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Cena v trgovini označi izdelek kot kupljen; šteje tudi 0. Domača cena ni obvezna. Izbrišite ceno v trgovini, da odstranite kljukico.';
+
+  @override
+  String get shoppingDateLabel => 'Datum nakupa (neobvezno)';
+
+  @override
+  String get shoppingDateNone => 'Datum ni izbran';
+
+  @override
+  String get clearShoppingDateAction => 'Odstrani datum';
+
+  @override
+  String get listSortLabel => 'Vrstni red seznama';
+
+  @override
+  String get listSortDate => 'Datum nakupa';
+
+  @override
+  String get listSortAz => 'Ime (A–Ž)';
+
+  @override
+  String get listSortManual => 'Ročni vrstni red';
 }

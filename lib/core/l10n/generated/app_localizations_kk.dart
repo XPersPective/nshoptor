@@ -726,8 +726,7 @@ class AppLocalizationsKk extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine =>
-      'Жарсыз, көбірек AI, резервтік көшірме · ай сайынғы шағы бағамен';
+  String get proBenefitsLine => 'Жарнамасыз · Сақтау және импорттау · Айлық';
 
   @override
   String get proBenefitNoAds => 'Жарсыз тәжірибе';
@@ -944,7 +943,7 @@ class AppLocalizationsKk extends AppLocalizations {
   String get plansPerMonth => '/ ай';
 
   @override
-  String get planTrial => '7 күн тегін';
+  String get planTrial => 'Тегін сынақ';
 
   @override
   String get planProAi => 'Айына 100 AI сұраныс';
@@ -975,13 +974,13 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Тапсырыстар жойылғанша автоматты түрде жаңартылады. Кез келген уақытта Google Play › Төлемдер мен тапсырыстар бөлімінде тоқтата аласыз. Бағаларға Google Play көрсеткен салықтар кіреді.';
+      'Жаңа Pro және Max жазылымдары бас тартқанға дейін ай сайын жаңартылады. Google Play арқылы басқарыңыз немесе бас тартыңыз. Сатып алмас бұрын Play-де баға мен сынақ шарттарын тексеріңіз.';
 
   @override
   String get planCurrent => 'Ағымдағы';
 
   @override
-  String get planStartTrial => '7 күндік тегін сынақты бастау';
+  String get planStartTrial => 'Тегін сынақты бастау';
 
   @override
   String get planChoose => 'Таңдау';
@@ -1281,4 +1280,25 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Дүкен бағасы енгізілсе, тауар сатып алынған деп белгіленеді; 0 да есептеледі. Үйдегі баға міндетті емес. Белгіні алып тастау үшін дүкен бағасын өшіріңіз.';
+
+  @override
+  String get shoppingDateLabel => 'Сатып алу күні (міндетті емес)';
+
+  @override
+  String get shoppingDateNone => 'Күн таңдалмаған';
+
+  @override
+  String get clearShoppingDateAction => 'Күнді өшіру';
+
+  @override
+  String get listSortLabel => 'Тізім реті';
+
+  @override
+  String get listSortDate => 'Сатып алу күні';
+
+  @override
+  String get listSortAz => 'Атауы (А–Я)';
+
+  @override
+  String get listSortManual => 'Қолмен реттеу';
 }

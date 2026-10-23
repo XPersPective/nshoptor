@@ -10,10 +10,14 @@ import '../../../core/money/currency.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
 
-import 'package:drift/drift.dart' show OrderingTerm, Constant;
-
 import '../../../data/db/app_database.dart';
 import 'price_history_repository.dart';
+
+typedef _PriceHistoryData = ({
+  List<PriceObservation> rows,
+  List<NormalizedPricePoint> actual,
+  List<EstimatedPricePoint> estimated,
+});
 
 /// Fiyat geçmişi ekranı (spec §6.10): son gözlemlerin listesi ve özet.
 /// Parasal değerler birim fiyatın minor unit'idir; hiçbir yerde `double` yok.
@@ -38,15 +42,15 @@ class PriceHistoryScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(productName ?? l10n.priceHistoryTitle)),
-      body: FutureBuilder<List<PriceObservation>>(
-        future: _load(),
+      body: FutureBuilder<_PriceHistoryData>(
+        future: _loadData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) return Center(child: Text(l10n.saveFailed));
-          final rows = snapshot.data;
-          if (rows == null) {
+          final data = snapshot.data;
+          if (data == null) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (rows.isEmpty) {
+          if (data.rows.isEmpty && data.estimated.isEmpty) {
             return Center(
               child: Padding(
                 padding: const EdgeInsets.all(24),
@@ -54,70 +58,85 @@ class PriceHistoryScreen extends StatelessWidget {
               ),
             );
           }
-          return FutureBuilder<List<NormalizedPricePoint>>(
-            future: _normalized(),
-            builder: (context, normalizedSnapshot) {
-              final points =
-                  normalizedSnapshot.data ?? const <NormalizedPricePoint>[];
-              final normalizedById = {
-                for (final point in points) point.observation.id: point,
-              };
-              return SingleChildScrollView(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (points.isNotEmpty) ...[
-                      _PriceChart(points: points),
-                      const SizedBox(height: 12),
-                    ] else
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Text(l10n.purchaseAnalyticsHint),
-                        ),
-                      ),
-                    for (final r in rows)
-                      _ObservationCard(row: r, point: normalizedById[r.id]),
-                  ],
-                ),
-              );
-            },
+          final groups =
+              <
+                (String, String),
+                ({
+                  List<NormalizedPricePoint> actual,
+                  List<EstimatedPricePoint> estimated,
+                })
+              >{};
+          for (final point in data.actual) {
+            (groups[(point.observation.currencyCode, point.unitCode)] ??= (
+              actual: [],
+              estimated: [],
+            )).actual.add(point);
+          }
+          for (final point in data.estimated) {
+            (groups[(point.currencyCode, point.unitCode)] ??= (
+              actual: [],
+              estimated: [],
+            )).estimated.add(point);
+          }
+          final normalizedById = {
+            for (final point in data.actual) point.observation.id: point,
+          };
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                for (final (i, group) in groups.entries.indexed) ...[
+                  _PriceChart(
+                    points: group.value.actual,
+                    estimates: group.value.estimated,
+                    chartId: i == 0
+                        ? 'price_history_chart'
+                        : 'price_history_chart_${group.key.$1}_${group.key.$2}',
+                  ),
+                  const SizedBox(height: 12),
+                ],
+                if (groups.isEmpty)
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(l10n.purchaseAnalyticsHint),
+                    ),
+                  ),
+                for (final row in data.rows)
+                  _ObservationCard(row: row, point: normalizedById[row.id]),
+                for (final point in data.estimated.reversed)
+                  _EstimatedCard(point: point),
+              ],
+            ),
           );
         },
       ),
     );
   }
 
-  Future<List<PriceObservation>> _load() =>
-      (db.select(db.priceObservations)
-            ..where((t) => t.productId.equals(productId))
-            ..where(
-              (t) => currencyCode == null
-                  ? const Constant(true)
-                  : t.currencyCode.equals(currencyCode!),
-            )
-            ..where(
-              (t) => unitCode == null
-                  ? const Constant(true)
-                  : t.unitCode.isIn([
-                      unitCode!,
-                      ...UnitCode.values
-                          .where((u) => u.dbCode == unitCode)
-                          .map((u) => u.name),
-                    ]),
-            )
-            ..orderBy([(t) => OrderingTerm.desc(t.observedAt)]))
-          .get();
-
-  Future<List<NormalizedPricePoint>> _normalized() {
-    final normalizedUnit = _baseUnitCode(unitCode);
-    return PriceHistoryRepository(db).normalizedHistory(
+  Future<_PriceHistoryData> _loadData() => db.transaction(() async {
+    final repo = PriceHistoryRepository(db);
+    final baseUnit = _baseUnitCode(unitCode);
+    final rows = (await repo.history(productId))
+        .where(
+          (row) =>
+              (currencyCode == null || row.currencyCode == currencyCode) &&
+              (baseUnit == null || _baseUnitCode(row.unitCode) == baseUnit),
+        )
+        .toList();
+    final actual = await repo.normalizedHistory(
       productId,
       currencyCode: currencyCode,
-      unitCode: normalizedUnit,
+      unitCode: baseUnit,
     );
-  }
+    final estimated = await repo.estimatedHistory(
+      productId,
+      currencyCode: currencyCode,
+      unitCode: baseUnit,
+    );
+    return (rows: rows, actual: actual, estimated: estimated);
+  });
 
   String? _baseUnitCode(String? code) {
     if (code == null) return null;
@@ -154,7 +173,7 @@ class _ObservationCard extends StatelessWidget {
       locale: formatLocaleCode(context),
     );
     final date = MaterialLocalizations.of(context)
-        .formatMediumDate(row.observedAt);
+        .formatMediumDate(row.observedAt.toLocal());
     return Card(
       key: Key('price_obs_${row.id}'),
       child: Padding(
@@ -172,48 +191,164 @@ class _ObservationCard extends StatelessWidget {
   }
 }
 
-class _PriceChart extends StatelessWidget {
-  const _PriceChart({required this.points});
+class _EstimatedCard extends StatelessWidget {
+  const _EstimatedCard({required this.point});
+  final EstimatedPricePoint point;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final currency = Currency.fromCode(point.currencyCode);
+    final money = formatMoney(
+      Money.fromMinorUnits(
+        point.unitPrice.toMinorUnits(currency.minorUnitDigits),
+        currency,
+      ),
+      locale: formatLocaleCode(context),
+    );
+    return Card(
+      key: Key('price_estimate_${point.item.id}'),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${l10n.compareEstimated}: $money',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Text(unitDisplayNameFromDb(point.unitCode, l10n)),
+            Text(
+              MaterialLocalizations.of(context)
+                  .formatMediumDate(point.at.toLocal()),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
+class _PriceChart extends StatelessWidget {
+  const _PriceChart({
+    required this.points,
+    required this.estimates,
+    required this.chartId,
+  });
   final List<NormalizedPricePoint> points;
+  final List<EstimatedPricePoint> estimates;
+  final String chartId;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final currency = Currency.fromCode(points.first.observation.currencyCode);
-    final values = [
+    final currency = Currency.fromCode(
+      points.firstOrNull?.observation.currencyCode ??
+          estimates.first.currencyCode,
+    );
+    final actual = [
       for (final point in points)
-        point.unitPrice.toMinorUnits(currency.minorUnitDigits),
+        (
+          at: point.observation.observedAt,
+          minor: point.unitPrice.toMinorUnits(currency.minorUnitDigits),
+        ),
     ];
-    final min = values.reduce((a, b) => a < b ? a : b);
-    final max = values.reduce((a, b) => a > b ? a : b);
-    String money(int value) => formatMoney(Money.fromMinorUnits(value, currency),
-      locale: formatLocaleCode(context));
+    final estimated = [
+      for (final point in estimates)
+        (
+          at: point.at,
+          minor: point.unitPrice.toMinorUnits(currency.minorUnitDigits),
+        ),
+    ];
+    final values = [
+      for (final p in [...actual, ...estimated]) p.minor,
+    ];
+    final min = values.reduce((a, b) => a < b ? a : b),
+        max = values.reduce((a, b) => a > b ? a : b);
+    String money(int value) => formatMoney(
+      Money.fromMinorUnits(value, currency),
+      locale: formatLocaleCode(context),
+    );
     final range = min == max ? money(min) : '${money(min)}–${money(max)}';
-    final unit = unitDisplayNameFromDb(points.first.unitCode, l10n);
-    final summary = '${l10n.priceHistoryTitle}: ${values.length} · $unit';
+    final unit = unitDisplayNameFromDb(
+      points.firstOrNull?.unitCode ?? estimates.first.unitCode,
+      l10n,
+    );
+    final summary =
+        '${l10n.priceHistoryTitle}: ${l10n.compareActual} ${actual.length} · ${l10n.compareEstimated} ${estimated.length} · $unit';
+    final dates = [...actual, ...estimated].map((p) => p.at.toLocal()).toList()
+      ..sort();
+    final material = MaterialLocalizations.of(context);
+    final dateRange = DateUtils.isSameDay(dates.first, dates.last)
+        ? material.formatMediumDate(dates.first)
+        : '${material.formatMediumDate(dates.first)} – ${material.formatMediumDate(dates.last)}';
+    final scheme = Theme.of(context).colorScheme;
     return Card(
-      key: const Key('price_history_chart'),
+      key: Key(chartId),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Semantics(
           container: true,
-          label: '$summary · $range',
+          label: '$summary · $range · $dateRange',
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(summary, style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 16,
+                runSpacing: 8,
+                children: [
+                  if (actual.isNotEmpty)
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: Icon(
+                              Icons.circle,
+                              size: 12,
+                              color: scheme.primary,
+                            ),
+                          ),
+                          TextSpan(text: ' ${l10n.compareActual}'),
+                        ],
+                      ),
+                      style: TextStyle(color: scheme.primary),
+                    ),
+                  if (estimated.isNotEmpty)
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: Icon(
+                              Icons.radio_button_unchecked,
+                              size: 12,
+                              color: scheme.secondary,
+                            ),
+                          ),
+                          TextSpan(text: ' ${l10n.compareEstimated}'),
+                        ],
+                      ),
+                      style: TextStyle(color: scheme.secondary),
+                    ),
+                ],
+              ),
               const SizedBox(height: 12),
               SizedBox(
                 height: 140,
                 width: double.infinity,
                 child: CustomPaint(
                   painter: _PriceChartPainter(
-                    values: values,
-                    color: Theme.of(context).colorScheme.primary,
+                    actual: actual,
+                    estimated: estimated,
+                    actualColor: scheme.primary,
+                    estimatedColor: scheme.secondary,
                   ),
                 ),
               ),
+              Text(dateRange, style: Theme.of(context).textTheme.bodySmall),
               Text(
                 '$range · $unit',
                 style: Theme.of(context).textTheme.bodySmall,
@@ -227,51 +362,77 @@ class _PriceChart extends StatelessWidget {
 }
 
 class _PriceChartPainter extends CustomPainter {
-  const _PriceChartPainter({required this.values, required this.color});
-
-  final List<int> values;
-  final Color color;
+  const _PriceChartPainter({
+    required this.actual,
+    required this.estimated,
+    required this.actualColor,
+    required this.estimatedColor,
+  });
+  final List<({DateTime at, int minor})> actual, estimated;
+  final Color actualColor, estimatedColor;
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (values.isEmpty) return;
-    if (values.length == 1) {
-      canvas.drawCircle(Offset(size.width / 2, size.height / 2), 4,
-        Paint()..color = color);
-      return;
-    }
-    final min = values.reduce((a, b) => a < b ? a : b);
-    final max = values.reduce((a, b) => a > b ? a : b);
-    final span = (max - min).toDouble();
-    final line = Paint()
-      ..color = color
-      ..strokeWidth = 3
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-    final fill = Paint()..color = color.withValues(alpha: .14);
-    final path = Path();
-    for (var i = 0; i < values.length; i++) {
-      final x = values.length == 1
+    final all = [...actual, ...estimated];
+    if (all.isEmpty) return;
+    final min = all.map((p) => p.minor).reduce((a, b) => a < b ? a : b);
+    final max = all.map((p) => p.minor).reduce((a, b) => a > b ? a : b);
+    final first = all
+        .map((p) => p.at.millisecondsSinceEpoch)
+        .reduce((a, b) => a < b ? a : b);
+    final last = all
+        .map((p) => p.at.millisecondsSinceEpoch)
+        .reduce((a, b) => a > b ? a : b);
+    Offset position(({DateTime at, int minor}) p) => Offset(
+      first == last
           ? size.width / 2
-          : size.width * i / (values.length - 1);
-      final y = span == 0
+          : 4 +
+                (p.at.millisecondsSinceEpoch - first) /
+                    (last - first) *
+                    (size.width - 8),
+      min == max
           ? size.height / 2
-          : size.height - (values[i] - min) / span * size.height;
-      if (i == 0) {
-        path.moveTo(x, y);
-      } else {
-        path.lineTo(x, y);
+          : 4 + (max - p.minor) / (max - min) * (size.height - 8),
+    );
+    void draw(
+      List<({DateTime at, int minor})> series,
+      Color color,
+      bool dotted,
+    ) {
+      if (series.isEmpty) return;
+      final paint = Paint()
+        ..color = color
+        ..strokeWidth = dotted ? 2 : 3
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round;
+      final path = Path();
+      for (var i = 0; i < series.length; i++) {
+        final p = position(series[i]);
+        if (i == 0) {
+          path.moveTo(p.dx, p.dy);
+        } else {
+          path.lineTo(p.dx, p.dy);
+        }
+        canvas.drawCircle(
+          p,
+          dotted ? 4 : 3,
+          Paint()
+            ..color = color
+            ..style = dotted ? PaintingStyle.stroke : PaintingStyle.fill
+            ..strokeWidth = 2,
+        );
       }
+      canvas.drawPath(path, paint);
     }
-    final area = Path.from(path)
-      ..lineTo(size.width, size.height)
-      ..lineTo(0, size.height)
-      ..close();
-    canvas.drawPath(area, fill);
-    canvas.drawPath(path, line);
+
+    draw(estimated, estimatedColor, true);
+    draw(actual, actualColor, false);
   }
 
   @override
   bool shouldRepaint(covariant _PriceChartPainter oldDelegate) =>
-      oldDelegate.values != values || oldDelegate.color != color;
+      oldDelegate.actual != actual ||
+      oldDelegate.estimated != estimated ||
+      oldDelegate.actualColor != actualColor ||
+      oldDelegate.estimatedColor != estimatedColor;
 }

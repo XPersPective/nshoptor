@@ -728,7 +728,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Inga annonser, mer AI, säkerhetskopiering · till ett lågt månadspris';
+      'Ingen reklam · Säkerhetskopiera och importera · Månadsvis';
 
   @override
   String get proBenefitNoAds => 'Annonserfri upplevelse';
@@ -944,7 +944,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get plansPerMonth => '/ månad';
 
   @override
-  String get planTrial => '7 dagar gratis';
+  String get planTrial => 'Gratis provperiod';
 
   @override
   String get planProAi => '100 AI-förfrågningar i månaden';
@@ -975,13 +975,13 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Prenumerationer förnyas automatiskt tills de sägs upp. Avsluta när som helst i Google Play › Betalningar och prenumerationer. Priserna inkluderar de skatter som visas av Google Play.';
+      'Nya Pro- och Max-abonnemang förnyas varje månad tills de sägs upp. Hantera eller säg upp i Google Play. Kontrollera pris och eventuell rätt till provperiod i Play före köp.';
 
   @override
   String get planCurrent => 'Nuvarande';
 
   @override
-  String get planStartTrial => 'Starta 7 dagars gratis provperiod';
+  String get planStartTrial => 'Starta gratis provperiod';
 
   @override
   String get planChoose => 'Välj';
@@ -1280,4 +1280,25 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Ett butikspris markerar varan som köpt; även 0 räknas. Hemmapriset är valfritt. Radera butikspriset för att ta bort bocken.';
+
+  @override
+  String get shoppingDateLabel => 'Inköpsdatum (valfritt)';
+
+  @override
+  String get shoppingDateNone => 'Inget datum valt';
+
+  @override
+  String get clearShoppingDateAction => 'Ta bort datum';
+
+  @override
+  String get listSortLabel => 'Listordning';
+
+  @override
+  String get listSortDate => 'Inköpsdatum';
+
+  @override
+  String get listSortAz => 'Namn (A–Ö)';
+
+  @override
+  String get listSortManual => 'Manuell ordning';
 }

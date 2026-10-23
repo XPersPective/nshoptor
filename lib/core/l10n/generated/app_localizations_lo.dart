@@ -726,7 +726,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ບໍ່ມີໂຄສະນາ, AI ຫຼາຍຂຶ້ນ, ບັກອັບ · ຈາກລາຄາຕໍ່ເດືອນທີ່ນ້ອຍ';
+      'ບໍ່ມີໂຄສະນາ · ສົ່ງອອກ ແລະ ນຳເຂົ້າຂໍ້ມູນ · ຕໍ່ເດືອນ';
 
   @override
   String get proBenefitNoAds => 'ປະສົບການບໍ່ມີໂຄສະນາ';
@@ -943,7 +943,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get plansPerMonth => '/ ເດືອນ';
 
   @override
-  String get planTrial => 'ຟຣີ 7 ວັນ';
+  String get planTrial => 'ທົດລອງຟຣີ';
 
   @override
   String get planProAi => '100 ຄຳຮ້ອງຂໍ AI ຕໍ່ເດືອນ';
@@ -974,13 +974,13 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'ການສະໝັກຮັບຈະແພ່ພັນໂດຍອັດຕະໂນມັດຈົນກວ່າຈະຢຸດ. ສາມາດຢຸດໄດ້ທຸກເວລາໃນ Google Play › ການຈ່າຍເງິນ ແລະ ການສະໝັກຮັບ. ລາຄາລວມພາສີທີ່ Google Play ສະແດງ.';
+      'ການສະໝັກ Pro ແລະ Max ໃໝ່ ຈະຕໍ່ອາຍຸທຸກເດືອນຈົນກວ່າຈະຍົກເລີກ. ຈັດການຫຼືຍົກເລີກໃນ Google Play. ກວດລາຄາແລະເງື່ອນໄຂທົດລອງໃນ Play ກ່ອນຊື້.';
 
   @override
   String get planCurrent => 'ປັດຈຸບັນ';
 
   @override
-  String get planStartTrial => 'ເລີ່ມລອງໃຊ້ຟຣີ 7 ວັນ';
+  String get planStartTrial => 'ເລີ່ມທົດລອງຟຣີ';
 
   @override
   String get planChoose => 'ເລືອກ';
@@ -1274,4 +1274,25 @@ class AppLocalizationsLo extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'ເມື່ອໃສ່ລາຄາຮ້ານຄ້າ ສິນຄ້າຈະຖືກໝາຍວ່າຊື້ແລ້ວ; 0 ກໍໃຊ້ໄດ້. ລາຄາຢູ່ເຮືອນບໍ່ຈຳເປັນຕ້ອງໃສ່. ລຶບລາຄາຮ້ານຄ້າເພື່ອເອົາເຄື່ອງໝາຍອອກ.';
+
+  @override
+  String get shoppingDateLabel => 'ວັນທີຊື້ເຄື່ອງ (ບໍ່ບັງຄັບ)';
+
+  @override
+  String get shoppingDateNone => 'ຍັງບໍ່ໄດ້ເລືອກວັນທີ';
+
+  @override
+  String get clearShoppingDateAction => 'ລຶບວັນທີ';
+
+  @override
+  String get listSortLabel => 'ລຳດັບລາຍການ';
+
+  @override
+  String get listSortDate => 'ວັນທີຊື້ເຄື່ອງ';
+
+  @override
+  String get listSortAz => 'ຊື່ (ກ–ຮ)';
+
+  @override
+  String get listSortManual => 'ຈັດລຳດັບເອງ';
 }

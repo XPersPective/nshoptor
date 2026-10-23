@@ -731,7 +731,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Tiada iklan, lebih AI, sandaran · bermula dari harga bulanan kecil';
+      'Tiada iklan · Eksport dan import sandaran · Bulanan';
 
   @override
   String get proBenefitNoAds => 'Pengalaman tanpa iklan';
@@ -947,7 +947,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get plansPerMonth => '/ bulan';
 
   @override
-  String get planTrial => '7 hari percuma';
+  String get planTrial => 'Percubaan percuma';
 
   @override
   String get planProAi => '100 permintaan AI sebulan';
@@ -979,13 +979,13 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Langganan akan diperbaharui secara automatik sehingga dibatalkan. Boleh mana-mana masa di Google Play › Pembayaran & langganan. Harga termasuk cukai yang ditunjukkan oleh Google Play.';
+      'Langganan Pro dan Max baharu diperbaharui setiap bulan sehingga dibatalkan. Urus atau batalkan dalam Google Play. Semak harga dan kelayakan percubaan dalam Play sebelum membeli.';
 
   @override
   String get planCurrent => 'Semasa';
 
   @override
-  String get planStartTrial => 'Mula percubaan percuma 7 hari';
+  String get planStartTrial => 'Mulakan percubaan percuma';
 
   @override
   String get planChoose => 'Pilih';
@@ -1284,4 +1284,25 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Harga kedai menandakan barang telah dibeli; 0 juga diterima. Harga di rumah adalah pilihan. Padam harga kedai untuk membuang tanda semak.';
+
+  @override
+  String get shoppingDateLabel => 'Tarikh membeli-belah (pilihan)';
+
+  @override
+  String get shoppingDateNone => 'Tiada tarikh dipilih';
+
+  @override
+  String get clearShoppingDateAction => 'Padam tarikh';
+
+  @override
+  String get listSortLabel => 'Susunan senarai';
+
+  @override
+  String get listSortDate => 'Tarikh membeli-belah';
+
+  @override
+  String get listSortAz => 'Nama (A–Z)';
+
+  @override
+  String get listSortManual => 'Susunan manual';
 }

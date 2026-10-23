@@ -730,7 +730,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Žádné reklamy, více AI, záloha · od nízké měsíční ceny';
+      'Žádné reklamy · Záloha, export a import · Měsíční';
 
   @override
   String get proBenefitNoAds => 'Provoz bez reklam';
@@ -944,7 +944,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get plansPerMonth => '/ měsíc';
 
   @override
-  String get planTrial => '7 dní zdarma';
+  String get planTrial => 'Zkušební období zdarma';
 
   @override
   String get planProAi => '100 AI požadavků měsíčně';
@@ -976,13 +976,13 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Předplatné se automaticky obnovuje, dokud není zrušeno. Zrušit lze kdykoli v Google Play › Platby a předplatná. Ceny zahrnují daně uvedené v Google Play.';
+      'Nová předplatná Pro a Max se obnovují měsíčně až do zrušení. Spravujte nebo zrušte je v Google Play. Před nákupem zkontrolujte v Play cenu a nárok na zkušební období.';
 
   @override
   String get planCurrent => 'Aktuální';
 
   @override
-  String get planStartTrial => 'Spustit 7denní zkušební verzi zdarma';
+  String get planStartTrial => 'Zahájit zkušební období zdarma';
 
   @override
   String get planChoose => 'Vybrat';
@@ -1280,4 +1280,25 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Cena v obchodě označí položku jako koupenou; počítá se i 0. Domácí cena je volitelná. Vymazáním ceny v obchodě zrušíte zaškrtnutí.';
+
+  @override
+  String get shoppingDateLabel => 'Datum nákupu (volitelné)';
+
+  @override
+  String get shoppingDateNone => 'Není vybráno datum';
+
+  @override
+  String get clearShoppingDateAction => 'Vymazat datum';
+
+  @override
+  String get listSortLabel => 'Pořadí seznamu';
+
+  @override
+  String get listSortDate => 'Datum nákupu';
+
+  @override
+  String get listSortAz => 'Název (A–Z)';
+
+  @override
+  String get listSortManual => 'Ruční pořadí';
 }

@@ -730,7 +730,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Keine Werbung, mehr KI, Sicherung · ab einem kleinen Monatspreis';
+      'Keine Werbung · Sicherung exportieren und importieren · Monatlich';
 
   @override
   String get proBenefitNoAds => 'Werbefrei';
@@ -947,7 +947,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get plansPerMonth => '/ Monat';
 
   @override
-  String get planTrial => '7 Tage gratis';
+  String get planTrial => 'Kostenlose Testphase';
 
   @override
   String get planProAi => '100 KI-Anfragen pro Monat';
@@ -979,13 +979,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abos verlängern sich automatisch bis zur Kündigung. Kündigen jederzeit unter Google Play › Zahlungen und Abos. Preise enthalten die von Google Play angezeigten Steuern.';
+      'Neue Pro- und Max-Abonnements verlängern sich monatlich bis zur Kündigung. Verwalte oder kündige sie in Google Play. Prüfe dort vor dem Kauf den Preis und die Berechtigung für eine Testphase.';
 
   @override
   String get planCurrent => 'Aktuell';
 
   @override
-  String get planStartTrial => '7 Tage gratis testen';
+  String get planStartTrial => 'Kostenlose Testphase starten';
 
   @override
   String get planChoose => 'Wählen';
@@ -1286,4 +1286,25 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Ein Ladenpreis markiert den Artikel als gekauft; auch 0 zählt. Der Preis zu Hause ist optional. Lösche den Ladenpreis, um das Häkchen zu entfernen.';
+
+  @override
+  String get shoppingDateLabel => 'Einkaufsdatum (optional)';
+
+  @override
+  String get shoppingDateNone => 'Kein Datum ausgewählt';
+
+  @override
+  String get clearShoppingDateAction => 'Datum entfernen';
+
+  @override
+  String get listSortLabel => 'Listenreihenfolge';
+
+  @override
+  String get listSortDate => 'Einkaufsdatum';
+
+  @override
+  String get listSortAz => 'Name (A–Z)';
+
+  @override
+  String get listSortManual => 'Manuelle Reihenfolge';
 }

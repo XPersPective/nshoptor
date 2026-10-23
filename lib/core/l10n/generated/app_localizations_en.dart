@@ -726,8 +726,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine =>
-      'No ads, more AI, backup · from a small monthly price';
+  String get proBenefitsLine => 'No ads · Backup export and import · Monthly';
 
   @override
   String get proBenefitNoAds => 'Ad-free experience';
@@ -943,7 +942,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plansPerMonth => '/ month';
 
   @override
-  String get planTrial => '7 days free';
+  String get planTrial => 'Free trial';
 
   @override
   String get planProAi => '100 AI requests a month';
@@ -975,13 +974,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Subscriptions renew automatically until cancelled. Cancel any time in Google Play › Payments & subscriptions. Prices include the taxes shown by Google Play.';
+      'New Pro and Max subscriptions renew automatically each month until cancelled. Manage or cancel in Google Play. Check the price and any trial eligibility in Play before purchase.';
 
   @override
   String get planCurrent => 'Current';
 
   @override
-  String get planStartTrial => 'Start 7-day free trial';
+  String get planStartTrial => 'Start free trial';
 
   @override
   String get planChoose => 'Choose';
@@ -1280,4 +1279,25 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'A market price marks the item purchased; 0 counts too. The home price is optional. Clear the market price to uncheck the item.';
+
+  @override
+  String get shoppingDateLabel => 'Shopping date (optional)';
+
+  @override
+  String get shoppingDateNone => 'No date selected';
+
+  @override
+  String get clearShoppingDateAction => 'Clear date';
+
+  @override
+  String get listSortLabel => 'List order';
+
+  @override
+  String get listSortDate => 'Shopping date';
+
+  @override
+  String get listSortAz => 'Name (A–Z)';
+
+  @override
+  String get listSortManual => 'Manual order';
 }

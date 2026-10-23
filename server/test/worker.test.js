@@ -50,8 +50,8 @@ test('parse_list çıktısı temizlenir: bilinmeyen birim ve uydurma alanlar at�
   const res = await handleAi(req({ installId: ID, task: 'parse_list', input: { text: 'x', priceSemanticsVersion: 1 } }), env(), { fetchImpl });
   const { result } = await res.json();
   assert.deepEqual(result.items, [
-    { name: 'elma', brand: null, category: null, quantity: '1.5', unit: 'kilogram', estimatedPrice: '20', priceIsUnitPrice: null, currencyCode: null, priceDestination: 'planned' },
-    { name: 'ekmek', brand: null, category: null, quantity: null, unit: null, estimatedPrice: null, priceIsUnitPrice: null, currencyCode: null, priceDestination: 'planned' },
+    { name: 'elma', brand: null, category: null, quantity: '1.5', unit: 'kilogram', estimatedPrice: null, priceIsUnitPrice: null, priceUnitCode: null, currencyCode: null, priceDestination: 'planned' },
+    { name: 'ekmek', brand: null, category: null, quantity: null, unit: null, estimatedPrice: null, priceIsUnitPrice: null, priceUnitCode: null, currencyCode: null, priceDestination: 'planned' },
   ]);
 });
 
@@ -100,7 +100,7 @@ test('parse_list preserves bounded title/brand/category and unit-price meaning',
   const res = await handleAi(req({ installId: ID, task: 'parse_list', input: { text: 'x', priceSemanticsVersion: 1 } }), env(), { fetchImpl });
   const { result } = await res.json();
   assert.equal(result.title, 'Weekend');
-  assert.deepEqual(result.items[0], { name: 'Apples', brand: 'Farm', category: 'produce', quantity: '2', unit: 'kilogram', estimatedPrice: '40', priceIsUnitPrice: null, currencyCode: null, priceDestination: 'planned' });
+  assert.deepEqual(result.items[0], { name: 'Apples', brand: 'Farm', category: 'produce', quantity: '2', unit: 'kilogram', estimatedPrice: null, priceIsUnitPrice: null, priceUnitCode: null, currencyCode: null, priceDestination: 'planned' });
   assert.equal(result.items[1].brand, null); assert.equal(result.items[1].category.length, 60);
   assert.equal(result.items[1].quantity, null); assert.equal(result.items[1].estimatedPrice, null);
   assert.equal(result.items[1].priceIsUnitPrice, null);

@@ -731,7 +731,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Pa reklama, më shumë AI, backup · nga një çmim mujor i vogël';
+      'Pa reklama · Eksportim dhe importim backup-i · Mujore';
 
   @override
   String get proBenefitNoAds => 'Përvojë pa reklama';
@@ -947,7 +947,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get plansPerMonth => '/ muaj';
 
   @override
-  String get planTrial => '7 ditë falas';
+  String get planTrial => 'Provë falas';
 
   @override
   String get planProAi => '100 kërkesa AI në muaj';
@@ -979,13 +979,13 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abonimet rinovohen automatikisht derisa të anulohen. Anuloni në çdo kohë në Google Play › Pagesat dhe abonimet. Çmimet përfshijnë tatimet e shfaqura nga Google Play.';
+      'Abonimet e reja Pro dhe Max rinovohen çdo muaj deri në anulim. Menaxhoni ose anuloni në Google Play. Kontrolloni çmimin dhe kushtet e provës në Play para blerjes.';
 
   @override
   String get planCurrent => 'Aktuale';
 
   @override
-  String get planStartTrial => 'Fillo provën falas 7-ditore';
+  String get planStartTrial => 'Fillo provën falas';
 
   @override
   String get planChoose => 'Zgjidh';
@@ -1285,4 +1285,25 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Çmimi në dyqan e shënon produktin si të blerë; vlen edhe 0. Çmimi në shtëpi është fakultativ. Fshini çmimin në dyqan për të hequr shenjën.';
+
+  @override
+  String get shoppingDateLabel => 'Data e blerjeve (fakultative)';
+
+  @override
+  String get shoppingDateNone => 'Nuk është zgjedhur datë';
+
+  @override
+  String get clearShoppingDateAction => 'Hiq datën';
+
+  @override
+  String get listSortLabel => 'Renditja e listës';
+
+  @override
+  String get listSortDate => 'Data e blerjeve';
+
+  @override
+  String get listSortAz => 'Emri (A–Z)';
+
+  @override
+  String get listSortManual => 'Renditje manuale';
 }

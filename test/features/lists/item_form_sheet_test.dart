@@ -124,48 +124,88 @@ void main() {
     },
   );
 
-  testWidgets('camera icon in the market price field fills it from a shelf label', (tester) async {
-    final listId = await db
-        .into(db.shoppingLists)
-        .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
-    await openForm(
-      tester,
-      listId,
-      shelfCandidate: (_) async => PriceCandidate(
-        value: DecimalFixed.parse('45.5'),
-        currencyCode: 'TRY',
-        sourceLine: '45,50',
-        confidence: 'high',
-        isUnitPrice: true,
-      ),
-    );
-    await tester.tap(find.byKey(const Key('item_scan_actual_price')));
-    await tester.pumpAndSettle();
-    expect(
-      tester.widget<TextField>(find.byKey(const Key('item_actual_price_field'))).controller!.text,
-      '45,5',
-    );
-    await disposeApp(tester);
-  });
+  testWidgets(
+    'camera icon in the market price field fills it from a shelf label',
+    (tester) async {
+      final listId = await db
+          .into(db.shoppingLists)
+          .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+      await openForm(
+        tester,
+        listId,
+        shelfCandidate: (_) async => PriceCandidate(
+          value: DecimalFixed.parse('45.5'),
+          currencyCode: 'TRY',
+          sourceLine: '45,50',
+          confidence: 'high',
+          isUnitPrice: true,
+        ),
+      );
+      await tester.tap(find.byKey(const Key('item_scan_actual_price')));
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('item_actual_price_field')))
+            .controller!
+            .text,
+        '45,5',
+      );
+      await disposeApp(tester);
+    },
+  );
 
-  testWidgets('foreign shelf candidate cannot change name or persist a converted market price', (tester) async {
-    final listId = await db.into(db.shoppingLists).insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
-    await openForm(tester, listId, shelfCandidate: (_) async => PriceCandidate(
-      value: DecimalFixed.fromInt(10), currencyCode: 'EUR', sourceLine: '10 EUR',
-      confidence: 'high', isUnitPrice: true, productName: 'Wrong currency product'));
-    await tester.enterText(find.byKey(const Key('item_name_field')), 'Süt');
-    await tester.tap(find.byKey(const Key('item_scan_actual_price')));
-    await tester.pumpAndSettle();
-    expect(tester.widget<TextField>(find.byKey(const Key('item_name_field'))).controller!.text, 'Süt');
-    expect(tester.widget<TextField>(find.byKey(const Key('item_actual_price_field'))).controller!.text, '');
-    await settleAndSave(tester);
-    expect(await db.select(db.plannedItems).get(), isEmpty);
-    expect(await db.select(db.purchaseEntries).get(), isEmpty);
-    await tester.enterText(find.byKey(const Key('item_actual_price_field')), '0');
-    await settleAndSave(tester);
-    expect((await db.select(db.purchaseEntries).get()).single.actualLineTotalMinorUnits, 0);
-    await disposeApp(tester);
-  });
+  testWidgets(
+    'foreign shelf candidate cannot change name or persist a converted market price',
+    (tester) async {
+      final listId = await db
+          .into(db.shoppingLists)
+          .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+      await openForm(
+        tester,
+        listId,
+        shelfCandidate: (_) async => PriceCandidate(
+          value: DecimalFixed.fromInt(10),
+          currencyCode: 'EUR',
+          sourceLine: '10 EUR',
+          confidence: 'high',
+          isUnitPrice: true,
+          productName: 'Wrong currency product',
+        ),
+      );
+      await tester.enterText(find.byKey(const Key('item_name_field')), 'Süt');
+      await tester.tap(find.byKey(const Key('item_scan_actual_price')));
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('item_name_field')))
+            .controller!
+            .text,
+        'Süt',
+      );
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('item_actual_price_field')))
+            .controller!
+            .text,
+        '',
+      );
+      await settleAndSave(tester);
+      expect(await db.select(db.plannedItems).get(), isEmpty);
+      expect(await db.select(db.purchaseEntries).get(), isEmpty);
+      await tester.enterText(
+        find.byKey(const Key('item_actual_price_field')),
+        '0',
+      );
+      await settleAndSave(tester);
+      expect(
+        (await db.select(db.purchaseEntries).get())
+            .single
+            .actualLineTotalMinorUnits,
+        0,
+      );
+      await disposeApp(tester);
+    },
+  );
 
   testWidgets(
     'overflow preview and save preserve typed input without writing',
@@ -178,6 +218,12 @@ void main() {
         find.byKey(const Key('item_name_field')),
         'Large quantity',
       );
+      // Exercise a multiplication overflow explicitly; new manual inputs
+      // correctly default to a selected-quantity total.
+      await tester.tap(find.byKey(const Key('item_price_mode')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(DropdownMenuItem<bool>).last);
+      await tester.pumpAndSettle();
       await tester.enterText(
         find.byKey(const Key('item_quantity_field')),
         '999999999999999',
@@ -254,11 +300,14 @@ void main() {
     expect(items.single.name, 'Tomatoes');
     expect(items.single.plannedQuantity, '2');
     expect(items.single.plannedLineTotalMinorUnits, 8000);
-    // The store price is per unit and follows the list quantity.
+    // Editing price alone retains the independently purchased quantity.
     final entry = (await db.select(db.purchaseEntries).get()).single;
-    expect(entry.actualQuantity, '2');
-    expect(entry.actualUnitPrice, '50');
-    expect(entry.actualLineTotalMinorUnits, 10000);
+    expect(entry.actualQuantity, '1.5');
+    expect(
+      DecimalFixed.parse(entry.actualUnitPrice!),
+      DecimalFixed.fromInt(50),
+    );
+    expect(entry.actualLineTotalMinorUnits, 7500);
     await disposeApp(tester);
   });
 
@@ -331,9 +380,9 @@ void main() {
             .widget<TextField>(find.byKey(const Key('item_price_field')))
             .controller!
             .text,
-        '1,999',
+        '5,997',
       );
-      expect(find.byKey(const Key('item_pricing_mode')), findsNothing);
+      expect(find.byKey(const Key('item_price_mode')), findsOneWidget);
       await tester.enterText(
         find.byKey(const Key('item_name_field')),
         'Cancelled',
@@ -368,6 +417,12 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('kg').last);
       await tester.pumpAndSettle();
+      tester
+          .widget<DropdownButtonFormField<bool>>(
+            find.byKey(const Key('item_price_mode')),
+          )
+          .onChanged!(true);
+      await tester.pump();
       await tester.enterText(
         find.byKey(const Key('item_price_field')),
         '42,90',

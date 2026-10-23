@@ -732,7 +732,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ကြော်ငြာ မရှိ၊ AI ပိုများ၊ Backup · လစဉ် ဈေးနှုန်းနည်းနည်းလေးကနေ';
+      'Ads မရှိ · Backup ထုတ်ယူခြင်းနှင့် ဝင်ရောက်ခြင်း · တစ်လ';
 
   @override
   String get proBenefitNoAds => 'ကြော်ငြာ မပါဝင်သော အတွေ့အကြုံ';
@@ -949,7 +949,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get plansPerMonth => '/ လ';
 
   @override
-  String get planTrial => '၇ ရက် အခမဲ့';
+  String get planTrial => 'အခမဲ့ အစမ်းသုံးခြင်း';
 
   @override
   String get planProAi => 'တစ်လလျှင် AI တောင်းဆိုမှု 100';
@@ -981,13 +981,13 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Subscription များသည် ဖျက်သိမ်းသည်အထိ အလိုအလျောက် ပြန်လည်ဖြစ်ပေါ်ပါသည်။ Google Play › Payments & subscriptions တွင် မည်သည့်အချိန်တွင်မဆို ဖျက်သိမ်းနိုင်ပါသည်။ ဈေးနှုန်းများတွင် Google Play ကပြထားသော နှစ်စဉ်ခွန်များ ပါဝင်ပါသည်။';
+      'Pro နှင့် Max စာရင်းသွင်းမှုအသစ်များသည် ပယ်ဖျက်သည်အထိ လစဉ် သက်တမ်းတိုးသည်။ Google Play တွင် စီမံပါ သို့မဟုတ် ပယ်ဖျက်ပါ။ မဝယ်မီ Play တွင် ဈေးနှုန်းနှင့် အစမ်းသုံးခွင့်ကို စစ်ဆေးပါ။';
 
   @override
   String get planCurrent => 'လက်ရှိ';
 
   @override
-  String get planStartTrial => 'ရက် ၇ ရက် အခမဲ့ စမ်းသပ်မှုကို စတင်ပါ';
+  String get planStartTrial => 'အခမဲ့ အစမ်းသုံးရန်';
 
   @override
   String get planChoose => 'ရွေးချယ်ပါ';
@@ -1285,4 +1285,25 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'ဆိုင်ဈေးနှုန်းထည့်လျှင် ပစ္စည်းကို ဝယ်ပြီးဟု မှတ်သားသည်။ 0 လည်း အကျုံးဝင်သည်။ အိမ်ဈေးနှုန်းသည် မဖြစ်မနေမဟုတ်ပါ။ အမှန်ခြစ်ဖြုတ်ရန် ဆိုင်ဈေးနှုန်းကို ဖျက်ပါ။';
+
+  @override
+  String get shoppingDateLabel => 'ဈေးဝယ်ရက် (မဖြစ်မနေမဟုတ်)';
+
+  @override
+  String get shoppingDateNone => 'ရက်စွဲ မရွေးရသေးပါ';
+
+  @override
+  String get clearShoppingDateAction => 'ရက်စွဲ ဖယ်ရှားရန်';
+
+  @override
+  String get listSortLabel => 'စာရင်းအစီအစဉ်';
+
+  @override
+  String get listSortDate => 'ဈေးဝယ်ရက်';
+
+  @override
+  String get listSortAz => 'အမည် (က–အ)';
+
+  @override
+  String get listSortManual => 'ကိုယ်တိုင် စီစဉ်ရန်';
 }

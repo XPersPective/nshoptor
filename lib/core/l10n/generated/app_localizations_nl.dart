@@ -730,7 +730,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Geen advertenties, meer AI, back-up · vanaf een klein maandbedrag';
+      'Geen advertenties · Back-up export en import · Maandelijks';
 
   @override
   String get proBenefitNoAds => 'Advrije ervaring';
@@ -948,7 +948,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get plansPerMonth => '/ maand';
 
   @override
-  String get planTrial => '7 dagen gratis';
+  String get planTrial => 'Gratis proefperiode';
 
   @override
   String get planProAi => '100 AI-verzoeken per maand';
@@ -980,13 +980,13 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abonnementen worden automatisch verlengd tot ze worden opgezegd. Opzeggen kan altijd via Google Play › Betalingen & abonnementen. Prijzen zijn inclusief de door Google Play getoonde belastingen.';
+      'Nieuwe Pro- en Max-abonnementen worden maandelijks verlengd tot opzegging. Beheer of zeg op in Google Play. Controleer vóór aankoop de prijs en voorwaarden voor een proefperiode in Play.';
 
   @override
   String get planCurrent => 'Huidig';
 
   @override
-  String get planStartTrial => 'Start 7 dagen gratis proefperiode';
+  String get planStartTrial => 'Gratis proefperiode starten';
 
   @override
   String get planChoose => 'Kiezen';
@@ -1287,4 +1287,25 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Een winkelprijs markeert het artikel als gekocht; ook 0 telt. De thuisprijs is optioneel. Wis de winkelprijs om het vinkje te verwijderen.';
+
+  @override
+  String get shoppingDateLabel => 'Winkeldatum (optioneel)';
+
+  @override
+  String get shoppingDateNone => 'Geen datum geselecteerd';
+
+  @override
+  String get clearShoppingDateAction => 'Datum wissen';
+
+  @override
+  String get listSortLabel => 'Lijstvolgorde';
+
+  @override
+  String get listSortDate => 'Winkeldatum';
+
+  @override
+  String get listSortAz => 'Naam (A–Z)';
+
+  @override
+  String get listSortManual => 'Handmatige volgorde';
 }

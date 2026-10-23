@@ -729,7 +729,7 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Жарнамасыз, көбүрөөк AI, резервдик көчүрмө · ай сайын аз баадан';
+      'Жарнама жок · Колдоо экспорттоо жана импорттоо · Айлык';
 
   @override
   String get proBenefitNoAds => 'Жарнамасыз тажрыйба';
@@ -944,7 +944,7 @@ class AppLocalizationsKy extends AppLocalizations {
   String get plansPerMonth => '/ ай';
 
   @override
-  String get planTrial => '7 күн акысыз';
+  String get planTrial => 'Акысыз сыноо';
 
   @override
   String get planProAi => 'Айына 100 AI сурамы';
@@ -976,13 +976,13 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Жазылуулар токтотулганга чейин автоматтык түрдө жаңыртылат. Google Play › Төлөмдөр жана жазылуулар аркылуу каалаган убакта токтото аласыз. Багаларга Google Play көрсөткөн салыктар кирет.';
+      'Жаңы Pro жана Max жазылуулары жокко чыгарылганга чейин ай сайын жаңыртылат. Google Play аркылуу башкарыңыз же жокко чыгарыңыз. Сатып алардан мурун Play\'ден бааны жана сыноо шарттарын текшериңиз.';
 
   @override
   String get planCurrent => 'Учурдагы';
 
   @override
-  String get planStartTrial => '7 күндүк акысык сынакты баштоо';
+  String get planStartTrial => 'Акысыз сыноону баштоо';
 
   @override
   String get planChoose => 'Тандоо';
@@ -1283,4 +1283,25 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Дүкөн баасы киргизилсе, товар сатып алынган деп белгиленет; 0 да эсептелет. Үйдөгү баа милдеттүү эмес. Белгини алып салуу үчүн дүкөн баасын өчүрүңүз.';
+
+  @override
+  String get shoppingDateLabel => 'Сатып алуу күнү (милдеттүү эмес)';
+
+  @override
+  String get shoppingDateNone => 'Күн тандалган жок';
+
+  @override
+  String get clearShoppingDateAction => 'Күндү өчүрүү';
+
+  @override
+  String get listSortLabel => 'Тизме тартиби';
+
+  @override
+  String get listSortDate => 'Сатып алуу күнү';
+
+  @override
+  String get listSortAz => 'Аталышы (А–Я)';
+
+  @override
+  String get listSortManual => 'Кол менен иреттөө';
 }

@@ -17,6 +17,7 @@ class ParsedItemCandidate {
     this.unitPrice,
     this.currencyCode,
     this.isUnitPrice,
+    this.priceUnitCode,
     this.priceDestination = VoicePriceDestination.planned,
     this.brand,
     this.category,
@@ -35,6 +36,10 @@ class ParsedItemCandidate {
   /// false: satır toplamı olarak anlaşıldı.
   /// Null with a price requires the user to choose its meaning before saving.
   final bool? isUnitPrice;
+
+  /// Unit named by an explicit per-unit price, independent of quantity unit.
+  /// Example: 400 grams at 875 per kilogram keeps gram + kilogram separately.
+  final UnitCode? priceUnitCode;
 
   final VoicePriceDestination priceDestination;
 

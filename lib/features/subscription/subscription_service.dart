@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:in_app_purchase_android/billing_client_wrappers.dart' show ReplacementMode;
+import 'package:in_app_purchase_android/billing_client_wrappers.dart'
+    show RecurrenceMode, ReplacementMode;
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:napp_core/napp_core.dart';
 
@@ -36,10 +37,12 @@ class SubscriptionOffer {
 
   Tier get tier => SubscriptionService.tierOf(productId);
   bool get yearly => billingPeriod == 'P1Y';
+  bool get monthly => billingPeriod == 'P1M';
 }
 
 class SubscriptionService extends ChangeNotifier {
-  SubscriptionService({required this.store, InAppPurchase? iap}) : _iapOverride = iap;
+  SubscriptionService({required this.store, InAppPurchase? iap})
+    : _iapOverride = iap;
 
   static const proId = 'nshoptor_pro_v2';
   static const maxId = 'nshoptor_max_v2';
@@ -62,10 +65,19 @@ class SubscriptionService extends ChangeNotifier {
   String? _productId;
   String? _token;
   int _refreshGeneration = 0;
-  bool _disposed = false, _ownershipFresh = false, _working = false, _purchasePending = false;
+  bool _disposed = false,
+      _ownershipFresh = false,
+      _working = false,
+      _purchasePending = false;
   bool get busy => _working || _purchasePending;
   bool get legacy => _productId == legacyProId || _productId == legacyMaxId;
-  static int allowanceOf(String? id) => switch (id) { legacyMaxId => 1000, maxId => 300, legacyProId => 200, proId => 100, _ => 10 };
+  static int allowanceOf(String? id) => switch (id) {
+    legacyMaxId => 1000,
+    maxId => 300,
+    legacyProId => 200,
+    proId => 100,
+    _ => 10,
+  };
   int get monthlyAllowance => allowanceOf(_productId);
 
   /// Satın alma sonucu (paywall gösterir): null = sorun yok.
@@ -75,24 +87,27 @@ class SubscriptionService extends ChangeNotifier {
   static SubscriptionService? instance;
 
   static Tier tierOf(String? productId) => switch (productId) {
-        maxId || legacyMaxId => Tier.max,
-        proId || legacyProId => Tier.pro,
-        _ => Tier.free,
-      };
+    maxId || legacyMaxId => Tier.max,
+    proId || legacyProId => Tier.pro,
+    _ => Tier.free,
+  };
 
   Tier get tier => tierOf(_productId);
 
   /// Ücretsiz deneme süresinde mi (yalnız gösterim; Play faturalar).
   bool inTrial([DateTime? now]) {
     final until = store.getInt(_trialKey);
-    return tier != Tier.free && until != null &&
+    return tier != Tier.free &&
+        until != null &&
         (now ?? DateTime.now()).millisecondsSinceEpoch < until;
   }
 
   /// Denemeli bir teklif satın alındı: 7 günlük deneme başlar.
   @visibleForTesting
   void markTrialStarted(DateTime now) => store.setInt(
-      _trialKey, now.add(const Duration(days: trialDays)).millisecondsSinceEpoch);
+    _trialKey,
+    now.add(const Duration(days: trialDays)).millisecondsSinceEpoch,
+  );
 
   /// Reklamsız mı: geçici Pro ya da herhangi bir abonelik.
   static bool adFree({required bool temporaryPro, required Tier tier}) =>
@@ -101,23 +116,34 @@ class SubscriptionService extends ChangeNotifier {
 
   /// AI isteğine eklenen doğrulanacak jeton; ücretsizde null.
   PurchaseCredential? get credential =>
-      _token == null || _token!.isEmpty || !ids.contains(_productId) ? null : (token: _token!, productId: _productId!);
+      _token == null || _token!.isEmpty || !ids.contains(_productId)
+      ? null
+      : (token: _token!, productId: _productId!);
 
   void load() {
     _productId = store.getString(_productKey);
     _token = store.getString(_tokenKey);
-    if (!ids.contains(_productId) || _token?.isNotEmpty != true) { _productId = null; _token = null; }
+    if (!ids.contains(_productId) || _token?.isNotEmpty != true) {
+      _productId = null;
+      _token = null;
+    }
   }
 
   /// Sahip olunan abonelikleri uygular: max > pro; hiçbiri yoksa ücretsiz.
   @visibleForTesting
   void applyOwned(List<({String productId, String token})> owned) {
     if (_disposed) return;
-    final relevant = owned.where((o) => ids.contains(o.productId) && o.token.isNotEmpty).toList()
-      ..sort((a, b) {
-        final tier = tierOf(b.productId).index.compareTo(tierOf(a.productId).index);
-        return tier != 0 ? tier : allowanceOf(b.productId).compareTo(allowanceOf(a.productId));
-      });
+    final relevant =
+        owned
+            .where((o) => ids.contains(o.productId) && o.token.isNotEmpty)
+            .toList()
+          ..sort((a, b) {
+            final tier = tierOf(b.productId).index
+                .compareTo(tierOf(a.productId).index);
+            return tier != 0
+                ? tier
+                : allowanceOf(b.productId).compareTo(allowanceOf(a.productId));
+          });
     final best = relevant.isEmpty ? null : relevant.first;
     if (best?.productId == _productId && best?.token == _token) return;
     _productId = best?.productId;
@@ -136,17 +162,42 @@ class SubscriptionService extends ChangeNotifier {
   @visibleForTesting
   void applyNativeOwned(List<GooglePlayPurchaseDetails> purchases) {
     if (_disposed) return;
-    final valid = purchases.where((p) => ids.contains(p.productID) &&
-      (p.status == PurchaseStatus.purchased || p.status == PurchaseStatus.restored)).toList();
-    applyOwned([for (final p in valid) (productId: p.productID, token: p.verificationData.serverVerificationData)]);
-    _owned = valid.where((p) => p.productID == _productId && p.verificationData.serverVerificationData == _token).firstOrNull;
+    final valid = purchases
+        .where(
+          (p) =>
+              ids.contains(p.productID) &&
+              (p.status == PurchaseStatus.purchased ||
+                  p.status == PurchaseStatus.restored),
+        )
+        .toList();
+    applyOwned([
+      for (final p in valid)
+        (
+          productId: p.productID,
+          token: p.verificationData.serverVerificationData,
+        ),
+    ]);
+    _owned = valid
+        .where(
+          (p) =>
+              p.productID == _productId &&
+              p.verificationData.serverVerificationData == _token,
+        )
+        .firstOrNull;
   }
 
   void start() {
     if (_disposed) return;
-    _sub ??= _iap.purchaseStream.listen(_onPurchases, onError: (_) {
-      if (!_disposed) { _purchasePending = false; lastError = 'error'; notifyListeners(); }
-    });
+    _sub ??= _iap.purchaseStream.listen(
+      _onPurchases,
+      onError: (_) {
+        if (!_disposed) {
+          _purchasePending = false;
+          lastError = 'error';
+          notifyListeners();
+        }
+      },
+    );
     unawaited(refresh());
   }
 
@@ -156,10 +207,15 @@ class SubscriptionService extends ChangeNotifier {
     _ownershipFresh = false;
     try {
       if (!await _iap.isAvailable() || _disposed) return;
-      final addition = _iap.getPlatformAddition<InAppPurchaseAndroidPlatformAddition>();
+      final addition = _iap
+          .getPlatformAddition<InAppPurchaseAndroidPlatformAddition>();
       final res = await addition.queryPastPurchases();
-      if (res.error != null || _disposed || generation != _refreshGeneration) return;
-      for (final p in res.pastPurchases.where((p) => ids.contains(p.productID) && p.pendingCompletePurchase)) {
+      if (res.error != null || _disposed || generation != _refreshGeneration) {
+        return;
+      }
+      for (final p in res.pastPurchases.where(
+        (p) => ids.contains(p.productID) && p.pendingCompletePurchase,
+      )) {
         await _iap.completePurchase(p);
       }
       if (_disposed || generation != _refreshGeneration) return;
@@ -175,18 +231,24 @@ class SubscriptionService extends ChangeNotifier {
     for (final p in list) {
       if (!ids.contains(p.productID)) continue;
       if (p.pendingCompletePurchase) {
-        try { await _iap.completePurchase(p); }
-        catch (_) { if (!_disposed) lastError = 'error'; }
+        try {
+          await _iap.completePurchase(p);
+        } catch (_) {
+          if (!_disposed) lastError = 'error';
+        }
       }
       if (_disposed) return;
       switch (p.status) {
         case PurchaseStatus.purchased || PurchaseStatus.restored:
           if (p is GooglePlayPurchaseDetails) purchased.add(p);
-          if (p.status == PurchaseStatus.purchased && _pendingTrial) markTrialStarted(DateTime.now());
+          if (p.status == PurchaseStatus.purchased && _pendingTrial) {
+            markTrialStarted(DateTime.now());
+          }
           _pendingTrial = false;
           _purchasePending = false;
         case PurchaseStatus.error:
-          _purchasePending = false; lastError = 'error';
+          _purchasePending = false;
+          lastError = 'error';
         case PurchaseStatus.pending:
           _purchasePending = true;
         case PurchaseStatus.canceled:
@@ -208,18 +270,31 @@ class SubscriptionService extends ChangeNotifier {
       if (!offerIds.contains(d.id)) continue;
       final index = d.subscriptionIndex;
       final offers = d.productDetails.subscriptionOfferDetails;
-      if (index == null || offers == null || index < 0 || index >= offers.length) continue;
+      if (index == null ||
+          offers == null ||
+          index < 0 ||
+          index >= offers.length) {
+        continue;
+      }
       final o = offers[index];
       if (o.pricingPhases.isEmpty) continue;
       final recurring = o.pricingPhases.last;
-      out.add(SubscriptionOffer(
-        productId: d.id,
-        basePlanId: o.basePlanId,
-        price: recurring.formattedPrice,
-        billingPeriod: recurring.billingPeriod,
-        hasTrial: o.pricingPhases.first.priceAmountMicros == 0,
-        details: d,
-      ));
+      // New offers are monthly only. Existing yearly purchases still restore
+      // through ids/applyNativeOwned and retain their original entitlements.
+      if (recurring.billingPeriod != 'P1M' ||
+          recurring.recurrenceMode != RecurrenceMode.infiniteRecurring) {
+        continue;
+      }
+      out.add(
+        SubscriptionOffer(
+          productId: d.id,
+          basePlanId: o.basePlanId,
+          price: recurring.formattedPrice,
+          billingPeriod: recurring.billingPeriod,
+          hasTrial: o.pricingPhases.first.priceAmountMicros == 0,
+          details: d,
+        ),
+      );
     }
     // Aynı base planın denemeli ve denemesiz teklifinden denemeliyi tut.
     final byPlan = <String, SubscriptionOffer>{};
@@ -233,40 +308,88 @@ class SubscriptionService extends ChangeNotifier {
 
   Future<void> buy(SubscriptionOffer offer) async {
     if (busy || _disposed) return;
-    _working = true; lastError = null; notifyListeners();
+    _working = true;
+    lastError = null;
+    notifyListeners();
     try {
+      // Guard callers as well as the paywall/catalog: an old annual selection
+      // must never start a new purchase after the monthly-only change.
+      if (!offer.monthly || !offerIds.contains(offer.productId)) {
+        throw StateError('monthly_offer_required');
+      }
+      final nativeDetails = offer.details;
+      if (nativeDetails is GooglePlayProductDetails) {
+        final index = nativeDetails.subscriptionIndex;
+        final catalog = nativeDetails.productDetails.subscriptionOfferDetails;
+        if (nativeDetails.id != offer.productId ||
+            index == null ||
+            catalog == null ||
+            index < 0 ||
+            index >= catalog.length ||
+            catalog[index].basePlanId != offer.basePlanId ||
+            catalog[index].pricingPhases.isEmpty ||
+            (catalog[index].pricingPhases.last.billingPeriod != 'P1M' ||
+                catalog[index].pricingPhases.last.recurrenceMode !=
+                    RecurrenceMode.infiniteRecurring)) {
+          throw StateError('monthly_native_offer_required');
+        }
+      }
       await refresh();
       if (_disposed) return;
-      if (!_ownershipFresh || !offerIds.contains(offer.productId) || (_productId != null && _owned == null)) {
+      if (!_ownershipFresh ||
+          !offerIds.contains(offer.productId) ||
+          (_productId != null && _owned == null)) {
         throw StateError('ownership_not_verified');
       }
       final old = _owned;
       // Yükseltme: yeni planın kalan süresi hemen tahsil edilir, eski plan kredilenir.
       // Düşürme: mevcut dönem bitince geçer.
-      final upgrade = old != null && tierOf(offer.productId).index > tierOf(old.productID).index;
+      final upgrade =
+          old != null &&
+          tierOf(offer.productId).index > tierOf(old.productID).index;
       final change = old != null && old.productID != offer.productId
           ? ChangeSubscriptionParam(
               oldPurchaseDetails: old,
-              replacementMode: upgrade ? ReplacementMode.chargeProratedPrice : ReplacementMode.deferred,
+              replacementMode: upgrade
+                  ? ReplacementMode.chargeProratedPrice
+                  : ReplacementMode.deferred,
             )
           : null;
       _purchasePending = true;
       _pendingTrial = offer.hasTrial;
-      final launched = await _iap.buyNonConsumable(purchaseParam: GooglePlayPurchaseParam(
-        productDetails: offer.details, changeSubscriptionParam: change));
+      final launched = await _iap.buyNonConsumable(
+        purchaseParam: GooglePlayPurchaseParam(
+          productDetails: offer.details,
+          changeSubscriptionParam: change,
+        ),
+      );
       if (!launched) throw StateError('purchase_not_launched');
-    } catch (_) { _purchasePending = false; lastError = 'error'; }
-    finally { _working = false; if (!_disposed) notifyListeners(); }
+    } catch (_) {
+      _purchasePending = false;
+      lastError = 'error';
+    } finally {
+      _working = false;
+      if (!_disposed) notifyListeners();
+    }
   }
 
   Future<void> restore() async {
     if (busy || _disposed) return;
-    _working = true; lastError = null; notifyListeners();
+    _working = true;
+    lastError = null;
+    notifyListeners();
     try {
-      await _iap.restorePurchases(); await refresh();
-      if (!_ownershipFresh && !_disposed) throw StateError('ownership_not_verified');
-    } catch (_) { lastError = 'error'; }
-    finally { _working = false; if (!_disposed) notifyListeners(); }
+      await _iap.restorePurchases();
+      await refresh();
+      if (!_ownershipFresh && !_disposed) {
+        throw StateError('ownership_not_verified');
+      }
+    } catch (_) {
+      lastError = 'error';
+    } finally {
+      _working = false;
+      if (!_disposed) notifyListeners();
+    }
   }
 
   @override

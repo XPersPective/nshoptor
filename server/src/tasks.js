@@ -26,23 +26,45 @@ const canonicalMoney = raw => {
   return whole.replace(/^0+(?=\d)/, '') + (tail ? `.${tail}` : '');
 };
 
-// A model boolean alone cannot decide the meaning of money. Require a quoted
-// source clause with an explicit cue; missing/contradictory evidence stays open.
-const priceMeaning = (item, source = '') => {
+// Money is a line total by default in semantics v2. Explicit unit cues are
+// honored only when the literal source clause binds this product and amount.
+const priceContext = (item, source = '') => {
   const price = decimal(item?.estimatedPrice);
-  if (!price || typeof item?.priceIsUnitPrice !== 'boolean') return null;
-  const evidence = text(item?.priceEvidence, 500);
-  if (!evidence || !source.includes(evidence) || !evidence.toLocaleLowerCase().includes(text(item?.name, 60).toLocaleLowerCase())) return null;
-  // A true cue cannot authorize a different, model-invented money amount.
-  // Unsupported word-number/order forms stay open for user confirmation.
-  const cues = [...evidence.matchAll(/(?:toplam(?:\s+fiyat[ıi])?|ikisi|hepsi|total|altogether|tanesi|birim(?:\s+fiyat[ıi])?|kilosu|paketi|each|per\s+(?:item|pack|kilo))\s*[:=]?\s*(\d+(?:[.,]\d+)*)/giu)];
-  if (cues.length !== 1 || /[,;\n](?!\d)/u.test(evidence)) return null;
-  const prefix = evidence.slice(0, cues[0].index).toLocaleLowerCase();
-  if (!prefix.includes(text(item.name, 60).toLocaleLowerCase()) || /\b(?:ve|and)\b/iu.test(prefix)) return null;
-  if (canonicalMoney(cues[0][1]) !== canonicalMoney(price)) return null;
-  const total = /\b(toplam|ikisi|hepsi|total|altogether)\b/iu.test(evidence);
-  const unit = /\b(tanesi|birim|kilosu|paketi|each|per)\b/iu.test(evidence);
-  return total === unit ? null : unit === item.priceIsUnitPrice ? unit : null;
+  if (!price) return { meaning: null, basis: null };
+  const evidence = text(item?.priceEvidence, 500) || source;
+  const name = text(item?.name, 60).toLocaleLowerCase();
+  const normalized = evidence.toLocaleLowerCase();
+  const nameIndex = normalized.indexOf(name);
+  const invalid = { meaning: null, basis: null };
+  if (!name || !evidence || !source.includes(evidence) || nameIndex < 0 || /[,;\n](?!\d)/u.test(evidence)) return invalid;
+  const afterName = evidence.slice(nameIndex + name.length);
+  if (/\b(?:ve|and)\b/iu.test(afterName) || /\b(?:ve|and)\b/iu.test(evidence.slice(0, nameIndex).replace(/\band\s+a\s+half\b/giu, ''))) return invalid;
+  const amounts = [...afterName.matchAll(/\d+(?:[.,]\d+)*/gu)];
+  if (amounts.length !== 1 || canonicalMoney(amounts[0][0]) !== canonicalMoney(price)) return invalid;
+  const total = /\b(toplam|ikisi|hepsi|total|altogether)\b/iu.test(afterName);
+  const unit = /(?:^|[^\p{L}])(?:tanesi|adedi|birim|kilosu|kilogramı|gramı|litresi|mililitresi|paketi|kutusu|şişesi|kavanozu|demeti|düzinesi|metresi|each|per)(?!\p{L})/iu.test(afterName);
+  if (total && unit || (total || unit) && typeof item.priceIsUnitPrice === 'boolean' && item.priceIsUnitPrice !== unit) return invalid;
+  if (!unit) return { meaning: false, basis: null };
+  const productUnit = UNITS.includes(item?.unit) ? item.unit : 'piece';
+  const possessiveUnits = { kilosu: 'kilogram', kilogramı: 'kilogram', gramı: 'gram',
+    litresi: 'litre', mililitresi: 'millilitre', paketi: 'package', kutusu: 'box',
+    şişesi: 'bottle', kavanozu: 'jar', demeti: 'bunch', düzinesi: 'dozen', metresi: 'meter' };
+  const perUnits = { kilo: 'kilogram', kilogram: 'kilogram', kg: 'kilogram', gram: 'gram', g: 'gram',
+    litre: 'litre', liter: 'litre', l: 'litre', millilitre: 'millilitre', milliliter: 'millilitre', ml: 'millilitre',
+    pack: 'package', package: 'package', box: 'box', bottle: 'bottle', jar: 'jar', bunch: 'bunch', dozen: 'dozen', meter: 'meter',
+    piece: productUnit, item: productUnit, unit: productUnit };
+  const namedBases = new Set();
+  for (const [cue, basis] of Object.entries(possessiveUnits)) {
+    if (new RegExp(`(?:^|[^\\p{L}])${cue}(?!\\p{L})`, 'iu').test(afterName)) namedBases.add(basis);
+  }
+  for (const per of afterName.matchAll(/\bper\s+([a-z]+)/giu)) {
+    const basis = perUnits[per[1].toLowerCase()];
+    if (!basis) return invalid;
+    namedBases.add(basis);
+  }
+  if (namedBases.size > 1) return invalid;
+  const basis = namedBases.size ? [...namedBases][0] : productUnit;
+  return { meaning: true, basis };
 };
 
 const LOCALE_NOTE = locale =>
@@ -90,17 +112,17 @@ export const TASKS = {
     validate(input) {
       if (typeof input?.text !== 'string' || input.text.length > 2000) return null;
       const t = text(input.text, 2000);
-      return t ? { text: t, priceSemanticsVersion: input.priceSemanticsVersion === 1 ? 1 : 0 } : null;
+      return t ? { text: t, priceSemanticsVersion: input.priceSemanticsVersion === 2 ? 2 : 0 } : null;
     },
     system: locale =>
       'You convert a spoken or typed shopping sentence into a list of separate products. ' +
       'Return ONLY JSON: {"title":string|null,"items":[{"name":string,"brand":string|null,"category":string|null,"quantity":string|null,' +
-      `"unit":one of ${JSON.stringify(UNITS)}|null,"estimatedPrice":string|null,"priceIsUnitPrice":boolean|null,"priceEvidence":string|null,"currencyCode":string|null,"priceDestination":"planned"|"actual"}]}. ` +
+      `"unit":one of ${JSON.stringify(UNITS)}|null,"estimatedPrice":string|null,"priceIsUnitPrice":boolean|null,"priceUnitCode":string|null,"priceEvidence":string|null,"currencyCode":string|null,"priceDestination":"planned"|"actual"}]}. ` +
       'Rules: ' +
       '1) One item per product. A new product starts where a number with an optional unit is followed by a product name ("1 kilo elma 1 ekmek" = two items). ' +
       '2) quantity is the number before the product or its unit ("1 kilo" -> quantity "1", unit "kilogram"; "2 paket" -> "2", "package"). A quantity without a unit is unit "piece". ' +
-      '3) estimatedPrice is the spoken money amount, never guess whether it is total or per unit. ' +
-      'Use priceIsUnitPrice false only for explicit total/toplam/ikisi/hepsi, true only for each/tanesi/birim fiyatı/kilosu/paketi/per-unit cues. Otherwise null. ' +
+      '3) estimatedPrice is the exact spoken money amount. By default it is the TOTAL for the selected quantity (priceIsUnitPrice false), even for 400 grams or two packages. ' +
+      'Explicit each/tanesi/birim fiyatı/kilosu/paketi/per-unit cues mean unit price (true). Contradictory total and unit cues mean null. priceUnitCode records the unit explicitly priced (kilosu -> kilogram), independent of quantity unit (400g -> gram). Tanesi/each use the product packaging unit. ' +
       'priceEvidence must quote the exact source clause containing product, amount and price cue; never invent evidence. ' +
       'currencyCode must reflect spoken currency (TRY/EUR/USD etc.), else null. priceDestination is actual for explicit market/çarşı/store purchase prices, else planned. ' +
       '"kilosu 40 lira" or "per kilo 40" is a unit price: priceIsUnitPrice true. A price is never part of the name. ' +
@@ -108,7 +130,7 @@ export const TASKS = {
       '5) Never invent prices, brands or quantities: use null when not said. ' +
       '6) Use a title only if the input suggests one. Categories: produce, dairy, meat, bakery, drinks, cleaning, personalCare, home, other, or a user custom category. Max 40 items. ' +
       'Examples: "1 kilo elma 1 ekmek" -> [{"name":"elma","quantity":"1","unit":"kilogram"},{"name":"ekmek","quantity":"1","unit":"piece"}]. ' +
-      '"1 kilo domates 20 TL" -> [{"name":"domates","quantity":"1","unit":"kilogram","estimatedPrice":"20","priceIsUnitPrice":null,"currencyCode":"TRY"}]. ' +
+      '"1 kilo domates 20 TL" -> [{"name":"domates","quantity":"1","unit":"kilogram","estimatedPrice":"20","priceIsUnitPrice":false,"currencyCode":"TRY"}]. ' +
       '"elma kilosu 40 lira, 2 süt" -> [{"name":"elma","estimatedPrice":"40","priceIsUnitPrice":true},{"name":"süt","quantity":"2","unit":"piece"}]. ' +
       LOCALE_NOTE(locale),
     user: input => input.text,
@@ -119,10 +141,9 @@ export const TASKS = {
         title: text(out?.title, 80) || null,
         items: items
           .map(i => {
-            const meaning = priceMeaning(i, input?.text);
+            const { meaning, basis } = priceContext(i, input?.text);
             const currency = sourceCurrency(i, input?.text);
-            const legacyUnsafe = input?.priceSemanticsVersion !== 1 &&
-              (meaning === null || currency !== null || i?.priceDestination === 'actual');
+            const legacyUnsafe = input?.priceSemanticsVersion !== 2;
             return ({
             name: text(i?.name, 60),
             brand: text(i?.brand, 60) || null,
@@ -131,6 +152,7 @@ export const TASKS = {
             unit: UNITS.includes(i?.unit) ? i.unit : null,
             estimatedPrice: legacyUnsafe ? null : decimal(i?.estimatedPrice),
             priceIsUnitPrice: meaning,
+            priceUnitCode: basis,
             currencyCode: currency,
             priceDestination: i?.priceDestination === 'actual' && /market|çarşı|store|actual/iu.test(text(i?.priceEvidence, 500)) && (input?.text || '').includes(text(i?.priceEvidence, 500)) ? 'actual' : 'planned',
           }); })

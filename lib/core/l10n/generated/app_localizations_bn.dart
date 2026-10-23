@@ -729,7 +729,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'বিজ্ঞাপন মুক্ত, আরও AI, ব্যাকআপ · ছোট মাসিক মূল্য থেকে শুরু';
+      'কোনো বিজ্ঞাপন নেই · ব্যাকআপ এক্সপোর্ট ও ইম্পোর্ট · মাসিক';
 
   @override
   String get proBenefitNoAds => 'বিজ্ঞাপন মুক্ত অভিজ্ঞতা';
@@ -945,7 +945,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get plansPerMonth => '/ মাস';
 
   @override
-  String get planTrial => '৭ দিন ফ্রি';
+  String get planTrial => 'বিনামূল্যে ট্রায়াল';
 
   @override
   String get planProAi => 'প্রতি মাসে 100টি AI অনুরোধ';
@@ -977,13 +977,13 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'সাবস্ক্রিপশন বাতিল না করা পর্যন্ত স্বয়ংক্রিয়ভাবে নবায়িত হবে। যেকোনো সময় Google Play › Payments & subscriptions থেকে বাতিল করুন। মূল্যে Google Play-এ প্রদর্শিত কর অন্তর্ভুক্ত।';
+      'বাতিল না করা পর্যন্ত নতুন Pro ও Max সাবস্ক্রিপশন প্রতি মাসে নবায়ন হয়। Google Play-তে পরিচালনা বা বাতিল করুন। কেনার আগে Play-তে দাম ও ট্রায়ালের যোগ্যতা দেখুন।';
 
   @override
   String get planCurrent => 'বর্তমান';
 
   @override
-  String get planStartTrial => '৭ দিনের ফ্রি ট্রায়াল শুরু করুন';
+  String get planStartTrial => 'বিনামূল্যে ট্রায়াল শুরু করুন';
 
   @override
   String get planChoose => 'বাছাই করুন';
@@ -1280,4 +1280,25 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'দোকানের দাম লিখলে পণ্য কেনা হয়েছে বলে চিহ্নিত হয়; 0-ও গণ্য হয়। বাড়ির দাম লেখা ঐচ্ছিক। টিক সরাতে দোকানের দাম মুছুন।';
+
+  @override
+  String get shoppingDateLabel => 'কেনাকাটার তারিখ (ঐচ্ছিক)';
+
+  @override
+  String get shoppingDateNone => 'কোনো তারিখ বাছা হয়নি';
+
+  @override
+  String get clearShoppingDateAction => 'তারিখ মুছুন';
+
+  @override
+  String get listSortLabel => 'তালিকার ক্রম';
+
+  @override
+  String get listSortDate => 'কেনাকাটার তারিখ';
+
+  @override
+  String get listSortAz => 'নাম (অ–হ)';
+
+  @override
+  String get listSortManual => 'নিজে সাজান';
 }

@@ -730,7 +730,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Be reklamų, daugiau AI, atsarginės kopijos · už nedidelę mėnesinę kainą';
+      'Be reklamų · Atsarginės kopijos eksportas ir importavimas · Mėnesinis';
 
   @override
   String get proBenefitNoAds => 'Patirtis be reklamų';
@@ -947,7 +947,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get plansPerMonth => '/ mėnuo';
 
   @override
-  String get planTrial => '7 dienos nemokamai';
+  String get planTrial => 'Nemokamas bandomasis laikotarpis';
 
   @override
   String get planProAi => '100 AI užklausų per mėnesį';
@@ -978,13 +978,13 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Prenumeratos automatiškai atnaujinamos, kol neatsakysite. Atsisakyti bet kada „Google Play“ › Mokėjimai ir prenumeratos. Kainos apima „Google Play“ rodomus mokesčius.';
+      'Naujos Pro ir Max prenumeratos atnaujinamos kas mėnesį, kol atšaukiami. Tvarkykite arba atšaukite per Google Play. Prieš pirkdami Play patikrinkite kainą ir bandomojo laikotarpio sąlygas.';
 
   @override
   String get planCurrent => 'Dabartinė';
 
   @override
-  String get planStartTrial => 'Pradėti 7 dienų nemokamą bandomąją versiją';
+  String get planStartTrial => 'Pradėti nemokamą bandomąjį laikotarpį';
 
   @override
   String get planChoose => 'Pasirinkti';
@@ -1287,4 +1287,25 @@ class AppLocalizationsLt extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Parduotuvės kaina pažymi prekę kaip nupirktą; tinka ir 0. Namų kaina neprivaloma. Ištrinkite parduotuvės kainą, kad pašalintumėte varnelę.';
+
+  @override
+  String get shoppingDateLabel => 'Apsipirkimo data (neprivaloma)';
+
+  @override
+  String get shoppingDateNone => 'Data nepasirinkta';
+
+  @override
+  String get clearShoppingDateAction => 'Pašalinti datą';
+
+  @override
+  String get listSortLabel => 'Sąrašo tvarka';
+
+  @override
+  String get listSortDate => 'Apsipirkimo data';
+
+  @override
+  String get listSortAz => 'Pavadinimas (A–Ž)';
+
+  @override
+  String get listSortManual => 'Rankinė tvarka';
 }

@@ -730,7 +730,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bez reklāmām, vairāk AI, dublējums · par zemu mēneša maksu';
+      'Bez reklāmām · Rezerves kopija eksportēšanai un importēšanai · Mēnesī';
 
   @override
   String get proBenefitNoAds => 'Tīra pieredze bez reklāmām';
@@ -947,7 +947,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get plansPerMonth => '/ mēnesī';
 
   @override
-  String get planTrial => '7 dienas bezmaksas';
+  String get planTrial => 'Bezmaksas izmēģinājums';
 
   @override
   String get planProAi => '100 AI pieprasījumi mēnesī';
@@ -979,13 +979,13 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abonementi tiek automātiski atjaunoti, līdz tiek atcelti. Atcelt jebkurā laikā Google Play › Maksājumi un abonementi. Cenas ietver nodokļus, kurus norāda Google Play.';
+      'Jaunie Pro un Max abonementi tiek atjaunoti katru mēnesi līdz atcelšanai. Pārvaldiet vai atceliet pakalpojumā Google Play. Pirms pirkuma pārbaudiet cenu un izmēģinājuma nosacījumus Play.';
 
   @override
   String get planCurrent => 'Pašreizējais';
 
   @override
-  String get planStartTrial => 'Sākt 7 dienu bezmaksas izmēģinājumu';
+  String get planStartTrial => 'Sākt bezmaksas izmēģinājumu';
 
   @override
   String get planChoose => 'Izvēlēties';
@@ -1283,4 +1283,25 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Veikala cena atzīmē preci kā nopirktu; der arī 0. Mājas cena nav obligāta. Izdzēsiet veikala cenu, lai noņemtu atzīmi.';
+
+  @override
+  String get shoppingDateLabel => 'Iepirkšanās datums (neobligāts)';
+
+  @override
+  String get shoppingDateNone => 'Datums nav izvēlēts';
+
+  @override
+  String get clearShoppingDateAction => 'Noņemt datumu';
+
+  @override
+  String get listSortLabel => 'Saraksta secība';
+
+  @override
+  String get listSortDate => 'Iepirkšanās datums';
+
+  @override
+  String get listSortAz => 'Nosaukums (A–Z)';
+
+  @override
+  String get listSortManual => 'Manuāla secība';
 }

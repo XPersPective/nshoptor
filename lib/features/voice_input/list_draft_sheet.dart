@@ -7,6 +7,7 @@ import '../../core/money/decimal_fixed.dart';
 import '../../core/money/money_parser.dart';
 import '../../core/money/format_locale.dart';
 import '../lists/starter_categories.dart';
+import '../lists/list_scheduling.dart';
 import '../ai/ai_client.dart';
 import 'ai_list_parser.dart';
 import '../subscription/subscription_paywall.dart';
@@ -56,6 +57,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
   final _text = TextEditingController();
   final _title = TextEditingController();
   String? _error;
+  DateTime? _plannedAt;
   VoiceInputController? _voice;
   ListDraft? _draft;
   final _selected = <int>{};
@@ -173,6 +175,8 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     final l10n = AppLocalizations.of(context);
     final draft = ListDraft([for (final i in _selected.toList()..sort()) _draft!.items[i]],
       fromAi: _draft!.fromAi, aiResult: _draft!.aiResult,
+      plannedAt: widget.allowTitle ? _plannedAt : null,
+      parseDuration: _draft!.parseDuration, modelCalls: _draft!.modelCalls,
       title: _title.text.trim().isEmpty ? null : _title.text.trim());
     setState(() { _busy = true; _error = null; });
     try { await widget.onApprove?.call(draft); if (mounted) Navigator.of(context).pop(draft); }
@@ -227,7 +231,8 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
           if (!form.currentState!.validate()) return;
           Navigator.of(ctx).pop(ParsedItemCandidate(name: name.trim(), rawText: c.rawText,
             brand: brand.trim().isEmpty ? null : brand.trim(), category: category.trim().isEmpty ? null : category.trim(),
-            quantity: decimal(quantity), unitCode: unit, unitPrice: decimal(price), isUnitPrice: isUnit, currencyCode: c.currencyCode, priceDestination: c.priceDestination));
+            quantity: decimal(quantity), unitCode: unit, unitPrice: decimal(price), isUnitPrice: isUnit,
+            priceUnitCode: isUnit == true ? c.priceUnitCode : null, currencyCode: c.currencyCode, priceDestination: c.priceDestination));
         }, child: Text(l10n.saveButton))],
     ));
     if (edited != null && mounted) setState(() { _draft!.items[index] = edited; });
@@ -320,6 +325,8 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
             if (draft != null) ...[
               if (widget.allowTitle) TextField(key: const Key('draft_title_field'), controller: _title, textCapitalization: TextCapitalization.sentences, maxLength: 80, enabled: !_busy,
                 decoration: InputDecoration(labelText: l10n.listTitleHint)),
+              if (widget.allowTitle) ShoppingDateField(value: _plannedAt, enabled: !_busy,
+                onChanged: (value) => setState(() => _plannedAt = value)),
               const SizedBox(height: 12),
               if (draft.items.isEmpty)
                 Padding(

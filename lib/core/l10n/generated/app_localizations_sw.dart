@@ -729,7 +729,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bila matangazo, AI zaidi, nakala · kutoka bei ndogo ya kila mwezi';
+      'Hakuna matamko · Hifadhi na uingize nje · Mwezi';
 
   @override
   String get proBenefitNoAds => 'Uzoefu bila matangazo';
@@ -946,7 +946,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get plansPerMonth => '/ mwezi';
 
   @override
-  String get planTrial => 'Siku 7 bure';
+  String get planTrial => 'Jaribio la bure';
 
   @override
   String get planProAi => 'Maombi 100 ya AI kwa mwezi';
@@ -978,13 +978,13 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Usajili unajiuzia kiotomatiki hadi utughushe. Ghushi wakati wowote katika Google Play › Malipo na usajili. Bei zinajumuisha kodi zilizonyeshwa na Google Play.';
+      'Usajili mpya wa Pro na Max husasishwa kila mwezi hadi ughairi. Dhibiti au ghairi katika Google Play. Angalia bei na masharti ya majaribio katika Play kabla ya kununua.';
 
   @override
   String get planCurrent => 'Sasa';
 
   @override
-  String get planStartTrial => 'Anza majaribio ya bure ya siku 7';
+  String get planStartTrial => 'Anza jaribio la bure';
 
   @override
   String get planChoose => 'Chagua';
@@ -1283,4 +1283,25 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Bei ya dukani huweka alama kuwa bidhaa imenunuliwa; 0 pia inakubalika. Bei ya nyumbani si lazima. Futa bei ya dukani kuondoa alama.';
+
+  @override
+  String get shoppingDateLabel => 'Tarehe ya ununuzi (si lazima)';
+
+  @override
+  String get shoppingDateNone => 'Hakuna tarehe iliyochaguliwa';
+
+  @override
+  String get clearShoppingDateAction => 'Futa tarehe';
+
+  @override
+  String get listSortLabel => 'Mpangilio wa orodha';
+
+  @override
+  String get listSortDate => 'Tarehe ya ununuzi';
+
+  @override
+  String get listSortAz => 'Jina (A–Z)';
+
+  @override
+  String get listSortManual => 'Panga mwenyewe';
 }

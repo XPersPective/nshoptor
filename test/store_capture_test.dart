@@ -445,13 +445,11 @@ void main() {
     await settle(tester);
     await tester.tap(find.text(data.list).first);
     await settle(tester);
-    await tester.enterText(
-      find.byKey(const Key('detail_quick_entry')),
-      '${data.items.first.$1} 2',
-    );
-    await tester.testTextInput.receiveAction(TextInputAction.done);
+    // The quick entry is a read-only launcher. Follow the real tap flow.
+    await tester.tap(find.byKey(const Key('detail_quick_entry')));
     await settle(tester);
-    await shot(tester, '08'); // Hızlı ekleme önizlemesi
+    expect(find.byKey(const Key('item_name_field')), findsOneWidget);
+    await shot(tester, '08'); // Ürün ekleme formu
 
     await tester.pumpWidget(const SizedBox.shrink());
     final closing = db.close();

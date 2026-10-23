@@ -4622,6 +4622,17 @@ class $PurchaseEntriesTable extends PurchaseEntries
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _pricingInputModeMeta = const VerificationMeta(
+    'pricingInputMode',
+  );
+  @override
+  late final GeneratedColumn<String> pricingInputMode = GeneratedColumn<String>(
+    'pricing_input_mode',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _grossTotalMinorUnitsMeta =
       const VerificationMeta('grossTotalMinorUnits');
   @override
@@ -4749,6 +4760,7 @@ class $PurchaseEntriesTable extends PurchaseEntries
     actualQuantity,
     actualUnitCode,
     actualUnitPrice,
+    pricingInputMode,
     grossTotalMinorUnits,
     discountMinorUnits,
     actualLineTotalMinorUnits,
@@ -4845,6 +4857,15 @@ class $PurchaseEntriesTable extends PurchaseEntries
         actualUnitPrice.isAcceptableOrUnknown(
           data['actual_unit_price']!,
           _actualUnitPriceMeta,
+        ),
+      );
+    }
+    if (data.containsKey('pricing_input_mode')) {
+      context.handle(
+        _pricingInputModeMeta,
+        pricingInputMode.isAcceptableOrUnknown(
+          data['pricing_input_mode']!,
+          _pricingInputModeMeta,
         ),
       );
     }
@@ -4970,6 +4991,10 @@ class $PurchaseEntriesTable extends PurchaseEntries
         DriftSqlType.string,
         data['${effectivePrefix}actual_unit_price'],
       ),
+      pricingInputMode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pricing_input_mode'],
+      ),
       grossTotalMinorUnits: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}gross_total_minor_units'],
@@ -5029,6 +5054,9 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
   final String actualQuantity;
   final String actualUnitCode;
   final String? actualUnitPrice;
+
+  /// unitPrice | lineTotal; null preserves pre-v3 unit-price editor semantics.
+  final String? pricingInputMode;
   final int? grossTotalMinorUnits;
   final int discountMinorUnits;
   final int actualLineTotalMinorUnits;
@@ -5053,6 +5081,7 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
     required this.actualQuantity,
     required this.actualUnitCode,
     this.actualUnitPrice,
+    this.pricingInputMode,
     this.grossTotalMinorUnits,
     required this.discountMinorUnits,
     required this.actualLineTotalMinorUnits,
@@ -5081,6 +5110,9 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
     map['actual_unit_code'] = Variable<String>(actualUnitCode);
     if (!nullToAbsent || actualUnitPrice != null) {
       map['actual_unit_price'] = Variable<String>(actualUnitPrice);
+    }
+    if (!nullToAbsent || pricingInputMode != null) {
+      map['pricing_input_mode'] = Variable<String>(pricingInputMode);
     }
     if (!nullToAbsent || grossTotalMinorUnits != null) {
       map['gross_total_minor_units'] = Variable<int>(grossTotalMinorUnits);
@@ -5120,6 +5152,9 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
       actualUnitPrice: actualUnitPrice == null && nullToAbsent
           ? const Value.absent()
           : Value(actualUnitPrice),
+      pricingInputMode: pricingInputMode == null && nullToAbsent
+          ? const Value.absent()
+          : Value(pricingInputMode),
       grossTotalMinorUnits: grossTotalMinorUnits == null && nullToAbsent
           ? const Value.absent()
           : Value(grossTotalMinorUnits),
@@ -5152,6 +5187,7 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
       actualQuantity: serializer.fromJson<String>(json['actualQuantity']),
       actualUnitCode: serializer.fromJson<String>(json['actualUnitCode']),
       actualUnitPrice: serializer.fromJson<String?>(json['actualUnitPrice']),
+      pricingInputMode: serializer.fromJson<String?>(json['pricingInputMode']),
       grossTotalMinorUnits: serializer.fromJson<int?>(
         json['grossTotalMinorUnits'],
       ),
@@ -5181,6 +5217,7 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
       'actualQuantity': serializer.toJson<String>(actualQuantity),
       'actualUnitCode': serializer.toJson<String>(actualUnitCode),
       'actualUnitPrice': serializer.toJson<String?>(actualUnitPrice),
+      'pricingInputMode': serializer.toJson<String?>(pricingInputMode),
       'grossTotalMinorUnits': serializer.toJson<int?>(grossTotalMinorUnits),
       'discountMinorUnits': serializer.toJson<int>(discountMinorUnits),
       'actualLineTotalMinorUnits': serializer.toJson<int>(
@@ -5206,6 +5243,7 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
     String? actualQuantity,
     String? actualUnitCode,
     Value<String?> actualUnitPrice = const Value.absent(),
+    Value<String?> pricingInputMode = const Value.absent(),
     Value<int?> grossTotalMinorUnits = const Value.absent(),
     int? discountMinorUnits,
     int? actualLineTotalMinorUnits,
@@ -5230,6 +5268,9 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
     actualUnitPrice: actualUnitPrice.present
         ? actualUnitPrice.value
         : this.actualUnitPrice,
+    pricingInputMode: pricingInputMode.present
+        ? pricingInputMode.value
+        : this.pricingInputMode,
     grossTotalMinorUnits: grossTotalMinorUnits.present
         ? grossTotalMinorUnits.value
         : this.grossTotalMinorUnits,
@@ -5265,6 +5306,9 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
       actualUnitPrice: data.actualUnitPrice.present
           ? data.actualUnitPrice.value
           : this.actualUnitPrice,
+      pricingInputMode: data.pricingInputMode.present
+          ? data.pricingInputMode.value
+          : this.pricingInputMode,
       grossTotalMinorUnits: data.grossTotalMinorUnits.present
           ? data.grossTotalMinorUnits.value
           : this.grossTotalMinorUnits,
@@ -5302,6 +5346,7 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
           ..write('actualQuantity: $actualQuantity, ')
           ..write('actualUnitCode: $actualUnitCode, ')
           ..write('actualUnitPrice: $actualUnitPrice, ')
+          ..write('pricingInputMode: $pricingInputMode, ')
           ..write('grossTotalMinorUnits: $grossTotalMinorUnits, ')
           ..write('discountMinorUnits: $discountMinorUnits, ')
           ..write('actualLineTotalMinorUnits: $actualLineTotalMinorUnits, ')
@@ -5327,6 +5372,7 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
     actualQuantity,
     actualUnitCode,
     actualUnitPrice,
+    pricingInputMode,
     grossTotalMinorUnits,
     discountMinorUnits,
     actualLineTotalMinorUnits,
@@ -5351,6 +5397,7 @@ class PurchaseEntry extends DataClass implements Insertable<PurchaseEntry> {
           other.actualQuantity == this.actualQuantity &&
           other.actualUnitCode == this.actualUnitCode &&
           other.actualUnitPrice == this.actualUnitPrice &&
+          other.pricingInputMode == this.pricingInputMode &&
           other.grossTotalMinorUnits == this.grossTotalMinorUnits &&
           other.discountMinorUnits == this.discountMinorUnits &&
           other.actualLineTotalMinorUnits == this.actualLineTotalMinorUnits &&
@@ -5373,6 +5420,7 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
   final Value<String> actualQuantity;
   final Value<String> actualUnitCode;
   final Value<String?> actualUnitPrice;
+  final Value<String?> pricingInputMode;
   final Value<int?> grossTotalMinorUnits;
   final Value<int> discountMinorUnits;
   final Value<int> actualLineTotalMinorUnits;
@@ -5393,6 +5441,7 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
     this.actualQuantity = const Value.absent(),
     this.actualUnitCode = const Value.absent(),
     this.actualUnitPrice = const Value.absent(),
+    this.pricingInputMode = const Value.absent(),
     this.grossTotalMinorUnits = const Value.absent(),
     this.discountMinorUnits = const Value.absent(),
     this.actualLineTotalMinorUnits = const Value.absent(),
@@ -5414,6 +5463,7 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
     required String actualQuantity,
     required String actualUnitCode,
     this.actualUnitPrice = const Value.absent(),
+    this.pricingInputMode = const Value.absent(),
     this.grossTotalMinorUnits = const Value.absent(),
     this.discountMinorUnits = const Value.absent(),
     required int actualLineTotalMinorUnits,
@@ -5440,6 +5490,7 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
     Expression<String>? actualQuantity,
     Expression<String>? actualUnitCode,
     Expression<String>? actualUnitPrice,
+    Expression<String>? pricingInputMode,
     Expression<int>? grossTotalMinorUnits,
     Expression<int>? discountMinorUnits,
     Expression<int>? actualLineTotalMinorUnits,
@@ -5461,6 +5512,7 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
       if (actualQuantity != null) 'actual_quantity': actualQuantity,
       if (actualUnitCode != null) 'actual_unit_code': actualUnitCode,
       if (actualUnitPrice != null) 'actual_unit_price': actualUnitPrice,
+      if (pricingInputMode != null) 'pricing_input_mode': pricingInputMode,
       if (grossTotalMinorUnits != null)
         'gross_total_minor_units': grossTotalMinorUnits,
       if (discountMinorUnits != null)
@@ -5487,6 +5539,7 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
     Value<String>? actualQuantity,
     Value<String>? actualUnitCode,
     Value<String?>? actualUnitPrice,
+    Value<String?>? pricingInputMode,
     Value<int?>? grossTotalMinorUnits,
     Value<int>? discountMinorUnits,
     Value<int>? actualLineTotalMinorUnits,
@@ -5508,6 +5561,7 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
       actualQuantity: actualQuantity ?? this.actualQuantity,
       actualUnitCode: actualUnitCode ?? this.actualUnitCode,
       actualUnitPrice: actualUnitPrice ?? this.actualUnitPrice,
+      pricingInputMode: pricingInputMode ?? this.pricingInputMode,
       grossTotalMinorUnits: grossTotalMinorUnits ?? this.grossTotalMinorUnits,
       discountMinorUnits: discountMinorUnits ?? this.discountMinorUnits,
       actualLineTotalMinorUnits:
@@ -5551,6 +5605,9 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
     }
     if (actualUnitPrice.present) {
       map['actual_unit_price'] = Variable<String>(actualUnitPrice.value);
+    }
+    if (pricingInputMode.present) {
+      map['pricing_input_mode'] = Variable<String>(pricingInputMode.value);
     }
     if (grossTotalMinorUnits.present) {
       map['gross_total_minor_units'] = Variable<int>(
@@ -5601,6 +5658,7 @@ class PurchaseEntriesCompanion extends UpdateCompanion<PurchaseEntry> {
           ..write('actualQuantity: $actualQuantity, ')
           ..write('actualUnitCode: $actualUnitCode, ')
           ..write('actualUnitPrice: $actualUnitPrice, ')
+          ..write('pricingInputMode: $pricingInputMode, ')
           ..write('grossTotalMinorUnits: $grossTotalMinorUnits, ')
           ..write('discountMinorUnits: $discountMinorUnits, ')
           ..write('actualLineTotalMinorUnits: $actualLineTotalMinorUnits, ')
@@ -13421,6 +13479,7 @@ typedef $$PurchaseEntriesTableCreateCompanionBuilder =
       required String actualQuantity,
       required String actualUnitCode,
       Value<String?> actualUnitPrice,
+      Value<String?> pricingInputMode,
       Value<int?> grossTotalMinorUnits,
       Value<int> discountMinorUnits,
       required int actualLineTotalMinorUnits,
@@ -13443,6 +13502,7 @@ typedef $$PurchaseEntriesTableUpdateCompanionBuilder =
       Value<String> actualQuantity,
       Value<String> actualUnitCode,
       Value<String?> actualUnitPrice,
+      Value<String?> pricingInputMode,
       Value<int?> grossTotalMinorUnits,
       Value<int> discountMinorUnits,
       Value<int> actualLineTotalMinorUnits,
@@ -13575,6 +13635,11 @@ class $$PurchaseEntriesTableFilterComposer
 
   ColumnFilters<String> get actualUnitPrice => $composableBuilder(
     column: $table.actualUnitPrice,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get pricingInputMode => $composableBuilder(
+    column: $table.pricingInputMode,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -13762,6 +13827,11 @@ class $$PurchaseEntriesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get pricingInputMode => $composableBuilder(
+    column: $table.pricingInputMode,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get grossTotalMinorUnits => $composableBuilder(
     column: $table.grossTotalMinorUnits,
     builder: (column) => ColumnOrderings(column),
@@ -13914,6 +13984,11 @@ class $$PurchaseEntriesTableAnnotationComposer
 
   GeneratedColumn<String> get actualUnitPrice => $composableBuilder(
     column: $table.actualUnitPrice,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get pricingInputMode => $composableBuilder(
+    column: $table.pricingInputMode,
     builder: (column) => column,
   );
 
@@ -14099,6 +14174,7 @@ class $$PurchaseEntriesTableTableManager
                 Value<String> actualQuantity = const Value.absent(),
                 Value<String> actualUnitCode = const Value.absent(),
                 Value<String?> actualUnitPrice = const Value.absent(),
+                Value<String?> pricingInputMode = const Value.absent(),
                 Value<int?> grossTotalMinorUnits = const Value.absent(),
                 Value<int> discountMinorUnits = const Value.absent(),
                 Value<int> actualLineTotalMinorUnits = const Value.absent(),
@@ -14119,6 +14195,7 @@ class $$PurchaseEntriesTableTableManager
                 actualQuantity: actualQuantity,
                 actualUnitCode: actualUnitCode,
                 actualUnitPrice: actualUnitPrice,
+                pricingInputMode: pricingInputMode,
                 grossTotalMinorUnits: grossTotalMinorUnits,
                 discountMinorUnits: discountMinorUnits,
                 actualLineTotalMinorUnits: actualLineTotalMinorUnits,
@@ -14141,6 +14218,7 @@ class $$PurchaseEntriesTableTableManager
                 required String actualQuantity,
                 required String actualUnitCode,
                 Value<String?> actualUnitPrice = const Value.absent(),
+                Value<String?> pricingInputMode = const Value.absent(),
                 Value<int?> grossTotalMinorUnits = const Value.absent(),
                 Value<int> discountMinorUnits = const Value.absent(),
                 required int actualLineTotalMinorUnits,
@@ -14161,6 +14239,7 @@ class $$PurchaseEntriesTableTableManager
                 actualQuantity: actualQuantity,
                 actualUnitCode: actualUnitCode,
                 actualUnitPrice: actualUnitPrice,
+                pricingInputMode: pricingInputMode,
                 grossTotalMinorUnits: grossTotalMinorUnits,
                 discountMinorUnits: discountMinorUnits,
                 actualLineTotalMinorUnits: actualLineTotalMinorUnits,

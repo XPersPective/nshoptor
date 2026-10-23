@@ -731,7 +731,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'कोई विज्ञापन नहीं, अधिक AI, बैकअप · एक छोटी मासिक कीमत से';
+      'कोई विज्ञापन नहीं · बैकअप निर्यात और आयात · मासिक';
 
   @override
   String get proBenefitNoAds => 'विज्ञापन-मुक्त अनुभव';
@@ -947,7 +947,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get plansPerMonth => '/ माह';
 
   @override
-  String get planTrial => '7 दिन मुफ्त';
+  String get planTrial => 'मुफ़्त ट्रायल';
 
   @override
   String get planProAi => 'प्रति माह 100 AI रिक्वेस्ट';
@@ -979,13 +979,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'सदस्यता रद्द करने तक स्वचालित रूप से नवीनीकृत होती रहती हैं। किसी भी समय Google Play › भुगतान और सदस्यता में रद्द करें। मूल्यों में Google Play द्वारा दिखाए गए कर शामिल हैं।';
+      'रद्द करने तक नए Pro और Max सदस्यता प्लान हर महीने नवीनीकृत होते हैं। Google Play में प्रबंधित या रद्द करें। खरीदने से पहले Play में कीमत और ट्रायल की पात्रता देखें।';
 
   @override
   String get planCurrent => 'वर्तमान';
 
   @override
-  String get planStartTrial => '7 दिन का निःशुल्क ट्रायल शुरू करें';
+  String get planStartTrial => 'मुफ़्त ट्रायल शुरू करें';
 
   @override
   String get planChoose => 'चुनें';
@@ -1285,4 +1285,25 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'दुकान की कीमत भरने पर सामान खरीदा हुआ माना जाता है; 0 भी मान्य है। घर की कीमत वैकल्पिक है। निशान हटाने के लिए दुकान की कीमत मिटाएँ।';
+
+  @override
+  String get shoppingDateLabel => 'खरीदारी की तारीख (वैकल्पिक)';
+
+  @override
+  String get shoppingDateNone => 'कोई तारीख नहीं चुनी गई';
+
+  @override
+  String get clearShoppingDateAction => 'तारीख हटाएँ';
+
+  @override
+  String get listSortLabel => 'सूची का क्रम';
+
+  @override
+  String get listSortDate => 'खरीदारी की तारीख';
+
+  @override
+  String get listSortAz => 'नाम (अ–ह)';
+
+  @override
+  String get listSortManual => 'खुद क्रम लगाएँ';
 }

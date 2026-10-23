@@ -729,7 +729,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Geen advertensies, meer AI, rugsteun · vanaf \'n klein maandelikse prys';
+      'Geen reklames nie · Sleutel- en invoer · Maandeliks';
 
   @override
   String get proBenefitNoAds => 'Advertensievrye ervaring';
@@ -946,7 +946,7 @@ class AppLocalizationsAf extends AppLocalizations {
   String get plansPerMonth => '/ maand';
 
   @override
-  String get planTrial => '7 dae gratis';
+  String get planTrial => 'Gratis proeftydperk';
 
   @override
   String get planProAi => '100 AI-aanvrae per maand';
@@ -978,13 +978,13 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abonnemente vernuut outomaties tot kansellasie. Kan enige tyd gekanselleer word in Google Play › Betalings en abonnemente. Prys sluit belasting in soos deur Google Play getoon.';
+      'Nuwe Pro- en Max-intekeninge hernu maandeliks totdat jy kanselleer. Bestuur of kanselleer in Google Play. Kontroleer die prys en enige proefaanbod voor aankoop in Play.';
 
   @override
   String get planCurrent => 'Huidig';
 
   @override
-  String get planStartTrial => 'Begin 7-dae gratis proefperiode';
+  String get planStartTrial => 'Begin gratis proeftydperk';
 
   @override
   String get planChoose => 'Kies';
@@ -1285,4 +1285,25 @@ class AppLocalizationsAf extends AppLocalizations {
   @override
   String get guidePricesBody =>
       '’n Winkelprys merk die item as gekoop; 0 tel ook. Die tuisprys is opsioneel. Vee die winkelprys uit om die merk te verwyder.';
+
+  @override
+  String get shoppingDateLabel => 'Inkopiedatum (opsioneel)';
+
+  @override
+  String get shoppingDateNone => 'Geen datum gekies nie';
+
+  @override
+  String get clearShoppingDateAction => 'Vee datum uit';
+
+  @override
+  String get listSortLabel => 'Lysvolgorde';
+
+  @override
+  String get listSortDate => 'Inkopiedatum';
+
+  @override
+  String get listSortAz => 'Naam (A–Z)';
+
+  @override
+  String get listSortManual => 'Handmatige volgorde';
 }

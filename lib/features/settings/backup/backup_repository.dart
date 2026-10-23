@@ -114,8 +114,11 @@ class BackupRepository {
     }
     try {
       final sections = <String, Map<int, Map<String, dynamic>>>{};
-      void check<R extends Table, D>(String key, TableInfo<R, D> table,
-          Insertable<D> Function(Map<String, dynamic>) read) {
+      void check<R extends Table, D>(
+        String key,
+        TableInfo<R, D> table,
+        Insertable<D> Function(Map<String, dynamic>) read,
+      ) {
         if (data.containsKey(key) && data[key] is! List) {
           throw const FormatException('invalid section');
         }
@@ -123,13 +126,17 @@ class BackupRepository {
         for (final value in data[key] ?? []) {
           final row = value as Map<String, dynamic>;
           final id = row['id'] as int;
-          if (id <= 0 || indexed.containsKey(id) ||
-              !table.validateIntegrity(read(row), isInserting: true).dataValid) {
+          if (id <= 0 ||
+              indexed.containsKey(id) ||
+              !table
+                  .validateIntegrity(read(row), isInserting: true)
+                  .dataValid) {
             throw const FormatException('invalid row');
           }
           indexed[id] = row;
         }
       }
+
       check('stores', _db.stores, Store.fromJson);
       check('categories', _db.categories, Category.fromJson);
       check('aisles', _db.aisles, Aisle.fromJson);
@@ -138,55 +145,110 @@ class BackupRepository {
       check('purchaseEntries', _db.purchaseEntries, PurchaseEntry.fromJson);
       check('productMemory', _db.productMemory, ProductMemoryData.fromJson);
       check('productAliases', _db.productAliases, ProductAliase.fromJson);
-      check('priceObservations', _db.priceObservations, PriceObservation.fromJson);
+      check(
+        'priceObservations',
+        _db.priceObservations,
+        PriceObservation.fromJson,
+      );
       check('receipts', _db.receipts, _receiptFromJson);
-      check('receiptCandidateLines', _db.receiptCandidateLines, ReceiptCandidateLine.fromJson);
+      check(
+        'receiptCandidateLines',
+        _db.receiptCandidateLines,
+        ReceiptCandidateLine.fromJson,
+      );
       check('attachments', _db.attachments, Attachment.fromJson);
       check('reminders', _db.reminders, Reminder.fromJson);
-      const references = {'storeId': 'stores', 'categoryId': 'categories',
-        'defaultCategoryId': 'categories', 'aisleId': 'aisles', 'listId': 'lists',
-        'productId': 'productMemory', 'plannedItemId': 'plannedItems',
-        'linkedPlannedItemId': 'plannedItems', 'receiptId': 'receipts',
-        'purchaseEntryId': 'purchaseEntries'};
-      const decimals = {'plannedQuantity', 'plannedUnitPrice', 'maxAcceptablePrice',
-        'actualQuantity', 'actualUnitPrice', 'quantity', 'normalizedBaseQuantity',
-        'unitPrice', 'parsedQuantity', 'parsedUnitPrice'};
+      const references = {
+        'storeId': 'stores',
+        'categoryId': 'categories',
+        'defaultCategoryId': 'categories',
+        'aisleId': 'aisles',
+        'listId': 'lists',
+        'productId': 'productMemory',
+        'plannedItemId': 'plannedItems',
+        'linkedPlannedItemId': 'plannedItems',
+        'receiptId': 'receipts',
+        'purchaseEntryId': 'purchaseEntries',
+      };
+      const decimals = {
+        'plannedQuantity',
+        'plannedUnitPrice',
+        'maxAcceptablePrice',
+        'actualQuantity',
+        'actualUnitPrice',
+        'quantity',
+        'normalizedBaseQuantity',
+        'unitPrice',
+        'parsedQuantity',
+        'parsedUnitPrice',
+      };
       for (final rows in sections.values) {
         for (final row in rows.values) {
+          if (row['pricingInputMode'] != null &&
+              !{'unitPrice', 'lineTotal'}.contains(row['pricingInputMode'])) {
+            throw const FormatException('invalid price input mode');
+          }
           for (final field in decimals) {
             if (row[field] != null) DecimalFixed.parse(row[field] as String);
           }
-          for (final field in ['currencyCode', 'detectedCurrency', 'confirmedCurrency']) {
+          for (final field in [
+            'currencyCode',
+            'detectedCurrency',
+            'confirmedCurrency',
+          ]) {
             if (row[field] != null) Currency.fromCode(row[field] as String);
           }
           for (final reference in references.entries) {
-            if (row[reference.key] != null && !sections[reference.value]!.containsKey(row[reference.key])) {
+            if (row[reference.key] != null &&
+                !sections[reference.value]!.containsKey(row[reference.key])) {
               throw const FormatException('missing relation');
             }
           }
           final receipt = sections['receipts']?[row['receiptId']];
           final listId = row['listId'] ?? receipt?['listId'];
-          for (final field in ['plannedItemId', 'linkedPlannedItemId', 'receiptId']) {
+          for (final field in [
+            'plannedItemId',
+            'linkedPlannedItemId',
+            'receiptId',
+          ]) {
             final parent = sections[references[field]]?[row[field]];
-            if (listId != null && parent?['listId'] != null && listId != parent!['listId']) {
+            if (listId != null &&
+                parent?['listId'] != null &&
+                listId != parent!['listId']) {
               throw const FormatException('cross-list relation');
             }
           }
-          final currencyCode = row['currencyCode'] ?? receipt?['confirmedCurrency'] ??
-            receipt?['detectedCurrency'] ?? sections['lists']?[listId]?['currencyCode'];
-          for (final (quantity, price) in [('plannedQuantity', 'plannedUnitPrice'),
-              ('actualQuantity', 'actualUnitPrice'), ('quantity', 'unitPrice'), ('parsedQuantity', 'parsedUnitPrice')]) {
-            if (currencyCode != null && row[quantity] != null && row[price] != null) {
-              LineCalc.actualGrossTotal(DecimalFixed.parse(row[quantity]), DecimalFixed.parse(row[price]))
-                .toMinorUnits(Currency.fromCode(currencyCode).minorUnitDigits);
+          final currencyCode =
+              row['currencyCode'] ??
+              receipt?['confirmedCurrency'] ??
+              receipt?['detectedCurrency'] ??
+              sections['lists']?[listId]?['currencyCode'];
+          for (final (quantity, price) in [
+            ('plannedQuantity', 'plannedUnitPrice'),
+            ('actualQuantity', 'actualUnitPrice'),
+            ('quantity', 'unitPrice'),
+            ('parsedQuantity', 'parsedUnitPrice'),
+          ]) {
+            if (currencyCode != null &&
+                row[quantity] != null &&
+                row[price] != null) {
+              LineCalc.actualGrossTotal(
+                DecimalFixed.parse(row[quantity]),
+                DecimalFixed.parse(row[price]),
+              ).toMinorUnits(Currency.fromCode(currencyCode).minorUnitDigits);
             }
           }
         }
       }
-      const owners = {'list': 'lists', 'plannedItem': 'plannedItems',
-        'purchaseEntry': 'purchaseEntries', 'receipt': 'receipts'};
+      const owners = {
+        'list': 'lists',
+        'plannedItem': 'plannedItems',
+        'purchaseEntry': 'purchaseEntries',
+        'receipt': 'receipts',
+      };
       for (final row in sections['attachments']!.values) {
-        if (!(sections[owners[row['ownerType']]]?.containsKey(row['ownerId']) ?? false)) {
+        if (!(sections[owners[row['ownerType']]]?.containsKey(row['ownerId']) ??
+            false)) {
           throw const FormatException('invalid attachment owner');
         }
       }
@@ -220,9 +282,10 @@ class BackupRepository {
   /// FK'ya saygı için ebeveyn tablolar önce yazılır.
   Future<void> _importMerge(Map<String, dynamic> data) async {
     Future<void> put<R extends Table, D>(
-        TableInfo<R, D> table,
-        List<dynamic>? rows,
-        Insertable<D> Function(Map<String, dynamic>) fromJson) async {
+      TableInfo<R, D> table,
+      List<dynamic>? rows,
+      Insertable<D> Function(Map<String, dynamic>) fromJson,
+    ) async {
       for (final row in rows ?? <Map<String, dynamic>>[]) {
         await _db
             .into(table)
@@ -231,18 +294,62 @@ class BackupRepository {
     }
 
     await put(_db.stores, data['stores'] as List<dynamic>?, Store.fromJson);
-    await put(_db.categories, data['categories'] as List<dynamic>?, Category.fromJson);
+    await put(
+      _db.categories,
+      data['categories'] as List<dynamic>?,
+      Category.fromJson,
+    );
     await put(_db.aisles, data['aisles'] as List<dynamic>?, Aisle.fromJson);
-    await put(_db.productMemory, data['productMemory'] as List<dynamic>?, ProductMemoryData.fromJson);
-    await put(_db.shoppingLists, data['lists'] as List<dynamic>?, ShoppingList.fromJson);
-    await put(_db.plannedItems, data['plannedItems'] as List<dynamic>?, PlannedItem.fromJson);
-    await put(_db.receipts, data['receipts'] as List<dynamic>?, _receiptFromJson);
-    await put(_db.purchaseEntries, data['purchaseEntries'] as List<dynamic>?, PurchaseEntry.fromJson);
-    await put(_db.productAliases, data['productAliases'] as List<dynamic>?, ProductAliase.fromJson);
-    await put(_db.priceObservations, data['priceObservations'] as List<dynamic>?, PriceObservation.fromJson);
-    await put(_db.receiptCandidateLines, data['receiptCandidateLines'] as List<dynamic>?, ReceiptCandidateLine.fromJson);
-    await put(_db.attachments, data['attachments'] as List<dynamic>?, Attachment.fromJson);
-    await put(_db.reminders, data['reminders'] as List<dynamic>?, Reminder.fromJson);
+    await put(
+      _db.productMemory,
+      data['productMemory'] as List<dynamic>?,
+      ProductMemoryData.fromJson,
+    );
+    await put(
+      _db.shoppingLists,
+      data['lists'] as List<dynamic>?,
+      ShoppingList.fromJson,
+    );
+    await put(
+      _db.plannedItems,
+      data['plannedItems'] as List<dynamic>?,
+      PlannedItem.fromJson,
+    );
+    await put(
+      _db.receipts,
+      data['receipts'] as List<dynamic>?,
+      _receiptFromJson,
+    );
+    await put(
+      _db.purchaseEntries,
+      data['purchaseEntries'] as List<dynamic>?,
+      PurchaseEntry.fromJson,
+    );
+    await put(
+      _db.productAliases,
+      data['productAliases'] as List<dynamic>?,
+      ProductAliase.fromJson,
+    );
+    await put(
+      _db.priceObservations,
+      data['priceObservations'] as List<dynamic>?,
+      PriceObservation.fromJson,
+    );
+    await put(
+      _db.receiptCandidateLines,
+      data['receiptCandidateLines'] as List<dynamic>?,
+      ReceiptCandidateLine.fromJson,
+    );
+    await put(
+      _db.attachments,
+      data['attachments'] as List<dynamic>?,
+      Attachment.fromJson,
+    );
+    await put(
+      _db.reminders,
+      data['reminders'] as List<dynamic>?,
+      Reminder.fromJson,
+    );
   }
 
   Future<void> _importSeparate(Map<String, dynamic> data) async {
@@ -266,7 +373,9 @@ class BackupRepository {
     int? remap(Map<int, int> map, dynamic oldId) {
       if (oldId == null) return null;
       final mapped = map[oldId as int];
-      if (mapped == null) throw const FormatException('missing backup relation');
+      if (mapped == null) {
+        throw const FormatException('missing backup relation');
+      }
       return mapped;
     }
 
@@ -288,7 +397,9 @@ class BackupRepository {
       allocate(productIds, json, next);
       next++;
       json['defaultCategoryId'] = remap(categoryIds, json['defaultCategoryId']);
-      await _db.into(_db.productMemory).insert(ProductMemoryData.fromJson(json));
+      await _db
+          .into(_db.productMemory)
+          .insert(ProductMemoryData.fromJson(json));
     }
 
     // 2) listeler
@@ -354,7 +465,9 @@ class BackupRepository {
       json['productId'] = remap(productIds, json['productId']);
       json['purchaseEntryId'] = remap(entryIds, json['purchaseEntryId']);
       json['storeId'] = remap(storeIds, json['storeId']);
-      await _db.into(_db.priceObservations).insert(PriceObservation.fromJson(json));
+      await _db
+          .into(_db.priceObservations)
+          .insert(PriceObservation.fromJson(json));
     }
 
     // 7) fiş aday satırları
@@ -393,16 +506,21 @@ class BackupRepository {
   /// Tablodaki mevcut en büyük otomatik kimlik + 1.
   Future<int> _nextId(TableInfo table) async {
     final row = await _db
-        .customSelect('SELECT COALESCE(MAX(rowid), 0) + 1 AS next FROM ${table.actualTableName}')
+        .customSelect(
+          'SELECT COALESCE(MAX(rowid), 0) + 1 AS next FROM ${table.actualTableName}',
+        )
         .getSingle();
     return row.read<int>('next');
   }
 
-  List<Map<String, dynamic>> _asMaps(dynamic value) =>
-      [if (value is List) for (final v in value) v as Map<String, dynamic>];
+  List<Map<String, dynamic>> _asMaps(dynamic value) => [
+    if (value is List)
+      for (final v in value) v as Map<String, dynamic>,
+  ];
 
   // Drift's default serializer casts this converted column to List<String>.
   Receipt _receiptFromJson(Map<String, dynamic> json) => Receipt.fromJson({
-    ...json, 'imagePaths': (json['imagePaths'] as List).cast<String>().toList(),
+    ...json,
+    'imagePaths': (json['imagePaths'] as List).cast<String>().toList(),
   });
 }

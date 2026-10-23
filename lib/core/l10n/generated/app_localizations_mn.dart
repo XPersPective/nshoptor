@@ -731,7 +731,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'Зогсоолгүй, илүү AI, нөөц · бага сарын үнээр';
+  String get proBenefitsLine => 'Рекламгүй · Нөөцлөх экспорт, импорт · Сар бүр';
 
   @override
   String get proBenefitNoAds => 'Зогсоолгүй туршлага';
@@ -948,7 +948,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get plansPerMonth => '/ сар';
 
   @override
-  String get planTrial => '7 хоног үнэгүй';
+  String get planTrial => 'Үнэгүй туршилт';
 
   @override
   String get planProAi => 'Сар бүр 100 AI хүсэлт';
@@ -981,13 +981,13 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Захиалга нь цуцлагдаana хүртэл автоматаар шинэчлэгдэнэ. Google Play › Төлбөр ба захиалга-аас дурын цагт цуцалж болно. Үнийн дүн нь Google Play-ээр харуулсан албан татварыг агуулна.';
+      'Шинэ Pro болон Max захиалгууд цуцлах хүртэл сар бүр шинэчлэгдэнэ. Google Play дээр удирдах эсвэл цуцална уу. Худалдан авахаас өмнө Play дээр үнэ болон туршилтын нөхцөлийг шалгана уу.';
 
   @override
   String get planCurrent => 'Одоогийн';
 
   @override
-  String get planStartTrial => '7 хоногийн үнэ төлбөргүй туршилтыг эхлүүлэх';
+  String get planStartTrial => 'Үнэгүй туршилт эхлүүлэх';
 
   @override
   String get planChoose => 'Сонгох';
@@ -1288,4 +1288,25 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Дэлгүүрийн үнэ оруулбал барааг авсан гэж тэмдэглэнэ; 0 ч хүчинтэй. Гэрийн үнэ заавал оруулах шаардлагагүй. Тэмдэглэгээг арилгахын тулд дэлгүүрийн үнийг устгана уу.';
+
+  @override
+  String get shoppingDateLabel => 'Худалдан авах огноо (заавал биш)';
+
+  @override
+  String get shoppingDateNone => 'Огноо сонгоогүй';
+
+  @override
+  String get clearShoppingDateAction => 'Огноо арилгах';
+
+  @override
+  String get listSortLabel => 'Жагсаалтын дараалал';
+
+  @override
+  String get listSortDate => 'Худалдан авах огноо';
+
+  @override
+  String get listSortAz => 'Нэр (А–Я)';
+
+  @override
+  String get listSortManual => 'Гараар эрэмбэлэх';
 }

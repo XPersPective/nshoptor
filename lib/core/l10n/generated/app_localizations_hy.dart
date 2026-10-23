@@ -731,7 +731,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Առանց գովազդի, ավելի շատ AI, պահեստավորում · փոքր ամսական գնից';
+      'Առանց գովազդի · Պատճենահանում և ներմուծում · Ամսական';
 
   @override
   String get proBenefitNoAds => 'Առանց գովազդի փորձառություն';
@@ -948,7 +948,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get plansPerMonth => '/ ամիս';
 
   @override
-  String get planTrial => '7 օր անվճար';
+  String get planTrial => 'Անվճար փորձաշրջան';
 
   @override
   String get planProAi => '100 AI հարցում ամիսը';
@@ -980,13 +980,13 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Ուղեկցումները ավտոմատ երկարաձգվում են մինչև չեղարկումը: Կարող եք ցանկացած պահի չեղարկել Google Play › Վճարումներ և ուղեկցումներ բաժնում: Գները ներառում են Google Play-ի կողմից ցուցադրվող հարկերը:';
+      'Նոր Pro և Max բաժանորդագրությունները նորացվում են ամեն ամիս՝ մինչև չեղարկումը։ Կառավարեք կամ չեղարկեք Google Play-ում։ Գնելուց առաջ Play-ում ստուգեք գինը և փորձաշրջանի պայմանները։';
 
   @override
   String get planCurrent => 'Ընթացիկ';
 
   @override
-  String get planStartTrial => 'Սկսել 7-օրյա անվճար փորձաշրջանը';
+  String get planStartTrial => 'Սկսել անվճար փորձաշրջանը';
 
   @override
   String get planChoose => 'Ընտրել';
@@ -1287,4 +1287,25 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Խանութի գինը մուտքագրելիս ապրանքը նշվում է որպես գնված․ 0-ն էլ է հաշվվում։ Տան գինը պարտադիր չէ։ Նշումը հանելու համար ջնջեք խանութի գինը։';
+
+  @override
+  String get shoppingDateLabel => 'Գնումների ամսաթիվ (ըստ ցանկության)';
+
+  @override
+  String get shoppingDateNone => 'Ամսաթիվ ընտրված չէ';
+
+  @override
+  String get clearShoppingDateAction => 'Հեռացնել ամսաթիվը';
+
+  @override
+  String get listSortLabel => 'Ցանկի հերթականություն';
+
+  @override
+  String get listSortDate => 'Գնումների ամսաթիվ';
+
+  @override
+  String get listSortAz => 'Անուն (Ա–Ֆ)';
+
+  @override
+  String get listSortManual => 'Ձեռքով դասավորել';
 }

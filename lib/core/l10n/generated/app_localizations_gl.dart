@@ -731,7 +731,7 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sen anuncios, máis IA, copia de seguridade · por un pequeno prezo mensual';
+      'Sen anuncios · Exportación e importación de copias de seguridade · Mensual';
 
   @override
   String get proBenefitNoAds => 'Experiencia sen anuncios';
@@ -948,7 +948,7 @@ class AppLocalizationsGl extends AppLocalizations {
   String get plansPerMonth => '/ mes';
 
   @override
-  String get planTrial => '7 días gratis';
+  String get planTrial => 'Proba gratuíta';
 
   @override
   String get planProAi => '100 peticións IA ao mes';
@@ -980,13 +980,13 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'As subscricións renóvanse automaticamente ata que se cancelem. Podes cancelar en calquera momento en Google Play › Pagos e subscricións. Os prezos inclúen os impostos mostrados por Google Play.';
+      'As novas subscricións Pro e Max renóvanse cada mes ata a cancelación. Xestiona ou cancela en Google Play. Consulta o prezo e o acceso a probas en Play antes de mercar.';
 
   @override
   String get planCurrent => 'Actual';
 
   @override
-  String get planStartTrial => 'Comezar proba gratuíta de 7 días';
+  String get planStartTrial => 'Iniciar proba gratuíta';
 
   @override
   String get planChoose => 'Escoller';
@@ -1287,4 +1287,25 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'O prezo da tenda marca o produto como comprado; 0 tamén conta. O prezo da casa é opcional. Borra o prezo da tenda para quitar a marca.';
+
+  @override
+  String get shoppingDateLabel => 'Data da compra (opcional)';
+
+  @override
+  String get shoppingDateNone => 'Non se escolleu ningunha data';
+
+  @override
+  String get clearShoppingDateAction => 'Quitar data';
+
+  @override
+  String get listSortLabel => 'Orde da lista';
+
+  @override
+  String get listSortDate => 'Data da compra';
+
+  @override
+  String get listSortAz => 'Nome (A–Z)';
+
+  @override
+  String get listSortManual => 'Orde manual';
 }

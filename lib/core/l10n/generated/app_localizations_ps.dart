@@ -728,7 +728,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'پرېکړه نشته، ډیر AI، بیک اپ · له کوچني میاشتنۍ بیه څخه';
+      'هیڅ اعلان نشته · بیک اپ صادرول او واردول · میاشتنی';
 
   @override
   String get proBenefitNoAds => 'پرېکړه تجربه';
@@ -942,7 +942,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get plansPerMonth => '/ میاشت';
 
   @override
-  String get planTrial => '۷ ورځې وړیا';
+  String get planTrial => 'وړیا ازموینه';
 
   @override
   String get planProAi => 'پر میاشت 100 AI غوښتنې';
@@ -974,13 +974,13 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'اشتراکونه تر هغه وخته خودکار تجدید کیږي چې لغوه شي. هر وخت په Google Play › تادیې او اشتراکونو کې لغوه کولی شئ. قیمتونه د Google Play لخوا ښودل شوي عوارض پکې شامل دي.';
+      'د Pro او Max نوي ګډونونه تر لغوه کولو پورې هره میاشت نوي کېږي. په Google Play کې یې اداره یا لغوه کړئ. له پېرود مخکې په Play کې بیه او د ازموینې شرایط وګورئ.';
 
   @override
   String get planCurrent => 'اوسنی';
 
   @override
-  String get planStartTrial => 'د ۷ ورځو وړیا ازموینه پیل کړئ';
+  String get planStartTrial => 'وړیا ازموینه پیل کړئ';
 
   @override
   String get planChoose => 'انتخاب کړئ';
@@ -1275,4 +1275,25 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'د پلورنځي بیه توکی د اخیستل شوي په توګه نښه کوي؛ 0 هم منل کېږي. د کور بیه اختیاري ده. د نښې لرې کولو لپاره د پلورنځي بیه پاکه کړئ.';
+
+  @override
+  String get shoppingDateLabel => 'د پېرود نېټه (اختیاري)';
+
+  @override
+  String get shoppingDateNone => 'نېټه نه ده ټاکل شوې';
+
+  @override
+  String get clearShoppingDateAction => 'نېټه پاکه کړئ';
+
+  @override
+  String get listSortLabel => 'د لړ ترتیب';
+
+  @override
+  String get listSortDate => 'د پېرود نېټه';
+
+  @override
+  String get listSortAz => 'نوم (الف–ی)';
+
+  @override
+  String get listSortManual => 'لاسي ترتیب';
 }

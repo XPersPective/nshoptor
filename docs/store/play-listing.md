@@ -3,7 +3,10 @@
 Metin kaynağı `tool/store/listing.py` + `listing_extra.json`:73 Play yereli,
 71 uygulama arayüz dili. Dil, sayı biçimi ve para bağımsızdır. Play sınırları
 başlık30/kısa80/uzun4000/not500; açıklamalar yeni10/100/300 ve eski200/1000
-haklarını ayırır. Yıllık plan aynı aylık kotayı korur.
+haklarını ayırır. Yeni Pro/Max teklifleri yalnız aylık, otomatik yenilenen aboneliktir;
+yıllık yeni satın alma seçeneği sunulmaz. Mevcut eski/yıllık satın almalar geri
+yüklenebilir ve hakları korunur. Fiyat ve varsa deneme uygunluğu Play’den gelir;
+sabit fiyat veya deneme süresi pazarlama vaadi verilmez.
 
 `python -B tool/store/listing_translate.py --refresh-all` yalnız açıklama/notları
 günceller, doğrulanmış başlık/kısa metni korur. `listing.py <metadata-kökü> <kod>`

@@ -731,7 +731,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sem anúncios, mais IA, backup · a partir de um pequeno valor mensal';
+      'Sem anúncios · Exportar e importar backup · Mensal';
 
   @override
   String get proBenefitNoAds => 'Sem anúncios';
@@ -947,7 +947,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get plansPerMonth => '/ mês';
 
   @override
-  String get planTrial => '7 dias grátis';
+  String get planTrial => 'Teste gratuito';
 
   @override
   String get planProAi => '100 solicitações de IA por mês';
@@ -979,13 +979,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'As assinaturas são renovadas automaticamente até o cancelamento. Cancele quando quiser em Google Play › Pagamentos e assinaturas. Os preços incluem os impostos mostrados pelo Google Play.';
+      'As novas subscrições Pro e Max renovam-se mensalmente até ao cancelamento. Gira ou cancele no Google Play. Consulte o preço e a elegibilidade para testes no Play antes de comprar.';
 
   @override
   String get planCurrent => 'Atual';
 
   @override
-  String get planStartTrial => 'Teste grátis por 7 dias';
+  String get planStartTrial => 'Iniciar teste gratuito';
 
   @override
   String get planChoose => 'Escolher';
@@ -1287,4 +1287,25 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'O preço da loja marca o produto como comprado; 0 também conta. O preço de casa é opcional. Apague o preço da loja para remover a marca.';
+
+  @override
+  String get shoppingDateLabel => 'Data das compras (opcional)';
+
+  @override
+  String get shoppingDateNone => 'Nenhuma data selecionada';
+
+  @override
+  String get clearShoppingDateAction => 'Limpar data';
+
+  @override
+  String get listSortLabel => 'Ordem da lista';
+
+  @override
+  String get listSortDate => 'Data das compras';
+
+  @override
+  String get listSortAz => 'Nome (A–Z)';
+
+  @override
+  String get listSortManual => 'Ordem manual';
 }

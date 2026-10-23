@@ -733,7 +733,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'విజ్ఞప్తులు లేవు, మరింత AI, బ్యాకప్ · చిన్న నెలవారీ ధర నుండి';
+      'విజ్ఞاپనాలు లేవు · బ్యాకప్ ఎగుమతి మరియు దిగుమతి · నెలవారీ';
 
   @override
   String get proBenefitNoAds => 'విజ్ఞప్తులు లేని అనుభవం';
@@ -950,7 +950,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get plansPerMonth => '/ నెల';
 
   @override
-  String get planTrial => '7 రోజులు ఉచితం';
+  String get planTrial => 'ఉచిత ట్రయల్';
 
   @override
   String get planProAi => 'నెలకు 100 AI రిక్వెస్ట్‌లు';
@@ -983,13 +983,13 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'సబ్స్క్రిప్షన్లు రద్దు చేయడం వరకు స్వయంచాలకంగా నవీకరించబడతాయి. Google Play › Payments & subscriptions లో ఏ సమయంలోనైనా రద్దు చేయవచ్చు. ధరలు Google Play చూపించే పన్నులతో కూడి ఉంటాయి.';
+      'రద్దు చేసే వరకు కొత్త Pro మరియు Max సబ్‌స్క్రిప్షన్‌లు ప్రతి నెలా పునరుద్ధరించబడతాయి. Google Playలో నిర్వహించండి లేదా రద్దు చేయండి. కొనుగోలు ముందు Playలో ధర మరియు ట్రయల్ అర్హతను తనిఖీ చేయండి.';
 
   @override
   String get planCurrent => 'ప్రస్తుతం';
 
   @override
-  String get planStartTrial => '7-రోజుల ఉచిత ట్రయల్ ప్రారంభించండి';
+  String get planStartTrial => 'ఉచిత ట్రయల్ ప్రారంభించు';
 
   @override
   String get planChoose => 'ఎంచుకోండి';
@@ -1290,4 +1290,25 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'దుకాణ ధర నమోదు చేస్తే వస్తువును కొనుగోలు చేసినట్లు గుర్తిస్తుంది; 0 కూడా చెల్లుతుంది. ఇంటి ధర ఐచ్ఛికం. గుర్తు తొలగించడానికి దుకాణ ధరను చెరిపివేయండి.';
+
+  @override
+  String get shoppingDateLabel => 'షాపింగ్ తేదీ (ఐచ్ఛికం)';
+
+  @override
+  String get shoppingDateNone => 'తేదీ ఎంచుకోలేదు';
+
+  @override
+  String get clearShoppingDateAction => 'తేదీ తొలగించు';
+
+  @override
+  String get listSortLabel => 'జాబితా క్రమం';
+
+  @override
+  String get listSortDate => 'షాపింగ్ తేదీ';
+
+  @override
+  String get listSortAz => 'పేరు (అ–హ)';
+
+  @override
+  String get listSortManual => 'మాన్యువల్ క్రమం';
 }

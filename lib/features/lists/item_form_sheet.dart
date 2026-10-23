@@ -3,7 +3,9 @@ import '../../core/money/format_locale.dart';
 import 'package:drift/drift.dart' show OrderingTerm;
 import 'package:flutter/material.dart';
 
-import '../../core/calc/line_calc.dart';
+import '../../core/calc/price_input.dart';
+import '../../core/money/money.dart';
+import '../../core/money/money_format.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
 import '../receipts/shelf_label/price_candidates.dart';
@@ -93,7 +95,14 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   final _note = TextEditingController();
 
   late UnitCode _unit = widget.initialUnitCode ?? AppDefaults.defaultUnit();
-  bool _priceIsUnitPrice = true;
+  bool _priceIsUnitPrice = false;
+  bool _actualPriceIsUnitPrice = false;
+  bool _quantityChanged = false;
+  bool _homeBasisInvalid = false;
+  bool _actualBasisInvalid = false;
+  bool _homeMeaningRequired = false;
+  bool _actualMeaningRequired = false;
+  DecimalFixed? _pendingActualPrice;
   String? _categoryName;
   bool _required = false;
   int? _categoryId;
@@ -165,8 +174,21 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
         (u) =>
             u.dbCode == item.plannedUnitCode || u.name == item.plannedUnitCode,
       );
-      // The form speaks only unit prices; line-total items already store one.
-      _price.text = _trimZeros(item.plannedUnitPrice ?? '');
+      _priceIsUnitPrice = item.pricingInputMode == 'unitPrice';
+      _price.text = _priceIsUnitPrice
+          ? (item.plannedUnitPrice == null
+                ? ''
+                : _displayUnitAmount(
+                    DecimalFixed.parse(item.plannedUnitPrice!),
+                    _unit,
+                    _unit,
+                  ).toInputString())
+          : (item.plannedLineTotalMinorUnits == null
+                ? ''
+                : DecimalFixed.fromMinorUnits(
+                    item.plannedLineTotalMinorUnits!,
+                    Currency.fromCode(_currencyCode).minorUnitDigits,
+                  ).toInputString());
       _maxPrice.text = item.maxAcceptablePrice ?? '';
       _required = item.requiredFlag;
       _categoryId = item.categoryId;
@@ -181,28 +203,81 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
         (s, e) => s + e.discountMinorUnits,
       );
       final first = widget.entries.first;
-      final quantity = widget.entries.fold(
-        DecimalFixed.zero(),
-        (s, e) => s + DecimalFixed.parse(e.actualQuantity),
-      );
-      final unknown = !widget.entries.every(hasMarketPrice);
-      _actualPrice.text = local(
-        widget.entries.length == 1 && first.actualUnitPrice != null
-            ? first.actualUnitPrice!
-            : unknown || !quantity.isPositive
-            ? ''
-            : DecimalFixed.fromMinorUnits(
-                widget.entries.fold<int>(
-                  0,
-                  (s, e) =>
-                      s + e.actualLineTotalMinorUnits + e.discountMinorUnits,
+      _actualPriceIsUnitPrice =
+          widget.entries.length == 1 && first.pricingInputMode != 'lineTotal';
+      final quantity = _actualQuantity;
+      final known = widget.entries.every(hasMarketPrice);
+      if (known && quantity != null && quantity.isPositive) {
+        final net = widget.entries.fold<int>(
+          0,
+          (s, e) => s + e.actualLineTotalMinorUnits,
+        );
+        final amount = _actualPriceIsUnitPrice && first.actualUnitPrice != null
+            ? _displayUnitAmount(
+                DecimalFixed.parse(first.actualUnitPrice!),
+                _actualUnit,
+                _actualUnit,
+              )
+            : _actualPriceIsUnitPrice
+            ? PriceInput.unitFromTotal(
+                amount: DecimalFixed.fromMinorUnits(
+                  net + _existingDiscountMinor,
+                  digits,
                 ),
-                digits,
-              ).divide(quantity, scale: digits).toDbString(),
-      );
+                quantity: quantity,
+                quantityUnit: _actualUnit,
+                priceUnit: PriceInput.displayUnit(_actualUnit),
+              )
+            : DecimalFixed.fromMinorUnits(net, digits);
+        _actualPrice.text = local(_trimZeros(amount.toInputString()));
+      }
+    }
+    final candidate = widget.initialCandidate;
+    if (candidate != null &&
+        candidate.unitPrice != null &&
+        widget.existing == null) {
+      final actual = candidate.priceDestination == VoicePriceDestination.actual;
+      try {
+        if (candidate.currencyCode != null &&
+            candidate.currencyCode != _currencyCode) {
+          throw const FormatException('Currency mismatch');
+        }
+        final amount = candidate.isUnitPrice == true
+            ? _displayUnitAmount(
+                candidate.unitPrice!,
+                candidate.priceUnitCode ?? _unit,
+                actual ? _actualUnit : _unit,
+              )
+            : candidate.unitPrice!;
+        (actual ? _actualPrice : _price).text = local(amount.toInputString());
+      } catch (_) {
+        if (actual) {
+          _actualBasisInvalid = true;
+        } else {
+          _homeBasisInvalid = true;
+        }
+      }
+    } else if (widget.initialUnitPrice != null && widget.existing == null) {
+      _priceIsUnitPrice = true;
+      final amount = _tryParse(_price.text);
+      if (amount != null) {
+        _price.text = local(
+          _displayUnitAmount(amount, _unit, _unit).toInputString(),
+        );
+      }
     }
     if (widget.initialActualPrice != null) {
-      _actualPrice.text = local(widget.initialActualPrice!);
+      _actualPriceIsUnitPrice = true;
+      final amount = _tryParse(local(widget.initialActualPrice!));
+      _actualPrice.text = amount == null
+          ? local(widget.initialActualPrice!)
+          : local(
+              _displayUnitAmount(
+                amount,
+                _actualUnit,
+                _actualUnit,
+              ).toInputString(),
+            );
       _actualChanged = true;
     }
     if (widget.initialActualCandidate != null) {
@@ -293,13 +368,18 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     // Fiyat: boş olabilir (fiyatsız plan); doluysa geçerli olmalı.
     final priceState = _fieldState(_price.text);
     final price = _tryParse(_price.text);
-    if (priceState == false || price != null && price.isNegative) {
+    if (_homeBasisInvalid ||
+        _homeMeaningRequired ||
+        priceState == false ||
+        price != null && price.isNegative) {
       setState(() => _priceError = l10n.invalidPriceError);
       return;
     }
 
     final actualPrice = _tryParse(_actualPrice.text);
     if (_photoCurrencyMismatch ||
+        _actualBasisInvalid ||
+        _actualMeaningRequired ||
         _actualChanged &&
             (_mixedUnits ||
                 _fieldState(_actualPrice.text) == false ||
@@ -317,6 +397,9 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
           quantity: quantity,
           unitCode: _unit.dbCode,
           priceIsUnitPrice: _priceIsUnitPrice,
+          priceUnitCode: _priceIsUnitPrice
+              ? PriceInput.displayUnit(_unit).dbCode
+              : null,
           price: price,
           brand: _brand.text.trim().isEmpty ? null : _brand.text.trim(),
           categoryId: _categoryId,
@@ -328,25 +411,49 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
         if (_actualChanged) {
           final list = await ShoppingRepository(_db).getList(widget.listId);
           final digits = Currency.fromCode(list.currencyCode).minorUnitDigits;
+          final actualQuantity = _actualQuantity;
+          if (actualQuantity == null || !actualQuantity.isPositive) {
+            throw const FormatException('Invalid actual quantity');
+          }
+          int? grossMinor;
+          DecimalFixed? canonicalUnit;
+          var discount = 0;
+          if (actualPrice != null) {
+            if (_actualPriceIsUnitPrice) {
+              grossMinor = PriceInput.total(
+                amount: actualPrice,
+                quantity: actualQuantity,
+                quantityUnit: _actualUnit,
+                isUnitPrice: true,
+                priceUnit: PriceInput.displayUnit(_actualUnit),
+              ).toMinorUnits(digits);
+              discount = _existingDiscountMinor.clamp(0, grossMinor);
+              canonicalUnit = PriceInput.total(
+                amount: actualPrice,
+                quantity: DecimalFixed.fromInt(1),
+                quantityUnit: _actualUnit,
+                isUnitPrice: true,
+                priceUnit: PriceInput.displayUnit(_actualUnit),
+              );
+            } else {
+              // The amount the customer pays already includes any receipt discount.
+              discount = _existingDiscountMinor;
+              grossMinor = actualPrice.toMinorUnits(digits) + discount;
+            }
+          }
           await ShoppingRepository(_db).recordPurchase(
             listId: widget.listId,
             plannedItemId: id,
             name: name,
             normalizedName: normalizeName(name),
-            // Store quantity follows the list quantity (user: it may change in
-            // the shop); the form records the store unit price only.
-            quantity: quantity,
-            unitCode: _unit.dbCode,
-            unitPrice: actualPrice,
-            discountMinor: actualPrice == null
-                ? 0
-                : _existingDiscountMinor.clamp(
-                    0,
-                    LineCalc.plannedLineTotal(
-                      quantity,
-                      actualPrice,
-                    ).toMinorUnits(digits),
-                  ),
+            quantity: actualQuantity,
+            unitCode: _actualUnit.dbCode,
+            unitPrice: canonicalUnit,
+            lineTotalMinor: grossMinor,
+            discountMinor: discount,
+            pricingInputMode: _actualPriceIsUnitPrice
+                ? 'unitPrice'
+                : 'lineTotal',
           );
         }
       });
@@ -371,27 +478,248 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     return value.substring(0, end);
   }
 
-  void _quantityOrUnitChanged() {
-    // An existing store price is per unit: its line total follows the quantity.
-    if (widget.entries.isNotEmpty && _actualPrice.text.trim().isNotEmpty) {
-      _actualChanged = true;
+  UnitCode get _actualUnit =>
+      !_quantityChanged && widget.entries.isNotEmpty && !_mixedUnits
+      ? UnitCode.values.firstWhere(
+          (u) =>
+              u.dbCode == widget.entries.first.actualUnitCode ||
+              u.name == widget.entries.first.actualUnitCode,
+        )
+      : _unit;
+
+  DecimalFixed? get _actualQuantity =>
+      !_quantityChanged && widget.entries.isNotEmpty && !_mixedUnits
+      ? widget.entries.fold<DecimalFixed>(
+          DecimalFixed.zero(),
+          (sum, e) => sum + DecimalFixed.parse(e.actualQuantity),
+        )
+      : _tryParse(_quantity.text);
+
+  DecimalFixed _displayUnitAmount(
+    DecimalFixed amount,
+    UnitCode sourceBasis,
+    UnitCode quantityUnit,
+  ) => PriceInput.total(
+    amount: amount,
+    quantity: DecimalFixed.fromInt(1),
+    quantityUnit: PriceInput.displayUnit(quantityUnit),
+    isUnitPrice: true,
+    priceUnit: sourceBasis,
+  );
+
+  void _quantityOrUnitChanged({
+    UnitCode? oldHomeBasis,
+    UnitCode? oldActualBasis,
+  }) {
+    oldHomeBasis ??= PriceInput.displayUnit(_unit);
+    oldActualBasis ??= PriceInput.displayUnit(_actualUnit);
+    _quantityChanged = true;
+    void convert(
+      TextEditingController field,
+      bool isUnit,
+      UnitCode oldBasis,
+      UnitCode nextBasis,
+      bool actual,
+    ) {
+      final amount = _tryParse(field.text);
+      if (!isUnit || amount == null || oldBasis == nextBasis) return;
+      try {
+        field.text = _displayUnitAmount(
+          amount,
+          oldBasis,
+          nextBasis,
+        ).toInputString().replaceAll('.', _separators.decimal);
+      } catch (_) {
+        if (actual) {
+          _actualBasisInvalid = true;
+        } else {
+          _homeBasisInvalid = true;
+        }
+      }
     }
+
+    convert(
+      _price,
+      _priceIsUnitPrice,
+      oldHomeBasis,
+      PriceInput.displayUnit(_unit),
+      false,
+    );
+    convert(
+      _actualPrice,
+      _actualPriceIsUnitPrice,
+      oldActualBasis,
+      PriceInput.displayUnit(_actualUnit),
+      true,
+    );
+    if (_actualPrice.text.trim().isNotEmpty) _actualChanged = true;
     setState(() {});
+  }
+
+  void _switchPriceMode(bool actual, bool isUnit) {
+    final controller = actual ? _actualPrice : _price;
+    final oldMode = actual ? _actualPriceIsUnitPrice : _priceIsUnitPrice;
+    final amount = _tryParse(controller.text);
+    final quantity = actual ? _actualQuantity : _tryParse(_quantity.text);
+    final unit = actual ? _actualUnit : _unit;
+    final confirming = actual && _pendingActualPrice != null;
+    if (confirming) {
+      controller.text = _pendingActualPrice!.toInputString().replaceAll(
+        '.',
+        _separators.decimal,
+      );
+      _pendingActualPrice = null;
+    }
+    if (!confirming && amount != null && oldMode != isUnit) {
+      if (quantity == null || !quantity.isPositive) {
+        setState(() => _quantityError = _l10n.invalidQuantityError);
+        return;
+      }
+      final discount = actual
+          ? DecimalFixed.fromMinorUnits(
+              _existingDiscountMinor,
+              Currency.fromCode(_currencyCode).minorUnitDigits,
+            )
+          : DecimalFixed.zero();
+      final converted = isUnit
+          ? PriceInput.unitFromTotal(
+              amount: amount + discount,
+              quantity: quantity,
+              quantityUnit: unit,
+              priceUnit: PriceInput.displayUnit(unit),
+            )
+          : PriceInput.total(
+                  amount: amount,
+                  quantity: quantity,
+                  quantityUnit: unit,
+                  isUnitPrice: true,
+                  priceUnit: PriceInput.displayUnit(unit),
+                ) -
+                discount;
+      controller.text = (converted.isNegative ? DecimalFixed.zero() : converted)
+          .toInputString()
+          .replaceAll('.', _separators.decimal);
+    }
+    setState(() {
+      if (actual) {
+        _actualPriceIsUnitPrice = isUnit;
+        _actualChanged = true;
+        _actualMeaningRequired = false;
+        _actualBasisInvalid = false;
+        _actualError = null;
+      } else {
+        _priceIsUnitPrice = isUnit;
+        _homeMeaningRequired = false;
+        _homeBasisInvalid = false;
+        _priceError = null;
+      }
+    });
+  }
+
+  String? _calculatedHint(bool actual) {
+    final amount = _tryParse((actual ? _actualPrice : _price).text);
+    final quantity = actual ? _actualQuantity : _tryParse(_quantity.text);
+    if (amount == null ||
+        quantity == null ||
+        !quantity.isPositive ||
+        amount.isNegative) {
+      return null;
+    }
+    try {
+      final unit = actual ? _actualUnit : _unit;
+      final isUnit = actual ? _actualPriceIsUnitPrice : _priceIsUnitPrice;
+      final currency = Currency.fromCode(_currencyCode);
+      final discount = actual
+          ? DecimalFixed.fromMinorUnits(
+              _existingDiscountMinor,
+              currency.minorUnitDigits,
+            )
+          : DecimalFixed.zero();
+      final value = isUnit
+          ? PriceInput.total(
+                  amount: amount,
+                  quantity: quantity,
+                  quantityUnit: unit,
+                  isUnitPrice: true,
+                  priceUnit: PriceInput.displayUnit(unit),
+                ) -
+                discount
+          : PriceInput.unitFromTotal(
+              amount: amount + discount,
+              quantity: quantity,
+              quantityUnit: unit,
+              priceUnit: PriceInput.displayUnit(unit),
+            );
+      final money = formatMoney(
+        Money.fromMinorUnits(
+          (value.isNegative ? DecimalFixed.zero() : value).toMinorUnits(
+            currency.minorUnitDigits,
+          ),
+          currency,
+        ),
+        locale: formatLocaleCode(context),
+      );
+      return isUnit
+          ? _l10n.lineTotalCalculated(money)
+          : _l10n.unitPriceCalculated(
+              '$money / ${unitDisplayName(PriceInput.displayUnit(unit), _l10n)}',
+            );
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Widget _priceModeField(bool actual) {
+    final required = actual ? _actualMeaningRequired : _homeMeaningRequired;
+    final mode = actual ? _actualPriceIsUnitPrice : _priceIsUnitPrice;
+    return KeyedSubtree(
+      key: ValueKey('mode_${actual}_${mode}_$required'),
+      child: DropdownButtonFormField<bool>(
+        key: Key(actual ? 'item_actual_price_mode' : 'item_price_mode'),
+        initialValue: required ? null : mode,
+        isExpanded: true,
+        decoration: InputDecoration(labelText: _l10n.pricingModeLabel),
+        items: [
+          DropdownMenuItem(
+            value: false,
+            child: Text(_l10n.pricingModeLineTotal),
+          ),
+          DropdownMenuItem(
+            value: true,
+            child: Text(
+              '${_l10n.pricingModeUnitPrice} / ${unitDisplayName(PriceInput.displayUnit(actual ? _actualUnit : _unit), _l10n)}',
+            ),
+          ),
+        ],
+        onChanged: _saving || actual && _mixedUnits
+            ? null
+            : (value) {
+                if (value != null) _switchPriceMode(actual, value);
+              },
+      ),
+    );
   }
 
   void _applyCandidate(ParsedItemCandidate candidate) {
     _name.text = candidate.name;
     if (candidate.quantity != null) {
-      _quantity.text = candidate.quantity!.toDbString();
+      _quantity.text = candidate.quantity!.toInputString();
     }
     if (candidate.unitCode != null) {
       _unit = candidate.unitCode!;
     }
     if (candidate.unitPrice != null) {
-      _price.text = candidate.unitPrice!.toDbString();
-    }
-    if (candidate.isUnitPrice != null) {
-      _priceIsUnitPrice = candidate.isUnitPrice!;
+      final actual = candidate.priceDestination == VoicePriceDestination.actual;
+      (actual ? _actualPrice : _price).text = candidate.unitPrice!
+          .toInputString();
+      if (actual) {
+        _actualPriceIsUnitPrice = candidate.isUnitPrice == true;
+        _actualChanged = true;
+        _actualMeaningRequired = candidate.requiresPriceConfirmation;
+      } else {
+        _priceIsUnitPrice = candidate.isUnitPrice == true;
+        _homeMeaningRequired = candidate.requiresPriceConfirmation;
+      }
     }
     if (candidate.brand != null) _brand.text = candidate.brand!;
     if (candidate.category != null) {
@@ -418,16 +746,50 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       _actualError = _l10n.invalidAmountError;
       return;
     }
-    _photoCurrencyMismatch = false;
-    _actualError = null;
-    if (c.productName != null && c.productName!.isNotEmpty) {
-      _name.text = c.productName!;
+    try {
+      final quantity = _actualQuantity;
+      if (quantity == null || !quantity.isPositive) {
+        throw const FormatException('Missing quantity');
+      }
+      if (c.priceQuantity != null && c.unitCode == null) {
+        throw const FormatException('Missing package unit');
+      }
+      if (!c.isUnitPrice &&
+          c.priceQuantity == null &&
+          c.unitCode == null &&
+          quantity.compareTo(DecimalFixed.fromInt(1)) != 0) {
+        _pendingActualPrice = c.value;
+        _actualMeaningRequired = true;
+        _actualError = _l10n.pricingModeLabel;
+        return;
+      }
+      final amount = c.priceQuantity != null
+          ? _displayUnitAmount(
+              c.value.divide(c.priceQuantity!, scale: DecimalFixed.maxFractionDigits),
+              c.unitCode!,
+              _actualUnit,
+            )
+          : c.isUnitPrice
+          ? _displayUnitAmount(c.value, c.unitCode ?? _actualUnit, _actualUnit)
+          : c.value;
+      _actualPriceIsUnitPrice = c.isUnitPrice || c.priceQuantity != null;
+      _pendingActualPrice = null;
+      _actualPrice.text = amount.toInputString().replaceAll(
+        '.',
+        _separators.decimal,
+      );
+      _photoCurrencyMismatch = false;
+      _actualBasisInvalid = false;
+      _actualMeaningRequired = false;
+      _actualError = null;
+      _actualChanged = true;
+      if (c.productName != null && c.productName!.isNotEmpty) {
+        _name.text = c.productName!;
+      }
+    } catch (_) {
+      _actualBasisInvalid = true;
+      _actualError = _l10n.invalidAmountError;
     }
-    _actualPrice.text = c.value.toDbString().replaceAll(
-      '.',
-      _separators.decimal,
-    );
-    _actualChanged = true;
   }
 
   @override
@@ -502,8 +864,13 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                           )
                           .toList(),
                       onChanged: (v) {
+                        final oldHome = PriceInput.displayUnit(_unit);
+                        final oldActual = PriceInput.displayUnit(_actualUnit);
                         _unit = v ?? _unit;
-                        _quantityOrUnitChanged();
+                        _quantityOrUnitChanged(
+                          oldHomeBasis: oldHome,
+                          oldActualBasis: oldActual,
+                        );
                       },
                     ),
                   ),
@@ -511,22 +878,30 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
               ],
             ),
             const SizedBox(height: 12),
-            // Evdeki/Çarşıdaki fiyat hep birim fiyattır: "/ kg" eki bunu söyler.
+            _priceModeField(false),
+            const SizedBox(height: 8),
             TextField(
               key: const Key('item_price_field'),
               controller: _price,
               focusNode: _homePriceFocus,
+              onChanged: (_) => setState(() {
+                _homeBasisInvalid = false;
+              }),
               keyboardType: const TextInputType.numberWithOptions(
                 decimal: true,
               ),
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
-                labelText:
-                    '${l10n.compareEstimated} / ${unitDisplayName(_unit, l10n)}',
+                labelText: _priceIsUnitPrice
+                    ? '${l10n.compareEstimated} / ${unitDisplayName(PriceInput.displayUnit(_unit), l10n)}'
+                    : l10n.compareEstimated,
                 errorText: _priceError,
+                helperText: _calculatedHint(false),
               ),
             ),
             const SizedBox(height: 12),
+            _priceModeField(true),
+            const SizedBox(height: 8),
             TextField(
               key: const Key('item_actual_price_field'),
               controller: _actualPrice,
@@ -536,10 +911,13 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 decimal: true,
               ),
               decoration: InputDecoration(
-                labelText:
-                    '${l10n.compareActual} / ${unitDisplayName(_unit, l10n)}',
+                labelText: _actualPriceIsUnitPrice
+                    ? '${l10n.compareActual} / ${unitDisplayName(PriceInput.displayUnit(_actualUnit), l10n)}'
+                    : l10n.compareActual,
                 errorText: _actualError,
-                helperText: _mixedUnits ? l10n.purchaseAnalyticsHint : null,
+                helperText: _mixedUnits
+                    ? l10n.purchaseAnalyticsHint
+                    : _calculatedHint(true),
                 suffixIcon:
                     widget.onShelfCandidatePressed == null || _mixedUnits
                     ? null
@@ -551,8 +929,14 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                       ),
               ),
               onChanged: (_) {
-                _actualChanged = true;
-                _photoCurrencyMismatch = false;
+                setState(() {
+                  _actualChanged = true;
+                  _photoCurrencyMismatch = false;
+                  _actualBasisInvalid = false;
+                  _actualMeaningRequired = false;
+                  _pendingActualPrice = null;
+                  _actualError = null;
+                });
               },
             ),
             ExpansionTile(
@@ -640,5 +1024,13 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
 String normalizeItemName(String name) => normalizeName(name);
 
 extension _DecimalEquals on DecimalFixed {
+  String toInputString() {
+    final value = toDbString();
+    if (!value.contains('.')) return value;
+    return value
+        .replaceFirst(RegExp(r'0+$'), '')
+        .replaceFirst(RegExp(r'\.$'), '');
+  }
+
   bool equals(DecimalFixed other) => compareTo(other) == 0;
 }

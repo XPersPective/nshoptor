@@ -729,7 +729,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Fără reclame, mai mult AI, backup · de la un preț lunar mic';
+      'Fără reclame · Export și import de backup · Lunar';
 
   @override
   String get proBenefitNoAds => 'Experiență fără reclame';
@@ -947,7 +947,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get plansPerMonth => '/ lună';
 
   @override
-  String get planTrial => '7 zile gratuite';
+  String get planTrial => 'Perioadă de probă gratuită';
 
   @override
   String get planProAi => '100 cereri AI pe lună';
@@ -979,13 +979,13 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abonamentele se reînnoiesc automat până la anularea lor. Poți anula oricând în Google Play › Plăți și abonamente. Prețurile includ taxele afișate de Google Play.';
+      'Noile abonamente Pro și Max se reînnoiesc lunar până la anulare. Gestionează sau anulează în Google Play. Verifică prețul și eligibilitatea pentru probă în Play înainte de cumpărare.';
 
   @override
   String get planCurrent => 'Actual';
 
   @override
-  String get planStartTrial => 'Încearcă gratuit timp de 7 zile';
+  String get planStartTrial => 'Începe perioada de probă gratuită';
 
   @override
   String get planChoose => 'Alege';
@@ -1288,4 +1288,25 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Prețul din magazin marchează produsul ca fiind cumpărat; se acceptă și 0. Prețul de acasă este opțional. Ștergeți prețul din magazin pentru a elimina bifa.';
+
+  @override
+  String get shoppingDateLabel => 'Data cumpărăturilor (opțional)';
+
+  @override
+  String get shoppingDateNone => 'Nicio dată selectată';
+
+  @override
+  String get clearShoppingDateAction => 'Șterge data';
+
+  @override
+  String get listSortLabel => 'Ordinea listei';
+
+  @override
+  String get listSortDate => 'Data cumpărăturilor';
+
+  @override
+  String get listSortAz => 'Nume (A–Z)';
+
+  @override
+  String get listSortManual => 'Ordine manuală';
 }

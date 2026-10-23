@@ -729,7 +729,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ಯಾವುದೇ ವಿಜ್ಞಾಪನೆಗಳು, ಹೆಚ್ಚಿನ AI, ಬ್ಯಾಕಪ್ · ಚಿಕ್ಕ ತಿಂಗಳ ಬೆಲೆಯಿಂದ';
+      'ಯಾವುದೇ ವಿಜ್ಞಾಪನೆಗಳಿಲ್ಲ · ಬ್ಯಾಕಪ್ ರಫ್ತು ಮತ್ತು ಆಮದು · ತಿಂಗಳಿಗೆ';
 
   @override
   String get proBenefitNoAds => 'ವಿಜ್ಞಾಪನೆ-ರಹಿತ ಅನುಭವ';
@@ -947,7 +947,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get plansPerMonth => '/ ತಿಂಗಳು';
 
   @override
-  String get planTrial => '7 ದಿನಗಳು ಮುಕ್ತ';
+  String get planTrial => 'ಉಚಿತ ಪ್ರಯೋಗ';
 
   @override
   String get planProAi => 'ತಿಂಗಳಿಗೆ 100 AI ವಿನಂತಿಗಳು';
@@ -979,13 +979,13 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'ರದ್ದು ಮಾಡುವವರೆಗೆ ಚಂದಾದಾರಿಕೆಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸುತ್ತವೆ. Google Play › ಪಾವತಿಗಳು ಮತ್ತು ಚಂದಾದಾರಿಕೆಯಲ್ಲಿ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ರದ್ದು ಮಾಡಬಹುದು. ಬೆಲೆಗಳಲ್ಲಿ Google Play ತೋರಿಸಿದ ತೆರಿಗೆಗಳು ಸೇರಿವೆ.';
+      'ರದ್ದುಪಡಿಸುವವರೆಗೆ ಹೊಸ Pro ಮತ್ತು Max ಚಂದಾದಾರಿಕೆಗಳು ಪ್ರತಿ ತಿಂಗಳು ನವೀಕರಣಗೊಳ್ಳುತ್ತವೆ. Google Playನಲ್ಲಿ ನಿರ್ವಹಿಸಿ ಅಥವಾ ರದ್ದುಪಡಿಸಿ. ಖರೀದಿಗೂ ಮೊದಲು Playನಲ್ಲಿ ಬೆಲೆ ಮತ್ತು ಪ್ರಯೋಗದ ಅರ್ಹತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ.';
 
   @override
   String get planCurrent => 'ಪ್ರಸ್ತುತ';
 
   @override
-  String get planStartTrial => '7-ದಿನಗಳ ನಿಃಶುಲ್ಕ ಪ್ರಯೋಗವನ್ನು ಪ್ರಾರಂಭಿಸಿ';
+  String get planStartTrial => 'ಉಚಿತ ಪ್ರಯೋಗ ಪ್ರಾರಂಭಿಸಿ';
 
   @override
   String get planChoose => 'ಆಯ್ಕೆಮಾಡಿ';
@@ -1284,4 +1284,25 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'ಅಂಗಡಿ ಬೆಲೆ ನಮೂದಿಸಿದರೆ ವಸ್ತುವನ್ನು ಖರೀದಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಲಾಗುತ್ತದೆ; 0 ಕೂಡ ಮಾನ್ಯ. ಮನೆಯ ಬೆಲೆ ಐಚ್ಛಿಕ. ಗುರುತು ತೆಗೆಯಲು ಅಂಗಡಿ ಬೆಲೆಯನ್ನು ಅಳಿಸಿ.';
+
+  @override
+  String get shoppingDateLabel => 'ಖರೀದಿ ದಿನಾಂಕ (ಐಚ್ಛಿಕ)';
+
+  @override
+  String get shoppingDateNone => 'ದಿನಾಂಕ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ';
+
+  @override
+  String get clearShoppingDateAction => 'ದಿನಾಂಕ ತೆಗೆದುಹಾಕಿ';
+
+  @override
+  String get listSortLabel => 'ಪಟ್ಟಿಯ ಕ್ರಮ';
+
+  @override
+  String get listSortDate => 'ಖರೀದಿ ದಿನಾಂಕ';
+
+  @override
+  String get listSortAz => 'ಹೆಸರು (ಅ–ಹ)';
+
+  @override
+  String get listSortManual => 'ಕೈಯಾರೆ ಕ್ರಮಗೊಳಿಸಿ';
 }

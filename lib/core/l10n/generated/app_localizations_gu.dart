@@ -728,7 +728,7 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'કોઈ એડ્સ નહીં, વધુ AI, બેકઅપ · નાના માસિક ભાવ પરથી';
+      'કોઈ એડ્સ નહીં · બેકઅપ એક્સપોર્ટ અને ઇમ્પોર્ટ · માસિક';
 
   @override
   String get proBenefitNoAds => 'એડ-ફ્રી અનુભવ';
@@ -942,7 +942,7 @@ class AppLocalizationsGu extends AppLocalizations {
   String get plansPerMonth => '/ મહિનો';
 
   @override
-  String get planTrial => '7 દિવસ ફ્રી';
+  String get planTrial => 'મફત ટ્રાયલ';
 
   @override
   String get planProAi => 'મહિને 100 AI વિનંતીઓ';
@@ -974,13 +974,13 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'સબ્સ્ક્રિપ્શન રદ કર્યા સુધી સ્વયંચાલિત રીતે નવીકરણ થાય છે. Google Play › Payments & subscriptions માં કોઈ પણ સમયે રદ કરી શકાય છે. કિંમતોમાં Google Play દ્વારા દર્શાવેલ કરો સામેલ છે.';
+      'રદ ન કરો ત્યાં સુધી નવા Pro અને Max સબ્સ્ક્રિપ્શન દર મહિને નવીકરણ થાય છે. Google Playમાં સંચાલન કરો અથવા રદ કરો. ખરીદી પહેલાં Playમાં કિંમત અને ટ્રાયલની પાત્રતા તપાસો.';
 
   @override
   String get planCurrent => 'વર્તમાન';
 
   @override
-  String get planStartTrial => '7-દિવસની મફત ટ્રાયલ શરૂ કરો';
+  String get planStartTrial => 'મફત ટ્રાયલ શરૂ કરો';
 
   @override
   String get planChoose => 'ચૂંટો';
@@ -1277,4 +1277,25 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'દુકાનની કિંમત લખવાથી વસ્તુ ખરીદેલી ગણાય છે; 0 પણ માન્ય છે. ઘરની કિંમત વૈકલ્પિક છે. નિશાની દૂર કરવા દુકાનની કિંમત ભૂંસો.';
+
+  @override
+  String get shoppingDateLabel => 'ખરીદીની તારીખ (વૈકલ્પિક)';
+
+  @override
+  String get shoppingDateNone => 'કોઈ તારીખ પસંદ કરેલી નથી';
+
+  @override
+  String get clearShoppingDateAction => 'તારીખ દૂર કરો';
+
+  @override
+  String get listSortLabel => 'સૂચિનો ક્રમ';
+
+  @override
+  String get listSortDate => 'ખરીદીની તારીખ';
+
+  @override
+  String get listSortAz => 'નામ (અ–હ)';
+
+  @override
+  String get listSortManual => 'જાતે ગોઠવો';
 }

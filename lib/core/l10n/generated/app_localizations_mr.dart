@@ -729,7 +729,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'जाहिरात नाही, अधिक AI, बॅकअप · एका लहान मासिक किमतीपासून';
+      'कोणतीही जाहिरात नाही · बॅकअप एक्सपोर्ट आणि इम्पोर्ट · मासिक';
 
   @override
   String get proBenefitNoAds => 'जाहिरात-मुक्त अनुभव';
@@ -944,7 +944,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get plansPerMonth => '/ महिना';
 
   @override
-  String get planTrial => '७ दिवस मोफत';
+  String get planTrial => 'मोफत चाचणी';
 
   @override
   String get planProAi => 'महिनाभरात 100 AI विनंत्या';
@@ -976,13 +976,13 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'सबस्क्रिप्शन्स रद्द करण्यापूर्वी स्वयंचलितपणे नूतनीकरण होतात. Google Play › पेमेंट्स अँड सबस्क्रिप्शन्स मध्ये कोणत्याही वेळी रद्द करा. किंमतींमध्ये Google Play द्वारे दर्शवलेली कर समाविष्ट आहे.';
+      'रद्द करेपर्यंत नवीन Pro आणि Max सदस्यत्वे दर महिन्याला नूतनीकरण होतात. Google Play मध्ये व्यवस्थापित करा किंवा रद्द करा. खरेदीपूर्वी Play मध्ये किंमत आणि चाचणीची पात्रता तपासा.';
 
   @override
   String get planCurrent => 'सध्याचे';
 
   @override
-  String get planStartTrial => '७ दिवसांची मोफत ट्रायल सुरू करा';
+  String get planStartTrial => 'मोफत चाचणी सुरू करा';
 
   @override
   String get planChoose => 'निवडा';
@@ -1278,4 +1278,25 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'दुकानातील किंमत भरल्यावर वस्तू खरेदी केलेली म्हणून चिन्हांकित होते; 0 देखील मान्य आहे. घरची किंमत ऐच्छिक आहे. खूण काढण्यासाठी दुकानातील किंमत पुसा.';
+
+  @override
+  String get shoppingDateLabel => 'खरेदीची तारीख (ऐच्छिक)';
+
+  @override
+  String get shoppingDateNone => 'तारीख निवडलेली नाही';
+
+  @override
+  String get clearShoppingDateAction => 'तारीख काढा';
+
+  @override
+  String get listSortLabel => 'यादीचा क्रम';
+
+  @override
+  String get listSortDate => 'खरेदीची तारीख';
+
+  @override
+  String get listSortAz => 'नाव (अ–ह)';
+
+  @override
+  String get listSortManual => 'हाताने क्रम लावा';
 }

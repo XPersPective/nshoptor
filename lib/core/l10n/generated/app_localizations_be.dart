@@ -731,7 +731,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Без рэкламы, больш AI, рэзервовая копія · ад невялікага штомесячнага кошту';
+      'Без рэкламы · Рэзервовая копія: экспарт і імпорт · Штомесяц';
 
   @override
   String get proBenefitNoAds => 'Выкарыстанне без рэкламы';
@@ -946,7 +946,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get plansPerMonth => '/ месяц';
 
   @override
-  String get planTrial => '7 дзён бясплатна';
+  String get planTrial => 'Бясплатны пробны перыяд';
 
   @override
   String get planProAi => '100 запытаў AI у месяц';
@@ -978,13 +978,13 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Падпіскі абнаўляюцца аўтаматычна, пакуль вы іх не скасуеце. Скасаваць можна ў любы час у Google Play › Платежы і падпіскі. Цаны ўключаюць падаткі, якія паказвае Google Play.';
+      'Новыя падпіскі Pro і Max аднаўляюцца штомесяц да скасавання. Кіруйце падпіскай або скасоўвайце яе ў Google Play. Перад пакупкай праверце цану і ўмовы пробнага перыяду ў Play.';
 
   @override
   String get planCurrent => 'Бягучая';
 
   @override
-  String get planStartTrial => 'Пачаць 7-дзённую бясплатную прабу';
+  String get planStartTrial => 'Пачаць бясплатны пробны перыяд';
 
   @override
   String get planChoose => 'Выбраць';
@@ -1286,4 +1286,25 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Цана ў краме пазначае тавар як набыты; 0 таксама лічыцца. Хатняя цана неабавязковая. Выдаліце цану ў краме, каб зняць пазнаку.';
+
+  @override
+  String get shoppingDateLabel => 'Дата пакупак (неабавязкова)';
+
+  @override
+  String get shoppingDateNone => 'Дата не выбрана';
+
+  @override
+  String get clearShoppingDateAction => 'Выдаліць дату';
+
+  @override
+  String get listSortLabel => 'Парадак спіса';
+
+  @override
+  String get listSortDate => 'Дата пакупак';
+
+  @override
+  String get listSortAz => 'Назва (А–Я)';
+
+  @override
+  String get listSortManual => 'Ручны парадак';
 }

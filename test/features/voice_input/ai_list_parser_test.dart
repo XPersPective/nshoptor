@@ -28,7 +28,7 @@ AiClient _ai(http.Response Function() reply) => AiClient(
 
 http.Response _items(List<Map<String, Object?>> items) => http.Response(
       jsonEncode({'tier': 'free', 'used': 1, 'limit': 15, 'result': {'items': items}}),
-      200,
+      200, headers: {'content-type': 'application/json; charset=utf-8'},
     );
 
 class _PreviewParser extends AiListParser {
@@ -231,7 +231,8 @@ void main() {
     expect(unit.isUnitPrice, true);
     expect(unit.unitPrice!.toDbString(), '130');
     final uncertain = (await parser.parse('İki paket sigara 260 TL')).items.single;
-    expect(uncertain.requiresPriceConfirmation, true);
+    expect(uncertain.requiresPriceConfirmation, false);
+    expect(uncertain.isUnitPrice, false);
     final market = (await parser.parse('markette iki paket sigara toplam 1.260,50 TL')).items.single;
     expect(market.priceDestination, VoicePriceDestination.actual);
     expect(market.currencyCode, 'TRY');
@@ -244,7 +245,7 @@ void main() {
     await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
       localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate], supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(body: ListDraftSheet(initialText: 'markette iki paket sigara 260 TL',
+      home: Scaffold(body: ListDraftSheet(initialText: 'markette iki paket sigara toplam tanesi 260 TL',
         parser: AiListParser(localeCode: 'tr'), onApprove: (draft) async => approved = draft))));
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.byKey(const Key('draft_add_button')));
@@ -268,6 +269,45 @@ void main() {
     expect(approved!.items.single.isUnitPrice, false);
     expect(approved!.items.single.priceDestination, VoicePriceDestination.actual);
     expect(approved!.items.single.currencyCode, 'TRY');
+  });
+
+  test('AI v2 request preserves gram quantity and kilogram price basis through save', () async {
+    final db = AppDatabase(NativeDatabase.memory());
+    addTearDown(db.close);
+    Map<String, dynamic>? request;
+    final ai = AiClient(store: SettingsStore(), baseUrl: 'https://x', httpClient: MockClient((req) async {
+      request = jsonDecode(req.body) as Map<String, dynamic>;
+      return _items([{
+        'name': 'kıyma', 'quantity': '400', 'unit': 'gram', 'estimatedPrice': '875',
+        'priceIsUnitPrice': true, 'priceUnitCode': 'kilogram', 'currencyCode': 'TRY',
+        'priceDestination': 'actual',
+      }]);
+    }));
+    // Incomplete natural phrasing intentionally chooses the AI path.
+    final draft = await AiListParser(localeCode: 'tr', ai: ai).parse('markette 400 gram kıyma alacağım kilosu 875 TL');
+    expect(request!['input']['priceSemanticsVersion'], 2);
+    final c = draft.items.single;
+    expect(c.quantity!.toDbString(), '400');
+    expect(c.unitCode, UnitCode.gram);
+    expect(c.priceUnitCode, UnitCode.kilogram);
+    expect(c.priceDestination, VoicePriceDestination.actual);
+    final list = await ListRepository(db).createList(currencyCode: 'TRY');
+    expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    await ItemRepository(db).addCandidates(list, draft.items);
+    final saved = (await db.select(db.purchaseEntries).get()).single;
+    expect(saved.actualQuantity, '400');
+    expect(saved.actualUnitCode, 'gram');
+    expect(saved.actualLineTotalMinorUnits, 35000);
+  });
+
+  test('spoken selected-quantity default saves the amount as the total', () async {
+    final db = AppDatabase(NativeDatabase.memory());
+    addTearDown(db.close);
+    final list = await ListRepository(db).createList(currencyCode: 'TRY');
+    final draft = await AiListParser(localeCode: 'tr').parse('markette 400 gram kıyma 350 TL');
+    expect(draft.items.single.isUnitPrice, false);
+    await ItemRepository(db).addCandidates(list, draft.items);
+    expect((await db.select(db.purchaseEntries).get()).single.actualLineTotalMinorUnits, 35000);
   });
 
   test('AI yokken de cümle bölünür', () async {

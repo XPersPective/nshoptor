@@ -99,6 +99,9 @@ def check():
         require('apps.apple.com' not in source, f'{rel}: no unverified iOS product URL')
         require('com.crazypenguin.nshoptor' in source and 'docs/store/privacy-policy.md' in source, f'{rel}: store/privacy links')
         require('aria-live="polite"' in source and 'inputmode="decimal"' in source, f'{rel}: accessible demo')
+        require(('aylık aboneliktir' if lang == 'tr' else 'monthly subscriptions') in source, f'{rel}: monthly-only paid offers')
+        require(('Google Play’den' if lang == 'tr' else 'cancel in Google Play') in source, f'{rel}: cancellation information')
+        require('7-day free trial' not in source and '7 gün ücretsiz' not in source, f'{rel}: no unverified fixed trial promise')
     sitemap = ET.parse(SITE / 'sitemap.xml')
     urls = {node.text for node in sitemap.findall('.//{*}loc')}
     require(urls == {BASE, BASE + 'en/'}, 'Sitemap canonical URLs')

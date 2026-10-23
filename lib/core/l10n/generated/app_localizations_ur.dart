@@ -729,7 +729,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'کوئی اشتہار نہیں، زیادہ AI، بیک اپ · کم ماہانہ قیمت سے';
+      'کوئی اشتہار نہیں · بیک اپ ایکسپورٹ اور امپورٹ · ماہوار';
 
   @override
   String get proBenefitNoAds => 'اشتہار سے پاک تجربہ';
@@ -943,7 +943,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get plansPerMonth => '/ ماہ';
 
   @override
-  String get planTrial => '7 دن مفت';
+  String get planTrial => 'مفت ٹرائل';
 
   @override
   String get planProAi => 'ماہانہ 100 AI درخواستیں';
@@ -975,13 +975,13 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'سبسکرپشنز منسوخ ہونے تک خودکار تجدید ہوتی ہیں۔ گوگل پلے › ادائیگیاں اور سبسکرپشنز میں کسی بھی وقت منسوخ کریں۔ قیمتوں میں گوگل پلے کی طرف سے دکھائے گئے ٹیکس شامل ہیں۔';
+      'منسوخ کرنے تک نئی Pro اور Max سبسکرپشنز ہر ماہ تجدید ہوتی ہیں۔ Google Play میں انتظام یا منسوخ کریں۔ خریدنے سے پہلے Play میں قیمت اور ٹرائل کی اہلیت دیکھیں۔';
 
   @override
   String get planCurrent => 'موجودہ';
 
   @override
-  String get planStartTrial => '7 دن کا مفت ٹرائل شروع کریں';
+  String get planStartTrial => 'مفت ٹرائل شروع کریں';
 
   @override
   String get planChoose => 'منتخب کریں';
@@ -1281,4 +1281,25 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'دکان کی قیمت درج کرنے سے چیز خریدی ہوئی نشان زد ہوتی ہے؛ 0 بھی درست ہے۔ گھر کی قیمت اختیاری ہے۔ نشان ہٹانے کے لیے دکان کی قیمت مٹا دیں۔';
+
+  @override
+  String get shoppingDateLabel => 'خریداری کی تاریخ (اختیاری)';
+
+  @override
+  String get shoppingDateNone => 'کوئی تاریخ منتخب نہیں';
+
+  @override
+  String get clearShoppingDateAction => 'تاریخ ہٹائیں';
+
+  @override
+  String get listSortLabel => 'فہرست کی ترتیب';
+
+  @override
+  String get listSortDate => 'خریداری کی تاریخ';
+
+  @override
+  String get listSortAz => 'نام (الف–ے)';
+
+  @override
+  String get listSortManual => 'دستی ترتیب';
 }

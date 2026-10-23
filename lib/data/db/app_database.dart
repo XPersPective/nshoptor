@@ -121,6 +121,8 @@ class PurchaseEntries extends Table {
   TextColumn get actualQuantity => text()();
   TextColumn get actualUnitCode => text()();
   TextColumn get actualUnitPrice => text().nullable()();
+  /// unitPrice | lineTotal; null preserves pre-v3 unit-price editor semantics.
+  TextColumn get pricingInputMode => text().nullable()();
   IntColumn get grossTotalMinorUnits => integer().nullable()();
   IntColumn get discountMinorUnits =>
       integer().withDefault(const Constant(0))();
@@ -320,7 +322,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -331,6 +333,9 @@ class AppDatabase extends _$AppDatabase {
     onUpgrade: (m, from, to) async {
       if (from < 2) {
         await m.addColumn(shoppingLists, shoppingLists.sortOrder);
+      }
+      if (from < 3) {
+        await m.addColumn(purchaseEntries, purchaseEntries.pricingInputMode);
       }
       assert(from < to);
     },

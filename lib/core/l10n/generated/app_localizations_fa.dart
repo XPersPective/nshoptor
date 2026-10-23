@@ -728,7 +728,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'بدون تبلیغ، هوش مصنوعی بیشتر، پشتیبان‌گیری · از یک قیمت ماهانه کم';
+      'بدون تبلیغات · پشتیبان‌گیری و بازیابی · ماهانه';
 
   @override
   String get proBenefitNoAds => 'تجربه بدون تبلیغ';
@@ -942,7 +942,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get plansPerMonth => '/ ماه';
 
   @override
-  String get planTrial => '۷ روز رایگان';
+  String get planTrial => 'دوره آزمایشی رایگان';
 
   @override
   String get planProAi => '100 درخواست هوش مصنوعی در ماه';
@@ -973,13 +973,13 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'اشتراک‌ها تا زمان لغو، به‌طور خودکار تمدید می‌شوند. هر زمان می‌توانید از طریق Google Play › پرداخت‌ها و اشتراک‌ها آن را لغو کنید. قیمت‌ها شامل مالیات‌هایی است که توسط Google Play نمایش داده شده است.';
+      'اشتراک‌های جدید Pro و Max تا زمان لغو، هر ماه تمدید می‌شوند. در Google Play مدیریت یا لغو کنید. پیش از خرید، قیمت و شرایط دوره آزمایشی را در Play بررسی کنید.';
 
   @override
   String get planCurrent => 'فعال';
 
   @override
-  String get planStartTrial => 'شروع آزمایش ۷ روزه رایگان';
+  String get planStartTrial => 'شروع دوره آزمایشی رایگان';
 
   @override
   String get planChoose => 'انتخاب';
@@ -1276,4 +1276,25 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'قیمت فروشگاه، کالا را خریداری‌شده علامت می‌زند؛ 0 هم معتبر است. قیمت خانه اختیاری است. برای برداشتن علامت، قیمت فروشگاه را پاک کنید.';
+
+  @override
+  String get shoppingDateLabel => 'تاریخ خرید (اختیاری)';
+
+  @override
+  String get shoppingDateNone => 'تاریخی انتخاب نشده';
+
+  @override
+  String get clearShoppingDateAction => 'پاک کردن تاریخ';
+
+  @override
+  String get listSortLabel => 'ترتیب فهرست';
+
+  @override
+  String get listSortDate => 'تاریخ خرید';
+
+  @override
+  String get listSortAz => 'نام (الف تا ی)';
+
+  @override
+  String get listSortManual => 'ترتیب دستی';
 }

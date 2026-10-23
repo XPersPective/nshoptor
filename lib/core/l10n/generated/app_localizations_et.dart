@@ -728,7 +728,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklaamivaba, rohkem AI-d, varundamine · alates väikesest kuutasust';
+      'Ilma reklaamita · Varundamise eksport ja import · Igakuiselt';
 
   @override
   String get proBenefitNoAds => 'Reklaamivaba kogemus';
@@ -944,7 +944,7 @@ class AppLocalizationsEt extends AppLocalizations {
   String get plansPerMonth => '/ kuus';
 
   @override
-  String get planTrial => '7 päeva tasuta';
+  String get planTrial => 'Tasuta prooviperiood';
 
   @override
   String get planProAi => '100 AI päringut kuus';
@@ -975,13 +975,13 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Tellimused uuenevad automaatselt, kuni need tühistatakse. Tühistada saab igal ajal Google Play › Maksmine ja tellimused. Hinnad sisaldavad Google Play poolt näidatud makse.';
+      'Uued Pro ja Max tellimused uuenevad iga kuu kuni tühistamiseni. Halda või tühista Google Plays. Enne ostu kontrolli Plays hinda ja prooviperioodi tingimusi.';
 
   @override
   String get planCurrent => 'Praegune';
 
   @override
-  String get planStartTrial => 'Alusta 7-päevast tasuta prooviperioodi';
+  String get planStartTrial => 'Alusta tasuta prooviperioodi';
 
   @override
   String get planChoose => 'Vali';
@@ -1280,4 +1280,25 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Poehinna sisestamine märgib toote ostetuks; ka 0 loeb. Kodune hind on valikuline. Märke eemaldamiseks kustuta poehind.';
+
+  @override
+  String get shoppingDateLabel => 'Ostukuupäev (valikuline)';
+
+  @override
+  String get shoppingDateNone => 'Kuupäeva pole valitud';
+
+  @override
+  String get clearShoppingDateAction => 'Eemalda kuupäev';
+
+  @override
+  String get listSortLabel => 'Loendi järjestus';
+
+  @override
+  String get listSortDate => 'Ostukuupäev';
+
+  @override
+  String get listSortAz => 'Nimi (A–Z)';
+
+  @override
+  String get listSortManual => 'Käsitsi järjestus';
 }

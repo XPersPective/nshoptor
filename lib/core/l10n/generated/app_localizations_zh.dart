@@ -714,7 +714,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => '无广告、更多 AI 功能、备份 · 每月仅需少量费用';
+  String get proBenefitsLine => '无广告 · 备份导出与导入 · 月付';
 
   @override
   String get proBenefitNoAds => '无广告体验';
@@ -922,7 +922,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get plansPerMonth => '/ 月';
 
   @override
-  String get planTrial => '7 天免费试用';
+  String get planTrial => '免费试用';
 
   @override
   String get planProAi => '每月 100 次 AI 请求';
@@ -953,13 +953,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      '订阅将自动续订，直到取消为止。可随时在 Google Play › 付款与订阅中取消。价格包含 Google Play 显示的各项税费。';
+      '新购的Pro和Max订阅每月自动续订，直到取消。请在Google Play中管理或取消。购买前，请在Play查看价格和免费试用资格。';
 
   @override
   String get planCurrent => '当前';
 
   @override
-  String get planStartTrial => '开始 7 天免费试用';
+  String get planStartTrial => '开始免费试用';
 
   @override
   String get planChoose => '选择';
@@ -1236,4 +1236,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get guidePricesBody => '输入商店价格后，商品会标记为已购买，0也有效。家中预估价为选填。清除商店价格即可取消勾选。';
+
+  @override
+  String get shoppingDateLabel => '购物日期（选填）';
+
+  @override
+  String get shoppingDateNone => '未选择日期';
+
+  @override
+  String get clearShoppingDateAction => '清除日期';
+
+  @override
+  String get listSortLabel => '列表顺序';
+
+  @override
+  String get listSortDate => '购物日期';
+
+  @override
+  String get listSortAz => '名称（A–Z）';
+
+  @override
+  String get listSortManual => '手动排序';
 }

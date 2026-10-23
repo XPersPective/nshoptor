@@ -730,7 +730,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklamsız, daha çox AI, ehtiyat nüsxə · kiçik aylıq qiymətdən başlayaraq';
+      'Reklam yoxdur · Yedəkləmə ixrac və idxal · Aylıq';
 
   @override
   String get proBenefitNoAds => 'Reklamsız təcrübə';
@@ -947,7 +947,7 @@ class AppLocalizationsAz extends AppLocalizations {
   String get plansPerMonth => '/ ay';
 
   @override
-  String get planTrial => '7 gün pulsuz';
+  String get planTrial => 'Pulsuz sınaq';
 
   @override
   String get planProAi => 'Ayda 100 AI sorğusu';
@@ -979,13 +979,13 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abunəliklər ləğv edilənə qədər avtomatik olaraq yenilənir. İstənilən vaxt Google Play › Ödənişlər və abunəliklər bölməsindən ləğv edə bilərsiniz. Qiymətlərə Google Play tərəfindən göstərilən vergilər daxildir.';
+      'Yeni Pro və Max abunəlikləri ləğv edilənədək hər ay yenilənir. Google Play-də idarə və ya ləğv edin. Satın almadan əvvəl qiyməti və sınaq uyğunluğunu Play-də yoxlayın.';
 
   @override
   String get planCurrent => 'Cari';
 
   @override
-  String get planStartTrial => '7 günlük pulsuz sınağa başla';
+  String get planStartTrial => 'Pulsuz sınağa başla';
 
   @override
   String get planChoose => 'Seç';
@@ -1286,4 +1286,25 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Mağaza qiyməti daxil ediləndə məhsul alınmış sayılır; 0 da keçərlidir. Evdəki qiymət istəyə bağlıdır. İşarəni silmək üçün mağaza qiymətini silin.';
+
+  @override
+  String get shoppingDateLabel => 'Alış-veriş tarixi (istəyə bağlı)';
+
+  @override
+  String get shoppingDateNone => 'Tarix seçilməyib';
+
+  @override
+  String get clearShoppingDateAction => 'Tarixi sil';
+
+  @override
+  String get listSortLabel => 'Siyahı sırası';
+
+  @override
+  String get listSortDate => 'Alış-veriş tarixi';
+
+  @override
+  String get listSortAz => 'Ad (A–Z)';
+
+  @override
+  String get listSortManual => 'Əl ilə sırala';
 }

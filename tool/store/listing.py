@@ -38,12 +38,10 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                    '\n'
                    'PLANS\n'
                    'Free: 10 AI requests per month and the core shopping features, with ads.\n'
-                   'Pro: 100 AI requests per month, no ads and backup. Eligible new subscribers '
-                   'can try the monthly plan free for 7 days.\n'
+                   'Pro: 100 AI requests per month, no ads and backup.\n'
                    'Max: 300 AI requests per month, no ads and backup.\n'
-                   'Annual subscriptions keep the same monthly quota. Existing legacy Pro and Max '
-                   'subscriptions retain 200 and 1000 monthly requests respectively. Prices and '
-                   'eligibility are shown by Google Play.\n'
+                   'Pro and Max are monthly subscriptions. Prices, renewal and eligibility are '
+                   'shown by Google Play before purchase. Existing subscription rights remain.\n'
                    '\n'
                    '71 interface languages. Language, number format and currency can be selected '
                    'independently.\n'
@@ -88,12 +86,10 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                    'PLANLAR\n'
                    'Ücretsiz: ayda 10 yapay zeka isteği, temel alışveriş özellikleri ve '
                    'reklamlar.\n'
-                   'Pro: ayda 100 yapay zeka isteği, reklamsız kullanım ve yedekleme. Uygun yeni '
-                   'aboneler aylık planı 7 gün ücretsiz deneyebilir.\n'
+                   'Pro: ayda 100 yapay zeka isteği, reklamsız kullanım ve yedekleme.\n'
                    'Max: ayda 300 yapay zeka isteği, reklamsız kullanım ve yedekleme.\n'
-                   'Yıllık aboneliklerde aylık kota aynıdır. Eski Pro ve Max abonelerinin '
-                   'sırasıyla 200 ve 1000 aylık istek hakları korunur. Fiyat ve uygunluk Google '
-                   "Play'de gösterilir.\n"
+                   'Pro ve Max aylık aboneliktir. Fiyat, yenileme ve uygunluk satın almadan önce '
+                   "Google Play'de gösterilir. Mevcut abonelik hakları korunur.\n"
                    '\n'
                    '71 arayüz dili. Dil, sayı biçimi ve para birimi bağımsız seçilir.\n'
                    '\n'
@@ -195,13 +191,30 @@ L.update({
         'notes': 'Новое: один список для плана и покупки; история цены за единицу; понятные жесты и голосовой ввод.'
     },
 })
-L['de-DE']['full'] += '\n\nTARIFE\nKostenlos: 10 KI-Anfragen pro Monat. Pro: 100, Max: 300. Geeignete neue Abos können 7 Tage testen; ältere Rechte 200 und 1000 bleiben erhalten.'
-L['es-ES']['full'] += '\n\nPLANES\nGratis: 10 solicitudes de IA al mes. Pro: 100, Max: 300. Las nuevas suscripciones elegibles pueden probar 7 días; se conservan los derechos antiguos de 200 y 1000.'
-L['fr-FR']['full'] += '\n\nFORMULES\nGratuit : 10 requêtes IA par mois. Pro : 100, Max : 300. Les nouveaux abonnements éligibles peuvent essayer 7 jours ; les anciens droits 200 et 1000 restent valables.'
-L['it-IT']['full'] += '\n\nPIANI\nGratis: 10 richieste IA al mese. Pro: 100, Max: 300. I nuovi abbonamenti idonei possono provare 7 giorni; i diritti precedenti 200 e 1000 restano validi.'
-L['ru-RU']['full'] += '\n\nПЛАНЫ\nБесплатно: 10 запросов ИИ в месяц. Pro: 100, Max: 300. Подходящую подписку можно попробовать 7 дней; прежние права 200 и 1000 сохраняются.'
 for _to, _from in {'en-GB': 'en-US', 'es-419': 'es-ES', 'es-US': 'es-ES', 'fr-CA': 'fr-FR'}.items():
     L[_to] = L[_from]
+
+# A single localized contract for app and store: new paid offers are monthly.
+# Legacy annual purchases remain restorable; no remote plan is mutated here.
+def _monthly_plan_text(locale):
+    code = locale.split('-')[0]
+    code = {'iw': 'he'}.get(code, code)
+    arb = pathlib.Path(__file__).resolve().parents[2] / 'lib/core/l10n' / f'app_{code}.arb'
+    text = json.loads(arb.read_text(encoding='utf8'))
+    return '\n'.join([
+        text['plansTitle'],
+        f"{text['planFree']}: {text['planFreeAi']}. {text['planFreeAds']}.",
+        f"Pro: {text['planProAi']}. {text['planNoAds']}. {text['planBackup']}.",
+        f"Max: {text['planMaxAi']}. {text['planNoAds']}. {text['planBackup']}.",
+        text['plansLegal'], text['planLegacyRights'],
+    ])
+
+
+for _locale, _entry in L.items():
+    _parts = _entry['full'].split('\n\n')
+    _parts = [p for p in _parts if not ('Pro' in p and 'Max' in p and '100' in p and '300' in p)]
+    _entry['full'] = '\n\n'.join(_parts) + '\n\n' + _monthly_plan_text(_locale)
+
 
 LIMITS = {'title': 30, 'short': 80, 'full': 4000, 'notes': 500}
 

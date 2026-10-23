@@ -731,7 +731,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bez reklám, viac AI, záloha · za malý mesačný poplatok';
+      'Žiadne reklamy · Export a import záloh · Mesačne';
 
   @override
   String get proBenefitNoAds => 'Zážitok bez reklám';
@@ -946,7 +946,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get plansPerMonth => '/ mesiac';
 
   @override
-  String get planTrial => '7 dní zdarma';
+  String get planTrial => 'Bezplatné skúšobné obdobie';
 
   @override
   String get planProAi => '100 požiadaviek AI za mesiac';
@@ -978,13 +978,13 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Predplatné sa obnovujú automaticky, až kým ich nezrušíte. Zrušiť môžete kedykoľvek v Google Play › Platby a predplatné. Ceny zahŕňajú dane zobrazené v Google Play.';
+      'Nové predplatné Pro a Max sa obnovujú mesačne až do zrušenia. Spravujte alebo zrušte ich v Google Play. Pred nákupom si v Play overte cenu a nárok na skúšobné obdobie.';
 
   @override
   String get planCurrent => 'Aktuálne';
 
   @override
-  String get planStartTrial => 'Spustiť 7-dňovú bezplatnú skúšobnú verziu';
+  String get planStartTrial => 'Začať bezplatné skúšobné obdobie';
 
   @override
   String get planChoose => 'Vybrať';
@@ -1284,4 +1284,25 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Cena v obchode označí položku ako kúpenú; platí aj 0. Domáca cena je voliteľná. Vymazaním ceny v obchode odstránite začiarknutie.';
+
+  @override
+  String get shoppingDateLabel => 'Dátum nákupu (voliteľné)';
+
+  @override
+  String get shoppingDateNone => 'Dátum nie je vybraný';
+
+  @override
+  String get clearShoppingDateAction => 'Odstrániť dátum';
+
+  @override
+  String get listSortLabel => 'Poradie zoznamu';
+
+  @override
+  String get listSortDate => 'Dátum nákupu';
+
+  @override
+  String get listSortAz => 'Názov (A–Z)';
+
+  @override
+  String get listSortManual => 'Ručné poradie';
 }

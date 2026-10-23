@@ -731,7 +731,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklámmentes, több AI, biztonsági mentés · kis havi díjtól';
+      'Nincsenek hirdetések · Biztonsági mentés export és import · Havi';
 
   @override
   String get proBenefitNoAds => 'Reklámmentes élmény';
@@ -946,7 +946,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get plansPerMonth => '/ hó';
 
   @override
-  String get planTrial => '7 nap ingyen';
+  String get planTrial => 'Ingyenes próbaidőszak';
 
   @override
   String get planProAi => '100 AI kérés havonta';
@@ -978,13 +978,13 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'A előfizetések automatikusan megújulnak, amíg le nem mondja őket. Bármikor lemondható a Google Play › Fizetések és előfizetések menüpontban. Az árak tartalmazzák a Google Play által megjelenített adókat.';
+      'Az új Pro és Max előfizetések havonta megújulnak a lemondásig. A Google Playben kezelheted vagy mondhatod le. Vásárlás előtt ott ellenőrizd az árat és a próbaidőszak feltételeit.';
 
   @override
   String get planCurrent => 'Jelenlegi';
 
   @override
-  String get planStartTrial => '7 napos ingyenes próba indítása';
+  String get planStartTrial => 'Ingyenes próbaidőszak indítása';
 
   @override
   String get planChoose => 'Kiválasztás';
@@ -1283,4 +1283,25 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'A bolti ár megadása megvásároltnak jelöli a tételt; a 0 is érvényes. Az otthoni ár nem kötelező. A jelölés törléséhez töröld a bolti árat.';
+
+  @override
+  String get shoppingDateLabel => 'Vásárlás dátuma (nem kötelező)';
+
+  @override
+  String get shoppingDateNone => 'Nincs dátum kiválasztva';
+
+  @override
+  String get clearShoppingDateAction => 'Dátum törlése';
+
+  @override
+  String get listSortLabel => 'Lista sorrendje';
+
+  @override
+  String get listSortDate => 'Vásárlás dátuma';
+
+  @override
+  String get listSortAz => 'Név (A–Z)';
+
+  @override
+  String get listSortManual => 'Kézi sorrend';
 }

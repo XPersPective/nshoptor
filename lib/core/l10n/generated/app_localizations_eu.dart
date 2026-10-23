@@ -729,7 +729,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Iragarkirik ez, AI gehiago, backup · hilabetero prezio txiki batetik';
+      'Iragarkirik ez · Atxapen esportazioa eta inportazioa · Hilabetekoa';
 
   @override
   String get proBenefitNoAds => 'Iragarkirik gabeko esperientzia';
@@ -947,7 +947,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get plansPerMonth => '/ hilabete';
 
   @override
-  String get planTrial => '7 egun doan';
+  String get planTrial => 'Doako probaldia';
 
   @override
   String get planProAi => '100 AI eskari hilabetero';
@@ -979,13 +979,13 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Harpidetzak automatikoki berritzen dira bertan behera utzi arte. Edozein unetan bertan behera uzten da Google Play › Ordaintzea eta harpidetzak atalean. Prezioek Google Play-k erakusten dituen zergak barne hartzen dituzte.';
+      'Pro eta Max harpidetza berriak hilero berritzen dira bertan behera utzi arte. Kudeatu edo ezeztatu Google Play-n. Erosi aurretik, egiaztatu prezioa eta probaldirako baldintzak Play-n.';
 
   @override
   String get planCurrent => 'Uneko';
 
   @override
-  String get planStartTrial => 'Hasteko 7 eguneko proba doan';
+  String get planStartTrial => 'Hasi doako probaldia';
 
   @override
   String get planChoose => 'Aukeratu';
@@ -1286,4 +1286,25 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Dendako prezioak produktua erosita markatzen du; 0 ere baliozkoa da. Etxeko prezioa aukerakoa da. Ezabatu dendako prezioa marka kentzeko.';
+
+  @override
+  String get shoppingDateLabel => 'Erosketa-data (aukerakoa)';
+
+  @override
+  String get shoppingDateNone => 'Ez da datarik hautatu';
+
+  @override
+  String get clearShoppingDateAction => 'Kendu data';
+
+  @override
+  String get listSortLabel => 'Zerrendaren ordena';
+
+  @override
+  String get listSortDate => 'Erosketa-data';
+
+  @override
+  String get listSortAz => 'Izena (A–Z)';
+
+  @override
+  String get listSortManual => 'Eskuzko ordena';
 }

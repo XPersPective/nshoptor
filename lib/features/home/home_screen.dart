@@ -352,6 +352,7 @@ class _HomeShellState extends State<HomeShell> {
                 createdId = await widget.db.transaction(() async {
                   final id = await widget.listRepository.createList(
                     title: draft.title,
+                    plannedAt: draft.plannedAt,
                     currencyCode: AppDefaults.defaultCurrency(),
                     generatedTitle: l10n.quickListTitle,
                   );

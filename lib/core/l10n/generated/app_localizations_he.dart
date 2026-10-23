@@ -726,8 +726,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine =>
-      'ללא מודעות, יותר AI, גיבוי · החל ממחיר חודשי נמוך';
+  String get proBenefitsLine => 'ללא פרסומות · גיבוי ייצוא וייבוא · חודשי';
 
   @override
   String get proBenefitNoAds => 'חוויה ללא מודעות';
@@ -940,7 +939,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get plansPerMonth => '/ חודש';
 
   @override
-  String get planTrial => '7 ימים חינם';
+  String get planTrial => 'תקופת ניסיון בחינם';
 
   @override
   String get planProAi => '100 בקשות AI לחודש';
@@ -971,13 +970,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'המנויים מתחדשים אוטומטית עד ביטול. ניתן לבטל בכל עת ב־Google Play › תשלומים ומנויים. המחירים כוללים את המיסים המוצגים על ידי Google Play.';
+      'מנויי Pro ו-Max חדשים מתחדשים מדי חודש עד לביטול. אפשר לנהל או לבטל ב-Google Play. לפני הרכישה בדקו ב-Play את המחיר ואת הזכאות לתקופת ניסיון.';
 
   @override
   String get planCurrent => 'נוכחי';
 
   @override
-  String get planStartTrial => 'התחל ניסיון חינם של 7 ימים';
+  String get planStartTrial => 'התחלת תקופת ניסיון בחינם';
 
   @override
   String get planChoose => 'בחר';
@@ -1269,4 +1268,25 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'מחיר בחנות מסמן את הפריט כנרכש; גם 0 נחשב. המחיר בבית הוא רשות. מחקו את מחיר החנות כדי להסיר את הסימון.';
+
+  @override
+  String get shoppingDateLabel => 'תאריך קניות (רשות)';
+
+  @override
+  String get shoppingDateNone => 'לא נבחר תאריך';
+
+  @override
+  String get clearShoppingDateAction => 'ניקוי התאריך';
+
+  @override
+  String get listSortLabel => 'סדר הרשימה';
+
+  @override
+  String get listSortDate => 'תאריך קניות';
+
+  @override
+  String get listSortAz => 'שם (א–ת)';
+
+  @override
+  String get listSortManual => 'סדר ידני';
 }

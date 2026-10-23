@@ -1,4 +1,7 @@
 import 'package:drift/drift.dart' show Value;
+
+import 'dart:io';
+
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,16 +18,14 @@ void main() {
   tearDown(() async => db.close());
 
   ShoppingListsCompanion listRow({String currency = 'TRY'}) =>
-      ShoppingListsCompanion.insert(
-        currencyCode: currency,
-      );
+      ShoppingListsCompanion.insert(currencyCode: currency);
 
   group('tablo oluşturma ve CRUD', () {
     test('liste eklenir ve okunur; varsayılanlar uygulanır', () async {
       final id = await db.into(db.shoppingLists).insert(listRow());
-      final row = await (db.select(db.shoppingLists)
-            ..where((t) => t.id.equals(id)))
-          .getSingle();
+      final row = await (db.select(
+        db.shoppingLists,
+      )..where((t) => t.id.equals(id))).getSingle();
       expect(row.currencyCode, 'TRY');
       expect(row.status, 'draft');
       expect(row.budgetMinorUnits, isNull);
@@ -32,7 +33,9 @@ void main() {
 
     test('miktar/birim fiyat decimal dizesi gidiş-dönüşü kayıpsız', () async {
       final listId = await db.into(db.shoppingLists).insert(listRow());
-      final itemId = await db.into(db.plannedItems).insert(
+      final itemId = await db
+          .into(db.plannedItems)
+          .insert(
             PlannedItemsCompanion.insert(
               listId: listId,
               name: 'Domates',
@@ -44,10 +47,13 @@ void main() {
               plannedLineTotalMinorUnits: const Value(6435),
             ),
           );
-      final item = await (db.select(db.plannedItems)
-            ..where((t) => t.id.equals(itemId)))
-          .getSingle();
-      expect(DecimalFixed.parse(item.plannedQuantity), DecimalFixed.parse('1.5'));
+      final item = await (db.select(
+        db.plannedItems,
+      )..where((t) => t.id.equals(itemId))).getSingle();
+      expect(
+        DecimalFixed.parse(item.plannedQuantity),
+        DecimalFixed.parse('1.5'),
+      );
       expect(
         DecimalFixed.parse(item.plannedUnitPrice!),
         DecimalFixed.parse('42.90'),
@@ -56,24 +62,28 @@ void main() {
     });
 
     test('uygulama ayarları anahtar-değer saklanır', () async {
-      await db.into(db.appSettings).insert(
-            AppSettingsCompanion.insert(key: 'lastBackupAt', value: const Value('123')),
+      await db
+          .into(db.appSettings)
+          .insert(
+            AppSettingsCompanion.insert(
+              key: 'lastBackupAt',
+              value: const Value('123'),
+            ),
           );
-      final row = await (db.select(db.appSettings)
-            ..where((t) => t.key.equals('lastBackupAt')))
-          .getSingle();
+      final row = await (db.select(
+        db.appSettings,
+      )..where((t) => t.key.equals('lastBackupAt'))).getSingle();
       expect(row.value, '123');
     });
   });
 
   group('migration', () {
-    test('v0→v2: kullanıcı sürümü 2 olur ve tüm tablolar var', () async {
-      // Yeni bellek veritabanı onCreate ile v2'ye kurulur.
+    test('fresh database uses schema 3 and all tables exist', () async {
       final version = await db.customSelect('PRAGMA user_version').getSingle();
-      expect(version.data['user_version'], 2);
-      final tables = await db.customSelect(
-        "SELECT name FROM sqlite_master WHERE type='table'",
-      ).get();
+      expect(version.data['user_version'], 3);
+      final tables = await db
+          .customSelect("SELECT name FROM sqlite_master WHERE type='table'")
+          .get();
       final names = tables.map((r) => r.data['name'] as String).toSet();
       for (final expected in [
         'shopping_lists',
@@ -95,16 +105,62 @@ void main() {
       }
     });
 
-    test('eski sürüm etiketiyle açılışta onUpgrade çalışır', () async {
-      // user_version'ı 0'a düşür, kapat; yeniden açılış migration sözleşmesini işletir.
-      await db.customStatement('PRAGMA user_version = 0');
-      await db.close();
-      final reopened = AppDatabase(NativeDatabase.memory());
-      final version =
-          await reopened.customSelect('PRAGMA user_version').getSingle();
-      expect(version.data['user_version'], 2);
-      await reopened.close();
-    });
+    test(
+      'v2 file migration preserves money and null legacy editor mode',
+      () async {
+        final dir = Directory.systemTemp.createTempSync('nshoptor-migration-');
+        final file = File('${dir.path}/v2.sqlite');
+        final previous = AppDatabase(NativeDatabase(file));
+        await previous.into(previous.shoppingLists).insert(listRow());
+        await previous
+            .into(previous.purchaseEntries)
+            .insert(
+              PurchaseEntriesCompanion.insert(
+                listId: 1,
+                name: 'Kıyma',
+                normalizedName: 'kiyma',
+                actualQuantity: '400',
+                actualUnitCode: 'gram',
+                actualUnitPrice: const Value('0.875'),
+                actualLineTotalMinorUnits: 35000,
+              ),
+            );
+        // Reconstruct the actual v2 column shape, then reopen the same file.
+        await previous.customStatement(
+          'ALTER TABLE purchase_entries DROP COLUMN pricing_input_mode',
+        );
+        await previous.customStatement('PRAGMA user_version = 2');
+        await previous.close();
+        final reopened = AppDatabase(NativeDatabase(file));
+        addTearDown(() async {
+          await reopened.close();
+          dir.deleteSync(recursive: true);
+        });
+        final version = await reopened
+            .customSelect('PRAGMA user_version')
+            .getSingle();
+        expect(version.data['user_version'], 3);
+        final row =
+            (await reopened.select(reopened.purchaseEntries).get()).single;
+        expect(row.pricingInputMode, isNull);
+        expect(row.actualUnitPrice, '0.875');
+        expect(row.actualLineTotalMinorUnits, 35000);
+        expect(row.actualQuantity, '400');
+        final roundTrip = PurchaseEntry.fromJson(row.toJson());
+        expect(roundTrip.pricingInputMode, isNull);
+        await (reopened.update(
+          reopened.purchaseEntries,
+        )..where((t) => t.id.equals(row.id))).write(
+          const PurchaseEntriesCompanion(pricingInputMode: Value('lineTotal')),
+        );
+        final totalRow =
+            (await reopened.select(reopened.purchaseEntries).get()).single;
+        expect(
+          PurchaseEntry.fromJson(totalRow.toJson()).pricingInputMode,
+          'lineTotal',
+        );
+      },
+    );
   });
 
   group('transaction', () {
@@ -125,7 +181,9 @@ void main() {
     test('başarılı transaction içindeki çoklu yazma kalır', () async {
       final listId = await db.into(db.shoppingLists).insert(listRow());
       await db.transaction(() async {
-        await db.into(db.plannedItems).insert(
+        await db
+            .into(db.plannedItems)
+            .insert(
               PlannedItemsCompanion.insert(
                 listId: listId,
                 name: 'Süt',
@@ -135,18 +193,15 @@ void main() {
                 pricingInputMode: 'unitPrice',
               ),
             );
-        await (db.update(db.shoppingLists)
-              ..where((t) => t.id.equals(listId)))
-            .write(const ShoppingListsCompanion(
-          status: Value('planned'),
-        ));
+        await (db.update(db.shoppingLists)..where((t) => t.id.equals(listId)))
+            .write(const ShoppingListsCompanion(status: Value('planned')));
       });
-      final list = await (db.select(db.shoppingLists)
-            ..where((t) => t.id.equals(listId)))
-          .getSingle();
-      final items = await (db.select(db.plannedItems)
-            ..where((t) => t.listId.equals(listId)))
-          .get();
+      final list = await (db.select(
+        db.shoppingLists,
+      )..where((t) => t.id.equals(listId))).getSingle();
+      final items = await (db.select(
+        db.plannedItems,
+      )..where((t) => t.listId.equals(listId))).get();
       expect(list.status, 'planned');
       expect(items, hasLength(1));
     });
@@ -155,7 +210,9 @@ void main() {
   group('FK silme kuralları', () {
     test('liste silinince planlanan ürünler cascade silinir', () async {
       final listId = await db.into(db.shoppingLists).insert(listRow());
-      await db.into(db.plannedItems).insert(
+      await db
+          .into(db.plannedItems)
+          .insert(
             PlannedItemsCompanion.insert(
               listId: listId,
               name: 'Elma',
@@ -165,16 +222,18 @@ void main() {
               pricingInputMode: 'unitPrice',
             ),
           );
-      await (db.delete(db.shoppingLists)
-            ..where((t) => t.id.equals(listId)))
-          .go();
+      await (db.delete(
+        db.shoppingLists,
+      )..where((t) => t.id.equals(listId))).go();
       final items = await db.select(db.plannedItems).get();
       expect(items, isEmpty);
     });
 
     test('satın alım silinince fiyat gözlemi set null ile kalır', () async {
       final listId = await db.into(db.shoppingLists).insert(listRow());
-      final entryId = await db.into(db.purchaseEntries).insert(
+      final entryId = await db
+          .into(db.purchaseEntries)
+          .insert(
             PurchaseEntriesCompanion.insert(
               listId: listId,
               name: 'Ekmek',
@@ -184,7 +243,9 @@ void main() {
               actualLineTotalMinorUnits: 1500,
             ),
           );
-      await db.into(db.priceObservations).insert(
+      await db
+          .into(db.priceObservations)
+          .insert(
             PriceObservationsCompanion.insert(
               purchaseEntryId: Value(entryId),
               quantity: '1',
@@ -195,19 +256,21 @@ void main() {
               source: 'manual',
             ),
           );
-      await (db.delete(db.purchaseEntries)
-            ..where((t) => t.id.equals(entryId)))
-          .go();
+      await (db.delete(
+        db.purchaseEntries,
+      )..where((t) => t.id.equals(entryId))).go();
       final observations = await db.select(db.priceObservations).get();
       expect(observations, hasLength(1));
       expect(observations.single.purchaseEntryId, isNull);
     });
 
     test('fiş silinince aday satırlar cascade silinir', () async {
-      final receiptId = await db.into(db.receipts).insert(
-            ReceiptsCompanion.insert(),
-          );
-      await db.into(db.receiptCandidateLines).insert(
+      final receiptId = await db
+          .into(db.receipts)
+          .insert(ReceiptsCompanion.insert());
+      await db
+          .into(db.receiptCandidateLines)
+          .insert(
             ReceiptCandidateLinesCompanion.insert(
               receiptId: receiptId,
               rawText: 'SUT 1L 32,90',

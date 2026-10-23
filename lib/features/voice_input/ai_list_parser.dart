@@ -6,12 +6,21 @@ import 'parser/voice_command_parser.dart';
 
 /// Taslak sonucu: adaylar + kaynağı + (varsa) AI'nın neden kullanılamadığı.
 class ListDraft {
-  const ListDraft(this.items, {required this.fromAi, this.aiResult, this.title, this.parseDuration = Duration.zero, this.modelCalls = 0});
+  const ListDraft(
+    this.items, {
+    required this.fromAi,
+    this.aiResult,
+    this.title,
+    this.plannedAt,
+    this.parseDuration = Duration.zero,
+    this.modelCalls = 0,
+  });
   final List<ParsedItemCandidate> items;
   final bool fromAi;
   final Duration parseDuration;
   final int modelCalls;
   final String? title;
+  final DateTime? plannedAt;
 
   /// AI denendiyse ve başarısızsa sebep (kota/çevrimdışı/hata); başarılıysa AiOk.
   final AiResult? aiResult;
@@ -33,25 +42,48 @@ class AiListParser {
     final local = _local(raw);
     // Complete simple commands need no network call. Unfamiliar language and
     // incomplete clauses still use the model, with local preview on failure.
-    final locallyCertain = (localeCode.startsWith('tr') || localeCode.startsWith('en')) &&
-        local.isNotEmpty && local.every((c) => c.fullyParsed &&
-          c.name.split(' ').length <= 4 &&
-          !RegExp(r'\d|alacağ|istiyor|\b(and|ve|toplam|fiyatı)\b').hasMatch(c.name));
-    if (locallyCertain) return ListDraft(local, fromAi: false, parseDuration: watch.elapsed);
+    final locallyCertain =
+        (localeCode.startsWith('tr') || localeCode.startsWith('en')) &&
+        local.isNotEmpty &&
+        local.every(
+          (c) =>
+              c.fullyParsed &&
+              c.name.split(' ').length <= 4 &&
+              !RegExp(r'\d|alacağ|istiyor|\b(and|ve|toplam|fiyatı)\b')
+                  .hasMatch(c.name),
+        );
+    if (locallyCertain) {
+      return ListDraft(local, fromAi: false, parseDuration: watch.elapsed);
+    }
     AiResult? result;
     final client = ai;
     if (client != null && client.enabled) {
-      result = await client.request('parse_list', {'text': raw, 'priceSemanticsVersion': 1}, locale: localeCode);
+      result = await client.request('parse_list', {
+        'text': raw,
+        'priceSemanticsVersion': 2,
+      }, locale: localeCode);
       if (result is AiOk) {
         final items = _fromAi(result.result, raw);
         final title = _text(result.result['title'], 80);
         if (items.isNotEmpty) {
-          return ListDraft(items, fromAi: true, aiResult: result, title: title,
-              parseDuration: watch.elapsed, modelCalls: 1);
+          return ListDraft(
+            items,
+            fromAi: true,
+            aiResult: result,
+            title: title,
+            parseDuration: watch.elapsed,
+            modelCalls: 1,
+          );
         }
       }
     }
-    return ListDraft(local, fromAi: false, aiResult: result, parseDuration: watch.elapsed, modelCalls: result == null ? 0 : 1);
+    return ListDraft(
+      local,
+      fromAi: false,
+      aiResult: result,
+      parseDuration: watch.elapsed,
+      modelCalls: result == null ? 0 : 1,
+    );
   }
 
   List<ParsedItemCandidate> _fromAi(Map<String, dynamic> json, String raw) {
@@ -66,18 +98,31 @@ class AiListParser {
       for (final u in UnitCode.values) {
         if (u.dbCode == i['unit']) unit = u;
       }
-      out.add(ParsedItemCandidate(
-        name: name,
-        rawText: raw,
-        brand: _text(i['brand'], 60),
-        category: _text(i['category'], 60),
-        quantity: _decimal(i['quantity']),
-        unitCode: unit,
-        unitPrice: _decimal(i['estimatedPrice']),
-        isUnitPrice: i['priceIsUnitPrice'] is bool ? i['priceIsUnitPrice'] as bool : null,
-        currencyCode: i['currencyCode'] is String && RegExp(r'^[A-Z]{3}$').hasMatch(i['currencyCode']) ? i['currencyCode'] as String : null,
-        priceDestination: i['priceDestination'] == 'actual' ? VoicePriceDestination.actual : VoicePriceDestination.planned,
-      ));
+      out.add(
+        ParsedItemCandidate(
+          name: name,
+          rawText: raw,
+          brand: _text(i['brand'], 60),
+          category: _text(i['category'], 60),
+          quantity: _decimal(i['quantity']),
+          unitCode: unit,
+          priceUnitCode: UnitCode.values
+              .where((u) => u.dbCode == i['priceUnitCode'])
+              .firstOrNull,
+          unitPrice: _decimal(i['estimatedPrice']),
+          isUnitPrice: i['priceIsUnitPrice'] is bool
+              ? i['priceIsUnitPrice'] as bool
+              : null,
+          currencyCode:
+              i['currencyCode'] is String &&
+                  RegExp(r'^[A-Z]{3}$').hasMatch(i['currencyCode'])
+              ? i['currencyCode'] as String
+              : null,
+          priceDestination: i['priceDestination'] == 'actual'
+              ? VoicePriceDestination.actual
+              : VoicePriceDestination.planned,
+        ),
+      );
     }
     return out;
   }
@@ -89,14 +134,19 @@ class AiListParser {
   }
 
   static DecimalFixed? _decimal(Object? v) {
-    if (v is! String || !RegExp(r'^\d{1,9}(\.\d{1,3})?$').hasMatch(v)) return null;
+    if (v is! String || !RegExp(r'^\d{1,9}(\.\d{1,3})?$').hasMatch(v)) {
+      return null;
+    }
     return DecimalFixed.parse(v);
   }
 
   List<ParsedItemCandidate> _local(String raw) {
     final splitter = localeCode.startsWith('tr')
         ? RegExp(r'(?<!\d),|,(?!\d)|[;\n]+|\s+ve\s+', caseSensitive: false)
-        : RegExp(r'(?<!\d),|,(?!\d)|[;\n]+|\s+and\s+(?!a\s+half\b)', caseSensitive: false);
+        : RegExp(
+            r'(?<!\d),|,(?!\d)|[;\n]+|\s+and\s+(?!a\s+half\b)',
+            caseSensitive: false,
+          );
     final parser = VoiceCommandParser(localeCode: localeCode);
     return [
       for (final part in raw.split(splitter))

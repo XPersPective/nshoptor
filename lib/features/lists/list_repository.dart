@@ -33,6 +33,7 @@ class ListRepository {
     String? note,
     String? colorToken,
     String? iconToken,
+    DateTime? plannedAt,
   }) {
     return (_db.select(_db.shoppingLists)
           ..orderBy([(t) => OrderingTerm.desc(t.sortOrder)])
@@ -63,6 +64,7 @@ class ListRepository {
                   note: Value(note),
                   colorToken: Value(colorToken),
                   iconToken: Value(iconToken),
+                  plannedAt: Value(plannedAt?.toUtc()),
                   sortOrder: Value((last?.sortOrder ?? -1) + 1),
                 ),
               ),
@@ -75,8 +77,10 @@ class ListRepository {
 
   Stream<List<ShoppingList>> watchAll() =>
       (_db.select(_db.shoppingLists)..orderBy([
-            (t) => OrderingTerm.asc(t.sortOrder),
-            (t) => OrderingTerm.desc(t.createdAt),
+            (t) => OrderingTerm.asc(t.plannedAt.isNull()),
+            (t) => OrderingTerm.asc(t.plannedAt),
+            (t) => OrderingTerm.asc(t.createdAt),
+            (t) => OrderingTerm.asc(t.id),
           ]))
           .watch();
 
@@ -110,6 +114,14 @@ class ListRepository {
       (_db.update(_db.shoppingLists)..where((t) => t.id.equals(id))).write(
         ShoppingListsCompanion(
           budgetMinorUnits: Value(budgetMinorUnits),
+          updatedAt: Value(DateTime.now()),
+        ),
+      );
+
+  Future<void> updatePlannedAt(int id, DateTime? plannedAt) =>
+      (_db.update(_db.shoppingLists)..where((t) => t.id.equals(id))).write(
+        ShoppingListsCompanion(
+          plannedAt: Value(plannedAt?.toUtc()),
           updatedAt: Value(DateTime.now()),
         ),
       );
@@ -169,6 +181,7 @@ class ListRepository {
               note: Value(source.note),
               colorToken: Value(source.colorToken),
               iconToken: Value(source.iconToken),
+              plannedAt: Value(source.plannedAt),
             ),
           );
       final items = await (_db.select(

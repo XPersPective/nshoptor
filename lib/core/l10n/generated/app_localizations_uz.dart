@@ -729,7 +729,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklamasiz, ko\'proq AI, zaxira nusxa · kichik oylik narxdan boshlab';
+      'Reklamasiz · Zaxiralash eksport va import · Oylik';
 
   @override
   String get proBenefitNoAds => 'Reklamasiz tajriba';
@@ -948,7 +948,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get plansPerMonth => '/ oy';
 
   @override
-  String get planTrial => '7 kun bepul';
+  String get planTrial => 'Bepul sinov';
 
   @override
   String get planProAi => 'Oyiga 100 ta AI so‘rov';
@@ -980,13 +980,13 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Obunalarni bekor qilmaguningizcha avtomatik yangilanib turadi. Istalgan vaqtda Google Play › To\'lovlar va obunalar bo\'limidan bekor qilishingiz mumkin. Narxlar Google Play ko\'rsatgan soliqni o\'z ichiga oladi.';
+      'Yangi Pro va Max obunalari bekor qilinmaguncha har oy yangilanadi. Google Play orqali boshqaring yoki bekor qiling. Xariddan oldin Play’da narx va sinov shartlarini tekshiring.';
 
   @override
   String get planCurrent => 'Joriy';
 
   @override
-  String get planStartTrial => '7 kunlik bepul sinovni boshlash';
+  String get planStartTrial => 'Bepul sinovni boshlash';
 
   @override
   String get planChoose => 'Tanlash';
@@ -1289,4 +1289,25 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Do‘kon narxi kiritilsa, mahsulot xarid qilingan deb belgilanadi; 0 ham hisoblanadi. Uydagi narx ixtiyoriy. Belgini olib tashlash uchun do‘kon narxini o‘chiring.';
+
+  @override
+  String get shoppingDateLabel => 'Xarid sanasi (ixtiyoriy)';
+
+  @override
+  String get shoppingDateNone => 'Sana tanlanmagan';
+
+  @override
+  String get clearShoppingDateAction => 'Sanani tozalash';
+
+  @override
+  String get listSortLabel => 'Ro‘yxat tartibi';
+
+  @override
+  String get listSortDate => 'Xarid sanasi';
+
+  @override
+  String get listSortAz => 'Nomi (A–Z)';
+
+  @override
+  String get listSortManual => 'Qo‘lda tartiblash';
 }

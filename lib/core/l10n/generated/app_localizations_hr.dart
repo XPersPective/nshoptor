@@ -730,7 +730,7 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bez reklama, više AI-a, sigurnosna kopija · od male mjesečne cijene';
+      'Bez reklama · Izvoz i uvoz sigurnosne kopije · Mjesečno';
 
   @override
   String get proBenefitNoAds => 'Iskustvo bez reklama';
@@ -945,7 +945,7 @@ class AppLocalizationsHr extends AppLocalizations {
   String get plansPerMonth => '/ mjesečno';
 
   @override
-  String get planTrial => '7 dana besplatno';
+  String get planTrial => 'Besplatno probno razdoblje';
 
   @override
   String get planProAi => '100 AI zahtjeva mjesečno';
@@ -977,13 +977,13 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Pretplate se automatski obnavljaju dok se ne otkažu. Otkazivanje je moguće bilo kada u Google Playu › Plaćanje i pretplate. Cijene uključuju poreze prikazane u Google Playu.';
+      'Nove Pro i Max pretplate obnavljaju se mjesečno do otkazivanja. Upravljajte ili otkažite u Google Playu. Prije kupnje provjerite cijenu i uvjete probnog razdoblja u Playu.';
 
   @override
   String get planCurrent => 'Trenutna';
 
   @override
-  String get planStartTrial => 'Pokreni 7-dnevni besplatni probni period';
+  String get planStartTrial => 'Započni besplatno probno razdoblje';
 
   @override
   String get planChoose => 'Odaberi';
@@ -1282,4 +1282,25 @@ class AppLocalizationsHr extends AppLocalizations {
   @override
   String get guidePricesBody =>
       'Cijena u trgovini označava proizvod kao kupljen; računa se i 0. Kućna cijena nije obvezna. Izbrišite cijenu u trgovini da uklonite kvačicu.';
+
+  @override
+  String get shoppingDateLabel => 'Datum kupnje (neobavezno)';
+
+  @override
+  String get shoppingDateNone => 'Datum nije odabran';
+
+  @override
+  String get clearShoppingDateAction => 'Ukloni datum';
+
+  @override
+  String get listSortLabel => 'Redoslijed popisa';
+
+  @override
+  String get listSortDate => 'Datum kupnje';
+
+  @override
+  String get listSortAz => 'Naziv (A–Z)';
+
+  @override
+  String get listSortManual => 'Ručni redoslijed';
 }
