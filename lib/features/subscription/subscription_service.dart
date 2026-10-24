@@ -48,7 +48,8 @@ class SubscriptionService extends ChangeNotifier {
   static const maxId = 'nshoptor_max_v2';
   static const legacyProId = 'nshoptor_pro';
   static const legacyMaxId = 'nshoptor_max';
-  static const offerIds = {proId, maxId};
+  static const annualBasePlanId = 'yearly';
+  static const offerIds = {proId};
   static const ids = {proId, maxId, legacyProId, legacyMaxId};
   static const _productKey = 'sub_product';
   static const _tokenKey = 'sub_token';
@@ -279,9 +280,11 @@ class SubscriptionService extends ChangeNotifier {
       final o = offers[index];
       if (o.pricingPhases.isEmpty) continue;
       final recurring = o.pricingPhases.last;
-      // New offers are monthly only. Existing yearly purchases still restore
-      // through ids/applyNativeOwned and retain their original entitlements.
-      if (recurring.billingPeriod != 'P1M' ||
+      // New purchases use the single annual Pro base plan. Restore remains
+      // independent so paid legacy Pro/Max entitlements are preserved.
+      if (o.basePlanId != annualBasePlanId ||
+          o.offerId != null ||
+          recurring.billingPeriod != 'P1Y' ||
           recurring.recurrenceMode != RecurrenceMode.infiniteRecurring) {
         continue;
       }
@@ -296,7 +299,7 @@ class SubscriptionService extends ChangeNotifier {
         ),
       );
     }
-    // Aynı base planın denemeli ve denemesiz teklifinden denemeliyi tut.
+    // Return each verified annual base plan once.
     final byPlan = <String, SubscriptionOffer>{};
     for (final o in out) {
       final key = '${o.productId}/${o.basePlanId}';
@@ -312,13 +315,16 @@ class SubscriptionService extends ChangeNotifier {
     lastError = null;
     notifyListeners();
     try {
-      // Guard callers as well as the paywall/catalog: an old annual selection
-      // must never start a new purchase after the monthly-only change.
-      if (!offer.monthly || !offerIds.contains(offer.productId)) {
-        throw StateError('monthly_offer_required');
+      if (!offer.yearly ||
+          offer.basePlanId != annualBasePlanId ||
+          !offerIds.contains(offer.productId)) {
+        throw StateError('annual_pro_offer_required');
       }
       final nativeDetails = offer.details;
-      if (nativeDetails is GooglePlayProductDetails) {
+      if (nativeDetails is! GooglePlayProductDetails) {
+        throw StateError('native_offer_required');
+      }
+      {
         final index = nativeDetails.subscriptionIndex;
         final catalog = nativeDetails.productDetails.subscriptionOfferDetails;
         if (nativeDetails.id != offer.productId ||
@@ -327,11 +333,12 @@ class SubscriptionService extends ChangeNotifier {
             index < 0 ||
             index >= catalog.length ||
             catalog[index].basePlanId != offer.basePlanId ||
+            catalog[index].offerId != null ||
             catalog[index].pricingPhases.isEmpty ||
-            (catalog[index].pricingPhases.last.billingPeriod != 'P1M' ||
+            (catalog[index].pricingPhases.last.billingPeriod != 'P1Y' ||
                 catalog[index].pricingPhases.last.recurrenceMode !=
                     RecurrenceMode.infiniteRecurring)) {
-          throw StateError('monthly_native_offer_required');
+          throw StateError('annual_native_offer_required');
         }
       }
       await refresh();
@@ -347,19 +354,24 @@ class SubscriptionService extends ChangeNotifier {
       final upgrade =
           old != null &&
           tierOf(offer.productId).index > tierOf(old.productID).index;
-      final change = old != null && old.productID != offer.productId
+      final change = old != null
           ? ChangeSubscriptionParam(
               oldPurchaseDetails: old,
-              replacementMode: upgrade
+              // Same-product benefits switch immediately; the new annual
+              // price is charged at the next bill, not a second charge now.
+              replacementMode: old.productID == offer.productId
+                  ? ReplacementMode.withoutProration
+                  : upgrade
                   ? ReplacementMode.chargeProratedPrice
                   : ReplacementMode.deferred,
             )
           : null;
       _purchasePending = true;
-      _pendingTrial = offer.hasTrial;
+      _pendingTrial = false; // The only new offering is the paid annual base.
       final launched = await _iap.buyNonConsumable(
         purchaseParam: GooglePlayPurchaseParam(
           productDetails: offer.details,
+          offerToken: nativeDetails.offerToken,
           changeSubscriptionParam: change,
         ),
       );

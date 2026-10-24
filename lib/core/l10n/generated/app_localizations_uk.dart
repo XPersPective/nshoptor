@@ -978,7 +978,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Нові підписки Pro і Max поновлюються щомісяця до скасування. Керуйте або скасовуйте в Google Play. Перед покупкою перевірте в Play ціну й умови пробного періоду.';
+      'Pro автоматично поновлюється щороку до скасування та включає 100 запитів до ШІ щомісяця. Базова ціна — 1 долар США на рік без відповідних податків; перед підтвердженням покупки перевірте остаточну місцеву ціну та податки в магазині. Керуйте підпискою або скасуйте її в Google Play.';
 
   @override
   String get planCurrent => 'Поточна';
@@ -990,7 +990,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get planChoose => 'Обрати';
 
   @override
-  String get plansAction => 'Тарифи: Pro та Max';
+  String get plansAction => 'Плани: Pro';
 
   @override
   String get assistantTitle => 'Асистент';
@@ -1079,7 +1079,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Існуючі підписки Pro і Max зберігають свій початковий місячний ліміт запитів до ШІ. Нові пропозиції передбачають 100 і 300 запитів.';
+      'Існуючі підписки Pro і Max зберігають свій початковий місячний ліміт запитів до ШІ.';
 
   @override
   String get csvExportAction => 'Експорт CSV';

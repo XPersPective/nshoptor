@@ -26,28 +26,29 @@ It compares estimated shopping costs with actual quantities and prices.
 
 Temel alışveriş listeleri, fiyat karşılaştırması, PDF/CSV raporları ve cihazdaki
 kayıtlar hesap açmadan kullanılabilir. İsteğe bağlı yapay zeka internet gerektirir.
-Yeni ücretli **Pro ve Max teklifleri yalnız aylık aboneliktir**: iptal edilene
-kadar her ay otomatik yenilenir. Güncel fiyat ve varsa deneme uygunluğu Google
-Play satın alma ekranından gelir; bu belgede fiyat veya sabit deneme sözü yoktur.
-Abonelik Google Play üzerinden yönetilir ve iptal edilir. Mevcut eski/yıllık
-satın almalar geri yüklenebilir; eski haklar korunur.
+Yeni ücretli teklif yalnız **yıllık Pro aboneliğidir**. Baz fiyat, geçerli yerel
+vergiler öncesinde yılda 1 ABD dolarıdır. Yerelleştirilmiş nihai ücret ve geçerli
+vergiler satın almadan önce Google Play'de gösterilir; her ülkede ödenecek tutarın
+tam 1 ABD doları olması garanti edilmez. Abonelik iptal edilene kadar her yıl
+otomatik yenilenir; Google Play üzerinden yönetilir ve iptal edilir.
 
 | Plan | Aylık yapay zeka kotası | Ek özellikler |
 |---|---|---|
 | Ücretsiz | 10 istek | Temel özellikler; reklamlar |
-| Pro | 100 istek | Reklamsız kullanım, JSON yedekleme ve geri yükleme |
-| Max | 300 istek | Reklamsız kullanım, JSON yedekleme ve geri yükleme |
+| Yıllık Pro | 100 istek | Reklamsız kullanım, JSON yedekleme ve geri yükleme |
 
-Eski Pro/Max ürünlerinin sırasıyla 200/1000 aylık istek hakları korunur.
+Mevcut Pro/Max satın almaları geri yüklenebilir; kazanılmış haklar korunur.
 Kotalar istemci ve sunucu politikasını anlatır; sunucu satın almayı Google Play
 ile doğrular. Çevrimdışıyken yapay zeka yerine elle giriş kullanılabilir.
 
-**English:** New Pro and Max offers are monthly subscriptions, automatically
-renewing until cancelled in Google Play. The Play purchase screen supplies the
-current price and any trial eligibility. Existing subscriptions, including older
-yearly purchases, remain restorable with their entitlements preserved. Core
-shopping and PDF/CSV reports are available without a subscription; JSON backup
-and restore require Pro or Max access.
+**English:** The only new paid offer is an annual Pro subscription, with a base
+price of USD 1 per year before applicable local taxes. Google Play shows the final
+localized price and applicable taxes before purchase; the payable amount is not
+guaranteed to be exactly USD 1 in every country. It renews annually until cancelled
+and is managed in Google Play. Pro includes 100 AI requests each month, no ads,
+and JSON backup and restore. Free includes 10 AI requests each month. Existing
+Pro/Max purchases remain restorable with their entitlements preserved. Core
+shopping and PDF/CSV reports are available without a subscription.
 
 [Türkçe tanıtım ve kullanım rehberi](https://xperspective.github.io/nshoptor/) ·
 [English website and guide](https://xperspective.github.io/nshoptor/en/)

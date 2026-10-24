@@ -979,7 +979,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Abonimet e reja Pro dhe Max rinovohen çdo muaj deri në anulim. Menaxhoni ose anuloni në Google Play. Kontrolloni çmimin dhe kushtet e provës në Play para blerjes.';
+      'Pro rinovohet automatikisht çdo vit deri në anulim dhe përfshin 100 kërkesa IA çdo muaj. Çmimi bazë është 1 dollar amerikan në vit pa taksat e zbatueshme; kontrolloni çmimin përfundimtar lokal dhe taksat në dyqan përpara se të konfirmoni blerjen. Menaxhoni ose anuloni abonimin në Google Play.';
 
   @override
   String get planCurrent => 'Aktuale';
@@ -991,7 +991,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get planChoose => 'Zgjidh';
 
   @override
-  String get plansAction => 'Planet: Pro dhe Max';
+  String get plansAction => 'Planet: Pro';
 
   @override
   String get assistantTitle => 'Asistenti';
@@ -1081,7 +1081,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Abonimet ekzistuese Pro dhe Max ruajnë lejen mujore origjinale të AI. Ofertat e reja kanë 100 dhe 300 kërkesa.';
+      'Abonimet ekzistuese Pro dhe Max ruajnë kufirin fillestar mujor të kërkesave IA.';
 
   @override
   String get csvExportAction => 'Eksporto CSV';

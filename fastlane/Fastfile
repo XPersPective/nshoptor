@@ -85,6 +85,20 @@ platform :android do
     )
   end
 
+  desc "Yalnızca doğrulanmış mağaza metinleri; görseller ve yayın kanalları korunur"
+  lane :push_metadata_text do
+    supply(
+      track: "internal",
+      version_code: VERSION_CODE,
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      metadata_path: METADATA_PATH,
+    )
+  end
+
   desc "Yalnızca mağaza metinleri ve görselleri"
   lane :push_metadata do
     supply(

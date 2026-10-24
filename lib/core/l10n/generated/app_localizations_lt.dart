@@ -978,7 +978,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Naujos Pro ir Max prenumeratos atnaujinamos kas mėnesį, kol atšaukiami. Tvarkykite arba atšaukite per Google Play. Prieš pirkdami Play patikrinkite kainą ir bandomojo laikotarpio sąlygas.';
+      'Pro automatiškai pratęsiama kasmet, kol atšaukiama, ir apima 100 DI užklausų per mėnesį. Bazinė kaina yra 1 JAV doleris per metus be taikomų mokesčių; prieš patvirtindami pirkimą patikrinkite galutinę vietinę kainą ir mokesčius parduotuvėje. Prenumeratą tvarkykite arba atšaukite sistemoje Google Play.';
 
   @override
   String get planCurrent => 'Dabartinė';
@@ -990,7 +990,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get planChoose => 'Pasirinkti';
 
   @override
-  String get plansAction => 'Planai: Pro ir Max';
+  String get plansAction => 'Planai: Pro';
 
   @override
   String get assistantTitle => 'Asistentas';
@@ -1080,7 +1080,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Esančios „Pro“ ir „Max“ prenumeracijos išlaiko savo pradinį mėnesinį AI leidimą. Naujose pasiūlymuose yra 100 ir 300 užklausų.';
+      'Esamos „Pro“ ir „Max“ prenumeratos išlaiko pradinį mėnesinį DI užklausų limitą.';
 
   @override
   String get csvExportAction => 'Eksportuoti CSV';

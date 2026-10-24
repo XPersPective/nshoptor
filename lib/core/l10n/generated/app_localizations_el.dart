@@ -979,7 +979,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Οι νέες συνδρομές Pro και Max ανανεώνονται μηνιαία μέχρι να ακυρωθούν. Διαχειριστείτε ή ακυρώστε τα στο Google Play. Ελέγξτε εκεί την τιμή και τυχόν δικαίωμα δοκιμής πριν αγοράσετε.';
+      'Το Pro ανανεώνεται αυτόματα κάθε χρόνο μέχρι να ακυρωθεί και περιλαμβάνει 100 αιτήματα AI τον μήνα. Η βασική τιμή είναι 1 δολάριο ΗΠΑ ετησίως πριν από τους ισχύοντες φόρους· ελέγξτε την τελική τοπική τιμή και τους φόρους στο κατάστημα πριν επιβεβαιώσετε την αγορά. Διαχειριστείτε ή ακυρώστε τη συνδρομή στο Google Play.';
 
   @override
   String get planCurrent => 'Τρέχουσα';
@@ -991,7 +991,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get planChoose => 'Επιλογή';
 
   @override
-  String get plansAction => 'Συνδρομές: Pro και Max';
+  String get plansAction => 'Πλάνα: Pro';
 
   @override
   String get assistantTitle => 'Βοηθός';
@@ -1080,7 +1080,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Οι υπάρχουσες συνδρομές Pro και Max διατηρούν το αρχικό μηνιαίο όριο χρήσης AI. Οι νέες προσφορές παρέχουν 100 και 300 αιτήματα.';
+      'Οι υπάρχουσες συνδρομές Pro και Max διατηρούν το αρχικό μηνιαίο όριο χρήσης AI.';
 
   @override
   String get csvExportAction => 'Εξαγωγή CSV';

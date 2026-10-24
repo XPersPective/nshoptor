@@ -979,7 +979,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Noile abonamente Pro și Max se reînnoiesc lunar până la anulare. Gestionează sau anulează în Google Play. Verifică prețul și eligibilitatea pentru probă în Play înainte de cumpărare.';
+      'Pro se reînnoiește automat în fiecare an până la anulare și include 100 de solicitări AI pe lună. Prețul de bază este de 1 dolar SUA pe an, înainte de taxele aplicabile; verifică prețul local final și taxele în magazin înainte de a confirma achiziția. Gestionează sau anulează abonamentul în Google Play.';
 
   @override
   String get planCurrent => 'Actual';
@@ -991,7 +991,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get planChoose => 'Alege';
 
   @override
-  String get plansAction => 'Planuri: Pro și Max';
+  String get plansAction => 'Planuri: Pro';
 
   @override
   String get assistantTitle => 'Asistent';
@@ -1081,7 +1081,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Abonamentele Pro și Max existente își păstrează alocarea lunară originală de AI. Ofertele noi au 100 și 300 de solicitări.';
+      'Abonamentele Pro și Max existente își păstrează alocarea lunară originală de AI.';
 
   @override
   String get csvExportAction => 'Exportare CSV';

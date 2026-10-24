@@ -978,7 +978,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Nuwe Pro- en Max-intekeninge hernu maandeliks totdat jy kanselleer. Bestuur of kanselleer in Google Play. Kontroleer die prys en enige proefaanbod voor aankoop in Play.';
+      'Pro hernu elke jaar outomaties totdat dit gekanselleer word en sluit 100 KI-versoeke per maand in. Die basisprys is USD 1 per jaar voor toepaslike belasting; kontroleer die finale plaaslike prys en belasting in die winkel voordat jy die aankoop bevestig. Bestuur of kanselleer in Google Play.';
 
   @override
   String get planCurrent => 'Huidig';
@@ -990,7 +990,7 @@ class AppLocalizationsAf extends AppLocalizations {
   String get planChoose => 'Kies';
 
   @override
-  String get plansAction => 'Planne: Pro en Max';
+  String get plansAction => 'Pakkette: Pro';
 
   @override
   String get assistantTitle => 'Assistent';
@@ -1079,7 +1079,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Bestaande Pro- en Max-abonnemente behou hul oorspronklike maandelikse AI-toelaag. Nuwe aanbiedings het 100 en 300 versoeke.';
+      'Bestaande Pro- en Max-abonnemente behou hul oorspronklike maandelikse AI-toelaag.';
 
   @override
   String get csvExportAction => 'Eksporteer CSV';

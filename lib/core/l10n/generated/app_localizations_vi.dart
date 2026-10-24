@@ -978,7 +978,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Các gói đăng ký Pro và Max mới tự gia hạn hằng tháng cho đến khi hủy. Quản lý hoặc hủy trong Google Play. Kiểm tra giá và điều kiện dùng thử trên Play trước khi mua.';
+      'Pro tự động gia hạn hằng năm cho đến khi hủy và bao gồm 100 yêu cầu AI mỗi tháng. Giá cơ bản là 1 đô la Mỹ mỗi năm, chưa gồm các loại thuế áp dụng; hãy kiểm tra giá cuối cùng tại địa phương và thuế trong cửa hàng trước khi xác nhận mua. Quản lý hoặc hủy gói đăng ký trong Google Play.';
 
   @override
   String get planCurrent => 'Đang dùng';
@@ -990,7 +990,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get planChoose => 'Chọn';
 
   @override
-  String get plansAction => 'Gói: Pro và Max';
+  String get plansAction => 'Gói dịch vụ: Pro';
 
   @override
   String get assistantTitle => 'Trợ lý';
@@ -1078,7 +1078,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Các gói đăng ký Pro và Max hiện tại sẽ giữ nguyên hạn mức AI hàng tháng ban đầu. Các ưu đãi mới có 100 và 300 yêu cầu.';
+      'Các gói đăng ký Pro và Max hiện tại sẽ giữ nguyên hạn mức AI hàng tháng ban đầu.';
 
   @override
   String get csvExportAction => 'Xuất CSV';

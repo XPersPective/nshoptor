@@ -9,6 +9,7 @@ import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
+import '../../../core/widgets/amount_axis_chart.dart';
 
 import '../../../data/db/app_database.dart';
 import 'price_history_repository.dart';
@@ -336,10 +337,16 @@ class _PriceChart extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 12),
-              SizedBox(
-                height: 140,
-                width: double.infinity,
-                child: CustomPaint(
+              AmountAxisChart(
+                minimum: min,
+                maximum: max,
+                formatAmount: money,
+                compactFormatAmount: (value) => compactChartAmount(
+                  value,
+                  digits: currency.minorUnitDigits,
+                  locale: formatLocaleCode(context),
+                ),
+                plot: CustomPaint(
                   painter: _PriceChartPainter(
                     actual: actual,
                     estimated: estimated,

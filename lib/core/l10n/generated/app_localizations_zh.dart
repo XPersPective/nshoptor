@@ -953,7 +953,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      '新购的Pro和Max订阅每月自动续订，直到取消。请在Google Play中管理或取消。购买前，请在Play查看价格和免费试用资格。';
+      'Pro在取消前每年自动续订，每月包含100次AI请求。基本价格为每年1美元，不含适用税费；请在确认购买前，在商店核对当地最终价格和税费。您可以在Google Play中管理或取消订阅。';
 
   @override
   String get planCurrent => '当前';
@@ -965,7 +965,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get planChoose => '选择';
 
   @override
-  String get plansAction => '计划：Pro 和 Max';
+  String get plansAction => '方案: Pro';
 
   @override
   String get assistantTitle => '助手';
@@ -1044,8 +1044,7 @@ class AppLocalizationsZh extends AppLocalizations {
       '所有已完成的购物。退货会减少总额。日期指的是购物完成时间。一次购物不足以计算平均间隔。';
 
   @override
-  String get planLegacyRights =>
-      '现有的 Pro 和 Max 订阅保留其原有的每月 AI 使用额度。新套餐分别提供 100 次和 300 次请求。';
+  String get planLegacyRights => '现有的 Pro 和 Max 订阅保留其原有的每月 AI 使用额度。';
 
   @override
   String get csvExportAction => '导出 CSV';

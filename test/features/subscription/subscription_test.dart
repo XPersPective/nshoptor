@@ -1,14 +1,19 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:napp_core/napp_core.dart';
+import 'package:napp_core/napp_core.dart' hide AppTheme;
 import 'package:napp_pro/napp_pro.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
+import 'package:nshoptor/core/theme/app_theme.dart';
 import 'package:nshoptor/features/subscription/subscription_purchase_adapter.dart';
 import 'package:nshoptor/features/subscription/subscription_paywall.dart';
 import 'package:nshoptor/features/subscription/subscription_service.dart';
@@ -114,23 +119,17 @@ GooglePlayPurchaseDetails _native(String id, String token) =>
     );
 SubscriptionOffer _offer(String id) => SubscriptionOffer(
   productId: id,
-  basePlanId: 'monthly',
+  basePlanId: 'yearly',
   price: 'store-price',
-  billingPeriod: 'P1M',
+  billingPeriod: 'P1Y',
   hasTrial: false,
-  details: ProductDetails(
-    id: id,
-    title: id,
-    description: '',
-    price: 'store-price',
-    rawPrice: 1,
-    currencyCode: 'USD',
-  ),
+  details: _products(id).last,
 );
 
 List<GooglePlayProductDetails> _products(
   String id, {
   RecurrenceMode monthlyRecurrence = RecurrenceMode.infiniteRecurring,
+  RecurrenceMode yearlyRecurrence = RecurrenceMode.infiniteRecurring,
 }) {
   PricingPhaseWrapper phase(
     String period,
@@ -174,12 +173,7 @@ List<GooglePlayProductDetails> _products(
           offerTags: [],
           offerIdToken: 'yearly-token',
           pricingPhases: [
-            phase(
-              'P1Y',
-              '469,99 ₺',
-              469990000,
-              RecurrenceMode.infiniteRecurring,
-            ),
+            phase('P1Y', '469,99 ₺', 469990000, yearlyRecurrence),
           ],
         ),
       ],
@@ -196,6 +190,185 @@ StorePurchaseUpdate _update(String productId) => StorePurchaseUpdate(
 );
 
 void main() {
+  setUpAll(() async {
+    if (!const bool.fromEnvironment('UI_REVIEW')) return;
+    final font = FontLoader('Roboto');
+    for (final name in ['segoeui.ttf', 'segoeuib.ttf']) {
+      final file = File('C:/Windows/Fonts/$name');
+      font.addFont(
+        Future.value(ByteData.sublistView(await file.readAsBytes())),
+      );
+    }
+    await font.load();
+    final flutterRoot = Platform.environment['FLUTTER_ROOT'] ?? 'C:/flutter';
+    final icons = File(
+      '$flutterRoot/bin/cache/artifacts/material_fonts/materialicons-regular.otf',
+    );
+    await (FontLoader('MaterialIcons')..addFont(
+          Future.value(ByteData.sublistView(await icons.readAsBytes())),
+        ))
+        .load();
+  });
+
+  if (const bool.fromEnvironment('UI_REVIEW')) {
+    for (final scenario in [
+      (locale: 'ar', width: 320.0, scale: 2.0, dark: false, legacy: true),
+      (locale: 'tr', width: 412.0, scale: 1.0, dark: true, legacy: false),
+      (locale: 'en', width: 412.0, scale: 1.0, dark: false, legacy: false),
+    ]) {
+      testWidgets(
+        'UI_REVIEW annual paywall ${scenario.locale} ${scenario.width} ${scenario.scale}',
+        (tester) async {
+          await tester.binding.setSurfaceSize(Size(scenario.width, 900));
+          addTearDown(() => tester.binding.setSurfaceSize(null));
+          final native = _NativeStore()
+            ..products = [
+              ..._products(SubscriptionService.proId),
+              ..._products(SubscriptionService.maxId),
+            ];
+          final service = SubscriptionService(
+            store: SettingsStore(),
+            iap: native,
+          );
+          if (scenario.legacy) {
+            service.applyOwned([
+              (productId: SubscriptionService.legacyProId, token: 'existing'),
+            ]);
+          }
+          await tester.pumpWidget(
+            MaterialApp(
+              locale: Locale(scenario.locale),
+              supportedLocales: AppLocalizations.supportedLocales,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              theme: scenario.dark ? AppTheme.dark() : AppTheme.light(),
+              builder: (context, child) => MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: TextScaler.linear(scenario.scale)),
+                child: child!,
+              ),
+              home: RepaintBoundary(
+                key: const Key('paywall_capture'),
+                child: SubscriptionPaywall(service: service),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+          final l10n = AppLocalizations.of(
+            tester.element(find.byType(SubscriptionPaywall)),
+          );
+          Future<void> capture(String state) async {
+            expect(tester.takeException(), isNull);
+            final boundary = tester.renderObject<RenderRepaintBoundary>(
+              find.byKey(const Key('paywall_capture')),
+            );
+            await tester.runAsync(() async {
+              final image = await boundary.toImage();
+              try {
+                final bytes = await image.toByteData(
+                  format: ui.ImageByteFormat.png,
+                );
+                final file = File(
+                  'artifacts/qa/PB-137/paywall_${scenario.locale}_${scenario.width.toInt()}_${scenario.scale}x_$state.png',
+                );
+                await file.parent.create(recursive: true);
+                await file.writeAsBytes(bytes!.buffer.asUint8List());
+              } finally {
+                image.dispose();
+              }
+            });
+          }
+
+          await capture('top');
+          if (scenario.legacy) {
+            await tester.scrollUntilVisible(
+              find.textContaining('Pro: 200'),
+              150,
+            );
+            await tester.pumpAndSettle();
+            await capture('retained_rights');
+          }
+          await tester.scrollUntilVisible(find.text(l10n.planChoose), 150);
+          await tester.pumpAndSettle();
+          expect(find.byKey(const Key('plan_max')), findsNothing);
+          expect(find.text(l10n.planStartTrial), findsNothing);
+          expect(service.monthlyAllowance, scenario.legacy ? 200 : 10);
+          await capture('annual_offer');
+          await tester.scrollUntilVisible(find.text(l10n.plansLegal), 150);
+          await tester.pumpAndSettle();
+          await capture('legal_start');
+          // Long legal copy can span multiple screens at 200% text scaling.
+          final position = tester
+              .state<ScrollableState>(find.byType(Scrollable).first)
+              .position;
+          position.jumpTo(position.maxScrollExtent);
+          await tester.pumpAndSettle();
+          await capture('legal_end');
+          await tester.pumpWidget(const SizedBox.shrink());
+          service.dispose();
+          await native.events.close();
+        },
+      );
+    }
+  }
+
+  test(
+    'annual Pro keeps100permonth and usesoldtoken when changing baseplan',
+    () async {
+      final native = _NativeStore();
+      native.addition.owned = [
+        _native(SubscriptionService.proId, 'monthly-owner'),
+      ];
+      final service = SubscriptionService(store: SettingsStore(), iap: native);
+      await service.buy(_offer(SubscriptionService.proId));
+      expect(native.buys, hasLength(1));
+      expect(
+        native
+            .buys
+            .single
+            .changeSubscriptionParam!
+            .oldPurchaseDetails
+            .verificationData
+            .serverVerificationData,
+        'monthly-owner',
+      );
+      expect(
+        native.buys.single.changeSubscriptionParam!.replacementMode,
+        ReplacementMode.withoutProration,
+      );
+      expect(service.monthlyAllowance, 100);
+      expect(SubscriptionService.offerIds, {SubscriptionService.proId});
+      service.dispose();
+      await native.events.close();
+    },
+  );
+
+  test(
+    'a stale monthly native phase cannot masquerade as annual Pro',
+    () async {
+      final native = _NativeStore();
+      final service = SubscriptionService(store: SettingsStore(), iap: native);
+      await service.buy(
+        SubscriptionOffer(
+          productId: SubscriptionService.proId,
+          basePlanId: 'yearly',
+          price: 'store-price',
+          billingPeriod: 'P1Y',
+          hasTrial: false,
+          details: _products(SubscriptionService.proId).first,
+        ),
+      );
+      expect(native.buys, isEmpty);
+      expect(service.lastError, isNotNull);
+      service.dispose();
+      await native.events.close();
+    },
+  );
+
   test('legacy same-tier allowance wins in either order and only new IDs are offered', () async {
     final native = _NativeStore();
     final service = SubscriptionService(store: SettingsStore(), iap: native);
@@ -341,42 +514,47 @@ void main() {
     },
   );
 
-  test('new offers include monthly native recurring prices only; yearly and legacy catalog excluded', () async {
-    final native = _NativeStore()
-      ..products = [
-        ..._products(SubscriptionService.proId),
-        ..._products(SubscriptionService.legacyProId),
-      ];
-    final service = SubscriptionService(store: SettingsStore(), iap: native);
-    final offers = await service.loadOffers();
-    expect(offers, hasLength(1));
-    expect(offers.single.price, '57,99 ₺');
-    expect(offers.single.hasTrial, isTrue);
-    expect(offers.single.billingPeriod, 'P1M');
-    expect(offers.single.monthly, isTrue);
-    expect(offers.single.productId, SubscriptionService.proId);
-    service.dispose();
-    await native.events.close();
-  });
+  test(
+    'new offers include annual Pro only; monthly Max and legacy excluded',
+    () async {
+      final native = _NativeStore()
+        ..products = [
+          ..._products(SubscriptionService.proId),
+          ..._products(SubscriptionService.legacyProId),
+          ..._products(SubscriptionService.maxId),
+        ];
+      final service = SubscriptionService(store: SettingsStore(), iap: native);
+      final offers = await service.loadOffers();
+      expect(offers, hasLength(1));
+      expect(offers.single.price, '469,99 ₺');
+      expect(offers.single.hasTrial, isFalse);
+      expect(offers.single.billingPeriod, 'P1Y');
+      expect(offers.single.yearly, isTrue);
+      expect(offers.single.basePlanId, SubscriptionService.annualBasePlanId);
+      expect(offers.single.productId, SubscriptionService.proId);
+      service.dispose();
+      await native.events.close();
+    },
+  );
 
   test(
-    'finite monthly plans are not sold as automatically renewing subscriptions',
+    'finite annual plans are not sold as automatically renewing subscriptions',
     () async {
       final native = _NativeStore()
         ..products = _products(
           SubscriptionService.proId,
-          monthlyRecurrence: RecurrenceMode.nonRecurring,
+          yearlyRecurrence: RecurrenceMode.nonRecurring,
         );
       final service = SubscriptionService(store: SettingsStore(), iap: native);
       expect(await service.loadOffers(), isEmpty);
       await service.buy(
         SubscriptionOffer(
           productId: SubscriptionService.proId,
-          basePlanId: 'monthly',
+          basePlanId: 'yearly',
           price: '57,99 ₺',
-          billingPeriod: 'P1M',
+          billingPeriod: 'P1Y',
           hasTrial: false,
-          details: native.products.first,
+          details: native.products.last,
         ),
       );
       expect(native.buys, isEmpty);
@@ -386,7 +564,7 @@ void main() {
     },
   );
 
-  test('annual selections and mislabeled native yearly plans cannot buy; existing yearly rights restore', () async {
+  test('Max and nonannual selections cannot buy; existing yearly rights restore', () async {
     final native = _NativeStore();
     native.addition.owned = [
       _native(SubscriptionService.legacyProId, 'existing-yearly-token'),
@@ -430,7 +608,7 @@ void main() {
   });
 
   testWidgets(
-    'paywall displays monthly store price without an annual selector or annual price',
+    'paywall offers only annual Pro using the unmodified localized store price',
     (tester) async {
       final native = _NativeStore()
         ..products = [
@@ -453,46 +631,111 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(find.byType(ChoiceChip), findsNothing);
-      expect(find.text('Yearly'), findsNothing);
+      expect(find.text('Yearly'), findsOneWidget);
       await tester.scrollUntilVisible(find.byKey(const Key('plan_pro')), 200);
       await tester.pumpAndSettle();
       expect(
         find.descendant(
           of: find.byKey(const Key('plan_pro')),
-          matching: find.text('57,99 ₺ / month'),
+          matching: find.text('469,99 ₺ / year'),
         ),
         findsOneWidget,
       );
-      expect(find.textContaining('469,99'), findsNothing);
-      expect(find.text('Free trial'), findsOneWidget);
+      expect(find.textContaining('57,99'), findsNothing);
+      expect(find.byKey(const Key('plan_max')), findsNothing);
+      expect(find.text('Free trial'), findsNothing);
+      expect(find.text('Start free trial'), findsNothing);
+      expect(find.text('100 AI requests a month'), findsOneWidget);
+      await tester.scrollUntilVisible(find.text('Choose'), 100);
+      await tester.tap(find.text('Choose'));
+      await tester.pumpAndSettle();
+      expect(native.buys, hasLength(1));
+      expect(native.buys.single.productDetails.id, SubscriptionService.proId);
+      expect(native.buys.single.offerToken, 'yearly-token');
       await tester.pumpWidget(const SizedBox.shrink());
       service.dispose();
       await native.events.close();
     },
   );
 
-  test('upgrade charges the prorated price; downgrade is deferred to the period end', () async {
-    final native = _NativeStore();
-    native.addition.owned = [_native(SubscriptionService.proId, 'pro-token')];
-    final s = SubscriptionService(store: SettingsStore(), iap: native)..start();
-    await Future<void>.delayed(Duration.zero);
-    expect(s.tier, Tier.pro);
+  testWidgets(
+    'existing paid tiers retain their allowance and can choose annual Pro',
+    (tester) async {
+      for (final owned in [
+        (id: SubscriptionService.proId, label: 'Pro', allowance: 100),
+        (id: SubscriptionService.maxId, label: 'Max', allowance: 300),
+        (id: SubscriptionService.legacyProId, label: 'Pro', allowance: 200),
+        (id: SubscriptionService.legacyMaxId, label: 'Max', allowance: 1000),
+      ]) {
+        final native = _NativeStore()
+          ..products = _products(SubscriptionService.proId);
+        final service = SubscriptionService(store: SettingsStore(), iap: native)
+          ..applyOwned([(productId: owned.id, token: 'existing-token')]);
+        await tester.pumpWidget(
+          MaterialApp(
+            locale: const Locale('en'),
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            home: SubscriptionPaywall(service: service),
+          ),
+        );
+        await tester.pumpAndSettle();
+        await tester.scrollUntilVisible(
+          find.textContaining('${owned.label}: ${owned.allowance}'),
+          100,
+        );
+        expect(
+          find.textContaining('${owned.label}: ${owned.allowance}'),
+          findsOneWidget,
+        );
+        await tester.scrollUntilVisible(find.text('Choose'), 100);
+        expect(find.byKey(const Key('plan_max')), findsNothing);
+        expect(
+          find.descendant(
+            of: find.byKey(const Key('plan_pro')),
+            matching: find.byKey(const Key('plan_current_badge')),
+          ),
+          findsNothing,
+        );
+        expect(service.monthlyAllowance, owned.allowance);
+        await tester.pumpWidget(const SizedBox.shrink());
+        service.dispose();
+        await native.events.close();
+      }
+    },
+  );
 
-    await s.buy(_offer(SubscriptionService.maxId));
-    final up = native.buys.last.changeSubscriptionParam!;
-    expect(up.replacementMode, ReplacementMode.chargeProratedPrice);
-    expect(up.oldPurchaseDetails.productID, SubscriptionService.proId);
+  test(
+    'removed Max cannot be bought; retained Max to annual Pro defers change',
+    () async {
+      final native = _NativeStore();
+      native.addition.owned = [_native(SubscriptionService.proId, 'pro-token')];
+      final s = SubscriptionService(store: SettingsStore(), iap: native)
+        ..start();
+      await Future<void>.delayed(Duration.zero);
+      expect(s.tier, Tier.pro);
 
-    native.addition.owned = [_native(SubscriptionService.maxId, 'max-token')];
-    s.applyNativeOwned(native.addition.owned);
-    await s.buy(_offer(SubscriptionService.proId));
-    expect(
-      native.buys.last.changeSubscriptionParam!.replacementMode,
-      ReplacementMode.deferred,
-    );
-    s.dispose();
-    await native.events.close();
-  });
+      await s.buy(_offer(SubscriptionService.maxId));
+      expect(native.buys, isEmpty);
+      expect(s.lastError, isNotNull);
+      expect(s.tier, Tier.pro);
+
+      native.addition.owned = [_native(SubscriptionService.maxId, 'max-token')];
+      s.applyNativeOwned(native.addition.owned);
+      await s.buy(_offer(SubscriptionService.proId));
+      expect(
+        native.buys.last.changeSubscriptionParam!.replacementMode,
+        ReplacementMode.deferred,
+      );
+      s.dispose();
+      await native.events.close();
+    },
+  );
 
   test('launched purchase stays busy until cancellation event; late refresh after dispose safe', () async {
     final native = _NativeStore(),
@@ -519,7 +762,7 @@ void main() {
   });
 
   testWidgets(
-    'legacy note, monthly-only period and retry controls fit320dp2x Arabic',
+    'legacy note, annual period and retry controls fit320dp2x Arabic',
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(320, 640));
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -552,11 +795,11 @@ void main() {
       final l10n = AppLocalizations.of(
         tester.element(find.byType(SubscriptionPaywall)),
       );
-      await tester.scrollUntilVisible(find.text(l10n.plansMonthly), 200);
+      await tester.scrollUntilVisible(find.text(l10n.plansYearly), 200);
       await tester.pumpAndSettle();
-      expect(find.text(l10n.plansYearly), findsNothing);
+      expect(find.text(l10n.plansMonthly), findsNothing);
       expect(find.byType(ChoiceChip), findsNothing);
-      await tester.scrollUntilVisible(find.byKey(const Key('plan_max')), 400);
+      await tester.scrollUntilVisible(find.byKey(const Key('plan_pro')), 400);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
       await tester.scrollUntilVisible(
@@ -646,7 +889,7 @@ void main() {
         ),
         findsOneWidget,
       );
-      // Offers loaded but none for Pro/Max: no endless progress bar, a short note instead.
+      // No annual Pro offer: stop loading and show the store availability message.
       expect(
         find.descendant(
           of: find.byKey(const Key('plan_pro')),
@@ -661,7 +904,8 @@ void main() {
         ),
         findsOneWidget,
       );
-      expect(find.text('Yıllık'), findsNothing);
+      expect(find.text('Yıllık'), findsOneWidget);
+      expect(find.byKey(const Key('plan_max')), findsNothing);
       expect(find.byType(ChoiceChip), findsNothing);
       expect(find.byType(LinearProgressIndicator), findsNothing);
       await tester.scrollUntilVisible(
@@ -675,10 +919,10 @@ void main() {
       );
       expect(find.byKey(const Key('plans_restore')), findsOneWidget);
       await tester.scrollUntilVisible(
-        find.textContaining('her ay otomatik yenilenir'),
+        find.textContaining('her yıl otomatik yenilenir'),
         200,
       );
-      expect(find.textContaining('her ay otomatik yenilenir'), findsOneWidget);
+      expect(find.textContaining('her yıl otomatik yenilenir'), findsOneWidget);
     },
   );
 }

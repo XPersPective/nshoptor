@@ -980,7 +980,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Uudet Pro- ja Max-tilaukset uusiutuvat kuukausittain, kunnes ne perutaan. Hallitse tai peru Google Playssa. Tarkista hinta ja mahdollisen kokeilun ehdot Playssa ennen ostoa.';
+      'Pro uusiutuu automaattisesti vuosittain, kunnes se perutaan, ja sisältää 100 tekoälypyyntöä kuukaudessa. Perushinta on 1 Yhdysvaltain dollari vuodessa ennen sovellettavia veroja; tarkista lopullinen paikallinen hinta ja verot kaupasta ennen oston vahvistamista. Hallinnoi tai peru tilaus Google Playssa.';
 
   @override
   String get planCurrent => 'Nykyinen';
@@ -992,7 +992,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get planChoose => 'Valitse';
 
   @override
-  String get plansAction => 'Suunnitelmat: Pro ja Max';
+  String get plansAction => 'Suunnitelmat: Pro';
 
   @override
   String get assistantTitle => 'Avustaja';
@@ -1082,7 +1082,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Olemassa olevat Pro- ja Max-tilaukset säilyttävät alkuperäisen kuukausittaisen AI-käyttöoikeuden. Uudet tarjoukset sisältävät 100 ja 300 pyyntöä.';
+      'Olemassa olevat Pro- ja Max-tilaukset säilyttävät alkuperäisen kuukausittaisen tekoälypyyntöjen kiintiönsä.';
 
   @override
   String get csvExportAction => 'Vie CSV';

@@ -979,7 +979,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Langganan Pro dan Max baharu diperbaharui setiap bulan sehingga dibatalkan. Urus atau batalkan dalam Google Play. Semak harga dan kelayakan percubaan dalam Play sebelum membeli.';
+      'Pro diperbaharui secara automatik setiap tahun sehingga dibatalkan dan merangkumi 100 permintaan AI setiap bulan. Harga asas ialah 1 dolar AS setahun sebelum cukai yang berkenaan; semak harga tempatan akhir dan cukai di kedai sebelum mengesahkan pembelian. Urus atau batalkan di Google Play.';
 
   @override
   String get planCurrent => 'Semasa';
@@ -991,7 +991,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get planChoose => 'Pilih';
 
   @override
-  String get plansAction => 'Pelan: Pro dan Max';
+  String get plansAction => 'Pakej: Pro';
 
   @override
   String get assistantTitle => 'Pembantu';
@@ -1080,7 +1080,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Langganan Pro dan Max sedia ada mengekalkan had bulanan AI asal. Tawaran baharu mempunyai 100 dan 300 permintaan.';
+      'Langganan Pro dan Max sedia ada mengekalkan had bulanan AI asal.';
 
   @override
   String get csvExportAction => 'Eksport CSV';

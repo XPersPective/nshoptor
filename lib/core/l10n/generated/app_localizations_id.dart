@@ -976,7 +976,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Langganan Pro dan Max baru diperpanjang setiap bulan hingga dibatalkan. Kelola atau batalkan di Google Play. Periksa harga dan kelayakan uji coba di Play sebelum membeli.';
+      'Pro diperpanjang otomatis setiap tahun hingga dibatalkan dan mencakup 100 permintaan AI setiap bulan. Harga dasar adalah 1 dolar AS per tahun sebelum pajak yang berlaku; periksa harga lokal akhir dan pajak di toko sebelum mengonfirmasi pembelian. Kelola atau batalkan di Google Play.';
 
   @override
   String get planCurrent => 'Berlaku';
@@ -988,7 +988,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get planChoose => 'Pilih';
 
   @override
-  String get plansAction => 'Paket: Pro dan Max';
+  String get plansAction => 'Paket: Pro';
 
   @override
   String get assistantTitle => 'Asisten';
@@ -1076,7 +1076,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Langganan Pro dan Max yang sudah ada tetap mempertahankan kuota AI bulanan aslinya. Penawaran baru memiliki 100 dan 300 permintaan.';
+      'Langganan Pro dan Max yang sudah ada tetap mempertahankan kuota AI bulanan aslinya.';
 
   @override
   String get csvExportAction => 'Ekspor CSV';

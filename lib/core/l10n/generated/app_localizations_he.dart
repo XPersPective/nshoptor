@@ -970,7 +970,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'מנויי Pro ו-Max חדשים מתחדשים מדי חודש עד לביטול. אפשר לנהל או לבטל ב-Google Play. לפני הרכישה בדקו ב-Play את המחיר ואת הזכאות לתקופת ניסיון.';
+      'Pro מתחדש אוטומטית מדי שנה עד לביטול וכולל 100 בקשות AI בכל חודש. מחיר הבסיס הוא דולר אמריקאי אחד לשנה לפני המסים החלים; יש לבדוק בחנות את המחיר המקומי הסופי ואת המסים לפני אישור הרכישה. ניתן לנהל או לבטל ב-Google Play.';
 
   @override
   String get planCurrent => 'נוכחי';
@@ -982,7 +982,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get planChoose => 'בחר';
 
   @override
-  String get plansAction => 'תוכניות: Pro ו־Max';
+  String get plansAction => 'תוכניות: Pro';
 
   @override
   String get assistantTitle => 'עוזר';
@@ -1068,7 +1068,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'מנויים קיימים ל-Pro ול-Max שומרים על ההקצאה החודשית המקורית של ה-AI. ההצעות החדשות כוללות 100 ו-300 בקשות.';
+      'מנויים קיימים ל-Pro ול-Max שומרים על ההקצאה החודשית המקורית של ה-AI.';
 
   @override
   String get csvExportAction => 'ייצוא CSV';

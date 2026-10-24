@@ -484,8 +484,8 @@ void main() {
     await tester.tap(find.byKey(const Key('item_price_history')));
     await settle(tester);
 
-    // Both the formatted chart range and the single observation show money.
-    expect(find.textContaining('42,90'), findsNWidgets(2));
+    // The readable axis, formatted range and single observation all show money.
+    expect(find.textContaining('42,90'), findsNWidgets(3));
     expect(find.byKey(const Key('price_history_chart')), findsOneWidget);
     expect(
       find.byWidgetPredicate(

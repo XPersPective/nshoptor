@@ -979,7 +979,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Neue Pro- und Max-Abonnements verlängern sich monatlich bis zur Kündigung. Verwalte oder kündige sie in Google Play. Prüfe dort vor dem Kauf den Preis und die Berechtigung für eine Testphase.';
+      'Pro verlängert sich bis zur Kündigung automatisch jedes Jahr und umfasst 100 KI-Anfragen pro Monat. Der Basispreis beträgt 1 US-Dollar pro Jahr vor anfallenden Steuern; prüfe den endgültigen lokalen Preis und die Steuern im Store, bevor du den Kauf bestätigst. Verwalte oder kündige das Abo in Google Play.';
 
   @override
   String get planCurrent => 'Aktuell';
@@ -991,7 +991,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get planChoose => 'Wählen';
 
   @override
-  String get plansAction => 'Tarife: Pro und Max';
+  String get plansAction => 'Tarife: Pro';
 
   @override
   String get assistantTitle => 'Assistent';
@@ -1081,7 +1081,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Bestehende Pro- und Max-Abonnements behalten ihre ursprüngliche monatliche AI-Nutzung. Neue Angebote bieten 100 bzw. 300 Anfragen.';
+      'Bestehende Pro- und Max-Abonnements behalten ihr ursprüngliches monatliches KI-Kontingent.';
 
   @override
   String get csvExportAction => 'CSV exportieren';

@@ -983,7 +983,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Ukubhalisa okusha kwe-Pro ne-Max kuvuselelwa nyanga zonke uze ukhansele. Phatha noma ukhansele ku-Google Play. Hlola intengo nemibandela yesivivinyo ku-Play ngaphambi kokuthenga.';
+      'I-Pro ivuselelwa ngokuzenzakalelayo minyaka yonke uze uyikhansele futhi ihlanganisa izicelo ze-AI eziyi-100 ngenyanga. Intengo eyisisekelo iyidola lase-US eli-1 ngonyaka ngaphambi kwezintela ezisebenzayo; hlola intengo yokugcina yendawo nezintela esitolo ngaphambi kokuqinisekisa ukuthenga. Phatha noma ukhansele ukubhalisa ku-Google Play.';
 
   @override
   String get planCurrent => 'Okwamanje';
@@ -995,7 +995,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get planChoose => 'Khetha';
 
   @override
-  String get plansAction => 'Amabhuku: Pro ne-Max';
+  String get plansAction => 'Amaphrojekthi: Pro';
 
   @override
   String get assistantTitle => 'Usizo';
@@ -1085,7 +1085,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Izibhalo zikaPro neMax ezikhona ziyagcina ukuvumelana kwe-AI kwangenyanga okwakuqala. Izinketho ezintsha zinamaphuzu angu-100 no-300.';
+      'Ukubhalisa kwe-Pro ne-Max okukhona kugcina umkhawulo wako wokuqala wezicelo ze-AI zanyanga zonke.';
 
   @override
   String get csvExportAction => 'Thumela i-CSV';

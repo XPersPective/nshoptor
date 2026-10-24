@@ -979,7 +979,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'रद्द करने तक नए Pro और Max सदस्यता प्लान हर महीने नवीनीकृत होते हैं। Google Play में प्रबंधित या रद्द करें। खरीदने से पहले Play में कीमत और ट्रायल की पात्रता देखें।';
+      'रद्द किए जाने तक Pro हर साल अपने आप नवीनीकृत होता है और हर महीने 100 AI अनुरोध मिलते हैं। लागू करों से पहले मूल कीमत सालाना 1 अमेरिकी डॉलर है; खरीद की पुष्टि करने से पहले स्टोर में अंतिम स्थानीय कीमत और कर जाँचें। Google Play में सदस्यता प्रबंधित या रद्द करें।';
 
   @override
   String get planCurrent => 'वर्तमान';
@@ -991,7 +991,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get planChoose => 'चुनें';
 
   @override
-  String get plansAction => 'योजनाएं: Pro और Max';
+  String get plansAction => 'योजनाएं: Pro';
 
   @override
   String get assistantTitle => 'सहायक';
@@ -1080,7 +1080,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'मौजूदा Pro और Max सब्सक्रिप्शन अपनी मूल मासिक AI अनुमति बनाए रखेंगी। नई ऑफ़र्स में 100 और 300 अनुरोध शामिल हैं।';
+      'मौजूदा Pro और Max सदस्यताओं की मूल मासिक AI अनुरोध सीमा बनी रहेगी।';
 
   @override
   String get csvExportAction => 'CSV निर्यात करें';

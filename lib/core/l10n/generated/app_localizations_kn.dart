@@ -979,7 +979,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'ರದ್ದುಪಡಿಸುವವರೆಗೆ ಹೊಸ Pro ಮತ್ತು Max ಚಂದಾದಾರಿಕೆಗಳು ಪ್ರತಿ ತಿಂಗಳು ನವೀಕರಣಗೊಳ್ಳುತ್ತವೆ. Google Playನಲ್ಲಿ ನಿರ್ವಹಿಸಿ ಅಥವಾ ರದ್ದುಪಡಿಸಿ. ಖರೀದಿಗೂ ಮೊದಲು Playನಲ್ಲಿ ಬೆಲೆ ಮತ್ತು ಪ್ರಯೋಗದ ಅರ್ಹತೆಯನ್ನು ಪರಿಶೀಲಿಸಿ.';
+      'ರದ್ದುಮಾಡುವವರೆಗೆ Pro ಪ್ರತಿ ವರ್ಷ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಣಗೊಳ್ಳುತ್ತದೆ ಮತ್ತು ಪ್ರತಿ ತಿಂಗಳು 100 AI ವಿನಂತಿಗಳನ್ನು ಒಳಗೊಂಡಿರುತ್ತದೆ. ಅನ್ವಯವಾಗುವ ತೆರಿಗೆಗಳ ಮೊದಲು ಮೂಲ ಬೆಲೆ ವರ್ಷಕ್ಕೆ 1 ಅಮೆರಿಕನ್ ಡಾಲರ್; ಖರೀದಿಯನ್ನು ದೃಢೀಕರಿಸುವ ಮೊದಲು ಸ್ಟೋರ್‌ನಲ್ಲಿ ಅಂತಿಮ ಸ್ಥಳೀಯ ಬೆಲೆ ಮತ್ತು ತೆರಿಗೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ. Google Play ನಲ್ಲಿ ಚಂದಾದಾರಿಕೆಯನ್ನು ನಿರ್ವಹಿಸಿ ಅಥವಾ ರದ್ದುಮಾಡಿ.';
 
   @override
   String get planCurrent => 'ಪ್ರಸ್ತುತ';
@@ -991,7 +991,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get planChoose => 'ಆಯ್ಕೆಮಾಡಿ';
 
   @override
-  String get plansAction => 'ಯೋಜನೆಗಳು: Pro ಮತ್ತು Max';
+  String get plansAction => 'ಯೋಜನೆಗಳು: Pro';
 
   @override
   String get assistantTitle => 'ಸಹಾಯಕ';
@@ -1080,7 +1080,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'ಹಳೆಯ Pro ಮತ್ತು Max ಸದಸ್ಯತ್ವಗಳು ಅವುಗಳ ಮೂಲ ತಿಂಪಿನ AI ಅನುಮತಿಯನ್ನು ಕಾಯ್ದಿರಿಸುತ್ತವೆ. ಹೊಸ ಆಫರ್‌ಗಳು 100 ಮತ್ತು 300 ಬಾರಿಗಳನ್ನು ನೀಡುತ್ತವೆ.';
+      'ಈಗಿರುವ Pro ಮತ್ತು Max ಚಂದಾದಾರಿಕೆಗಳು ತಮ್ಮ ಮೂಲ ಮಾಸಿಕ AI ವಿನಂತಿಗಳ ಮಿತಿಯನ್ನು ಉಳಿಸಿಕೊಳ್ಳುತ್ತವೆ.';
 
   @override
   String get csvExportAction => 'CSV ರಫ್ತು';

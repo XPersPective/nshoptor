@@ -976,7 +976,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Nýjar Pro- og Max-áskriftir endurnýjast mánaðarlega þar til þeim er sagt upp. Stjórnaðu eða segðu upp í Google Play. Athugaðu verð og rétt á prufu í Play fyrir kaup.';
+      'Pro endurnýjast sjálfkrafa á hverju ári þar til áskriftinni er sagt upp og inniheldur 100 gervigreindarbeiðnir á mánuði. Grunnverðið er 1 Bandaríkjadalur á ári fyrir viðeigandi skatta; athugaðu endanlegt staðbundið verð og skatta í versluninni áður en þú staðfestir kaup. Stjórnaðu áskriftinni eða segðu henni upp í Google Play.';
 
   @override
   String get planCurrent => 'Núverandi';
@@ -988,7 +988,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get planChoose => 'Veldu';
 
   @override
-  String get plansAction => 'Áskriftir: Pro og Max';
+  String get plansAction => 'Pakkar: Pro';
 
   @override
   String get assistantTitle => 'Aðstoðarmaður';
@@ -1076,7 +1076,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Verðandi Pro og Max áskriftir halda upprunalega mánaðarlegu AI leyfi. Nýtilboðin hafa 100 og 300 beiðnir.';
+      'Núverandi Pro og Max áskriftir halda upprunalegum mánaðarlegum fjölda gervigreindarbeiðna.';
 
   @override
   String get csvExportAction => 'Flytja út CSV';

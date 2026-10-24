@@ -979,7 +979,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'I nuovi abbonamenti Pro e Max si rinnovano ogni mese fino alla disdetta. Gestisci o annulla in Google Play. Controlla il prezzo e l’idoneità alla prova in Play prima dell’acquisto.';
+      'Pro si rinnova automaticamente ogni anno fino alla disdetta e include 100 richieste IA al mese. Il prezzo base è di 1 dollaro USA all’anno prima delle imposte applicabili; verifica il prezzo locale finale e le imposte nello store prima di confermare l’acquisto. Gestisci o annulla l’abbonamento in Google Play.';
 
   @override
   String get planCurrent => 'Attuale';
@@ -991,7 +991,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get planChoose => 'Scegli';
 
   @override
-  String get plansAction => 'Piani: Pro e Max';
+  String get plansAction => 'Piani: Pro';
 
   @override
   String get assistantTitle => 'Assistente';
@@ -1079,7 +1079,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Le abbonamenti Pro e Max esistenti mantengono il loro allowance mensile AI originale. Le nuove offerte prevedono 100 e 300 richieste.';
+      'Gli abbonamenti Pro e Max esistenti mantengono la quota mensile originale di richieste IA.';
 
   @override
   String get csvExportAction => 'Esporta CSV';

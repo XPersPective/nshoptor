@@ -4,7 +4,7 @@ import '../../core/l10n/generated/app_localizations.dart';
 import 'plan_badge.dart';
 import 'subscription_service.dart';
 
-/// Ücretsiz / Pro / Max (PB-055). Fiyatlar mağazadan; dürüst faydalar,
+/// Ücretsiz / yıllık Pro. Eski Pro/Max hakları korunur. Fiyatlar mağazadan;
 /// geri yükleme, otomatik yenileme ve iptal bilgisi (Play politikası).
 class SubscriptionPaywall extends StatefulWidget {
   const SubscriptionPaywall({super.key, required this.service});
@@ -53,8 +53,11 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
         future: _offers,
         builder: (context, snap) {
           final offers = snap.data ?? const <SubscriptionOffer>[];
-          SubscriptionOffer? find(Tier t) =>
-              offers.where((o) => o.tier == t && o.monthly).firstOrNull;
+          final proOffer = offers
+              .where(
+                (o) => o.productId == SubscriptionService.proId && o.yearly,
+              )
+              .firstOrNull;
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
@@ -80,7 +83,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
               ),
               const SizedBox(height: 4),
               Text(l10n.plansSubhead, style: theme.textTheme.bodyMedium),
-              if (widget.service.legacy)
+              if (current != Tier.free)
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
                   child: Text(
@@ -90,7 +93,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
               if (busy) const LinearProgressIndicator(),
               const SizedBox(height: 16),
               Text(
-                l10n.plansMonthly,
+                l10n.plansYearly,
                 key: const Key('plans_period'),
                 style: theme.textTheme.titleMedium,
               ),
@@ -109,38 +112,19 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
               _PlanCard(
                 key: const Key('plan_pro'),
                 title: 'Pro',
-                price: find(Tier.pro)?.price,
-                period: l10n.plansPerMonth,
-                trial: find(Tier.pro)?.hasTrial == true ? l10n.planTrial : null,
+                price: proOffer?.price,
+                period: l10n.plansPerYear,
                 benefits: [l10n.planProAi, l10n.planNoAds, l10n.planBackup],
-                current: current == Tier.pro,
+                current: false,
                 highlight: true,
                 loading: snap.connectionState != ConnectionState.done,
                 unavailableText: l10n.planUnavailable,
-                onBuy: busy || find(Tier.pro) == null
+                onBuy: busy || proOffer == null
                     ? null
-                    : () => widget.service.buy(find(Tier.pro)!),
-              ),
-              _PlanCard(
-                key: const Key('plan_max'),
-                title: 'Max',
-                price: find(Tier.max)?.price,
-                period: l10n.plansPerMonth,
-                benefits: [
-                  l10n.planMaxAi,
-                  l10n.planNoAds,
-                  l10n.planBackup,
-                  l10n.planMaxFamily,
-                ],
-                current: current == Tier.max,
-                loading: snap.connectionState != ConnectionState.done,
-                unavailableText: l10n.planUnavailable,
-                onBuy: busy || find(Tier.max) == null
-                    ? null
-                    : () => widget.service.buy(find(Tier.max)!),
+                    : () => widget.service.buy(proOffer),
               ),
               if (snap.connectionState == ConnectionState.done &&
-                  offers.isEmpty)
+                  proOffer == null)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Column(
@@ -184,7 +168,6 @@ class _PlanCard extends StatelessWidget {
     required this.current,
     this.price,
     this.period,
-    this.trial,
     this.highlight = false,
     this.loading = false,
     this.onBuy,
@@ -194,7 +177,6 @@ class _PlanCard extends StatelessWidget {
   final String title;
   final String? price;
   final String? period;
-  final String? trial;
   final List<String> benefits;
   final bool current;
   final bool highlight;
@@ -239,8 +221,6 @@ class _PlanCard extends StatelessWidget {
                     text: l10n.planCurrent,
                     strong: true,
                   ),
-                if (!current && trial != null)
-                  _Badge(text: trial!, icon: Icons.card_giftcard),
               ],
             ),
             if (price != null)
@@ -274,9 +254,7 @@ class _PlanCard extends StatelessWidget {
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: onBuy,
-                  child: Text(
-                    trial != null ? l10n.planStartTrial : l10n.planChoose,
-                  ),
+                  child: Text(l10n.planChoose),
                 ),
               ),
             ],
@@ -289,10 +267,9 @@ class _PlanCard extends StatelessWidget {
 
 /// Küçük etiket (Mevcut, deneme): kart başlığını ezmeyen boyutta.
 class _Badge extends StatelessWidget {
-  const _Badge({super.key, required this.text, this.icon, this.strong = false});
+  const _Badge({super.key, required this.text, this.strong = false});
 
   final String text;
-  final IconData? icon;
   final bool strong;
 
   @override
@@ -309,10 +286,6 @@ class _Badge extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (icon != null) ...[
-              Icon(icon, size: 12, color: fg),
-              const SizedBox(width: 4),
-            ],
             Text(
               text,
               style: Theme.of(context).textTheme.labelSmall

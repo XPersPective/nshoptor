@@ -977,7 +977,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'বাতিল না করা পর্যন্ত নতুন Pro ও Max সাবস্ক্রিপশন প্রতি মাসে নবায়ন হয়। Google Play-তে পরিচালনা বা বাতিল করুন। কেনার আগে Play-তে দাম ও ট্রায়ালের যোগ্যতা দেখুন।';
+      'বাতিল না করা পর্যন্ত Pro প্রতি বছর স্বয়ংক্রিয়ভাবে নবায়ন হয় এবং প্রতি মাসে ১০০টি AI অনুরোধ অন্তর্ভুক্ত থাকে। প্রযোজ্য কর বাদে মূল মূল্য বছরে ১ মার্কিন ডলার; কেনাকাটা নিশ্চিত করার আগে স্টোরে চূড়ান্ত স্থানীয় মূল্য ও কর দেখে নিন। Google Play-তে সাবস্ক্রিপশন পরিচালনা বা বাতিল করুন।';
 
   @override
   String get planCurrent => 'বর্তমান';
@@ -989,7 +989,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get planChoose => 'বাছাই করুন';
 
   @override
-  String get plansAction => 'প্ল্যান: Pro এবং Max';
+  String get plansAction => 'প্ল্যান: Pro';
 
   @override
   String get assistantTitle => 'অ্যাসিস্ট্যান্ট';
@@ -1077,7 +1077,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'বর্তমান Pro এবং Max সাবস্ক্রিপশনগুলি তাদের মাসিক AI অ্যালোয়েন্স বজায় রাখবে। নতুন অফারে ১০০ এবং ৩০০ রিকোয়েস্ট রয়েছে।';
+      'বর্তমান Pro এবং Max সাবস্ক্রিপশনগুলি তাদের মাসিক AI অ্যালোয়েন্স বজায় রাখবে।';
 
   @override
   String get csvExportAction => 'CSV এক্সপোর্ট করুন';

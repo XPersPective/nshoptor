@@ -979,7 +979,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Yeni Pro və Max abunəlikləri ləğv edilənədək hər ay yenilənir. Google Play-də idarə və ya ləğv edin. Satın almadan əvvəl qiyməti və sınaq uyğunluğunu Play-də yoxlayın.';
+      'Pro ləğv edilənədək hər il avtomatik yenilənir və ayda 100 süni intellekt sorğusu daxildir. Baza qiyməti tətbiq olunan vergilərdən əvvəl ildə 1 ABŞ dollarıdır; alışı təsdiqləməzdən əvvəl mağazada yekun yerli qiyməti və vergiləri yoxlayın. Google Play-də idarə edin və ya ləğv edin.';
 
   @override
   String get planCurrent => 'Cari';
@@ -991,7 +991,7 @@ class AppLocalizationsAz extends AppLocalizations {
   String get planChoose => 'Seç';
 
   @override
-  String get plansAction => 'Planlar: Pro və Max';
+  String get plansAction => 'Planlar: Pro';
 
   @override
   String get assistantTitle => 'Assistent';
@@ -1080,7 +1080,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Mövcud Pro və Max abunəlikləri ilkin aylıq AI limitini saxlayır. Yeni təkliflər 100 və 300 sorğu ilə gəlir.';
+      'Mövcud Pro və Max abunəlikləri ilkin aylıq AI limitini saxlayır.';
 
   @override
   String get csvExportAction => 'CSV ixracat et';

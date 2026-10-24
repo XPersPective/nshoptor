@@ -32,9 +32,12 @@ def main():
             assert values[key].strip() and len(values[key]) <= limit, (loc, key)
         normalized = ''.join(str(unicodedata.decimal(c)) if c.isdecimal() else c for c in values['full'])
         numbers = set(re.findall(r'\d+', normalized))
-        assert {'10', '100', '300', '200', '1000', '71', '7'} <= numbers, (loc, 'quota/language/trial numbers')
-        quota_paragraph = next(p for p in normalized.split('\n\n') if '1000' in p)
-        assert '1000' in quota_paragraph.splitlines()[-1], (loc, 'obsolete offer after legacy quotas')
+        # Some languages spell out "one US dollar"; a digit-only requirement
+        # must not reject correct localized legal text.
+        assert {'10', '100', '71'} <= numbers, (loc, 'monthly quota/language numbers')
+        assert values['full'].endswith(listing._annual_plan_text(loc)), (loc, 'annual contract missing')
+        assert not re.search(r'^Max\s*:', normalized, re.MULTILINE), (loc, 'retired Max offered')
+        assert '\n\n' in values['full'], (loc, 'description structure')
         assert listing.REPO in values['full'], (loc, 'source link')
     if len(sys.argv) > 1:
         root = Path(sys.argv[1])

@@ -979,7 +979,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Pro eta Max harpidetza berriak hilero berritzen dira bertan behera utzi arte. Kudeatu edo ezeztatu Google Play-n. Erosi aurretik, egiaztatu prezioa eta probaldirako baldintzak Play-n.';
+      'Pro automatikoki berritzen da urtero, bertan behera utzi arte, eta hilean 100 AA eskaera biltzen ditu. Oinarrizko prezioa AEBetako dolar 1 da urtean, aplikatu beharreko zergak gehitu aurretik; egiaztatu tokiko azken prezioa eta zergak dendan erosketa baieztatu aurretik. Kudeatu edo bertan behera utzi harpidetza Google Play-n.';
 
   @override
   String get planCurrent => 'Uneko';
@@ -991,7 +991,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get planChoose => 'Aukeratu';
 
   @override
-  String get plansAction => 'Planoak: Pro eta Max';
+  String get plansAction => 'Planoak: Pro';
 
   @override
   String get assistantTitle => 'Laguntzailea';
@@ -1080,7 +1080,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Pro eta Max azkenaldiko harpidetzaileek haien hasierako hilabetero AI eskaera kopurua mantentzen dute. Eskaintza berriek 100 eta 300 eskaera dituzte.';
+      'Lehendik dauden Pro eta Max harpidetzek jatorrizko hileko AA eskaeren muga mantentzen dute.';
 
   @override
   String get csvExportAction => 'Esportatu CSV';

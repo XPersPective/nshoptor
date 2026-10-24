@@ -980,7 +980,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Նոր Pro և Max բաժանորդագրությունները նորացվում են ամեն ամիս՝ մինչև չեղարկումը։ Կառավարեք կամ չեղարկեք Google Play-ում։ Գնելուց առաջ Play-ում ստուգեք գինը և փորձաշրջանի պայմանները։';
+      'Pro բաժանորդագրությունն ինքնաբերաբար թարմացվում է ամեն տարի՝ մինչև չեղարկումը, և ներառում է ամսական 100 ԱԲ հարցում։ Բազային գինը տարեկան 1 ԱՄՆ դոլար է՝ առանց կիրառելի հարկերի․ գնումը հաստատելուց առաջ խանութում ստուգեք վերջնական տեղական գինն ու հարկերը։ Կառավարեք կամ չեղարկեք բաժանորդագրությունը Google Play-ում։';
 
   @override
   String get planCurrent => 'Ընթացիկ';
@@ -992,7 +992,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get planChoose => 'Ընտրել';
 
   @override
-  String get plansAction => 'Պլաններ՝ Pro և Max';
+  String get plansAction => 'Պլաններ: Pro';
 
   @override
   String get assistantTitle => 'Ասիստենտ';
@@ -1081,7 +1081,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Գոյություն ունեցող Pro և Max բաժանորդագրությունները պահպանում են իրենց սկզբնական ամսական AI հնարավորությունները։ Նոր առաջարկներն ունեն 100 և 300 հարցումներ։';
+      'Գործող Pro և Max բաժանորդագրությունները պահպանում են ԱԲ հարցումների իրենց սկզբնական ամսական սահմանաչափը։';
 
   @override
   String get csvExportAction => 'Արտահանել CSV';

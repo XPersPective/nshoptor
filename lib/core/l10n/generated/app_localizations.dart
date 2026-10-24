@@ -2075,7 +2075,7 @@ abstract class AppLocalizations {
   /// No description provided for @plansLegal.
   ///
   /// In en, this message translates to:
-  /// **'New Pro and Max subscriptions renew automatically each month until cancelled. Manage or cancel in Google Play. Check the price and any trial eligibility in Play before purchase.'**
+  /// **'Pro renews automatically every year until cancelled and includes 100 AI requests each month. The base price is USD 1/year before applicable taxes; check the final local price and taxes in the store before confirming purchase. Manage or cancel in Google Play.'**
   String get plansLegal;
 
   /// No description provided for @planCurrent.
@@ -2099,7 +2099,7 @@ abstract class AppLocalizations {
   /// No description provided for @plansAction.
   ///
   /// In en, this message translates to:
-  /// **'Plans: Pro and Max'**
+  /// **'Plans: Pro'**
   String get plansAction;
 
   /// No description provided for @assistantTitle.
@@ -2255,7 +2255,7 @@ abstract class AppLocalizations {
   /// No description provided for @planLegacyRights.
   ///
   /// In en, this message translates to:
-  /// **'Existing Pro and Max subscriptions keep their original monthly AI allowance. New offers have 100 and 300 requests.'**
+  /// **'Existing Pro and Max subscriptions keep their original monthly AI allowance.'**
   String get planLegacyRights;
 
   /// No description provided for @csvExportAction.

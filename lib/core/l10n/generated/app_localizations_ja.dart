@@ -956,7 +956,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      '新規のProとMaxのサブスクリプションは解約するまで毎月自動更新されます。管理や解約はGoogle Playで行えます。購入前にPlayで価格と無料体験の対象条件をご確認ください。';
+      'Proは解約するまで毎年自動更新され、AIリクエストを毎月100回利用できます。基本価格は適用される税金を含まず年額1米ドルです。購入を確定する前に、ストアで現地の最終価格と税金をご確認ください。定期購入の管理や解約はGoogle Playで行えます。';
 
   @override
   String get planCurrent => '現在';
@@ -968,7 +968,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get planChoose => '選択';
 
   @override
-  String get plansAction => 'プラン：ProとMax';
+  String get plansAction => 'プラン: Pro';
 
   @override
   String get assistantTitle => 'アシスタント';
@@ -1048,8 +1048,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'すべての完了したショッピング履歴。返品は合計額を減らします。日付はショッピングの完了日を指します。1回の訪問では平均間隔を計算するには不十分です。';
 
   @override
-  String get planLegacyRights =>
-      '既存のProおよびMaxサブスクリプションは、従来の月間AI利用枠を維持します。新しいオファーでは100件と300件のリクエストが提供されます。';
+  String get planLegacyRights => '既存のProおよびMaxサブスクリプションは、従来の月間AI利用枠を維持します。';
 
   @override
   String get csvExportAction => 'CSVをエクスポート';

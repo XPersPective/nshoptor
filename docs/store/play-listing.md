@@ -2,11 +2,15 @@
 
 Metin kaynağı `tool/store/listing.py` + `listing_extra.json`:73 Play yereli,
 71 uygulama arayüz dili. Dil, sayı biçimi ve para bağımsızdır. Play sınırları
-başlık30/kısa80/uzun4000/not500; açıklamalar yeni10/100/300 ve eski200/1000
-haklarını ayırır. Yeni Pro/Max teklifleri yalnız aylık, otomatik yenilenen aboneliktir;
-yıllık yeni satın alma seçeneği sunulmaz. Mevcut eski/yıllık satın almalar geri
-yüklenebilir ve hakları korunur. Fiyat ve varsa deneme uygunluğu Play’den gelir;
-sabit fiyat veya deneme süresi pazarlama vaadi verilmez.
+başlık30/kısa80/uzun4000/not500. Yeni ücretli teklif yalnız yıllık Pro'dur:
+her ay 100 yapay zeka isteği, reklamsız kullanım ve yedekleme/geri yükleme.
+Ücretsiz plan ayda 10 istek sunar. Baz fiyat geçerli yerel vergiler öncesinde
+yılda 1 ABD dolarıdır; yerelleştirilmiş nihai fiyat ve geçerli vergiler satın
+almadan önce Google Play'de gösterilir. Her ülkede ödenecek tutarın tam 1 ABD
+doları olması garanti edilmez. Abonelik iptal edilene kadar yıllık yenilenir.
+Mevcut Pro/Max satın almaları geri yüklenebilir ve kazanılmış hakları korunur.
+Mağaza plan bölümü, uygulamanın yerelleştirilmiş `plansLegal` ve
+`planLegacyRights` metinlerinden bir kez üretilir.
 
 `python -B tool/store/listing_translate.py --refresh-all` yalnız açıklama/notları
 günceller, doğrulanmış başlık/kısa metni korur. `listing.py <metadata-kökü> <kod>`

@@ -978,7 +978,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Az új Pro és Max előfizetések havonta megújulnak a lemondásig. A Google Playben kezelheted vagy mondhatod le. Vásárlás előtt ott ellenőrizd az árat és a próbaidőszak feltételeit.';
+      'A Pro lemondásig évente automatikusan megújul, és havonta 100 AI-kérést tartalmaz. Az alapár évi 1 amerikai dollár az alkalmazandó adók nélkül; a vásárlás megerősítése előtt ellenőrizd a végleges helyi árat és az adókat az áruházban. Az előfizetést a Google Playben kezelheted vagy mondhatod le.';
 
   @override
   String get planCurrent => 'Jelenlegi';
@@ -990,7 +990,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get planChoose => 'Kiválasztás';
 
   @override
-  String get plansAction => 'Csomagok: Pro és Max';
+  String get plansAction => 'Csomagok: Pro';
 
   @override
   String get assistantTitle => 'Asszisztens';
@@ -1079,7 +1079,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'A meglévő Pro és Max előfizetések megőrzik az eredeti havi AI keretüket. Az új ajánlatok 100 és 300 kérést tartalmaznak.';
+      'A meglévő Pro és Max előfizetések megőrzik az eredeti havi AI keretüket.';
 
   @override
   String get csvExportAction => 'CSV export';

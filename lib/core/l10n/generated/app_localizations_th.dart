@@ -973,7 +973,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'การสมัคร Pro และ Max ใหม่ ต่ออายุทุกเดือนจนกว่าจะยกเลิก จัดการหรือยกเลิกใน Google Play ตรวจสอบราคาและสิทธิ์ทดลองใช้ใน Play ก่อนซื้อ';
+      'Pro ต่ออายุอัตโนมัติทุกปีจนกว่าจะยกเลิก และรวมคำขอ AI 100 ครั้งต่อเดือน ราคาพื้นฐานคือ 1 ดอลลาร์สหรัฐต่อปีก่อนรวมภาษีที่เกี่ยวข้อง โปรดตรวจสอบราคาท้องถิ่นสุดท้ายและภาษีในสโตร์ก่อนยืนยันการซื้อ จัดการหรือยกเลิกการสมัครสมาชิกได้ใน Google Play';
 
   @override
   String get planCurrent => 'ปัจจุบัน';
@@ -985,7 +985,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get planChoose => 'เลือก';
 
   @override
-  String get plansAction => 'แผน: Pro และ Max';
+  String get plansAction => 'แพ็กเกจ: Pro';
 
   @override
   String get assistantTitle => 'ผู้ช่วย';
@@ -1073,7 +1073,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'การสมัครสมาชิก Pro และ Max ที่มีอยู่จะคงสิทธิ์ AI รายเดือนตามเดิม ข้อเสนอใหม่มี 100 และ 300 คำขอ';
+      'การสมัครสมาชิก Pro และ Max ที่มีอยู่จะคงสิทธิ์ AI รายเดือนตามเดิม';
 
   @override
   String get csvExportAction => 'ส่งออก CSV';

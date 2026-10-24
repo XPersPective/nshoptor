@@ -979,7 +979,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Les subscripcions noves Pro i Max es renoven mensualment fins que es cancel·lin. Gestioneu-los o cancel·leu-los a Google Play. Comproveu el preu i l’accés a proves abans de comprar a Play.';
+      'Pro es renova automàticament cada any fins que es cancel·la i inclou 100 peticions d’IA al mes. El preu base és d’1 dòlar dels EUA a l’any abans dels impostos aplicables; comproveu el preu local final i els impostos a la botiga abans de confirmar la compra. Gestioneu o cancel·leu la subscripció a Google Play.';
 
   @override
   String get planCurrent => 'Actual';
@@ -991,7 +991,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get planChoose => 'Tria';
 
   @override
-  String get plansAction => 'Plans: Pro i Max';
+  String get plansAction => 'Plans: Pro';
 
   @override
   String get assistantTitle => 'Assistent';
@@ -1081,7 +1081,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Les subscripcions Pro i Max existents mantenen el seu permís mensual original d\'IA. Les noves ofertes tenen 100 i 300 peticions.';
+      'Les subscripcions Pro i Max existents mantenen la seva quota mensual original d’IA.';
 
   @override
   String get csvExportAction => 'Exportar CSV';

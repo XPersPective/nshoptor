@@ -976,7 +976,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Nye Pro- og Max-abonnementer fornyes månedligt, indtil de opsiges. Administrer eller opsig i Google Play. Tjek pris og eventuel prøveberettigelse i Play før køb.';
+      'Pro fornyes automatisk hvert år, indtil det opsiges, og omfatter 100 AI-anmodninger om måneden. Grundprisen er 1 amerikansk dollar om året før gældende afgifter; kontrollér den endelige lokale pris og afgifterne i butikken, før du bekræfter købet. Administrer eller opsig i Google Play.';
 
   @override
   String get planCurrent => 'Nuværende';
@@ -988,7 +988,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get planChoose => 'Vælg';
 
   @override
-  String get plansAction => 'Planer: Pro og Max';
+  String get plansAction => 'Abonnementer: Pro';
 
   @override
   String get assistantTitle => 'Assistent';
@@ -1077,7 +1077,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Eksisterende Pro- og Max-abonnementer beholder deres oprindelige månedlige AI-tilladelse. Nye tilbud har 100 og 300 anmodninger.';
+      'Eksisterende Pro- og Max-abonnementer beholder deres oprindelige månedlige AI-kvote.';
 
   @override
   String get csvExportAction => 'Eksporter CSV';

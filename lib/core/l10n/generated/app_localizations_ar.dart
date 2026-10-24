@@ -967,7 +967,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'تتجدد اشتراكات Pro وMax الجديدة شهريًا حتى الإلغاء. يمكنك إدارتها أو إلغاؤها في Google Play. تحقّق من السعر وأهلية أي فترة تجريبية في Play قبل الشراء.';
+      'يتجدد اشتراك Pro تلقائيًا كل سنة حتى إلغائه، ويشمل 100 طلب ذكاء اصطناعي شهريًا. السعر الأساسي هو دولار أمريكي واحد سنويًا قبل الضرائب المطبقة؛ راجع السعر المحلي النهائي والضرائب في المتجر قبل تأكيد الشراء. يمكنك إدارة الاشتراك أو إلغاؤه في Google Play.';
 
   @override
   String get planCurrent => 'الحالية';
@@ -979,7 +979,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get planChoose => 'اختيار';
 
   @override
-  String get plansAction => 'الخطط: Pro وMax';
+  String get plansAction => 'الخطط: Pro';
 
   @override
   String get assistantTitle => 'المساعد';
@@ -1067,7 +1067,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'تحتفظ اشتراكات Pro و Max الحالية بحدودها الشهرية الأصلية لاستخدام الذكاء الاصطناعي. العروض الجديدة توفر 100 و300 طلب.';
+      'تحتفظ اشتراكات Pro و Max الحالية بحدودها الشهرية الأصلية لاستخدام الذكاء الاصطناعي.';
 
   @override
   String get csvExportAction => 'تصدير CSV';

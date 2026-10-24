@@ -138,3 +138,10 @@ Oturumun bütün maddeleri ve durum ayrımı: `docs/audits/session-status-2026-1
 
 - R69: Tikli, yani market fiyatı girilmiş ürünler listenin altında; alınmayanlar üstte gösterilsin. Sıfır fiyat satın alınmış sayılır; market fiyatı silinince ürün yeniden alınmayanlara döner. Her grupta mevcut sıra korunur, salt görünüm için kalıcı sıra yeniden yazılmaz. Elle sıralama gruplar arasında tik kuralını bozamaz.
 - R70: Liste içindeki planlı ve sonradan alınan ürünlerde anlık çevrimdışı arama olsun. Türkçe I/ı ve İ/i doğru eşleşsin; temizleme ve sonuç bulunamadığında geri dönüş anlaşılır olsun. Arama hesap/rapor/tamamlama toplamlarını veya gizlenen kayıtları değiştirmez. Salt okunur eski listeler de aranabilir. Yeni sürüm doğrulandıktan sonra dahili teste gönderilsin; genel üretim kabulü ve diğer açık talepler korunur.
+
+## 2026-10-24 — Son fiyatlandırma ve grafik talebi (önceki aylık talebini değiştirir)
+
+- R71: Grafik Y ekseni tutarları dar ekran, 2x metin, açık/koyu ve RTL için okunur; tam tutar dokunmadan erişilir (PB-136).
+- R72: Yeni satışta tek Pro: vergi hariç yıllık 1 ABD doları temel fiyat; mevcut Pro özellikleri ve her takvim ayında 100 YZ isteği. Ücretsiz 10/ay korunur (PB-135).
+- R73: Aylık, Max ve lifetime yeni satıştan kaldırılır; mevcut satınalmaların hakları/restore ve mevcut yenileme sözleşmeleri iptal edilmez. Nihai yerel mağaza fiyatı kullanılır, vergi tekrar eklenmez (PB-135).
+- R74: Uygulamanın 71 dili, mağazanın 73 yereli, GitHub ve site güncellenir; doğrulanmış sonuçlarla dahili test sürümü gönderilir. Üretime geçiş kullanıcı testinden sonra (PB-137).

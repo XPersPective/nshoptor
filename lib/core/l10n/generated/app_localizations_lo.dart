@@ -974,7 +974,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'ການສະໝັກ Pro ແລະ Max ໃໝ່ ຈະຕໍ່ອາຍຸທຸກເດືອນຈົນກວ່າຈະຍົກເລີກ. ຈັດການຫຼືຍົກເລີກໃນ Google Play. ກວດລາຄາແລະເງື່ອນໄຂທົດລອງໃນ Play ກ່ອນຊື້.';
+      'Pro ຕໍ່ອາຍຸອັດຕະໂນມັດທຸກປີຈົນກວ່າຈະຍົກເລີກ ແລະ ລວມຄຳຂໍ AI 100 ຄັ້ງຕໍ່ເດືອນ. ລາຄາພື້ນຖານແມ່ນ 1 ໂດລາສະຫະລັດຕໍ່ປີກ່ອນລວມພາສີທີ່ກ່ຽວຂ້ອງ; ກວດສອບລາຄາທ້ອງຖິ່ນສຸດທ້າຍ ແລະ ພາສີໃນຮ້ານກ່ອນຢືນຢັນການຊື້. ຈັດການ ຫຼື ຍົກເລີກໃນ Google Play.';
 
   @override
   String get planCurrent => 'ປັດຈຸບັນ';
@@ -986,7 +986,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get planChoose => 'ເລືອກ';
 
   @override
-  String get plansAction => 'ແຜນ: Pro ແລະ Max';
+  String get plansAction => 'ແຜນ: Pro';
 
   @override
   String get assistantTitle => 'ຜູ້ຊ່ວຍ';
@@ -1073,7 +1073,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'ສະມາຊິກ Pro ແລະ Max ທີ່ມີຢູ່ແລ້ວຈະຮັກສາຂອບເຂດ AI ໃນແຕ່ລະເດືອນຕາມເດີມ. ການສະເໜີໃໝ່ຈະມີ 100 ແລະ 300 ຄັ້ງ.';
+      'ສະມາຊິກ Pro ແລະ Max ທີ່ມີຢູ່ແລ້ວຈະຮັກສາຂອບເຂດ AI ໃນແຕ່ລະເດືອນຕາມເດີມ.';
 
   @override
   String get csvExportAction => 'ສົ່ງອອກ CSV';

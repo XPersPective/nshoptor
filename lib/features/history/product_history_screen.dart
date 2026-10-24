@@ -7,6 +7,7 @@ import '../../core/money/format_locale.dart';
 import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/quantity/unit_display.dart';
+import '../../core/widgets/amount_axis_chart.dart';
 import '../../data/db/app_database.dart';
 import 'insights/insights_repository.dart';
 import 'price_history/price_history_sheet.dart';
@@ -52,9 +53,8 @@ class ProductHistoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(name)),
       body: FutureBuilder<List<ProductPurchase>>(
-        future: InsightsRepository(
-          db,
-        ).productPurchases(normalizedName, currencyCode),
+        future: InsightsRepository(db)
+            .productPurchases(normalizedName, currencyCode),
         builder: (context, snap) {
           if (snap.hasError) return Center(child: Text(l10n.saveFailed));
           final rows = snap.data;
@@ -80,7 +80,19 @@ class ProductHistoryScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 12),
-                      _TwoLineChart(rows: rows.reversed.toList()),
+                      for (final unit
+                          in rows.map((r) => r.unitCode).toSet()) ...[
+                        Text(
+                          unitDisplayNameFromDb(unit, l10n),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        _TwoLineChart(
+                          rows: rows.reversed
+                              .where((r) => r.unitCode == unit)
+                              .toList(),
+                          currency: currency,
+                        ),
+                      ],
                       const SizedBox(height: 8),
                       Wrap(
                         spacing: 16,
@@ -160,23 +172,44 @@ class _Legend extends StatelessWidget {
 
 /// Evdeki (kesikli renk) ve Çarşıdaki birim fiyat, eskiden yeniye.
 class _TwoLineChart extends StatelessWidget {
-  const _TwoLineChart({required this.rows});
+  const _TwoLineChart({required this.rows, required this.currency});
   final List<ProductPurchase> rows;
+  final Currency currency;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    // ponytail: minor-unit ints are exact enough for drawing; labels stay authoritative.
+    // Retain normalized price precision for drawing; currency labels use the
+    // same fixed-point rounding as the purchase rows below the chart.
     int? minor(DecimalFixed? v) => v?.toMinorUnits(6);
+    final planned = [for (final r in rows) minor(r.plannedUnitPrice)];
+    final actual = [for (final r in rows) minor(r.actualUnitPrice)];
+    final values = [...planned, ...actual].whereType<int>().toList();
+    if (values.isEmpty) return const SizedBox.shrink();
     return Semantics(
       label: AppLocalizations.of(context).priceHistoryTitle,
-      child: SizedBox(
-        height: 140,
-        width: double.infinity,
-        child: CustomPaint(
+      child: AmountAxisChart(
+        minimum: values.reduce((a, b) => a < b ? a : b),
+        maximum: values.reduce((a, b) => a > b ? a : b),
+        formatAmount: (value) => formatMoney(
+          Money.fromMinorUnits(
+            DecimalFixed.fromMinorUnits(
+              value,
+              6,
+            ).toMinorUnits(currency.minorUnitDigits),
+            currency,
+          ),
+          locale: formatLocaleCode(context),
+        ),
+        compactFormatAmount: (value) => compactChartAmount(
+          value,
+          digits: 6,
+          locale: formatLocaleCode(context),
+        ),
+        plot: CustomPaint(
           painter: _LinesPainter(
-            planned: [for (final r in rows) minor(r.plannedUnitPrice)],
-            actual: [for (final r in rows) minor(r.actualUnitPrice)],
+            planned: planned,
+            actual: actual,
             plannedColor: scheme.outline,
             actualColor: scheme.primary,
           ),
@@ -219,10 +252,10 @@ class _LinesPainter extends CustomPainter {
         if (v == null) continue;
         final x = values.length == 1
             ? size.width / 2
-            : size.width * i / (values.length - 1);
+            : 4 + (size.width - 8) * i / (values.length - 1);
         final y = span == 0
             ? size.height / 2
-            : size.height - (v - min) / span * size.height;
+            : 4 + (max - v) / span * (size.height - 8);
         canvas.drawCircle(Offset(x, y), 4, dot);
         if (path == null) {
           path = Path()..moveTo(x, y);
@@ -239,5 +272,8 @@ class _LinesPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _LinesPainter old) =>
-      old.planned != planned || old.actual != actual;
+      old.planned != planned ||
+      old.actual != actual ||
+      old.plannedColor != plannedColor ||
+      old.actualColor != actualColor;
 }

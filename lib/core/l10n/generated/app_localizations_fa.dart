@@ -973,7 +973,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'اشتراک‌های جدید Pro و Max تا زمان لغو، هر ماه تمدید می‌شوند. در Google Play مدیریت یا لغو کنید. پیش از خرید، قیمت و شرایط دوره آزمایشی را در Play بررسی کنید.';
+      'اشتراک Pro تا زمان لغو، هر سال به‌طور خودکار تمدید می‌شود و شامل ۱۰۰ درخواست هوش مصنوعی در هر ماه است. قیمت پایه سالانه ۱ دلار آمریکا پیش از مالیات‌های قابل اعمال است؛ پیش از تأیید خرید، قیمت نهایی محلی و مالیات‌ها را در فروشگاه بررسی کنید. اشتراک را در Google Play مدیریت یا لغو کنید.';
 
   @override
   String get planCurrent => 'فعال';
@@ -985,7 +985,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get planChoose => 'انتخاب';
 
   @override
-  String get plansAction => 'طرح‌ها: پرو و مکس';
+  String get plansAction => 'پلن‌ها: Pro';
 
   @override
   String get assistantTitle => 'دستیار';
@@ -1073,7 +1073,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'اشتراک‌های Pro و Max موجود، سهمیه ماهانه AI اصلی خود را حفظ می‌کنند. پیشنهادهای جدید ۱۰۰ و ۳۰۰ درخواست دارند.';
+      'اشتراک‌های Pro و Max موجود، سهمیه ماهانه AI اصلی خود را حفظ می‌کنند.';
 
   @override
   String get csvExportAction => 'خروجی CSV';

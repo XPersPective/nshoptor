@@ -975,7 +975,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Pro-სა და Max-ის ახალი გამოწერები ყოველთვიურად განახლდება გაუქმებამდე. მართეთ ან გააუქმეთ Google Play-ში. შეძენამდე Play-ში შეამოწმეთ ფასი და საცდელი პერიოდის პირობები.';
+      'Pro ავტომატურად განახლდება ყოველწლიურად გაუქმებამდე და მოიცავს თვეში 100 AI მოთხოვნას. საბაზო ფასი არის წელიწადში 1 აშშ დოლარი შესაბამისი გადასახადების გარეშე; შესყიდვის დადასტურებამდე მაღაზიაში შეამოწმეთ საბოლოო ადგილობრივი ფასი და გადასახადები. მართეთ ან გააუქმეთ გამოწერა Google Play-ში.';
 
   @override
   String get planCurrent => 'მიმდინარე';
@@ -987,7 +987,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get planChoose => 'აირჩიეთ';
 
   @override
-  String get plansAction => 'გამოწერები: Pro და Max';
+  String get plansAction => 'პაკეტები: Pro';
 
   @override
   String get assistantTitle => 'დამხმარე';
@@ -1076,7 +1076,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'არსებული Pro და Max სუბსკრიფციები ინარჩუნებენ თავდაპირველ თვიურ AI ლიმიტს. ახალი შეთავაზებები გვთავაზობს 100 და 300 მოთხოვნას.';
+      'არსებული Pro და Max სუბსკრიფციები ინარჩუნებენ თავდაპირველ თვიურ AI ლიმიტს.';
 
   @override
   String get csvExportAction => 'CSV-ის ექსპორტი';

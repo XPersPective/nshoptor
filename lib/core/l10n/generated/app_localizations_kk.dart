@@ -974,7 +974,7 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Жаңа Pro және Max жазылымдары бас тартқанға дейін ай сайын жаңартылады. Google Play арқылы басқарыңыз немесе бас тартыңыз. Сатып алмас бұрын Play-де баға мен сынақ шарттарын тексеріңіз.';
+      'Pro тоқтатылғанға дейін жыл сайын автоматты түрде жаңартылады және ай сайын 100 ЖИ сұрауын қамтиды. Қолданылатын салықтарсыз базалық баға жылына 1 АҚШ доллары; сатып алуды растау алдында дүкендегі соңғы жергілікті баға мен салықтарды тексеріңіз. Жазылымды Google Play арқылы басқарыңыз немесе тоқтатыңыз.';
 
   @override
   String get planCurrent => 'Ағымдағы';
@@ -986,7 +986,7 @@ class AppLocalizationsKk extends AppLocalizations {
   String get planChoose => 'Таңдау';
 
   @override
-  String get plansAction => 'Жоспарлар: Pro және Max';
+  String get plansAction => 'Жоспарлар: Pro';
 
   @override
   String get assistantTitle => 'Көмекші';
@@ -1075,7 +1075,7 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Ескі Pro және Max жазылымдары өздерінің айлық AI шектеуін сақтайды. Жаңа ұсыныстар 100 және 300 сұраныс береді.';
+      'Ескі Pro және Max жазылымдары өздерінің айлық AI шектеуін сақтайды.';
 
   @override
   String get csvExportAction => 'CSV экспорттау';

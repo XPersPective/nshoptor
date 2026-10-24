@@ -23,8 +23,8 @@ yardımı ile kapatılabilir).
 
 ## Abonelik ve satın almalar
 
-Pro/Max abonelikleri ve tek seferlik "ömür boyu reklamsız" satın alımı
-Google Play üzerinden yapılır; ödeme bilgilerinizi biz görmeyiz. Yapay zeka
+Yeni yıllık Pro aboneliği Google Play üzerinden yapılır. Mevcut Pro/Max ve
+önceden alınmış ömür boyu reklamsız haklar korunur; ödeme bilgilerinizi biz görmeyiz. Yapay zeka
 kotanızı belirlemek için satın alma jetonu Google Play'de doğrulanır;
 jeton yalnız doğrulamada geçici işlenir. Sunucuda SHA-256 özeti, plan ve
 bağlı jetonların ortak kota sahipliği saklanır. Yetki önbelleği süreli;
@@ -92,8 +92,9 @@ turns a sentence into a list (switch it off in Settings → AI help).
 
 ## Subscriptions and purchases
 
-Pro/Max subscriptions and the one-time "ad-free for life" purchase are handled
-by Google Play; we never see your payment details. To set your AI allowance the
+New annual Pro subscriptions are handled
+by Google Play; we never see your payment details. Existing Pro/Max and previously
+purchased ad-free for life entitlements remain supported. To set your AI allowance the
 purchase token is processed transiently for Google verification. The server
 retains its SHA-256 hash, plan and linked-token quota ownership. Authorization
 cache entries expire; ownership metadata has no scheduled deletion period.

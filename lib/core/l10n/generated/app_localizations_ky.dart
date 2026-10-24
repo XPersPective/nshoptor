@@ -976,7 +976,7 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Жаңы Pro жана Max жазылуулары жокко чыгарылганга чейин ай сайын жаңыртылат. Google Play аркылуу башкарыңыз же жокко чыгарыңыз. Сатып алардан мурун Play\'ден бааны жана сыноо шарттарын текшериңиз.';
+      'Pro жокко чыгарылганга чейин жыл сайын автоматтык түрдө узартылат жана айына 100 ЖИ сурамын камтыйт. Тиешелүү салыктар кошула электеги базалык баа жылына 1 АКШ доллары; сатып алууну ырастоодон мурун дүкөндө акыркы жергиликтүү бааны жана салыктарды текшериңиз. Жазылууну Google Play аркылуу башкарыңыз же жокко чыгарыңыз.';
 
   @override
   String get planCurrent => 'Учурдагы';
@@ -988,7 +988,7 @@ class AppLocalizationsKy extends AppLocalizations {
   String get planChoose => 'Тандоо';
 
   @override
-  String get plansAction => 'Пландар: Pro жана Max';
+  String get plansAction => 'Пландар: Pro';
 
   @override
   String get assistantTitle => 'Ассистент';
@@ -1078,7 +1078,7 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Бардык Pro жана Max абонементтери өзүнүн айлык AI чектөөсүн сактайт. Жаңы сунуштар 100 жана 300 суранычты камтыйт.';
+      'Учурдагы Pro жана Max жазылуулары баштапкы айлык ЖИ сурамдарынын чегин сактайт.';
 
   @override
   String get csvExportAction => 'CSV экспорттоо';

@@ -38,7 +38,7 @@ Son kullanıcı eki (2026-10-24): "urunlerin tiklileri asagiya kaymali. urunlerd
 - Alışveriş ve dönem raporları hızlı dışa aktarılır; PDF kaydedilir/paylaşılır; mevcut veri içe aktarma biçimleri açıkça anlatılır (PB-117/PB-124).
 - Ayarlar sade gruplar ve hafif kenarlıklarla düzenlenir; örnek veriler tek eylemle yalnız örnek kayıtları siler, kullanıcının verileri korunur (PB-124).
 ### Monetization and locales
-- "Reklam ve abonelik ürün hedefinin parçası" (user 2026-10-16); Free/Pro/Max; lifetime kaldırma ve oranlı yükseltme kanıtlanır (PB-105/PB-107/PB-108).
+- "Reklam ve abonelik ürün hedefinin parçası" (user 2026-10-16); Free ve yeni satışta yalnız yıllık Pro; yıllık 1 ABD doları vergi hariç temel fiyat, her ay 100 YZ isteği. Eski Pro/Max/lifetime satıştan kalkar, satın alınmış haklar korunur (PB-135/PB-137; eski PB-105/PB-107/PB-108 kanıtları tarihseldir).
 - 71 dilin uygulama metinleri, açıklamaları ve mağaza materyalleri kendi dilinde; üretim hazırlığı bağımsız incelemeyle kanıtlanır (PB-118/PB-125).
 
 ### Expanded scope 2026-10-23
@@ -68,3 +68,6 @@ Son kullanıcı eki (2026-10-24): "urunlerin tiklileri asagiya kaymali. urunlerd
 
 ## Open Decisions
 - Model havuzu ANSWERED 2026-10-18: "Z kod, Beammax ... Bunları kullanacaksın ... OpenCode'un free modellerini kullanacaksın ... Argon dışındakileri kullanabilirsin Anti Gravity'de ... Cloud'un yüksek modelleri kullan ... sonnet'i kullanabilirsin ... doğruluğunu kanıtlayamasan bile kullanabiliyorsan kullanırsın ... Ücretli çağrı yok." Mevcut abonelik/ücretsiz rotaları bounded dene; Astra yasak; kota bilinmiyorsa tekrar onay isteme.
+
+## Latest request 2026-10-24
+- R71–R74 / PB-135..137: Y ekseni her ekran/yazı boyutunda okunur; uzun sayılar kısaltılmış eksen ve tam değerlerle gösterilir. Yeni ücretli satış yalnız yıllık Pro, USD1 vergi hariç temel fiyat, her ay 100 YZ hakkı. Önceki aylık-only talebi geçersizdir. 71 uygulama dili, 73 mağaza yereli, GitHub ve site aynı sözleşmeyi anlatır. Önce dahili test 1.3.0+18; üretime geçiş kullanıcı denemesinden sonradır.

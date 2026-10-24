@@ -978,7 +978,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Usajili mpya wa Pro na Max husasishwa kila mwezi hadi ughairi. Dhibiti au ghairi katika Google Play. Angalia bei na masharti ya majaribio katika Play kabla ya kununua.';
+      'Pro hujisasisha kila mwaka moja kwa moja hadi utakapoghairi, na inajumuisha maombi 100 ya AI kila mwezi. Bei ya msingi ni dola 1 ya Marekani kwa mwaka kabla ya kodi zinazotumika; angalia bei ya mwisho ya eneo lako na kodi katika duka kabla ya kuthibitisha ununuzi. Dhibiti au ghairi usajili katika Google Play.';
 
   @override
   String get planCurrent => 'Sasa';
@@ -990,7 +990,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get planChoose => 'Chagua';
 
   @override
-  String get plansAction => 'Mpango: Pro na Max';
+  String get plansAction => 'Mpango: Pro';
 
   @override
   String get assistantTitle => 'Msaidizi';
@@ -1079,7 +1079,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Usajili wa Pro na Max uliopo unaendelea kuwa na idadi ya maombi ya AI ya kila mwezi kama ilivyokuwepo. Oferta mpya zina maombi 100 na 300.';
+      'Usajili wa Pro na Max uliopo unahifadhi kikomo chake cha awali cha maombi ya AI kwa mwezi.';
 
   @override
   String get csvExportAction => 'Tunza CSV';

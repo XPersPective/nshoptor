@@ -981,7 +981,7 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Buwanang nagre-renew ang mga bagong Pro at Max subscription hanggang kanselahin. Pamahalaan o kanselahin sa Google Play. Tingnan ang presyo at pagiging kwalipikado sa trial sa Play bago bumili.';
+      'Awtomatikong nagre-renew ang Pro bawat taon hanggang kanselahin at may 100 kahilingan sa AI bawat buwan. Ang batayang presyo ay 1 dolyar ng US bawat taon bago ang naaangkop na buwis; tingnan ang huling lokal na presyo at mga buwis sa tindahan bago kumpirmahin ang pagbili. Pamahalaan o kanselahin sa Google Play.';
 
   @override
   String get planCurrent => 'Kasalukuyan';
@@ -993,7 +993,7 @@ class AppLocalizationsTl extends AppLocalizations {
   String get planChoose => 'Piliin';
 
   @override
-  String get plansAction => 'Mga Plano: Pro at Max';
+  String get plansAction => 'Mga Plano: Pro';
 
   @override
   String get assistantTitle => 'Assistant';
@@ -1083,7 +1083,7 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Ang mga existing na Pro at Max subscription ay pananatili ang kanilang orihinal na buwanang AI allowance. Ang mga bagong offer ay may 100 at 300 requests.';
+      'Pinananatili ng mga kasalukuyang Pro at Max na subscription ang kanilang orihinal na buwanang limitasyon sa mga kahilingan sa AI.';
 
   @override
   String get csvExportAction => 'I-export ang CSV';

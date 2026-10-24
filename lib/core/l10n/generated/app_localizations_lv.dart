@@ -979,7 +979,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Jaunie Pro un Max abonementi tiek atjaunoti katru mēnesi līdz atcelšanai. Pārvaldiet vai atceliet pakalpojumā Google Play. Pirms pirkuma pārbaudiet cenu un izmēģinājuma nosacījumus Play.';
+      'Pro automātiski atjaunojas katru gadu līdz atcelšanai un ietver 100 MI pieprasījumus mēnesī. Bāzes cena ir 1 ASV dolārs gadā pirms piemērojamajiem nodokļiem; pirms pirkuma apstiprināšanas pārbaudiet galīgo vietējo cenu un nodokļus veikalā. Pārvaldiet vai atceliet abonementu pakalpojumā Google Play.';
 
   @override
   String get planCurrent => 'Pašreizējais';
@@ -991,7 +991,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get planChoose => 'Izvēlēties';
 
   @override
-  String get plansAction => 'Plāni: Pro un Max';
+  String get plansAction => 'Plāni: Pro';
 
   @override
   String get assistantTitle => 'Asistents';
@@ -1079,7 +1079,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Esošajām Pro un Max abonementiem saglabājas sākotnējais mēneša AI pieprasījumu limits. Jaunajiem piedāvājumiem ir 100 un 300 pieprasījumi.';
+      'Esošie Pro un Max abonementi saglabā sākotnējo mēneša MI pieprasījumu limitu.';
 
   @override
   String get csvExportAction => 'Eksportēt CSV';

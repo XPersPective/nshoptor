@@ -979,7 +979,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'As novas subscrições Pro e Max renovam-se mensalmente até ao cancelamento. Gira ou cancele no Google Play. Consulte o preço e a elegibilidade para testes no Play antes de comprar.';
+      'O Pro é renovado automaticamente a cada ano até o cancelamento e inclui 100 solicitações de IA por mês. O preço base é de 1 dólar americano por ano antes dos impostos aplicáveis; confira o preço local final e os impostos na loja antes de confirmar a compra. Gerencie ou cancele a assinatura no Google Play.';
 
   @override
   String get planCurrent => 'Atual';
@@ -991,7 +991,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get planChoose => 'Escolher';
 
   @override
-  String get plansAction => 'Planos: Pro e Max';
+  String get plansAction => 'Planos: Pro';
 
   @override
   String get assistantTitle => 'Assistente';
@@ -1081,7 +1081,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Assinaturas Pro e Max existentes mantêm sua cota mensal original de IA. Novas ofertas têm 100 e 300 solicitações.';
+      'Assinaturas Pro e Max existentes mantêm sua cota mensal original de IA.';
 
   @override
   String get csvExportAction => 'Exportar CSV';

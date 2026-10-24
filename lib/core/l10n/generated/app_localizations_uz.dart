@@ -980,7 +980,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Yangi Pro va Max obunalari bekor qilinmaguncha har oy yangilanadi. Google Play orqali boshqaring yoki bekor qiling. Xariddan oldin Play’da narx va sinov shartlarini tekshiring.';
+      'Pro bekor qilinmaguncha har yili avtomatik yangilanadi va oyiga 100 ta sun’iy intellekt so‘rovini o‘z ichiga oladi. Asosiy narx tegishli soliqlarsiz yiliga 1 AQSH dollarini tashkil qiladi; xaridni tasdiqlashdan oldin do‘kondagi yakuniy mahalliy narx va soliqlarni tekshiring. Obunani Google Play orqali boshqaring yoki bekor qiling.';
 
   @override
   String get planCurrent => 'Joriy';
@@ -992,7 +992,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get planChoose => 'Tanlash';
 
   @override
-  String get plansAction => 'Rejalarni boshqarish: Pro va Max';
+  String get plansAction => 'Tariflar: Pro';
 
   @override
   String get assistantTitle => 'Yordamchi';
@@ -1082,7 +1082,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Mavjud Pro va Max obunalari o\'zlarining dastlabki oylik AI imkoniyatlarini saqlab qoladi. Yangi takliflar 100 va 300 so\'rovni o\'z ichiga oladi.';
+      'Mavjud Pro va Max obunalari sun’iy intellekt so‘rovlari uchun dastlabki oylik limitini saqlab qoladi.';
 
   @override
   String get csvExportAction => 'CSV eksport qilish';

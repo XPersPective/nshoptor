@@ -5,6 +5,7 @@
 import json
 import pathlib
 import sys
+import unicodedata
 
 REPO = 'https://github.com/XPersPective/nshoptor'
 
@@ -36,13 +37,6 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                    'shopping and receipt OCR work offline. Optional AI sends only the text you '
                    'choose to our service and its model provider. Backups are under your control.\n'
                    '\n'
-                   'PLANS\n'
-                   'Free: 10 AI requests per month and the core shopping features, with ads.\n'
-                   'Pro: 100 AI requests per month, no ads and backup.\n'
-                   'Max: 300 AI requests per month, no ads and backup.\n'
-                   'Pro and Max are monthly subscriptions. Prices, renewal and eligibility are '
-                   'shown by Google Play before purchase. Existing subscription rights remain.\n'
-                   '\n'
                    '71 interface languages. Language, number format and currency can be selected '
                    'independently.\n'
                    '\n'
@@ -52,8 +46,7 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                     '• Separate planned and actual quantities and prices\n'
                     '• Editable local photo, receipt and voice input\n'
                     '• PDF summaries and clearer spending charts\n'
-                    '• 71 languages, independent number format and currency\n'
-                    '• New AI plans: 10/100/300 monthly requests; legacy rights preserved'},
+                    '• 71 languages, independent number format and currency'},
  'tr-TR': {'title': 'NShoptor: Alışveriş Listesi',
            'short': 'Alışveriş listesi ve bütçe: tahmini/gerçek fiyat, fiş ve sesli ekleme.',
            'full': 'Evdeki hesap çarşıya uyar.\n'
@@ -83,14 +76,6 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                    'okuma çevrimdışı çalışır. İsteğe bağlı yapay zeka yalnız seçtiğin metni '
                    'servisimize ve model sağlayıcısına gönderir. Yedeklerin senin kontrolündedir.\n'
                    '\n'
-                   'PLANLAR\n'
-                   'Ücretsiz: ayda 10 yapay zeka isteği, temel alışveriş özellikleri ve '
-                   'reklamlar.\n'
-                   'Pro: ayda 100 yapay zeka isteği, reklamsız kullanım ve yedekleme.\n'
-                   'Max: ayda 300 yapay zeka isteği, reklamsız kullanım ve yedekleme.\n'
-                   'Pro ve Max aylık aboneliktir. Fiyat, yenileme ve uygunluk satın almadan önce '
-                   "Google Play'de gösterilir. Mevcut abonelik hakları korunur.\n"
-                   '\n'
                    '71 arayüz dili. Dil, sayı biçimi ve para birimi bağımsız seçilir.\n'
                    '\n'
                    'Açık kaynak (GPL-3.0): https://github.com/XPersPective/nshoptor',
@@ -99,8 +84,7 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                     '• Planlanan ve gerçek miktar/fiyat ayrı\n'
                     '• Düzenlenebilir cihaz içi fotoğraf, fiş ve ses girdisi\n'
                     '• PDF özetleri ve daha anlaşılır harcama grafikleri\n'
-                    '• 71 dil; bağımsız sayı biçimi ve para birimi\n'
-                    '• Yeni aylık yapay zeka kotaları 10/100/300; eski haklar korunur'}}
+                    '• 71 dil; bağımsız sayı biçimi ve para birimi'}}
 
 # Diger Play dilleri: listing_translate.py'nin urettigi JSON + bolgesel kopyalar.
 _extra = pathlib.Path(__file__).with_name('listing_extra.json')
@@ -192,11 +176,11 @@ L.update({
     },
 })
 for _to, _from in {'en-GB': 'en-US', 'es-419': 'es-ES', 'es-US': 'es-ES', 'fr-CA': 'fr-FR'}.items():
-    L[_to] = L[_from]
+    L[_to] = dict(L[_from])
 
-# A single localized contract for app and store: new paid offers are monthly.
-# Legacy annual purchases remain restorable; no remote plan is mutated here.
-def _monthly_plan_text(locale):
+# One localized annual Pro contract shared by the app and store.
+# Existing ownership remains restorable; this module only generates local files.
+def _annual_plan_text(locale):
     code = locale.split('-')[0]
     code = {'iw': 'he'}.get(code, code)
     arb = pathlib.Path(__file__).resolve().parents[2] / 'lib/core/l10n' / f'app_{code}.arb'
@@ -205,15 +189,24 @@ def _monthly_plan_text(locale):
         text['plansTitle'],
         f"{text['planFree']}: {text['planFreeAi']}. {text['planFreeAds']}.",
         f"Pro: {text['planProAi']}. {text['planNoAds']}. {text['planBackup']}.",
-        f"Max: {text['planMaxAi']}. {text['planNoAds']}. {text['planBackup']}.",
         text['plansLegal'], text['planLegacyRights'],
     ])
 
 
+def _without_plan_section(full):
+    # Plan paragraphs are a single block in the translated source catalog.
+    # Recognize both the old Max contract and an already generated annual block.
+    paragraphs = []
+    for paragraph in full.split('\n\n'):
+        numbers = ''.join(str(unicodedata.decimal(c)) if c.isdecimal() else c for c in paragraph)
+        if 'Pro:' in paragraph and '100' in numbers:
+            continue
+        paragraphs.append(paragraph)
+    return '\n\n'.join(paragraphs)
+
+
 for _locale, _entry in L.items():
-    _parts = _entry['full'].split('\n\n')
-    _parts = [p for p in _parts if not ('Pro' in p and 'Max' in p and '100' in p and '300' in p)]
-    _entry['full'] = '\n\n'.join(_parts) + '\n\n' + _monthly_plan_text(_locale)
+    _entry['full'] = _without_plan_section(_entry['full']) + '\n\n' + _annual_plan_text(_locale)
 
 
 LIMITS = {'title': 30, 'short': 80, 'full': 4000, 'notes': 500}

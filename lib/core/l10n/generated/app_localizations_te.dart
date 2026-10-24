@@ -983,7 +983,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'రద్దు చేసే వరకు కొత్త Pro మరియు Max సబ్‌స్క్రిప్షన్‌లు ప్రతి నెలా పునరుద్ధరించబడతాయి. Google Playలో నిర్వహించండి లేదా రద్దు చేయండి. కొనుగోలు ముందు Playలో ధర మరియు ట్రయల్ అర్హతను తనిఖీ చేయండి.';
+      'రద్దు చేసే వరకు Pro ప్రతి సంవత్సరం స్వయంచాలకంగా పునరుద్ధరించబడుతుంది, ప్రతి నెలా 100 AI అభ్యర్థనలు ఉంటాయి. వర్తించే పన్నులకు ముందు ప్రాథమిక ధర సంవత్సరానికి 1 అమెరికన్ డాలర్; కొనుగోలును నిర్ధారించే ముందు స్టోర్‌లో తుది స్థానిక ధర మరియు పన్నులను తనిఖీ చేయండి. Google Playలో సభ్యత్వాన్ని నిర్వహించండి లేదా రద్దు చేయండి.';
 
   @override
   String get planCurrent => 'ప్రస్తుతం';
@@ -995,7 +995,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get planChoose => 'ఎంచుకోండి';
 
   @override
-  String get plansAction => 'ప్లాన్‌లు: Pro మరియు Max';
+  String get plansAction => 'ప్లాన్‌లు: Pro';
 
   @override
   String get assistantTitle => 'సహాయకుడు';
@@ -1084,7 +1084,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'ప్రస్తుత ప్రో మరియు మాక్స్ సబ్‌స్క్రిప్షన్లు వాటి అసలు నెలవారీ AI అనుమతిని కొనసాగిస్తాయి. కొత్త ఆఫర్లు 100 మరియు 300 అభ్యర్థనలతో ఉంటాయి.';
+      'ప్రస్తుత ప్రో మరియు మాక్స్ సబ్‌స్క్రిప్షన్లు వాటి అసలు నెలవారీ AI అనుమతిని కొనసాగిస్తాయి.';
 
   @override
   String get csvExportAction => 'CSV ఎగుమతి';

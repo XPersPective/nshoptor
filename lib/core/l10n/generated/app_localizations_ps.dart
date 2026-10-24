@@ -974,7 +974,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'د Pro او Max نوي ګډونونه تر لغوه کولو پورې هره میاشت نوي کېږي. په Google Play کې یې اداره یا لغوه کړئ. له پېرود مخکې په Play کې بیه او د ازموینې شرایط وګورئ.';
+      'Pro تر لغوه کېدو پورې هر کال په اوتومات ډول نوي کېږي او هره میاشت د مصنوعي ځیرکتیا ۱۰۰ غوښتنې لري. بنسټیزه بیه د اړوندو مالیاتو له زیاتېدو مخکې په کال کې ۱ امریکایي ډالر ده؛ د پېرود تر تایید مخکې په پلورنځي کې وروستۍ سیمه‌ییزه بیه او مالیات وګورئ. په Google Play کې ګډون اداره یا لغوه کړئ.';
 
   @override
   String get planCurrent => 'اوسنی';
@@ -986,7 +986,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get planChoose => 'انتخاب کړئ';
 
   @override
-  String get plansAction => 'پلانونه: Pro او Max';
+  String get plansAction => 'پلانونه: Pro';
 
   @override
   String get assistantTitle => 'مرسته کوونکی';
@@ -1074,7 +1074,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'شته پرو او مکس سبسکریپشنونه خپل اصلي میاشتنۍ AI اجازه ساتي. نوي وړاندیزونه ۱۰۰ او ۳۰۰ غوښتنې لري.';
+      'شته Pro او Max ګډونونه د مصنوعي ځیرکتیا د غوښتنو خپل اصلي میاشتنی حد ساتي.';
 
   @override
   String get csvExportAction => 'CSV صادر کړئ';

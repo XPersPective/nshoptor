@@ -977,7 +977,7 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Nove Pro i Max pretplate obnavljaju se mjesečno do otkazivanja. Upravljajte ili otkažite u Google Playu. Prije kupnje provjerite cijenu i uvjete probnog razdoblja u Playu.';
+      'Pro se automatski obnavlja svake godine do otkazivanja i uključuje 100 AI zahtjeva mjesečno. Osnovna cijena iznosi 1 američki dolar godišnje prije primjenjivih poreza; prije potvrde kupnje provjerite konačnu lokalnu cijenu i poreze u trgovini. Upravljajte pretplatom ili je otkažite u Google Playu.';
 
   @override
   String get planCurrent => 'Trenutna';
@@ -989,7 +989,7 @@ class AppLocalizationsHr extends AppLocalizations {
   String get planChoose => 'Odaberi';
 
   @override
-  String get plansAction => 'Pretplate: Pro i Max';
+  String get plansAction => 'Planovi: Pro';
 
   @override
   String get assistantTitle => 'Asistent';
@@ -1078,7 +1078,7 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Postojeće Pro i Max pretplate zadržavaju izvorni mjesečni AI limit. Nove ponude imaju 100 i 300 zahtjeva.';
+      'Postojeće Pro i Max pretplate zadržavaju izvorni mjesečni AI limit.';
 
   @override
   String get csvExportAction => 'Izvoz CSV';

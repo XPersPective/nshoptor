@@ -975,7 +975,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Uued Pro ja Max tellimused uuenevad iga kuu kuni tühistamiseni. Halda või tühista Google Plays. Enne ostu kontrolli Plays hinda ja prooviperioodi tingimusi.';
+      'Pro uueneb automaatselt igal aastal kuni tühistamiseni ja sisaldab 100 tehisintellekti päringut kuus. Baashind on 1 USA dollar aastas enne kohaldatavaid makse; kontrolli enne ostu kinnitamist poes lõplikku kohalikku hinda ja makse. Halda tellimust või tühista see Google Plays.';
 
   @override
   String get planCurrent => 'Praegune';
@@ -987,7 +987,7 @@ class AppLocalizationsEt extends AppLocalizations {
   String get planChoose => 'Vali';
 
   @override
-  String get plansAction => 'Kavad: Pro ja Max';
+  String get plansAction => 'Plaani: Pro';
 
   @override
   String get assistantTitle => 'Assistent';
@@ -1076,7 +1076,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Olemasolevad Pro ja Max tellimused säilitavad oma algse igakuise AI luba. Uued pakkumised sisaldavad 100 ja 300 päringut.';
+      'Olemasolevad Pro ja Max tellimused säilitavad oma algse igakuise tehisintellekti päringute limiidi.';
 
   @override
   String get csvExportAction => 'Ekspordi CSV';

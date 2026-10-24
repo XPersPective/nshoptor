@@ -975,7 +975,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Yeni Pro ve Max abonelikleri, iptal edilene kadar her ay otomatik yenilenir. Google Play’den yönetebilir veya iptal edebilirsiniz. Satın almadan önce fiyatı ve varsa deneme uygunluğunu Play’de kontrol edin.';
+      'Pro, iptal edilene kadar her yıl otomatik yenilenir ve her ay 100 YZ isteği içerir. Temel fiyat, geçerli vergiler hariç yıllık 1 ABD dolarıdır; satın almayı onaylamadan önce mağazada nihai yerel fiyatı ve vergileri kontrol edin. Aboneliğinizi Google Play üzerinden yönetebilir veya iptal edebilirsiniz.';
 
   @override
   String get planCurrent => 'Mevcut';
@@ -987,7 +987,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get planChoose => 'Seç';
 
   @override
-  String get plansAction => 'Planlar: Pro ve Max';
+  String get plansAction => 'Planlar: Pro';
 
   @override
   String get assistantTitle => 'Asistan';
@@ -1076,7 +1076,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Mevcut Pro ve Max abonelikleri ilk aylık AI haklarını korur. Yeni teklifler 100 ve 300 istektir.';
+      'Mevcut Pro ve Max abonelikleri önceki aylık YZ haklarını korur.';
 
   @override
   String get csvExportAction => 'CSV dışa aktar';

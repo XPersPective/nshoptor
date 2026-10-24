@@ -981,7 +981,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Pro နှင့် Max စာရင်းသွင်းမှုအသစ်များသည် ပယ်ဖျက်သည်အထိ လစဉ် သက်တမ်းတိုးသည်။ Google Play တွင် စီမံပါ သို့မဟုတ် ပယ်ဖျက်ပါ။ မဝယ်မီ Play တွင် ဈေးနှုန်းနှင့် အစမ်းသုံးခွင့်ကို စစ်ဆေးပါ။';
+      'မပယ်ဖျက်မချင်း Pro ကို နှစ်စဉ် အလိုအလျောက် သက်တမ်းတိုးပြီး တစ်လလျှင် AI တောင်းဆိုမှု ၁၀၀ ပါဝင်သည်။ သက်ဆိုင်ရာအခွန်များ မပါဝင်မီ အခြေခံဈေးနှုန်းမှာ တစ်နှစ်လျှင် အမေရိကန်ဒေါ်လာ ၁ ဖြစ်သည်။ ဝယ်ယူမှုကို အတည်မပြုမီ စတိုးတွင် နောက်ဆုံးဒေသတွင်းဈေးနှုန်းနှင့် အခွန်များကို စစ်ဆေးပါ။ Google Play တွင် စာရင်းသွင်းမှုကို စီမံရန် သို့မဟုတ် ပယ်ဖျက်ရန် ပြုလုပ်နိုင်သည်။';
 
   @override
   String get planCurrent => 'လက်ရှိ';
@@ -993,7 +993,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get planChoose => 'ရွေးချယ်ပါ';
 
   @override
-  String get plansAction => 'စီမံချက်များ: Pro နှင့် Max';
+  String get plansAction => 'အစီအစဉ်များ: Pro';
 
   @override
   String get assistantTitle => 'အကူအညီ';
@@ -1081,7 +1081,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'ရှိပြီးသား Pro နှင့် Max ဆက်တိုက်ဝယ်ယူသူများသည် မူလ လစဉ် AI အခွင့်အရေးကို ဆက်လက်ရရှိမည်။ အသစ်ထွက်ရှိသော ပေးချေမှုပုံစံများတွင် တောင်းဆိုမှု ၁၀၀ နှင့် ၃၀၀ ပါဝင်သည်။';
+      'ရှိပြီးသား Pro နှင့် Max ဆက်တိုက်ဝယ်ယူသူများသည် မူလ လစဉ် AI အခွင့်အရေးကို ဆက်လက်ရရှိမည်။';
 
   @override
   String get csvExportAction => 'CSV ထုတ်ယူရန်';

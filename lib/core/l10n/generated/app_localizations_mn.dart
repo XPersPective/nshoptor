@@ -981,7 +981,7 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get plansLegal =>
-      'Шинэ Pro болон Max захиалгууд цуцлах хүртэл сар бүр шинэчлэгдэнэ. Google Play дээр удирдах эсвэл цуцална уу. Худалдан авахаас өмнө Play дээр үнэ болон туршилтын нөхцөлийг шалгана уу.';
+      'Pro нь цуцлах хүртэл жил бүр автоматаар сунгагдах бөгөөд сар бүр 100 хиймэл оюуны хүсэлт багтана. Холбогдох татвар ороогүй суурь үнэ жилд 1 ам.доллар; худалдан авалтаа баталгаажуулахын өмнө дэлгүүрээс орон нутгийн эцсийн үнэ болон татварыг шалгана уу. Google Play дээр захиалгаа удирдах эсвэл цуцлах боломжтой.';
 
   @override
   String get planCurrent => 'Одоогийн';
@@ -993,7 +993,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get planChoose => 'Сонгох';
 
   @override
-  String get plansAction => 'Захиалга: Pro ба Max';
+  String get plansAction => 'Төлөвлөгөө: Pro';
 
   @override
   String get assistantTitle => 'Туслах';
@@ -1082,7 +1082,7 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get planLegacyRights =>
-      'Одоо байгаа Pro болон Max захиалгууд анхны сар бүрийн AI хязгаарлалтаа хадгална. Шинэ сануултууд 100 ба 300 хүсэлт агуулна.';
+      'Одоо байгаа Pro болон Max захиалгууд анхны сар бүрийн хиймэл оюуны хүсэлтийн хязгаараа хадгална.';
 
   @override
   String get csvExportAction => 'CSV экспортлох';
