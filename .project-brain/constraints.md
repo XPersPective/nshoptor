@@ -1,5 +1,9 @@
 # Constraints
 
+- C-019: Son kullanıcı 2026-10-24: CLI Agent Pool ve harici model/CLI ajanı kullanılmaz; yalnız ChatGPT native alt ajanları sınırlı görevlerle kullanılabilir. Önceki havuz yetkileri bu çalışma için geçersizdir; havuz keşfi/başlatması/onayı istenmez.
+- C-020: Yeni ve yarım kalan bütün işlerin tek takip kaynağı Project Brain olur. Yabancı takip dosyaları kapsam/Resume/External aktarımı, kaynak-hedef hash doğrulaması ve geri alınabilir arşivden sonra tam belirtilen yollardan kaldırılır; uygulama, kanıt ve özel yayın dosyaları silinmez.
+- C-021: Güncel ayrıntılı kapsam .project-brain/intake-2026-10-24.md N001–N074 ve PB-141..155; özgün kaynak .project-brain/sources/2026-10-24-user-request.txt. Önce kapsam kaydı, ardından uygulama; tamamlanma yalnız taze kanıtla bildirilir.
+
 - C-001: Existing fixed-point/decimal monetary and quantity core stays; do not introduce double arithmetic (source: legacy ADR-001/constraints)
 - C-002: SQLite/Drift schema changes require versioned migration and transaction safety (source: legacy C-011)
 - C-003: Offline-first, no account/cloud sync, and existing Android-first release setup remain (source: legacy C-002/C-030/C-033)
@@ -15,7 +19,7 @@
 
 - C-012: Kullanıcıya görünen dil nazik ve anlaşılır olsun; YZ ayarı tehlikeli alan içinde bulunmasın (user 2026-10-23).
 - C-013: Bildirim ve sunucu için ücretsiz servis/katman seç; ücretli API veya otomatik ücretli yükseltme açma; sağlayıcıların gelecekte kalıcı ücretsiz kalacağını vaat etme (user 2026-10-23).
-- C-014: Sohbetin bütün talepleri docs/spec/production-master-prompt-tr.md R01–R50 ve görevlerle izlenir; her devralmada açık kanıt/Next/Failing/Dirty ve dış işlem readback korunur (user 2026-10-23).
+- C-014: Sohbetin bütün talepleri .project-brain/references/production-master-prompt-tr.md R01–R50 ve görevlerle izlenir; her devralmada açık kanıt/Next/Failing/Dirty ve dış işlem readback korunur (user 2026-10-23).
 
 - C-015: Son kullanıcı sözleşmesi: manuel ve doğal ses fiyatı seçilen miktarın toplamı varsayılanıdır; açık birim bazları ayrıca ele alınır; ev/market bağımsız mod, doğru normalize grafik ve eski veri anlamı korunur (2026-10-23 R54–R60).
 - C-016: Güncel karar 2026-10-24: Önceki yalnız aylık yeni satış talebinin yerini yıllık tek Pro alır: vergi hariç yıllık 1 ABD doları temel fiyat, her takvim ayında mevcut Pro 100 YZ isteği, reklamsız kullanım ve JSON yedekleme. Yerel nihai fiyat mağazadan gelir; vergi iki kez eklenmez. Yeni aylık/Max/lifetime satışları kapanır; mevcut ücretli haklar, yenileme sözleşmeleri ve restore iptal edilmez (R71–R74, PB-135..137).

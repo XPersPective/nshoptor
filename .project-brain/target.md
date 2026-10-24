@@ -2,12 +2,15 @@
 Status: CONFIRMED
 
 ## Goal
+
+"Bütün bu söylediklerimi hepsini önce Project Brain'e eklemen gerekiyor... Sonra her birini itinayla üretim seviyesinde premium düzeyde gerçekleştir... Android ve iOS'a yüklemeni istiyorum." (user eki,2026-10-24). Ayrıntılı onaylı kapsam: `.project-brain/intake-2026-10-24.md` N001–N074, PB-141..155. Özgün ek `.project-brain/sources/2026-10-24-user-request.txt`.
+"Her şeyi, bütün her şeyi Project Brain'e taşımanı istiyorum... onları sileceksin... sadece senle çalışacağım." (user,2026-10-24). Önceki yarım değişiklikleri koruyarak sürdür; havuz kullanma, yalnız bounded native alt ajanlar. Eski takip artefaktları kapsam korunarak arşivlenip kaldırılır; uygulama/kanıt/yayın kimliği dosyaları korunur.
 "Baştan sona her şeyi kullanıcı dostu, aynı zamanda profesyonel, eksiksiz çalışır hale üretim düzeyine getir. yayına hazır hale getir" (user 2026-10-18).
 "Artık Project Brain üzerine yürüyecek işler." (user 2026-10-18).
 Önceki onaylı kullanıcı hedefi: "Evdeki Hesap" planlanan/tahmini, "Çarşıdaki Hesap" gerçekleşen fiyat; slogan "Evdeki hesap çarşıya uyar."
 
 "bu sohbette ginderdigim diger komutlaein herbirini madde madde ver kendine kapsamli bir promp yaz her maddeyi project brain skilini kullanarak once buraya ekle hedef ve asama yapilacaklara sinrada gerceklestir . senden sonraki yz dvralabilecek sekilde bitir." (user 2026-10-23).
-Tam kapsam: `docs/spec/production-master-prompt-tr.md`, R01–R74; aşamalar ve görev eşleştirmesi bu belgededir. Son doğrudan talep: yeni satışta yalnız yıllık Pro (vergi hariç USD1/yıl,100YZ/ay; önceki aylık satış talebi geçersiz); isteğe bağlı alışveriş tarih+saat; varsayılan tarih ve seçilebilirA–Z; manuel doğal fiyat seçilen miktarın toplamı, açıkbirim fiyatı ve etiket/fiş bazları ayrı, tahmin/gerçek grafik ortakbirimde (PB-131..133).
+Tam kapsam: `.project-brain/references/production-master-prompt-tr.md`, R01–R74; aşamalar ve görev eşleştirmesi bu belgededir. Son doğrudan talep: yeni satışta yalnız yıllık Pro (vergi hariç USD1/yıl,100YZ/ay; önceki aylık satış talebi geçersiz); isteğe bağlı alışveriş tarih+saat; varsayılan tarih ve seçilebilirA–Z; manuel doğal fiyat seçilen miktarın toplamı, açıkbirim fiyatı ve etiket/fiş bazları ayrı, tahmin/gerçek grafik ortakbirimde (PB-131..133).
 
 ## Users and Main Journey
 Son kullanıcı eki (2026-10-24): "urunlerin tiklileri asagiya kaymali. urunlerde arama yapilabilmeli". PB-134: market fiyatı olanlar altta, fiyat silinince yeniden üstte; liste içi ürün araması toplamları değiştirmez. Yayın mevcut release-harbor ile dahili test; önceki açık işler korunur.
@@ -71,3 +74,7 @@ Son kullanıcı eki (2026-10-24): "urunlerin tiklileri asagiya kaymali. urunlerd
 
 ## Latest request 2026-10-24
 - R71–R74 / PB-135..137: Y ekseni her ekran/yazı boyutunda okunur; uzun sayılar kısaltılmış eksen ve tam değerlerle gösterilir. Yeni ücretli satış yalnız yıllık Pro, USD1 vergi hariç temel fiyat, her ay 100 YZ hakkı. Önceki aylık-only talebi geçersizdir. 71 uygulama dili, 73 mağaza yereli, GitHub ve site aynı sözleşmeyi anlatır. Önce dahili test 1.3.0+18; üretime geçiş kullanıcı denemesinden sonradır.
+
+## 2026-10-24 — Kapsamın tamamına devam
+
+Kullanıcı: "ürün sıralama ve daha birçok ek özellik; yapılacakların hepsini bitirmeni istemiştim". Son fiyat/grafik sürümü bütün ürünün tamamlandığı anlamına gelmez. PB-138 ürün sıralama; PB-139 iOS native/CI; PB-140 bütün R01–R74 açıklarının somut kontrollerle kapanmasını takip eder. Üretim terfisi yine kullanıcı dahili test kabulünden sonradır.

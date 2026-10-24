@@ -11,4 +11,4 @@ git:
 commands:
   test: "flutter test"
   lint: "flutter analyze"
-  build: ""
+  build: "flutter build apk --debug --no-pub"

@@ -9,3 +9,8 @@
 *.otf binary
 *.jks binary
 *.keystore binary
+
+# Verbatim planning sources retain their recorded SHA256 across checkouts.
+/.project-brain/history/** -text
+/.project-brain/sources/** -text
+/.project-brain/references/production-master-prompt-tr.md -text

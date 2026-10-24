@@ -1,6 +1,6 @@
 # Oturum talepleri ve doğrulanmış durum — 23 Ekim 2026
 
-Bu kayıt bütün işlerin tamamlandığı anlamına gelmez. **Düzeltildi/testli** yerel otomatik kontrolü; **kısmi** uygulama veya bazı kontroller mevcutken kabulün açık olduğunu; **açık** tamamlanmadığını belirtir. Önceki ayrıntılı kapsam: `docs/spec/production-master-prompt-tr.md` (R01–R61).
+Bu kayıt bütün işlerin tamamlandığı anlamına gelmez. **Düzeltildi/testli** yerel otomatik kontrolü; **kısmi** uygulama veya bazı kontroller mevcutken kabulün açık olduğunu; **açık** tamamlanmadığını belirtir. Önceki ayrıntılı kapsam: `.project-brain/references/production-master-prompt-tr.md` (R01–R61).
 
 ## Bütün talepler
 

@@ -104,7 +104,7 @@ Para ve ondalık hesap için harici paket yok: `lib/core/money` (bkz.
   [Hesaplamalar](docs/calculations.md) · [Yerelleştirme](docs/localization.md)
 - [Fiş OCR](docs/receipt-ocr.md) · [Sesle giriş](docs/voice-input.md) ·
   [Gizlilik](docs/privacy.md) · [Release kontrol listesi](docs/release-checklist.md)
-- Bağlayıcı ürün tanımı: [docs/spec/master-prompt-tr.md](docs/spec/master-prompt-tr.md)
+- Güncel ürün hedefi: [.project-brain/target.md](.project-brain/target.md); ayrıntılı kapsam ve tarihsel kararların ayrımı [Project Brain kaynaklarında](.project-brain/references/consolidation-2026-10-24.md).
 - Proje durumu / plan: `.project-brain/` (project-brain protokolü)
 
 ## İzinler

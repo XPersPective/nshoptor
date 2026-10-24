@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "task": "PB-155",
+  "state": "CONSOLIDATED",
+  "archive": "D:\\repositories\\.project-brain-archives\\nshoptor-pb155-20261024T201540Z.zip",
+  "archive_sha256": "bc70049f5f1e3f72078b1d361cf34573d7a207a70a1e010e25f9c997b56d183d",
+  "sources": [
+    {
+      "source": "docs/spec/production-master-prompt-tr.md",
+      "destination": ".project-brain/references/production-master-prompt-tr.md",
+      "sha256": "42b210e42020d75907c6dfbef9a5f460fd721a48707db88c5d98a45d14ce7b55",
+      "bytes": 19881,
+      "disposition": "R01-R74 user scope; active intent with chronological supersession notes"
+    },
+    {
+      "source": "docs/spec/master-prompt-tr.md",
+      "destination": ".project-brain/history/2026-10-24-consolidation/master-prompt-tr.md",
+      "sha256": "a62d5b291d44a2c3937c5863c5ec13100f9bf36420b69d25fa07313cf5e13ab3",
+      "bytes": 38455,
+      "disposition": "Original product prompt; historical, superseded decisions are not active authority"
+    },
+    {
+      "source": "docs/spec/planning-2026-10-23/PB-101.md",
+      "destination": ".project-brain/history/2026-10-24-consolidation/planning-2026-10-23/PB-101.md",
+      "sha256": "8d9d5f86611da0074645084d25f1360e1015fd4fd0ebe6e26e809e79e23b7591",
+      "bytes": 1965,
+      "disposition": "Historical task snapshot; open scope reconciled into current tasks"
+    },
+    {
+      "source": "docs/spec/planning-2026-10-23/PB-103.md",
+      "destination": ".project-brain/history/2026-10-24-consolidation/planning-2026-10-23/PB-103.md",
+      "sha256": "c7d6fba24451613a0ccf83e4abcf21f3ca9b99bc6d7b2aace2e131d29be4065c",
+      "bytes": 2389,
+      "disposition": "Historical task snapshot; open scope reconciled into current tasks"
+    },
+    {
+      "source": "docs/spec/planning-2026-10-23/PB-104.md",
+      "destination": ".project-brain/history/2026-10-24-consolidation/planning-2026-10-23/PB-104.md",
+      "sha256": "5699aaf04d7b742be35875a4e5cb13e733db2c4363690b05716a017a3b4f44d6",
+      "bytes": 1570,
+      "disposition": "Historical task snapshot; open scope reconciled into current tasks"
+    },
+    {
+      "source": "docs/spec/planning-2026-10-23/PB-106.md",
+      "destination": ".project-brain/history/2026-10-24-consolidation/planning-2026-10-23/PB-106.md",
+      "sha256": "3bac52158177b86381e0bdd0d82a2fe7ee69d04eb77dfeb091e94416f6d00a1a",
+      "bytes": 2292,
+      "disposition": "Historical task snapshot; open scope reconciled into current tasks"
+    },
+    {
+      "source": "docs/spec/planning-2026-10-23/PB-109.md",
+      "destination": ".project-brain/history/2026-10-24-consolidation/planning-2026-10-23/PB-109.md",
+      "sha256": "ad77d5bef3dd318ac12aa7d29f1eb0d467569c37992ee54162f739be0f4cf2bb",
+      "bytes": 1961,
+      "disposition": "Historical task snapshot; open scope reconciled into current tasks"
+    },
+    {
+      "source": "design-system/nshoptor/MASTER.md",
+      "destination": ".project-brain/history/2026-10-24-consolidation/design-system-MASTER.md",
+      "sha256": "887867631426b0b91c97f1b4b2d7cf50c1bf490aa724de319a02e17cadc681b1",
+      "bytes": 7186,
+      "disposition": "Generated design guidance; existing app tokens and current brand decisions take precedence"
+    },
+    {
+      "source": "docs/audits/2026-10-09-user-request.txt",
+      "destination": ".project-brain/history/2026-10-24-consolidation/2026-10-09-user-request.txt",
+      "sha256": "acc9bcb232a45457cc25fefd66ec61f260adcba7fb07e737cd9f86f3fa624e06",
+      "bytes": 14409,
+      "disposition": "Primary user request transcript; latest user decisions supersede older commercial proposals"
+    },
+    {
+      "source": "docs/audits/2026-10-09-user-experience.md",
+      "destination": ".project-brain/history/2026-10-24-consolidation/2026-10-09-user-experience.md",
+      "sha256": "28f8326758e0a4415776d66ed7006733a78396e71324f0ab89d3e4d71eb6985b",
+      "bytes": 8713,
+      "disposition": "Historical proposed critique, not completion evidence"
+    },
+    {
+      "source": ".zcodeignore",
+      "destination": ".project-brain/history/2026-10-24-consolidation/zcodeignore",
+      "sha256": "af796a787196efcf272a1a56b76a6e35ca16b5755ab16155fe43a88bdd016fdb",
+      "bytes": 1422,
+      "disposition": "Obsolete ZCode-specific exclusion artifact; active git credential exclusions preserved"
+    }
+  ],
+  "note": "11 sources verified byte-for-byte in Project Brain and external ZIP before exact file removal. Historical copies and manifest retain original paths as provenance; current references updated. No application or external-operation acceptance claimed."
+}
