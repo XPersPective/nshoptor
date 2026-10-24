@@ -50,10 +50,10 @@ Bu kayıt bütün işlerin tamamlandığı anlamına gelmez. **Düzeltildi/testl
 | R42 | Çok dilli SEO/ASO ve teknik SEO | Site kontrolleri ve mağaza kaynakları var; tüm ülke/dillerde nihai inceleme/yükleme açık. |
 | R43 | Gerçek sürümden rafine ekranlar/banner/video | TR güncel fiyat ekranları var; EN/tüm diller güncellemesi ve nihai video/mağaza yüklemesi açık. |
 | R44 | Android/iOS izin/gizlilik/reklam/mağaza şartları | Kısmi kaynak/politika incelemesi; nihai Console/App Privacy ve iOS kabulü açık. |
-| R45 | Testten sonra mağazaya gönderim | Android1.2.8(16) dahili teste yüklendi; resmi API completed ve aynı SHA256 doğrulandı. Üretim ancak kullanıcı testinden sonra. iOS henüz gönderilebilir değil. |
+| R45 | Testten sonra mağazaya gönderim | Son24Ekim: Android1.2.9(17) dahili teste yüklendi; resmi API completed ve aynı SHA256 doğrulandı. Üretim değişmedi; genel yayın kullanıcı testinden ve açık kapılardan sonra. iOS henüz gönderilebilir değil. |
 | R46 | Ev→market→fiş→geçmiş→rapor→paylaş uçtan uca | Bazı kalıcı native fiyat yolları doğrulandı; bütün zincir açık. |
 | R47 | Büyük liste, sıfır, kısmi, dil/para, izin/ağ/kapanma | Otomatik örnekler mevcut; tüm native senaryo matrisi açık. |
-| R48 | Test/analyze/sunucu/Android build | Bu gönderimde yeniden: 539 Flutter testi geçti, 2 opt-in atlandı; 37 sunucu testi geçti; analiz temiz; imzalı release AAB başarılı. |
+| R48 | Test/analyze/sunucu/Android build | Son24Ekim:548Flutter testi geçti/2opt-in atlandı,9sonodaklı test geçti; analiz temiz ve imzalı release17başarılı. Sunucu37geçti önceki23Ekim koşumudur; bu UI değişikliğinde sunucu kaynağı değişmedi. |
 | R49 | Diğer hataları bulma ve kök neden düzeltme | Birçok ek hata düzeltildi; bütün olası hataların bulunması doğrulanabilir bir tamamlanma iddiası değildir. |
 | R50 | Sonraki YZ için kapsam/karar/kanıt/devir | Ayrıntılı şartname, audit ve bu durum kaydı mevcut; açık işler korunuyor. |
 | R51 | Uygulama/GitHub/site/diğer dillerde aylık abonelik | Kaynaklar güncellendi; canlı site doğrulandı, Play açıklaması yüklenmedi. Eski yıllık restore hakları korundu. |
@@ -74,6 +74,8 @@ Bu kayıt bütün işlerin tamamlandığı anlamına gelmez. **Düzeltildi/testl
 | R66 | Silip yükleyerek 7 günlük denemeyi yenileyememe | Açık: yerel reklamsız ilk kullanım sayacı yeniden kurulumda sıfırlanabilir; mağaza abonelik denemesi ayrı doğrulanmalı. |
 | R67 | Önce dahili test, kullanıcı kabulünden sonra iki mağaza yayını | Geçerli yayın sırası budur; üretime otomatik terfi yapılmayacak. |
 | R68 | Yayın için release-harbor kullanılması | Okundu/uygulanıyor; Store Automation kaldırıldığı için kullanılmıyor, plan taşınmıyor. |
+| R69 | Tikli ürünlerin aşağıya kayması (24 Ekim) | PB-134: kaynak ve16odaklı testte doğrulandı; fiyat0 dahil market fiyatı olanlar altta, silinince üstte. Yeni sürüm ve nihai kontrol: product-search-2026-10-24-tr.md. |
+| R70 | Ürünlerde arama (24 Ekim) | PB-134: planlı/plansız/salt okunur listede arama, Türkçe harf, temizleme ve değişmeyen toplamlar testli; yeni sürümün yayın sonucu aynı24Ekim kaydında. |
 
 ## Sonuç
 
