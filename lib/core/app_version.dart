@@ -2,4 +2,4 @@
 ///
 /// pubspec.yaml `version:` ile ELDE TUTULUR — her yayında ikisi birlikte
 /// artırılır (docs/release-checklist.md sürüm maddesi).
-const String appVersion = '1.2.8';
+const String appVersion = '1.2.9';

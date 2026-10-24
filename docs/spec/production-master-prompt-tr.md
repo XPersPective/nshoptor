@@ -133,3 +133,8 @@ Kullanıcının UX devam talebi: varsayılan toplam fiyat kalsın; ayrıca Ayarl
 - R68: Kullanıcının açık seçimi `release-harbor` becerisidir (`C:/Users/rubicon/.skills-manager/skills/release-harbor/SKILL.md`). Kaldırılmış Store Automation'ın önbelleği kullanılmayacak, buna geçiş yapılmayacak. Mevcut dış yayın kökü README ve Fastlane kayıtları korunacak.
 
 Oturumun bütün maddeleri ve durum ayrımı: `docs/audits/session-status-2026-10-23-tr.md`. Kodda bulunma, yerel test, native cihaz gözlemi, yükleme ve genel yayın ayrı durumlardır.
+
+## R69–R70 — 24 Ekim 2026 liste kullanımı (PB-134)
+
+- R69: Tikli, yani market fiyatı girilmiş ürünler listenin altında; alınmayanlar üstte gösterilsin. Sıfır fiyat satın alınmış sayılır; market fiyatı silinince ürün yeniden alınmayanlara döner. Her grupta mevcut sıra korunur, salt görünüm için kalıcı sıra yeniden yazılmaz. Elle sıralama gruplar arasında tik kuralını bozamaz.
+- R70: Liste içindeki planlı ve sonradan alınan ürünlerde anlık çevrimdışı arama olsun. Türkçe I/ı ve İ/i doğru eşleşsin; temizleme ve sonuç bulunamadığında geri dönüş anlaşılır olsun. Arama hesap/rapor/tamamlama toplamlarını veya gizlenen kayıtları değiştirmez. Salt okunur eski listeler de aranabilir. Yeni sürüm doğrulandıktan sonra dahili teste gönderilsin; genel üretim kabulü ve diğer açık talepler korunur.

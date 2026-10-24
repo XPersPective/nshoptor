@@ -1,7 +1,9 @@
 import '../../core/money/format_locale.dart';
 
 import 'package:flutter/material.dart';
+
 import '../engagement/review_moments.dart';
+
 import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -41,6 +43,7 @@ import '../voice_input/voice_input_service.dart';
 import '../voice_input/list_draft_sheet.dart';
 import '../voice_input/ai_list_parser.dart';
 import 'item_repository.dart';
+import 'item_list_view.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
 import '../ai/ai_client.dart';
 import 'reminders/local_notifications_scheduler.dart';
@@ -99,6 +102,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   bool _busy = false;
   bool _reminderBusy = false;
   bool _itemFormOpen = false;
+  final _searchController = TextEditingController();
+  String _searchQuery = '';
   bool _editable = false;
   ListStatus? _status;
 
@@ -116,6 +121,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
 
   @override
   void dispose() {
+    _searchController.dispose();
     AdGate.shoppingModeActive = --_openLists > 0;
     WidgetsBinding.instance.removeObserver(this);
     appRouteObserver.unsubscribe(this);
@@ -286,7 +292,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         ),
       );
       // Natural stop: shopping is over and the result was seen.
-      final reviewAttempted = await ReviewMoments.instance?.afterShopping() ?? false;
+      final reviewAttempted =
+          await ReviewMoments.instance?.afterShopping() ?? false;
       if (!reviewAttempted) await AdGate.maybeShowInterstitial();
     } catch (_) {
       if (mounted) {
@@ -545,8 +552,56 @@ class _ListDetailScreenState extends State<ListDetailScreen>
               builder: (context, entrySnap) {
                 final items = itemSnap.data ?? const <PlannedItem>[];
                 final entries = entrySnap.data ?? const <PurchaseEntry>[];
+                final locale = Localizations.localeOf(context).languageCode;
+                final searching = _searchQuery.trim().isNotEmpty;
+                final orderedItems = purchasedItemsLast(items, entries);
+                final visibleItems = orderedItems
+                    .where(
+                      (item) =>
+                          matchesItemSearch(item.name, _searchQuery, locale),
+                    )
+                    .toList();
+                final unplanned = entries
+                    .where(
+                      (entry) =>
+                          entry.plannedItemId == null &&
+                          matchesItemSearch(entry.name, _searchQuery, locale),
+                    )
+                    .toList();
+                final material = MaterialLocalizations.of(context);
                 return Column(
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      child: TextField(
+                        key: const Key('detail_item_search'),
+                        controller: _searchController,
+                        textInputAction: TextInputAction.search,
+                        onChanged: (value) =>
+                            setState(() => _searchQuery = value),
+                        onSubmitted: (_) => FocusScope.of(context).unfocus(),
+                        decoration: InputDecoration(
+                          labelText: material.searchFieldLabel,
+                          hintText: l10n.itemNameLabel,
+                          prefixIcon: const Icon(Icons.search),
+                          suffixIcon: _searchQuery.isEmpty
+                              ? null
+                              : IconButton(
+                                  key: const Key('detail_search_clear'),
+                                  constraints: const BoxConstraints(
+                                    minWidth: 48,
+                                    minHeight: 48,
+                                  ),
+                                  tooltip: material.clearButtonTooltip,
+                                  icon: const Icon(Icons.close),
+                                  onPressed: () {
+                                    _searchController.clear();
+                                    setState(() => _searchQuery = '');
+                                  },
+                                ),
+                        ),
+                      ),
+                    ),
                     Expanded(
                       child: ListView(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -577,25 +632,55 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                 ],
                               ),
                             ),
-                          if (items.isNotEmpty)
+                          if (searching &&
+                              visibleItems.isEmpty &&
+                              unplanned.isEmpty)
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  const Icon(Icons.search_off),
+                                  Text(
+                                    '${l10n.statusNotFound}: $_searchQuery',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  TextButton.icon(
+                                    key: const Key('detail_search_reset'),
+                                    onPressed: () {
+                                      _searchController.clear();
+                                      setState(() => _searchQuery = '');
+                                      FocusScope.of(context).unfocus();
+                                    },
+                                    icon: const Icon(Icons.clear),
+                                    label: Text(material.clearButtonTooltip),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          if (visibleItems.isNotEmpty)
                             ReorderableListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               buildDefaultDragHandles: false,
-                              itemCount: items.length,
-                              onReorderItem: (oldIndex, newIndex) =>
-                                  _reorderItems(items, oldIndex, newIndex),
+                              itemCount: visibleItems.length,
+                              onReorderItem: (oldIndex, newIndex) => searching
+                                  ? null
+                                  : _reorderItems(
+                                      orderedItems,
+                                      entries,
+                                      oldIndex,
+                                      newIndex,
+                                    ),
                               itemBuilder: (context, index) => _buildItemCard(
                                 context,
-                                items[index],
+                                visibleItems[index],
                                 entries,
                                 list,
                                 index,
+                                draggable: !searching,
                               ),
                             ),
-                          for (final e in entries.where(
-                            (e) => e.plannedItemId == null,
-                          ))
+                          for (final e in unplanned)
                             Card(
                               child: Padding(
                                 padding: const EdgeInsets.all(12),
@@ -691,8 +776,9 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     PlannedItem item,
     List<PurchaseEntry> entries,
     ShoppingList list,
-    int index,
-  ) {
+    int index, {
+    bool draggable = true,
+  }) {
     final l10n = AppLocalizations.of(context);
     final colors = Theme.of(context).colorScheme;
     final card = Dismissible(
@@ -777,7 +863,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     );
     return KeyedSubtree(
       key: ValueKey('detail_reorder_${item.id}'),
-      child: _editable
+      child: _editable && draggable
           ? ReorderableDelayedDragStartListener(index: index, child: card)
           : card,
     );
@@ -822,12 +908,14 @@ class _ListDetailScreenState extends State<ListDetailScreen>
 
   Future<void> _reorderItems(
     List<PlannedItem> items,
+    List<PurchaseEntry> entries,
     int oldIndex,
     int newIndex,
   ) async {
-    final ordered = [...items];
-    final moved = ordered.removeAt(oldIndex);
-    ordered.insert(newIndex, moved);
+    if (_busy || _searchQuery.trim().isNotEmpty || !_editable) return;
+    final ordered = reorderItemGroup(items, entries, oldIndex, newIndex);
+    if (ordered == null) return;
+    setState(() => _busy = true);
     try {
       await ItemRepository(widget.db)
           .reorderItems(widget.listId, ordered.map((item) => item.id).toList());
@@ -842,6 +930,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
             ),
           );
       }
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
   }
 

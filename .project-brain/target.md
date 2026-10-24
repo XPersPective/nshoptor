@@ -10,6 +10,8 @@ Status: CONFIRMED
 Tam kapsam: `docs/spec/production-master-prompt-tr.md`, R01–R60; aşamalar ve görev eşleştirmesi bu belgededir. Son doğrudan talep: aylık yeniabonelikler; isteğe bağlı alışveriş tarih+saat; varsayılan tarih ve seçilebilirA–Z; manuel doğal fiyat seçilen miktarın toplamı, açıkbirim fiyatı ve etiket/fiş bazları ayrı, tahmin/gerçek grafik ortakbirimde (PB-131..133).
 
 ## Users and Main Journey
+Son kullanıcı eki (2026-10-24): "urunlerin tiklileri asagiya kaymali. urunlerde arama yapilabilmeli". PB-134: market fiyatı olanlar altta, fiyat silinince yeniden üstte; liste içi ürün araması toplamları değiştirmez. Yayın mevcut release-harbor ile dahili test; önceki açık işler korunur.
+
 - Evde liste hazırlayan, markette fiyat giren, fiş ekleyen ve geçmiş harcamasını inceleyen kullanıcı.
 - Liste oluştur → ürünleri yaz/söyle → fiyatları düzenle/fişten onayla → alışverişi bitir → raporu paylaş/PDF kaydet → yanlış bitirildiyse geri aç.
 
