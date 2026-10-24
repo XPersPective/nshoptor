@@ -7,7 +7,7 @@ Status: CONFIRMED
 Önceki onaylı kullanıcı hedefi: "Evdeki Hesap" planlanan/tahmini, "Çarşıdaki Hesap" gerçekleşen fiyat; slogan "Evdeki hesap çarşıya uyar."
 
 "bu sohbette ginderdigim diger komutlaein herbirini madde madde ver kendine kapsamli bir promp yaz her maddeyi project brain skilini kullanarak once buraya ekle hedef ve asama yapilacaklara sinrada gerceklestir . senden sonraki yz dvralabilecek sekilde bitir." (user 2026-10-23).
-Tam kapsam: `docs/spec/production-master-prompt-tr.md`, R01–R60; aşamalar ve görev eşleştirmesi bu belgededir. Son doğrudan talep: aylık yeniabonelikler; isteğe bağlı alışveriş tarih+saat; varsayılan tarih ve seçilebilirA–Z; manuel doğal fiyat seçilen miktarın toplamı, açıkbirim fiyatı ve etiket/fiş bazları ayrı, tahmin/gerçek grafik ortakbirimde (PB-131..133).
+Tam kapsam: `docs/spec/production-master-prompt-tr.md`, R01–R74; aşamalar ve görev eşleştirmesi bu belgededir. Son doğrudan talep: yeni satışta yalnız yıllık Pro (vergi hariç USD1/yıl,100YZ/ay; önceki aylık satış talebi geçersiz); isteğe bağlı alışveriş tarih+saat; varsayılan tarih ve seçilebilirA–Z; manuel doğal fiyat seçilen miktarın toplamı, açıkbirim fiyatı ve etiket/fiş bazları ayrı, tahmin/gerçek grafik ortakbirimde (PB-131..133).
 
 ## Users and Main Journey
 Son kullanıcı eki (2026-10-24): "urunlerin tiklileri asagiya kaymali. urunlerde arama yapilabilmeli". PB-134: market fiyatı olanlar altta, fiyat silinince yeniden üstte; liste içi ürün araması toplamları değiştirmez. Yayın mevcut release-harbor ile dahili test; önceki açık işler korunur.

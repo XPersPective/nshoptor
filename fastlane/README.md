@@ -39,6 +39,14 @@ AAB'yi İç test (internal) kanalına yükler
 
 İç testteki pubspec sürümünü Üretim'e taşır ve mağaza içeriğini yükler
 
+### android push_metadata_text
+
+```sh
+[bundle exec] fastlane android push_metadata_text
+```
+
+Yalnızca doğrulanmış mağaza metinleri; görseller ve yayın kanalları korunur
+
 ### android push_metadata
 
 ```sh
