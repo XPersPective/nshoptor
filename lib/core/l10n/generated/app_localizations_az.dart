@@ -607,6 +607,9 @@ class AppLocalizationsAz extends AppLocalizations {
   String get scanReceiptAction => 'Çeki skan et';
 
   @override
+  String get fromReceiptListButton => 'Qəbzdən siyahı';
+
+  @override
   String get shelfLabelAction => 'Raf etiketindən qiymət';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Əlaqələndirilmiş çeki sətirləri mövcud alışları əvəz edir; əlaqələndirilməmiş sətirlər isə əlavə edilir.';
+      'Qiyməti olmayan məhsullar tamamlanır. Artıq bazar qiyməti olan məhsullar ayrıca alış kimi əlavə edilir.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Növbəti fotoya mağazanı, tarixi, saatı və çek nömrəsini daxil edin.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Növbəti hissəni bir neçə üst-üstə düşən məhsul və yekun məbləğ görünəcək şəkildə çəkin.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Bu foto çeki davam etdirmək üçün birləşdirilə bilmədi. Eyni çekdən üst-üstə düşən məhsullarla yenidən çəkin.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Çek qaralama kimi saxlanıldı. Sonra davam edə bilərsiniz.';
+
+  @override
+  String get receiptContinueAction => 'Çeki davam etdir';
+
+  @override
+  String get receiptDraftsTitle => 'Yarımçıq çeklər';
+
+  @override
+  String get receiptDuplicate => 'Bu çek artıq əlavə edilib.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Məhsullar çekin yekun məbləği ilə uyğun gəlmir. Bütün çekin göründüyünü yoxlayın.';
+
+  @override
+  String get receiptSaveDraftAction => 'Sonra üçün saxla';
+
+  @override
+  String get receiptResolveLines =>
+      'Saxlamazdan əvvəl hər məhsulu qəbul edin və ya nəzərə almayın.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Yalnız seçilmiş məhsullar əlavə ediləcək. Bu qəbz idxal edilmiş kimi işarələnəcək. Davam edilsin?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1288,7 +1331,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'Mağaza qiyməti daxil ediləndə məhsul alınmış sayılır; 0 da keçərlidir. Evdəki qiymət istəyə bağlıdır. İşarəni silmək üçün mağaza qiymətini silin.';
 
   @override
-  String get shoppingDateLabel => 'Alış-veriş tarixi (istəyə bağlı)';
+  String get shoppingDateLabel => 'Alış-veriş tarixi';
 
   @override
   String get shoppingDateNone => 'Tarix seçilməyib';
@@ -1307,4 +1350,28 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get listSortManual => 'Əl ilə sırala';
+
+  @override
+  String get imageCameraAction => 'Foto çək';
+
+  @override
+  String get imageGalleryAction => 'Şəkillərdən seç';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kamera və ya şəkillər açıla bilmədi. Giriş icazəsini yoxlayıb yenidən cəhd edin.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Şəkli emal etmək mümkün olmadı. Başqa şəkil sınayın.';
+
+  @override
+  String get receiptNoProducts =>
+      'Mətn oxundu, lakin çekdə məhsullar tapılmadı. Məhsulları və yekun məbləği şəkilə daxil edin.';
+
+  @override
+  String get keepAwakeOn => 'Ekran açıq qalır';
+
+  @override
+  String get keepAwakeOff => 'Ekran sönə bilər';
 }

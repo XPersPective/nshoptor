@@ -596,6 +596,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get scanReceiptAction => '扫描收据';
 
   @override
+  String get fromReceiptListButton => '从小票创建';
+
+  @override
   String get shelfLabelAction => '货架标签价格';
 
   @override
@@ -1028,7 +1031,40 @@ class AppLocalizationsZh extends AppLocalizations {
   String get purchaseAnalyticsHint => '消费数据不反映实际消耗量。货币和单位将分别显示。';
 
   @override
-  String get receiptReplaces => '关联的收据行将替换现有消费记录；未关联的行将被添加。';
+  String get receiptReplaces => '无价格的商品会补上价格。已有市场价的商品会作为单独的购买记录添加。';
+
+  @override
+  String get receiptIncompleteHeader => '下一张照片请包含商店、日期、时间和收据编号。';
+
+  @override
+  String get receiptIncompleteTail => '拍摄下一部分时，请让几件商品有所重叠，并拍到最终总额。';
+
+  @override
+  String get receiptContinuationRejected => '无法拼接这张照片。请重新拍摄，并让同一张收据中的商品有所重叠。';
+
+  @override
+  String get receiptDraftSaved => '收据已保存为草稿。你可以稍后继续。';
+
+  @override
+  String get receiptContinueAction => '继续收据';
+
+  @override
+  String get receiptDraftsTitle => '未完成的收据';
+
+  @override
+  String get receiptDuplicate => '这张收据已添加。';
+
+  @override
+  String get receiptTotalMismatch => '商品金额与收据总额不符。请检查是否拍到了整张收据。';
+
+  @override
+  String get receiptSaveDraftAction => '稍后保存';
+
+  @override
+  String get receiptResolveLines => '保存前请接受或忽略每个商品。';
+
+  @override
+  String get receiptPartialConfirm => '只会添加选中的商品。此收据将标记为已导入。继续吗？';
 
   @override
   String get voiceUnsupportedLanguage => '此设备不支持该语言的语音输入。您可以改为手动输入。';
@@ -1237,7 +1273,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get guidePricesBody => '输入商店价格后，商品会标记为已购买，0也有效。家中预估价为选填。清除商店价格即可取消勾选。';
 
   @override
-  String get shoppingDateLabel => '购物日期（选填）';
+  String get shoppingDateLabel => '购物日期';
 
   @override
   String get shoppingDateNone => '未选择日期';
@@ -1256,4 +1292,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get listSortManual => '手动排序';
+
+  @override
+  String get imageCameraAction => '拍照';
+
+  @override
+  String get imageGalleryAction => '从照片中选择';
+
+  @override
+  String get imageCaptureFailed => '无法打开相机或照片。请检查访问权限后重试。';
+
+  @override
+  String get imageRecognitionFailed => '无法处理照片。请尝试另一张照片。';
+
+  @override
+  String get receiptNoProducts => '已读取文字，但未找到小票商品。请在照片中包含商品和总金额。';
+
+  @override
+  String get keepAwakeOn => '屏幕会保持开启';
+
+  @override
+  String get keepAwakeOff => '屏幕可能会关闭';
 }

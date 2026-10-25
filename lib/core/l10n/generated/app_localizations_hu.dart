@@ -608,6 +608,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get scanReceiptAction => 'Számla beolvasása';
 
   @override
+  String get fromReceiptListButton => 'Nyugtából';
+
+  @override
   String get shelfLabelAction => 'Ár a polc címkéjéről';
 
   @override
@@ -1060,7 +1063,47 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'A társított nyugta sorok felülírják a meglévő vásárlásokat; a nem társított sorok hozzáadódnak.';
+      'Az ár nélküli tételek ára kitöltődik. A már piaci árral rendelkező tételek külön vásárlásként kerülnek hozzáadásra.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'A következő fotón szerepeljen az üzlet neve, a dátum, az idő és a nyugtaszám.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotózd le a következő részt néhány átfedő tétellel és a végösszeggel.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Ezt a fotót nem sikerült a nyugtához illeszteni. Készíts új képet ugyanarról a nyugtáról, néhány átfedő tétellel.';
+
+  @override
+  String get receiptDraftSaved =>
+      'A nyugta piszkozatként mentve. Később folytathatod.';
+
+  @override
+  String get receiptContinueAction => 'Nyugta folytatása';
+
+  @override
+  String get receiptDraftsTitle => 'Befejezetlen nyugták';
+
+  @override
+  String get receiptDuplicate => 'Ezt a nyugtát már hozzáadtad.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'A tételek összege nem egyezik a nyugta végösszegével. Ellenőrizd, hogy a teljes nyugta látható-e.';
+
+  @override
+  String get receiptSaveDraftAction => 'Mentés későbbre';
+
+  @override
+  String get receiptResolveLines =>
+      'Mentés előtt fogadjon el vagy hagyjon figyelmen kívül minden tételt.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Csak a kiválasztott tételek kerülnek hozzáadásra. Ez a nyugta importáltként lesz megjelölve. Folytatja?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1285,7 +1328,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'A bolti ár megadása megvásároltnak jelöli a tételt; a 0 is érvényes. Az otthoni ár nem kötelező. A jelölés törléséhez töröld a bolti árat.';
 
   @override
-  String get shoppingDateLabel => 'Vásárlás dátuma (nem kötelező)';
+  String get shoppingDateLabel => 'Vásárlás dátuma';
 
   @override
   String get shoppingDateNone => 'Nincs dátum kiválasztva';
@@ -1304,4 +1347,28 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get listSortManual => 'Kézi sorrend';
+
+  @override
+  String get imageCameraAction => 'Fénykép készítése';
+
+  @override
+  String get imageGalleryAction => 'Választás a fotók közül';
+
+  @override
+  String get imageCaptureFailed =>
+      'Nem sikerült megnyitni a kamerát vagy a fotókat. Ellenőrizd a hozzáférési engedélyt, és próbáld újra.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Nem sikerült feldolgozni a fotót. Próbálj másik fotót.';
+
+  @override
+  String get receiptNoProducts =>
+      'A szöveg olvasható volt, de a nyugta tételei nem találhatók. A tételek és a végösszeg is legyen a fotón.';
+
+  @override
+  String get keepAwakeOn => 'A képernyő bekapcsolva marad';
+
+  @override
+  String get keepAwakeOff => 'A képernyő kikapcsolhat';
 }

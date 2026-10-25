@@ -607,6 +607,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get scanReceiptAction => 'Scansiona scontrino';
 
   @override
+  String get fromReceiptListButton => 'Da scontrino';
+
+  @override
   String get shelfLabelAction => 'Prezzo dall\'etichetta';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Le righe del scontrino collegate sostituiscono gli acquisti esistenti; le righe non collegate vengono aggiunte.';
+      'Gli articoli senza prezzo vengono completati. Quelli con un prezzo di mercato sono aggiunti come acquisti separati.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Nella prossima foto includi negozio, data, ora e numero dello scontrino.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotografa la sezione successiva con alcuni articoli sovrapposti e il totale finale.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Impossibile unire questa foto. Riprova includendo articoli sovrapposti dello stesso scontrino.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Scontrino salvato come bozza. Puoi continuare più tardi.';
+
+  @override
+  String get receiptContinueAction => 'Continua scontrino';
+
+  @override
+  String get receiptDraftsTitle => 'Scontrini incompleti';
+
+  @override
+  String get receiptDuplicate => 'Questo scontrino è già stato aggiunto.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Gli articoli non corrispondono al totale dello scontrino. Verifica che sia visibile per intero.';
+
+  @override
+  String get receiptSaveDraftAction => 'Salva per dopo';
+
+  @override
+  String get receiptResolveLines =>
+      'Accetta o ignora ogni articolo prima di salvare.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Verranno aggiunti solo gli articoli selezionati. Questa ricevuta sarà contrassegnata come importata. Continuare?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1288,7 +1331,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Il prezzo in negozio segna l’articolo come acquistato; vale anche 0. Il prezzo a casa è facoltativo. Cancella il prezzo in negozio per togliere la spunta.';
 
   @override
-  String get shoppingDateLabel => 'Data della spesa (facoltativa)';
+  String get shoppingDateLabel => 'Data della spesa';
 
   @override
   String get shoppingDateNone => 'Nessuna data selezionata';
@@ -1307,4 +1350,28 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ordine manuale';
+
+  @override
+  String get imageCameraAction => 'Scatta una foto';
+
+  @override
+  String get imageGalleryAction => 'Scegli dalle foto';
+
+  @override
+  String get imageCaptureFailed =>
+      'Impossibile aprire la fotocamera o le foto. Controlla l\'autorizzazione di accesso e riprova.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Impossibile elaborare la foto. Prova con un\'altra foto.';
+
+  @override
+  String get receiptNoProducts =>
+      'Il testo è stato letto, ma non sono stati trovati articoli dello scontrino. Includi gli articoli e il totale nella foto.';
+
+  @override
+  String get keepAwakeOn => 'Lo schermo resta acceso';
+
+  @override
+  String get keepAwakeOff => 'Lo schermo può spegnersi';
 }

@@ -605,6 +605,9 @@ class AppLocalizationsDa extends AppLocalizations {
   String get scanReceiptAction => 'Scan kvittering';
 
   @override
+  String get fromReceiptListButton => 'Fra kvittering';
+
+  @override
   String get shelfLabelAction => 'Pris fra hyldemærke';
 
   @override
@@ -1058,7 +1061,47 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Linkede kvitteringslinjer erstatter eksisterende køb; ulinkede linjer tilføjes.';
+      'Varer uden pris udfyldes. Varer, der allerede har en markedspris, tilføjes som separate køb.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Medtag butik, dato, klokkeslæt og kvitteringsnummer på det næste billede.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Tag et billede af næste afsnit med nogle overlappende varer og den endelige total.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Dette billede kunne ikke sættes sammen med kvitteringen. Tag et nyt billede med overlappende varer fra samme kvittering.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Kvittering gemt som kladde. Du kan fortsætte senere.';
+
+  @override
+  String get receiptContinueAction => 'Fortsæt kvittering';
+
+  @override
+  String get receiptDraftsTitle => 'Ikke færdige kvitteringer';
+
+  @override
+  String get receiptDuplicate => 'Denne kvittering er allerede tilføjet.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Varerne stemmer ikke med kvitteringens total. Kontrollér, at hele kvitteringen er synlig.';
+
+  @override
+  String get receiptSaveDraftAction => 'Gem til senere';
+
+  @override
+  String get receiptResolveLines =>
+      'Acceptér eller ignorér hver vare, før du gemmer.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Kun de valgte varer bliver tilføjet. Denne kvittering markeres som importeret. Vil du fortsætte?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'En butikspris markerer varen som købt; 0 tæller også. Hjemmeprisen er valgfri. Slet butiksprisen for at fjerne markeringen.';
 
   @override
-  String get shoppingDateLabel => 'Indkøbsdato (valgfri)';
+  String get shoppingDateLabel => 'Indkøbsdato';
 
   @override
   String get shoppingDateNone => 'Ingen dato valgt';
@@ -1301,4 +1344,28 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get listSortManual => 'Manuel rækkefølge';
+
+  @override
+  String get imageCameraAction => 'Tag billede';
+
+  @override
+  String get imageGalleryAction => 'Vælg fra billeder';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kunne ikke åbne kameraet eller billederne. Kontrollér adgangstilladelsen, og prøv igen.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Billedet kunne ikke behandles. Prøv et andet billede.';
+
+  @override
+  String get receiptNoProducts =>
+      'Teksten blev læst, men ingen varer på kvitteringen blev fundet. Få varerne og totalbeløbet med på billedet.';
+
+  @override
+  String get keepAwakeOn => 'Skærmen forbliver tændt';
+
+  @override
+  String get keepAwakeOff => 'Skærmen kan slukke';
 }

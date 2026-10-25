@@ -148,6 +148,7 @@ class ShoppingRepository {
     int? lineTotalMinor,
     int discountMinor = 0,
     int? plannedItemId,
+    int? receiptId,
     String? alternativeName,
     String? note,
     String source = 'manual',
@@ -174,6 +175,17 @@ class ShoppingRepository {
       throw ArgumentError('Invalid unit: $unitCode');
     }
     final list = await getList(listId);
+    if (receiptId != null) {
+      if (source != 'receiptOcr') {
+        throw ArgumentError('Receipt purchases require receiptOcr source');
+      }
+      final receipt = await (_db.select(
+        _db.receipts,
+      )..where((t) => t.id.equals(receiptId))).getSingleOrNull();
+      if (receipt == null || receipt.listId != listId) {
+        throw ArgumentError('Purchase receipt must belong to its list');
+      }
+    }
     if (plannedItemId != null) {
       final item = await (_db.select(
         _db.plannedItems,
@@ -218,6 +230,7 @@ class ShoppingRepository {
           PurchaseEntriesCompanion.insert(
             listId: listId,
             plannedItemId: Value(plannedItemId),
+            receiptId: Value(receiptId),
             name: name,
             normalizedName: normalizedName,
             actualQuantity: quantity.toDbString(),

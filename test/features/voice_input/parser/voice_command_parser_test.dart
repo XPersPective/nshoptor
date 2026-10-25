@@ -184,6 +184,169 @@ void main() {
     });
   });
 
+  group('natural Turkish price continuation and spoken commands', () {
+    const tr = VoiceCommandParser(localeCode: 'tr');
+
+    test('user utterance keeps two products and consistent unit/total prices', () {
+      final parts = tr.splitItems(
+        'Bir kilo elma 20 lira, iki ekmek, bir tanesi 20 TL '
+        'toplamda 40 TL diyelim, bu kadar, listeye dönüştür',
+      );
+      final items = parts.map(tr.parse).toList();
+      expect(items.map((item) => item.name), ['elma', 'ekmek']);
+      expect(items[0].quantity!.toDbString(), '1');
+      expect(items[0].unitCode, UnitCode.kilogram);
+      expect(items[0].unitPrice!.toDbString(), '20');
+      expect(items[0].isUnitPrice, false);
+      expect(items[1].quantity!.toDbString(), '2');
+      expect(items[1].unitCode, UnitCode.adet);
+      expect(items[1].unitPrice!.toDbString(), '20');
+      expect(items[1].priceUnitCode, UnitCode.adet);
+      expect(items[1].isUnitPrice, true);
+      expect((items[1].quantity! * items[1].unitPrice!).toDbString(), '40');
+      expect(items.every((item) => item.currencyCode == 'TRY'), true);
+    });
+
+    test('same price continuation works for other products and decimal values', () {
+      final items = tr.splitItems(
+        'üç paket makarna; paketi 12,50 TL toplamda 37,50 TL diyelim',
+      ).map(tr.parse).toList();
+      expect(items, hasLength(1));
+      expect(items.single.name, 'makarna');
+      expect(items.single.unitCode, UnitCode.paket);
+      expect(items.single.priceUnitCode, UnitCode.paket);
+      expect(items.single.isUnitPrice, true);
+      expect(items.single.unitPrice!.toDbString(), '12.50');
+      expect((items.single.quantity! * items.single.unitPrice!).toDbString(), '37.50');
+    });
+
+    test('contradictory unit/total evidence requires confirmation', () {
+      final c = tr.parse('iki ekmek bir tanesi 20 TL toplamda 45 TL');
+      expect(c.name, 'ekmek');
+      expect(c.unitPrice!.toDbString(), '20');
+      expect(c.requiresPriceConfirmation, true);
+      expect(c.rawText, contains('45 TL'));
+    });
+
+    test('different currency or incompatible quantity basis is not reconciled', () {
+      for (final raw in [
+        'iki ekmek tanesi 20 TL toplamda 40 euro',
+        '400 gram peynir kilosu 20 TL toplamda 8000 TL',
+      ]) {
+        expect(tr.parse(raw).requiresPriceConfirmation, true, reason: raw);
+      }
+    });
+
+    test('price cue words without amounts do not merge distinct products', () {
+      for (final name in [
+        'ikisi bir arada kahve',
+        'toplam karışık kuruyemiş',
+        'birim ambalaj',
+        'ikisi bir arada kahve 50 TL',
+      ]) {
+        final parts = tr.splitItems('iki ekmek, $name');
+        expect(parts, ['iki ekmek', name], reason: name);
+      }
+      final items = tr.splitItems('iki ekmek, ikisi bir arada kahve')
+          .map(tr.parse).toList();
+      expect(items.map((item) => item.name),
+          ['ekmek', 'ikisi bir arada kahve']);
+    });
+
+    test('valid total-only and unit-only clauses still attach to prior item', () {
+      expect(tr.splitItems('iki ekmek, ikisi 40 TL'),
+          ['iki ekmek ikisi 40 TL']);
+      expect(tr.splitItems('iki ekmek, bir tanesi 20 TL'),
+          ['iki ekmek bir tanesi 20 TL']);
+      expect(tr.splitItems('iki ekmek, birim fiyatı 20 TL'),
+          ['iki ekmek birim fiyatı 20 TL']);
+    });
+
+    test('matching arithmetic never changes piece price into weight price', () {
+      for (final cue in ['tanesi', 'adedi']) {
+        final c = tr.parse('iki kilo elma $cue 20 TL toplamda 40 TL');
+        expect(c.name, 'elma');
+        expect(c.unitCode, UnitCode.kilogram);
+        expect(c.priceUnitCode, UnitCode.adet);
+        expect(c.requiresPriceConfirmation, true, reason: cue);
+      }
+    });
+
+    test('counted package unit and total can still corroborate each other', () {
+      final c = tr.parse('iki paket makarna tanesi 20 TL toplamda 40 TL');
+      expect(c.name, 'makarna');
+      expect(c.unitCode, UnitCode.paket);
+      expect(c.priceUnitCode, UnitCode.paket);
+      expect(c.isUnitPrice, true);
+      expect(c.requiresPriceConfirmation, false);
+    });
+
+    test('single piece price never inherits weight volume or length units', () {
+      for (final raw in [
+        'iki kilo elma tanesi 20 TL',
+        '400 gram peynir adedi 20 TL',
+        'iki litre süt tanesi 20 TL',
+        '500 mililitre yağ adedi 20 TL',
+        'iki metre kumaş tanesi 20 TL',
+      ]) {
+        final c = tr.parse(raw);
+        expect(c.unitPrice!.toDbString(), '20', reason: raw);
+        expect(c.priceUnitCode, UnitCode.adet, reason: raw);
+        expect(c.requiresPriceConfirmation, true, reason: raw);
+        expect(c.rawText, raw);
+      }
+    });
+
+    test('single counted package price and explicit kg basis stay certain', () {
+      final package = tr.parse('iki paket makarna tanesi 130 TL');
+      expect(package.name, 'makarna');
+      expect(package.priceUnitCode, UnitCode.paket);
+      expect(package.isUnitPrice, true);
+      expect(package.requiresPriceConfirmation, false);
+      final weight = tr.parse('400 gram elma kilosu 20 TL');
+      expect(weight.priceUnitCode, UnitCode.kilogram);
+      expect(weight.isUnitPrice, true);
+      expect(weight.requiresPriceConfirmation, false);
+    });
+
+    test('English each also preserves piece versus measured-unit conflict', () {
+      const en = VoiceCommandParser(localeCode: 'en');
+      final weight = en.parse('two kilos apples 20 euros each');
+      expect(weight.priceUnitCode, UnitCode.adet);
+      expect(weight.requiresPriceConfirmation, true);
+      final package = en.parse('two packs pasta 20 euros each');
+      expect(package.priceUnitCode, UnitCode.paket);
+      expect(package.isUnitPrice, true);
+      expect(package.requiresPriceConfirmation, false);
+    });
+
+    test('speech controls and currency-only clauses do not create products', () {
+      expect(tr.splitItems('bu kadar, listeye dönüştür'), isEmpty);
+      expect(tr.splitItems('iki ekmek, TL, bu kadar'), ['iki ekmek']);
+      expect(tr.parse('listeye dönüştür').name, isEmpty);
+      expect(tr.parse('TL').name, isEmpty);
+      expect(tr.parse('bir kilo').name, isEmpty);
+    });
+
+    test('filler removal preserves product names and unrecognized content', () {
+      final items = tr.splitItems('iki ekmek, Dönüş çikolata, kadar baharat')
+          .map(tr.parse).toList();
+      expect(items.map((item) => item.name),
+          ['ekmek', 'dönüş çikolata', 'kadar baharat']);
+      expect(tr.parse('hafta sonu misafir geliyor').name,
+          'hafta sonu misafir geliyor');
+    });
+
+    test('trailing command does not erase the preceding product', () {
+      final items = tr.splitItems('iki ekmek yirmi lira bu kadar listeye dönüştür')
+          .map(tr.parse).toList();
+      expect(items, hasLength(1));
+      expect(items.single.name, 'ekmek');
+      expect(items.single.unitPrice!.toDbString(), '20');
+      expect(items.single.isUnitPrice, false);
+    });
+  });
+
   group('satır tahmini (sondaki para)', () {
     final tr = VoiceCommandParser(localeCode: 'tr');
 

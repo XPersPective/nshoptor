@@ -605,6 +605,9 @@ class AppLocalizationsLo extends AppLocalizations {
   String get scanReceiptAction => 'ສະແກນໃບເກັບເງິນ';
 
   @override
+  String get fromReceiptListButton => 'ຈາກໃບຮັບເງິນ';
+
+  @override
   String get shelfLabelAction => 'ລາຄາຈາກປ້າຍຢູ່ຫຼັງຂາຍ';
 
   @override
@@ -1055,7 +1058,46 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'ແຖບໃບເກັບເງິນທີ່ເຊື່ອມຕໍ່ຈະແທນທີ່ການຊື້ທີ່ມີຢູ່; ແຖບທີ່ບໍ່ເຊື່ອມຕໍ່ຈະຖືກເພີ່ມເຂົ້າໄປ.';
+      'ລາຄາລາຍການທີ່ບໍ່ມີລາຄາຈະຖືກເພີ່ມ. ລາຍການທີ່ມີລາຄາຕະຫຼາດຈະເພີ່ມເປັນການຊື້ແຍກຕ່າງຫາກ.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'ໃຫ້ມີຮ້ານຄ້າ, ວັນທີ, ເວລາ ແລະເລກໃບຮັບເງິນໃນຮູບຖ່າຍຕໍ່ໄປ.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'ຖ່າຍຮູບສ່ວນຕໍ່ໄປໃຫ້ມີລາຍການຊ້ອນກັນ ແລະຍອດລວມສຸດທ້າຍ.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'ບໍ່ສາມາດລວມຮູບນີ້ໄດ້. ຖ່າຍໃໝ່ໂດຍໃຫ້ລາຍການໃນໃບຮັບເງິນດຽວກັນຊ້ອນກັນ.';
+
+  @override
+  String get receiptDraftSaved =>
+      'ບັນທຶກໃບຮັບເງິນເປັນຮ່າງແລ້ວ. ສາມາດສືບຕໍ່ພາຍຫຼັງ.';
+
+  @override
+  String get receiptContinueAction => 'ສືບຕໍ່ໃບຮັບເງິນ';
+
+  @override
+  String get receiptDraftsTitle => 'ໃບຮັບເງິນທີ່ຍັງບໍ່ສຳເລັດ';
+
+  @override
+  String get receiptDuplicate => 'ເພີ່ມໃບຮັບເງິນນີ້ແລ້ວ.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'ຍອດລາຍການບໍ່ກົງກັບຍອດລວມໃນໃບຮັບເງິນ. ກວດວ່າເຫັນໃບຮັບເງິນທັງໝົດຫຼືບໍ່.';
+
+  @override
+  String get receiptSaveDraftAction => 'ບັນທຶກໄວ້ພາຍຫຼັງ';
+
+  @override
+  String get receiptResolveLines => 'ຍອມຮັບ ຫຼື ຂ້າມແຕ່ລະລາຍການກ່ອນບັນທຶກ.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'ຈະເພີ່ມສະເພາະລາຍການທີ່ເລືອກ. ໃບຮັບເງິນນີ້ຈະຖືກໝາຍວ່ານຳເຂົ້າແລ້ວ. ດຳເນີນຕໍ່ບໍ?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1276,7 +1318,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'ເມື່ອໃສ່ລາຄາຮ້ານຄ້າ ສິນຄ້າຈະຖືກໝາຍວ່າຊື້ແລ້ວ; 0 ກໍໃຊ້ໄດ້. ລາຄາຢູ່ເຮືອນບໍ່ຈຳເປັນຕ້ອງໃສ່. ລຶບລາຄາຮ້ານຄ້າເພື່ອເອົາເຄື່ອງໝາຍອອກ.';
 
   @override
-  String get shoppingDateLabel => 'ວັນທີຊື້ເຄື່ອງ (ບໍ່ບັງຄັບ)';
+  String get shoppingDateLabel => 'ວັນທີຊື້ເຄື່ອງ';
 
   @override
   String get shoppingDateNone => 'ຍັງບໍ່ໄດ້ເລືອກວັນທີ';
@@ -1295,4 +1337,27 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get listSortManual => 'ຈັດລຳດັບເອງ';
+
+  @override
+  String get imageCameraAction => 'ຖ່າຍຮູບ';
+
+  @override
+  String get imageGalleryAction => 'ເລືອກຈາກຮູບພາບ';
+
+  @override
+  String get imageCaptureFailed =>
+      'ບໍ່ສາມາດເປີດກ້ອງ ຫຼື ຮູບພາບໄດ້. ກວດສອບສິດການເຂົ້າເຖິງ ແລ້ວລອງອີກຄັ້ງ.';
+
+  @override
+  String get imageRecognitionFailed => 'ບໍ່ສາມາດປະມວນຜົນຮູບໄດ້. ລອງໃຊ້ຮູບອື່ນ.';
+
+  @override
+  String get receiptNoProducts =>
+      'ອ່ານຂໍ້ຄວາມໄດ້ແລ້ວ ແຕ່ບໍ່ພົບລາຍການສິນຄ້າໃນໃບຮັບເງິນ. ໃຫ້ຖ່າຍລາຍການສິນຄ້າ ແລະ ຍອດລວມໃຫ້ຕິດໃນຮູບ.';
+
+  @override
+  String get keepAwakeOn => 'ໜ້າຈໍຈະສະຫວ່າງຢູ່';
+
+  @override
+  String get keepAwakeOff => 'ໜ້າຈໍອາດຈະດັບ';
 }

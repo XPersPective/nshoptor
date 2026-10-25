@@ -43,7 +43,22 @@ class ParsedItemCandidate {
 
   final VoicePriceDestination priceDestination;
 
-  bool get requiresPriceConfirmation => unitPrice != null && isUnitPrice == null;
+  ParsedItemCandidate withName(String value) => ParsedItemCandidate(
+    name: value,
+    rawText: rawText,
+    brand: brand,
+    category: category,
+    quantity: quantity,
+    unitCode: unitCode,
+    unitPrice: unitPrice,
+    currencyCode: currencyCode,
+    isUnitPrice: isUnitPrice,
+    priceUnitCode: priceUnitCode,
+    priceDestination: priceDestination,
+  );
+
+  bool get requiresPriceConfirmation =>
+      unitPrice != null && isUnitPrice == null;
 
   bool get fullyParsed =>
       name.trim().isNotEmpty && quantity != null && unitCode != null;

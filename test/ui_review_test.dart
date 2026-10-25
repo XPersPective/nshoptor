@@ -117,7 +117,7 @@ void main() {
       );
       await _settle(tester);
       expect(find.byKey(const Key('lists_new_list_button')), findsOneWidget);
-      expect(find.byType(FloatingActionButton), findsOneWidget);
+      expect(find.byKey(const Key('lists_receipt_button')), findsOneWidget);
       await _capture(tester, '${scenario.name}_list');
 
       await tester.tap(find.byKey(const Key('lists_new_list_button')));
@@ -168,7 +168,7 @@ void main() {
       await _settle(tester);
       expect(find.text('Yeni uzun market listesi'), findsOneWidget);
       expect(find.text(longTitle), findsNothing);
-      expect(find.byType(FloatingActionButton), findsOneWidget);
+      expect(find.byKey(const Key('lists_new_list_button')), findsOneWidget);
       await _capture(tester, '${scenario.name}_search');
 
       await tester.pumpWidget(const SizedBox.shrink());
@@ -216,7 +216,10 @@ Future<void> _keyboardActivate(WidgetTester tester, String key) async {
   var target = tester.element(find.byKey(Key(key)));
   if (target.widget is Tab) {
     target.visitAncestorElements((element) {
-      if (element.widget is InkWell) { target = element; return false; }
+      if (element.widget is InkWell) {
+        target = element;
+        return false;
+      }
       return true;
     });
   }
@@ -231,6 +234,7 @@ Future<void> _keyboardActivate(WidgetTester tester, String key) async {
     });
     return inside;
   }
+
   for (var i = 0; i < 40 && !insideTarget(); i++) {
     if (FocusManager.instance.primaryFocus is FocusScopeNode) {
       FocusScope.of(target).nextFocus();

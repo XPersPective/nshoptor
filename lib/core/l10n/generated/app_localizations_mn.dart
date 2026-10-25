@@ -609,6 +609,9 @@ class AppLocalizationsMn extends AppLocalizations {
   String get scanReceiptAction => 'Түлхүүрийг сканнердах';
 
   @override
+  String get fromReceiptListButton => 'Баримтаас';
+
+  @override
   String get shelfLabelAction => 'Шелфийн шошгоноос үнэ';
 
   @override
@@ -1063,7 +1066,47 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Холбогдсон хүлээн авалтын мөрүүд одоогийн худалдаж авалтыг орлох; холбогдоогүй мөрүүдийг нэмнэ.';
+      'Үнэ байхгүй барааны үнийг нөхнө. Зах зээлийн үнэтэй барааг тусдаа худалдан авалт болгон нэмнэ.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Дараагийн зурагт дэлгүүр, огноо, цаг болон баримтын дугаарыг оруулна уу.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Дараагийн хэсгийг давхцсан бараа болон эцсийн дүн харагдахаар зураг авна уу.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Энэ зургийг нэгтгэж чадсангүй. Ижил баримтын давхцсан бараатайгаар дахин авна уу.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Баримтыг ноорог болгон хадгаллаа. Дараа үргэлжлүүлж болно.';
+
+  @override
+  String get receiptContinueAction => 'Баримтыг үргэлжлүүлэх';
+
+  @override
+  String get receiptDraftsTitle => 'Дуусаагүй баримтууд';
+
+  @override
+  String get receiptDuplicate => 'Энэ баримт аль хэдийн нэмэгдсэн байна.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Барааны дүн баримтын нийт дүнтэй таарахгүй байна. Баримт бүтнээрээ харагдаж байгаа эсэхийг шалгана уу.';
+
+  @override
+  String get receiptSaveDraftAction => 'Дараа хадгалах';
+
+  @override
+  String get receiptResolveLines =>
+      'Хадгалахаас өмнө бараа бүрийг зөвшөөрөх эсвэл үл тоомсорлоно уу.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Зөвхөн сонгосон барааг нэмнэ. Энэ баримтыг импортолсон гэж тэмдэглэнэ. Үргэлжлүүлэх үү?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1290,7 +1333,7 @@ class AppLocalizationsMn extends AppLocalizations {
       'Дэлгүүрийн үнэ оруулбал барааг авсан гэж тэмдэглэнэ; 0 ч хүчинтэй. Гэрийн үнэ заавал оруулах шаардлагагүй. Тэмдэглэгээг арилгахын тулд дэлгүүрийн үнийг устгана уу.';
 
   @override
-  String get shoppingDateLabel => 'Худалдан авах огноо (заавал биш)';
+  String get shoppingDateLabel => 'Худалдан авах огноо';
 
   @override
   String get shoppingDateNone => 'Огноо сонгоогүй';
@@ -1309,4 +1352,28 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get listSortManual => 'Гараар эрэмбэлэх';
+
+  @override
+  String get imageCameraAction => 'Зураг авах';
+
+  @override
+  String get imageGalleryAction => 'Зургуудаас сонгох';
+
+  @override
+  String get imageCaptureFailed =>
+      'Камер эсвэл зургуудыг нээж чадсангүй. Хандах зөвшөөрлийг шалгаад дахин оролдоно уу.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Зургийг боловсруулж чадсангүй. Өөр зураг ашиглаж үзнэ үү.';
+
+  @override
+  String get receiptNoProducts =>
+      'Текстийг уншсан ч баримтын бараанууд олдсонгүй. Бараанууд болон нийт дүнг зурагт оруулна уу.';
+
+  @override
+  String get keepAwakeOn => 'Дэлгэц асаалттай хэвээр байна';
+
+  @override
+  String get keepAwakeOff => 'Дэлгэц унтарч болно';
 }

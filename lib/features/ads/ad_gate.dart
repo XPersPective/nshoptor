@@ -11,16 +11,77 @@ class AdGate {
 
   static const graceDays = 7;
   static const firstOpenKey = 'first_open_at';
+  static const graceStateKey = 'ad_grace_state_v1';
 
   /// Alışveriş modu ekranı açıkken true (ShoppingModeScreen yönetir).
   static bool shoppingModeActive = false;
 
-  /// İlk açılış zamanı; yoksa şimdi olarak kaydedilir.
-  static DateTime firstOpen(SettingsStore store, DateTime now) {
-    final stored = store.getInt(firstOpenKey);
-    if (stored != null) return DateTime.fromMillisecondsSinceEpoch(stored);
-    store.setInt(firstOpenKey, now.millisecondsSinceEpoch);
-    return now;
+  /// Earliest known first launch. Surviving policy/grace records repair a
+  /// missing legacy key, rather than awarding another seven days.
+  static DateTime firstOpen(SettingsStore store, DateTime now) =>
+      _observeGrace(store, now).firstOpen;
+
+  static Map<String, dynamic>? _map(Object? raw) {
+    if (raw is! String) return null;
+    try {
+      final value = jsonDecode(raw);
+      return value is Map<String, dynamic> ? value : null;
+    } on FormatException {
+      return null;
+    }
+  }
+
+  static DateTime? _date(Object? raw) {
+    final ms = raw is int ? raw : raw is String ? int.tryParse(raw) : null;
+    // Dart DateTime rejects values outside this inclusive range.
+    if (ms == null || ms < -8640000000000000 || ms > 8640000000000000) return null;
+    return DateTime.fromMillisecondsSinceEpoch(ms, isUtc: true);
+  }
+
+  static ({DateTime firstOpen, bool expired}) _observeGrace(
+    SettingsStore store, DateTime now,
+  ) {
+    final memory = store.memorySnapshot();
+    final state = _map(memory[graceStateKey]);
+    final policy = _map(memory['napp_ads.policy_state']);
+    final legacyStart = _date(memory[firstOpenKey]);
+    final stateStart = _date(state?['firstOpenAt']);
+    final policyStart = _date(policy?['firstLaunchAt']);
+    final starts = [legacyStart, stateStart, policyStart]
+        .whereType<DateTime>().toList()..sort();
+    // An isolated future legacy timestamp cannot prove any remaining grace.
+    // Matching surviving state is retained during a legitimate clock rollback.
+    final isolatedFuture = legacyStart != null && legacyStart.isAfter(now) &&
+        stateStart == null && policyStart == null;
+    final hadGraceRecord = memory.containsKey(firstOpenKey) ||
+        memory.containsKey(graceStateKey);
+    final duration = const Duration(days: graceDays);
+    // A damaged existing record is not evidence of a fresh install. Recover
+    // from another valid anchor when possible; otherwise never reset its trial.
+    final first = starts.isNotEmpty && !isolatedFuture ? starts.first :
+        (hadGraceRecord ? now.toUtc().subtract(duration) : now.toUtc());
+    final observed = _date(state?['lastObservedAt']);
+    final effectiveNow = observed != null && observed.isAfter(now)
+        ? observed : now.toUtc();
+    final expired = state?['expired'] == true ||
+        effectiveNow.difference(first) >= duration;
+    if (memory[firstOpenKey] != first.millisecondsSinceEpoch) {
+      store.setInt(firstOpenKey, first.millisecondsSinceEpoch);
+    }
+    // Repeated policy checks must not continually reset SettingsStore's disk
+    // debounce. Expiry/repairs are immediate; ordinary observations are bounded
+    // to once per minute, and an expired record needs no further clock writes.
+    final needsWrite = stateStart != first || observed == null ||
+        state?['expired'] != expired ||
+        (!expired && effectiveNow.difference(observed) >= const Duration(minutes: 1));
+    if (needsWrite) {
+      store.setString(graceStateKey, jsonEncode({
+        'firstOpenAt': first.millisecondsSinceEpoch,
+        'lastObservedAt': effectiveNow.millisecondsSinceEpoch,
+        'expired': expired,
+      }));
+    }
+    return (firstOpen: first, expired: expired);
   }
 
   /// Geçiş reklamı gösterici (main bağlar; testte/reklamsız ortamda null).
@@ -47,23 +108,22 @@ class AdGate {
     try {
       final map = jsonDecode(raw);
       if (map is! Map<String, dynamic>) return null;
-      DateTime? date(Object? v) {
-        final ms = v is int ? v : v is String ? int.tryParse(v) : null;
-        return ms == null ? null : DateTime.fromMillisecondsSinceEpoch(ms);
-      }
 
       return AdPolicySnapshot(
-        firstLaunchAt: date(map['firstLaunchAt']),
+        firstLaunchAt: _date(map['firstLaunchAt'])?.toLocal(),
         sessionCount: map['sessionCount'] is int ? map['sessionCount'] as int : 0,
-        lastAppOpenAt: date(map['lastAppOpenAt']),
-        lastFullscreenAt: date(map['lastFullscreenAt']),
-        lastRewardedDay: date(map['lastRewardedDay']),
+        lastAppOpenAt: _date(map['lastAppOpenAt'])?.toLocal(),
+        lastFullscreenAt: _date(map['lastFullscreenAt'])?.toLocal(),
+        lastRewardedDay: _date(map['lastRewardedDay'])?.toLocal(),
       );
     } on FormatException {
       return null;
     }
   }
 
+  /// Once observed expired, local clock rollback cannot reactivate grace.
+  /// This protects surviving local state; clearing all app data/reinstalling
+  /// still needs a server-verified eligibility record to enforce R66.
   static bool inGrace(SettingsStore store, DateTime now) =>
-      now.isBefore(firstOpen(store, now).add(const Duration(days: graceDays)));
+      !_observeGrace(store, now).expired;
 }

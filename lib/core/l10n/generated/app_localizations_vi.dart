@@ -606,6 +606,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get scanReceiptAction => 'Quét hóa đơn';
 
   @override
+  String get fromReceiptListButton => 'Từ hóa đơn';
+
+  @override
   String get shelfLabelAction => 'Giá từ nhãn kệ hàng';
 
   @override
@@ -1059,7 +1062,47 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Các dòng hóa đơn liên kết sẽ thay thế các lần mua hiện có; các dòng không liên kết sẽ được thêm vào.';
+      'Giá của mặt hàng chưa có giá sẽ được điền. Mặt hàng đã có giá thị trường sẽ được thêm thành giao dịch mua riêng.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Ảnh tiếp theo cần có cửa hàng, ngày, giờ và số hóa đơn.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Chụp phần tiếp theo có vài mặt hàng chồng lên nhau và tổng cuối cùng.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Không thể ghép ảnh này. Hãy chụp lại với các mặt hàng của cùng hóa đơn chồng lên nhau.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Đã lưu hóa đơn dưới dạng bản nháp. Bạn có thể tiếp tục sau.';
+
+  @override
+  String get receiptContinueAction => 'Tiếp tục hóa đơn';
+
+  @override
+  String get receiptDraftsTitle => 'Hóa đơn chưa hoàn tất';
+
+  @override
+  String get receiptDuplicate => 'Hóa đơn này đã được thêm.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Tổng các mặt hàng không khớp với tổng hóa đơn. Hãy kiểm tra xem toàn bộ hóa đơn đã hiển thị chưa.';
+
+  @override
+  String get receiptSaveDraftAction => 'Lưu để dùng sau';
+
+  @override
+  String get receiptResolveLines =>
+      'Chấp nhận hoặc bỏ qua từng mặt hàng trước khi lưu.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Chỉ những mặt hàng được chọn mới được thêm. Hóa đơn này sẽ được đánh dấu là đã nhập. Tiếp tục?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1281,7 +1324,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Giá tại cửa hàng đánh dấu sản phẩm đã mua; 0 cũng hợp lệ. Giá dự tính ở nhà là tùy chọn. Xóa giá cửa hàng để bỏ dấu tích.';
 
   @override
-  String get shoppingDateLabel => 'Ngày mua sắm (tùy chọn)';
+  String get shoppingDateLabel => 'Ngày mua sắm';
 
   @override
   String get shoppingDateNone => 'Chưa chọn ngày';
@@ -1300,4 +1343,27 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get listSortManual => 'Sắp xếp thủ công';
+
+  @override
+  String get imageCameraAction => 'Chụp ảnh';
+
+  @override
+  String get imageGalleryAction => 'Chọn từ ảnh';
+
+  @override
+  String get imageCaptureFailed =>
+      'Không thể mở máy ảnh hoặc ảnh. Kiểm tra quyền truy cập rồi thử lại.';
+
+  @override
+  String get imageRecognitionFailed => 'Không thể xử lý ảnh. Hãy thử ảnh khác.';
+
+  @override
+  String get receiptNoProducts =>
+      'Đã đọc được văn bản nhưng không tìm thấy mặt hàng trên hóa đơn. Hãy chụp đủ các mặt hàng và tổng tiền trong ảnh.';
+
+  @override
+  String get keepAwakeOn => 'Màn hình luôn bật';
+
+  @override
+  String get keepAwakeOff => 'Màn hình có thể tắt';
 }

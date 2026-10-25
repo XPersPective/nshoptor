@@ -607,6 +607,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get scanReceiptAction => 'Escanear cupom';
 
   @override
+  String get fromReceiptListButton => 'A partir do recibo';
+
+  @override
   String get shelfLabelAction => 'Preço da etiqueta';
 
   @override
@@ -1062,7 +1065,47 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Linhas do recibo vinculadas substituem as compras existentes; linhas não vinculadas são adicionadas.';
+      'Os artigos sem preço são preenchidos. Os que já têm preço de mercado são adicionados como compras separadas.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Inclua a loja, a data, a hora e o número do recibo na próxima foto.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotografe a secção seguinte com alguns artigos sobrepostos e o total final.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Não foi possível juntar esta foto. Volte a fotografar com artigos sobrepostos do mesmo recibo.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Recibo guardado como rascunho. Pode continuar mais tarde.';
+
+  @override
+  String get receiptContinueAction => 'Continuar recibo';
+
+  @override
+  String get receiptDraftsTitle => 'Recibos por terminar';
+
+  @override
+  String get receiptDuplicate => 'Este recibo já foi adicionado.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'A soma dos artigos não corresponde ao total do recibo. Verifique se o recibo aparece por inteiro.';
+
+  @override
+  String get receiptSaveDraftAction => 'Guardar para mais tarde';
+
+  @override
+  String get receiptResolveLines =>
+      'Aceite ou ignore cada item antes de guardar.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Só os itens selecionados serão adicionados. Este recibo será marcado como importado. Continuar?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1289,7 +1332,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'O preço da loja marca o produto como comprado; 0 também conta. O preço de casa é opcional. Apague o preço da loja para remover a marca.';
 
   @override
-  String get shoppingDateLabel => 'Data das compras (opcional)';
+  String get shoppingDateLabel => 'Data das compras';
 
   @override
   String get shoppingDateNone => 'Nenhuma data selecionada';
@@ -1308,4 +1351,28 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ordem manual';
+
+  @override
+  String get imageCameraAction => 'Tirar foto';
+
+  @override
+  String get imageGalleryAction => 'Escolher das fotos';
+
+  @override
+  String get imageCaptureFailed =>
+      'Não foi possível abrir a câmera ou as fotos. Verifique a permissão de acesso e tente novamente.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Não foi possível processar a foto. Tente outra foto.';
+
+  @override
+  String get receiptNoProducts =>
+      'O texto foi lido, mas nenhum item do recibo foi encontrado. Inclua os itens e o total na foto.';
+
+  @override
+  String get keepAwakeOn => 'A tela permanece ligada';
+
+  @override
+  String get keepAwakeOff => 'A tela pode desligar';
 }

@@ -606,6 +606,9 @@ class AppLocalizationsEt extends AppLocalizations {
   String get scanReceiptAction => 'Skaneeri kviitung';
 
   @override
+  String get fromReceiptListButton => 'Tšekist';
+
+  @override
   String get shelfLabelAction => 'Hind riiuli sildilt';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Seotud kviitungiread asendavad olemasolevad ostud; seostamata read lisatakse.';
+      'Hinnata kaubad täidetakse. Juba turuhinnaga kaubad lisatakse eraldi ostudena.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Lisa järgmisele fotole kaupluse nimi, kuupäev, kellaaeg ja kviitungi number.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Pildista järgmine osa nii, et näha oleksid mõned kattuvad kaubad ja lõppsumma.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Seda fotot ei saanud kviitungiga ühendada. Tee uus foto, kus kattuvad sama kviitungi kaubad.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Kviitung salvestati mustandina. Saad hiljem jätkata.';
+
+  @override
+  String get receiptContinueAction => 'Jätka kviitungit';
+
+  @override
+  String get receiptDraftsTitle => 'Lõpetamata kviitungid';
+
+  @override
+  String get receiptDuplicate => 'See kviitung on juba lisatud.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Kaubad ei vasta kviitungi kogusummale. Kontrolli, kas kogu kviitung on näha.';
+
+  @override
+  String get receiptSaveDraftAction => 'Salvesta hilisemaks';
+
+  @override
+  String get receiptResolveLines =>
+      'Enne salvestamist aktsepteeri või ignoreeri iga toodet.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Lisatakse ainult valitud tooted. See kviitung märgitakse impordituks. Kas jätkata?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsEt extends AppLocalizations {
       'Poehinna sisestamine märgib toote ostetuks; ka 0 loeb. Kodune hind on valikuline. Märke eemaldamiseks kustuta poehind.';
 
   @override
-  String get shoppingDateLabel => 'Ostukuupäev (valikuline)';
+  String get shoppingDateLabel => 'Ostukuupäev';
 
   @override
   String get shoppingDateNone => 'Kuupäeva pole valitud';
@@ -1301,4 +1344,28 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get listSortManual => 'Käsitsi järjestus';
+
+  @override
+  String get imageCameraAction => 'Pildista';
+
+  @override
+  String get imageGalleryAction => 'Vali fotode hulgast';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kaamerat või fotosid ei saanud avada. Kontrolli juurdepääsuluba ja proovi uuesti.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Fotot ei saanud töödelda. Proovi teist fotot.';
+
+  @override
+  String get receiptNoProducts =>
+      'Tekst loeti, kuid tšeki kaupu ei leitud. Lisa fotole kaubad ja kogusumma.';
+
+  @override
+  String get keepAwakeOn => 'Ekraan jääb sisselülitatuks';
+
+  @override
+  String get keepAwakeOff => 'Ekraan võib välja lülituda';
 }

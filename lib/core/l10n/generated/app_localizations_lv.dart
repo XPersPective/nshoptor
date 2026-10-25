@@ -608,6 +608,9 @@ class AppLocalizationsLv extends AppLocalizations {
   String get scanReceiptAction => 'Skenēt čeku';
 
   @override
+  String get fromReceiptListButton => 'No čeka';
+
+  @override
   String get shelfLabelAction => 'Cena no plaukta etiķetes';
 
   @override
@@ -1060,7 +1063,47 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Saistītās čeka pozīcijas aizvieto esošos pirkumus; nesaistītās pozīcijas tiek pievienotas.';
+      'Precēm bez cenas tā tiek aizpildīta. Preces ar tirgus cenu tiek pievienotas kā atsevišķi pirkumi.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Nākamajā foto iekļaujiet veikalu, datumu, laiku un čeka numuru.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Nofotografējiet nākamo daļu ar dažām pārklājošām precēm un gala summu.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Šo foto neizdevās apvienot. Uzņemiet vēlreiz, pārklājot tās pašas kvīts preces.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Kvīts saglabāta kā melnraksts. Varat turpināt vēlāk.';
+
+  @override
+  String get receiptContinueAction => 'Turpināt kvīti';
+
+  @override
+  String get receiptDraftsTitle => 'Nepabeigtās kvītis';
+
+  @override
+  String get receiptDuplicate => 'Šī kvīts jau ir pievienota.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Preču summa neatbilst kvīts kopsummai. Pārbaudiet, vai redzama visa kvīts.';
+
+  @override
+  String get receiptSaveDraftAction => 'Saglabāt vēlākam';
+
+  @override
+  String get receiptResolveLines =>
+      'Pirms saglabāšanas pieņemiet vai ignorējiet katru preci.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Tiks pievienotas tikai atlasītās preces. Šis čeks tiks atzīmēts kā importēts. Vai turpināt?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1285,7 +1328,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'Veikala cena atzīmē preci kā nopirktu; der arī 0. Mājas cena nav obligāta. Izdzēsiet veikala cenu, lai noņemtu atzīmi.';
 
   @override
-  String get shoppingDateLabel => 'Iepirkšanās datums (neobligāts)';
+  String get shoppingDateLabel => 'Iepirkšanās datums';
 
   @override
   String get shoppingDateNone => 'Datums nav izvēlēts';
@@ -1304,4 +1347,28 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get listSortManual => 'Manuāla secība';
+
+  @override
+  String get imageCameraAction => 'Uzņemt fotoattēlu';
+
+  @override
+  String get imageGalleryAction => 'Izvēlēties no fotoattēliem';
+
+  @override
+  String get imageCaptureFailed =>
+      'Neizdevās atvērt kameru vai fotoattēlus. Pārbaudiet piekļuves atļauju un mēģiniet vēlreiz.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Fotoattēlu neizdevās apstrādāt. Izmēģiniet citu fotoattēlu.';
+
+  @override
+  String get receiptNoProducts =>
+      'Teksts tika nolasīts, taču čeka preces netika atrastas. Iekļaujiet fotoattēlā preces un kopsummu.';
+
+  @override
+  String get keepAwakeOn => 'Ekrāns paliek ieslēgts';
+
+  @override
+  String get keepAwakeOff => 'Ekrāns var izslēgties';
 }

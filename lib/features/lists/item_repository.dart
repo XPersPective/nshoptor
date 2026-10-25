@@ -245,14 +245,16 @@ class ItemRepository {
           .watch();
 
   Future<void> reorderItems(int listId, List<int> itemIds) async {
-    final items = await getItems(listId);
-    final known = items.map((item) => item.id).toSet();
-    if (itemIds.length != known.length ||
-        itemIds.toSet().length != known.length ||
-        !itemIds.every(known.contains)) {
-      throw ArgumentError('Items must belong to their list');
-    }
     await _db.transaction(() async {
+      // Validate against the same snapshot as the rank writes. A concurrent
+      // add/delete must not turn a full-list drag into a partial update.
+      final items = await getItems(listId);
+      final known = items.map((item) => item.id).toSet();
+      if (itemIds.length != known.length ||
+          itemIds.toSet().length != known.length ||
+          !itemIds.every(known.contains)) {
+        throw ArgumentError('Items must belong to their list');
+      }
       for (var index = 0; index < itemIds.length; index++) {
         await (_db.update(
           _db.plannedItems,

@@ -674,7 +674,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('draft_add_button')));
       await tester.pumpAndSettle();
-      expect(result!.items.map((c) => c.name), ['domates', 'soğan']);
+      expect(result!.items.map((c) => c.name), ['Domates', 'Soğan']);
     },
   );
 }

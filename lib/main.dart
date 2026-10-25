@@ -3,10 +3,12 @@ import 'dart:async';
 
 import 'package:drift/drift.dart' show QueryExecutor;
 import 'package:drift_flutter/drift_flutter.dart';
+
 import 'dart:ui' show PlatformDispatcher;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kReleaseMode;
+import 'package:flutter/foundation.dart'
+    show kReleaseMode, defaultTargetPlatform;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'package:napp_ads/napp_ads.dart';
@@ -14,6 +16,7 @@ import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
 
 import 'app/app.dart';
+import 'features/ads/ad_units.dart';
 import 'app/app_defaults.dart';
 import 'app/language_controller.dart';
 import 'app/theme_mode_controller.dart';
@@ -28,6 +31,7 @@ import 'features/ai/ai_client.dart';
 import 'features/subscription/subscription_purchase_adapter.dart';
 import 'features/subscription/subscription_service.dart';
 import 'features/settings/settings_repository.dart';
+import 'features/receipts/receipt_image_store.dart';
 
 /// Uygulama veritabanı: tüm platformlarda app dizininde tek dosya.
 QueryExecutor openAppDatabase() => driftDatabase(name: 'nshoptor');
@@ -42,7 +46,8 @@ Future<void> main() async {
     final locale = PlatformDispatcher.instance.locale;
     store.setString(
       SettingsRepository.currencyKey,
-      currencyForCountry(locale.countryCode) ?? (locale.languageCode == 'tr' ? 'TRY' : 'USD'),
+      currencyForCountry(locale.countryCode) ??
+          (locale.languageCode == 'tr' ? 'TRY' : 'USD'),
     );
   }
   AssistantPrefs.attach(store);
@@ -76,7 +81,9 @@ Future<void> main() async {
   // Pro/Max abonelikleri (ADR-004 §6); AI kotası sunucuda doğrulanır.
   final subscriptions = SubscriptionService(store: store)..load();
   subscriptions.start();
-  WidgetsBinding.instance.addObserver(SubscriptionResumeObserver(subscriptions));
+  WidgetsBinding.instance.addObserver(
+    SubscriptionResumeObserver(subscriptions),
+  );
   SubscriptionService.instance = subscriptions;
   AiService.client = AiClient(
     store: store,
@@ -87,7 +94,9 @@ Future<void> main() async {
   bool adFree() =>
       AdGate.inGrace(store, DateTime.now()) ||
       SubscriptionService.adFree(
-          temporaryPro: proController.isPro, tier: subscriptions.tier);
+        temporaryPro: proController.isPro,
+        tier: subscriptions.tier,
+      );
 
   // Reklam (standart §5.2): kalıcı durum → oturum → onay/SDK → politika
   // Pro'yu izler; UMP onayı SDK başlatmasından ÖNCE.
@@ -101,6 +110,7 @@ Future<void> main() async {
     policy.setPro(adFree());
     AdPolicyPersistence.save(adsAdapter, policy);
   }
+
   proController.addListener(syncAds);
   subscriptions.addListener(syncAds);
   policy.startSession(DateTime.now());
@@ -121,12 +131,21 @@ Future<void> main() async {
       AdPolicyPersistence.save(adsAdapter, policy);
     }
   }
+
   // Ödüllü/geçiş birimi tanımlı değilse üretimde kapalı kalır (Google test
   // birimi yayında gösterilmez); debug/profile test birimleriyle çalışır.
-  const hasRewardedUnit =
-      !kReleaseMode || bool.hasEnvironment('ADMOB_REWARDED_ANDROID');
-  const hasInterstitialUnit =
-      !kReleaseMode || bool.hasEnvironment('ADMOB_INTERSTITIAL_ANDROID');
+  final hasRewardedUnit = adUnitEnabled(
+    platform: defaultTargetPlatform,
+    releaseMode: kReleaseMode,
+    androidUnit: const String.fromEnvironment('ADMOB_REWARDED_ANDROID'),
+    iosUnit: const String.fromEnvironment('ADMOB_REWARDED_IOS'),
+  );
+  final hasInterstitialUnit = adUnitEnabled(
+    platform: defaultTargetPlatform,
+    releaseMode: kReleaseMode,
+    androidUnit: const String.fromEnvironment('ADMOB_INTERSTITIAL_ANDROID'),
+    iosUnit: const String.fromEnvironment('ADMOB_INTERSTITIAL_IOS'),
+  );
 
   // Geçiş reklamı: napp_ads yöneticisi show() çağırmadığı için burada.
   // ponytail: one preloaded ad; move into napp_ads once its manager calls show().
@@ -178,11 +197,16 @@ Future<void> main() async {
 
   WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
   final db = AppDatabase(openAppDatabase());
+  final receiptMedia = await ReceiptImageStore.directory();
   runApp(
     NShoptorApp(
       db: db,
       splash: const Duration(milliseconds: 1600),
-      settingsRepository: SettingsRepository(db, NappSettingsStoreOps(store)),
+      settingsRepository: SettingsRepository(
+        db,
+        NappSettingsStoreOps(store),
+        mediaDir: receiptMedia,
+      ),
       languageController: languageController,
       themeModeController: themeController,
       appIdentity: identity,
@@ -190,7 +214,7 @@ Future<void> main() async {
       nappTranslations: nappTranslations,
       proController: proController,
       purchaseRepository: purchaseRepository,
-    subscriptions: subscriptions,
+      subscriptions: subscriptions,
       bannerController: bannerController,
       giftFlow: !hasRewardedUnit
           ? null

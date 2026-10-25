@@ -44,7 +44,7 @@ class ReceiptParseResult {
   });
 
   /// Üretici sürümü; yedek/içe aktarma uyumluluğu için saklanır.
-  static const int parserVersion = 1;
+  static const int parserVersion = 2;
   final List<String> storeCandidates;
   final DateTime? dateCandidate;
   final String? currencyCandidate;

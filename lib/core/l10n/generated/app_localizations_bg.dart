@@ -607,6 +607,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get scanReceiptAction => 'Сканирай касов бонус';
 
   @override
+  String get fromReceiptListButton => 'От касова бележка';
+
+  @override
   String get shelfLabelAction => 'Цена от етикет на рафта';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Връзаните редове от касовата бележка заменят съществуващите покупки; невръзаните редове се добавят.';
+      'Артикулите без цена се попълват. Артикулите с вече зададена пазарна цена се добавят като отделни покупки.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Включете магазина, датата, часа и номера на касовата бележка в следващата снимка.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Снимайте следващата част с няколко застъпващи се артикула и крайната сума.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Тази снимка не можа да бъде съединена с касовата бележка. Заснемете я отново със застъпващи се артикули от същата бележка.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Касовата бележка е запазена като чернова. Можете да продължите по-късно.';
+
+  @override
+  String get receiptContinueAction => 'Продължи бележката';
+
+  @override
+  String get receiptDraftsTitle => 'Незавършени касови бележки';
+
+  @override
+  String get receiptDuplicate => 'Тази касова бележка вече е добавена.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Артикулите не съвпадат с общата сума на бележката. Проверете дали цялата бележка се вижда.';
+
+  @override
+  String get receiptSaveDraftAction => 'Запази за по-късно';
+
+  @override
+  String get receiptResolveLines =>
+      'Приемете или игнорирайте всеки артикул, преди да запазите.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Ще бъдат добавени само избраните артикули. Тази касова бележка ще бъде отбелязана като импортирана. Продължаване?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1289,7 +1332,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'Цена в магазина отбелязва продукта като купен; 0 също се зачита. Домашната цена е по избор. Изтрийте магазинната цена, за да махнете отметката.';
 
   @override
-  String get shoppingDateLabel => 'Дата на пазаруване (по избор)';
+  String get shoppingDateLabel => 'Дата на пазаруване';
 
   @override
   String get shoppingDateNone => 'Не е избрана дата';
@@ -1308,4 +1351,28 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ръчна подредба';
+
+  @override
+  String get imageCameraAction => 'Направете снимка';
+
+  @override
+  String get imageGalleryAction => 'Изберете от снимките';
+
+  @override
+  String get imageCaptureFailed =>
+      'Камерата или снимките не могат да се отворят. Проверете разрешението за достъп и опитайте отново.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Снимката не може да бъде обработена. Опитайте с друга снимка.';
+
+  @override
+  String get receiptNoProducts =>
+      'Текстът е прочетен, но не са намерени артикули от касовата бележка. Включете артикулите и общата сума в снимката.';
+
+  @override
+  String get keepAwakeOn => 'Екранът остава включен';
+
+  @override
+  String get keepAwakeOff => 'Екранът може да се изключи';
 }

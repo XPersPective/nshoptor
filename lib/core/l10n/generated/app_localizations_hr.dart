@@ -607,6 +607,9 @@ class AppLocalizationsHr extends AppLocalizations {
   String get scanReceiptAction => 'Skeniraj račun';
 
   @override
+  String get fromReceiptListButton => 'Iz računa';
+
+  @override
   String get shelfLabelAction => 'Cijena s naljepnice na polici';
 
   @override
@@ -1059,7 +1062,47 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Povezane linije računa zamjenjuju postojeće kupnje; nepovezane linije dodaju se.';
+      'Artikli bez cijene popunjavaju se. Artikli koji već imaju tržišnu cijenu dodaju se kao zasebne kupnje.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'U sljedeću fotografiju uključite trgovinu, datum, vrijeme i broj računa.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Snimite sljedeći dio s nekoliko preklopljenih artikala i konačnim iznosom.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Ovu fotografiju nije moguće spojiti s računom. Ponovno je snimite s preklopljenim artiklima s istog računa.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Račun je spremljen kao skica. Možete nastaviti kasnije.';
+
+  @override
+  String get receiptContinueAction => 'Nastavi račun';
+
+  @override
+  String get receiptDraftsTitle => 'Nedovršeni računi';
+
+  @override
+  String get receiptDuplicate => 'Ovaj je račun već dodan.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Artikli se ne podudaraju s ukupnim iznosom računa. Provjerite je li cijeli račun vidljiv.';
+
+  @override
+  String get receiptSaveDraftAction => 'Spremi za kasnije';
+
+  @override
+  String get receiptResolveLines =>
+      'Prihvatite ili zanemarite svaku stavku prije spremanja.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Dodat će se samo odabrane stavke. Ovaj račun bit će označen kao uvezen. Nastaviti?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1284,7 +1327,7 @@ class AppLocalizationsHr extends AppLocalizations {
       'Cijena u trgovini označava proizvod kao kupljen; računa se i 0. Kućna cijena nije obvezna. Izbrišite cijenu u trgovini da uklonite kvačicu.';
 
   @override
-  String get shoppingDateLabel => 'Datum kupnje (neobavezno)';
+  String get shoppingDateLabel => 'Datum kupnje';
 
   @override
   String get shoppingDateNone => 'Datum nije odabran';
@@ -1303,4 +1346,28 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ručni redoslijed';
+
+  @override
+  String get imageCameraAction => 'Fotografiraj';
+
+  @override
+  String get imageGalleryAction => 'Odaberi iz fotografija';
+
+  @override
+  String get imageCaptureFailed =>
+      'Nije moguće otvoriti kameru ili fotografije. Provjerite dopuštenje za pristup i pokušajte ponovno.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Fotografiju nije moguće obraditi. Pokušajte s drugom fotografijom.';
+
+  @override
+  String get receiptNoProducts =>
+      'Tekst je pročitan, ali stavke računa nisu pronađene. Fotografijom obuhvatite stavke i ukupan iznos.';
+
+  @override
+  String get keepAwakeOn => 'Zaslon ostaje uključen';
+
+  @override
+  String get keepAwakeOff => 'Zaslon se može isključiti';
 }

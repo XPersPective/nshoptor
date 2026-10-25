@@ -609,6 +609,9 @@ class AppLocalizationsZu extends AppLocalizations {
   String get scanReceiptAction => 'Skana isiphawu';
 
   @override
+  String get fromReceiptListButton => 'Kusuka kwirisidi';
+
+  @override
   String get shelfLabelAction => 'Inani lesikhwama esisibonakalayo';
 
   @override
@@ -1066,7 +1069,47 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Imigqa yesiphetho esixhumanisayo isusa izithengiso ezikhona; imigqa engaxhumaniswe iyengezwa.';
+      'Izintengo zezinto ezingenayo ziyagcwaliswa. Ezivele zinenani lemakethe zengezwa njengokuthenga okuhlukile.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Esithombeni esilandelayo faka isitolo, usuku, isikhathi nenombolo yerisidi.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Thatha isithombe sengxenye elandelayo kube nezinto ezimbalwa ezimbozanayo kanye nesamba sokugcina.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Lesi sithombe asikwazanga ukuhlanganiswa. Thatha esinye kube nezinto zeresidi efanayo ezimbozanayo.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Irisidi ligcinwe njengohlaka. Ungaqhubeka kamuva.';
+
+  @override
+  String get receiptContinueAction => 'Qhubeka nerisidi';
+
+  @override
+  String get receiptDraftsTitle => 'Amarisidi angaqediwe';
+
+  @override
+  String get receiptDuplicate => 'Leli risidi selingeziwe kakade.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Isamba sezinto asifani nesamba serisidi. Hlola ukuthi irisidi lonke liyabonakala.';
+
+  @override
+  String get receiptSaveDraftAction => 'Londoloza ukuze kusetshenziswe kamuva';
+
+  @override
+  String get receiptResolveLines =>
+      'Yamukela noma ungayinaki into ngayinye ngaphambi kokulondoloza.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Kuzongezwa izinto ezikhethiwe kuphela. Le risidi izomakwa njengefakiwe. Uyaqhubeka?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1292,7 +1335,7 @@ class AppLocalizationsZu extends AppLocalizations {
       'Intengo yasesitolo imaka into njengethengiwe; no-0 uyasebenza. Intengo yasekhaya ayiphoqelekile. Sula intengo yasesitolo ukuze ususe uphawu.';
 
   @override
-  String get shoppingDateLabel => 'Usuku lokuthenga (uyazikhethela)';
+  String get shoppingDateLabel => 'Usuku lokuthenga';
 
   @override
   String get shoppingDateNone => 'Alukho usuku olukhethiwe';
@@ -1311,4 +1354,28 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get listSortManual => 'Hlela ngesandla';
+
+  @override
+  String get imageCameraAction => 'Thatha isithombe';
+
+  @override
+  String get imageGalleryAction => 'Khetha ezithombeni';
+
+  @override
+  String get imageCaptureFailed =>
+      'Ayikwazanga ukuvula ikhamera noma izithombe. Hlola imvume yokufinyelela bese uzama futhi.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Isithombe asikwazanga ukucutshungulwa. Zama esinye isithombe.';
+
+  @override
+  String get receiptNoProducts =>
+      'Umbhalo ufundiwe, kodwa izinto eziserisidini azitholakalanga. Faka izinto nesamba esiphelele esithombeni.';
+
+  @override
+  String get keepAwakeOn => 'Isikrini sihlala sivuliwe';
+
+  @override
+  String get keepAwakeOff => 'Isikrini singacima';
 }

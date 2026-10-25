@@ -606,6 +606,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get scanReceiptAction => 'اسکن رسید';
 
   @override
+  String get fromReceiptListButton => 'از رسید';
+
+  @override
   String get shelfLabelAction => 'قیمت از برچسب قفسه';
 
   @override
@@ -1054,7 +1057,47 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'خطوط رسید پیوند‌خورده، خریدهای موجود را جایگزین می‌کنند؛ خطوط بدون پیوند اضافه می‌شوند.';
+      'قیمت موارد بدون قیمت تکمیل می‌شود. مواردی که از قبل قیمت بازار دارند، به‌عنوان خریدهای جداگانه افزوده می‌شوند.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'فروشگاه، تاریخ، ساعت و شماره رسید را در عکس بعدی بگنجانید.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'از بخش بعدی عکس بگیرید؛ چند مورد هم‌پوشان و مبلغ نهایی در تصویر باشند.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'این عکس به رسید پیوست نشد. آن را با چند مورد هم‌پوشان از همان رسید دوباره بگیرید.';
+
+  @override
+  String get receiptDraftSaved =>
+      'رسید به‌صورت پیش‌نویس ذخیره شد. بعداً می‌توانید ادامه دهید.';
+
+  @override
+  String get receiptContinueAction => 'ادامه رسید';
+
+  @override
+  String get receiptDraftsTitle => 'رسیدهای ناتمام';
+
+  @override
+  String get receiptDuplicate => 'این رسید قبلاً اضافه شده است.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'موارد با مبلغ کل رسید مطابقت ندارند. بررسی کنید که تمام رسید در تصویر باشد.';
+
+  @override
+  String get receiptSaveDraftAction => 'ذخیره برای بعد';
+
+  @override
+  String get receiptResolveLines =>
+      'پیش از ذخیره، هر مورد را بپذیرید یا نادیده بگیرید.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'فقط موارد انتخاب‌شده اضافه می‌شوند. این رسید به‌عنوان واردشده علامت‌گذاری می‌شود. ادامه می‌دهید؟';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1278,7 +1321,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'قیمت فروشگاه، کالا را خریداری‌شده علامت می‌زند؛ 0 هم معتبر است. قیمت خانه اختیاری است. برای برداشتن علامت، قیمت فروشگاه را پاک کنید.';
 
   @override
-  String get shoppingDateLabel => 'تاریخ خرید (اختیاری)';
+  String get shoppingDateLabel => 'تاریخ خرید';
 
   @override
   String get shoppingDateNone => 'تاریخی انتخاب نشده';
@@ -1297,4 +1340,28 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get listSortManual => 'ترتیب دستی';
+
+  @override
+  String get imageCameraAction => 'گرفتن عکس';
+
+  @override
+  String get imageGalleryAction => 'انتخاب از عکس‌ها';
+
+  @override
+  String get imageCaptureFailed =>
+      'دوربین یا عکس‌ها باز نشدند. مجوز دسترسی را بررسی کنید و دوباره تلاش کنید.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'پردازش عکس ممکن نشد. عکس دیگری را امتحان کنید.';
+
+  @override
+  String get receiptNoProducts =>
+      'متن خوانده شد، اما کالایی از رسید پیدا نشد. کالاها و مبلغ کل را در عکس بگنجانید.';
+
+  @override
+  String get keepAwakeOn => 'صفحه روشن می‌ماند';
+
+  @override
+  String get keepAwakeOff => 'صفحه می‌تواند خاموش شود';
 }

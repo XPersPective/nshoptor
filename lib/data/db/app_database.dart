@@ -121,6 +121,7 @@ class PurchaseEntries extends Table {
   TextColumn get actualQuantity => text()();
   TextColumn get actualUnitCode => text()();
   TextColumn get actualUnitPrice => text().nullable()();
+
   /// unitPrice | lineTotal; null preserves pre-v3 unit-price editor semantics.
   TextColumn get pricingInputMode => text().nullable()();
   IntColumn get grossTotalMinorUnits => integer().nullable()();
@@ -218,6 +219,12 @@ class Receipts extends Table {
   IntColumn get detectedTotalMinorUnits => integer().nullable()();
   IntColumn get confirmedTotalMinorUnits => integer().nullable()();
   TextColumn get parserVersion => text().nullable()();
+
+  /// Confirmed document evidence and durable multi-image capture state.
+  /// Legacy receipts and drafts without a reliable identity stay null.
+  TextColumn get documentNumber => text().nullable()();
+  TextColumn get identityKey => text().nullable()();
+  TextColumn get captureDataJson => text().nullable()();
 
   /// pending | ocrDone | reviewed | error
   TextColumn get processingStatus =>
@@ -322,12 +329,13 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (m) async {
       await m.createAll();
+      await _createReceiptIdentityIndex();
       await customStatement('PRAGMA foreign_keys = ON');
     },
     onUpgrade: (m, from, to) async {
@@ -337,10 +345,21 @@ class AppDatabase extends _$AppDatabase {
       if (from < 3) {
         await m.addColumn(purchaseEntries, purchaseEntries.pricingInputMode);
       }
+      if (from < 4) {
+        await m.addColumn(receipts, receipts.documentNumber);
+        await m.addColumn(receipts, receipts.identityKey);
+        await m.addColumn(receipts, receipts.captureDataJson);
+        await _createReceiptIdentityIndex();
+      }
       assert(from < to);
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
     },
+  );
+
+  Future<void> _createReceiptIdentityIndex() => customStatement(
+    'CREATE UNIQUE INDEX receipts_identity_unique ON receipts (identity_key) '
+    'WHERE identity_key IS NOT NULL',
   );
 }

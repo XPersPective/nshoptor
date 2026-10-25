@@ -19,7 +19,7 @@ import '../../subscription/subscription_service.dart';
 /// Fiş inceleme ve eşleştirme ekranı (spec §6.9).
 ///
 /// Kurallar:
-/// - Onay öncesi DB yazımı yoktur (controller kuralı; burada da bildirilir).
+/// - Onay öncesi liste/satın alım yazımı yoktur; tarama taslağı ayrı saklanır.
 /// - Onay sonrası: kabul edilen satırlar plannersız/bağlı değerlendirilir.
 /// - Fark (kabul edilenler vs bildirilen toplam) açıkça görüntülenir.
 class ReceiptReviewScreen extends StatefulWidget {
@@ -40,10 +40,14 @@ class ReceiptReviewScreen extends StatefulWidget {
   State<ReceiptReviewScreen> createState() => _ReceiptReviewScreenState();
 }
 
+enum _ReviewPhase { matching, ready, saving }
+
 class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
   late final ReceiptReviewController _c = widget.controller;
-  bool _saving = false;
-  bool _saveFailed = false;
+  _ReviewPhase _phase = _ReviewPhase.matching;
+  bool get _saving => _phase == _ReviewPhase.saving;
+  bool get _editable => _phase == _ReviewPhase.ready;
+  String? _failureMessage;
 
   @override
   void dispose() {
@@ -57,7 +61,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     _c.addListener(_sync);
     // Öneriler (PB-040): yüksek güvenli eşleşmeler bağlanmış gelir;
     // kullanıcı tek dokunuşla onaylar/değiştirir (C-003: onaysız DB yok).
-    unawaited(_c.prefillSuggestions());
+    unawaited(_prepareReview());
     unawaited(
       widget.plannedItems.then((items) {
         if (!mounted) return;
@@ -67,6 +71,23 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
   }
 
   Map<int, String> _plannedNames = const {};
+
+  Future<void> _prepareReview() async {
+    try {
+      // Deterministic local matching finishes before approval becomes possible.
+      await _c.prefillRules();
+    } catch (_) {
+      if (mounted) _failureMessage = AppLocalizations.of(context).saveFailed;
+    } finally {
+      if (mounted) setState(() => _phase = _ReviewPhase.ready);
+    }
+    if (!mounted) return;
+    // Optional AI may enrich unresolved suggestions without delaying review or
+    // overriding a row the user has already accepted, ignored or unlinked.
+    try {
+      await _c.prefillSuggestions();
+    } catch (_) {}
+  }
 
   void _sync() => setState(() {});
 
@@ -80,172 +101,236 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     );
 
     final diff = _c.reconciliationDifference;
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.receiptReviewTitle), leading: IconButton(
-        key: const Key('receipt_cancel'), tooltip: l10n.cancelButton, icon: const Icon(Icons.close),
-        onPressed: _saving ? null : () => Navigator.of(context).maybePop())),
-      body: Column(
-        children: [
-          if (_c.currencyNeedsConfirmation || _c.detectedCurrency != null && _c.detectedCurrency != widget.currency)
-            Padding(padding: const EdgeInsets.all(12), child: Text(
-              '${l10n.currencyLabel}: ${_c.detectedCurrency ?? '?'} → ${widget.currency}. ${l10n.invalidAmountError}',
-              key: const Key('receipt_currency_mismatch'), style: TextStyle(color: Theme.of(context).colorScheme.error))),
-          if (_saveFailed)
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Text(
-              l10n.saveFailed,
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
-              ),
-            ),
-          if (_c.aiMatched || _c.aiProblem != null)
-            MaterialBanner(
-              key: const Key('receipt_ai_banner'),
-              leading: Icon(
-                _c.aiMatched ? Icons.auto_awesome : Icons.info_outline,
-              ),
-              content: Text(
-                _c.aiMatched
-                    ? l10n.receiptAiMatched
-                    : switch (_c.aiProblem) {
-                        AiQuota(:final used, :final limit) =>
-                          l10n.aiQuotaReached(used, limit),
-                        AiOffline() => l10n.aiOffline,
-                        _ => l10n.aiFailed,
-                      },
-              ),
-              actions: [
-                if (_c.aiProblem is AiQuota &&
-                    SubscriptionService.instance != null)
-                  TextButton(
-                    onPressed: () => openPlans(context),
-                    child: Text(l10n.plansTitle),
-                  )
-                else
-                  const SizedBox.shrink(),
-              ],
-            ),
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.receipt_long),
-              title: Text(
-                _c.reportedTotalMinor == null
-                    ? l10n.receiptTotalUnknown
-                    : '${l10n.receiptTotal}: ${money(_c.reportedTotalMinor!)}',
-              ),
-              subtitle: diff == null
-                  ? null
-                  : Text(
-                      '${l10n.receiptDiff}: ${money(diff)}',
-                      style: TextStyle(
-                        color:
-                            _c.lines.any(
-                                  (l) => l.status == ReviewStatus.accepted,
-                                ) &&
-                                diff != 0
-                            ? Theme.of(context).colorScheme.error
-                            : Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-            ),
+    return PopScope(
+      canPop: !_saving,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.receiptReviewTitle),
+          leading: IconButton(
+            key: const Key('receipt_cancel'),
+            tooltip: l10n.cancelButton,
+            icon: const Icon(Icons.close),
+            onPressed: _saving ? null : () => Navigator.of(context).maybePop(),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _c.lines.length,
-              itemBuilder: (context, i) {
-                final line = _c.lines[i];
-                return Card(
-                  child: ListTile(
-                    key: Key('receipt_line_$i'),
-                    title: Text(
-                      line.isDiscount && line.lineTotalMinor < 0
-                          ? l10n.receiptDiscountLine
-                          : line.name,
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${_lineQty(line)} · ${money(line.lineTotalMinor)}',
+        ),
+        body: Column(
+          children: [
+            if (_phase == _ReviewPhase.matching)
+              const LinearProgressIndicator(),
+            if (_c.currencyNeedsConfirmation ||
+                _c.detectedCurrency != null &&
+                    _c.detectedCurrency != widget.currency)
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Text(
+                  '${l10n.currencyLabel}: ${_c.detectedCurrency ?? '?'} → ${widget.currency}. ${l10n.invalidAmountError}',
+                  key: const Key('receipt_currency_mismatch'),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+            if (_failureMessage != null)
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Text(
+                  _failureMessage!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+            if (_c.aiMatched || _c.aiProblem != null)
+              MaterialBanner(
+                key: const Key('receipt_ai_banner'),
+                leading: Icon(
+                  _c.aiMatched ? Icons.auto_awesome : Icons.info_outline,
+                ),
+                content: Text(
+                  _c.aiMatched
+                      ? l10n.receiptAiMatched
+                      : switch (_c.aiProblem) {
+                          AiQuota(:final used, :final limit) =>
+                            l10n.aiQuotaReached(used, limit),
+                          AiOffline() => l10n.aiOffline,
+                          _ => l10n.aiFailed,
+                        },
+                ),
+                actions: [
+                  if (_c.aiProblem is AiQuota &&
+                      SubscriptionService.instance != null)
+                    TextButton(
+                      onPressed: () => openPlans(context),
+                      child: Text(l10n.plansTitle),
+                    )
+                  else
+                    const SizedBox.shrink(),
+                ],
+              ),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.receipt_long),
+                title: Text(
+                  _c.reportedTotalMinor == null
+                      ? l10n.receiptTotalUnknown
+                      : '${l10n.receiptTotal}: ${money(_c.reportedTotalMinor!)}',
+                ),
+                subtitle: diff == null
+                    ? null
+                    : Text(
+                        '${l10n.receiptDiff}: ${money(diff)}',
+                        style: TextStyle(
+                          color:
+                              _c.lines.any(
+                                    (l) => l.status == ReviewStatus.accepted,
+                                  ) &&
+                                  diff != 0
+                              ? Theme.of(context).colorScheme.error
+                              : Theme.of(context).colorScheme.primary,
                         ),
-                        if (line.linkedPlannedItemId != null &&
-                            _plannedNames[line.linkedPlannedItemId] != null)
+                      ),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _c.lines.length,
+                itemBuilder: (context, i) {
+                  final line = _c.lines[i];
+                  return Card(
+                    child: ListTile(
+                      key: Key('receipt_line_$i'),
+                      title: Text(
+                        line.isDiscount && line.lineTotalMinor < 0
+                            ? l10n.receiptDiscountLine
+                            : line.name,
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Text(
-                            '→ ${_plannedNames[line.linkedPlannedItemId]}',
-                            key: Key('receipt_line_link_$i'),
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
+                            '${_lineQty(line)} · ${money(line.lineTotalMinor)}',
                           ),
-                        if (line.needsCheck || line.isDiscount)
-                          Wrap(
-                            spacing: 6,
+                          if (line.linkedPlannedItemId != null &&
+                              _plannedNames[line.linkedPlannedItemId] != null)
+                            Text(
+                              '→ ${_plannedNames[line.linkedPlannedItemId]}',
+                              key: Key('receipt_line_link_$i'),
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          if (line.needsCheck || line.isDiscount)
+                            Wrap(
+                              spacing: 6,
+                              children: [
+                                if (line.needsCheck)
+                                  Text(
+                                    l10n.receiptNeedsCheck,
+                                    key: Key('receipt_line_check_$i'),
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .tertiary,
+                                    ),
+                                  ),
+                                if (line.isDiscount)
+                                  Text(l10n.receiptDiscountLine),
+                              ],
+                            ),
+                        ],
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              line.status == ReviewStatus.accepted
+                                  ? Icons.check_circle
+                                  : Icons.circle_outlined,
+                              color: line.status == ReviewStatus.accepted
+                                  ? Theme.of(context).colorScheme.primary
+                                  : null,
+                            ),
+                            tooltip: l10n.acceptLine,
+                            onPressed: _editable
+                                ? () => _toggleAccept(i)
+                                : null,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              line.status == ReviewStatus.ignored
+                                  ? Icons.cancel
+                                  : Icons.cancel_outlined,
+                              color: line.status == ReviewStatus.ignored
+                                  ? Theme.of(context).colorScheme.error
+                                  : null,
+                            ),
+                            tooltip: l10n.ignoreLine,
+                            onPressed: _editable ? () => _c.ignore(i) : null,
+                          ),
+                        ],
+                      ),
+                      onTap: _editable ? () => _showActions(i) : null,
+                    ),
+                  );
+                },
+              ),
+            ),
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!_c.reviewResolved) Text(l10n.receiptResolveLines),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 8,
+                      alignment: WrapAlignment.end,
+                      children: [
+                        TextButton(
+                          key: const Key('receipt_accept_all'),
+                          onPressed: _editable ? _c.acceptAll : null,
+                          child: Text(l10n.receiptCommit),
+                        ),
+                        FilledButton(
+                          key: const Key('receipt_commit_button'),
+                          onPressed:
+                              _editable &&
+                                  _c.documentReady &&
+                                  _c.reviewResolved &&
+                                  !_c.currencyNeedsConfirmation &&
+                                  (_c.detectedCurrency == null ||
+                                      _c.detectedCurrency == widget.currency) &&
+                                  _c.lines.any(
+                                    (l) => l.status == ReviewStatus.accepted,
+                                  )
+                              ? () => _commit(context)
+                              : null,
+                          child: Stack(
+                            alignment: Alignment.center,
                             children: [
-                              if (line.needsCheck)
-                                Text(
-                                  l10n.receiptNeedsCheck,
-                                  key: Key('receipt_line_check_$i'),
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .tertiary,
+                              Visibility(
+                                visible: !_saving,
+                                maintainSize: true,
+                                maintainAnimation: true,
+                                maintainState: true,
+                                child: Text(l10n.saveButton),
+                              ),
+                              if (_saving)
+                                const SizedBox.square(
+                                  dimension: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
                                   ),
                                 ),
-                              if (line.isDiscount)
-                                Text(l10n.receiptDiscountLine),
                             ],
                           ),
-                      ],
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: Icon(
-                            line.status == ReviewStatus.accepted
-                                ? Icons.check_circle
-                                : Icons.circle_outlined,
-                            color: line.status == ReviewStatus.accepted
-                                ? Theme.of(context).colorScheme.primary
-                                : null,
-                          ),
-                          tooltip: l10n.acceptLine,
-                          onPressed: () => _toggleAccept(i),
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            line.status == ReviewStatus.ignored
-                                ? Icons.cancel
-                                : Icons.cancel_outlined,
-                            color: line.status == ReviewStatus.ignored
-                                ? Theme.of(context).colorScheme.error
-                                : null,
-                          ),
-                          onPressed: () => _c.ignore(i),
                         ),
                       ],
                     ),
-                    onTap: () => _showActions(i),
-                  ),
-                );
-              },
-            ),
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: FilledButton(
-                key: const Key('receipt_commit_button'),
-                onPressed:
-                    !_saving &&
-                        _c.lines.any((l) => l.status == ReviewStatus.accepted)
-                    ? () => _commit(context)
-                    : null,
-                child: Text(l10n.receiptCommit),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -269,7 +354,8 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         children: [
           for (final (key, label) in [
             ('link', l10n.linkToItem),
-            if (line.linkedPlannedItemId != null) ('unlink', l10n.groupUnplanned),
+            if (line.linkedPlannedItemId != null)
+              ('unlink', l10n.groupUnplanned),
             if (line.lineTotalMinor > 1) ('split', l10n.splitLine),
             if (index + 1 < _c.lines.length) ('merge', l10n.mergeWithNext),
             ('ignore', l10n.ignoreLine),
@@ -306,8 +392,11 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
       case 'unlink':
         _c.unlinkLine(index);
       case 'merge':
-        try { _c.mergeLines(index, index + 1); }
-        catch (_) { if (mounted) setState(() => _saveFailed = true); }
+        try {
+          _c.mergeLines(index, index + 1);
+        } catch (_) {
+          if (mounted) setState(() => _failureMessage = l10n.saveFailed);
+        }
       case 'ignore':
         _c.ignore(index);
     }
@@ -315,7 +404,9 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
 
   String _lineQty(ReviewLine line) {
     final q = line.quantity?.toDbString();
-    final unit = line.unitCode == null ? '' : unitDisplayName(line.unitCode!, AppLocalizations.of(context));
+    final unit = line.unitCode == null
+        ? ''
+        : unitDisplayName(line.unitCode!, AppLocalizations.of(context));
     return q == null ? '' : '$q $unit ×'.trim();
   }
 
@@ -324,10 +415,32 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     setState(() {
-      _saving = true;
-      _saveFailed = false;
+      _phase = _ReviewPhase.saving;
+      _failureMessage = null;
     });
     try {
+      var selection = ReceiptSelection.wholeReceipt;
+      if (_c.isPartialSelection) {
+        final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text(l10n.receiptReviewTitle),
+            content: Text(l10n.receiptPartialConfirm),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: Text(l10n.cancelButton),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(ctx, true),
+                child: Text(l10n.saveButton),
+              ),
+            ],
+          ),
+        );
+        if (!context.mounted || confirmed != true) return;
+        selection = ReceiptSelection.confirmedSubset;
+      }
       final previous = await _c.replacementEntries();
       if (!context.mounted) return;
       if (previous.isNotEmpty) {
@@ -368,18 +481,20 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         );
         if (confirmed != true) return;
       }
-      await _c.commit();
+      await _c.commit(selection: selection);
       if (!context.mounted) return;
       messenger
         ..clearSnackBars()
         ..showSnackBar(
           SnackBar(content: Text(l10n.receiptCommitted), showCloseIcon: true),
         );
-      Navigator.of(context).maybePop();
+      Navigator.of(context).pop();
+    } on ReceiptAlreadyImported {
+      if (mounted) setState(() => _failureMessage = l10n.receiptDuplicate);
     } catch (_) {
-      if (mounted) setState(() => _saveFailed = true);
+      if (mounted) setState(() => _failureMessage = l10n.saveFailed);
     } finally {
-      if (mounted) setState(() => _saving = false);
+      if (mounted) setState(() => _phase = _ReviewPhase.ready);
     }
   }
 }

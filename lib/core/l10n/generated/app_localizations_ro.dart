@@ -606,6 +606,9 @@ class AppLocalizationsRo extends AppLocalizations {
   String get scanReceiptAction => 'Scanează chitanța';
 
   @override
+  String get fromReceiptListButton => 'Din bon';
+
+  @override
   String get shelfLabelAction => 'Preț din eticheta raftului';
 
   @override
@@ -1062,7 +1065,47 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Linii din chitanță legate înlocuiesc achizițiile existente; liniile nelegate se adaugă.';
+      'Produsele fără preț sunt completate. Cele cu preț de piață sunt adăugate ca achiziții separate.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Includeți magazinul, data, ora și numărul bonului în următoarea fotografie.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotografiați următoarea secțiune cu câteva produse suprapuse și suma finală.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Fotografia nu a putut fi îmbinată. Refaceți-o cu produse suprapuse de pe același bon.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Bonul a fost salvat ca schiță. Puteți continua mai târziu.';
+
+  @override
+  String get receiptContinueAction => 'Continuă bonul';
+
+  @override
+  String get receiptDraftsTitle => 'Bonuri neterminate';
+
+  @override
+  String get receiptDuplicate => 'Acest bon a fost deja adăugat.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Suma produselor nu corespunde cu totalul bonului. Verificați dacă bonul este vizibil integral.';
+
+  @override
+  String get receiptSaveDraftAction => 'Salvează pentru mai târziu';
+
+  @override
+  String get receiptResolveLines =>
+      'Acceptați sau ignorați fiecare articol înainte de salvare.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Doar articolele selectate vor fi adăugate. Această chitanță va fi marcată ca importată. Continuați?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1290,7 +1333,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'Prețul din magazin marchează produsul ca fiind cumpărat; se acceptă și 0. Prețul de acasă este opțional. Ștergeți prețul din magazin pentru a elimina bifa.';
 
   @override
-  String get shoppingDateLabel => 'Data cumpărăturilor (opțional)';
+  String get shoppingDateLabel => 'Data cumpărăturilor';
 
   @override
   String get shoppingDateNone => 'Nicio dată selectată';
@@ -1309,4 +1352,28 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ordine manuală';
+
+  @override
+  String get imageCameraAction => 'Fă o fotografie';
+
+  @override
+  String get imageGalleryAction => 'Alege din fotografii';
+
+  @override
+  String get imageCaptureFailed =>
+      'Nu s-au putut deschide camera sau fotografiile. Verifică permisiunea de acces și încearcă din nou.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Fotografia nu a putut fi procesată. Încearcă altă fotografie.';
+
+  @override
+  String get receiptNoProducts =>
+      'Textul a fost citit, dar nu s-au găsit articolele de pe bon. Include articolele și totalul în fotografie.';
+
+  @override
+  String get keepAwakeOn => 'Ecranul rămâne pornit';
+
+  @override
+  String get keepAwakeOff => 'Ecranul se poate stinge';
 }

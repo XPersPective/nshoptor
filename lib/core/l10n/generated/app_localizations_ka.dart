@@ -607,6 +607,9 @@ class AppLocalizationsKa extends AppLocalizations {
   String get scanReceiptAction => 'შეკვეთის სკანირება';
 
   @override
+  String get fromReceiptListButton => 'ქვითრიდან';
+
+  @override
   String get shelfLabelAction => 'ფასი ეტიკეტიდან';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'შეკრული ბარათის ხაზები ცვლის არსებულ შენაძენებს; შეუერთებელი ხაზები ემატება.';
+      'ფასის არმქონე პროდუქტების ფასები ივსება. საბაზრო ფასის მქონე პროდუქტები ცალკე შესყიდვებად ემატება.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'შემდეგ ფოტოში მიუთითეთ მაღაზია, თარიღი, დრო და ქვითრის ნომერი.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'გადაიღეთ შემდეგი ნაწილი რამდენიმე გადაფარული პროდუქტითა და საბოლოო ჯამით.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'ეს ფოტო ვერ გაერთიანდა. ხელახლა გადაიღეთ იმავე ქვითრის გადაფარული პროდუქტებით.';
+
+  @override
+  String get receiptDraftSaved =>
+      'ქვითარი მონახაზად შეინახა. მოგვიანებით შეგიძლიათ გააგრძელოთ.';
+
+  @override
+  String get receiptContinueAction => 'ქვითრის გაგრძელება';
+
+  @override
+  String get receiptDraftsTitle => 'დაუსრულებელი ქვითრები';
+
+  @override
+  String get receiptDuplicate => 'ეს ქვითარი უკვე დამატებულია.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'პროდუქტების ჯამი ქვითრის ჯამს არ ემთხვევა. შეამოწმეთ, ჩანს თუ არა მთელი ქვითარი.';
+
+  @override
+  String get receiptSaveDraftAction => 'მოგვიანებით შესანახად';
+
+  @override
+  String get receiptResolveLines =>
+      'შენახვამდე მიიღეთ ან უგულებელყავით თითოეული პროდუქტი.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'დაემატება მხოლოდ არჩეული პროდუქტები. ეს ქვითარი იმპორტირებულად მოინიშნება. გავაგრძელოთ?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'მაღაზიის ფასის შეყვანისას პროდუქტი ნაყიდად მოინიშნება; 0-იც ითვლება. სახლის ფასი არასავალდებულოა. მონიშვნის მოსახსნელად წაშალეთ მაღაზიის ფასი.';
 
   @override
-  String get shoppingDateLabel => 'საყიდლების თარიღი (არასავალდებულო)';
+  String get shoppingDateLabel => 'საყიდლების თარიღი';
 
   @override
   String get shoppingDateNone => 'თარიღი არჩეული არ არის';
@@ -1301,4 +1344,28 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get listSortManual => 'ხელით დალაგება';
+
+  @override
+  String get imageCameraAction => 'ფოტოს გადაღება';
+
+  @override
+  String get imageGalleryAction => 'ფოტოებიდან არჩევა';
+
+  @override
+  String get imageCaptureFailed =>
+      'კამერა ან ფოტოები ვერ გაიხსნა. შეამოწმეთ წვდომის ნებართვა და სცადეთ ხელახლა.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ფოტოს დამუშავება ვერ მოხერხდა. სცადეთ სხვა ფოტო.';
+
+  @override
+  String get receiptNoProducts =>
+      'ტექსტი წაკითხულია, მაგრამ ქვითრის პროდუქტები ვერ მოიძებნა. ფოტოში ჩანდეს პროდუქტები და ჯამური თანხა.';
+
+  @override
+  String get keepAwakeOn => 'ეკრანი ჩართული დარჩება';
+
+  @override
+  String get keepAwakeOff => 'ეკრანი შეიძლება გამოირთოს';
 }

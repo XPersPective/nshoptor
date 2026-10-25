@@ -607,6 +607,9 @@ class AppLocalizationsPa extends AppLocalizations {
   String get scanReceiptAction => 'ਰਸੀਦ ਸਕੈਨ ਕਰੋ';
 
   @override
+  String get fromReceiptListButton => 'ਰਸੀਦ ਤੋਂ ਸੂਚੀ';
+
+  @override
   String get shelfLabelAction => 'ਸ਼ੈਲਫ ਲੇਬਲ ਤੋਂ ਕੀਮਤ';
 
   @override
@@ -1058,7 +1061,47 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'ਲਿੰਕ ਕੀਤੀਆਂ ਰਸੀਦ ਲਾਈਨਾਂ ਮੌਜੂਦਾ ਖਰੀਦਾਰੀਆਂ ਨੂੰ ਬਦਲਦੀਆਂ ਹਨ; ਅਣਲਿੰਕ ਕੀਤੀਆਂ ਲਾਈਨਾਂ ਜੋੜੀਆਂ ਜਾਂਦੀਆਂ ਹਨ।';
+      'ਬਿਨਾਂ ਕੀਮਤ ਵਾਲੀਆਂ ਚੀਜ਼ਾਂ ਦੀ ਕੀਮਤ ਭਰੀ ਜਾਂਦੀ ਹੈ। ਬਾਜ਼ਾਰ ਕੀਮਤ ਵਾਲੀਆਂ ਚੀਜ਼ਾਂ ਵੱਖਰੀਆਂ ਖਰੀਦਾਂ ਵਜੋਂ ਜੋੜੀਆਂ ਜਾਂਦੀਆਂ ਹਨ।';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'ਅਗਲੀ ਤਸਵੀਰ ਵਿੱਚ ਦੁਕਾਨ, ਮਿਤੀ, ਸਮਾਂ ਅਤੇ ਰਸੀਦ ਨੰਬਰ ਸ਼ਾਮਲ ਕਰੋ।';
+
+  @override
+  String get receiptIncompleteTail =>
+      'ਅਗਲਾ ਹਿੱਸਾ ਕੁਝ ਓਵਰਲੈਪ ਕਰਦੀਆਂ ਚੀਜ਼ਾਂ ਅਤੇ ਅੰਤਿਮ ਕੁੱਲ ਸਮੇਤ ਫੋਟੋ ਕਰੋ।';
+
+  @override
+  String get receiptContinuationRejected =>
+      'ਇਹ ਤਸਵੀਰ ਜੋੜੀ ਨਹੀਂ ਜਾ ਸਕੀ। ਉਸੇ ਰਸੀਦ ਦੀਆਂ ਓਵਰਲੈਪ ਕਰਦੀਆਂ ਚੀਜ਼ਾਂ ਨਾਲ ਮੁੜ ਫੋਟੋ ਖਿੱਚੋ।';
+
+  @override
+  String get receiptDraftSaved =>
+      'ਰਸੀਦ ਮਸੌਦੇ ਵਜੋਂ ਸੁਰੱਖਿਅਤ ਹੋ ਗਈ। ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।';
+
+  @override
+  String get receiptContinueAction => 'ਰਸੀਦ ਜਾਰੀ ਰੱਖੋ';
+
+  @override
+  String get receiptDraftsTitle => 'ਅਧੂਰੀਆਂ ਰਸੀਦਾਂ';
+
+  @override
+  String get receiptDuplicate => 'ਇਹ ਰਸੀਦ ਪਹਿਲਾਂ ਹੀ ਜੋੜੀ ਗਈ ਹੈ।';
+
+  @override
+  String get receiptTotalMismatch =>
+      'ਚੀਜ਼ਾਂ ਦਾ ਜੋੜ ਰਸੀਦ ਦੇ ਕੁੱਲ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ। ਜਾਂਚੋ ਕਿ ਪੂਰੀ ਰਸੀਦ ਦਿਖ ਰਹੀ ਹੈ।';
+
+  @override
+  String get receiptSaveDraftAction => 'ਬਾਅਦ ਲਈ ਸੁਰੱਖਿਅਤ ਕਰੋ';
+
+  @override
+  String get receiptResolveLines =>
+      'ਸੰਭਾਲਣ ਤੋਂ ਪਹਿਲਾਂ ਹਰ ਚੀਜ਼ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ ਜਾਂ ਅਣਡਿੱਠਾ ਕਰੋ।';
+
+  @override
+  String get receiptPartialConfirm =>
+      'ਸਿਰਫ਼ ਚੁਣੀਆਂ ਚੀਜ਼ਾਂ ਹੀ ਸ਼ਾਮਲ ਕੀਤੀਆਂ ਜਾਣਗੀਆਂ। ਇਸ ਰਸੀਦ ਨੂੰ ਆਯਾਤ ਕੀਤੀ ਹੋਈ ਵਜੋਂ ਦਰਸਾਇਆ ਜਾਵੇਗਾ। ਜਾਰੀ ਰੱਖਣਾ ਹੈ?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਦੁਕਾਨ ਦੀ ਕੀਮਤ ਭਰਨ ਨਾਲ ਵਸਤੂ ਖਰੀਦੀ ਹੋਈ ਮੰਨੀ ਜਾਂਦੀ ਹੈ; 0 ਵੀ ਮੰਨਿਆ ਜਾਂਦਾ ਹੈ। ਘਰ ਦੀ ਕੀਮਤ ਚੋਣਵੀਂ ਹੈ। ਨਿਸ਼ਾਨ ਹਟਾਉਣ ਲਈ ਦੁਕਾਨ ਦੀ ਕੀਮਤ ਮਿਟਾਓ।';
 
   @override
-  String get shoppingDateLabel => 'ਖਰੀਦਦਾਰੀ ਦੀ ਤਾਰੀਖ (ਚੋਣਵੀਂ)';
+  String get shoppingDateLabel => 'ਖਰੀਦਦਾਰੀ ਦੀ ਤਾਰੀਖ';
 
   @override
   String get shoppingDateNone => 'ਕੋਈ ਤਾਰੀਖ ਨਹੀਂ ਚੁਣੀ';
@@ -1301,4 +1344,28 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get listSortManual => 'ਆਪ ਕ੍ਰਮ ਲਗਾਓ';
+
+  @override
+  String get imageCameraAction => 'ਫੋਟੋ ਖਿੱਚੋ';
+
+  @override
+  String get imageGalleryAction => 'ਫੋਟੋਆਂ ਵਿੱਚੋਂ ਚੁਣੋ';
+
+  @override
+  String get imageCaptureFailed =>
+      'ਕੈਮਰਾ ਜਾਂ ਫੋਟੋਆਂ ਖੋਲ੍ਹੀਆਂ ਨਹੀਂ ਜਾ ਸਕੀਆਂ। ਪਹੁੰਚ ਦੀ ਇਜਾਜ਼ਤ ਜਾਂਚੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ਫੋਟੋ ਉੱਤੇ ਕਾਰਵਾਈ ਨਹੀਂ ਹੋ ਸਕੀ। ਕਿਸੇ ਹੋਰ ਫੋਟੋ ਨਾਲ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get receiptNoProducts =>
+      'ਲਿਖਤ ਪੜ੍ਹੀ ਗਈ, ਪਰ ਰਸੀਦ ਦੀਆਂ ਵਸਤਾਂ ਨਹੀਂ ਮਿਲੀਆਂ। ਫੋਟੋ ਵਿੱਚ ਵਸਤਾਂ ਅਤੇ ਕੁੱਲ ਰਕਮ ਸ਼ਾਮਲ ਕਰੋ।';
+
+  @override
+  String get keepAwakeOn => 'ਸਕ੍ਰੀਨ ਚਾਲੂ ਰਹੇਗੀ';
+
+  @override
+  String get keepAwakeOff => 'ਸਕ੍ਰੀਨ ਬੰਦ ਹੋ ਸਕਦੀ ਹੈ';
 }

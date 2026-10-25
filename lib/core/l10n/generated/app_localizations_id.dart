@@ -606,6 +606,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get scanReceiptAction => 'Pindai struk';
 
   @override
+  String get fromReceiptListButton => 'Dari struk';
+
+  @override
   String get shelfLabelAction => 'Harga dari label rak';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Baris struk yang terhubung akan menggantikan pembelian yang sudah ada; baris yang tidak terhubung akan ditambahkan.';
+      'Item tanpa harga akan diisi. Item yang sudah memiliki harga pasar ditambahkan sebagai pembelian terpisah.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Sertakan toko, tanggal, waktu, dan nomor struk di foto berikutnya.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Foto bagian berikutnya dengan beberapa item yang saling tumpang tindih dan total akhir.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Foto ini tidak dapat digabungkan. Ambil ulang dengan item yang tumpang tindih dari struk yang sama.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Struk disimpan sebagai draf. Anda dapat melanjutkannya nanti.';
+
+  @override
+  String get receiptContinueAction => 'Lanjutkan struk';
+
+  @override
+  String get receiptDraftsTitle => 'Struk belum selesai';
+
+  @override
+  String get receiptDuplicate => 'Struk ini sudah ditambahkan.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Jumlah item tidak cocok dengan total struk. Pastikan seluruh struk terlihat.';
+
+  @override
+  String get receiptSaveDraftAction => 'Simpan untuk nanti';
+
+  @override
+  String get receiptResolveLines =>
+      'Terima atau abaikan setiap barang sebelum menyimpan.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Hanya barang yang dipilih yang akan ditambahkan. Struk ini akan ditandai sebagai diimpor. Lanjutkan?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1283,7 +1326,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Harga toko menandai barang sebagai dibeli; 0 juga berlaku. Harga di rumah opsional. Hapus harga toko untuk menghilangkan tanda centang.';
 
   @override
-  String get shoppingDateLabel => 'Tanggal belanja (opsional)';
+  String get shoppingDateLabel => 'Tanggal belanja';
 
   @override
   String get shoppingDateNone => 'Belum ada tanggal dipilih';
@@ -1302,4 +1345,28 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get listSortManual => 'Urutan manual';
+
+  @override
+  String get imageCameraAction => 'Ambil foto';
+
+  @override
+  String get imageGalleryAction => 'Pilih dari foto';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kamera atau foto tidak dapat dibuka. Periksa izin akses dan coba lagi.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Foto tidak dapat diproses. Coba foto lain.';
+
+  @override
+  String get receiptNoProducts =>
+      'Teks terbaca, tetapi barang pada struk tidak ditemukan. Sertakan barang dan total dalam foto.';
+
+  @override
+  String get keepAwakeOn => 'Layar tetap menyala';
+
+  @override
+  String get keepAwakeOff => 'Layar dapat mati';
 }

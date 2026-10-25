@@ -607,6 +607,9 @@ class AppLocalizationsMr extends AppLocalizations {
   String get scanReceiptAction => 'रसीद स्कॅन करा';
 
   @override
+  String get fromReceiptListButton => 'पावतीवरून यादी';
+
+  @override
   String get shelfLabelAction => 'शेल्फ लेबलवरील किंमत';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'लिंक केलेल्या रसीद ओळी अस्तित्वातील खरेदी बदलतात; लिंक नसलेल्या ओळी जोडल्या जातात.';
+      'किंमत नसलेल्या वस्तूंची किंमत भरली जाते. बाजारभाव असलेल्या वस्तू स्वतंत्र खरेदी म्हणून जोडल्या जातात.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'पुढील फोटोमध्ये दुकान, तारीख, वेळ आणि पावती क्रमांक समाविष्ट करा.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'काही वस्तू एकमेकांवर येतील आणि अंतिम एकूण दिसेल असा पुढील भाग फोटो करा.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'हा फोटो जोडता आला नाही. त्याच पावतीवरील वस्तू एकमेकांवर येतील असा पुन्हा फोटो घ्या.';
+
+  @override
+  String get receiptDraftSaved =>
+      'पावती मसुदा म्हणून जतन केली. नंतर पुढे सुरू करू शकता.';
+
+  @override
+  String get receiptContinueAction => 'पावती पुढे सुरू ठेवा';
+
+  @override
+  String get receiptDraftsTitle => 'अपूर्ण पावत्या';
+
+  @override
+  String get receiptDuplicate => 'ही पावती आधीच जोडली आहे.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'वस्तूंची बेरीज पावतीच्या एकूण रकमेशी जुळत नाही. पूर्ण पावती दिसते आहे का ते तपासा.';
+
+  @override
+  String get receiptSaveDraftAction => 'नंतरसाठी जतन करा';
+
+  @override
+  String get receiptResolveLines =>
+      'जतन करण्यापूर्वी प्रत्येक वस्तू स्वीकारा किंवा दुर्लक्ष करा.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'फक्त निवडलेल्या वस्तू जोडल्या जातील. ही पावती आयात केलेली म्हणून चिन्हांकित केली जाईल. पुढे जायचे?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1280,7 +1323,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'दुकानातील किंमत भरल्यावर वस्तू खरेदी केलेली म्हणून चिन्हांकित होते; 0 देखील मान्य आहे. घरची किंमत ऐच्छिक आहे. खूण काढण्यासाठी दुकानातील किंमत पुसा.';
 
   @override
-  String get shoppingDateLabel => 'खरेदीची तारीख (ऐच्छिक)';
+  String get shoppingDateLabel => 'खरेदीची तारीख';
 
   @override
   String get shoppingDateNone => 'तारीख निवडलेली नाही';
@@ -1299,4 +1342,28 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get listSortManual => 'हाताने क्रम लावा';
+
+  @override
+  String get imageCameraAction => 'फोटो काढा';
+
+  @override
+  String get imageGalleryAction => 'फोटोंमधून निवडा';
+
+  @override
+  String get imageCaptureFailed =>
+      'कॅमेरा किंवा फोटो उघडता आले नाहीत. प्रवेशाची परवानगी तपासा आणि पुन्हा प्रयत्न करा.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'फोटोवर प्रक्रिया करता आली नाही. दुसरा फोटो वापरून पाहा.';
+
+  @override
+  String get receiptNoProducts =>
+      'मजकूर वाचला, पण पावतीतील वस्तू आढळल्या नाहीत. फोटोमध्ये वस्तू आणि एकूण रक्कम समाविष्ट करा.';
+
+  @override
+  String get keepAwakeOn => 'स्क्रीन सुरू राहील';
+
+  @override
+  String get keepAwakeOff => 'स्क्रीन बंद होऊ शकते';
 }

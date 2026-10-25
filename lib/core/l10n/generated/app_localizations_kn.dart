@@ -607,6 +607,9 @@ class AppLocalizationsKn extends AppLocalizations {
   String get scanReceiptAction => 'ರಿಸೀಪ್ಟ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ';
 
   @override
+  String get fromReceiptListButton => 'ರಸೀದಿಯಿಂದ ಪಟ್ಟಿ';
+
+  @override
   String get shelfLabelAction => 'ಶೆಲ್ಫ್ ಲೇಬಲ್‌ನಿಂದ ಬೆಲೆ';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'ಲಿಂಕ್ ಆಗಿರುವ ರಸೀದಿ ಪಂಕ್ತಿಗಳು ಇರುವ ಖರೀದಿಗಳನ್ನು ಬದಲಾಯಿಸುತ್ತವೆ; ಲಿಂಕ್ ಆಗಿಲ್ಲದ ಪಂಕ್ತಿಗಳನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ.';
+      'ಬೆಲೆಯಿಲ್ಲದ ವಸ್ತುಗಳ ಬೆಲೆ ತುಂಬಲಾಗುತ್ತದೆ. ಮಾರುಕಟ್ಟೆ ಬೆಲೆ ಇರುವವು ಪ್ರತ್ಯೇಕ ಖರೀದಿಗಳಾಗಿ ಸೇರಿಸಲಾಗುತ್ತದೆ.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'ಮುಂದಿನ ಫೋಟೋದಲ್ಲಿ ಅಂಗಡಿ, ದಿನಾಂಕ, ಸಮಯ ಮತ್ತು ರಸೀದಿ ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಿ.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'ಕೆಲವು ವಸ್ತುಗಳು ಒಂದರ ಮೇಲೊಂದು ಕಾಣುವಂತೆ ಮತ್ತು ಅಂತಿಮ ಮೊತ್ತದೊಂದಿಗೆ ಮುಂದಿನ ಭಾಗವನ್ನು ಫೋಟೋ ತೆಗೆದುಕೊಳ್ಳಿ.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'ಈ ಫೋಟೋವನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ. ಅದೇ ರಸೀದಿಯ ವಸ್ತುಗಳು ಒಂದರ ಮೇಲೊಂದು ಕಾಣುವಂತೆ ಮತ್ತೆ ಫೋಟೋ ತೆಗೆದುಕೊಳ್ಳಿ.';
+
+  @override
+  String get receiptDraftSaved =>
+      'ರಸೀದಿಯನ್ನು ಕರಡು ರೂಪದಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ. ನಂತರ ಮುಂದುವರಿಸಬಹುದು.';
+
+  @override
+  String get receiptContinueAction => 'ರಸೀದಿಯನ್ನು ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get receiptDraftsTitle => 'ಅಪೂರ್ಣ ರಸೀದಿಗಳು';
+
+  @override
+  String get receiptDuplicate => 'ಈ ರಸೀದಿಯನ್ನು ಈಗಾಗಲೇ ಸೇರಿಸಲಾಗಿದೆ.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'ವಸ್ತುಗಳ ಮೊತ್ತ ರಸೀದಿಯ ಒಟ್ಟು ಮೊತ್ತಕ್ಕೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ಸಂಪೂರ್ಣ ರಸೀದಿ ಕಾಣುತ್ತಿದೆಯೇ ಪರಿಶೀಲಿಸಿ.';
+
+  @override
+  String get receiptSaveDraftAction => 'ನಂತರಕ್ಕಾಗಿ ಉಳಿಸಿ';
+
+  @override
+  String get receiptResolveLines =>
+      'ಉಳಿಸುವ ಮೊದಲು ಪ್ರತಿಯೊಂದು ವಸ್ತುವನ್ನು ಸ್ವೀಕರಿಸಿ ಅಥವಾ ಕಡೆಗಣಿಸಿ.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'ಆಯ್ಕೆ ಮಾಡಿದ ವಸ್ತುಗಳು ಮಾತ್ರ ಸೇರಿಸಲಾಗುತ್ತವೆ. ಈ ರಸೀದಿಯನ್ನು ಆಮದು ಮಾಡಿದುದಾಗಿ ಗುರುತಿಸಲಾಗುತ್ತದೆ. ಮುಂದುವರಿಸಬೇಕೇ?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1286,7 +1329,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'ಅಂಗಡಿ ಬೆಲೆ ನಮೂದಿಸಿದರೆ ವಸ್ತುವನ್ನು ಖರೀದಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಲಾಗುತ್ತದೆ; 0 ಕೂಡ ಮಾನ್ಯ. ಮನೆಯ ಬೆಲೆ ಐಚ್ಛಿಕ. ಗುರುತು ತೆಗೆಯಲು ಅಂಗಡಿ ಬೆಲೆಯನ್ನು ಅಳಿಸಿ.';
 
   @override
-  String get shoppingDateLabel => 'ಖರೀದಿ ದಿನಾಂಕ (ಐಚ್ಛಿಕ)';
+  String get shoppingDateLabel => 'ಖರೀದಿ ದಿನಾಂಕ';
 
   @override
   String get shoppingDateNone => 'ದಿನಾಂಕ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ';
@@ -1305,4 +1348,28 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get listSortManual => 'ಕೈಯಾರೆ ಕ್ರಮಗೊಳಿಸಿ';
+
+  @override
+  String get imageCameraAction => 'ಫೋಟೋ ತೆಗೆಯಿರಿ';
+
+  @override
+  String get imageGalleryAction => 'ಫೋಟೋಗಳಿಂದ ಆಯ್ಕೆಮಾಡಿ';
+
+  @override
+  String get imageCaptureFailed =>
+      'ಕ್ಯಾಮೆರಾ ಅಥವಾ ಫೋಟೋಗಳನ್ನು ತೆರೆಯಲಾಗಲಿಲ್ಲ. ಪ್ರವೇಶ ಅನುಮತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ಫೋಟೋವನ್ನು ಸಂಸ್ಕರಿಸಲಾಗಲಿಲ್ಲ. ಬೇರೆ ಫೋಟೋ ಬಳಸಿ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get receiptNoProducts =>
+      'ಪಠ್ಯವನ್ನು ಓದಲಾಯಿತು, ಆದರೆ ರಸೀದಿಯ ವಸ್ತುಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ಫೋಟೋದಲ್ಲಿ ವಸ್ತುಗಳು ಮತ್ತು ಒಟ್ಟು ಮೊತ್ತವನ್ನು ಸೇರಿಸಿ.';
+
+  @override
+  String get keepAwakeOn => 'ಪರದೆ ಆನ್ ಆಗಿಯೇ ಇರುತ್ತದೆ';
+
+  @override
+  String get keepAwakeOff => 'ಪರದೆ ಆಫ್ ಆಗಬಹುದು';
 }

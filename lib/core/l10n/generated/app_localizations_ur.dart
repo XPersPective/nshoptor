@@ -608,6 +608,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get scanReceiptAction => 'رسید اسکین کریں';
 
   @override
+  String get fromReceiptListButton => 'رسید سے فہرست';
+
+  @override
   String get shelfLabelAction => 'شیلف لیبل سے قیمت';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'منسلک رسید کی لائنیں موجودہ خریداریوں کو تبدیل کر دیتی ہیں؛ غیر منسلک لائنیں شامل کی جاتی ہیں۔';
+      'بغیر قیمت والی اشیا کی قیمت درج ہو جائے گی۔ بازار کی قیمت والی اشیا الگ خریداری کے طور پر شامل ہوں گی۔';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'اگلی تصویر میں دکان، تاریخ، وقت اور رسید نمبر شامل کریں۔';
+
+  @override
+  String get receiptIncompleteTail =>
+      'اگلا حصہ ایسی تصویر میں لیں جس میں چند اشیا ایک دوسرے پر آتی ہوں اور آخری کل رقم نظر آئے۔';
+
+  @override
+  String get receiptContinuationRejected =>
+      'یہ تصویر جوڑی نہیں جا سکی۔ اسی رسید کی اشیا کو ایک دوسرے پر رکھتے ہوئے دوبارہ تصویر لیں۔';
+
+  @override
+  String get receiptDraftSaved =>
+      'رسید مسودے کے طور پر محفوظ ہو گئی۔ آپ بعد میں جاری رکھ سکتے ہیں۔';
+
+  @override
+  String get receiptContinueAction => 'رسید جاری رکھیں';
+
+  @override
+  String get receiptDraftsTitle => 'نامکمل رسیدیں';
+
+  @override
+  String get receiptDuplicate => 'یہ رسید پہلے ہی شامل ہے۔';
+
+  @override
+  String get receiptTotalMismatch =>
+      'اشیا کا مجموعہ رسید کی کل رقم سے نہیں ملتا۔ دیکھیں کہ پوری رسید نظر آ رہی ہے۔';
+
+  @override
+  String get receiptSaveDraftAction => 'بعد کے لیے محفوظ کریں';
+
+  @override
+  String get receiptResolveLines =>
+      'محفوظ کرنے سے پہلے ہر چیز قبول کریں یا نظرانداز کریں۔';
+
+  @override
+  String get receiptPartialConfirm =>
+      'صرف منتخب کردہ اشیا شامل کی جائیں گی۔ اس رسید کو درآمد شدہ کے طور پر نشان زد کیا جائے گا۔ جاری رکھیں؟';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1283,7 +1326,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'دکان کی قیمت درج کرنے سے چیز خریدی ہوئی نشان زد ہوتی ہے؛ 0 بھی درست ہے۔ گھر کی قیمت اختیاری ہے۔ نشان ہٹانے کے لیے دکان کی قیمت مٹا دیں۔';
 
   @override
-  String get shoppingDateLabel => 'خریداری کی تاریخ (اختیاری)';
+  String get shoppingDateLabel => 'خریداری کی تاریخ';
 
   @override
   String get shoppingDateNone => 'کوئی تاریخ منتخب نہیں';
@@ -1302,4 +1345,28 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get listSortManual => 'دستی ترتیب';
+
+  @override
+  String get imageCameraAction => 'تصویر لیں';
+
+  @override
+  String get imageGalleryAction => 'تصاویر میں سے منتخب کریں';
+
+  @override
+  String get imageCaptureFailed =>
+      'کیمرہ یا تصاویر نہیں کھولی جا سکیں۔ رسائی کی اجازت چیک کریں اور دوبارہ کوشش کریں۔';
+
+  @override
+  String get imageRecognitionFailed =>
+      'تصویر پر کارروائی نہیں ہو سکی۔ کوئی دوسری تصویر آزمائیں۔';
+
+  @override
+  String get receiptNoProducts =>
+      'متن پڑھ لیا گیا، لیکن رسید کی اشیا نہیں ملیں۔ تصویر میں اشیا اور کل رقم شامل کریں۔';
+
+  @override
+  String get keepAwakeOn => 'اسکرین آن رہے گی';
+
+  @override
+  String get keepAwakeOff => 'اسکرین بند ہو سکتی ہے';
 }

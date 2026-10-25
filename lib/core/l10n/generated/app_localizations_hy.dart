@@ -608,6 +608,9 @@ class AppLocalizationsHy extends AppLocalizations {
   String get scanReceiptAction => 'Սկանավորել վավերացումը';
 
   @override
+  String get fromReceiptListButton => 'Կտրոնից';
+
+  @override
   String get shelfLabelAction => 'Գինը տախտակակալից';
 
   @override
@@ -1062,7 +1065,47 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Կապված լիցքագրման տողերը փոխարինում են գոյություն ունեցող գնումներին; անկապ տողերը ավելացվում են:';
+      'Լրացվում են գին չունեցող ապրանքները։ Շուկայական գին ունեցողներն ավելացվում են որպես առանձին գնումներ։';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Հաջորդ լուսանկարում ներառեք խանութը, ամսաթիվը, ժամը և կտրոնի համարը։';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Լուսանկարեք հաջորդ հատվածը՝ մի քանի համընկնող ապրանքով և վերջնական գումարով։';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Այս լուսանկարը չհաջողվեց միացնել։ Նույն կտրոնից համընկնող ապրանքներով նորից լուսանկարեք։';
+
+  @override
+  String get receiptDraftSaved =>
+      'Կտրոնը պահվեց որպես սևագիր։ Կարող եք շարունակել ավելի ուշ։';
+
+  @override
+  String get receiptContinueAction => 'Շարունակել կտրոնը';
+
+  @override
+  String get receiptDraftsTitle => 'Անավարտ կտրոններ';
+
+  @override
+  String get receiptDuplicate => 'Այս կտրոնն արդեն ավելացված է։';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Ապրանքների գումարը չի համընկնում կտրոնի ընդհանուր գումարի հետ։ Ստուգեք՝ ամբողջ կտրոնը երևո՞ւմ է։';
+
+  @override
+  String get receiptSaveDraftAction => 'Պահել ավելի ուշի համար';
+
+  @override
+  String get receiptResolveLines =>
+      'Պահելուց առաջ ընդունեք կամ անտեսեք յուրաքանչյուր ապրանք։';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Կավելացվեն միայն ընտրված ապրանքները։ Այս կտրոնը կնշվի որպես ներմուծված։ Շարունակե՞լ։';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1289,7 +1332,7 @@ class AppLocalizationsHy extends AppLocalizations {
       'Խանութի գինը մուտքագրելիս ապրանքը նշվում է որպես գնված․ 0-ն էլ է հաշվվում։ Տան գինը պարտադիր չէ։ Նշումը հանելու համար ջնջեք խանութի գինը։';
 
   @override
-  String get shoppingDateLabel => 'Գնումների ամսաթիվ (ըստ ցանկության)';
+  String get shoppingDateLabel => 'Գնումների ամսաթիվ';
 
   @override
   String get shoppingDateNone => 'Ամսաթիվ ընտրված չէ';
@@ -1308,4 +1351,28 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ձեռքով դասավորել';
+
+  @override
+  String get imageCameraAction => 'Լուսանկարել';
+
+  @override
+  String get imageGalleryAction => 'Ընտրել լուսանկարներից';
+
+  @override
+  String get imageCaptureFailed =>
+      'Չհաջողվեց բացել տեսախցիկը կամ լուսանկարները։ Ստուգեք մուտքի թույլտվությունը և կրկին փորձեք։';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Չհաջողվեց մշակել լուսանկարը։ Փորձեք մեկ այլ լուսանկար։';
+
+  @override
+  String get receiptNoProducts =>
+      'Տեքստը կարդացվել է, բայց կտրոնի ապրանքները չեն գտնվել։ Լուսանկարում ներառեք ապրանքներն ու ընդհանուր գումարը։';
+
+  @override
+  String get keepAwakeOn => 'Էկրանը կմնա միացված';
+
+  @override
+  String get keepAwakeOff => 'Էկրանը կարող է անջատվել';
 }

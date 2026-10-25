@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 
-import 'package:image_picker/image_picker.dart';
-
 import '../../ai/ai_client.dart';
 import '../ocr_text_source.dart';
 import '../ocr_currency.dart';
 import 'ai_label_reader.dart';
-import 'mlkit_text_source.dart';
+import '../image_capture_service.dart';
+import '../image_capture_sheet.dart';
 import 'price_candidate_sheet.dart';
 import 'price_candidates.dart';
 
@@ -24,19 +23,14 @@ Future<PriceCandidate?> readShelfCandidate(
 }) async {
   final l10n = AppLocalizations.of(context);
   try {
-    final path = await (pickImage ?? _camera)();
-    if (path == null) return null;
-    final OcrScanResult scan;
-    if (ocrSource != null) {
-      scan = await ocrSource.scan(path);
-    } else {
-      final source = MlKitTextSource();
-      try {
-        scan = await source.scan(path);
-      } finally {
-        source.dispose();
-      }
-    }
+    final capture = await captureImageText(
+      context,
+      title: l10n.scanPriceLabel,
+      pickImage: pickImage,
+      ocrSource: ocrSource,
+    );
+    if (capture is! CapturedImage) return null;
+    final scan = capture.scan;
     if (!context.mounted) return null;
     final evidence = detectOcrCurrency(
       scan.lines.map((l) => l.text).join('\n'),
@@ -84,7 +78,7 @@ Future<PriceCandidate?> readShelfCandidate(
           SnackBar(
             content: Text(notice),
             showCloseIcon: true,
-            duration: const Duration(days: 1),
+            duration: const Duration(seconds: 5),
           ),
         );
     }
@@ -108,9 +102,8 @@ Future<PriceCandidate?> readShelfCandidate(
         ..clearSnackBars()
         ..showSnackBar(
           SnackBar(
-            content: Text(l10n.ocrNoText),
+            content: Text(l10n.imageRecognitionFailed),
             showCloseIcon: true,
-            duration: const Duration(days: 1),
           ),
         );
     }
@@ -129,6 +122,3 @@ Future<String?> readShelfPrice(
   pickImage: pickImage,
   ocrSource: ocrSource,
 ))?.value.toDbString();
-
-Future<String?> _camera() async =>
-    (await ImagePicker().pickImage(source: ImageSource.camera))?.path;

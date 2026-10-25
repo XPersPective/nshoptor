@@ -609,6 +609,9 @@ class AppLocalizationsTe extends AppLocalizations {
   String get scanReceiptAction => 'రసీదు స్కాన్ చేయండి';
 
   @override
+  String get fromReceiptListButton => 'రసీదు నుండి';
+
+  @override
   String get shelfLabelAction => 'షెల్ఫ్ లేబుల్ నుండి ధర';
 
   @override
@@ -1065,7 +1068,47 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'లింక్ చేయబడిన రసీదు లైన్లు existing కొనుగోళ్లను భర్తీ చేస్తాయి; లింక్ లేని లైన్లు జోడించబడతాయి.';
+      'ధర లేని వస్తువుల ధరలు పూరించబడతాయి. మార్కెట్ ధర ఉన్నవి వేర్వేరు కొనుగోళ్లుగా జోడించబడతాయి.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'తర్వాతి ఫోటోలో దుకాణం, తేదీ, సమయం, రసీదు నంబర్ ఉండేలా చూడండి.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'కొన్ని వస్తువులు ఒకదానిపై మరొకటి కనిపించేలా, చివరి మొత్తం కనిపించేలా తర్వాతి భాగాన్ని ఫోటో తీయండి.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'ఈ ఫోటోను కలపలేకపోయాం. అదే రసీదులోని వస్తువులు ఒకదానిపై మరొకటి కనిపించేలా మళ్లీ తీయండి.';
+
+  @override
+  String get receiptDraftSaved =>
+      'రసీదు డ్రాఫ్ట్‌గా సేవ్ చేయబడింది. తర్వాత కొనసాగించవచ్చు.';
+
+  @override
+  String get receiptContinueAction => 'రసీదును కొనసాగించండి';
+
+  @override
+  String get receiptDraftsTitle => 'పూర్తికాని రసీదులు';
+
+  @override
+  String get receiptDuplicate => 'ఈ రసీదు ఇప్పటికే జోడించబడింది.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'వస్తువుల మొత్తం రసీదు మొత్తం మొత్తానికి సరిపోలడం లేదు. రసీదు మొత్తం కనిపిస్తోందో లేదో చూడండి.';
+
+  @override
+  String get receiptSaveDraftAction => 'తర్వాత కోసం సేవ్ చేయండి';
+
+  @override
+  String get receiptResolveLines =>
+      'సేవ్ చేయడానికి ముందు ప్రతి వస్తువును అంగీకరించండి లేదా విస్మరించండి.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'ఎంచుకున్న వస్తువులు మాత్రమే జోడించబడతాయి. ఈ రసీదు దిగుమతి చేసినదిగా గుర్తించబడుతుంది. కొనసాగించాలా?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1292,7 +1335,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'దుకాణ ధర నమోదు చేస్తే వస్తువును కొనుగోలు చేసినట్లు గుర్తిస్తుంది; 0 కూడా చెల్లుతుంది. ఇంటి ధర ఐచ్ఛికం. గుర్తు తొలగించడానికి దుకాణ ధరను చెరిపివేయండి.';
 
   @override
-  String get shoppingDateLabel => 'షాపింగ్ తేదీ (ఐచ్ఛికం)';
+  String get shoppingDateLabel => 'షాపింగ్ తేదీ';
 
   @override
   String get shoppingDateNone => 'తేదీ ఎంచుకోలేదు';
@@ -1311,4 +1354,28 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get listSortManual => 'మాన్యువల్ క్రమం';
+
+  @override
+  String get imageCameraAction => 'ఫోటో తీయండి';
+
+  @override
+  String get imageGalleryAction => 'ఫోటోల నుండి ఎంచుకోండి';
+
+  @override
+  String get imageCaptureFailed =>
+      'కెమెరా లేదా ఫోటోలను తెరవలేకపోయాము. యాక్సెస్ అనుమతిని తనిఖీ చేసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ఫోటోను ప్రాసెస్ చేయలేకపోయాము. మరో ఫోటోతో ప్రయత్నించండి.';
+
+  @override
+  String get receiptNoProducts =>
+      'వచనం చదవబడింది, కానీ రసీదులోని వస్తువులు కనుగొనబడలేదు. ఫోటోలో వస్తువులు మరియు మొత్తం ఉండేలా చూడండి.';
+
+  @override
+  String get keepAwakeOn => 'స్క్రీన్ ఆన్‌లో ఉంటుంది';
+
+  @override
+  String get keepAwakeOff => 'స్క్రీన్ ఆఫ్ కావచ్చు';
 }

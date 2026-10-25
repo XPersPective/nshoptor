@@ -15,6 +15,7 @@ import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
 import 'package:nshoptor/features/lists/reminders/reminder_scheduler.dart';
 import 'package:nshoptor/features/lists/templates/template_repository.dart';
+import 'package:nshoptor/features/receipts/receipt_image_store.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/voice_input/voice_input_service.dart';
 
@@ -26,6 +27,11 @@ class _FakeOcr implements OcrTextSource {
   @override
   Future<OcrScanResult> scan(String imagePath) async =>
       OcrScanResult(lines: [for (final t in lines) OcrLine(text: t)]);
+}
+
+class _FakeReceiptImageStore extends ReceiptImageStore {
+  @override
+  Future<String?> keep(String sourcePath) async => null;
 }
 
 void main() {
@@ -96,6 +102,7 @@ void main() {
     speechService: speech,
     reminderScheduler: scheduler,
     pickImage: () async => 'fake.jpg',
+    receiptImageStore: _FakeReceiptImageStore(),
   );
 
   testWidgets('ana ekran: tamamlanan listeden plan → şablon kartı', (
@@ -334,7 +341,14 @@ void main() {
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(800, 1400));
       addTearDown(() => tester.binding.setSurfaceSize(null));
-      final ocr = _FakeOcr(['MILK 10,00']);
+      final ocr = _FakeOcr([
+        'A101 MARKET',
+        'TARİH: 24.10.2026',
+        'SAAT: 18:41',
+        'FİŞ NO: 000123',
+        'SÜT 10,00',
+        'TOPLAM 10,00 TL',
+      ]);
       await tester.pumpWidget(
         app(
           HomeShell(
@@ -342,14 +356,13 @@ void main() {
             listRepository: listRepo,
             pickImage: () async => 'fake.jpg',
             ocrSource: ocr,
+            receiptImageStore: _FakeReceiptImageStore(),
           ),
         ),
       );
       await settle(tester);
       Future<void> scan() async {
-        await tester.tap(find.byKey(const Key('lists_tools_button')));
-        await settle(tester);
-        await tester.tap(find.byKey(const Key('lists_tool_receipt')));
+        await tester.tap(find.byKey(const Key('lists_receipt_button')));
         await settle(tester);
       }
 
@@ -360,13 +373,25 @@ void main() {
       await tester.binding.handlePopRoute();
       await settle(tester);
       await scan();
+      expect(find.byKey(const Key('receipt_resume_1')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('receipt_resume_1')));
+      await settle(tester);
       await tester.tap(find.byKey(const Key('receipt_cancel')));
       await settle(tester);
       expect(await db.select(db.shoppingLists).get(), isEmpty);
+      expect(await db.select(db.purchaseEntries).get(), isEmpty);
+      final pending = await db.select(db.receipts).get();
+      expect(pending, hasLength(1));
+      expect(pending.single.processingStatus, 'pending');
       ocr.lines.clear();
       await scan();
+      expect(find.byKey(const Key('receipt_new_capture')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('receipt_new_capture')));
+      await settle(tester);
       expect(find.byKey(const Key('receipt_commit_button')), findsNothing);
       expect(await db.select(db.shoppingLists).get(), isEmpty);
+      expect(await db.select(db.purchaseEntries).get(), isEmpty);
+      expect(await db.select(db.receipts).get(), hasLength(1));
       await disposeApp(tester);
     },
   );
@@ -385,7 +410,14 @@ void main() {
       app(
         detail(
           listId,
-          ocr: _FakeOcr(['MERK MARKET', 'EKMEK 15,00', 'TOPLAM 15,00']),
+          ocr: _FakeOcr([
+            'A101 MARKET',
+            'TARİH: 24.10.2026',
+            'SAAT: 18:41',
+            'FİŞ NO: 000123',
+            'EKMEK 15,00',
+            'TOPLAM 15,00 TL',
+          ]),
         ),
       ),
     );

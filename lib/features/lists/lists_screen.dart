@@ -14,7 +14,6 @@ import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/money/money_parser.dart';
 import '../../data/db/app_database.dart';
-import '../assistant/assistant_bubble.dart';
 import 'list_detail_screen.dart';
 import 'list_repository.dart';
 import 'list_scheduling.dart';
@@ -43,9 +42,9 @@ class ListsScreen extends StatefulWidget {
     required this.repository,
     this.onOpenListDetail,
     this.reminderScheduler,
-    this.onOpenSummary,
     this.onScanReceipt,
-    this.onAssistantChoice,
+    this.receiptBusy = false,
+    this.onDiscover,
     this.planBadge,
   });
 
@@ -57,9 +56,9 @@ class ListsScreen extends StatefulWidget {
   /// Liste kartına dokununca detay ekranını açar; verilmediyse dahili olarak
   /// ListDetailScreen push edilir.
   final void Function(BuildContext context, int listId)? onOpenListDetail;
-  final VoidCallback? onOpenSummary;
   final VoidCallback? onScanReceipt;
-  final ValueChanged<AssistantChoice>? onAssistantChoice;
+  final bool receiptBusy;
+  final VoidCallback? onDiscover;
 
   /// Plan simgesi (ana sayfanın üstünde); verilmezse gösterilmez.
   final Widget? planBadge;
@@ -71,16 +70,52 @@ class ListsScreen extends StatefulWidget {
 class _ListsScreenState extends State<ListsScreen> {
   String _query = '';
   bool _searching = false;
+  bool _editorOpen = false;
   ListSortMode _sort = ListSortMode.fromCode(AppDefaults.listSort());
   final _orders = <ListStatus, List<int>>{};
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final hasTools =
-        widget.onOpenSummary != null ||
-        widget.onScanReceipt != null ||
-        widget.onAssistantChoice != null;
+    final sortLabel = switch (_sort) {
+      ListSortMode.date => l10n.listSortDate,
+      ListSortMode.title => l10n.listSortAz,
+      ListSortMode.manual => l10n.listSortManual,
+    };
+    final tools = <Widget>[
+      IconButton(
+        key: const Key('lists_search_button'),
+        tooltip: l10n.searchListHint,
+        icon: Icon(_searching ? Icons.close : Icons.search),
+        onPressed: () => setState(() {
+          _searching = !_searching;
+          if (!_searching) _query = '';
+        }),
+      ),
+      Semantics(
+        value: sortLabel,
+        child: IconButton(
+          key: const Key('lists_sort_button'),
+          tooltip: '${l10n.listSortLabel}: $sortLabel',
+          icon: Icon(switch (_sort) {
+            ListSortMode.date => Icons.event_outlined,
+            ListSortMode.title => Icons.sort_by_alpha,
+            ListSortMode.manual => Icons.drag_indicator,
+          }),
+          onPressed: () => setState(() {
+            _sort = _sort.next;
+            AppDefaults.setListSort(_sort.name);
+          }),
+        ),
+      ),
+      if (widget.onDiscover != null)
+        IconButton(
+          key: const Key('home_nav_discover'),
+          tooltip: l10n.navDiscover,
+          icon: const Icon(Icons.explore_outlined),
+          onPressed: widget.onDiscover,
+        ),
+    ];
     return LayoutBuilder(
       builder: (context, constraints) => DefaultTabController(
         length: 3,
@@ -88,89 +123,40 @@ class _ListsScreenState extends State<ListsScreen> {
           appBar: AppBar(
             title: const BrandTitle(),
             actions: [
-              if (constraints.maxWidth >= 400) ?widget.planBadge,
-              if (widget.onScanReceipt != null && constraints.maxWidth >= 400)
-                IconButton(
-                  key: const Key('lists_receipt_button'),
-                  tooltip: l10n.tipReceiptScan,
-                  icon: const Icon(Icons.receipt_long_outlined),
-                  onPressed: widget.onScanReceipt,
-                ),
-              IconButton(
-                key: const Key('lists_search_button'),
-                tooltip: l10n.searchListHint,
-                icon: Icon(_searching ? Icons.close : Icons.search),
-                onPressed: () => setState(() {
-                  _searching = !_searching;
-                  if (!_searching) _query = '';
-                }),
+              ?widget.planBadge,
+              if (constraints.maxWidth >= 480) ...tools,
+            ],
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(
+                kTextTabBarHeight + (constraints.maxWidth < 480 ? 48 : 0),
               ),
-              PopupMenuButton<ListSortMode>(
-                key: const Key('lists_sort_button'),
-                tooltip: l10n.listSortLabel,
-                icon: const Icon(Icons.sort),
-                onSelected: (mode) => setState(() {
-                  _sort = mode;
-                  AppDefaults.setListSort(mode.name);
-                }),
-                itemBuilder: (_) => [
-                  for (final mode in ListSortMode.values)
-                    CheckedPopupMenuItem(
-                      key: Key('lists_sort_${mode.name}'),
-                      value: mode,
-                      checked: _sort == mode,
-                      child: Text(switch (mode) {
-                        ListSortMode.date => l10n.listSortDate,
-                        ListSortMode.title => l10n.listSortAz,
-                        ListSortMode.manual => l10n.listSortManual,
-                      }),
+              child: Column(
+                children: [
+                  if (constraints.maxWidth < 480)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: tools,
                     ),
+                  TabBar(
+                    isScrollable: true,
+                    tabAlignment: TabAlignment.start,
+                    tabs: [
+                      Tab(
+                        key: const Key('lists_tab_active'),
+                        text: l10n.listsTabActive,
+                      ),
+                      Tab(
+                        key: const Key('lists_tab_completed'),
+                        text: l10n.listsTabCompleted,
+                      ),
+                      Tab(
+                        key: const Key('lists_tab_archived'),
+                        text: l10n.listsTabArchived,
+                      ),
+                    ],
+                  ),
                 ],
               ),
-              if (hasTools)
-                PopupMenuButton<_ListsTool>(
-                  key: const Key('lists_tools_button'),
-                  tooltip: l10n.detailsSection,
-                  onSelected: _openTool,
-                  itemBuilder: (_) => [
-                    if (widget.onOpenSummary != null)
-                      PopupMenuItem(
-                        key: const Key('lists_tool_summary'),
-                        value: _ListsTool.summary,
-                        child: Text(l10n.summarySection),
-                      ),
-                    if (widget.onScanReceipt != null)
-                      PopupMenuItem(
-                        key: const Key('lists_tool_receipt'),
-                        value: _ListsTool.receipt,
-                        child: Text(l10n.scanReceiptAction),
-                      ),
-                    if (widget.onAssistantChoice != null)
-                      PopupMenuItem(
-                        key: const Key('lists_tool_assistant'),
-                        value: _ListsTool.assistant,
-                        child: Text(l10n.assistantTitle),
-                      ),
-                  ],
-                ),
-            ],
-            bottom: TabBar(
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              tabs: [
-                Tab(
-                  key: const Key('lists_tab_active'),
-                  text: l10n.listsTabActive,
-                ),
-                Tab(
-                  key: const Key('lists_tab_completed'),
-                  text: l10n.listsTabCompleted,
-                ),
-                Tab(
-                  key: const Key('lists_tab_archived'),
-                  text: l10n.listsTabArchived,
-                ),
-              ],
             ),
           ),
           body: Column(
@@ -251,42 +237,97 @@ class _ListsScreenState extends State<ListsScreen> {
               ),
             ],
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            key: const Key('lists_new_list_button'),
-            heroTag: 'listsFab',
-            onPressed: () => _openEditor(context),
-            icon: const Icon(Icons.add),
-            label: Text(l10n.newListButton),
-          ),
+          bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
+              ? null
+              : SafeArea(
+                  top: false,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+                    child: IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: FilledButton(
+                              key: const Key('lists_new_list_button'),
+                              style: FilledButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 12,
+                                ),
+                                minimumSize: const Size(48, 48),
+                              ),
+                              onPressed: _editorOpen
+                                  ? null
+                                  : () => _openEditor(context),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(Icons.add),
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                    child: Text(
+                                      l10n.newListButton,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          if (widget.onScanReceipt != null) ...[
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: FilledButton.tonal(
+                                key: const Key('lists_receipt_button'),
+                                style: FilledButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 12,
+                                  ),
+                                  minimumSize: const Size(48, 48),
+                                ),
+                                onPressed: widget.receiptBusy
+                                    ? null
+                                    : widget.onScanReceipt,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.receipt_long_outlined),
+                                    const SizedBox(width: 8),
+                                    Flexible(
+                                      child: Text(
+                                        l10n.fromReceiptListButton,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
         ),
       ),
     );
   }
 
-  Future<void> _openTool(_ListsTool tool) async {
-    switch (tool) {
-      case _ListsTool.summary:
-        widget.onOpenSummary?.call();
-      case _ListsTool.receipt:
-        widget.onScanReceipt?.call();
-      case _ListsTool.assistant:
-        final choice = await showModalBottomSheet<AssistantChoice>(
-          context: context,
-          isScrollControlled: true,
-          showDragHandle: true,
-          builder: (_) => const AssistantSheet(),
-        );
-        if (choice != null && mounted) widget.onAssistantChoice?.call(choice);
+  Future<void> _openEditor(BuildContext context) async {
+    if (_editorOpen) return;
+    setState(() => _editorOpen = true);
+    try {
+      await showListEditor(
+        context,
+        widget.repository,
+        reminderScheduler: widget.reminderScheduler,
+      );
+    } finally {
+      if (mounted) setState(() => _editorOpen = false);
     }
-  }
-
-  Future<void> _openEditor(BuildContext context, {ShoppingList? existing}) {
-    return showListEditor(
-      context,
-      widget.repository,
-      existing: existing,
-      reminderScheduler: widget.reminderScheduler,
-    );
   }
 
   void _reorderLists(
@@ -302,8 +343,6 @@ class _ListsScreenState extends State<ListsScreen> {
     unawaited(widget.repository.reorderLists(ordered));
   }
 }
-
-enum _ListsTool { summary, receipt, assistant }
 
 Future<void> showListEditor(
   BuildContext context,
@@ -414,7 +453,7 @@ class _ListsTab extends StatelessWidget {
         }
         if (sort != ListSortMode.manual) {
           return ListView.builder(
-            padding: const EdgeInsets.only(bottom: 88),
+            padding: const EdgeInsets.only(bottom: 12),
             itemCount: lists.length,
             itemBuilder: (context, index) => _ListCard(
               key: ValueKey('sorted_${lists[index].id}'),
@@ -438,7 +477,7 @@ class _ListsTab extends StatelessWidget {
           return created == 0 ? a.id.compareTo(b.id) : created;
         });
         return ReorderableListView.builder(
-          padding: const EdgeInsets.only(bottom: 88),
+          padding: const EdgeInsets.only(bottom: 12),
           buildDefaultDragHandles: false,
           itemCount: lists.length,
           onReorderItem: (oldIndex, newIndex) =>
@@ -525,6 +564,14 @@ class _ListCard extends StatelessWidget {
       },
       child: Card(
         child: ListTile(
+          leading: Icon(
+            status == ListStatus.completed
+                ? Icons.task_alt_outlined
+                : status == ListStatus.archived
+                ? Icons.inventory_2_outlined
+                : Icons.shopping_basket_outlined,
+            color: Theme.of(context).colorScheme.primary,
+          ),
           onTap: () {
             final open = onOpen;
             if (open != null) {

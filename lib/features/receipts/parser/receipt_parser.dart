@@ -69,16 +69,42 @@ class ReceiptParser {
   static final RegExp _cardMaskPattern = RegExp(r'(\*{3,}\d{3,4}|\d{15,16})');
   static final RegExp _taxNoPattern = RegExp(r'\b\d{10,11}\b');
 
+  /// Reading-order rows shared by parsing and overlapping receipt assembly.
+  /// Coordinates belong to one photo; returned rows no longer carry them.
+  List<OcrLine> readingRows(OcrScanResult scan) =>
+      List.unmodifiable(_reconstructRows(scan.lines));
+
+  List<OcrLine> logicalRows(OcrScanResult scan) => [
+    for (final line in _mergeWrappedLines(readingRows(scan)))
+      OcrLine(
+        text: line.text
+            .trim()
+            .replaceFirst(RegExp(r'^[\s*#•·-]+$'), '')
+            .replaceFirst(RegExp(r'[*\s]+$'), '')
+            .replaceAll(RegExp(r'[₺€£$]'), '')
+            .replaceFirst(RegExp(r'(?<=\d)\s*(?:[A-Z]{3}|TL)\s*$'), '')
+            .trim(),
+      ),
+  ];
+
   ReceiptParseResult parse(OcrScanResult scan) {
-    final evidence = detectOcrCurrency(scan.lines.map((l) => l.text).join('\n'), fallback: currency);
+    final evidence = detectOcrCurrency(
+      scan.lines.map((l) => l.text).join('\n'),
+      fallback: currency,
+    );
     if (evidence.code != null && evidence.code != currency) {
-      return ReceiptParser(currency: evidence.code!, reconciliationToleranceMinor: reconciliationToleranceMinor).parse(scan);
+      return ReceiptParser(
+        currency: evidence.code!,
+        reconciliationToleranceMinor: reconciliationToleranceMinor,
+      ).parse(scan);
     }
-    final lines = _mergeWrappedLines(_reconstructRows(scan.lines));
+    final lines = logicalRows(scan);
 
     final storeCandidates = <String>[];
     DateTime? dateCandidate;
-    String? currencyCandidate = evidence.needsConfirmation ? null : (evidence.code ?? currency);
+    String? currencyCandidate = evidence.needsConfirmation
+        ? null
+        : (evidence.code ?? currency);
     int? subtotalMinor;
     int? discountMinor;
     int? taxMinor;
@@ -180,21 +206,55 @@ class ReceiptParser {
   /// ML Kit geniş boşlukları kolon sanıp ad/fiyatı ayrı satırlara bölebilir
   /// ve okuma sırası görsel satır sırası olmayabilir (emülatör kanıtı
   /// 2026-10-04: adlar önce, fiyatlar sonra geldi). Konum verisi tamsa
-  /// satırlar görsel satırlara yeniden kurulur: aynı top (±8px) tek satır,
-  /// soldan sağa birleştirilir. Metin fixture'larında konum yoktur —
+  /// satırlar görsel satırlara yeniden kurulur. Yükseklik bilgisi varsa
+  /// düşey örtüşme ve merkez uzaklığı fotoğraf ölçeğine göre karşılaştırılır;
+  /// eski kaynaklarda ±8px top toleransı korunur. Metin fixture'larında konum yoktur —
   /// verilen sıra korunur (PB-040).
   List<OcrLine> _reconstructRows(List<OcrLine> lines) {
     if (lines.length < 2) return lines;
-    if (lines.any((l) => l.boundingBoxTop == null)) return lines;
+    if (lines.any((l) => l.boundingBoxTop?.isFinite != true)) return lines;
+    final scaled = lines.every(
+      (l) =>
+          l.boundingBoxHeight != null &&
+          l.boundingBoxHeight!.isFinite &&
+          l.boundingBoxHeight! > 0,
+    );
+    double center(OcrLine line) =>
+        line.boundingBoxTop! + (scaled ? line.boundingBoxHeight! / 2 : 0);
     final sorted = [...lines]
       ..sort((a, b) {
-        final t = a.boundingBoxTop!.compareTo(b.boundingBoxTop!);
+        final t = center(a).compareTo(center(b));
         if (t != 0) return t;
         return (a.boundingBoxLeft ?? 0).compareTo(b.boundingBoxLeft ?? 0);
       });
     final rows = <OcrLine>[];
     var rowTop = sorted.first.boundingBoxTop!;
+    var anchor = sorted.first;
     var rowLines = <OcrLine>[];
+    bool sameRow(OcrLine line) {
+      if (!scaled) return (line.boundingBoxTop! - rowTop).abs() <= 8;
+      final small = math.min(
+        anchor.boundingBoxHeight!,
+        line.boundingBoxHeight!,
+      );
+      final large = math.max(
+        anchor.boundingBoxHeight!,
+        line.boundingBoxHeight!,
+      );
+      if (large > small * 3) return false;
+      final overlap =
+          math.min(
+            anchor.boundingBoxTop! + anchor.boundingBoxHeight!,
+            line.boundingBoxTop! + line.boundingBoxHeight!,
+          ) -
+          math.max(anchor.boundingBoxTop!, line.boundingBoxTop!);
+      // Compare against the first member, rather than growing the row until
+      // it absorbs the next product through a chain of overlapping boxes.
+      return overlap >= small * 0.5 &&
+          (center(anchor) - center(line)).abs() <=
+              math.max(small * 0.6, large * 0.35);
+    }
+
     void flush() {
       if (rowLines.isEmpty) return;
       rowLines.sort(
@@ -205,17 +265,25 @@ class ReceiptParser {
           text: rowLines.map((l) => l.text).join(' '),
           boundingBoxTop: rowTop,
           boundingBoxLeft: rowLines.first.boundingBoxLeft,
+          boundingBoxHeight: scaled
+              ? rowLines
+                        .map((l) => l.boundingBoxTop! + l.boundingBoxHeight!)
+                        .reduce(math.max) -
+                    rowTop
+              : null,
         ),
       );
       rowLines = [];
     }
 
     for (final line in sorted) {
-      if ((line.boundingBoxTop! - rowTop).abs() <= 8) {
+      if (sameRow(line)) {
         rowLines.add(line);
+        rowTop = math.min(rowTop, line.boundingBoxTop!);
       } else {
         flush();
         rowTop = line.boundingBoxTop!;
+        anchor = line;
         rowLines.add(line);
       }
     }
@@ -234,6 +302,8 @@ class ReceiptParser {
           .trim()
           .replaceFirst(RegExp(r'^[\s*#•·-]+$'), '')
           .replaceFirst(RegExp(r'[\s*]+$'), '')
+          .replaceAll(RegExp(r'[₺€£$]'), '')
+          .replaceFirst(RegExp(r'(?<=\d)\s*(?:[A-Z]{3}|TL)\s*$'), '')
           .trim();
       if (text.isEmpty) continue;
       final lower = text.replaceAll('İ', 'i').toLowerCase();
@@ -269,8 +339,18 @@ class ReceiptParser {
         continue;
       }
       if (_hasTrailingPrice(text)) {
-        // kendi fiyatı olan tam ürün satırı: doğrudan çıkar.
-        merged.add(line);
+        // A receipt can print the name above a quantity × price row. That
+        // numeric continuation is not an independent product name.
+        final quantity = _quantityPricePattern.firstMatch(text);
+        merged.add(
+          OcrLine(
+            text: quantity?.start == 0 && nameBuffer.isNotEmpty
+                ? '${nameBuffer.join(' ')} $text'
+                : text,
+            boundingBoxTop: line.boundingBoxTop,
+          ),
+        );
+        nameBuffer.clear();
         continue;
       }
       nameBuffer.add(text);
@@ -298,12 +378,14 @@ class ReceiptParser {
 
   /// Ürün satırı: `SUT 2X32,90 64,00` | `DOMATES 1,5KG X42,90 64,35` |
   /// `EKMEK 15,00`. Dönüşüm: name + opsiyonel miktar/birim fiyat + son fiyat.
+  RegExp get _quantityPricePattern => RegExp(
+    r'(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml|adet|x)?\s*(?:x|X|×)\s*'
+    '($_amountPattern)\\s+($_amountPattern)\$',
+    caseSensitive: false,
+  );
+
   ReceiptLineCandidate? _parseProductLine(String text) {
-    final matches = RegExp(
-      r'(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml|adet|x)?\s*(?:x|X|×)\s*'
-      '($_amountPattern)\\s+($_amountPattern)\$',
-      caseSensitive: false,
-    ).allMatches(text);
+    final matches = _quantityPricePattern.allMatches(text);
     if (matches.isNotEmpty) {
       final m = matches.last;
       final name = text.substring(0, m.start).trim();
@@ -317,9 +399,12 @@ class ReceiptParser {
         normalizedName: normalizeName(name),
         quantity: qty,
         unitCode: switch (m.group(2)?.toLowerCase()) {
-          'kg' => UnitCode.kilogram, 'gr' || 'g' => UnitCode.gram,
-          'lt' || 'l' => UnitCode.litre, 'ml' => UnitCode.mililitre,
-          'adet' || 'x' => UnitCode.adet, _ => null,
+          'kg' => UnitCode.kilogram,
+          'gr' || 'g' => UnitCode.gram,
+          'lt' || 'l' => UnitCode.litre,
+          'ml' => UnitCode.mililitre,
+          'adet' || 'x' => UnitCode.adet,
+          _ => null,
         },
         unitPriceMinor: unitPrice,
         lineTotalMinor: lineTotal ?? 0,
@@ -350,18 +435,31 @@ class ReceiptParser {
     return null;
   }
 
-  bool _isTotalLine(String text) => _totalMarkers.any((marker) =>
-      RegExp(r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|$)', caseSensitive: false).hasMatch(text));
+  bool _isTotalLine(String text) => _totalMarkers.any(
+    (marker) => RegExp(
+      r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|$)',
+      caseSensitive: false,
+    ).hasMatch(text),
+  );
 
-  bool _hasHeader(String text, List<String> markers) => markers.any((marker) =>
-    RegExp(r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|\(|%|$)', caseSensitive: false).hasMatch(text));
+  bool _hasHeader(String text, List<String> markers) => markers.any(
+    (marker) => RegExp(
+      r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|\(|%|$)',
+      caseSensitive: false,
+    ).hasMatch(text),
+  );
 
-  bool _isStructuralLine(String text) => _hasHeader(text, _skipWords) ||
-    text.contains('www.') || text.contains('.com');
+  bool _isStructuralLine(String text) =>
+      _hasHeader(text, _skipWords) ||
+      text.contains('www.') ||
+      text.contains('.com');
 
-  bool _isPaymentMetadata(String text) => RegExp(r'^kasa\s*(?:no\b|:|\d)', caseSensitive: false).hasMatch(text) || RegExp(
-      r'^[*#•\s]*(?:nakit|kredi\s+kart[ıi]|banka\s+kart[ıi]|kart|visa|mastercard|cash|change|para\s*[üu]st[üu]|[öo]denen|payment|paid)(?=\s|:|$)',
-      caseSensitive: false).hasMatch(text);
+  bool _isPaymentMetadata(String text) =>
+      RegExp(r'^kasa\s*(?:no\b|:|\d)', caseSensitive: false).hasMatch(text) ||
+      RegExp(
+        r'^[*#•\s]*(?:nakit|kredi\s+kart[ıi]|banka\s+kart[ıi]|kart|visa|mastercard|cash|change|para\s*[üu]st[üu]|[öo]denen|payment|paid)(?=\s|:|$)',
+        caseSensitive: false,
+      ).hasMatch(text);
 
   int? _lastAmountMinor(String text) {
     final match = RegExp(

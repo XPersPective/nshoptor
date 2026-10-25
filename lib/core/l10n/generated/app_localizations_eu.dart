@@ -606,6 +606,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get scanReceiptAction => 'Eskaneatu jasoera';
 
   @override
+  String get fromReceiptListButton => 'Tiketetik';
+
+  @override
   String get shelfLabelAction => 'Prezioa etiketatik';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Lotutako errezeptu-lerroek lehendik dauden erosketak ordezkatzen dituzte; loturarik gabeko lerroak gehitzen dira.';
+      'Prezio gabeko artikuluak beteko dira. Dagoeneko merkatuko prezioa duten artikuluak erosketa bereizi gisa gehituko dira.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Sartu denda, data, ordua eta ordainagiri-zenbakia hurrengo argazkian.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Argazkia atera hurrengo zatiari, gainjarritako artikulu batzuk eta azken guztizkoa erakutsiz.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Ezin izan da argazki hau ordainagiriarekin elkartu. Atera berriro, ordainagiri bereko artikulu gainjarriekin.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Ordainagiria zirriborro gisa gorde da. Geroago jarrai dezakezu.';
+
+  @override
+  String get receiptContinueAction => 'Jarraitu ordainagiriarekin';
+
+  @override
+  String get receiptDraftsTitle => 'Amaitu gabeko ordainagiriak';
+
+  @override
+  String get receiptDuplicate => 'Ordainagiri hau gehituta dago jada.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Artikuluak ez datoz bat ordainagiriaren guztizkoarekin. Egiaztatu ordainagiri osoa ikusgai dagoela.';
+
+  @override
+  String get receiptSaveDraftAction => 'Gorde geroago erabiltzeko';
+
+  @override
+  String get receiptResolveLines =>
+      'Onartu edo baztertu produktu bakoitza gorde aurretik.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Hautatutako produktuak bakarrik gehituko dira. Ordainagiri hau inportatutzat markatuko da. Jarraitu?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1288,7 +1331,7 @@ class AppLocalizationsEu extends AppLocalizations {
       'Dendako prezioak produktua erosita markatzen du; 0 ere baliozkoa da. Etxeko prezioa aukerakoa da. Ezabatu dendako prezioa marka kentzeko.';
 
   @override
-  String get shoppingDateLabel => 'Erosketa-data (aukerakoa)';
+  String get shoppingDateLabel => 'Erosketa-data';
 
   @override
   String get shoppingDateNone => 'Ez da datarik hautatu';
@@ -1307,4 +1350,28 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get listSortManual => 'Eskuzko ordena';
+
+  @override
+  String get imageCameraAction => 'Atera argazkia';
+
+  @override
+  String get imageGalleryAction => 'Aukeratu argazkietatik';
+
+  @override
+  String get imageCaptureFailed =>
+      'Ezin izan dira kamera edo argazkiak ireki. Egiaztatu sarbide-baimena eta saiatu berriro.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Ezin izan da argazkia prozesatu. Saiatu beste argazki batekin.';
+
+  @override
+  String get receiptNoProducts =>
+      'Testua irakurri da, baina ez da ordainagiriko produkturik aurkitu. Sartu produktuak eta guztizkoa argazkian.';
+
+  @override
+  String get keepAwakeOn => 'Pantaila piztuta mantentzen da';
+
+  @override
+  String get keepAwakeOff => 'Pantaila itzal daiteke';
 }

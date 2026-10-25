@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
@@ -19,12 +20,17 @@ class DictationMicButton extends StatefulWidget {
     super.key,
     required this.controller,
     this.speechService,
+    this.initialTranscriptTransform,
   });
 
   final TextEditingController controller;
 
   /// Test enjeksiyonu; verilmezse cihaz içi Android tanıyıcı.
   final SpeechService? speechService;
+
+  /// For a new name, normalize every partial/final update of an initially empty
+  /// session. A preexisting field value and subsequent keyboard edits win.
+  final String Function(String)? initialTranscriptTransform;
 
   @override
   State<DictationMicButton> createState() => _DictationMicButtonState();
@@ -36,6 +42,7 @@ class _DictationMicButtonState extends State<DictationMicButton> {
   String? _error;
   String _lastWritten = '';
   bool _userEdited = false;
+  bool _transformInitialTranscript = false;
   final _tooltip = GlobalKey<TooltipState>();
 
   bool get _listening => _voice?.state == VoiceInputState.listening;
@@ -60,13 +67,18 @@ class _DictationMicButtonState extends State<DictationMicButton> {
       // A keyboard edit wins over a late recognizer callback.
       _userEdited = true;
       unawaited(voice.stop());
-    } else if (!_userEdited && voice.transcript.isNotEmpty &&
+    } else if (!_userEdited &&
+        voice.transcript.isNotEmpty &&
         voice.transcript != widget.controller.text) {
-      _lastWritten = voice.transcript;
+      final text = _transformInitialTranscript
+          ? widget.initialTranscriptTransform!(voice.transcript)
+          : voice.transcript;
+      _lastWritten = text;
       widget.controller.value = TextEditingValue(
-        text: voice.transcript,
-        selection: TextSelection.collapsed(offset: voice.transcript.length),
+        text: text,
+        selection: TextSelection.collapsed(offset: text.length),
       );
+      _lastWritten = widget.controller.text;
     }
     if (mounted) setState(() {});
   }
@@ -82,6 +94,9 @@ class _DictationMicButtonState extends State<DictationMicButton> {
         await voice.stop();
       } else {
         _lastWritten = widget.controller.text;
+        _transformInitialTranscript =
+            _lastWritten.trim().isEmpty &&
+            widget.initialTranscriptTransform != null;
         _userEdited = false;
         voice.transcript = widget.controller.text.trim();
         _error = null;

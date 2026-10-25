@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/widgets/price_mode_selector.dart';
+import '../../core/text/list_title.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/quantity/unit_display.dart';
@@ -74,7 +75,12 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
   void _parse() {
     final text = _text.text.trim();
     if (text.isEmpty) return;
-    setState(() => _parsed = VoiceCommandParser(localeCode: _lang).parse(text));
+    final parsed = VoiceCommandParser(localeCode: _lang).parse(text);
+    setState(
+      () => _parsed = parsed.withName(
+        capitalizeListTitle(parsed.name, localeCode: _lang),
+      ),
+    );
   }
 
   @override
@@ -181,6 +187,8 @@ class _VoicePreviewSheetState extends State<VoicePreviewSheet> {
                             () => _parsed = ParsedItemCandidate(
                               name: parsed.name,
                               rawText: parsed.rawText,
+                              brand: parsed.brand,
+                              category: parsed.category,
                               quantity: parsed.quantity,
                               unitCode: parsed.unitCode,
                               unitPrice: parsed.unitPrice,

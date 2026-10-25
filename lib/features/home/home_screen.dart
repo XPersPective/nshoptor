@@ -20,11 +20,6 @@ import '../onboarding/first_run_guide.dart';
 import '../subscription/plan_badge.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
-import '../assistant/assistant_bubble.dart';
-import '../voice_input/list_draft_sheet.dart';
-import '../voice_input/ai_list_parser.dart';
-import '../voice_input/stt_speech_service.dart';
-import '../lists/item_repository.dart';
 
 import '../../app/app_defaults.dart';
 import '../settings/settings_repository.dart';
@@ -32,13 +27,9 @@ import '../settings/settings_screen.dart';
 import '../lists/templates/template_repository.dart';
 import '../lists/list_detail_screen.dart';
 
-import 'package:image_picker/image_picker.dart';
-
+import '../receipts/receipt_capture_flow.dart';
+import '../receipts/receipt_image_store.dart';
 import '../receipts/ocr_text_source.dart';
-import '../receipts/parser/receipt_parser.dart';
-import '../receipts/shelf_label/mlkit_text_source.dart';
-import '../receipts/review/receipt_review_controller.dart';
-import '../receipts/review/receipt_review_screen.dart';
 
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
@@ -50,8 +41,7 @@ import '../../app/theme_mode_controller.dart';
 import '../lists/reminders/reminder_scheduler.dart';
 import '../lists/reminders/local_notifications_scheduler.dart';
 
-/// Alt navigasyonlu uygulama kabuğu (spec §9): Ana Sayfa, Listeler,
-/// Geçmiş, Keşfet, Ayarlar.
+/// Listeler, Geçmiş ve Ayarlar sekmeleri; Keşfet üst araç çubuğundan açılır.
 class HomeShell extends StatefulWidget {
   const HomeShell({
     super.key,
@@ -69,6 +59,7 @@ class HomeShell extends StatefulWidget {
     this.giftFlow,
     this.reminderScheduler,
     this.pickImage,
+    this.receiptImageStore,
     this.ocrSource,
     this.firstRunGuide = false,
   });
@@ -87,6 +78,7 @@ class HomeShell extends StatefulWidget {
 
   /// napp kimliği; Ayarlar/paywall'a devredilir.
   final AppIdentity? appIdentity;
+
   /// NAppKit Keşfet listesinin kalıcı ağ önbelleği.
   final SettingsStore? appsCacheStore;
 
@@ -104,6 +96,7 @@ class HomeShell extends StatefulWidget {
   /// Test dikişi: hatırlatma zamanlayıcısı (ListDetailScreen'e geçer).
   final ReminderScheduler? reminderScheduler;
   final Future<String?> Function()? pickImage;
+  final ReceiptImageStore? receiptImageStore;
   final OcrTextSource? ocrSource;
 
   /// Uygulama açılışında ilk kullanım rehberini bir kez gösterir (app.dart).
@@ -117,7 +110,8 @@ class _HomeShellState extends State<HomeShell> {
   int _tab = 0;
   final _nativeReminders = LocalNotificationsScheduler();
   StreamSubscription<int>? _notificationSubscription;
-  int? _openedReminder;
+  final _openedReminders = <int>{};
+  Future<void> _reminderNavigation = Future<void>.value();
 
   @override
   void initState() {
@@ -127,9 +121,8 @@ class _HomeShellState extends State<HomeShell> {
         await showFirstRunGuide(context);
       }
       if (!mounted || widget.reminderScheduler != null) return;
-      _notificationSubscription = LocalNotificationsScheduler.selectedReminders.listen(
-        (id) => unawaited(_openReminder(id)),
-      );
+      _notificationSubscription = LocalNotificationsScheduler.selectedReminders
+          .listen((id) => unawaited(_openReminder(id)));
       try {
         final id = await _nativeReminders.initialReminderId();
         if (id != null && mounted) await _openReminder(id);
@@ -145,30 +138,60 @@ class _HomeShellState extends State<HomeShell> {
     super.dispose();
   }
 
-  Future<void> _openReminder(int id) async {
-    if (!mounted || _openedReminder != null) return;
-    _openedReminder = id;
+  Future<void> _openReminder(int id) {
+    if (!mounted || !_openedReminders.add(id)) return Future<void>.value();
+    // Resolve taps in arrival order, but do not wait for a route to close:
+    // a distinct notification must be reachable while another list is open.
+    return _reminderNavigation = _reminderNavigation.then(
+      (_) => _navigateReminder(id),
+    );
+  }
+
+  Future<void> _navigateReminder(int id) async {
+    Future<void>? routeClosed;
     try {
-      final reminder = await (widget.db.select(widget.db.reminders)..where((t) => t.id.equals(id))).getSingleOrNull();
       if (!mounted) return;
-      if (reminder == null || reminder.status == 'cancelled') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(AppLocalizations.of(context).reminderCancelled), showCloseIcon: true));
+      final reminder = await (widget.db.select(
+        widget.db.reminders,
+      )..where((t) => t.id.equals(id))).getSingleOrNull();
+      if (!mounted) return;
+      if (reminder == null || reminder.status != 'active') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context).reminderCancelled),
+            showCloseIcon: true,
+          ),
+        );
         return;
       }
       await widget.listRepository.getById(reminder.listId);
       if (!mounted) return;
-      await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ListDetailScreen(
-        db: widget.db, listRepository: widget.listRepository,
-        listId: reminder.listId, reminderScheduler: _nativeReminders,
-      )));
+      routeClosed = Navigator.of(context).push<void>(
+        MaterialPageRoute<void>(
+          builder: (_) => ListDetailScreen(
+            db: widget.db,
+            listRepository: widget.listRepository,
+            listId: reminder.listId,
+            reminderScheduler: _nativeReminders,
+          ),
+        ),
+      );
+      unawaited(
+        routeClosed.whenComplete(() {
+          _openedReminders.remove(id);
+        }),
+      );
     } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(AppLocalizations.of(context).saveFailed), showCloseIcon: true));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context).saveFailed),
+            showCloseIcon: true,
+          ),
+        );
       }
     } finally {
-      _openedReminder = null;
+      if (routeClosed == null) _openedReminders.remove(id);
     }
   }
 
@@ -181,7 +204,10 @@ class _HomeShellState extends State<HomeShell> {
   Widget _planBadgeLive(BuildContext context) {
     final subs = widget.subscriptions;
     if (subs == null) return _planBadge(context);
-    return ListenableBuilder(listenable: subs, builder: (context, _) => _planBadge(context));
+    return ListenableBuilder(
+      listenable: subs,
+      builder: (context, _) => _planBadge(context),
+    );
   }
 
   /// Plan simgesi: ana sayfanın üstünde. Dokununca plan/abonelik sayfası açılır.
@@ -189,7 +215,8 @@ class _HomeShellState extends State<HomeShell> {
     final l10n = AppLocalizations.of(context);
     final subs = widget.subscriptions;
     final tier = subs?.tier ?? Tier.free;
-    final proUnlocked = (widget.proController?.isPro ?? false) || tier != Tier.free;
+    final proUnlocked =
+        (widget.proController?.isPro ?? false) || tier != Tier.free;
     return PlanBadge(
       badgeKey: const Key('home_plan_badge'),
       label: planLabel(l10n, tier: tier, proUnlocked: proUnlocked),
@@ -215,32 +242,15 @@ class _HomeShellState extends State<HomeShell> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final tabs = [
-      ValueListenableBuilder<bool>(
-        valueListenable: AssistantPrefs.visible,
-        builder: (context, assistantVisible, _) => ListsScreen(
-          repository: widget.listRepository,
-          reminderScheduler: widget.reminderScheduler,
-          planBadge: _planBadgeLive(context),
-          onOpenSummary: () => _openSummary(context),
-          onScanReceipt: () => _onAssistant(context, (
-            action: AssistantAction.scanReceipt,
-            text: null,
-          )),
-          onAssistantChoice: assistantVisible
-              ? (choice) => _onAssistant(context, choice)
-              : null,
-        ),
+      ListsScreen(
+        repository: widget.listRepository,
+        reminderScheduler: widget.reminderScheduler,
+        planBadge: _planBadgeLive(context),
+        onScanReceipt: () => _createFromReceipt(context),
+        receiptBusy: _inputBusy,
+        onDiscover: () => _openDiscover(context),
       ),
       HistoryPlaceholder(db: widget.db),
-      widget.appIdentity?.otherAppsUrl == null
-          ? const _DiscoverPlaceholder()
-          : DiscoverScreen(
-              identity: widget.appIdentity!,
-              repository: OtherAppsRepository(
-                appsUrl: widget.appIdentity!.otherAppsUrl!,
-                cacheStore: widget.appsCacheStore,
-              ),
-            ),
       widget.settingsRepository == null || widget.languageController == null
           ? const SettingsPlaceholder()
           : SettingsScreen(
@@ -265,7 +275,7 @@ class _HomeShellState extends State<HomeShell> {
           NavigationBar(
             selectedIndex: _tab,
             onDestinationSelected: (i) => setState(() {
-              if (i == 3 && _tab != 3) _settingsVisit++;
+              if (i == 2 && _tab != 2) _settingsVisit++;
               _tab = i;
             }),
             destinations: [
@@ -278,12 +288,6 @@ class _HomeShellState extends State<HomeShell> {
                 icon: const Icon(Icons.history_outlined),
                 selectedIcon: const Icon(Icons.history),
                 label: l10n.navHistory,
-              ),
-              NavigationDestination(
-                key: const Key('home_nav_discover'),
-                icon: const Icon(Icons.explore_outlined),
-                selectedIcon: const Icon(Icons.explore),
-                label: l10n.navDiscover,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.settings_outlined),
@@ -299,98 +303,26 @@ class _HomeShellState extends State<HomeShell> {
     );
   }
 
-  Future<void> _openSummary(BuildContext context) => Navigator.of(context).push(
-    MaterialPageRoute<void>(
-      builder: (_) => HomeScreen(
-        db: widget.db,
-        listRepository: widget.listRepository,
-        onOpenList: (list) => _openShopping(context, list.id),
-        onNewList: () => showListEditor(
-          context,
-          widget.listRepository,
-          reminderScheduler: widget.reminderScheduler,
+  Future<void> _openDiscover(BuildContext context) =>
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => widget.appIdentity?.otherAppsUrl == null
+              ? const _DiscoverPlaceholder()
+              : DiscoverScreen(
+                  identity: widget.appIdentity!,
+                  repository: OtherAppsRepository(
+                    appsUrl: widget.appIdentity!.otherAppsUrl!,
+                    cacheStore: widget.appsCacheStore,
+                  ),
+                ),
         ),
-      ),
-    ),
-  );
+      );
 
-  Future<void> _onAssistant(
-    BuildContext context,
-    AssistantChoice choice,
-  ) async {
+  Future<void> _createFromReceipt(BuildContext context) async {
     if (_inputBusy) return;
     setState(() => _inputBusy = true);
-    final l10n = AppLocalizations.of(context);
     try {
-      switch (choice.action) {
-        case AssistantAction.newList:
-          await showListEditor(
-            context,
-            widget.listRepository,
-            reminderScheduler: widget.reminderScheduler,
-          );
-        case AssistantAction.scanReceipt:
-          await _scanReceipt(context);
-        case AssistantAction.spending:
-          await Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => SpendingScreen(db: widget.db),
-            ),
-          );
-        case AssistantAction.voiceList || AssistantAction.textList:
-          int? createdId;
-          final picked = await showModalBottomSheet<ListDraft>(
-            context: context,
-            isScrollControlled: true,
-            showDragHandle: true,
-            builder: (_) => ListDraftSheet(
-              speechService: SttSpeechService(),
-              initialText: choice.text,
-              autoListen: choice.action == AssistantAction.voiceList,
-              showMic: false,
-              onApprove: (draft) async {
-                createdId = await widget.db.transaction(() async {
-                  final id = await widget.listRepository.createList(
-                    title: draft.title,
-                    plannedAt: draft.plannedAt,
-                    currencyCode: AppDefaults.defaultCurrency(),
-                    generatedTitle: l10n.quickListTitle,
-                  );
-                  await ItemRepository(widget.db)
-                      .addCandidates(id, draft.items);
-                  return id;
-                });
-              },
-            ),
-          );
-          if (picked == null || createdId == null || !context.mounted) return;
-          final listId = createdId!;
-          // Önce liste açılır: fiyatları düzenle, sonra "Alışverişe başla" (plan → alışveriş).
-          if (context.mounted) {
-            await Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => ListDetailScreen(
-                  db: widget.db,
-                  listRepository: widget.listRepository,
-                  listId: listId,
-                  reminderScheduler: widget.reminderScheduler,
-                ),
-              ),
-            );
-          }
-      }
-    } catch (_) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context)
-          ..clearSnackBars()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(l10n.saveFailed),
-              showCloseIcon: true,
-              duration: const Duration(days: 1),
-            ),
-          );
-      }
+      await _scanReceipt(context);
     } finally {
       if (mounted) setState(() => _inputBusy = false);
     }
@@ -399,66 +331,24 @@ class _HomeShellState extends State<HomeShell> {
   Future<void> _scanReceipt(BuildContext context) async {
     final l10n = AppLocalizations.of(context);
     try {
-      final path =
-          await (widget.pickImage?.call() ??
-              ImagePicker()
-                  .pickImage(source: ImageSource.camera)
-                  .then((x) => x?.path));
-      if (path == null || !mounted) return;
-      final source = widget.ocrSource ?? MlKitTextSource();
-      final OcrScanResult scan;
-      try {
-        scan = await source.scan(path);
-      } finally {
-        if (widget.ocrSource == null) (source as MlKitTextSource).dispose();
-      }
-      if (!context.mounted) return;
-      final currency = AppDefaults.defaultCurrency();
-      final parsed = ReceiptParser(currency: currency).parse(scan);
-      if (parsed.lines.isEmpty) {
-        ScaffoldMessenger.of(context)
-          ..clearSnackBars()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(l10n.ocrNoText),
-              showCloseIcon: true,
-              duration: const Duration(days: 1),
-            ),
-          );
-        return;
-      }
-      final controller = ReceiptReviewController(
+      final committedList = await openReceiptCaptureFlow(
+        context,
         db: widget.db,
-        currencyCode: currency,
         title: l10n.receiptReviewTitle,
-        parseResult: parsed,
+        currencyCode: AppDefaults.defaultCurrency(),
+        pickImage: widget.pickImage,
+        ocrSource: widget.ocrSource,
+        imageStore: widget.receiptImageStore,
       );
-      try {
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => ReceiptReviewScreen(
-              controller: controller,
-              currency: currency,
-              plannedItems: Future.value(const []),
-            ),
-          ),
-        );
-        if (controller.listId != null && context.mounted) {
-          await _openShopping(context, controller.listId!);
-        }
-      } finally {
-        controller.dispose();
+      if (committedList != null && context.mounted) {
+        await _openShopping(context, committedList);
       }
     } catch (_) {
       if (context.mounted) {
         ScaffoldMessenger.of(context)
           ..clearSnackBars()
           ..showSnackBar(
-            SnackBar(
-              content: Text(l10n.ocrNoText),
-              showCloseIcon: true,
-              duration: const Duration(days: 1),
-            ),
+            SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
           );
       }
     }
@@ -899,6 +789,9 @@ class _DiscoverPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Icon(Icons.explore_outlined));
+    return Scaffold(
+      appBar: AppBar(title: Text(AppLocalizations.of(context).navDiscover)),
+      body: const Center(child: Icon(Icons.explore_outlined)),
+    );
   }
 }

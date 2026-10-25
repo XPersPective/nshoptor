@@ -598,6 +598,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get scanReceiptAction => 'レシートをスキャン';
 
   @override
+  String get fromReceiptListButton => 'レシートから';
+
+  @override
   String get shelfLabelAction => '棚札の価格を入力';
 
   @override
@@ -1031,7 +1034,43 @@ class AppLocalizationsJa extends AppLocalizations {
   String get purchaseAnalyticsHint => '購入データは消費量を直接示すものではありません。通貨と単位は別に表示されます。';
 
   @override
-  String get receiptReplaces => '紐付けられたレシート行は既存の購入データを上書きし、紐付けられていない行は追加されます。';
+  String get receiptReplaces => '価格のない商品は補完されます。市場価格がある商品は別の購入として追加されます。';
+
+  @override
+  String get receiptIncompleteHeader => '次の写真に店名、日付、時刻、レシート番号を含めてください。';
+
+  @override
+  String get receiptIncompleteTail => '次の部分を、数点の商品が重なるようにして最終合計額と一緒に撮影してください。';
+
+  @override
+  String get receiptContinuationRejected =>
+      'この写真を結合できませんでした。同じレシートの商品が重なるように撮り直してください。';
+
+  @override
+  String get receiptDraftSaved => 'レシートを下書きとして保存しました。後で続けられます。';
+
+  @override
+  String get receiptContinueAction => 'レシートを続ける';
+
+  @override
+  String get receiptDraftsTitle => '未完了のレシート';
+
+  @override
+  String get receiptDuplicate => 'このレシートはすでに追加されています。';
+
+  @override
+  String get receiptTotalMismatch =>
+      '商品合計がレシートの合計と一致しません。レシート全体が写っているか確認してください。';
+
+  @override
+  String get receiptSaveDraftAction => '後で保存';
+
+  @override
+  String get receiptResolveLines => '保存する前に、各商品を承認するか無視してください。';
+
+  @override
+  String get receiptPartialConfirm =>
+      '選択した商品だけが追加されます。このレシートはインポート済みとして記録されます。続行しますか？';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1244,7 +1283,7 @@ class AppLocalizationsJa extends AppLocalizations {
       '店頭価格を入力すると購入済みになります。0も有効です。自宅での予定価格は任意です。店頭価格を消すとチェックが外れます。';
 
   @override
-  String get shoppingDateLabel => '買い物の日付（任意）';
+  String get shoppingDateLabel => '買い物の日付';
 
   @override
   String get shoppingDateNone => '日付未選択';
@@ -1263,4 +1302,26 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get listSortManual => '手動の順序';
+
+  @override
+  String get imageCameraAction => '写真を撮る';
+
+  @override
+  String get imageGalleryAction => '写真から選ぶ';
+
+  @override
+  String get imageCaptureFailed => 'カメラまたは写真を開けませんでした。アクセス権限を確認して、もう一度お試しください。';
+
+  @override
+  String get imageRecognitionFailed => '写真を処理できませんでした。別の写真をお試しください。';
+
+  @override
+  String get receiptNoProducts =>
+      '文字は読み取れましたが、レシートの商品が見つかりませんでした。商品と合計金額が写真に入るようにしてください。';
+
+  @override
+  String get keepAwakeOn => '画面は点灯したままです';
+
+  @override
+  String get keepAwakeOff => '画面が消灯することがあります';
 }

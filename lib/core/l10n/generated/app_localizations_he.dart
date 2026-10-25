@@ -606,6 +606,9 @@ class AppLocalizationsHe extends AppLocalizations {
   String get scanReceiptAction => 'סרוק קבלה';
 
   @override
+  String get fromReceiptListButton => 'מקבלה';
+
+  @override
   String get shelfLabelAction => 'מחיר מתווית מדף';
 
   @override
@@ -1050,7 +1053,45 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'שורות קבלה מקושרות מחליפות רכישות קיימות; שורות שאינן מקושרות מתווספות.';
+      'פריטים ללא מחיר יושלמו. פריטים שכבר יש להם מחיר שוק יתווספו כרכישות נפרדות.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'כללו בתמונה הבאה את שם החנות, התאריך, השעה ומספר הקבלה.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'צלמו את החלק הבא כך שיופיעו כמה פריטים חופפים והסכום הסופי.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'לא ניתן היה לחבר את התמונה הזו לקבלה. צלמו שוב עם פריטים חופפים מאותה קבלה.';
+
+  @override
+  String get receiptDraftSaved => 'הקבלה נשמרה כטיוטה. אפשר להמשיך מאוחר יותר.';
+
+  @override
+  String get receiptContinueAction => 'המשך הקבלה';
+
+  @override
+  String get receiptDraftsTitle => 'קבלות שלא הושלמו';
+
+  @override
+  String get receiptDuplicate => 'הקבלה הזו כבר נוספה.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'הפריטים אינם תואמים לסכום הקבלה. בדקו שכל הקבלה מופיעה בתמונה.';
+
+  @override
+  String get receiptSaveDraftAction => 'שמירה להמשך';
+
+  @override
+  String get receiptResolveLines => 'יש לאשר או להתעלם מכל פריט לפני השמירה.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'רק הפריטים שנבחרו יתווספו. הקבלה הזו תסומן כמיובאת. להמשיך?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1270,7 +1311,7 @@ class AppLocalizationsHe extends AppLocalizations {
       'מחיר בחנות מסמן את הפריט כנרכש; גם 0 נחשב. המחיר בבית הוא רשות. מחקו את מחיר החנות כדי להסיר את הסימון.';
 
   @override
-  String get shoppingDateLabel => 'תאריך קניות (רשות)';
+  String get shoppingDateLabel => 'תאריך קניות';
 
   @override
   String get shoppingDateNone => 'לא נבחר תאריך';
@@ -1289,4 +1330,28 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get listSortManual => 'סדר ידני';
+
+  @override
+  String get imageCameraAction => 'צילום תמונה';
+
+  @override
+  String get imageGalleryAction => 'בחירה מהתמונות';
+
+  @override
+  String get imageCaptureFailed =>
+      'לא ניתן היה לפתוח את המצלמה או את התמונות. יש לבדוק את הרשאת הגישה ולנסות שוב.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'לא ניתן היה לעבד את התמונה. יש לנסות תמונה אחרת.';
+
+  @override
+  String get receiptNoProducts =>
+      'הטקסט נקרא, אך לא נמצאו פריטים מהקבלה. יש לכלול בתמונה את הפריטים ואת הסכום הכולל.';
+
+  @override
+  String get keepAwakeOn => 'המסך יישאר דולק';
+
+  @override
+  String get keepAwakeOff => 'המסך יכול להיכבות';
 }

@@ -608,6 +608,9 @@ class AppLocalizationsNe extends AppLocalizations {
   String get scanReceiptAction => 'रेसिप्ट स्क्यान गर्नुहोस्';
 
   @override
+  String get fromReceiptListButton => 'रसिदबाट सूची';
+
+  @override
   String get shelfLabelAction => 'शेल्फ लेबलबाट मूल्य';
 
   @override
@@ -1060,7 +1063,47 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'लिङ्क गरिएका रेसिट पंक्तिहरूले मौजूदा खरिदहरू प्रतिस्थापन गर्छन्; अनलिङ्क गरिएका पंक्तिहरू थपिन्छन्।';
+      'मूल्य नभएका वस्तुको मूल्य भरिन्छ। बजार मूल्य भएका वस्तुहरू छुट्टै खरिदका रूपमा थपिन्छन्।';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'अर्को फोटोमा पसल, मिति, समय र रसिद नम्बर समावेश गर्नुहोस्।';
+
+  @override
+  String get receiptIncompleteTail =>
+      'केही वस्तुहरू एकअर्कामाथि पर्ने र अन्तिम जम्मा देखिने गरी अर्को भागको फोटो खिच्नुहोस्।';
+
+  @override
+  String get receiptContinuationRejected =>
+      'यो फोटो जोड्न सकिएन। एउटै रसिदका वस्तुहरू ओभरल्याप हुने गरी फेरि खिच्नुहोस्।';
+
+  @override
+  String get receiptDraftSaved =>
+      'रसिद मस्यौदाका रूपमा सुरक्षित भयो। पछि जारी राख्न सक्नुहुन्छ।';
+
+  @override
+  String get receiptContinueAction => 'रसिद जारी राख्नुहोस्';
+
+  @override
+  String get receiptDraftsTitle => 'अधुरा रसिदहरू';
+
+  @override
+  String get receiptDuplicate => 'यो रसिद पहिले नै थपिएको छ।';
+
+  @override
+  String get receiptTotalMismatch =>
+      'वस्तुहरूको जम्मा रसिदको कुल रकमसँग मिल्दैन। पूरा रसिद देखिएको छ कि जाँच्नुहोस्।';
+
+  @override
+  String get receiptSaveDraftAction => 'पछि सुरक्षित गर्नुहोस्';
+
+  @override
+  String get receiptResolveLines =>
+      'सुरक्षित गर्नुअघि प्रत्येक वस्तु स्वीकार गर्नुहोस् वा बेवास्ता गर्नुहोस्।';
+
+  @override
+  String get receiptPartialConfirm =>
+      'छानिएका वस्तुहरू मात्र थपिनेछन्। यो रसिद आयात गरिएको भनी चिन्ह लगाइनेछ। जारी राख्ने?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1285,7 +1328,7 @@ class AppLocalizationsNe extends AppLocalizations {
       'पसलको मूल्य राखेपछि सामान किनेको चिन्ह लाग्छ; 0 पनि मान्य हुन्छ। घरको मूल्य वैकल्पिक हो। चिन्ह हटाउन पसलको मूल्य मेटाउनुहोस्।';
 
   @override
-  String get shoppingDateLabel => 'किनमेलको मिति (वैकल्पिक)';
+  String get shoppingDateLabel => 'किनमेलको मिति';
 
   @override
   String get shoppingDateNone => 'मिति छानिएको छैन';
@@ -1304,4 +1347,28 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get listSortManual => 'आफैँ क्रम मिलाउनुहोस्';
+
+  @override
+  String get imageCameraAction => 'फोटो खिच्नुहोस्';
+
+  @override
+  String get imageGalleryAction => 'फोटोहरूबाट छान्नुहोस्';
+
+  @override
+  String get imageCaptureFailed =>
+      'क्यामेरा वा फोटोहरू खोल्न सकिएन। पहुँच अनुमति जाँचेर फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String get imageRecognitionFailed =>
+      'फोटो प्रशोधन गर्न सकिएन। अर्को फोटो प्रयोग गर्नुहोस्।';
+
+  @override
+  String get receiptNoProducts =>
+      'पाठ पढियो, तर रसिदका सामानहरू फेला परेनन्। फोटोमा सामानहरू र कुल रकम समावेश गर्नुहोस्।';
+
+  @override
+  String get keepAwakeOn => 'स्क्रिन खुला रहनेछ';
+
+  @override
+  String get keepAwakeOff => 'स्क्रिन बन्द हुन सक्छ';
 }

@@ -3715,6 +3715,39 @@ class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _documentNumberMeta = const VerificationMeta(
+    'documentNumber',
+  );
+  @override
+  late final GeneratedColumn<String> documentNumber = GeneratedColumn<String>(
+    'document_number',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _identityKeyMeta = const VerificationMeta(
+    'identityKey',
+  );
+  @override
+  late final GeneratedColumn<String> identityKey = GeneratedColumn<String>(
+    'identity_key',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _captureDataJsonMeta = const VerificationMeta(
+    'captureDataJson',
+  );
+  @override
+  late final GeneratedColumn<String> captureDataJson = GeneratedColumn<String>(
+    'capture_data_json',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _processingStatusMeta = const VerificationMeta(
     'processingStatus',
   );
@@ -3754,6 +3787,9 @@ class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
     detectedTotalMinorUnits,
     confirmedTotalMinorUnits,
     parserVersion,
+    documentNumber,
+    identityKey,
+    captureDataJson,
     processingStatus,
     createdAt,
   ];
@@ -3865,6 +3901,33 @@ class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
         ),
       );
     }
+    if (data.containsKey('document_number')) {
+      context.handle(
+        _documentNumberMeta,
+        documentNumber.isAcceptableOrUnknown(
+          data['document_number']!,
+          _documentNumberMeta,
+        ),
+      );
+    }
+    if (data.containsKey('identity_key')) {
+      context.handle(
+        _identityKeyMeta,
+        identityKey.isAcceptableOrUnknown(
+          data['identity_key']!,
+          _identityKeyMeta,
+        ),
+      );
+    }
+    if (data.containsKey('capture_data_json')) {
+      context.handle(
+        _captureDataJsonMeta,
+        captureDataJson.isAcceptableOrUnknown(
+          data['capture_data_json']!,
+          _captureDataJsonMeta,
+        ),
+      );
+    }
     if (data.containsKey('processing_status')) {
       context.handle(
         _processingStatusMeta,
@@ -3943,6 +4006,18 @@ class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
         DriftSqlType.string,
         data['${effectivePrefix}parser_version'],
       ),
+      documentNumber: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}document_number'],
+      ),
+      identityKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}identity_key'],
+      ),
+      captureDataJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}capture_data_json'],
+      ),
       processingStatus: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}processing_status'],
@@ -3980,6 +4055,12 @@ class Receipt extends DataClass implements Insertable<Receipt> {
   final int? confirmedTotalMinorUnits;
   final String? parserVersion;
 
+  /// Confirmed document evidence and durable multi-image capture state.
+  /// Legacy receipts and drafts without a reliable identity stay null.
+  final String? documentNumber;
+  final String? identityKey;
+  final String? captureDataJson;
+
   /// pending | ocrDone | reviewed | error
   final String processingStatus;
   final DateTime createdAt;
@@ -3997,6 +4078,9 @@ class Receipt extends DataClass implements Insertable<Receipt> {
     this.detectedTotalMinorUnits,
     this.confirmedTotalMinorUnits,
     this.parserVersion,
+    this.documentNumber,
+    this.identityKey,
+    this.captureDataJson,
     required this.processingStatus,
     required this.createdAt,
   });
@@ -4046,6 +4130,15 @@ class Receipt extends DataClass implements Insertable<Receipt> {
     if (!nullToAbsent || parserVersion != null) {
       map['parser_version'] = Variable<String>(parserVersion);
     }
+    if (!nullToAbsent || documentNumber != null) {
+      map['document_number'] = Variable<String>(documentNumber);
+    }
+    if (!nullToAbsent || identityKey != null) {
+      map['identity_key'] = Variable<String>(identityKey);
+    }
+    if (!nullToAbsent || captureDataJson != null) {
+      map['capture_data_json'] = Variable<String>(captureDataJson);
+    }
     map['processing_status'] = Variable<String>(processingStatus);
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
@@ -4088,6 +4181,15 @@ class Receipt extends DataClass implements Insertable<Receipt> {
       parserVersion: parserVersion == null && nullToAbsent
           ? const Value.absent()
           : Value(parserVersion),
+      documentNumber: documentNumber == null && nullToAbsent
+          ? const Value.absent()
+          : Value(documentNumber),
+      identityKey: identityKey == null && nullToAbsent
+          ? const Value.absent()
+          : Value(identityKey),
+      captureDataJson: captureDataJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(captureDataJson),
       processingStatus: Value(processingStatus),
       createdAt: Value(createdAt),
     );
@@ -4118,6 +4220,9 @@ class Receipt extends DataClass implements Insertable<Receipt> {
         json['confirmedTotalMinorUnits'],
       ),
       parserVersion: serializer.fromJson<String?>(json['parserVersion']),
+      documentNumber: serializer.fromJson<String?>(json['documentNumber']),
+      identityKey: serializer.fromJson<String?>(json['identityKey']),
+      captureDataJson: serializer.fromJson<String?>(json['captureDataJson']),
       processingStatus: serializer.fromJson<String>(json['processingStatus']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
@@ -4143,6 +4248,9 @@ class Receipt extends DataClass implements Insertable<Receipt> {
         confirmedTotalMinorUnits,
       ),
       'parserVersion': serializer.toJson<String?>(parserVersion),
+      'documentNumber': serializer.toJson<String?>(documentNumber),
+      'identityKey': serializer.toJson<String?>(identityKey),
+      'captureDataJson': serializer.toJson<String?>(captureDataJson),
       'processingStatus': serializer.toJson<String>(processingStatus),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
@@ -4162,6 +4270,9 @@ class Receipt extends DataClass implements Insertable<Receipt> {
     Value<int?> detectedTotalMinorUnits = const Value.absent(),
     Value<int?> confirmedTotalMinorUnits = const Value.absent(),
     Value<String?> parserVersion = const Value.absent(),
+    Value<String?> documentNumber = const Value.absent(),
+    Value<String?> identityKey = const Value.absent(),
+    Value<String?> captureDataJson = const Value.absent(),
     String? processingStatus,
     DateTime? createdAt,
   }) => Receipt(
@@ -4192,6 +4303,13 @@ class Receipt extends DataClass implements Insertable<Receipt> {
     parserVersion: parserVersion.present
         ? parserVersion.value
         : this.parserVersion,
+    documentNumber: documentNumber.present
+        ? documentNumber.value
+        : this.documentNumber,
+    identityKey: identityKey.present ? identityKey.value : this.identityKey,
+    captureDataJson: captureDataJson.present
+        ? captureDataJson.value
+        : this.captureDataJson,
     processingStatus: processingStatus ?? this.processingStatus,
     createdAt: createdAt ?? this.createdAt,
   );
@@ -4232,6 +4350,15 @@ class Receipt extends DataClass implements Insertable<Receipt> {
       parserVersion: data.parserVersion.present
           ? data.parserVersion.value
           : this.parserVersion,
+      documentNumber: data.documentNumber.present
+          ? data.documentNumber.value
+          : this.documentNumber,
+      identityKey: data.identityKey.present
+          ? data.identityKey.value
+          : this.identityKey,
+      captureDataJson: data.captureDataJson.present
+          ? data.captureDataJson.value
+          : this.captureDataJson,
       processingStatus: data.processingStatus.present
           ? data.processingStatus.value
           : this.processingStatus,
@@ -4255,6 +4382,9 @@ class Receipt extends DataClass implements Insertable<Receipt> {
           ..write('detectedTotalMinorUnits: $detectedTotalMinorUnits, ')
           ..write('confirmedTotalMinorUnits: $confirmedTotalMinorUnits, ')
           ..write('parserVersion: $parserVersion, ')
+          ..write('documentNumber: $documentNumber, ')
+          ..write('identityKey: $identityKey, ')
+          ..write('captureDataJson: $captureDataJson, ')
           ..write('processingStatus: $processingStatus, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
@@ -4276,6 +4406,9 @@ class Receipt extends DataClass implements Insertable<Receipt> {
     detectedTotalMinorUnits,
     confirmedTotalMinorUnits,
     parserVersion,
+    documentNumber,
+    identityKey,
+    captureDataJson,
     processingStatus,
     createdAt,
   );
@@ -4296,6 +4429,9 @@ class Receipt extends DataClass implements Insertable<Receipt> {
           other.detectedTotalMinorUnits == this.detectedTotalMinorUnits &&
           other.confirmedTotalMinorUnits == this.confirmedTotalMinorUnits &&
           other.parserVersion == this.parserVersion &&
+          other.documentNumber == this.documentNumber &&
+          other.identityKey == this.identityKey &&
+          other.captureDataJson == this.captureDataJson &&
           other.processingStatus == this.processingStatus &&
           other.createdAt == this.createdAt);
 }
@@ -4314,6 +4450,9 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
   final Value<int?> detectedTotalMinorUnits;
   final Value<int?> confirmedTotalMinorUnits;
   final Value<String?> parserVersion;
+  final Value<String?> documentNumber;
+  final Value<String?> identityKey;
+  final Value<String?> captureDataJson;
   final Value<String> processingStatus;
   final Value<DateTime> createdAt;
   const ReceiptsCompanion({
@@ -4330,6 +4469,9 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     this.detectedTotalMinorUnits = const Value.absent(),
     this.confirmedTotalMinorUnits = const Value.absent(),
     this.parserVersion = const Value.absent(),
+    this.documentNumber = const Value.absent(),
+    this.identityKey = const Value.absent(),
+    this.captureDataJson = const Value.absent(),
     this.processingStatus = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
@@ -4347,6 +4489,9 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     this.detectedTotalMinorUnits = const Value.absent(),
     this.confirmedTotalMinorUnits = const Value.absent(),
     this.parserVersion = const Value.absent(),
+    this.documentNumber = const Value.absent(),
+    this.identityKey = const Value.absent(),
+    this.captureDataJson = const Value.absent(),
     this.processingStatus = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
@@ -4364,6 +4509,9 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     Expression<int>? detectedTotalMinorUnits,
     Expression<int>? confirmedTotalMinorUnits,
     Expression<String>? parserVersion,
+    Expression<String>? documentNumber,
+    Expression<String>? identityKey,
+    Expression<String>? captureDataJson,
     Expression<String>? processingStatus,
     Expression<DateTime>? createdAt,
   }) {
@@ -4383,6 +4531,9 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
       if (confirmedTotalMinorUnits != null)
         'confirmed_total_minor_units': confirmedTotalMinorUnits,
       if (parserVersion != null) 'parser_version': parserVersion,
+      if (documentNumber != null) 'document_number': documentNumber,
+      if (identityKey != null) 'identity_key': identityKey,
+      if (captureDataJson != null) 'capture_data_json': captureDataJson,
       if (processingStatus != null) 'processing_status': processingStatus,
       if (createdAt != null) 'created_at': createdAt,
     });
@@ -4402,6 +4553,9 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     Value<int?>? detectedTotalMinorUnits,
     Value<int?>? confirmedTotalMinorUnits,
     Value<String?>? parserVersion,
+    Value<String?>? documentNumber,
+    Value<String?>? identityKey,
+    Value<String?>? captureDataJson,
     Value<String>? processingStatus,
     Value<DateTime>? createdAt,
   }) {
@@ -4421,6 +4575,9 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
       confirmedTotalMinorUnits:
           confirmedTotalMinorUnits ?? this.confirmedTotalMinorUnits,
       parserVersion: parserVersion ?? this.parserVersion,
+      documentNumber: documentNumber ?? this.documentNumber,
+      identityKey: identityKey ?? this.identityKey,
+      captureDataJson: captureDataJson ?? this.captureDataJson,
       processingStatus: processingStatus ?? this.processingStatus,
       createdAt: createdAt ?? this.createdAt,
     );
@@ -4474,6 +4631,15 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     if (parserVersion.present) {
       map['parser_version'] = Variable<String>(parserVersion.value);
     }
+    if (documentNumber.present) {
+      map['document_number'] = Variable<String>(documentNumber.value);
+    }
+    if (identityKey.present) {
+      map['identity_key'] = Variable<String>(identityKey.value);
+    }
+    if (captureDataJson.present) {
+      map['capture_data_json'] = Variable<String>(captureDataJson.value);
+    }
     if (processingStatus.present) {
       map['processing_status'] = Variable<String>(processingStatus.value);
     }
@@ -4499,6 +4665,9 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
           ..write('detectedTotalMinorUnits: $detectedTotalMinorUnits, ')
           ..write('confirmedTotalMinorUnits: $confirmedTotalMinorUnits, ')
           ..write('parserVersion: $parserVersion, ')
+          ..write('documentNumber: $documentNumber, ')
+          ..write('identityKey: $identityKey, ')
+          ..write('captureDataJson: $captureDataJson, ')
           ..write('processingStatus: $processingStatus, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
@@ -12753,6 +12922,9 @@ typedef $$ReceiptsTableCreateCompanionBuilder = ReceiptsCompanion Function({
   Value<int?> detectedTotalMinorUnits,
   Value<int?> confirmedTotalMinorUnits,
   Value<String?> parserVersion,
+  Value<String?> documentNumber,
+  Value<String?> identityKey,
+  Value<String?> captureDataJson,
   Value<String> processingStatus,
   Value<DateTime> createdAt,
 });
@@ -12770,6 +12942,9 @@ typedef $$ReceiptsTableUpdateCompanionBuilder = ReceiptsCompanion Function({
   Value<int?> detectedTotalMinorUnits,
   Value<int?> confirmedTotalMinorUnits,
   Value<String?> parserVersion,
+  Value<String?> documentNumber,
+  Value<String?> identityKey,
+  Value<String?> captureDataJson,
   Value<String> processingStatus,
   Value<DateTime> createdAt,
 });
@@ -12908,6 +13083,21 @@ class $$ReceiptsTableFilterComposer
 
   ColumnFilters<String> get parserVersion => $composableBuilder(
     column: $table.parserVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get documentNumber => $composableBuilder(
+    column: $table.documentNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get identityKey => $composableBuilder(
+    column: $table.identityKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get captureDataJson => $composableBuilder(
+    column: $table.captureDataJson,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -13065,6 +13255,21 @@ class $$ReceiptsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get documentNumber => $composableBuilder(
+    column: $table.documentNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get identityKey => $composableBuilder(
+    column: $table.identityKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get captureDataJson => $composableBuilder(
+    column: $table.captureDataJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get processingStatus => $composableBuilder(
     column: $table.processingStatus,
     builder: (column) => ColumnOrderings(column),
@@ -13164,6 +13369,21 @@ class $$ReceiptsTableAnnotationComposer
 
   GeneratedColumn<String> get parserVersion => $composableBuilder(
     column: $table.parserVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get documentNumber => $composableBuilder(
+    column: $table.documentNumber,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get identityKey => $composableBuilder(
+    column: $table.identityKey,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get captureDataJson => $composableBuilder(
+    column: $table.captureDataJson,
     builder: (column) => column,
   );
 
@@ -13295,6 +13515,9 @@ class $$ReceiptsTableTableManager
                 Value<int?> detectedTotalMinorUnits = const Value.absent(),
                 Value<int?> confirmedTotalMinorUnits = const Value.absent(),
                 Value<String?> parserVersion = const Value.absent(),
+                Value<String?> documentNumber = const Value.absent(),
+                Value<String?> identityKey = const Value.absent(),
+                Value<String?> captureDataJson = const Value.absent(),
                 Value<String> processingStatus = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
               }) => ReceiptsCompanion(
@@ -13311,6 +13534,9 @@ class $$ReceiptsTableTableManager
                 detectedTotalMinorUnits: detectedTotalMinorUnits,
                 confirmedTotalMinorUnits: confirmedTotalMinorUnits,
                 parserVersion: parserVersion,
+                documentNumber: documentNumber,
+                identityKey: identityKey,
+                captureDataJson: captureDataJson,
                 processingStatus: processingStatus,
                 createdAt: createdAt,
               ),
@@ -13329,6 +13555,9 @@ class $$ReceiptsTableTableManager
                 Value<int?> detectedTotalMinorUnits = const Value.absent(),
                 Value<int?> confirmedTotalMinorUnits = const Value.absent(),
                 Value<String?> parserVersion = const Value.absent(),
+                Value<String?> documentNumber = const Value.absent(),
+                Value<String?> identityKey = const Value.absent(),
+                Value<String?> captureDataJson = const Value.absent(),
                 Value<String> processingStatus = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
               }) => ReceiptsCompanion.insert(
@@ -13345,6 +13574,9 @@ class $$ReceiptsTableTableManager
                 detectedTotalMinorUnits: detectedTotalMinorUnits,
                 confirmedTotalMinorUnits: confirmedTotalMinorUnits,
                 parserVersion: parserVersion,
+                documentNumber: documentNumber,
+                identityKey: identityKey,
+                captureDataJson: captureDataJson,
                 processingStatus: processingStatus,
                 createdAt: createdAt,
               ),

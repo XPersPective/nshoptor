@@ -608,6 +608,9 @@ class AppLocalizationsMl extends AppLocalizations {
   String get scanReceiptAction => 'റീസീപ്റ്റ് സ്കാൻ ചെയ്യുക';
 
   @override
+  String get fromReceiptListButton => 'രസീതിൽ നിന്ന്';
+
+  @override
   String get shelfLabelAction => 'ഷെൽഫ് ലേബലിൽ നിന്നുള്ള വില';
 
   @override
@@ -1058,7 +1061,46 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'ലിങ്ക് ചെയ്ത റിസീറ്റ് ലൈനുകൾ existing വാങ്ങലുകൾ മാറ്റിസ്ഥാപിക്കുന്നു; ലിങ്ക് ചെയ്യാത്ത ലൈനുകൾ ചേർക്കുന്നു.';
+      'വിലയില്ലാത്ത ഇനങ്ങളുടെ വില ചേർക്കും. വിപണി വിലയുള്ളവ പ്രത്യേക വാങ്ങലുകളായി ചേർക്കും.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'അടുത്ത ഫോട്ടോയിൽ കട, തീയതി, സമയം, രസീത് നമ്പർ എന്നിവ ഉൾപ്പെടുത്തുക.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'അവസാന തുകയും കുറച്ച് ഇനങ്ങൾ തമ്മിൽ മൂടുന്ന രീതിയിലും അടുത്ത ഭാഗം ചിത്രീകരിക്കുക.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'ഈ ഫോട്ടോ ചേർക്കാനായില്ല. അതേ രസീതിലെ ഇനങ്ങൾ തമ്മിൽ മൂടുന്ന വിധത്തിൽ വീണ്ടും എടുക്കുക.';
+
+  @override
+  String get receiptDraftSaved => 'രസീത് കരടായി സംരക്ഷിച്ചു. പിന്നീട് തുടരാം.';
+
+  @override
+  String get receiptContinueAction => 'രസീത് തുടരുക';
+
+  @override
+  String get receiptDraftsTitle => 'പൂർത്തിയാകാത്ത രസീതുകൾ';
+
+  @override
+  String get receiptDuplicate => 'ഈ രസീത് ഇതിനകം ചേർത്തിട്ടുണ്ട്.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'ഇനങ്ങളുടെ തുക രസീതിലെ മൊത്തവുമായി പൊരുത്തപ്പെടുന്നില്ല. മുഴുവൻ രസീതും കാണുന്നുണ്ടെന്ന് പരിശോധിക്കുക.';
+
+  @override
+  String get receiptSaveDraftAction => 'പിന്നീട് സംരക്ഷിക്കുക';
+
+  @override
+  String get receiptResolveLines =>
+      'സേവ് ചെയ്യുന്നതിന് മുമ്പ് ഓരോ ഇനവും അംഗീകരിക്കുകയോ അവഗണിക്കുകയോ ചെയ്യുക.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'തിരഞ്ഞെടുത്ത ഇനങ്ങൾ മാത്രം ചേർക്കും. ഈ രസീത് ഇറക്കുമതി ചെയ്തതായി അടയാളപ്പെടുത്തും. തുടരണോ?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1284,7 +1326,7 @@ class AppLocalizationsMl extends AppLocalizations {
       'കടയിലെ വില നൽകിയാൽ സാധനം വാങ്ങിയതായി അടയാളപ്പെടുത്തും; 0-വും സാധുവാണ്. വീട്ടിലെ വില നിർബന്ധമല്ല. അടയാളം മാറ്റാൻ കടയിലെ വില മായ്ക്കുക.';
 
   @override
-  String get shoppingDateLabel => 'വാങ്ങൽ തീയതി (നിർബന്ധമല്ല)';
+  String get shoppingDateLabel => 'വാങ്ങൽ തീയതി';
 
   @override
   String get shoppingDateNone => 'തീയതി തിരഞ്ഞെടുത്തിട്ടില്ല';
@@ -1303,4 +1345,28 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get listSortManual => 'സ്വമേധയാ ക്രമീകരിക്കുക';
+
+  @override
+  String get imageCameraAction => 'ഫോട്ടോ എടുക്കുക';
+
+  @override
+  String get imageGalleryAction => 'ഫോട്ടോകളിൽ നിന്ന് തിരഞ്ഞെടുക്കുക';
+
+  @override
+  String get imageCaptureFailed =>
+      'ക്യാമറയോ ഫോട്ടോകളോ തുറക്കാനായില്ല. പ്രവേശന അനുമതി പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ഫോട്ടോ പ്രോസസ്സ് ചെയ്യാനായില്ല. മറ്റൊരു ഫോട്ടോ ഉപയോഗിച്ച് ശ്രമിക്കുക.';
+
+  @override
+  String get receiptNoProducts =>
+      'ടെക്സ്റ്റ് വായിച്ചു, പക്ഷേ രസീതിലെ സാധനങ്ങൾ കണ്ടെത്തിയില്ല. സാധനങ്ങളും ആകെ തുകയും ഫോട്ടോയിൽ ഉൾപ്പെടുത്തുക.';
+
+  @override
+  String get keepAwakeOn => 'സ്‌ക്രീൻ ഓണായിരിക്കും';
+
+  @override
+  String get keepAwakeOff => 'സ്‌ക്രീൻ ഓഫായേക്കാം';
 }

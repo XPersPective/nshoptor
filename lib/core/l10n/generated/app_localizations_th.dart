@@ -605,6 +605,9 @@ class AppLocalizationsTh extends AppLocalizations {
   String get scanReceiptAction => 'สแกนใบเสร็จ';
 
   @override
+  String get fromReceiptListButton => 'จากใบเสร็จ';
+
+  @override
   String get shelfLabelAction => 'ราคาจากป้ายราคาบนชั้น';
 
   @override
@@ -1055,7 +1058,46 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'บรรทัดในใบเสร็จที่เชื่อมโยงจะแทนที่การซื้อที่มีอยู่; บรรทัดที่ไม่ได้เชื่อมโยงจะถูกเพิ่มเข้าไป';
+      'เติมราคาสำหรับสินค้าที่ไม่มีราคา ส่วนสินค้าที่มีราคาตลาดแล้วจะเพิ่มเป็นรายการซื้อแยกต่างหาก';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'ใส่ชื่อร้าน วันที่ เวลา และเลขที่ใบเสร็จในภาพถัดไป';
+
+  @override
+  String get receiptIncompleteTail =>
+      'ถ่ายภาพส่วนถัดไปให้มีสินค้าซ้อนทับกันสักสองสามรายการและยอดรวมสุดท้าย';
+
+  @override
+  String get receiptContinuationRejected =>
+      'รวมภาพนี้ไม่ได้ ถ่ายใหม่โดยให้สินค้าจากใบเสร็จเดียวกันซ้อนทับกัน';
+
+  @override
+  String get receiptDraftSaved =>
+      'บันทึกใบเสร็จเป็นฉบับร่างแล้ว คุณสามารถทำต่อภายหลังได้';
+
+  @override
+  String get receiptContinueAction => 'ทำใบเสร็จต่อ';
+
+  @override
+  String get receiptDraftsTitle => 'ใบเสร็จที่ยังไม่เสร็จ';
+
+  @override
+  String get receiptDuplicate => 'เพิ่มใบเสร็จนี้แล้ว';
+
+  @override
+  String get receiptTotalMismatch =>
+      'ยอดรวมสินค้าไม่ตรงกับยอดรวมในใบเสร็จ ตรวจสอบว่าเห็นใบเสร็จครบทั้งใบ';
+
+  @override
+  String get receiptSaveDraftAction => 'บันทึกไว้ทำภายหลัง';
+
+  @override
+  String get receiptResolveLines => 'ยอมรับหรือข้ามสินค้าแต่ละรายการก่อนบันทึก';
+
+  @override
+  String get receiptPartialConfirm =>
+      'เพิ่มเฉพาะรายการที่เลือก ใบเสร็จนี้จะถูกทำเครื่องหมายว่านำเข้าแล้ว ดำเนินการต่อหรือไม่?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1276,7 +1318,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'เมื่อกรอกราคาที่ร้าน สินค้าจะถูกทำเครื่องหมายว่าซื้อแล้ว แม้ราคาเป็น 0 ราคาที่บ้านไม่จำเป็นต้องกรอก ลบราคาที่ร้านเพื่อเอาเครื่องหมายออก';
 
   @override
-  String get shoppingDateLabel => 'วันที่ซื้อของ (ไม่บังคับ)';
+  String get shoppingDateLabel => 'วันที่ซื้อของ';
 
   @override
   String get shoppingDateNone => 'ยังไม่ได้เลือกวันที่';
@@ -1295,4 +1337,27 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get listSortManual => 'เรียงด้วยตนเอง';
+
+  @override
+  String get imageCameraAction => 'ถ่ายรูป';
+
+  @override
+  String get imageGalleryAction => 'เลือกจากรูปภาพ';
+
+  @override
+  String get imageCaptureFailed =>
+      'เปิดกล้องหรือรูปภาพไม่ได้ ตรวจสอบสิทธิ์การเข้าถึงแล้วลองอีกครั้ง';
+
+  @override
+  String get imageRecognitionFailed => 'ประมวลผลรูปภาพไม่ได้ ลองใช้รูปอื่น';
+
+  @override
+  String get receiptNoProducts =>
+      'อ่านข้อความแล้ว แต่ไม่พบรายการสินค้าในใบเสร็จ ให้ถ่ายรายการสินค้าและยอดรวมให้ติดอยู่ในรูปด้วย';
+
+  @override
+  String get keepAwakeOn => 'หน้าจอจะเปิดค้างไว้';
+
+  @override
+  String get keepAwakeOff => 'หน้าจออาจดับได้';
 }

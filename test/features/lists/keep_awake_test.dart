@@ -155,6 +155,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(nativeAwake, false);
       expect(button(tester).isSelected, false);
+      expect(button(tester).tooltip, 'Ekran kapanabilir');
       failEnable = true;
       await tester.tap(find.byKey(const Key('list_keep_awake')));
       await tester.pumpAndSettle();
@@ -169,10 +170,14 @@ void main() {
       await tester.pumpAndSettle();
       expect(nativeAwake, true);
       expect(AppDefaults.keepScreenAwake(), true);
+      expect(button(tester).tooltip, 'Ekran açık tutuluyor');
+      expect(find.text('Ekran açık tutuluyor'), findsOneWidget);
       await tester.tap(find.byKey(const Key('list_keep_awake')));
       await tester.pumpAndSettle();
       expect(nativeAwake, false);
       expect(AppDefaults.keepScreenAwake(), false);
+      expect(button(tester).tooltip, 'Ekran kapanabilir');
+      expect(find.text('Ekran kapanabilir'), findsOneWidget);
       pendingEnable = Completer<void>();
       await tester.tap(find.byKey(const Key('list_keep_awake')));
       await tester.pump();

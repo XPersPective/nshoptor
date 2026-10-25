@@ -607,6 +607,9 @@ class AppLocalizationsKy extends AppLocalizations {
   String get scanReceiptAction => 'Чекти сканердөө';
 
   @override
+  String get fromReceiptListButton => 'Дүмүрчөктөн';
+
+  @override
   String get shelfLabelAction => 'Рафтан баа этикеткасы';
 
   @override
@@ -1059,7 +1062,47 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Шилтемеленген чек саптары бар болгон сатып алууларды алмаштырат; шилтемеленбегендер кошулат.';
+      'Баасы жок товарлар толтурулат. Базар баасы бар товарлар өзүнчө сатып алуу катары кошулат.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Кийинки сүрөткө дүкөндү, күндү, убакытты жана чектин номерин кошуңуз.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Кийинки бөлүгүн бир нече кабатташкан товар жана акыркы сумма менен сүрөткө тартыңыз.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Бул сүрөттү бириктирүү мүмкүн болгон жок. Ошол эле чектеги кабатташкан товарлар менен кайра тартыңыз.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Чек каралама катары сакталды. Кийин уланта аласыз.';
+
+  @override
+  String get receiptContinueAction => 'Чекти улантуу';
+
+  @override
+  String get receiptDraftsTitle => 'Бүтпөгөн чектер';
+
+  @override
+  String get receiptDuplicate => 'Бул чек мурунтан эле кошулган.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Товарлардын суммасы чек боюнча жалпы суммага туура келбейт. Чек толук көрүнүп турганын текшериңиз.';
+
+  @override
+  String get receiptSaveDraftAction => 'Кийин сактоо';
+
+  @override
+  String get receiptResolveLines =>
+      'Сактоодон мурун ар бир товарды кабыл алыңыз же этибарга албаңыз.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Тандалган товарлар гана кошулат. Бул чек импорттолду деп белгиленет. Улантасызбы?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1285,7 +1328,7 @@ class AppLocalizationsKy extends AppLocalizations {
       'Дүкөн баасы киргизилсе, товар сатып алынган деп белгиленет; 0 да эсептелет. Үйдөгү баа милдеттүү эмес. Белгини алып салуу үчүн дүкөн баасын өчүрүңүз.';
 
   @override
-  String get shoppingDateLabel => 'Сатып алуу күнү (милдеттүү эмес)';
+  String get shoppingDateLabel => 'Сатып алуу күнү';
 
   @override
   String get shoppingDateNone => 'Күн тандалган жок';
@@ -1304,4 +1347,28 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get listSortManual => 'Кол менен иреттөө';
+
+  @override
+  String get imageCameraAction => 'Сүрөткө тартуу';
+
+  @override
+  String get imageGalleryAction => 'Сүрөттөрдөн тандоо';
+
+  @override
+  String get imageCaptureFailed =>
+      'Камераны же сүрөттөрдү ачуу мүмкүн болгон жок. Кирүү уруксатын текшерип, кайра аракет кылыңыз.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Сүрөттү иштетүү мүмкүн болгон жок. Башка сүрөт менен аракет кылыңыз.';
+
+  @override
+  String get receiptNoProducts =>
+      'Текст окулду, бирок чектеги товарлар табылган жок. Сүрөттө товарлар жана жалпы сумма көрүнсүн.';
+
+  @override
+  String get keepAwakeOn => 'Экран күйүп турат';
+
+  @override
+  String get keepAwakeOff => 'Экран өчүп калышы мүмкүн';
 }

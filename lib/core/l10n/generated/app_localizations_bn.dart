@@ -607,6 +607,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get scanReceiptAction => 'রসিদ স্ক্যান করুন';
 
   @override
+  String get fromReceiptListButton => 'রসিদ থেকে তালিকা';
+
+  @override
   String get shelfLabelAction => 'শেলফ লেবেল থেকে মূল্য';
 
   @override
@@ -1058,7 +1061,47 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'লিংকযুক্ত রসিদ লাইন বিদ্যমান ক্রয় প্রতিস্থাপন করে; অলিংকযুক্ত লাইন যোগ করা হয়।';
+      'যেসব পণ্যের দাম নেই, সেগুলোর দাম পূরণ করা হবে। যেসব পণ্যের বাজারদর আগে থেকেই আছে, সেগুলো আলাদা কেনাকাটা হিসেবে যোগ হবে।';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'পরের ছবিতে দোকান, তারিখ, সময় ও রসিদ নম্বর রাখুন।';
+
+  @override
+  String get receiptIncompleteTail =>
+      'পরের অংশের ছবি তুলুন, যাতে কয়েকটি পণ্যের কিছুটা ওভারল্যাপ এবং চূড়ান্ত মোট দেখা যায়।';
+
+  @override
+  String get receiptContinuationRejected =>
+      'এই ছবিটি রসিদের সঙ্গে জোড়া যায়নি। একই রসিদের ওভারল্যাপ করা পণ্যসহ আবার ছবি তুলুন।';
+
+  @override
+  String get receiptDraftSaved =>
+      'রসিদটি খসড়া হিসেবে সংরক্ষিত হয়েছে। পরে চালিয়ে যেতে পারবেন।';
+
+  @override
+  String get receiptContinueAction => 'রসিদ চালিয়ে যান';
+
+  @override
+  String get receiptDraftsTitle => 'অসমাপ্ত রসিদ';
+
+  @override
+  String get receiptDuplicate => 'এই রসিদটি ইতিমধ্যে যোগ করা হয়েছে।';
+
+  @override
+  String get receiptTotalMismatch =>
+      'পণ্যগুলোর সঙ্গে রসিদের মোট মেলে না। পুরো রসিদটি দেখা যাচ্ছে কি না দেখুন।';
+
+  @override
+  String get receiptSaveDraftAction => 'পরে ব্যবহারের জন্য সংরক্ষণ করুন';
+
+  @override
+  String get receiptResolveLines =>
+      'সংরক্ষণ করার আগে প্রতিটি পণ্য গ্রহণ করুন বা উপেক্ষা করুন।';
+
+  @override
+  String get receiptPartialConfirm =>
+      'শুধু নির্বাচিত পণ্যগুলো যোগ করা হবে। এই রসিদটি আমদানি করা হিসেবে চিহ্নিত হবে। চালিয়ে যাবেন?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsBn extends AppLocalizations {
       'দোকানের দাম লিখলে পণ্য কেনা হয়েছে বলে চিহ্নিত হয়; 0-ও গণ্য হয়। বাড়ির দাম লেখা ঐচ্ছিক। টিক সরাতে দোকানের দাম মুছুন।';
 
   @override
-  String get shoppingDateLabel => 'কেনাকাটার তারিখ (ঐচ্ছিক)';
+  String get shoppingDateLabel => 'কেনাকাটার তারিখ';
 
   @override
   String get shoppingDateNone => 'কোনো তারিখ বাছা হয়নি';
@@ -1301,4 +1344,28 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get listSortManual => 'নিজে সাজান';
+
+  @override
+  String get imageCameraAction => 'ছবি তুলুন';
+
+  @override
+  String get imageGalleryAction => 'ছবি থেকে বেছে নিন';
+
+  @override
+  String get imageCaptureFailed =>
+      'ক্যামেরা বা ছবি খোলা যায়নি। অ্যাক্সেসের অনুমতি পরীক্ষা করে আবার চেষ্টা করুন।';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ছবিটি প্রক্রিয়া করা যায়নি। অন্য একটি ছবি দিয়ে চেষ্টা করুন।';
+
+  @override
+  String get receiptNoProducts =>
+      'লেখা পড়া হয়েছে, কিন্তু রসিদের কোনো পণ্য পাওয়া যায়নি। ছবিতে পণ্যগুলো ও মোট টাকা রাখুন।';
+
+  @override
+  String get keepAwakeOn => 'স্ক্রিন চালু থাকবে';
+
+  @override
+  String get keepAwakeOff => 'স্ক্রিন বন্ধ হতে পারে';
 }

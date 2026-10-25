@@ -607,6 +607,9 @@ class AppLocalizationsFil extends AppLocalizations {
   String get scanReceiptAction => 'Mag-scan ng resibo';
 
   @override
+  String get fromReceiptListButton => 'Mula sa resibo';
+
+  @override
   String get shelfLabelAction => 'Presyo mula sa label sa shelf';
 
   @override
@@ -1064,7 +1067,47 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Ang mga linked receipt line ay papalitan ang umiiral na pagbili; ang mga unlinked line ay idadagdag.';
+      'Pupunan ang mga item na walang presyo. Idinaragdag bilang hiwalay na mga pagbili ang mga item na mayroon nang presyo sa merkado.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Isama sa susunod na larawan ang tindahan, petsa, oras, at numero ng resibo.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Kunan ng larawan ang susunod na bahagi na may ilang magkakapatong na item at kabuuang halaga.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Hindi maisama ang larawang ito sa resibo. Kunan itong muli na may magkakapatong na item mula sa parehong resibo.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Nai-save ang resibo bilang draft. Maaari kang magpatuloy sa ibang pagkakataon.';
+
+  @override
+  String get receiptContinueAction => 'Ipagpatuloy ang resibo';
+
+  @override
+  String get receiptDraftsTitle => 'Hindi pa tapos na mga resibo';
+
+  @override
+  String get receiptDuplicate => 'Naidagdag na ang resibong ito.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Hindi tugma ang mga item sa kabuuan ng resibo. Tiyaking nakikita ang buong resibo.';
+
+  @override
+  String get receiptSaveDraftAction => 'I-save para sa ibang pagkakataon';
+
+  @override
+  String get receiptResolveLines =>
+      'Tanggapin o balewalain ang bawat item bago mag-save.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Ang mga napiling item lang ang idaragdag. Mamarkahang na-import ang resibong ito. Magpatuloy?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1293,7 +1336,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'Minamarkahang nabili ang item kapag may presyo sa tindahan; kasama ang 0. Opsyonal ang presyo sa bahay. Burahin ang presyo sa tindahan para alisin ang tsek.';
 
   @override
-  String get shoppingDateLabel => 'Petsa ng pamimili (opsyonal)';
+  String get shoppingDateLabel => 'Petsa ng pamimili';
 
   @override
   String get shoppingDateNone => 'Walang napiling petsa';
@@ -1312,4 +1355,28 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get listSortManual => 'Manwal na ayos';
+
+  @override
+  String get imageCameraAction => 'Kumuha ng larawan';
+
+  @override
+  String get imageGalleryAction => 'Pumili mula sa mga larawan';
+
+  @override
+  String get imageCaptureFailed =>
+      'Hindi mabuksan ang camera o mga larawan. Suriin ang pahintulot sa pag-access at subukan muli.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Hindi maproseso ang larawan. Sumubok ng ibang larawan.';
+
+  @override
+  String get receiptNoProducts =>
+      'Nabasa ang teksto, ngunit walang nakitang mga item sa resibo. Isama ang mga item at kabuuang halaga sa larawan.';
+
+  @override
+  String get keepAwakeOn => 'Mananatiling bukas ang screen';
+
+  @override
+  String get keepAwakeOff => 'Maaaring mamatay ang screen';
 }

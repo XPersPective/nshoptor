@@ -8,6 +8,8 @@ enum ListSortMode {
   title,
   manual;
 
+  ListSortMode get next => values[(index + 1) % values.length];
+
   static ListSortMode fromCode(String? value) =>
       values.where((mode) => mode.name == value).firstOrNull ?? date;
 }
@@ -153,19 +155,25 @@ class _ShoppingDateFieldState extends State<ShoppingDateField> {
     return Row(
       children: [
         Expanded(
-          child: OutlinedButton.icon(
+          child: TextButton.icon(
             key: const Key('shopping_date_pick'),
             onPressed: widget.enabled && !_picking ? _pick : null,
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(context).colorScheme.onSurface,
+              backgroundColor: Theme.of(context)
+                  .colorScheme
+                  .surfaceContainerLow,
+              minimumSize: const Size(48, 48),
+              padding: const EdgeInsets.all(12),
+              alignment: AlignmentDirectional.centerStart,
+            ),
             icon: const Icon(Icons.event_outlined),
             label: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(l10n.shoppingDateLabel),
-                Text(
-                  widget.value == null
-                      ? l10n.shoppingDateNone
-                      : shoppingDateText(context, widget.value!),
-                ),
+                if (widget.value != null)
+                  Text(shoppingDateText(context, widget.value!)),
               ],
             ),
           ),

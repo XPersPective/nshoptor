@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/quantity/unit_code.dart';
@@ -49,6 +51,15 @@ class ShelfPriceExtractor {
 
   /// Etikette bulunan tüm fiyat adayları; konuma göre (üst-sol) sıralı.
   List<PriceCandidate> extract(List<OcrLine> lines) {
+    if (lines.every(
+      (l) => l.boundingBoxTop != null && l.boundingBoxLeft != null,
+    )) {
+      lines = [...lines]
+        ..sort((a, b) {
+          final y = a.boundingBoxTop!.compareTo(b.boundingBoxTop!);
+          return y != 0 ? y : a.boundingBoxLeft!.compareTo(b.boundingBoxLeft!);
+        });
+    }
     final evidence = detectOcrCurrency(
       lines.map((l) => l.text).join('\n'),
       fallback: defaultCurrency,
@@ -59,6 +70,8 @@ class ShelfPriceExtractor {
           .extract(lines);
     }
     final candidates = <PriceCandidate>[];
+    final origins = <PriceCandidate, OcrLine>{};
+    final explicit = <PriceCandidate>{};
     for (final line in lines) {
       // Hacim/ağırlık miktarı görünen satırlarda (ör. '1 LT SÜT') tam sayı
       // fiyat sanılmaz.
@@ -142,7 +155,7 @@ class ShelfPriceExtractor {
               ? null
               : _unit(prefixUnit);
         }
-        // ponytail: nearest preceding non-price text may be a brand/promotion; preview is editable. Upgrade to layout-aware extraction if needed.
+        // Keep package evidence in its own product column.
         final preceding = lines
             .takeWhile((l) => !identical(l, line))
             .where(
@@ -150,7 +163,8 @@ class ShelfPriceExtractor {
                   RegExp(r'[A-Za-z\u00c0-\uffff]').hasMatch(l.text) &&
                   !RegExp(r'[₺€$]|\d+[.,]\d{2}').hasMatch(l.text),
             );
-        final name = preceding.isEmpty ? null : preceding.last.text.trim();
+        final names = preceding.where((l) => _separateBasis(l.text) == null);
+        final name = _nearbyProductName(line, names);
         final explicitBasis = RegExp(
           r'/\s*(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml)\b',
           caseSensitive: false,
@@ -158,6 +172,7 @@ class ShelfPriceExtractor {
         final inlinePackage = quantityMatches
             .where(
               (q) =>
+                  q.start >= (index == 0 ? 0 : matches[index - 1].end) &&
                   q.end <= match.start &&
                   !RegExp(r'/\s*$').hasMatch(line.text.substring(0, q.start)),
             )
@@ -186,6 +201,10 @@ class ShelfPriceExtractor {
                 : DecimalFixed.tryParse(basisQuantity.replaceAll(',', '.')),
           ),
         );
+        origins[candidates.last] = line;
+        if (isUnit || inlinePackage != null || matches.length != 1) {
+          explicit.add(candidates.last);
+        }
       }
     }
 
@@ -195,11 +214,11 @@ class ShelfPriceExtractor {
       final sb = _sourceOrder(b.sourceLine, lines);
       return sa.compareTo(sb);
     });
-    return candidates;
+    return _attachSeparateBases(candidates, origins, explicit, lines);
   }
 
   static final _quantityPattern = RegExp(
-    r'\b(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml)\b',
+    r'\b(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml|adet)\b',
     caseSensitive: false,
   );
   static UnitCode? _unit(String code) => switch (code.toLowerCase()) {
@@ -207,6 +226,7 @@ class ShelfPriceExtractor {
     'gr' || 'g' => UnitCode.gram,
     'lt' || 'l' => UnitCode.litre,
     'ml' => UnitCode.mililitre,
+    'adet' => UnitCode.adet,
     _ => null,
   };
 
@@ -262,4 +282,156 @@ class ShelfPriceExtractor {
     'KR',
     'kr',
   ];
+}
+
+typedef _ShelfBasis = ({UnitCode unit, DecimalFixed? quantity, bool perUnit});
+
+String? _nearbyProductName(OcrLine price, Iterable<OcrLine> names) {
+  if (price.boundingBoxHeight == null ||
+      price.boundingBoxWidth == null ||
+      price.boundingBoxLeft == null ||
+      price.boundingBoxTop == null) {
+    return names.isEmpty ? null : names.last.text.trim();
+  }
+  final nearby = <({String name, double distance})>[];
+  for (final line in names) {
+    final distance = _basisDistance(price, line);
+    if (distance != null) {
+      nearby.add((name: line.text.trim(), distance: distance));
+    }
+  }
+  nearby.sort((a, b) => a.distance.compareTo(b.distance));
+  if (nearby.isEmpty ||
+      nearby.length > 1 && nearby[1].distance - nearby[0].distance < 0.15) {
+    return null;
+  }
+  return nearby.first.name;
+}
+
+_ShelfBasis? _separateBasis(String text) {
+  final match = RegExp(
+    r'^\s*(?:(?:birim\s*fiyat[ıi]?|unit\s*price)\s*[:=]?\s*)?'
+    r'(?:(?:[A-Z]{3}|TL|[₺€£$])\s*)?/?\s*'
+    r'(?:(\d+(?:[.,]\d+)?)\s*)?(kg|gr|g|lt|l|ml|adet)'
+    r'\s*(?:[A-Z]{3}|TL|[₺€£$])?\s*$',
+    caseSensitive: false,
+  ).firstMatch(text);
+  if (match == null) return null;
+  final quantity = match.group(1) == null
+      ? null
+      : DecimalFixed.tryParse(match.group(1)!.replaceAll(',', '.'));
+  if (quantity != null && !quantity.isPositive) return null;
+  final unit = ShelfPriceExtractor._unit(match.group(2)!);
+  if (unit == null) return null;
+  return (
+    unit: unit,
+    quantity: quantity,
+    perUnit:
+        quantity == null ||
+        text.contains('/') ||
+        RegExp(r'birim|unit', caseSensitive: false).hasMatch(text),
+  );
+}
+
+/// Only nearby boxes with one unambiguous price may share a separate unit
+/// label. Plain OCR order or a distant product's unit never supplies a basis.
+List<PriceCandidate> _attachSeparateBases(
+  List<PriceCandidate> candidates,
+  Map<PriceCandidate, OcrLine> origins,
+  Set<PriceCandidate> explicit,
+  List<OcrLine> lines,
+) {
+  final assignments =
+      <PriceCandidate, List<({OcrLine line, _ShelfBasis basis})>>{};
+  for (final line in lines) {
+    final basis = _separateBasis(line.text);
+    if (basis == null) continue;
+    final nearby = <({PriceCandidate candidate, double distance})>[];
+    for (final candidate in candidates) {
+      final origin = origins[candidate]!;
+      final distance = _basisDistance(origin, line);
+      if (distance != null) {
+        nearby.add((candidate: candidate, distance: distance));
+      }
+    }
+    nearby.sort((a, b) => a.distance.compareTo(b.distance));
+    if (nearby.isEmpty ||
+        nearby.length > 1 && nearby[1].distance - nearby[0].distance < 0.15) {
+      continue;
+    }
+    // An already-qualified nearer price still owns its adjacent label; do
+    // not redirect that evidence to a farther unqualified amount.
+    if (explicit.contains(nearby.first.candidate)) continue;
+    assignments.putIfAbsent(nearby.first.candidate, () => []).add((
+      line: line,
+      basis: basis,
+    ));
+  }
+  final result = <PriceCandidate>[];
+  for (final candidate in candidates) {
+    final labels = assignments[candidate];
+    if (labels == null || labels.map((l) => l.basis).toSet().length != 1) {
+      result.add(candidate);
+      continue;
+    }
+    final basis = labels.first.basis;
+    result.add(
+      PriceCandidate(
+        value: candidate.value,
+        currencyCode: candidate.currencyCode,
+        sourceLine: [
+          candidate.sourceLine,
+          ...labels.map((l) => l.line.text),
+        ].join('\n'),
+        confidence: candidate.confidence,
+        isUnitPrice: basis.perUnit,
+        productName: candidate.productName,
+        unitCode: basis.unit,
+        priceQuantity: basis.quantity,
+      ),
+    );
+  }
+  return result;
+}
+
+double? _basisDistance(OcrLine price, OcrLine label) {
+  for (final box in [price, label]) {
+    if ([
+          box.boundingBoxTop,
+          box.boundingBoxLeft,
+          box.boundingBoxHeight,
+          box.boundingBoxWidth,
+        ].any((n) => n == null || !n.isFinite) ||
+        box.boundingBoxHeight! <= 0 ||
+        box.boundingBoxWidth! <= 0) {
+      return null;
+    }
+  }
+  if (identical(price, label)) return null;
+  final h = math.max(price.boundingBoxHeight!, label.boundingBoxHeight!);
+  final xOverlap =
+      math.min(
+        price.boundingBoxLeft! + price.boundingBoxWidth!,
+        label.boundingBoxLeft! + label.boundingBoxWidth!,
+      ) -
+      math.max(price.boundingBoxLeft!, label.boundingBoxLeft!);
+  final yOverlap =
+      math.min(
+        price.boundingBoxTop! + price.boundingBoxHeight!,
+        label.boundingBoxTop! + label.boundingBoxHeight!,
+      ) -
+      math.max(price.boundingBoxTop!, label.boundingBoxTop!);
+  if (xOverlap <
+          math.min(price.boundingBoxWidth!, label.boundingBoxWidth!) * 0.25 &&
+      yOverlap <
+          math.min(price.boundingBoxHeight!, label.boundingBoxHeight!) * 0.5) {
+    return null;
+  }
+  final xGap = math.max(0.0, -xOverlap), yGap = math.max(0.0, -yOverlap);
+  if (xGap > h * 1.5 || yGap > h * 1.5) return null;
+  final centerY =
+      ((price.boundingBoxTop! + price.boundingBoxHeight! / 2) -
+              (label.boundingBoxTop! + label.boundingBoxHeight! / 2))
+          .abs();
+  return (xGap + yGap + centerY * 0.25) / h;
 }

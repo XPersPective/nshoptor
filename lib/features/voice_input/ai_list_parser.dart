@@ -141,17 +141,9 @@ class AiListParser {
   }
 
   List<ParsedItemCandidate> _local(String raw) {
-    final splitter = localeCode.startsWith('tr')
-        ? RegExp(r'(?<!\d),|,(?!\d)|[;\n]+|\s+ve\s+', caseSensitive: false)
-        : RegExp(
-            r'(?<!\d),|,(?!\d)|[;\n]+|\s+and\s+(?!a\s+half\b)',
-            caseSensitive: false,
-          );
     final parser = VoiceCommandParser(localeCode: localeCode);
     return [
-      for (final part in raw.split(splitter))
-        if (part.trim().isNotEmpty)
-          for (final item in parser.splitItems(part.trim())) parser.parse(item),
+      for (final item in parser.splitItems(raw)) parser.parse(item),
     ].where((c) => c.name.trim().isNotEmpty).toList();
   }
 }

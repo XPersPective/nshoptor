@@ -17,29 +17,25 @@ void main() {
     await closing;
   }
 
-  testWidgets('uygulama açılır; tr seçiliyken Türkçe slogan', (tester) async {
+  testWidgets('uygulama Türkçe liste eylemleriyle açılır', (tester) async {
     await tester.pumpWidget(
       NShoptorApp(db: db, fixedLocale: const Locale('tr')),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('lists_tools_button')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('lists_tool_summary')));
-    await tester.pumpAndSettle();
-    expect(find.text('Evdeki hesap çarşıya uyar.'), findsOneWidget);
+    expect(find.text('Yeni liste'), findsOneWidget);
+    expect(find.text('Fişten liste'), findsOneWidget);
+    expect(find.text('Listeler'), findsOneWidget);
     await disposeApp(tester);
   });
 
-  testWidgets('en seçiliyken İngilizce slogan', (tester) async {
+  testWidgets('uygulama İngilizce liste eylemleriyle açılır', (tester) async {
     await tester.pumpWidget(
       NShoptorApp(db: db, fixedLocale: const Locale('en')),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('lists_tools_button')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('lists_tool_summary')));
-    await tester.pumpAndSettle();
-    expect(find.text('Plan at home, match at checkout.'), findsOneWidget);
+    expect(find.text('New list'), findsOneWidget);
+    expect(find.text('From receipt'), findsOneWidget);
+    expect(find.text('Lists'), findsOneWidget);
     await disposeApp(tester);
   });
 }

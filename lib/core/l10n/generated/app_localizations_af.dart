@@ -606,6 +606,9 @@ class AppLocalizationsAf extends AppLocalizations {
   String get scanReceiptAction => 'Skandeer resiept';
 
   @override
+  String get fromReceiptListButton => 'Uit strokie';
+
+  @override
   String get shelfLabelAction => 'Prys vanaf raketiket';
 
   @override
@@ -1060,7 +1063,47 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Geskakelde bonlyne vervang bestaande aankope; ongeskakelde lyne word bygevoeg.';
+      'Items sonder ’n prys word ingevul. Items met ’n markprys word as afsonderlike aankope bygevoeg.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Voeg die winkel, datum, tyd en kwitansienommer by die volgende foto in.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Neem die volgende deel af met ’n paar items wat oorvleuel en die eindtotaal.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Hierdie foto kon nie aan die kwitansie geheg word nie. Neem dit weer met oorvleuelende items van dieselfde kwitansie.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Kwitansie as konsep gestoor. Jy kan later voortgaan.';
+
+  @override
+  String get receiptContinueAction => 'Gaan voort met kwitansie';
+
+  @override
+  String get receiptDraftsTitle => 'Onvoltooide kwitansies';
+
+  @override
+  String get receiptDuplicate => 'Hierdie kwitansie is reeds bygevoeg.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Die items stem nie met die kwitansietotaal ooreen nie. Maak seker die hele kwitansie is sigbaar.';
+
+  @override
+  String get receiptSaveDraftAction => 'Bêre vir later';
+
+  @override
+  String get receiptResolveLines =>
+      'Aanvaar of ignoreer elke item voordat jy stoor.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Slegs die gekose items word bygevoeg. Hierdie kwitansie word as ingevoer gemerk. Wil jy voortgaan?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1287,7 +1330,7 @@ class AppLocalizationsAf extends AppLocalizations {
       '’n Winkelprys merk die item as gekoop; 0 tel ook. Die tuisprys is opsioneel. Vee die winkelprys uit om die merk te verwyder.';
 
   @override
-  String get shoppingDateLabel => 'Inkopiedatum (opsioneel)';
+  String get shoppingDateLabel => 'Inkopiedatum';
 
   @override
   String get shoppingDateNone => 'Geen datum gekies nie';
@@ -1306,4 +1349,28 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get listSortManual => 'Handmatige volgorde';
+
+  @override
+  String get imageCameraAction => 'Neem foto';
+
+  @override
+  String get imageGalleryAction => 'Kies uit foto\'s';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kon nie die kamera of foto\'s oopmaak nie. Gaan toegang na en probeer weer.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Die foto kon nie verwerk word nie. Probeer \'n ander foto.';
+
+  @override
+  String get receiptNoProducts =>
+      'Teks is gelees, maar geen items op die kwitansie is gevind nie. Sluit die items en totaal by die foto in.';
+
+  @override
+  String get keepAwakeOn => 'Skerm bly aan';
+
+  @override
+  String get keepAwakeOff => 'Skerm kan afskakel';
 }

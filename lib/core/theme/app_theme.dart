@@ -80,6 +80,14 @@ class AppTheme {
     final inputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(14),
     );
+    // M3's light blue primary is strong on a dark ocean surface. Keep its
+    // accessible dark foreground, with a little of the deeper container tone
+    // in filled actions (including Save); other palettes and branding stay put.
+    final softenOceanActions =
+        brightness == Brightness.dark && palette == AppPalette.ocean;
+    final filledActionColor = softenOceanActions
+        ? Color.lerp(scheme.primary, scheme.primaryContainer, 0.22)
+        : null;
     return base.copyWith(
       textTheme: textTheme,
       splashFactory: InkSparkle.splashFactory,
@@ -105,6 +113,8 @@ class AppTheme {
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
+          backgroundColor: filledActionColor,
+          foregroundColor: softenOceanActions ? scheme.onPrimary : null,
           minimumSize: const Size(64, 48),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           shape: stadium,

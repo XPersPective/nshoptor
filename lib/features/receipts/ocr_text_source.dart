@@ -5,6 +5,8 @@ class OcrLine {
     required this.text,
     this.boundingBoxTop,
     this.boundingBoxLeft,
+    this.boundingBoxHeight,
+    this.boundingBoxWidth,
   });
 
   final String text;
@@ -12,6 +14,8 @@ class OcrLine {
   /// Etiketteki konum: fiyat önceliği için kullanılır (üst-sol önce).
   final double? boundingBoxTop;
   final double? boundingBoxLeft;
+  final double? boundingBoxHeight;
+  final double? boundingBoxWidth;
 }
 
 class OcrScanResult {

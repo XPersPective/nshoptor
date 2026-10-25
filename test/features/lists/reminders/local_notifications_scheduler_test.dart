@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:timezone/timezone.dart' as tz;
 import 'package:nshoptor/features/lists/reminders/local_notifications_scheduler.dart';
 import 'package:nshoptor/features/lists/reminders/reminder_scheduler.dart';
 
@@ -117,6 +118,29 @@ void main() {
     });
     await scheduler.cancel(3);
     expect(calls.where((c) => c.method == 'initialize'), hasLength(2));
+  });
+
+  test('timezone changes preserve both distinct instants in the repeated DST hour', () async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    AndroidFlutterLocalNotificationsPlugin.registerWith();
+    final scheduler = LocalNotificationsScheduler();
+    await scheduler.cancel(99); // initialize timezone database without permission
+    addTearDown(() => tz.setLocalLocation(tz.UTC));
+    final instants = [DateTime.parse('2030-11-03T01:30:00-04:00'),
+      DateTime.parse('2030-11-03T01:30:00-05:00')];
+    for (final (i, at) in instants.indexed) {
+      tz.setLocalLocation(tz.getLocation(i == 0 ? 'America/New_York' : 'Asia/Tokyo'));
+      await scheduler.schedule(ScheduledReminder(id: i + 1, title: 'N', body: 'b', atUtc: at));
+    }
+    final scheduled = calls.where((c) => c.method == 'zonedSchedule').toList();
+    expect(scheduled, hasLength(2));
+    for (final (i, call) in scheduled.indexed) {
+      final arguments = call.arguments as Map;
+      expect(arguments['timeZoneName'], 'Etc/UTC');
+      expect(DateTime.parse(arguments['scheduledDateTimeISO8601'] as String).toUtc(), instants[i]);
+    }
+    expect(instants.last.difference(instants.first), const Duration(hours: 1));
+    expect(calls.where((c) => c.method.toLowerCase().contains('permission')), isEmpty);
   });
 
   test('Android falls back only for exact alarm permission and reports other errors', () async {

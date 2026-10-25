@@ -78,9 +78,9 @@ void main() {
   });
 
   group('migration', () {
-    test('fresh database uses schema 3 and all tables exist', () async {
+    test('fresh database uses schema 4 and all tables exist', () async {
       final version = await db.customSelect('PRAGMA user_version').getSingle();
-      expect(version.data['user_version'], 3);
+      expect(version.data['user_version'], 4);
       final tables = await db
           .customSelect("SELECT name FROM sqlite_master WHERE type='table'")
           .get();
@@ -126,6 +126,7 @@ void main() {
               ),
             );
         // Reconstruct the actual v2 column shape, then reopen the same file.
+        await _removeReceiptIdentitySchema(previous);
         await previous.customStatement(
           'ALTER TABLE purchase_entries DROP COLUMN pricing_input_mode',
         );
@@ -139,7 +140,7 @@ void main() {
         final version = await reopened
             .customSelect('PRAGMA user_version')
             .getSingle();
-        expect(version.data['user_version'], 3);
+        expect(version.data['user_version'], 4);
         final row =
             (await reopened.select(reopened.purchaseEntries).get()).single;
         expect(row.pricingInputMode, isNull);
@@ -158,6 +159,122 @@ void main() {
         expect(
           PurchaseEntry.fromJson(totalRow.toJson()).pricingInputMode,
           'lineTotal',
+        );
+      },
+    );
+
+    test(
+      'nonempty v3 file preserves receipts and purchase relations',
+      () async {
+        final dir = Directory.systemTemp.createTempSync('nshoptor-receipt-v3-');
+        final file = File('${dir.path}/v3.sqlite');
+        final previous = AppDatabase(NativeDatabase(file));
+        final listId = await previous
+            .into(previous.shoppingLists)
+            .insert(listRow());
+        final receiptId = await previous
+            .into(previous.receipts)
+            .insert(
+              ReceiptsCompanion.insert(
+                listId: Value(listId),
+                imagePaths: const Value(['legacy.jpg']),
+                rawOcrText: const Value('MARKET\nSUT 32,90\nTOPLAM 32,90'),
+                confirmedStore: const Value('Market'),
+                confirmedTotalMinorUnits: const Value(3290),
+                processingStatus: const Value('reviewed'),
+              ),
+            );
+        final candidateId = await previous
+            .into(previous.receiptCandidateLines)
+            .insert(
+              ReceiptCandidateLinesCompanion.insert(
+                receiptId: receiptId,
+                rawText: 'SUT 32,90',
+                parsedName: const Value('Süt'),
+                parsedLineTotalMinorUnits: const Value(3290),
+                reviewStatus: const Value('accepted'),
+              ),
+            );
+        final purchaseId = await previous
+            .into(previous.purchaseEntries)
+            .insert(
+              PurchaseEntriesCompanion.insert(
+                listId: listId,
+                receiptId: Value(receiptId),
+                name: 'Süt',
+                normalizedName: 'sut',
+                actualQuantity: '1',
+                actualUnitCode: 'piece',
+                actualUnitPrice: const Value('32.90'),
+                actualLineTotalMinorUnits: 3290,
+                pricingInputMode: const Value('lineTotal'),
+                source: const Value('receiptOcr'),
+              ),
+            );
+        final oldReceipt =
+            (await previous.select(previous.receipts).get()).single.toJson()
+              ..remove('documentNumber')
+              ..remove('identityKey')
+              ..remove('captureDataJson');
+        final oldCandidate =
+            (await previous.select(previous.receiptCandidateLines).get())
+                .single;
+        final oldPurchase =
+            (await previous.select(previous.purchaseEntries).get()).single;
+        await _removeReceiptIdentitySchema(previous);
+        await previous.customStatement('PRAGMA user_version = 3');
+        await previous.close();
+
+        final reopened = AppDatabase(NativeDatabase(file));
+        addTearDown(() async {
+          await reopened.close();
+          dir.deleteSync(recursive: true);
+        });
+        final migrated =
+            (await reopened.select(reopened.receipts).get()).single;
+        expect(migrated.id, receiptId);
+        expect(migrated.documentNumber, isNull);
+        expect(migrated.identityKey, isNull);
+        expect(migrated.captureDataJson, isNull);
+        final migratedJson = migrated.toJson()
+          ..remove('documentNumber')
+          ..remove('identityKey')
+          ..remove('captureDataJson');
+        expect(migratedJson, oldReceipt);
+        expect(
+          (await reopened.select(reopened.receiptCandidateLines).get()).single,
+          oldCandidate,
+        );
+        expect(oldCandidate.id, candidateId);
+        expect(
+          (await reopened.select(reopened.purchaseEntries).get()).single,
+          oldPurchase,
+        );
+        expect(oldPurchase.id, purchaseId);
+        final version = await reopened
+            .customSelect('PRAGMA user_version')
+            .getSingle();
+        expect(version.data['user_version'], 4);
+        final foreignKeyErrors = await reopened
+            .customSelect('PRAGMA foreign_key_check')
+            .get();
+        expect(foreignKeyErrors, isEmpty);
+        await reopened
+            .into(reopened.receipts)
+            .insert(
+              ReceiptsCompanion.insert(
+                identityKey: const Value('migrated-document'),
+              ),
+            );
+        await expectLater(
+          reopened
+              .into(reopened.receipts)
+              .insert(
+                ReceiptsCompanion.insert(
+                  identityKey: const Value('migrated-document'),
+                ),
+              ),
+          throwsException,
         );
       },
     );
@@ -281,4 +398,15 @@ void main() {
       expect(lines, isEmpty);
     });
   });
+}
+
+Future<void> _removeReceiptIdentitySchema(AppDatabase db) async {
+  await db.customStatement('DROP INDEX receipts_identity_unique');
+  for (final column in [
+    'document_number',
+    'identity_key',
+    'capture_data_json',
+  ]) {
+    await db.customStatement('ALTER TABLE receipts DROP COLUMN $column');
+  }
 }

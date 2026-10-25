@@ -608,6 +608,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get scanReceiptAction => 'Skanuj paragon';
 
   @override
+  String get fromReceiptListButton => 'Z paragonu';
+
+  @override
   String get shelfLabelAction => 'Cena z etykiety półkowej';
 
   @override
@@ -1060,7 +1063,47 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Połączone pozycje z paragonu zastępują istniejące zakupy; niepołączone pozycje są dodawane.';
+      'Uzupełniane są produkty bez ceny. Produkty z ceną rynkową są dodawane jako osobne zakupy.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Na następnym zdjęciu uwzględnij sklep, datę, godzinę i numer paragonu.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Sfotografuj następną część z kilkoma nachodzącymi na siebie produktami i końcową sumą.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Nie udało się połączyć tego zdjęcia. Zrób je ponownie, uwzględniając nachodzące na siebie produkty z tego samego paragonu.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Paragon zapisano jako wersję roboczą. Możesz wrócić do niego później.';
+
+  @override
+  String get receiptContinueAction => 'Kontynuuj paragon';
+
+  @override
+  String get receiptDraftsTitle => 'Niedokończone paragony';
+
+  @override
+  String get receiptDuplicate => 'Ten paragon został już dodany.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Suma produktów nie zgadza się z sumą na paragonie. Sprawdź, czy widać cały paragon.';
+
+  @override
+  String get receiptSaveDraftAction => 'Zapisz na później';
+
+  @override
+  String get receiptResolveLines =>
+      'Przed zapisaniem zaakceptuj lub zignoruj każdą pozycję.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Dodane zostaną tylko wybrane pozycje. Ten paragon zostanie oznaczony jako zaimportowany. Kontynuować?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1285,7 +1328,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'Cena w sklepie oznacza produkt jako kupiony; liczy się także 0. Cena domowa jest opcjonalna. Usuń cenę sklepową, aby usunąć zaznaczenie.';
 
   @override
-  String get shoppingDateLabel => 'Data zakupów (opcjonalna)';
+  String get shoppingDateLabel => 'Data zakupów';
 
   @override
   String get shoppingDateNone => 'Nie wybrano daty';
@@ -1304,4 +1347,28 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get listSortManual => 'Kolejność ręczna';
+
+  @override
+  String get imageCameraAction => 'Zrób zdjęcie';
+
+  @override
+  String get imageGalleryAction => 'Wybierz ze zdjęć';
+
+  @override
+  String get imageCaptureFailed =>
+      'Nie udało się otworzyć aparatu lub zdjęć. Sprawdź uprawnienie dostępu i spróbuj ponownie.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Nie udało się przetworzyć zdjęcia. Spróbuj innego zdjęcia.';
+
+  @override
+  String get receiptNoProducts =>
+      'Tekst został odczytany, ale nie znaleziono pozycji paragonu. Uwzględnij na zdjęciu pozycje i kwotę łączną.';
+
+  @override
+  String get keepAwakeOn => 'Ekran pozostaje włączony';
+
+  @override
+  String get keepAwakeOff => 'Ekran może się wyłączyć';
 }

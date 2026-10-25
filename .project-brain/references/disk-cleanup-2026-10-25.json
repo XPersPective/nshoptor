@@ -1,0 +1,111 @@
+{
+  "archive": "C:\\Users\\rubicon\\.codex\\archives\\nshoptor-test-caches-2026-10-25",
+  "state": "verified_copy",
+  "files": [
+    {
+      "path": "build-sa001-check\\native_assets\\windows\\native_assets.json",
+      "bytes": 202,
+      "sha256": "230ad6dec62fccb38ee6fd901e4b4925025fceaf9588171546eb3c281f34662e"
+    },
+    {
+      "path": "build-sa001-check\\native_assets\\windows\\sqlite3.dll",
+      "bytes": 1709056,
+      "sha256": "2bf39f2aadafdc59a90b260f582a8fccebc5b89eb94175fdbaa9148c1e1f084d"
+    },
+    {
+      "path": "build-sa001-check\\test_cache\\build-sa001-check\\ce8b395bacc4c6bdb43fbe2f2fa87006.cache.dill.track.dill",
+      "bytes": 91020000,
+      "sha256": "028377d71bb1e7cefec731668d70deb018992fafb1697a821fe3e0811be7c700"
+    },
+    {
+      "path": "build-sa010-check\\.last_build_id",
+      "bytes": 32,
+      "sha256": "11bfa2f87d80288d59e002716808997c0aca8ca959f2ac4d3145e07a763e34e8"
+    },
+    {
+      "path": "build-sa010-check\\native_assets\\windows\\native_assets.json",
+      "bytes": 202,
+      "sha256": "6041de1a7e6c8e633f1181b9847c9634432b3561dc8770ee24df37ac5136d935"
+    },
+    {
+      "path": "build-sa010-check\\native_assets\\windows\\sqlite3.dll",
+      "bytes": 1709056,
+      "sha256": "2bf39f2aadafdc59a90b260f582a8fccebc5b89eb94175fdbaa9148c1e1f084d"
+    },
+    {
+      "path": "build-sa010-check\\test_cache\\build-sa010-check\\089c91dc213c41c636605b50e437e9e6.cache.dill.track.dill",
+      "bytes": 91380856,
+      "sha256": "1223fdcaf68818a017facc59a5c5e967b91e3a89b5fb64ebdf223e78958f5887"
+    },
+    {
+      "path": "build-sa010-check\\test_cache\\build-sa010-check\\1c1e0b6eeb7a5e7c08f944b49c82c24b.cache.dill.track.dill",
+      "bytes": 91428992,
+      "sha256": "315cbbf8ee3aff42c3d4c29aafde8b20d52616b08b638501108767ea2feb6001"
+    },
+    {
+      "path": "build-sa010-check\\test_cache\\build-sa010-check\\4603421f4b2e49386a1278daefd5ff64.cache.dill.track.dill",
+      "bytes": 91340336,
+      "sha256": "c4901bedc040df6abf70f13551721a3f71ed3174e7d60828a1d845332e6401cc"
+    },
+    {
+      "path": "build-sa010-check\\test_cache\\build-sa010-check\\7cc7fc5f6220cfd8a601fb445b37de60.cache.dill.track.dill",
+      "bytes": 91379112,
+      "sha256": "8bd40410175e59a71604ba3c2036a89c00223a097d71734bf2e75538195f1bf5"
+    },
+    {
+      "path": "build-sa010-check\\test_cache\\build-sa010-check\\9214421a7f09955e0838212c89a364e9.cache.dill.track.dill",
+      "bytes": 91523208,
+      "sha256": "b415bc14e63bf1c4e5f9bde54d4c9e14d72deb0f7a9b67df05914e37a3b4d262"
+    },
+    {
+      "path": "build-sa010-check\\test_cache\\build-sa010-check\\dff0bfcbee2f742c7954e160c051e674.cache.dill.track.dill",
+      "bytes": 91428992,
+      "sha256": "62e203c8f16932dddd1ece26f1a57ebb866213c1adb84ee2a66ac562fb8126ef"
+    },
+    {
+      "path": "build-sa022-check4\\native_assets\\windows\\native_assets.json",
+      "bytes": 203,
+      "sha256": "7df8ce941cdf6f4f5447ba3385bd63b197549290f12a3579f17d62960baa8814"
+    },
+    {
+      "path": "build-sa022-check4\\native_assets\\windows\\sqlite3.dll",
+      "bytes": 1709056,
+      "sha256": "2bf39f2aadafdc59a90b260f582a8fccebc5b89eb94175fdbaa9148c1e1f084d"
+    },
+    {
+      "path": "build-sa022-check4\\test_cache\\build-sa022-check4\\ce8b395bacc4c6bdb43fbe2f2fa87006.cache.dill.track.dill",
+      "bytes": 91296472,
+      "sha256": "bc7021df58ebd8a7ba6d4b7dafb8dd6a05680831789478a61da76ed30e83e494"
+    },
+    {
+      "path": "build-sa022-check5\\native_assets\\windows\\native_assets.json",
+      "bytes": 203,
+      "sha256": "b0721267fe983dbd6e701dbe7eef59feb5ae4cc3c631882d6f3eebb1cfd562b4"
+    },
+    {
+      "path": "build-sa022-check5\\native_assets\\windows\\sqlite3.dll",
+      "bytes": 1709056,
+      "sha256": "2bf39f2aadafdc59a90b260f582a8fccebc5b89eb94175fdbaa9148c1e1f084d"
+    },
+    {
+      "path": "build-sa022-check5\\test_cache\\build-sa022-check5\\ce8b395bacc4c6bdb43fbe2f2fa87006.cache.dill.track.dill",
+      "bytes": 87078272,
+      "sha256": "f9f7755028f3f558e1a198b0b7601adf09d70908a3d327a1a76cbbcb437db658"
+    },
+    {
+      "path": "build-sa037-check\\native_assets\\windows\\native_assets.json",
+      "bytes": 202,
+      "sha256": "c0d8c1626acb1e00945514c26c6173e1559293d8ad76e08e77e8e0b0cb7673a4"
+    },
+    {
+      "path": "build-sa037-check\\native_assets\\windows\\sqlite3.dll",
+      "bytes": 1709056,
+      "sha256": "2bf39f2aadafdc59a90b260f582a8fccebc5b89eb94175fdbaa9148c1e1f084d"
+    },
+    {
+      "path": "build-sa037-check\\test_cache\\build-sa037-check\\0bd0582eda648a149e372aaa87eb4bab.cache.dill.track.dill",
+      "bytes": 92218992,
+      "sha256": "3e1f4930afdee8d99bdb93e9f7eaa80edd0c63dacb3e0275685d95e893d274f9"
+    }
+  ]
+}

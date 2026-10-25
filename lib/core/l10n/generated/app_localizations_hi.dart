@@ -607,6 +607,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get scanReceiptAction => 'रसीद स्कैन करें';
 
   @override
+  String get fromReceiptListButton => 'रसीद से सूची';
+
+  @override
   String get shelfLabelAction => 'शेल्फ लेबल से कीमत';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'लिंक किए गए रसीद पंक्तियाँ मौजूदा खरीदों को प्रतिस्थापित करती हैं; अनलिंक पंक्तियाँ जोड़ी जाती हैं।';
+      'बिना कीमत वाली वस्तुओं की कीमत भर दी जाएगी। जिनकी बाजार कीमत पहले से है, उन्हें अलग खरीद के रूप में जोड़ा जाएगा।';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'अगली फ़ोटो में दुकान, तारीख, समय और रसीद नंबर शामिल करें।';
+
+  @override
+  String get receiptIncompleteTail =>
+      'अगले हिस्से की फ़ोटो लें, जिसमें कुछ ओवरलैप होती वस्तुएँ और अंतिम कुल दिखे।';
+
+  @override
+  String get receiptContinuationRejected =>
+      'इस फ़ोटो को रसीद से जोड़ा नहीं जा सका। उसी रसीद की ओवरलैप होती वस्तुओं के साथ फिर से फ़ोटो लें।';
+
+  @override
+  String get receiptDraftSaved =>
+      'रसीद ड्राफ़्ट के रूप में सहेजी गई। आप बाद में जारी रख सकते हैं।';
+
+  @override
+  String get receiptContinueAction => 'रसीद जारी रखें';
+
+  @override
+  String get receiptDraftsTitle => 'अधूरी रसीदें';
+
+  @override
+  String get receiptDuplicate => 'यह रसीद पहले ही जोड़ी जा चुकी है।';
+
+  @override
+  String get receiptTotalMismatch =>
+      'वस्तुओं का योग रसीद के कुल से मेल नहीं खाता। जाँचें कि पूरी रसीद दिखाई दे रही है।';
+
+  @override
+  String get receiptSaveDraftAction => 'बाद के लिए सहेजें';
+
+  @override
+  String get receiptResolveLines =>
+      'सहेजने से पहले हर आइटम स्वीकार करें या अनदेखा करें।';
+
+  @override
+  String get receiptPartialConfirm =>
+      'केवल चुने गए आइटम जोड़े जाएंगे। इस रसीद को आयात किया हुआ चिह्नित किया जाएगा। जारी रखें?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1287,7 +1330,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'दुकान की कीमत भरने पर सामान खरीदा हुआ माना जाता है; 0 भी मान्य है। घर की कीमत वैकल्पिक है। निशान हटाने के लिए दुकान की कीमत मिटाएँ।';
 
   @override
-  String get shoppingDateLabel => 'खरीदारी की तारीख (वैकल्पिक)';
+  String get shoppingDateLabel => 'खरीदारी की तारीख';
 
   @override
   String get shoppingDateNone => 'कोई तारीख नहीं चुनी गई';
@@ -1306,4 +1349,28 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get listSortManual => 'खुद क्रम लगाएँ';
+
+  @override
+  String get imageCameraAction => 'फ़ोटो लें';
+
+  @override
+  String get imageGalleryAction => 'फ़ोटो में से चुनें';
+
+  @override
+  String get imageCaptureFailed =>
+      'कैमरा या फ़ोटो नहीं खोले जा सके। ऐक्सेस की अनुमति जाँचें और फिर से कोशिश करें।';
+
+  @override
+  String get imageRecognitionFailed =>
+      'फ़ोटो प्रोसेस नहीं की जा सकी। किसी दूसरी फ़ोटो से कोशिश करें।';
+
+  @override
+  String get receiptNoProducts =>
+      'टेक्स्ट पढ़ लिया गया, लेकिन रसीद के सामान नहीं मिले। फ़ोटो में सामान और कुल रकम शामिल करें।';
+
+  @override
+  String get keepAwakeOn => 'स्क्रीन चालू रहेगी';
+
+  @override
+  String get keepAwakeOff => 'स्क्रीन बंद हो सकती है';
 }

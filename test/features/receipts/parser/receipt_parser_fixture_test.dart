@@ -119,7 +119,7 @@ void main() {
       expect(result.subtotalMinor, 1500);
       expect(result.taxMinor, 120);
       expect(result.totalMinor, 1620); // 'ara' değil genel toplam
-      expect(ReceiptParseResult.parserVersion, 1);
+      expect(ReceiptParseResult.parserVersion, 2);
     });
 
     test('fiş toplamı uzlaştırma farkı raporlanır (gizlice silinmez)',

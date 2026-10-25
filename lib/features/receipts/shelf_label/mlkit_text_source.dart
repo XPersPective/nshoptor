@@ -5,8 +5,9 @@ import '../ocr_text_source.dart';
 /// ML Kit metin tanıma adaptörü (spec §6.9: bundled Latin model, ağdan model
 /// indirmesi yok; internetsiz çalışır). Native kaynak [dispose] ile kapatılır.
 class MlKitTextSource implements OcrTextSource {
-  final TextRecognizer _recognizer =
-      TextRecognizer(script: TextRecognitionScript.latin);
+  final TextRecognizer _recognizer = TextRecognizer(
+    script: TextRecognitionScript.latin,
+  );
 
   @override
   Future<OcrScanResult> scan(String imagePath) async {
@@ -20,13 +21,12 @@ class MlKitTextSource implements OcrTextSource {
               text: line.text,
               boundingBoxTop: line.boundingBox.top.toDouble(),
               boundingBoxLeft: line.boundingBox.left.toDouble(),
+              boundingBoxHeight: line.boundingBox.height.toDouble(),
+              boundingBoxWidth: line.boundingBox.width.toDouble(),
             ),
       ],
     );
   }
 
-  void dispose() {
-    _recognizer.close();
-  }
-
+  Future<void> dispose() => _recognizer.close();
 }

@@ -607,6 +607,9 @@ class AppLocalizationsLt extends AppLocalizations {
   String get scanReceiptAction => 'Nuskenuoti kvitą';
 
   @override
+  String get fromReceiptListButton => 'Iš čekio';
+
+  @override
   String get shelfLabelAction => 'Kaina nuo lentynos etiketės';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Susietos čekio eilutės pakeičia esamus pirkinius; nesusietos eilutės pridedamos.';
+      'Prekių be kainos kaina užpildoma. Prekės su rinkos kaina pridedamos kaip atskiri pirkimai.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Kitoje nuotraukoje nurodykite parduotuvę, datą, laiką ir kvito numerį.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Nufotografuokite kitą dalį, kad matytųsi persidengiančios prekės ir galutinė suma.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Šios nuotraukos nepavyko sujungti. Fotografuokite iš naujo, kad persidengtų to paties kvito prekės.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Kvitas išsaugotas kaip juodraštis. Galėsite tęsti vėliau.';
+
+  @override
+  String get receiptContinueAction => 'Tęsti kvitą';
+
+  @override
+  String get receiptDraftsTitle => 'Neužbaigti kvitai';
+
+  @override
+  String get receiptDuplicate => 'Šis kvitas jau pridėtas.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Prekių suma nesutampa su kvito suma. Patikrinkite, ar matomas visas kvitas.';
+
+  @override
+  String get receiptSaveDraftAction => 'Išsaugoti vėlesniam laikui';
+
+  @override
+  String get receiptResolveLines =>
+      'Prieš išsaugodami priimkite arba ignoruokite kiekvieną prekę.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Bus pridėtos tik pasirinktos prekės. Šis kvitas bus pažymėtas kaip importuotas. Tęsti?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1289,7 +1332,7 @@ class AppLocalizationsLt extends AppLocalizations {
       'Parduotuvės kaina pažymi prekę kaip nupirktą; tinka ir 0. Namų kaina neprivaloma. Ištrinkite parduotuvės kainą, kad pašalintumėte varnelę.';
 
   @override
-  String get shoppingDateLabel => 'Apsipirkimo data (neprivaloma)';
+  String get shoppingDateLabel => 'Apsipirkimo data';
 
   @override
   String get shoppingDateNone => 'Data nepasirinkta';
@@ -1308,4 +1351,28 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get listSortManual => 'Rankinė tvarka';
+
+  @override
+  String get imageCameraAction => 'Fotografuoti';
+
+  @override
+  String get imageGalleryAction => 'Pasirinkti iš nuotraukų';
+
+  @override
+  String get imageCaptureFailed =>
+      'Nepavyko atidaryti kameros arba nuotraukų. Patikrinkite prieigos leidimą ir bandykite dar kartą.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Nepavyko apdoroti nuotraukos. Pabandykite kitą nuotrauką.';
+
+  @override
+  String get receiptNoProducts =>
+      'Tekstas perskaitytas, bet kvito prekių nerasta. Į nuotrauką įtraukite prekes ir bendrą sumą.';
+
+  @override
+  String get keepAwakeOn => 'Ekranas lieka įjungtas';
+
+  @override
+  String get keepAwakeOff => 'Ekranas gali išsijungti';
 }

@@ -605,6 +605,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanReceiptAction => 'Scan receipt';
 
   @override
+  String get fromReceiptListButton => 'From receipt';
+
+  @override
   String get shelfLabelAction => 'Price from shelf label';
 
   @override
@@ -1056,7 +1059,47 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Linked receipt lines replace existing purchases; unlinked lines are added.';
+      'Unpriced items are filled in. Items that already have a market price are added as separate purchases.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Include the store, date, time and receipt number in the next photo.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Photograph the next section with a few overlapping items and the final total.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'This photo could not be joined. Retake it with overlapping items from the same receipt.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Receipt saved as a draft. You can continue later.';
+
+  @override
+  String get receiptContinueAction => 'Continue receipt';
+
+  @override
+  String get receiptDraftsTitle => 'Unfinished receipts';
+
+  @override
+  String get receiptDuplicate => 'This receipt has already been added.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'The items do not match the receipt total. Check that the whole receipt is visible.';
+
+  @override
+  String get receiptSaveDraftAction => 'Save for later';
+
+  @override
+  String get receiptResolveLines =>
+      'Accept or ignore every item before saving.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Only the selected items will be added. This receipt will be marked as imported. Continue?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1281,7 +1324,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'A market price marks the item purchased; 0 counts too. The home price is optional. Clear the market price to uncheck the item.';
 
   @override
-  String get shoppingDateLabel => 'Shopping date (optional)';
+  String get shoppingDateLabel => 'Shopping date';
 
   @override
   String get shoppingDateNone => 'No date selected';
@@ -1300,4 +1343,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get listSortManual => 'Manual order';
+
+  @override
+  String get imageCameraAction => 'Take photo';
+
+  @override
+  String get imageGalleryAction => 'Choose from photos';
+
+  @override
+  String get imageCaptureFailed =>
+      'Could not open the camera or photos. Check access and try again.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'The photo could not be processed. Try another photo.';
+
+  @override
+  String get receiptNoProducts =>
+      'Text was read, but no receipt items were found. Include the items and total in the photo.';
+
+  @override
+  String get keepAwakeOn => 'Screen stays on';
+
+  @override
+  String get keepAwakeOff => 'Screen can turn off';
 }

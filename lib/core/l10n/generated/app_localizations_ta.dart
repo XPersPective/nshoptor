@@ -607,6 +607,9 @@ class AppLocalizationsTa extends AppLocalizations {
   String get scanReceiptAction => 'ரசீதை ஸ்கேன் செய்';
 
   @override
+  String get fromReceiptListButton => 'ரசீதிலிருந்து';
+
+  @override
   String get shelfLabelAction => 'தொகுப்பு லேபிலில் இருந்து விலை';
 
   @override
@@ -1065,7 +1068,47 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'இணைக்கப்பட்ட ரசீது வரிகள் உள்ள வாங்கல்களை மாற்றும்; இணைக்கப்படாத வரிகள் சேர்க்கப்படும்.';
+      'விலை இல்லாத பொருட்களின் விலை நிரப்பப்படும். சந்தை விலை உள்ளவை தனித்தனி வாங்குதல்களாக சேர்க்கப்படும்.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'அடுத்த படத்தில் கடை, தேதி, நேரம் மற்றும் ரசீது எண்ணைச் சேர்க்கவும்.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'சில பொருட்கள் ஒன்றின் மேல் ஒன்று தெரியும் வகையிலும் இறுதி மொத்தத்துடனும் அடுத்த பகுதியைப் படம் எடுக்கவும்.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'இந்தப் படத்தை இணைக்க முடியவில்லை. அதே ரசீதின் பொருட்கள் ஒன்றின் மேல் ஒன்று தெரியும் வகையில் மீண்டும் எடுக்கவும்.';
+
+  @override
+  String get receiptDraftSaved =>
+      'ரசீது வரைவு ஆகச் சேமிக்கப்பட்டது. பின்னர் தொடரலாம்.';
+
+  @override
+  String get receiptContinueAction => 'ரசீதைத் தொடரவும்';
+
+  @override
+  String get receiptDraftsTitle => 'முடிக்கப்படாத ரசீதுகள்';
+
+  @override
+  String get receiptDuplicate => 'இந்த ரசீது ஏற்கனவே சேர்க்கப்பட்டுள்ளது.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'பொருட்களின் தொகை ரசீதின் மொத்தத்துடன் பொருந்தவில்லை. முழு ரசீதும் தெரிகிறதா எனச் சரிபார்க்கவும்.';
+
+  @override
+  String get receiptSaveDraftAction => 'பின்னர் சேமிக்கவும்';
+
+  @override
+  String get receiptResolveLines =>
+      'சேமிப்பதற்கு முன் ஒவ்வொரு பொருளையும் ஏற்கவும் அல்லது புறக்கணிக்கவும்.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'தேர்ந்தெடுக்கப்பட்ட பொருட்கள் மட்டுமே சேர்க்கப்படும். இந்த ரசீது இறக்குமதி செய்யப்பட்டதாகக் குறிக்கப்படும். தொடரவா?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1294,7 +1337,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'கடை விலையை உள்ளிட்டால் பொருள் வாங்கியதாகக் குறிக்கப்படும்; 0-வும் செல்லுபடியாகும். வீட்டு விலை விருப்பமானது. குறியை நீக்க கடை விலையை அழிக்கவும்.';
 
   @override
-  String get shoppingDateLabel => 'கடைப்பயண தேதி (விருப்பம்)';
+  String get shoppingDateLabel => 'கடைப்பயண தேதி';
 
   @override
   String get shoppingDateNone => 'தேதி தேர்ந்தெடுக்கப்படவில்லை';
@@ -1313,4 +1356,28 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get listSortManual => 'கைமுறை வரிசை';
+
+  @override
+  String get imageCameraAction => 'படம் எடுக்கவும்';
+
+  @override
+  String get imageGalleryAction => 'படங்களிலிருந்து தேர்ந்தெடுக்கவும்';
+
+  @override
+  String get imageCaptureFailed =>
+      'கேமரா அல்லது படங்களைத் திறக்க முடியவில்லை. அணுகல் அனுமதியைச் சரிபார்த்து மீண்டும் முயலவும்.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'படத்தைச் செயலாக்க முடியவில்லை. வேறொரு படத்தை முயலவும்.';
+
+  @override
+  String get receiptNoProducts =>
+      'உரை படிக்கப்பட்டது, ஆனால் ரசீதிலுள்ள பொருட்கள் கண்டறியப்படவில்லை. பொருட்களும் மொத்தத் தொகையும் படத்தில் இருக்கும்படி எடுக்கவும்.';
+
+  @override
+  String get keepAwakeOn => 'திரை தொடர்ந்து இயங்கும்';
+
+  @override
+  String get keepAwakeOff => 'திரை அணைக்கப்படலாம்';
 }

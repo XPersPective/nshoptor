@@ -607,6 +607,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get scanReceiptAction => 'Kassenbon scannen';
 
   @override
+  String get fromReceiptListButton => 'Aus Kassenbon';
+
+  @override
   String get shelfLabelAction => 'Preis vom Regaletikett';
 
   @override
@@ -1062,7 +1065,47 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Verknüpfte Belegzeilen ersetzen bestehende Einkäufe; nicht verknüpfte Zeilen werden hinzugefügt.';
+      'Artikel ohne Preis werden ergänzt. Artikel mit bereits vorhandenem Marktpreis werden als separate Käufe hinzugefügt.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Füge Geschäft, Datum, Uhrzeit und Belegnummer in das nächste Foto ein.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotografiere den nächsten Abschnitt mit einigen überlappenden Artikeln und dem Endbetrag.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Dieses Foto konnte nicht mit dem Beleg verbunden werden. Nimm es mit überlappenden Artikeln desselben Belegs erneut auf.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Beleg als Entwurf gespeichert. Du kannst später fortfahren.';
+
+  @override
+  String get receiptContinueAction => 'Beleg fortsetzen';
+
+  @override
+  String get receiptDraftsTitle => 'Unfertige Belege';
+
+  @override
+  String get receiptDuplicate => 'Dieser Beleg wurde bereits hinzugefügt.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Die Artikel stimmen nicht mit dem Gesamtbetrag des Belegs überein. Prüfe, ob der gesamte Beleg zu sehen ist.';
+
+  @override
+  String get receiptSaveDraftAction => 'Für später speichern';
+
+  @override
+  String get receiptResolveLines =>
+      'Akzeptiere oder ignoriere jeden Artikel vor dem Speichern.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Nur die ausgewählten Artikel werden hinzugefügt. Dieser Beleg wird als importiert markiert. Fortfahren?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1288,7 +1331,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ein Ladenpreis markiert den Artikel als gekauft; auch 0 zählt. Der Preis zu Hause ist optional. Lösche den Ladenpreis, um das Häkchen zu entfernen.';
 
   @override
-  String get shoppingDateLabel => 'Einkaufsdatum (optional)';
+  String get shoppingDateLabel => 'Einkaufsdatum';
 
   @override
   String get shoppingDateNone => 'Kein Datum ausgewählt';
@@ -1307,4 +1350,28 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get listSortManual => 'Manuelle Reihenfolge';
+
+  @override
+  String get imageCameraAction => 'Foto aufnehmen';
+
+  @override
+  String get imageGalleryAction => 'Aus Fotos auswählen';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kamera oder Fotos konnten nicht geöffnet werden. Prüfe die Zugriffsberechtigung und versuche es erneut.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Das Foto konnte nicht verarbeitet werden. Versuche es mit einem anderen Foto.';
+
+  @override
+  String get receiptNoProducts =>
+      'Der Text wurde gelesen, aber es wurden keine Kassenbonartikel gefunden. Nimm die Artikel und den Gesamtbetrag mit auf das Foto.';
+
+  @override
+  String get keepAwakeOn => 'Bildschirm bleibt eingeschaltet';
+
+  @override
+  String get keepAwakeOff => 'Bildschirm kann sich ausschalten';
 }

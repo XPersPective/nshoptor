@@ -12,6 +12,7 @@ import 'package:nshoptor/features/lists/item_repository.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/starter_categories.dart';
 import 'package:nshoptor/features/receipts/shelf_label/price_candidates.dart';
+import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
 import 'package:nshoptor/features/voice_input/parser/parsed_item_candidate.dart';
 
@@ -402,6 +403,113 @@ void main() {
       final item = (await db.select(db.plannedItems).get()).single;
       expect(item.plannedLineTotalMinorUnits, 1800);
       expect(item.pricingInputMode, 'unitPrice');
+      await close(tester);
+    },
+  );
+
+  testWidgets(
+    'photo product label does not replace a name already entered by the user',
+    (tester) async {
+      await open(
+        tester,
+        photo: PriceCandidate(
+          value: DecimalFixed.fromInt(75),
+          currencyCode: 'TRY',
+          sourceLine: '75 TL/adet',
+          confidence: 'high',
+          isUnitPrice: true,
+          productName: 'WRONGPRODUCT',
+          unitCode: UnitCode.adet,
+        ),
+      );
+      await values(tester, '2', UnitCode.adet, '35', '40');
+      await tester.tap(find.byKey(const Key('item_scan_actual_price')));
+      await tester.pumpAndSettle();
+      expect(text(tester, 'item_name_field'), 'Ürün');
+      expect(text(tester, 'item_price_field'), '35');
+      expect(text(tester, 'item_actual_price_field'), '75');
+      await save(tester);
+
+      final item = (await db.select(db.plannedItems).get()).single;
+      final entry = (await db.select(db.purchaseEntries).get()).single;
+      expect(item.name, 'Ürün');
+      expect(item.plannedLineTotalMinorUnits, 3500);
+      expect(entry.name, 'Ürün');
+      expect(DecimalFixed.parse(entry.actualUnitPrice!), DecimalFixed.fromInt(75));
+      expect(entry.actualLineTotalMinorUnits, 15000);
+      await close(tester);
+    },
+  );
+
+  testWidgets(
+    'photo product label fills an empty new name with Turkish capitalization',
+    (tester) async {
+      await open(
+        tester,
+        photo: PriceCandidate(
+          value: DecimalFixed.fromInt(25),
+          currencyCode: 'TRY',
+          sourceLine: '25 TL',
+          confidence: 'high',
+          isUnitPrice: false,
+          productName: 'istanbul süt',
+        ),
+      );
+      await unit(tester, UnitCode.adet);
+      await enter(tester, 'item_quantity_field', '1');
+      await enter(tester, 'item_price_field', '12');
+      await tester.tap(find.byKey(const Key('item_scan_actual_price')));
+      await tester.pumpAndSettle();
+      expect(text(tester, 'item_name_field'), 'İstanbul süt');
+      expect(text(tester, 'item_actual_price_field'), '25');
+      await save(tester);
+
+      final item = (await db.select(db.plannedItems).get()).single;
+      final entry = (await db.select(db.purchaseEntries).get()).single;
+      expect(item.name, 'İstanbul süt');
+      expect(item.plannedLineTotalMinorUnits, 1200);
+      expect(entry.name, 'İstanbul süt');
+      expect(entry.actualLineTotalMinorUnits, 2500);
+      await close(tester);
+    },
+  );
+
+  testWidgets(
+    'separate per-100g shelf basis scales 400g to 80 with canonical unit price',
+    (tester) async {
+      final candidate = ShelfPriceExtractor().extract([
+        OcrLine(
+          text: '20 TL',
+          boundingBoxTop: 0.10,
+          boundingBoxLeft: 0.10,
+          boundingBoxHeight: 0.05,
+          boundingBoxWidth: 0.30,
+        ),
+        OcrLine(
+          text: '/100g',
+          boundingBoxTop: 0.17,
+          boundingBoxLeft: 0.10,
+          boundingBoxHeight: 0.05,
+          boundingBoxWidth: 0.30,
+        ),
+      ]).single;
+      expect(candidate.priceQuantity, DecimalFixed.fromInt(100));
+      expect(candidate.unitCode, UnitCode.gram);
+      expect(candidate.isUnitPrice, isTrue);
+
+      await open(tester, photo: candidate);
+      await values(tester, '400', UnitCode.gram, '100', '100');
+      await tester.tap(find.byKey(const Key('item_scan_actual_price')));
+      await tester.pumpAndSettle();
+      expect(text(tester, 'item_actual_price_field'), '200');
+      await save(tester);
+
+      final entry = (await db.select(db.purchaseEntries).get()).single;
+      expect(entry.actualQuantity, '400');
+      expect(entry.actualUnitCode, 'gram');
+      expect(entry.pricingInputMode, 'unitPrice');
+      expect(DecimalFixed.parse(entry.actualUnitPrice!), DecimalFixed.parse('0.2'));
+      expect(entry.actualLineTotalMinorUnits, 8000);
       await close(tester);
     },
   );

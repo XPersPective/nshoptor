@@ -607,6 +607,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get scanReceiptAction => 'Skeni risiti';
 
   @override
+  String get fromReceiptListButton => 'Kutoka kwenye risiti';
+
+  @override
   String get shelfLabelAction => 'Bei kutoka kwenye lebo ya rafu';
 
   @override
@@ -1060,7 +1063,47 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Mistari ya risiti iliyounganishwa inabadilisha ununuzi uliopo; mistari isiyo yaunganishwa inaongezwa.';
+      'Bidhaa zisizo na bei hujazwa. Zilizo na bei ya sokoni huongezwa kama manunuzi tofauti.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Jumuisha duka, tarehe, saa na nambari ya risiti kwenye picha inayofuata.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Piga picha ya sehemu inayofuata ikiwa na bidhaa kadhaa zinazopishana na jumla ya mwisho.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Picha hii haikuweza kuunganishwa. Piga tena huku bidhaa za risiti hiyo hiyo zikifunikana.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Risiti imehifadhiwa kama rasimu. Unaweza kuendelea baadaye.';
+
+  @override
+  String get receiptContinueAction => 'Endelea na risiti';
+
+  @override
+  String get receiptDraftsTitle => 'Risiti ambazo hazijakamilika';
+
+  @override
+  String get receiptDuplicate => 'Risiti hii tayari imeongezwa.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Jumla ya bidhaa hailingani na jumla ya risiti. Hakikisha risiti nzima inaonekana.';
+
+  @override
+  String get receiptSaveDraftAction => 'Hifadhi kwa baadaye';
+
+  @override
+  String get receiptResolveLines =>
+      'Kubali au puuza kila bidhaa kabla ya kuhifadhi.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Bidhaa zilizochaguliwa pekee ndizo zitaongezwa. Risiti hii itawekwa alama kuwa imeingizwa. Endelea?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1285,7 +1328,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'Bei ya dukani huweka alama kuwa bidhaa imenunuliwa; 0 pia inakubalika. Bei ya nyumbani si lazima. Futa bei ya dukani kuondoa alama.';
 
   @override
-  String get shoppingDateLabel => 'Tarehe ya ununuzi (si lazima)';
+  String get shoppingDateLabel => 'Tarehe ya ununuzi';
 
   @override
   String get shoppingDateNone => 'Hakuna tarehe iliyochaguliwa';
@@ -1304,4 +1347,28 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get listSortManual => 'Panga mwenyewe';
+
+  @override
+  String get imageCameraAction => 'Piga picha';
+
+  @override
+  String get imageGalleryAction => 'Chagua kutoka kwenye picha';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kamera au picha hazikuweza kufunguliwa. Angalia ruhusa ya ufikiaji kisha ujaribu tena.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Picha haikuweza kuchakatwa. Jaribu picha nyingine.';
+
+  @override
+  String get receiptNoProducts =>
+      'Maandishi yalisomwa, lakini bidhaa za risiti hazikupatikana. Jumuisha bidhaa na jumla ya malipo kwenye picha.';
+
+  @override
+  String get keepAwakeOn => 'Skrini hubaki imewashwa';
+
+  @override
+  String get keepAwakeOff => 'Skrini inaweza kuzimika';
 }

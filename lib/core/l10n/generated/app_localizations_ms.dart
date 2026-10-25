@@ -607,6 +607,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get scanReceiptAction => 'Imbas resit';
 
   @override
+  String get fromReceiptListButton => 'Daripada resit';
+
+  @override
   String get shelfLabelAction => 'Harga dari label rak';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Baris resit yang disambungkan menggantikan pembelian sedia ada; baris yang tidak disambungkan akan ditambah.';
+      'Harga item tanpa harga akan diisi. Item yang sudah ada harga pasaran ditambah sebagai pembelian berasingan.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Sertakan kedai, tarikh, masa dan nombor resit dalam foto seterusnya.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Ambil foto bahagian seterusnya dengan beberapa item bertindih dan jumlah akhir.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Foto ini tidak dapat digabungkan. Ambil semula dengan item bertindih daripada resit yang sama.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Resit disimpan sebagai draf. Anda boleh sambung kemudian.';
+
+  @override
+  String get receiptContinueAction => 'Sambung resit';
+
+  @override
+  String get receiptDraftsTitle => 'Resit belum selesai';
+
+  @override
+  String get receiptDuplicate => 'Resit ini sudah ditambah.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Jumlah item tidak sepadan dengan jumlah resit. Pastikan seluruh resit kelihatan.';
+
+  @override
+  String get receiptSaveDraftAction => 'Simpan untuk kemudian';
+
+  @override
+  String get receiptResolveLines =>
+      'Terima atau abaikan setiap item sebelum menyimpan.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Hanya item yang dipilih akan ditambah. Resit ini akan ditandakan sebagai diimport. Teruskan?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1286,7 +1329,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'Harga kedai menandakan barang telah dibeli; 0 juga diterima. Harga di rumah adalah pilihan. Padam harga kedai untuk membuang tanda semak.';
 
   @override
-  String get shoppingDateLabel => 'Tarikh membeli-belah (pilihan)';
+  String get shoppingDateLabel => 'Tarikh membeli-belah';
 
   @override
   String get shoppingDateNone => 'Tiada tarikh dipilih';
@@ -1305,4 +1348,28 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get listSortManual => 'Susunan manual';
+
+  @override
+  String get imageCameraAction => 'Ambil foto';
+
+  @override
+  String get imageGalleryAction => 'Pilih daripada foto';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kamera atau foto tidak dapat dibuka. Semak kebenaran akses dan cuba lagi.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Foto tidak dapat diproses. Cuba foto lain.';
+
+  @override
+  String get receiptNoProducts =>
+      'Teks telah dibaca, tetapi item resit tidak ditemui. Sertakan item dan jumlah dalam foto.';
+
+  @override
+  String get keepAwakeOn => 'Skrin kekal menyala';
+
+  @override
+  String get keepAwakeOff => 'Skrin boleh dimatikan';
 }

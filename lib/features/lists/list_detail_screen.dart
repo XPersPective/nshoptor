@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../engagement/review_moments.dart';
 
 import 'package:wakelock_plus/wakelock_plus.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../app/app_defaults.dart';
 import '../../app/navigation.dart';
@@ -32,10 +31,8 @@ import '../shopping_mode/summary/summary_screen.dart';
 import '../shopping_mode/summary/pdf_report.dart';
 import '../history/price_history/price_history_sheet.dart';
 import '../receipts/ocr_text_source.dart';
-import '../receipts/parser/receipt_parser.dart';
-import '../receipts/review/receipt_review_controller.dart';
-import '../receipts/review/receipt_review_screen.dart';
-import '../receipts/shelf_label/mlkit_text_source.dart';
+import '../receipts/receipt_capture_flow.dart';
+import '../receipts/receipt_image_store.dart';
 import '../receipts/shelf_label/shelf_price_flow.dart';
 import '../receipts/shelf_label/price_candidates.dart';
 import '../voice_input/stt_speech_service.dart';
@@ -44,6 +41,7 @@ import '../voice_input/list_draft_sheet.dart';
 import '../voice_input/ai_list_parser.dart';
 import 'item_repository.dart';
 import 'item_list_view.dart';
+import 'taxonomy/item_sort.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
 import '../ai/ai_client.dart';
 import 'reminders/local_notifications_scheduler.dart';
@@ -61,6 +59,7 @@ class ListDetailScreen extends StatefulWidget {
     this.speechService,
     this.ocrSource,
     this.pickImage,
+    this.receiptImageStore,
     this.reminderScheduler,
     this.onShelfPricePressed,
   });
@@ -77,6 +76,7 @@ class ListDetailScreen extends StatefulWidget {
 
   /// Test enjeksiyonu; verilmezse kamera. İptalde null.
   final Future<String?> Function()? pickImage;
+  final ReceiptImageStore? receiptImageStore;
 
   /// Test enjeksiyonu; verilmezse flutter_local_notifications adaptörü.
   final ReminderScheduler? reminderScheduler;
@@ -104,6 +104,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   bool _itemFormOpen = false;
   final _searchController = TextEditingController();
   String _searchQuery = '';
+  ItemSortMode _sortMode = ItemSortMode.custom;
+  bool _sortBusy = false;
   bool _editable = false;
   ListStatus? _status;
 
@@ -221,7 +223,9 @@ class _ListDetailScreenState extends State<ListDetailScreen>
             SnackBar(
               duration: const Duration(seconds: 2),
               content: Text(
-                '${desired ? '✓' : '✕'} ${AppLocalizations.of(context).keepAwakeLabel}',
+                desired
+                    ? AppLocalizations.of(context).keepAwakeOn
+                    : AppLocalizations.of(context).keepAwakeOff,
               ),
             ),
           );
@@ -240,8 +244,10 @@ class _ListDetailScreenState extends State<ListDetailScreen>
 
   Future<ShoppingList> _loadList() async {
     final list = await widget.listRepository.getById(widget.listId);
+    final sortMode = await ItemSortPreferences(widget.db).read(widget.listId);
     if (mounted) {
       setState(() {
+        _sortMode = sortMode;
         _status = ListStatus.fromDb(list.status);
         _editable = list.status != 'completed' && list.status != 'archived';
       });
@@ -425,7 +431,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         actions: [
           IconButton.filledTonal(
             key: const Key('list_keep_awake'),
-            tooltip: l10n.keepAwakeLabel,
+            tooltip: _awake ? l10n.keepAwakeOn : l10n.keepAwakeOff,
             isSelected: _awake,
             icon: const Icon(Icons.light_mode_outlined),
             selectedIcon: const Icon(Icons.light_mode),
@@ -554,7 +560,14 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                 final entries = entrySnap.data ?? const <PurchaseEntry>[];
                 final locale = Localizations.localeOf(context).languageCode;
                 final searching = _searchQuery.trim().isNotEmpty;
-                final orderedItems = purchasedItemsLast(items, entries);
+                final orderedItems = sortedItemsForView(
+                  items,
+                  entries,
+                  mode: _sortMode,
+                  localeCode: locale,
+                );
+                final reorderable =
+                    canReorderItemView(_sortMode, _searchQuery) && !_sortBusy;
                 final visibleItems = orderedItems
                     .where(
                       (item) =>
@@ -568,6 +581,17 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                           matchesItemSearch(entry.name, _searchQuery, locale),
                     )
                     .toList();
+                final alphabeticalRows = _sortMode == ItemSortMode.alphabetical
+                    ? alphabeticalItemRows(items, entries, localeCode: locale)
+                          .where(
+                            (row) => matchesItemSearch(
+                              row.name,
+                              _searchQuery,
+                              locale,
+                            ),
+                          )
+                          .toList()
+                    : const <ItemViewRow>[];
                 final material = MaterialLocalizations.of(context);
                 return Column(
                   children: [
@@ -599,6 +623,54 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                     setState(() => _searchQuery = '');
                                   },
                                 ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: PopupMenuButton<ItemSortMode>(
+                          key: const Key('detail_item_sort'),
+                          tooltip: l10n.listSortLabel,
+                          initialValue: _sortMode,
+                          enabled: !_busy && !_sortBusy,
+                          onSelected: _changeSort,
+                          itemBuilder: (_) => [
+                            CheckedPopupMenuItem(
+                              value: ItemSortMode.custom,
+                              checked: _sortMode == ItemSortMode.custom,
+                              child: Text(l10n.listSortManual),
+                            ),
+                            CheckedPopupMenuItem(
+                              value: ItemSortMode.alphabetical,
+                              checked: _sortMode == ItemSortMode.alphabetical,
+                              child: Text(l10n.listSortAz),
+                            ),
+                          ],
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(minHeight: 48),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(Icons.sort),
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                    child: Text(
+                                      _sortMode == ItemSortMode.custom
+                                          ? l10n.listSortManual
+                                          : l10n.listSortAz,
+                                    ),
+                                  ),
+                                  const Icon(Icons.arrow_drop_down),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -657,47 +729,47 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                 ],
                               ),
                             ),
-                          if (visibleItems.isNotEmpty)
-                            ReorderableListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              buildDefaultDragHandles: false,
-                              itemCount: visibleItems.length,
-                              onReorderItem: (oldIndex, newIndex) => searching
-                                  ? null
-                                  : _reorderItems(
-                                      orderedItems,
-                                      entries,
-                                      oldIndex,
-                                      newIndex,
-                                    ),
-                              itemBuilder: (context, index) => _buildItemCard(
-                                context,
-                                visibleItems[index],
-                                entries,
-                                list,
-                                index,
-                                draggable: !searching,
-                              ),
-                            ),
-                          for (final e in unplanned)
-                            Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(e.name),
-                                    Text(
-                                      '${e.actualQuantity} ${unitDisplayNameFromDb(e.actualUnitCode, l10n)}',
-                                    ),
-                                    Text(
-                                      '${l10n.compareUnplanned} · ${formatMoney(Money.fromMinorUnits(e.actualLineTotalMinorUnits, Currency.fromCode(list.currencyCode)), locale: formatLocaleCode(context))}',
-                                    ),
-                                  ],
+                          if (_sortMode == ItemSortMode.alphabetical) ...[
+                            for (final row in alphabeticalRows)
+                              if (row.item != null)
+                                _buildItemCard(
+                                  context,
+                                  row.item!,
+                                  entries,
+                                  list,
+                                  0,
+                                  draggable: false,
+                                )
+                              else
+                                _buildUnplannedCard(context, row.entry!, list),
+                          ] else ...[
+                            if (visibleItems.isNotEmpty)
+                              ReorderableListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                buildDefaultDragHandles: false,
+                                itemCount: visibleItems.length,
+                                onReorderItem: (oldIndex, newIndex) =>
+                                    !reorderable
+                                    ? null
+                                    : _reorderItems(
+                                        orderedItems,
+                                        entries,
+                                        oldIndex,
+                                        newIndex,
+                                      ),
+                                itemBuilder: (context, index) => _buildItemCard(
+                                  context,
+                                  visibleItems[index],
+                                  entries,
+                                  list,
+                                  index,
+                                  draggable: reorderable,
                                 ),
                               ),
-                            ),
+                            for (final entry in unplanned)
+                              _buildUnplannedCard(context, entry, list),
+                          ],
                           if (_editable &&
                               (items.isNotEmpty || entries.isNotEmpty))
                             Padding(
@@ -767,6 +839,32 @@ class _ListDetailScreenState extends State<ListDetailScreen>
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildUnplannedCard(
+    BuildContext context,
+    PurchaseEntry entry,
+    ShoppingList list,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    return Card(
+      key: ValueKey('detail_unplanned_${entry.id}'),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(entry.name),
+            Text(
+              '${entry.actualQuantity} ${unitDisplayNameFromDb(entry.actualUnitCode, l10n)}',
+            ),
+            Text(
+              '${l10n.compareUnplanned} · ${formatMoney(Money.fromMinorUnits(entry.actualLineTotalMinorUnits, Currency.fromCode(list.currencyCode)), locale: formatLocaleCode(context))}',
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -906,13 +1004,35 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     }
   }
 
+  Future<void> _changeSort(ItemSortMode mode) async {
+    if (_busy || _sortBusy || mode == _sortMode) return;
+    setState(() => _sortBusy = true);
+    try {
+      await ItemSortPreferences(widget.db).write(widget.listId, mode);
+      if (mounted) setState(() => _sortMode = mode);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context).saveFailed)),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _sortBusy = false);
+    }
+  }
+
   Future<void> _reorderItems(
     List<PlannedItem> items,
     List<PurchaseEntry> entries,
     int oldIndex,
     int newIndex,
   ) async {
-    if (_busy || _searchQuery.trim().isNotEmpty || !_editable) return;
+    if (_busy ||
+        _sortBusy ||
+        !_editable ||
+        !canReorderItemView(_sortMode, _searchQuery)) {
+      return;
+    }
     final ordered = reorderItemGroup(items, entries, oldIndex, newIndex);
     if (ordered == null) return;
     setState(() => _busy = true);
@@ -1079,60 +1199,30 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     _refresh();
   }
 
-  Future<String?> _pickImage() async {
-    if (widget.pickImage != null) return widget.pickImage!();
-    return (await ImagePicker().pickImage(source: ImageSource.camera))?.path;
-  }
-
-  Future<OcrScanResult?> _scan() async {
-    final path = await _pickImage();
-    if (path == null) return null;
-    if (widget.ocrSource != null) return widget.ocrSource!.scan(path);
-    final source = MlKitTextSource();
-    try {
-      return await source.scan(path);
-    } finally {
-      source.dispose();
-    }
-  }
-
   Future<void> _scanReceipt(BuildContext context) async {
     if (_busy) return;
     final l10n = AppLocalizations.of(context);
     setState(() => _busy = true);
     try {
       final list = await widget.listRepository.getById(widget.listId);
-      final scan = await _scan();
-      if (scan == null || !context.mounted) return;
-      final parsed = ReceiptParser(currency: list.currencyCode).parse(scan);
-      if (parsed.lines.isEmpty) return;
-      final controller = ReceiptReviewController(
+      if (!context.mounted) return;
+      await openReceiptCaptureFlow(
+        context,
         db: widget.db,
         listId: widget.listId,
-        parseResult: parsed,
+        currencyCode: list.currencyCode,
+        pickImage: widget.pickImage,
+        ocrSource: widget.ocrSource,
+        imageStore: widget.receiptImageStore,
         ai: AiService.client,
-        localeCode: Localizations.localeOf(context).languageCode,
       );
-      try {
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => ReceiptReviewScreen(
-              controller: controller,
-              currency: list.currencyCode,
-              plannedItems: ItemRepository(widget.db).getItems(widget.listId),
-            ),
-          ),
-        );
-      } finally {
-        controller.dispose();
-      }
       if (mounted) _refresh();
     } catch (_) {
       if (context.mounted) {
         ScaffoldMessenger.of(context)
           ..clearSnackBars()
           ..showSnackBar(
-            SnackBar(content: Text(l10n.ocrNoText), showCloseIcon: true),
+            SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
           );
       }
     } finally {

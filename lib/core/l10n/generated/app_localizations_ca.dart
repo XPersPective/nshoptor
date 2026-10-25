@@ -606,6 +606,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get scanReceiptAction => 'Escaneja el tiquet';
 
   @override
+  String get fromReceiptListButton => 'Des d’un tiquet';
+
+  @override
   String get shelfLabelAction => 'Preu de l\'etiqueta de l\'estanteria';
 
   @override
@@ -1062,7 +1065,47 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Les línies del rebuig vinculades substitueixen les compres existents; les línies sense vincular s\'afegeixen.';
+      'Els articles sense preu s’emplenen. Els articles que ja tenen un preu de mercat s’afegeixen com a compres separades.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Inclou la botiga, la data, l’hora i el número del rebut a la foto següent.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotografia la secció següent amb alguns articles superposats i el total final.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'No s’ha pogut unir aquesta foto al rebut. Torna-la a fer amb articles superposats del mateix rebut.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Rebut desat com a esborrany. Pots continuar més tard.';
+
+  @override
+  String get receiptContinueAction => 'Continua el rebut';
+
+  @override
+  String get receiptDraftsTitle => 'Rebuts inacabats';
+
+  @override
+  String get receiptDuplicate => 'Aquest rebut ja s’ha afegit.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Els articles no coincideixen amb el total del rebut. Comprova que es vegi tot el rebut.';
+
+  @override
+  String get receiptSaveDraftAction => 'Desa-ho per més tard';
+
+  @override
+  String get receiptResolveLines =>
+      'Accepta o ignora cada article abans de desar.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Només s’afegiran els articles seleccionats. Aquest tiquet es marcarà com a importat. Vols continuar?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1290,7 +1333,7 @@ class AppLocalizationsCa extends AppLocalizations {
       'El preu de botiga marca el producte com a comprat; 0 també compta. El preu de casa és opcional. Esborreu el preu de botiga per treure la marca.';
 
   @override
-  String get shoppingDateLabel => 'Data de compra (opcional)';
+  String get shoppingDateLabel => 'Data de compra';
 
   @override
   String get shoppingDateNone => 'No s’ha seleccionat cap data';
@@ -1309,4 +1352,28 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ordre manual';
+
+  @override
+  String get imageCameraAction => 'Fes una foto';
+
+  @override
+  String get imageGalleryAction => 'Tria una foto';
+
+  @override
+  String get imageCaptureFailed =>
+      'No s\'ha pogut obrir la càmera o les fotos. Comprova el permís d\'accés i torna-ho a provar.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'No s\'ha pogut processar la foto. Prova amb una altra foto.';
+
+  @override
+  String get receiptNoProducts =>
+      'S\'ha llegit el text, però no s\'han trobat articles del tiquet. Inclou els articles i el total a la foto.';
+
+  @override
+  String get keepAwakeOn => 'La pantalla es manté encesa';
+
+  @override
+  String get keepAwakeOff => 'La pantalla es pot apagar';
 }

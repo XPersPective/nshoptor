@@ -607,6 +607,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get scanReceiptAction => 'Bon scannen';
 
   @override
+  String get fromReceiptListButton => 'Van kassabon';
+
+  @override
   String get shelfLabelAction => 'Prijs van etiket';
 
   @override
@@ -1062,7 +1065,47 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Gekoppelde bonregels vervangen bestaande aankopen; niet-gekoppelde regels worden toegevoegd.';
+      'Artikelen zonder prijs worden aangevuld. Artikelen met een marktprijs worden als aparte aankopen toegevoegd.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Vermeld de winkel, datum, tijd en het bonnummer op de volgende foto.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotografeer het volgende deel met enkele overlappende artikelen en het eindtotaal.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Deze foto kon niet worden samengevoegd. Maak hem opnieuw met overlappende artikelen van dezelfde bon.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Bon opgeslagen als concept. Je kunt later verdergaan.';
+
+  @override
+  String get receiptContinueAction => 'Bon vervolgen';
+
+  @override
+  String get receiptDraftsTitle => 'Onvoltooide bonnen';
+
+  @override
+  String get receiptDuplicate => 'Deze bon is al toegevoegd.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'De artikelen komen niet overeen met het totaal op de bon. Controleer of de hele bon zichtbaar is.';
+
+  @override
+  String get receiptSaveDraftAction => 'Bewaar voor later';
+
+  @override
+  String get receiptResolveLines =>
+      'Accepteer of negeer elk artikel voordat je opslaat.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Alleen de geselecteerde artikelen worden toegevoegd. Deze bon wordt gemarkeerd als geïmporteerd. Doorgaan?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1289,7 +1332,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Een winkelprijs markeert het artikel als gekocht; ook 0 telt. De thuisprijs is optioneel. Wis de winkelprijs om het vinkje te verwijderen.';
 
   @override
-  String get shoppingDateLabel => 'Winkeldatum (optioneel)';
+  String get shoppingDateLabel => 'Winkeldatum';
 
   @override
   String get shoppingDateNone => 'Geen datum geselecteerd';
@@ -1308,4 +1351,28 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get listSortManual => 'Handmatige volgorde';
+
+  @override
+  String get imageCameraAction => 'Foto maken';
+
+  @override
+  String get imageGalleryAction => 'Kiezen uit foto\'s';
+
+  @override
+  String get imageCaptureFailed =>
+      'De camera of foto\'s konden niet worden geopend. Controleer de toegangsmachtiging en probeer het opnieuw.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'De foto kon niet worden verwerkt. Probeer een andere foto.';
+
+  @override
+  String get receiptNoProducts =>
+      'De tekst is gelezen, maar er zijn geen kassabonartikelen gevonden. Zorg dat de artikelen en het totaal op de foto staan.';
+
+  @override
+  String get keepAwakeOn => 'Scherm blijft aan';
+
+  @override
+  String get keepAwakeOff => 'Scherm kan uitgaan';
 }

@@ -16,30 +16,48 @@ void main() {
     await closing;
   }
 
-  testWidgets('kapalıyken araç yok; açıkken menüden 5 eylem', (tester) async {
+  testWidgets('assistant visibility never adds a duplicate home tools menu', (
+    tester,
+  ) async {
     AssistantPrefs.set(false);
     await tester.pumpWidget(
       NShoptorApp(db: db, fixedLocale: const Locale('tr')),
     );
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('assistant_bubble')), findsNothing);
-    await tester.tap(find.byKey(const Key('lists_tools_button')));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key('lists_tool_assistant')), findsNothing);
-    await tester.binding.handlePopRoute();
-    await tester.pumpAndSettle();
-
+    expect(find.byKey(const Key('lists_tools_button')), findsNothing);
     AssistantPrefs.set(true);
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('assistant_bubble')), findsNothing);
-    await tester.tap(find.byKey(const Key('lists_tools_button')));
+    expect(find.byKey(const Key('lists_tools_button')), findsNothing);
+    expect(find.byKey(const Key('lists_new_list_button')), findsOneWidget);
+    expect(find.byKey(const Key('lists_receipt_button')), findsOneWidget);
+    await dispose(tester);
+  });
+
+  testWidgets('standalone assistant still exposes its supported actions', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      NShoptorApp(db: db, fixedLocale: const Locale('tr')),
+    );
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('lists_tool_assistant')));
+    final context = tester.element(
+      find.byKey(const Key('lists_new_list_button')),
+    );
+    final result = showModalBottomSheet<AssistantChoice>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (_) => const AssistantSheet(),
+    );
     await tester.pumpAndSettle();
-    expect(find.text('Merhaba! Ne yapmak istiyorsun?'), findsOneWidget);
-    for (final a in AssistantAction.values) {
-      expect(find.byKey(Key('assistant_${a.name}')), findsOneWidget);
+    for (final action in AssistantAction.values) {
+      expect(find.byKey(Key('assistant_${action.name}')), findsOneWidget);
     }
+    await tester.tap(find.byKey(const Key('assistant_newList')));
+    await tester.pumpAndSettle();
+    expect((await result)?.action, AssistantAction.newList);
     await dispose(tester);
   });
 }

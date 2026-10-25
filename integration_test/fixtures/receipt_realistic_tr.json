@@ -1,0 +1,24 @@
+{
+  "fixture": "receipt_realistic_tr.png",
+  "sha256": "D283D8774E3DC84AD9F0A54248ADBC47273404DD9CBBDC5205366BDF52BB46FD",
+  "provenance": {
+    "kind": "synthetic generated image; not a real consumer receipt",
+    "generator": "OpenAI image generation",
+    "source_path_at_creation": "C:\\Users\\rubicon\\.codex\\generated_images\\01a16f84-7ed1-78a2-90cc-369b0612289a\\exec-d2759b26-eab0-48c3-a628-3d98c2475bb4.png",
+    "notes": "Photorealistic Turkish thermal receipt on a wooden surface; generated specifically as a realistic OCR fixture. The printed values below are the visual ground truth."
+  },
+  "ground_truth": {
+    "store": "ÖRNEK MARKET",
+    "date": "2026-10-25",
+    "time": "10:15:32",
+    "document_number": "2026000123",
+    "currency": "TRY",
+    "lines": [
+      { "name": "ELMA", "quantity": "1", "unit": "kilogram", "unit_price_minor": 2000, "line_total_minor": 2000 },
+      { "name": "EKMEK", "quantity": "2", "unit": "piece", "unit_price_minor": 2000, "line_total_minor": 4000 },
+      { "name": "SÜT", "quantity": "1", "unit": "piece", "unit_price_minor": null, "line_total_minor": 3000 }
+    ],
+    "total_minor": 9000,
+    "display_total": "90,00 TL"
+  }
+}

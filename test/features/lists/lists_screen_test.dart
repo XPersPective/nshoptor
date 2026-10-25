@@ -61,7 +61,7 @@ void main() {
       await tester.pumpWidget(subject());
       await settle(tester);
 
-      await tester.tap(find.byType(FloatingActionButton));
+      await tester.tap(find.byKey(const Key('lists_new_list_button')));
       await settle(tester);
       await tester.enterText(
         find.byKey(const Key('list_title_field')),
@@ -75,7 +75,7 @@ void main() {
       await tester.binding.handlePopRoute();
       await settle(tester);
 
-      await tester.tap(find.byType(FloatingActionButton));
+      await tester.tap(find.byKey(const Key('lists_new_list_button')));
       await settle(tester);
       await tester.enterText(
         find.byKey(const Key('list_title_field')),
@@ -118,7 +118,7 @@ void main() {
     await tester.pumpWidget(subject());
     await settle(tester);
 
-    await tester.tap(find.byType(FloatingActionButton));
+    await tester.tap(find.byKey(const Key('lists_new_list_button')));
     await settle(tester);
     await tester.tap(find.byKey(const Key('list_save_button')));
     await settle(tester);

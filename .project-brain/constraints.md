@@ -1,5 +1,7 @@
 # Constraints
 
+- C-022: Kullanıcı 2026-10-25: Basit işler düşük maliyetli ChatGPT native alt ajanlarına verilebilir. Önceki mesajda geçici C: AVD izni verilmişti; en son sağlanan AGENTS.md tekrar yalnız ortak Medium_Phone_API_36.0 kullanımını istiyor. Bundan sonra ek AVD oluşturma/başlatma yok; önceden oluşturulan iki geçici AVD kapalı tutulur. Ortak cihazda bu uygulamanın test izni mevcut; başka oturumun uygulaması/süreci durdurulmaz veya silinmez.
+
 - C-019: Son kullanıcı 2026-10-24: CLI Agent Pool ve harici model/CLI ajanı kullanılmaz; yalnız ChatGPT native alt ajanları sınırlı görevlerle kullanılabilir. Önceki havuz yetkileri bu çalışma için geçersizdir; havuz keşfi/başlatması/onayı istenmez.
 - C-020: Yeni ve yarım kalan bütün işlerin tek takip kaynağı Project Brain olur. Yabancı takip dosyaları kapsam/Resume/External aktarımı, kaynak-hedef hash doğrulaması ve geri alınabilir arşivden sonra tam belirtilen yollardan kaldırılır; uygulama, kanıt ve özel yayın dosyaları silinmez.
 - C-021: Güncel ayrıntılı kapsam .project-brain/intake-2026-10-24.md N001–N074 ve PB-141..155; özgün kaynak .project-brain/sources/2026-10-24-user-request.txt. Önce kapsam kaydı, ardından uygulama; tamamlanma yalnız taze kanıtla bildirilir.
@@ -7,7 +9,7 @@
 - C-001: Existing fixed-point/decimal monetary and quantity core stays; do not introduce double arithmetic (source: legacy ADR-001/constraints)
 - C-002: SQLite/Drift schema changes require versioned migration and transaction safety (source: legacy C-011)
 - C-003: Offline-first, no account/cloud sync, and existing Android-first release setup remain (source: legacy C-002/C-030/C-033)
-- C-004: Voice/OCR candidates never mutate data before user approval; native voice remains device-local (source: legacy C-003/C-005/ADR-006)
+- C-004: Voice/OCR candidates never mutate shopping lists, purchases or reports before user approval; native voice remains device-local. N012 explicitly authorizes durable pending OCR/media drafts, with no purchase effects or identity reservation until approval (ADR-003; source: legacy C-003/C-005/ADR-006 and user2026-10-24).
 - C-005: Existing localization remains ARB/gen-l10n with all locale keys aligned (source: legacy ADR-003)
 - C-006: Minimize code/dependencies and reuse existing repositories/controllers (source: user AGENTS.md)
 

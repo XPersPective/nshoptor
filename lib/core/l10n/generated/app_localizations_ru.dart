@@ -607,6 +607,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get scanReceiptAction => 'Сканировать чек';
 
   @override
+  String get fromReceiptListButton => 'Из чека';
+
+  @override
   String get shelfLabelAction => 'Цена с ценника';
 
   @override
@@ -1056,7 +1059,47 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Строки привязанного чека заменяют существующие покупки; непривязанные строки добавляются.';
+      'Цены товаров без цены будут заполнены. Товары с рыночной ценой добавляются как отдельные покупки.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Укажите магазин, дату, время и номер чека на следующем фото.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Сфотографируйте следующую часть так, чтобы несколько товаров перекрывались и была видна итоговая сумма.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Не удалось объединить это фото. Переснимите его с перекрывающимися товарами из того же чека.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Чек сохранён как черновик. Вы можете продолжить позже.';
+
+  @override
+  String get receiptContinueAction => 'Продолжить чек';
+
+  @override
+  String get receiptDraftsTitle => 'Незавершённые чеки';
+
+  @override
+  String get receiptDuplicate => 'Этот чек уже добавлен.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Сумма товаров не совпадает с итогом чека. Проверьте, что чек виден целиком.';
+
+  @override
+  String get receiptSaveDraftAction => 'Сохранить на потом';
+
+  @override
+  String get receiptResolveLines =>
+      'Перед сохранением примите или проигнорируйте каждый товар.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Будут добавлены только выбранные товары. Этот чек будет отмечен как импортированный. Продолжить?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1283,7 +1326,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Цена в магазине отмечает товар как купленный; 0 тоже учитывается. Домашняя цена необязательна. Удалите цену в магазине, чтобы снять отметку.';
 
   @override
-  String get shoppingDateLabel => 'Дата покупок (необязательно)';
+  String get shoppingDateLabel => 'Дата покупок';
 
   @override
   String get shoppingDateNone => 'Дата не выбрана';
@@ -1302,4 +1345,28 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ручной порядок';
+
+  @override
+  String get imageCameraAction => 'Сделать фото';
+
+  @override
+  String get imageGalleryAction => 'Выбрать из фото';
+
+  @override
+  String get imageCaptureFailed =>
+      'Не удалось открыть камеру или фото. Проверьте разрешение на доступ и попробуйте снова.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Не удалось обработать фото. Попробуйте другое фото.';
+
+  @override
+  String get receiptNoProducts =>
+      'Текст прочитан, но товары в чеке не найдены. Включите в фото товары и итоговую сумму.';
+
+  @override
+  String get keepAwakeOn => 'Экран остаётся включённым';
+
+  @override
+  String get keepAwakeOff => 'Экран может выключиться';
 }

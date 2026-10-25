@@ -608,6 +608,9 @@ class AppLocalizationsSq extends AppLocalizations {
   String get scanReceiptAction => 'Skano faturën';
 
   @override
+  String get fromReceiptListButton => 'Nga kuponi';
+
+  @override
   String get shelfLabelAction => 'Çmimi nga etiketa në raft';
 
   @override
@@ -1062,7 +1065,47 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Rreshtat e lidhur të faturës zëvendësojnë blerjet ekzistuese; rreshtat e palidhur shtohen.';
+      'Plotësohen artikujt pa çmim. Artikujt me çmim tregu shtohen si blerje të veçanta.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Në foton tjetër përfshi dyqanin, datën, orën dhe numrin e faturës.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotografo pjesën tjetër me disa artikuj të mbivendosur dhe shumën përfundimtare.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Kjo foto nuk u bashkua. Bëj një foto tjetër me artikuj të mbivendosur nga e njëjta faturë.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Fatura u ruajt si draft. Mund të vazhdosh më vonë.';
+
+  @override
+  String get receiptContinueAction => 'Vazhdo faturën';
+
+  @override
+  String get receiptDraftsTitle => 'Fatura të papërfunduara';
+
+  @override
+  String get receiptDuplicate => 'Kjo faturë është shtuar tashmë.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Shuma e artikujve nuk përputhet me totalin e faturës. Kontrollo nëse duket e gjithë fatura.';
+
+  @override
+  String get receiptSaveDraftAction => 'Ruaj për më vonë';
+
+  @override
+  String get receiptResolveLines =>
+      'Prano ose ruaj, prano ose shpërfill çdo artikull.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Do të shtohen vetëm artikujt e zgjedhur. Kjo faturë do të shënohet si e importuar. Të vazhdohet?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1287,7 +1330,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'Çmimi në dyqan e shënon produktin si të blerë; vlen edhe 0. Çmimi në shtëpi është fakultativ. Fshini çmimin në dyqan për të hequr shenjën.';
 
   @override
-  String get shoppingDateLabel => 'Data e blerjeve (fakultative)';
+  String get shoppingDateLabel => 'Data e blerjeve';
 
   @override
   String get shoppingDateNone => 'Nuk është zgjedhur datë';
@@ -1306,4 +1349,28 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get listSortManual => 'Renditje manuale';
+
+  @override
+  String get imageCameraAction => 'Bëj foto';
+
+  @override
+  String get imageGalleryAction => 'Zgjidh nga fotot';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kamera ose fotot nuk mund të hapeshin. Kontrolloni lejen e qasjes dhe provoni përsëri.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Fotoja nuk mund të përpunohej. Provoni një foto tjetër.';
+
+  @override
+  String get receiptNoProducts =>
+      'Teksti u lexua, por nuk u gjetën artikujt e kuponit. Përfshini artikujt dhe shumën totale në foto.';
+
+  @override
+  String get keepAwakeOn => 'Ekrani qëndron ndezur';
+
+  @override
+  String get keepAwakeOff => 'Ekrani mund të fiket';
 }

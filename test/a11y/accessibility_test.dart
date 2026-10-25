@@ -20,9 +20,9 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      // Diğer uygulamalar alt navigasyonda doğrudan erişilebilir.
+      // Keşfet üst araç çubuğundan erişilebilir; altta üç sekme vardır.
       final navBar = tester.widget<NavigationBar>(find.byType(NavigationBar));
-      expect(navBar.destinations.length, 4);
+      expect(navBar.destinations.length, 3);
       expect(find.byKey(const Key('home_nav_discover')), findsOneWidget);
       expect(find.byKey(const Key('lists_search_button')), findsOneWidget);
       expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);

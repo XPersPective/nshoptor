@@ -1388,6 +1388,12 @@ abstract class AppLocalizations {
   /// **'Scan receipt'**
   String get scanReceiptAction;
 
+  /// No description provided for @fromReceiptListButton.
+  ///
+  /// In en, this message translates to:
+  /// **'From receipt'**
+  String get fromReceiptListButton;
+
   /// No description provided for @shelfLabelAction.
   ///
   /// In en, this message translates to:
@@ -2225,8 +2231,74 @@ abstract class AppLocalizations {
   /// No description provided for @receiptReplaces.
   ///
   /// In en, this message translates to:
-  /// **'Linked receipt lines replace existing purchases; unlinked lines are added.'**
+  /// **'Unpriced items are filled in. Items that already have a market price are added as separate purchases.'**
   String get receiptReplaces;
+
+  /// No description provided for @receiptIncompleteHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Include the store, date, time and receipt number in the next photo.'**
+  String get receiptIncompleteHeader;
+
+  /// No description provided for @receiptIncompleteTail.
+  ///
+  /// In en, this message translates to:
+  /// **'Photograph the next section with a few overlapping items and the final total.'**
+  String get receiptIncompleteTail;
+
+  /// No description provided for @receiptContinuationRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'This photo could not be joined. Retake it with overlapping items from the same receipt.'**
+  String get receiptContinuationRejected;
+
+  /// No description provided for @receiptDraftSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt saved as a draft. You can continue later.'**
+  String get receiptDraftSaved;
+
+  /// No description provided for @receiptContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue receipt'**
+  String get receiptContinueAction;
+
+  /// No description provided for @receiptDraftsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfinished receipts'**
+  String get receiptDraftsTitle;
+
+  /// No description provided for @receiptDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'This receipt has already been added.'**
+  String get receiptDuplicate;
+
+  /// No description provided for @receiptTotalMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The items do not match the receipt total. Check that the whole receipt is visible.'**
+  String get receiptTotalMismatch;
+
+  /// No description provided for @receiptSaveDraftAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save for later'**
+  String get receiptSaveDraftAction;
+
+  /// No description provided for @receiptResolveLines.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept or ignore every item before saving.'**
+  String get receiptResolveLines;
+
+  /// No description provided for @receiptPartialConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Only the selected items will be added. This receipt will be marked as imported. Continue?'**
+  String get receiptPartialConfirm;
 
   /// No description provided for @voiceUnsupportedLanguage.
   ///
@@ -2633,7 +2705,7 @@ abstract class AppLocalizations {
   /// No description provided for @shoppingDateLabel.
   ///
   /// In en, this message translates to:
-  /// **'Shopping date (optional)'**
+  /// **'Shopping date'**
   String get shoppingDateLabel;
 
   /// No description provided for @shoppingDateNone.
@@ -2671,6 +2743,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Manual order'**
   String get listSortManual;
+
+  /// No description provided for @imageCameraAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get imageCameraAction;
+
+  /// No description provided for @imageGalleryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from photos'**
+  String get imageGalleryAction;
+
+  /// No description provided for @imageCaptureFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the camera or photos. Check access and try again.'**
+  String get imageCaptureFailed;
+
+  /// No description provided for @imageRecognitionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo could not be processed. Try another photo.'**
+  String get imageRecognitionFailed;
+
+  /// No description provided for @receiptNoProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'Text was read, but no receipt items were found. Include the items and total in the photo.'**
+  String get receiptNoProducts;
+
+  /// No description provided for @keepAwakeOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Screen stays on'**
+  String get keepAwakeOn;
+
+  /// No description provided for @keepAwakeOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Screen can turn off'**
+  String get keepAwakeOff;
 }
 
 class _AppLocalizationsDelegate

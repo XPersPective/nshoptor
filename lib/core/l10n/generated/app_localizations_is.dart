@@ -606,6 +606,9 @@ class AppLocalizationsIs extends AppLocalizations {
   String get scanReceiptAction => 'Skanna kvittun';
 
   @override
+  String get fromReceiptListButton => 'Úr kvittun';
+
+  @override
   String get shelfLabelAction => 'Verð úr hillumerki';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Línur tengd kvittingu koma í stað núverandi kaupa; ótengdar línur eru bættar við.';
+      'Vörur án verðs eru fylltar út. Vörur með markaðsverð bætast við sem aðskilin kaup.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Hafðu verslun, dagsetningu, tíma og kvittunarnúmer með á næstu mynd.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Taktu mynd af næsta hluta með nokkrum vörum sem skarast og lokaupphæðinni.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Ekki tókst að sameina þessa mynd. Taktu hana aftur með vörum úr sömu kvittun sem skarast.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Kvittunin var vistuð sem drög. Þú getur haldið áfram síðar.';
+
+  @override
+  String get receiptContinueAction => 'Halda áfram með kvittun';
+
+  @override
+  String get receiptDraftsTitle => 'Ókláraðar kvittanir';
+
+  @override
+  String get receiptDuplicate => 'Þessari kvittun hefur þegar verið bætt við.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Vörurnar stemma ekki við heildarupphæð kvittunarinnar. Athugaðu hvort kvittunin sjáist öll.';
+
+  @override
+  String get receiptSaveDraftAction => 'Vista síðar';
+
+  @override
+  String get receiptResolveLines =>
+      'Samþykktu eða hunsaðu hverja vöru áður en þú vistar.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Aðeins valdar vörur verða bættar við. Þessi kvittun verður merkt sem innflutt. Halda áfram?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsIs extends AppLocalizations {
       'Verslunarverð merkir vöruna sem keypta; 0 gildir líka. Verð heima er valfrjálst. Eyddu verslunarverðinu til að fjarlægja hakið.';
 
   @override
-  String get shoppingDateLabel => 'Innkaupadagur (valfrjálst)';
+  String get shoppingDateLabel => 'Innkaupadagur';
 
   @override
   String get shoppingDateNone => 'Engin dagsetning valin';
@@ -1301,4 +1344,28 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get listSortManual => 'Handvirk röð';
+
+  @override
+  String get imageCameraAction => 'Taka mynd';
+
+  @override
+  String get imageGalleryAction => 'Velja úr myndum';
+
+  @override
+  String get imageCaptureFailed =>
+      'Ekki tókst að opna myndavélina eða myndirnar. Athugaðu aðgangsheimild og reyndu aftur.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Ekki tókst að vinna úr myndinni. Prófaðu aðra mynd.';
+
+  @override
+  String get receiptNoProducts =>
+      'Textinn var lesinn en engar vörur fundust á kvittuninni. Láttu vörurnar og heildarupphæðina sjást á myndinni.';
+
+  @override
+  String get keepAwakeOn => 'Skjárinn helst kveiktur';
+
+  @override
+  String get keepAwakeOff => 'Slökkt getur orðið á skjánum';
 }

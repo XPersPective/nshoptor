@@ -6,6 +6,7 @@ import '../../../data/db/app_database.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/money/decimal_fixed.dart';
 import '../../../core/calc/line_calc.dart';
+import '../../receipts/receipt_document.dart';
 
 /// Yedek formatı: sürümlenmiş JSON (spec §6.14).
 class BackupFormat {
@@ -40,6 +41,14 @@ enum ImportMode {
   /// Tüm içerik YENİ kimliklerle ayrı listeler olarak eklenir; mevcut
   /// veriye dokunulmaz.
   separate,
+}
+
+/// Importing the same receipt under another row would duplicate its purchases.
+class BackupReceiptIdentityConflict extends FormatException {
+  const BackupReceiptIdentityConflict(this.identityKey)
+    : super('A receipt with this document identity already exists');
+
+  final String identityKey;
 }
 
 class BackupRepository {
@@ -151,6 +160,15 @@ class BackupRepository {
         PriceObservation.fromJson,
       );
       check('receipts', _db.receipts, _receiptFromJson);
+      final receiptIdentities = <String>{};
+      for (final receipt in sections['receipts']!.values) {
+        final capture = receipt['captureDataJson'] as String?;
+        if (capture != null) ReceiptDocument.decode(capture);
+        final identity = receipt['identityKey'] as String?;
+        if (identity != null && !receiptIdentities.add(identity)) {
+          throw BackupReceiptIdentityConflict(identity);
+        }
+      }
       check(
         'receiptCandidateLines',
         _db.receiptCandidateLines,
@@ -252,6 +270,8 @@ class BackupRepository {
           throw const FormatException('invalid attachment owner');
         }
       }
+    } on BackupReceiptIdentityConflict {
+      rethrow;
     } catch (_) {
       throw const FormatException('invalid backup data');
     }
@@ -269,6 +289,33 @@ class BackupRepository {
     final data = jsonDecode(json) as Map<String, dynamic>;
 
     await _db.transaction(() async {
+      // Check before any parent or child writes, while retaining the unique DB
+      // constraint as the final boundary for concurrent importers.
+      for (final receipt in _asMaps(data['receipts'])) {
+        final identity = receipt['identityKey'] as String?;
+        if (mode == ImportMode.merge) {
+          final current = await (_db.select(
+            _db.receipts,
+          )..where((t) => t.id.equals(receipt['id'] as int))).getSingleOrNull();
+          if (current?.identityKey != null &&
+              (identity != current!.identityKey ||
+                  receipt['processingStatus'] != current.processingStatus ||
+                  receipt['listId'] != current.listId ||
+                  receipt['captureDataJson'] != current.captureDataJson)) {
+            // A pending/legacy snapshot must never clear a committed document
+            // claim while merge retains its newer purchases.
+            throw BackupReceiptIdentityConflict(current.identityKey!);
+          }
+        }
+        if (identity == null) continue;
+        final existing = await (_db.select(
+          _db.receipts,
+        )..where((t) => t.identityKey.equals(identity))).getSingleOrNull();
+        if (existing != null &&
+            (mode == ImportMode.separate || existing.id != receipt['id'])) {
+          throw BackupReceiptIdentityConflict(identity);
+        }
+      }
       if (mode == ImportMode.merge) {
         await _importMerge(data);
       } else {

@@ -606,6 +606,9 @@ class AppLocalizationsSi extends AppLocalizations {
   String get scanReceiptAction => 'රිසිට් එක ස්කෑන් කරන්න';
 
   @override
+  String get fromReceiptListButton => 'රිසිට්පතෙන්';
+
+  @override
   String get shelfLabelAction => 'තට්ටු ලේබලයේ මිල';
 
   @override
@@ -1056,7 +1059,47 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'සම්බන්ධිත රිසිට් පේළි පවතින මිලදී ගැනීම් වෙනුවට ගනී; අසම්බන්ධිත පේළි එකතු කෙරේ.';
+      'මිල නොමැති භාණ්ඩවල මිල පුරවනු ලැබේ. වෙළඳපොළ මිල ඇති භාණ්ඩ වෙනම මිලදී ගැනීම් ලෙස එක් කෙරේ.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'ඊළඟ ඡායාරූපයට වෙළඳසැල, දිනය, වේලාව සහ රිසිට්පත් අංකය ඇතුළත් කරන්න.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'භාණ්ඩ කිහිපයක් එකිනෙක මත වැටෙන ලෙස සහ අවසන් එකතුව පෙනෙන ලෙස ඊළඟ කොටස ඡායාරූපගත කරන්න.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'මෙම ඡායාරූපය එකතු කළ නොහැකි විය. එම රිසිට්පතේ භාණ්ඩ එකිනෙක මත වැටෙන ලෙස නැවත ගන්න.';
+
+  @override
+  String get receiptDraftSaved =>
+      'රිසිට්පත කෙටුම්පතක් ලෙස සුරකින ලදී. පසුව දිගටම කරගෙන යා හැක.';
+
+  @override
+  String get receiptContinueAction => 'රිසිට්පත දිගටම කරගෙන යන්න';
+
+  @override
+  String get receiptDraftsTitle => 'අසම්පූර්ණ රිසිට්පත්';
+
+  @override
+  String get receiptDuplicate => 'මෙම රිසිට්පත දැනටමත් එක් කර ඇත.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'භාණ්ඩ එකතුව රිසිට්පතේ මුළු මුදලට නොගැළපේ. සම්පූර්ණ රිසිට්පත පෙනෙනවාදැයි පරීක්ෂා කරන්න.';
+
+  @override
+  String get receiptSaveDraftAction => 'පසුව සඳහා සුරකින්න';
+
+  @override
+  String get receiptResolveLines =>
+      'සුරැකීමට පෙර සෑම අයිතමයක්ම පිළිගන්න හෝ නොසලකා හරින්න.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'තෝරාගත් අයිතම පමණක් එක් කෙරේ. මෙම රිසිට්පත ආනයනය කළ එකක් ලෙස සලකුණු කෙරේ. ඉදිරියට යන්නද?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1281,7 +1324,7 @@ class AppLocalizationsSi extends AppLocalizations {
       'වෙළඳසැල් මිල ඇතුළත් කළ විට භාණ්ඩය මිලදී ගත් ලෙස සලකුණු වේ; 0 ද වලංගුය. නිවසේ මිල අත්‍යවශ්‍ය නොවේ. සලකුණ ඉවත් කිරීමට වෙළඳසැල් මිල මකන්න.';
 
   @override
-  String get shoppingDateLabel => 'සාප්පු සවාරි දිනය (විකල්ප)';
+  String get shoppingDateLabel => 'සාප්පු සවාරි දිනය';
 
   @override
   String get shoppingDateNone => 'දිනයක් තෝරා නැත';
@@ -1300,4 +1343,28 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get listSortManual => 'අතින් සකසන්න';
+
+  @override
+  String get imageCameraAction => 'ඡායාරූපයක් ගන්න';
+
+  @override
+  String get imageGalleryAction => 'ඡායාරූපවලින් තෝරන්න';
+
+  @override
+  String get imageCaptureFailed =>
+      'කැමරාව හෝ ඡායාරූප විවෘත කළ නොහැකි විය. ප්‍රවේශ අවසරය පරීක්ෂා කර නැවත උත්සාහ කරන්න.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ඡායාරූපය සැකසීමට නොහැකි විය. වෙනත් ඡායාරූපයක් උත්සාහ කරන්න.';
+
+  @override
+  String get receiptNoProducts =>
+      'පෙළ කියවන ලද නමුත් රිසිට්පතේ භාණ්ඩ හමු නොවීය. භාණ්ඩ සහ මුළු මුදල ඡායාරූපයට ඇතුළත් කරන්න.';
+
+  @override
+  String get keepAwakeOn => 'තිරය දිගටම දැල්වී පවතී';
+
+  @override
+  String get keepAwakeOff => 'තිරය නිවී යා හැක';
 }

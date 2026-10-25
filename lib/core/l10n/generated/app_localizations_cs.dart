@@ -607,6 +607,9 @@ class AppLocalizationsCs extends AppLocalizations {
   String get scanReceiptAction => 'Skenovat účtenku';
 
   @override
+  String get fromReceiptListButton => 'Z účtenky';
+
+  @override
   String get shelfLabelAction => 'Cena z cedulky na polici';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Řádky propojeného účtenky nahradí existující nákupy; nespojené řádky budou přidány.';
+      'Položky bez ceny se doplní. Položky, které už mají tržní cenu, se přidají jako samostatné nákupy.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Do další fotografie zahrňte obchod, datum, čas a číslo účtenky.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Vyfoťte další část s několika překrývajícími se položkami a konečným součtem.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Tuto fotografii se nepodařilo připojit k účtence. Vyfoťte ji znovu tak, aby se překrývala s položkami ze stejné účtenky.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Účtenka byla uložena jako koncept. Můžete pokračovat později.';
+
+  @override
+  String get receiptContinueAction => 'Pokračovat v účtence';
+
+  @override
+  String get receiptDraftsTitle => 'Nedokončené účtenky';
+
+  @override
+  String get receiptDuplicate => 'Tato účtenka už byla přidána.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Položky neodpovídají celkové částce na účtence. Zkontrolujte, zda je vidět celá účtenka.';
+
+  @override
+  String get receiptSaveDraftAction => 'Uložit na později';
+
+  @override
+  String get receiptResolveLines =>
+      'Před uložením přijměte nebo ignorujte každou položku.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Přidají se pouze vybrané položky. Tato účtenka bude označena jako importovaná. Pokračovat?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'Cena v obchodě označí položku jako koupenou; počítá se i 0. Domácí cena je volitelná. Vymazáním ceny v obchodě zrušíte zaškrtnutí.';
 
   @override
-  String get shoppingDateLabel => 'Datum nákupu (volitelné)';
+  String get shoppingDateLabel => 'Datum nákupu';
 
   @override
   String get shoppingDateNone => 'Není vybráno datum';
@@ -1301,4 +1344,28 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ruční pořadí';
+
+  @override
+  String get imageCameraAction => 'Vyfotit';
+
+  @override
+  String get imageGalleryAction => 'Vybrat z fotek';
+
+  @override
+  String get imageCaptureFailed =>
+      'Fotoaparát nebo fotky se nepodařilo otevřít. Zkontrolujte oprávnění k přístupu a zkuste to znovu.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Fotku se nepodařilo zpracovat. Zkuste jinou fotku.';
+
+  @override
+  String get receiptNoProducts =>
+      'Text byl přečten, ale položky účtenky nebyly nalezeny. Zahrňte do fotky položky i celkovou částku.';
+
+  @override
+  String get keepAwakeOn => 'Obrazovka zůstane zapnutá';
+
+  @override
+  String get keepAwakeOff => 'Obrazovka se může vypnout';
 }

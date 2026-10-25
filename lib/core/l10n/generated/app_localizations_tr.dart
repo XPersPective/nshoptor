@@ -604,6 +604,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get scanReceiptAction => 'Fiş tara';
 
   @override
+  String get fromReceiptListButton => 'Fişten liste';
+
+  @override
   String get shelfLabelAction => 'Raf etiketinden fiyat';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Bağlı fiş satırları mevcut alımları değiştirir; bağlantısız satırlar eklenir.';
+      'Market fiyatı boş ürünler doldurulur. Önceden fiyatlı ürünler ayrı satın alma olarak eklenir.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Sonraki fotoğrafa mağaza, tarih, saat ve fiş numarasını dahil edin.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Önceki fotoğrafla birkaç ortak ürün ve son toplam görünecek şekilde devamını çekin.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Bu fotoğraf birleştirilemedi. Aynı fişin ortak ürünleri görünecek şekilde yeniden çekin.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Fiş taslak olarak kaydedildi. Daha sonra devam edebilirsiniz.';
+
+  @override
+  String get receiptContinueAction => 'Fişe devam et';
+
+  @override
+  String get receiptDraftsTitle => 'Yarım kalan fişler';
+
+  @override
+  String get receiptDuplicate => 'Bu fiş daha önce eklendi.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Ürünler fiş toplamıyla uyuşmuyor. Fişin tamamının göründüğünü kontrol edin.';
+
+  @override
+  String get receiptSaveDraftAction => 'Sonra devam et';
+
+  @override
+  String get receiptResolveLines =>
+      'Kaydetmeden önce her ürünü kabul edin veya yok sayın.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Yalızca seçilen ürünler eklenecek. Fiş işlenmiş olarak kaydedilecek. Devam edilsin mi?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1283,7 +1326,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Market fiyatı girilince ürün tiklenir; 0 da geçerlidir. Evdeki fiyat isteğe bağlıdır. Market fiyatını silince tik kalkar.';
 
   @override
-  String get shoppingDateLabel => 'Alışveriş tarihi (isteğe bağlı)';
+  String get shoppingDateLabel => 'Alışveriş tarihi';
 
   @override
   String get shoppingDateNone => 'Tarih belirlenmedi';
@@ -1302,4 +1345,28 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get listSortManual => 'Elle sırala';
+
+  @override
+  String get imageCameraAction => 'Fotoğraf çek';
+
+  @override
+  String get imageGalleryAction => 'Fotoğraflardan seç';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kamera veya fotoğraflar açılamadı. Erişim iznini kontrol edip tekrar deneyin.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Fotoğraf işlenemedi. Başka bir fotoğraf deneyin.';
+
+  @override
+  String get receiptNoProducts =>
+      'Metin okundu ancak fiş ürünleri bulunamadı. Ürünleri ve toplamı fotoğrafa dahil edin.';
+
+  @override
+  String get keepAwakeOn => 'Ekran açık tutuluyor';
+
+  @override
+  String get keepAwakeOff => 'Ekran kapanabilir';
 }

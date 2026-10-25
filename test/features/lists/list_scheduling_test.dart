@@ -302,12 +302,14 @@ void main() {
       await tester.pumpAndSettle();
       expect(changes.last, isNull);
       expect(find.byKey(const Key('shopping_date_clear')), findsNothing);
+      expect(find.text('Alışveriş tarihi'), findsOneWidget);
+      expect(find.text('Tarih belirlenmedi'), findsNothing);
       expect(tester.takeException(), isNull);
     },
   );
 
   testWidgets(
-    'lists default to date sorting; A-Z is explicit and manual drag is opt-in',
+    'sort button cycles date, A-Z, manual, date and persists its current mode',
     (tester) async {
       final db = AppDatabase(NativeDatabase.memory());
       final repo = ListRepository(db);
@@ -326,17 +328,34 @@ void main() {
       expect(find.byType(ReorderableListView), findsNothing);
       await tester.tap(find.byKey(const Key('lists_sort_button')));
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(const Key('lists_sort_title')));
-      await tester.pumpAndSettle();
       expect(
         tester.getTopLeft(find.text('A tarihsiz')).dy,
         lessThan(tester.getTopLeft(find.text('Z tarihli')).dy),
       );
       await tester.tap(find.byKey(const Key('lists_sort_button')));
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(const Key('lists_sort_manual')));
+      expect(find.byType(ReorderableListView), findsOneWidget);
+      expect(AppDefaults.listSort(), 'manual');
+      // Recreate the screen with the same store to prove selected-mode reload.
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pumpAndSettle();
+      await tester.pumpWidget(app(ListsScreen(repository: repo)));
       await tester.pumpAndSettle();
       expect(find.byType(ReorderableListView), findsOneWidget);
+      expect(
+        tester
+            .widget<IconButton>(find.byKey(const Key('lists_sort_button')))
+            .tooltip,
+        contains('Elle'),
+      );
+      await tester.tap(find.byKey(const Key('lists_sort_button')));
+      await tester.pumpAndSettle();
+      expect(AppDefaults.listSort(), 'date');
+      expect(find.byType(ReorderableListView), findsNothing);
+      expect(
+        tester.getTopLeft(find.text('Z tarihli')).dy,
+        lessThan(tester.getTopLeft(find.text('A tarihsiz')).dy),
+      );
       await tester.pumpWidget(const SizedBox.shrink());
       final closing = db.close();
       await tester.pump(const Duration(milliseconds: 1));

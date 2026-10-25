@@ -598,6 +598,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get scanReceiptAction => '영수증 스캔';
 
   @override
+  String get fromReceiptListButton => '영수증에서';
+
+  @override
   String get shelfLabelAction => '선반 라벨 가격';
 
   @override
@@ -1033,7 +1036,44 @@ class AppLocalizationsKo extends AppLocalizations {
       '구매 데이터는 소비량을 측정하지 않습니다. 통화와 단위는 별도로 표시됩니다.';
 
   @override
-  String get receiptReplaces => '연결된 영수증 줄은 기존 구매 내역을 대체하며, 연결되지 않은 줄은 추가됩니다.';
+  String get receiptReplaces =>
+      '가격이 없는 품목은 가격이 채워집니다. 시장 가격이 있는 품목은 별도 구매로 추가됩니다.';
+
+  @override
+  String get receiptIncompleteHeader => '다음 사진에 매장, 날짜, 시간, 영수증 번호를 포함하세요.';
+
+  @override
+  String get receiptIncompleteTail => '몇 개의 품목이 겹치고 최종 합계가 보이도록 다음 부분을 촬영하세요.';
+
+  @override
+  String get receiptContinuationRejected =>
+      '이 사진을 이어 붙일 수 없습니다. 같은 영수증의 품목이 겹치도록 다시 촬영하세요.';
+
+  @override
+  String get receiptDraftSaved => '영수증을 임시 저장했습니다. 나중에 계속할 수 있습니다.';
+
+  @override
+  String get receiptContinueAction => '영수증 계속하기';
+
+  @override
+  String get receiptDraftsTitle => '미완료 영수증';
+
+  @override
+  String get receiptDuplicate => '이 영수증은 이미 추가되었습니다.';
+
+  @override
+  String get receiptTotalMismatch =>
+      '품목 합계가 영수증 총액과 일치하지 않습니다. 영수증 전체가 보이는지 확인하세요.';
+
+  @override
+  String get receiptSaveDraftAction => '나중에 저장';
+
+  @override
+  String get receiptResolveLines => '저장하기 전에 각 항목을 승인하거나 무시하세요.';
+
+  @override
+  String get receiptPartialConfirm =>
+      '선택한 항목만 추가됩니다. 이 영수증은 가져온 항목으로 표시됩니다. 계속할까요?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1246,7 +1286,7 @@ class AppLocalizationsKo extends AppLocalizations {
       '매장 가격을 입력하면 구매한 것으로 표시되며 0도 유효합니다. 집에서 예상한 가격은 선택 사항입니다. 매장 가격을 지우면 체크가 해제됩니다.';
 
   @override
-  String get shoppingDateLabel => '쇼핑 날짜(선택 사항)';
+  String get shoppingDateLabel => '쇼핑 날짜';
 
   @override
   String get shoppingDateNone => '선택한 날짜 없음';
@@ -1265,4 +1305,26 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get listSortManual => '수동 순서';
+
+  @override
+  String get imageCameraAction => '사진 촬영';
+
+  @override
+  String get imageGalleryAction => '사진에서 선택';
+
+  @override
+  String get imageCaptureFailed => '카메라나 사진을 열 수 없습니다. 접근 권한을 확인하고 다시 시도하세요.';
+
+  @override
+  String get imageRecognitionFailed => '사진을 처리할 수 없습니다. 다른 사진으로 시도하세요.';
+
+  @override
+  String get receiptNoProducts =>
+      '텍스트는 읽었지만 영수증의 상품을 찾지 못했습니다. 상품과 합계가 사진에 나오도록 해주세요.';
+
+  @override
+  String get keepAwakeOn => '화면이 계속 켜져 있습니다';
+
+  @override
+  String get keepAwakeOff => '화면이 꺼질 수 있습니다';
 }

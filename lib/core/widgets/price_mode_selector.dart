@@ -25,6 +25,14 @@ class PriceModeSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+    // Use the same neutral tone as a filled input, rather than allowing the
+    // unselected half to inherit the nearly black sheet background.
+    final inputSurface = Color.alphaBlend(
+      theme.inputDecorationTheme.fillColor ?? scheme.surfaceContainerHighest,
+      scheme.surfaceContainerLow,
+    );
     return FormField<bool>(
       key: ValueKey(value),
       initialValue: value,
@@ -39,10 +47,36 @@ class PriceModeSelector extends StatelessWidget {
             SegmentedButton<bool>(
               expandedInsets: EdgeInsets.zero,
               emptySelectionAllowed: true,
-              showSelectedIcon: false,
-              style: const ButtonStyle(
-                minimumSize: WidgetStatePropertyAll(Size(0, 48)),
-                padding: WidgetStatePropertyAll(
+              selectedIcon: Icon(
+                Icons.check,
+                key: Key('${keyPrefix}_selected'),
+                size: 18,
+              ),
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.resolveWith((states) {
+                  if (states.contains(WidgetState.selected)) {
+                    return scheme.primaryContainer;
+                  }
+                  return inputSurface;
+                }),
+                foregroundColor: WidgetStateProperty.resolveWith((states) {
+                  if (states.contains(WidgetState.disabled)) {
+                    return scheme.onSurface.withValues(alpha: 0.38);
+                  }
+                  return states.contains(WidgetState.selected)
+                      ? scheme.onPrimaryContainer
+                      : scheme.onSurface;
+                }),
+                side: WidgetStateProperty.resolveWith(
+                  (states) => BorderSide(
+                    color: states.contains(WidgetState.disabled)
+                        ? scheme.outlineVariant
+                        : scheme.outline,
+                    width: 1.4,
+                  ),
+                ),
+                minimumSize: const WidgetStatePropertyAll(Size(0, 48)),
+                padding: const WidgetStatePropertyAll(
                   EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                 ),
                 tapTargetSize: MaterialTapTargetSize.padded,

@@ -9,6 +9,7 @@ import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/home/home_screen.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
+import 'package:nshoptor/features/lists/lists_screen.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
 import 'package:nshoptor/features/history/insights/spending_screen.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
@@ -38,7 +39,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  Widget subject() => MaterialApp(
+  Widget subject({bool summary = false}) => MaterialApp(
     locale: const Locale('tr'),
     localizationsDelegates: const [
       AppLocalizations.delegate,
@@ -47,15 +48,29 @@ void main() {
       GlobalCupertinoLocalizations.delegate,
     ],
     supportedLocales: AppLocalizations.supportedLocales,
-    home: HomeShell(db: db, listRepository: ListRepository(db)),
+    home: summary
+        ? Builder(
+            builder: (context) => HomeScreen(
+              db: db,
+              listRepository: ListRepository(db),
+              onOpenList: (list) => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => ListDetailScreen(
+                    db: db,
+                    listRepository: ListRepository(db),
+                    listId: list.id,
+                  ),
+                ),
+              ),
+              onNewList: () => showListEditor(context, ListRepository(db)),
+            ),
+          )
+        : HomeShell(db: db, listRepository: ListRepository(db)),
   );
 
+  // The summary remains independently testable; it has no home menu entry.
   Future<void> openSummary(WidgetTester tester) async {
-    await tester.pumpWidget(subject());
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('lists_tools_button')));
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('lists_tool_summary')));
+    await tester.pumpWidget(subject(summary: true));
     await settle(tester);
   }
 
@@ -205,7 +220,7 @@ void main() {
     );
     await tester.binding.handlePopRoute();
     await settle(tester);
-    await tester.binding.handlePopRoute();
+    await tester.pumpWidget(subject());
     await settle(tester);
     await tester.tap(find.text('Geçmiş').last);
     await settle(tester);
@@ -292,60 +307,84 @@ void main() {
     await disposeApp(tester);
   });
 
-  testWidgets('ana sayfada plan simgesi: ücretsiz durum, dokununca plan sayfası', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(800, 1400));
-    final subs = SubscriptionService(store: SettingsStore());
-    await tester.pumpWidget(MaterialApp(
-      locale: const Locale('tr'),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: HomeShell(db: db, listRepository: ListRepository(db), subscriptions: subs),
-    ));
-    await settle(tester);
-    final badge = tester.widget<Tooltip>(find.byKey(const Key('home_plan_badge')));
-    expect(badge.message, 'Ücretsiz · Planını gör; abone ol ya da yükselt');
-    await tester.tap(find.byKey(const Key('home_plan_badge')));
-    // Plan store offers load in the background; pumping avoids waiting on them.
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 400));
-    expect(find.byType(SubscriptionPaywall), findsOneWidget);
-    expect(find.byKey(const Key('plans_current_status')), findsOneWidget);
-    expect(find.text('Mevcut: Ücretsiz'), findsOneWidget);
-    // Store offers time out after 15 s in tests (no Play); let the timer finish.
-    await tester.pump(const Duration(seconds: 16));
-    await disposeApp(tester);
-  });
+  testWidgets(
+    'ana sayfada plan simgesi: ücretsiz durum, dokununca plan sayfası',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(800, 1400));
+      final subs = SubscriptionService(store: SettingsStore());
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: HomeShell(
+            db: db,
+            listRepository: ListRepository(db),
+            subscriptions: subs,
+          ),
+        ),
+      );
+      await settle(tester);
+      final badge = tester.widget<Tooltip>(
+        find.byKey(const Key('home_plan_badge')),
+      );
+      expect(badge.message, 'Ücretsiz · Planını gör; abone ol ya da yükselt');
+      await tester.tap(find.byKey(const Key('home_plan_badge')));
+      // Plan store offers load in the background; pumping avoids waiting on them.
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      expect(find.byType(SubscriptionPaywall), findsOneWidget);
+      expect(find.byKey(const Key('plans_current_status')), findsOneWidget);
+      expect(find.text('Mevcut: Ücretsiz'), findsOneWidget);
+      // Store offers time out after 15 s in tests (no Play); let the timer finish.
+      await tester.pump(const Duration(seconds: 16));
+      await disposeApp(tester);
+    },
+  );
 
-  testWidgets('alt navigasyon: Keşfet diğer uygulamalar için görünür', (
-    tester,
-  ) async {
-    await tester.binding.setSurfaceSize(const Size(320, 700));
-    listRepo = ListRepository(db);
-    await tester.pumpWidget(subject());
-    await settle(tester);
+  testWidgets(
+    'three bottom tabs; Discover opens from the toolbar and returns to Lists',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(320, 700));
+      listRepo = ListRepository(db);
+      await tester.pumpWidget(subject());
+      await settle(tester);
 
-    expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
-    expect(
-      tester.widget<NavigationBar>(find.byType(NavigationBar)).destinations,
-      hasLength(4),
-    );
-    expect(find.text('Keşfet'), findsOneWidget);
+      expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
+      expect(
+        tester.widget<NavigationBar>(find.byType(NavigationBar)).destinations,
+        hasLength(3),
+      );
+      expect(find.byKey(const Key('home_nav_discover')), findsOneWidget);
+      expect(find.byKey(const Key('lists_tools_button')), findsNothing);
+      expect(find.byKey(const Key('lists_receipt_button')), findsOneWidget);
 
-    await tester.tap(find.byKey(const Key('home_nav_discover')));
-    await settle(tester);
-    expect(
-      tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
-      2,
-    );
-    expect(find.byKey(const Key('lists_tab_active')), findsNothing);
+      await tester.tap(find.byKey(const Key('home_nav_discover')));
+      await settle(tester);
+      expect(find.text('Keşfet'), findsOneWidget);
+      expect(find.byKey(const Key('lists_tab_active')), findsNothing);
+      await tester.binding.handlePopRoute();
+      await settle(tester);
+      expect(
+        tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
+        0,
+      );
+      expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
+      await tester.tap(find.text('Ayarlar'));
+      await settle(tester);
+      expect(
+        tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
+        2,
+      );
 
-    await disposeApp(tester);
-  });
+      await disposeApp(tester);
+    },
+  );
   testWidgets('farklı para birimli listeler ayrı kartlarda raporlanır (T33)', (
     tester,
   ) async {

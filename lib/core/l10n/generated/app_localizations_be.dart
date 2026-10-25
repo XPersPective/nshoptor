@@ -608,6 +608,9 @@ class AppLocalizationsBe extends AppLocalizations {
   String get scanReceiptAction => 'Сканаваць чэк';
 
   @override
+  String get fromReceiptListButton => 'Са чэка';
+
+  @override
   String get shelfLabelAction => 'Цана з палічкі';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Падключаныя радкі чека замяняюць існуючыя пакупкі; непадключаныя дадаюцца.';
+      'Для тавараў без цаны яна будзе запоўнена. Тавары, у якіх ужо ёсць рынкавая цана, дадаюцца як асобныя пакупкі.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Уключыце ў наступны здымак назву крамы, дату, час і нумар чэка.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Сфатаграфуйце наступную частку так, каб было бачна некалькі тавараў з перакрыццем і выніковая сума.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Не ўдалося злучыць гэты здымак з чэкам. Пераздыміце яго з перакрыццем тавараў з таго ж чэка.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Чэк захаваны як чарнавік. Вы можаце працягнуць пазней.';
+
+  @override
+  String get receiptContinueAction => 'Працягнуць чэк';
+
+  @override
+  String get receiptDraftsTitle => 'Незавершаныя чэкі';
+
+  @override
+  String get receiptDuplicate => 'Гэты чэк ужо дададзены.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Сума тавараў не супадае з выніковай сумай чэка. Праверце, ці бачны ўвесь чэк.';
+
+  @override
+  String get receiptSaveDraftAction => 'Захаваць на потым';
+
+  @override
+  String get receiptResolveLines =>
+      'Перад захаваннем прыміце або адхіліце кожны тавар.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Будуць дададзены толькі выбраныя тавары. Гэтая квітанцыя будзе пазначана як імпартавана. Працягнуць?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1288,7 +1331,7 @@ class AppLocalizationsBe extends AppLocalizations {
       'Цана ў краме пазначае тавар як набыты; 0 таксама лічыцца. Хатняя цана неабавязковая. Выдаліце цану ў краме, каб зняць пазнаку.';
 
   @override
-  String get shoppingDateLabel => 'Дата пакупак (неабавязкова)';
+  String get shoppingDateLabel => 'Дата пакупак';
 
   @override
   String get shoppingDateNone => 'Дата не выбрана';
@@ -1307,4 +1350,28 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get listSortManual => 'Ручны парадак';
+
+  @override
+  String get imageCameraAction => 'Зрабіць фота';
+
+  @override
+  String get imageGalleryAction => 'Выбраць з фота';
+
+  @override
+  String get imageCaptureFailed =>
+      'Не ўдалося адкрыць камеру або фота. Праверце дазвол на доступ і паспрабуйце яшчэ раз.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Не ўдалося апрацаваць фота. Паспрабуйце іншае фота.';
+
+  @override
+  String get receiptNoProducts =>
+      'Тэкст прачытаны, але тавары ў чэку не знойдзены. Уключыце ў фота тавары і агульную суму.';
+
+  @override
+  String get keepAwakeOn => 'Экран застаецца ўключаным';
+
+  @override
+  String get keepAwakeOff => 'Экран можа выключыцца';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/widgets/price_mode_selector.dart';
+import '../../core/text/list_title.dart';
 import '../../core/calc/price_input.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
@@ -146,8 +147,20 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     final parser =
         widget.parser ?? AiListParser(ai: AiService.client, localeCode: _lang);
     try {
-      final draft = await parser.parse(_text.text);
+      final parsed = await parser.parse(_text.text);
       if (!mounted) return;
+      final draft = ListDraft(
+        [
+          for (final item in parsed.items)
+            item.withName(capitalizeListTitle(item.name, localeCode: _lang)),
+        ],
+        fromAi: parsed.fromAi,
+        aiResult: parsed.aiResult,
+        title: parsed.title,
+        plannedAt: parsed.plannedAt,
+        parseDuration: parsed.parseDuration,
+        modelCalls: parsed.modelCalls,
+      );
       setState(() {
         _busy = false;
         _draft = draft;

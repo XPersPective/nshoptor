@@ -605,6 +605,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get scanReceiptAction => 'Skanna kvitto';
 
   @override
+  String get fromReceiptListButton => 'Från kvitto';
+
+  @override
   String get shelfLabelAction => 'Pris från hyllmärke';
 
   @override
@@ -1057,7 +1060,47 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Länkade rader i kvitto ersätter befintliga inköp; olänkade rader läggs till.';
+      'Varor utan pris fylls i. Varor med marknadspris läggs till som separata köp.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Ta med butik, datum, tid och kvittonummer på nästa foto.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Fotografera nästa del med några överlappande varor och slutsumman.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Det gick inte att slå ihop fotot. Ta om det med överlappande varor från samma kvitto.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Kvitto sparat som utkast. Du kan fortsätta senare.';
+
+  @override
+  String get receiptContinueAction => 'Fortsätt kvitto';
+
+  @override
+  String get receiptDraftsTitle => 'Oavslutade kvitton';
+
+  @override
+  String get receiptDuplicate => 'Det här kvittot har redan lagts till.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Varornas summa stämmer inte med kvittots totalsumma. Kontrollera att hela kvittot syns.';
+
+  @override
+  String get receiptSaveDraftAction => 'Spara till senare';
+
+  @override
+  String get receiptResolveLines =>
+      'Godkänn eller ignorera varje vara innan du sparar.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Endast de valda varorna läggs till. Kvittot markeras som importerat. Vill du fortsätta?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'Ett butikspris markerar varan som köpt; även 0 räknas. Hemmapriset är valfritt. Radera butikspriset för att ta bort bocken.';
 
   @override
-  String get shoppingDateLabel => 'Inköpsdatum (valfritt)';
+  String get shoppingDateLabel => 'Inköpsdatum';
 
   @override
   String get shoppingDateNone => 'Inget datum valt';
@@ -1301,4 +1344,28 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get listSortManual => 'Manuell ordning';
+
+  @override
+  String get imageCameraAction => 'Ta foto';
+
+  @override
+  String get imageGalleryAction => 'Välj bland foton';
+
+  @override
+  String get imageCaptureFailed =>
+      'Det gick inte att öppna kameran eller fotona. Kontrollera åtkomstbehörigheten och försök igen.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Fotot kunde inte bearbetas. Prova ett annat foto.';
+
+  @override
+  String get receiptNoProducts =>
+      'Texten lästes, men inga varor på kvittot hittades. Ta med varorna och totalbeloppet i fotot.';
+
+  @override
+  String get keepAwakeOn => 'Skärmen förblir på';
+
+  @override
+  String get keepAwakeOff => 'Skärmen kan släckas';
 }

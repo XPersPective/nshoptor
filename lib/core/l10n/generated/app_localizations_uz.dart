@@ -607,6 +607,9 @@ class AppLocalizationsUz extends AppLocalizations {
   String get scanReceiptAction => 'Chekni skanerlash';
 
   @override
+  String get fromReceiptListButton => 'Chekdan ro‘yxat';
+
+  @override
   String get shelfLabelAction => 'Raf etiketkasidagi narx';
 
   @override
@@ -1063,7 +1066,47 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Bog\'langan chek qatorlari mavjud xaridlarni almashtiradi; bog\'lanmagan qatorlar qo\'shiladi.';
+      'Narxi yo‘q mahsulotlarning narxi to‘ldiriladi. Bozor narxi bor mahsulotlar alohida xarid sifatida qo‘shiladi.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Keyingi suratga do‘kon, sana, vaqt va chek raqamini kiriting.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Keyingi qismni bir nechta ustma-ust tushgan mahsulot va yakuniy summa bilan suratga oling.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Bu suratni birlashtirib bo‘lmadi. O‘sha chekdagi ustma-ust mahsulotlar bilan qayta suratga oling.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Chek qoralama sifatida saqlandi. Keyin davom ettirishingiz mumkin.';
+
+  @override
+  String get receiptContinueAction => 'Chekni davom ettirish';
+
+  @override
+  String get receiptDraftsTitle => 'Tugallanmagan cheklar';
+
+  @override
+  String get receiptDuplicate => 'Bu chek allaqachon qo‘shilgan.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Mahsulotlar summasi chek jami bilan mos kelmaydi. Chek to‘liq ko‘rinayotganini tekshiring.';
+
+  @override
+  String get receiptSaveDraftAction => 'Keyinroq saqlash';
+
+  @override
+  String get receiptResolveLines =>
+      'Saqlashdan oldin har bir mahsulotni qabul qiling yoki eʼtiborsiz qoldiring.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Faqat tanlangan mahsulotlar qoʻshiladi. Bu chek import qilingan deb belgilanadi. Davom etilsinmi?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1291,7 +1334,7 @@ class AppLocalizationsUz extends AppLocalizations {
       'Do‘kon narxi kiritilsa, mahsulot xarid qilingan deb belgilanadi; 0 ham hisoblanadi. Uydagi narx ixtiyoriy. Belgini olib tashlash uchun do‘kon narxini o‘chiring.';
 
   @override
-  String get shoppingDateLabel => 'Xarid sanasi (ixtiyoriy)';
+  String get shoppingDateLabel => 'Xarid sanasi';
 
   @override
   String get shoppingDateNone => 'Sana tanlanmagan';
@@ -1310,4 +1353,28 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get listSortManual => 'Qo‘lda tartiblash';
+
+  @override
+  String get imageCameraAction => 'Suratga olish';
+
+  @override
+  String get imageGalleryAction => 'Suratlardan tanlash';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kamera yoki suratlarni ochib bo‘lmadi. Kirish ruxsatini tekshirib, qayta urinib ko‘ring.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Suratni qayta ishlab bo‘lmadi. Boshqa surat bilan urinib ko‘ring.';
+
+  @override
+  String get receiptNoProducts =>
+      'Matn o‘qildi, ammo chekdagi mahsulotlar topilmadi. Suratga mahsulotlar va jami summani kiriting.';
+
+  @override
+  String get keepAwakeOn => 'Ekran yoqilgan holda qoladi';
+
+  @override
+  String get keepAwakeOff => 'Ekran o‘chishi mumkin';
 }

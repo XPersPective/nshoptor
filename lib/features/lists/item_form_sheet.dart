@@ -1,5 +1,7 @@
 import '../../core/money/format_locale.dart';
 import '../../core/widgets/price_mode_selector.dart';
+import '../../core/text/initial_name_formatter.dart';
+import '../../core/text/list_title.dart';
 
 import 'package:drift/drift.dart' show OrderingTerm;
 import 'package:flutter/material.dart';
@@ -120,6 +122,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   bool _actualChanged = false;
   bool _photoCurrencyMismatch = false;
   bool _prefilled = false;
+  InitialNameFormatter? _initialNameFormatter;
   bool _currencyLoaded = false;
   bool _saving = false;
   String? _actualError;
@@ -158,7 +161,21 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (_initialNameFormatter == null) {
+      _initialNameFormatter = InitialNameFormatter(
+        localeCode: Localizations.localeOf(context).languageCode,
+        alreadyEntered: widget.existing != null,
+      );
+      _name.addListener(_formatInitialName);
+      _formatInitialName();
+    }
     _prefillFields();
+  }
+
+  void _formatInitialName() {
+    final value = _name.value;
+    final formatted = _initialNameFormatter!.formatEditUpdate(value, value);
+    if (formatted != value) _name.value = formatted;
   }
 
   void _prefillFields() {
@@ -298,6 +315,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   @override
   void dispose() {
     _detailsController.dispose();
+    _name.removeListener(_formatInitialName);
     _name.dispose();
     _brand.dispose();
     _quantity.dispose();
@@ -782,7 +800,10 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       _actualMeaningRequired = false;
       _actualError = null;
       _actualChanged = true;
-      if (c.productName != null && c.productName!.isNotEmpty) {
+      if (widget.existing == null &&
+          _name.text.trim().isEmpty &&
+          c.productName != null &&
+          c.productName!.isNotEmpty) {
         _name.text = c.productName!;
       }
     } catch (_) {
@@ -812,6 +833,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
             TextField(
               key: const Key('item_name_field'),
               controller: _name,
+              inputFormatters: [_initialNameFormatter!],
+              textCapitalization: TextCapitalization.sentences,
               autofocus: !widget.focusActual,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
@@ -820,6 +843,13 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 suffixIcon: DictationMicButton(
                   key: const Key('item_name_mic'),
                   controller: _name,
+                  initialTranscriptTransform: widget.existing == null
+                      ? (text) => capitalizeListTitle(
+                          text,
+                          localeCode: Localizations.localeOf(context)
+                              .languageCode,
+                        )
+                      : null,
                 ),
               ),
             ),

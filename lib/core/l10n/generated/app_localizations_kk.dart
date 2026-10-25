@@ -605,6 +605,9 @@ class AppLocalizationsKk extends AppLocalizations {
   String get scanReceiptAction => 'Чекті сканерлеу';
 
   @override
+  String get fromReceiptListButton => 'Түбіртектен';
+
+  @override
   String get shelfLabelAction => 'Сөрелік таңбадағы баға';
 
   @override
@@ -1056,7 +1059,47 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Тіркетілген чек жолдары бар сатылымдарды алмастырады; тіркелмеген жолдар қосылады.';
+      'Бағасы жоқ тауарлардың бағасы толтырылады. Нарықтық бағасы бар тауарлар бөлек сатып алулар ретінде қосылады.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Келесі фотода дүкенді, күнді, уақытты және түбіртек нөмірін көрсетіңіз.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Келесі бөлікті бірнеше қабаттасқан тауармен және соңғы сомамен бірге түсіріңіз.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Бұл фотосуретті біріктіру мүмкін болмады. Сол түбіртектегі қабаттасқан тауарлармен қайта түсіріңіз.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Түбіртек жоба ретінде сақталды. Кейін жалғастыра аласыз.';
+
+  @override
+  String get receiptContinueAction => 'Түбіртекті жалғастыру';
+
+  @override
+  String get receiptDraftsTitle => 'Аяқталмаған түбіртектер';
+
+  @override
+  String get receiptDuplicate => 'Бұл түбіртек әлдеқашан қосылған.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Тауарлар сомасы түбіртектегі жалпы сомаға сәйкес емес. Түбіртектің толық көрінгенін тексеріңіз.';
+
+  @override
+  String get receiptSaveDraftAction => 'Кейін сақтау';
+
+  @override
+  String get receiptResolveLines =>
+      'Сақтамас бұрын әр тауарды қабылдаңыз немесе елемеңіз.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Тек таңдалған тауарлар қосылады. Бұл чек импортталған деп белгіленеді. Жалғастыру керек пе?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1282,7 +1325,7 @@ class AppLocalizationsKk extends AppLocalizations {
       'Дүкен бағасы енгізілсе, тауар сатып алынған деп белгіленеді; 0 да есептеледі. Үйдегі баға міндетті емес. Белгіні алып тастау үшін дүкен бағасын өшіріңіз.';
 
   @override
-  String get shoppingDateLabel => 'Сатып алу күні (міндетті емес)';
+  String get shoppingDateLabel => 'Сатып алу күні';
 
   @override
   String get shoppingDateNone => 'Күн таңдалмаған';
@@ -1301,4 +1344,28 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get listSortManual => 'Қолмен реттеу';
+
+  @override
+  String get imageCameraAction => 'Фото түсіру';
+
+  @override
+  String get imageGalleryAction => 'Фотолардан таңдау';
+
+  @override
+  String get imageCaptureFailed =>
+      'Камераны немесе фотоларды ашу мүмкін болмады. Қол жеткізу рұқсатын тексеріп, қайталап көріңіз.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Фотоны өңдеу мүмкін болмады. Басқа фотоны қолданып көріңіз.';
+
+  @override
+  String get receiptNoProducts =>
+      'Мәтін оқылды, бірақ чектегі тауарлар табылмады. Фотоға тауарлар мен жалпы соманы қосыңыз.';
+
+  @override
+  String get keepAwakeOn => 'Экран қосулы тұрады';
+
+  @override
+  String get keepAwakeOff => 'Экран өшуі мүмкін';
 }

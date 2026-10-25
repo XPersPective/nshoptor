@@ -25,9 +25,7 @@ class EnvConfig {
   );
   static const _otherAppsUrl = String.fromEnvironment(
     'NSHOPTOR_OTHER_APPS_URL',
-    // Crazy Penguin'in apps.json adresi bilinene dek yer tutucu (§3.6);
-    // paylaşılamaz Köşfet bu URL'yi önbelleksiz dener, çevrimdışı gömülü
-    // kopyaya düşer.
+    // Yayıncı kataloğu; platform filtresi ve önbellek Discover tarafından yönetilir.
     defaultValue: 'https://raw.githubusercontent.com/XPersPective/napp_apps/HEAD/apps.json',
   );
 

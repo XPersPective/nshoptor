@@ -51,6 +51,33 @@ void main() {
   });
 
   group('WCAG kontrast', () {
+    test(
+      'dark ocean actions are calmer with accessible text and boundaries',
+      () {
+        for (final black in [false, true]) {
+          final theme = AppTheme.dark(palette: AppPalette.ocean, black: black);
+          final scheme = theme.colorScheme;
+          final style = theme.filledButtonTheme.style!;
+          final background = style.backgroundColor!.resolve({})!;
+          final foreground = style.foregroundColor!.resolve({})!;
+          expect(luminance(background), lessThan(luminance(scheme.primary)));
+          expect(
+            contrastRatio(foreground, background),
+            greaterThanOrEqualTo(4.5),
+          );
+          expect(
+            contrastRatio(background, scheme.surface),
+            greaterThanOrEqualTo(3),
+          );
+          expect(
+            contrastRatio(background, scheme.surfaceContainerLow),
+            greaterThanOrEqualTo(3),
+          );
+        }
+        expect(AppTheme.brandSeed, const Color(0xFF0B8457));
+      },
+    );
+
     test('gövde metni her iki temada ≥ 4.5:1', () {
       for (final theme in [AppTheme.light(), AppTheme.dark()]) {
         final scheme = theme.colorScheme;

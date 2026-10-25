@@ -604,6 +604,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get scanReceiptAction => 'مسح الإيصال';
 
   @override
+  String get fromReceiptListButton => 'من إيصال';
+
+  @override
   String get shelfLabelAction => 'السعر من ملصق الرف';
 
   @override
@@ -1048,7 +1051,45 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'تستبدل أسطر الإيصال المرتبطة المشتريات الموجودة؛ وتُضاف الأسطر غير المرتبطة.';
+      'تُستكمل العناصر التي بلا سعر. وتُضاف العناصر التي لها سعر سوق بالفعل كمشتريات منفصلة.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'أدرج اسم المتجر والتاريخ والوقت ورقم الإيصال في الصورة التالية.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'صوّر القسم التالي مع تداخل بعض العناصر وظهور الإجمالي النهائي.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'تعذّر ضم هذه الصورة إلى الإيصال. أعد التقاطها مع عناصر متداخلة من الإيصال نفسه.';
+
+  @override
+  String get receiptDraftSaved => 'حُفظ الإيصال كمسودة. يمكنك المتابعة لاحقًا.';
+
+  @override
+  String get receiptContinueAction => 'متابعة الإيصال';
+
+  @override
+  String get receiptDraftsTitle => 'الإيصالات غير المكتملة';
+
+  @override
+  String get receiptDuplicate => 'سبق إضافة هذا الإيصال.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'لا تتطابق العناصر مع إجمالي الإيصال. تأكد من ظهور الإيصال كاملًا.';
+
+  @override
+  String get receiptSaveDraftAction => 'حفظ لوقت لاحق';
+
+  @override
+  String get receiptResolveLines => 'اقبل كل عنصر أو تجاهله قبل الحفظ.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'ستُضاف العناصر المحددة فقط. سيُعلَّم هذا الإيصال بأنه مستورد. هل تريد المتابعة؟';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1269,7 +1310,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'يُعلَّم المنتج كمشترى عند إدخال سعر المتجر، حتى لو كان 0. سعر المنزل اختياري. امسح سعر المتجر لإزالة العلامة.';
 
   @override
-  String get shoppingDateLabel => 'تاريخ التسوق (اختياري)';
+  String get shoppingDateLabel => 'تاريخ التسوق';
 
   @override
   String get shoppingDateNone => 'لم يُحدَّد تاريخ';
@@ -1288,4 +1329,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get listSortManual => 'ترتيب يدوي';
+
+  @override
+  String get imageCameraAction => 'التقاط صورة';
+
+  @override
+  String get imageGalleryAction => 'اختيار من الصور';
+
+  @override
+  String get imageCaptureFailed =>
+      'تعذر فتح الكاميرا أو الصور. تحقق من إذن الوصول وحاول مرة أخرى.';
+
+  @override
+  String get imageRecognitionFailed => 'تعذرت معالجة الصورة. جرّب صورة أخرى.';
+
+  @override
+  String get receiptNoProducts =>
+      'تمت قراءة النص، لكن لم يتم العثور على أصناف الإيصال. تأكد من ظهور الأصناف والإجمالي في الصورة.';
+
+  @override
+  String get keepAwakeOn => 'ستبقى الشاشة قيد التشغيل';
+
+  @override
+  String get keepAwakeOff => 'يمكن إيقاف تشغيل الشاشة';
 }

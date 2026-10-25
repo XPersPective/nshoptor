@@ -13,17 +13,25 @@ import 'package:nshoptor/features/lists/list_detail_screen.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 
 void main() {
-  testWidgets('cold notification opens its persisted list; duplicate taps do not stack routes', (tester) async {
+  testWidgets('cold and distinct live taps preserve arrival order and deduplicate open routes', (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     AndroidFlutterLocalNotificationsPlugin.registerWith();
     const channel = MethodChannel('dexterous.com/flutter/local_notifications');
     final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
     final db = AppDatabase(NativeDatabase.memory());
-    late int listId, reminderId;
+    late int listId, reminderId, secondList, secondReminder, thirdList, thirdReminder, cancelledReminder;
     await tester.runAsync(() async {
       listId = await ListRepository(db).createList(title: 'Pazar', currencyCode: 'TRY');
       reminderId = await db.into(db.reminders).insert(RemindersCompanion.insert(
         listId: listId, scheduledAt: DateTime.now(), status: const Value('active')));
+      secondList = await ListRepository(db).createList(title: 'İkinci', currencyCode: 'TRY');
+      secondReminder = await db.into(db.reminders).insert(RemindersCompanion.insert(
+        listId: secondList, scheduledAt: DateTime.now(), status: const Value('active')));
+      thirdList = await ListRepository(db).createList(title: 'Üçüncü', currencyCode: 'TRY');
+      thirdReminder = await db.into(db.reminders).insert(RemindersCompanion.insert(
+        listId: thirdList, scheduledAt: DateTime.now(), status: const Value('active')));
+      cancelledReminder = await db.into(db.reminders).insert(RemindersCompanion.insert(
+        listId: secondList, scheduledAt: DateTime.now(), status: const Value('cancelled')));
     });
     final calls = <String>[];
     messenger.setMockMethodCallHandler(channel, (call) async {
@@ -61,6 +69,23 @@ void main() {
     await settle();
     expect(find.byType(ListDetailScreen), findsOneWidget);
     expect(calls.where((name) => name.toLowerCase().contains('permission')), isEmpty);
+    Future<void> tapNotification(int id) => messenger.handlePlatformMessage(channel.name,
+      const StandardMethodCodec().encodeMethodCall(MethodCall('didReceiveNotificationResponse', {
+        'notificationId': id, 'payload': 'reminder:$id', 'notificationResponseType': 0,
+      })), null);
+    // All arrive while the cold-launch route is still open. Invalid IDs must
+    // release the resolver; distinct IDs must retain their arrival order.
+    for (final id in [cancelledReminder, 999, secondReminder, thirdReminder, thirdReminder, reminderId]) {
+      await tapNotification(id);
+    }
+    await settle();
+    expect(tester.widget<ListDetailScreen>(find.byType(ListDetailScreen)).listId, thirdList);
+    Navigator.of(tester.element(find.byType(ListDetailScreen))).pop();
+    await settle();
+    expect(tester.widget<ListDetailScreen>(find.byType(ListDetailScreen)).listId, secondList);
+    Navigator.of(tester.element(find.byType(ListDetailScreen))).pop();
+    await settle();
+    expect(tester.widget<ListDetailScreen>(find.byType(ListDetailScreen)).listId, listId);
     Navigator.of(tester.element(find.byType(ListDetailScreen))).pop();
     await settle();
     await messenger.handlePlatformMessage(channel.name,
@@ -70,6 +95,13 @@ void main() {
     await settle();
     expect(find.byType(ListDetailScreen), findsNothing);
     expect(find.byType(SnackBar), findsOneWidget);
+    // Dismissal releases deduplication so the same notification can reopen.
+    await tapNotification(secondReminder);
+    await settle();
+    expect(tester.widget<ListDetailScreen>(find.byType(ListDetailScreen)).listId, secondList);
+    Navigator.of(tester.element(find.byType(ListDetailScreen))).pop();
+    await settle();
+    expect(find.byType(ListDetailScreen), findsNothing);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
     final closing = db.close();

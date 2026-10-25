@@ -605,6 +605,9 @@ class AppLocalizationsPs extends AppLocalizations {
   String get scanReceiptAction => 'رسید سکن کړئ';
 
   @override
+  String get fromReceiptListButton => 'له رسید څخه';
+
+  @override
   String get shelfLabelAction => 'بیه د قفسې لیبل څخه';
 
   @override
@@ -1055,7 +1058,47 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'تړلي رسید قطې شتون لري خریدونه ځای پر ځای کوي؛ غیر تړلي قطې اضافه کیږي.';
+      'د بې‌بیې توکو بیې ډکېږي. د بازار بیه لرونکي توکي د جلا پېرودونو په توګه زیاتېږي.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'په راتلونکي انځور کې هټۍ، نېټه، وخت او د رسید شمېره شامله کړئ.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'بله برخه داسې انځور کړئ چې څو توکي یو پر بل ولګېږي او وروستی ټولیز مقدار ښکاره وي.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'دا انځور یوځای کېدای نه شو. د هماغه رسید توکي یو پر بل ولګوئ او بیا یې انځور کړئ.';
+
+  @override
+  String get receiptDraftSaved =>
+      'رسید د مسودې په توګه خوندي شو. وروسته یې دوام ورکولی شئ.';
+
+  @override
+  String get receiptContinueAction => 'رسید ته دوام ورکړئ';
+
+  @override
+  String get receiptDraftsTitle => 'ناتمام رسیدونه';
+
+  @override
+  String get receiptDuplicate => 'دا رسید لا دمخه زیات شوی دی.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'د توکو مجموعه د رسید له ټولیز مقدار سره سمون نه خوري. وګورئ چې ټول رسید ښکاري.';
+
+  @override
+  String get receiptSaveDraftAction => 'وروسته لپاره خوندي کړئ';
+
+  @override
+  String get receiptResolveLines =>
+      'د خوندي کولو مخکې هر توکی ومنئ یا یې له پامه وغورځوئ.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'یوازې ټاکل شوي توکي به ورزیات شي. دا رسید به د وارد شوي په توګه نښه شي. دوام ورکوئ؟';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1277,7 +1320,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'د پلورنځي بیه توکی د اخیستل شوي په توګه نښه کوي؛ 0 هم منل کېږي. د کور بیه اختیاري ده. د نښې لرې کولو لپاره د پلورنځي بیه پاکه کړئ.';
 
   @override
-  String get shoppingDateLabel => 'د پېرود نېټه (اختیاري)';
+  String get shoppingDateLabel => 'د پېرود نېټه';
 
   @override
   String get shoppingDateNone => 'نېټه نه ده ټاکل شوې';
@@ -1296,4 +1339,27 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get listSortManual => 'لاسي ترتیب';
+
+  @override
+  String get imageCameraAction => 'عکس واخلئ';
+
+  @override
+  String get imageGalleryAction => 'له عکسونو څخه غوره کړئ';
+
+  @override
+  String get imageCaptureFailed =>
+      'کمره یا عکسونه پرانیستل نه شول. د لاسرسي اجازه وګورئ او بیا هڅه وکړئ.';
+
+  @override
+  String get imageRecognitionFailed => 'عکس پروسس نه شو. بل عکس وازمویئ.';
+
+  @override
+  String get receiptNoProducts =>
+      'متن ولوستل شو، خو د رسید توکي ونه موندل شول. توکي او ټول مبلغ په عکس کې شامل کړئ.';
+
+  @override
+  String get keepAwakeOn => 'سکرین به روښانه پاتې شي';
+
+  @override
+  String get keepAwakeOff => 'سکرین بندېدای شي';
 }

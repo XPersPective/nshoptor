@@ -8,9 +8,16 @@ export const UNITS = [
 ];
 
 const decimal = v => {
-  if (v === null || v === undefined || v === '') return null;
+  if (typeof v !== 'string' && typeof v !== 'number') return null;
   const s = String(v).trim().replace(',', '.');
   return /^\d{1,9}(\.\d{1,3})?$/.test(s) ? s : null;
+};
+// Receipt adjustments can be negative; shopping quantities and prices cannot.
+const receiptTotal = v => {
+  const s = typeof v === 'number' || typeof v === 'string' ? String(v).trim() : '';
+  const negative = s.startsWith('-');
+  const amount = decimal(negative ? s.slice(1) : s);
+  return amount === null ? null : (negative ? '-' : '') + amount;
 };
 const text = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
 
@@ -42,7 +49,8 @@ const priceContext = (item, source = '') => {
   const amounts = [...afterName.matchAll(/\d+(?:[.,]\d+)*/gu)];
   if (amounts.length !== 1 || canonicalMoney(amounts[0][0]) !== canonicalMoney(price)) return invalid;
   const total = /\b(toplam|ikisi|hepsi|total|altogether)\b/iu.test(afterName);
-  const unit = /(?:^|[^\p{L}])(?:tanesi|adedi|birim|kilosu|kilogramı|gramı|litresi|mililitresi|paketi|kutusu|şişesi|kavanozu|demeti|düzinesi|metresi|each|per)(?!\p{L})/iu.test(afterName);
+  const slashUnits = [...afterName.matchAll(/\/\s*([\p{L}]+)/giu)];
+  const unit = slashUnits.length > 0 || /(?:^|[^\p{L}])(?:tanesi|adedi|birim|kilosu|kilogramı|gramı|litresi|mililitresi|paketi|kutusu|şişesi|kavanozu|demeti|düzinesi|metresi|each|per)(?!\p{L})/iu.test(afterName);
   if (total && unit || (total || unit) && typeof item.priceIsUnitPrice === 'boolean' && item.priceIsUnitPrice !== unit) return invalid;
   if (!unit) return { meaning: false, basis: null };
   const productUnit = UNITS.includes(item?.unit) ? item.unit : 'piece';
@@ -59,6 +67,11 @@ const priceContext = (item, source = '') => {
   }
   for (const per of afterName.matchAll(/\bper\s+([a-z]+)/giu)) {
     const basis = perUnits[per[1].toLowerCase()];
+    if (!basis) return invalid;
+    namedBases.add(basis);
+  }
+  for (const slash of slashUnits) {
+    const basis = perUnits[slash[1].toLowerCase()];
     if (!basis) return invalid;
     namedBases.add(basis);
   }
@@ -122,7 +135,7 @@ export const TASKS = {
       '1) One item per product. A new product starts where a number with an optional unit is followed by a product name ("1 kilo elma 1 ekmek" = two items). ' +
       '2) quantity is the number before the product or its unit ("1 kilo" -> quantity "1", unit "kilogram"; "2 paket" -> "2", "package"). A quantity without a unit is unit "piece". ' +
       '3) estimatedPrice is the exact spoken money amount. By default it is the TOTAL for the selected quantity (priceIsUnitPrice false), even for 400 grams or two packages. ' +
-      'Explicit each/tanesi/birim fiyatı/kilosu/paketi/per-unit cues mean unit price (true). Contradictory total and unit cues mean null. priceUnitCode records the unit explicitly priced (kilosu -> kilogram), independent of quantity unit (400g -> gram). Tanesi/each use the product packaging unit. ' +
+      'Explicit each/tanesi/birim fiyatı/kilosu/paketi/per-unit and /kg or /litre cues mean unit price (true). Contradictory total and unit cues mean null. priceUnitCode records the unit explicitly priced (kilosu or /kg -> kilogram), independent of quantity unit (400g -> gram). Tanesi/each use the product packaging unit. ' +
       'priceEvidence must quote the exact source clause containing product, amount and price cue; never invent evidence. ' +
       'currencyCode must reflect spoken currency (TRY/EUR/USD etc.), else null. priceDestination is actual for explicit market/çarşı/store purchase prices, else planned. ' +
       '"kilosu 40 lira" or "per kilo 40" is a unit price: priceIsUnitPrice true. A price is never part of the name. ' +
@@ -168,10 +181,10 @@ export const TASKS = {
       const lines = input.lines;
       const planned = input.planned;
       const cleanLines = lines
-        .map(l => ({ i: Number.isInteger(l?.i) ? l.i : -1, text: text(l?.text, 80), total: decimal(l?.total) }))
+        .map(l => ({ i: Number.isSafeInteger(l?.i) ? l.i : -1, text: text(l?.text, 80), total: receiptTotal(l?.total) }))
         .filter(l => l.i >= 0 && l.text);
       const cleanPlanned = planned
-        .map(p => ({ id: Number.isInteger(p?.id) ? p.id : -1, name: text(p?.name, 60) }))
+        .map(p => ({ id: Number.isSafeInteger(p?.id) ? p.id : -1, name: text(p?.name, 60) }))
         .filter(p => p.id >= 0 && p.name);
       return cleanLines.length && cleanPlanned.length && cleanLines.length === lines.length && cleanPlanned.length === planned.length
         && new Set(cleanLines.map(l => l.i)).size === lines.length && new Set(cleanPlanned.map(p => p.id)).size === planned.length

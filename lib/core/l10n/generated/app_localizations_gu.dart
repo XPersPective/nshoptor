@@ -605,6 +605,9 @@ class AppLocalizationsGu extends AppLocalizations {
   String get scanReceiptAction => 'રસીદ સ્કેન કરો';
 
   @override
+  String get fromReceiptListButton => 'રસીદમાંથી યાદી';
+
+  @override
   String get shelfLabelAction => 'શેલ્ફ લેબલ પરથી કિંમત';
 
   @override
@@ -1056,7 +1059,47 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'લિંકેડ રસીદ લાઇન્સ existing ખરીદીઓને બદલે છે; અનલિંકેડ લાઇન્સ ઉમેરાય છે.';
+      'કિંમત વગરની વસ્તુઓની કિંમત ભરાશે. બજારભાવ પહેલેથી હોય તેવી વસ્તુઓ અલગ ખરીદી તરીકે ઉમેરાશે.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'આગળના ફોટામાં દુકાન, તારીખ, સમય અને રસીદ નંબર સામેલ કરો.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'આગળના ભાગનો ફોટો લો, જેમાં કેટલીક એકબીજા પર આવતી વસ્તુઓ અને અંતિમ કુલ દેખાય.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'આ ફોટો રસીદ સાથે જોડી શકાયો નહીં. એ જ રસીદની એકબીજા પર આવતી વસ્તુઓ સાથે ફરી ફોટો લો.';
+
+  @override
+  String get receiptDraftSaved =>
+      'રસીદ ડ્રાફ્ટ તરીકે સાચવાઈ. તમે પછીથી ચાલુ રાખી શકો છો.';
+
+  @override
+  String get receiptContinueAction => 'રસીદ ચાલુ રાખો';
+
+  @override
+  String get receiptDraftsTitle => 'અધૂરી રસીદો';
+
+  @override
+  String get receiptDuplicate => 'આ રસીદ પહેલેથી ઉમેરાઈ છે.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'વસ્તુઓ રસીદના કુલ સાથે મેળ ખાતી નથી. આખી રસીદ દેખાય છે કે નહીં તે તપાસો.';
+
+  @override
+  String get receiptSaveDraftAction => 'પછી માટે સાચવો';
+
+  @override
+  String get receiptResolveLines =>
+      'સાચવતા પહેલાં દરેક વસ્તુ સ્વીકારો અથવા અવગણો.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'માત્ર પસંદ કરેલી વસ્તુઓ ઉમેરાશે. આ રસીદ આયાત કરેલી તરીકે ચિહ્નિત થશે. આગળ વધવું છે?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1279,7 +1322,7 @@ class AppLocalizationsGu extends AppLocalizations {
       'દુકાનની કિંમત લખવાથી વસ્તુ ખરીદેલી ગણાય છે; 0 પણ માન્ય છે. ઘરની કિંમત વૈકલ્પિક છે. નિશાની દૂર કરવા દુકાનની કિંમત ભૂંસો.';
 
   @override
-  String get shoppingDateLabel => 'ખરીદીની તારીખ (વૈકલ્પિક)';
+  String get shoppingDateLabel => 'ખરીદીની તારીખ';
 
   @override
   String get shoppingDateNone => 'કોઈ તારીખ પસંદ કરેલી નથી';
@@ -1298,4 +1341,28 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get listSortManual => 'જાતે ગોઠવો';
+
+  @override
+  String get imageCameraAction => 'ફોટો લો';
+
+  @override
+  String get imageGalleryAction => 'ફોટામાંથી પસંદ કરો';
+
+  @override
+  String get imageCaptureFailed =>
+      'કૅમેરા અથવા ફોટા ખોલી શકાયા નથી. ઍક્સેસની પરવાનગી તપાસો અને ફરી પ્રયાસ કરો.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ફોટો પર પ્રક્રિયા થઈ શકી નથી. બીજો ફોટો અજમાવો.';
+
+  @override
+  String get receiptNoProducts =>
+      'લખાણ વંચાયું, પરંતુ રસીદની વસ્તુઓ મળી નથી. ફોટામાં વસ્તુઓ અને કુલ રકમ સામેલ કરો.';
+
+  @override
+  String get keepAwakeOn => 'સ્ક્રીન ચાલુ રહેશે';
+
+  @override
+  String get keepAwakeOff => 'સ્ક્રીન બંધ થઈ શકે છે';
 }

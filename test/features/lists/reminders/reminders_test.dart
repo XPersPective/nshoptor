@@ -17,6 +17,7 @@ class FakeReminderScheduler implements ReminderScheduler {
 
   bool permissionGranted;
   bool failScheduling = false;
+  bool failCancellation = false;
   int permissionCalls = 0;
   final List<ScheduledReminder> scheduled = [];
   final List<ScheduledReminder> scheduleCalls = [];
@@ -38,6 +39,7 @@ class FakeReminderScheduler implements ReminderScheduler {
 
   @override
   Future<void> cancel(int id) async {
+    if (failCancellation) throw StateError('native cancellation failed');
     cancelled.add(id);
     scheduled.removeWhere((r) => r.id == id);
   }
@@ -413,6 +415,37 @@ void main() {
 
     expect(fake.cancelled, isNotEmpty);
     expect(await db.select(db.reminders).get(), isEmpty); // cascade
+  });
+
+  test('permission revoked on edit preserves the previous reminder without native writes', () async {
+    final list = await makeList();
+    final original = clock.add(const Duration(days: 1));
+    await reminders.setReminder(listId: list, title: 'N', body: 'b', atUtc: original);
+    final before = await reminders.activeForList(list);
+    fake.permissionGranted = false;
+    expect(await reminders.setReminder(listId: list, title: 'N', body: 'b',
+      atUtc: clock.add(const Duration(days: 2))), isFalse);
+    expect((await reminders.activeForList(list))!.id, before!.id);
+    expect((await reminders.activeForList(list))!.scheduledAt.toUtc(), original);
+    expect(fake.scheduleCalls, hasLength(1));
+    expect(fake.cancelled, isEmpty);
+  });
+
+  test('native cancellation failure retains the reminder and retry needs no permission', () async {
+    final list = await makeList();
+    await reminders.setReminder(listId: list, title: 'N', body: 'b',
+      atUtc: clock.add(const Duration(days: 1)));
+    final original = await reminders.activeForList(list);
+    fake.failCancellation = true;
+    await expectLater(reminders.cancelReminder(original!.id), throwsStateError);
+    expect((await reminders.activeForList(list))!.id, original.id);
+    expect(fake.scheduled.single.id, original.id);
+    fake.permissionGranted = false;
+    fake.failCancellation = false;
+    await reminders.cancelReminder(original.id);
+    expect(await reminders.activeForList(list), isNull);
+    expect(fake.scheduled, isEmpty);
+    expect(fake.permissionCalls, 1);
   });
 
   test('DST/dayanıklılık: mutlak UTC anı saklanır, kayma yaratmaz', () async {

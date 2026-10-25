@@ -607,6 +607,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get scanReceiptAction => 'Σάρωση απόδειξης';
 
   @override
+  String get fromReceiptListButton => 'Από απόδειξη';
+
+  @override
   String get shelfLabelAction => 'Τιμή από ετικέτα ραφιού';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Οι γραμμές της συνημμένης απόδειξης αντικαθιστούν τις υπάρχουσες αγορές· οι μη συνημμένες γραμμές προστίθενται.';
+      'Συμπληρώνονται τα είδη χωρίς τιμή. Τα είδη που έχουν ήδη τιμή αγοράς προστίθενται ως ξεχωριστές αγορές.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Συμπεριλάβετε το κατάστημα, την ημερομηνία, την ώρα και τον αριθμό απόδειξης στην επόμενη φωτογραφία.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Φωτογραφίστε την επόμενη ενότητα με μερικά είδη που επικαλύπτονται και το τελικό σύνολο.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Δεν ήταν δυνατή η σύνδεση αυτής της φωτογραφίας με την απόδειξη. Τραβήξτε την ξανά με επικαλυπτόμενα είδη από την ίδια απόδειξη.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Η απόδειξη αποθηκεύτηκε ως πρόχειρο. Μπορείτε να συνεχίσετε αργότερα.';
+
+  @override
+  String get receiptContinueAction => 'Συνέχεια απόδειξης';
+
+  @override
+  String get receiptDraftsTitle => 'Ημιτελείς αποδείξεις';
+
+  @override
+  String get receiptDuplicate => 'Αυτή η απόδειξη έχει ήδη προστεθεί.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Τα είδη δεν συμφωνούν με το σύνολο της απόδειξης. Ελέγξτε αν φαίνεται ολόκληρη η απόδειξη.';
+
+  @override
+  String get receiptSaveDraftAction => 'Αποθήκευση για αργότερα';
+
+  @override
+  String get receiptResolveLines =>
+      'Αποδεχτείτε ή αγνοήστε κάθε προϊόν πριν από την αποθήκευση.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Θα προστεθούν μόνο τα επιλεγμένα προϊόντα. Αυτή η απόδειξη θα επισημανθεί ως εισαγμένη. Συνέχεια;';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1291,7 +1334,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'Η τιμή καταστήματος επισημαίνει το προϊόν ως αγορασμένο· μετρά και το 0. Η τιμή στο σπίτι είναι προαιρετική. Διαγράψτε την τιμή καταστήματος για να αφαιρέσετε τη σήμανση.';
 
   @override
-  String get shoppingDateLabel => 'Ημερομηνία αγορών (προαιρετική)';
+  String get shoppingDateLabel => 'Ημερομηνία αγορών';
 
   @override
   String get shoppingDateNone => 'Δεν επιλέχθηκε ημερομηνία';
@@ -1310,4 +1353,28 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get listSortManual => 'Χειροκίνητη σειρά';
+
+  @override
+  String get imageCameraAction => 'Λήψη φωτογραφίας';
+
+  @override
+  String get imageGalleryAction => 'Επιλογή από φωτογραφίες';
+
+  @override
+  String get imageCaptureFailed =>
+      'Δεν ήταν δυνατό το άνοιγμα της κάμερας ή των φωτογραφιών. Ελέγξτε την άδεια πρόσβασης και δοκιμάστε ξανά.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Δεν ήταν δυνατή η επεξεργασία της φωτογραφίας. Δοκιμάστε άλλη φωτογραφία.';
+
+  @override
+  String get receiptNoProducts =>
+      'Το κείμενο διαβάστηκε, αλλά δεν βρέθηκαν είδη απόδειξης. Συμπεριλάβετε τα είδη και το σύνολο στη φωτογραφία.';
+
+  @override
+  String get keepAwakeOn => 'Η οθόνη παραμένει ενεργή';
+
+  @override
+  String get keepAwakeOff => 'Η οθόνη μπορεί να σβήσει';
 }

@@ -1,5 +1,63 @@
 import '../../data/db/app_database.dart';
 import '../shopping_mode/item_status.dart';
+import 'taxonomy/item_sort.dart';
+
+List<PlannedItem> sortedItemsForView(
+  List<PlannedItem> items,
+  List<PurchaseEntry> entries, {
+  required ItemSortMode mode,
+  required String localeCode,
+}) =>
+    purchasedItemsLast(sortItems(items, mode, localeCode: localeCode), entries);
+
+/// A row keeps its real identity: unplanned purchases never receive a made-up
+/// planned-item ID or participate in saving manual item ranks.
+class ItemViewRow {
+  const ItemViewRow.planned(this.item) : entry = null;
+  const ItemViewRow.unplanned(this.entry) : item = null;
+
+  final PlannedItem? item;
+  final PurchaseEntry? entry;
+  String get name => item?.name ?? entry!.name;
+}
+
+/// Pending rows come first; all purchased rows share the same A–Z order,
+/// including purchases added directly at the store or from a receipt.
+List<ItemViewRow> alphabeticalItemRows(
+  List<PlannedItem> items,
+  List<PurchaseEntry> entries, {
+  required String localeCode,
+}) {
+  final purchased = entries
+      .where(hasMarketPrice)
+      .map((e) => e.plannedItemId)
+      .toSet();
+  bool bought(ItemViewRow row) => row.item == null
+      ? hasMarketPrice(row.entry!)
+      : purchased.contains(row.item!.id);
+  final rows = [
+    for (final item in items) ItemViewRow.planned(item),
+    for (final entry in entries)
+      if (entry.plannedItemId == null) ItemViewRow.unplanned(entry),
+  ];
+  rows.sort((a, b) {
+    final group = (bought(a) ? 1 : 0).compareTo(bought(b) ? 1 : 0);
+    if (group != 0) return group;
+    final name = compareItemNames(a.name, b.name, localeCode);
+    if (name != 0) return name;
+    if (a.item != null && b.item != null) {
+      final rank = a.item!.sortOrder.compareTo(b.item!.sortOrder);
+      return rank != 0 ? rank : a.item!.id.compareTo(b.item!.id);
+    }
+    if (a.item != null) return -1;
+    if (b.item != null) return 1;
+    return a.entry!.id.compareTo(b.entry!.id);
+  });
+  return rows;
+}
+
+bool canReorderItemView(ItemSortMode mode, String query) =>
+    mode == ItemSortMode.custom && query.trim().isEmpty;
 
 String foldItemSearch(String value, String localeCode) {
   final turkic = localeCode.startsWith('tr') || localeCode.startsWith('az');

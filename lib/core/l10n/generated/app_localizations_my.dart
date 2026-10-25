@@ -609,6 +609,9 @@ class AppLocalizationsMy extends AppLocalizations {
   String get scanReceiptAction => 'ရိတ်ထုပ် စကင်ဖတ်မည်';
 
   @override
+  String get fromReceiptListButton => 'ပြေစာမှ စာရင်း';
+
+  @override
   String get shelfLabelAction => 'ခုံပေါ်က တံဆိပ်မှ ဈေးနှုန်း';
 
   @override
@@ -1063,7 +1066,47 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'ချိတ်ဆက်ထားသော လက်မှတ်လိုင်းများသည် ရှိပြီးသား ဝယ်ယူမှုများကို အစားထိုးပြီး၊ မချိတ်ဆက်ထားသော လိုင်းများကို ထည့်သွင်းပါသည်။';
+      'ဈေးမရှိသော ပစ္စည်းများ၏ဈေးကို ဖြည့်ပေးမည်။ ဈေးကွက်ဈေးရှိပြီးသား ပစ္စည်းများကို သီးခြားဝယ်ယူမှုအဖြစ် ထည့်မည်။';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'နောက်ဓာတ်ပုံတွင် ဆိုင်၊ ရက်စွဲ၊ အချိန်နှင့် ပြေစာနံပါတ်တို့ ပါဝင်ပါစေ။';
+
+  @override
+  String get receiptIncompleteTail =>
+      'နောက်အပိုင်းကို ပစ္စည်းအချို့ ထပ်နေပြီး နောက်ဆုံးစုစုပေါင်းပါအောင် ဓာတ်ပုံရိုက်ပါ။';
+
+  @override
+  String get receiptContinuationRejected =>
+      'ဤဓာတ်ပုံကို ပေါင်းစည်း၍မရပါ။ ပြေစာတစ်ခုတည်းမှ ပစ္စည်းများ ထပ်နေအောင် ပြန်ရိုက်ပါ။';
+
+  @override
+  String get receiptDraftSaved =>
+      'ပြေစာကို မူကြမ်းအဖြစ် သိမ်းပြီးပါပြီ။ နောက်မှ ဆက်လုပ်နိုင်သည်။';
+
+  @override
+  String get receiptContinueAction => 'ပြေစာ ဆက်လုပ်ရန်';
+
+  @override
+  String get receiptDraftsTitle => 'မပြီးသေးသော ပြေစာများ';
+
+  @override
+  String get receiptDuplicate => 'ဤပြေစာကို ထည့်ပြီးသားဖြစ်သည်။';
+
+  @override
+  String get receiptTotalMismatch =>
+      'ပစ္စည်းစုစုပေါင်းသည် ပြေစာစုစုပေါင်းနှင့် မကိုက်ညီပါ။ ပြေစာတစ်ခုလုံး မြင်ရကြောင်း စစ်ဆေးပါ။';
+
+  @override
+  String get receiptSaveDraftAction => 'နောက်မှ သိမ်းရန်';
+
+  @override
+  String get receiptResolveLines =>
+      'မသိမ်းမီ ပစ္စည်းတစ်ခုစီကို လက်ခံပါ သို့မဟုတ် လျစ်လျူရှုပါ။';
+
+  @override
+  String get receiptPartialConfirm =>
+      'ရွေးထားသောပစ္စည်းများသာ ထည့်ပါမည်။ ဤပြေစာကို တင်သွင်းပြီးဟု မှတ်သားပါမည်။ ဆက်လုပ်မလား။';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1287,7 +1330,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'ဆိုင်ဈေးနှုန်းထည့်လျှင် ပစ္စည်းကို ဝယ်ပြီးဟု မှတ်သားသည်။ 0 လည်း အကျုံးဝင်သည်။ အိမ်ဈေးနှုန်းသည် မဖြစ်မနေမဟုတ်ပါ။ အမှန်ခြစ်ဖြုတ်ရန် ဆိုင်ဈေးနှုန်းကို ဖျက်ပါ။';
 
   @override
-  String get shoppingDateLabel => 'ဈေးဝယ်ရက် (မဖြစ်မနေမဟုတ်)';
+  String get shoppingDateLabel => 'ဈေးဝယ်ရက်';
 
   @override
   String get shoppingDateNone => 'ရက်စွဲ မရွေးရသေးပါ';
@@ -1306,4 +1349,28 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get listSortManual => 'ကိုယ်တိုင် စီစဉ်ရန်';
+
+  @override
+  String get imageCameraAction => 'ဓာတ်ပုံရိုက်ရန်';
+
+  @override
+  String get imageGalleryAction => 'ဓာတ်ပုံများမှ ရွေးရန်';
+
+  @override
+  String get imageCaptureFailed =>
+      'ကင်မရာ သို့မဟုတ် ဓာတ်ပုံများကို ဖွင့်၍မရပါ။ ဝင်ရောက်အသုံးပြုခွင့်ကို စစ်ဆေးပြီး ထပ်စမ်းကြည့်ပါ။';
+
+  @override
+  String get imageRecognitionFailed =>
+      'ဓာတ်ပုံကို လုပ်ဆောင်၍မရပါ။ အခြားဓာတ်ပုံဖြင့် စမ်းကြည့်ပါ။';
+
+  @override
+  String get receiptNoProducts =>
+      'စာသားကို ဖတ်ရှုပြီးသော်လည်း ပြေစာရှိ ပစ္စည်းများကို မတွေ့ပါ။ ဓာတ်ပုံတွင် ပစ္စည်းများနှင့် စုစုပေါင်းငွေပမာဏ ပါဝင်ပါစေ။';
+
+  @override
+  String get keepAwakeOn => 'မျက်နှာပြင်ကို ဖွင့်ထားမည်';
+
+  @override
+  String get keepAwakeOff => 'မျက်နှာပြင် ပိတ်သွားနိုင်သည်';
 }

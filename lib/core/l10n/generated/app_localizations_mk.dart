@@ -607,6 +607,9 @@ class AppLocalizationsMk extends AppLocalizations {
   String get scanReceiptAction => 'Скенирај бележка';
 
   @override
+  String get fromReceiptListButton => 'Од сметка';
+
+  @override
   String get shelfLabelAction => 'Цена од етикета на полица';
 
   @override
@@ -1061,7 +1064,47 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Линиите од поврзаното претходно уплатување ги заменуваат постоечките купувања; линиите без поврзување се додаваат.';
+      'Се пополнуваат цените на производите без цена. Производите со пазарна цена се додаваат како одделни купувања.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'На следната фотографија вклучете продавница, датум, време и број на сметка.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Фотографирајте го следниот дел со преклопени производи и крајниот износ.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Фотографијата не може да се спои. Сликајте повторно со преклопени производи од истата сметка.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Сметката е зачувана како нацрт. Може да продолжите подоцна.';
+
+  @override
+  String get receiptContinueAction => 'Продолжи со сметката';
+
+  @override
+  String get receiptDraftsTitle => 'Недовршени сметки';
+
+  @override
+  String get receiptDuplicate => 'Оваа сметка е веќе додадена.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Збирот на производите не се совпаѓа со вкупниот износ на сметката. Проверете дали се гледа целата сметка.';
+
+  @override
+  String get receiptSaveDraftAction => 'Зачувај за подоцна';
+
+  @override
+  String get receiptResolveLines =>
+      'Прифатете или игнорирајте ја секоја ставка пред да зачувате.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Ќе се додадат само избраните ставки. Оваа сметка ќе биде означена како увезена. Да продолжиме?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1288,7 +1331,7 @@ class AppLocalizationsMk extends AppLocalizations {
       'Цената во продавница го означува производот како купен; важи и 0. Домашната цена е незадолжителна. Избришете ја цената во продавница за да ја отстраните ознаката.';
 
   @override
-  String get shoppingDateLabel => 'Датум на купување (незадолжително)';
+  String get shoppingDateLabel => 'Датум на купување';
 
   @override
   String get shoppingDateNone => 'Не е избран датум';
@@ -1307,4 +1350,28 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get listSortManual => 'Рачен редослед';
+
+  @override
+  String get imageCameraAction => 'Фотографирај';
+
+  @override
+  String get imageGalleryAction => 'Избери од фотографии';
+
+  @override
+  String get imageCaptureFailed =>
+      'Не може да се отворат камерата или фотографиите. Проверете ја дозволата за пристап и обидете се повторно.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Фотографијата не може да се обработи. Обидете се со друга фотографија.';
+
+  @override
+  String get receiptNoProducts =>
+      'Текстот е прочитан, но не се пронајдени производи од сметката. Во фотографијата вклучете ги производите и вкупниот износ.';
+
+  @override
+  String get keepAwakeOn => 'Екранот останува вклучен';
+
+  @override
+  String get keepAwakeOff => 'Екранот може да се исклучи';
 }

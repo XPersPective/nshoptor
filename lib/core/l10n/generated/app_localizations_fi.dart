@@ -606,6 +606,9 @@ class AppLocalizationsFi extends AppLocalizations {
   String get scanReceiptAction => 'Skannaa kuitti';
 
   @override
+  String get fromReceiptListButton => 'Kuitista';
+
+  @override
   String get shelfLabelAction => 'Hyllyn hintalappu';
 
   @override
@@ -1063,7 +1066,47 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Linkitetyt kuitin rivit korvaavat olemassa olevat ostokset; linkittömät rivit lisätään.';
+      'Hinnattomat tuotteet täydennetään. Tuotteet, joilla on jo markkinahinta, lisätään erillisinä ostoksina.';
+
+  @override
+  String get receiptIncompleteHeader =>
+      'Sisällytä seuraavaan kuvaan kauppa, päivämäärä, kellonaika ja kuitin numero.';
+
+  @override
+  String get receiptIncompleteTail =>
+      'Kuvaa seuraava osio niin, että mukana on muutama limittäinen tuote ja loppusumma.';
+
+  @override
+  String get receiptContinuationRejected =>
+      'Tätä kuvaa ei voitu yhdistää kuittiin. Ota uusi kuva, jossa näkyy limittäisiä tuotteita samasta kuitista.';
+
+  @override
+  String get receiptDraftSaved =>
+      'Kuitti tallennettiin luonnoksena. Voit jatkaa myöhemmin.';
+
+  @override
+  String get receiptContinueAction => 'Jatka kuittia';
+
+  @override
+  String get receiptDraftsTitle => 'Keskeneräiset kuitit';
+
+  @override
+  String get receiptDuplicate => 'Tämä kuitti on jo lisätty.';
+
+  @override
+  String get receiptTotalMismatch =>
+      'Tuotteet eivät vastaa kuitin loppusummaa. Tarkista, että koko kuitti näkyy.';
+
+  @override
+  String get receiptSaveDraftAction => 'Tallenna myöhempää varten';
+
+  @override
+  String get receiptResolveLines =>
+      'Hyväksy tai ohita jokainen tuote ennen tallentamista.';
+
+  @override
+  String get receiptPartialConfirm =>
+      'Vain valitut tuotteet lisätään. Tämä kuitti merkitään tuoduksi. Jatketaanko?';
 
   @override
   String get voiceUnsupportedLanguage =>
@@ -1287,7 +1330,7 @@ class AppLocalizationsFi extends AppLocalizations {
       'Kauppahinta merkitsee tuotteen ostetuksi; myös 0 kelpaa. Kotihinta on valinnainen. Poista kauppahinta poistaaksesi valintamerkin.';
 
   @override
-  String get shoppingDateLabel => 'Ostopäivä (valinnainen)';
+  String get shoppingDateLabel => 'Ostopäivä';
 
   @override
   String get shoppingDateNone => 'Päivää ei ole valittu';
@@ -1306,4 +1349,28 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get listSortManual => 'Manuaalinen järjestys';
+
+  @override
+  String get imageCameraAction => 'Ota kuva';
+
+  @override
+  String get imageGalleryAction => 'Valitse kuvista';
+
+  @override
+  String get imageCaptureFailed =>
+      'Kameraa tai kuvia ei voitu avata. Tarkista käyttöoikeus ja yritä uudelleen.';
+
+  @override
+  String get imageRecognitionFailed =>
+      'Kuvaa ei voitu käsitellä. Kokeile toista kuvaa.';
+
+  @override
+  String get receiptNoProducts =>
+      'Teksti luettiin, mutta kuitin tuotteita ei löytynyt. Ota tuotteet ja loppusumma mukaan kuvaan.';
+
+  @override
+  String get keepAwakeOn => 'Näyttö pysyy päällä';
+
+  @override
+  String get keepAwakeOff => 'Näyttö voi sammua';
 }

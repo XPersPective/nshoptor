@@ -15,11 +15,17 @@ Future<PriceCandidate?> showPriceCandidateSheet(
   final l10n = AppLocalizations.of(context);
   return showModalBottomSheet<PriceCandidate>(
     context: context,
+    showDragHandle: true,
     builder: (ctx) => SafeArea(
       child: ListView(
         shrinkWrap: true,
         children: [
-          ListTile(title: Text(l10n.priceCandidatesTitle)),
+          ListTile(
+            title: Semantics(
+              header: true,
+              child: Text(l10n.priceCandidatesTitle),
+            ),
+          ),
           if (candidates.isEmpty)
             ListTile(
               key: const Key('no_price_candidates'),
@@ -47,7 +53,7 @@ Future<PriceCandidate?> showPriceCandidateSheet(
                       avatar: const Icon(Icons.auto_awesome, size: 16),
                       label: Text(l10n.aiSourceLabel),
                     )
-                  : Text(c.confidence),
+                  : null,
               onTap: () => Navigator.of(ctx).pop(c),
             ),
         ],
