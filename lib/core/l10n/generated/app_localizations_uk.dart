@@ -1372,4 +1372,37 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Екран може вимкнутися';
+
+  @override
+  String get spanDay => 'День';
+
+  @override
+  String get spanCustom => 'Діапазон дат';
+
+  @override
+  String get reportTotalSpent => 'Усього витрачено';
+
+  @override
+  String get reportAddedAt => 'Дата додавання';
+
+  @override
+  String get reportReceiptNumber => 'Номер чека';
+
+  @override
+  String get reportPreview => 'Попередній перегляд';
+
+  @override
+  String get reportShareAction => 'Поділитися';
+
+  @override
+  String get previousPeriodAction => 'Попередній період';
+
+  @override
+  String get nextPeriodAction => 'Наступний період';
+
+  @override
+  String get reportSaved => 'Звіт збережено.';
+
+  @override
+  String get reportZoom => 'Збільшити';
 }

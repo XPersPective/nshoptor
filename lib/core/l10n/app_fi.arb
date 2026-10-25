@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Kuvaa ei voitu käsitellä. Kokeile toista kuvaa.",
   "receiptNoProducts": "Teksti luettiin, mutta kuitin tuotteita ei löytynyt. Ota tuotteet ja loppusumma mukaan kuvaan.",
   "keepAwakeOn": "Näyttö pysyy päällä",
-  "keepAwakeOff": "Näyttö voi sammua"
+  "keepAwakeOff": "Näyttö voi sammua",
+  "spanDay": "Päivä",
+  "spanCustom": "Aikaväli",
+  "reportTotalSpent": "Yhteensä käytetty",
+  "reportAddedAt": "Lisätty",
+  "reportReceiptNumber": "Kuitin numero",
+  "reportPreview": "Esikatselu",
+  "reportShareAction": "Jaa",
+  "previousPeriodAction": "Edellinen jakso",
+  "nextPeriodAction": "Seuraava jakso",
+  "reportSaved": "Raportti tallennettu.",
+  "reportZoom": "Zoomaa"
 }

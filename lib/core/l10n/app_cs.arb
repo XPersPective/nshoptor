@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Fotku se nepodařilo zpracovat. Zkuste jinou fotku.",
   "receiptNoProducts": "Text byl přečten, ale položky účtenky nebyly nalezeny. Zahrňte do fotky položky i celkovou částku.",
   "keepAwakeOn": "Obrazovka zůstane zapnutá",
-  "keepAwakeOff": "Obrazovka se může vypnout"
+  "keepAwakeOff": "Obrazovka se může vypnout",
+  "spanDay": "Den",
+  "spanCustom": "Rozmezí dat",
+  "reportTotalSpent": "Celkem utraceno",
+  "reportAddedAt": "Přidáno",
+  "reportReceiptNumber": "Číslo účtenky",
+  "reportPreview": "Náhled",
+  "reportShareAction": "Sdílet",
+  "previousPeriodAction": "Předchozí období",
+  "nextPeriodAction": "Následující období",
+  "reportSaved": "Zpráva byla uložena.",
+  "reportZoom": "Přiblížit"
 }

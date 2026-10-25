@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Fotografiju nije moguće obraditi. Pokušajte s drugom fotografijom.",
   "receiptNoProducts": "Tekst je pročitan, ali stavke računa nisu pronađene. Na fotografiji obuhvatite stavke i ukupan iznos.",
   "keepAwakeOn": "Ekran ostaje uključen",
-  "keepAwakeOff": "Ekran se može isključiti"
+  "keepAwakeOff": "Ekran se može isključiti",
+  "spanDay": "Dan",
+  "spanCustom": "Raspon datuma",
+  "reportTotalSpent": "Ukupno potrošeno",
+  "reportAddedAt": "Dodano",
+  "reportReceiptNumber": "Broj računa",
+  "reportPreview": "Pregled",
+  "reportShareAction": "Podijeli",
+  "previousPeriodAction": "Prethodni period",
+  "nextPeriodAction": "Sljedeći period",
+  "reportSaved": "Izvještaj je sačuvan.",
+  "reportZoom": "Uvećaj"
 }

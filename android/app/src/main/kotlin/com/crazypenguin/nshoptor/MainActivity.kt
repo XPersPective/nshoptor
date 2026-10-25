@@ -30,6 +30,7 @@ import android.webkit.WebResourceError
 class MainActivity : FlutterActivity() {
     private var printView: WebView? = null
     private var printResult: MethodChannel.Result? = null
+    private var pdfRenderer: ReportPdfRenderer? = null
     private val mainHandler = Handler(Looper.getMainLooper())
     private val printTimeout = Runnable { failPrint("load_timeout") }
 
@@ -122,13 +123,20 @@ class MainActivity : FlutterActivity() {
         }
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "nshoptor/print")
             .setMethodCallHandler { call, result ->
-                if (call.method != "print") { result.notImplemented(); return@setMethodCallHandler }
+                if (call.method != "print" && call.method != "renderPdf") { result.notImplemented(); return@setMethodCallHandler }
                 val html = call.argument<String>("html")
                 val title = call.argument<String>("title")
                 if (html == null || html.length > 2_000_000 || title.isNullOrBlank() || title.length > 200) {
                     result.error("invalid_report", "Invalid report", null)
-                } else if (printView != null) {
+                } else if (printView != null || pdfRenderer?.busy == true) {
                     result.error("print_busy", "A print job is already active", null)
+                } else if (call.method == "renderPdf") {
+                    if (isFinishing || isDestroyed) {
+                        result.error("print_unavailable", "PDF rendering unavailable", null)
+                    } else {
+                        val renderer = pdfRenderer ?: ReportPdfRenderer(this).also { pdfRenderer = it }
+                        renderer.render(html, title, call.argument<String>("text"), result)
+                    }
                 } else {
                     printResult = result
                     try { printHtml(html, title) } catch (_: Exception) { failPrint("print_failed") }
@@ -375,6 +383,8 @@ class MainActivity : FlutterActivity() {
     override fun onStop() { cancelSpeech(); super.onStop() }
     override fun onDestroy() {
         cancelSpeech()
+        pdfRenderer?.dispose()
+        pdfRenderer = null
         failPrint("activity_destroyed")
         super.onDestroy()
     }

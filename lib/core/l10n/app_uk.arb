@@ -425,5 +425,16 @@
   "receiptResolveLines": "Перед збереженням прийміть або проігноруйте кожен товар.",
   "receiptPartialConfirm": "Буде додано лише вибрані товари. Цей чек буде позначено як імпортований. Продовжити?",
   "keepAwakeOn": "Екран залишається ввімкненим",
-  "keepAwakeOff": "Екран може вимкнутися"
+  "keepAwakeOff": "Екран може вимкнутися",
+  "spanDay": "День",
+  "spanCustom": "Діапазон дат",
+  "reportTotalSpent": "Усього витрачено",
+  "reportAddedAt": "Дата додавання",
+  "reportReceiptNumber": "Номер чека",
+  "reportPreview": "Попередній перегляд",
+  "reportShareAction": "Поділитися",
+  "previousPeriodAction": "Попередній період",
+  "nextPeriodAction": "Наступний період",
+  "reportSaved": "Звіт збережено.",
+  "reportZoom": "Збільшити"
 }

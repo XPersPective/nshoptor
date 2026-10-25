@@ -1373,4 +1373,37 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ekrani mund të fiket';
+
+  @override
+  String get spanDay => 'Ditë';
+
+  @override
+  String get spanCustom => 'Intervali i datave';
+
+  @override
+  String get reportTotalSpent => 'Gjithsej shpenzuar';
+
+  @override
+  String get reportAddedAt => 'U shtua';
+
+  @override
+  String get reportReceiptNumber => 'Numri i faturës';
+
+  @override
+  String get reportPreview => 'Pamja paraprake';
+
+  @override
+  String get reportShareAction => 'Ndaj';
+
+  @override
+  String get previousPeriodAction => 'Periudha e mëparshme';
+
+  @override
+  String get nextPeriodAction => 'Periudha tjetër';
+
+  @override
+  String get reportSaved => 'Raporti u ruajt.';
+
+  @override
+  String get reportZoom => 'Zmadho';
 }

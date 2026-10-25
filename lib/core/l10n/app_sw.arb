@@ -425,5 +425,16 @@
   "receiptResolveLines": "Kubali au puuza kila bidhaa kabla ya kuhifadhi.",
   "receiptPartialConfirm": "Bidhaa zilizochaguliwa pekee ndizo zitaongezwa. Risiti hii itawekwa alama kuwa imeingizwa. Endelea?",
   "keepAwakeOn": "Skrini hubaki imewashwa",
-  "keepAwakeOff": "Skrini inaweza kuzimika"
+  "keepAwakeOff": "Skrini inaweza kuzimika",
+  "spanDay": "Siku",
+  "spanCustom": "Kipindi cha tarehe",
+  "reportTotalSpent": "Jumla iliyotumika",
+  "reportAddedAt": "Tarehe iliyoongezwa",
+  "reportReceiptNumber": "Nambari ya risiti",
+  "reportPreview": "Onyesho la kukagua",
+  "reportShareAction": "Shiriki",
+  "previousPeriodAction": "Kipindi kilichotangulia",
+  "nextPeriodAction": "Kipindi kinachofuata",
+  "reportSaved": "Ripoti imehifadhiwa.",
+  "reportZoom": "Kuza"
 }

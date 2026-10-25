@@ -1,5 +1,16 @@
 import '../l10n/generated/app_localizations.dart';
 import 'unit_code.dart';
+import '../money/decimal_fixed.dart';
+
+/// Exact human-readable quantity; integer zeroes and all significant decimal
+/// digits survive. No floating-point conversion or thousands ambiguity.
+String formatQuantityNumber(DecimalFixed value, {String decimalSeparator = '.'}) {
+  var text = value.toDbString();
+  if (value.scale > 0) {
+    text = text.replaceFirst(RegExp(r'0+$'), '').replaceFirst(RegExp(r'\.$'), '');
+  }
+  return text.replaceAll('.', decimalSeparator);
+}
 
 /// Birimin kullanıcıya görünen adı (hedef kuralı: kanonik kod DB'de,
 /// görünen ad l10n'dan gelir). Tek kaynak burasıdır.

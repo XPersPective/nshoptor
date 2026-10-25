@@ -1367,4 +1367,37 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'තිරය නිවී යා හැක';
+
+  @override
+  String get spanDay => 'දවස';
+
+  @override
+  String get spanCustom => 'දින පරාසය';
+
+  @override
+  String get reportTotalSpent => 'මුළු වියදම';
+
+  @override
+  String get reportAddedAt => 'එක් කළ දිනය';
+
+  @override
+  String get reportReceiptNumber => 'රිසිට්පත් අංකය';
+
+  @override
+  String get reportPreview => 'පෙරදසුන';
+
+  @override
+  String get reportShareAction => 'බෙදාගන්න';
+
+  @override
+  String get previousPeriodAction => 'පෙර කාල සීමාව';
+
+  @override
+  String get nextPeriodAction => 'ඊළඟ කාල සීමාව';
+
+  @override
+  String get reportSaved => 'වාර්තාව සුරැකිණි.';
+
+  @override
+  String get reportZoom => 'විශාල කරන්න';
 }

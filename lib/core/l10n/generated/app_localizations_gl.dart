@@ -1375,4 +1375,37 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'A pantalla pode apagarse';
+
+  @override
+  String get spanDay => 'Día';
+
+  @override
+  String get spanCustom => 'Intervalo de datas';
+
+  @override
+  String get reportTotalSpent => 'Total gastado';
+
+  @override
+  String get reportAddedAt => 'Engadido';
+
+  @override
+  String get reportReceiptNumber => 'Número de recibo';
+
+  @override
+  String get reportPreview => 'Vista previa';
+
+  @override
+  String get reportShareAction => 'Compartir';
+
+  @override
+  String get previousPeriodAction => 'Período anterior';
+
+  @override
+  String get nextPeriodAction => 'Período seguinte';
+
+  @override
+  String get reportSaved => 'Informe gardado.';
+
+  @override
+  String get reportZoom => 'Ampliar';
 }

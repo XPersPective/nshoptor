@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Die foto kon nie verwerk word nie. Probeer 'n ander foto.",
   "receiptNoProducts": "Teks is gelees, maar geen items op die kwitansie is gevind nie. Sluit die items en totaal by die foto in.",
   "keepAwakeOn": "Skerm bly aan",
-  "keepAwakeOff": "Skerm kan afskakel"
+  "keepAwakeOff": "Skerm kan afskakel",
+  "spanDay": "Dag",
+  "spanCustom": "Datumreeks",
+  "reportTotalSpent": "Totaal bestee",
+  "reportAddedAt": "Bygevoeg",
+  "reportReceiptNumber": "Kwitansienommer",
+  "reportPreview": "Voorskou",
+  "reportShareAction": "Deel",
+  "previousPeriodAction": "Vorige tydperk",
+  "nextPeriodAction": "Volgende tydperk",
+  "reportSaved": "Verslag gestoor.",
+  "reportZoom": "Zoem"
 }

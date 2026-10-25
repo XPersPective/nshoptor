@@ -425,5 +425,16 @@
   "receiptResolveLines": "Accepteer of negeer elk artikel voordat je opslaat.",
   "receiptPartialConfirm": "Alleen de geselecteerde artikelen worden toegevoegd. Deze bon wordt gemarkeerd als geïmporteerd. Doorgaan?",
   "keepAwakeOn": "Scherm blijft aan",
-  "keepAwakeOff": "Scherm kan uitgaan"
+  "keepAwakeOff": "Scherm kan uitgaan",
+  "spanDay": "Dag",
+  "spanCustom": "Datumbereik",
+  "reportTotalSpent": "Totaal besteed",
+  "reportAddedAt": "Toegevoegd",
+  "reportReceiptNumber": "Bonnummer",
+  "reportPreview": "Voorbeeld",
+  "reportShareAction": "Delen",
+  "previousPeriodAction": "Vorige periode",
+  "nextPeriodAction": "Volgende periode",
+  "reportSaved": "Rapport opgeslagen.",
+  "reportZoom": "Inzoomen"
 }

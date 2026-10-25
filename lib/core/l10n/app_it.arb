@@ -425,5 +425,16 @@
   "receiptResolveLines": "Accetta o ignora ogni articolo prima di salvare.",
   "receiptPartialConfirm": "Verranno aggiunti solo gli articoli selezionati. Questa ricevuta sarà contrassegnata come importata. Continuare?",
   "keepAwakeOn": "Lo schermo resta acceso",
-  "keepAwakeOff": "Lo schermo può spegnersi"
+  "keepAwakeOff": "Lo schermo può spegnersi",
+  "spanDay": "Giorno",
+  "spanCustom": "Intervallo di date",
+  "reportTotalSpent": "Totale speso",
+  "reportAddedAt": "Aggiunto",
+  "reportReceiptNumber": "Numero di ricevuta",
+  "reportPreview": "Anteprima",
+  "reportShareAction": "Condividi",
+  "previousPeriodAction": "Periodo precedente",
+  "nextPeriodAction": "Periodo successivo",
+  "reportSaved": "Report salvato.",
+  "reportZoom": "Ingrandisci"
 }

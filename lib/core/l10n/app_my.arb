@@ -425,5 +425,16 @@
   "receiptResolveLines": "မသိမ်းမီ ပစ္စည်းတစ်ခုစီကို လက်ခံပါ သို့မဟုတ် လျစ်လျူရှုပါ။",
   "receiptPartialConfirm": "ရွေးထားသောပစ္စည်းများသာ ထည့်ပါမည်။ ဤပြေစာကို တင်သွင်းပြီးဟု မှတ်သားပါမည်။ ဆက်လုပ်မလား။",
   "keepAwakeOn": "မျက်နှာပြင်ကို ဖွင့်ထားမည်",
-  "keepAwakeOff": "မျက်နှာပြင် ပိတ်သွားနိုင်သည်"
+  "keepAwakeOff": "မျက်နှာပြင် ပိတ်သွားနိုင်သည်",
+  "spanDay": "နေ့",
+  "spanCustom": "ရက်စွဲအပိုင်းအခြား",
+  "reportTotalSpent": "စုစုပေါင်းသုံးငွေ",
+  "reportAddedAt": "ထည့်သွင်းသည့်ရက်",
+  "reportReceiptNumber": "ပြေစာနံပါတ်",
+  "reportPreview": "အစမ်းကြည့်ရန်",
+  "reportShareAction": "မျှဝေရန်",
+  "previousPeriodAction": "ယခင်ကာလ",
+  "nextPeriodAction": "နောက်ကာလ",
+  "reportSaved": "အစီရင်ခံစာကို သိမ်းဆည်းပြီးပါပြီ။",
+  "reportZoom": "ချဲ့ရန်"
 }

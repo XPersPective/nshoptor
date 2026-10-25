@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Fotografiju nije moguće obraditi. Pokušajte s drugom fotografijom.",
   "receiptNoProducts": "Tekst je pročitan, ali stavke računa nisu pronađene. Fotografijom obuhvatite stavke i ukupan iznos.",
   "keepAwakeOn": "Zaslon ostaje uključen",
-  "keepAwakeOff": "Zaslon se može isključiti"
+  "keepAwakeOff": "Zaslon se može isključiti",
+  "spanDay": "Dan",
+  "spanCustom": "Raspon datuma",
+  "reportTotalSpent": "Ukupno potrošeno",
+  "reportAddedAt": "Dodano",
+  "reportReceiptNumber": "Broj računa",
+  "reportPreview": "Pregled",
+  "reportShareAction": "Podijeli",
+  "previousPeriodAction": "Prethodno razdoblje",
+  "nextPeriodAction": "Sljedeće razdoblje",
+  "reportSaved": "Izvješće je spremljeno.",
+  "reportZoom": "Povećaj"
 }

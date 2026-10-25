@@ -425,5 +425,16 @@
   "receiptResolveLines": "Terima atau abaikan setiap barang sebelum menyimpan.",
   "receiptPartialConfirm": "Hanya barang yang dipilih yang akan ditambahkan. Struk ini akan ditandai sebagai diimpor. Lanjutkan?",
   "keepAwakeOn": "Layar tetap menyala",
-  "keepAwakeOff": "Layar dapat mati"
+  "keepAwakeOff": "Layar dapat mati",
+  "spanDay": "Hari",
+  "spanCustom": "Rentang tanggal",
+  "reportTotalSpent": "Total pengeluaran",
+  "reportAddedAt": "Ditambahkan",
+  "reportReceiptNumber": "Nomor struk",
+  "reportPreview": "Pratinjau",
+  "reportShareAction": "Bagikan",
+  "previousPeriodAction": "Periode sebelumnya",
+  "nextPeriodAction": "Periode berikutnya",
+  "reportSaved": "Laporan tersimpan.",
+  "reportZoom": "Perbesar"
 }

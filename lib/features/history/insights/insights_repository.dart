@@ -88,7 +88,7 @@ class InsightsRepository {
     // A retained history tab must also refresh when a receipt or price changes
     // without changing the list's completion date.
     readsFrom: {_db.shoppingLists, _db.plannedItems, _db.purchaseEntries,
-      _db.categories, _db.stores, _db.productMemory},
+      _db.categories, _db.stores, _db.productMemory, _db.receipts},
   ).map((row) => _db.shoppingLists.map(row.data)).watch();
 
   Future<List<MonthlyBucket>> monthlyTotals() => _monthlyQuery().get();

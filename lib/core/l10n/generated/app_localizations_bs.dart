@@ -1371,4 +1371,37 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ekran se može isključiti';
+
+  @override
+  String get spanDay => 'Dan';
+
+  @override
+  String get spanCustom => 'Raspon datuma';
+
+  @override
+  String get reportTotalSpent => 'Ukupno potrošeno';
+
+  @override
+  String get reportAddedAt => 'Dodano';
+
+  @override
+  String get reportReceiptNumber => 'Broj računa';
+
+  @override
+  String get reportPreview => 'Pregled';
+
+  @override
+  String get reportShareAction => 'Podijeli';
+
+  @override
+  String get previousPeriodAction => 'Prethodni period';
+
+  @override
+  String get nextPeriodAction => 'Sljedeći period';
+
+  @override
+  String get reportSaved => 'Izvještaj je sačuvan.';
+
+  @override
+  String get reportZoom => 'Uvećaj';
 }

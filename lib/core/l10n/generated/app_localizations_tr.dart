@@ -601,7 +601,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get templateHint => 'Önceki alışverişten yeni plan oluştur';
 
   @override
-  String get scanReceiptAction => 'Fiş tara';
+  String get scanReceiptAction => 'Fiş okut';
 
   @override
   String get fromReceiptListButton => 'Fişten liste';
@@ -1369,4 +1369,37 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ekran kapanabilir';
+
+  @override
+  String get spanDay => 'Gün';
+
+  @override
+  String get spanCustom => 'Tarih aralığı';
+
+  @override
+  String get reportTotalSpent => 'Toplam harcanan';
+
+  @override
+  String get reportAddedAt => 'Eklenme tarihi';
+
+  @override
+  String get reportReceiptNumber => 'Fiş numarası';
+
+  @override
+  String get reportPreview => 'Önizleme';
+
+  @override
+  String get reportShareAction => 'Paylaş';
+
+  @override
+  String get previousPeriodAction => 'Önceki dönem';
+
+  @override
+  String get nextPeriodAction => 'Sonraki dönem';
+
+  @override
+  String get reportSaved => 'Rapor kaydedildi.';
+
+  @override
+  String get reportZoom => 'Büyüt';
 }

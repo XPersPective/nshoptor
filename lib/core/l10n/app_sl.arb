@@ -425,5 +425,16 @@
   "receiptResolveLines": "Pred shranjevanjem sprejmite ali prezrite vsak izdelek.",
   "receiptPartialConfirm": "Dodani bodo samo izbrani izdelki. Ta račun bo označen kot uvožen. Želite nadaljevati?",
   "keepAwakeOn": "Zaslon ostane vklopljen",
-  "keepAwakeOff": "Zaslon se lahko izklopi"
+  "keepAwakeOff": "Zaslon se lahko izklopi",
+  "spanDay": "Dan",
+  "spanCustom": "Časovno obdobje",
+  "reportTotalSpent": "Skupaj porabljeno",
+  "reportAddedAt": "Dodano",
+  "reportReceiptNumber": "Številka računa",
+  "reportPreview": "Predogled",
+  "reportShareAction": "Deli",
+  "previousPeriodAction": "Prejšnje obdobje",
+  "nextPeriodAction": "Naslednje obdobje",
+  "reportSaved": "Poročilo je shranjeno.",
+  "reportZoom": "Povečaj"
 }

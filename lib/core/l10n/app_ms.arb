@@ -425,5 +425,16 @@
   "receiptResolveLines": "Terima atau abaikan setiap item sebelum menyimpan.",
   "receiptPartialConfirm": "Hanya item yang dipilih akan ditambah. Resit ini akan ditandakan sebagai diimport. Teruskan?",
   "keepAwakeOn": "Skrin kekal menyala",
-  "keepAwakeOff": "Skrin boleh dimatikan"
+  "keepAwakeOff": "Skrin boleh dimatikan",
+  "spanDay": "Hari",
+  "spanCustom": "Julat tarikh",
+  "reportTotalSpent": "Jumlah dibelanjakan",
+  "reportAddedAt": "Tarikh ditambah",
+  "reportReceiptNumber": "Nombor resit",
+  "reportPreview": "Pratonton",
+  "reportShareAction": "Kongsi",
+  "previousPeriodAction": "Tempoh sebelumnya",
+  "nextPeriodAction": "Tempoh seterusnya",
+  "reportSaved": "Laporan disimpan.",
+  "reportZoom": "Zum"
 }

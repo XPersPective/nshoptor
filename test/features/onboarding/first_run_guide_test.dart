@@ -68,7 +68,7 @@ void main() {
     expect(AppDefaults.guideSeen(), isTrue);
   });
 
-  testWidgets('previous, close and system back do not acknowledge first use', (
+  testWidgets('explicit close acknowledges first use and manual replay preserves it', (
     tester,
   ) async {
     await openGuide(tester);
@@ -81,13 +81,13 @@ void main() {
     expect(find.byKey(const Key('first_run_guide_back')), findsNothing);
     await tester.tap(find.byKey(const Key('first_run_guide_close')));
     await tester.pumpAndSettle();
-    expect(AppDefaults.guideSeen(), isFalse);
+    expect(AppDefaults.guideSeen(), isTrue);
     await tester.tap(find.byKey(const Key('open_guide')));
     await tester.pumpAndSettle();
     await tester.binding.handlePopRoute();
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('first_run_guide')), findsNothing);
-    expect(AppDefaults.guideSeen(), isFalse);
+    expect(AppDefaults.guideSeen(), isTrue);
   });
 
   for (final language in ['tr', 'en', 'ar']) {

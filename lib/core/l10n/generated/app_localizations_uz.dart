@@ -1377,4 +1377,37 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ekran o‘chishi mumkin';
+
+  @override
+  String get spanDay => 'Kun';
+
+  @override
+  String get spanCustom => 'Sana oralig‘i';
+
+  @override
+  String get reportTotalSpent => 'Jami sarflangan';
+
+  @override
+  String get reportAddedAt => 'Qo‘shilgan sana';
+
+  @override
+  String get reportReceiptNumber => 'Chek raqami';
+
+  @override
+  String get reportPreview => 'Ko‘rib chiqish';
+
+  @override
+  String get reportShareAction => 'Ulashish';
+
+  @override
+  String get previousPeriodAction => 'Oldingi davr';
+
+  @override
+  String get nextPeriodAction => 'Keyingi davr';
+
+  @override
+  String get reportSaved => 'Hisobot saqlandi.';
+
+  @override
+  String get reportZoom => 'Kattalashtirish';
 }

@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Снимката не може да бъде обработена. Опитайте с друга снимка.",
   "receiptNoProducts": "Текстът е прочетен, но не са намерени артикули от касовата бележка. Включете артикулите и общата сума в снимката.",
   "keepAwakeOn": "Екранът остава включен",
-  "keepAwakeOff": "Екранът може да се изключи"
+  "keepAwakeOff": "Екранът може да се изключи",
+  "spanDay": "Ден",
+  "spanCustom": "Период",
+  "reportTotalSpent": "Общо похарчено",
+  "reportAddedAt": "Добавено",
+  "reportReceiptNumber": "Номер на касовата бележка",
+  "reportPreview": "Преглед",
+  "reportShareAction": "Споделяне",
+  "previousPeriodAction": "Предишен период",
+  "nextPeriodAction": "Следващ период",
+  "reportSaved": "Отчетът е запазен.",
+  "reportZoom": "Увеличи"
 }

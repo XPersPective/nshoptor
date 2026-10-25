@@ -1374,4 +1374,37 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ekran sönə bilər';
+
+  @override
+  String get spanDay => 'Gün';
+
+  @override
+  String get spanCustom => 'Tarix aralığı';
+
+  @override
+  String get reportTotalSpent => 'Ümumi xərclənən';
+
+  @override
+  String get reportAddedAt => 'Əlavə edilib';
+
+  @override
+  String get reportReceiptNumber => 'Qəbz nömrəsi';
+
+  @override
+  String get reportPreview => 'Önizləmə';
+
+  @override
+  String get reportShareAction => 'Paylaş';
+
+  @override
+  String get previousPeriodAction => 'Əvvəlki dövr';
+
+  @override
+  String get nextPeriodAction => 'Növbəti dövr';
+
+  @override
+  String get reportSaved => 'Hesabat yadda saxlanıldı.';
+
+  @override
+  String get reportZoom => 'Böyüt';
 }

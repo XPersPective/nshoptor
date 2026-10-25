@@ -425,5 +425,16 @@
   "receiptResolveLines": "د خوندي کولو مخکې هر توکی ومنئ یا یې له پامه وغورځوئ.",
   "receiptPartialConfirm": "یوازې ټاکل شوي توکي به ورزیات شي. دا رسید به د وارد شوي په توګه نښه شي. دوام ورکوئ؟",
   "keepAwakeOn": "سکرین به روښانه پاتې شي",
-  "keepAwakeOff": "سکرین بندېدای شي"
+  "keepAwakeOff": "سکرین بندېدای شي",
+  "spanDay": "ورځ",
+  "spanCustom": "د نېټو موده",
+  "reportTotalSpent": "ټول لګښت",
+  "reportAddedAt": "د زیاتولو نېټه",
+  "reportReceiptNumber": "د رسید شمېره",
+  "reportPreview": "مخکتنه",
+  "reportShareAction": "شریکول",
+  "previousPeriodAction": "تېر پړاو",
+  "nextPeriodAction": "راتلونکی پړاو",
+  "reportSaved": "راپور خوندي شو.",
+  "reportZoom": "لویول"
 }

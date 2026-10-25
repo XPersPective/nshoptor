@@ -1360,4 +1360,37 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'ໜ້າຈໍອາດຈະດັບ';
+
+  @override
+  String get spanDay => 'ມື້';
+
+  @override
+  String get spanCustom => 'ຊ່ວງວັນທີ';
+
+  @override
+  String get reportTotalSpent => 'ລາຍຈ່າຍທັງໝົດ';
+
+  @override
+  String get reportAddedAt => 'ວັນທີເພີ່ມ';
+
+  @override
+  String get reportReceiptNumber => 'ເລກທີໃບຮັບເງິນ';
+
+  @override
+  String get reportPreview => 'ຕົວຢ່າງ';
+
+  @override
+  String get reportShareAction => 'ແບ່ງປັນ';
+
+  @override
+  String get previousPeriodAction => 'ຊ່ວງກ່ອນໜ້າ';
+
+  @override
+  String get nextPeriodAction => 'ຊ່ວງຖັດໄປ';
+
+  @override
+  String get reportSaved => 'ບັນທຶກລາຍງານແລ້ວ.';
+
+  @override
+  String get reportZoom => 'ຊູມ';
 }

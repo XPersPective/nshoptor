@@ -1375,4 +1375,37 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ekranas gali išsijungti';
+
+  @override
+  String get spanDay => 'Diena';
+
+  @override
+  String get spanCustom => 'Datų intervalas';
+
+  @override
+  String get reportTotalSpent => 'Iš viso išleista';
+
+  @override
+  String get reportAddedAt => 'Pridėta';
+
+  @override
+  String get reportReceiptNumber => 'Kvito numeris';
+
+  @override
+  String get reportPreview => 'Peržiūra';
+
+  @override
+  String get reportShareAction => 'Bendrinti';
+
+  @override
+  String get previousPeriodAction => 'Ankstesnis laikotarpis';
+
+  @override
+  String get nextPeriodAction => 'Kitas laikotarpis';
+
+  @override
+  String get reportSaved => 'Ataskaita išsaugota.';
+
+  @override
+  String get reportZoom => 'Priartinti';
 }

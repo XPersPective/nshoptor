@@ -425,5 +425,16 @@
   "receiptResolveLines": "محفوظ کرنے سے پہلے ہر چیز قبول کریں یا نظرانداز کریں۔",
   "receiptPartialConfirm": "صرف منتخب کردہ اشیا شامل کی جائیں گی۔ اس رسید کو درآمد شدہ کے طور پر نشان زد کیا جائے گا۔ جاری رکھیں؟",
   "keepAwakeOn": "اسکرین آن رہے گی",
-  "keepAwakeOff": "اسکرین بند ہو سکتی ہے"
+  "keepAwakeOff": "اسکرین بند ہو سکتی ہے",
+  "spanDay": "دن",
+  "spanCustom": "تاریخ کی حد",
+  "reportTotalSpent": "کل خرچ",
+  "reportAddedAt": "شامل کرنے کی تاریخ",
+  "reportReceiptNumber": "رسید نمبر",
+  "reportPreview": "پیش نظارہ",
+  "reportShareAction": "شیئر کریں",
+  "previousPeriodAction": "پچھلی مدت",
+  "nextPeriodAction": "اگلی مدت",
+  "reportSaved": "رپورٹ محفوظ ہو گئی۔",
+  "reportZoom": "بڑا کریں"
 }

@@ -849,17 +849,13 @@ void main() {
   });
 
   test('satın alma olayları ProController’a iletilmez', () async {
-    final inner = _FakeAdapter();
-    final adapter = SubscriptionPurchaseAdapter(inner);
+    const adapter = SubscriptionPurchaseAdapter();
     final seen = <String>[];
     final sub = adapter.updates.listen(
       (l) => seen.addAll(l.map((u) => u.purchase.productId)),
     );
-    inner.controller.add([_update(SubscriptionService.proId)]);
-    inner.controller.add([
-      _update('nshoptor_pro_v2'),
-      _update(SubscriptionService.maxId),
-    ]);
+    expect(await adapter.queryProducts(SubscriptionService.ids), isEmpty);
+    await adapter.restore();
     await Future<void>.delayed(Duration.zero);
     expect(seen, isEmpty);
     await sub.cancel();

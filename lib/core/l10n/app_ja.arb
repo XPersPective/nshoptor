@@ -425,5 +425,16 @@
   "receiptResolveLines": "保存する前に、各商品を承認するか無視してください。",
   "receiptPartialConfirm": "選択した商品だけが追加されます。このレシートはインポート済みとして記録されます。続行しますか？",
   "keepAwakeOn": "画面は点灯したままです",
-  "keepAwakeOff": "画面が消灯することがあります"
+  "keepAwakeOff": "画面が消灯することがあります",
+  "spanDay": "日",
+  "spanCustom": "期間",
+  "reportTotalSpent": "支出合計",
+  "reportAddedAt": "追加日",
+  "reportReceiptNumber": "レシート番号",
+  "reportPreview": "プレビュー",
+  "reportShareAction": "共有",
+  "previousPeriodAction": "前の期間",
+  "nextPeriodAction": "次の期間",
+  "reportSaved": "レポートを保存しました。",
+  "reportZoom": "拡大"
 }

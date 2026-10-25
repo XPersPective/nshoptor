@@ -1364,4 +1364,37 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'صفحه می‌تواند خاموش شود';
+
+  @override
+  String get spanDay => 'روز';
+
+  @override
+  String get spanCustom => 'بازهٔ تاریخ';
+
+  @override
+  String get reportTotalSpent => 'مجموع هزینه';
+
+  @override
+  String get reportAddedAt => 'افزوده‌شده';
+
+  @override
+  String get reportReceiptNumber => 'شماره رسید';
+
+  @override
+  String get reportPreview => 'پیش‌نمایش';
+
+  @override
+  String get reportShareAction => 'اشتراک‌گذاری';
+
+  @override
+  String get previousPeriodAction => 'دورهٔ قبل';
+
+  @override
+  String get nextPeriodAction => 'دورهٔ بعد';
+
+  @override
+  String get reportSaved => 'گزارش ذخیره شد.';
+
+  @override
+  String get reportZoom => 'بزرگ‌نمایی';
 }

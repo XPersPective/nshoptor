@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "ছবিটি প্রক্রিয়া করা যায়নি। অন্য একটি ছবি দিয়ে চেষ্টা করুন।",
   "receiptNoProducts": "লেখা পড়া হয়েছে, কিন্তু রসিদের কোনো পণ্য পাওয়া যায়নি। ছবিতে পণ্যগুলো ও মোট টাকা রাখুন।",
   "keepAwakeOn": "স্ক্রিন চালু থাকবে",
-  "keepAwakeOff": "স্ক্রিন বন্ধ হতে পারে"
+  "keepAwakeOff": "স্ক্রিন বন্ধ হতে পারে",
+  "spanDay": "দিন",
+  "spanCustom": "তারিখের পরিসর",
+  "reportTotalSpent": "মোট খরচ",
+  "reportAddedAt": "যোগ করা হয়েছে",
+  "reportReceiptNumber": "রসিদ নম্বর",
+  "reportPreview": "প্রিভিউ",
+  "reportShareAction": "শেয়ার",
+  "previousPeriodAction": "আগের সময়কাল",
+  "nextPeriodAction": "পরের সময়কাল",
+  "reportSaved": "প্রতিবেদন সংরক্ষিত হয়েছে।",
+  "reportZoom": "জুম"
 }

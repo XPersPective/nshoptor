@@ -425,5 +425,16 @@
   "receiptResolveLines": "Прихватите или занемарите сваку ставку пре чувања.",
   "receiptPartialConfirm": "Биће додате само изабране ставке. Овај рачун ће бити означен као увезен. Наставити?",
   "keepAwakeOn": "Екран остаје укључен",
-  "keepAwakeOff": "Екран се може искључити"
+  "keepAwakeOff": "Екран се може искључити",
+  "spanDay": "Дан",
+  "spanCustom": "Распон датума",
+  "reportTotalSpent": "Укупно потрошено",
+  "reportAddedAt": "Датум додавања",
+  "reportReceiptNumber": "Број рачуна",
+  "reportPreview": "Преглед",
+  "reportShareAction": "Подели",
+  "previousPeriodAction": "Претходни период",
+  "nextPeriodAction": "Следећи период",
+  "reportSaved": "Извештај је сачуван.",
+  "reportZoom": "Увећај"
 }

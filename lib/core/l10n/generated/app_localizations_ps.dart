@@ -1362,4 +1362,37 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'سکرین بندېدای شي';
+
+  @override
+  String get spanDay => 'ورځ';
+
+  @override
+  String get spanCustom => 'د نېټو موده';
+
+  @override
+  String get reportTotalSpent => 'ټول لګښت';
+
+  @override
+  String get reportAddedAt => 'د زیاتولو نېټه';
+
+  @override
+  String get reportReceiptNumber => 'د رسید شمېره';
+
+  @override
+  String get reportPreview => 'مخکتنه';
+
+  @override
+  String get reportShareAction => 'شریکول';
+
+  @override
+  String get previousPeriodAction => 'تېر پړاو';
+
+  @override
+  String get nextPeriodAction => 'راتلونکی پړاو';
+
+  @override
+  String get reportSaved => 'راپور خوندي شو.';
+
+  @override
+  String get reportZoom => 'لویول';
 }

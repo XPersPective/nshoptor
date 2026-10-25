@@ -425,5 +425,16 @@
   "receiptResolveLines": "සුරැකීමට පෙර සෑම අයිතමයක්ම පිළිගන්න හෝ නොසලකා හරින්න.",
   "receiptPartialConfirm": "තෝරාගත් අයිතම පමණක් එක් කෙරේ. මෙම රිසිට්පත ආනයනය කළ එකක් ලෙස සලකුණු කෙරේ. ඉදිරියට යන්නද?",
   "keepAwakeOn": "තිරය දිගටම දැල්වී පවතී",
-  "keepAwakeOff": "තිරය නිවී යා හැක"
+  "keepAwakeOff": "තිරය නිවී යා හැක",
+  "spanDay": "දවස",
+  "spanCustom": "දින පරාසය",
+  "reportTotalSpent": "මුළු වියදම",
+  "reportAddedAt": "එක් කළ දිනය",
+  "reportReceiptNumber": "රිසිට්පත් අංකය",
+  "reportPreview": "පෙරදසුන",
+  "reportShareAction": "බෙදාගන්න",
+  "previousPeriodAction": "පෙර කාල සීමාව",
+  "nextPeriodAction": "ඊළඟ කාල සීමාව",
+  "reportSaved": "වාර්තාව සුරැකිණි.",
+  "reportZoom": "විශාල කරන්න"
 }

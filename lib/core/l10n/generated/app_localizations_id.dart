@@ -1369,4 +1369,37 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Layar dapat mati';
+
+  @override
+  String get spanDay => 'Hari';
+
+  @override
+  String get spanCustom => 'Rentang tanggal';
+
+  @override
+  String get reportTotalSpent => 'Total pengeluaran';
+
+  @override
+  String get reportAddedAt => 'Ditambahkan';
+
+  @override
+  String get reportReceiptNumber => 'Nomor struk';
+
+  @override
+  String get reportPreview => 'Pratinjau';
+
+  @override
+  String get reportShareAction => 'Bagikan';
+
+  @override
+  String get previousPeriodAction => 'Periode sebelumnya';
+
+  @override
+  String get nextPeriodAction => 'Periode berikutnya';
+
+  @override
+  String get reportSaved => 'Laporan tersimpan.';
+
+  @override
+  String get reportZoom => 'Perbesar';
 }

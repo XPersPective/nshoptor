@@ -1373,4 +1373,37 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Näyttö voi sammua';
+
+  @override
+  String get spanDay => 'Päivä';
+
+  @override
+  String get spanCustom => 'Aikaväli';
+
+  @override
+  String get reportTotalSpent => 'Yhteensä käytetty';
+
+  @override
+  String get reportAddedAt => 'Lisätty';
+
+  @override
+  String get reportReceiptNumber => 'Kuitin numero';
+
+  @override
+  String get reportPreview => 'Esikatselu';
+
+  @override
+  String get reportShareAction => 'Jaa';
+
+  @override
+  String get previousPeriodAction => 'Edellinen jakso';
+
+  @override
+  String get nextPeriodAction => 'Seuraava jakso';
+
+  @override
+  String get reportSaved => 'Raportti tallennettu.';
+
+  @override
+  String get reportZoom => 'Zoomaa';
 }

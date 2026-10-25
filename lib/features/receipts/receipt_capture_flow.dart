@@ -94,7 +94,7 @@ Future<int?> openReceiptCaptureFlow(
       final controller = ReceiptReviewController(
         db: db,
         listId: listId,
-        title: title,
+        title: title ?? document.metadata.store,
         currencyCode: reviewCurrency,
         document: document,
         draftId: draftId,

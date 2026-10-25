@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Hindi maproseso ang larawan. Sumubok ng ibang larawan.",
   "receiptNoProducts": "Nabasa ang teksto, ngunit walang nakitang mga item sa resibo. Isama ang mga item at kabuuang halaga sa larawan.",
   "keepAwakeOn": "Mananatiling bukas ang screen",
-  "keepAwakeOff": "Maaaring mamatay ang screen"
+  "keepAwakeOff": "Maaaring mamatay ang screen",
+  "spanDay": "Araw",
+  "spanCustom": "Saklaw ng petsa",
+  "reportTotalSpent": "Kabuuang nagastos",
+  "reportAddedAt": "Idinagdag",
+  "reportReceiptNumber": "Numero ng resibo",
+  "reportPreview": "Preview",
+  "reportShareAction": "Ibahagi",
+  "previousPeriodAction": "Nakaraang panahon",
+  "nextPeriodAction": "Susunod na panahon",
+  "reportSaved": "Na-save ang ulat.",
+  "reportZoom": "I-zoom"
 }

@@ -1366,4 +1366,37 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'स्क्रीन बंद होऊ शकते';
+
+  @override
+  String get spanDay => 'दिवस';
+
+  @override
+  String get spanCustom => 'तारखेची श्रेणी';
+
+  @override
+  String get reportTotalSpent => 'एकूण खर्च';
+
+  @override
+  String get reportAddedAt => 'जोडल्याची तारीख';
+
+  @override
+  String get reportReceiptNumber => 'पावती क्रमांक';
+
+  @override
+  String get reportPreview => 'पूर्वावलोकन';
+
+  @override
+  String get reportShareAction => 'शेअर करा';
+
+  @override
+  String get previousPeriodAction => 'मागील कालावधी';
+
+  @override
+  String get nextPeriodAction => 'पुढील कालावधी';
+
+  @override
+  String get reportSaved => 'अहवाल जतन केला.';
+
+  @override
+  String get reportZoom => 'झूम';
 }

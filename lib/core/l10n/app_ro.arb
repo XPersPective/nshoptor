@@ -425,5 +425,16 @@
   "receiptResolveLines": "Acceptați sau ignorați fiecare articol înainte de salvare.",
   "receiptPartialConfirm": "Doar articolele selectate vor fi adăugate. Această chitanță va fi marcată ca importată. Continuați?",
   "keepAwakeOn": "Ecranul rămâne pornit",
-  "keepAwakeOff": "Ecranul se poate stinge"
+  "keepAwakeOff": "Ecranul se poate stinge",
+  "spanDay": "Zi",
+  "spanCustom": "Interval de date",
+  "reportTotalSpent": "Total cheltuit",
+  "reportAddedAt": "Adăugat",
+  "reportReceiptNumber": "Numărul bonului",
+  "reportPreview": "Previzualizare",
+  "reportShareAction": "Partajează",
+  "previousPeriodAction": "Perioada anterioară",
+  "nextPeriodAction": "Perioada următoare",
+  "reportSaved": "Raport salvat.",
+  "reportZoom": "Mărește"
 }

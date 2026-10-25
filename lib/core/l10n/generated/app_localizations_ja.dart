@@ -1324,4 +1324,37 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get keepAwakeOff => '画面が消灯することがあります';
+
+  @override
+  String get spanDay => '日';
+
+  @override
+  String get spanCustom => '期間';
+
+  @override
+  String get reportTotalSpent => '支出合計';
+
+  @override
+  String get reportAddedAt => '追加日';
+
+  @override
+  String get reportReceiptNumber => 'レシート番号';
+
+  @override
+  String get reportPreview => 'プレビュー';
+
+  @override
+  String get reportShareAction => '共有';
+
+  @override
+  String get previousPeriodAction => '前の期間';
+
+  @override
+  String get nextPeriodAction => '次の期間';
+
+  @override
+  String get reportSaved => 'レポートを保存しました。';
+
+  @override
+  String get reportZoom => '拡大';
 }

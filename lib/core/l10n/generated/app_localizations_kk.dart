@@ -1368,4 +1368,37 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Экран өшуі мүмкін';
+
+  @override
+  String get spanDay => 'Күн';
+
+  @override
+  String get spanCustom => 'Күндер аралығы';
+
+  @override
+  String get reportTotalSpent => 'Жалпы шығын';
+
+  @override
+  String get reportAddedAt => 'Қосылған күні';
+
+  @override
+  String get reportReceiptNumber => 'Чек нөмірі';
+
+  @override
+  String get reportPreview => 'Алдын ала қарау';
+
+  @override
+  String get reportShareAction => 'Бөлісу';
+
+  @override
+  String get previousPeriodAction => 'Алдыңғы кезең';
+
+  @override
+  String get nextPeriodAction => 'Келесі кезең';
+
+  @override
+  String get reportSaved => 'Есеп сақталды.';
+
+  @override
+  String get reportZoom => 'Үлкейту';
 }

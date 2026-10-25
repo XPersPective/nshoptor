@@ -1368,4 +1368,37 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Slökkt getur orðið á skjánum';
+
+  @override
+  String get spanDay => 'Dagur';
+
+  @override
+  String get spanCustom => 'Dagsetningabil';
+
+  @override
+  String get reportTotalSpent => 'Samtals eytt';
+
+  @override
+  String get reportAddedAt => 'Bætt við';
+
+  @override
+  String get reportReceiptNumber => 'Númer kvittunar';
+
+  @override
+  String get reportPreview => 'Forskoðun';
+
+  @override
+  String get reportShareAction => 'Deila';
+
+  @override
+  String get previousPeriodAction => 'Fyrra tímabil';
+
+  @override
+  String get nextPeriodAction => 'Næsta tímabil';
+
+  @override
+  String get reportSaved => 'Skýrsla vistuð.';
+
+  @override
+  String get reportZoom => 'Aðdráttur';
 }

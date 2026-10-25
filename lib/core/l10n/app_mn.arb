@@ -425,5 +425,16 @@
   "receiptResolveLines": "Хадгалахаас өмнө бараа бүрийг зөвшөөрөх эсвэл үл тоомсорлоно уу.",
   "receiptPartialConfirm": "Зөвхөн сонгосон барааг нэмнэ. Энэ баримтыг импортолсон гэж тэмдэглэнэ. Үргэлжлүүлэх үү?",
   "keepAwakeOn": "Дэлгэц асаалттай хэвээр байна",
-  "keepAwakeOff": "Дэлгэц унтарч болно"
+  "keepAwakeOff": "Дэлгэц унтарч болно",
+  "spanDay": "Өдөр",
+  "spanCustom": "Огнооны муж",
+  "reportTotalSpent": "Нийт зарцуулсан",
+  "reportAddedAt": "Нэмсэн огноо",
+  "reportReceiptNumber": "Баримтын дугаар",
+  "reportPreview": "Урьдчилан харах",
+  "reportShareAction": "Хуваалцах",
+  "previousPeriodAction": "Өмнөх хугацаа",
+  "nextPeriodAction": "Дараагийн хугацаа",
+  "reportSaved": "Тайлан хадгалагдлаа.",
+  "reportZoom": "Томруулах"
 }

@@ -1372,4 +1372,37 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'ಪರದೆ ಆಫ್ ಆಗಬಹುದು';
+
+  @override
+  String get spanDay => 'ದಿನ';
+
+  @override
+  String get spanCustom => 'ದಿನಾಂಕದ ಅವಧಿ';
+
+  @override
+  String get reportTotalSpent => 'ಒಟ್ಟು ಖರ್ಚು';
+
+  @override
+  String get reportAddedAt => 'ಸೇರಿಸಿದ ದಿನಾಂಕ';
+
+  @override
+  String get reportReceiptNumber => 'ರಸೀದಿ ಸಂಖ್ಯೆ';
+
+  @override
+  String get reportPreview => 'ಮುನ್ನೋಟ';
+
+  @override
+  String get reportShareAction => 'ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get previousPeriodAction => 'ಹಿಂದಿನ ಅವಧಿ';
+
+  @override
+  String get nextPeriodAction => 'ಮುಂದಿನ ಅವಧಿ';
+
+  @override
+  String get reportSaved => 'ವರದಿ ಉಳಿಸಲಾಗಿದೆ.';
+
+  @override
+  String get reportZoom => 'ಜೂಮ್';
 }

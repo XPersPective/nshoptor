@@ -1360,4 +1360,37 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'หน้าจออาจดับได้';
+
+  @override
+  String get spanDay => 'วัน';
+
+  @override
+  String get spanCustom => 'ช่วงวันที่';
+
+  @override
+  String get reportTotalSpent => 'ยอดใช้จ่ายทั้งหมด';
+
+  @override
+  String get reportAddedAt => 'วันที่เพิ่ม';
+
+  @override
+  String get reportReceiptNumber => 'หมายเลขใบเสร็จ';
+
+  @override
+  String get reportPreview => 'ตัวอย่าง';
+
+  @override
+  String get reportShareAction => 'แชร์';
+
+  @override
+  String get previousPeriodAction => 'ช่วงก่อนหน้า';
+
+  @override
+  String get nextPeriodAction => 'ช่วงถัดไป';
+
+  @override
+  String get reportSaved => 'บันทึกรายงานแล้ว';
+
+  @override
+  String get reportZoom => 'ซูม';
 }

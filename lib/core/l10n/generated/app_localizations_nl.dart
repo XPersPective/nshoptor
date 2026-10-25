@@ -1375,4 +1375,37 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Scherm kan uitgaan';
+
+  @override
+  String get spanDay => 'Dag';
+
+  @override
+  String get spanCustom => 'Datumbereik';
+
+  @override
+  String get reportTotalSpent => 'Totaal besteed';
+
+  @override
+  String get reportAddedAt => 'Toegevoegd';
+
+  @override
+  String get reportReceiptNumber => 'Bonnummer';
+
+  @override
+  String get reportPreview => 'Voorbeeld';
+
+  @override
+  String get reportShareAction => 'Delen';
+
+  @override
+  String get previousPeriodAction => 'Vorige periode';
+
+  @override
+  String get nextPeriodAction => 'Volgende periode';
+
+  @override
+  String get reportSaved => 'Rapport opgeslagen.';
+
+  @override
+  String get reportZoom => 'Inzoomen';
 }

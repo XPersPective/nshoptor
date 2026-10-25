@@ -1371,4 +1371,37 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'स्क्रिन बन्द हुन सक्छ';
+
+  @override
+  String get spanDay => 'दिन';
+
+  @override
+  String get spanCustom => 'मिति दायरा';
+
+  @override
+  String get reportTotalSpent => 'कुल खर्च';
+
+  @override
+  String get reportAddedAt => 'थपिएको मिति';
+
+  @override
+  String get reportReceiptNumber => 'रसिद नम्बर';
+
+  @override
+  String get reportPreview => 'पूर्वावलोकन';
+
+  @override
+  String get reportShareAction => 'साझा गर्नुहोस्';
+
+  @override
+  String get previousPeriodAction => 'अघिल्लो अवधि';
+
+  @override
+  String get nextPeriodAction => 'अर्को अवधि';
+
+  @override
+  String get reportSaved => 'प्रतिवेदन सुरक्षित गरियो।';
+
+  @override
+  String get reportZoom => 'जुम';
 }

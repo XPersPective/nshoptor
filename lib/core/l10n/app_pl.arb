@@ -425,5 +425,16 @@
   "receiptResolveLines": "Przed zapisaniem zaakceptuj lub zignoruj każdą pozycję.",
   "receiptPartialConfirm": "Dodane zostaną tylko wybrane pozycje. Ten paragon zostanie oznaczony jako zaimportowany. Kontynuować?",
   "keepAwakeOn": "Ekran pozostaje włączony",
-  "keepAwakeOff": "Ekran może się wyłączyć"
+  "keepAwakeOff": "Ekran może się wyłączyć",
+  "spanDay": "Dzień",
+  "spanCustom": "Zakres dat",
+  "reportTotalSpent": "Łączne wydatki",
+  "reportAddedAt": "Dodano",
+  "reportReceiptNumber": "Numer paragonu",
+  "reportPreview": "Podgląd",
+  "reportShareAction": "Udostępnij",
+  "previousPeriodAction": "Poprzedni okres",
+  "nextPeriodAction": "Następny okres",
+  "reportSaved": "Raport zapisany.",
+  "reportZoom": "Powiększ"
 }

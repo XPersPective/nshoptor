@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Das Foto konnte nicht verarbeitet werden. Versuche es mit einem anderen Foto.",
   "receiptNoProducts": "Der Text wurde gelesen, aber es wurden keine Kassenbonartikel gefunden. Nimm die Artikel und den Gesamtbetrag mit auf das Foto.",
   "keepAwakeOn": "Bildschirm bleibt eingeschaltet",
-  "keepAwakeOff": "Bildschirm kann sich ausschalten"
+  "keepAwakeOff": "Bildschirm kann sich ausschalten",
+  "spanDay": "Tag",
+  "spanCustom": "Zeitraum",
+  "reportTotalSpent": "Insgesamt ausgegeben",
+  "reportAddedAt": "Hinzugefügt",
+  "reportReceiptNumber": "Belegnummer",
+  "reportPreview": "Vorschau",
+  "reportShareAction": "Teilen",
+  "previousPeriodAction": "Vorheriger Zeitraum",
+  "nextPeriodAction": "Nächster Zeitraum",
+  "reportSaved": "Bericht gespeichert.",
+  "reportZoom": "Vergrößern"
 }

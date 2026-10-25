@@ -1380,4 +1380,37 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'திரை அணைக்கப்படலாம்';
+
+  @override
+  String get spanDay => 'நாள்';
+
+  @override
+  String get spanCustom => 'தேதி வரம்பு';
+
+  @override
+  String get reportTotalSpent => 'மொத்த செலவு';
+
+  @override
+  String get reportAddedAt => 'சேர்க்கப்பட்ட தேதி';
+
+  @override
+  String get reportReceiptNumber => 'ரசீது எண்';
+
+  @override
+  String get reportPreview => 'முன்னோட்டம்';
+
+  @override
+  String get reportShareAction => 'பகிர்';
+
+  @override
+  String get previousPeriodAction => 'முந்தைய காலம்';
+
+  @override
+  String get nextPeriodAction => 'அடுத்த காலம்';
+
+  @override
+  String get reportSaved => 'அறிக்கை சேமிக்கப்பட்டது.';
+
+  @override
+  String get reportZoom => 'பெரிதாக்கு';
 }

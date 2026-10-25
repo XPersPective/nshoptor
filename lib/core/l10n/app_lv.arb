@@ -425,5 +425,16 @@
   "receiptResolveLines": "Pirms saglabāšanas pieņemiet vai ignorējiet katru preci.",
   "receiptPartialConfirm": "Tiks pievienotas tikai atlasītās preces. Šis čeks tiks atzīmēts kā importēts. Vai turpināt?",
   "keepAwakeOn": "Ekrāns paliek ieslēgts",
-  "keepAwakeOff": "Ekrāns var izslēgties"
+  "keepAwakeOff": "Ekrāns var izslēgties",
+  "spanDay": "Diena",
+  "spanCustom": "Datumu diapazons",
+  "reportTotalSpent": "Kopā iztērēts",
+  "reportAddedAt": "Pievienots",
+  "reportReceiptNumber": "Čeka numurs",
+  "reportPreview": "Priekšskatījums",
+  "reportShareAction": "Kopīgot",
+  "previousPeriodAction": "Iepriekšējais periods",
+  "nextPeriodAction": "Nākamais periods",
+  "reportSaved": "Pārskats saglabāts.",
+  "reportZoom": "Tuvināt"
 }

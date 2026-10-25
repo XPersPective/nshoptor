@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "No s'ha pogut processar la foto. Prova amb una altra foto.",
   "receiptNoProducts": "S'ha llegit el text, però no s'han trobat articles del tiquet. Inclou els articles i el total a la foto.",
   "keepAwakeOn": "La pantalla es manté encesa",
-  "keepAwakeOff": "La pantalla es pot apagar"
+  "keepAwakeOff": "La pantalla es pot apagar",
+  "spanDay": "Dia",
+  "spanCustom": "Interval de dates",
+  "reportTotalSpent": "Total gastat",
+  "reportAddedAt": "Afegit",
+  "reportReceiptNumber": "Número de rebut",
+  "reportPreview": "Previsualització",
+  "reportShareAction": "Comparteix",
+  "previousPeriodAction": "Període anterior",
+  "nextPeriodAction": "Període següent",
+  "reportSaved": "S'ha desat l'informe.",
+  "reportZoom": "Amplia"
 }

@@ -1366,4 +1366,37 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Màn hình có thể tắt';
+
+  @override
+  String get spanDay => 'Ngày';
+
+  @override
+  String get spanCustom => 'Khoảng ngày';
+
+  @override
+  String get reportTotalSpent => 'Tổng chi tiêu';
+
+  @override
+  String get reportAddedAt => 'Ngày thêm';
+
+  @override
+  String get reportReceiptNumber => 'Số hóa đơn';
+
+  @override
+  String get reportPreview => 'Xem trước';
+
+  @override
+  String get reportShareAction => 'Chia sẻ';
+
+  @override
+  String get previousPeriodAction => 'Kỳ trước';
+
+  @override
+  String get nextPeriodAction => 'Kỳ tiếp theo';
+
+  @override
+  String get reportSaved => 'Đã lưu báo cáo.';
+
+  @override
+  String get reportZoom => 'Phóng to';
 }

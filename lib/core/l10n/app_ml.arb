@@ -425,5 +425,16 @@
   "receiptResolveLines": "സേവ് ചെയ്യുന്നതിന് മുമ്പ് ഓരോ ഇനവും അംഗീകരിക്കുകയോ അവഗണിക്കുകയോ ചെയ്യുക.",
   "receiptPartialConfirm": "തിരഞ്ഞെടുത്ത ഇനങ്ങൾ മാത്രം ചേർക്കും. ഈ രസീത് ഇറക്കുമതി ചെയ്തതായി അടയാളപ്പെടുത്തും. തുടരണോ?",
   "keepAwakeOn": "സ്‌ക്രീൻ ഓണായിരിക്കും",
-  "keepAwakeOff": "സ്‌ക്രീൻ ഓഫായേക്കാം"
+  "keepAwakeOff": "സ്‌ക്രീൻ ഓഫായേക്കാം",
+  "spanDay": "ദിവസം",
+  "spanCustom": "തീയതി പരിധി",
+  "reportTotalSpent": "ആകെ ചെലവ്",
+  "reportAddedAt": "ചേർത്ത തീയതി",
+  "reportReceiptNumber": "രസീത് നമ്പർ",
+  "reportPreview": "പ്രിവ്യൂ",
+  "reportShareAction": "പങ്കിടുക",
+  "previousPeriodAction": "മുൻ കാലയളവ്",
+  "nextPeriodAction": "അടുത്ത കാലയളവ്",
+  "reportSaved": "റിപ്പോർട്ട് സേവ് ചെയ്തു.",
+  "reportZoom": "സൂം"
 }

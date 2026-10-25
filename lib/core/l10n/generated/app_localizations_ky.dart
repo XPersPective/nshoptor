@@ -1371,4 +1371,37 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Экран өчүп калышы мүмкүн';
+
+  @override
+  String get spanDay => 'Күн';
+
+  @override
+  String get spanCustom => 'Күн аралыгы';
+
+  @override
+  String get reportTotalSpent => 'Жалпы чыгым';
+
+  @override
+  String get reportAddedAt => 'Кошулган күнү';
+
+  @override
+  String get reportReceiptNumber => 'Чектин номери';
+
+  @override
+  String get reportPreview => 'Алдын ала көрүү';
+
+  @override
+  String get reportShareAction => 'Бөлүшүү';
+
+  @override
+  String get previousPeriodAction => 'Мурунку мезгил';
+
+  @override
+  String get nextPeriodAction => 'Кийинки мезгил';
+
+  @override
+  String get reportSaved => 'Отчет сакталды.';
+
+  @override
+  String get reportZoom => 'Чоңойтуу';
 }

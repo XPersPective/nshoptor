@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "ફોટો પર પ્રક્રિયા થઈ શકી નથી. બીજો ફોટો અજમાવો.",
   "receiptNoProducts": "લખાણ વંચાયું, પરંતુ રસીદની વસ્તુઓ મળી નથી. ફોટામાં વસ્તુઓ અને કુલ રકમ સામેલ કરો.",
   "keepAwakeOn": "સ્ક્રીન ચાલુ રહેશે",
-  "keepAwakeOff": "સ્ક્રીન બંધ થઈ શકે છે"
+  "keepAwakeOff": "સ્ક્રીન બંધ થઈ શકે છે",
+  "spanDay": "દિવસ",
+  "spanCustom": "તારીખની શ્રેણી",
+  "reportTotalSpent": "કુલ ખર્ચ",
+  "reportAddedAt": "ઉમેર્યું",
+  "reportReceiptNumber": "રસીદ નંબર",
+  "reportPreview": "પૂર્વાવલોકન",
+  "reportShareAction": "શેર કરો",
+  "previousPeriodAction": "પહેલાનો સમયગાળો",
+  "nextPeriodAction": "આગળનો સમયગાળો",
+  "reportSaved": "રિપોર્ટ સાચવાયો.",
+  "reportZoom": "ઝૂમ"
 }

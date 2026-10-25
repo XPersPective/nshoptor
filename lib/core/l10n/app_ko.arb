@@ -425,5 +425,16 @@
   "receiptResolveLines": "저장하기 전에 각 항목을 승인하거나 무시하세요.",
   "receiptPartialConfirm": "선택한 항목만 추가됩니다. 이 영수증은 가져온 항목으로 표시됩니다. 계속할까요?",
   "keepAwakeOn": "화면이 계속 켜져 있습니다",
-  "keepAwakeOff": "화면이 꺼질 수 있습니다"
+  "keepAwakeOff": "화면이 꺼질 수 있습니다",
+  "spanDay": "일",
+  "spanCustom": "기간",
+  "reportTotalSpent": "총 지출",
+  "reportAddedAt": "추가 날짜",
+  "reportReceiptNumber": "영수증 번호",
+  "reportPreview": "미리보기",
+  "reportShareAction": "공유",
+  "previousPeriodAction": "이전 기간",
+  "nextPeriodAction": "다음 기간",
+  "reportSaved": "보고서가 저장되었습니다.",
+  "reportZoom": "확대"
 }

@@ -1313,4 +1313,37 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get keepAwakeOff => '屏幕可能会关闭';
+
+  @override
+  String get spanDay => '日';
+
+  @override
+  String get spanCustom => '日期范围';
+
+  @override
+  String get reportTotalSpent => '总支出';
+
+  @override
+  String get reportAddedAt => '添加日期';
+
+  @override
+  String get reportReceiptNumber => '收据编号';
+
+  @override
+  String get reportPreview => '预览';
+
+  @override
+  String get reportShareAction => '分享';
+
+  @override
+  String get previousPeriodAction => '上一时期';
+
+  @override
+  String get nextPeriodAction => '下一时期';
+
+  @override
+  String get reportSaved => '报告已保存。';
+
+  @override
+  String get reportZoom => '缩放';
 }

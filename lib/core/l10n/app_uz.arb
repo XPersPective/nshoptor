@@ -425,5 +425,16 @@
   "receiptResolveLines": "Saqlashdan oldin har bir mahsulotni qabul qiling yoki eʼtiborsiz qoldiring.",
   "receiptPartialConfirm": "Faqat tanlangan mahsulotlar qoʻshiladi. Bu chek import qilingan deb belgilanadi. Davom etilsinmi?",
   "keepAwakeOn": "Ekran yoqilgan holda qoladi",
-  "keepAwakeOff": "Ekran o‘chishi mumkin"
+  "keepAwakeOff": "Ekran o‘chishi mumkin",
+  "spanDay": "Kun",
+  "spanCustom": "Sana oralig‘i",
+  "reportTotalSpent": "Jami sarflangan",
+  "reportAddedAt": "Qo‘shilgan sana",
+  "reportReceiptNumber": "Chek raqami",
+  "reportPreview": "Ko‘rib chiqish",
+  "reportShareAction": "Ulashish",
+  "previousPeriodAction": "Oldingi davr",
+  "nextPeriodAction": "Keyingi davr",
+  "reportSaved": "Hisobot saqlandi.",
+  "reportZoom": "Kattalashtirish"
 }

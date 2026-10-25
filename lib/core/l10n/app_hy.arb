@@ -425,5 +425,16 @@
   "receiptResolveLines": "Պահելուց առաջ ընդունեք կամ անտեսեք յուրաքանչյուր ապրանք։",
   "receiptPartialConfirm": "Կավելացվեն միայն ընտրված ապրանքները։ Այս կտրոնը կնշվի որպես ներմուծված։ Շարունակե՞լ։",
   "keepAwakeOn": "Էկրանը կմնա միացված",
-  "keepAwakeOff": "Էկրանը կարող է անջատվել"
+  "keepAwakeOff": "Էկրանը կարող է անջատվել",
+  "spanDay": "Օր",
+  "spanCustom": "Ամսաթվերի միջակայք",
+  "reportTotalSpent": "Ընդհանուր ծախսը",
+  "reportAddedAt": "Ավելացվել է",
+  "reportReceiptNumber": "Կտրոնի համարը",
+  "reportPreview": "Նախադիտում",
+  "reportShareAction": "Կիսվել",
+  "previousPeriodAction": "Նախորդ ժամանակահատված",
+  "nextPeriodAction": "Հաջորդ ժամանակահատված",
+  "reportSaved": "Հաշվետվությունը պահպանվել է։",
+  "reportZoom": "Մեծացնել"
 }

@@ -425,5 +425,16 @@
   "receiptResolveLines": "შენახვამდე მიიღეთ ან უგულებელყავით თითოეული პროდუქტი.",
   "receiptPartialConfirm": "დაემატება მხოლოდ არჩეული პროდუქტები. ეს ქვითარი იმპორტირებულად მოინიშნება. გავაგრძელოთ?",
   "keepAwakeOn": "ეკრანი ჩართული დარჩება",
-  "keepAwakeOff": "ეკრანი შეიძლება გამოირთოს"
+  "keepAwakeOff": "ეკრანი შეიძლება გამოირთოს",
+  "spanDay": "დღე",
+  "spanCustom": "თარიღების დიაპაზონი",
+  "reportTotalSpent": "სულ დახარჯული",
+  "reportAddedAt": "დამატების თარიღი",
+  "reportReceiptNumber": "ქვითრის ნომერი",
+  "reportPreview": "წინასწარი ნახვა",
+  "reportShareAction": "გაზიარება",
+  "previousPeriodAction": "წინა პერიოდი",
+  "nextPeriodAction": "შემდეგი პერიოდი",
+  "reportSaved": "ანგარიში შენახულია.",
+  "reportZoom": "გადიდება"
 }

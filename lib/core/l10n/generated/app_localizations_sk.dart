@@ -1372,4 +1372,37 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Obrazovka sa môže vypnúť';
+
+  @override
+  String get spanDay => 'Deň';
+
+  @override
+  String get spanCustom => 'Rozsah dátumov';
+
+  @override
+  String get reportTotalSpent => 'Celkovo minuté';
+
+  @override
+  String get reportAddedAt => 'Pridané';
+
+  @override
+  String get reportReceiptNumber => 'Číslo účtenky';
+
+  @override
+  String get reportPreview => 'Ukážka';
+
+  @override
+  String get reportShareAction => 'Zdieľať';
+
+  @override
+  String get previousPeriodAction => 'Predchádzajúce obdobie';
+
+  @override
+  String get nextPeriodAction => 'Nasledujúce obdobie';
+
+  @override
+  String get reportSaved => 'Správa bola uložená.';
+
+  @override
+  String get reportZoom => 'Priblížiť';
 }

@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Не ўдалося апрацаваць фота. Паспрабуйце іншае фота.",
   "receiptNoProducts": "Тэкст прачытаны, але тавары ў чэку не знойдзены. Уключыце ў фота тавары і агульную суму.",
   "keepAwakeOn": "Экран застаецца ўключаным",
-  "keepAwakeOff": "Экран можа выключыцца"
+  "keepAwakeOff": "Экран можа выключыцца",
+  "spanDay": "Дзень",
+  "spanCustom": "Дыяпазон дат",
+  "reportTotalSpent": "Усяго выдаткавана",
+  "reportAddedAt": "Дададзена",
+  "reportReceiptNumber": "Нумар чэка",
+  "reportPreview": "Папярэдні прагляд",
+  "reportShareAction": "Падзяліцца",
+  "previousPeriodAction": "Папярэдні перыяд",
+  "nextPeriodAction": "Наступны перыяд",
+  "reportSaved": "Справаздача захавана.",
+  "reportZoom": "Павялічыць"
 }

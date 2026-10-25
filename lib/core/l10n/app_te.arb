@@ -425,5 +425,16 @@
   "receiptResolveLines": "సేవ్ చేయడానికి ముందు ప్రతి వస్తువును అంగీకరించండి లేదా విస్మరించండి.",
   "receiptPartialConfirm": "ఎంచుకున్న వస్తువులు మాత్రమే జోడించబడతాయి. ఈ రసీదు దిగుమతి చేసినదిగా గుర్తించబడుతుంది. కొనసాగించాలా?",
   "keepAwakeOn": "స్క్రీన్ ఆన్‌లో ఉంటుంది",
-  "keepAwakeOff": "స్క్రీన్ ఆఫ్ కావచ్చు"
+  "keepAwakeOff": "స్క్రీన్ ఆఫ్ కావచ్చు",
+  "spanDay": "రోజు",
+  "spanCustom": "తేదీ పరిధి",
+  "reportTotalSpent": "మొత్తం ఖర్చు",
+  "reportAddedAt": "జోడించిన తేదీ",
+  "reportReceiptNumber": "రసీదు నంబర్",
+  "reportPreview": "ప్రివ్యూ",
+  "reportShareAction": "షేర్ చేయండి",
+  "previousPeriodAction": "మునుపటి కాలం",
+  "nextPeriodAction": "తదుపరి కాలం",
+  "reportSaved": "నివేదిక సేవ్ చేయబడింది.",
+  "reportZoom": "జూమ్"
 }

@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "پردازش عکس ممکن نشد. عکس دیگری را امتحان کنید.",
   "receiptNoProducts": "متن خوانده شد، اما کالایی از رسید پیدا نشد. کالاها و مبلغ کل را در عکس بگنجانید.",
   "keepAwakeOn": "صفحه روشن می‌ماند",
-  "keepAwakeOff": "صفحه می‌تواند خاموش شود"
+  "keepAwakeOff": "صفحه می‌تواند خاموش شود",
+  "spanDay": "روز",
+  "spanCustom": "بازهٔ تاریخ",
+  "reportTotalSpent": "مجموع هزینه",
+  "reportAddedAt": "افزوده‌شده",
+  "reportReceiptNumber": "شماره رسید",
+  "reportPreview": "پیش‌نمایش",
+  "reportShareAction": "اشتراک‌گذاری",
+  "previousPeriodAction": "دورهٔ قبل",
+  "nextPeriodAction": "دورهٔ بعد",
+  "reportSaved": "گزارش ذخیره شد.",
+  "reportZoom": "بزرگ‌نمایی"
 }

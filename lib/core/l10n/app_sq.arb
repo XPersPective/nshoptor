@@ -425,5 +425,16 @@
   "receiptResolveLines": "Prano ose ruaj, prano ose shpërfill çdo artikull.",
   "receiptPartialConfirm": "Do të shtohen vetëm artikujt e zgjedhur. Kjo faturë do të shënohet si e importuar. Të vazhdohet?",
   "keepAwakeOn": "Ekrani qëndron ndezur",
-  "keepAwakeOff": "Ekrani mund të fiket"
+  "keepAwakeOff": "Ekrani mund të fiket",
+  "spanDay": "Ditë",
+  "spanCustom": "Intervali i datave",
+  "reportTotalSpent": "Gjithsej shpenzuar",
+  "reportAddedAt": "U shtua",
+  "reportReceiptNumber": "Numri i faturës",
+  "reportPreview": "Pamja paraprake",
+  "reportShareAction": "Ndaj",
+  "previousPeriodAction": "Periudha e mëparshme",
+  "nextPeriodAction": "Periudha tjetër",
+  "reportSaved": "Raporti u ruajt.",
+  "reportZoom": "Zmadho"
 }

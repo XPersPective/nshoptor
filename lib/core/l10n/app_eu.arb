@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Ezin izan da argazkia prozesatu. Saiatu beste argazki batekin.",
   "receiptNoProducts": "Testua irakurri da, baina ez da ordainagiriko produkturik aurkitu. Sartu produktuak eta guztizkoa argazkian.",
   "keepAwakeOn": "Pantaila piztuta mantentzen da",
-  "keepAwakeOff": "Pantaila itzal daiteke"
+  "keepAwakeOff": "Pantaila itzal daiteke",
+  "spanDay": "Eguna",
+  "spanCustom": "Data-tartea",
+  "reportTotalSpent": "Guztira gastatuta",
+  "reportAddedAt": "Gehituta",
+  "reportReceiptNumber": "Ordainagiri-zenbakia",
+  "reportPreview": "Aurrebista",
+  "reportShareAction": "Partekatu",
+  "previousPeriodAction": "Aurreko aldia",
+  "nextPeriodAction": "Hurrengo aldia",
+  "reportSaved": "Txostena gorde da.",
+  "reportZoom": "Handiagotu"
 }

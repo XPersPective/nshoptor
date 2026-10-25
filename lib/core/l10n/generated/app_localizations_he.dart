@@ -1354,4 +1354,37 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'המסך יכול להיכבות';
+
+  @override
+  String get spanDay => 'יום';
+
+  @override
+  String get spanCustom => 'טווח תאריכים';
+
+  @override
+  String get reportTotalSpent => 'סך ההוצאות';
+
+  @override
+  String get reportAddedAt => 'נוסף';
+
+  @override
+  String get reportReceiptNumber => 'מספר הקבלה';
+
+  @override
+  String get reportPreview => 'תצוגה מקדימה';
+
+  @override
+  String get reportShareAction => 'שיתוף';
+
+  @override
+  String get previousPeriodAction => 'התקופה הקודמת';
+
+  @override
+  String get nextPeriodAction => 'התקופה הבאה';
+
+  @override
+  String get reportSaved => 'הדוח נשמר.';
+
+  @override
+  String get reportZoom => 'הגדלה';
 }

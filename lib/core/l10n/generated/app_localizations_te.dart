@@ -1378,4 +1378,37 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'స్క్రీన్ ఆఫ్ కావచ్చు';
+
+  @override
+  String get spanDay => 'రోజు';
+
+  @override
+  String get spanCustom => 'తేదీ పరిధి';
+
+  @override
+  String get reportTotalSpent => 'మొత్తం ఖర్చు';
+
+  @override
+  String get reportAddedAt => 'జోడించిన తేదీ';
+
+  @override
+  String get reportReceiptNumber => 'రసీదు నంబర్';
+
+  @override
+  String get reportPreview => 'ప్రివ్యూ';
+
+  @override
+  String get reportShareAction => 'షేర్ చేయండి';
+
+  @override
+  String get previousPeriodAction => 'మునుపటి కాలం';
+
+  @override
+  String get nextPeriodAction => 'తదుపరి కాలం';
+
+  @override
+  String get reportSaved => 'నివేదిక సేవ్ చేయబడింది.';
+
+  @override
+  String get reportZoom => 'జూమ్';
 }

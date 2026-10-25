@@ -1352,4 +1352,37 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'يمكن إيقاف تشغيل الشاشة';
+
+  @override
+  String get spanDay => 'يوم';
+
+  @override
+  String get spanCustom => 'نطاق زمني';
+
+  @override
+  String get reportTotalSpent => 'إجمالي الإنفاق';
+
+  @override
+  String get reportAddedAt => 'تاريخ الإضافة';
+
+  @override
+  String get reportReceiptNumber => 'رقم الإيصال';
+
+  @override
+  String get reportPreview => 'معاينة';
+
+  @override
+  String get reportShareAction => 'مشاركة';
+
+  @override
+  String get previousPeriodAction => 'الفترة السابقة';
+
+  @override
+  String get nextPeriodAction => 'الفترة التالية';
+
+  @override
+  String get reportSaved => 'تم حفظ التقرير.';
+
+  @override
+  String get reportZoom => 'تكبير';
 }

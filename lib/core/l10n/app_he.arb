@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "לא ניתן היה לעבד את התמונה. יש לנסות תמונה אחרת.",
   "receiptNoProducts": "הטקסט נקרא, אך לא נמצאו פריטים מהקבלה. יש לכלול בתמונה את הפריטים ואת הסכום הכולל.",
   "keepAwakeOn": "המסך יישאר דולק",
-  "keepAwakeOff": "המסך יכול להיכבות"
+  "keepAwakeOff": "המסך יכול להיכבות",
+  "spanDay": "יום",
+  "spanCustom": "טווח תאריכים",
+  "reportTotalSpent": "סך ההוצאות",
+  "reportAddedAt": "נוסף",
+  "reportReceiptNumber": "מספר הקבלה",
+  "reportPreview": "תצוגה מקדימה",
+  "reportShareAction": "שיתוף",
+  "previousPeriodAction": "התקופה הקודמת",
+  "nextPeriodAction": "התקופה הבאה",
+  "reportSaved": "הדוח נשמר.",
+  "reportZoom": "הגדלה"
 }

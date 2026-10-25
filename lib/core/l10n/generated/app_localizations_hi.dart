@@ -1373,4 +1373,37 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'स्क्रीन बंद हो सकती है';
+
+  @override
+  String get spanDay => 'दिन';
+
+  @override
+  String get spanCustom => 'तारीख की सीमा';
+
+  @override
+  String get reportTotalSpent => 'कुल खर्च';
+
+  @override
+  String get reportAddedAt => 'जोड़ा गया';
+
+  @override
+  String get reportReceiptNumber => 'रसीद संख्या';
+
+  @override
+  String get reportPreview => 'पूर्वावलोकन';
+
+  @override
+  String get reportShareAction => 'शेयर करें';
+
+  @override
+  String get previousPeriodAction => 'पिछली अवधि';
+
+  @override
+  String get nextPeriodAction => 'अगली अवधि';
+
+  @override
+  String get reportSaved => 'रिपोर्ट सहेजी गई।';
+
+  @override
+  String get reportZoom => 'ज़ूम';
 }

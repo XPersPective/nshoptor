@@ -175,6 +175,51 @@ void main() {
   );
 
   testWidgets(
+    'new receipt list uses merchant title and review quantity basis is readable',
+    (tester) async {
+      await tester.pumpWidget(
+        app(
+          _Frames([
+            _scan([
+              ..._header,
+              'SÜT 1 kg × 20,00 20,00',
+              'ELMA 20,00',
+              'TOPLAM 40,00 TL',
+            ]),
+          ]),
+        ),
+      );
+      await tap(tester, 'open_capture');
+
+      final quantityRow = tester.widgetList<Text>(
+        find.descendant(
+          of: find.byKey(const Key('receipt_line_0')),
+          matching: find.byType(Text),
+        ),
+      ).last.data!;
+      expect(quantityRow, startsWith('1 kg × '));
+
+      final plainRow = tester.widgetList<Text>(
+        find.descendant(
+          of: find.byKey(const Key('receipt_line_1')),
+          matching: find.byType(Text),
+        ),
+      ).last.data!;
+      expect(plainRow, isNot(startsWith('·')));
+      expect(plainRow, isNot(endsWith('×')));
+
+      await tap(tester, 'receipt_accept_all');
+      await tap(tester, 'receipt_commit_button');
+      expect(failure, isNull);
+      expect(committed, isNotNull);
+      final list = (await db.select(db.shoppingLists).get()).single;
+      expect(list.title, 'A101 MARKET');
+      expect(await db.select(db.purchaseEntries).get(), hasLength(2));
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
+  testWidgets(
     'nonoverlapping photo preserves previous evidence and remains recoverable',
     (tester) async {
       await tester.pumpWidget(

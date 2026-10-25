@@ -1377,4 +1377,37 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Η οθόνη μπορεί να σβήσει';
+
+  @override
+  String get spanDay => 'Ημέρα';
+
+  @override
+  String get spanCustom => 'Εύρος ημερομηνιών';
+
+  @override
+  String get reportTotalSpent => 'Συνολικές δαπάνες';
+
+  @override
+  String get reportAddedAt => 'Προστέθηκε';
+
+  @override
+  String get reportReceiptNumber => 'Αριθμός απόδειξης';
+
+  @override
+  String get reportPreview => 'Προεπισκόπηση';
+
+  @override
+  String get reportShareAction => 'Κοινοποίηση';
+
+  @override
+  String get previousPeriodAction => 'Προηγούμενη περίοδος';
+
+  @override
+  String get nextPeriodAction => 'Επόμενη περίοδος';
+
+  @override
+  String get reportSaved => 'Η αναφορά αποθηκεύτηκε.';
+
+  @override
+  String get reportZoom => 'Μεγέθυνση';
 }

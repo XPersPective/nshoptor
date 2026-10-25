@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Şəkli emal etmək mümkün olmadı. Başqa şəkil sınayın.",
   "receiptNoProducts": "Mətn oxundu, lakin çekdə məhsullar tapılmadı. Məhsulları və yekun məbləği şəkilə daxil edin.",
   "keepAwakeOn": "Ekran açıq qalır",
-  "keepAwakeOff": "Ekran sönə bilər"
+  "keepAwakeOff": "Ekran sönə bilər",
+  "spanDay": "Gün",
+  "spanCustom": "Tarix aralığı",
+  "reportTotalSpent": "Ümumi xərclənən",
+  "reportAddedAt": "Əlavə edilib",
+  "reportReceiptNumber": "Qəbz nömrəsi",
+  "reportPreview": "Önizləmə",
+  "reportShareAction": "Paylaş",
+  "previousPeriodAction": "Əvvəlki dövr",
+  "nextPeriodAction": "Növbəti dövr",
+  "reportSaved": "Hesabat yadda saxlanıldı.",
+  "reportZoom": "Böyüt"
 }

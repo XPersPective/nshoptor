@@ -1376,4 +1376,37 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ecranul se poate stinge';
+
+  @override
+  String get spanDay => 'Zi';
+
+  @override
+  String get spanCustom => 'Interval de date';
+
+  @override
+  String get reportTotalSpent => 'Total cheltuit';
+
+  @override
+  String get reportAddedAt => 'Adăugat';
+
+  @override
+  String get reportReceiptNumber => 'Numărul bonului';
+
+  @override
+  String get reportPreview => 'Previzualizare';
+
+  @override
+  String get reportShareAction => 'Partajează';
+
+  @override
+  String get previousPeriodAction => 'Perioada anterioară';
+
+  @override
+  String get nextPeriodAction => 'Perioada următoare';
+
+  @override
+  String get reportSaved => 'Raport salvat.';
+
+  @override
+  String get reportZoom => 'Mărește';
 }

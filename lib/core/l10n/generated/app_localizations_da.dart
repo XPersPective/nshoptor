@@ -1368,4 +1368,37 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Skærmen kan slukke';
+
+  @override
+  String get spanDay => 'Dag';
+
+  @override
+  String get spanCustom => 'Datointerval';
+
+  @override
+  String get reportTotalSpent => 'I alt brugt';
+
+  @override
+  String get reportAddedAt => 'Tilføjet';
+
+  @override
+  String get reportReceiptNumber => 'Kvitteringsnummer';
+
+  @override
+  String get reportPreview => 'Forhåndsvisning';
+
+  @override
+  String get reportShareAction => 'Del';
+
+  @override
+  String get previousPeriodAction => 'Forrige periode';
+
+  @override
+  String get nextPeriodAction => 'Næste periode';
+
+  @override
+  String get reportSaved => 'Rapporten er gemt.';
+
+  @override
+  String get reportZoom => 'Zoom';
 }

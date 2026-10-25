@@ -1376,4 +1376,37 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Дэлгэц унтарч болно';
+
+  @override
+  String get spanDay => 'Өдөр';
+
+  @override
+  String get spanCustom => 'Огнооны муж';
+
+  @override
+  String get reportTotalSpent => 'Нийт зарцуулсан';
+
+  @override
+  String get reportAddedAt => 'Нэмсэн огноо';
+
+  @override
+  String get reportReceiptNumber => 'Баримтын дугаар';
+
+  @override
+  String get reportPreview => 'Урьдчилан харах';
+
+  @override
+  String get reportShareAction => 'Хуваалцах';
+
+  @override
+  String get previousPeriodAction => 'Өмнөх хугацаа';
+
+  @override
+  String get nextPeriodAction => 'Дараагийн хугацаа';
+
+  @override
+  String get reportSaved => 'Тайлан хадгалагдлаа.';
+
+  @override
+  String get reportZoom => 'Томруулах';
 }

@@ -425,5 +425,16 @@
   "receiptResolveLines": "Godkänn eller ignorera varje vara innan du sparar.",
   "receiptPartialConfirm": "Endast de valda varorna läggs till. Kvittot markeras som importerat. Vill du fortsätta?",
   "keepAwakeOn": "Skärmen förblir på",
-  "keepAwakeOff": "Skärmen kan släckas"
+  "keepAwakeOff": "Skärmen kan släckas",
+  "spanDay": "Dag",
+  "spanCustom": "Datumintervall",
+  "reportTotalSpent": "Totalt spenderat",
+  "reportAddedAt": "Tillagd",
+  "reportReceiptNumber": "Kvittonummer",
+  "reportPreview": "Förhandsvisning",
+  "reportShareAction": "Dela",
+  "previousPeriodAction": "Föregående period",
+  "nextPeriodAction": "Nästa period",
+  "reportSaved": "Rapporten har sparats.",
+  "reportZoom": "Zooma"
 }

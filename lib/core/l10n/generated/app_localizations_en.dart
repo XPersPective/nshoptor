@@ -1367,4 +1367,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Screen can turn off';
+
+  @override
+  String get spanDay => 'Day';
+
+  @override
+  String get spanCustom => 'Date range';
+
+  @override
+  String get reportTotalSpent => 'Total spent';
+
+  @override
+  String get reportAddedAt => 'Added';
+
+  @override
+  String get reportReceiptNumber => 'Receipt number';
+
+  @override
+  String get reportPreview => 'Preview';
+
+  @override
+  String get reportShareAction => 'Share';
+
+  @override
+  String get previousPeriodAction => 'Previous period';
+
+  @override
+  String get nextPeriodAction => 'Next period';
+
+  @override
+  String get reportSaved => 'Report saved.';
+
+  @override
+  String get reportZoom => 'Zoom';
 }

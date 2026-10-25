@@ -425,5 +425,16 @@
   "receiptResolveLines": "ຍອມຮັບ ຫຼື ຂ້າມແຕ່ລະລາຍການກ່ອນບັນທຶກ.",
   "receiptPartialConfirm": "ຈະເພີ່ມສະເພາະລາຍການທີ່ເລືອກ. ໃບຮັບເງິນນີ້ຈະຖືກໝາຍວ່ານຳເຂົ້າແລ້ວ. ດຳເນີນຕໍ່ບໍ?",
   "keepAwakeOn": "ໜ້າຈໍຈະສະຫວ່າງຢູ່",
-  "keepAwakeOff": "ໜ້າຈໍອາດຈະດັບ"
+  "keepAwakeOff": "ໜ້າຈໍອາດຈະດັບ",
+  "spanDay": "ມື້",
+  "spanCustom": "ຊ່ວງວັນທີ",
+  "reportTotalSpent": "ລາຍຈ່າຍທັງໝົດ",
+  "reportAddedAt": "ວັນທີເພີ່ມ",
+  "reportReceiptNumber": "ເລກທີໃບຮັບເງິນ",
+  "reportPreview": "ຕົວຢ່າງ",
+  "reportShareAction": "ແບ່ງປັນ",
+  "previousPeriodAction": "ຊ່ວງກ່ອນໜ້າ",
+  "nextPeriodAction": "ຊ່ວງຖັດໄປ",
+  "reportSaved": "ບັນທຶກລາຍງານແລ້ວ.",
+  "reportZoom": "ຊູມ"
 }

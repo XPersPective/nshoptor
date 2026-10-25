@@ -1372,4 +1372,37 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Skrin boleh dimatikan';
+
+  @override
+  String get spanDay => 'Hari';
+
+  @override
+  String get spanCustom => 'Julat tarikh';
+
+  @override
+  String get reportTotalSpent => 'Jumlah dibelanjakan';
+
+  @override
+  String get reportAddedAt => 'Tarikh ditambah';
+
+  @override
+  String get reportReceiptNumber => 'Nombor resit';
+
+  @override
+  String get reportPreview => 'Pratonton';
+
+  @override
+  String get reportShareAction => 'Kongsi';
+
+  @override
+  String get previousPeriodAction => 'Tempoh sebelumnya';
+
+  @override
+  String get nextPeriodAction => 'Tempoh seterusnya';
+
+  @override
+  String get reportSaved => 'Laporan disimpan.';
+
+  @override
+  String get reportZoom => 'Zum';
 }

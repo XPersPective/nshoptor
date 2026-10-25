@@ -1378,4 +1378,37 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Isikrini singacima';
+
+  @override
+  String get spanDay => 'Usuku';
+
+  @override
+  String get spanCustom => 'Ibanga lezinsuku';
+
+  @override
+  String get reportTotalSpent => 'Isamba esisetshenzisiwe';
+
+  @override
+  String get reportAddedAt => 'Usuku lokwengeza';
+
+  @override
+  String get reportReceiptNumber => 'Inombolo yerisidi';
+
+  @override
+  String get reportPreview => 'Ukuhlola kuqala';
+
+  @override
+  String get reportShareAction => 'Yabelana';
+
+  @override
+  String get previousPeriodAction => 'Isikhathi esedlule';
+
+  @override
+  String get nextPeriodAction => 'Isikhathi esilandelayo';
+
+  @override
+  String get reportSaved => 'Umbiko ulondoloziwe.';
+
+  @override
+  String get reportZoom => 'Sondeza';
 }

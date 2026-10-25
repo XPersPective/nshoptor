@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Δεν ήταν δυνατή η επεξεργασία της φωτογραφίας. Δοκιμάστε άλλη φωτογραφία.",
   "receiptNoProducts": "Το κείμενο διαβάστηκε, αλλά δεν βρέθηκαν είδη απόδειξης. Συμπεριλάβετε τα είδη και το σύνολο στη φωτογραφία.",
   "keepAwakeOn": "Η οθόνη παραμένει ενεργή",
-  "keepAwakeOff": "Η οθόνη μπορεί να σβήσει"
+  "keepAwakeOff": "Η οθόνη μπορεί να σβήσει",
+  "spanDay": "Ημέρα",
+  "spanCustom": "Εύρος ημερομηνιών",
+  "reportTotalSpent": "Συνολικές δαπάνες",
+  "reportAddedAt": "Προστέθηκε",
+  "reportReceiptNumber": "Αριθμός απόδειξης",
+  "reportPreview": "Προεπισκόπηση",
+  "reportShareAction": "Κοινοποίηση",
+  "previousPeriodAction": "Προηγούμενη περίοδος",
+  "nextPeriodAction": "Επόμενη περίοδος",
+  "reportSaved": "Η αναφορά αποθηκεύτηκε.",
+  "reportZoom": "Μεγέθυνση"
 }

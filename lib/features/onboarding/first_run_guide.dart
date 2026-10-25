@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 
-/// Short, replayable guide. Only finishing the final step acknowledges first use;
-/// closing or using the system back button leaves it available next launch.
+/// Short, replayable guide. Finishing or explicitly closing acknowledges first
+/// use. System back leaves the unfinished guide available next launch.
 Future<void> showFirstRunGuide(BuildContext context) async {
   final l10n = AppLocalizations.of(context);
   final steps = [
@@ -97,7 +97,7 @@ Future<void> showFirstRunGuide(BuildContext context) async {
             actions: [
               TextButton(
                 key: const Key('first_run_guide_close'),
-                onPressed: () => Navigator.of(ctx).pop(false),
+                onPressed: () => Navigator.of(ctx).pop(true),
                 child: Text(material.closeButtonLabel),
               ),
               if (index > 0)

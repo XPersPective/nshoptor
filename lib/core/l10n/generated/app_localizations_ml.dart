@@ -1369,4 +1369,37 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'സ്‌ക്രീൻ ഓഫായേക്കാം';
+
+  @override
+  String get spanDay => 'ദിവസം';
+
+  @override
+  String get spanCustom => 'തീയതി പരിധി';
+
+  @override
+  String get reportTotalSpent => 'ആകെ ചെലവ്';
+
+  @override
+  String get reportAddedAt => 'ചേർത്ത തീയതി';
+
+  @override
+  String get reportReceiptNumber => 'രസീത് നമ്പർ';
+
+  @override
+  String get reportPreview => 'പ്രിവ്യൂ';
+
+  @override
+  String get reportShareAction => 'പങ്കിടുക';
+
+  @override
+  String get previousPeriodAction => 'മുൻ കാലയളവ്';
+
+  @override
+  String get nextPeriodAction => 'അടുത്ത കാലയളവ്';
+
+  @override
+  String get reportSaved => 'റിപ്പോർട്ട് സേവ് ചെയ്തു.';
+
+  @override
+  String get reportZoom => 'സൂം';
 }

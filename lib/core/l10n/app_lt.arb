@@ -425,5 +425,16 @@
   "receiptResolveLines": "Prieš išsaugodami priimkite arba ignoruokite kiekvieną prekę.",
   "receiptPartialConfirm": "Bus pridėtos tik pasirinktos prekės. Šis kvitas bus pažymėtas kaip importuotas. Tęsti?",
   "keepAwakeOn": "Ekranas lieka įjungtas",
-  "keepAwakeOff": "Ekranas gali išsijungti"
+  "keepAwakeOff": "Ekranas gali išsijungti",
+  "spanDay": "Diena",
+  "spanCustom": "Datų intervalas",
+  "reportTotalSpent": "Iš viso išleista",
+  "reportAddedAt": "Pridėta",
+  "reportReceiptNumber": "Kvito numeris",
+  "reportPreview": "Peržiūra",
+  "reportShareAction": "Bendrinti",
+  "previousPeriodAction": "Ankstesnis laikotarpis",
+  "nextPeriodAction": "Kitas laikotarpis",
+  "reportSaved": "Ataskaita išsaugota.",
+  "reportZoom": "Priartinti"
 }

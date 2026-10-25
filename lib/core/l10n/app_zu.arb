@@ -425,5 +425,16 @@
   "receiptResolveLines": "Yamukela noma ungayinaki into ngayinye ngaphambi kokulondoloza.",
   "receiptPartialConfirm": "Kuzongezwa izinto ezikhethiwe kuphela. Le risidi izomakwa njengefakiwe. Uyaqhubeka?",
   "keepAwakeOn": "Isikrini sihlala sivuliwe",
-  "keepAwakeOff": "Isikrini singacima"
+  "keepAwakeOff": "Isikrini singacima",
+  "spanDay": "Usuku",
+  "spanCustom": "Ibanga lezinsuku",
+  "reportTotalSpent": "Isamba esisetshenzisiwe",
+  "reportAddedAt": "Usuku lokwengeza",
+  "reportReceiptNumber": "Inombolo yerisidi",
+  "reportPreview": "Ukuhlola kuqala",
+  "reportShareAction": "Yabelana",
+  "previousPeriodAction": "Isikhathi esedlule",
+  "nextPeriodAction": "Isikhathi esilandelayo",
+  "reportSaved": "Umbiko ulondoloziwe.",
+  "reportZoom": "Sondeza"
 }

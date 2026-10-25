@@ -1374,4 +1374,37 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Экран можа выключыцца';
+
+  @override
+  String get spanDay => 'Дзень';
+
+  @override
+  String get spanCustom => 'Дыяпазон дат';
+
+  @override
+  String get reportTotalSpent => 'Усяго выдаткавана';
+
+  @override
+  String get reportAddedAt => 'Дададзена';
+
+  @override
+  String get reportReceiptNumber => 'Нумар чэка';
+
+  @override
+  String get reportPreview => 'Папярэдні прагляд';
+
+  @override
+  String get reportShareAction => 'Падзяліцца';
+
+  @override
+  String get previousPeriodAction => 'Папярэдні перыяд';
+
+  @override
+  String get nextPeriodAction => 'Наступны перыяд';
+
+  @override
+  String get reportSaved => 'Справаздача захавана.';
+
+  @override
+  String get reportZoom => 'Павялічыць';
 }

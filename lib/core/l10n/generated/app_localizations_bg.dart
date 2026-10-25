@@ -1375,4 +1375,37 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Екранът може да се изключи';
+
+  @override
+  String get spanDay => 'Ден';
+
+  @override
+  String get spanCustom => 'Период';
+
+  @override
+  String get reportTotalSpent => 'Общо похарчено';
+
+  @override
+  String get reportAddedAt => 'Добавено';
+
+  @override
+  String get reportReceiptNumber => 'Номер на касовата бележка';
+
+  @override
+  String get reportPreview => 'Преглед';
+
+  @override
+  String get reportShareAction => 'Споделяне';
+
+  @override
+  String get previousPeriodAction => 'Предишен период';
+
+  @override
+  String get nextPeriodAction => 'Следващ период';
+
+  @override
+  String get reportSaved => 'Отчетът е запазен.';
+
+  @override
+  String get reportZoom => 'Увеличи';
 }

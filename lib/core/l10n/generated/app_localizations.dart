@@ -2785,6 +2785,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Screen can turn off'**
   String get keepAwakeOff;
+
+  /// No description provided for @spanDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get spanDay;
+
+  /// No description provided for @spanCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Date range'**
+  String get spanCustom;
+
+  /// No description provided for @reportTotalSpent.
+  ///
+  /// In en, this message translates to:
+  /// **'Total spent'**
+  String get reportTotalSpent;
+
+  /// No description provided for @reportAddedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Added'**
+  String get reportAddedAt;
+
+  /// No description provided for @reportReceiptNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt number'**
+  String get reportReceiptNumber;
+
+  /// No description provided for @reportPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get reportPreview;
+
+  /// No description provided for @reportShareAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get reportShareAction;
+
+  /// No description provided for @previousPeriodAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous period'**
+  String get previousPeriodAction;
+
+  /// No description provided for @nextPeriodAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next period'**
+  String get nextPeriodAction;
+
+  /// No description provided for @reportSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Report saved.'**
+  String get reportSaved;
+
+  /// No description provided for @reportZoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Zoom'**
+  String get reportZoom;
 }
 
 class _AppLocalizationsDelegate

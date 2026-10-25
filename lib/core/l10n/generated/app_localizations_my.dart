@@ -1373,4 +1373,37 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'မျက်နှာပြင် ပိတ်သွားနိုင်သည်';
+
+  @override
+  String get spanDay => 'နေ့';
+
+  @override
+  String get spanCustom => 'ရက်စွဲအပိုင်းအခြား';
+
+  @override
+  String get reportTotalSpent => 'စုစုပေါင်းသုံးငွေ';
+
+  @override
+  String get reportAddedAt => 'ထည့်သွင်းသည့်ရက်';
+
+  @override
+  String get reportReceiptNumber => 'ပြေစာနံပါတ်';
+
+  @override
+  String get reportPreview => 'အစမ်းကြည့်ရန်';
+
+  @override
+  String get reportShareAction => 'မျှဝေရန်';
+
+  @override
+  String get previousPeriodAction => 'ယခင်ကာလ';
+
+  @override
+  String get nextPeriodAction => 'နောက်ကာလ';
+
+  @override
+  String get reportSaved => 'အစီရင်ခံစာကို သိမ်းဆည်းပြီးပါပြီ။';
+
+  @override
+  String get reportZoom => 'ချဲ့ရန်';
 }

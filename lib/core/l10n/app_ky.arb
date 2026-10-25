@@ -425,5 +425,16 @@
   "receiptResolveLines": "Сактоодон мурун ар бир товарды кабыл алыңыз же этибарга албаңыз.",
   "receiptPartialConfirm": "Тандалган товарлар гана кошулат. Бул чек импорттолду деп белгиленет. Улантасызбы?",
   "keepAwakeOn": "Экран күйүп турат",
-  "keepAwakeOff": "Экран өчүп калышы мүмкүн"
+  "keepAwakeOff": "Экран өчүп калышы мүмкүн",
+  "spanDay": "Күн",
+  "spanCustom": "Күн аралыгы",
+  "reportTotalSpent": "Жалпы чыгым",
+  "reportAddedAt": "Кошулган күнү",
+  "reportReceiptNumber": "Чектин номери",
+  "reportPreview": "Алдын ала көрүү",
+  "reportShareAction": "Бөлүшүү",
+  "previousPeriodAction": "Мурунку мезгил",
+  "nextPeriodAction": "Кийинки мезгил",
+  "reportSaved": "Отчет сакталды.",
+  "reportZoom": "Чоңойтуу"
 }

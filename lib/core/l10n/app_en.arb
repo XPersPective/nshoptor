@@ -494,5 +494,16 @@
   "imageRecognitionFailed": "The photo could not be processed. Try another photo.",
   "receiptNoProducts": "Text was read, but no receipt items were found. Include the items and total in the photo.",
   "keepAwakeOn": "Screen stays on",
-  "keepAwakeOff": "Screen can turn off"
+  "keepAwakeOff": "Screen can turn off",
+  "spanDay": "Day",
+  "spanCustom": "Date range",
+  "reportTotalSpent": "Total spent",
+  "reportAddedAt": "Added",
+  "reportReceiptNumber": "Receipt number",
+  "reportPreview": "Preview",
+  "reportShareAction": "Share",
+  "previousPeriodAction": "Previous period",
+  "nextPeriodAction": "Next period",
+  "reportSaved": "Report saved.",
+  "reportZoom": "Zoom"
 }

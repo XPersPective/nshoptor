@@ -425,5 +425,16 @@
   "receiptResolveLines": "ยอมรับหรือข้ามสินค้าแต่ละรายการก่อนบันทึก",
   "receiptPartialConfirm": "เพิ่มเฉพาะรายการที่เลือก ใบเสร็จนี้จะถูกทำเครื่องหมายว่านำเข้าแล้ว ดำเนินการต่อหรือไม่?",
   "keepAwakeOn": "หน้าจอจะเปิดค้างไว้",
-  "keepAwakeOff": "หน้าจออาจดับได้"
+  "keepAwakeOff": "หน้าจออาจดับได้",
+  "spanDay": "วัน",
+  "spanCustom": "ช่วงวันที่",
+  "reportTotalSpent": "ยอดใช้จ่ายทั้งหมด",
+  "reportAddedAt": "วันที่เพิ่ม",
+  "reportReceiptNumber": "หมายเลขใบเสร็จ",
+  "reportPreview": "ตัวอย่าง",
+  "reportShareAction": "แชร์",
+  "previousPeriodAction": "ช่วงก่อนหน้า",
+  "nextPeriodAction": "ช่วงถัดไป",
+  "reportSaved": "บันทึกรายงานแล้ว",
+  "reportZoom": "ซูม"
 }

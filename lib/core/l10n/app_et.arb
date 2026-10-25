@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Fotot ei saanud töödelda. Proovi teist fotot.",
   "receiptNoProducts": "Tekst loeti, kuid tšeki kaupu ei leitud. Lisa fotole kaubad ja kogusumma.",
   "keepAwakeOn": "Ekraan jääb sisselülitatuks",
-  "keepAwakeOff": "Ekraan võib välja lülituda"
+  "keepAwakeOff": "Ekraan võib välja lülituda",
+  "spanDay": "Päev",
+  "spanCustom": "Kuupäevavahemik",
+  "reportTotalSpent": "Kokku kulutatud",
+  "reportAddedAt": "Lisatud",
+  "reportReceiptNumber": "Tšeki number",
+  "reportPreview": "Eelvaade",
+  "reportShareAction": "Jaga",
+  "previousPeriodAction": "Eelmine periood",
+  "nextPeriodAction": "Järgmine periood",
+  "reportSaved": "Aruanne salvestati.",
+  "reportZoom": "Suumi sisse"
 }

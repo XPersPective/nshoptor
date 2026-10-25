@@ -425,5 +425,16 @@
   "receiptResolveLines": "Pred uložením prijmite alebo ignorujte každú položku.",
   "receiptPartialConfirm": "Pridajú sa iba vybrané položky. Tento doklad bude označený ako importovaný. Pokračovať?",
   "keepAwakeOn": "Obrazovka zostane zapnutá",
-  "keepAwakeOff": "Obrazovka sa môže vypnúť"
+  "keepAwakeOff": "Obrazovka sa môže vypnúť",
+  "spanDay": "Deň",
+  "spanCustom": "Rozsah dátumov",
+  "reportTotalSpent": "Celkovo minuté",
+  "reportAddedAt": "Pridané",
+  "reportReceiptNumber": "Číslo účtenky",
+  "reportPreview": "Ukážka",
+  "reportShareAction": "Zdieľať",
+  "previousPeriodAction": "Predchádzajúce obdobie",
+  "nextPeriodAction": "Nasledujúce obdobie",
+  "reportSaved": "Správa bola uložená.",
+  "reportZoom": "Priblížiť"
 }

@@ -425,5 +425,16 @@
   "receiptResolveLines": "जतन करण्यापूर्वी प्रत्येक वस्तू स्वीकारा किंवा दुर्लक्ष करा.",
   "receiptPartialConfirm": "फक्त निवडलेल्या वस्तू जोडल्या जातील. ही पावती आयात केलेली म्हणून चिन्हांकित केली जाईल. पुढे जायचे?",
   "keepAwakeOn": "स्क्रीन सुरू राहील",
-  "keepAwakeOff": "स्क्रीन बंद होऊ शकते"
+  "keepAwakeOff": "स्क्रीन बंद होऊ शकते",
+  "spanDay": "दिवस",
+  "spanCustom": "तारखेची श्रेणी",
+  "reportTotalSpent": "एकूण खर्च",
+  "reportAddedAt": "जोडल्याची तारीख",
+  "reportReceiptNumber": "पावती क्रमांक",
+  "reportPreview": "पूर्वावलोकन",
+  "reportShareAction": "शेअर करा",
+  "previousPeriodAction": "मागील कालावधी",
+  "nextPeriodAction": "पुढील कालावधी",
+  "reportSaved": "अहवाल जतन केला.",
+  "reportZoom": "झूम"
 }

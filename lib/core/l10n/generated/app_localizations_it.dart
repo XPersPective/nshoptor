@@ -1374,4 +1374,37 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Lo schermo può spegnersi';
+
+  @override
+  String get spanDay => 'Giorno';
+
+  @override
+  String get spanCustom => 'Intervallo di date';
+
+  @override
+  String get reportTotalSpent => 'Totale speso';
+
+  @override
+  String get reportAddedAt => 'Aggiunto';
+
+  @override
+  String get reportReceiptNumber => 'Numero di ricevuta';
+
+  @override
+  String get reportPreview => 'Anteprima';
+
+  @override
+  String get reportShareAction => 'Condividi';
+
+  @override
+  String get previousPeriodAction => 'Periodo precedente';
+
+  @override
+  String get nextPeriodAction => 'Periodo successivo';
+
+  @override
+  String get reportSaved => 'Report salvato.';
+
+  @override
+  String get reportZoom => 'Ingrandisci';
 }

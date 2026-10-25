@@ -1365,4 +1365,37 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'સ્ક્રીન બંધ થઈ શકે છે';
+
+  @override
+  String get spanDay => 'દિવસ';
+
+  @override
+  String get spanCustom => 'તારીખની શ્રેણી';
+
+  @override
+  String get reportTotalSpent => 'કુલ ખર્ચ';
+
+  @override
+  String get reportAddedAt => 'ઉમેર્યું';
+
+  @override
+  String get reportReceiptNumber => 'રસીદ નંબર';
+
+  @override
+  String get reportPreview => 'પૂર્વાવલોકન';
+
+  @override
+  String get reportShareAction => 'શેર કરો';
+
+  @override
+  String get previousPeriodAction => 'પહેલાનો સમયગાળો';
+
+  @override
+  String get nextPeriodAction => 'આગળનો સમયગાળો';
+
+  @override
+  String get reportSaved => 'રિપોર્ટ સાચવાયો.';
+
+  @override
+  String get reportZoom => 'ઝૂમ';
 }

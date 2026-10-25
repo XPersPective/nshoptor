@@ -1369,4 +1369,37 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Экран может выключиться';
+
+  @override
+  String get spanDay => 'День';
+
+  @override
+  String get spanCustom => 'Диапазон дат';
+
+  @override
+  String get reportTotalSpent => 'Всего потрачено';
+
+  @override
+  String get reportAddedAt => 'Дата добавления';
+
+  @override
+  String get reportReceiptNumber => 'Номер чека';
+
+  @override
+  String get reportPreview => 'Предпросмотр';
+
+  @override
+  String get reportShareAction => 'Поделиться';
+
+  @override
+  String get previousPeriodAction => 'Предыдущий период';
+
+  @override
+  String get nextPeriodAction => 'Следующий период';
+
+  @override
+  String get reportSaved => 'Отчёт сохранён.';
+
+  @override
+  String get reportZoom => 'Увеличить';
 }

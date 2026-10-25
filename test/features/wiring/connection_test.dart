@@ -422,8 +422,13 @@ void main() {
       ),
     );
     await settle(tester);
+    final receiptAction = find.byKey(const Key('detail_receipt_button'));
+    final receiptLabel = AppLocalizations.of(
+      tester.element(receiptAction),
+    ).scanReceiptAction;
+    expect(find.text(receiptLabel), findsOneWidget);
     // Fiş tarama composer'da görünür: menüye gerek yok.
-    await tester.tap(find.byKey(const Key('detail_receipt_button')));
+    await tester.tap(receiptAction);
     await settle(tester);
     expect(find.text('EKMEK'), findsOneWidget);
 

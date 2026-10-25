@@ -425,5 +425,16 @@
   "receiptResolveLines": "Chấp nhận hoặc bỏ qua từng mặt hàng trước khi lưu.",
   "receiptPartialConfirm": "Chỉ những mặt hàng được chọn mới được thêm. Hóa đơn này sẽ được đánh dấu là đã nhập. Tiếp tục?",
   "keepAwakeOn": "Màn hình luôn bật",
-  "keepAwakeOff": "Màn hình có thể tắt"
+  "keepAwakeOff": "Màn hình có thể tắt",
+  "spanDay": "Ngày",
+  "spanCustom": "Khoảng ngày",
+  "reportTotalSpent": "Tổng chi tiêu",
+  "reportAddedAt": "Ngày thêm",
+  "reportReceiptNumber": "Số hóa đơn",
+  "reportPreview": "Xem trước",
+  "reportShareAction": "Chia sẻ",
+  "previousPeriodAction": "Kỳ trước",
+  "nextPeriodAction": "Kỳ tiếp theo",
+  "reportSaved": "Đã lưu báo cáo.",
+  "reportZoom": "Phóng to"
 }

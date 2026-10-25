@@ -1373,4 +1373,37 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Skerm kan afskakel';
+
+  @override
+  String get spanDay => 'Dag';
+
+  @override
+  String get spanCustom => 'Datumreeks';
+
+  @override
+  String get reportTotalSpent => 'Totaal bestee';
+
+  @override
+  String get reportAddedAt => 'Bygevoeg';
+
+  @override
+  String get reportReceiptNumber => 'Kwitansienommer';
+
+  @override
+  String get reportPreview => 'Voorskou';
+
+  @override
+  String get reportShareAction => 'Deel';
+
+  @override
+  String get previousPeriodAction => 'Vorige tydperk';
+
+  @override
+  String get nextPeriodAction => 'Volgende tydperk';
+
+  @override
+  String get reportSaved => 'Verslag gestoor.';
+
+  @override
+  String get reportZoom => 'Zoem';
 }

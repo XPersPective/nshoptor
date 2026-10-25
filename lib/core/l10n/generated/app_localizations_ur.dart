@@ -1369,4 +1369,37 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'اسکرین بند ہو سکتی ہے';
+
+  @override
+  String get spanDay => 'دن';
+
+  @override
+  String get spanCustom => 'تاریخ کی حد';
+
+  @override
+  String get reportTotalSpent => 'کل خرچ';
+
+  @override
+  String get reportAddedAt => 'شامل کرنے کی تاریخ';
+
+  @override
+  String get reportReceiptNumber => 'رسید نمبر';
+
+  @override
+  String get reportPreview => 'پیش نظارہ';
+
+  @override
+  String get reportShareAction => 'شیئر کریں';
+
+  @override
+  String get previousPeriodAction => 'پچھلی مدت';
+
+  @override
+  String get nextPeriodAction => 'اگلی مدت';
+
+  @override
+  String get reportSaved => 'رپورٹ محفوظ ہو گئی۔';
+
+  @override
+  String get reportZoom => 'بڑا کریں';
 }

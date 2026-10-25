@@ -9,6 +9,7 @@ import '../../../core/money/currency.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
+import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 
 import 'receipt_review_controller.dart';
@@ -101,6 +102,19 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     );
 
     final diff = _c.reconciliationDifference;
+    final metadata = _c.document?.metadata;
+    final decisionsComplete = _c.lines.every(
+      (l) => l.status != ReviewStatus.pending,
+    );
+    final material = MaterialLocalizations.of(context);
+    final printedAt = metadata?.dateTime;
+    final metadataText = [
+      if (metadata?.store != null) metadata!.store!,
+      if (printedAt != null)
+        '${material.formatCompactDate(printedAt)} ${material.formatTimeOfDay(TimeOfDay.fromDateTime(printedAt))}',
+      if (metadata?.documentNumber != null)
+        '${l10n.reportReceiptNumber}: ${metadata!.documentNumber}',
+    ].join('\n');
     return PopScope(
       canPop: !_saving,
       child: Scaffold(
@@ -171,20 +185,26 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                       ? l10n.receiptTotalUnknown
                       : '${l10n.receiptTotal}: ${money(_c.reportedTotalMinor!)}',
                 ),
-                subtitle: diff == null
-                    ? null
-                    : Text(
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (metadataText.isNotEmpty)
+                      Text(
+                        metadataText,
+                        key: const Key('receipt_document_metadata'),
+                      ),
+                    if (diff != null && decisionsComplete)
+                      Text(
                         '${l10n.receiptDiff}: ${money(diff)}',
                         style: TextStyle(
-                          color:
-                              _c.lines.any(
-                                    (l) => l.status == ReviewStatus.accepted,
-                                  ) &&
-                                  diff != 0
+                          color: diff != 0
                               ? Theme.of(context).colorScheme.error
-                              : Theme.of(context).colorScheme.primary,
+                              : Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -204,7 +224,10 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${_lineQty(line)} · ${money(line.lineTotalMinor)}',
+                            [
+                              if (_lineQty(line).isNotEmpty) _lineQty(line),
+                              money(line.lineTotalMinor),
+                            ].join(' · '),
                           ),
                           if (line.linkedPlannedItemId != null &&
                               _plannedNames[line.linkedPlannedItemId] != null)
@@ -403,11 +426,28 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
   }
 
   String _lineQty(ReviewLine line) {
-    final q = line.quantity?.toDbString();
+    final q = line.quantity == null
+        ? null
+        : formatQuantityNumber(
+            line.quantity!,
+            decimalSeparator: MoneySeparators.forLocaleCode(
+              formatLocaleCode(context),
+            ).decimal,
+          );
     final unit = line.unitCode == null
         ? ''
         : unitDisplayName(line.unitCode!, AppLocalizations.of(context));
-    return q == null ? '' : '$q $unit ×'.trim();
+    if (q == null) return '';
+    final quantity = '$q $unit'.trim();
+    if (line.unitPriceMinor == null) return quantity;
+    final price = formatMoney(
+      Money.fromMinorUnits(
+        line.unitPriceMinor!,
+        Currency.fromCode(widget.currency),
+      ),
+      locale: formatLocaleCode(context),
+    );
+    return '$quantity × $price';
   }
 
   Future<void> _commit(BuildContext context) async {

@@ -425,5 +425,16 @@
   "receiptResolveLines": "ਸੰਭਾਲਣ ਤੋਂ ਪਹਿਲਾਂ ਹਰ ਚੀਜ਼ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ ਜਾਂ ਅਣਡਿੱਠਾ ਕਰੋ।",
   "receiptPartialConfirm": "ਸਿਰਫ਼ ਚੁਣੀਆਂ ਚੀਜ਼ਾਂ ਹੀ ਸ਼ਾਮਲ ਕੀਤੀਆਂ ਜਾਣਗੀਆਂ। ਇਸ ਰਸੀਦ ਨੂੰ ਆਯਾਤ ਕੀਤੀ ਹੋਈ ਵਜੋਂ ਦਰਸਾਇਆ ਜਾਵੇਗਾ। ਜਾਰੀ ਰੱਖਣਾ ਹੈ?",
   "keepAwakeOn": "ਸਕ੍ਰੀਨ ਚਾਲੂ ਰਹੇਗੀ",
-  "keepAwakeOff": "ਸਕ੍ਰੀਨ ਬੰਦ ਹੋ ਸਕਦੀ ਹੈ"
+  "keepAwakeOff": "ਸਕ੍ਰੀਨ ਬੰਦ ਹੋ ਸਕਦੀ ਹੈ",
+  "spanDay": "ਦਿਨ",
+  "spanCustom": "ਤਾਰੀਖ ਦੀ ਮਿਆਦ",
+  "reportTotalSpent": "ਕੁੱਲ ਖਰਚ",
+  "reportAddedAt": "ਜੋੜਨ ਦੀ ਤਾਰੀਖ",
+  "reportReceiptNumber": "ਰਸੀਦ ਨੰਬਰ",
+  "reportPreview": "ਝਲਕ",
+  "reportShareAction": "ਸਾਂਝਾ ਕਰੋ",
+  "previousPeriodAction": "ਪਿਛਲੀ ਮਿਆਦ",
+  "nextPeriodAction": "ਅਗਲੀ ਮਿਆਦ",
+  "reportSaved": "ਰਿਪੋਰਟ ਸੁਰੱਖਿਅਤ ਕੀਤੀ ਗਈ।",
+  "reportZoom": "ਜ਼ੂਮ"
 }

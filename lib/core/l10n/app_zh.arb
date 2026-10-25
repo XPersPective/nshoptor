@@ -425,5 +425,16 @@
   "receiptResolveLines": "保存前请接受或忽略每个商品。",
   "receiptPartialConfirm": "只会添加选中的商品。此收据将标记为已导入。继续吗？",
   "keepAwakeOn": "屏幕会保持开启",
-  "keepAwakeOff": "屏幕可能会关闭"
+  "keepAwakeOff": "屏幕可能会关闭",
+  "spanDay": "日",
+  "spanCustom": "日期范围",
+  "reportTotalSpent": "总支出",
+  "reportAddedAt": "添加日期",
+  "reportReceiptNumber": "收据编号",
+  "reportPreview": "预览",
+  "reportShareAction": "分享",
+  "previousPeriodAction": "上一时期",
+  "nextPeriodAction": "下一时期",
+  "reportSaved": "报告已保存。",
+  "reportZoom": "缩放"
 }

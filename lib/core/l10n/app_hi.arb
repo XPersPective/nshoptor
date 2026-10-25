@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "फ़ोटो प्रोसेस नहीं की जा सकी। किसी दूसरी फ़ोटो से कोशिश करें।",
   "receiptNoProducts": "टेक्स्ट पढ़ लिया गया, लेकिन रसीद के सामान नहीं मिले। फ़ोटो में सामान और कुल रकम शामिल करें।",
   "keepAwakeOn": "स्क्रीन चालू रहेगी",
-  "keepAwakeOff": "स्क्रीन बंद हो सकती है"
+  "keepAwakeOff": "स्क्रीन बंद हो सकती है",
+  "spanDay": "दिन",
+  "spanCustom": "तारीख की सीमा",
+  "reportTotalSpent": "कुल खर्च",
+  "reportAddedAt": "जोड़ा गया",
+  "reportReceiptNumber": "रसीद संख्या",
+  "reportPreview": "पूर्वावलोकन",
+  "reportShareAction": "शेयर करें",
+  "previousPeriodAction": "पिछली अवधि",
+  "nextPeriodAction": "अगली अवधि",
+  "reportSaved": "रिपोर्ट सहेजी गई।",
+  "reportZoom": "ज़ूम"
 }

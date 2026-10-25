@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Nem sikerült feldolgozni a fotót. Próbálj másik fotót.",
   "receiptNoProducts": "A szöveg olvasható volt, de a nyugta tételei nem találhatók. A tételek és a végösszeg is legyen a fotón.",
   "keepAwakeOn": "A képernyő bekapcsolva marad",
-  "keepAwakeOff": "A képernyő kikapcsolhat"
+  "keepAwakeOff": "A képernyő kikapcsolhat",
+  "spanDay": "Nap",
+  "spanCustom": "Dátumtartomány",
+  "reportTotalSpent": "Összes kiadás",
+  "reportAddedAt": "Hozzáadva",
+  "reportReceiptNumber": "Nyugtaszám",
+  "reportPreview": "Előnézet",
+  "reportShareAction": "Megosztás",
+  "previousPeriodAction": "Előző időszak",
+  "nextPeriodAction": "Következő időszak",
+  "reportSaved": "A jelentés mentve.",
+  "reportZoom": "Nagyítás"
 }

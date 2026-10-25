@@ -425,5 +425,16 @@
   "receiptResolveLines": "Samþykktu eða hunsaðu hverja vöru áður en þú vistar.",
   "receiptPartialConfirm": "Aðeins valdar vörur verða bættar við. Þessi kvittun verður merkt sem innflutt. Halda áfram?",
   "keepAwakeOn": "Skjárinn helst kveiktur",
-  "keepAwakeOff": "Slökkt getur orðið á skjánum"
+  "keepAwakeOff": "Slökkt getur orðið á skjánum",
+  "spanDay": "Dagur",
+  "spanCustom": "Dagsetningabil",
+  "reportTotalSpent": "Samtals eytt",
+  "reportAddedAt": "Bætt við",
+  "reportReceiptNumber": "Númer kvittunar",
+  "reportPreview": "Forskoðun",
+  "reportShareAction": "Deila",
+  "previousPeriodAction": "Fyrra tímabil",
+  "nextPeriodAction": "Næsta tímabil",
+  "reportSaved": "Skýrsla vistuð.",
+  "reportZoom": "Aðdráttur"
 }

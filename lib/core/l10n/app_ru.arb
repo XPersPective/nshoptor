@@ -425,5 +425,16 @@
   "receiptResolveLines": "Перед сохранением примите или проигнорируйте каждый товар.",
   "receiptPartialConfirm": "Будут добавлены только выбранные товары. Этот чек будет отмечен как импортированный. Продолжить?",
   "keepAwakeOn": "Экран остаётся включённым",
-  "keepAwakeOff": "Экран может выключиться"
+  "keepAwakeOff": "Экран может выключиться",
+  "spanDay": "День",
+  "spanCustom": "Диапазон дат",
+  "reportTotalSpent": "Всего потрачено",
+  "reportAddedAt": "Дата добавления",
+  "reportReceiptNumber": "Номер чека",
+  "reportPreview": "Предпросмотр",
+  "reportShareAction": "Поделиться",
+  "previousPeriodAction": "Предыдущий период",
+  "nextPeriodAction": "Следующий период",
+  "reportSaved": "Отчёт сохранён.",
+  "reportZoom": "Увеличить"
 }

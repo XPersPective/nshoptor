@@ -1376,4 +1376,37 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'La pantalla es pot apagar';
+
+  @override
+  String get spanDay => 'Dia';
+
+  @override
+  String get spanCustom => 'Interval de dates';
+
+  @override
+  String get reportTotalSpent => 'Total gastat';
+
+  @override
+  String get reportAddedAt => 'Afegit';
+
+  @override
+  String get reportReceiptNumber => 'Número de rebut';
+
+  @override
+  String get reportPreview => 'Previsualització';
+
+  @override
+  String get reportShareAction => 'Comparteix';
+
+  @override
+  String get previousPeriodAction => 'Període anterior';
+
+  @override
+  String get nextPeriodAction => 'Període següent';
+
+  @override
+  String get reportSaved => 'S\'ha desat l\'informe.';
+
+  @override
+  String get reportZoom => 'Amplia';
 }

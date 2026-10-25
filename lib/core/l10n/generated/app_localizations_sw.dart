@@ -1371,4 +1371,37 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Skrini inaweza kuzimika';
+
+  @override
+  String get spanDay => 'Siku';
+
+  @override
+  String get spanCustom => 'Kipindi cha tarehe';
+
+  @override
+  String get reportTotalSpent => 'Jumla iliyotumika';
+
+  @override
+  String get reportAddedAt => 'Tarehe iliyoongezwa';
+
+  @override
+  String get reportReceiptNumber => 'Nambari ya risiti';
+
+  @override
+  String get reportPreview => 'Onyesho la kukagua';
+
+  @override
+  String get reportShareAction => 'Shiriki';
+
+  @override
+  String get previousPeriodAction => 'Kipindi kilichotangulia';
+
+  @override
+  String get nextPeriodAction => 'Kipindi kinachofuata';
+
+  @override
+  String get reportSaved => 'Ripoti imehifadhiwa.';
+
+  @override
+  String get reportZoom => 'Kuza';
 }

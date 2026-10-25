@@ -425,5 +425,16 @@
   "receiptResolveLines": "சேமிப்பதற்கு முன் ஒவ்வொரு பொருளையும் ஏற்கவும் அல்லது புறக்கணிக்கவும்.",
   "receiptPartialConfirm": "தேர்ந்தெடுக்கப்பட்ட பொருட்கள் மட்டுமே சேர்க்கப்படும். இந்த ரசீது இறக்குமதி செய்யப்பட்டதாகக் குறிக்கப்படும். தொடரவா?",
   "keepAwakeOn": "திரை தொடர்ந்து இயங்கும்",
-  "keepAwakeOff": "திரை அணைக்கப்படலாம்"
+  "keepAwakeOff": "திரை அணைக்கப்படலாம்",
+  "spanDay": "நாள்",
+  "spanCustom": "தேதி வரம்பு",
+  "reportTotalSpent": "மொத்த செலவு",
+  "reportAddedAt": "சேர்க்கப்பட்ட தேதி",
+  "reportReceiptNumber": "ரசீது எண்",
+  "reportPreview": "முன்னோட்டம்",
+  "reportShareAction": "பகிர்",
+  "previousPeriodAction": "முந்தைய காலம்",
+  "nextPeriodAction": "அடுத்த காலம்",
+  "reportSaved": "அறிக்கை சேமிக்கப்பட்டது.",
+  "reportZoom": "பெரிதாக்கு"
 }

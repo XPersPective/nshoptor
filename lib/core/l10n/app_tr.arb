@@ -212,7 +212,7 @@
   "noObservations": "Bu ürün için henüz gözlem yok",
   "templatesSection": "Şablonlar",
   "templateHint": "Önceki alışverişten yeni plan oluştur",
-  "scanReceiptAction": "Fiş tara",
+  "scanReceiptAction": "Fiş okut",
   "fromReceiptListButton": "Fişten liste",
   "shelfLabelAction": "Raf etiketinden fiyat",
   "priceCandidatesTitle": "Fiyat adayları",
@@ -446,5 +446,16 @@
   "imageRecognitionFailed": "Fotoğraf işlenemedi. Başka bir fotoğraf deneyin.",
   "receiptNoProducts": "Metin okundu ancak fiş ürünleri bulunamadı. Ürünleri ve toplamı fotoğrafa dahil edin.",
   "keepAwakeOn": "Ekran açık tutuluyor",
-  "keepAwakeOff": "Ekran kapanabilir"
+  "keepAwakeOff": "Ekran kapanabilir",
+  "spanDay": "Gün",
+  "spanCustom": "Tarih aralığı",
+  "reportTotalSpent": "Toplam harcanan",
+  "reportAddedAt": "Eklenme tarihi",
+  "reportReceiptNumber": "Fiş numarası",
+  "reportPreview": "Önizleme",
+  "reportShareAction": "Paylaş",
+  "previousPeriodAction": "Önceki dönem",
+  "nextPeriodAction": "Sonraki dönem",
+  "reportSaved": "Rapor kaydedildi.",
+  "reportZoom": "Büyüt"
 }

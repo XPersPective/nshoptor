@@ -1371,4 +1371,37 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ekran może się wyłączyć';
+
+  @override
+  String get spanDay => 'Dzień';
+
+  @override
+  String get spanCustom => 'Zakres dat';
+
+  @override
+  String get reportTotalSpent => 'Łączne wydatki';
+
+  @override
+  String get reportAddedAt => 'Dodano';
+
+  @override
+  String get reportReceiptNumber => 'Numer paragonu';
+
+  @override
+  String get reportPreview => 'Podgląd';
+
+  @override
+  String get reportShareAction => 'Udostępnij';
+
+  @override
+  String get previousPeriodAction => 'Poprzedni okres';
+
+  @override
+  String get nextPeriodAction => 'Następny okres';
+
+  @override
+  String get reportSaved => 'Raport zapisany.';
+
+  @override
+  String get reportZoom => 'Powiększ';
 }

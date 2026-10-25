@@ -1371,4 +1371,37 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'A képernyő kikapcsolhat';
+
+  @override
+  String get spanDay => 'Nap';
+
+  @override
+  String get spanCustom => 'Dátumtartomány';
+
+  @override
+  String get reportTotalSpent => 'Összes kiadás';
+
+  @override
+  String get reportAddedAt => 'Hozzáadva';
+
+  @override
+  String get reportReceiptNumber => 'Nyugtaszám';
+
+  @override
+  String get reportPreview => 'Előnézet';
+
+  @override
+  String get reportShareAction => 'Megosztás';
+
+  @override
+  String get previousPeriodAction => 'Előző időszak';
+
+  @override
+  String get nextPeriodAction => 'Következő időszak';
+
+  @override
+  String get reportSaved => 'A jelentés mentve.';
+
+  @override
+  String get reportZoom => 'Nagyítás';
 }

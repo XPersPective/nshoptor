@@ -9,7 +9,8 @@ import 'dart:ui' show PlatformDispatcher;
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart'
     show kReleaseMode, defaultTargetPlatform;
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import 'features/ads/ad_startup.dart';
 
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
@@ -69,21 +70,16 @@ Future<void> main() async {
   // ProController yalnızca 24 saatlik geçici Pro ödülünü tutar; abonelik
   // mağaza akışı SubscriptionService tarafından yönetilir.
   final purchaseRepository = PurchaseRepository(
-    adapter: SubscriptionPurchaseAdapter(InAppPurchaseAdapter()),
+    adapter: const SubscriptionPurchaseAdapter(),
     productId: SubscriptionService.proId,
   );
   final proController = ProController(
     store: store,
     repository: purchaseRepository,
   )..load();
-  proController.startListening();
 
   // Pro/Max abonelikleri (ADR-004 §6); AI kotası sunucuda doğrulanır.
   final subscriptions = SubscriptionService(store: store)..load();
-  subscriptions.start();
-  WidgetsBinding.instance.addObserver(
-    SubscriptionResumeObserver(subscriptions),
-  );
   SubscriptionService.instance = subscriptions;
   AiService.client = AiClient(
     store: store,
@@ -106,94 +102,39 @@ Future<void> main() async {
   if (saved != null) policy.restore(saved);
   policy.setOnboardingCompleted(true);
   policy.setPro(adFree());
-  void syncAds() {
-    policy.setPro(adFree());
-    AdPolicyPersistence.save(adsAdapter, policy);
-  }
-
-  proController.addListener(syncAds);
-  subscriptions.addListener(syncAds);
   policy.startSession(DateTime.now());
-  // Persist first launch/session count: without it every launch looked like
-  // day 0 and the 7-day/5-session guards never opened full-screen ads.
   AdPolicyPersistence.save(adsAdapter, policy);
-
   final bannerController = BannerAdController(policy: policy);
   final rewardedManager = RewardedAdManager(policy: policy);
-  final appOpen = AppOpenAdManager(policy: policy);
-  // Açılış reklamı: politika (≥4 saat, oturumda bir) + alışveriş modunda yok.
-  Future<void> maybeShowAppOpen() async {
-    policy.setPro(adFree());
-    if (AdGate.shoppingModeActive) return;
-    await appOpen.tryLoad(DateTime.now());
-    await Future<void>.delayed(const Duration(milliseconds: 400));
-    if (!AdGate.shoppingModeActive && await appOpen.showIfAvailable()) {
-      AdPolicyPersistence.save(adsAdapter, policy);
-    }
-  }
-
-  // Ödüllü/geçiş birimi tanımlı değilse üretimde kapalı kalır (Google test
-  // birimi yayında gösterilmez); debug/profile test birimleriyle çalışır.
   final hasRewardedUnit = adUnitEnabled(
     platform: defaultTargetPlatform,
     releaseMode: kReleaseMode,
     androidUnit: const String.fromEnvironment('ADMOB_REWARDED_ANDROID'),
     iosUnit: const String.fromEnvironment('ADMOB_REWARDED_IOS'),
   );
-  final hasInterstitialUnit = adUnitEnabled(
-    platform: defaultTargetPlatform,
-    releaseMode: kReleaseMode,
-    androidUnit: const String.fromEnvironment('ADMOB_INTERSTITIAL_ANDROID'),
-    iosUnit: const String.fromEnvironment('ADMOB_INTERSTITIAL_IOS'),
+  final adStartup = AdStartup(
+    isAdFree: adFree,
+    initialize: ConsentManager.initialize,
+    onReady: () => policy.setSdkReady(true),
+    load: () async {
+      policy.setPro(adFree());
+      bannerController.load();
+      if (hasRewardedUnit) await rewardedManager.load();
+    },
   );
-
-  // Geçiş reklamı: napp_ads yöneticisi show() çağırmadığı için burada.
-  // ponytail: one preloaded ad; move into napp_ads once its manager calls show().
-  InterstitialAd? interstitial;
-  void loadInterstitial() {
-    if (!hasInterstitialUnit || interstitial != null) return;
-    InterstitialAd.load(
-      adUnitId: AdsConfig.interstitialUnit,
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) => interstitial = ad,
-        onAdFailedToLoad: (_) {},
-      ),
-    );
+  var firstFrameReady = false;
+  void syncAds() {
+    policy.setPro(adFree());
+    bannerController.onProChanged();
+    AdPolicyPersistence.save(adsAdapter, policy);
+    if (firstFrameReady) unawaited(adStartup.ensureReady());
   }
 
-  AdGate.showInterstitial = () async {
-    policy.setPro(adFree());
-    final ad = interstitial;
-    if (ad == null || !policy.canShowInterstitial(DateTime.now())) return;
-    interstitial = null;
-    ad.fullScreenContentCallback = FullScreenContentCallback(
-      onAdShowedFullScreenContent: (_) {
-        policy.recordFullscreen(DateTime.now(), isAppOpen: false);
-        AdPolicyPersistence.save(adsAdapter, policy);
-      },
-      onAdDismissedFullScreenContent: (ad) {
-        ad.dispose();
-        loadInterstitial();
-      },
-      onAdFailedToShowFullScreenContent: (ad, _) {
-        ad.dispose();
-        loadInterstitial();
-      },
-    );
-    await ad.show();
-  };
-
-  unawaited(() async {
-    final ready = await ConsentManager.initialize();
-    if (!ready) return; // onay alınamadı: reklamsız devam
-    policy.setSdkReady(true);
-    bannerController.load();
-    if (hasRewardedUnit) await rewardedManager.load();
-    loadInterstitial();
-    await maybeShowAppOpen();
-  }());
-  AppLifecycleListener(onResume: () => unawaited(maybeShowAppOpen()));
+  proController.addListener(syncAds);
+  subscriptions.addListener(syncAds);
+  // N054: no automatic app-open or interstitial advertisement.
+  AdGate.showInterstitial = null;
+  AppLifecycleListener(onResume: syncAds);
 
   WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
   final db = AppDatabase(openAppDatabase());
@@ -201,7 +142,7 @@ Future<void> main() async {
   runApp(
     NShoptorApp(
       db: db,
-      splash: const Duration(milliseconds: 1600),
+      splash: Duration.zero,
       settingsRepository: SettingsRepository(
         db,
         NappSettingsStoreOps(store),
@@ -227,5 +168,16 @@ Future<void> main() async {
               },
             ),
     ),
+  );
+  unawaited(
+    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) {
+      firstFrameReady = true;
+      proController.startListening();
+      subscriptions.start();
+      WidgetsBinding.instance.addObserver(
+        SubscriptionResumeObserver(subscriptions),
+      );
+      syncAds();
+    }),
   );
 }

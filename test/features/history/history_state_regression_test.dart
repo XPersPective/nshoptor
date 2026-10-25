@@ -22,14 +22,24 @@ import 'package:nshoptor/features/history/insights/monthly_report.dart';
 void main() {
   setUpAll(() async {
     if (!const bool.fromEnvironment('UI_REVIEW')) return;
-    Future<ByteData> bytes(String path) async => ByteData.sublistView(Uint8List.fromList(await File(path).readAsBytes()));
+    Future<ByteData> bytes(String path) async => ByteData.sublistView(
+      Uint8List.fromList(await File(path).readAsBytes()),
+    );
     final font = FontLoader('Roboto');
-    for (final path in ['C:/Windows/Fonts/segoeui.ttf', 'C:/Windows/Fonts/segoeuib.ttf']) {
+    for (final path in [
+      'C:/Windows/Fonts/segoeui.ttf',
+      'C:/Windows/Fonts/segoeuib.ttf',
+    ]) {
       if (File(path).existsSync()) font.addFont(bytes(path));
     }
     await font.load();
     final root = Platform.environment['FLUTTER_ROOT'] ?? 'C:/flutter';
-    await (FontLoader('MaterialIcons')..addFont(bytes('$root/bin/cache/artifacts/material_fonts/materialicons-regular.otf'))).load();
+    await (FontLoader('MaterialIcons')..addFont(
+          bytes(
+            '$root/bin/cache/artifacts/material_fonts/materialicons-regular.otf',
+          ),
+        ))
+        .load();
   });
   late AppDatabase db;
   late SettingsStore store;
@@ -148,17 +158,45 @@ void main() {
   test('period PDF keeps priced subtotal when one product also has an unknown receipt row', () async {
     final day = DateTime(2026, 10, 23);
     final list = await purchase(day, 'Mixed', 2500);
-    final item = await db.into(db.plannedItems).insert(PlannedItemsCompanion.insert(
-      listId: list, name: 'Mixed', normalizedName: 'mixed', plannedQuantity: '2',
-      plannedUnitCode: 'piece', pricingInputMode: 'unitPrice'));
-    await (db.update(db.purchaseEntries)..where((t) => t.listId.equals(list))).write(
-      PurchaseEntriesCompanion(plannedItemId: Value(item)));
-    await db.into(db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(listId: list,
-      plannedItemId: Value(item), name: 'Mixed', normalizedName: 'mixed', actualQuantity: '1',
-      actualUnitCode: 'piece', actualLineTotalMinorUnits: 0, userConfirmed: const Value(true)));
+    final item = await db
+        .into(db.plannedItems)
+        .insert(
+          PlannedItemsCompanion.insert(
+            listId: list,
+            name: 'Mixed',
+            normalizedName: 'mixed',
+            plannedQuantity: '2',
+            plannedUnitCode: 'piece',
+            pricingInputMode: 'unitPrice',
+          ),
+        );
+    await (db.update(db.purchaseEntries)..where((t) => t.listId.equals(list)))
+        .write(PurchaseEntriesCompanion(plannedItemId: Value(item)));
+    await db
+        .into(db.purchaseEntries)
+        .insert(
+          PurchaseEntriesCompanion.insert(
+            listId: list,
+            plannedItemId: Value(item),
+            name: 'Mixed',
+            normalizedName: 'mixed',
+            actualQuantity: '1',
+            actualUnitCode: 'piece',
+            actualLineTotalMinorUnits: 0,
+            userConfirmed: const Value(true),
+          ),
+        );
     final l10n = await AppLocalizations.delegate.load(const Locale('tr'));
-    final html = await buildPeriodReport(db, day, DateTime(2026, 10, 24), 'TRY', l10n, 'tr',
-      periodLabel: 'Bugün', limitMinor: 10000);
+    final html = await buildPeriodReport(
+      db,
+      day,
+      DateTime(2026, 10, 24),
+      'TRY',
+      l10n,
+      'tr',
+      periodLabel: 'Bugün',
+      limitMinor: 10000,
+    );
     expect(html, contains('25,00 ₺ + —'));
     expect(html, isNot(contains('${l10n.monthlyLimitTitle}:')));
   });
@@ -202,7 +240,7 @@ void main() {
   }
 
   testWidgets(
-    'retained overview refreshes calendar date and default currency',
+    'retained daily report refreshes calendar date and default currency',
     (tester) async {
       await tester.runAsync(() async {
         await purchase(DateTime(2026, 10, 31), 'October', 2500);
@@ -211,7 +249,9 @@ void main() {
       });
       await tester.pumpWidget(subject(DateTime(2026, 10, 31)));
       await settle(tester);
-      final month = find.byKey(const Key('overview_month'));
+      await tester.tap(find.byKey(const Key('history_span_day')));
+      await settle(tester);
+      final month = find.byKey(const Key('history_period_total'));
       expect(
         find.descendant(of: month, matching: find.text('25,00 ₺')),
         findsOneWidget,
@@ -247,8 +287,8 @@ void main() {
         });
         await tester.pumpWidget(subject(day, scale: width == 320 ? 2 : 1));
         await settle(tester);
-        await tester.ensureVisible(find.byKey(const Key('history_today_tab')));
-        await tester.tap(find.byKey(const Key('history_today_tab')));
+        await tester.ensureVisible(find.byKey(const Key('history_span_day')));
+        await tester.tap(find.byKey(const Key('history_span_day')));
         await settle(tester);
         expect(
           find.descendant(
@@ -285,7 +325,7 @@ void main() {
                 .first,
           );
           expect(
-            find.descendant(of: row, matching: find.text(text)),
+            find.descendant(of: row, matching: find.textContaining('\n$text')),
             findsOneWidget,
           );
         }

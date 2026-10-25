@@ -1368,4 +1368,37 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Skärmen kan släckas';
+
+  @override
+  String get spanDay => 'Dag';
+
+  @override
+  String get spanCustom => 'Datumintervall';
+
+  @override
+  String get reportTotalSpent => 'Totalt spenderat';
+
+  @override
+  String get reportAddedAt => 'Tillagd';
+
+  @override
+  String get reportReceiptNumber => 'Kvittonummer';
+
+  @override
+  String get reportPreview => 'Förhandsvisning';
+
+  @override
+  String get reportShareAction => 'Dela';
+
+  @override
+  String get previousPeriodAction => 'Föregående period';
+
+  @override
+  String get nextPeriodAction => 'Nästa period';
+
+  @override
+  String get reportSaved => 'Rapporten har sparats.';
+
+  @override
+  String get reportZoom => 'Zooma';
 }

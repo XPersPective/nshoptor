@@ -1375,4 +1375,37 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Էկրանը կարող է անջատվել';
+
+  @override
+  String get spanDay => 'Օր';
+
+  @override
+  String get spanCustom => 'Ամսաթվերի միջակայք';
+
+  @override
+  String get reportTotalSpent => 'Ընդհանուր ծախսը';
+
+  @override
+  String get reportAddedAt => 'Ավելացվել է';
+
+  @override
+  String get reportReceiptNumber => 'Կտրոնի համարը';
+
+  @override
+  String get reportPreview => 'Նախադիտում';
+
+  @override
+  String get reportShareAction => 'Կիսվել';
+
+  @override
+  String get previousPeriodAction => 'Նախորդ ժամանակահատված';
+
+  @override
+  String get nextPeriodAction => 'Հաջորդ ժամանակահատված';
+
+  @override
+  String get reportSaved => 'Հաշվետվությունը պահպանվել է։';
+
+  @override
+  String get reportZoom => 'Մեծացնել';
 }

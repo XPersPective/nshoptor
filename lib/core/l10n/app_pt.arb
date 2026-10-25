@@ -425,5 +425,16 @@
   "receiptResolveLines": "Aceite ou ignore cada item antes de guardar.",
   "receiptPartialConfirm": "Só os itens selecionados serão adicionados. Este recibo será marcado como importado. Continuar?",
   "keepAwakeOn": "A tela permanece ligada",
-  "keepAwakeOff": "A tela pode desligar"
+  "keepAwakeOff": "A tela pode desligar",
+  "spanDay": "Dia",
+  "spanCustom": "Intervalo de datas",
+  "reportTotalSpent": "Total gasto",
+  "reportAddedAt": "Adicionado",
+  "reportReceiptNumber": "Número do recibo",
+  "reportPreview": "Pré-visualização",
+  "reportShareAction": "Partilhar",
+  "previousPeriodAction": "Período anterior",
+  "nextPeriodAction": "Período seguinte",
+  "reportSaved": "Relatório guardado.",
+  "reportZoom": "Ampliar"
 }

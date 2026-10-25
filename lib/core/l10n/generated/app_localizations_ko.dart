@@ -1327,4 +1327,37 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get keepAwakeOff => '화면이 꺼질 수 있습니다';
+
+  @override
+  String get spanDay => '일';
+
+  @override
+  String get spanCustom => '기간';
+
+  @override
+  String get reportTotalSpent => '총 지출';
+
+  @override
+  String get reportAddedAt => '추가 날짜';
+
+  @override
+  String get reportReceiptNumber => '영수증 번호';
+
+  @override
+  String get reportPreview => '미리보기';
+
+  @override
+  String get reportShareAction => '공유';
+
+  @override
+  String get previousPeriodAction => '이전 기간';
+
+  @override
+  String get nextPeriodAction => '다음 기간';
+
+  @override
+  String get reportSaved => '보고서가 저장되었습니다.';
+
+  @override
+  String get reportZoom => '확대';
 }

@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "Billedet kunne ikke behandles. Prøv et andet billede.",
   "receiptNoProducts": "Teksten blev læst, men ingen varer på kvitteringen blev fundet. Få varerne og totalbeløbet med på billedet.",
   "keepAwakeOn": "Skærmen forbliver tændt",
-  "keepAwakeOff": "Skærmen kan slukke"
+  "keepAwakeOff": "Skærmen kan slukke",
+  "spanDay": "Dag",
+  "spanCustom": "Datointerval",
+  "reportTotalSpent": "I alt brugt",
+  "reportAddedAt": "Tilføjet",
+  "reportReceiptNumber": "Kvitteringsnummer",
+  "reportPreview": "Forhåndsvisning",
+  "reportShareAction": "Del",
+  "previousPeriodAction": "Forrige periode",
+  "nextPeriodAction": "Næste periode",
+  "reportSaved": "Rapporten er gemt.",
+  "reportZoom": "Zoom"
 }

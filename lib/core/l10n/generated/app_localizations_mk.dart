@@ -1374,4 +1374,37 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Екранот може да се исклучи';
+
+  @override
+  String get spanDay => 'Ден';
+
+  @override
+  String get spanCustom => 'Опсег на датуми';
+
+  @override
+  String get reportTotalSpent => 'Вкупно потрошено';
+
+  @override
+  String get reportAddedAt => 'Додадено';
+
+  @override
+  String get reportReceiptNumber => 'Број на сметка';
+
+  @override
+  String get reportPreview => 'Преглед';
+
+  @override
+  String get reportShareAction => 'Сподели';
+
+  @override
+  String get previousPeriodAction => 'Претходен период';
+
+  @override
+  String get nextPeriodAction => 'Следен период';
+
+  @override
+  String get reportSaved => 'Извештајот е зачуван.';
+
+  @override
+  String get reportZoom => 'Зумирај';
 }

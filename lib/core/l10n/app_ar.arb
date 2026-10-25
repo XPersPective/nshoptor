@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "تعذرت معالجة الصورة. جرّب صورة أخرى.",
   "receiptNoProducts": "تمت قراءة النص، لكن لم يتم العثور على أصناف الإيصال. تأكد من ظهور الأصناف والإجمالي في الصورة.",
   "keepAwakeOn": "ستبقى الشاشة قيد التشغيل",
-  "keepAwakeOff": "يمكن إيقاف تشغيل الشاشة"
+  "keepAwakeOff": "يمكن إيقاف تشغيل الشاشة",
+  "spanDay": "يوم",
+  "spanCustom": "نطاق زمني",
+  "reportTotalSpent": "إجمالي الإنفاق",
+  "reportAddedAt": "تاريخ الإضافة",
+  "reportReceiptNumber": "رقم الإيصال",
+  "reportPreview": "معاينة",
+  "reportShareAction": "مشاركة",
+  "previousPeriodAction": "الفترة السابقة",
+  "nextPeriodAction": "الفترة التالية",
+  "reportSaved": "تم حفظ التقرير.",
+  "reportZoom": "تكبير"
 }

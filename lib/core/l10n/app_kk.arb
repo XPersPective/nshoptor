@@ -425,5 +425,16 @@
   "receiptResolveLines": "Сақтамас бұрын әр тауарды қабылдаңыз немесе елемеңіз.",
   "receiptPartialConfirm": "Тек таңдалған тауарлар қосылады. Бұл чек импортталған деп белгіленеді. Жалғастыру керек пе?",
   "keepAwakeOn": "Экран қосулы тұрады",
-  "keepAwakeOff": "Экран өшуі мүмкін"
+  "keepAwakeOff": "Экран өшуі мүмкін",
+  "spanDay": "Күн",
+  "spanCustom": "Күндер аралығы",
+  "reportTotalSpent": "Жалпы шығын",
+  "reportAddedAt": "Қосылған күні",
+  "reportReceiptNumber": "Чек нөмірі",
+  "reportPreview": "Алдын ала қарау",
+  "reportShareAction": "Бөлісу",
+  "previousPeriodAction": "Алдыңғы кезең",
+  "nextPeriodAction": "Келесі кезең",
+  "reportSaved": "Есеп сақталды.",
+  "reportZoom": "Үлкейту"
 }

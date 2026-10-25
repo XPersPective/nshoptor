@@ -1368,4 +1368,37 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'ეკრანი შეიძლება გამოირთოს';
+
+  @override
+  String get spanDay => 'დღე';
+
+  @override
+  String get spanCustom => 'თარიღების დიაპაზონი';
+
+  @override
+  String get reportTotalSpent => 'სულ დახარჯული';
+
+  @override
+  String get reportAddedAt => 'დამატების თარიღი';
+
+  @override
+  String get reportReceiptNumber => 'ქვითრის ნომერი';
+
+  @override
+  String get reportPreview => 'წინასწარი ნახვა';
+
+  @override
+  String get reportShareAction => 'გაზიარება';
+
+  @override
+  String get previousPeriodAction => 'წინა პერიოდი';
+
+  @override
+  String get nextPeriodAction => 'შემდეგი პერიოდი';
+
+  @override
+  String get reportSaved => 'ანგარიში შენახულია.';
+
+  @override
+  String get reportZoom => 'გადიდება';
 }

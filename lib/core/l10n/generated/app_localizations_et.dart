@@ -1368,4 +1368,37 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Ekraan võib välja lülituda';
+
+  @override
+  String get spanDay => 'Päev';
+
+  @override
+  String get spanCustom => 'Kuupäevavahemik';
+
+  @override
+  String get reportTotalSpent => 'Kokku kulutatud';
+
+  @override
+  String get reportAddedAt => 'Lisatud';
+
+  @override
+  String get reportReceiptNumber => 'Tšeki number';
+
+  @override
+  String get reportPreview => 'Eelvaade';
+
+  @override
+  String get reportShareAction => 'Jaga';
+
+  @override
+  String get previousPeriodAction => 'Eelmine periood';
+
+  @override
+  String get nextPeriodAction => 'Järgmine periood';
+
+  @override
+  String get reportSaved => 'Aruanne salvestati.';
+
+  @override
+  String get reportZoom => 'Suumi sisse';
 }

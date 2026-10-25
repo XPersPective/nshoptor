@@ -1368,4 +1368,37 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'ਸਕ੍ਰੀਨ ਬੰਦ ਹੋ ਸਕਦੀ ਹੈ';
+
+  @override
+  String get spanDay => 'ਦਿਨ';
+
+  @override
+  String get spanCustom => 'ਤਾਰੀਖ ਦੀ ਮਿਆਦ';
+
+  @override
+  String get reportTotalSpent => 'ਕੁੱਲ ਖਰਚ';
+
+  @override
+  String get reportAddedAt => 'ਜੋੜਨ ਦੀ ਤਾਰੀਖ';
+
+  @override
+  String get reportReceiptNumber => 'ਰਸੀਦ ਨੰਬਰ';
+
+  @override
+  String get reportPreview => 'ਝਲਕ';
+
+  @override
+  String get reportShareAction => 'ਸਾਂਝਾ ਕਰੋ';
+
+  @override
+  String get previousPeriodAction => 'ਪਿਛਲੀ ਮਿਆਦ';
+
+  @override
+  String get nextPeriodAction => 'ਅਗਲੀ ਮਿਆਦ';
+
+  @override
+  String get reportSaved => 'ਰਿਪੋਰਟ ਸੁਰੱਖਿਅਤ ਕੀਤੀ ਗਈ।';
+
+  @override
+  String get reportZoom => 'ਜ਼ੂਮ';
 }

@@ -1368,4 +1368,37 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Obrazovka se může vypnout';
+
+  @override
+  String get spanDay => 'Den';
+
+  @override
+  String get spanCustom => 'Rozmezí dat';
+
+  @override
+  String get reportTotalSpent => 'Celkem utraceno';
+
+  @override
+  String get reportAddedAt => 'Přidáno';
+
+  @override
+  String get reportReceiptNumber => 'Číslo účtenky';
+
+  @override
+  String get reportPreview => 'Náhled';
+
+  @override
+  String get reportShareAction => 'Sdílet';
+
+  @override
+  String get previousPeriodAction => 'Předchozí období';
+
+  @override
+  String get nextPeriodAction => 'Následující období';
+
+  @override
+  String get reportSaved => 'Zpráva byla uložena.';
+
+  @override
+  String get reportZoom => 'Přiblížit';
 }

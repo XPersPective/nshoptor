@@ -425,5 +425,16 @@
   "receiptResolveLines": "सुरक्षित गर्नुअघि प्रत्येक वस्तु स्वीकार गर्नुहोस् वा बेवास्ता गर्नुहोस्।",
   "receiptPartialConfirm": "छानिएका वस्तुहरू मात्र थपिनेछन्। यो रसिद आयात गरिएको भनी चिन्ह लगाइनेछ। जारी राख्ने?",
   "keepAwakeOn": "स्क्रिन खुला रहनेछ",
-  "keepAwakeOff": "स्क्रिन बन्द हुन सक्छ"
+  "keepAwakeOff": "स्क्रिन बन्द हुन सक्छ",
+  "spanDay": "दिन",
+  "spanCustom": "मिति दायरा",
+  "reportTotalSpent": "कुल खर्च",
+  "reportAddedAt": "थपिएको मिति",
+  "reportReceiptNumber": "रसिद नम्बर",
+  "reportPreview": "पूर्वावलोकन",
+  "reportShareAction": "साझा गर्नुहोस्",
+  "previousPeriodAction": "अघिल्लो अवधि",
+  "nextPeriodAction": "अर्को अवधि",
+  "reportSaved": "प्रतिवेदन सुरक्षित गरियो।",
+  "reportZoom": "जुम"
 }

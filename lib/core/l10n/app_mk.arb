@@ -425,5 +425,16 @@
   "receiptResolveLines": "Прифатете или игнорирајте ја секоја ставка пред да зачувате.",
   "receiptPartialConfirm": "Ќе се додадат само избраните ставки. Оваа сметка ќе биде означена како увезена. Да продолжиме?",
   "keepAwakeOn": "Екранот останува вклучен",
-  "keepAwakeOff": "Екранот може да се исклучи"
+  "keepAwakeOff": "Екранот може да се исклучи",
+  "spanDay": "Ден",
+  "spanCustom": "Опсег на датуми",
+  "reportTotalSpent": "Вкупно потрошено",
+  "reportAddedAt": "Додадено",
+  "reportReceiptNumber": "Број на сметка",
+  "reportPreview": "Преглед",
+  "reportShareAction": "Сподели",
+  "previousPeriodAction": "Претходен период",
+  "nextPeriodAction": "Следен период",
+  "reportSaved": "Извештајот е зачуван.",
+  "reportZoom": "Зумирај"
 }

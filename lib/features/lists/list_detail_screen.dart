@@ -792,10 +792,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                         top: false,
                         child: Padding(
                           padding: const EdgeInsets.all(12),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              Expanded(
+                              SizedBox(
                                 // Tap = one item in the full form; mic = many
                                 // items spoken at once (draft with approval).
                                 child: TextField(
@@ -820,14 +821,17 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                   ),
                                 ),
                               ),
-                              const SizedBox(width: 8),
-                              IconButton.filledTonal(
+                              const SizedBox(height: 8),
+                              OutlinedButton.icon(
                                 key: const Key('detail_receipt_button'),
-                                tooltip: l10n.tipReceiptScan,
                                 onPressed: _busy
                                     ? null
                                     : () => _scanReceipt(context),
                                 icon: const Icon(Icons.receipt_long_outlined),
+                                label: Text(
+                                  l10n.scanReceiptAction,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ],
                           ),

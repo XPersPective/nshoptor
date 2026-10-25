@@ -1370,4 +1370,37 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Zaslon se može isključiti';
+
+  @override
+  String get spanDay => 'Dan';
+
+  @override
+  String get spanCustom => 'Raspon datuma';
+
+  @override
+  String get reportTotalSpent => 'Ukupno potrošeno';
+
+  @override
+  String get reportAddedAt => 'Dodano';
+
+  @override
+  String get reportReceiptNumber => 'Broj računa';
+
+  @override
+  String get reportPreview => 'Pregled';
+
+  @override
+  String get reportShareAction => 'Podijeli';
+
+  @override
+  String get previousPeriodAction => 'Prethodno razdoblje';
+
+  @override
+  String get nextPeriodAction => 'Sljedeće razdoblje';
+
+  @override
+  String get reportSaved => 'Izvješće je spremljeno.';
+
+  @override
+  String get reportZoom => 'Povećaj';
 }

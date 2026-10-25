@@ -1374,4 +1374,37 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Pantaila itzal daiteke';
+
+  @override
+  String get spanDay => 'Eguna';
+
+  @override
+  String get spanCustom => 'Data-tartea';
+
+  @override
+  String get reportTotalSpent => 'Guztira gastatuta';
+
+  @override
+  String get reportAddedAt => 'Gehituta';
+
+  @override
+  String get reportReceiptNumber => 'Ordainagiri-zenbakia';
+
+  @override
+  String get reportPreview => 'Aurrebista';
+
+  @override
+  String get reportShareAction => 'Partekatu';
+
+  @override
+  String get previousPeriodAction => 'Aurreko aldia';
+
+  @override
+  String get nextPeriodAction => 'Hurrengo aldia';
+
+  @override
+  String get reportSaved => 'Txostena gorde da.';
+
+  @override
+  String get reportZoom => 'Handiagotu';
 }

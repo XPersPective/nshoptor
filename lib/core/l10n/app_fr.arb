@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "La photo n'a pas pu être traitée. Essayez une autre photo.",
   "receiptNoProducts": "Le texte a été lu, mais aucun article du ticket n'a été trouvé. Incluez les articles et le total dans la photo.",
   "keepAwakeOn": "L’écran reste allumé",
-  "keepAwakeOff": "L’écran peut s’éteindre"
+  "keepAwakeOff": "L’écran peut s’éteindre",
+  "spanDay": "Jour",
+  "spanCustom": "Période",
+  "reportTotalSpent": "Total dépensé",
+  "reportAddedAt": "Ajouté",
+  "reportReceiptNumber": "Numéro de reçu",
+  "reportPreview": "Aperçu",
+  "reportShareAction": "Partager",
+  "previousPeriodAction": "Période précédente",
+  "nextPeriodAction": "Période suivante",
+  "reportSaved": "Rapport enregistré.",
+  "reportZoom": "Zoomer"
 }

@@ -425,5 +425,16 @@
   "receiptResolveLines": "ಉಳಿಸುವ ಮೊದಲು ಪ್ರತಿಯೊಂದು ವಸ್ತುವನ್ನು ಸ್ವೀಕರಿಸಿ ಅಥವಾ ಕಡೆಗಣಿಸಿ.",
   "receiptPartialConfirm": "ಆಯ್ಕೆ ಮಾಡಿದ ವಸ್ತುಗಳು ಮಾತ್ರ ಸೇರಿಸಲಾಗುತ್ತವೆ. ಈ ರಸೀದಿಯನ್ನು ಆಮದು ಮಾಡಿದುದಾಗಿ ಗುರುತಿಸಲಾಗುತ್ತದೆ. ಮುಂದುವರಿಸಬೇಕೇ?",
   "keepAwakeOn": "ಪರದೆ ಆನ್ ಆಗಿಯೇ ಇರುತ್ತದೆ",
-  "keepAwakeOff": "ಪರದೆ ಆಫ್ ಆಗಬಹುದು"
+  "keepAwakeOff": "ಪರದೆ ಆಫ್ ಆಗಬಹುದು",
+  "spanDay": "ದಿನ",
+  "spanCustom": "ದಿನಾಂಕದ ಅವಧಿ",
+  "reportTotalSpent": "ಒಟ್ಟು ಖರ್ಚು",
+  "reportAddedAt": "ಸೇರಿಸಿದ ದಿನಾಂಕ",
+  "reportReceiptNumber": "ರಸೀದಿ ಸಂಖ್ಯೆ",
+  "reportPreview": "ಮುನ್ನೋಟ",
+  "reportShareAction": "ಹಂಚಿಕೊಳ್ಳಿ",
+  "previousPeriodAction": "ಹಿಂದಿನ ಅವಧಿ",
+  "nextPeriodAction": "ಮುಂದಿನ ಅವಧಿ",
+  "reportSaved": "ವರದಿ ಉಳಿಸಲಾಗಿದೆ.",
+  "reportZoom": "ಜೂಮ್"
 }

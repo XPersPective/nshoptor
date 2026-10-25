@@ -425,5 +425,16 @@
   "imageRecognitionFailed": "No se pudo procesar la foto. Prueba con otra foto.",
   "receiptNoProducts": "Se leyó el texto, pero no se encontraron artículos del recibo. Incluye los artículos y el total en la foto.",
   "keepAwakeOn": "La pantalla permanece encendida",
-  "keepAwakeOff": "La pantalla puede apagarse"
+  "keepAwakeOff": "La pantalla puede apagarse",
+  "spanDay": "Día",
+  "spanCustom": "Rango de fechas",
+  "reportTotalSpent": "Total gastado",
+  "reportAddedAt": "Añadido",
+  "reportReceiptNumber": "Número de recibo",
+  "reportPreview": "Vista previa",
+  "reportShareAction": "Compartir",
+  "previousPeriodAction": "Periodo anterior",
+  "nextPeriodAction": "Periodo siguiente",
+  "reportSaved": "Informe guardado.",
+  "reportZoom": "Ampliar"
 }

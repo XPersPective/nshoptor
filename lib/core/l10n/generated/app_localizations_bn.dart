@@ -1368,4 +1368,37 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'স্ক্রিন বন্ধ হতে পারে';
+
+  @override
+  String get spanDay => 'দিন';
+
+  @override
+  String get spanCustom => 'তারিখের পরিসর';
+
+  @override
+  String get reportTotalSpent => 'মোট খরচ';
+
+  @override
+  String get reportAddedAt => 'যোগ করা হয়েছে';
+
+  @override
+  String get reportReceiptNumber => 'রসিদ নম্বর';
+
+  @override
+  String get reportPreview => 'প্রিভিউ';
+
+  @override
+  String get reportShareAction => 'শেয়ার';
+
+  @override
+  String get previousPeriodAction => 'আগের সময়কাল';
+
+  @override
+  String get nextPeriodAction => 'পরের সময়কাল';
+
+  @override
+  String get reportSaved => 'প্রতিবেদন সংরক্ষিত হয়েছে।';
+
+  @override
+  String get reportZoom => 'জুম';
 }

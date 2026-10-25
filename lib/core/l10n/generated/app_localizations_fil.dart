@@ -1379,4 +1379,37 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get keepAwakeOff => 'Maaaring mamatay ang screen';
+
+  @override
+  String get spanDay => 'Araw';
+
+  @override
+  String get spanCustom => 'Saklaw ng petsa';
+
+  @override
+  String get reportTotalSpent => 'Kabuuang nagastos';
+
+  @override
+  String get reportAddedAt => 'Idinagdag';
+
+  @override
+  String get reportReceiptNumber => 'Numero ng resibo';
+
+  @override
+  String get reportPreview => 'Preview';
+
+  @override
+  String get reportShareAction => 'Ibahagi';
+
+  @override
+  String get previousPeriodAction => 'Nakaraang panahon';
+
+  @override
+  String get nextPeriodAction => 'Susunod na panahon';
+
+  @override
+  String get reportSaved => 'Na-save ang ulat.';
+
+  @override
+  String get reportZoom => 'I-zoom';
 }

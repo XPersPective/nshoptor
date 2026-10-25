@@ -334,7 +334,6 @@ class _HomeShellState extends State<HomeShell> {
       final committedList = await openReceiptCaptureFlow(
         context,
         db: widget.db,
-        title: l10n.receiptReviewTitle,
         currencyCode: AppDefaults.defaultCurrency(),
         pickImage: widget.pickImage,
         ocrSource: widget.ocrSource,

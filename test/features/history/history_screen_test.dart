@@ -6,22 +6,27 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/core/money/decimal_fixed.dart';
+import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/history/history_screen.dart';
-import 'package:nshoptor/features/history/product_history_screen.dart';
+import 'package:nshoptor/features/history/reports/report_preview_screen.dart';
 import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
 
 void main() {
   for (final (width, scale) in [(412.0, 1.0), (320.0, 2.0)]) {
     testWidgets(
-      'history opens on this month; product shows home vs store (${width.toInt()}dp x$scale)',
+      'history opens on the week and shows a read-only receipt preview '
+      '(${width.toInt()}dp x$scale)',
       (tester) async {
         await tester.binding.setSurfaceSize(Size(width, 800));
         addTearDown(() => tester.binding.setSurfaceSize(null));
+        AppFormatLocale.attach('tr');
+        addTearDown(AppFormatLocale.attachReset);
         final db = AppDatabase(NativeDatabase.memory());
-        final now = DateTime.now();
+        final now = DateTime(2026, 10, 21, 12);
+        late int listId;
         await tester.runAsync(() async {
-          final list = await db
+          listId = await db
               .into(db.shoppingLists)
               .insert(
                 ShoppingListsCompanion.insert(
@@ -35,7 +40,7 @@ void main() {
               .into(db.plannedItems)
               .insert(
                 PlannedItemsCompanion.insert(
-                  listId: list,
+                  listId: listId,
                   name: 'Elma',
                   normalizedName: 'elma',
                   plannedQuantity: '2',
@@ -46,7 +51,7 @@ void main() {
                 ),
               );
           await ShoppingRepository(db).recordPurchase(
-            listId: list,
+            listId: listId,
             plannedItemId: item,
             name: 'Elma',
             normalizedName: 'elma',
@@ -55,6 +60,13 @@ void main() {
             unitPrice: DecimalFixed.fromInt(36),
           );
         });
+        final before = await tester.runAsync(
+          () async => (
+            lists: await db.select(db.shoppingLists).get(),
+            items: await db.select(db.plannedItems).get(),
+            purchases: await db.select(db.purchaseEntries).get(),
+          ),
+        );
 
         await tester.pumpWidget(
           MaterialApp(
@@ -71,7 +83,7 @@ void main() {
                   .copyWith(textScaler: TextScaler.linear(scale)),
               child: child!,
             ),
-            home: HistoryScreen(db: db),
+            home: HistoryScreen(db: db, now: now),
           ),
         );
         for (var i = 0; i < 5; i++) {
@@ -81,52 +93,81 @@ void main() {
           await tester.pumpAndSettle();
         }
 
-        // Geçmiş genel bakışla açılır; bu ayın sekmesine geç.
-        expect(find.byKey(const Key('spending_overview')), findsOneWidget);
-        await tester.ensureVisible(find.byKey(const Key('history_period_tab_1')));
-        await tester.pumpAndSettle();
-        await tester.tap(find.byKey(const Key('history_period_tab_1')));
-        for (var i = 0; i < 3; i++) {
-          await tester.runAsync(
-            () => Future<void>.delayed(const Duration(milliseconds: 50)),
-          );
-          await tester.pumpAndSettle();
-        }
-        expect(find.byKey(const Key('history_period_tab_0')), findsOneWidget);
-        expect(find.text('Alınan ürünler'), findsOneWidget);
-        expect(find.byKey(const Key('history_calendar')), findsOneWidget);
-        await tester.tap(find.byKey(const Key('history_calendar')));
-        await tester.pumpAndSettle();
-        expect(tester.takeException(), isNull);
-        await tester.tap(find.byKey(const Key('history_calendar')));
-        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('history_span_week')), findsOneWidget);
+        expect(find.byKey(const Key('history_period_total')), findsOneWidget);
         await tester.scrollUntilVisible(
-      find.byKey(const Key('history_product_elma')),
-      200,
-      scrollable: find
-          .descendant(
-            of: find.byType(ListView),
-            matching: find.byType(Scrollable),
-          )
-          .first,
-    );
+          find.byKey(Key('history_list_$listId')),
+          150,
+          scrollable: find
+              .descendant(
+                of: find.byType(ListView).last,
+                matching: find.byType(Scrollable),
+              )
+              .first,
+        );
+        expect(find.byKey(Key('history_list_$listId')), findsOneWidget);
+        expect(find.text('Elma'), findsNothing);
+        await Scrollable.ensureVisible(tester.element(find.byKey(Key('history_list_$listId'))),
+          alignment: 0.5);
         await tester.pumpAndSettle();
-        await tester.tap(find.byKey(const Key('history_product_elma')));
+        await tester.tap(find.byKey(Key('history_list_$listId')));
         for (var i = 0; i < 5; i++) {
           await tester.runAsync(
             () => Future<void>.delayed(const Duration(milliseconds: 50)),
           );
           await tester.pumpAndSettle();
         }
-        expect(find.byType(ProductHistoryScreen), findsOneWidget);
-        expect(find.byKey(const Key('product_history_chart')), findsOneWidget);
-        expect(tester.takeException(), isNull);
+
+        expect(find.byType(ReportPreviewScreen), findsOneWidget);
+        expect(find.byKey(const Key('report_product_0_0')), findsOneWidget);
+        expect(find.text('Elma'), findsOneWidget);
+        final l10n = AppLocalizations.of(
+          tester.element(find.byType(Scaffold).last),
+        );
+        expect(find.text(l10n.compareEstimated), findsWidgets);
+        expect(find.text(l10n.compareActual), findsWidgets);
+        final productCard = find.byKey(const Key('report_product_0_0'));
         expect(
-          find.textContaining(
-            RegExp(r'Evdeki Fiyat: .*32.* · Çarşıdaki Fiyat: .*36'),
+          find.descendant(
+            of: productCard,
+            matching: find.textContaining('64,00'),
           ),
           findsOneWidget,
         );
+        expect(
+          find.descendant(
+            of: productCard,
+            matching: find.textContaining('72,00'),
+          ),
+          findsOneWidget,
+        );
+        expect(
+          find.descendant(
+            of: productCard,
+            matching: find.textContaining('8,00'),
+          ),
+          findsOneWidget,
+        );
+        expect(find.byType(Checkbox), findsNothing);
+
+        if (scale == 2.0) {
+          await tester.tap(find.byKey(const Key('report_zoom')));
+          await tester.pumpAndSettle();
+          await tester.tap(find.byKey(const Key('report_zoom')));
+          await tester.pumpAndSettle();
+        }
+        expect(tester.takeException(), isNull);
+
+        final after = await tester.runAsync(
+          () async => (
+            lists: await db.select(db.shoppingLists).get(),
+            items: await db.select(db.plannedItems).get(),
+            purchases: await db.select(db.purchaseEntries).get(),
+          ),
+        );
+        expect(after!.lists, before!.lists);
+        expect(after.items, before.items);
+        expect(after.purchases, before.purchases);
 
         await tester.pumpWidget(const SizedBox.shrink());
         final closing = db.close();
