@@ -26,7 +26,7 @@ function configuration(env) {
       typeof env.APPLE_KEY_ID !== 'string' || !/^[A-Z0-9]{10}$/.test(env.APPLE_KEY_ID) ||
       typeof env.APPLE_ISSUER_ID !== 'string' || !/^[a-f0-9-]{36}$/i.test(env.APPLE_ISSUER_ID) ||
       typeof env.APPLE_PRIVATE_KEY !== 'string' || !env.APPLE_PRIVATE_KEY.includes('BEGIN PRIVATE KEY')) throw busy();
-  return { environment, appId, bundleId: env.APPLE_BUNDLE_ID };
+  return { environment, allowSandbox: env.APPLE_ALLOW_SANDBOX === '1', appId, bundleId: env.APPLE_BUNDLE_ID };
 }
 
 // All injected trust/online options are direct test-call options. The HTTP
@@ -41,20 +41,29 @@ export async function resolveAppleEntitlement(env, signedTransaction, {
   // Workers prohibit that during module initialization; load within the request.
   const { SignedDataVerifier, Type } = await import('@apple/app-store-server-library');
   const roots = testTrust?.roots ?? APPLE_ROOTS_BASE64.map(root => Buffer.from(root, 'base64'));
-  const verifier = new SignedDataVerifier(roots, testTrust?.onlineChecks ?? true,
-    config.environment, config.bundleId, config.appId);
+  const environments = config.environment === Environment.PRODUCTION && config.allowSandbox
+    ? [Environment.PRODUCTION, Environment.SANDBOX] : [config.environment];
   // Any unverifiable proof, OCSP/network error, or status outage stops before
   // quota reservation. It must not silently spend a paid customer's free quota.
-  let submitted;
-  try { submitted = await verifier.verifyAndDecodeTransaction(signedTransaction); }
-  catch { throw busy(); }
+  let submitted, verifier, environment;
+  for (const candidate of environments) {
+    const candidateVerifier = new SignedDataVerifier(roots, testTrust?.onlineChecks ?? true,
+      candidate, config.bundleId, config.appId);
+    try {
+      submitted = await candidateVerifier.verifyAndDecodeTransaction(signedTransaction);
+      verifier = candidateVerifier;
+      environment = candidate;
+      break;
+    } catch { /* Only a complete verification can select an environment. */ }
+  }
+  if (!submitted) throw busy();
   if (!validId(submitted.originalTransactionId) || !validId(submitted.transactionId)) throw busy();
 
   const authorization = jwt.sign({ bid: config.bundleId }, env.APPLE_PRIVATE_KEY, {
     algorithm: 'ES256', keyid: env.APPLE_KEY_ID, issuer: env.APPLE_ISSUER_ID,
     audience: 'appstoreconnect-v1', expiresIn: 300,
   });
-  const host = config.environment === Environment.PRODUCTION
+  const host = environment === Environment.PRODUCTION
     ? 'https://api.storekit.apple.com' : 'https://api.storekit-sandbox.apple.com';
   let status;
   try {
@@ -65,8 +74,12 @@ export async function resolveAppleEntitlement(env, signedTransaction, {
     if (!response.ok) throw busy();
     status = JSON.parse(await readBoundedText(response, 128 * 1024));
   } catch { throw busy(); }
-  if (status?.bundleId !== config.bundleId || status.appAppleId !== config.appId ||
-      status.environment !== config.environment || !Array.isArray(status.data)) throw busy();
+  // Apple's status schema allows an absent appAppleId in Sandbox. A present
+  // value must still match exactly, and Production always requires the ID.
+  if (status?.bundleId !== config.bundleId ||
+      (status.appAppleId !== config.appId &&
+       !(environment === Environment.SANDBOX && !Object.hasOwn(status, 'appAppleId'))) ||
+      status.environment !== environment || !Array.isArray(status.data)) throw busy();
   const matches = status.data.flatMap(group => Array.isArray(group?.lastTransactions) ? group.lastTransactions : [])
     .filter(item => item?.originalTransactionId === submitted.originalTransactionId);
   // Missing/ambiguous lineage is not evidence that the purchaser is free.
@@ -92,6 +105,6 @@ export async function resolveAppleEntitlement(env, signedTransaction, {
         !timestamp(renewal.signedDate) || renewal.signedDate > now + 60_000) throw busy();
     if (!timestamp(renewal.gracePeriodExpiresDate) || renewal.gracePeriodExpiresDate <= now) return free();
   } else if (current.expiresDate <= now) return free();
-  const identity = 'apple:' + await sha256Hex(`${config.environment}:${config.bundleId}:${current.originalTransactionId}`);
+  const identity = 'apple:' + await sha256Hex(`${environment}:${config.bundleId}:${current.originalTransactionId}`);
   return { tier: policy.split('-')[0], policy, identity };
 }

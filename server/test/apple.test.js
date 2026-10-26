@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { X509Certificate } from 'node:crypto';
+import { X509Certificate, createHash } from 'node:crypto';
 import { Buffer } from 'node:buffer';
 import jwt from 'jsonwebtoken';
 import { resolveAppleEntitlement } from '../src/apple.js';
@@ -58,6 +58,110 @@ test('sandbox requires explicit server-only opt-in and cannot be selected by tra
     },
   });
   assert.equal(result.tier, 'pro'); assert.notEqual(result.identity, (await resolve()).identity);
+  let calls = 0;
+  await assert.rejects(resolveAppleEntitlement({ ...sandbox, APPLE_ALLOW_SANDBOX: '1' }, signed(), {
+    now, testTrust, fetchImpl: () => { calls++; throw new Error('unexpected lookup'); },
+  }));
+  assert.equal(calls, 0);
+});
+
+const sandboxToken = fields => signed({ environment: 'Sandbox', ...fields });
+const sandboxStatus = (token = sandboxToken(), fields = {}) => response(token, { environment: 'Sandbox', ...fields });
+const resolveBoth = (token = sandboxToken(), data = sandboxStatus(), extra = {}, configuration = {}) =>
+  resolveAppleEntitlement({ ...env(), APPLE_ALLOW_SANDBOX: '1', ...configuration }, token, {
+    now, testTrust, fetchImpl: async url => {
+      assert.equal(url, `https://api.storekit-sandbox.apple.com/inApps/v1/subscriptions/${payload.originalTransactionId}`);
+      return Response.json(data);
+    }, ...extra,
+  });
+
+test('production opt-in verifies Sandbox on its own host and uses canonical Sandbox identity', async () => {
+  const result = await resolveBoth();
+  const expected = 'apple:' + createHash('sha256')
+    .update(`Sandbox:${payload.bundleId}:${payload.originalTransactionId}`).digest('hex');
+  assert.equal(result.policy, 'pro-v2'); assert.equal(result.identity, expected);
+  assert.equal((await resolveBoth(sandboxToken({ transactionId: '1000000000009' }))).identity, expected);
+  const explicitSandbox = await resolveBoth(undefined, undefined, {}, { APPLE_ENVIRONMENT: 'Sandbox' });
+  assert.equal(explicitSandbox.identity, expected);
+  const production = await resolveBoth(signed(), response(signed()), { fetchImpl: lookup(response(signed())) });
+  assert.deepEqual(production, await resolve()); assert.notEqual(production.identity, expected);
+});
+
+test('Sandbox opt-in still rejects forged, unsigned, foreign and unknown-environment proofs before status lookup', async () => {
+  const parts = sandboxToken().split('.');
+  parts[1] = Buffer.from(JSON.stringify({ ...payload, environment: 'Sandbox', productId: 'nshoptor_max' })).toString('base64url');
+  const proofTokens = [parts.join('.'), jwt.sign({ ...payload, environment: 'Sandbox' }, 'attacker',
+    { algorithm: 'HS256', header: { x5c } }), jwt.sign({ ...payload, environment: 'Sandbox' }, privateKey, { algorithm: 'ES256' }),
+    sandboxToken({ bundleId: 'com.other' }), signed({ environment: 'Xcode' }), signed({ environment: 'LocalTesting' }),
+    signed({ environment: 'Unknown' }), signed({ environment: undefined }), 'a.b.c'];
+  const rejectBeforeLookup = async (token, extra = {}, configuration = {}) => {
+    let calls = 0;
+    await assert.rejects(resolveBoth(token, undefined, { ...extra,
+      fetchImpl: () => { calls++; throw new Error('unexpected lookup'); },
+    }, configuration));
+    assert.equal(calls, 0, 'invalid proof/configuration must stop before status lookup');
+  };
+  for (const token of proofTokens) await rejectBeforeLookup(token);
+  // An attacker cannot supply roots through server environment configuration.
+  await rejectBeforeLookup(undefined, { testTrust: undefined }, { APPLE_ROOTS: testTrust.roots });
+  for (const configuration of [{ APPLE_ALLOW_SANDBOX: 'true' }, { APPLE_ENVIRONMENT: 'Unknown' },
+    { APPLE_ENVIRONMENT: 'Xcode' }, { APPLE_ENVIRONMENT: 'LocalTesting' }]) {
+    await rejectBeforeLookup(undefined, {}, configuration);
+  }
+});
+
+test('Sandbox current status and grace renewal remain bound to verified environment and app identity', async () => {
+  for (const fields of [{ environment: 'Production' }, { bundleId: 'com.other' }, { appAppleId: 42 }]) {
+    await assert.rejects(resolveBoth(undefined, sandboxStatus(undefined, fields)));
+  }
+  for (const token of [signed(), sandboxToken({ bundleId: 'com.other' }), sandboxToken({ originalTransactionId: '999' })]) {
+    await assert.rejects(resolveBoth(undefined, sandboxStatus(token)));
+  }
+  for (const fields of [{ revocationDate: now - 1 }, { revocationReason: 0 }]) {
+    assert.equal((await resolveBoth(undefined, sandboxStatus(sandboxToken(fields)))).tier, 'free');
+  }
+  const grace = sandboxStatus(sandboxToken({ expiresDate: now - 1 }), { status: 4 });
+  grace.data[0].lastTransactions[0].signedRenewalInfo = sandboxToken({ gracePeriodExpiresDate: now + 3600000 });
+  assert.deepEqual(await resolveBoth(undefined, grace), await resolveBoth());
+  grace.data[0].lastTransactions[0].signedRenewalInfo = signed({ gracePeriodExpiresDate: now + 3600000 });
+  await assert.rejects(resolveBoth(undefined, grace));
+});
+
+test('only verified Sandbox status may omit appAppleId; any present value must match exactly', async () => {
+  const absent = sandboxStatus(); delete absent.appAppleId;
+  assert.deepEqual(await resolveBoth(undefined, absent), await resolveBoth());
+  assert.deepEqual(await resolveBoth(undefined, absent, {}, { APPLE_ENVIRONMENT: 'Sandbox' }), await resolveBoth());
+  for (const appAppleId of [42, 0, -1, '123456789', null, true, {}, []]) {
+    await assert.rejects(resolveBoth(undefined, sandboxStatus(undefined, { appAppleId })));
+  }
+  // Keep full bundle, environment and signed transaction binding when the ID is absent.
+  for (const data of [{ ...absent, bundleId: 'com.other' }, { ...absent, environment: 'Production' },
+    sandboxStatus(signed(), { appAppleId: undefined }), sandboxStatus(sandboxToken({ bundleId: 'com.other' }), { appAppleId: undefined })]) {
+    await assert.rejects(resolveBoth(undefined, data));
+  }
+  const productionAbsent = response(signed()); delete productionAbsent.appAppleId;
+  await assert.rejects(resolve(signed(), productionAbsent));
+  await assert.rejects(resolveBoth(signed(), productionAbsent, { fetchImpl: lookup(productionAbsent) }));
+});
+
+test('both-environment opt-in never switches status hosts after API failure or status proof mismatch', async () => {
+  for (const environment of ['Production', 'Sandbox']) {
+    const token = signed({ environment });
+    for (const result of [new Error('offline'), new Response('{}', { status: 404 }),
+      new Response('{}', { status: 401 }), new Response('not JSON'), Response.json(response(signed(), {
+        environment: environment === 'Production' ? 'Sandbox' : 'Production',
+      }))]) {
+      let calls = 0;
+      await assert.rejects(resolveBoth(token, undefined, { fetchImpl: async url => {
+        calls++;
+        const host = environment === 'Production' ? 'https://api.storekit.apple.com' : 'https://api.storekit-sandbox.apple.com';
+        assert.equal(url, `${host}/inApps/v1/subscriptions/${payload.originalTransactionId}`);
+        if (result instanceof Error) throw result;
+        return result;
+      } }));
+      assert.equal(calls, 1);
+    }
+  }
 });
 
 test('missing app/API config never grants or calls Apple', async () => {

@@ -12,8 +12,13 @@ existing verification path.
 The server requires `APPLE_BUNDLE_ID`, `APPLE_APP_ID` (numeric App Store app ID),
 `APPLE_KEY_ID`, `APPLE_ISSUER_ID`, and `APPLE_PRIVATE_KEY` (In-App Purchase API P8
 key text). These are configuration names only; this change does not set or read
-live secrets. Production is the default. A separate sandbox server must explicitly
-set **both** `APPLE_ENVIRONMENT=Sandbox` and `APPLE_ALLOW_SANDBOX=1`. Request fields
+live secrets. Production is the default and rejects Sandbox. On the same endpoint,
+`APPLE_ALLOW_SANDBOX=1` permits Production followed by Sandbox **full verification**
+if Production verification fails; `APPLE_ENVIRONMENT` remains `Production` (or unset).
+This supports TestFlight and App Review purchases, which use Apple's Sandbox.
+A Sandbox-only server must still explicitly set **both**
+`APPLE_ENVIRONMENT=Sandbox` and `APPLE_ALLOW_SANDBOX=1` and rejects Production.
+Any other environment or opt-in value does not enable Sandbox. Request fields
 cannot select environment, trust roots, or disable online verification. Xcode and
 LocalTesting environments are rejected.
 
@@ -24,7 +29,17 @@ SHA-256 fingerprints. Root rotation requires a reviewed source update.
 
 Every accepted proof then triggers the authenticated Get All Subscription
 Statuses API for its verified `originalTransactionId`. Response app identity and
-environment must match. The current transaction JWS must verify and share the same
+environment must match the verifier that accepted the submitted proof. Production
+requires the exact configured numeric `appAppleId` in the status response. Following
+Apple's optional `StatusResponse.appAppleId` schema and Sandbox verifier behavior,
+verified Sandbox may omit that field; any present value must exactly match the
+configured numeric ID (null, strings and wrong IDs are rejected). The configured
+app ID remains mandatory in both environments. Bundle/environment and all signed
+transaction/renewal checks are unchanged. That
+verified environment fixes the API hostname, current transaction and renewal
+verifier, and quota namespace. An API/status failure never retries another host;
+no decoded client claims select permission, trust or routing. The current
+transaction JWS must verify and share the same
 original ID. Only the four exact product IDs `nshoptor_pro`, `nshoptor_max`,
 `nshoptor_pro_v2`, `nshoptor_max_v2` are allowed; their real App Store catalog
 availability has not been established. Status 1 requires a future transaction
@@ -43,6 +58,16 @@ on each request; there is still no notification receiver, refund-history polling
 or independent guarantee of immediate revocation propagation. The JWS is bearer
 evidence; this does not establish a separate signed-in app account or prevent
 sharing a leaked proof. Such sharing uses the same canonical quota bucket.
+
+Sandbox opt-in is an explicit server operator decision: team TestFlight and
+Sandbox test accounts can create test purchases without a real payment and may
+consume AI allowance. Environment/bundle/original-ID identity prevents renewals or
+reinstalls of one purchase from creating new paid buckets; Production and Sandbox
+remain separate namespaces. The existing global AI cap also applies. These controls
+do not prevent a tester from creating multiple Sandbox purchase lineages/accounts
+or prove a real charge, and are not a complete abuse defense. Keep the flag enabled
+only while accepting this tester/review access policy. Android and free/trial quota
+rules are unchanged.
 
 The Apple library is imported inside the request: its jsrsasign dependency seeds
 randomness at import time, which Workers forbids at module initialization. The
@@ -75,6 +100,9 @@ separate maintenance before treating the full toolchain as audited.
 Primary references:
 
 - [Apple official Node library](https://github.com/apple/app-store-server-library-node)
+- [Apple status response schema](https://github.com/apple/app-store-server-library-node/blob/main/models/StatusResponse.ts)
 - [Apple public root certificates](https://www.apple.com/certificateauthority/)
 - [Get All Subscription Statuses](https://developer.apple.com/documentation/appstoreserverapi/get-all-subscription-statuses)
+- [Apple Sandbox testing and TestFlight](https://developer.apple.com/documentation/storekit/testing-in-app-purchases-with-sandbox)
+- [Configure in-app purchases for App Review](https://developer.apple.com/help/app-review/before-submitting-for-review/configure-in-app-purchases)
 - [Cloudflare Node crypto compatibility](https://developers.cloudflare.com/workers/runtime-apis/nodejs/crypto/)
