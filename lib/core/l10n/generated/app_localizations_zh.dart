@@ -1352,7 +1352,7 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '还剩 # 天',
+      other: '还剩 $days 天',
     );
     return '$_temp0';
   }
@@ -1362,7 +1362,7 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '还剩 # 小时',
+      other: '还剩 $hours 小时',
     );
     return '$_temp0';
   }

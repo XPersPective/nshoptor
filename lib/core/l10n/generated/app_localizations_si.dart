@@ -1406,8 +1406,8 @@ class AppLocalizationsSi extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# දින ඉතිරියි',
-      one: '# දින ඉතිරියි',
+      other: '$days දින ඉතිරියි',
+      one: '$days දින ඉතිරියි',
     );
     return '$_temp0';
   }
@@ -1417,8 +1417,8 @@ class AppLocalizationsSi extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# පැය ඉතිරියි',
-      one: '# පැය ඉතිරියි',
+      other: '$hours පැය ඉතිරියි',
+      one: '$hours පැය ඉතිරියි',
     );
     return '$_temp0';
   }

@@ -17,7 +17,7 @@ const _enabled = bool.fromEnvironment('UI_REVIEW');
 const _captureKey = Key('ui_detail_review_capture');
 const _captureDir = String.fromEnvironment(
   'UI_REVIEW_DIR',
-  defaultValue: 'artifacts/qa/ui-review/detail',
+  defaultValue: '.project-brain/.cache/ui-review/detail',
 );
 
 typedef _Scenario = ({

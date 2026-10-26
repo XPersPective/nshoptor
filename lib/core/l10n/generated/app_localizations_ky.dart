@@ -1410,7 +1410,7 @@ class AppLocalizationsKy extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# күн калды',
+      other: '$days күн калды',
     );
     return '$_temp0';
   }
@@ -1420,7 +1420,7 @@ class AppLocalizationsKy extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# саат калды',
+      other: '$hours саат калды',
     );
     return '$_temp0';
   }

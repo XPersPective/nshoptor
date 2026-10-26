@@ -5,7 +5,9 @@ import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/intl.dart' show NumberFormat;
 import 'package:nshoptor/app/app.dart';
+import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/core/l10n/language_names.dart';
 import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:nshoptor/core/money/currency.dart';
@@ -44,6 +46,63 @@ void main() {
         expect(ph.allMatches('${d[k]}').map((m) => m[1]).toSet(),
             ph.allMatches('${en[k]}').map((m) => m[1]).toSet(),
             reason: '${f.path}:$k yer tutucu');
+      }
+    }
+  });
+
+  test('trial countdowns show distinct localized values in every supported locale', () {
+    final locales = AppLocalizations.supportedLocales;
+    expect(locales, hasLength(71));
+
+    for (final locale in locales) {
+      final l10n = lookupAppLocalizations(locale);
+      final numberFormat = NumberFormat.decimalPattern(locale.toString());
+
+      void expectLabel(String label, String key, {int? numericCount}) {
+        expect(label, isNot(contains('#')), reason: '${locale.languageCode}:$key');
+        if (numericCount != null) {
+          final localizedNumber = numberFormat.format(numericCount);
+          expect(
+            label.contains(numericCount.toString()) || label.contains(localizedNumber),
+            isTrue,
+            reason: '${locale.languageCode}:$key must show $numericCount',
+          );
+        }
+      }
+
+      final dayLabels = [
+        l10n.planTrialDaysLeft(1),
+        l10n.planTrialDaysLeft(2),
+        l10n.planTrialDaysLeft(7),
+      ];
+      final hourLabels = [
+        l10n.planTrialHoursLeft(1),
+        l10n.planTrialHoursLeft(2),
+        l10n.planTrialHoursLeft(23),
+      ];
+      final naturalArabicForms = locale.languageCode == 'ar';
+      for (var i = 0; i < dayLabels.length; i++) {
+        expectLabel(
+          dayLabels[i],
+          'planTrialDaysLeft',
+          numericCount: naturalArabicForms && i < 2 ? null : [1, 2, 7][i],
+        );
+      }
+      for (var i = 0; i < hourLabels.length; i++) {
+        expectLabel(
+          hourLabels[i],
+          'planTrialHoursLeft',
+          numericCount: naturalArabicForms && i < 2 ? null : [1, 2, 23][i],
+        );
+      }
+      expect(dayLabels.toSet(), hasLength(dayLabels.length), reason: '${locale.languageCode}:day values');
+      expect(hourLabels.toSet(), hasLength(hourLabels.length), reason: '${locale.languageCode}:hour values');
+
+      if (naturalArabicForms) {
+        expect(dayLabels[0], 'يوم واحد متبقٍ');
+        expect(dayLabels[1], 'يومان متبقيان');
+        expect(hourLabels[0], 'ساعة واحدة متبقية');
+        expect(hourLabels[1], 'ساعتان متبقيتان');
       }
     }
   });

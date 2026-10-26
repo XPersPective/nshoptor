@@ -1418,7 +1418,7 @@ class AppLocalizationsFil extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# araw pa',
+      other: '$days araw pa',
     );
     return '$_temp0';
   }
@@ -1428,7 +1428,7 @@ class AppLocalizationsFil extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# oras pa',
+      other: '$hours oras pa',
     );
     return '$_temp0';
   }

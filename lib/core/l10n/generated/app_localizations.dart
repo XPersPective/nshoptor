@@ -2855,13 +2855,13 @@ abstract class AppLocalizations {
   /// No description provided for @planTrialDaysLeft.
   ///
   /// In en, this message translates to:
-  /// **'{days, plural, one{# day left} other{# days left}}'**
+  /// **'{days, plural, one{{days} day left} other{{days} days left}}'**
   String planTrialDaysLeft(int days);
 
   /// No description provided for @planTrialHoursLeft.
   ///
   /// In en, this message translates to:
-  /// **'{hours, plural, one{# hour left} other{# hours left}}'**
+  /// **'{hours, plural, one{{hours} hour left} other{{hours} hours left}}'**
   String planTrialHoursLeft(int hours);
 
   /// No description provided for @planTrialEndedTitle.

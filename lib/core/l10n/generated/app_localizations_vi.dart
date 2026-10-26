@@ -1405,7 +1405,7 @@ class AppLocalizationsVi extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: 'Còn # ngày',
+      other: 'Còn $days ngày',
     );
     return '$_temp0';
   }
@@ -1415,7 +1415,7 @@ class AppLocalizationsVi extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: 'Còn # giờ',
+      other: 'Còn $hours giờ',
     );
     return '$_temp0';
   }

@@ -1417,8 +1417,8 @@ class AppLocalizationsZu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# izinsuku ezisele',
-      one: '# usuku olusele',
+      other: '$days izinsuku ezisele',
+      one: '$days usuku olusele',
     );
     return '$_temp0';
   }
@@ -1428,8 +1428,8 @@ class AppLocalizationsZu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# amahora asele',
-      one: '# ihora elisele',
+      other: '$hours amahora asele',
+      one: '$hours ihora elisele',
     );
     return '$_temp0';
   }

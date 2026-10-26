@@ -1413,8 +1413,8 @@ class AppLocalizationsMk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# дена преостануваат',
-      one: '# ден преостанува',
+      other: '$days дена преостануваат',
+      one: '$days ден преостанува',
     );
     return '$_temp0';
   }
@@ -1424,8 +1424,8 @@ class AppLocalizationsMk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# часа преостануваат',
-      one: '# час преостанува',
+      other: '$hours часа преостануваат',
+      one: '$hours час преостанува',
     );
     return '$_temp0';
   }

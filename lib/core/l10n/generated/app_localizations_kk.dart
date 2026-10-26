@@ -1407,7 +1407,7 @@ class AppLocalizationsKk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# күн қалды',
+      other: '$days күн қалды',
     );
     return '$_temp0';
   }
@@ -1417,7 +1417,7 @@ class AppLocalizationsKk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# сағат қалды',
+      other: '$hours сағат қалды',
     );
     return '$_temp0';
   }

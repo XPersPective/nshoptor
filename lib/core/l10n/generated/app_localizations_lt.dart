@@ -1414,10 +1414,10 @@ class AppLocalizationsLt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# dienos liko',
-      many: '# dienų liko',
-      few: '# dienos liko',
-      one: '# diena liko',
+      other: '$days dienos liko',
+      many: '$days dienų liko',
+      few: '$days dienos liko',
+      one: '$days diena liko',
     );
     return '$_temp0';
   }
@@ -1427,10 +1427,10 @@ class AppLocalizationsLt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# valandos liko',
-      many: '# valandų liko',
-      few: '# valandos liko',
-      one: '# valanda liko',
+      other: '$hours valandos liko',
+      many: '$hours valandų liko',
+      few: '$hours valandos liko',
+      one: '$hours valanda liko',
     );
     return '$_temp0';
   }

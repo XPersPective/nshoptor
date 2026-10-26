@@ -1407,9 +1407,9 @@ class AppLocalizationsIs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# dagar eftir',
-      few: '# dagar eftir',
-      one: '# dagur eftir',
+      other: '$days dagar eftir',
+      few: '$days dagar eftir',
+      one: '$days dagur eftir',
     );
     return '$_temp0';
   }
@@ -1419,9 +1419,9 @@ class AppLocalizationsIs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# klukkustundir eftir',
-      few: '# klukkustundir eftir',
-      one: '# klukkustund eftir',
+      other: '$hours klukkustundir eftir',
+      few: '$hours klukkustundir eftir',
+      one: '$hours klukkustund eftir',
     );
     return '$_temp0';
   }

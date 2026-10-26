@@ -1408,10 +1408,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# дня осталось',
-      many: '# дней осталось',
-      few: '# дня осталось',
-      one: '# день остался',
+      other: '$days дня осталось',
+      many: '$days дней осталось',
+      few: '$days дня осталось',
+      one: '$days день остался',
     );
     return '$_temp0';
   }
@@ -1421,10 +1421,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# часа осталось',
-      many: '# часов осталось',
-      few: '# часа осталось',
-      one: '# час остался',
+      other: '$hours часа осталось',
+      many: '$hours часов осталось',
+      few: '$hours часа осталось',
+      one: '$hours час остался',
     );
     return '$_temp0';
   }

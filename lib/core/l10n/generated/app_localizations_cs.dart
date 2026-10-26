@@ -1407,9 +1407,9 @@ class AppLocalizationsCs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# dní zbývá',
-      few: '# dny zbývají',
-      one: '# den zbývá',
+      other: '$days dní zbývá',
+      few: '$days dny zbývají',
+      one: '$days den zbývá',
     );
     return '$_temp0';
   }
@@ -1419,9 +1419,9 @@ class AppLocalizationsCs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# hodin zbývá',
-      few: '# hodiny zbývají',
-      one: '# hodina zbývá',
+      other: '$hours hodin zbývá',
+      few: '$hours hodiny zbývají',
+      one: '$hours hodina zbývá',
     );
     return '$_temp0';
   }

@@ -1366,7 +1366,7 @@ class AppLocalizationsKo extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '#일 남음',
+      other: '$days일 남음',
     );
     return '$_temp0';
   }
@@ -1376,7 +1376,7 @@ class AppLocalizationsKo extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '#시간 남음',
+      other: '$hours시간 남음',
     );
     return '$_temp0';
   }

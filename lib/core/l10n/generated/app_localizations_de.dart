@@ -1413,8 +1413,8 @@ class AppLocalizationsDe extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '# Tage übrig',
-      one: '# Tag übrig',
+      other: '$days Tage übrig',
+      one: '$days Tag übrig',
     );
     return '$_temp0';
   }
@@ -1424,8 +1424,8 @@ class AppLocalizationsDe extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       hours,
       locale: localeName,
-      other: '# Stunden übrig',
-      one: '# Stunde übrig',
+      other: '$hours Stunden übrig',
+      one: '$hours Stunde übrig',
     );
     return '$_temp0';
   }
