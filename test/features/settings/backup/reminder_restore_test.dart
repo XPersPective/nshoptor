@@ -164,7 +164,7 @@ void main() {
   });
 
   testWidgets(
-    'pending restore is a visible explicit set-reminder action; denial keeps retry',
+    'pending restore stays retryable after denial and shows success after activation',
     (tester) async {
       await backup.importBackup(await snapshot(), ImportMode.merge);
       final pending = (await reminders.pendingRestores()).single;
@@ -201,12 +201,29 @@ void main() {
         findsOneWidget,
       );
       expect(scheduler.permissionCalls, 0);
+      final l = AppLocalizations.of(
+        tester.element(find.byType(SettingsScreen)),
+      );
       await tester.tap(action);
       await tester.pumpAndSettle();
       expect(scheduler.permissionCalls, 1);
       expect(action, findsOneWidget);
       expect(find.text('Reminder set.'), findsNothing);
+      expect(find.text(l.reminderPermissionDenied), findsOneWidget);
+      expect(find.text(l.saveFailed), findsNothing);
       expect(await reminders.pendingRestores(), hasLength(1));
+      await tester.pump(const Duration(seconds: 5));
+      await tester.pumpAndSettle();
+      scheduler.permissionGranted = true;
+      await tester.tap(action);
+      await tester.pumpAndSettle();
+      expect(scheduler.permissionCalls, 2);
+      expect(action, findsNothing);
+      expect(find.text(l.reminderScheduled), findsOneWidget);
+      expect(find.text(l.saveFailed), findsNothing);
+      expect(await reminders.pendingRestores(), isEmpty);
+      expect(await reminders.activeForList(pending.listId), isNotNull);
+      expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
     },
   );

@@ -811,7 +811,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (!mounted) return;
       final pending = await _repo.pendingRestoredReminders();
       if (!mounted) return;
-      setState(() => _restoredReminders = Future.value(pending));
+      setState(() {
+        _restoredReminders = Future.value(pending);
+      });
       messenger
         ..clearSnackBars()
         ..showSnackBar(
@@ -856,7 +858,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         body: l.reminderBody(list.title ?? list.generatedTitle ?? l.listsTitle),
       );
       if (!mounted) return;
-      setState(() => _restoredReminders = _repo.pendingRestoredReminders());
+      setState(() {
+        _restoredReminders = _repo.pendingRestoredReminders();
+      });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -940,7 +944,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       return;
     }
     if (!context.mounted) return;
-    setState(() => _restoredReminders = Future.value(const <Reminder>[]));
+    setState(() {
+      _restoredReminders = Future.value(const <Reminder>[]);
+    });
     messenger
       ..clearSnackBars()
       ..showSnackBar(

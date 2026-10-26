@@ -12,6 +12,7 @@ Project Forge is a separate new-project startup protocol, not a publishing tool.
 Preserve the user's existing full-access and publishing authorization; do not request it again.
 Do not start CLI Agent Pool. Native agents must use the current permission profile and must not request extra approvals.
 Finish the Android and iOS app, receipt/invoice correctness, and remaining app tasks before website work.
+Keep handoff context compact and load only the relevant Project Brain task/domain. Use low-model native workers for bounded mechanical work; the director reviews architecture/security. Never add AI Co-Authored-By contributor trailers. Keep secrets and store media outside this public repository under the existing AppPublishing registry. Archive valuable evidence with hashes before removing obsolete copies.
 
 ## Android emulator
 

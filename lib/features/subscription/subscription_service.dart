@@ -76,6 +76,7 @@ class SubscriptionService extends ChangeNotifier {
   final SettingsStore store;
   final InAppPurchase? _iapOverride;
   final bool _applePlatform;
+  bool get isAppleStore => _applePlatform;
   final AppleSubscriptionStore _appleStore;
   AppleSubscription? _appleOwned;
   List<AppleSubscription> _appleEntitlements = const [];

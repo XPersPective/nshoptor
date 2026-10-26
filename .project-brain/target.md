@@ -3,6 +3,8 @@ Status: CONFIRMED
 
 ## Goal
 
+2026-10-26 son ek: "Önce ... Project Brain’e işle ... projenin içini temizle ... Store Automasyonun kalıntıları kaldır ... gizlilik ... açık kaynak ... kontrolünü yap ... contributor olarak cloud’u ... kaldır ... daha güzel [video] ... büyük fotoğraflar ... iOS linkini de koy ... Bir şey söylediğimde de yapacağın işi bırakma ... uygulama ... Site işi en son." PB-161 güvenlik/atıf, PB-162 hiyerarşi/temizlik, PB-163 görsel/video/çok dilli iki mağaza yayını olarak kaydedildi. Basit mekanik işler düşük modelde; mimari ve final doğrulama direktörde. Önce mevcut uygulama kabulü, sonra bu yayın hazırlıkları ve site; güvenlik denetimi hemen paralel yürür.
+
 2026-10-26 kullanıcı: "devral isleri bitir hem play store hem app store ... tum dillerde yayimla". Son sıralama: "Bu faturaları doğru okuyor değil mi? Ve diğer yapılacakların hepsini yap. Site işi en son ... Eksiksiz, premium düzeyde". Önce Android+iOS uygulama/fiş/fatura doğruluğu ve bütün açık kabul ölçütleri; sonra mağaza sunumu/ASO ve site/SEO. Mevcut yayın yetkisi tekrar sorulmaz; doğrulanmamış sonuç tamamlandı sayılmaz.
 
 "Bütün bu söylediklerimi hepsini önce Project Brain'e eklemen gerekiyor... Sonra her birini itinayla üretim seviyesinde premium düzeyde gerçekleştir... Android ve iOS'a yüklemeni istiyorum." (user eki,2026-10-24). Ayrıntılı onaylı kapsam: `.project-brain/intake-2026-10-24.md` N001–N074, PB-141..155. Özgün ek `.project-brain/sources/2026-10-24-user-request.txt`.

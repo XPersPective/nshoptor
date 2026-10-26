@@ -40,4 +40,3 @@ const response = (token, { status = 1, originalTransactionId = payload.originalT
 });
 
 export { now, payload, env, signed, response, testTrust, x5c, privateKey, leafPublicKey };
-

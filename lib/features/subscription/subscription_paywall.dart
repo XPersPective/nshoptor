@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:napp_core/napp_core.dart' show NappLocalizations;
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../core/config/env_config.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import 'plan_badge.dart';
 import 'subscription_service.dart';
@@ -7,9 +10,21 @@ import 'subscription_service.dart';
 /// Ücretsiz / yıllık Pro. Eski Pro/Max hakları korunur. Fiyatlar mağazadan;
 /// geri yükleme, otomatik yenileme ve iptal bilgisi (Play politikası).
 class SubscriptionPaywall extends StatefulWidget {
-  const SubscriptionPaywall({super.key, required this.service});
+  const SubscriptionPaywall({super.key, required this.service, this.launcher});
 
   final SubscriptionService service;
+  final Future<bool> Function(Uri)? launcher;
+
+  /// Brand-only substitution preserves all 71 existing legal translations,
+  /// including the Slovenian inflection. A source guard checks this contract.
+  static String legalText(AppLocalizations l10n, {required bool apple}) => apple
+      ? l10n.plansLegal.replaceAll(RegExp(r'Googl(?:e|u) Play'), 'App Store')
+      : l10n.plansLegal;
+
+  static String licenseLabel(AppLocalizations l10n, {required bool apple}) =>
+      apple
+      ? '${l10n.aboutLicenses.replaceFirst('(GPL-3.0)', '').trim()} · Apple'
+      : l10n.aboutLicenses;
 
   @override
   State<SubscriptionPaywall> createState() => _SubscriptionPaywallState();
@@ -18,6 +33,36 @@ class SubscriptionPaywall extends StatefulWidget {
 class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
   // Mağaza yanıt vermezse sonsuz yükleme yerine 'şu an mağazada yok' ve yeniden dene.
   late Future<List<SubscriptionOffer>> _offers = _load();
+  bool _opening = false;
+
+  Future<void> _open(Uri uri) async {
+    if (_opening) return;
+    setState(() {
+      _opening = true;
+    });
+    try {
+      final opened =
+          await (widget.launcher ??
+              (uri) =>
+                  launchUrl(uri, mode: LaunchMode.externalApplication))(uri);
+      if (!opened) throw StateError('link_unavailable');
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(NappLocalizations.of(context).commonErrorGeneric),
+            showCloseIcon: true,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _opening = false;
+        });
+      }
+    }
+  }
 
   Future<List<SubscriptionOffer>> _load() =>
       widget.service.loadOffers().timeout(const Duration(seconds: 15));
@@ -47,6 +92,8 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
       trial: current == Tier.pro && widget.service.inTrial(),
     );
     final busy = widget.service.busy;
+    final apple = widget.service.isAppleStore;
+    final storeName = apple ? 'App Store' : 'Google Play';
     final remaining = trialRemainingLabel(l10n, widget.service);
     return Scaffold(
       appBar: AppBar(title: Text(l10n.plansTitle)),
@@ -134,7 +181,10 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                     children: [
                       Text(l10n.plansStoreUnavailable),
                       TextButton(
-                        onPressed: () => setState(() => _offers = _load()),
+                        key: const Key('plans_retry'),
+                        onPressed: () => setState(() {
+                          _offers = _load();
+                        }),
                         child: Text(l10n.retryAction),
                       ),
                     ],
@@ -153,7 +203,64 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 label: Text(l10n.plansRestore),
               ),
               const SizedBox(height: 8),
-              Text(l10n.plansLegal, style: theme.textTheme.bodySmall),
+              Text(
+                SubscriptionPaywall.legalText(l10n, apple: apple),
+                style: theme.textTheme.bodySmall,
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  TextButton.icon(
+                    key: const Key('plans_manage'),
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size(48, 48),
+                    ),
+                    onPressed: _opening
+                        ? null
+                        : () => _open(
+                            Uri.parse(
+                              apple
+                                  ? 'https://apps.apple.com/account/subscriptions'
+                                  : 'https://play.google.com/store/account/subscriptions',
+                            ),
+                          ),
+                    icon: const Icon(Icons.open_in_new),
+                    label: Text('${l10n.plansTitle} · $storeName'),
+                  ),
+                  TextButton(
+                    key: const Key('plans_privacy'),
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size(48, 48),
+                    ),
+                    onPressed: _opening
+                        ? null
+                        : () => _open(
+                            Uri.parse(EnvConfig.identity.privacyPolicyUrl),
+                          ),
+                    child: Text(l10n.privacyInfoLabel),
+                  ),
+                  TextButton(
+                    key: const Key('plans_terms'),
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size(48, 48),
+                    ),
+                    onPressed: _opening
+                        ? null
+                        : () => _open(
+                            Uri.parse(
+                              apple
+                                  ? 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'
+                                  : 'https://github.com/XPersPective/nshoptor/blob/main/LICENSE',
+                            ),
+                          ),
+                    child: Text(
+                      SubscriptionPaywall.licenseLabel(l10n, apple: apple),
+                    ),
+                  ),
+                ],
+              ),
             ],
           );
         },

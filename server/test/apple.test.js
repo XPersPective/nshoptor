@@ -124,4 +124,3 @@ test('HTTP Apple errors and ambiguous proofs never reserve quota or call provide
     assert.equal(result.status, expected);
   }
 });
-
