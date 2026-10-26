@@ -1412,4 +1412,40 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get reportZoom => 'Mag-zoom';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# araw pa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# oras pa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Tapos na ang iyong Pro trial';
+
+  @override
+  String get planTrialEndedBody =>
+      'Maaari mo pa ring gamitin nang libre ang mga listahan, manu-manong paglalagay, at voice sa device. May 10 AI request bawat buwan sa Free. Piliin ang taunang Pro para sa 100 AI request bawat buwan, walang ads, at may mga backup. Mananatili sa iyo ang dati mong data.';
+
+  @override
+  String get planContinueFree => 'Magpatuloy nang Libre';
+
+  @override
+  String get supportIdLabel => 'Support ID';
+
+  @override
+  String get supportEmailLabel => 'Suporta sa email';
 }

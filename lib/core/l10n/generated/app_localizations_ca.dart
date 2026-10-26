@@ -1409,4 +1409,42 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get reportZoom => 'Amplia';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dies restants',
+      one: '# dia restant',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# hores restants',
+      one: '# hora restant',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'La prova de Pro s’ha acabat';
+
+  @override
+  String get planTrialEndedBody =>
+      'Pots continuar utilitzant llistes, entrada manual i veu al dispositiu de manera gratuïta. El pla gratuït inclou 10 sol·licituds d’IA per mes natural. Tria Pro anual per tenir 100 sol·licituds d’IA al mes, sense anuncis i amb còpies de seguretat. Les teves dades continuen sent teves.';
+
+  @override
+  String get planContinueFree => 'Continua amb el pla gratuït';
+
+  @override
+  String get supportIdLabel => 'ID de suport';
+
+  @override
+  String get supportEmailLabel => 'Suport per correu electrònic';
 }

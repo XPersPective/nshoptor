@@ -436,5 +436,12 @@
   "previousPeriodAction": "دورهٔ قبل",
   "nextPeriodAction": "دورهٔ بعد",
   "reportSaved": "گزارش ذخیره شد.",
-  "reportZoom": "بزرگ‌نمایی"
+  "reportZoom": "بزرگ‌نمایی",
+  "planTrialDaysLeft": "{days, plural, other{# روز باقی‌مانده}}",
+  "planTrialHoursLeft": "{hours, plural, other{# ساعت باقی‌مانده}}",
+  "planTrialEndedTitle": "دوره آزمایشی Pro شما پایان یافت",
+  "planTrialEndedBody": "می‌توانید فهرست‌ها، ورود دستی و صدای روی دستگاه را رایگان ادامه دهید. طرح رایگان در هر ماه میلادی ۱۰ درخواست هوش مصنوعی دارد. برای ۱۰۰ درخواست هوش مصنوعی در ماه، بدون تبلیغات و همراه با پشتیبان‌گیری، Pro سالانه را انتخاب کنید. داده‌های فعلی شما حفظ می‌شوند.",
+  "planContinueFree": "ادامه با طرح رایگان",
+  "supportIdLabel": "شناسه پشتیبانی",
+  "supportEmailLabel": "پشتیبانی ایمیلی"
 }

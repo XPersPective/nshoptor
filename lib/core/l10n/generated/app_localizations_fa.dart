@@ -1397,4 +1397,40 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get reportZoom => 'بزرگ‌نمایی';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# روز باقی‌مانده',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ساعت باقی‌مانده',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'دوره آزمایشی Pro شما پایان یافت';
+
+  @override
+  String get planTrialEndedBody =>
+      'می‌توانید فهرست‌ها، ورود دستی و صدای روی دستگاه را رایگان ادامه دهید. طرح رایگان در هر ماه میلادی ۱۰ درخواست هوش مصنوعی دارد. برای ۱۰۰ درخواست هوش مصنوعی در ماه، بدون تبلیغات و همراه با پشتیبان‌گیری، Pro سالانه را انتخاب کنید. داده‌های فعلی شما حفظ می‌شوند.';
+
+  @override
+  String get planContinueFree => 'ادامه با طرح رایگان';
+
+  @override
+  String get supportIdLabel => 'شناسه پشتیبانی';
+
+  @override
+  String get supportEmailLabel => 'پشتیبانی ایمیلی';
 }

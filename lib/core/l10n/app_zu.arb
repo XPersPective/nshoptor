@@ -436,5 +436,12 @@
   "previousPeriodAction": "Isikhathi esedlule",
   "nextPeriodAction": "Isikhathi esilandelayo",
   "reportSaved": "Umbiko ulondoloziwe.",
-  "reportZoom": "Sondeza"
+  "reportZoom": "Sondeza",
+  "planTrialDaysLeft": "{days, plural, one{# usuku olusele} other{# izinsuku ezisele}}",
+  "planTrialHoursLeft": "{hours, plural, one{# ihora elisele} other{# amahora asele}}",
+  "planTrialEndedTitle": "Isikhathi sakho sesivivinyo se-Pro siphelile",
+  "planTrialEndedBody": "Usengaqhubeka usebenzisa uhlu, ukufaka ngesandla nezwi kudivayisi mahhala. Uhlelo Lwamahhala lufaka izicelo ze-AI eziyi-10 ngenyanga yekhalenda. Khetha i-Pro yonyaka ukuze uthole izicelo ze-AI eziyi-100 ngenyanga, ngaphandle kwezikhangiso nangamakhophi ayisipele. Idatha yakho ekhona izohlala inawe.",
+  "planContinueFree": "Qhubeka Mahhala",
+  "supportIdLabel": "I-ID Yokwesekwa",
+  "supportEmailLabel": "Ukusekelwa nge-imeyili"
 }

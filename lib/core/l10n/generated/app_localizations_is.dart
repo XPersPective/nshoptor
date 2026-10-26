@@ -1401,4 +1401,44 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get reportZoom => 'Aðdráttur';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dagar eftir',
+      few: '# dagar eftir',
+      one: '# dagur eftir',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# klukkustundir eftir',
+      few: '# klukkustundir eftir',
+      one: '# klukkustund eftir',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro-prufutímabilinu þínu er lokið';
+
+  @override
+  String get planTrialEndedBody =>
+      'Þú getur áfram notað lista, handvirka innsláttar og tal á tækinu þér að kostnaðarlausu. Ókeypis áskrift inniheldur 10 AI-beiðnir á almanaksmánuði. Veldu árlegt Pro fyrir 100 AI-beiðnir á mánuði, engar auglýsingar og afrit. Gögnin þín haldast hjá þér.';
+
+  @override
+  String get planContinueFree => 'Halda áfram ókeypis';
+
+  @override
+  String get supportIdLabel => 'Auðkenni þjónustuvers';
+
+  @override
+  String get supportEmailLabel => 'Þjónustuaðstoð í tölvupósti';
 }

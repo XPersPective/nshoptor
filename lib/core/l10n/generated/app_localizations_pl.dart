@@ -1404,4 +1404,46 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get reportZoom => 'Powiększ';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dnia pozostało',
+      many: '# dni pozostało',
+      few: '# dni pozostały',
+      one: '# dzień pozostał',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# godziny pozostało',
+      many: '# godzin pozostało',
+      few: '# godziny pozostały',
+      one: '# godzina pozostała',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Okres próbny Pro dobiegł końca';
+
+  @override
+  String get planTrialEndedBody =>
+      'Nadal możesz bezpłatnie korzystać z list, ręcznego wprowadzania i głosu na urządzeniu. Plan Free obejmuje 10 zapytań AI w miesiącu kalendarzowym. Wybierz roczny Pro, aby otrzymywać 100 zapytań AI miesięcznie, bez reklam i z kopiami zapasowymi. Twoje dotychczasowe dane pozostaną z Tobą.';
+
+  @override
+  String get planContinueFree => 'Kontynuuj bezpłatnie';
+
+  @override
+  String get supportIdLabel => 'Identyfikator pomocy';
+
+  @override
+  String get supportEmailLabel => 'Pomoc e-mailowa';
 }

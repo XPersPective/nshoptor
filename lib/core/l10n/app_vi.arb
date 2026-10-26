@@ -436,5 +436,12 @@
   "previousPeriodAction": "Kỳ trước",
   "nextPeriodAction": "Kỳ tiếp theo",
   "reportSaved": "Đã lưu báo cáo.",
-  "reportZoom": "Phóng to"
+  "reportZoom": "Phóng to",
+  "planTrialDaysLeft": "{days, plural, other{Còn # ngày}}",
+  "planTrialHoursLeft": "{hours, plural, other{Còn # giờ}}",
+  "planTrialEndedTitle": "Thời gian dùng thử Pro đã kết thúc",
+  "planTrialEndedBody": "Bạn vẫn có thể dùng danh sách, nhập thủ công và giọng nói trên thiết bị miễn phí. Gói Miễn phí có 10 yêu cầu AI mỗi tháng dương lịch. Chọn Pro hằng năm để có 100 yêu cầu AI mỗi tháng, không quảng cáo và có bản sao lưu. Dữ liệu hiện có vẫn thuộc về bạn.",
+  "planContinueFree": "Tiếp tục miễn phí",
+  "supportIdLabel": "ID hỗ trợ",
+  "supportEmailLabel": "Hỗ trợ qua email"
 }

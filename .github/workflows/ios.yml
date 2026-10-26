@@ -1,0 +1,86 @@
+name: iOS native compile
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'ios/**'
+      - 'lib/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - '.github/workflows/ios.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ios/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - '.github/workflows/ios.yml'
+permissions:
+  contents: read
+concurrency:
+  group: ios-native-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  compile_unsigned:
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: false
+      - name: Private kit read-only access
+        env:
+          NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
+        run: |
+          test -n "$NAPP_KIT_READ_KEY"
+          install -d -m 700 "$RUNNER_TEMP/napp-kit-ssh"
+          printf '%s\n' "$NAPP_KIT_READ_KEY" > "$RUNNER_TEMP/napp-kit-ssh/id"
+          chmod 600 "$RUNNER_TEMP/napp-kit-ssh/id"
+          printf '%s\n' 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$RUNNER_TEMP/napp-kit-ssh/known_hosts"
+          git config --global core.sshCommand "ssh -i $RUNNER_TEMP/napp-kit-ssh/id -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$RUNNER_TEMP/napp-kit-ssh/known_hosts"
+          git config --global url."ssh://git@github.com/XPersPective/napp_kit.git".insteadOf "https://github.com/XPersPective/napp_kit.git"
+      - name: Use Google's test app identifier for unsigned CI only
+        run: printf '%s\n' 'ADMOB_APP_ID_IOS=ca-app-pub-3940256099942544~1458002511' > ios/Flutter/AdsConfig.xcconfig
+      - name: Resolve Flutter packages
+        run: flutter pub get
+      - name: Verify App Store SDK minimum
+        run: |
+          xcodebuild -version
+          sdk_version=$(xcrun --sdk iphoneos --show-sdk-version)
+          test "${sdk_version%%.*}" -ge 26
+      - name: Compile iOS native code without signing or store submission
+        run: flutter build ios --release --no-codesign
+      - name: Verify resulting app and deployment target
+        run: |
+          test -d build/ios/iphoneos/Runner.app
+          /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' build/ios/iphoneos/Runner.app/Info.plist
+          /usr/libexec/PlistBuddy -c 'Print :MinimumOSVersion' build/ios/iphoneos/Runner.app/Info.plist
+          printf '%s\n' 'Unsigned compile only. Physical speech/print/StoreKit and App Store acceptance remain separate gates.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Select an existing iPhone simulator
+        run: |
+          xcrun simctl list devices available -j > "$RUNNER_TEMP/ios-devices.json"
+          python3 - <<'PY'
+          import json, os
+          with open(os.environ['RUNNER_TEMP'] + '/ios-devices.json') as source:
+              devices = json.load(source)['devices']
+          candidates = [device for runtime in sorted(devices, reverse=True)
+                        if 'iOS' in runtime for device in devices[runtime]
+                        if device.get('isAvailable') and device['name'].startswith('iPhone')]
+          if not candidates:
+              raise SystemExit('No existing iPhone simulator is available; no device was created.')
+          selected = candidates[0]
+          with open(os.environ['GITHUB_ENV'], 'a') as output:
+              output.write('IOS_DEVICE_ID=' + selected['udid'] + '\n')
+              output.write('IOS_DEVICE_STATE=' + selected['state'] + '\n')
+          print('Selected existing simulator:', selected['name'], selected['udid'])
+          PY
+      - name: Native iOS OCR and receipt persistence regression
+        run: |
+          if [ "$IOS_DEVICE_STATE" != 'Booted' ]; then
+            xcrun simctl boot "$IOS_DEVICE_ID"
+          fi
+          xcrun simctl bootstatus "$IOS_DEVICE_ID" -b
+          flutter test integration_test/receipt_realistic_test.dart -d "$IOS_DEVICE_ID" --reporter expanded
+          printf '%s\n' 'Native OCR/approval/dedup regression passed on an existing iOS simulator with a synthetic Turkish fixture. Real photos, physical camera, StoreKit and store submission remain separate.' >> "$GITHUB_STEP_SUMMARY"

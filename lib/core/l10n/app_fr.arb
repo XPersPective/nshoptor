@@ -436,5 +436,12 @@
   "previousPeriodAction": "Période précédente",
   "nextPeriodAction": "Période suivante",
   "reportSaved": "Rapport enregistré.",
-  "reportZoom": "Zoomer"
+  "reportZoom": "Zoomer",
+  "planTrialDaysLeft": "{days, plural, one{# jour restant} other{# jours restants}}",
+  "planTrialHoursLeft": "{hours, plural, one{# heure restante} other{# heures restantes}}",
+  "planTrialEndedTitle": "Votre essai Pro est terminé",
+  "planTrialEndedBody": "Vous pouvez continuer à utiliser gratuitement les listes, la saisie manuelle et la voix sur l’appareil. L’offre gratuite comprend 10 requêtes IA par mois calendaire. Choisissez Pro annuel pour 100 requêtes IA par mois, sans publicité et avec des sauvegardes. Vos données existantes restent avec vous.",
+  "planContinueFree": "Continuer gratuitement",
+  "supportIdLabel": "ID d’assistance",
+  "supportEmailLabel": "Assistance par e-mail"
 }

@@ -1407,4 +1407,42 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get reportZoom => 'Vergrößern';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# Tage übrig',
+      one: '# Tag übrig',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# Stunden übrig',
+      one: '# Stunde übrig',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Deine Pro-Testphase ist abgelaufen';
+
+  @override
+  String get planTrialEndedBody =>
+      'Du kannst Listen, manuelle Eingabe und die Spracheingabe auf dem Gerät weiterhin kostenlos nutzen. Der kostenlose Tarif umfasst 10 KI-Anfragen pro Kalendermonat. Wähle Pro im Jahresabo für 100 KI-Anfragen pro Monat, keine Werbung und Sicherungen. Deine vorhandenen Daten bleiben erhalten.';
+
+  @override
+  String get planContinueFree => 'Kostenlos fortfahren';
+
+  @override
+  String get supportIdLabel => 'Support-ID';
+
+  @override
+  String get supportEmailLabel => 'E-Mail-Support';
 }

@@ -436,5 +436,12 @@
   "previousPeriodAction": "Vorige periode",
   "nextPeriodAction": "Volgende periode",
   "reportSaved": "Rapport opgeslagen.",
-  "reportZoom": "Inzoomen"
+  "reportZoom": "Inzoomen",
+  "planTrialDaysLeft": "{days, plural, one{# dag over} other{# dagen over}}",
+  "planTrialHoursLeft": "{hours, plural, one{# uur over} other{# uur over}}",
+  "planTrialEndedTitle": "Je Pro-proefperiode is afgelopen",
+  "planTrialEndedBody": "Je kunt lijsten, handmatige invoer en spraak op je apparaat gratis blijven gebruiken. Gratis bevat 10 AI-verzoeken per kalendermaand. Kies jaarlijks Pro voor 100 AI-verzoeken per maand, geen advertenties en back-ups. Je bestaande gegevens blijven van jou.",
+  "planContinueFree": "Gratis doorgaan",
+  "supportIdLabel": "Support-ID",
+  "supportEmailLabel": "E-mailondersteuning"
 }

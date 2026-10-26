@@ -1357,4 +1357,40 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get reportZoom => '拡大';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# 日残っています',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# 時間残っています',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro のトライアル期間が終了しました';
+
+  @override
+  String get planTrialEndedBody =>
+      'リスト、手動入力、端末内の音声機能は引き続き無料で利用できます。Free では暦月ごとに AI リクエストを 10 回利用できます。年間 Pro を選ぶと、月 100 回の AI リクエスト、広告なし、バックアップが利用できます。既存のデータはそのまま残ります。';
+
+  @override
+  String get planContinueFree => 'Free で続ける';
+
+  @override
+  String get supportIdLabel => 'サポート ID';
+
+  @override
+  String get supportEmailLabel => 'メールサポート';
 }

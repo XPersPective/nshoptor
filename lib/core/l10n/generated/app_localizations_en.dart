@@ -1400,4 +1400,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zoom';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# days left',
+      one: '# day left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# hours left',
+      one: '# hour left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Your Pro trial has ended';
+
+  @override
+  String get planTrialEndedBody =>
+      'You can keep using lists, manual entry and on-device voice for free. Free includes 10 AI requests per calendar month. Choose annual Pro for 100 AI requests per month, no ads and backups. Your existing data stays with you.';
+
+  @override
+  String get planContinueFree => 'Continue with Free';
+
+  @override
+  String get supportIdLabel => 'Support ID';
+
+  @override
+  String get supportEmailLabel => 'Email support';
 }

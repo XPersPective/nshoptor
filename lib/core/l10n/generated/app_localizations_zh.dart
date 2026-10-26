@@ -1346,4 +1346,40 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get reportZoom => '缩放';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '还剩 # 天',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '还剩 # 小时',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => '你的 Pro 试用期已结束';
+
+  @override
+  String get planTrialEndedBody =>
+      '你仍可免费使用清单、手动输入和设备端语音功能。免费版每个自然月包含 10 次 AI 请求。选择年度 Pro，即可每月获得 100 次 AI 请求、无广告体验和备份。现有数据仍会保留。';
+
+  @override
+  String get planContinueFree => '继续使用免费版';
+
+  @override
+  String get supportIdLabel => '支持 ID';
+
+  @override
+  String get supportEmailLabel => '电子邮件支持';
 }

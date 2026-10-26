@@ -495,4 +495,33 @@ void main() {
       expect(after.status, 'cancelled');
     },
   );
+
+  test(
+    'dated list reminder mode persists and reuses single reminder row on mode change',
+    () async {
+      final listId = await makeList();
+      final plannedUtc = DateTime.utc(2026, 10, 26, 10, 0);
+      await reminders.setReminder(
+        listId: listId,
+        title: 'NShoptor',
+        body: 'Same day',
+        atUtc: plannedUtc,
+      );
+      final firstRow = await reminders.activeForList(listId);
+      expect(firstRow, isNotNull);
+      expect(firstRow!.scheduledAt.toUtc(), plannedUtc);
+
+      final oneHourBefore = plannedUtc.subtract(const Duration(hours: 1));
+      await reminders.setReminder(
+        listId: listId,
+        title: 'NShoptor',
+        body: '1h before',
+        atUtc: oneHourBefore,
+      );
+      final secondRow = await reminders.activeForList(listId);
+      expect(secondRow!.id, firstRow.id);
+      expect(secondRow.scheduledAt.toUtc(), oneHourBefore);
+      expect(await db.select(db.reminders).get(), hasLength(1));
+    },
+  );
 }

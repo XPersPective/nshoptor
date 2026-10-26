@@ -1,9 +1,12 @@
 import '../../core/l10n/language_names.dart';
+
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:flutter/foundation.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -18,6 +21,7 @@ import 'demo_data.dart';
 import '../../app/app_defaults.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
+
 import 'package:napp_core/napp_core.dart';
 import 'package:napp_pro/napp_pro.dart';
 
@@ -101,18 +105,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
             : 'https://xperspective.github.io/nshoptor/';
         final box = context.findRenderObject() as RenderBox?;
         final params = ShareParams(
-          text: '${identity.appName} — ${AppLocalizations.of(context).slogan}\n$url',
-          sharePositionOrigin: box == null ? null : box.localToGlobal(Offset.zero) & box.size,
+          text:
+              '${identity.appName} — ${AppLocalizations.of(context).slogan}\n$url',
+          sharePositionOrigin: box == null
+              ? null
+              : box.localToGlobal(Offset.zero) & box.size,
         );
-        await (widget.shareApp ?? (params) async { await SharePlus.instance.share(params); })(params);
+        await (widget.shareApp ??
+            (params) async {
+              await SharePlus.instance.share(params);
+            })(params);
       } else {
-        await (widget.openRatePage ?? () => ReviewService().openRatePage(identity, isIos: isIos))();
+        await (widget.openRatePage ??
+            () => ReviewService().openRatePage(identity, isIos: isIos))();
         ReviewMoments.instance?.manualRequest();
       }
     } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(AppLocalizations.of(context).saveFailed), showCloseIcon: true));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context).saveFailed),
+            showCloseIcon: true,
+          ),
+        );
       }
     } finally {
       if (mounted) setState(() => _engagementBusy = false);
@@ -124,11 +139,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.initState();
     // Pro durumu değişince (satın alma/ödüllü 24s) kilitler anında kalkar.
     widget.proController?.addListener(_onProChanged);
+    widget.subscriptions?.addListener(_onProChanged);
   }
 
   @override
   void dispose() {
     widget.proController?.removeListener(_onProChanged);
+    widget.subscriptions?.removeListener(_onProChanged);
     super.dispose();
   }
 
@@ -137,11 +154,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   String _paletteName(AppLocalizations l10n, AppPalette p) => switch (p) {
-        AppPalette.forest => l10n.paletteForest,
-        AppPalette.ocean => l10n.paletteOcean,
-        AppPalette.sunset => l10n.paletteSunset,
-        AppPalette.lavender => l10n.paletteLavender,
-      };
+    AppPalette.forest => l10n.paletteForest,
+    AppPalette.ocean => l10n.paletteOcean,
+    AppPalette.sunset => l10n.paletteSunset,
+    AppPalette.lavender => l10n.paletteLavender,
+  };
 
   Future<void> _demo({required bool load}) async {
     final l10n = AppLocalizations.of(context);
@@ -155,11 +172,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
       }
       messenger
         ..clearSnackBars()
-        ..showSnackBar(SnackBar(content: Text(load ? l10n.demoDataAdded : l10n.demoDataRemoved), showCloseIcon: true));
+        ..showSnackBar(
+          SnackBar(
+            content: Text(load ? l10n.demoDataAdded : l10n.demoDataRemoved),
+            showCloseIcon: true,
+          ),
+        );
     } catch (_) {
       messenger
         ..clearSnackBars()
-        ..showSnackBar(SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true));
+        ..showSnackBar(
+          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
+        );
     }
   }
 
@@ -185,7 +209,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             builder: (context, _) => PlanBadge(
               badgeKey: const Key('settings_plan_badge'),
               label: _planLabel(l10n),
-              trial: _tier == Tier.pro && widget.subscriptions?.inTrial() == true,
+              trial:
+                  _tier == Tier.pro && widget.subscriptions?.inTrial() == true,
+              remaining: trialRemainingLabel(l10n, widget.subscriptions),
               active: _proUnlocked,
               onPressed: () => widget.subscriptions != null
                   ? _openPlans(context)
@@ -202,11 +228,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             const Padding(
               padding: EdgeInsets.only(top: 20, bottom: 8),
-              child: Row(children: [
-                Icon(Icons.workspace_premium_outlined, size: 18),
-                SizedBox(width: 8),
-                BrandWordmark(size: 15, suffix: 'Pro'),
-              ]),
+              child: Row(
+                children: [
+                  Icon(Icons.workspace_premium_outlined, size: 18),
+                  SizedBox(width: 8),
+                  BrandWordmark(size: 15, suffix: 'Pro'),
+                ],
+              ),
             ),
             ListTile(
               key: const Key('settings_pro_row'),
@@ -214,11 +242,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title: widget.subscriptions == null
                   ? Text(_proUnlocked ? l10n.proActiveLabel : l10n.proBuyLabel)
                   : switch (_tier) {
-                      Tier.max => const Align(alignment: AlignmentDirectional.centerStart, child: BrandWordmark(size: 16, suffix: 'Max')),
-                      Tier.pro => const Align(alignment: AlignmentDirectional.centerStart, child: BrandWordmark(size: 16, suffix: 'Pro')),
+                      Tier.max => const Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: BrandWordmark(size: 16, suffix: 'Max'),
+                      ),
+                      Tier.pro => const Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: BrandWordmark(size: 16, suffix: 'Pro'),
+                      ),
                       Tier.free => Text(l10n.plansAction),
                     },
-              subtitle: _tier == Tier.free ? Text(l10n.proBenefitsLine) : null,
+              subtitle: trialRemainingLabel(l10n, widget.subscriptions) != null
+                  ? Text(trialRemainingLabel(l10n, widget.subscriptions)!)
+                  : _tier == Tier.free
+                  ? Text(l10n.proBenefitsLine)
+                  : null,
               trailing: const Icon(Icons.chevron_right),
               onTap: () => widget.subscriptions == null
                   ? (_proUnlocked ? null : _openPaywall(context))
@@ -231,10 +269,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
               key: const Key('settings_language_dropdown'),
               initialValue: _repo.currentLanguage,
               decoration: InputDecoration(
-                  labelText: l10n.languageLabel,
-                  prefixIcon: const Icon(Icons.language)),
+                labelText: l10n.languageLabel,
+                prefixIcon: const Icon(Icons.language),
+              ),
               items: [
-                DropdownMenuItem(value: 'system', child: Text(l10n.languageSystem)),
+                DropdownMenuItem(
+                  value: 'system',
+                  child: Text(l10n.languageSystem),
+                ),
                 // Diller kendi adlarıyla (kullanıcı kendi dilini tanır).
                 for (final e in appLanguages.entries)
                   DropdownMenuItem(value: e.key, child: Text(e.value)),
@@ -243,8 +285,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             // Biçim yereli DİLDEN BAĞIMSIZ seçilir (C-001, PB-042).
-            _SectionTitle(
-                icon: Icons.numbers, label: l10n.formatLocaleLabel),
+            _SectionTitle(icon: Icons.numbers, label: l10n.formatLocaleLabel),
             DropdownButtonFormField<String>(
               isExpanded: true,
               key: const Key('settings_format_locale_dropdown'),
@@ -256,11 +297,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               items: [
                 DropdownMenuItem(
-                    value: 'system', child: Text(l10n.formatLocaleSystem)),
-                DropdownMenuItem(
-                    value: 'tr', child: Text(l10n.formatLocaleTr)),
-                DropdownMenuItem(
-                    value: 'en', child: Text(l10n.formatLocaleEn)),
+                  value: 'system',
+                  child: Text(l10n.formatLocaleSystem),
+                ),
+                DropdownMenuItem(value: 'tr', child: Text(l10n.formatLocaleTr)),
+                DropdownMenuItem(value: 'en', child: Text(l10n.formatLocaleEn)),
               ],
               onChanged: (v) {
                 if (v == null) return;
@@ -270,7 +311,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             _SectionTitle(
-                icon: Icons.dark_mode_outlined, label: l10n.themeLabel),
+              icon: Icons.dark_mode_outlined,
+              label: l10n.themeLabel,
+            ),
             DropdownButtonFormField<String>(
               isExpanded: true,
               key: const Key('settings_theme_dropdown'),
@@ -280,14 +323,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 prefixIcon: const Icon(Icons.dark_mode_outlined),
               ),
               items: [
-                DropdownMenuItem(value: 'system', child: Text(l10n.themeSystem)),
+                DropdownMenuItem(
+                  value: 'system',
+                  child: Text(l10n.themeSystem),
+                ),
                 DropdownMenuItem(value: 'light', child: Text(l10n.themeLight)),
                 DropdownMenuItem(value: 'dark', child: Text(l10n.themeDark)),
               ],
               onChanged: _setThemeMode,
             ),
             const SizedBox(height: 12),
-            Text(l10n.paletteLabel, style: Theme.of(context).textTheme.labelLarge),
+            Text(
+              l10n.paletteLabel,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
@@ -298,8 +347,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     key: Key('settings_palette_${p.name}'),
                     avatar: CircleAvatar(backgroundColor: p.seed, radius: 8),
                     label: Text(_paletteName(l10n, p)),
-                    selected: (widget.themeModeController?.palette ?? AppPalette.forest) == p,
-                    onSelected: (_) => setState(() => widget.themeModeController?.setPalette(p)),
+                    selected:
+                        (widget.themeModeController?.palette ??
+                            AppPalette.forest) ==
+                        p,
+                    onSelected: (_) => setState(
+                      () => widget.themeModeController?.setPalette(p),
+                    ),
                   ),
               ],
             ),
@@ -309,23 +363,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
               secondary: const Icon(Icons.contrast),
               title: Text(l10n.darkBlackLabel),
               value: widget.themeModeController?.black ?? false,
-              onChanged: (v) => setState(() => widget.themeModeController?.setBlack(v)),
+              onChanged: (v) =>
+                  setState(() => widget.themeModeController?.setBlack(v)),
             ),
 
             _SectionTitle(
-                icon: Icons.currency_exchange, label: l10n.unitsSection),
+              icon: Icons.currency_exchange,
+              label: l10n.unitsSection,
+            ),
             ListTile(
               leading: const Icon(Icons.category_outlined),
               title: Text(l10n.defaultUnitLabel),
-              subtitle:
-                  Text(unitDisplayNameFromName(_repo.defaultUnit, l10n)),
+              subtitle: Text(unitDisplayNameFromName(_repo.defaultUnit, l10n)),
               trailing: DropdownButton<String>(
                 value: _repo.defaultUnit,
                 items: UnitCode.standard()
-                    .map((u) => DropdownMenuItem(
-                          value: u.name,
-                          child: Text(unitDisplayName(u, l10n)),
-                        ))
+                    .map(
+                      (u) => DropdownMenuItem(
+                        value: u.name,
+                        child: Text(unitDisplayName(u, l10n)),
+                      ),
+                    )
                     .toList(),
                 onChanged: (v) => setState(() => _repo.setDefaultUnit(v!)),
               ),
@@ -337,13 +395,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               trailing: DropdownButton<String>(
                 value: _repo.defaultCurrency,
                 items: Currency.all
-                    .map((c) => DropdownMenuItem(
-                          value: c.code,
-                          child: Text(c.code),
-                        ))
+                    .map(
+                      (c) =>
+                          DropdownMenuItem(value: c.code, child: Text(c.code)),
+                    )
                     .toList(),
-                onChanged: (v) =>
-                    setState(() => _repo.setDefaultCurrency(v!)),
+                onChanged: (v) => setState(() => _repo.setDefaultCurrency(v!)),
               ),
             ),
             CheckboxListTile(
@@ -355,40 +412,50 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(l10n.roundingNote,
-                  style: Theme.of(context).textTheme.bodySmall),
+              child: Text(
+                l10n.roundingNote,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
             ),
 
             _SectionTitle(
-                icon: Icons.backup_outlined, label: l10n.backupSection),
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text(l10n.backupSizeWarning)),
+              icon: Icons.backup_outlined,
+              label: l10n.backupSection,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(l10n.backupSizeWarning),
+            ),
             // Yedekleme Pro'ya özeldir (standart §3.8): Pro değilken
             // kilit simgesi + dokunuş paywall açar.
             ListTile(
               key: const Key('export_backup_button'),
               leading: const Icon(Icons.upload_file),
               title: Text(l10n.exportBackupLabel),
-              trailing: _proUnlocked
+              trailing: _proUnlocked ? null : const Icon(Icons.lock_outline),
+              onTap: _backupBusy
                   ? null
-                  : const Icon(Icons.lock_outline),
-              onTap: _backupBusy ? null : () => _proUnlocked
-                  ? _exportBackup(context)
-                  : (widget.subscriptions != null ? _openPlans(context) : _openPaywall(context)),
+                  : () => _proUnlocked
+                        ? _exportBackup(context)
+                        : (widget.subscriptions != null
+                              ? _openPlans(context)
+                              : _openPaywall(context)),
             ),
             ListTile(
               key: const Key('import_backup_button'),
               leading: const Icon(Icons.download_outlined),
               title: Text(l10n.importBackupLabel),
-              trailing: _proUnlocked
+              trailing: _proUnlocked ? null : const Icon(Icons.lock_outline),
+              onTap: _backupBusy
                   ? null
-                  : const Icon(Icons.lock_outline),
-              onTap: _backupBusy ? null : () => _proUnlocked
-                  ? _importBackup(context)
-                  : (widget.subscriptions != null ? _openPlans(context) : _openPaywall(context)),
+                  : () => _proUnlocked
+                        ? _importBackup(context)
+                        : (widget.subscriptions != null
+                              ? _openPlans(context)
+                              : _openPaywall(context)),
             ),
 
-            _SectionTitle(
-                icon: Icons.help_outline, label: l10n.helpSection),
+            _SectionTitle(icon: Icons.help_outline, label: l10n.helpSection),
             ListTile(
               key: const Key('settings_guide_row'),
               leading: const Icon(Icons.menu_book_outlined),
@@ -396,6 +463,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
               trailing: const Icon(Icons.chevron_right),
               onTap: () => showFirstRunGuide(context),
             ),
+            if (widget.appIdentity?.contactEmail.isNotEmpty == true)
+              ListTile(
+                key: const Key('settings_support_email'),
+                leading: const Icon(Icons.mail_outline),
+                title: Text(l10n.supportEmailLabel),
+                subtitle: SelectableText(widget.appIdentity!.contactEmail),
+                trailing: IconButton(
+                  tooltip: MaterialLocalizations.of(context).copyButtonLabel,
+                  icon: const Icon(Icons.copy_outlined),
+                  onPressed: () => Clipboard.setData(
+                    ClipboardData(text: widget.appIdentity!.contactEmail),
+                  ),
+                ),
+              ),
+            if (AiService.client != null)
+              ListTile(
+                key: const Key('settings_support_id'),
+                leading: const Icon(Icons.badge_outlined),
+                title: Text(l10n.supportIdLabel),
+                subtitle: SelectableText(AiService.client!.installId),
+                trailing: IconButton(
+                  tooltip: MaterialLocalizations.of(context).copyButtonLabel,
+                  icon: const Icon(Icons.copy_outlined),
+                  onPressed: () => Clipboard.setData(
+                    ClipboardData(text: AiService.client!.installId),
+                  ),
+                ),
+              ),
 
             ValueListenableBuilder<bool>(
               valueListenable: AssistantPrefs.visible,
@@ -418,14 +513,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onChanged: (v) => setState(() => AiService.client!.enabled = v),
               ),
             _SectionTitle(
-                icon: Icons.privacy_tip_outlined, label: l10n.privacyInfoLabel),
+              icon: Icons.privacy_tip_outlined,
+              label: l10n.privacyInfoLabel,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(l10n.privacyInfoBody,
-                  style: Theme.of(context).textTheme.bodyMedium),
+              child: Text(
+                l10n.privacyInfoBody,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
             ),
 
-            _SectionTitle(icon: Icons.science_outlined, label: l10n.demoDataTitle),
+            _SectionTitle(
+              icon: Icons.science_outlined,
+              label: l10n.demoDataTitle,
+            ),
             ListTile(
               key: const Key('settings_demo_load'),
               leading: const Icon(Icons.auto_graph),
@@ -477,26 +579,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: _engagementBusy ? null : () => _engage(share: true),
               ),
               if (defaultTargetPlatform != TargetPlatform.iOS ||
-                  (widget.appIdentity!.appStoreId?.isNotEmpty ?? false)) ListTile(
-                key: const Key('settings_rate_row'),
-                leading: const Icon(Icons.star_outline),
-                title: Text(l10n.rateAction),
-                onTap: _engagementBusy ? null : () => _engage(share: false),
-              ),
+                  (widget.appIdentity!.appStoreId?.isNotEmpty ?? false))
+                ListTile(
+                  key: const Key('settings_rate_row'),
+                  leading: const Icon(Icons.star_outline),
+                  title: Text(l10n.rateAction),
+                  onTap: _engagementBusy ? null : () => _engage(share: false),
+                ),
             ] else
               ListTile(title: Text(l10n.aboutLicenses)),
 
-            _SectionTitle(
-                icon: Icons.mic_none, label: l10n.voiceSettingsLabel),
+            _SectionTitle(icon: Icons.mic_none, label: l10n.voiceSettingsLabel),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(l10n.permissionsBody,
-                  style: Theme.of(context).textTheme.bodySmall),
+              child: Text(
+                l10n.permissionsBody,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
             ),
 
             // Destructive actions stay separate from optional assistance.
             _SectionTitle(
-                icon: Icons.delete_outline, label: l10n.deleteAllLabel),
+              icon: Icons.delete_outline,
+              label: l10n.deleteAllLabel,
+            ),
             ListTile(
               key: const Key('delete_all_button'),
               leading: const Icon(Icons.delete_outline),
@@ -532,9 +638,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final subs = widget.subscriptions!;
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (ctx) => SubscriptionPaywall(
-          service: subs,
-        ),
+        builder: (ctx) => SubscriptionPaywall(service: subs),
       ),
     );
     if (mounted) setState(() {});
@@ -556,10 +660,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           identity: identity,
           controller: controller,
           repository: repository,
-          benefits: [
-            l10n.proBenefitNoAds,
-            l10n.proBenefitBackup,
-          ],
+          benefits: [l10n.proBenefitNoAds, l10n.proBenefitBackup],
         ),
       ),
     );
@@ -577,18 +678,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (!mounted || !_proUnlocked) return;
       final bytes = await file.readAsBytes();
       if (!mounted || !_proUnlocked) return;
-      final saved = await FilePicker.saveFile(fileName: 'NShoptor-backup.json',
-        dialogTitle: l10n.exportBackupLabel, mimeType: 'application/json', bytes: bytes);
+      final saved = await FilePicker.saveFile(
+        fileName: 'NShoptor-backup.json',
+        dialogTitle: l10n.exportBackupLabel,
+        mimeType: 'application/json',
+        bytes: bytes,
+      );
       if (!mounted || saved == null) return;
-      messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.backupExported), showCloseIcon: true));
+      messenger
+        ..clearSnackBars()
+        ..showSnackBar(
+          SnackBar(content: Text(l10n.backupExported), showCloseIcon: true),
+        );
     } catch (_) {
       if (mounted) {
-        messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.saveFailed),
-          showCloseIcon: true, duration: const Duration(days: 1)));
+        messenger
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.saveFailed),
+              showCloseIcon: true,
+              duration: const Duration(days: 1),
+            ),
+          );
       }
     } finally {
       // Only our temporary snapshot is removed; the selected destination belongs to the user.
-      try { await file?.delete(); } on FileSystemException { /* OS cache cleanup can retry. */ }
+      try {
+        await file?.delete();
+      } on FileSystemException {
+        /* OS cache cleanup can retry. */
+      }
       if (mounted) setState(() => _backupBusy = false);
     }
   }
@@ -599,39 +719,76 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final l10n = AppLocalizations.of(context);
     setState(() => _backupBusy = true);
     try {
-      final file = await FilePicker.pickFile(dialogTitle: l10n.importBackupLabel,
-        type: FileType.custom, allowedExtensions: ['json']);
+      final file = await FilePicker.pickFile(
+        dialogTitle: l10n.importBackupLabel,
+        type: FileType.custom,
+        allowedExtensions: ['json'],
+      );
       if (!mounted || !_proUnlocked || file == null) return;
       // ponytail: 16 MiB bounds decode memory; larger backups need streaming JSON import.
       const limit = 16 * 1024 * 1024;
       final knownSize = file.lengthSync();
-      if (knownSize != null && (knownSize < 0 || knownSize > limit)) throw const FormatException('backup size');
+      if (knownSize != null && (knownSize < 0 || knownSize > limit)) {
+        throw const FormatException('backup size');
+      }
       final bytes = BytesBuilder(copy: false);
       await for (final chunk in file.readAsByteStream()) {
         if (!mounted || !_proUnlocked) return;
-        if (bytes.length + chunk.length > limit) throw const FormatException('backup size');
+        if (bytes.length + chunk.length > limit) {
+          throw const FormatException('backup size');
+        }
         bytes.add(chunk);
       }
       final json = utf8.decode(bytes.takeBytes());
       final preview = _repo.validateBackup(json);
       if (!context.mounted || !_proUnlocked) return;
-      final mode = await showDialog<ImportMode>(context: context, builder: (ctx) => AlertDialog(
-        key: const Key('backup_import_dialog'), title: Text(l10n.importBackupLabel),
-        content: SingleChildScrollView(child: Text('${l10n.backupPreviewCounts(preview.listCount, preview.itemCount, preview.entryCount)}\n\n${l10n.backupSizeWarning}')),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.cancelAction)),
-          TextButton(key: const Key('backup_merge'), onPressed: () => Navigator.pop(ctx, ImportMode.merge), child: Text(l10n.mergeImportLabel)),
-          FilledButton(key: const Key('backup_separate'), onPressed: () => Navigator.pop(ctx, ImportMode.separate), child: Text(l10n.separateImportLabel)),
-        ],
-      ));
+      final mode = await showDialog<ImportMode>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          key: const Key('backup_import_dialog'),
+          title: Text(l10n.importBackupLabel),
+          content: SingleChildScrollView(
+            child: Text(
+              '${l10n.backupPreviewCounts(preview.listCount, preview.itemCount, preview.entryCount)}\n\n${l10n.backupSizeWarning}',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: Text(l10n.cancelAction),
+            ),
+            TextButton(
+              key: const Key('backup_merge'),
+              onPressed: () => Navigator.pop(ctx, ImportMode.merge),
+              child: Text(l10n.mergeImportLabel),
+            ),
+            FilledButton(
+              key: const Key('backup_separate'),
+              onPressed: () => Navigator.pop(ctx, ImportMode.separate),
+              child: Text(l10n.separateImportLabel),
+            ),
+          ],
+        ),
+      );
       if (!mounted || !_proUnlocked || mode == null) return;
       await _repo.importBackupJson(json, mode: mode);
       if (!mounted) return;
-      messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.backupImported), showCloseIcon: true));
+      messenger
+        ..clearSnackBars()
+        ..showSnackBar(
+          SnackBar(content: Text(l10n.backupImported), showCloseIcon: true),
+        );
     } catch (_) {
       if (mounted) {
-        messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.backupImportFailed),
-          showCloseIcon: true, duration: const Duration(days: 1)));
+        messenger
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.backupImportFailed),
+              showCloseIcon: true,
+              duration: const Duration(days: 1),
+            ),
+          );
       }
     } finally {
       if (mounted) setState(() => _backupBusy = false);
@@ -689,13 +846,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
       await _repo.deleteAllData();
     } catch (_) {
       if (context.mounted) {
-        messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.saveFailed),
-          showCloseIcon: true, duration: const Duration(days: 1)));
+        messenger
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.saveFailed),
+              showCloseIcon: true,
+              duration: const Duration(days: 1),
+            ),
+          );
       }
       return;
     }
     if (!context.mounted) return;
-    messenger..clearSnackBars()..showSnackBar(SnackBar(content: Text(l10n.dataDeleted), showCloseIcon: true));
+    messenger
+      ..clearSnackBars()
+      ..showSnackBar(
+        SnackBar(content: Text(l10n.dataDeleted), showCloseIcon: true),
+      );
   }
 }
 

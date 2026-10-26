@@ -2851,6 +2851,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zoom'**
   String get reportZoom;
+
+  /// No description provided for @planTrialDaysLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, one{# day left} other{# days left}}'**
+  String planTrialDaysLeft(int days);
+
+  /// No description provided for @planTrialHoursLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours, plural, one{# hour left} other{# hours left}}'**
+  String planTrialHoursLeft(int hours);
+
+  /// No description provided for @planTrialEndedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Pro trial has ended'**
+  String get planTrialEndedTitle;
+
+  /// No description provided for @planTrialEndedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can keep using lists, manual entry and on-device voice for free. Free includes 10 AI requests per calendar month. Choose annual Pro for 100 AI requests per month, no ads and backups. Your existing data stays with you.'**
+  String get planTrialEndedBody;
+
+  /// No description provided for @planContinueFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Free'**
+  String get planContinueFree;
+
+  /// No description provided for @supportIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Support ID'**
+  String get supportIdLabel;
+
+  /// No description provided for @supportEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email support'**
+  String get supportEmailLabel;
 }
 
 class _AppLocalizationsDelegate

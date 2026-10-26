@@ -6,6 +6,16 @@ on:
   pull_request:
 
 jobs:
+  server_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Trial, quota, purchase and AI contract regressions
+        run: node --test server/test/*.test.js
+
   analyze_and_test:
     runs-on: ubuntu-latest
     steps:

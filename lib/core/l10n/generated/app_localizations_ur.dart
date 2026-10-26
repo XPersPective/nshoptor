@@ -1402,4 +1402,40 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get reportZoom => 'بڑا کریں';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# دن باقی',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# گھنٹے باقی',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'آپ کا Pro آزمائشی عرصہ ختم ہو گیا ہے';
+
+  @override
+  String get planTrialEndedBody =>
+      'آپ فہرستیں، دستی اندراج اور ڈیوائس پر آواز مفت استعمال کرتے رہ سکتے ہیں۔ Free میں ہر کیلنڈر ماہ 10 AI درخواستیں شامل ہیں۔ ماہانہ 100 AI درخواستوں، اشتہارات کے بغیر استعمال اور بیک اپ کے لیے سالانہ Pro منتخب کریں۔ آپ کا موجودہ ڈیٹا آپ کے پاس رہے گا۔';
+
+  @override
+  String get planContinueFree => 'Free جاری رکھیں';
+
+  @override
+  String get supportIdLabel => 'سپورٹ ID';
+
+  @override
+  String get supportEmailLabel => 'ای میل سپورٹ';
 }

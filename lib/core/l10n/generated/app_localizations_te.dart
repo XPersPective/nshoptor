@@ -1411,4 +1411,42 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get reportZoom => 'జూమ్';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# రోజులు మిగిలాయి',
+      one: '# రోజు మిగిలింది',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# గంటలు మిగిలాయి',
+      one: '# గంట మిగిలింది',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'మీ Pro ట్రయల్ ముగిసింది';
+
+  @override
+  String get planTrialEndedBody =>
+      'మీరు జాబితాలు, మాన్యువల్ ఎంట్రీ, పరికరంలోని వాయిస్‌ను ఉచితంగా కొనసాగించవచ్చు. Freeలో ప్రతి క్యాలెండర్ నెలకు 10 AI అభ్యర్థనలు ఉంటాయి. నెలకు 100 AI అభ్యర్థనలు, ప్రకటనలు లేని వినియోగం, బ్యాకప్‌ల కోసం వార్షిక Pro ఎంచుకోండి. మీ ప్రస్తుత డేటా మీ వద్దే ఉంటుంది.';
+
+  @override
+  String get planContinueFree => 'Freeతో కొనసాగండి';
+
+  @override
+  String get supportIdLabel => 'మద్దతు ID';
+
+  @override
+  String get supportEmailLabel => 'ఇమెయిల్ మద్దతు';
 }

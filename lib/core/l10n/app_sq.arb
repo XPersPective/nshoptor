@@ -436,5 +436,12 @@
   "previousPeriodAction": "Periudha e mëparshme",
   "nextPeriodAction": "Periudha tjetër",
   "reportSaved": "Raporti u ruajt.",
-  "reportZoom": "Zmadho"
+  "reportZoom": "Zmadho",
+  "planTrialDaysLeft": "{days, plural, one{# ditë e mbetur} other{# ditë të mbetura}}",
+  "planTrialHoursLeft": "{hours, plural, one{# orë e mbetur} other{# orë të mbetura}}",
+  "planTrialEndedTitle": "Periudha e provës Pro përfundoi",
+  "planTrialEndedBody": "Mund të vazhdosh t’i përdorësh listat, futjen manuale dhe zërin në pajisje falas. Plani Falas përfshin 10 kërkesa AI për muaj kalendarik. Zgjidh Pro vjetor për 100 kërkesa AI në muaj, pa reklama dhe me kopje rezervë. Të dhënat ekzistuese mbeten me ty.",
+  "planContinueFree": "Vazhdo falas",
+  "supportIdLabel": "ID-ja e mbështetjes",
+  "supportEmailLabel": "Mbështetje me email"
 }

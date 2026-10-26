@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>GADApplicationIdentifier</key>
+	<string>$(ADMOB_APP_ID_IOS)</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Raf etiketi ve fiş fotoğrafı çekmek için. Görüntüler cihazda kalır.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

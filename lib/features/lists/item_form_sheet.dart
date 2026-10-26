@@ -11,6 +11,7 @@ import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
+import '../onboarding/first_run_guide.dart';
 import '../receipts/shelf_label/price_candidates.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/decimal_fixed.dart';
@@ -950,11 +951,23 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 suffixIcon:
                     widget.onShelfCandidatePressed == null || _mixedUnits
                     ? null
-                    : IconButton(
-                        key: const Key('item_scan_actual_price'),
-                        tooltip: l10n.tipShelfCamera,
-                        icon: const Icon(Icons.photo_camera_outlined),
-                        onPressed: _scanActualPrice,
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            key: const Key('item_scan_actual_price'),
+                            tooltip: l10n.tipShelfCamera,
+                            icon: const Icon(Icons.photo_camera_outlined),
+                            onPressed: _scanActualPrice,
+                          ),
+                          IconButton(
+                            key: const Key('item_scan_price_help'),
+                            tooltip: l10n.howToUseLabel,
+                            icon: const Icon(Icons.help_outline),
+                            onPressed: () =>
+                                showScanHelpDialog(context, isReceipt: false),
+                          ),
+                        ],
                       ),
               ),
               onChanged: (_) {

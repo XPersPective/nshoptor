@@ -436,5 +436,12 @@
   "previousPeriodAction": "Edellinen jakso",
   "nextPeriodAction": "Seuraava jakso",
   "reportSaved": "Raportti tallennettu.",
-  "reportZoom": "Zoomaa"
+  "reportZoom": "Zoomaa",
+  "planTrialDaysLeft": "{days, plural, one{# päivä jäljellä} other{# päivää jäljellä}}",
+  "planTrialHoursLeft": "{hours, plural, one{# tunti jäljellä} other{# tuntia jäljellä}}",
+  "planTrialEndedTitle": "Pro-kokeilujaksosi on päättynyt",
+  "planTrialEndedBody": "Voit jatkaa listojen, manuaalisen syötön ja laitteen puhetoiminnon käyttöä maksutta. Ilmainen sisältää 10 tekoälypyyntöä kalenterikuukaudessa. Valitse vuotuinen Pro, niin saat 100 tekoälypyyntöä kuukaudessa, ei mainoksia ja varmuuskopiot. Nykyiset tietosi säilyvät sinulla.",
+  "planContinueFree": "Jatka ilmaiseksi",
+  "supportIdLabel": "Tukitunnus",
+  "supportEmailLabel": "Sähköpostituki"
 }

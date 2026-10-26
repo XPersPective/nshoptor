@@ -436,5 +436,12 @@
   "previousPeriodAction": "Predchádzajúce obdobie",
   "nextPeriodAction": "Nasledujúce obdobie",
   "reportSaved": "Správa bola uložená.",
-  "reportZoom": "Priblížiť"
+  "reportZoom": "Priblížiť",
+  "planTrialDaysLeft": "{days, plural, one{# deň zostáva} few{# dni zostávajú} other{# dní zostáva}}",
+  "planTrialHoursLeft": "{hours, plural, one{# hodina zostáva} few{# hodiny zostávajú} other{# hodín zostáva}}",
+  "planTrialEndedTitle": "Skúšobné obdobie Pro sa skončilo",
+  "planTrialEndedBody": "Zoznamy, manuálne zadávanie a hlasové funkcie v zariadení môžete naďalej používať zadarmo. Bezplatný plán zahŕňa 10 požiadaviek na AI za kalendárny mesiac. Vyberte si ročný Pro pre 100 požiadaviek na AI mesačne, bez reklám a so zálohami. Vaše existujúce údaje vám zostanú.",
+  "planContinueFree": "Pokračovať zadarmo",
+  "supportIdLabel": "ID podpory",
+  "supportEmailLabel": "Podpora e-mailom"
 }

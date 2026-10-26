@@ -1406,4 +1406,42 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zoomaa';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# päivää jäljellä',
+      one: '# päivä jäljellä',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# tuntia jäljellä',
+      one: '# tunti jäljellä',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro-kokeilujaksosi on päättynyt';
+
+  @override
+  String get planTrialEndedBody =>
+      'Voit jatkaa listojen, manuaalisen syötön ja laitteen puhetoiminnon käyttöä maksutta. Ilmainen sisältää 10 tekoälypyyntöä kalenterikuukaudessa. Valitse vuotuinen Pro, niin saat 100 tekoälypyyntöä kuukaudessa, ei mainoksia ja varmuuskopiot. Nykyiset tietosi säilyvät sinulla.';
+
+  @override
+  String get planContinueFree => 'Jatka ilmaiseksi';
+
+  @override
+  String get supportIdLabel => 'Tukitunnus';
+
+  @override
+  String get supportEmailLabel => 'Sähköpostituki';
 }

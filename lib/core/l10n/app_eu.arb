@@ -436,5 +436,12 @@
   "previousPeriodAction": "Aurreko aldia",
   "nextPeriodAction": "Hurrengo aldia",
   "reportSaved": "Txostena gorde da.",
-  "reportZoom": "Handiagotu"
+  "reportZoom": "Handiagotu",
+  "planTrialDaysLeft": "{days, plural, one{# egun geratzen da} other{# egun geratzen dira}}",
+  "planTrialHoursLeft": "{hours, plural, one{# ordu geratzen da} other{# ordu geratzen dira}}",
+  "planTrialEndedTitle": "Pro probaldia amaitu da",
+  "planTrialEndedBody": "Zerrendak, eskuzko sarrera eta gailuko ahotsa doan erabiltzen jarrai dezakezu. Doako planak 10 AI eskaera ditu hilabete natural bakoitzeko. Aukeratu urteko Pro hilean 100 AI eskaera, iragarkirik ez eta babeskopiak izateko. Zure datuak zurekin geratuko dira.",
+  "planContinueFree": "Jarraitu doan",
+  "supportIdLabel": "Laguntza-IDa",
+  "supportEmailLabel": "Laguntza posta elektronikoz"
 }

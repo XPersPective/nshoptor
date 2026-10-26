@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:napp_ads/napp_ads.dart';
 
 import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
@@ -12,9 +13,15 @@ import 'reports/report_preview_screen.dart';
 import 'reports/report_repository.dart';
 
 class HistoryScreen extends StatefulWidget {
-  const HistoryScreen({super.key, required this.db, this.now});
+  const HistoryScreen({
+    super.key,
+    required this.db,
+    this.now,
+    this.bannerController,
+  });
   final AppDatabase db;
   final DateTime? now;
+  final BannerAdController? bannerController;
   @override
   State<HistoryScreen> createState() => _HistoryScreenState();
 }
@@ -240,6 +247,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   period: _period,
                   currency: _currency,
                   onPreview: _preview,
+                  bannerController: widget.bannerController,
                 ),
               ),
             ],
@@ -257,11 +265,13 @@ class _HistoryPeriodView extends StatefulWidget {
     required this.period,
     required this.currency,
     required this.onPreview,
+    this.bannerController,
   });
   final AppDatabase db;
   final ReportPeriod period;
   final String currency;
   final void Function(PeriodReport, {ShoppingReport? shopping}) onPreview;
+  final BannerAdController? bannerController;
   @override
   State<_HistoryPeriodView> createState() => _HistoryPeriodViewState();
 }
@@ -298,6 +308,24 @@ class _HistoryPeriodViewState extends State<_HistoryPeriodView> {
           return const Center(child: CircularProgressIndicator());
         }
         final report = snapshot.data!;
+        final periodLimit = switch (widget.period.span) {
+          ReportSpan.week => AppDefaults.weeklyLimitMinor(
+            currencyCode: widget.currency,
+            week: widget.period.from,
+          ),
+          ReportSpan.month => AppDefaults.monthlyLimitMinor(
+            currencyCode: widget.currency,
+            month: widget.period.from,
+          ),
+          _ => null,
+        };
+        final periodOver =
+            periodLimit != null &&
+                report.spent.known &&
+                !report.spent.unknown &&
+                report.spent.minor > periodLimit
+            ? report.spent.minor - periodLimit
+            : null;
         return ListView(
           padding: const EdgeInsets.all(12),
           children: [
@@ -314,10 +342,24 @@ class _HistoryPeriodViewState extends State<_HistoryPeriodView> {
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Text('${l.listsTabCompleted}: ${report.shopping.length}'),
+                    if (periodOver != null)
+                      Text(
+                        l.monthlyLimitOver(text.money(periodOver)),
+                        key: const Key('history_period_over_limit'),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
                   ],
                 ),
               ),
             ),
+            if (widget.bannerController != null)
+              Padding(
+                key: const Key('history_sparse_banner'),
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: BannerAdWidget(controller: widget.bannerController!),
+              ),
             if (report.shopping.isNotEmpty)
               Align(
                 alignment: AlignmentDirectional.centerEnd,
@@ -343,7 +385,21 @@ class _HistoryPeriodViewState extends State<_HistoryPeriodView> {
                         l.listsTitle,
                   ),
                   subtitle: Text(
-                    '${text.date(shopping.list.completedAt)}\n${shopping.spent.display(text.money)}',
+                    [
+                      text.date(shopping.list.completedAt),
+                      shopping.spent.display(text.money),
+                      if (shopping.list.budgetMinorUnits != null &&
+                          shopping.spent.known &&
+                          !shopping.spent.unknown &&
+                          shopping.spent.minor >
+                              shopping.list.budgetMinorUnits!)
+                        l.monthlyLimitOver(
+                          text.money(
+                            shopping.spent.minor -
+                                shopping.list.budgetMinorUnits!,
+                          ),
+                        ),
+                    ].join('\n'),
                   ),
                   isThreeLine: true,
                   trailing: const Icon(Icons.chevron_right),

@@ -1393,4 +1393,40 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get reportZoom => 'ຊູມ';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# ມື້ເຫຼືອ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ຊົ່ວໂມງເຫຼືອ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ຊ່ວງທົດລອງໃຊ້ Pro ຂອງທ່ານສິ້ນສຸດແລ້ວ';
+
+  @override
+  String get planTrialEndedBody =>
+      'ທ່ານຍັງໃຊ້ລາຍການ, ການປ້ອນຂໍ້ມູນເອງ ແລະສຽງໃນອຸປະກອນໄດ້ຟຣີ. Free ມີຄຳຂໍ AI 10 ຄັ້ງຕໍ່ເດືອນປະຕິທິນ. ເລືອກ Pro ລາຍປີເພື່ອໄດ້ຄຳຂໍ AI 100 ຄັ້ງຕໍ່ເດືອນ, ບໍ່ມີໂຄສະນາ ແລະມີການສຳຮອງຂໍ້ມູນ. ຂໍ້ມູນເກົ່າຂອງທ່ານຍັງຢູ່ຄືເກົ່າ.';
+
+  @override
+  String get planContinueFree => 'ສືບຕໍ່ໃຊ້ Free';
+
+  @override
+  String get supportIdLabel => 'ລະຫັດຝ່າຍຊ່ວຍເຫຼືອ';
+
+  @override
+  String get supportEmailLabel => 'ຊ່ວຍເຫຼືອທາງອີເມວ';
 }

@@ -436,5 +436,12 @@
   "previousPeriodAction": "ಹಿಂದಿನ ಅವಧಿ",
   "nextPeriodAction": "ಮುಂದಿನ ಅವಧಿ",
   "reportSaved": "ವರದಿ ಉಳಿಸಲಾಗಿದೆ.",
-  "reportZoom": "ಜೂಮ್"
+  "reportZoom": "ಜೂಮ್",
+  "planTrialDaysLeft": "{days, plural, other{# ದಿನ ಬಾಕಿ}}",
+  "planTrialHoursLeft": "{hours, plural, other{# ಗಂಟೆ ಬಾಕಿ}}",
+  "planTrialEndedTitle": "ನಿಮ್ಮ Pro ಪ್ರಯೋಗ ಅವಧಿ ಮುಗಿದಿದೆ",
+  "planTrialEndedBody": "ಪಟ್ಟಿಗಳು, ಕೈಯಾರೆ ನಮೂದು ಮತ್ತು ಸಾಧನದಲ್ಲಿನ ಧ್ವನಿ ವೈಶಿಷ್ಟ್ಯವನ್ನು ನೀವು ಉಚಿತವಾಗಿ ಬಳಸಬಹುದು. Freeನಲ್ಲಿ ಪ್ರತಿ ಕ್ಯಾಲೆಂಡರ್ ತಿಂಗಳಿಗೆ 10 AI ವಿನಂತಿಗಳಿವೆ. ತಿಂಗಳಿಗೆ 100 AI ವಿನಂತಿಗಳು, ಜಾಹೀರಾತುಗಳಿಲ್ಲದ ಬಳಕೆ ಮತ್ತು ಬ್ಯಾಕಪ್‌ಗಳಿಗಾಗಿ ವಾರ್ಷಿಕ Pro ಆಯ್ಕೆಮಾಡಿ. ನಿಮ್ಮ ಹಳೆಯ ಡೇಟಾ ನಿಮ್ಮೊಂದಿಗೇ ಇರುತ್ತದೆ.",
+  "planContinueFree": "Free ಆಗಿ ಮುಂದುವರಿಸಿ",
+  "supportIdLabel": "ಬೆಂಬಲ ID",
+  "supportEmailLabel": "ಇಮೇಲ್ ಬೆಂಬಲ"
 }

@@ -1409,4 +1409,40 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get reportZoom => 'Томруулах';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# өдөр үлдлээ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# цаг үлдлээ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Таны Pro туршилтын хугацаа дууслаа';
+
+  @override
+  String get planTrialEndedBody =>
+      'Та жагсаалт, гараар оруулах болон төхөөрөмж дээрх дуу хоолойн функцийг үнэгүй ашигласаар байж болно. Үнэгүй багцад хуанлийн сар бүр 10 AI хүсэлт багтана. Сард 100 AI хүсэлт, заргүй хэрэглээ, нөөц хуулбар авахын тулд жилийн Pro-г сонгоно уу. Таны одоогийн өгөгдөл хэвээр үлдэнэ.';
+
+  @override
+  String get planContinueFree => 'Үнэгүй үргэлжлүүлэх';
+
+  @override
+  String get supportIdLabel => 'Тусламжийн ID';
+
+  @override
+  String get supportEmailLabel => 'Имэйлээр тусламж авах';
 }

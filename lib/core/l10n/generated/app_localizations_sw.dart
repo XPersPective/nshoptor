@@ -1404,4 +1404,43 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get reportZoom => 'Kuza';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# siku zimebaki',
+      one: '# siku imebaki',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# saa zimebaki',
+      one: '# saa imebaki',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle =>
+      'Kipindi chako cha majaribio cha Pro kimeisha';
+
+  @override
+  String get planTrialEndedBody =>
+      'Unaweza kuendelea kutumia orodha, kuingiza mwenyewe na sauti kwenye kifaa bila malipo. Mpango wa Bure una maombi 10 ya AI kwa mwezi wa kalenda. Chagua Pro ya mwaka kwa maombi 100 ya AI kwa mwezi, bila matangazo na ikiwa na nakala rudufu. Data yako iliyopo itabaki nawe.';
+
+  @override
+  String get planContinueFree => 'Endelea Bila Malipo';
+
+  @override
+  String get supportIdLabel => 'Kitambulisho cha Usaidizi';
+
+  @override
+  String get supportEmailLabel => 'Usaidizi kwa Barua Pepe';
 }

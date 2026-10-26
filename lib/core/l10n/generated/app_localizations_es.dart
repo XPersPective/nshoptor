@@ -1409,4 +1409,42 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get reportZoom => 'Ampliar';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# días restantes',
+      one: '# día restante',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# horas restantes',
+      one: '# hora restante',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Tu prueba de Pro ha terminado';
+
+  @override
+  String get planTrialEndedBody =>
+      'Puedes seguir usando las listas, la entrada manual y la voz en el dispositivo gratis. El plan Gratis incluye 10 solicitudes de IA por mes natural. Elige Pro anual para tener 100 solicitudes de IA al mes, sin anuncios y con copias de seguridad. Tus datos actuales seguirán contigo.';
+
+  @override
+  String get planContinueFree => 'Continuar gratis';
+
+  @override
+  String get supportIdLabel => 'ID de soporte';
+
+  @override
+  String get supportEmailLabel => 'Soporte por correo electrónico';
 }

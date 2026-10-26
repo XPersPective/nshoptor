@@ -436,5 +436,12 @@
   "previousPeriodAction": "Նախորդ ժամանակահատված",
   "nextPeriodAction": "Հաջորդ ժամանակահատված",
   "reportSaved": "Հաշվետվությունը պահպանվել է։",
-  "reportZoom": "Մեծացնել"
+  "reportZoom": "Մեծացնել",
+  "planTrialDaysLeft": "{days, plural, one{# օր է մնացել} other{# օր է մնացել}}",
+  "planTrialHoursLeft": "{hours, plural, one{# ժամ է մնացել} other{# ժամ է մնացել}}",
+  "planTrialEndedTitle": "Pro-ի փորձաշրջանն ավարտվել է",
+  "planTrialEndedBody": "Կարող եք անվճար շարունակել օգտվել ցուցակներից, ձեռքով մուտքագրումից և սարքի ձայնային հնարավորությունից։ Անվճար պլանը ներառում է ամսական 10 AI հարցում։ Ընտրեք տարեկան Pro՝ ամսական 100 AI հարցման, առանց գովազդի և պահուստային պատճենների համար։ Ձեր տվյալները կմնան ձեզ հետ։",
+  "planContinueFree": "Շարունակել անվճար",
+  "supportIdLabel": "Աջակցության ID",
+  "supportEmailLabel": "Աջակցություն էլ. փոստով"
 }

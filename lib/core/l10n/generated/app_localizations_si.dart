@@ -1400,4 +1400,42 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get reportZoom => 'විශාල කරන්න';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# දින ඉතිරියි',
+      one: '# දින ඉතිරියි',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# පැය ඉතිරියි',
+      one: '# පැය ඉතිරියි',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ඔබගේ Pro අත්හදා බැලීමේ කාලය අවසන්';
+
+  @override
+  String get planTrialEndedBody =>
+      'ඔබට ලැයිස්තු, අතින් ඇතුළත් කිරීම සහ උපාංගයේ හඬ විශේෂාංගය නොමිලේ භාවිත කළ හැක. Free හි දින දර්ශන මාසයකට AI ඉල්ලීම් 10ක් ඇත. මාසයකට AI ඉල්ලීම් 100ක්, දැන්වීම් රහිත භාවිතය සහ උපස්ථ සඳහා වාර්ෂික Pro තෝරන්න. ඔබගේ දැනට ඇති දත්ත ඔබ සතුවම පවතී.';
+
+  @override
+  String get planContinueFree => 'නොමිලේ දිගටම';
+
+  @override
+  String get supportIdLabel => 'සහාය ID';
+
+  @override
+  String get supportEmailLabel => 'විද්‍යුත් තැපැල් සහාය';
 }

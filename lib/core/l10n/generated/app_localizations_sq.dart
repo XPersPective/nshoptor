@@ -1406,4 +1406,42 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zmadho';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# ditë të mbetura',
+      one: '# ditë e mbetur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# orë të mbetura',
+      one: '# orë e mbetur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Periudha e provës Pro përfundoi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Mund të vazhdosh t’i përdorësh listat, futjen manuale dhe zërin në pajisje falas. Plani Falas përfshin 10 kërkesa AI për muaj kalendarik. Zgjidh Pro vjetor për 100 kërkesa AI në muaj, pa reklama dhe me kopje rezervë. Të dhënat ekzistuese mbeten me ty.';
+
+  @override
+  String get planContinueFree => 'Vazhdo falas';
+
+  @override
+  String get supportIdLabel => 'ID-ja e mbështetjes';
+
+  @override
+  String get supportEmailLabel => 'Mbështetje me email';
 }

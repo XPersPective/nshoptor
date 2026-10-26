@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
+import '../onboarding/first_run_guide.dart';
 import 'image_capture_service.dart';
 import 'ocr_text_source.dart';
 import 'shelf_label/mlkit_text_source.dart';
@@ -70,7 +71,25 @@ Future<ImageSource?> showImageSourceSheet(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(title, style: Theme.of(sheetContext).textTheme.titleLarge),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    title,
+                    style: Theme.of(sheetContext).textTheme.titleLarge,
+                  ),
+                ),
+                IconButton(
+                  key: const Key('image_source_help'),
+                  tooltip: l10n.howToUseLabel,
+                  onPressed: () => showScanHelpDialog(
+                    sheetContext,
+                    isReceipt: title == l10n.scanReceiptAction,
+                  ),
+                  icon: const Icon(Icons.help_outline),
+                ),
+              ],
+            ),
             const SizedBox(height: 16),
             FilledButton.icon(
               key: const Key('image_source_camera'),

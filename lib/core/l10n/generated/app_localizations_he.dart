@@ -1387,4 +1387,44 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get reportZoom => 'הגדלה';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# ימים נותרו',
+      two: '# ימים נותרו',
+      one: '# יום נותר',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# שעות נותרו',
+      two: '# שעות נותרו',
+      one: '# שעה נותרה',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'תקופת הניסיון של Pro הסתיימה';
+
+  @override
+  String get planTrialEndedBody =>
+      'אפשר להמשיך להשתמש בחינם ברשימות, בהזנה ידנית ובקול במכשיר. התוכנית החינמית כוללת 10 בקשות AI בכל חודש קלנדרי. בחרו Pro שנתי לקבלת 100 בקשות AI בחודש, ללא פרסומות ועם גיבויים. הנתונים הקיימים שלכם יישארו אצלכם.';
+
+  @override
+  String get planContinueFree => 'המשך בחינם';
+
+  @override
+  String get supportIdLabel => 'מזהה תמיכה';
+
+  @override
+  String get supportEmailLabel => 'תמיכה בדוא״ל';
 }

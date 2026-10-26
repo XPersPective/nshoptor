@@ -1393,4 +1393,40 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get reportZoom => 'ซูม';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# วันเหลือ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ชั่วโมงเหลือ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ช่วงทดลองใช้ Pro ของคุณสิ้นสุดแล้ว';
+
+  @override
+  String get planTrialEndedBody =>
+      'คุณยังใช้รายการ การป้อนข้อมูลด้วยตนเอง และเสียงบนอุปกรณ์ได้ฟรีต่อไป แพ็กเกจ Free มีคำขอ AI 10 ครั้งต่อเดือนปฏิทิน เลือก Pro รายปีเพื่อรับคำขอ AI 100 ครั้งต่อเดือน ไม่มีโฆษณา และมีข้อมูลสำรอง ข้อมูลเดิมของคุณยังอยู่ครบ';
+
+  @override
+  String get planContinueFree => 'ใช้ Free ต่อไป';
+
+  @override
+  String get supportIdLabel => 'รหัสฝ่ายสนับสนุน';
+
+  @override
+  String get supportEmailLabel => 'ติดต่อฝ่ายสนับสนุนทางอีเมล';
 }

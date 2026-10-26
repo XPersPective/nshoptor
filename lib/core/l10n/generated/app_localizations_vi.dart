@@ -1399,4 +1399,40 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get reportZoom => 'Phóng to';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Còn # ngày',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Còn # giờ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Thời gian dùng thử Pro đã kết thúc';
+
+  @override
+  String get planTrialEndedBody =>
+      'Bạn vẫn có thể dùng danh sách, nhập thủ công và giọng nói trên thiết bị miễn phí. Gói Miễn phí có 10 yêu cầu AI mỗi tháng dương lịch. Chọn Pro hằng năm để có 100 yêu cầu AI mỗi tháng, không quảng cáo và có bản sao lưu. Dữ liệu hiện có vẫn thuộc về bạn.';
+
+  @override
+  String get planContinueFree => 'Tiếp tục miễn phí';
+
+  @override
+  String get supportIdLabel => 'ID hỗ trợ';
+
+  @override
+  String get supportEmailLabel => 'Hỗ trợ qua email';
 }

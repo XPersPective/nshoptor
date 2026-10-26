@@ -436,5 +436,12 @@
   "previousPeriodAction": "पिछली अवधि",
   "nextPeriodAction": "अगली अवधि",
   "reportSaved": "रिपोर्ट सहेजी गई।",
-  "reportZoom": "ज़ूम"
+  "reportZoom": "ज़ूम",
+  "planTrialDaysLeft": "{days, plural, other{# दिन शेष}}",
+  "planTrialHoursLeft": "{hours, plural, other{# घंटे शेष}}",
+  "planTrialEndedTitle": "आपका Pro परीक्षण समाप्त हो गया है",
+  "planTrialEndedBody": "आप सूचियों, मैन्युअल प्रविष्टि और डिवाइस पर वॉइस का निःशुल्क उपयोग जारी रख सकते हैं। Free में हर कैलेंडर माह 10 AI अनुरोध शामिल हैं। हर माह 100 AI अनुरोध, विज्ञापन-मुक्त अनुभव और बैकअप के लिए वार्षिक Pro चुनें। आपका मौजूदा डेटा आपके पास ही रहेगा।",
+  "planContinueFree": "Free जारी रखें",
+  "supportIdLabel": "सहायता आईडी",
+  "supportEmailLabel": "ईमेल सहायता"
 }

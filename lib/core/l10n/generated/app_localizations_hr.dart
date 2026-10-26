@@ -1403,4 +1403,44 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get reportZoom => 'Povećaj';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dana preostalo',
+      few: '# dana preostala',
+      one: '# dan preostao',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# sati preostalo',
+      few: '# sata preostala',
+      one: '# sat preostao',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Probno razdoblje Proa je završilo';
+
+  @override
+  String get planTrialEndedBody =>
+      'I dalje možete besplatno koristiti popise, ručni unos i glas na uređaju. Besplatni plan uključuje 10 AI zahtjeva po kalendarskom mjesecu. Odaberite godišnji Pro za 100 AI zahtjeva mjesečno, bez oglasa i uz sigurnosne kopije. Vaši postojeći podaci ostaju vaši.';
+
+  @override
+  String get planContinueFree => 'Nastavi besplatno';
+
+  @override
+  String get supportIdLabel => 'ID podrške';
+
+  @override
+  String get supportEmailLabel => 'Podrška e-poštom';
 }

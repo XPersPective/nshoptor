@@ -1401,4 +1401,40 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get reportZoom => 'জুম';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# দিন বাকি',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ঘণ্টা বাকি',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'আপনার Pro ট্রায়াল শেষ হয়েছে';
+
+  @override
+  String get planTrialEndedBody =>
+      'আপনি বিনামূল্যে তালিকা, হাতে লেখা এন্ট্রি এবং ডিভাইসে ভয়েস ব্যবহার চালিয়ে যেতে পারেন। বিনামূল্যের প্ল্যানে প্রতি ক্যালেন্ডার মাসে ১০টি AI অনুরোধ রয়েছে। মাসে ১০০টি AI অনুরোধ, বিজ্ঞাপনমুক্ত ব্যবহার ও ব্যাকআপের জন্য বার্ষিক Pro বেছে নিন। আপনার বর্তমান ডেটা আপনার কাছেই থাকবে।';
+
+  @override
+  String get planContinueFree => 'বিনামূল্যে চালিয়ে যান';
+
+  @override
+  String get supportIdLabel => 'সহায়তা আইডি';
+
+  @override
+  String get supportEmailLabel => 'ইমেলে সহায়তা';
 }

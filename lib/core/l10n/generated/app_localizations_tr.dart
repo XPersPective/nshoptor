@@ -1402,4 +1402,40 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get reportZoom => 'Büyüt';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# gün kaldı',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# saat kaldı',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro denemen sona erdi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Listeleri, elle giriş yapmayı ve cihazda çalışan ses özelliğini ücretsiz kullanmaya devam edebilirsin. Ücretsiz planda takvim ayı başına 10 yapay zekâ isteği bulunur. Ayda 100 yapay zekâ isteği, reklamsız kullanım ve yedekleme için yıllık Pro’yu seç. Mevcut verilerin sende kalır.';
+
+  @override
+  String get planContinueFree => 'Ücretsiz devam et';
+
+  @override
+  String get supportIdLabel => 'Destek kimliği';
+
+  @override
+  String get supportEmailLabel => 'E-posta ile destek';
 }

@@ -11,6 +11,7 @@ import '../../core/money/decimal_fixed.dart';
 import '../../core/money/money_parser.dart';
 import '../../core/quantity/unit_code.dart';
 import '../../data/db/app_database.dart';
+import '../onboarding/first_run_guide.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
 import 'shopping_repository.dart';
 import '../lists/list_detail_screen.dart';
@@ -361,11 +362,23 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
                 labelText: l10n.actualPriceLabel,
                 suffixIcon: widget.onShelfPricePressed == null
                     ? null
-                    : IconButton(
-                        key: const Key('entry_scan_price'),
-                        tooltip: l10n.tipShelfCamera,
-                        icon: const Icon(Icons.photo_camera_outlined),
-                        onPressed: _scan,
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            key: const Key('entry_scan_price'),
+                            tooltip: l10n.tipShelfCamera,
+                            icon: const Icon(Icons.photo_camera_outlined),
+                            onPressed: _scan,
+                          ),
+                          IconButton(
+                            key: const Key('entry_scan_price_help'),
+                            tooltip: l10n.howToUseLabel,
+                            icon: const Icon(Icons.help_outline),
+                            onPressed: () =>
+                                showScanHelpDialog(context, isReceipt: false),
+                          ),
+                        ],
                       ),
               ),
             ),

@@ -1360,4 +1360,40 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get reportZoom => '확대';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '#일 남음',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '#시간 남음',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro 체험 기간이 종료되었습니다';
+
+  @override
+  String get planTrialEndedBody =>
+      '목록, 직접 입력, 기기 내 음성 기능은 계속 무료로 이용할 수 있습니다. Free에는 월별 10회의 AI 요청이 포함됩니다. 연간 Pro를 선택하면 매월 AI 요청 100회, 광고 제거, 백업을 이용할 수 있습니다. 기존 데이터는 그대로 유지됩니다.';
+
+  @override
+  String get planContinueFree => 'Free로 계속하기';
+
+  @override
+  String get supportIdLabel => '지원 ID';
+
+  @override
+  String get supportEmailLabel => '이메일 지원';
 }

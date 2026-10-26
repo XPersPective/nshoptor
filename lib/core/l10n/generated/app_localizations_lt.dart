@@ -1408,4 +1408,46 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get reportZoom => 'Priartinti';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dienos liko',
+      many: '# dienų liko',
+      few: '# dienos liko',
+      one: '# diena liko',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# valandos liko',
+      many: '# valandų liko',
+      few: '# valandos liko',
+      one: '# valanda liko',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Jūsų Pro bandomasis laikotarpis baigėsi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Sąrašais, rankiniu įvedimu ir įrenginio balso funkcija galite naudotis nemokamai ir toliau. Nemokamas planas apima 10 DI užklausų per kalendorinį mėnesį. Pasirinkite metinį Pro ir gaukite 100 DI užklausų per mėnesį, be reklamų ir su atsarginėmis kopijomis. Esami jūsų duomenys liks su jumis.';
+
+  @override
+  String get planContinueFree => 'Tęsti nemokamai';
+
+  @override
+  String get supportIdLabel => 'Pagalbos ID';
+
+  @override
+  String get supportEmailLabel => 'Pagalba el. paštu';
 }

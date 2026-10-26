@@ -436,5 +436,12 @@
   "previousPeriodAction": "Oldingi davr",
   "nextPeriodAction": "Keyingi davr",
   "reportSaved": "Hisobot saqlandi.",
-  "reportZoom": "Kattalashtirish"
+  "reportZoom": "Kattalashtirish",
+  "planTrialDaysLeft": "{days, plural, other{# kun qoldi}}",
+  "planTrialHoursLeft": "{hours, plural, other{# soat qoldi}}",
+  "planTrialEndedTitle": "Pro sinov muddati tugadi",
+  "planTrialEndedBody": "Roʻyxatlar, qoʻlda kiritish va qurilmadagi ovoz funksiyasidan bepul foydalanishda davom etishingiz mumkin. Bepul rejaga har kalendar oyida 10 ta AI soʻrovi kiradi. Oyiga 100 ta AI soʻrovi, reklamasiz foydalanish va zaxira nusxalar uchun yillik Proʼni tanlang. Mavjud maʼlumotlaringiz oʻzingizda qoladi.",
+  "planContinueFree": "Bepul davom etish",
+  "supportIdLabel": "Yordam ID-si",
+  "supportEmailLabel": "Elektron pochta orqali yordam"
 }

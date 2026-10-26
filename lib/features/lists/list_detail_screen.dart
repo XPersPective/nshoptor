@@ -29,7 +29,10 @@ import '../shopping_mode/shopping_repository.dart';
 import '../shopping_mode/summary/result_repository.dart';
 import '../shopping_mode/summary/summary_screen.dart';
 import '../shopping_mode/summary/pdf_report.dart';
+import 'package:napp_ads/napp_ads.dart';
+import '../history/insights/budget_check.dart';
 import '../history/price_history/price_history_sheet.dart';
+import '../onboarding/first_run_guide.dart';
 import '../receipts/ocr_text_source.dart';
 import '../receipts/receipt_capture_flow.dart';
 import '../receipts/receipt_image_store.dart';
@@ -62,6 +65,7 @@ class ListDetailScreen extends StatefulWidget {
     this.receiptImageStore,
     this.reminderScheduler,
     this.onShelfPricePressed,
+    this.bannerController,
   });
 
   final AppDatabase db;
@@ -81,6 +85,7 @@ class ListDetailScreen extends StatefulWidget {
   /// Test enjeksiyonu; verilmezse flutter_local_notifications adaptörü.
   final ReminderScheduler? reminderScheduler;
   final Future<String?> Function(BuildContext)? onShelfPricePressed;
+  final BannerAdController? bannerController;
 
   @override
   State<ListDetailScreen> createState() => _ListDetailScreenState();
@@ -108,6 +113,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   bool _sortBusy = false;
   bool _editable = false;
   ListStatus? _status;
+  BudgetStatus? _budgetStatus;
 
   @override
   void initState() {
@@ -245,14 +251,45 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   Future<ShoppingList> _loadList() async {
     final list = await widget.listRepository.getById(widget.listId);
     final sortMode = await ItemSortPreferences(widget.db).read(widget.listId);
+    final budget = await evaluateBudgetStatus(widget.db, listId: widget.listId);
     if (mounted) {
       setState(() {
         _sortMode = sortMode;
         _status = ListStatus.fromDb(list.status);
         _editable = list.status != 'completed' && list.status != 'archived';
+        _budgetStatus = budget;
       });
     }
     return list;
+  }
+
+  Future<void> _checkBudgetAndWarn() async {
+    final status = await evaluateBudgetStatus(widget.db, listId: widget.listId);
+    if (!mounted) return;
+    setState(() => _budgetStatus = status);
+    if (!status.anyOver) return;
+    final l10n = AppLocalizations.of(context);
+    final currency = Currency.fromCode(status.currencyCode);
+    final locale = formatLocaleCode(context);
+    String money(int minor) =>
+        formatMoney(Money.fromMinorUnits(minor, currency), locale: locale);
+    final parts = <String>[
+      if (status.listOver)
+        '${l10n.budgetLabel}: ${l10n.monthlyLimitOver(money(status.listOverMinor))}',
+      if (status.weekOver)
+        '${l10n.spanWeek}: ${l10n.monthlyLimitOver(money(status.weekOverMinor))}',
+      if (status.monthOver)
+        '${l10n.monthlyLimitTitle}: ${l10n.monthlyLimitOver(money(status.monthOverMinor))}',
+    ];
+    ScaffoldMessenger.of(context)
+      ..clearSnackBars()
+      ..showSnackBar(
+        SnackBar(
+          key: const Key('budget_over_snackbar'),
+          content: Text(parts.join(' · ')),
+          showCloseIcon: true,
+        ),
+      );
   }
 
   Future<void> _finishAndShowResult() async {
@@ -470,6 +507,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                     onShelfPricePressed: _shelfPrice,
                   ),
                 );
+                await _checkBudgetAndWarn();
               } else if (action == 'receipt') {
                 await _scanReceipt(context);
               } else if (action == 'archive') {
@@ -593,6 +631,16 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                           .toList()
                     : const <ItemViewRow>[];
                 final material = MaterialLocalizations.of(context);
+                final pendingCount = visibleItems
+                    .where((item) => !isItemPurchased(item.id, entries))
+                    .length;
+                final bannerSlot = widget.bannerController == null
+                    ? null
+                    : selectListBannerSlot(
+                        pendingCount: pendingCount,
+                        totalCount: visibleItems.length + unplanned.length,
+                        seed: widget.listId,
+                      );
                 return Column(
                   children: [
                     Padding(
@@ -690,6 +738,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                     entries: entries,
                                     currencyCode: list.currencyCode,
                                   ),
+                                  _BudgetWarningRow(
+                                    list: list,
+                                    entries: entries,
+                                    status: _budgetStatus,
+                                  ),
                                 ],
                               ),
                             ),
@@ -730,15 +783,17 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                               ),
                             ),
                           if (_sortMode == ItemSortMode.alphabetical) ...[
-                            for (final row in alphabeticalRows)
+                            for (final (rowIndex, row)
+                                in alphabeticalRows.indexed)
                               if (row.item != null)
                                 _buildItemCard(
                                   context,
                                   row.item!,
                                   entries,
                                   list,
-                                  0,
+                                  rowIndex,
                                   draggable: false,
+                                  showBannerBelow: bannerSlot == rowIndex,
                                 )
                               else
                                 _buildUnplannedCard(context, row.entry!, list),
@@ -765,6 +820,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                   list,
                                   index,
                                   draggable: reorderable,
+                                  showBannerBelow: bannerSlot == index,
                                 ),
                               ),
                             for (final entry in unplanned)
@@ -822,16 +878,34 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              OutlinedButton.icon(
-                                key: const Key('detail_receipt_button'),
-                                onPressed: _busy
-                                    ? null
-                                    : () => _scanReceipt(context),
-                                icon: const Icon(Icons.receipt_long_outlined),
-                                label: Text(
-                                  l10n.scanReceiptAction,
-                                  textAlign: TextAlign.center,
-                                ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: OutlinedButton.icon(
+                                      key: const Key('detail_receipt_button'),
+                                      onPressed: _busy
+                                          ? null
+                                          : () => _scanReceipt(context),
+                                      icon: const Icon(
+                                        Icons.receipt_long_outlined,
+                                      ),
+                                      label: Text(
+                                        l10n.scanReceiptAction,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  IconButton.outlined(
+                                    key: const Key('detail_receipt_help'),
+                                    tooltip: l10n.howToUseLabel,
+                                    onPressed: () => showScanHelpDialog(
+                                      context,
+                                      isReceipt: true,
+                                    ),
+                                    icon: const Icon(Icons.help_outline),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -880,6 +954,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     ShoppingList list,
     int index, {
     bool draggable = true,
+    bool showBannerBelow = false,
   }) {
     final l10n = AppLocalizations.of(context);
     final colors = Theme.of(context).colorScheme;
@@ -963,11 +1038,24 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         ),
       ),
     );
+    final reorderableCard = _editable && draggable
+        ? ReorderableDelayedDragStartListener(index: index, child: card)
+        : card;
     return KeyedSubtree(
       key: ValueKey('detail_reorder_${item.id}'),
-      child: _editable && draggable
-          ? ReorderableDelayedDragStartListener(index: index, child: card)
-          : card,
+      child: showBannerBelow && widget.bannerController != null
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                reorderableCard,
+                Padding(
+                  key: const Key('list_sparse_banner'),
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: BannerAdWidget(controller: widget.bannerController!),
+                ),
+              ],
+            )
+          : reorderableCard,
     );
   }
 
@@ -1175,6 +1263,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         ),
       );
       _refresh();
+      await _checkBudgetAndWarn();
     } finally {
       _itemFormOpen = false;
     }
@@ -1220,7 +1309,10 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         imageStore: widget.receiptImageStore,
         ai: AiService.client,
       );
-      if (mounted) _refresh();
+      if (mounted) {
+        _refresh();
+        await _checkBudgetAndWarn();
+      }
     } catch (_) {
       if (context.mounted) {
         ScaffoldMessenger.of(context)
@@ -1412,5 +1504,59 @@ class _TotalsRow extends StatelessWidget {
             children: cells,
           )
         : Row(key: const Key('detail_totals'), children: cells);
+  }
+}
+
+class _BudgetWarningRow extends StatelessWidget {
+  const _BudgetWarningRow({
+    required this.list,
+    required this.entries,
+    required this.status,
+  });
+
+  final ShoppingList list;
+  final List<PurchaseEntry> entries;
+  final BudgetStatus? status;
+
+  @override
+  Widget build(BuildContext context) {
+    final actualMinor = entries.fold<int>(
+      0,
+      (sum, entry) => sum + entry.actualLineTotalMinorUnits,
+    );
+    final listBudget = list.budgetMinorUnits;
+    final listOverBy = listBudget != null && actualMinor > listBudget
+        ? actualMinor - listBudget
+        : 0;
+    final weekOverBy = status != null && status!.weekOver
+        ? status!.weekOverMinor
+        : 0;
+    final monthOverBy = status != null && status!.monthOver
+        ? status!.monthOverMinor
+        : 0;
+    if (listOverBy <= 0 && weekOverBy <= 0 && monthOverBy <= 0) {
+      return const SizedBox.shrink();
+    }
+    final l10n = AppLocalizations.of(context);
+    final currency = Currency.fromCode(list.currencyCode);
+    final locale = formatLocaleCode(context);
+    String money(int minor) =>
+        formatMoney(Money.fromMinorUnits(minor, currency), locale: locale);
+    final messages = <String>[
+      if (listOverBy > 0)
+        '${l10n.budgetLabel}: ${l10n.monthlyLimitOver(money(listOverBy))}',
+      if (weekOverBy > 0)
+        '${l10n.spanWeek}: ${l10n.monthlyLimitOver(money(weekOverBy))}',
+      if (monthOverBy > 0)
+        '${l10n.monthlyLimitTitle}: ${l10n.monthlyLimitOver(money(monthOverBy))}',
+    ];
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Text(
+        messages.join(' · '),
+        key: const Key('detail_budget_warning'),
+        style: TextStyle(color: Theme.of(context).colorScheme.error),
+      ),
+    );
   }
 }

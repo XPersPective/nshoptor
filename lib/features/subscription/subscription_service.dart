@@ -8,6 +8,7 @@ import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:napp_core/napp_core.dart';
 
 import '../ai/ai_client.dart' show PurchaseCredential;
+import 'installation_trial.dart';
 
 /// AI ve reklam katmanı (ADR-004 §5). Yetkinin kesin kararı sunucudadır
 /// (Worker Play doğrulaması); buradaki durum yalnız arayüz ve reklam içindir.
@@ -56,6 +57,9 @@ class SubscriptionService extends ChangeNotifier {
   static const _trialKey = 'sub_trial_until';
   static const trialDays = 7;
   bool _pendingTrial = false;
+  InstallationTrial? _installationTrial;
+  Timer? _trialTimer;
+  int? _trialMinutes;
 
   final SettingsStore store;
   final InAppPurchase? _iapOverride;
@@ -79,7 +83,9 @@ class SubscriptionService extends ChangeNotifier {
     proId => 100,
     _ => 10,
   };
-  int get monthlyAllowance => allowanceOf(_productId);
+  int get monthlyAllowance => storeTier == Tier.free && promotionalTrial
+      ? 100
+      : allowanceOf(_productId);
 
   /// Satın alma sonucu (paywall gösterir): null = sorun yok.
   String? lastError;
@@ -93,12 +99,50 @@ class SubscriptionService extends ChangeNotifier {
     _ => Tier.free,
   };
 
-  Tier get tier => tierOf(_productId);
+  Tier get storeTier => tierOf(_productId);
+  Tier get tier =>
+      storeTier == Tier.free && promotionalTrial ? Tier.pro : storeTier;
+  bool get promotionalTrial =>
+      storeTier == Tier.free && _installationTrial?.active == true;
+  Duration get trialRemaining => _installationTrial?.remaining ?? Duration.zero;
+  int? get trialFirstOpenedAt => _installationTrial?.firstOpenedAt;
+  bool get needsTrialExpiryNotice =>
+      storeTier == Tier.free && _installationTrial?.needsExpiryNotice == true;
+
+  /// Called explicitly by app boot; tests/legacy purchase consumers retain
+  /// store-only behavior unless they opt into promotional access.
+  void initializeTrial({DateTime Function()? now}) {
+    _installationTrial ??= InstallationTrial(store, now: now);
+    refreshTrial();
+    _trialTimer ??= Timer.periodic(
+      const Duration(minutes: 1),
+      (_) => refreshTrial(),
+    );
+  }
+
+  void refreshTrial() {
+    if (_disposed || _installationTrial == null) return;
+    final micros = trialRemaining.inMicroseconds;
+    final minutes = micros == 0
+        ? 0
+        : 1 + (micros - 1) ~/ Duration.microsecondsPerMinute;
+    if (_trialMinutes == minutes) return;
+    _trialMinutes = minutes;
+    notifyListeners();
+  }
+
+  void observeTrialServer({required int endsAt, required int serverNow}) {
+    _installationTrial?.observeServer(endsAt: endsAt, serverNow: serverNow);
+    refreshTrial();
+  }
+
+  void acknowledgeTrialExpiry() => _installationTrial?.acknowledgeExpiry();
 
   /// Ücretsiz deneme süresinde mi (yalnız gösterim; Play faturalar).
   bool inTrial([DateTime? now]) {
+    if (storeTier == Tier.free && promotionalTrial) return true;
     final until = store.getInt(_trialKey);
-    return tier != Tier.free &&
+    return storeTier != Tier.free &&
         until != null &&
         (now ?? DateTime.now()).millisecondsSinceEpoch < until;
   }
@@ -407,6 +451,7 @@ class SubscriptionService extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    _trialTimer?.cancel();
     _sub?.cancel();
     super.dispose();
   }
@@ -420,6 +465,9 @@ class SubscriptionResumeObserver with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) unawaited(service.refresh());
+    if (state == AppLifecycleState.resumed) {
+      service.refreshTrial();
+      unawaited(service.refresh());
+    }
   }
 }

@@ -1407,4 +1407,42 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get reportZoom => 'Handiagotu';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# egun geratzen dira',
+      one: '# egun geratzen da',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ordu geratzen dira',
+      one: '# ordu geratzen da',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro probaldia amaitu da';
+
+  @override
+  String get planTrialEndedBody =>
+      'Zerrendak, eskuzko sarrera eta gailuko ahotsa doan erabiltzen jarrai dezakezu. Doako planak 10 AI eskaera ditu hilabete natural bakoitzeko. Aukeratu urteko Pro hilean 100 AI eskaera, iragarkirik ez eta babeskopiak izateko. Zure datuak zurekin geratuko dira.';
+
+  @override
+  String get planContinueFree => 'Jarraitu doan';
+
+  @override
+  String get supportIdLabel => 'Laguntza-IDa';
+
+  @override
+  String get supportEmailLabel => 'Laguntza posta elektronikoz';
 }

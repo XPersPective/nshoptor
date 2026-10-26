@@ -12,6 +12,7 @@ class AdGate {
   static const graceDays = 7;
   static const firstOpenKey = 'first_open_at';
   static const graceStateKey = 'ad_grace_state_v1';
+  static const rewardedAdFreeDayKey = 'ad_reward_day_v1';
 
   /// Alışveriş modu ekranı açıkken true (ShoppingModeScreen yönetir).
   static bool shoppingModeActive = false;
@@ -32,56 +33,75 @@ class AdGate {
   }
 
   static DateTime? _date(Object? raw) {
-    final ms = raw is int ? raw : raw is String ? int.tryParse(raw) : null;
+    final ms = raw is int
+        ? raw
+        : raw is String
+        ? int.tryParse(raw)
+        : null;
     // Dart DateTime rejects values outside this inclusive range.
-    if (ms == null || ms < -8640000000000000 || ms > 8640000000000000) return null;
+    if (ms == null || ms < -8640000000000000 || ms > 8640000000000000) {
+      return null;
+    }
     return DateTime.fromMillisecondsSinceEpoch(ms, isUtc: true);
   }
 
-  static ({DateTime firstOpen, bool expired}) _observeGrace(
-    SettingsStore store, DateTime now,
-  ) {
+  static ({DateTime firstOpen, DateTime observedAt, bool expired})
+  _observeGrace(SettingsStore store, DateTime now) {
     final memory = store.memorySnapshot();
     final state = _map(memory[graceStateKey]);
     final policy = _map(memory['napp_ads.policy_state']);
     final legacyStart = _date(memory[firstOpenKey]);
     final stateStart = _date(state?['firstOpenAt']);
     final policyStart = _date(policy?['firstLaunchAt']);
-    final starts = [legacyStart, stateStart, policyStart]
-        .whereType<DateTime>().toList()..sort();
+    final starts = [
+      legacyStart,
+      stateStart,
+      policyStart,
+    ].whereType<DateTime>().toList()..sort();
     // An isolated future legacy timestamp cannot prove any remaining grace.
     // Matching surviving state is retained during a legitimate clock rollback.
-    final isolatedFuture = legacyStart != null && legacyStart.isAfter(now) &&
-        stateStart == null && policyStart == null;
-    final hadGraceRecord = memory.containsKey(firstOpenKey) ||
-        memory.containsKey(graceStateKey);
+    final isolatedFuture =
+        legacyStart != null &&
+        legacyStart.isAfter(now) &&
+        stateStart == null &&
+        policyStart == null;
+    final hadGraceRecord =
+        memory.containsKey(firstOpenKey) || memory.containsKey(graceStateKey);
     final duration = const Duration(days: graceDays);
     // A damaged existing record is not evidence of a fresh install. Recover
     // from another valid anchor when possible; otherwise never reset its trial.
-    final first = starts.isNotEmpty && !isolatedFuture ? starts.first :
-        (hadGraceRecord ? now.toUtc().subtract(duration) : now.toUtc());
+    final first = starts.isNotEmpty && !isolatedFuture
+        ? starts.first
+        : (hadGraceRecord ? now.toUtc().subtract(duration) : now.toUtc());
     final observed = _date(state?['lastObservedAt']);
     final effectiveNow = observed != null && observed.isAfter(now)
-        ? observed : now.toUtc();
-    final expired = state?['expired'] == true ||
-        effectiveNow.difference(first) >= duration;
+        ? observed
+        : now.toUtc();
+    final expired =
+        state?['expired'] == true || effectiveNow.difference(first) >= duration;
     if (memory[firstOpenKey] != first.millisecondsSinceEpoch) {
       store.setInt(firstOpenKey, first.millisecondsSinceEpoch);
     }
     // Repeated policy checks must not continually reset SettingsStore's disk
     // debounce. Expiry/repairs are immediate; ordinary observations are bounded
     // to once per minute, and an expired record needs no further clock writes.
-    final needsWrite = stateStart != first || observed == null ||
+    final needsWrite =
+        stateStart != first ||
+        observed == null ||
         state?['expired'] != expired ||
-        (!expired && effectiveNow.difference(observed) >= const Duration(minutes: 1));
+        (!expired &&
+            effectiveNow.difference(observed) >= const Duration(minutes: 1));
     if (needsWrite) {
-      store.setString(graceStateKey, jsonEncode({
-        'firstOpenAt': first.millisecondsSinceEpoch,
-        'lastObservedAt': effectiveNow.millisecondsSinceEpoch,
-        'expired': expired,
-      }));
+      store.setString(
+        graceStateKey,
+        jsonEncode({
+          'firstOpenAt': first.millisecondsSinceEpoch,
+          'lastObservedAt': effectiveNow.millisecondsSinceEpoch,
+          'expired': expired,
+        }),
+      );
     }
-    return (firstOpen: first, expired: expired);
+    return (firstOpen: first, observedAt: effectiveNow, expired: expired);
   }
 
   /// Geçiş reklamı gösterici (main bağlar; testte/reklamsız ortamda null).
@@ -111,7 +131,9 @@ class AdGate {
 
       return AdPolicySnapshot(
         firstLaunchAt: _date(map['firstLaunchAt'])?.toLocal(),
-        sessionCount: map['sessionCount'] is int ? map['sessionCount'] as int : 0,
+        sessionCount: map['sessionCount'] is int
+            ? map['sessionCount'] as int
+            : 0,
         lastAppOpenAt: _date(map['lastAppOpenAt'])?.toLocal(),
         lastFullscreenAt: _date(map['lastFullscreenAt'])?.toLocal(),
         lastRewardedDay: _date(map['lastRewardedDay'])?.toLocal(),
@@ -126,4 +148,82 @@ class AdGate {
   /// still needs a server-verified eligibility record to enforce R66.
   static bool inGrace(SettingsStore store, DateTime now) =>
       !_observeGrace(store, now).expired;
+
+  static Duration graceRemaining(SettingsStore store, DateTime now) {
+    final state = _observeGrace(store, now);
+    return state.expired
+        ? Duration.zero
+        : state.firstOpen
+              .add(const Duration(days: graceDays))
+              .difference(state.observedAt);
+  }
+
+  /// Grants ad-free status for the current local calendar day (until 23:59:59 /
+  /// local midnight) without altering AI quota or subscription tier (N055, N056).
+  static DateTime grantRewardedAdFreeDay(SettingsStore store, DateTime now) {
+    final local = now.toLocal();
+    final until = DateTime(local.year, local.month, local.day + 1).toUtc();
+    final memory = store.memorySnapshot();
+    final existing = _map(memory[rewardedAdFreeDayKey]);
+    final existingUntil = _date(existing?['until']);
+    if (existingUntil == until && existing?['expired'] != true) {
+      return until;
+    }
+    final nowUtc = now.toUtc();
+    store.setString(
+      rewardedAdFreeDayKey,
+      jsonEncode({
+        'grantedAt': nowUtc.millisecondsSinceEpoch,
+        'until': until.millisecondsSinceEpoch,
+        'observedAt': nowUtc.millisecondsSinceEpoch,
+        'expired': false,
+      }),
+    );
+    return until;
+  }
+
+  /// True while the current local calendar-day ad-only reward is active.
+  /// Clock rollback after expiry or before grant cannot extend the reward (N055).
+  static bool isRewardedAdFree(SettingsStore store, DateTime now) {
+    final memory = store.memorySnapshot();
+    final state = _map(memory[rewardedAdFreeDayKey]);
+    if (state == null || state['expired'] == true) return false;
+    final grantedAt = _date(state['grantedAt']);
+    final until = _date(state['until']);
+    if (grantedAt == null || until == null) return false;
+    final nowUtc = now.toUtc();
+    final observed = _date(state['observedAt']);
+    final effectiveNow = observed != null && observed.isAfter(nowUtc)
+        ? observed
+        : nowUtc;
+    if (nowUtc.isBefore(grantedAt.subtract(const Duration(minutes: 5)))) {
+      return false;
+    }
+    final expired = !effectiveNow.isBefore(until);
+    if (expired) {
+      store.setString(
+        rewardedAdFreeDayKey,
+        jsonEncode({
+          'grantedAt': grantedAt.millisecondsSinceEpoch,
+          'until': until.millisecondsSinceEpoch,
+          'observedAt': effectiveNow.millisecondsSinceEpoch,
+          'expired': true,
+        }),
+      );
+      return false;
+    }
+    if (observed == null ||
+        effectiveNow.difference(observed) >= const Duration(minutes: 1)) {
+      store.setString(
+        rewardedAdFreeDayKey,
+        jsonEncode({
+          'grantedAt': grantedAt.millisecondsSinceEpoch,
+          'until': until.millisecondsSinceEpoch,
+          'observedAt': effectiveNow.millisecondsSinceEpoch,
+          'expired': false,
+        }),
+      );
+    }
+    return true;
+  }
 }

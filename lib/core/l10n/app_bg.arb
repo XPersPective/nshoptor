@@ -436,5 +436,12 @@
   "previousPeriodAction": "Предишен период",
   "nextPeriodAction": "Следващ период",
   "reportSaved": "Отчетът е запазен.",
-  "reportZoom": "Увеличи"
+  "reportZoom": "Увеличи",
+  "planTrialDaysLeft": "{days, plural, one{# ден остава} other{# дни остават}}",
+  "planTrialHoursLeft": "{hours, plural, one{# час остава} other{# часа остават}}",
+  "planTrialEndedTitle": "Пробният ви период на Pro изтече",
+  "planTrialEndedBody": "Можете да продължите да използвате списъци, ръчно въвеждане и гласова обработка на устройството безплатно. Безплатният план включва 10 AI заявки за календарен месец. Изберете годишен Pro за 100 AI заявки месечно, без реклами и с резервни копия. Данните ви остават ваши.",
+  "planContinueFree": "Продължи безплатно",
+  "supportIdLabel": "ID за поддръжка",
+  "supportEmailLabel": "Поддръжка по имейл"
 }

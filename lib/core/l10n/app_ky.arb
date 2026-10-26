@@ -436,5 +436,12 @@
   "previousPeriodAction": "Мурунку мезгил",
   "nextPeriodAction": "Кийинки мезгил",
   "reportSaved": "Отчет сакталды.",
-  "reportZoom": "Чоңойтуу"
+  "reportZoom": "Чоңойтуу",
+  "planTrialDaysLeft": "{days, plural, other{# күн калды}}",
+  "planTrialHoursLeft": "{hours, plural, other{# саат калды}}",
+  "planTrialEndedTitle": "Pro сынамык мөөнөтүңүз аяктады",
+  "planTrialEndedBody": "Тизмелерди, кол менен киргизүүнү жана түзмөктөгү үн функциясын акысыз колдоно берсеңиз болот. Акысыз план ар бир календардык айда 10 AI сурамын камтыйт. Айына 100 AI сурамы, жарнамасыз колдонуу жана камдык көчүрмөлөр үчүн жылдык Pro тандаңыз. Учурдагы дайындарыңыз сакталат.",
+  "planContinueFree": "Акысыз улантуу",
+  "supportIdLabel": "Колдоо ID",
+  "supportEmailLabel": "Электрондук почта аркылуу колдоо"
 }

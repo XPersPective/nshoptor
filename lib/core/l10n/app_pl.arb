@@ -436,5 +436,12 @@
   "previousPeriodAction": "Poprzedni okres",
   "nextPeriodAction": "Następny okres",
   "reportSaved": "Raport zapisany.",
-  "reportZoom": "Powiększ"
+  "reportZoom": "Powiększ",
+  "planTrialDaysLeft": "{days, plural, one{# dzień pozostał} few{# dni pozostały} many{# dni pozostało} other{# dnia pozostało}}",
+  "planTrialHoursLeft": "{hours, plural, one{# godzina pozostała} few{# godziny pozostały} many{# godzin pozostało} other{# godziny pozostało}}",
+  "planTrialEndedTitle": "Okres próbny Pro dobiegł końca",
+  "planTrialEndedBody": "Nadal możesz bezpłatnie korzystać z list, ręcznego wprowadzania i głosu na urządzeniu. Plan Free obejmuje 10 zapytań AI w miesiącu kalendarzowym. Wybierz roczny Pro, aby otrzymywać 100 zapytań AI miesięcznie, bez reklam i z kopiami zapasowymi. Twoje dotychczasowe dane pozostaną z Tobą.",
+  "planContinueFree": "Kontynuuj bezpłatnie",
+  "supportIdLabel": "Identyfikator pomocy",
+  "supportEmailLabel": "Pomoc e-mailowa"
 }

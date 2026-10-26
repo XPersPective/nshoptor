@@ -436,5 +436,12 @@
   "previousPeriodAction": "წინა პერიოდი",
   "nextPeriodAction": "შემდეგი პერიოდი",
   "reportSaved": "ანგარიში შენახულია.",
-  "reportZoom": "გადიდება"
+  "reportZoom": "გადიდება",
+  "planTrialDaysLeft": "{days, plural, other{# დღე დარჩა}}",
+  "planTrialHoursLeft": "{hours, plural, other{# საათი დარჩა}}",
+  "planTrialEndedTitle": "Pro-ის საცდელი პერიოდი დასრულდა",
+  "planTrialEndedBody": "შეგიძლიათ უფასოდ გააგრძელოთ სიების, ხელით შეყვანისა და მოწყობილობაზე ხმის ფუნქციის გამოყენება. უფასო გეგმა კალენდარულ თვეში 10 AI მოთხოვნას მოიცავს. აირჩიეთ წლიური Pro თვეში 100 AI მოთხოვნის, რეკლამების გარეშე გამოყენებისა და სარეზერვო ასლებისთვის. თქვენი არსებული მონაცემები თქვენთან დარჩება.",
+  "planContinueFree": "უფასოდ გაგრძელება",
+  "supportIdLabel": "მხარდაჭერის ID",
+  "supportEmailLabel": "ელფოსტით მხარდაჭერა"
 }

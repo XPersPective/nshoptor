@@ -436,5 +436,12 @@
   "previousPeriodAction": "Periodo precedente",
   "nextPeriodAction": "Periodo successivo",
   "reportSaved": "Report salvato.",
-  "reportZoom": "Ingrandisci"
+  "reportZoom": "Ingrandisci",
+  "planTrialDaysLeft": "{days, plural, one{# giorno rimanente} other{# giorni rimanenti}}",
+  "planTrialHoursLeft": "{hours, plural, one{# ora rimanente} other{# ore rimanenti}}",
+  "planTrialEndedTitle": "Il periodo di prova Pro è terminato",
+  "planTrialEndedBody": "Puoi continuare a usare gratuitamente gli elenchi, l’inserimento manuale e la voce sul dispositivo. Il piano Gratis include 10 richieste AI per mese solare. Scegli Pro annuale per 100 richieste AI al mese, senza annunci e con backup. I tuoi dati esistenti restano con te.",
+  "planContinueFree": "Continua gratis",
+  "supportIdLabel": "ID di supporto",
+  "supportEmailLabel": "Assistenza via e-mail"
 }

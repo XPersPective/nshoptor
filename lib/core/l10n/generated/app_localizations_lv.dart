@@ -1404,4 +1404,44 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get reportZoom => 'Tuvināt';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dienas atlikušas',
+      one: '# diena atlikusi',
+      zero: '# dienu atlikušas',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# stundas atlikušas',
+      one: '# stunda atlikusi',
+      zero: '# stundu atlikušas',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro izmēģinājuma periods ir beidzies';
+
+  @override
+  String get planTrialEndedBody =>
+      'Joprojām bez maksas varat izmantot sarakstus, manuālu ievadi un ierīces balss funkciju. Bezmaksas plānā ir 10 AI pieprasījumi kalendārajā mēnesī. Izvēlieties gada Pro, lai saņemtu 100 AI pieprasījumus mēnesī, bez reklāmām un ar dublējumkopijām. Jūsu esošie dati paliks pie jums.';
+
+  @override
+  String get planContinueFree => 'Turpināt bez maksas';
+
+  @override
+  String get supportIdLabel => 'Atbalsta ID';
+
+  @override
+  String get supportEmailLabel => 'Atbalsts e-pastā';
 }

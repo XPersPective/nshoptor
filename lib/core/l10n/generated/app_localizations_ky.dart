@@ -1404,4 +1404,40 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get reportZoom => 'Чоңойтуу';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# күн калды',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# саат калды',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro сынамык мөөнөтүңүз аяктады';
+
+  @override
+  String get planTrialEndedBody =>
+      'Тизмелерди, кол менен киргизүүнү жана түзмөктөгү үн функциясын акысыз колдоно берсеңиз болот. Акысыз план ар бир календардык айда 10 AI сурамын камтыйт. Айына 100 AI сурамы, жарнамасыз колдонуу жана камдык көчүрмөлөр үчүн жылдык Pro тандаңыз. Учурдагы дайындарыңыз сакталат.';
+
+  @override
+  String get planContinueFree => 'Акысыз улантуу';
+
+  @override
+  String get supportIdLabel => 'Колдоо ID';
+
+  @override
+  String get supportEmailLabel => 'Электрондук почта аркылуу колдоо';
 }

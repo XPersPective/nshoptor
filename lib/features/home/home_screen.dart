@@ -112,14 +112,17 @@ class _HomeShellState extends State<HomeShell> {
   StreamSubscription<int>? _notificationSubscription;
   final _openedReminders = <int>{};
   Future<void> _reminderNavigation = Future<void>.value();
+  bool _trialNoticeShowing = false;
 
   @override
   void initState() {
     super.initState();
+    widget.subscriptions?.addListener(_trialChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) {
         await showFirstRunGuide(context);
       }
+      if (mounted) await _maybeTrialNotice();
       if (!mounted || widget.reminderScheduler != null) return;
       _notificationSubscription = LocalNotificationsScheduler.selectedReminders
           .listen((id) => unawaited(_openReminder(id)));
@@ -134,8 +137,50 @@ class _HomeShellState extends State<HomeShell> {
 
   @override
   void dispose() {
+    widget.subscriptions?.removeListener(_trialChanged);
     unawaited(_notificationSubscription?.cancel());
     super.dispose();
+  }
+
+  void _trialChanged() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(_maybeTrialNotice());
+    });
+  }
+
+  Future<void> _maybeTrialNotice() async {
+    final service = widget.subscriptions;
+    if (!mounted ||
+        _trialNoticeShowing ||
+        service == null ||
+        !service.needsTrialExpiryNotice ||
+        ModalRoute.of(context)?.isCurrent != true) {
+      return;
+    }
+    _trialNoticeShowing = true;
+    final l10n = AppLocalizations.of(context);
+    final annual = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.planTrialEndedTitle),
+        content: SingleChildScrollView(child: Text(l10n.planTrialEndedBody)),
+        actions: [
+          TextButton(
+            key: const Key('trial_continue_free'),
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(l10n.planContinueFree),
+          ),
+          FilledButton(
+            key: const Key('trial_annual_pro'),
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(l10n.plansAction),
+          ),
+        ],
+      ),
+    );
+    service.acknowledgeTrialExpiry();
+    _trialNoticeShowing = false;
+    if (mounted && annual == true) await _openPlanPage(context);
   }
 
   Future<void> _openReminder(int id) {
@@ -221,6 +266,7 @@ class _HomeShellState extends State<HomeShell> {
       badgeKey: const Key('home_plan_badge'),
       label: planLabel(l10n, tier: tier, proUnlocked: proUnlocked),
       trial: tier == Tier.pro && subs != null && subs.inTrial(),
+      remaining: trialRemainingLabel(l10n, subs),
       active: proUnlocked,
       onPressed: () => _openPlanPage(context),
     );
@@ -245,12 +291,16 @@ class _HomeShellState extends State<HomeShell> {
       ListsScreen(
         repository: widget.listRepository,
         reminderScheduler: widget.reminderScheduler,
+        bannerController: widget.bannerController,
         planBadge: _planBadgeLive(context),
         onScanReceipt: () => _createFromReceipt(context),
         receiptBusy: _inputBusy,
         onDiscover: () => _openDiscover(context),
       ),
-      HistoryPlaceholder(db: widget.db),
+      HistoryPlaceholder(
+        db: widget.db,
+        bannerController: widget.bannerController,
+      ),
       widget.settingsRepository == null || widget.languageController == null
           ? const SettingsPlaceholder()
           : SettingsScreen(
@@ -296,8 +346,6 @@ class _HomeShellState extends State<HomeShell> {
               ),
             ],
           ),
-          if (widget.bannerController != null)
-            BannerAdWidget(controller: widget.bannerController!),
         ],
       ),
     );
@@ -750,12 +798,18 @@ class _MonthlyCard extends StatelessWidget {
 
 /// Geçmiş sekmesi: dönem sekmeleri, takvim, alınan ürünler (SA-010).
 class HistoryPlaceholder extends StatelessWidget {
-  const HistoryPlaceholder({super.key, required this.db});
+  const HistoryPlaceholder({
+    super.key,
+    required this.db,
+    this.bannerController,
+  });
 
   final AppDatabase db;
+  final BannerAdController? bannerController;
 
   @override
-  Widget build(BuildContext context) => HistoryScreen(db: db);
+  Widget build(BuildContext context) =>
+      HistoryScreen(db: db, bannerController: bannerController);
 }
 
 /// Ayarlar sekmesi: T30 tam ekran gelene kadar hakkında bilgisi (gerçek içerik).

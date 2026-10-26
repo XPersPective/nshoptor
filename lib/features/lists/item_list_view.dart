@@ -113,3 +113,18 @@ List<PlannedItem>? reorderItemGroup(
   }
   return ordered;
 }
+
+/// Returns the 0-based index of the pending item row after which the single
+/// sparse list banner should be rendered, or null when no pending items exist.
+/// Never places a banner in an empty list or inside the purchased/checked group (N057).
+int? selectListBannerSlot({
+  required int pendingCount,
+  required int totalCount,
+  required int seed,
+}) {
+  if (totalCount <= 0 || pendingCount <= 0) return null;
+  if (pendingCount == 1) return 0;
+  if (pendingCount == 2) return 1;
+  if (pendingCount == 3) return 2;
+  return 2 + (seed.abs() % 2);
+}

@@ -33,18 +33,37 @@ class AppDefaults {
     final store = _store;
     return store == null || (store.getBool(_guideSeenKey) ?? false);
   }
+
   static void markGuideSeen() => _store?.setBool(_guideSeenKey, true);
 
-  static bool keepScreenAwake() => _store?.getBool(SettingsRepository.keepAwakeKey) ?? false;
-  static void setKeepScreenAwake(bool value) => _store?.setBool(SettingsRepository.keepAwakeKey, value);
+  static bool keepScreenAwake() =>
+      _store?.getBool(SettingsRepository.keepAwakeKey) ?? false;
+  static void setKeepScreenAwake(bool value) =>
+      _store?.setBool(SettingsRepository.keepAwakeKey, value);
 
   static const _listSortKey = 'lists.sort';
   static String listSort() {
     final value = _store?.getString(_listSortKey);
     return const {'date', 'title', 'manual'}.contains(value) ? value! : 'date';
   }
-  static void setListSort(String value) =>
-      _store?.setString(_listSortKey, const {'date', 'title', 'manual'}.contains(value) ? value : 'date');
+
+  static void setListSort(String value) => _store?.setString(
+    _listSortKey,
+    const {'date', 'title', 'manual'}.contains(value) ? value : 'date',
+  );
+
+  static const _datedReminderModeKey = 'reminders.dated_list_mode';
+
+  /// Tarihli listeler için varsayılan hatırlatma tercihi ('none', 'same_day', '1h').
+  static String datedReminderMode() {
+    final value = _store?.getString(_datedReminderModeKey);
+    return const {'none', 'same_day', '1h'}.contains(value) ? value! : 'none';
+  }
+
+  static void setDatedReminderMode(String value) => _store?.setString(
+    _datedReminderModeKey,
+    const {'none', 'same_day', '1h'}.contains(value) ? value : 'none',
+  );
 
   /// Ayarlar'dan varsayılan para birimi; geçersizse TRY.
   static String defaultCurrency() {
@@ -69,22 +88,84 @@ class AppDefaults {
   /// Aylık harcama limiti (minor unit, varsayılan para biriminde); yoksa null.
   static const monthlyLimitKey = 'monthly_limit_minor';
 
-  static int? monthlyLimitMinor({String? currencyCode}) => _limit(monthlyLimitKey, currencyCode);
+  static String monthPeriodKey(DateTime month) =>
+      '${month.year}-${month.month.toString().padLeft(2, '0')}';
 
-  static void setMonthlyLimitMinor(int? value, {String? currencyCode}) =>
-      _setLimit(monthlyLimitKey, value, currencyCode);
+  static DateTime weekStart(DateTime date) {
+    final local = date.toLocal();
+    return DateTime(local.year, local.month, local.day - (local.weekday - 1));
+  }
+
+  static String weekPeriodKey(DateTime week) {
+    final monday = weekStart(week);
+    return '${monday.year}-${monday.month.toString().padLeft(2, '0')}-${monday.day.toString().padLeft(2, '0')}';
+  }
+
+  static int? monthlyLimitMinor({
+    String? currencyCode,
+    DateTime? month,
+    bool explicitOnly = false,
+  }) {
+    final currency = currencyCode ?? defaultCurrency();
+    if (month != null) {
+      final specific = _limit(
+        '$monthlyLimitKey.${monthPeriodKey(month)}',
+        currency,
+      );
+      if (specific != null || explicitOnly) return specific;
+    }
+    return _limit(monthlyLimitKey, currency);
+  }
+
+  static void setMonthlyLimitMinor(
+    int? value, {
+    String? currencyCode,
+    DateTime? month,
+  }) {
+    final currency = currencyCode ?? defaultCurrency();
+    if (month != null) {
+      _setLimit('$monthlyLimitKey.${monthPeriodKey(month)}', value, currency);
+      return;
+    }
+    _setLimit(monthlyLimitKey, value, currency);
+  }
 
   /// Haftalık harcama limiti ve alışveriş başına varsayılan bütçe (minor unit).
   static const weeklyLimitKey = 'weekly_limit_minor';
   static const shoppingLimitKey = 'shopping_limit_minor';
 
-  static int? weeklyLimitMinor({String? currencyCode}) => _limit(weeklyLimitKey, currencyCode);
+  static int? weeklyLimitMinor({
+    String? currencyCode,
+    DateTime? week,
+    bool explicitOnly = false,
+  }) {
+    final currency = currencyCode ?? defaultCurrency();
+    if (week != null) {
+      final specific = _limit(
+        '$weeklyLimitKey.${weekPeriodKey(week)}',
+        currency,
+      );
+      if (specific != null || explicitOnly) return specific;
+    }
+    return _limit(weeklyLimitKey, currency);
+  }
 
-  static void setWeeklyLimitMinor(int? value, {String? currencyCode}) =>
-      _setLimit(weeklyLimitKey, value, currencyCode);
+  static void setWeeklyLimitMinor(
+    int? value, {
+    String? currencyCode,
+    DateTime? week,
+  }) {
+    final currency = currencyCode ?? defaultCurrency();
+    if (week != null) {
+      _setLimit('$weeklyLimitKey.${weekPeriodKey(week)}', value, currency);
+      return;
+    }
+    _setLimit(weeklyLimitKey, value, currency);
+  }
 
   /// Yeni listelerin varsayılan bütçesi; liste kendi bütçesini değiştirebilir.
-  static int? shoppingLimitMinor({String? currencyCode}) => _limit(shoppingLimitKey, currencyCode);
+  static int? shoppingLimitMinor({String? currencyCode}) =>
+      _limit(shoppingLimitKey, currencyCode);
 
   static void setShoppingLimitMinor(int? value, {String? currencyCode}) =>
       _setLimit(shoppingLimitKey, value, currencyCode);

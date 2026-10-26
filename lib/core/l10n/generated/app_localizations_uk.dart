@@ -1405,4 +1405,46 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get reportZoom => 'Збільшити';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# дня залишилося',
+      many: '# днів залишилося',
+      few: '# дні залишилися',
+      one: '# день залишився',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# години залишилося',
+      many: '# годин залишилося',
+      few: '# години залишилися',
+      one: '# година залишилася',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Пробний період Pro завершився';
+
+  @override
+  String get planTrialEndedBody =>
+      'Ви й надалі можете безкоштовно користуватися списками, ручним введенням і голосовою функцією на пристрої. Безкоштовний план містить 10 запитів до ШІ за календарний місяць. Виберіть річний Pro, щоб отримувати 100 запитів до ШІ на місяць, без реклами та з резервними копіями. Ваші наявні дані залишаться з вами.';
+
+  @override
+  String get planContinueFree => 'Продовжити безкоштовно';
+
+  @override
+  String get supportIdLabel => 'Ідентифікатор підтримки';
+
+  @override
+  String get supportEmailLabel => 'Підтримка електронною поштою';
 }

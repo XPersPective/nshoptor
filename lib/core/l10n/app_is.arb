@@ -436,5 +436,12 @@
   "previousPeriodAction": "Fyrra tímabil",
   "nextPeriodAction": "Næsta tímabil",
   "reportSaved": "Skýrsla vistuð.",
-  "reportZoom": "Aðdráttur"
+  "reportZoom": "Aðdráttur",
+  "planTrialDaysLeft": "{days, plural, one{# dagur eftir} few{# dagar eftir} other{# dagar eftir}}",
+  "planTrialHoursLeft": "{hours, plural, one{# klukkustund eftir} few{# klukkustundir eftir} other{# klukkustundir eftir}}",
+  "planTrialEndedTitle": "Pro-prufutímabilinu þínu er lokið",
+  "planTrialEndedBody": "Þú getur áfram notað lista, handvirka innsláttar og tal á tækinu þér að kostnaðarlausu. Ókeypis áskrift inniheldur 10 AI-beiðnir á almanaksmánuði. Veldu árlegt Pro fyrir 100 AI-beiðnir á mánuði, engar auglýsingar og afrit. Gögnin þín haldast hjá þér.",
+  "planContinueFree": "Halda áfram ókeypis",
+  "supportIdLabel": "Auðkenni þjónustuvers",
+  "supportEmailLabel": "Þjónustuaðstoð í tölvupósti"
 }

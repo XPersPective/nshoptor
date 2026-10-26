@@ -26,6 +26,8 @@
     "AI_NOTHINK": "1",
     "AI_TIMEOUT_MS": "20000",
     "QUOTA_FREE": "10",
+    // Remote 0002 migration verified 2026-10-26; retain table/counters on rollback.
+    "TRIAL_ENABLED": "1",
     "QUOTA_PRO": "100",
     "QUOTA_MAX": "300",
     "GLOBAL_DAILY": "20000",

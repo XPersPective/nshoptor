@@ -436,5 +436,12 @@
   "previousPeriodAction": "Əvvəlki dövr",
   "nextPeriodAction": "Növbəti dövr",
   "reportSaved": "Hesabat yadda saxlanıldı.",
-  "reportZoom": "Böyüt"
+  "reportZoom": "Böyüt",
+  "planTrialDaysLeft": "{days, plural, other{# gün qalıb}}",
+  "planTrialHoursLeft": "{hours, plural, other{# saat qalıb}}",
+  "planTrialEndedTitle": "Pro sınaq müddətiniz bitdi",
+  "planTrialEndedBody": "Siyahılardan, əl ilə daxil etmədən və cihazdakı səs funksiyasından pulsuz istifadə edə bilərsiniz. Pulsuz plana hər təqvim ayında 10 AI sorğusu daxildir. Ayda 100 AI sorğusu, reklamsız istifadə və ehtiyat nüsxələr üçün illik Pro seçin. Mövcud məlumatlarınız sizdə qalır.",
+  "planContinueFree": "Pulsuz davam et",
+  "supportIdLabel": "Dəstək ID-si",
+  "supportEmailLabel": "E-poçtla dəstək"
 }

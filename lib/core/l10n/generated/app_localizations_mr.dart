@@ -1399,4 +1399,40 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get reportZoom => 'झूम';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# दिवस बाकी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# तास बाकी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'तुमची Pro चाचणी संपली आहे';
+
+  @override
+  String get planTrialEndedBody =>
+      'तुम्ही याद्या, हाताने नोंद आणि डिव्हाइसवरील व्हॉइस विनामूल्य वापरत राहू शकता. Freeमध्ये प्रत्येक कॅलेंडर महिन्याला 10 AI विनंत्या आहेत. दरमहा 100 AI विनंत्या, जाहिरातींशिवाय वापर आणि बॅकअपसाठी वार्षिक Pro निवडा. तुमचा सध्याचा डेटा तुमच्याकडेच राहील.';
+
+  @override
+  String get planContinueFree => 'Free सुरू ठेवा';
+
+  @override
+  String get supportIdLabel => 'सहायता ID';
+
+  @override
+  String get supportEmailLabel => 'ईमेलद्वारे मदत';
 }

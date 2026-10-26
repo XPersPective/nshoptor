@@ -436,5 +436,12 @@
   "previousPeriodAction": "Ankstesnis laikotarpis",
   "nextPeriodAction": "Kitas laikotarpis",
   "reportSaved": "Ataskaita išsaugota.",
-  "reportZoom": "Priartinti"
+  "reportZoom": "Priartinti",
+  "planTrialDaysLeft": "{days, plural, one{# diena liko} few{# dienos liko} many{# dienų liko} other{# dienos liko}}",
+  "planTrialHoursLeft": "{hours, plural, one{# valanda liko} few{# valandos liko} many{# valandų liko} other{# valandos liko}}",
+  "planTrialEndedTitle": "Jūsų Pro bandomasis laikotarpis baigėsi",
+  "planTrialEndedBody": "Sąrašais, rankiniu įvedimu ir įrenginio balso funkcija galite naudotis nemokamai ir toliau. Nemokamas planas apima 10 DI užklausų per kalendorinį mėnesį. Pasirinkite metinį Pro ir gaukite 100 DI užklausų per mėnesį, be reklamų ir su atsarginėmis kopijomis. Esami jūsų duomenys liks su jumis.",
+  "planContinueFree": "Tęsti nemokamai",
+  "supportIdLabel": "Pagalbos ID",
+  "supportEmailLabel": "Pagalba el. paštu"
 }

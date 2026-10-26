@@ -1401,4 +1401,42 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zoom';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dage tilbage',
+      one: '# dag tilbage',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# timer tilbage',
+      one: '# time tilbage',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Din Pro-prøveperiode er slut';
+
+  @override
+  String get planTrialEndedBody =>
+      'Du kan fortsat bruge lister, manuel indtastning og tale på enheden gratis. Gratisplanen indeholder 10 AI-anmodninger pr. kalendermåned. Vælg årlig Pro for 100 AI-anmodninger om måneden, ingen annoncer og sikkerhedskopier. Dine eksisterende data forbliver dine.';
+
+  @override
+  String get planContinueFree => 'Fortsæt gratis';
+
+  @override
+  String get supportIdLabel => 'Support-id';
+
+  @override
+  String get supportEmailLabel => 'Support via e-mail';
 }

@@ -1407,4 +1407,40 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get reportZoom => 'Böyüt';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# gün qalıb',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# saat qalıb',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro sınaq müddətiniz bitdi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Siyahılardan, əl ilə daxil etmədən və cihazdakı səs funksiyasından pulsuz istifadə edə bilərsiniz. Pulsuz plana hər təqvim ayında 10 AI sorğusu daxildir. Ayda 100 AI sorğusu, reklamsız istifadə və ehtiyat nüsxələr üçün illik Pro seçin. Mövcud məlumatlarınız sizdə qalır.';
+
+  @override
+  String get planContinueFree => 'Pulsuz davam et';
+
+  @override
+  String get supportIdLabel => 'Dəstək ID-si';
+
+  @override
+  String get supportEmailLabel => 'E-poçtla dəstək';
 }

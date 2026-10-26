@@ -1402,4 +1402,40 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get reportZoom => 'Perbesar';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# hari tersisa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# jam tersisa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Masa uji coba Pro Anda berakhir';
+
+  @override
+  String get planTrialEndedBody =>
+      'Anda tetap dapat menggunakan daftar, input manual, dan suara di perangkat secara gratis. Paket Gratis mencakup 10 permintaan AI per bulan kalender. Pilih Pro tahunan untuk 100 permintaan AI per bulan, tanpa iklan, dan dengan pencadangan. Data Anda tetap tersimpan.';
+
+  @override
+  String get planContinueFree => 'Lanjutkan Gratis';
+
+  @override
+  String get supportIdLabel => 'ID Dukungan';
+
+  @override
+  String get supportEmailLabel => 'Dukungan Email';
 }

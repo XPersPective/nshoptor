@@ -4,6 +4,7 @@ import '../../core/money/format_locale.dart';
 import '../../core/text/list_title.dart';
 
 import 'package:flutter/material.dart';
+import 'package:napp_ads/napp_ads.dart';
 
 import '../../core/theme/brand_wordmark.dart';
 
@@ -18,6 +19,7 @@ import 'list_detail_screen.dart';
 import 'list_repository.dart';
 import 'list_scheduling.dart';
 import 'reminders/reminder_scheduler.dart';
+import 'reminders/reminders_repository.dart';
 import 'list_status.dart';
 import '../voice_input/dictation_mic_button.dart';
 
@@ -42,6 +44,7 @@ class ListsScreen extends StatefulWidget {
     required this.repository,
     this.onOpenListDetail,
     this.reminderScheduler,
+    this.bannerController,
     this.onScanReceipt,
     this.receiptBusy = false,
     this.onDiscover,
@@ -52,6 +55,7 @@ class ListsScreen extends StatefulWidget {
 
   /// Test dikişi: liste detayına geçirilir (hatırlatma akışı).
   final ReminderScheduler? reminderScheduler;
+  final BannerAdController? bannerController;
 
   /// Liste kartına dokununca detay ekranını açar; verilmediyse dahili olarak
   /// ListDetailScreen push edilir.
@@ -197,6 +201,7 @@ class _ListsScreenState extends State<ListsScreen> {
                       emptyText: l10n.listsEmpty,
                       onOpenListDetail: widget.onOpenListDetail,
                       reminderScheduler: widget.reminderScheduler,
+                      bannerController: widget.bannerController,
                     ),
                     _ListsTab(
                       repository: widget.repository,
@@ -214,6 +219,7 @@ class _ListsScreenState extends State<ListsScreen> {
                       emptyText: l10n.listsEmpty,
                       onOpenListDetail: widget.onOpenListDetail,
                       reminderScheduler: widget.reminderScheduler,
+                      bannerController: widget.bannerController,
                     ),
                     _ListsTab(
                       repository: widget.repository,
@@ -231,6 +237,7 @@ class _ListsScreenState extends State<ListsScreen> {
                       emptyText: l10n.listsEmpty,
                       onOpenListDetail: widget.onOpenListDetail,
                       reminderScheduler: widget.reminderScheduler,
+                      bannerController: widget.bannerController,
                     ),
                   ],
                 ),
@@ -324,6 +331,7 @@ class _ListsScreenState extends State<ListsScreen> {
         context,
         widget.repository,
         reminderScheduler: widget.reminderScheduler,
+        bannerController: widget.bannerController,
       );
     } finally {
       if (mounted) setState(() => _editorOpen = false);
@@ -349,6 +357,7 @@ Future<void> showListEditor(
   ListRepository repository, {
   ShoppingList? existing,
   ReminderScheduler? reminderScheduler,
+  BannerAdController? bannerController,
 }) async {
   final id = await showModalBottomSheet<int>(
     context: context,
@@ -357,6 +366,7 @@ Future<void> showListEditor(
       repository: repository,
       l10n: AppLocalizations.of(context),
       existing: existing,
+      reminderScheduler: reminderScheduler,
     ),
   );
   if (existing == null && id != null && context.mounted) {
@@ -367,6 +377,7 @@ Future<void> showListEditor(
           listRepository: repository,
           listId: id,
           reminderScheduler: reminderScheduler,
+          bannerController: bannerController,
         ),
       ),
     );
@@ -385,6 +396,7 @@ class _ListsTab extends StatelessWidget {
     required this.emptyText,
     required this.onOpenListDetail,
     this.reminderScheduler,
+    this.bannerController,
   });
 
   final ListRepository repository;
@@ -397,6 +409,7 @@ class _ListsTab extends StatelessWidget {
   final String emptyText;
   final void Function(BuildContext, int)? onOpenListDetail;
   final ReminderScheduler? reminderScheduler;
+  final BannerAdController? bannerController;
 
   @override
   Widget build(BuildContext context) {
@@ -461,6 +474,7 @@ class _ListsTab extends StatelessWidget {
               list: lists[index],
               onOpen: onOpenListDetail,
               reminderScheduler: reminderScheduler,
+              bannerController: bannerController,
             ),
           );
         }
@@ -491,6 +505,7 @@ class _ListsTab extends StatelessWidget {
                 list: lists[index],
                 onOpen: onOpenListDetail,
                 reminderScheduler: reminderScheduler,
+                bannerController: bannerController,
               ),
             ),
           ),
@@ -507,12 +522,14 @@ class _ListCard extends StatelessWidget {
     required this.list,
     this.onOpen,
     this.reminderScheduler,
+    this.bannerController,
   });
 
   final ListRepository repository;
   final ShoppingList list;
   final void Function(BuildContext, int)? onOpen;
   final ReminderScheduler? reminderScheduler;
+  final BannerAdController? bannerController;
 
   @override
   Widget build(BuildContext context) {
@@ -584,6 +601,7 @@ class _ListCard extends StatelessWidget {
                     listRepository: repository,
                     listId: list.id,
                     reminderScheduler: reminderScheduler,
+                    bannerController: bannerController,
                   ),
                 ),
               );
@@ -647,6 +665,7 @@ class _ListCard extends StatelessWidget {
             repository: repository,
             l10n: l10n,
             existing: list,
+            reminderScheduler: reminderScheduler,
           ),
         );
       case 'duplicate':
@@ -715,11 +734,13 @@ class _ListEditorSheet extends StatefulWidget {
     required this.repository,
     required this.l10n,
     this.existing,
+    this.reminderScheduler,
   });
 
   final ListRepository repository;
   final AppLocalizations l10n;
   final ShoppingList? existing;
+  final ReminderScheduler? reminderScheduler;
 
   @override
   State<_ListEditorSheet> createState() => _ListEditorSheetState();
@@ -732,6 +753,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
   late final TextEditingController _budget = TextEditingController();
   String? _budgetPrefilled;
   late DateTime? _plannedAt = widget.existing?.plannedAt;
+  late String _reminderMode = AppDefaults.datedReminderMode();
   late String _currency =
       widget.existing?.currencyCode ?? AppDefaults.defaultCurrency();
   late final TextEditingController _note = TextEditingController(
@@ -869,6 +891,42 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
         _note.text.trim().isEmpty ? null : _note.text.trim(),
       );
     }
+    AppDefaults.setDatedReminderMode(_reminderMode);
+    final targetId = createdId ?? existing!.id;
+    final scheduler = widget.reminderScheduler;
+    if (scheduler != null) {
+      try {
+        final repo = RemindersRepository(widget.repository.db, scheduler);
+        if (_plannedAt == null || _reminderMode == 'none') {
+          if (existing != null && _plannedAt == null) {
+            final active = await repo.activeForList(targetId);
+            if (active != null) await repo.cancelReminder(active.id);
+          }
+        } else {
+          final granted = await scheduler.ensurePermission();
+          if (granted) {
+            final desired = _reminderMode == '1h'
+                ? _plannedAt!.subtract(const Duration(hours: 1))
+                : _plannedAt!;
+            final now = DateTime.now();
+            final fireAt = desired.isAfter(now)
+                ? desired
+                : now.add(const Duration(seconds: 30));
+            final displayName = title.isNotEmpty
+                ? title
+                : (existing?.generatedTitle ?? widget.l10n.listsTitle);
+            await repo.setReminder(
+              listId: targetId,
+              title: widget.l10n.reminderTitle,
+              body: widget.l10n.reminderBody(displayName),
+              atUtc: fireAt.toUtc(),
+            );
+          }
+        }
+      } catch (_) {
+        // Optional reminder scheduling never blocks saving the list (N063/N064).
+      }
+    }
     if (mounted) Navigator.of(context).pop(createdId);
   }
 
@@ -932,6 +990,40 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
               enabled: !_saving,
               onChanged: (value) => setState(() => _plannedAt = value),
             ),
+            if (_plannedAt != null) ...[
+              const SizedBox(height: 8),
+              Wrap(
+                key: const Key('dated_list_reminder_mode'),
+                spacing: 8,
+                runSpacing: 4,
+                children: [
+                  ChoiceChip(
+                    key: const Key('dated_reminder_none'),
+                    label: Text(l10n.cancelButton),
+                    selected: _reminderMode == 'none',
+                    onSelected: _saving
+                        ? null
+                        : (_) => setState(() => _reminderMode = 'none'),
+                  ),
+                  ChoiceChip(
+                    key: const Key('dated_reminder_same_day'),
+                    label: Text(l10n.setReminderAction),
+                    selected: _reminderMode == 'same_day',
+                    onSelected: _saving
+                        ? null
+                        : (_) => setState(() => _reminderMode = 'same_day'),
+                  ),
+                  ChoiceChip(
+                    key: const Key('dated_reminder_1h'),
+                    label: Text('${l10n.setReminderAction} (-1h)'),
+                    selected: _reminderMode == '1h',
+                    onSelected: _saving
+                        ? null
+                        : (_) => setState(() => _reminderMode = '1h'),
+                  ),
+                ],
+              ),
+            ],
             const SizedBox(height: 12),
             ExpansionTile(
               key: const Key('list_details_expand'),

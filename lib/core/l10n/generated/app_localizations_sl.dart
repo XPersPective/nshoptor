@@ -1402,4 +1402,46 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get reportZoom => 'Povečaj';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dni preostanejo',
+      few: '# dnevi preostanejo',
+      two: '# dneva preostaneta',
+      one: '# dan preostane',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ur preostane',
+      few: '# ure preostanejo',
+      two: '# uri preostaneta',
+      one: '# ura preostane',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Preizkusno obdobje Pro se je končalo';
+
+  @override
+  String get planTrialEndedBody =>
+      'Sezname, ročni vnos in glasovne funkcije v napravi lahko še naprej uporabljate brezplačno. Brezplačni paket vključuje 10 zahtev za AI na koledarski mesec. Izberite letni Pro za 100 zahtev za AI na mesec, brez oglasov in z varnostnimi kopijami. Vaši obstoječi podatki ostanejo vaši.';
+
+  @override
+  String get planContinueFree => 'Nadaljuj brezplačno';
+
+  @override
+  String get supportIdLabel => 'ID podpore';
+
+  @override
+  String get supportEmailLabel => 'Podpora po e-pošti';
 }

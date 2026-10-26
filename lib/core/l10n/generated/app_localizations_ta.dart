@@ -1413,4 +1413,40 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get reportZoom => 'பெரிதாக்கு';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# நாட்கள் மீதம்',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# மணிநேரம் மீதம்',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'உங்கள் Pro சோதனைக் காலம் முடிந்தது';
+
+  @override
+  String get planTrialEndedBody =>
+      'பட்டியல்கள், கைமுறை உள்ளீடு மற்றும் சாதனத்திலுள்ள குரல் அம்சத்தைத் தொடர்ந்து இலவசமாகப் பயன்படுத்தலாம். Free திட்டத்தில் ஒவ்வொரு காலண்டர் மாதமும் 10 AI கோரிக்கைகள் உள்ளன. மாதத்திற்கு 100 AI கோரிக்கைகள், விளம்பரமில்லா பயன்பாடு மற்றும் காப்புப்பிரதிகளுக்கு ஆண்டு Pro-ஐத் தேர்ந்தெடுக்கவும். உங்கள் தற்போதைய தரவு உங்களிடமே இருக்கும்.';
+
+  @override
+  String get planContinueFree => 'Free-இல் தொடரவும்';
+
+  @override
+  String get supportIdLabel => 'ஆதரவு ID';
+
+  @override
+  String get supportEmailLabel => 'மின்னஞ்சல் ஆதரவு';
 }

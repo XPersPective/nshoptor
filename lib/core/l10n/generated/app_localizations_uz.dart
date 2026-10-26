@@ -1410,4 +1410,40 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get reportZoom => 'Kattalashtirish';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# kun qoldi',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# soat qoldi',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro sinov muddati tugadi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Roʻyxatlar, qoʻlda kiritish va qurilmadagi ovoz funksiyasidan bepul foydalanishda davom etishingiz mumkin. Bepul rejaga har kalendar oyida 10 ta AI soʻrovi kiradi. Oyiga 100 ta AI soʻrovi, reklamasiz foydalanish va zaxira nusxalar uchun yillik Proʼni tanlang. Mavjud maʼlumotlaringiz oʻzingizda qoladi.';
+
+  @override
+  String get planContinueFree => 'Bepul davom etish';
+
+  @override
+  String get supportIdLabel => 'Yordam ID-si';
+
+  @override
+  String get supportEmailLabel => 'Elektron pochta orqali yordam';
 }

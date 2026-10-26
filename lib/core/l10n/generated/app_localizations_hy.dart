@@ -1408,4 +1408,42 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get reportZoom => 'Մեծացնել';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# օր է մնացել',
+      one: '# օր է մնացել',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ժամ է մնացել',
+      one: '# ժամ է մնացել',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro-ի փորձաշրջանն ավարտվել է';
+
+  @override
+  String get planTrialEndedBody =>
+      'Կարող եք անվճար շարունակել օգտվել ցուցակներից, ձեռքով մուտքագրումից և սարքի ձայնային հնարավորությունից։ Անվճար պլանը ներառում է ամսական 10 AI հարցում։ Ընտրեք տարեկան Pro՝ ամսական 100 AI հարցման, առանց գովազդի և պահուստային պատճենների համար։ Ձեր տվյալները կմնան ձեզ հետ։';
+
+  @override
+  String get planContinueFree => 'Շարունակել անվճար';
+
+  @override
+  String get supportIdLabel => 'Աջակցության ID';
+
+  @override
+  String get supportEmailLabel => 'Աջակցություն էլ. փոստով';
 }

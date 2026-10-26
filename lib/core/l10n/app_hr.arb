@@ -436,5 +436,12 @@
   "previousPeriodAction": "Prethodno razdoblje",
   "nextPeriodAction": "Sljedeće razdoblje",
   "reportSaved": "Izvješće je spremljeno.",
-  "reportZoom": "Povećaj"
+  "reportZoom": "Povećaj",
+  "planTrialDaysLeft": "{days, plural, one{# dan preostao} few{# dana preostala} other{# dana preostalo}}",
+  "planTrialHoursLeft": "{hours, plural, one{# sat preostao} few{# sata preostala} other{# sati preostalo}}",
+  "planTrialEndedTitle": "Probno razdoblje Proa je završilo",
+  "planTrialEndedBody": "I dalje možete besplatno koristiti popise, ručni unos i glas na uređaju. Besplatni plan uključuje 10 AI zahtjeva po kalendarskom mjesecu. Odaberite godišnji Pro za 100 AI zahtjeva mjesečno, bez oglasa i uz sigurnosne kopije. Vaši postojeći podaci ostaju vaši.",
+  "planContinueFree": "Nastavi besplatno",
+  "supportIdLabel": "ID podrške",
+  "supportEmailLabel": "Podrška e-poštom"
 }

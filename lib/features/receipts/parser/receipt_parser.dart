@@ -341,7 +341,7 @@ class ReceiptParser {
       if (_hasTrailingPrice(text)) {
         // A receipt can print the name above a quantity × price row. That
         // numeric continuation is not an independent product name.
-        final quantity = _quantityPricePattern.firstMatch(text);
+        final quantity = _quantityPrices(text);
         merged.add(
           OcrLine(
             text: quantity?.start == 0 && nameBuffer.isNotEmpty
@@ -384,15 +384,40 @@ class ReceiptParser {
     caseSensitive: false,
   );
 
+  /// Invoice columns can state quantity and unit without a multiplication
+  /// sign. Require the explicit unit and both printed prices; bare numeric
+  /// product codes and package sizes must not manufacture a quantity.
+  RegExp get _quantityColumnsPattern => RegExp(
+    r'(?<![\p{L}\p{N}.,])(\d+(?:[.,]\d+)?)\s*'
+    r'(kg|gr|g|lt|l|ml|adet|ad|pcs|piece|paket|pkg)\s+'
+    '($_amountPattern)'
+    '(?:\\s*(?:${Currency.all.map((c) => c.code).join('|')}|TL))?'
+    '\\s+($_amountPattern)\$',
+    caseSensitive: false,
+    unicode: true,
+  );
+
+  RegExpMatch? _quantityPrices(String text) =>
+      _quantityPricePattern.firstMatch(text) ??
+      _quantityColumnsPattern.firstMatch(text);
+
   ReceiptLineCandidate? _parseProductLine(String text) {
-    final matches = _quantityPricePattern.allMatches(text);
-    if (matches.isNotEmpty) {
-      final m = matches.last;
+    final m = _quantityPrices(text);
+    if (m != null) {
       final name = text.substring(0, m.start).trim();
       if (name.isEmpty) return null;
       final qty = DecimalFixed.tryParse(m.group(1)!.replaceAll(',', '.'));
       final unitPrice = _minorFrom(m.group(3)!);
       final lineTotal = _minorFrom(m.group(4)!);
+      final consistent =
+          qty != null &&
+          qty.isPositive &&
+          unitPrice != null &&
+          lineTotal != null &&
+          ((qty * DecimalFixed.fromInt(unitPrice)).rescale(0).unscaled -
+                      BigInt.from(lineTotal))
+                  .abs() <=
+              BigInt.from(reconciliationToleranceMinor);
       return ReceiptLineCandidate(
         rawText: text,
         name: name,
@@ -403,14 +428,13 @@ class ReceiptParser {
           'gr' || 'g' => UnitCode.gram,
           'lt' || 'l' => UnitCode.litre,
           'ml' => UnitCode.mililitre,
-          'adet' || 'x' => UnitCode.adet,
+          'adet' || 'ad' || 'pcs' || 'piece' || 'x' => UnitCode.adet,
+          'paket' || 'pkg' => UnitCode.paket,
           _ => null,
         },
         unitPriceMinor: unitPrice,
         lineTotalMinor: lineTotal ?? 0,
-        confidence: (qty != null && unitPrice != null && lineTotal != null)
-            ? 'high'
-            : 'medium',
+        confidence: consistent ? 'high' : 'medium',
       );
     }
 

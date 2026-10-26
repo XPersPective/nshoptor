@@ -1408,4 +1408,42 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get reportZoom => 'Inzoomen';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dagen over',
+      one: '# dag over',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# uur over',
+      one: '# uur over',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Je Pro-proefperiode is afgelopen';
+
+  @override
+  String get planTrialEndedBody =>
+      'Je kunt lijsten, handmatige invoer en spraak op je apparaat gratis blijven gebruiken. Gratis bevat 10 AI-verzoeken per kalendermaand. Kies jaarlijks Pro voor 100 AI-verzoeken per maand, geen advertenties en back-ups. Je bestaande gegevens blijven van jou.';
+
+  @override
+  String get planContinueFree => 'Gratis doorgaan';
+
+  @override
+  String get supportIdLabel => 'Support-ID';
+
+  @override
+  String get supportEmailLabel => 'E-mailondersteuning';
 }

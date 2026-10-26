@@ -436,5 +436,12 @@
   "previousPeriodAction": "Өмнөх хугацаа",
   "nextPeriodAction": "Дараагийн хугацаа",
   "reportSaved": "Тайлан хадгалагдлаа.",
-  "reportZoom": "Томруулах"
+  "reportZoom": "Томруулах",
+  "planTrialDaysLeft": "{days, plural, other{# өдөр үлдлээ}}",
+  "planTrialHoursLeft": "{hours, plural, other{# цаг үлдлээ}}",
+  "planTrialEndedTitle": "Таны Pro туршилтын хугацаа дууслаа",
+  "planTrialEndedBody": "Та жагсаалт, гараар оруулах болон төхөөрөмж дээрх дуу хоолойн функцийг үнэгүй ашигласаар байж болно. Үнэгүй багцад хуанлийн сар бүр 10 AI хүсэлт багтана. Сард 100 AI хүсэлт, заргүй хэрэглээ, нөөц хуулбар авахын тулд жилийн Pro-г сонгоно уу. Таны одоогийн өгөгдөл хэвээр үлдэнэ.",
+  "planContinueFree": "Үнэгүй үргэлжлүүлэх",
+  "supportIdLabel": "Тусламжийн ID",
+  "supportEmailLabel": "Имэйлээр тусламж авах"
 }

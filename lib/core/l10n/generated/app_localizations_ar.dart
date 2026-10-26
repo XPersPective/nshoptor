@@ -1385,4 +1385,50 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reportZoom => 'تكبير';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# يوم متبقٍ',
+      many: '# يومًا متبقيًا',
+      few: '# أيام متبقية',
+      two: 'يومان متبقيان',
+      one: 'يوم واحد متبقٍ',
+      zero: 'لا أيام متبقية',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ساعة متبقية',
+      many: '# ساعة متبقية',
+      few: '# ساعات متبقية',
+      two: 'ساعتان متبقيتان',
+      one: 'ساعة واحدة متبقية',
+      zero: 'لا ساعات متبقية',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'انتهت الفترة التجريبية لـ Pro';
+
+  @override
+  String get planTrialEndedBody =>
+      'يمكنك مواصلة استخدام القوائم والإدخال اليدوي والصوت على الجهاز مجانًا. تشمل الخطة المجانية 10 طلبات ذكاء اصطناعي في كل شهر تقويمي. اختر Pro السنوية للحصول على 100 طلب ذكاء اصطناعي شهريًا، بلا إعلانات ومع نسخ احتياطية. ستبقى بياناتك الحالية معك.';
+
+  @override
+  String get planContinueFree => 'المتابعة بالخطة المجانية';
+
+  @override
+  String get supportIdLabel => 'معرّف الدعم';
+
+  @override
+  String get supportEmailLabel => 'الدعم عبر البريد الإلكتروني';
 }

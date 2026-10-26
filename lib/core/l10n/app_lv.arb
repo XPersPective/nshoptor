@@ -436,5 +436,12 @@
   "previousPeriodAction": "Iepriekšējais periods",
   "nextPeriodAction": "Nākamais periods",
   "reportSaved": "Pārskats saglabāts.",
-  "reportZoom": "Tuvināt"
+  "reportZoom": "Tuvināt",
+  "planTrialDaysLeft": "{days, plural, zero{# dienu atlikušas} one{# diena atlikusi} other{# dienas atlikušas}}",
+  "planTrialHoursLeft": "{hours, plural, zero{# stundu atlikušas} one{# stunda atlikusi} other{# stundas atlikušas}}",
+  "planTrialEndedTitle": "Pro izmēģinājuma periods ir beidzies",
+  "planTrialEndedBody": "Joprojām bez maksas varat izmantot sarakstus, manuālu ievadi un ierīces balss funkciju. Bezmaksas plānā ir 10 AI pieprasījumi kalendārajā mēnesī. Izvēlieties gada Pro, lai saņemtu 100 AI pieprasījumus mēnesī, bez reklāmām un ar dublējumkopijām. Jūsu esošie dati paliks pie jums.",
+  "planContinueFree": "Turpināt bez maksas",
+  "supportIdLabel": "Atbalsta ID",
+  "supportEmailLabel": "Atbalsts e-pastā"
 }

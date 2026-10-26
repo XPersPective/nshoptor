@@ -1405,4 +1405,40 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get reportZoom => 'ಜೂಮ್';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# ದಿನ ಬಾಕಿ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ಗಂಟೆ ಬಾಕಿ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ನಿಮ್ಮ Pro ಪ್ರಯೋಗ ಅವಧಿ ಮುಗಿದಿದೆ';
+
+  @override
+  String get planTrialEndedBody =>
+      'ಪಟ್ಟಿಗಳು, ಕೈಯಾರೆ ನಮೂದು ಮತ್ತು ಸಾಧನದಲ್ಲಿನ ಧ್ವನಿ ವೈಶಿಷ್ಟ್ಯವನ್ನು ನೀವು ಉಚಿತವಾಗಿ ಬಳಸಬಹುದು. Freeನಲ್ಲಿ ಪ್ರತಿ ಕ್ಯಾಲೆಂಡರ್ ತಿಂಗಳಿಗೆ 10 AI ವಿನಂತಿಗಳಿವೆ. ತಿಂಗಳಿಗೆ 100 AI ವಿನಂತಿಗಳು, ಜಾಹೀರಾತುಗಳಿಲ್ಲದ ಬಳಕೆ ಮತ್ತು ಬ್ಯಾಕಪ್‌ಗಳಿಗಾಗಿ ವಾರ್ಷಿಕ Pro ಆಯ್ಕೆಮಾಡಿ. ನಿಮ್ಮ ಹಳೆಯ ಡೇಟಾ ನಿಮ್ಮೊಂದಿಗೇ ಇರುತ್ತದೆ.';
+
+  @override
+  String get planContinueFree => 'Free ಆಗಿ ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get supportIdLabel => 'ಬೆಂಬಲ ID';
+
+  @override
+  String get supportEmailLabel => 'ಇಮೇಲ್ ಬೆಂಬಲ';
 }

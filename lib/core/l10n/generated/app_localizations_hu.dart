@@ -1404,4 +1404,42 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get reportZoom => 'Nagyítás';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# nap van hátra',
+      one: '# nap van hátra',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# óra van hátra',
+      one: '# óra van hátra',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Lejárt a Pro próbaidőszakod';
+
+  @override
+  String get planTrialEndedBody =>
+      'Továbbra is ingyen használhatod a listákat, a kézi bevitelt és az eszközön működő hangfunkciót. Az ingyenes csomag naptári hónaponként 10 AI-kérést tartalmaz. Válaszd az éves Prót havi 100 AI-kérésért, reklámok nélkül és biztonsági mentésekkel. A meglévő adataid megmaradnak.';
+
+  @override
+  String get planContinueFree => 'Folytatás ingyenesen';
+
+  @override
+  String get supportIdLabel => 'Támogatási azonosító';
+
+  @override
+  String get supportEmailLabel => 'E-mailes támogatás';
 }

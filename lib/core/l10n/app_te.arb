@@ -436,5 +436,12 @@
   "previousPeriodAction": "మునుపటి కాలం",
   "nextPeriodAction": "తదుపరి కాలం",
   "reportSaved": "నివేదిక సేవ్ చేయబడింది.",
-  "reportZoom": "జూమ్"
+  "reportZoom": "జూమ్",
+  "planTrialDaysLeft": "{days, plural, one{# రోజు మిగిలింది} other{# రోజులు మిగిలాయి}}",
+  "planTrialHoursLeft": "{hours, plural, one{# గంట మిగిలింది} other{# గంటలు మిగిలాయి}}",
+  "planTrialEndedTitle": "మీ Pro ట్రయల్ ముగిసింది",
+  "planTrialEndedBody": "మీరు జాబితాలు, మాన్యువల్ ఎంట్రీ, పరికరంలోని వాయిస్‌ను ఉచితంగా కొనసాగించవచ్చు. Freeలో ప్రతి క్యాలెండర్ నెలకు 10 AI అభ్యర్థనలు ఉంటాయి. నెలకు 100 AI అభ్యర్థనలు, ప్రకటనలు లేని వినియోగం, బ్యాకప్‌ల కోసం వార్షిక Pro ఎంచుకోండి. మీ ప్రస్తుత డేటా మీ వద్దే ఉంటుంది.",
+  "planContinueFree": "Freeతో కొనసాగండి",
+  "supportIdLabel": "మద్దతు ID",
+  "supportEmailLabel": "ఇమెయిల్ మద్దతు"
 }

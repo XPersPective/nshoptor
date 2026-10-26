@@ -1395,4 +1395,40 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get reportZoom => 'لویول';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# ورځې پاتې دي',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# ساعتونه پاتې دي',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ستاسو د Pro ازمایښتي موده پای ته ورسېده';
+
+  @override
+  String get planTrialEndedBody =>
+      'تاسو لا هم کولای شئ لېستونه، لاسي ننوتل او د وسیلې غږ په وړیا توګه وکاروئ. Free په هره کلیزې میاشت کې ۱۰ د AI غوښتنې لري. د میاشتې ۱۰۰ د AI غوښتنو، بې‌اعلانه کارونې او شاتړ لپاره کلنی Pro وټاکئ. ستاسو اوسني معلومات به درسره پاتې شي.';
+
+  @override
+  String get planContinueFree => 'په وړیا توګه دوام ورکړئ';
+
+  @override
+  String get supportIdLabel => 'د ملاتړ پېژند';
+
+  @override
+  String get supportEmailLabel => 'د برېښنالیک له لارې ملاتړ';
 }

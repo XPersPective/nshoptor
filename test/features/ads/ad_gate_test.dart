@@ -183,6 +183,40 @@ void main() {
     expect(restored.canShowRewarded(DateTime(2026, 10, 9, 18)), isFalse);
     expect(restored.canShowRewarded(DateTime(2026, 10, 10, 8)), isTrue);
   });
+
+  test(
+    'rewarded ad-free day lasts until local midnight, is idempotent, and resists clock rollback',
+    () {
+      final store = SettingsStore();
+      final afternoon = DateTime(2026, 10, 24, 15, 30);
+      expect(AdGate.isRewardedAdFree(store, afternoon), isFalse);
+
+      final until1 = AdGate.grantRewardedAdFreeDay(store, afternoon);
+      final until2 = AdGate.grantRewardedAdFreeDay(
+        store,
+        afternoon.add(const Duration(minutes: 10)),
+      );
+      expect(until2, until1);
+      expect(
+        AdGate.isRewardedAdFree(store, DateTime(2026, 10, 24, 23, 59, 59)),
+        isTrue,
+      );
+
+      // Clock rollback before grant time is rejected.
+      expect(
+        AdGate.isRewardedAdFree(store, DateTime(2026, 10, 24, 10, 0)),
+        isFalse,
+      );
+
+      // At local midnight, the ad-free reward expires and stays expired after rollback.
+      final midnight = DateTime(2026, 10, 25, 0, 0);
+      expect(AdGate.isRewardedAdFree(store, midnight), isFalse);
+      expect(
+        AdGate.isRewardedAdFree(store, DateTime(2026, 10, 24, 22, 0)),
+        isFalse,
+      );
+    },
+  );
 }
 
 class _Memory implements PreferenceAdapter {

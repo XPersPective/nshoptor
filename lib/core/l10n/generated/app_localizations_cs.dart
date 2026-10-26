@@ -1401,4 +1401,44 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get reportZoom => 'Přiblížit';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# dní zbývá',
+      few: '# dny zbývají',
+      one: '# den zbývá',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# hodin zbývá',
+      few: '# hodiny zbývají',
+      one: '# hodina zbývá',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Zkušební období Pro skončilo';
+
+  @override
+  String get planTrialEndedBody =>
+      'Seznamy, ruční zadávání i hlasové funkce v zařízení můžete dál používat zdarma. Bezplatný tarif zahrnuje 10 požadavků na AI za kalendářní měsíc. Zvolte roční Pro pro 100 požadavků na AI měsíčně, bez reklam a se zálohami. Vaše stávající data vám zůstanou.';
+
+  @override
+  String get planContinueFree => 'Pokračovat zdarma';
+
+  @override
+  String get supportIdLabel => 'ID podpory';
+
+  @override
+  String get supportEmailLabel => 'Podpora e-mailem';
 }

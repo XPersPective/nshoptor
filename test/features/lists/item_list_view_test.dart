@@ -75,4 +75,23 @@ void main() {
       'D',
     ]);
   });
+
+  test(
+    'selectListBannerSlot places at most one sparse banner in pending items and never in purchased group',
+    () {
+      expect(
+        selectListBannerSlot(pendingCount: 0, totalCount: 0, seed: 1),
+        isNull,
+      );
+      expect(
+        selectListBannerSlot(pendingCount: 0, totalCount: 5, seed: 1),
+        isNull,
+      );
+      expect(selectListBannerSlot(pendingCount: 1, totalCount: 3, seed: 1), 0);
+      expect(selectListBannerSlot(pendingCount: 2, totalCount: 3, seed: 1), 1);
+      expect(selectListBannerSlot(pendingCount: 3, totalCount: 5, seed: 1), 2);
+      expect(selectListBannerSlot(pendingCount: 4, totalCount: 6, seed: 2), 2);
+      expect(selectListBannerSlot(pendingCount: 4, totalCount: 6, seed: 3), 3);
+    },
+  );
 }

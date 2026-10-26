@@ -1404,4 +1404,40 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get reportZoom => 'जुम';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# दिन बाँकी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# घण्टा बाँकी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'तपाईंको Pro परीक्षण अवधि सकियो';
+
+  @override
+  String get planTrialEndedBody =>
+      'तपाईं सूची, म्यानुअल प्रविष्टि र उपकरणमै चल्ने आवाज सुविधा निःशुल्क प्रयोग गर्न सक्नुहुन्छ। Free मा प्रत्येक पात्रो महिनामा १० AI अनुरोध समावेश छन्। महिनामा १०० AI अनुरोध, विज्ञापनरहित प्रयोग र ब्याकअपका लागि वार्षिक Pro छान्नुहोस्। तपाईंको हालको डेटा तपाईंसँगै रहनेछ।';
+
+  @override
+  String get planContinueFree => 'Free मै जारी राख्नुहोस्';
+
+  @override
+  String get supportIdLabel => 'सहायता ID';
+
+  @override
+  String get supportEmailLabel => 'इमेल सहायता';
 }

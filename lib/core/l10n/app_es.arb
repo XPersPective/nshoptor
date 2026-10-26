@@ -436,5 +436,12 @@
   "previousPeriodAction": "Periodo anterior",
   "nextPeriodAction": "Periodo siguiente",
   "reportSaved": "Informe guardado.",
-  "reportZoom": "Ampliar"
+  "reportZoom": "Ampliar",
+  "planTrialDaysLeft": "{days, plural, one{# día restante} other{# días restantes}}",
+  "planTrialHoursLeft": "{hours, plural, one{# hora restante} other{# horas restantes}}",
+  "planTrialEndedTitle": "Tu prueba de Pro ha terminado",
+  "planTrialEndedBody": "Puedes seguir usando las listas, la entrada manual y la voz en el dispositivo gratis. El plan Gratis incluye 10 solicitudes de IA por mes natural. Elige Pro anual para tener 100 solicitudes de IA al mes, sin anuncios y con copias de seguridad. Tus datos actuales seguirán contigo.",
+  "planContinueFree": "Continuar gratis",
+  "supportIdLabel": "ID de soporte",
+  "supportEmailLabel": "Soporte por correo electrónico"
 }

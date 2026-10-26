@@ -436,5 +436,12 @@
   "previousPeriodAction": "Алдыңғы кезең",
   "nextPeriodAction": "Келесі кезең",
   "reportSaved": "Есеп сақталды.",
-  "reportZoom": "Үлкейту"
+  "reportZoom": "Үлкейту",
+  "planTrialDaysLeft": "{days, plural, other{# күн қалды}}",
+  "planTrialHoursLeft": "{hours, plural, other{# сағат қалды}}",
+  "planTrialEndedTitle": "Pro сынақ мерзімі аяқталды",
+  "planTrialEndedBody": "Тізімдерді, қолмен енгізуді және құрылғыдағы дауысты тегін пайдалана беруге болады. Тегін жоспар әр күнтізбелік айда 10 AI сұрауын қамтиды. Айына 100 AI сұрауы, жарнамасыз пайдалану және сақтық көшірмелер үшін жылдық Pro таңдаңыз. Қолданыстағы деректеріңіз сақталады.",
+  "planContinueFree": "Тегін жалғастыру",
+  "supportIdLabel": "Қолдау ID-і",
+  "supportEmailLabel": "Электрондық пошта арқылы қолдау"
 }

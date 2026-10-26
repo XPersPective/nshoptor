@@ -123,4 +123,54 @@ void main() {
       );
     }
   }
+
+  testWidgets('camera help dialog renders visual guide diagram and closes', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('tr'),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: Builder(
+          builder: (context) => Scaffold(
+            body: Row(
+              children: [
+                IconButton(
+                  key: const Key('open_receipt_help'),
+                  onPressed: () => showScanHelpDialog(context, isReceipt: true),
+                  icon: const Icon(Icons.help_outline),
+                ),
+                IconButton(
+                  key: const Key('open_shelf_help'),
+                  onPressed: () =>
+                      showScanHelpDialog(context, isReceipt: false),
+                  icon: const Icon(Icons.help_outline),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.byKey(const Key('open_receipt_help')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('scan_help_dialog')), findsOneWidget);
+    expect(find.byKey(const Key('scan_guide_visual')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('scan_help_close')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('scan_help_dialog')), findsNothing);
+
+    await tester.tap(find.byKey(const Key('open_shelf_help')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('scan_help_dialog')), findsOneWidget);
+    expect(find.byKey(const Key('scan_guide_visual')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('scan_help_close')));
+    await tester.pumpAndSettle();
+  });
 }

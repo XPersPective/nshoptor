@@ -436,5 +436,12 @@
   "previousPeriodAction": "ਪਿਛਲੀ ਮਿਆਦ",
   "nextPeriodAction": "ਅਗਲੀ ਮਿਆਦ",
   "reportSaved": "ਰਿਪੋਰਟ ਸੁਰੱਖਿਅਤ ਕੀਤੀ ਗਈ।",
-  "reportZoom": "ਜ਼ੂਮ"
+  "reportZoom": "ਜ਼ੂਮ",
+  "planTrialDaysLeft": "{days, plural, other{# ਦਿਨ ਬਾਕੀ}}",
+  "planTrialHoursLeft": "{hours, plural, other{# ਘੰਟੇ ਬਾਕੀ}}",
+  "planTrialEndedTitle": "ਤੁਹਾਡੀ Pro ਅਜ਼ਮਾਇਸ਼ ਖਤਮ ਹੋ ਗਈ ਹੈ",
+  "planTrialEndedBody": "ਤੁਸੀਂ ਸੂਚੀਆਂ, ਹੱਥੀਂ ਦਰਜ ਕਰਨਾ ਅਤੇ ਡਿਵਾਈਸ ਉੱਤੇ ਆਵਾਜ਼ ਮੁਫ਼ਤ ਵਰਤ ਸਕਦੇ ਹੋ। Free ਵਿੱਚ ਹਰ ਕੈਲੰਡਰ ਮਹੀਨੇ 10 AI ਬੇਨਤੀਆਂ ਸ਼ਾਮਲ ਹਨ। ਹਰ ਮਹੀਨੇ 100 AI ਬੇਨਤੀਆਂ, ਵਿਗਿਆਪਨ ਰਹਿਤ ਵਰਤੋਂ ਅਤੇ ਬੈਕਅੱਪ ਲਈ ਸਾਲਾਨਾ Pro ਚੁਣੋ। ਤੁਹਾਡਾ ਮੌਜੂਦਾ ਡਾਟਾ ਤੁਹਾਡੇ ਕੋਲ ਹੀ ਰਹੇਗਾ।",
+  "planContinueFree": "Free ਨਾਲ ਜਾਰੀ ਰੱਖੋ",
+  "supportIdLabel": "ਸਹਾਇਤਾ ID",
+  "supportEmailLabel": "ਈਮੇਲ ਸਹਾਇਤਾ"
 }

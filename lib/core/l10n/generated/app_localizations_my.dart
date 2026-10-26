@@ -1406,4 +1406,40 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get reportZoom => 'ချဲ့ရန်';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# ရက်ကျန်',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# နာရီကျန်',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'သင်၏ Pro အစမ်းသုံးကာလ ကုန်ဆုံးသွားပါပြီ';
+
+  @override
+  String get planTrialEndedBody =>
+      'စာရင်းများ၊ ကိုယ်တိုင်ထည့်သွင်းခြင်းနှင့် စက်ပေါ်ရှိ အသံလုပ်ဆောင်ချက်ကို အခမဲ့ ဆက်လက်အသုံးပြုနိုင်ပါသည်။ အခမဲ့အစီအစဉ်တွင် ပြက္ခဒိန်တစ်လလျှင် AI တောင်းဆိုမှု ၁၀ ခု ပါဝင်သည်။ တစ်လလျှင် AI တောင်းဆိုမှု ၁၀၀ ခု၊ ကြော်ငြာမပါဘဲ အသုံးပြုမှုနှင့် အရန်သိမ်းဆည်းမှုများအတွက် နှစ်စဉ် Pro ကို ရွေးပါ။ သင့်ဒေတာများကို ဆက်လက်ထိန်းသိမ်းထားမည်။';
+
+  @override
+  String get planContinueFree => 'အခမဲ့ ဆက်လုပ်ရန်';
+
+  @override
+  String get supportIdLabel => 'ပံ့ပိုးမှု ID';
+
+  @override
+  String get supportEmailLabel => 'အီးမေးလ်ဖြင့် ပံ့ပိုးမှု';
 }

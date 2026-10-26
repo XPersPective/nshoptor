@@ -1402,4 +1402,46 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get reportZoom => 'Увеличить';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# дня осталось',
+      many: '# дней осталось',
+      few: '# дня осталось',
+      one: '# день остался',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# часа осталось',
+      many: '# часов осталось',
+      few: '# часа осталось',
+      one: '# час остался',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Пробный период Pro завершён';
+
+  @override
+  String get planTrialEndedBody =>
+      'Вы можете и дальше бесплатно пользоваться списками, ручным вводом и голосом на устройстве. Бесплатный план включает 10 запросов к ИИ за календарный месяц. Выберите годовой Pro, чтобы получать 100 запросов к ИИ в месяц, без рекламы и с резервными копиями. Ваши данные останутся с вами.';
+
+  @override
+  String get planContinueFree => 'Продолжить бесплатно';
+
+  @override
+  String get supportIdLabel => 'Идентификатор поддержки';
+
+  @override
+  String get supportEmailLabel => 'Поддержка по электронной почте';
 }

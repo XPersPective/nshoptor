@@ -1401,4 +1401,40 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get reportZoom => 'Үлкейту';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# күн қалды',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# сағат қалды',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro сынақ мерзімі аяқталды';
+
+  @override
+  String get planTrialEndedBody =>
+      'Тізімдерді, қолмен енгізуді және құрылғыдағы дауысты тегін пайдалана беруге болады. Тегін жоспар әр күнтізбелік айда 10 AI сұрауын қамтиды. Айына 100 AI сұрауы, жарнамасыз пайдалану және сақтық көшірмелер үшін жылдық Pro таңдаңыз. Қолданыстағы деректеріңіз сақталады.';
+
+  @override
+  String get planContinueFree => 'Тегін жалғастыру';
+
+  @override
+  String get supportIdLabel => 'Қолдау ID-і';
+
+  @override
+  String get supportEmailLabel => 'Электрондық пошта арқылы қолдау';
 }

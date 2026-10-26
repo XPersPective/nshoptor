@@ -276,6 +276,15 @@ class _ShoppingSection extends StatelessWidget {
           '${l.reportTotalSpent}: ${report.spent.display(text.money)}',
           style: Theme.of(context).textTheme.titleLarge,
         ),
+        if (report.list.budgetMinorUnits != null &&
+            report.spent.known &&
+            !report.spent.unknown &&
+            report.spent.minor > report.list.budgetMinorUnits!)
+          Text(
+            '${l.budgetLabel}: ${l.monthlyLimitOver(text.money(report.spent.minor - report.list.budgetMinorUnits!))}',
+            key: Key('report_over_limit_$index'),
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
       ],
     );
   }

@@ -436,5 +436,12 @@
   "previousPeriodAction": "Nakaraang panahon",
   "nextPeriodAction": "Susunod na panahon",
   "reportSaved": "Na-save ang ulat.",
-  "reportZoom": "I-zoom"
+  "reportZoom": "I-zoom",
+  "planTrialDaysLeft": "{days, plural, other{# araw pa}}",
+  "planTrialHoursLeft": "{hours, plural, other{# oras pa}}",
+  "planTrialEndedTitle": "Tapos na ang iyong Pro trial",
+  "planTrialEndedBody": "Maaari mo pa ring gamitin nang libre ang mga listahan, manu-manong paglalagay, at voice sa device. May 10 AI request bawat buwan sa Free. Piliin ang taunang Pro para sa 100 AI request bawat buwan, walang ads, at may mga backup. Mananatili sa iyo ang dati mong data.",
+  "planContinueFree": "Magpatuloy nang Libre",
+  "supportIdLabel": "Support ID",
+  "supportEmailLabel": "Suporta sa email"
 }

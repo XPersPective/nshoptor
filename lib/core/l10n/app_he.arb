@@ -436,5 +436,12 @@
   "previousPeriodAction": "התקופה הקודמת",
   "nextPeriodAction": "התקופה הבאה",
   "reportSaved": "הדוח נשמר.",
-  "reportZoom": "הגדלה"
+  "reportZoom": "הגדלה",
+  "planTrialDaysLeft": "{days, plural, one{# יום נותר} two{# ימים נותרו} other{# ימים נותרו}}",
+  "planTrialHoursLeft": "{hours, plural, one{# שעה נותרה} two{# שעות נותרו} other{# שעות נותרו}}",
+  "planTrialEndedTitle": "תקופת הניסיון של Pro הסתיימה",
+  "planTrialEndedBody": "אפשר להמשיך להשתמש בחינם ברשימות, בהזנה ידנית ובקול במכשיר. התוכנית החינמית כוללת 10 בקשות AI בכל חודש קלנדרי. בחרו Pro שנתי לקבלת 100 בקשות AI בחודש, ללא פרסומות ועם גיבויים. הנתונים הקיימים שלכם יישארו אצלכם.",
+  "planContinueFree": "המשך בחינם",
+  "supportIdLabel": "מזהה תמיכה",
+  "supportEmailLabel": "תמיכה בדוא״ל"
 }

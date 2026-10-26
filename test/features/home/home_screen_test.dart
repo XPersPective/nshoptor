@@ -12,6 +12,7 @@ import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/lists_screen.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
 import 'package:nshoptor/features/history/insights/spending_screen.dart';
+import 'package:nshoptor/features/history/reports/report_preview_screen.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
 import 'package:nshoptor/features/subscription/subscription_service.dart';
 import 'package:nshoptor/features/subscription/subscription_paywall.dart';
@@ -184,7 +185,7 @@ void main() {
     );
   }
 
-  testWidgets('history opens completed detail and monthly card preserves USD', (
+  testWidgets('history opens read-only report and monthly card preserves USD', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
@@ -224,12 +225,12 @@ void main() {
     await settle(tester);
     await tester.tap(find.text('Geçmiş').last);
     await settle(tester);
-    await tester.tap(find.byKey(const Key('history_period_tab_1')));
+    await tester.tap(find.byKey(const Key('history_span_month')));
     await settle(tester);
     await tester.tap(find.byKey(Key('history_list_$id')));
     await settle(tester);
     expect(
-      tester.widget<ListDetailScreen>(find.byType(ListDetailScreen)).listId,
+      tester.widget<ReportPreviewScreen>(find.byType(ReportPreviewScreen)).document.shopping.single.list.id,
       id,
     );
     expect((await ListRepository(db).getById(id)).status, 'completed');

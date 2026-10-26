@@ -436,5 +436,12 @@
   "previousPeriodAction": "Perioada anterioară",
   "nextPeriodAction": "Perioada următoare",
   "reportSaved": "Raport salvat.",
-  "reportZoom": "Mărește"
+  "reportZoom": "Mărește",
+  "planTrialDaysLeft": "{days, plural, one{# zi rămasă} few{# zile rămase} other{# de zile rămase}}",
+  "planTrialHoursLeft": "{hours, plural, one{# oră rămasă} few{# ore rămase} other{# de ore rămase}}",
+  "planTrialEndedTitle": "Perioada de probă Pro s-a încheiat",
+  "planTrialEndedBody": "Poți folosi în continuare gratuit listele, introducerea manuală și vocea pe dispozitiv. Planul Gratuit include 10 solicitări AI pe lună calendaristică. Alege Pro anual pentru 100 de solicitări AI pe lună, fără reclame și cu copii de siguranță. Datele existente rămân la tine.",
+  "planContinueFree": "Continuă gratuit",
+  "supportIdLabel": "ID de asistență",
+  "supportEmailLabel": "Asistență prin e-mail"
 }

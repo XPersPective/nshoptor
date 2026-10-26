@@ -436,5 +436,12 @@
   "previousPeriodAction": "이전 기간",
   "nextPeriodAction": "다음 기간",
   "reportSaved": "보고서가 저장되었습니다.",
-  "reportZoom": "확대"
+  "reportZoom": "확대",
+  "planTrialDaysLeft": "{days, plural, other{#일 남음}}",
+  "planTrialHoursLeft": "{hours, plural, other{#시간 남음}}",
+  "planTrialEndedTitle": "Pro 체험 기간이 종료되었습니다",
+  "planTrialEndedBody": "목록, 직접 입력, 기기 내 음성 기능은 계속 무료로 이용할 수 있습니다. Free에는 월별 10회의 AI 요청이 포함됩니다. 연간 Pro를 선택하면 매월 AI 요청 100회, 광고 제거, 백업을 이용할 수 있습니다. 기존 데이터는 그대로 유지됩니다.",
+  "planContinueFree": "Free로 계속하기",
+  "supportIdLabel": "지원 ID",
+  "supportEmailLabel": "이메일 지원"
 }

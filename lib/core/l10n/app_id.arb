@@ -436,5 +436,12 @@
   "previousPeriodAction": "Periode sebelumnya",
   "nextPeriodAction": "Periode berikutnya",
   "reportSaved": "Laporan tersimpan.",
-  "reportZoom": "Perbesar"
+  "reportZoom": "Perbesar",
+  "planTrialDaysLeft": "{days, plural, other{# hari tersisa}}",
+  "planTrialHoursLeft": "{hours, plural, other{# jam tersisa}}",
+  "planTrialEndedTitle": "Masa uji coba Pro Anda berakhir",
+  "planTrialEndedBody": "Anda tetap dapat menggunakan daftar, input manual, dan suara di perangkat secara gratis. Paket Gratis mencakup 10 permintaan AI per bulan kalender. Pilih Pro tahunan untuk 100 permintaan AI per bulan, tanpa iklan, dan dengan pencadangan. Data Anda tetap tersimpan.",
+  "planContinueFree": "Lanjutkan Gratis",
+  "supportIdLabel": "ID Dukungan",
+  "supportEmailLabel": "Dukungan Email"
 }

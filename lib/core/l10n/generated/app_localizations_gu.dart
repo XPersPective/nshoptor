@@ -1398,4 +1398,42 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get reportZoom => 'ઝૂમ';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# દિવસો બાકી',
+      one: '# દિવસ બાકી',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# કલાકો બાકી',
+      one: '# કલાક બાકી',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'તમારી Pro અજમાયશ પૂરી થઈ ગઈ છે';
+
+  @override
+  String get planTrialEndedBody =>
+      'તમે યાદીઓ, હાથથી દાખલ કરવું અને ઉપકરણ પર વૉઇસનો મફતમાં ઉપયોગ ચાલુ રાખી શકો છો. Freeમાં દર કૅલેન્ડર મહિને 10 AI વિનંતીઓ મળે છે. દર મહિને 100 AI વિનંતીઓ, જાહેરાતો વિના અને બૅકઅપ માટે વાર્ષિક Pro પસંદ કરો. તમારો હાલનો ડેટા તમારી પાસે જ રહેશે.';
+
+  @override
+  String get planContinueFree => 'Free સાથે ચાલુ રાખો';
+
+  @override
+  String get supportIdLabel => 'સપોર્ટ ID';
+
+  @override
+  String get supportEmailLabel => 'ઈમેલ સપોર્ટ';
 }

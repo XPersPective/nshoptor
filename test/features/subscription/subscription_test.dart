@@ -11,25 +11,11 @@ import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:napp_core/napp_core.dart' hide AppTheme;
-import 'package:napp_pro/napp_pro.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/core/theme/app_theme.dart';
 import 'package:nshoptor/features/subscription/subscription_purchase_adapter.dart';
 import 'package:nshoptor/features/subscription/subscription_paywall.dart';
 import 'package:nshoptor/features/subscription/subscription_service.dart';
-
-class _FakeAdapter implements StoreAdapter {
-  final controller = StreamController<List<StorePurchaseUpdate>>.broadcast();
-  @override
-  Stream<List<StorePurchaseUpdate>> get updates => controller.stream;
-  @override
-  Future<List<StoreProduct>> queryProducts(Set<String> productIds) async =>
-      const [];
-  @override
-  Future<void> buy(StoreProduct product) async {}
-  @override
-  Future<void> restore() async {}
-}
 
 class _NoStoreService extends SubscriptionService {
   _NoStoreService(SettingsStore store) : super(store: store);
@@ -180,14 +166,6 @@ List<GooglePlayProductDetails> _products(
     ),
   );
 }
-
-StorePurchaseUpdate _update(String productId) => StorePurchaseUpdate(
-  purchase: StorePurchase(
-    productId: productId,
-    status: StorePurchaseStatus.purchased,
-  ),
-  complete: () async {},
-);
 
 void main() {
   setUpAll(() async {

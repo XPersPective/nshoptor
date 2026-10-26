@@ -1411,4 +1411,43 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get reportZoom => 'Sondeza';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# izinsuku ezisele',
+      one: '# usuku olusele',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# amahora asele',
+      one: '# ihora elisele',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle =>
+      'Isikhathi sakho sesivivinyo se-Pro siphelile';
+
+  @override
+  String get planTrialEndedBody =>
+      'Usengaqhubeka usebenzisa uhlu, ukufaka ngesandla nezwi kudivayisi mahhala. Uhlelo Lwamahhala lufaka izicelo ze-AI eziyi-10 ngenyanga yekhalenda. Khetha i-Pro yonyaka ukuze uthole izicelo ze-AI eziyi-100 ngenyanga, ngaphandle kwezikhangiso nangamakhophi ayisipele. Idatha yakho ekhona izohlala inawe.';
+
+  @override
+  String get planContinueFree => 'Qhubeka Mahhala';
+
+  @override
+  String get supportIdLabel => 'I-ID Yokwesekwa';
+
+  @override
+  String get supportEmailLabel => 'Ukusekelwa nge-imeyili';
 }

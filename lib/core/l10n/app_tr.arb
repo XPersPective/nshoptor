@@ -457,5 +457,12 @@
   "previousPeriodAction": "Önceki dönem",
   "nextPeriodAction": "Sonraki dönem",
   "reportSaved": "Rapor kaydedildi.",
-  "reportZoom": "Büyüt"
+  "reportZoom": "Büyüt",
+  "planTrialDaysLeft": "{days, plural, other{# gün kaldı}}",
+  "planTrialHoursLeft": "{hours, plural, other{# saat kaldı}}",
+  "planTrialEndedTitle": "Pro denemen sona erdi",
+  "planTrialEndedBody": "Listeleri, elle giriş yapmayı ve cihazda çalışan ses özelliğini ücretsiz kullanmaya devam edebilirsin. Ücretsiz planda takvim ayı başına 10 yapay zekâ isteği bulunur. Ayda 100 yapay zekâ isteği, reklamsız kullanım ve yedekleme için yıllık Pro’yu seç. Mevcut verilerin sende kalır.",
+  "planContinueFree": "Ücretsiz devam et",
+  "supportIdLabel": "Destek kimliği",
+  "supportEmailLabel": "E-posta ile destek"
 }

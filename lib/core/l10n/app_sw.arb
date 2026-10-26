@@ -436,5 +436,12 @@
   "previousPeriodAction": "Kipindi kilichotangulia",
   "nextPeriodAction": "Kipindi kinachofuata",
   "reportSaved": "Ripoti imehifadhiwa.",
-  "reportZoom": "Kuza"
+  "reportZoom": "Kuza",
+  "planTrialDaysLeft": "{days, plural, one{# siku imebaki} other{# siku zimebaki}}",
+  "planTrialHoursLeft": "{hours, plural, one{# saa imebaki} other{# saa zimebaki}}",
+  "planTrialEndedTitle": "Kipindi chako cha majaribio cha Pro kimeisha",
+  "planTrialEndedBody": "Unaweza kuendelea kutumia orodha, kuingiza mwenyewe na sauti kwenye kifaa bila malipo. Mpango wa Bure una maombi 10 ya AI kwa mwezi wa kalenda. Chagua Pro ya mwaka kwa maombi 100 ya AI kwa mwezi, bila matangazo na ikiwa na nakala rudufu. Data yako iliyopo itabaki nawe.",
+  "planContinueFree": "Endelea Bila Malipo",
+  "supportIdLabel": "Kitambulisho cha Usaidizi",
+  "supportEmailLabel": "Usaidizi kwa Barua Pepe"
 }

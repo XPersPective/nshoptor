@@ -1409,4 +1409,44 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get reportZoom => 'Mărește';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# de zile rămase',
+      few: '# zile rămase',
+      one: '# zi rămasă',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# de ore rămase',
+      few: '# ore rămase',
+      one: '# oră rămasă',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Perioada de probă Pro s-a încheiat';
+
+  @override
+  String get planTrialEndedBody =>
+      'Poți folosi în continuare gratuit listele, introducerea manuală și vocea pe dispozitiv. Planul Gratuit include 10 solicitări AI pe lună calendaristică. Alege Pro anual pentru 100 de solicitări AI pe lună, fără reclame și cu copii de siguranță. Datele existente rămân la tine.';
+
+  @override
+  String get planContinueFree => 'Continuă gratuit';
+
+  @override
+  String get supportIdLabel => 'ID de asistență';
+
+  @override
+  String get supportEmailLabel => 'Asistență prin e-mail';
 }

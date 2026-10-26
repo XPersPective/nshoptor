@@ -79,20 +79,27 @@ Future<void> main() async {
   )..load();
 
   // Pro/Max abonelikleri (ADR-004 §6); AI kotası sunucuda doğrulanır.
-  final subscriptions = SubscriptionService(store: store)..load();
+  final subscriptions = SubscriptionService(store: store)
+    ..load()
+    ..initializeTrial();
   SubscriptionService.instance = subscriptions;
   AiService.client = AiClient(
     store: store,
     baseUrl: EnvConfig.aiBaseUrl,
     credential: () => subscriptions.credential,
+    trialFirstOpenedAt: () => subscriptions.trialFirstOpenedAt,
+    onTrialWindow: (window) => subscriptions.observeTrialServer(
+      endsAt: window.endsAt,
+      serverNow: window.serverNow,
+    ),
   );
-  // İlk 7 gün reklamsız (AdGate), geçici Pro ya da abonelik.
+  // İlk 7 gün tam Pro, abonelik ya da o günün ödüllü reklamsız hakkı (N055/N056).
   bool adFree() =>
-      AdGate.inGrace(store, DateTime.now()) ||
       SubscriptionService.adFree(
         temporaryPro: proController.isPro,
         tier: subscriptions.tier,
-      );
+      ) ||
+      AdGate.isRewardedAdFree(store, DateTime.now());
 
   // Reklam (standart §5.2): kalıcı durum → oturum → onay/SDK → politika
   // Pro'yu izler; UMP onayı SDK başlatmasından ÖNCE.
@@ -163,8 +170,8 @@ Future<void> main() async {
               policy: policy,
               rewardedManager: rewardedManager,
               onRewardEarned: () {
-                proController.grantTemporaryPro(const Duration(hours: 24));
-                AdPolicyPersistence.save(adsAdapter, policy); // once a day
+                AdGate.grantRewardedAdFreeDay(store, DateTime.now());
+                syncAds();
               },
             ),
     ),

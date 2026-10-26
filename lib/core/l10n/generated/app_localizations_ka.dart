@@ -1401,4 +1401,40 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get reportZoom => 'გადიდება';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# დღე დარჩა',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# საათი დარჩა',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro-ის საცდელი პერიოდი დასრულდა';
+
+  @override
+  String get planTrialEndedBody =>
+      'შეგიძლიათ უფასოდ გააგრძელოთ სიების, ხელით შეყვანისა და მოწყობილობაზე ხმის ფუნქციის გამოყენება. უფასო გეგმა კალენდარულ თვეში 10 AI მოთხოვნას მოიცავს. აირჩიეთ წლიური Pro თვეში 100 AI მოთხოვნის, რეკლამების გარეშე გამოყენებისა და სარეზერვო ასლებისთვის. თქვენი არსებული მონაცემები თქვენთან დარჩება.';
+
+  @override
+  String get planContinueFree => 'უფასოდ გაგრძელება';
+
+  @override
+  String get supportIdLabel => 'მხარდაჭერის ID';
+
+  @override
+  String get supportEmailLabel => 'ელფოსტით მხარდაჭერა';
 }

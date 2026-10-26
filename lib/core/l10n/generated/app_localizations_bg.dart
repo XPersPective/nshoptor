@@ -1408,4 +1408,42 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get reportZoom => 'Увеличи';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# дни остават',
+      one: '# ден остава',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# часа остават',
+      one: '# час остава',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Пробният ви период на Pro изтече';
+
+  @override
+  String get planTrialEndedBody =>
+      'Можете да продължите да използвате списъци, ръчно въвеждане и гласова обработка на устройството безплатно. Безплатният план включва 10 AI заявки за календарен месец. Изберете годишен Pro за 100 AI заявки месечно, без реклами и с резервни копия. Данните ви остават ваши.';
+
+  @override
+  String get planContinueFree => 'Продължи безплатно';
+
+  @override
+  String get supportIdLabel => 'ID за поддръжка';
+
+  @override
+  String get supportEmailLabel => 'Поддръжка по имейл';
 }

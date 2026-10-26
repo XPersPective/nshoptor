@@ -45,8 +45,9 @@ class _SpendingScreenState extends State<SpendingScreen> {
   late DateTime _month = DateTime(_now.year, _now.month);
   late final String _currency =
       widget.currencyCode ?? AppDefaults.defaultCurrency();
-  late final Future<List<SpendPoint>> _points = InsightsRepository(widget.db)
-      .completedSpend(_currency);
+  late final Future<List<SpendPoint>> _points = InsightsRepository(
+    widget.db,
+  ).completedSpend(_currency);
   late final _analytics = (() async {
     final repo = InsightsRepository(widget.db);
     return (
@@ -58,8 +59,27 @@ class _SpendingScreenState extends State<SpendingScreen> {
   })();
   late final _data = (() async =>
       (points: await _points, analytics: await _analytics))();
-  late int? _limit = AppDefaults.monthlyLimitMinor(currencyCode: _currency);
-  late int? _weekLimit = AppDefaults.weeklyLimitMinor(currencyCode: _currency);
+  DateTime get _nextWeek =>
+      AppDefaults.weekStart(_now).add(const Duration(days: 7));
+  DateTime get _nextMonth => DateTime(_now.year, _now.month + 1);
+  late int? _limit = AppDefaults.monthlyLimitMinor(
+    currencyCode: _currency,
+    month: _month,
+  );
+  late int? _weekLimit = AppDefaults.weeklyLimitMinor(
+    currencyCode: _currency,
+    week: _now,
+  );
+  late int? _nextWeekLimit = AppDefaults.weeklyLimitMinor(
+    currencyCode: _currency,
+    week: _nextWeek,
+    explicitOnly: true,
+  );
+  late int? _nextMonthLimit = AppDefaults.monthlyLimitMinor(
+    currencyCode: _currency,
+    month: _nextMonth,
+    explicitOnly: true,
+  );
   late int? _shoppingLimit = AppDefaults.shoppingLimitMinor(
     currencyCode: _currency,
   );
@@ -68,8 +88,9 @@ class _SpendingScreenState extends State<SpendingScreen> {
 
   Future<List<PurchaseStats>> _loadSpan(SpendSpan span) {
     final r = span.range(_now);
-    return InsightsRepository(widget.db)
-        .purchaseStats(_currency, from: r.from.toUtc(), to: r.to.toUtc());
+    return InsightsRepository(
+      widget.db,
+    ).purchaseStats(_currency, from: r.from.toUtc(), to: r.to.toUtc());
   }
 
   String _money(int minor) => formatMoney(
@@ -89,6 +110,16 @@ class _SpendingScreenState extends State<SpendingScreen> {
         l10n.monthlyLimitTitle,
         l10n.monthlyLimitHelp,
         _limit,
+      ),
+      _LimitKind.nextWeek => (
+        '${l10n.weeklyLimitTitle} (+1)',
+        l10n.weeklyLimitHelp,
+        _nextWeekLimit,
+      ),
+      _LimitKind.nextMonth => (
+        '${l10n.monthlyLimitTitle} (+1)',
+        l10n.monthlyLimitHelp,
+        _nextMonthLimit,
       ),
       _LimitKind.shopping => (
         l10n.shoppingLimitTitle,
@@ -163,10 +194,57 @@ class _SpendingScreenState extends State<SpendingScreen> {
     switch (kind) {
       case _LimitKind.week:
         AppDefaults.setWeeklyLimitMinor(value, currencyCode: _currency);
+        AppDefaults.setWeeklyLimitMinor(
+          value,
+          currencyCode: _currency,
+          week: _now,
+        );
         setState(() => _weekLimit = value);
       case _LimitKind.month:
-        AppDefaults.setMonthlyLimitMinor(value, currencyCode: _currency);
-        setState(() => _limit = value);
+        final isCurrentMonth =
+            _month.year == _now.year && _month.month == _now.month;
+        if (isCurrentMonth) {
+          AppDefaults.setMonthlyLimitMinor(value, currencyCode: _currency);
+        }
+        AppDefaults.setMonthlyLimitMinor(
+          value,
+          currencyCode: _currency,
+          month: _month,
+        );
+        setState(() {
+          _limit = AppDefaults.monthlyLimitMinor(
+            currencyCode: _currency,
+            month: _month,
+          );
+          _nextMonthLimit = AppDefaults.monthlyLimitMinor(
+            currencyCode: _currency,
+            month: _nextMonth,
+            explicitOnly: true,
+          );
+        });
+      case _LimitKind.nextWeek:
+        AppDefaults.setWeeklyLimitMinor(
+          value,
+          currencyCode: _currency,
+          week: _nextWeek,
+        );
+        setState(() => _nextWeekLimit = value);
+      case _LimitKind.nextMonth:
+        AppDefaults.setMonthlyLimitMinor(
+          value,
+          currencyCode: _currency,
+          month: _nextMonth,
+        );
+        setState(() {
+          _nextMonthLimit = value;
+          if (_month.year == _nextMonth.year &&
+              _month.month == _nextMonth.month) {
+            _limit = AppDefaults.monthlyLimitMinor(
+              currencyCode: _currency,
+              month: _month,
+            );
+          }
+        });
       case _LimitKind.shopping:
         AppDefaults.setShoppingLimitMinor(value, currencyCode: _currency);
         setState(() => _shoppingLimit = value);
@@ -272,12 +350,13 @@ class _SpendingScreenState extends State<SpendingScreen> {
                             key: const Key('month_prev'),
                             tooltip: l10n.previousMonthAction,
                             icon: const Icon(Icons.chevron_left),
-                            onPressed: () => setState(
-                              () => _month = DateTime(
-                                _month.year,
-                                _month.month - 1,
-                              ),
-                            ),
+                            onPressed: () => setState(() {
+                              _month = DateTime(_month.year, _month.month - 1);
+                              _limit = AppDefaults.monthlyLimitMinor(
+                                currencyCode: _currency,
+                                month: _month,
+                              );
+                            }),
                           ),
                           Expanded(
                             child: Text(
@@ -290,12 +369,13 @@ class _SpendingScreenState extends State<SpendingScreen> {
                             key: const Key('month_next'),
                             tooltip: l10n.nextMonthAction,
                             icon: const Icon(Icons.chevron_right),
-                            onPressed: () => setState(
-                              () => _month = DateTime(
-                                _month.year,
-                                _month.month + 1,
-                              ),
-                            ),
+                            onPressed: () => setState(() {
+                              _month = DateTime(_month.year, _month.month + 1);
+                              _limit = AppDefaults.monthlyLimitMinor(
+                                currencyCode: _currency,
+                                month: _month,
+                              );
+                            }),
                           ),
                         ],
                       ),
@@ -329,6 +409,59 @@ class _SpendingScreenState extends State<SpendingScreen> {
                       ),
                     ],
                   ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Card(
+                key: const Key('future_limits_card'),
+                child: ExpansionTile(
+                  key: const Key('future_limits_tile'),
+                  leading: const Icon(Icons.event_repeat_outlined),
+                  title: Text(
+                    '${l10n.nextPeriodAction} · ${l10n.budgetLabel}',
+                  ),
+                  children: [
+                    ListTile(
+                      key: const Key('next_weekly_limit_tile'),
+                      title: Text(
+                        '${l10n.weeklyLimitTitle} (${ml.formatShortDate(_nextWeek)})',
+                      ),
+                      subtitle: Text(
+                        _nextWeekLimit == null
+                            ? l10n.weeklyLimitNone
+                            : _money(_nextWeekLimit!),
+                      ),
+                      trailing: TextButton(
+                        key: const Key('next_weekly_limit_edit'),
+                        onPressed: () => _editLimit(_LimitKind.nextWeek),
+                        child: Text(
+                          _nextWeekLimit == null
+                              ? l10n.monthlyLimitSet
+                              : l10n.monthlyLimitChange,
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                      key: const Key('next_monthly_limit_tile'),
+                      title: Text(
+                        '${l10n.monthlyLimitTitle} (${ml.formatMonthYear(_nextMonth)})',
+                      ),
+                      subtitle: Text(
+                        _nextMonthLimit == null
+                            ? l10n.monthlyLimitNone
+                            : _money(_nextMonthLimit!),
+                      ),
+                      trailing: TextButton(
+                        key: const Key('next_monthly_limit_edit'),
+                        onPressed: () => _editLimit(_LimitKind.nextMonth),
+                        child: Text(
+                          _nextMonthLimit == null
+                              ? l10n.monthlyLimitSet
+                              : l10n.monthlyLimitChange,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 8),
@@ -466,8 +599,9 @@ class _SpendingScreenState extends State<SpendingScreen> {
                   String quantity(DecimalFixed value) =>
                       value.toDbString().replaceAll(
                         '.',
-                        MoneySeparators.forLocaleCode(formatLocaleCode(context))
-                            .decimal,
+                        MoneySeparators.forLocaleCode(
+                          formatLocaleCode(context),
+                        ).decimal,
                       );
                   final children = <Widget>[
                     _BarChartCard(
@@ -542,9 +676,9 @@ class _SpendingScreenState extends State<SpendingScreen> {
                               children: [
                                 Text(
                                   byCategory ? category(p.name) : p.name,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium,
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.titleMedium,
                                 ),
                                 Text(
                                   '${l10n.purchasedQuantity}: ${quantity(p.quantity)} ${unitDisplayNameFromDb(p.unitCode, l10n)}',
@@ -598,7 +732,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
   }
 }
 
-enum _LimitKind { week, month, shopping }
+enum _LimitKind { week, month, nextWeek, nextMonth, shopping }
 
 /// Bir bakışta harcama: bu hafta, bu ay, bu yıl; limit varsa ilerleme çubuğu.
 class _OverviewCard extends StatelessWidget {

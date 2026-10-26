@@ -436,5 +436,12 @@
   "previousPeriodAction": "ช่วงก่อนหน้า",
   "nextPeriodAction": "ช่วงถัดไป",
   "reportSaved": "บันทึกรายงานแล้ว",
-  "reportZoom": "ซูม"
+  "reportZoom": "ซูม",
+  "planTrialDaysLeft": "{days, plural, other{# วันเหลือ}}",
+  "planTrialHoursLeft": "{hours, plural, other{# ชั่วโมงเหลือ}}",
+  "planTrialEndedTitle": "ช่วงทดลองใช้ Pro ของคุณสิ้นสุดแล้ว",
+  "planTrialEndedBody": "คุณยังใช้รายการ การป้อนข้อมูลด้วยตนเอง และเสียงบนอุปกรณ์ได้ฟรีต่อไป แพ็กเกจ Free มีคำขอ AI 10 ครั้งต่อเดือนปฏิทิน เลือก Pro รายปีเพื่อรับคำขอ AI 100 ครั้งต่อเดือน ไม่มีโฆษณา และมีข้อมูลสำรอง ข้อมูลเดิมของคุณยังอยู่ครบ",
+  "planContinueFree": "ใช้ Free ต่อไป",
+  "supportIdLabel": "รหัสฝ่ายสนับสนุน",
+  "supportEmailLabel": "ติดต่อฝ่ายสนับสนุนทางอีเมล"
 }

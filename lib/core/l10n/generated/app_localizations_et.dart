@@ -1401,4 +1401,42 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get reportZoom => 'Suumi sisse';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '# päeva jäänud',
+      one: '# päev jäänud',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '# tundi jäänud',
+      one: '# tund jäänud',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Sinu Pro prooviperiood on lõppenud';
+
+  @override
+  String get planTrialEndedBody =>
+      'Saad loendeid, käsitsi sisestamist ja seadmes töötavat häälsisestust tasuta edasi kasutada. Tasuta pakett sisaldab 10 AI-päringut kalendrikuus. Vali aastane Pro, et saada kuus 100 AI-päringut, reklaamivaba kasutus ja varukoopiad. Sinu olemasolevad andmed jäävad alles.';
+
+  @override
+  String get planContinueFree => 'Jätka tasuta';
+
+  @override
+  String get supportIdLabel => 'Toe ID';
+
+  @override
+  String get supportEmailLabel => 'E-posti tugi';
 }

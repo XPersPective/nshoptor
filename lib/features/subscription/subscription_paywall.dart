@@ -47,6 +47,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
       trial: current == Tier.pro && widget.service.inTrial(),
     );
     final busy = widget.service.busy;
+    final remaining = trialRemainingLabel(l10n, widget.service);
     return Scaffold(
       appBar: AppBar(title: Text(l10n.plansTitle)),
       body: FutureBuilder<List<SubscriptionOffer>>(
@@ -72,6 +73,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
+                  subtitle: remaining == null ? null : Text(remaining),
                 ),
               ),
               const SizedBox(height: 16),
@@ -83,7 +85,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
               ),
               const SizedBox(height: 4),
               Text(l10n.plansSubhead, style: theme.textTheme.bodyMedium),
-              if (current != Tier.free)
+              if (widget.service.storeTier != Tier.free)
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
                   child: Text(
