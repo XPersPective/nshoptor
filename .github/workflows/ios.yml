@@ -24,6 +24,8 @@ jobs:
   compile_unsigned:
     runs-on: macos-15
     timeout-minutes: 40
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
@@ -47,6 +49,7 @@ jobs:
         run: flutter pub get
       - name: Verify App Store SDK minimum
         run: |
+          test -d "$DEVELOPER_DIR"
           xcodebuild -version
           sdk_version=$(xcrun --sdk iphoneos --show-sdk-version)
           test "${sdk_version%%.*}" -ge 26
