@@ -733,7 +733,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sin anuncios · Exportar e importar copias · Mensual';
+      'Sin anuncios · Exportar e importar copias · Anual';
 
   @override
   String get proBenefitNoAds => 'Sin anuncios';

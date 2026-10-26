@@ -151,6 +151,27 @@ void main() {
     }
   });
 
+  test('annual Pro summary preserves each locale’s plan labels', () {
+    for (final locale in AppLocalizations.supportedLocales) {
+      final l10n = lookupAppLocalizations(locale);
+      expect(
+        l10n.proBenefitsLine,
+        contains(l10n.planNoAds),
+        reason: '${locale.languageCode}: no ads',
+      );
+      expect(
+        l10n.proBenefitsLine,
+        contains(l10n.planBackup),
+        reason: '${locale.languageCode}: backup',
+      );
+      expect(
+        l10n.proBenefitsLine,
+        contains(l10n.plansYearly),
+        reason: '${locale.languageCode}: annual period',
+      );
+    }
+  });
+
   testWidgets('71 dilin hepsinde uygulama açılır; RTL diller sağdan sola', (tester) async {
     for (final code in appLanguages.keys) {
       final db = AppDatabase(NativeDatabase.memory());

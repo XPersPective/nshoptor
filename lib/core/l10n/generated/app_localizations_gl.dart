@@ -734,7 +734,7 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sen anuncios · Exportación e importación de copias de seguridade · Mensual';
+      'Sen anuncios · Exportación e importación de copias de seguridade · Anual';
 
   @override
   String get proBenefitNoAds => 'Experiencia sen anuncios';

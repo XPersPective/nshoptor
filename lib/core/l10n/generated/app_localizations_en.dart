@@ -729,7 +729,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'No ads · Backup export and import · Monthly';
+  String get proBenefitsLine => 'No ads · Backup export and import · Yearly';
 
   @override
   String get proBenefitNoAds => 'Ad-free experience';

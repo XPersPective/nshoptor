@@ -427,7 +427,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'Crazy Penguin ನಿಂದ NShoptor. ಆಫ್‌ಲೈನ್-ಮೊದಲು ಖರೀದಿ ಯೋಜಕ. GPL-3.0 ಅಡಿಯಲ್ಲಿ لایسنسد.';
+      'Crazy Penguin‌ನ NShoptor. ಆಫ್‌ಲೈನ್‌ಗೆ ಆದ್ಯತೆಯಿರುವ ಖರೀದಿ ಯೋಜಕ. GPL-3.0 ಪರವಾನಗಿಯಡಿ.';
 
   @override
   String get startShoppingLabel => 'ಖರೀದಿ ಪ್ರಾರಂಭಿಸಿ';
@@ -484,7 +484,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get mergeImportLabel => 'ಪ್ರಸ್ತುತ ಡೇಟಾದೊಂದಿಗೆ ವಿಲೀನಗೊಳಿಸಿ';
 
   @override
-  String get separateImportLabel => 'ಪृಥಕ್ ಪ್ರತಿಯಾಗಿ ಇಂಪೋರ್ಟ್ ಮಾಡಿ';
+  String get separateImportLabel => 'ಪ್ರತ್ಯೇಕ ಪ್ರತಿಯಾಗಿ ಆಮದು ಮಾಡಿ';
 
   @override
   String get importCancelled => 'ಇಂಪೋರ್ಟ್ ರದ್ದುಗೊಂಡಿದೆ.';
@@ -732,7 +732,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ಯಾವುದೇ ವಿಜ್ಞಾಪನೆಗಳಿಲ್ಲ · ಬ್ಯಾಕಪ್ ರಫ್ತು ಮತ್ತು ಆಮದು · ತಿಂಗಳಿಗೆ';
+      'ಯಾವುದೇ ವಿಜ್ಞಾಪನೆಗಳಿಲ್ಲ · ಬ್ಯಾಕಪ್ ರಫ್ತು ಮತ್ತು ಆಮದು · ವಾರ್ಷಿಕ';
 
   @override
   String get proBenefitNoAds => 'ವಿಜ್ಞಾಪನೆ-ರಹಿತ ಅನುಭವ';

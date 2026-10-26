@@ -1,7 +1,17 @@
-# Apple subscription verification (local implementation)
+# Apple subscription verification
 
-This path is implemented and locally tested. It has **not** been deployed or
-verified with real App Store credentials or transactions and is not release-ready.
+The server implementation and its Apple configuration were deployed on
+2026-10-26. Worker version `fd6afe87-b2cc-4ee2-b567-e0fd3131c61d` was read back
+at 100% traffic. All seven required/configuration secret names were confirmed;
+values remain encrypted outside this repository. Health, malformed-proof rejection,
+unchanged usage counters and preservation of the existing trial deadline were
+checked. The 66 server tests and official-verifier workerd fixtures pass.
+
+This does **not** establish a successful paid entitlement. Real StoreKit purchase,
+restore, renewal/grace, refund and online Apple verification remain acceptance
+checks. A credential probe received Sandbox API validation and Production HTTP
+401; Production account/API access still needs verification. Private release
+receipts in the existing AppPublishing registry retain the deployment and probes.
 
 `POST /v1/ai` accepts `appleTransaction`, the complete StoreKit 2 signed transaction
 JWS (at most 8192 characters). A transaction ID, decoded JWT, or legacy receipt is
@@ -11,8 +21,8 @@ existing verification path.
 
 The server requires `APPLE_BUNDLE_ID`, `APPLE_APP_ID` (numeric App Store app ID),
 `APPLE_KEY_ID`, `APPLE_ISSUER_ID`, and `APPLE_PRIVATE_KEY` (In-App Purchase API P8
-key text). These are configuration names only; this change does not set or read
-live secrets. Production is the default and rejects Sandbox. On the same endpoint,
+key text). These are configuration names only; no secret values belong in source.
+Production is the default and rejects Sandbox unless explicitly opted in. On the same endpoint,
 `APPLE_ALLOW_SANDBOX=1` permits Production followed by Sandbox **full verification**
 if Production verification fails; `APPLE_ENVIRONMENT` remains `Production` (or unset).
 This supports TestFlight and App Review purchases, which use Apple's Sandbox.
@@ -42,7 +52,9 @@ no decoded client claims select permission, trust or routing. The current
 transaction JWS must verify and share the same
 original ID. Only the four exact product IDs `nshoptor_pro`, `nshoptor_max`,
 `nshoptor_pro_v2`, `nshoptor_max_v2` are allowed; their real App Store catalog
-availability has not been established. Status 1 requires a future transaction
+availability must be verified against the live catalog. The new annual offering
+uses only `nshoptor_pro_v2`; the other IDs preserve existing ownership verification
+and do not authorize creating new monthly, Max or lifetime sales. Status 1 requires a future transaction
 expiry. Status 4 requires a separately verified renewal JWS with the same original
 ID and product and a future `gracePeriodExpiresDate`; it may have an expired paid
 transaction. Revoked and upgraded transactions never grant access. The quota

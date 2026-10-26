@@ -231,7 +231,7 @@
   "plannedTotalSummary": "Пландалган: {total} · {count} буюм",
   "proActiveLabel": "Pro активдүү — рахмат!",
   "proBuyLabel": "NShoptor Pro",
-  "proBenefitsLine": "Жарнама жок · Колдоо экспорттоо жана импорттоо · Айлык",
+  "proBenefitsLine": "Жарнама жок · Колдоо экспорттоо жана импорттоо · Жылдык",
   "proBenefitNoAds": "Жарнамасыз тажрыйба",
   "proBenefitBackup": "Резервдик көчүрмө (экспорт/импорт)",
   "aboutVersion": "Версия {version}",

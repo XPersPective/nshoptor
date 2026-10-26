@@ -732,7 +732,7 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Жарнама жок · Колдоо экспорттоо жана импорттоо · Айлык';
+      'Жарнама жок · Колдоо экспорттоо жана импорттоо · Жылдык';
 
   @override
   String get proBenefitNoAds => 'Жарнамасыз тажрыйба';

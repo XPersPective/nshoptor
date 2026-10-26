@@ -732,7 +732,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ei mainoksia · Varmuuskopiointi ja tuonti · Kuukausittain';
+      'Ei mainoksia · Varmuuskopiointi ja tuonti · Vuosittain';
 
   @override
   String get proBenefitNoAds => 'Mainokseton kokemus';

@@ -733,7 +733,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bez reklāmām · Rezerves kopija eksportēšanai un importēšanai · Mēnesī';
+      'Bez reklāmām · Rezerves kopija eksportēšanai un importēšanai · Gadā';
 
   @override
   String get proBenefitNoAds => 'Tīra pieredze bez reklāmām';

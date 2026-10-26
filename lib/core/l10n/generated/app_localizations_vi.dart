@@ -732,7 +732,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Không quảng cáo · Sao lưu, xuất và nhập · Hàng tháng';
+      'Không quảng cáo · Sao lưu, xuất và nhập · Hàng năm';
 
   @override
   String get proBenefitNoAds => 'Trải nghiệm không quảng cáo';

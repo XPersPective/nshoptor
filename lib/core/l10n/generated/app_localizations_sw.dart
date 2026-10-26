@@ -732,7 +732,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Hakuna matamko · Hifadhi na uingize nje · Mwezi';
+      'Hakuna matamko · Hifadhi na uingize nje · Mwaka';
 
   @override
   String get proBenefitNoAds => 'Uzoefu bila matangazo';

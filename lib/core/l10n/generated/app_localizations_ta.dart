@@ -734,7 +734,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'விளம்பரங்கள் இல்லை · பின்புல ஏற்றுமதி மற்றும் இறக்குமதி · மாதாந்திர';
+      'விளம்பரங்கள் இல்லை · பின்புல ஏற்றுமதி மற்றும் இறக்குமதி · ஆண்டு';
 
   @override
   String get proBenefitNoAds => 'விளம்பரங்களற்ற அனுபவம்';

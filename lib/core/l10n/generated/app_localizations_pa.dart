@@ -287,7 +287,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get completionWarning =>
-      'ਕੁਝ ਡੇਟਾ ਗੁੰਮ ਹੈ ਜਾਂ ਅਜੇ ਵੀ ਸत्याਪਿਤ ਨਹੀਂ ਹੋਇਆ। ਤੁਸੀਂ ਅਜੇ ਵੀ ਪੂਰਾ ਕਰ ਸਕਦੇ ਹੋ; ਨਤੀਜੇ ਵਿੱਚ ਇਸਦਾ ਜ਼ਿਕਰ ਹੋਵੇਗਾ।';
+      'ਕੁਝ ਰਿਕਾਰਡ ਗੁੰਮ ਹਨ ਜਾਂ ਉਨ੍ਹਾਂ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋਈ ਹੈ। ਤੁਸੀਂ ਫਿਰ ਵੀ ਪੂਰਾ ਕਰ ਸਕਦੇ ਹੋ; ਨਤੀਜੇ ਵਿੱਚ ਉਨ੍ਹਾਂ ਦਾ ਜ਼ਿਕਰ ਹੋਵੇਗਾ।';
 
   @override
   String get continueShoppingButton => 'ਖਰੀਦਦਾਰੀ ਜਾਰੀ ਰੱਖੋ';
@@ -353,7 +353,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get groupQuantityChanged => 'ਮਾਤਰਾ ਬਦਲੀ';
 
   @override
-  String get groupUnverified => 'ਸत्याਪਿਤ ਨਹੀਂ';
+  String get groupUnverified => 'ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋਈ';
 
   @override
   String get plannedQtyLabel => 'ਯੋਜਨਾਬੱਧ ਮਾਤਰਾ';
@@ -732,7 +732,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ਕੋਈ ਵਿਗਿਆਪਨ ਨਹੀਂ · ਬੈਕਅਪ ਐਕਸਪੋਰਟ ਅਤੇ ਇੰਪੋਰਟ · ਮਹੀਨਾਵਾਰੀ';
+      'ਕੋਈ ਵਿਗਿਆਪਨ ਨਹੀਂ · ਬੈਕਅਪ ਐਕਸਪੋਰਟ ਅਤੇ ਇੰਪੋਰਟ · ਸਾਲਾਨਾ';
 
   @override
   String get proBenefitNoAds => 'ਵਿਗਿਆਪਨ-ਮੁਕਤ ਤਜਰਬਾ';
@@ -1016,7 +1016,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get assistantReceiptHint =>
-      'ਆਪਣੀ ਸੂਚੀ ਖੋਲ੍ਹੋ ਅਤੇ ਇਸਨੂੰ ਸਕੈਨ ਕਰਨ ਲਈ ਰਸੀਦ آئیکਨ \'ਤੇ ਟੈਪ ਕਰੋ।';
+      'ਆਪਣੀ ਸੂਚੀ ਖੋਲ੍ਹੋ ਅਤੇ ਇਸਨੂੰ ਸਕੈਨ ਕਰਨ ਲਈ ਰਸੀਦ ਦੇ ਆਈਕਨ \'ਤੇ ਟੈਪ ਕਰੋ।';
 
   @override
   String get assistantToggleTitle => 'ਸਹਾਇਕ ਦਿਖਾਓ';

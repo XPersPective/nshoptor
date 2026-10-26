@@ -68,7 +68,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get undoButton => 'Αναίρεση';
 
   @override
-  String get searchListHint => 'Αναζήτηση λίستων';
+  String get searchListHint => 'Αναζήτηση λιστών';
 
   @override
   String get currencyLabel => 'Νόμισμα';
@@ -521,7 +521,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Οι λίστες, οι τιμές, οι αποδείξεις και οι φωτογραφίες σου παραμένουν στη συσκευή σου. Οι φωτογραφίες και η φωνή δεν την покиνούν ποτέ. Όταν η βοήθεια AI είναι ενεργή, μόνο κείμενο (για παράδειγμα γραμμές απόδειξης ή όσα dictares) στέλνεται στον server μας για επεξεργασία και δεν αποθηκεύεται.';
+      'Οι λίστες, οι τιμές, οι αποδείξεις και οι φωτογραφίες σου παραμένουν στη συσκευή σου. Οι φωτογραφίες και η φωνή δεν φεύγουν ποτέ από τη συσκευή. Όταν είναι ενεργή η βοήθεια AI, μόνο κείμενο (για παράδειγμα, γραμμές αποδείξεων ή όσα υπαγόρευσες) αποστέλλεται στον διακομιστή μας για επεξεργασία και δεν αποθηκεύεται.';
 
   @override
   String get aboutSection => 'Σχετικά';
@@ -733,7 +733,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Χωρίς διαφημίσεις · Εξαγωγή και εισαγωγή αντιγράφων ασφαλείας · Μηνιαία';
+      'Χωρίς διαφημίσεις · Εξαγωγή και εισαγωγή αντιγράφων ασφαλείας · Ετήσια';
 
   @override
   String get proBenefitNoAds => 'Εμπειρία χωρίς διαφημίσεις';

@@ -39,6 +39,10 @@ jobs:
           git config --global url."ssh://git@github.com/XPersPective/napp_kit.git".insteadOf "https://github.com/XPersPective/napp_kit.git"
       - name: Pub get
         run: flutter pub get
+      - name: Reject mixed-script localization corruption
+        run: |
+          python3 -m unittest discover -s tool/l10n -p "test_*.py"
+          python3 tool/l10n/check_scripts.py
       - name: Analyze
         run: flutter analyze --fatal-infos
       - name: Test

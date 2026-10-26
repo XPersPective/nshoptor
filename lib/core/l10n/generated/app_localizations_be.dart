@@ -734,7 +734,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Без рэкламы · Рэзервовая копія: экспарт і імпорт · Штомесяц';
+      'Без рэкламы · Рэзервовая копія: экспарт і імпорт · Штогод';
 
   @override
   String get proBenefitNoAds => 'Выкарыстанне без рэкламы';

@@ -730,7 +730,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ingen annoncer · Backup-eksport og -import · Månedlig';
+      'Ingen annoncer · Backup-eksport og -import · Årlig';
 
   @override
   String get proBenefitNoAds => 'Reklamefri oplevelse';

@@ -732,7 +732,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'വിജ്ഞാപനങ്ങളില്ല · ബാക്ക്‌അപ്പ് എക്സ്പോർട്ടും ഇംപോർട്ടും · മാസം';
+      'വിജ്ഞാപനങ്ങളില്ല · ബാക്ക്‌അപ്പ് എക്സ്പോർട്ടും ഇംപോർട്ടും · വർഷം';
 
   @override
   String get proBenefitNoAds => 'അഡ്‌സ് ഇല്ലാത്ത അനുഭവം';
@@ -755,7 +755,7 @@ class AppLocalizationsMl extends AppLocalizations {
   String get rateAction => 'ഞങ്ങളെ മൂല്യനിർണ്ണയം ചെയ്യുക';
 
   @override
-  String get aboutOpenRow => 'എപ്പോൾ & اوپن സോഴ്സ്';
+  String get aboutOpenRow => 'ആപ്പിനെക്കുറിച്ച് & ഓപ്പൺ സോഴ്‌സ്';
 
   @override
   String get voiceAddItemAction => 'വോയ്‌സ് വഴി ചേർക്കുക';
@@ -874,10 +874,10 @@ class AppLocalizationsMl extends AppLocalizations {
   String get spendingMonthTotal => 'ഈ മാസം';
 
   @override
-  String get spendingWeekly => 'ആഴ്ചവారی ചെലവ്';
+  String get spendingWeekly => 'ആഴ്ചയിലെ ചെലവ്';
 
   @override
-  String get spendingMonthly => 'മാസവാരী ചെലവ്';
+  String get spendingMonthly => 'മാസത്തിലെ ചെലവ്';
 
   @override
   String get monthlyLimitTitle => 'മാസ പരിധി';
@@ -1016,7 +1016,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get assistantReceiptHint =>
-      'നിങ്ങളുടെ ലിസ്റ്റ് തുറന്ന് സ്കാൻ ചെയ്യാൻ റീസീറ്റ് آیکон ടാപ്പ് ചെയ്യുക.';
+      'നിങ്ങളുടെ ലിസ്റ്റ് തുറന്ന് സ്കാൻ ചെയ്യാൻ രസീതിന്റെ ഐക്കണിൽ ടാപ്പ് ചെയ്യുക.';
 
   @override
   String get assistantToggleTitle => 'അസിസ്റ്റന്റ് കാണിക്കുക';
@@ -1033,11 +1033,11 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get deleteItemConfirm =>
-      'ഈ ആइटം及其 രേഖപ്പെടുത്തിയ വാങ്ങലുകൾ ഡിലീറ്റ് ചെയ്യണോ?';
+      'ഈ ഇനവും അതിന്റെ രേഖപ്പെടുത്തിയ വാങ്ങലുകളും ഇല്ലാതാക്കണോ?';
 
   @override
   String get clearPurchaseConfirm =>
-      'ഈ ആइटം അൺചെക്ക് ചെയ്ത് its രേഖപ്പെടുത്തിയ വാങ്ങലുകൾ നീക്കം ചെയ്യണോ?';
+      'ഈ ഇനത്തിന്റെ ചെക്ക് നീക്കി അതിന്റെ രേഖപ്പെടുത്തിയ വാങ്ങലുകൾ നീക്കം ചെയ്യണോ?';
 
   @override
   String get reportPdfAction => 'PDF റിപ്പോർട്ട് സേവ് ചെയ്യുക';

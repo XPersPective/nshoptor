@@ -734,7 +734,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Žiadne reklamy · Export a import záloh · Mesačne';
+      'Žiadne reklamy · Export a import záloh · Ročne';
 
   @override
   String get proBenefitNoAds => 'Zážitok bez reklám';

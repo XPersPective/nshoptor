@@ -733,7 +733,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Без реклами · Архивиране на експорт и импорт · Месечно';
+      'Без реклами · Архивиране на експорт и импорт · Годишно';
 
   @override
   String get proBenefitNoAds => 'Опит без реклами';

@@ -734,7 +734,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'कोई विज्ञापन नहीं · बैकअप निर्यात और आयात · मासिक';
+      'कोई विज्ञापन नहीं · बैकअप निर्यात और आयात · वार्षिक';
 
   @override
   String get proBenefitNoAds => 'विज्ञापन-मुक्त अनुभव';

@@ -733,7 +733,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Be reklamų · Atsarginės kopijos eksportas ir importavimas · Mėnesinis';
+      'Be reklamų · Atsarginės kopijos eksportas ir importavimas · Metinis';
 
   @override
   String get proBenefitNoAds => 'Patirtis be reklamų';

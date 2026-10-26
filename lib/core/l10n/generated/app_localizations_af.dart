@@ -732,7 +732,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Geen reklames nie · Sleutel- en invoer · Maandeliks';
+      'Geen reklames nie · Sleutel- en invoer · Jaarliks';
 
   @override
   String get proBenefitNoAds => 'Advertensievrye ervaring';

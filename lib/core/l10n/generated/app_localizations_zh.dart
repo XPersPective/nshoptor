@@ -717,7 +717,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => '无广告 · 备份导出与导入 · 月付';
+  String get proBenefitsLine => '无广告 · 备份导出与导入 · 年付';
 
   @override
   String get proBenefitNoAds => '无广告体验';

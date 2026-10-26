@@ -731,7 +731,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ilma reklaamita · Varundamise eksport ja import · Igakuiselt';
+      'Ilma reklaamita · Varundamise eksport ja import · Aastaselt';
 
   @override
   String get proBenefitNoAds => 'Reklaamivaba kogemus';

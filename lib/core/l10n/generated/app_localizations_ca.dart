@@ -733,7 +733,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sense anuncis · Còpia de seguretat, exportació i importació · Mensual';
+      'Sense anuncis · Còpia de seguretat, exportació i importació · Anual';
 
   @override
   String get proBenefitNoAds => 'Experiència sense anuncis';

@@ -734,7 +734,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Pa reklama · Eksportim dhe importim backup-i · Mujore';
+      'Pa reklama · Eksportim dhe importim backup-i · Vjetore';
 
   @override
   String get proBenefitNoAds => 'Përvojë pa reklama';

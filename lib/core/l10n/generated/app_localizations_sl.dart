@@ -732,7 +732,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Brez oglasov · Izvoz in uvoz varnostnih kopij · Mesečno';
+      'Brez oglasov · Izvoz in uvoz varnostnih kopij · Letno';
 
   @override
   String get proBenefitNoAds => 'Brez oglasov';

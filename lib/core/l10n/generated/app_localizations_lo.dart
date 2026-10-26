@@ -512,7 +512,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get confirmDelete => 'ລຶບຖາວອນ';
 
   @override
-  String get dataDeleted => 'ຂໍ້ມູນທັງໝົດໃນเครื่องຖືກລຶບແລ້ວ.';
+  String get dataDeleted => 'ຂໍ້ມູນທັງໝົດໃນອຸປະກອນຖືກລຶບແລ້ວ.';
 
   @override
   String get privacyInfoLabel => 'ຄວາມເປັນສ່ວນຕົວ';
@@ -729,7 +729,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ບໍ່ມີໂຄສະນາ · ສົ່ງອອກ ແລະ ນຳເຂົ້າຂໍ້ມູນ · ຕໍ່ເດືອນ';
+      'ບໍ່ມີໂຄສະນາ · ສົ່ງອອກ ແລະ ນຳເຂົ້າຂໍ້ມູນ · ຕໍ່ປີ';
 
   @override
   String get proBenefitNoAds => 'ປະສົບການບໍ່ມີໂຄສະນາ';
@@ -995,7 +995,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get assistantTitle => 'ຜູ້ຊ່ວຍ';
 
   @override
-  String get assistantGreeting => 'ສະບາຍດີ! ທ່ານຕ້ອງການ做什么?';
+  String get assistantGreeting => 'ສະບາຍດີ! ທ່ານຕ້ອງການເຮັດຫຍັງ?';
 
   @override
   String get assistantNewList => 'ລາຍການໃໝ່';

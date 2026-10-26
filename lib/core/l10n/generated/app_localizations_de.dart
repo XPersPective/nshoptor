@@ -733,7 +733,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Keine Werbung · Sicherung exportieren und importieren · Monatlich';
+      'Keine Werbung · Sicherung exportieren und importieren · Jährlich';
 
   @override
   String get proBenefitNoAds => 'Werbefrei';

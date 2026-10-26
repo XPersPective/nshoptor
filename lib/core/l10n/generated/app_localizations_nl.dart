@@ -733,7 +733,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Geen advertenties · Back-up export en import · Maandelijks';
+      'Geen advertenties · Back-up export en import · Jaarlijks';
 
   @override
   String get proBenefitNoAds => 'Advrije ervaring';

@@ -532,7 +532,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get aboutLicenses => 'लायसन्सेस (GPL-3.0)';
 
   @override
-  String get voiceSettingsLabel => 'आवाزی इनपुट';
+  String get voiceSettingsLabel => 'आवाजाद्वारे इनपुट';
 
   @override
   String get voiceStatusUnknown => 'सेवा: तपासले नाही';
@@ -552,7 +552,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'पैशांचे राऊंडिंग एका नियमानुसार होते: अर्धे शून्यापासून दूर राऊंड होतात, हे फक्त Money कन्व्हर्जनच्या वेळी एकदा लागू होते.';
 
   @override
-  String get voiceInputTitle => 'आवाزی इनपुट';
+  String get voiceInputTitle => 'आवाजाद्वारे इनपुट';
 
   @override
   String get voiceStartListening => 'ऐकणे सुरू करा';
@@ -732,7 +732,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'कोणतीही जाहिरात नाही · बॅकअप एक्सपोर्ट आणि इम्पोर्ट · मासिक';
+      'कोणतीही जाहिरात नाही · बॅकअप एक्सपोर्ट आणि इम्पोर्ट · वार्षिक';
 
   @override
   String get proBenefitNoAds => 'जाहिरात-मुक्त अनुभव';

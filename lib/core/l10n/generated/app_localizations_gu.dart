@@ -731,7 +731,7 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'કોઈ એડ્સ નહીં · બેકઅપ એક્સપોર્ટ અને ઇમ્પોર્ટ · માસિક';
+      'કોઈ એડ્સ નહીં · બેકઅપ એક્સપોર્ટ અને ઇમ્પોર્ટ · વાર્ષિક';
 
   @override
   String get proBenefitNoAds => 'એડ-ફ્રી અનુભવ';
@@ -882,7 +882,8 @@ class AppLocalizationsGu extends AppLocalizations {
   String get monthlyLimitTitle => 'માસિક લિમિટ';
 
   @override
-  String get monthlyLimitHelp => 'તમે શોপিંગ પર મહિને કેટલું ખર્ચવા માંગો છો?';
+  String get monthlyLimitHelp =>
+      'તમે દર મહિને ખરીદી માટે કેટલો ખર્ચ કરવા માંગો છો?';
 
   @override
   String get monthlyLimitRemove => 'દૂર કરો';

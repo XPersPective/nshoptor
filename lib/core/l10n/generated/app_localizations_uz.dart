@@ -732,7 +732,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklamasiz · Zaxiralash eksport va import · Oylik';
+      'Reklamasiz · Zaxiralash eksport va import · Yillik';
 
   @override
   String get proBenefitNoAds => 'Reklamasiz tajriba';

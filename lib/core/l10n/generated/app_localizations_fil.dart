@@ -734,7 +734,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Walang ads · I-export at i-import ang backup · Buwang-buwan';
+      'Walang ads · I-export at i-import ang backup · Taon-taon';
 
   @override
   String get proBenefitNoAds => 'Walang-ads na karanasan';

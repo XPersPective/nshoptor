@@ -75,6 +75,7 @@ jobs:
       - name: Verify resulting app and deployment target
         run: |
           test -d build/ios/iphoneos/Runner.app
+          python3 tool/ios/verify_privacy.py build/ios/iphoneos/Runner.app
           /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' build/ios/iphoneos/Runner.app/Info.plist
           /usr/libexec/PlistBuddy -c 'Print :MinimumOSVersion' build/ios/iphoneos/Runner.app/Info.plist
           printf '%s\n' 'Unsigned compile only. Physical speech/print/StoreKit and App Store acceptance remain separate gates.' >> "$GITHUB_STEP_SUMMARY"
@@ -104,6 +105,23 @@ jobs:
           xcrun simctl bootstatus "$IOS_DEVICE_ID" -b
           flutter test integration_test/receipt_realistic_test.dart -d "$IOS_DEVICE_ID" --reporter expanded
           printf '%s\n' 'Native OCR/approval/dedup regression passed on an existing iOS simulator with a synthetic Turkish fixture. Real photos, physical camera, StoreKit and store submission remain separate.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Native multipage Unicode PDF regression
+        run: |
+          flutter test integration_test/report_pdf_test.dart -d "$IOS_DEVICE_ID" --reporter expanded
+          app_data="$(xcrun simctl get_app_container "$IOS_DEVICE_ID" com.crazypenguin.nshoptor data)"
+          test -n "$app_data"
+          install -d "$RUNNER_TEMP/native-pdf-evidence"
+          cp "$app_data/Documents/nshoptor-report-qa-20261025.pdf" "$RUNNER_TEMP/native-pdf-evidence/report.pdf"
+          test -s "$RUNNER_TEMP/native-pdf-evidence/report.pdf"
+          shasum -a 256 "$RUNNER_TEMP/native-pdf-evidence/report.pdf" >> "$GITHUB_STEP_SUMMARY"
+          printf '%s\n' 'Native PDF uses 120 synthetic Unicode products; save/share sheets and physical devices remain separate checks.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Retain only synthetic native PDF for visual inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-report-pdf
+          path: ${{ runner.temp }}/native-pdf-evidence/report.pdf
+          if-no-files-found: error
+          retention-days: 1
   signed_android:
     if: github.event_name == 'workflow_dispatch' && inputs.release_target == 'signed-android'
     uses: ./.github/workflows/android-release.yml

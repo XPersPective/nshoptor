@@ -167,7 +167,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get categoryDairy => 'რძის პროდუქტები';
 
   @override
-  String get categoryMeat => 'мясо';
+  String get categoryMeat => 'ხორცი';
 
   @override
   String get categoryBakery => 'საკონდიტრო';
@@ -501,7 +501,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get deleteAllConfirm =>
-      'ეს მოქმედება წაშლის ყველა სიას, ისტორიას, ჩекის ფოტოს და ფასებს. თქვენ მიერ ექსპორტირებული ფაილები თქვენს მეხსიერებაში დარჩება. გაგრძელდება?';
+      'ეს ქმედება წაშლის ყველა სიას, ისტორიას, ქვითრების ფოტოებსა და ფასებს. თქვენს მიერ ექსპორტირებული ფაილები თქვენს საცავში დარჩება. გსურთ გაგრძელება?';
 
   @override
   String get deleteAllConfirm2 =>
@@ -732,7 +732,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'რეკლამის გარეშე · ბექაპის ექსპორტი და იმპორტი · თვიური';
+      'რეკლამის გარეშე · ბექაპის ექსპორტი და იმპორტი · წლიური';
 
   @override
   String get proBenefitNoAds => 'რეკლამის გარეშე გამოცდილება';

@@ -729,7 +729,7 @@ class AppLocalizationsKk extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'Жарнамасыз · Сақтау және импорттау · Айлық';
+  String get proBenefitsLine => 'Жарнамасыз · Сақтау және импорттау · Жылдық';
 
   @override
   String get proBenefitNoAds => 'Жарсыз тәжірибе';

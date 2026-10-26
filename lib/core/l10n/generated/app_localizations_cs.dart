@@ -733,7 +733,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Žádné reklamy · Záloha, export a import · Měsíční';
+      'Žádné reklamy · Záloha, export a import · Roční';
 
   @override
   String get proBenefitNoAds => 'Provoz bez reklam';

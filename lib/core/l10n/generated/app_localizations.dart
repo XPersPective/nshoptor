@@ -1625,7 +1625,7 @@ abstract class AppLocalizations {
   /// No description provided for @proBenefitsLine.
   ///
   /// In en, this message translates to:
-  /// **'No ads · Backup export and import · Monthly'**
+  /// **'No ads · Backup export and import · Yearly'**
   String get proBenefitsLine;
 
   /// No description provided for @proBenefitNoAds.

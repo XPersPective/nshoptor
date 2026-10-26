@@ -730,10 +730,11 @@ class AppLocalizationsSi extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'විज्ञापन නැත · බැකප් අපනයනය සහ ආයාතය · මාසික';
+  String get proBenefitsLine =>
+      'දැන්වීම් නැත · බැකප් අපනයනය සහ ආයාතය · වාර්ෂික';
 
   @override
-  String get proBenefitNoAds => 'විज्ञापන රහිත අත්දැකීම';
+  String get proBenefitNoAds => 'දැන්වීම් රහිත අත්දැකීම';
 
   @override
   String get proBenefitBackup => 'බැක්අප් (නිර්ගත/ආයාත)';
@@ -933,7 +934,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get planFreeAds =>
-      'කුඩා බැනර් විज्ञापन (ඔබේ පළමු දින 7 තුළ කිසිවක් නැත)';
+      'කුඩා බැනර් දැන්වීම් (ඔබේ පළමු දින 7 තුළ කිසිවක් නැත)';
 
   @override
   String get planCoreFeatures => 'ලැයිස්තු, මිල, ලැබුම් පත්, ආදායම චාට්';
@@ -951,7 +952,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get planProAi => 'මාසයකට AI ඉල්ලීම් 100';
 
   @override
-  String get planNoAds => 'විज्ञापन නැත';
+  String get planNoAds => 'දැන්වීම් නැත';
 
   @override
   String get planBackup => 'බැකප් අපනයනය සහ ආයාතය';

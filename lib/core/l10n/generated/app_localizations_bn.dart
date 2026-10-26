@@ -494,7 +494,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get backupExported => 'ব্যাকআপ সফলভাবে এক্সপোর্ট হয়েছে।';
 
   @override
-  String get deleteAllSection => 'খतरার জোন';
+  String get deleteAllSection => 'বিপজ্জনক এলাকা';
 
   @override
   String get deleteAllLabel => 'সব ডেটা মুছে ফেলুন';
@@ -732,7 +732,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'কোনো বিজ্ঞাপন নেই · ব্যাকআপ এক্সপোর্ট ও ইম্পোর্ট · মাসিক';
+      'কোনো বিজ্ঞাপন নেই · ব্যাকআপ এক্সপোর্ট ও ইম্পোর্ট · বার্ষিক';
 
   @override
   String get proBenefitNoAds => 'বিজ্ঞাপন মুক্ত অভিজ্ঞতা';

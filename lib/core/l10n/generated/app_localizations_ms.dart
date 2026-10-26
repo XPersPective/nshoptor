@@ -734,7 +734,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Tiada iklan · Eksport dan import sandaran · Bulanan';
+      'Tiada iklan · Eksport dan import sandaran · Tahunan';
 
   @override
   String get proBenefitNoAds => 'Pengalaman tanpa iklan';

@@ -731,7 +731,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'بدون تبلیغات · پشتیبان‌گیری و بازیابی · ماهانه';
+      'بدون تبلیغات · پشتیبان‌گیری و بازیابی · سالانه';
 
   @override
   String get proBenefitNoAds => 'تجربه بدون تبلیغ';

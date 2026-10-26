@@ -731,7 +731,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'Без рекламы · Экспорт и импорт копии · Месяц';
+  String get proBenefitsLine => 'Без рекламы · Экспорт и импорт копии · Год';
 
   @override
   String get proBenefitNoAds => 'Без рекламы';

@@ -732,7 +732,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'کوئی اشتہار نہیں · بیک اپ ایکسپورٹ اور امپورٹ · ماہوار';
+      'کوئی اشتہار نہیں · بیک اپ ایکسپورٹ اور امپورٹ · سالانہ';
 
   @override
   String get proBenefitNoAds => 'اشتہار سے پاک تجربہ';

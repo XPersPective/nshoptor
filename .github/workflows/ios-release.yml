@@ -177,6 +177,7 @@ jobs:
           app_path="$IOS_RELEASE_TEMP/ipa-contents/Payload/Runner.app"
           test -d "$app_path" || { echo 'IPA does not contain Payload/Runner.app'; exit 1; }
           codesign --verify --deep --strict --verbose=0 "$app_path"
+          python3 tool/ios/verify_privacy.py "$IOS_IPA_PATH"
           signing_details="$(codesign -dv --verbose=4 "$app_path" 2>&1)"
           grep -Fq "TeamIdentifier=$IOS_TEAM_ID" <<< "$signing_details" || { echo 'Signed app team does not match the expected team'; exit 1; }
           actual_bundle="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$app_path/Info.plist")"

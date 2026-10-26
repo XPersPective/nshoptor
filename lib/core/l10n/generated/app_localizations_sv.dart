@@ -731,7 +731,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ingen reklam · Säkerhetskopiera och importera · Månadsvis';
+      'Ingen reklam · Säkerhetskopiera och importera · Årligen';
 
   @override
   String get proBenefitNoAds => 'Annonserfri upplevelse';

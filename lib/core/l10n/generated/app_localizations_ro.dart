@@ -732,7 +732,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Fără reclame · Export și import de backup · Lunar';
+      'Fără reclame · Export și import de backup · Anual';
 
   @override
   String get proBenefitNoAds => 'Experiență fără reclame';

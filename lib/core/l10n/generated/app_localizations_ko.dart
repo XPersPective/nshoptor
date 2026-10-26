@@ -720,7 +720,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => '광고 없음 · 백업 내보내기 및 가져오기 · 월간';
+  String get proBenefitsLine => '광고 없음 · 백업 내보내기 및 가져오기 · 연간';
 
   @override
   String get proBenefitNoAds => '광고 없는 경험';

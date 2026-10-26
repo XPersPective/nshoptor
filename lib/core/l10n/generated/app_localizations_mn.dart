@@ -734,7 +734,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'Рекламгүй · Нөөцлөх экспорт, импорт · Сар бүр';
+  String get proBenefitsLine => 'Рекламгүй · Нөөцлөх экспорт, импорт · Жил бүр';
 
   @override
   String get proBenefitNoAds => 'Зогсоолгүй туршлага';

@@ -728,7 +728,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklamsız · Yedeği dışa ve içe aktarma · Aylık';
+      'Reklamsız · Yedeği dışa ve içe aktarma · Yıllık';
 
   @override
   String get proBenefitNoAds => 'Reklamsız kullanım';

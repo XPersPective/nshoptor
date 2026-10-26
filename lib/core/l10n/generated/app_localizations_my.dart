@@ -735,7 +735,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ads မရှိ · Backup ထုတ်ယူခြင်းနှင့် ဝင်ရောက်ခြင်း · တစ်လ';
+      'Ads မရှိ · Backup ထုတ်ယူခြင်းနှင့် ဝင်ရောက်ခြင်း · တစ်နှစ်';
 
   @override
   String get proBenefitNoAds => 'ကြော်ငြာ မပါဝင်သော အတွေ့အကြုံ';
@@ -1116,7 +1116,8 @@ class AppLocalizationsMy extends AppLocalizations {
   String get voiceStopListening => 'နားထောင်ခြင်း ရပ်မည်';
 
   @override
-  String get keepAwakeFailed => 'စکرဉ်ကို မိတ်ဆက်မရပါ။ ပြန်လည်ကြိုးစားပါ။';
+  String get keepAwakeFailed =>
+      'မျက်နှာပြင်ကို မပိတ်အောင် ထား၍ မရပါ။ ထပ်မံကြိုးစားပါ။';
 
   @override
   String get purchaseHistoryHint =>

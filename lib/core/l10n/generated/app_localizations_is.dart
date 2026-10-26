@@ -732,7 +732,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Engar auglýsingar · Bakgrunnshermt og innflutningur · Mánaðarlega';
+      'Engar auglýsingar · Bakgrunnshermt og innflutningur · Árlega';
 
   @override
   String get proBenefitNoAds => 'Auglýsingalaust upplifun';

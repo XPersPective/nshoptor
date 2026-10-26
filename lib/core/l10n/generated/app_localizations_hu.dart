@@ -734,7 +734,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Nincsenek hirdetések · Biztonsági mentés export és import · Havi';
+      'Nincsenek hirdetések · Biztonsági mentés export és import · Éves';
 
   @override
   String get proBenefitNoAds => 'Reklámmentes élmény';

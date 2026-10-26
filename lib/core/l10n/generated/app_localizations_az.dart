@@ -733,7 +733,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklam yoxdur · Yedəkləmə ixrac və idxal · Aylıq';
+      'Reklam yoxdur · Yedəkləmə ixrac və idxal · Illik';
 
   @override
   String get proBenefitNoAds => 'Reklamsız təcrübə';

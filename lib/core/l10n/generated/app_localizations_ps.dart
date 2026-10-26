@@ -731,7 +731,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'هیڅ اعلان نشته · بیک اپ صادرول او واردول · میاشتنی';
+      'هیڅ اعلان نشته · بیک اپ صادرول او واردول · کلنی';
 
   @override
   String get proBenefitNoAds => 'پرېکړه تجربه';

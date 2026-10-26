@@ -732,7 +732,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Iragarkirik ez · Atxapen esportazioa eta inportazioa · Hilabetekoa';
+      'Iragarkirik ez · Atxapen esportazioa eta inportazioa · Urteko';
 
   @override
   String get proBenefitNoAds => 'Iragarkirik gabeko esperientzia';

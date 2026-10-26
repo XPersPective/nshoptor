@@ -728,7 +728,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'بلا إعلانات · تصدير واستيراد النسخ الاحتياطية · شهري';
+      'بلا إعلانات · تصدير واستيراد النسخ الاحتياطية · سنوي';
 
   @override
   String get proBenefitNoAds => 'بلا إعلانات';

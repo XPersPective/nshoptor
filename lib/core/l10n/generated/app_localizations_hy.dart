@@ -734,7 +734,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Առանց գովազդի · Պատճենահանում և ներմուծում · Ամսական';
+      'Առանց գովազդի · Պատճենահանում և ներմուծում · Տարեկան';
 
   @override
   String get proBenefitNoAds => 'Առանց գովազդի փորձառություն';
@@ -887,7 +887,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get monthlyLimitHelp =>
-      'Քանի՞ գումար եք ցանկանում ծախսել շاپավորումների վրա ամիսը մեկ:';
+      'Գնումների վրա ամսական որքա՞ն գումար եք ցանկանում ծախսել։';
 
   @override
   String get monthlyLimitRemove => 'Հեռացնել';

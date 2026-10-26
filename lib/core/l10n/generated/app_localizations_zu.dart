@@ -736,7 +736,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Azikho izikhangiso · Thumela bese ufaka imidwebo · Ngenyanga';
+      'Azikho izikhangiso · Thumela bese ufaka imidwebo · Nyakenye';
 
   @override
   String get proBenefitNoAds => 'Ukusetshenziswa ngaphandle kwamapromoshini';
