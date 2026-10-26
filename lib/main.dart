@@ -87,6 +87,7 @@ Future<void> main() async {
     store: store,
     baseUrl: EnvConfig.aiBaseUrl,
     credential: () => subscriptions.credential,
+    appleTransaction: () => subscriptions.appleTransaction,
     trialFirstOpenedAt: () => subscriptions.trialFirstOpenedAt,
     onTrialWindow: (window) => subscriptions.observeTrialServer(
       endsAt: window.endsAt,

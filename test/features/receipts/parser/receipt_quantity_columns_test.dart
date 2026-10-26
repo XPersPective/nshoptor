@@ -61,12 +61,31 @@ void main() {
   });
 
   test('unit-like suffix in a product code is not a quantity column', () {
-    final line = ReceiptParser().parse(_scan([
-      'VITAMIN B12ADET 20,00 40,00',
-    ])).lines.single;
+    final line = ReceiptParser()
+        .parse(_scan(['VITAMIN B12ADET 20,00 40,00']))
+        .lines
+        .single;
     expect(line.name, 'VITAMIN B12ADET 20,00');
     expect(line.quantity, isNull);
     expect(line.unitCode, isNull);
+  });
+
+  test('punctuated product codes and signed quantities stay manual', () {
+    for (final input in [
+      'VITAMIN B-12ADET 20,00 240,00',
+      'VITAMIN B/12ADET 20,00 240,00',
+      'VITAMIN B12X20,00 240,00',
+      'İADE -2 ADET 20,00 40,00',
+      'İADE - 2 ADET 20,00 40,00',
+      'İADE −2 ADET 20,00 40,00',
+      'İADE − 2X20,00 40,00',
+      'İADE -2X20,00 40,00',
+    ]) {
+      final line = ReceiptParser().parse(_scan([input])).lines.single;
+      expect(line.quantity, isNull, reason: input);
+      expect(line.unitCode, isNull, reason: input);
+      expect(line.confidence, isNot('high'), reason: input);
+    }
   });
 
   test(

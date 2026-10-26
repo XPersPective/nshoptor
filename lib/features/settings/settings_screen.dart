@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:flutter/foundation.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:intl/intl.dart';
 
 import '../ai/ai_client.dart';
 import '../engagement/review_moments.dart';
@@ -35,6 +36,7 @@ import '../../app/language_controller.dart';
 import '../../app/theme_mode_controller.dart';
 import 'settings_repository.dart';
 import 'backup/backup_repository.dart';
+import '../../data/db/app_database.dart' show Reminder;
 
 /// Ayarlar ekranı (spec §6.15): dil, tema, varsayılanlar, yedekleme,
 /// silme, gizlilik ve hakkında bölümleri. "Double onay" silme akışı
@@ -91,6 +93,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   SettingsRepository get _repo => widget.repository;
   bool _backupBusy = false;
   bool _engagementBusy = false;
+  late Future<List<Reminder>> _restoredReminders;
 
   Future<void> _engage({required bool share}) async {
     if (_engagementBusy) return;
@@ -137,6 +140,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     super.initState();
+    _restoredReminders = _repo.pendingRestoredReminders();
     // Pro durumu değişince (satın alma/ödüllü 24s) kilitler anında kalkar.
     widget.proController?.addListener(_onProChanged);
     widget.subscriptions?.addListener(_onProChanged);
@@ -453,6 +457,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         : (widget.subscriptions != null
                               ? _openPlans(context)
                               : _openPaywall(context)),
+            ),
+            FutureBuilder<List<Reminder>>(
+              future: _restoredReminders,
+              builder: (context, snapshot) => Column(
+                children: [
+                  for (final reminder in snapshot.data ?? const <Reminder>[])
+                    ListTile(
+                      key: Key('restore_reminder_${reminder.id}'),
+                      leading: const Icon(Icons.notifications_paused_outlined),
+                      title: Text(l10n.setReminderAction),
+                      subtitle: FutureBuilder(
+                        future:
+                            (_repo.db.select(_repo.db.shoppingLists)
+                                  ..where((t) => t.id.equals(reminder.listId)))
+                                .getSingleOrNull(),
+                        builder: (context, list) => Text(
+                          [
+                            list.data?.title ??
+                                list.data?.generatedTitle ??
+                                l10n.listsTitle,
+                            DateFormat.yMd(formatLocaleCode(context))
+                                .add_Hm()
+                                .format(reminder.scheduledAt.toLocal()),
+                          ].join(' · '),
+                        ),
+                      ),
+                      onTap: _backupBusy
+                          ? null
+                          : () => _activateReminder(reminder),
+                    ),
+                ],
+              ),
             ),
 
             _SectionTitle(icon: Icons.help_outline, label: l10n.helpSection),
@@ -773,10 +809,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (!mounted || !_proUnlocked || mode == null) return;
       await _repo.importBackupJson(json, mode: mode);
       if (!mounted) return;
+      final pending = await _repo.pendingRestoredReminders();
+      if (!mounted) return;
+      setState(() => _restoredReminders = Future.value(pending));
       messenger
         ..clearSnackBars()
         ..showSnackBar(
-          SnackBar(content: Text(l10n.backupImported), showCloseIcon: true),
+          SnackBar(
+            content: Text(
+              [
+                l10n.backupImported,
+                if (pending.isNotEmpty) l10n.setReminderAction,
+              ].join('\n'),
+            ),
+            showCloseIcon: true,
+          ),
         );
     } catch (_) {
       if (mounted) {
@@ -789,6 +836,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
               duration: const Duration(days: 1),
             ),
           );
+      }
+    } finally {
+      if (mounted) setState(() => _backupBusy = false);
+    }
+  }
+
+  Future<void> _activateReminder(Reminder reminder) async {
+    if (_backupBusy) return;
+    final l = AppLocalizations.of(context);
+    setState(() => _backupBusy = true);
+    try {
+      final list = await (_repo.db.select(
+        _repo.db.shoppingLists,
+      )..where((t) => t.id.equals(reminder.listId))).getSingle();
+      final activated = await _repo.activateRestoredReminder(
+        reminderId: reminder.id,
+        title: l.reminderTitle,
+        body: l.reminderBody(list.title ?? list.generatedTitle ?? l.listsTitle),
+      );
+      if (!mounted) return;
+      setState(() => _restoredReminders = _repo.pendingRestoredReminders());
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            activated ? l.reminderScheduled : l.reminderPermissionDenied,
+          ),
+          showCloseIcon: true,
+        ),
+      );
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l.saveFailed), showCloseIcon: true),
+        );
       }
     } finally {
       if (mounted) setState(() => _backupBusy = false);
@@ -859,6 +940,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       return;
     }
     if (!context.mounted) return;
+    setState(() => _restoredReminders = Future.value(const <Reminder>[]));
     messenger
       ..clearSnackBars()
       ..showSnackBar(

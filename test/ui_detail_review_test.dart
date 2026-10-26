@@ -17,7 +17,7 @@ const _enabled = bool.fromEnvironment('UI_REVIEW');
 const _captureKey = Key('ui_detail_review_capture');
 const _captureDir = String.fromEnvironment(
   'UI_REVIEW_DIR',
-  defaultValue: '.store-automation/evidence/SA-005',
+  defaultValue: 'artifacts/qa/ui-review/detail',
 );
 
 typedef _Scenario = ({
@@ -64,7 +64,7 @@ void main() {
   });
 
   for (final scenario in scenarios) {
-    testWidgets('SA-005 ${scenario.name}', (tester) async {
+    testWidgets('Detail UI ${scenario.name}', (tester) async {
       debugDisableShadows = false;
       tester.view.physicalSize = scenario.size;
       tester.view.devicePixelRatio = 1;

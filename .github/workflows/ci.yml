@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Install verified server dependencies
+        run: npm ci --prefix server
       - name: Trial, quota, purchase and AI contract regressions
         run: node --test server/test/*.test.js
 

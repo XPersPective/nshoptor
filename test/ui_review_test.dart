@@ -13,6 +13,10 @@ import 'package:nshoptor/data/db/app_database.dart';
 
 const _enabled = bool.fromEnvironment('UI_REVIEW');
 const _captureKey = Key('ui_review_capture');
+const _captureDir = String.fromEnvironment(
+  'UI_REVIEW_DIR',
+  defaultValue: 'artifacts/qa/ui-review/lists',
+);
 
 typedef _Scenario = ({
   String name,
@@ -58,7 +62,7 @@ void main() {
   });
 
   for (final scenario in scenarios) {
-    testWidgets('SA-004 ${scenario.name}', (tester) async {
+    testWidgets('Lists UI ${scenario.name}', (tester) async {
       debugDisableShadows = false;
       tester.view.physicalSize = scenario.size;
       tester.view.devicePixelRatio = 1;
@@ -256,7 +260,7 @@ Future<void> _capture(WidgetTester tester, String name) async {
   await tester.runAsync(() async {
     final image = await boundary.toImage(pixelRatio: 1);
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
-    final directory = Directory('.store-automation/evidence/SA-004');
+    final directory = Directory(_captureDir);
     await directory.create(recursive: true);
     await File('${directory.path}/$name.png')
         .writeAsBytes(data!.buffer.asUint8List());

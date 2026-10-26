@@ -379,7 +379,7 @@ class ReceiptParser {
   /// Ürün satırı: `SUT 2X32,90 64,00` | `DOMATES 1,5KG X42,90 64,35` |
   /// `EKMEK 15,00`. Dönüşüm: name + opsiyonel miktar/birim fiyat + son fiyat.
   RegExp get _quantityPricePattern => RegExp(
-    r'(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml|adet|x)?\s*(?:x|X|×)\s*'
+    r'(?<!\S)(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml|adet|x)?\s*(?:x|X|×)\s*'
     '($_amountPattern)\\s+($_amountPattern)\$',
     caseSensitive: false,
   );
@@ -388,7 +388,7 @@ class ReceiptParser {
   /// sign. Require the explicit unit and both printed prices; bare numeric
   /// product codes and package sizes must not manufacture a quantity.
   RegExp get _quantityColumnsPattern => RegExp(
-    r'(?<![\p{L}\p{N}.,])(\d+(?:[.,]\d+)?)\s*'
+    r'(?<!\S)(\d+(?:[.,]\d+)?)\s*'
     r'(kg|gr|g|lt|l|ml|adet|ad|pcs|piece|paket|pkg)\s+'
     '($_amountPattern)'
     '(?:\\s*(?:${Currency.all.map((c) => c.code).join('|')}|TL))?'
@@ -397,9 +397,18 @@ class ReceiptParser {
     unicode: true,
   );
 
-  RegExpMatch? _quantityPrices(String text) =>
-      _quantityPricePattern.firstMatch(text) ??
-      _quantityColumnsPattern.firstMatch(text);
+  RegExpMatch? _quantityPrices(String text) {
+    final match =
+        _quantityPricePattern.firstMatch(text) ??
+        _quantityColumnsPattern.firstMatch(text);
+    if (match == null) return null;
+    // A separated sign is still part of a signed quantity. Preserve the raw
+    // row for review rather than silently turning a return into a purchase.
+    if (RegExp(r'[-−+/]\s*$').hasMatch(text.substring(0, match.start))) {
+      return null;
+    }
+    return match;
+  }
 
   ReceiptLineCandidate? _parseProductLine(String text) {
     final m = _quantityPrices(text);

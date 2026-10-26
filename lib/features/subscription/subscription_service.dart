@@ -1,14 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart'
     show RecurrenceMode, ReplacementMode;
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
+import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
+import 'package:in_app_purchase_storekit/store_kit_2_wrappers.dart';
 import 'package:napp_core/napp_core.dart';
 
 import '../ai/ai_client.dart' show PurchaseCredential;
 import 'installation_trial.dart';
+import 'apple_subscription_store.dart';
 
 /// AI ve reklam katmanı (ADR-004 §5). Yetkinin kesin kararı sunucudadır
 /// (Worker Play doğrulaması); buradaki durum yalnız arayüz ve reklam içindir.
@@ -42,8 +46,16 @@ class SubscriptionOffer {
 }
 
 class SubscriptionService extends ChangeNotifier {
-  SubscriptionService({required this.store, InAppPurchase? iap})
-    : _iapOverride = iap;
+  SubscriptionService({
+    required this.store,
+    InAppPurchase? iap,
+    bool? applePlatform,
+    AppleSubscriptionStore? appleStore,
+  }) : _iapOverride = iap,
+       _applePlatform =
+           applePlatform ??
+           (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS),
+       _appleStore = appleStore ?? const AppleSubscriptionStore();
 
   static const proId = 'nshoptor_pro_v2';
   static const maxId = 'nshoptor_max_v2';
@@ -63,6 +75,11 @@ class SubscriptionService extends ChangeNotifier {
 
   final SettingsStore store;
   final InAppPurchase? _iapOverride;
+  final bool _applePlatform;
+  final AppleSubscriptionStore _appleStore;
+  AppleSubscription? _appleOwned;
+  List<AppleSubscription> _appleEntitlements = const [];
+  Timer? _appleExpiryTimer;
   InAppPurchase get _iap => _iapOverride ?? InAppPurchase.instance;
 
   StreamSubscription<List<PurchaseDetails>>? _sub;
@@ -75,7 +92,7 @@ class SubscriptionService extends ChangeNotifier {
       _working = false,
       _purchasePending = false;
   bool get busy => _working || _purchasePending;
-  bool get legacy => _productId == legacyProId || _productId == legacyMaxId;
+  bool get legacy => productId == legacyProId || productId == legacyMaxId;
   static int allowanceOf(String? id) => switch (id) {
     legacyMaxId => 1000,
     maxId => 300,
@@ -83,9 +100,8 @@ class SubscriptionService extends ChangeNotifier {
     proId => 100,
     _ => 10,
   };
-  int get monthlyAllowance => storeTier == Tier.free && promotionalTrial
-      ? 100
-      : allowanceOf(_productId);
+  int get monthlyAllowance =>
+      storeTier == Tier.free && promotionalTrial ? 100 : allowanceOf(productId);
 
   /// Satın alma sonucu (paywall gösterir): null = sorun yok.
   String? lastError;
@@ -99,7 +115,14 @@ class SubscriptionService extends ChangeNotifier {
     _ => Tier.free,
   };
 
-  Tier get storeTier => tierOf(_productId);
+  Tier get storeTier =>
+      _applePlatform ? tierOf(_activeApple?.productId) : tierOf(_productId);
+  AppleSubscription? get _activeApple =>
+      _appleOwned != null && _appleOwned!.expiresAt.isAfter(DateTime.now())
+      ? _appleOwned
+      : null;
+  String? get appleTransaction =>
+      _applePlatform ? _activeApple?.signedTransaction : null;
   Tier get tier =>
       storeTier == Tier.free && promotionalTrial ? Tier.pro : storeTier;
   bool get promotionalTrial =>
@@ -157,15 +180,22 @@ class SubscriptionService extends ChangeNotifier {
   /// Reklamsız mı: geçici Pro ya da herhangi bir abonelik.
   static bool adFree({required bool temporaryPro, required Tier tier}) =>
       temporaryPro || tier != Tier.free;
-  String? get productId => _productId;
+  String? get productId =>
+      _applePlatform ? _activeApple?.productId : _productId;
 
   /// AI isteğine eklenen doğrulanacak jeton; ücretsizde null.
   PurchaseCredential? get credential =>
-      _token == null || _token!.isEmpty || !ids.contains(_productId)
+      _applePlatform ||
+          _token == null ||
+          _token!.isEmpty ||
+          !ids.contains(_productId)
       ? null
       : (token: _token!, productId: _productId!);
 
   void load() {
+    // Apple ownership is never reconstructed from Android's persisted token.
+    // StoreKit current entitlements are the only local source of Apple benefits.
+    if (_applePlatform) return;
     _productId = store.getString(_productKey);
     _token = store.getString(_tokenKey);
     if (!ids.contains(_productId) || _token?.isNotEmpty != true) {
@@ -252,6 +282,52 @@ class SubscriptionService extends ChangeNotifier {
     _ownershipFresh = false;
     try {
       if (!await _iap.isAvailable() || _disposed) return;
+      if (_applePlatform) {
+        final owned = await _appleStore.currentEntitlements();
+        if (_disposed || generation != _refreshGeneration) return;
+        final valid =
+            owned
+                .where(
+                  (p) =>
+                      ids.contains(p.productId) &&
+                      p.expiresAt.isAfter(DateTime.now()),
+                )
+                .toList()
+              ..sort((a, b) {
+                final rank = allowanceOf(b.productId)
+                    .compareTo(allowanceOf(a.productId));
+                return rank != 0 ? rank : b.expiresAt.compareTo(a.expiresAt);
+              });
+        _appleEntitlements = valid;
+        _appleOwned = valid.firstOrNull;
+        _productId = _appleOwned?.productId;
+        _token = null;
+        _owned = null;
+        _appleExpiryTimer?.cancel();
+        if (_appleOwned != null) {
+          _appleExpiryTimer = Timer(
+            _appleOwned!.expiresAt.difference(DateTime.now()),
+            () {
+              if (!_disposed) {
+                notifyListeners();
+                unawaited(refresh());
+              }
+            },
+          );
+        }
+        _ownershipFresh = true;
+        notifyListeners();
+        if (!_disposed && generation == _refreshGeneration) {
+          // Delivery precedes queue recovery; native re-verifies the snapshot
+          // and finishes only recognized unfinished transactions in its lineage.
+          try {
+            await _appleStore.finishDeliveredTransactions(valid);
+          } catch (_) {
+            /* Keep delivered rights; retry recovery on next refresh. */
+          }
+        }
+        return;
+      }
       final addition = _iap
           .getPlatformAddition<InAppPurchaseAndroidPlatformAddition>();
       final res = await addition.queryPastPurchases();
@@ -272,6 +348,10 @@ class SubscriptionService extends ChangeNotifier {
   }
 
   Future<void> _onPurchases(List<PurchaseDetails> list) async {
+    if (_applePlatform) {
+      await _onApplePurchases(list);
+      return;
+    }
     final purchased = <GooglePlayPurchaseDetails>[];
     for (final p in list) {
       if (!ids.contains(p.productID)) continue;
@@ -308,9 +388,74 @@ class SubscriptionService extends ChangeNotifier {
     notifyListeners();
   }
 
+  static bool _annualAppleProduct(AppStoreProduct2Details details) {
+    final period = details.sk2Product.subscription?.subscriptionPeriod;
+    return offerIds.contains(details.id) &&
+        details.sk2Product.id == details.id &&
+        details.sk2Product.type == SK2ProductType.autoRenewable &&
+        period?.unit == SK2SubscriptionPeriodUnit.year &&
+        period?.value == 1;
+  }
+
+  Future<void> _onApplePurchases(List<PurchaseDetails> list) async {
+    final relevant = list.where((p) => ids.contains(p.productID)).toList();
+    for (final p in relevant) {
+      if (_disposed) return;
+      switch (p.status) {
+        case PurchaseStatus.purchased || PurchaseStatus.restored:
+          // Stream status and unverified payloads alone never deliver access.
+          // Deliver from current verified native ownership before finishing.
+          await refresh();
+          if (_disposed) return;
+          if (_ownershipFresh &&
+              _appleEntitlements.any(
+                (owned) =>
+                    owned.productId == p.productID &&
+                    owned.expiresAt.isAfter(DateTime.now()),
+              )) {
+            if (p.pendingCompletePurchase) {
+              try {
+                await _iap.completePurchase(p);
+              } catch (_) {
+                lastError = 'error';
+              }
+            }
+          } else {
+            lastError = 'error';
+          }
+          _purchasePending = false;
+        case PurchaseStatus.pending:
+          _purchasePending = true;
+        case PurchaseStatus.error:
+          _purchasePending = false;
+          lastError = 'error';
+        case PurchaseStatus.canceled:
+          _purchasePending = false;
+      }
+    }
+    if (!_disposed && relevant.isNotEmpty) notifyListeners();
+  }
+
   Future<List<SubscriptionOffer>> loadOffers() async {
     final res = await _iap.queryProductDetails(offerIds);
     final out = <SubscriptionOffer>[];
+    if (_applePlatform) {
+      final eligible = await _appleStore.eligibleAnnualProductIds(offerIds);
+      for (final d in res.productDetails.whereType<AppStoreProduct2Details>()) {
+        if (!_annualAppleProduct(d) || !eligible.contains(d.id)) continue;
+        out.add(
+          SubscriptionOffer(
+            productId: d.id,
+            basePlanId: annualBasePlanId,
+            price: d.price,
+            billingPeriod: 'P1Y',
+            hasTrial: false,
+            details: d,
+          ),
+        );
+      }
+      return out;
+    }
     for (final d in res.productDetails.whereType<GooglePlayProductDetails>()) {
       if (!offerIds.contains(d.id)) continue;
       final index = d.subscriptionIndex;
@@ -365,6 +510,27 @@ class SubscriptionService extends ChangeNotifier {
         throw StateError('annual_pro_offer_required');
       }
       final nativeDetails = offer.details;
+      if (_applePlatform) {
+        if (nativeDetails is! AppStoreProduct2Details ||
+            nativeDetails.id != offer.productId ||
+            !_annualAppleProduct(nativeDetails)) {
+          throw StateError('annual_native_offer_required');
+        }
+        final eligible = await _appleStore.eligibleAnnualProductIds(offerIds);
+        if (!eligible.contains(nativeDetails.id)) {
+          throw StateError('paid_annual_catalog_required');
+        }
+        await refresh();
+        if (_disposed) return;
+        if (!_ownershipFresh) throw StateError('ownership_not_verified');
+        _purchasePending = true;
+        _pendingTrial = false;
+        final launched = await _iap.buyNonConsumable(
+          purchaseParam: PurchaseParam(productDetails: nativeDetails),
+        );
+        if (!launched) throw StateError('purchase_not_launched');
+        return;
+      }
       if (nativeDetails is! GooglePlayProductDetails) {
         throw StateError('native_offer_required');
       }
@@ -452,6 +618,7 @@ class SubscriptionService extends ChangeNotifier {
   void dispose() {
     _disposed = true;
     _trialTimer?.cancel();
+    _appleExpiryTimer?.cancel();
     _sub?.cancel();
     super.dispose();
   }

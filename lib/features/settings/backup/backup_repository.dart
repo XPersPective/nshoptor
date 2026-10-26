@@ -392,11 +392,7 @@ class BackupRepository {
       data['attachments'] as List<dynamic>?,
       Attachment.fromJson,
     );
-    await put(
-      _db.reminders,
-      data['reminders'] as List<dynamic>?,
-      Reminder.fromJson,
-    );
+    await _importReminders(_asMaps(data['reminders']));
   }
 
   Future<void> _importSeparate(Map<String, dynamic> data) async {
@@ -546,7 +542,54 @@ class BackupRepository {
     for (final json in _asMaps(data['reminders'])) {
       json['id'] = next++;
       json['listId'] = remap(listIds, json['listId']);
-      await _db.into(_db.reminders).insert(Reminder.fromJson(json));
+      await _db.into(_db.reminders).insert(_restorableReminder(json));
+    }
+  }
+
+  // A database snapshot cannot restore the OS notification queue. Never claim
+  // active until the user explicitly activates the imported schedule.
+  Reminder _restorableReminder(Map<String, dynamic> json) {
+    final row = Reminder.fromJson(json);
+    return row.copyWith(
+      status: {'active', 'pending', 'pendingRestore'}.contains(row.status)
+          ? 'pendingRestore'
+          : 'cancelled',
+    );
+  }
+
+  Future<void> _importReminders(List<Map<String, dynamic>> rows) async {
+    for (final json in rows) {
+      final incoming = _restorableReminder(json);
+      final existing = await (_db.select(
+        _db.reminders,
+      )..where((t) => t.id.equals(incoming.id))).getSingleOrNull();
+      // An existing ID may own a native alarm. Its target/time must remain
+      // intact; a different imported schedule receives a new, inactive ID.
+      if (existing != null &&
+          existing.listId == incoming.listId &&
+          existing.scheduledAt == incoming.scheduledAt) {
+        continue;
+      }
+      final duplicate =
+          await (_db.select(_db.reminders)..where(
+                (t) =>
+                    t.listId.equals(incoming.listId) &
+                    t.scheduledAt.equals(incoming.scheduledAt) &
+                    t.status.equals(incoming.status),
+              ))
+              .get();
+      if (duplicate.isNotEmpty) continue;
+      await _db
+          .into(_db.reminders)
+          .insert(
+            incoming
+                .toCompanion(false)
+                .copyWith(
+                  id: existing == null
+                      ? Value(incoming.id)
+                      : const Value.absent(),
+                ),
+          );
     }
   }
 

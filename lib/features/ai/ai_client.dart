@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:napp_core/napp_core.dart';
 
 /// AI vekiline (server/, ADR-004) tek kapı. Uygulama hiçbir sır taşımaz:
-/// yalnız rastgele kurulum kimliği ve (Pro/Max'ta) Play satın alma jetonu
+/// yalnız rastgele kurulum kimliği ve mağazanın doğrulanacak satın alma kanıtı
 /// gönderilir; fotoğraf/ses asla gönderilmez, yalnız metin (C-020).
 sealed class AiResult {
   const AiResult();
@@ -57,6 +57,7 @@ class AiClient {
     required this.baseUrl,
     http.Client? httpClient,
     this.credential,
+    this.appleTransaction,
     this.trialFirstOpenedAt,
     this.onTrialWindow,
     this.timeout = const Duration(seconds: 25),
@@ -70,6 +71,10 @@ class AiClient {
   final String baseUrl;
   final http.Client _http;
   final PurchaseCredential? Function()? credential;
+
+  /// StoreKit 2 signed transaction. Kept separate from Google Play tokens so
+  /// the server verifies it with the correct store and trust roots.
+  final String? Function()? appleTransaction;
   final int? Function()? trialFirstOpenedAt;
   final void Function(AiTrialWindow)? onTrialWindow;
   final Duration timeout;
@@ -101,14 +106,19 @@ class AiClient {
   }) async {
     if (!enabled) return const AiFailed('disabled');
     var cred = credential?.call();
+    var apple = appleTransaction?.call();
     // Register before spending a request under the Free fallback. Real paid
     // credentials stay independently usable when promotional registration fails.
-    if (trialFirstOpenedAt != null && cred == null && !_registered) {
+    if (trialFirstOpenedAt != null &&
+        cred == null &&
+        apple == null &&
+        !_registered) {
       final pending = _registration ??= _registerAccess();
       final access = await pending;
       if (identical(_registration, pending)) _registration = null;
       cred = credential?.call();
-      if (access != null && cred == null) return access;
+      apple = appleTransaction?.call();
+      if (access != null && cred == null && apple == null) return access;
     }
     final body = jsonEncode({
       'installId': installId,
@@ -117,6 +127,7 @@ class AiClient {
       'input': input,
       if (cred != null) 'purchaseToken': cred.token,
       if (cred != null) 'productId': cred.productId,
+      'appleTransaction': ?apple,
     });
     try {
       final req = http.Request('POST', Uri.parse('$baseUrl/v1/ai'))

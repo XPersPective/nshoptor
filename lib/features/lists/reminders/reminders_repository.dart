@@ -65,7 +65,8 @@ class RemindersRepository {
         // Drift stores seconds. Round upward so DB and native receive the
         // same future instant even when the injected/system clock has micros.
         final fireAt = DateTime.fromMicrosecondsSinceEpoch(
-          ((requestedFireAt.microsecondsSinceEpoch + 999999) ~/ 1000000) * 1000000,
+          ((requestedFireAt.microsecondsSinceEpoch + 999999) ~/ 1000000) *
+              1000000,
           isUtc: true,
         );
         final id =
@@ -90,6 +91,11 @@ class RemindersRepository {
             status: const Value('active'),
           ),
         );
+        await (_db.update(_db.reminders)..where(
+              (t) =>
+                  t.listId.equals(listId) & t.status.equals('pendingRestore'),
+            ))
+            .write(const RemindersCompanion(status: Value('cancelled')));
       });
     } catch (error, stack) {
       if (nativeScheduled && scheduledId != null) {
@@ -171,6 +177,34 @@ class RemindersRepository {
             ..orderBy([(t) => OrderingTerm.desc(t.scheduledAt)])
             ..limit(1))
           .getSingleOrNull();
+
+  /// Imported schedules stay visible for explicit activation. Reading them
+  /// never initializes the OS notification plugin or asks for permission.
+  Future<List<Reminder>> pendingRestores() =>
+      (_db.select(_db.reminders)
+            ..where((t) => t.status.equals('pendingRestore'))
+            ..orderBy([(t) => OrderingTerm.asc(t.scheduledAt)]))
+          .get();
+
+  Future<bool> activateRestoredReminder({
+    required int reminderId,
+    required String title,
+    required String body,
+  }) => _serialize(() async {
+    final reminder =
+        await (_db.select(_db.reminders)..where(
+              (t) =>
+                  t.id.equals(reminderId) & t.status.equals('pendingRestore'),
+            ))
+            .getSingleOrNull();
+    if (reminder == null) throw StateError('Imported reminder is not pending');
+    return _setReminder(
+      listId: reminder.listId,
+      title: title,
+      body: body,
+      atUtc: reminder.scheduledAt,
+    );
+  });
 
   Future<Reminder?> _storedActiveForList(int listId) =>
       (_db.select(_db.reminders)

@@ -5,13 +5,13 @@
 	<key>GADApplicationIdentifier</key>
 	<string>$(ADMOB_APP_ID_IOS)</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Raf etiketi ve fiş fotoğrafı çekmek için. Görüntüler cihazda kalır.</string>
+	<string>Take photos of receipts and shelf labels to read their prices on your device.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Fiş fotoğrafı seçmek için. Görüntüler cihazda kalır.</string>
+	<string>Choose receipt or shelf label photos to read their prices on your device.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Sesle ürün eklemek için.</string>
+	<string>Add shopping items by speaking, for example one kilo of apples.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Söylediğiniz ürünü metne çevirmek için.</string>
+	<string>Turn your spoken shopping items into text on your device.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

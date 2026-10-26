@@ -1,6 +1,9 @@
 # Constraints
 
-- C-022: Kullanıcı 2026-10-25: Basit işler düşük maliyetli ChatGPT native alt ajanlarına verilebilir. Önceki mesajda geçici C: AVD izni verilmişti; en son sağlanan AGENTS.md tekrar yalnız ortak Medium_Phone_API_36.0 kullanımını istiyor. Bundan sonra ek AVD oluşturma/başlatma yok; önceden oluşturulan iki geçici AVD kapalı tutulur. Ortak cihazda bu uygulamanın test izni mevcut; başka oturumun uygulaması/süreci durdurulmaz veya silinmez.
+- C-023: Kullanıcı 2026-10-26: Store Automation kaldırılmıştır; önbellek/yedek kopyası kullanılmaz, geçiş yapılmaz. Geliştirme Project Brain; mağaza yayını Release Harbor. Project Forge yalnız yeni proje başlangıcı içindir. Mevcut yayın yetkisi tekrar sorulmaz; hesap oturumu yoksa somut eksik olarak kaydedilir.
+- C-024: Kullanıcının güncel AGENTS.md yönergesi tek ortak Medium_Phone_API_36.0 AVD'sini zorunlu kılar; eski geçici AVD istisnaları kullanılmaz. Başka oturum kullanıyorsa dokunulmaz.
+
+- C-022: Kullanıcı 2026-10-25: Basit işler düşük maliyetli ChatGPT native alt ajanlarına verilebilir; harici CLI/havuz yok. AGENTS.md tek ortak AVD ister. Kullanıcının önceki açık geçici C: AVD izni ve son “hafif bir emülatör başlat” talebi, ortak5554'te oyun çalışırken mevcut task-owned nshoptor_temp_aosp_api36'yı5556'da başlatmak için uygulandı; yeni AVD oluşturulmadı. Bu dar çalışma istisnası dışına çıkılmaz; başka oturumun uygulaması/süreci durdurulmaz veya silinmez. Ayrıntı: references/emulator-stability-2026-10-25.md.
 
 - C-019: Son kullanıcı 2026-10-24: CLI Agent Pool ve harici model/CLI ajanı kullanılmaz; yalnız ChatGPT native alt ajanları sınırlı görevlerle kullanılabilir. Önceki havuz yetkileri bu çalışma için geçersizdir; havuz keşfi/başlatması/onayı istenmez.
 - C-020: Yeni ve yarım kalan bütün işlerin tek takip kaynağı Project Brain olur. Yabancı takip dosyaları kapsam/Resume/External aktarımı, kaynak-hedef hash doğrulaması ve geri alınabilir arşivden sonra tam belirtilen yollardan kaldırılır; uygulama, kanıt ve özel yayın dosyaları silinmez.

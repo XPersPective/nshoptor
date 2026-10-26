@@ -5,6 +5,7 @@ import UIKit
 @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
   private var speechBridge: OnDeviceSpeechBridge?
   private var printBridge: HtmlPrintBridge?
+  private var appleSubscriptionBridge: AppleSubscriptionBridge?
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -19,7 +20,9 @@ import UIKit
     }
     speechBridge?.dispose()
     printBridge?.dispose()
+    appleSubscriptionBridge?.dispose()
     speechBridge = OnDeviceSpeechBridge(messenger: registrar.messenger())
     printBridge = HtmlPrintBridge(messenger: registrar.messenger())
+    appleSubscriptionBridge = AppleSubscriptionBridge(messenger: registrar.messenger())
   }
 }

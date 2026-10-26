@@ -23,10 +23,16 @@ import '../lists/reminders/local_notifications_scheduler.dart';
 class SettingsRepository {
   /// `settings` bellek tier'ı: üretimde napp_core SettingsStore,
   /// testlerde in-memory taklit.
-  SettingsRepository(this._db, this._settings,
-      {BackupRepository? backup, RemindersRepository? reminders, this.mediaDir, this.exportDirOverride})
-      : _backup = backup ?? BackupRepository(_db),
-        _reminders = reminders ?? RemindersRepository(_db, LocalNotificationsScheduler());
+  SettingsRepository(
+    this._db,
+    this._settings, {
+    BackupRepository? backup,
+    RemindersRepository? reminders,
+    this.mediaDir,
+    this.exportDirOverride,
+  }) : _backup = backup ?? BackupRepository(_db),
+       _reminders =
+           reminders ?? RemindersRepository(_db, LocalNotificationsScheduler());
 
   final AppDatabase _db;
 
@@ -54,32 +60,25 @@ class SettingsRepository {
 
   /// Sayı/para BİÇİMİ yereli ('system' | 'tr' | 'en'); dilden bağımsız
   /// (C-001, PB-042).
-  String get formatLocale =>
-      _settings.getString(formatLocaleKey) ?? 'system';
+  String get formatLocale => _settings.getString(formatLocaleKey) ?? 'system';
 
   void setFormatLocale(String code) =>
       _settings.setString(formatLocaleKey, code);
-  void setLanguage(String code) =>
-      _settings.setString(localeKey, code);
+  void setLanguage(String code) => _settings.setString(localeKey, code);
 
   String get themeMode => _settings.getString(themeKey) ?? 'system';
-  void setThemeMode(String value) =>
-      _settings.setString(themeKey, value);
+  void setThemeMode(String value) => _settings.setString(themeKey, value);
 
-  String get defaultCurrency =>
-      _settings.getString(currencyKey) ?? 'TRY';
+  String get defaultCurrency => _settings.getString(currencyKey) ?? 'TRY';
   void setDefaultCurrency(String code) =>
       _settings.setString(currencyKey, code);
 
   /// Varsayılan birimin enum adı (ör. `adet`, `kilogram`).
   String get defaultUnit => _settings.getString(unitKey) ?? 'adet';
-  void setDefaultUnit(String unit) =>
-      _settings.setString(unitKey, unit);
+  void setDefaultUnit(String unit) => _settings.setString(unitKey, unit);
 
-  bool get keepScreenAwake =>
-      _settings.getBool(keepAwakeKey) ?? false;
-  void setKeepScreenAwake(bool value) =>
-      _settings.setBool(keepAwakeKey, value);
+  bool get keepScreenAwake => _settings.getBool(keepAwakeKey) ?? false;
+  void setKeepScreenAwake(bool value) => _settings.setBool(keepAwakeKey, value);
 
   // ---- Yedekleme (T21 backup katmanını kullanır) ----
 
@@ -89,7 +88,8 @@ class SettingsRepository {
     final json = await _backup.exportBackup();
     final dir = exportDirOverride ?? await getTemporaryDirectory();
     final file = File(
-        '${dir.path}${Platform.pathSeparator}nshoptor_backup_${DateTime.now().millisecondsSinceEpoch}.json');
+      '${dir.path}${Platform.pathSeparator}nshoptor_backup_${DateTime.now().millisecondsSinceEpoch}.json',
+    );
     await file.writeAsString(json);
     return file;
   }
@@ -98,9 +98,23 @@ class SettingsRepository {
   BackupPreview validateBackup(String json) => _backup.validate(json);
 
   /// Tam yedeği içe aktarır (transaction içinde; hata olursa rollback).
-  Future<void> importBackupJson(String json,
-          {ImportMode mode = ImportMode.merge}) =>
-      _backup.importBackup(json, mode);
+  Future<void> importBackupJson(
+    String json, {
+    ImportMode mode = ImportMode.merge,
+  }) => _backup.importBackup(json, mode);
+
+  Future<List<Reminder>> pendingRestoredReminders() =>
+      _reminders.pendingRestores();
+
+  Future<bool> activateRestoredReminder({
+    required int reminderId,
+    required String title,
+    required String body,
+  }) => _reminders.activateRestoredReminder(
+    reminderId: reminderId,
+    title: title,
+    body: body,
+  );
 
   // ---- Tüm verileri silme (spec §6.15, §12) ----
 
@@ -122,10 +136,19 @@ class SettingsRepository {
     await _reminders.cancelAll();
     await _db.transaction(() async {
       for (final t in const [
-        'receipt_candidate_lines', 'attachments', 'price_observations',
-        'product_aliases', 'purchase_entries', 'planned_items',
-        'reminders', 'product_memory', 'receipts', 'aisles',
-        'categories', 'shopping_lists', 'stores',
+        'receipt_candidate_lines',
+        'attachments',
+        'price_observations',
+        'product_aliases',
+        'purchase_entries',
+        'planned_items',
+        'reminders',
+        'product_memory',
+        'receipts',
+        'aisles',
+        'categories',
+        'shopping_lists',
+        'stores',
       ]) {
         await _db.customStatement('DELETE FROM $t');
       }
@@ -149,7 +172,11 @@ class SettingsRepository {
   /// sıfırlar (anahtar kayıtları kaldırılır).
   Future<void> resetPreferences() async {
     for (final k in [
-      'app.locale', 'app.theme', 'app.currency', 'app.unit', 'app.keepAwake',
+      'app.locale',
+      'app.theme',
+      'app.currency',
+      'app.unit',
+      'app.keepAwake',
     ]) {
       _settings.remove(k);
     }

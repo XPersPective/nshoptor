@@ -3,6 +3,8 @@ Status: CONFIRMED
 
 ## Goal
 
+2026-10-26 kullanıcı: "devral isleri bitir hem play store hem app store ... tum dillerde yayimla". Son sıralama: "Bu faturaları doğru okuyor değil mi? Ve diğer yapılacakların hepsini yap. Site işi en son ... Eksiksiz, premium düzeyde". Önce Android+iOS uygulama/fiş/fatura doğruluğu ve bütün açık kabul ölçütleri; sonra mağaza sunumu/ASO ve site/SEO. Mevcut yayın yetkisi tekrar sorulmaz; doğrulanmamış sonuç tamamlandı sayılmaz.
+
 "Bütün bu söylediklerimi hepsini önce Project Brain'e eklemen gerekiyor... Sonra her birini itinayla üretim seviyesinde premium düzeyde gerçekleştir... Android ve iOS'a yüklemeni istiyorum." (user eki,2026-10-24). Ayrıntılı onaylı kapsam: `.project-brain/intake-2026-10-24.md` N001–N074, PB-141..155. Özgün ek `.project-brain/sources/2026-10-24-user-request.txt`.
 "Her şeyi, bütün her şeyi Project Brain'e taşımanı istiyorum... onları sileceksin... sadece senle çalışacağım." (user,2026-10-24). Önceki yarım değişiklikleri koruyarak sürdür; havuz kullanma, yalnız bounded native alt ajanlar. Eski takip artefaktları kapsam korunarak arşivlenip kaldırılır; uygulama/kanıt/yayın kimliği dosyaları korunur.
 "Baştan sona her şeyi kullanıcı dostu, aynı zamanda profesyonel, eksiksiz çalışır hale üretim düzeyine getir. yayına hazır hale getir" (user 2026-10-18).

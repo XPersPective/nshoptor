@@ -47,6 +47,8 @@ jobs:
         run: printf '%s\n' 'ADMOB_APP_ID_IOS=ca-app-pub-3940256099942544~1458002511' > ios/Flutter/AdsConfig.xcconfig
       - name: Resolve Flutter packages
         run: flutter pub get
+      - name: Verify localized native permission purposes
+        run: python3 tool/ios/localize_usage.py --check
       - name: Verify App Store SDK minimum
         run: |
           test -d "$DEVELOPER_DIR"

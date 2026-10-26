@@ -3,6 +3,7 @@
 import { chatJson, AiError, readBoundedText, configured } from './ai.js';
 import { consume } from './quota.js';
 import { resolveEntitlement } from './play.js';
+import { resolveAppleEntitlement } from './apple.js';
 import { TASKS } from './tasks.js';
 import { observeTrial, registerTrial, trialEnabled } from './trial.js';
 
@@ -52,9 +53,16 @@ export async function handleAi(request, env, { fetchImpl = fetch, now = new Date
   const input = task.validate(body.input);
   if (!input) return json(400, { error: 'invalid_input' });
 
+  const hasApple = Object.hasOwn(body, 'appleTransaction');
+  if (hasApple && Object.hasOwn(body, 'purchaseToken')) return json(400, { error: 'ambiguous_purchase' });
+  if (hasApple && (typeof body.appleTransaction !== 'string' || body.appleTransaction.length === 0 ||
+      body.appleTransaction.length > 8192)) return json(400, { error: 'invalid_purchase' });
+
   if (!configured(env)) return json(503, { error: 'busy' });
   let entitlement;
-  try { entitlement = await resolveEntitlement(env, body.purchaseToken, { fetchImpl, now: now.getTime() }); }
+  try { entitlement = hasApple
+    ? await resolveAppleEntitlement(env, body.appleTransaction, { fetchImpl, now: now.getTime() })
+    : await resolveEntitlement(env, body.purchaseToken, { fetchImpl, now: now.getTime() }); }
   catch { return json(503, { error: 'busy' }); }
   let { tier, policy, identity } = entitlement;
   if (tier === 'free' && trialEnabled(env)) {
