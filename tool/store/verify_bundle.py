@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import struct
 import subprocess
+import sys
 import zipfile
 
 
@@ -78,11 +79,14 @@ def main():
     props = dict(line.strip().split('=', 1) for line in signing.read_text().splitlines()
                  if '=' in line and not line.lstrip().startswith('#'))
     java = Path(args.java_bin)
-    run([str(java / 'jarsigner.exe'), '-verify', str(aab)])
-    expected = run([str(java / 'keytool.exe'), '-exportcert', '-keystore',
+    executable_suffix = '.exe' if sys.platform == 'win32' else ''
+    jarsigner = java / f'jarsigner{executable_suffix}'
+    keytool = java / f'keytool{executable_suffix}'
+    run([str(jarsigner), '-verify', str(aab)])
+    expected = run([str(keytool), '-exportcert', '-keystore',
                     str(signing.parent / props['storeFile']), '-alias', props['keyAlias']],
                    (props['storePassword'] + '\n').encode())
-    actual = run([str(java / 'keytool.exe'), '-printcert', '-jarfile', str(aab), '-rfc'])
+    actual = run([str(keytool), '-printcert', '-jarfile', str(aab), '-rfc'])
     match = re.search(rb'-----BEGIN CERTIFICATE-----\s*(.*?)\s*-----END CERTIFICATE-----',
                       actual, re.S)
     assert match and base64.b64decode(match[1]) == expected, 'Upload certificate mismatch'

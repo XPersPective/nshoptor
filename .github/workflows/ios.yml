@@ -1,6 +1,20 @@
 name: iOS native compile
 on:
   workflow_dispatch:
+    inputs:
+      release_target:
+        description: Native verification or explicitly requested signed candidate
+        type: choice
+        default: native
+        options: [native, signed-android, signed-ios]
+      expected_sha:
+        description: Exact source SHA for a signed candidate
+        type: string
+        default: ''
+      upload:
+        description: Upload signed iOS build for App Store Connect processing only
+        type: boolean
+        default: false
   pull_request:
     paths:
       - 'ios/**'
@@ -18,10 +32,11 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: ios-native-${{ github.ref }}
-  cancel-in-progress: true
+  group: ios-native-${{ github.ref }}-${{ inputs.release_target || 'native' }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' || inputs.release_target == 'native' }}
 jobs:
   compile_unsigned:
+    if: github.event_name != 'workflow_dispatch' || inputs.release_target == 'native'
     runs-on: macos-15
     timeout-minutes: 40
     env:
@@ -89,3 +104,28 @@ jobs:
           xcrun simctl bootstatus "$IOS_DEVICE_ID" -b
           flutter test integration_test/receipt_realistic_test.dart -d "$IOS_DEVICE_ID" --reporter expanded
           printf '%s\n' 'Native OCR/approval/dedup regression passed on an existing iOS simulator with a synthetic Turkish fixture. Real photos, physical camera, StoreKit and store submission remain separate.' >> "$GITHUB_STEP_SUMMARY"
+  signed_android:
+    if: github.event_name == 'workflow_dispatch' && inputs.release_target == 'signed-android'
+    uses: ./.github/workflows/android-release.yml
+    with:
+      expected_sha: ${{ inputs.expected_sha }}
+    secrets:
+      NSHOPTOR_NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
+      NSHOPTOR_ANDROID_KEYSTORE_BASE64: ${{ secrets.NSHOPTOR_ANDROID_KEYSTORE_BASE64 }}
+      NSHOPTOR_ANDROID_PROPERTIES_BASE64: ${{ secrets.NSHOPTOR_ANDROID_PROPERTIES_BASE64 }}
+      NSHOPTOR_ANDROID_ADS_JSON: ${{ secrets.NSHOPTOR_ANDROID_ADS_JSON }}
+  signed_ios:
+    if: github.event_name == 'workflow_dispatch' && inputs.release_target == 'signed-ios'
+    uses: ./.github/workflows/ios-release.yml
+    with:
+      expected_sha: ${{ inputs.expected_sha }}
+      upload: ${{ inputs.upload }}
+    secrets:
+      NSHOPTOR_NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
+      NSHOPTOR_IOS_P12_BASE64: ${{ secrets.NSHOPTOR_IOS_P12_BASE64 }}
+      NSHOPTOR_IOS_P12_PASSWORD: ${{ secrets.NSHOPTOR_IOS_P12_PASSWORD }}
+      NSHOPTOR_IOS_PROFILE_BASE64: ${{ secrets.NSHOPTOR_IOS_PROFILE_BASE64 }}
+      NSHOPTOR_IOS_ADS_JSON: ${{ secrets.NSHOPTOR_IOS_ADS_JSON }}
+      NSHOPTOR_ASC_PRIVATE_KEY: ${{ secrets.NSHOPTOR_ASC_PRIVATE_KEY }}
+      NSHOPTOR_ASC_KEY_ID: ${{ secrets.NSHOPTOR_ASC_KEY_ID }}
+      NSHOPTOR_ASC_ISSUER_ID: ${{ secrets.NSHOPTOR_ASC_ISSUER_ID }}
