@@ -6,7 +6,7 @@ on:
         description: Native verification, isolated UI QA, or explicitly requested signed candidate
         type: choice
         default: native
-        options: [native, report-ui, reminder-ui, signed-android, signed-ios]
+        options: [native, report-ui, reminder-ui, android-media, signed-android, signed-ios]
       expected_sha:
         description: Exact source SHA for a signed candidate or native UI QA
         type: string
@@ -163,6 +163,13 @@ jobs:
     with:
       expected_sha: ${{ inputs.expected_sha }}
       qa_scenario: ${{ matrix.qa_scenario }}
+    secrets:
+      NSHOPTOR_NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
+  android_media:
+    if: github.event_name == 'workflow_dispatch' && inputs.release_target == 'android-media'
+    uses: ./.github/workflows/android-media.yml
+    with:
+      expected_sha: ${{ inputs.expected_sha }}
     secrets:
       NSHOPTOR_NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
   signed_android:

@@ -1,0 +1,120 @@
+name: Android isolated native media QA
+on:
+  workflow_call:
+    inputs:
+      expected_sha:
+        required: true
+        type: string
+    secrets:
+      NSHOPTOR_NAPP_KIT_READ_KEY:
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: android-native-media-${{ inputs.expected_sha }}
+  cancel-in-progress: false
+jobs:
+  build_media:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify exact source before private dependency access
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: false
+      - name: Configure read-only private kit access
+        env:
+          NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$NAPP_KIT_READ_KEY"
+          install -d -m 700 "$RUNNER_TEMP/napp-kit-ssh"
+          printf '%s\n' "$NAPP_KIT_READ_KEY" > "$RUNNER_TEMP/napp-kit-ssh/id"
+          chmod 600 "$RUNNER_TEMP/napp-kit-ssh/id"
+          printf '%s\n' 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl' > "$RUNNER_TEMP/napp-kit-ssh/known_hosts"
+          printf 'GIT_CONFIG_GLOBAL=%s/gitconfig\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
+          export GIT_CONFIG_GLOBAL="$RUNNER_TEMP/gitconfig"
+          git config --global core.sshCommand "ssh -i $RUNNER_TEMP/napp-kit-ssh/id -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$RUNNER_TEMP/napp-kit-ssh/known_hosts"
+          git config --global url."ssh://git@github.com/XPersPective/napp_kit.git".insteadOf "https://github.com/XPersPective/napp_kit.git"
+      - name: Prepare synthetic fixture and isolated checkout-only package
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          samples = json.loads(Path('test/store_samples.json').read_text())
+          if not isinstance(samples, dict) or not samples:
+              raise SystemExit('Store sample map is missing')
+          temporary = Path(os.environ['RUNNER_TEMP'])
+          (temporary / 'store-media-defines.json').write_text(json.dumps({'STORE_SAMPLES_JSON': json.dumps(samples, ensure_ascii=False)}))
+          gradle = Path('android/app/build.gradle.kts')
+          source = gradle.read_text()
+          original = 'applicationId = "com.crazypenguin.nshoptor"'
+          if source.count(original) != 1:
+              raise SystemExit('Expected one default application identifier')
+          gradle.write_text(source.replace(original, 'applicationId = "com.crazypenguin.nshoptor.media"'))
+          print('Prepared synthetic locale fixture and isolated media package; no production credentials.')
+          PY
+      - name: Resolve and analyze isolated entrypoint
+        run: |
+          flutter pub get
+          flutter analyze --no-pub tool/qa/store_media_main.dart
+      - name: Build debug-only media fixture
+        env:
+          GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3G -XX:MaxMetaspaceSize=1G -XX:ReservedCodeCacheSize=256m" -Dorg.gradle.workers.max=2 -Dorg.gradle.daemon=false'
+          ORG_GRADLE_PROJECT_kotlin.compiler.execution.strategy: in-process
+        run: |
+          flutter build apk --debug --no-pub --target tool/qa/store_media_main.dart \
+            --dart-define-from-file="$RUNNER_TEMP/store-media-defines.json"
+      - name: Verify distinct package and record artifact identity
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, re, subprocess
+          from pathlib import Path
+          apk = Path('build/app/outputs/flutter-apk/app-debug.apk')
+          root = Path(os.environ['ANDROID_HOME']) / 'build-tools'
+          versions = [p for p in root.iterdir() if p.is_dir() and re.fullmatch(r'\d+(?:\.\d+)*', p.name)]
+          if not versions:
+              raise SystemExit('Stable Android build tools missing')
+          tools = max(versions, key=lambda p: tuple(map(int, p.name.split('.'))))
+          badging = subprocess.check_output([str(tools / 'aapt2'), 'dump', 'badging', str(apk)], text=True)
+          line = next((line for line in badging.splitlines() if line.startswith('package: ')), '')
+          attrs = dict(re.findall(r"([A-Za-z]+)='([^']*)'", line))
+          if attrs.get('name') != 'com.crazypenguin.nshoptor.media' or attrs.get('versionCode') != '20' or attrs.get('versionName') != '1.3.1':
+              raise SystemExit('QA APK identity/version mismatch')
+          if not re.search(r'^application-debuggable(?:\s|$)', badging, re.M):
+              raise SystemExit('QA APK must be debuggable')
+          if not re.search(r"^launchable-activity: name='com\.crazypenguin\.nshoptor\.MainActivity'", badging, re.M):
+              raise SystemExit('QA activity namespace mismatch')
+          receipt = {'source_sha': os.environ['GITHUB_SHA'], 'package': attrs['name'], 'version': '1.3.1+20', 'debug_only': True, 'sha256': hashlib.file_digest(apk.open('rb'), 'sha256').hexdigest(), 'bytes': apk.stat().st_size, 'fixture_sha256': hashlib.sha256(Path('test/store_samples.json').read_bytes()).hexdigest(), 'production_app_data_touched': False, 'store_upload': False}
+          (Path(os.environ['RUNNER_TEMP']) / 'media-verification.json').write_text(json.dumps(receipt, indent=2))
+          print(json.dumps(receipt))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-isolated-media-20
+          path: |
+            build/app/outputs/flutter-apk/app-debug.apk
+            ${{ runner.temp }}/media-verification.json
+          retention-days: 1
+          if-no-files-found: error
+      - name: Remove temporary read key and fixture definitions
+        if: always()
+        run: |
+          rm -f "$RUNNER_TEMP/napp-kit-ssh/id" "$RUNNER_TEMP/gitconfig" "$RUNNER_TEMP/store-media-defines.json"
