@@ -1,0 +1,175 @@
+appId: com.crazypenguin.nshoptor
+---
+- launchApp:
+    permissions:
+      notifications: unset
+- assertVisible:
+    text: "QA result: READY"
+- assertVisible:
+    text: "Database active: 0"
+- assertVisible:
+    text: "Native requests: 0"
+- assertNotVisible:
+    text: "Allow"
+- scrollUntilVisible:
+    element:
+      text: "Schedule reminder"
+    direction: DOWN
+- tapOn:
+    text: "Schedule reminder"
+- assertVisible:
+    text: "Allow"
+- takeScreenshot:
+    path: reminder-allow-permission-prompt
+- tapOn:
+    text: "Allow"
+- scrollUntilVisible:
+    element:
+      text: "QA result: PASS"
+    direction: UP
+- assertVisible:
+    text: "QA result: PASS"
+- assertVisible:
+    text: "Permission enabled: true"
+- assertVisible:
+    text: "Permission alert: true"
+- assertVisible:
+    text: "Permission sound: true"
+- assertVisible:
+    text: "Database active: 1"
+- assertVisible:
+    text: "Database id: 2000000000"
+- assertVisible:
+    text: "Database status: active"
+- assertVisible:
+    text: "Native requests: 1"
+- assertVisible:
+    text: "Native id: 2000000000"
+- assertVisible:
+    text: "Native title: Native QA reminder"
+- assertVisible:
+    text: "Native body: Synthetic reminder"
+- assertVisible:
+    text: "Native payload: reminder:2000000000"
+- takeScreenshot:
+    path: reminder-allow-scheduled-state
+- scrollUntilVisible:
+    element:
+      text: "Read native state"
+    direction: DOWN
+- tapOn:
+    text: "Read native state"
+- scrollUntilVisible:
+    element:
+      text: "QA result: PASS"
+    direction: UP
+- assertVisible:
+    text: "QA result: PASS"
+- scrollUntilVisible:
+    element:
+      text: "Reschedule reminder"
+    direction: DOWN
+- tapOn:
+    text: "Reschedule reminder"
+- scrollUntilVisible:
+    element:
+      text: "QA result: PASS"
+    direction: UP
+- assertVisible:
+    text: "QA result: PASS"
+- assertVisible:
+    text: "Database id: 2000000000"
+- assertVisible:
+    text: "Database active: 1"
+- assertVisible:
+    text: "Native requests: 1"
+- assertVisible:
+    text: "Native payload: reminder:2000000000"
+- takeScreenshot:
+    path: reminder-allow-rescheduled-state
+- scrollUntilVisible:
+    element:
+      text: "Cancel reminder twice"
+    direction: DOWN
+- tapOn:
+    text: "Cancel reminder twice"
+- scrollUntilVisible:
+    element:
+      text: "QA result: PASS"
+    direction: UP
+- assertVisible:
+    text: "QA result: PASS"
+- assertVisible:
+    text: "Database status: cancelled"
+- assertVisible:
+    text: "Database active: 0"
+- assertVisible:
+    text: "Native requests: 0"
+- takeScreenshot:
+    path: reminder-allow-cancelled-state
+- scrollUntilVisible:
+    element:
+      text: "Cancel reminder twice"
+    direction: DOWN
+- tapOn:
+    text: "Cancel reminder twice"
+- scrollUntilVisible:
+    element:
+      text: "QA result: PASS"
+    direction: UP
+- assertVisible:
+    text: "QA result: PASS"
+- assertVisible:
+    text: "Database status: cancelled"
+- assertVisible:
+    text: "Native requests: 0"
+- scrollUntilVisible:
+    element:
+      text: "Schedule delivery reminder"
+    direction: DOWN
+- tapOn:
+    text: "Schedule delivery reminder"
+- scrollUntilVisible:
+    element:
+      text: "QA result: READY FOR DELIVERY"
+    direction: UP
+- assertVisible:
+    text: "QA result: READY FOR DELIVERY"
+- pressKey: HOME
+- extendedWaitUntil:
+    visible: "Native QA reminder"
+    timeout: 30000
+- takeScreenshot:
+    path: reminder-delivery-banner
+- tapOn:
+    text: "Native QA reminder"
+- scrollUntilVisible:
+    element:
+      text: "Selected reminder: 2000000001"
+    direction: UP
+- assertVisible:
+    text: "Selected reminder: 2000000001"
+- assertVisible:
+    text: "Database id: 2000000001"
+- assertVisible:
+    text: "Database active: 1"
+- assertVisible:
+    text: "Database status: active"
+- assertVisible:
+    text: "QA result: PASS"
+- takeScreenshot:
+    path: reminder-warm-return-selected
+- scrollUntilVisible:
+    element:
+      text: "Cancel reminder twice"
+    direction: DOWN
+- tapOn:
+    text: "Cancel reminder twice"
+- scrollUntilVisible:
+    element:
+      text: "QA result: PASS"
+    direction: UP
+- assertVisible:
+    text: "Database status: cancelled"
+- assertVisible:
+    text: "Native requests: 0"

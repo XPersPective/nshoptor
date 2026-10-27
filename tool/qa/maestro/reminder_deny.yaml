@@ -1,0 +1,75 @@
+appId: com.crazypenguin.nshoptor
+---
+- launchApp:
+    permissions:
+      notifications: unset
+- assertVisible:
+    text: "QA result: READY"
+- assertVisible:
+    text: "Permission enabled: false"
+- assertVisible:
+    text: "Database active: 0"
+- assertVisible:
+    text: "Native requests: 0"
+- assertNotVisible:
+    text: "Allow"
+- scrollUntilVisible:
+    element:
+      text: "Schedule reminder"
+    direction: DOWN
+- tapOn:
+    text: "Schedule reminder"
+- assertVisible:
+    text: "Don.t Allow"
+- takeScreenshot:
+    path: reminder-deny-permission-prompt
+- tapOn:
+    text: "Don.t Allow"
+- scrollUntilVisible:
+    element:
+      text: "QA result: PASS"
+    direction: UP
+- assertVisible:
+    text: "QA result: PASS"
+- assertVisible:
+    text: "Permission enabled: false"
+- assertVisible:
+    text: "Permission alert: false"
+- assertVisible:
+    text: "Permission sound: false"
+- assertVisible:
+    text: "Database active: 0"
+- assertVisible:
+    text: "Database status: absent"
+- assertVisible:
+    text: "Native requests: 0"
+- takeScreenshot:
+    path: reminder-denied-state
+- scrollUntilVisible:
+    element:
+      text: "Schedule reminder"
+    direction: DOWN
+- tapOn:
+    text: "Schedule reminder"
+- scrollUntilVisible:
+    element:
+      text: "QA result: PASS"
+    direction: UP
+- assertVisible:
+    text: "QA result: PASS"
+- assertVisible:
+    text: "Permission enabled: false"
+- assertVisible:
+    text: "Permission alert: false"
+- assertVisible:
+    text: "Permission sound: false"
+- assertVisible:
+    text: "Database active: 0"
+- assertVisible:
+    text: "Database status: absent"
+- assertVisible:
+    text: "Native requests: 0"
+- assertVisible:
+    text: "Failure: none"
+- takeScreenshot:
+    path: reminder-denied-retry-remains-empty

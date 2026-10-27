@@ -21,11 +21,6 @@ void main() {
     'native PDF preserves a multipage Unicode report and releases job',
     (tester) async {
       if (Platform.isIOS) {
-        final previousPlatform = debugDefaultTargetPlatformOverride;
-        debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-        addTearDown(() {
-          debugDefaultTargetPlatformOverride = previousPlatform;
-        });
         expect(defaultTargetPlatform, TargetPlatform.iOS);
       }
       await initializeDateFormatting('tr');
@@ -200,5 +195,8 @@ void main() {
       }
       expect(await db.select(db.purchaseEntries).get(), before);
     },
+    variant: TargetPlatformVariant.only(
+      Platform.isIOS ? TargetPlatform.iOS : defaultTargetPlatform,
+    ),
   );
 }

@@ -1,4 +1,4 @@
-name: iOS report export cancellation UI
+name: iOS native UI QA
 on:
   workflow_call:
     inputs:
@@ -6,16 +6,21 @@ on:
         description: Exact source commit to verify before private dependency access
         required: true
         type: string
+      qa_scenario:
+        description: Allowlisted isolated native QA scenario
+        required: false
+        default: report
+        type: string
     secrets:
       NSHOPTOR_NAPP_KIT_READ_KEY:
         required: true
 permissions:
   contents: read
 concurrency:
-  group: ios-report-ui-${{ github.ref }}
+  group: ios-native-ui-${{ github.ref }}-${{ inputs.qa_scenario }}
   cancel-in-progress: false
 jobs:
-  report_export_ui:
+  native_ui:
     runs-on: macos-15
     timeout-minutes: 40
     env:
@@ -23,6 +28,8 @@ jobs:
       MAESTRO_CLI_NO_ANALYTICS: "true"
       MAESTRO_DISABLE_UPDATE_CHECK: "true"
       MAESTRO_CLI_ANALYSIS_NOTIFICATION_DISABLED: "true"
+      MAESTRO_DRIVER_STARTUP_TIMEOUT: "60000"
+      QA_SCENARIO: ${{ inputs.qa_scenario }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,6 +45,21 @@ jobs:
           test "${#EXPECTED_SHA}" -eq 40
           test "$GITHUB_SHA" = "$EXPECTED_SHA"
           test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Select an allowlisted QA entrypoint and flow
+        run: |
+          set -euo pipefail
+          case "$QA_SCENARIO" in
+            report)
+              printf '%s\n' 'QA_ENTRYPOINT=tool/qa/report_preview_main.dart' 'QA_FLOW=tool/qa/maestro/report_export_cancel.yaml' >> "$GITHUB_ENV"
+              ;;
+            reminder-allow)
+              printf '%s\n' 'QA_ENTRYPOINT=tool/qa/reminder_main.dart' 'QA_FLOW=tool/qa/maestro/reminder_allow.yaml' >> "$GITHUB_ENV"
+              ;;
+            reminder-deny)
+              printf '%s\n' 'QA_ENTRYPOINT=tool/qa/reminder_main.dart' 'QA_FLOW=tool/qa/maestro/reminder_deny.yaml' >> "$GITHUB_ENV"
+              ;;
+            *) echo 'Unknown native QA scenario.' >&2; exit 1 ;;
+          esac
       - name: Configure read-only private kit access
         env:
           NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
@@ -102,10 +124,10 @@ jobs:
           xcrun simctl bootstatus "$IOS_DEVICE_ID" -b
           xcrun simctl spawn "$IOS_DEVICE_ID" defaults write -g AppleLanguages -array en
           xcrun simctl spawn "$IOS_DEVICE_ID" defaults write -g AppleLocale -string en_US
-      - name: Build debug-only report preview for simulator
+      - name: Build debug-only QA app for the selected simulator
         run: |
           set -euo pipefail
-          flutter build ios --debug --simulator --no-codesign --target tool/qa/report_preview_main.dart
+          flutter --device-id "$IOS_DEVICE_ID" build ios --debug --simulator --no-codesign --target "$QA_ENTRYPOINT"
           test -d build/ios/iphonesimulator/Runner.app
           bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' build/ios/iphonesimulator/Runner.app/Info.plist)
           test "$bundle_id" = 'com.crazypenguin.nshoptor'
@@ -129,14 +151,14 @@ jobs:
           version=$("$maestro" --version)
           test "$version" = '2.12.0'
           printf 'MAESTRO_VERSION=%s\n' "$version" >> "$GITHUB_ENV"
-      - name: Run local native picker and share-sheet cancellation flow
+      - name: Run the local native QA flow
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/maestro-output" "$RUNNER_TEMP/maestro-debug"
           maestro="$RUNNER_TEMP/maestro-cli/maestro/bin/maestro"
           if "$maestro" \
             --device="$IOS_DEVICE_ID" \
-            test tool/qa/maestro/report_export_cancel.yaml \
+            test "$QA_FLOW" \
             --format=JUNIT \
             --output="$RUNNER_TEMP/maestro-junit.xml" \
             --test-output-dir="$RUNNER_TEMP/maestro-output" \
@@ -155,12 +177,19 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/maestro-output"
-          flow_hash=$(shasum -a 256 tool/qa/maestro/report_export_cancel.yaml | awk '{print $1}')
-          entry_hash=$(shasum -a 256 tool/qa/report_preview_main.dart | awk '{print $1}')
+          flow_hash=unavailable
+          entry_hash=unavailable
+          if [ -n "${QA_FLOW:-}" ] && [ -f "$QA_FLOW" ]; then
+            flow_hash=$(shasum -a 256 "$QA_FLOW" | awk '{print $1}')
+          fi
+          if [ -n "${QA_ENTRYPOINT:-}" ] && [ -f "$QA_ENTRYPOINT" ]; then
+            entry_hash=$(shasum -a 256 "$QA_ENTRYPOINT" | awk '{print $1}')
+          fi
           printf '%s\n' \
             "source_sha=$GITHUB_SHA" \
             "run_id=$GITHUB_RUN_ID" \
             "device_udid=${IOS_DEVICE_ID:-unavailable}" \
+            "qa_scenario=$QA_SCENARIO" \
             "maestro_version=${MAESTRO_VERSION:-unavailable}" \
             "maestro_archive_sha256=a6044a84542f522f434c5dc3d609e60c7446d423f3ed1b2ae513f5c48663ec5e" \
             "flow_sha256=$flow_hash" \
@@ -170,7 +199,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: report-export-ui-${{ github.run_id }}
+          name: native-ui-${{ inputs.qa_scenario }}-${{ github.run_id }}
           path: |
             ${{ runner.temp }}/maestro-output/**/*.png
             ${{ runner.temp }}/maestro-output/**/*.json

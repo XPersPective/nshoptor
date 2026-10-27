@@ -214,7 +214,10 @@ final class HtmlPrintBridge: NSObject {
       } else {
         job.phase = .searching
         job.best = nil
-        self.search(job, low: 1, high: remaining)
+        // Reserve a final row for its total when possible, avoiding a trailing
+        // empty-table totals page. A lone row still permits footer-only fallback
+        // when that row and its footer genuinely cannot fit together.
+        self.search(job, low: 1, high: max(1, remaining - 1))
       }
     }
   }
