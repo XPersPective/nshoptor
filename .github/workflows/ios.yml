@@ -103,26 +103,26 @@ jobs:
               output.write('IOS_DEVICE_STATE=' + selected['state'] + '\n')
           print('Selected existing simulator:', selected['name'], selected['udid'])
           PY
-      - name: Native iOS OCR and receipt persistence regression
+      - name: Boot the selected existing simulator
         run: |
           if [ "$IOS_DEVICE_STATE" != 'Booted' ]; then
             xcrun simctl boot "$IOS_DEVICE_ID"
           fi
           xcrun simctl bootstatus "$IOS_DEVICE_ID" -b
-          flutter test integration_test/receipt_realistic_test.dart -d "$IOS_DEVICE_ID" --reporter expanded
-          printf '%s\n' 'Native OCR/approval/dedup regression passed on an existing iOS simulator with a synthetic Turkish fixture. Real photos, physical camera, StoreKit and store submission remain separate.' >> "$GITHUB_STEP_SUMMARY"
       - name: Prepare hash-pinned licensed real receipt
         run: python3 tool/qa/prepare_cord_fixture.py --output "$RUNNER_TEMP/cord-receipt-define.json"
-      - name: Native OCR values and incomplete-header safety on real photo
+      - name: Native synthetic OCR, real photo and multipage PDF regressions
+        id: native_quality
         run: |
-          flutter test integration_test/receipt_cord_test.dart -d "$IOS_DEVICE_ID" --dart-define-from-file="$RUNNER_TEMP/cord-receipt-define.json" --reporter expanded
-          printf '%s\n' 'One public CORDv2 Indonesian real-photo receipt: exact three line amounts/total and incomplete-header no-write protection. This is not universal receipt/camera accuracy proof.' >> "$GITHUB_STEP_SUMMARY"
-      - name: Native multipage Unicode PDF regression
+          flutter test integration_test/native_quality_test.dart -d "$IOS_DEVICE_ID" --no-uninstall --dart-define-from-file="$RUNNER_TEMP/cord-receipt-define.json" --reporter expanded
+          printf '%s\n' 'Synthetic Turkish OCR/approval/dedup, one public CORDv2 Indonesian real-photo value/incomplete-header case, and synthetic Unicode PDF passed. Physical devices, universal OCR accuracy, OS save/share and real StoreKit remain separate.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Collect synthetic PDF even if another native case fails
+        id: collect_pdf
+        if: ${{ !cancelled() && (steps.native_quality.outcome == 'success' || steps.native_quality.outcome == 'failure') }}
         run: |
           # Flutter integration tests uninstall by default; keep this synthetic
           # test container only until its PDF has been copied, then remove it.
           trap 'xcrun simctl uninstall "$IOS_DEVICE_ID" com.crazypenguin.nshoptor >/dev/null 2>&1 || true' EXIT
-          flutter test integration_test/report_pdf_test.dart -d "$IOS_DEVICE_ID" --no-uninstall --reporter expanded
           app_data="$(xcrun simctl get_app_container "$IOS_DEVICE_ID" com.crazypenguin.nshoptor data)"
           test -n "$app_data"
           install -d "$RUNNER_TEMP/native-pdf-evidence"
@@ -131,6 +131,7 @@ jobs:
           shasum -a 256 "$RUNNER_TEMP/native-pdf-evidence/report.pdf" >> "$GITHUB_STEP_SUMMARY"
           printf '%s\n' 'Native PDF uses 120 synthetic Unicode products; save/share sheets and physical devices remain separate checks.' >> "$GITHUB_STEP_SUMMARY"
       - name: Retain only synthetic native PDF for visual inspection
+        if: ${{ !cancelled() && steps.collect_pdf.outcome == 'success' }}
         uses: actions/upload-artifact@v4
         with:
           name: native-report-pdf

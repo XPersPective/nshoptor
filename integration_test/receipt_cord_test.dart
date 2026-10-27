@@ -82,18 +82,22 @@ void main() {
         expect(await db.select(db.receipts).get(), isEmpty);
       } catch (_) {
         final failedScan = scan;
-        if (failedScan != null) {
-          final lines = failedScan.lines.take(40).map((line) {
-            final text = line.text.length <= 160
-                ? line.text
-                : '${line.text.substring(0, 160)}…';
-            return {
-              'text': text,
-              if (line.boundingBoxTop != null) 'top': line.boundingBoxTop,
-              if (line.boundingBoxLeft != null) 'left': line.boundingBoxLeft,
-            };
-          });
-          debugPrint('PUBLIC_CORD_TEST1_OCR=${jsonEncode(lines)}');
+        try {
+          if (failedScan != null) {
+            final lines = failedScan.lines.take(40).map((line) {
+              final text = line.text.length <= 160
+                  ? line.text
+                  : '${line.text.substring(0, 160)}…';
+              return {
+                'text': text,
+                if (line.boundingBoxTop != null) 'top': line.boundingBoxTop,
+                if (line.boundingBoxLeft != null) 'left': line.boundingBoxLeft,
+              };
+            });
+            debugPrint('PUBLIC_CORD_TEST1_OCR=${jsonEncode(lines.toList())}');
+          }
+        } catch (_) {
+          debugPrint('PUBLIC_CORD_TEST1_DIAGNOSTICS_UNAVAILABLE');
         }
         rethrow;
       } finally {

@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,6 +16,31 @@ import 'package:nshoptor/features/history/reports/report_document.dart';
 import 'package:nshoptor/features/history/reports/report_export_service.dart';
 import 'package:nshoptor/features/history/reports/report_preview_screen.dart';
 import 'package:nshoptor/features/history/reports/report_repository.dart';
+
+const _review = bool.fromEnvironment('REPORT_UI_REVIEW');
+const _captureKey = Key('report_review_capture');
+const _captureDir = String.fromEnvironment(
+  'REPORT_UI_REVIEW_DIR',
+  defaultValue: '.project-brain/.cache/ui-review/PB-147',
+);
+
+Future<void> _capture(WidgetTester tester, String name) async {
+  if (!_review) return;
+  final boundary = tester.renderObject<RenderRepaintBoundary>(
+    find.byKey(_captureKey),
+  );
+  await tester.runAsync(() async {
+    final image = await boundary.toImage();
+    try {
+      final data = await image.toByteData(format: ui.ImageByteFormat.png);
+      await Directory(_captureDir).create(recursive: true);
+      await File('$_captureDir/$name.png')
+          .writeAsBytes(data!.buffer.asUint8List());
+    } finally {
+      image.dispose();
+    }
+  });
+}
 
 class _Export extends ReportExportService {
   Completer<Uint8List> pending = Completer();
@@ -116,6 +144,25 @@ Widget subject(
 );
 
 void main() {
+  setUpAll(() async {
+    if (!_review) return;
+    WidgetsApp.debugAllowBannerOverride = false;
+    final font = FontLoader('Roboto');
+    for (final path in [
+      'C:/Windows/Fonts/segoeui.ttf',
+      'C:/Windows/Fonts/segoeuib.ttf',
+    ]) {
+      font.addFont(File(path).readAsBytes().then(ByteData.sublistView));
+    }
+    await font.load();
+    final root = Platform.environment['FLUTTER_ROOT'] ?? 'C:/flutter';
+    await (FontLoader('MaterialIcons')..addFont(
+          File(
+            '$root/bin/cache/artifacts/material_fonts/materialicons-regular.otf',
+          ).readAsBytes().then(ByteData.sublistView),
+        ))
+        .load();
+  });
   for (final spec in [
     (320.0, 'tr', true, 2.0),
     (320.0, 'ar', false, 2.0),
@@ -127,12 +174,25 @@ void main() {
     ) async {
       await tester.binding.setSurfaceSize(Size(spec.$1, 850));
       addTearDown(() => tester.binding.setSurfaceSize(null));
+      tester.platformDispatcher.localeTestValue = Locale(spec.$2);
+      addTearDown(tester.platformDispatcher.clearLocaleTestValue);
       final semantics = tester.ensureSemantics();
       try {
         await tester.pumpWidget(
-          subject(document(), locale: spec.$2, dark: spec.$3, scale: spec.$4),
+          RepaintBoundary(
+            key: _captureKey,
+            child: subject(
+              document(),
+              locale: spec.$2,
+              dark: spec.$3,
+              scale: spec.$4,
+            ),
+          ),
         );
         await tester.pumpAndSettle();
+        final name =
+            '${spec.$1.toInt()}_${spec.$2}_${spec.$3 ? 'dark' : 'light'}_text${spec.$4}';
+        await _capture(tester, '${name}_preview');
         expect(find.byType(Checkbox), findsNothing);
         expect(find.byKey(const Key('report_product_0_0')), findsOneWidget);
         final mark = find.byWidgetPredicate(
@@ -144,6 +204,25 @@ void main() {
         await tester.pumpAndSettle();
         await tester.drag(find.byType(ListView), const Offset(0, -600));
         await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+        await _capture(tester, '${name}_zoomed');
+        final l = AppLocalizations.of(tester.element(find.byType(Scaffold)));
+        final share = find.byTooltip(l.reportShareAction);
+        await tester.scrollUntilVisible(
+          share,
+          400,
+          scrollable: find.byType(Scrollable).first,
+          maxScrolls: 30,
+        );
+        await tester.pumpAndSettle();
+        await _capture(tester, '${name}_actions');
+        await tester.tap(share);
+        await tester.pumpAndSettle();
+        expect(find.text('PDF'), findsOneWidget);
+        expect(find.text('CSV'), findsOneWidget);
+        await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+        await tester.pumpAndSettle();
+        expect(find.text('PDF'), findsNothing);
         expect(tester.takeException(), isNull);
       } finally {
         semantics.dispose();
