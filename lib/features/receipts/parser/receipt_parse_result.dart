@@ -1,6 +1,22 @@
 import '../../../core/quantity/unit_code.dart';
 import '../../../core/money/decimal_fixed.dart';
 
+/// A printed discount summary may already be reflected in product prices.
+/// Only exact equality with a known total proves that it must not be deducted
+/// again. Missing/mismatched totals retain the observed positive deduction for
+/// review; tolerance must never be used to infer this accounting choice.
+int receiptDiscountToApplyMinor({
+  required int productSumMinor,
+  required int? observedDiscountMinor,
+  required int? reportedTotalMinor,
+}) {
+  if (reportedTotalMinor != null && productSumMinor == reportedTotalMinor) {
+    return 0;
+  }
+  final observed = observedDiscountMinor ?? 0;
+  return observed > 0 ? observed : 0;
+}
+
 /// Fiş ayrıştırıcı çıktı adayları (spec §6.9).
 class ReceiptLineCandidate {
   const ReceiptLineCandidate({
@@ -51,11 +67,21 @@ class ReceiptParseResult {
   final bool currencyNeedsConfirmation;
   final int? subtotalMinor;
   final int? discountMinor;
+
+  /// Observed metadata above stays intact even when prices are already net.
+  int get appliedDiscountMinor => receiptDiscountToApplyMinor(
+    productSumMinor: lines.fold<int>(
+      0,
+      (sum, line) => sum + line.lineTotalMinor,
+    ),
+    observedDiscountMinor: discountMinor,
+    reportedTotalMinor: totalMinor,
+  );
   final int? taxMinor;
   final int? totalMinor;
   final List<ReceiptLineCandidate> lines;
 
-  /// Kabul edilen ürün satırlarının toplamı.
+  /// Ürün toplamı, yalnız uygulanması gereken indirim düşüldükten sonra.
   final int computedTotalMinor;
 
   /// Bildirilen genel toplam ile hesaplanan fark (uzlaştırma raporu,

@@ -1,5 +1,3 @@
-import 'dart:ui' show SemanticsFlag;
-
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -72,12 +70,12 @@ void main() {
               expect(search, findsOneWidget);
               expect(newList, findsOneWidget);
               expect(
-                tester.getSemantics(search).hasFlag(SemanticsFlag.isButton),
+                tester.getSemantics(search).flagsCollection.isButton,
                 isTrue,
                 reason: 'search must be a button at $width/$themeMode/$locale',
               );
               expect(
-                tester.getSemantics(newList).hasFlag(SemanticsFlag.isButton),
+                tester.getSemantics(newList).flagsCollection.isButton,
                 isTrue,
                 reason:
                     'new-list action must be a button at $width/$themeMode/$locale',

@@ -19,7 +19,7 @@ TEAM_ID = "53X3279WA3"
 BUNDLE_ID = "com.crazypenguin.nshoptor"
 PROFILE_NAME = "NShoptor AppStore"
 VERSION = "1.3.1"
-BUILD_NUMBER = "19"
+BUILD_NUMBER = "20"
 APPLE_ID = "6827116818"
 ADS_KEYS = {
     "ADMOB_APP_ID_IOS",

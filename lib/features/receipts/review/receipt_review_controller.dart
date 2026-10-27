@@ -115,14 +115,15 @@ class ReceiptReviewController extends ChangeNotifier {
           lineTotalMinor: line.lineTotalMinor,
         ),
     ];
-    if ((parseResult.discountMinor ?? 0) > 0) {
+    final discountToApply = parseResult.appliedDiscountMinor;
+    if (discountToApply > 0) {
       lines.add(
         ReviewLine(
           rawText: '',
           name: '−',
           normalizedName: 'discount',
           quantity: DecimalFixed.zero(),
-          lineTotalMinor: -parseResult.discountMinor!,
+          lineTotalMinor: -discountToApply,
         )..isDiscount = true,
       );
     }

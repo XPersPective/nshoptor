@@ -245,9 +245,17 @@ final class ReceiptDocument {
       currency: metadata.currencyCode ?? _currencyContext,
     ).parse(OcrScanResult(lines: _financialRows));
     final discount = parsed.discountMinor;
+    final productSum = productLines.fold<int>(
+      0,
+      (n, l) => n + l.lineTotalMinor,
+    );
     final computed =
-        productLines.fold<int>(0, (n, l) => n + l.lineTotalMinor) -
-        (discount ?? 0);
+        productSum -
+        receiptDiscountToApplyMinor(
+          productSumMinor: productSum,
+          observedDiscountMinor: discount,
+          reportedTotalMinor: metadata.totalMinor,
+        );
     final difference = computed - (metadata.totalMinor ?? computed);
     return ReceiptParseResult(
       storeCandidates: [if (metadata.store != null) metadata.store!],

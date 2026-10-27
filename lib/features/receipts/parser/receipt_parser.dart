@@ -20,9 +20,12 @@ class ReceiptParser {
 
   final String currency;
   int get _digits => Currency.fromCode(currency).minorUnitDigits;
-  String get _amountPattern =>
-      r'\d+(?:[.,]\d{3})*' +
-      (_digits == 0 ? r'(?:[.,]\d{2})?' : '[.,]\\d{$_digits}');
+  String get _amountPattern => currency == 'IDR'
+      // Whole rupiah still use IDR's ISO two minor digits. Group separators
+      // must be homogeneous; an explicit fraction has exactly two digits.
+      ? r'(?:\d{1,3}(?:\.\d{3})+(?:,\d{2})?|\d{1,3}(?:,\d{3})+(?:\.\d{2})?|\d+(?:[.,]\d{2})?)'
+      : r'\d+(?:[.,]\d{3})*' +
+            (_digits == 0 ? r'(?:[.,]\d{2})?' : '[.,]\\d{$_digits}');
 
   /// ±tolerans: satır toplamları ile fiş toplamı arasındaki yuvarlama payı.
   final int reconciliationToleranceMinor;
@@ -180,7 +183,17 @@ class ReceiptParser {
       }
     }
 
-    final computed = productLines.fold<int>(0, (s, l) => s + l.lineTotalMinor);
+    final productSum = productLines.fold<int>(
+      0,
+      (s, l) => s + l.lineTotalMinor,
+    );
+    final computed =
+        productSum -
+        receiptDiscountToApplyMinor(
+          productSumMinor: productSum,
+          observedDiscountMinor: discountMinor,
+          reportedTotalMinor: totalMinor,
+        );
     final difference = totalMinor == null ? 0 : computed - totalMinor;
 
     return ReceiptParseResult(
@@ -362,8 +375,12 @@ class ReceiptParser {
   }
 
   /// Satır sonunda parasal değer var mı?
-  bool _hasTrailingPrice(String text) =>
-      RegExp(_amountPattern + r'\s*$').hasMatch(text.trim());
+  // IDR's optional fraction must not make an invalid token/code's numeric
+  // suffix look like an independent whole-rupiah price. A colon may delimit
+  // a header amount; multiplication/unit syntax is parsed separately.
+  bool _hasTrailingPrice(String text) => RegExp(
+    (currency == 'IDR' ? r'(?<![^\s:])' : '') + _amountPattern + r'\s*$',
+  ).hasMatch(text.trim());
 
   /// İndirim satırı: tutar eksiyse ya da işaret kelimesi dışında ürün adı
   /// yoksa ("İNDİRİM 5,00"). "İNDİRİMLİ ELMA 31,50" bir üründür (PB-051).
@@ -452,6 +469,9 @@ class ReceiptParser {
     if (simple != null) {
       final name = simple.group(1)!.trim();
       if (name.isEmpty) return null;
+      if (currency == 'IDR' && RegExp(r'[-−+]\s*$').hasMatch(name)) {
+        return null;
+      }
       final lineTotal = _minorFrom(simple.group(2)!);
       if (lineTotal == null) return null;
       // Kısa/harfsiz adlar düşük güvenle korunur: düşürülmez, incelenir.
@@ -495,15 +515,42 @@ class ReceiptParser {
       ).hasMatch(text);
 
   int? _lastAmountMinor(String text) {
+    final boundary = currency == 'IDR' ? r'(?<![^\s:])' : '';
+    final signedDiscount =
+        currency == 'IDR' &&
+        _isDiscountLine(text.replaceAll('İ', 'i').toLowerCase());
+    // Discount rows store a positive magnitude, including a printed sign.
+    // Do not grant that exception to signed product or total amounts.
+    final sign = signedDiscount ? r'(?:[-−+]\s*)?' : '';
     final match = RegExp(
-      '($_amountPattern)'
+      '$boundary$sign($_amountPattern)'
       r'\s*(TL|₺|TRY)?\s*$',
     ).firstMatch(text);
     if (match == null) return null;
+    if (currency == 'IDR' &&
+        !signedDiscount &&
+        RegExp(r'[-−+]\s*$').hasMatch(text.substring(0, match.start))) {
+      return null;
+    }
     return _minorFrom(match.group(1)!);
   }
 
   int? _minorFrom(String decimalText) {
+    if (currency == 'IDR') {
+      if (!RegExp('^$_amountPattern\$').hasMatch(decimalText)) return null;
+      var raw = decimalText;
+      if (raw.contains(',') && raw.contains('.')) {
+        raw = raw.lastIndexOf(',') > raw.lastIndexOf('.')
+            ? raw.replaceAll('.', '').replaceAll(',', '.')
+            : raw.replaceAll(',', '');
+      } else if (RegExp(r'^\d{1,3}(?:\.\d{3})+$').hasMatch(raw) ||
+          RegExp(r'^\d{1,3}(?:,\d{3})+$').hasMatch(raw)) {
+        raw = raw.replaceAll(RegExp(r'[.,]'), '');
+      } else {
+        raw = raw.replaceAll(',', '.');
+      }
+      return DecimalFixed.tryParse(raw)?.toMinorUnits(_digits);
+    }
     var raw = decimalText;
     final hasComma = raw.contains(',');
     final hasDot = raw.contains('.');

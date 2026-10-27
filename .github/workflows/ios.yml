@@ -19,6 +19,9 @@ on:
     paths:
       - 'ios/**'
       - 'lib/**'
+      - 'integration_test/**'
+      - 'tool/ios/**'
+      - 'tool/qa/**'
       - 'pubspec.yaml'
       - 'pubspec.lock'
       - '.github/workflows/ios.yml'
@@ -26,6 +29,9 @@ on:
     branches: [main]
     paths:
       - 'ios/**'
+      - 'integration_test/**'
+      - 'tool/ios/**'
+      - 'tool/qa/**'
       - 'pubspec.yaml'
       - 'pubspec.lock'
       - '.github/workflows/ios.yml'
@@ -105,9 +111,18 @@ jobs:
           xcrun simctl bootstatus "$IOS_DEVICE_ID" -b
           flutter test integration_test/receipt_realistic_test.dart -d "$IOS_DEVICE_ID" --reporter expanded
           printf '%s\n' 'Native OCR/approval/dedup regression passed on an existing iOS simulator with a synthetic Turkish fixture. Real photos, physical camera, StoreKit and store submission remain separate.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Prepare hash-pinned licensed real receipt
+        run: python3 tool/qa/prepare_cord_fixture.py --output "$RUNNER_TEMP/cord-receipt-define.json"
+      - name: Native OCR values and incomplete-header safety on real photo
+        run: |
+          flutter test integration_test/receipt_cord_test.dart -d "$IOS_DEVICE_ID" --dart-define-from-file="$RUNNER_TEMP/cord-receipt-define.json" --reporter expanded
+          printf '%s\n' 'One public CORDv2 Indonesian real-photo receipt: exact three line amounts/total and incomplete-header no-write protection. This is not universal receipt/camera accuracy proof.' >> "$GITHUB_STEP_SUMMARY"
       - name: Native multipage Unicode PDF regression
         run: |
-          flutter test integration_test/report_pdf_test.dart -d "$IOS_DEVICE_ID" --reporter expanded
+          # Flutter integration tests uninstall by default; keep this synthetic
+          # test container only until its PDF has been copied, then remove it.
+          trap 'xcrun simctl uninstall "$IOS_DEVICE_ID" com.crazypenguin.nshoptor >/dev/null 2>&1 || true' EXIT
+          flutter test integration_test/report_pdf_test.dart -d "$IOS_DEVICE_ID" --no-uninstall --reporter expanded
           app_data="$(xcrun simctl get_app_container "$IOS_DEVICE_ID" com.crazypenguin.nshoptor data)"
           test -n "$app_data"
           install -d "$RUNNER_TEMP/native-pdf-evidence"
