@@ -12,11 +12,14 @@ appId: com.crazypenguin.nshoptor
 - tapOn:
     text: "Save PDF report"
 - assertVisible:
-    text: "Cancel"
+    text: "^Save$"
 - takeScreenshot:
     path: report-save-picker-first
-- tapOn:
-    text: "Cancel"
+# iOS26 Files export sheet shows Back/Save; cancel via its native dismiss gesture.
+- swipe:
+    start: 50%, 12%
+    end: 50%, 95%
+    duration: 500
 - assertVisible:
     text: "Preview"
 - scrollUntilVisible:
@@ -32,11 +35,14 @@ appId: com.crazypenguin.nshoptor
 - tapOn:
     text: "Save PDF report"
 - assertVisible:
-    text: "Cancel"
+    text: "^Save$"
 - takeScreenshot:
     path: report-save-picker-second
-- tapOn:
-    text: "Cancel"
+# iOS26 Files export sheet shows Back/Save; cancel via its native dismiss gesture.
+- swipe:
+    start: 50%, 12%
+    end: 50%, 95%
+    duration: 500
 - assertVisible:
     text: "Preview"
 - assertNotVisible:
@@ -80,11 +86,14 @@ appId: com.crazypenguin.nshoptor
 - tapOn:
     text: "Save PDF report"
 - assertVisible:
-    text: "Cancel"
+    text: "^Save$"
 - takeScreenshot:
     path: report-save-picker-after-share
-- tapOn:
-    text: "Cancel"
+# iOS26 Files export sheet shows Back/Save; cancel via its native dismiss gesture.
+- swipe:
+    start: 50%, 12%
+    end: 50%, 95%
+    duration: 500
 - assertVisible:
     text: "Preview"
 - assertNotVisible:
