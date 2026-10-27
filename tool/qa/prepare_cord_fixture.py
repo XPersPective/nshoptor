@@ -9,7 +9,9 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import socket
 import sys
+import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -35,6 +37,8 @@ EXPECTED = {
 }
 MAX_IMAGE_BYTES = 100000
 MAX_RESPONSE_BYTES = 250000
+MAX_READ_ATTEMPTS = 3
+RETRY_BACKOFF_SECONDS = (1, 2)
 
 
 class _CheckedRedirects(HTTPRedirectHandler):
@@ -61,16 +65,42 @@ def _read_limited(url: str, limit: int) -> bytes:
     _validate_url(url)
     opener = build_opener(_CheckedRedirects())
     request = Request(url, headers={"User-Agent": "nshoptor-cord-fixture/1"})
-    try:
-        with opener.open(request, timeout=30) as response:
-            final_url = response.geturl()
-            _validate_url(final_url)
-            payload = response.read(limit + 1)
-    except (HTTPError, URLError, TimeoutError) as error:
-        raise RuntimeError(f"Dataset fetch failed: {type(error).__name__}") from error
-    if len(payload) > limit:
-        raise ValueError("Dataset response exceeds the configured size limit")
-    return payload
+    for attempt in range(MAX_READ_ATTEMPTS):
+        try:
+            with opener.open(request, timeout=30) as response:
+                final_url = response.geturl()
+                _validate_url(final_url)
+                payload = response.read(limit + 1)
+        except (HTTPError, URLError, TimeoutError) as error:
+            detail = type(error).__name__
+            if isinstance(error, HTTPError):
+                status = error.code
+                retryable = status in (408, 429) or 500 <= status <= 599
+                detail = f"HTTP {status}"
+                error.close()
+            elif isinstance(error, URLError):
+                retryable = _is_transient_url_error(error)
+            else:
+                retryable = True
+            if not retryable or attempt == MAX_READ_ATTEMPTS - 1:
+                raise RuntimeError(f"Dataset fetch failed: {detail}") from error
+            time.sleep(RETRY_BACKOFF_SECONDS[attempt])
+        else:
+            if len(payload) > limit:
+                raise ValueError("Dataset response exceeds the configured size limit")
+            return payload
+
+    raise AssertionError("unreachable")
+
+
+def _is_transient_url_error(error: URLError) -> bool:
+    reason = error.reason
+    if isinstance(reason, (TimeoutError, socket.timeout, ConnectionError)):
+        return True
+    return (
+        isinstance(reason, socket.gaierror)
+        and reason.errno == socket.EAI_AGAIN
+    )
 
 
 def _row_from_response(payload: bytes) -> tuple[dict, dict]:

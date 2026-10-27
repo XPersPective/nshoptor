@@ -124,18 +124,118 @@ jobs:
           xcrun simctl bootstatus "$IOS_DEVICE_ID" -b
           xcrun simctl spawn "$IOS_DEVICE_ID" defaults write -g AppleLanguages -array en
           xcrun simctl spawn "$IOS_DEVICE_ID" defaults write -g AppleLocale -string en_US
-      - name: Build debug-only QA app for the selected simulator
+      - name: Build and launch nondistribution QA on the selected simulator
         run: |
           set -euo pipefail
-          flutter --device-id "$IOS_DEVICE_ID" build ios --debug --simulator --no-codesign --target "$QA_ENTRYPOINT"
+          umask 077
+          # Keep verbose commands/environment private; this probes simulator startup,
+          # not a claimed architecture fix. No distribution credentials are provided.
+          if flutter run --debug --no-hot --no-resident --no-pub \
+            -d "$IOS_DEVICE_ID" --target "$QA_ENTRYPOINT" --verbose \
+            > "$RUNNER_TEMP/native-ui-build-private.log" 2>&1; then
+            :
+          else
+            build_status=$?
+            if python3 - <<'PY' 2> "$RUNNER_TEMP/native-ui-diagnostics-private.log"
+          import os, pathlib, re, subprocess, time, xml.etree.ElementTree as ET
+          root = pathlib.Path.cwd()
+          temporary = pathlib.Path(os.environ['RUNNER_TEMP'])
+          deadline = time.monotonic() + 60
+          lines = ['Nondistribution simulator QA build diagnostics']
+          def capture(command):
+              remaining = deadline - time.monotonic()
+              if remaining <= 0:
+                  return None
+              try:
+                  return subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                        text=True, timeout=remaining, check=False)
+              except (OSError, subprocess.TimeoutExpired):
+                  return None
+          # Only recognize bounded compiler/linker diagnostics, never print raw
+          # command lines, source excerpts, headers, environment or DART_DEFINES.
+          patterns = [
+              r"Framework '[A-Za-z0-9_.+-]{1,100}' not found",
+              r"(?:No such module|no such module) '[A-Za-z0-9_.+-]{1,100}'",
+              r'(?i:linker command failed with exit code [0-9]{1,3})',
+              r'(?i:undefined symbols for architecture (?:arm64|x86_64))',
+              r'(?i:building for iOS Simulator, but linking in object file built for iOS)',
+          ]
+          errors = set()
+          with (temporary / 'native-ui-build-private.log').open(errors='replace') as source:
+              for line in source:
+                  if time.monotonic() >= deadline:
+                      break
+                  if len(line) > 2000 or not re.search(r'error:|Error \(Xcode\):|^ld:', line):
+                      continue
+                  for pattern in patterns:
+                      match = re.search(pattern, line)
+                      if match:
+                          errors.add(match.group(0))
+          lines.extend('Compiler/linker: ' + value for value in sorted(errors))
+          if not errors:
+              lines.append('Compiler/linker: no allowlisted diagnostic matched; raw log remains private.')
+          workspace = root / 'ios/Runner.xcworkspace/contents.xcworkspacedata'
+          try:
+              for reference in ET.parse(workspace).iter('FileRef'):
+                  location = reference.get('location', '')
+                  if re.fullmatch(r'(?:group|container|absolute):[A-Za-z0-9_./ +\-]{1,300}', location):
+                      lines.append('Workspace reference: ' + location)
+          except (OSError, ET.ParseError):
+              lines.append('Workspace references: unavailable')
+          # Existing build products only; do not install, change or repair Pods.
+          products = root / 'build/ios'
+          found = 0
+          if products.exists():
+              for directory, subdirectories, files in os.walk(products):
+                  if time.monotonic() >= deadline or found >= 20:
+                      break
+                  folder = pathlib.Path(directory)
+                  binary = folder / ('Pods_Runner' if folder.name == 'Pods_Runner.framework' else 'Runner')
+                  if folder.name not in ('Runner.app', 'Pods_Runner.framework') or not binary.is_file():
+                      continue
+                  relative = binary.relative_to(root).as_posix()
+                  if not re.fullmatch(r'[A-Za-z0-9_./ +\-]{1,500}', relative):
+                      continue
+                  found += 1
+                  result = capture(['xcrun', 'lipo', '-archs', str(binary)])
+                  archs = 'unavailable'
+                  if result and result.returncode == 0 and re.fullmatch(r'[A-Za-z0-9_ \n]+', result.stdout):
+                      archs = result.stdout.strip()
+                  lines.append('Build product: ' + relative + '; architectures: ' + archs)
+          if not found:
+              lines.append('Build products: Runner/Pods_Runner binaries unavailable')
+          result = capture(['xcodebuild', '-workspace', 'ios/Runner.xcworkspace', '-scheme', 'Runner',
+                            '-configuration', 'Debug', '-sdk', 'iphonesimulator',
+                            '-destination', 'id=' + os.environ['IOS_DEVICE_ID'], '-showBuildSettings'])
+          if result:
+              (temporary / 'native-ui-settings-private.log').write_text(result.stdout + result.stderr)
+              allowed = r'ARCHS|EXCLUDED_ARCHS|ONLY_ACTIVE_ARCH|CONFIGURATION_BUILD_DIR|FRAMEWORK_SEARCH_PATHS|SDKROOT|SUPPORTED_PLATFORMS'
+              for line in result.stdout.splitlines():
+                  match = re.fullmatch(r'\s*(' + allowed + r') = ([A-Za-z0-9_./ $(){}:"+\-]{0,1500})', line)
+                  if match:
+                      lines.append('Build setting: ' + match.group(1) + ' = ' + match.group(2))
+              lines.append('Build settings exit code: ' + str(result.returncode))
+          else:
+              lines.append('Build settings: unavailable or diagnostic deadline reached')
+          report = '\n'.join(lines) + '\n'
+          (temporary / 'native-ui-build-diagnostics.txt').write_text(report)
+          print(report, end='')
+          PY
+            then
+              :
+            else
+              printf '%s\n' 'Sanitized build diagnostics unavailable.' \
+                > "$RUNNER_TEMP/native-ui-build-diagnostics.txt"
+            fi
+            exit "$build_status"
+          fi
           test -d build/ios/iphonesimulator/Runner.app
           bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' build/ios/iphonesimulator/Runner.app/Info.plist)
           test "$bundle_id" = 'com.crazypenguin.nshoptor'
-      - name: Install and launch the exact QA app
-        run: |
-          set -euo pipefail
-          xcrun simctl install "$IOS_DEVICE_ID" build/ios/iphonesimulator/Runner.app
-          xcrun simctl launch --terminate-running-process "$IOS_DEVICE_ID" com.crazypenguin.nshoptor
+          installed_app=$(xcrun simctl get_app_container "$IOS_DEVICE_ID" "$bundle_id" app)
+          test -d "$installed_app"
+          installed_bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$installed_app/Info.plist")
+          test "$installed_bundle_id" = "$bundle_id"
       - name: Download and verify pinned Maestro CLI 2.12.0
         run: |
           set -euo pipefail
@@ -206,6 +306,7 @@ jobs:
             ${{ runner.temp }}/maestro-output/run-metadata.txt
             ${{ runner.temp }}/maestro-debug/failure-hierarchy*.txt
             ${{ runner.temp }}/maestro-junit.xml
+            ${{ runner.temp }}/native-ui-build-diagnostics.txt
           if-no-files-found: warn
           retention-days: 1
       - name: Remove QA app and temporary credentials

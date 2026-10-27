@@ -49,6 +49,8 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
+      - name: Verify pinned fixture fetch guards without network
+        run: python3 -m unittest discover -s test/tool -p test_prepare_cord_fixture.py
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
