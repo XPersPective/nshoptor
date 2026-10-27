@@ -124,6 +124,14 @@ jobs:
           xcrun simctl bootstatus "$IOS_DEVICE_ID" -b
           xcrun simctl spawn "$IOS_DEVICE_ID" defaults write -g AppleLanguages -array en
           xcrun simctl spawn "$IOS_DEVICE_ID" defaults write -g AppleLocale -string en_US
+      - name: Materialize native dependencies before simulator architecture detection
+        run: |
+          set -euo pipefail
+          # Flutter generates architecture exclusions before its first pod install.
+          # A config-only pass creates Pods; the real run then detects their actual
+          # simulator support. Do not force an architecture or edit production Pods.
+          flutter build ios --simulator --debug --config-only --no-codesign --no-pub \
+            -d "$IOS_DEVICE_ID" --target "$QA_ENTRYPOINT"
       - name: Build and launch nondistribution QA on the selected simulator
         run: |
           set -euo pipefail

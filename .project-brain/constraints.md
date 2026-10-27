@@ -5,7 +5,7 @@
 - C-023: Kullanıcı 2026-10-26: Store Automation kaldırılmıştır; önbellek/yedek kopyası kullanılmaz, geçiş yapılmaz. Geliştirme Project Brain; mağaza yayını Release Harbor. Project Forge yalnız yeni proje başlangıcı içindir. Mevcut yayın yetkisi tekrar sorulmaz; hesap oturumu yoksa somut eksik olarak kaydedilir.
 - C-024: Kullanıcının güncel AGENTS.md yönergesi tek ortak Medium_Phone_API_36.0 AVD'sini zorunlu kılar; eski geçici AVD istisnaları kullanılmaz. Başka oturum kullanıyorsa dokunulmaz.
 
-- C-022: Kullanıcı 2026-10-25: Basit işler düşük maliyetli ChatGPT native alt ajanlarına verilebilir; harici CLI/havuz yok. AGENTS.md tek ortak AVD ister. Kullanıcının önceki açık geçici C: AVD izni ve son “hafif bir emülatör başlat” talebi, ortak5554'te oyun çalışırken mevcut task-owned nshoptor_temp_aosp_api36'yı5556'da başlatmak için uygulandı; yeni AVD oluşturulmadı. Bu dar çalışma istisnası dışına çıkılmaz; başka oturumun uygulaması/süreci durdurulmaz veya silinmez. Ayrıntı: references/emulator-stability-2026-10-25.md.
+- C-022: Superseded by C-024: only shared Medium_Phone_API_36.0; no temporary AVD exceptions remain authorized.
 
 - C-019: Son kullanıcı 2026-10-24: CLI Agent Pool ve harici model/CLI ajanı kullanılmaz; yalnız ChatGPT native alt ajanları sınırlı görevlerle kullanılabilir. Önceki havuz yetkileri bu çalışma için geçersizdir; havuz keşfi/başlatması/onayı istenmez.
 - C-020: Yeni ve yarım kalan bütün işlerin tek takip kaynağı Project Brain olur. Yabancı takip dosyaları kapsam/Resume/External aktarımı, kaynak-hedef hash doğrulaması ve geri alınabilir arşivden sonra tam belirtilen yollardan kaldırılır; uygulama, kanıt ve özel yayın dosyaları silinmez.
@@ -20,7 +20,7 @@
 
 - C-007: Brand icon, NShoptor, slogan and Pro accent stay green regardless of palette (user 2026-10-18).
 - C-008: Actual market price presence, including explicit zero, determines purchased state; estimate alone does not (user attachment 2026-10-18).
-- C-009: Never use Astra or Antigravity Argon. User authorizes ZCode/MiniMax/Claude strong subscription models, OpenCode free models and other Antigravity models; Luna remains discovery-only. Unknown quotas do not block bounded attempts; handle provider limits and try another approved route. No separately metered paid API (user 2026-10-18).
+- C-009: Superseded by C-019 and user2026-10-27: use native Codex Luna for bounded low-cost tasks, director reviews architecture/security. No CLI Agent Pool, external CLI/model route, Argon/Astra or separately metered API.
 - C-010: Report only verified completion; preserve open checks and offer reopening completed shopping lists (user 2026-10-18).
 - C-011: Keep existing user's untracked build/metadata outputs; no global Flutter configuration changes (source: takeover and legacy SA-018).
 
