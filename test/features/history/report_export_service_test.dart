@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart'
+    show debugDefaultTargetPlatformOverride, TargetPlatform;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations_tr.dart';
@@ -55,6 +57,44 @@ void main() {
       );
       expect(payload['text'], buildShoppingReportText(document, text));
       expect(payload['text'], contains(document.title));
+    },
+  );
+
+  test(
+    'PDF sends pagination fragments only to the iOS native renderer',
+    () async {
+      final document = ReportDocument(
+        title: 'Platform payload',
+        currencyCode: 'TRY',
+        shopping: const [],
+      );
+      final messenger =
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+      final previousPlatform = debugDefaultTargetPlatformOverride;
+      final received = <Map<Object?, Object?>>[];
+      messenger.setMockMethodCallHandler(channel, (call) async {
+        received.add(Map<Object?, Object?>.from(call.arguments as Map));
+        return Uint8List.fromList('%PDF-1.7'.codeUnits);
+      });
+      try {
+        debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+        await service.bytes(document, text, ReportFileFormat.pdf);
+        debugDefaultTargetPlatformOverride = TargetPlatform.android;
+        await service.bytes(document, text, ReportFileFormat.pdf);
+      } finally {
+        debugDefaultTargetPlatformOverride = previousPlatform;
+        messenger.setMockMethodCallHandler(channel, null);
+      }
+
+      expect(received, hasLength(2));
+      expect(received[0]['pagination'], isA<Map<Object?, Object?>>());
+      expect(
+        received[0]['pagination'],
+        buildShoppingReportHtmlFragments(document, text).toMap(),
+      );
+      expect(received[0]['html'], buildShoppingReportHtml(document, text));
+      expect(received[1].containsKey('pagination'), isFalse);
+      expect(received[1]['html'], received[0]['html']);
     },
   );
 

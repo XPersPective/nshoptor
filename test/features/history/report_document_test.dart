@@ -114,9 +114,40 @@ void main() {
         currencyCode: 'TRY',
         shopping: reports.take(count).toList(),
       );
+      final fragments = buildShoppingReportHtmlFragments(document, text);
+      expect(fragments.html, buildShoppingReportHtml(document, text));
+      expect(fragments.toMap().keys.toList(), [
+        'version',
+        'start',
+        'end',
+        'sections',
+      ]);
+      expect(fragments.toMap()['version'], 1);
+      expect(fragments.sections.length, count == 0 ? 1 : count);
+      expect(
+        fragments.sections.fold<int>(
+          0,
+          (total, section) =>
+              total + section.footer.split('class="spent"').length - 1,
+        ),
+        count == 2 ? 3 : 1,
+      );
+      if (count == 0) {
+        expect(fragments.sections.single.start, isEmpty);
+        expect(fragments.sections.single.rows, isEmpty);
+        expect(fragments.sections.single.end, isEmpty);
+      }
+      for (final section in fragments.sections) {
+        expect(section.toMap().keys.toList(), [
+          'start',
+          'rows',
+          'end',
+          'footer',
+        ]);
+      }
       final expectedTotals = count == 2 ? 3 : 1;
       for (final output in [
-        buildShoppingReportHtml(document, text),
+        fragments.html,
         buildShoppingReportText(document, text),
       ]) {
         expect(
@@ -173,7 +204,22 @@ void main() {
     final l10n = AppLocalizationsTr();
     final text = ReportText(l10n, 'tr', 'TRY');
     final html = buildShoppingReportHtml(document, text, rtl: true);
+    final fragments = buildShoppingReportHtmlFragments(
+      document,
+      text,
+      rtl: true,
+    );
 
+    expect(fragments.html, html);
+    expect(fragments.sections.single.rows, hasLength(report.products.length));
+    expect(
+      fragments.sections.single.rows.join(),
+      contains('&lt;img src=x onerror=alert(1)&gt;'),
+    );
+    expect(
+      fragments.sections.single.rows.join(),
+      isNot(contains('<img src=x')),
+    );
     expect(html, contains('dir="rtl"'));
     expect(html, contains(l10n.compareActual));
     expect(html, contains(l10n.reportTotalSpent));

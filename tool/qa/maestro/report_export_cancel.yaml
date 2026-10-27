@@ -1,0 +1,95 @@
+appId: com.crazypenguin.nshoptor
+---
+- launchApp
+- assertVisible:
+    text: "Preview"
+- scrollUntilVisible:
+    element:
+      text: "Save PDF report"
+    direction: DOWN
+- takeScreenshot:
+    path: report-preview
+- tapOn:
+    text: "Save PDF report"
+- assertVisible:
+    text: "Cancel"
+- takeScreenshot:
+    path: report-save-picker-first
+- tapOn:
+    text: "Cancel"
+- assertVisible:
+    text: "Preview"
+- scrollUntilVisible:
+    element:
+      text: "Save PDF report"
+    direction: DOWN
+- assertVisible:
+    text: "Save PDF report"
+- assertNotVisible:
+    text: "Report saved."
+- assertNotVisible:
+    text: "Could not save. Your changes are still here. Please try again."
+- tapOn:
+    text: "Save PDF report"
+- assertVisible:
+    text: "Cancel"
+- takeScreenshot:
+    path: report-save-picker-second
+- tapOn:
+    text: "Cancel"
+- assertVisible:
+    text: "Preview"
+- assertNotVisible:
+    text: "Report saved."
+- assertNotVisible:
+    text: "Could not save. Your changes are still here. Please try again."
+- scrollUntilVisible:
+    element:
+      text: "Share"
+    direction: DOWN
+- tapOn:
+    text: "Share"
+- assertVisible:
+    text: "PDF"
+- tapOn:
+    text: "PDF"
+- scrollUntilVisible:
+    element:
+      text: "Save to Files"
+    direction: DOWN
+- assertVisible:
+    text: "Save to Files"
+- takeScreenshot:
+    path: report-share-sheet
+- swipe:
+    start: 50%, 20%
+    end: 50%, 95%
+    duration: 500
+- assertVisible:
+    text: "Preview"
+- scrollUntilVisible:
+    element:
+      text: "Save PDF report"
+    direction: DOWN
+- assertVisible:
+    text: "Save PDF report"
+- assertNotVisible:
+    text: "Report saved."
+- assertNotVisible:
+    text: "Could not save. Your changes are still here. Please try again."
+- tapOn:
+    text: "Save PDF report"
+- assertVisible:
+    text: "Cancel"
+- takeScreenshot:
+    path: report-save-picker-after-share
+- tapOn:
+    text: "Cancel"
+- assertVisible:
+    text: "Preview"
+- assertNotVisible:
+    text: "Report saved."
+- assertNotVisible:
+    text: "Could not save. Your changes are still here. Please try again."
+- takeScreenshot:
+    path: report-returned-after-final-cancel

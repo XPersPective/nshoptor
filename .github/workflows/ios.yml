@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       release_target:
-        description: Native verification or explicitly requested signed candidate
+        description: Native verification, report UI test, or explicitly requested signed candidate
         type: choice
         default: native
-        options: [native, signed-android, signed-ios]
+        options: [native, report-ui, signed-android, signed-ios]
       expected_sha:
         description: Exact source SHA for a signed candidate
         type: string
@@ -128,16 +128,29 @@ jobs:
           install -d "$RUNNER_TEMP/native-pdf-evidence"
           cp "$app_data/Documents/nshoptor-report-qa-20261025.pdf" "$RUNNER_TEMP/native-pdf-evidence/report.pdf"
           test -s "$RUNNER_TEMP/native-pdf-evidence/report.pdf"
-          shasum -a 256 "$RUNNER_TEMP/native-pdf-evidence/report.pdf" >> "$GITHUB_STEP_SUMMARY"
+          for variant in empty multilist; do
+            source="$app_data/Documents/nshoptor-report-qa-$variant.pdf"
+            if [ -s "$source" ]; then
+              cp "$source" "$RUNNER_TEMP/native-pdf-evidence/$variant.pdf"
+            fi
+          done
+          shasum -a 256 "$RUNNER_TEMP/native-pdf-evidence/"*.pdf >> "$GITHUB_STEP_SUMMARY"
           printf '%s\n' 'Native PDF uses 120 synthetic Unicode products; save/share sheets and physical devices remain separate checks.' >> "$GITHUB_STEP_SUMMARY"
       - name: Retain only synthetic native PDF for visual inspection
         if: ${{ !cancelled() && steps.collect_pdf.outcome == 'success' }}
         uses: actions/upload-artifact@v4
         with:
           name: native-report-pdf
-          path: ${{ runner.temp }}/native-pdf-evidence/report.pdf
+          path: ${{ runner.temp }}/native-pdf-evidence/*.pdf
           if-no-files-found: error
           retention-days: 1
+  report_ui:
+    if: github.event_name == 'workflow_dispatch' && inputs.release_target == 'report-ui'
+    uses: ./.github/workflows/ios-report-ui.yml
+    with:
+      expected_sha: ${{ inputs.expected_sha }}
+    secrets:
+      NSHOPTOR_NAPP_KIT_READ_KEY: ${{ secrets.NSHOPTOR_NAPP_KIT_READ_KEY }}
   signed_android:
     if: github.event_name == 'workflow_dispatch' && inputs.release_target == 'signed-android'
     uses: ./.github/workflows/android-release.yml

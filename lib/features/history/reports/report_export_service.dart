@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, TargetPlatform;
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -23,14 +25,22 @@ class ReportExportService {
         utf8.encode('\uFEFF${buildShoppingReportCsv(document, text)}'),
       );
     }
+    final fragments = buildShoppingReportHtmlFragments(
+      document,
+      text,
+      rtl: rtl,
+    );
+    final arguments = <String, Object>{
+      'title': document.title.length > 200
+          ? document.title.substring(0, 200)
+          : document.title,
+      'html': fragments.html,
+      'text': buildShoppingReportText(document, text),
+      if (defaultTargetPlatform == TargetPlatform.iOS)
+        'pagination': fragments.toMap(),
+    };
     final data = await _channel
-        .invokeMethod<Uint8List>('renderPdf', {
-          'title': document.title.length > 200
-              ? document.title.substring(0, 200)
-              : document.title,
-          'html': buildShoppingReportHtml(document, text, rtl: rtl),
-          'text': buildShoppingReportText(document, text),
-        })
+        .invokeMethod<Uint8List>('renderPdf', arguments)
         .timeout(const Duration(seconds: 35));
     if (data == null ||
         data.length < 5 ||
