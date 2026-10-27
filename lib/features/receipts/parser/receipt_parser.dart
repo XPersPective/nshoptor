@@ -36,6 +36,19 @@ class ReceiptParser {
     'total',
     'grand total',
   ];
+  static final String _splitTotalCurrencyPattern =
+      r'(?:\b(?:' +
+      Currency.all.map((currency) => currency.code).join('|') +
+      r'|TL)\b|[₺€£$])';
+  late final RegExp _splitTotalRowPattern = RegExp(
+    r'^(?<before>[*#•\s]*)(?<label>T\s*O\s*T\s*A\s*L)(?<delimiter>\s*:\s*|\s+)'
+    '(?:(?<prefixCurrency>$_splitTotalCurrencyPattern)\\s*)?'
+    '(?:$_amountPattern'
+    '(?:\\s*(?<suffixCurrency>$_splitTotalCurrencyPattern))?)'
+    r'\s*$',
+    caseSensitive: false,
+    unicode: true,
+  );
   static const List<String> _subtotalMarkers = ['ara toplam', 'aratoplam'];
   static const List<String> _discountMarkers = ['indirim', 'iskonto'];
   static const List<String> _taxMarkers = ['kdv', 'vergi', 'vat', 'tax'];
@@ -74,8 +87,44 @@ class ReceiptParser {
 
   /// Reading-order rows shared by parsing and overlapping receipt assembly.
   /// Coordinates belong to one photo; returned rows no longer carry them.
-  List<OcrLine> readingRows(OcrScanResult scan) =>
-      List.unmodifiable(_reconstructRows(scan.lines));
+  List<OcrLine> readingRows(OcrScanResult scan) {
+    final rows = _reconstructRows(scan.lines);
+    final currencyEvidence = detectOcrCurrency(
+      rows.map((line) => line.text).join('\n'),
+      fallback: currency,
+    );
+    final normalizer =
+        currencyEvidence.code != null && currencyEvidence.code != currency
+        ? ReceiptParser(
+            currency: currencyEvidence.code!,
+            reconciliationToleranceMinor: reconciliationToleranceMinor,
+          )
+        : this;
+    return List.unmodifiable(rows.map(normalizer._normalizeSplitTotalLabel));
+  }
+
+  OcrLine _normalizeSplitTotalLabel(OcrLine line) {
+    final match = _splitTotalRowPattern.firstMatch(line.text);
+    if (match == null ||
+        !RegExp(r'\s').hasMatch(match.namedGroup('label')!) ||
+        match.namedGroup('prefixCurrency') != null &&
+            match.namedGroup('suffixCurrency') != null) {
+      return line;
+    }
+    final prefix = match.namedGroup('before')!;
+    final label = match.namedGroup('label')!;
+    final normalized =
+        '$prefix'
+        'TOTAL'
+        '${line.text.substring(prefix.length + label.length)}';
+    return OcrLine(
+      text: normalized,
+      boundingBoxTop: line.boundingBoxTop,
+      boundingBoxLeft: line.boundingBoxLeft,
+      boundingBoxHeight: line.boundingBoxHeight,
+      boundingBoxWidth: line.boundingBoxWidth,
+    );
+  }
 
   List<OcrLine> logicalRows(OcrScanResult scan) => [
     for (final line in _mergeWrappedLines(readingRows(scan)))

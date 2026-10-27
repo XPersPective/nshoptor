@@ -101,6 +101,36 @@ void main() {
   Future<ShoppingReport> snapshot(int listId) =>
       ReportRepository(db).shopping(listId);
 
+  test('exports retain one list total and aggregate multiple lists', () async {
+    final first = await addList(title: 'First');
+    final second = await addList(title: 'Second');
+    await addPurchase(first, 'Milk', 3000, unitPrice: '30');
+    await addPurchase(second, 'Bread', 2000, unitPrice: '20');
+    final reports = [await snapshot(first), await snapshot(second)];
+    final text = ReportText(AppLocalizationsTr(), 'tr', 'TRY');
+    for (final count in [0, 1, 2]) {
+      final document = ReportDocument(
+        title: 'Report',
+        currencyCode: 'TRY',
+        shopping: reports.take(count).toList(),
+      );
+      final expectedTotals = count == 2 ? 3 : 1;
+      for (final output in [
+        buildShoppingReportHtml(document, text),
+        buildShoppingReportText(document, text),
+      ]) {
+        expect(
+          text.l10n.reportTotalSpent.allMatches(output).length,
+          expectedTotals,
+        );
+        expect(
+          output,
+          contains(count == 0 ? '—' : text.money(count == 1 ? 3000 : 5000)),
+        );
+      }
+    }
+  });
+
   test('localized RTL HTML escapes content and retains report financial and receipt data', () async {
     final storeId = await db
         .into(db.stores)

@@ -195,6 +195,7 @@ void main() {
         await _capture(tester, '${name}_preview');
         expect(find.byType(Checkbox), findsNothing);
         expect(find.byKey(const Key('report_product_0_0')), findsOneWidget);
+        expect(find.byKey(const Key('report_grand_total')), findsNothing);
         final mark = find.byWidgetPredicate(
           (w) => w is Semantics && w.properties.checked == true,
         );
@@ -236,6 +237,7 @@ void main() {
       await tester.pumpWidget(subject(document(empty: true), service: export));
       await tester.pumpAndSettle();
       final l = AppLocalizations.of(tester.element(find.byType(Scaffold)));
+      expect(find.byKey(const Key('report_grand_total')), findsOneWidget);
       final button = find.widgetWithText(OutlinedButton, l.reportPdfAction);
       await tester.ensureVisible(button);
       await tester.tap(button);

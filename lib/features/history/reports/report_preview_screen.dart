@@ -109,12 +109,14 @@ class _ReportPreviewScreenState extends State<ReportPreviewScreen> {
               Text(l.reportNotInvoice),
               for (final (index, report) in widget.document.shopping.indexed)
                 _ShoppingSection(report: report, index: index, text: text),
-              const Divider(height: 32),
-              Text(
-                '${l.reportTotalSpent}: ${widget.document.spent.display(text.money)}',
-                key: const Key('report_grand_total'),
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+              if (widget.document.shopping.length != 1) ...[
+                const Divider(height: 32),
+                Text(
+                  '${l.reportTotalSpent}: ${widget.document.spent.display(text.money)}',
+                  key: const Key('report_grand_total'),
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ],
               const SizedBox(height: 24),
               if (_busy) const Center(child: CircularProgressIndicator()),
               Wrap(

@@ -124,10 +124,10 @@ ${report.receipts.map((r) => '<p>${e(text.receipt(r))}</p>').join()}
 @page{size:A4;margin:12mm}body{font:12px sans-serif;color:#202824}h1{font-size:20px}h2{font-size:16px}
 table{width:100%;table-layout:fixed;border-collapse:collapse}th,td{padding:7px;border:1px solid #bbb;text-align:start;overflow-wrap:anywhere}
 th{font-size:12px;background:#f0f3f2}th:first-child,td:first-child{width:18px}thead{display:table-header-group}
-tr{break-inside:avoid}.spent{font-size:16px;font-weight:700}h1,h2,p{overflow-wrap:anywhere}.brand{color:#0b8457;font-weight:800}
+tr{page-break-inside:avoid;break-inside:avoid}.spent{font-size:16px;font-weight:700}h1,h2,p{overflow-wrap:anywhere}.brand{color:#0b8457;font-weight:800}
 </style><body><p class="brand">NShoptor</p><h1>${e(document.title)}</h1>
 <p>${e(l10n.reportNotInvoice)}</p>${sections.join()}
-<p class="spent">${e(l10n.reportTotalSpent)}: ${e(document.spent.display(text.money))}</p></body></html>''';
+${document.shopping.length == 1 ? '' : '<p class="spent">${e(l10n.reportTotalSpent)}: ${e(document.spent.display(text.money))}</p>'}</body></html>''';
 }
 
 String buildShoppingReportCsv(ReportDocument document, ReportText text) {
@@ -238,6 +238,8 @@ String buildShoppingReportText(ReportDocument document, ReportText text) {
     }
     lines.add('${l.reportTotalSpent}: ${report.spent.display(text.money)}');
   }
-  lines.add('\n${l.reportTotalSpent}: ${document.spent.display(text.money)}');
+  if (document.shopping.length != 1) {
+    lines.add('\n${l.reportTotalSpent}: ${document.spent.display(text.money)}');
+  }
   return lines.join('\n');
 }

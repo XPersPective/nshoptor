@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/receipt_document.dart';
+import 'package:nshoptor/features/receipts/parser/receipt_parser.dart';
 
 OcrScanResult _scan(List<String> lines) =>
     OcrScanResult(lines: [for (final text in lines) OcrLine(text: text)]);
@@ -14,6 +15,118 @@ List<String> _header({
 }) => [store, 'TARİH: 24.10.2026', 'SAAT: 18:41:35', 'FİŞ NO: $number'];
 
 void main() {
+  test(
+    'native split-total rows preserve fragments and replay conservatively',
+    () {
+      final scan = OcrScanResult(
+        lines: [
+          OcrLine(
+            text: 'J.STB PROMO',
+            boundingBoxTop: 669,
+            boundingBoxLeft: 132,
+          ),
+          OcrLine(text: '17500', boundingBoxTop: 676, boundingBoxLeft: 686),
+          OcrLine(text: 'Y.B.BAT', boundingBoxTop: 722, boundingBoxLeft: 133),
+          OcrLine(text: '46000', boundingBoxTop: 726, boundingBoxLeft: 682),
+          OcrLine(
+            text: 'Y.BASO PROM',
+            boundingBoxTop: 771,
+            boundingBoxLeft: 130,
+          ),
+          OcrLine(text: '27500', boundingBoxTop: 775, boundingBoxLeft: 683),
+          OcrLine(text: 'TOT AL', boundingBoxTop: 823, boundingBoxLeft: 106),
+          OcrLine(text: '91000', boundingBoxTop: 826, boundingBoxLeft: 541),
+          OcrLine(text: 'CASH', boundingBoxTop: 881, boundingBoxLeft: 128),
+          OcrLine(text: '910O0', boundingBoxTop: 880, boundingBoxLeft: 542),
+        ],
+      );
+      final readingRows = ReceiptParser(currency: 'IDR').readingRows(scan);
+      expect(readingRows.map((line) => line.text), [
+        'J.STB PROMO 17500',
+        'Y.B.BAT 46000',
+        'Y.BASO PROM 27500',
+        'TOTAL 91000',
+        'CASH 910O0',
+      ]);
+
+      final document = ReceiptDocument.fromScan(scan, currencyCode: 'IDR');
+      expect(document.productLines.map((line) => line.name), [
+        'J.STB PROMO',
+        'Y.B.BAT',
+        'Y.BASO PROM',
+      ]);
+      expect(document.productLines.map((line) => line.lineTotalMinor), [
+        1750000,
+        4600000,
+        2750000,
+      ]);
+      expect(document.metadata.totalMinor, 9100000);
+      expect(document.toParseResult().computedTotalMinor, 9100000);
+      expect(document.toParseResult().withinReconciliationTolerance, isTrue);
+      expect(document.state, ReceiptDocumentState.incompleteHeader);
+      expect(document.identity, isNull);
+
+      final originalFragments = scan.lines.map((line) => line.text).toList();
+      expect(
+        originalFragments,
+        containsAll(['TOT AL', '91000', 'CASH', '910O0']),
+      );
+      final restored = ReceiptDocument.decode(document.encode());
+      expect(
+        restored.fragments.single.lines.map((line) => line.text),
+        originalFragments,
+      );
+      expect(restored.metadata.totalMinor, 9100000);
+      expect(restored.productLines.map((line) => line.lineTotalMinor), [
+        1750000,
+        4600000,
+        2750000,
+      ]);
+      expect(restored.state, ReceiptDocumentState.incompleteHeader);
+      expect(restored.identity, isNull);
+      expect(restored.encode(), document.encode());
+    },
+  );
+
+  test('split totals use observed currency before durable replay', () {
+    for (final scenario in [
+      (context: 'TRY', currency: 'IDR', amount: '91000', minor: 9100000),
+      (context: 'JPY', currency: 'TRY', amount: '20,00', minor: 2000),
+      (context: 'JPY', currency: 'KWD', amount: '20.123', minor: 20123),
+    ]) {
+      final rawLines = [
+        ..._header(),
+        'ITEM ${scenario.amount} ${scenario.currency}',
+        'TOT AL ${scenario.amount} ${scenario.currency}',
+      ];
+      final document = ReceiptDocument.fromScan(
+        _scan(rawLines),
+        currencyCode: scenario.context,
+      );
+      expect(document.metadata.currencyCode, scenario.currency);
+      expect(document.metadata.totalMinor, scenario.minor);
+      expect(document.productLines, hasLength(1));
+      expect(document.productLines.single.lineTotalMinor, scenario.minor);
+      expect(document.toParseResult().computedTotalMinor, scenario.minor);
+      expect(document.toParseResult().withinReconciliationTolerance, isTrue);
+      expect(document.state, ReceiptDocumentState.complete);
+      expect(document.identity, isNotNull);
+
+      final restored = ReceiptDocument.decode(document.encode());
+      expect(restored.metadata.currencyCode, scenario.currency);
+      expect(restored.metadata.totalMinor, scenario.minor);
+      expect(restored.productLines, hasLength(1));
+      expect(restored.productLines.single.lineTotalMinor, scenario.minor);
+      expect(restored.state, document.state);
+      expect(restored.identity, document.identity);
+      expect(
+        restored.fragments.single.lines.map((line) => line.text),
+        rawLines,
+      );
+      expect(restored.encode(), document.encode());
+    }
+  });
+
   test(
     'partial evidence survives a versioned restart and retains positions',
     () {

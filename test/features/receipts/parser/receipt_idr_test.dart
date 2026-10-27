@@ -28,6 +28,77 @@ void main() {
     expect(result.withinReconciliationTolerance, isTrue);
   });
 
+  test('split TOTAL labels normalize only as complete strict amount rows', () {
+    final parser = ReceiptParser(currency: 'IDR');
+    for (final row in [
+      'TOT AL 91000',
+      'T O T A L: 91000',
+      'TOT AL IDR 91000',
+      'T O T A L: 91000 IDR',
+    ]) {
+      final scan = _scan([row]);
+      final normalized = parser.readingRows(scan).single.text;
+      expect(normalized, startsWith('TOTAL'), reason: row);
+      expect(parser.parse(scan).totalMinor, 9100000, reason: row);
+      expect(scan.lines.single.text, row, reason: 'raw OCR remains unchanged');
+    }
+    expect(
+      parser.readingRows(_scan(['TOT AL IDR 91000'])).single.text,
+      'TOTAL IDR 91000',
+      reason: 'normalization preserves prefix currency evidence',
+    );
+
+    for (final row in [
+      'TOTALITY 91000',
+      'TOT AL CEREAL 91000',
+      'SKU TOTAL91000',
+      'TOTAL91000',
+      'TOT AL -91000',
+      'TOT AL +91000',
+      'TOT AL 910O0',
+      'TOT AL IDR 91000 IDR',
+      'TOT\u200bAL 91000',
+    ]) {
+      final scan = _scan([row]);
+      expect(parser.readingRows(scan).single.text, row, reason: row);
+      expect(parser.parse(scan).totalMinor, isNull, reason: row);
+      expect(scan.lines.single.text, row, reason: 'raw OCR remains unchanged');
+    }
+  });
+
+  test('split TOTAL does not apply a printed discount twice', () {
+    final result = ReceiptParser(currency: 'IDR')
+        .parse(_scan(['PRODUCT 17500', 'INDIRIM -1000', 'TOT AL 17500']));
+    expect(result.lines, hasLength(1));
+    expect(result.discountMinor, 100000);
+    expect(result.totalMinor, 1750000);
+    expect(result.computedTotalMinor, 1750000);
+    expect(result.withinReconciliationTolerance, isTrue);
+  });
+
+  test('split TOTAL uses only the selected currency amount grammar', () {
+    expect(
+      ReceiptParser(currency: 'TRY').parse(_scan(['TOT AL 20,00'])).totalMinor,
+      2000,
+    );
+    expect(
+      ReceiptParser(currency: 'TRY').parse(_scan(['TOT AL 20'])).totalMinor,
+      isNull,
+    );
+    expect(
+      ReceiptParser(currency: 'JPY').parse(_scan(['TOT AL 91000'])).totalMinor,
+      91000,
+    );
+    expect(
+      ReceiptParser(currency: 'KWD').parse(_scan(['TOT AL 20.123'])).totalMinor,
+      20123,
+    );
+    expect(
+      ReceiptParser(currency: 'KWD').parse(_scan(['TOT AL 20.12'])).totalMinor,
+      isNull,
+    );
+  });
+
   for (final amount in ['17500', '17.500', '17,500']) {
     test('IDR whole/grouped token $amount is exactly 1750000 minor', () {
       final result = ReceiptParser(currency: 'IDR')
