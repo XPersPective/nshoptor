@@ -3,6 +3,9 @@ appId: com.crazypenguin.nshoptor
 - launchApp:
     permissions:
       notifications: unset
+- extendedWaitUntil:
+    visible: "QA result: READY"
+    timeout: 180000
 - assertVisible:
     text: "QA result: READY"
 - assertVisible:

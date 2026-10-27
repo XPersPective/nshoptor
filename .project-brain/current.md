@@ -40,5 +40,7 @@
 3. Finish payment/device/reminder/a11y/declaration gates, professional store visuals/video/locales and publication stages. Website/SEO/relocation LAST. Tests/uploads do not equal public release.
 
 ## Latest handoff
+- Later2026-10-27: user IAB tab connected successfully. PB176 reviewed BOM-free CSV imported, expanded preview checked and Save confirmed; pending Google review submission, no public release. Proof original-notes/play-data-safety-saved-20261027.jpg. Post-save reload stalled; exact fresh CSV readback remains. Do not repeat old failed API write.
+- PB18540558135204 failed initial READY visibility in both flows; private screenshots/hierarchy show READY/Failure:none. Native initialization exception absent; permission/delivery assertions not reached. Native Luna improving exact readiness wait only; old signed20 remains superseded.
 - ComputerUse stopped thisturn by URL-confidence guard on Windows; no bypass/permission expansion. DataSafetyAPI400 confirmed unchanged remoteCSV; Consoleimportvalidation stillopen. FinancialOther+factualbudgetscope savedpendingGoogle review, screenshotprivate; app publicrelease notdone.
 - PB184 mediaAPK installed/launched separately; existingdebug18preserved. Actual native screenshot device/launcher.png shows background Messages ANR, not NShoptor error. ChooseWait only when safelyresuming; do not killotherapps/wipeuserDB. No actualstoreasset set/video yet.
