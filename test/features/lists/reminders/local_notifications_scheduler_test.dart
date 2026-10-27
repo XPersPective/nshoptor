@@ -68,6 +68,63 @@ void main() {
     expect(calls.where((c) => c.method == 'initialize'), hasLength(1));
   });
 
+  test('iOS deferred permission initialization accepts false and later honors explicit result', () async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+    IOSFlutterLocalNotificationsPlugin.registerWith();
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      calls.add(call);
+      return switch (call.method) {
+        'initialize' => false,
+        'requestPermissions' => granted,
+        _ => null,
+      };
+    });
+    final scheduler = LocalNotificationsScheduler();
+    await scheduler.cancel(42);
+    expect(await scheduler.initialReminderId(), isNull);
+    expect(calls.where((c) => c.method == 'initialize'), hasLength(1));
+    expect(calls.where((c) => c.method == 'requestPermissions'), isEmpty);
+
+    granted = false;
+    expect(await scheduler.ensurePermission(), isFalse);
+    granted = true;
+    expect(await scheduler.ensurePermission(), isTrue);
+    expect(calls.where((c) => c.method == 'initialize'), hasLength(1));
+    expect(calls.where((c) => c.method == 'requestPermissions'), hasLength(2));
+    expect((calls.last.arguments as Map)['alert'], isTrue);
+    expect((calls.last.arguments as Map)['sound'], isTrue);
+  });
+
+  test('Android false and iOS null initialization fail and permit retry', () async {
+    final scheduler = LocalNotificationsScheduler();
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    AndroidFlutterLocalNotificationsPlugin.registerWith();
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      calls.add(call);
+      return call.method == 'initialize' ? false : null;
+    });
+    await expectLater(scheduler.cancel(1), throwsA(isA<PlatformException>()));
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      calls.add(call);
+      return null;
+    });
+    await expectLater(scheduler.cancel(11), throwsA(isA<TypeError>()));
+
+    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+    IOSFlutterLocalNotificationsPlugin.registerWith();
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      calls.add(call);
+      return null;
+    });
+    await expectLater(scheduler.cancel(2), throwsA(isA<PlatformException>()));
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      calls.add(call);
+      return call.method == 'initialize' ? true : null;
+    });
+    await scheduler.cancel(3);
+    expect(calls.where((c) => c.method == 'initialize'), hasLength(4));
+  });
+
   test('cold launch and live native taps carry only a validated reminder ID', () async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     AndroidFlutterLocalNotificationsPlugin.registerWith();

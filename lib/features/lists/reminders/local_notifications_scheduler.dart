@@ -67,7 +67,14 @@ class LocalNotificationsScheduler implements ReminderScheduler {
         if (id != null) _selected.add(id);
       },
     );
-    if (ready != true) throw PlatformException(code: 'notification_initialization_failed');
+    final ios = _plugin.resolvePlatformSpecificImplementation<
+      IOSFlutterLocalNotificationsPlugin
+    >();
+    // iOS initialize may return false when permission prompts are deferred.
+    final deferredIosPermission = ready == false && ios != null;
+    if (ready != true && !deferredIosPermission) {
+      throw PlatformException(code: 'notification_initialization_failed');
+    }
     _initialized = true;
   }
 
