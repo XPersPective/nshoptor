@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/theme/app_theme.dart';
@@ -50,25 +51,58 @@ class _SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    return Scaffold(
-      key: const Key('splash_screen'),
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const BrandTitle(size: 34),
-                const SizedBox(height: 8),
-                Text(
-                  l10n.slogan,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: AppTheme.brandSeed,
+    final wordmark = BrandWordmark.style(36);
+    // Yerel açılış ekranıyla aynı koyu marka yeşili: siyah/beyaz ara ekran olmaz.
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        key: const Key('splash_screen'),
+        backgroundColor: AppTheme.splashBackground,
+        body: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/brand/icon_1024.png',
+                    key: const Key('splash_icon'),
+                    width: 120,
+                    height: 120,
+                    excludeFromSemantics: true,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 20),
+                  Semantics(
+                    label: 'NShoptor',
+                    excludeSemantics: true,
+                    child: Text.rich(
+                      TextSpan(children: [
+                        TextSpan(
+                          text: 'N',
+                          style: wordmark.copyWith(color: AppTheme.splashAccent),
+                        ),
+                        TextSpan(
+                          text: 'Shoptor',
+                          style: wordmark.copyWith(color: Colors.white),
+                        ),
+                      ]),
+                      key: const Key('splash_wordmark'),
+                      textScaler: TextScaler.noScaling,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    l10n.slogan,
+                    key: const Key('splash_slogan'),
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: AppTheme.splashAccent,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

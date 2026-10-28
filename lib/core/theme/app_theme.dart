@@ -187,4 +187,12 @@ class AppTheme {
       ),
     );
   }
+
+  /// Açılış ekranı arka planı: marka koyu yeşili (koyu orman yüzeyiyle aynı ton,
+  /// #07140E). Android `@color/splash_dark` ve iOS LaunchScreen.storyboard ile aynı
+  /// olmalı; yerel → Flutter splash → uygulama geçişi kesintisiz olur.
+  static const Color splashBackground = Color(0xFF07140E);
+
+  /// Açılış ekranındaki "N" ve slogan: koyu yeşil üstünde okunur açık marka yeşili.
+  static const Color splashAccent = Color(0xFF7BD9A5);
 }
