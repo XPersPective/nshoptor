@@ -102,7 +102,8 @@ void main() {
                     await openReceiptCaptureFlow(
                       context,
                       db: db,
-                      currencyCode: 'SAR',
+                      // Device currency differs from the receipt (F: emulator en-US).
+                      currencyCode: 'USD',
                       ai: ai,
                       pickImage: () async => 'picked.jpg',
                       ocrSource: _Blind(),
@@ -161,6 +162,10 @@ void main() {
       await settle();
       expect(failure, isNull);
       expect(await db.select(db.purchaseEntries).get(), hasLength(2));
+      expect(
+        (await db.select(db.shoppingLists).get()).single.currencyCode,
+        'SAR',
+      );
     },
   );
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:drift/drift.dart' show Value;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -59,6 +60,7 @@ Future<int?> openReceiptCaptureFlow(
       : await drafts.pending(listId: listId);
   if (!context.mounted) return null;
   var activeListId = listId;
+  var ownedByFlow = false;
   ReceiptDocument? document;
   int? draftId;
   var imagePaths = <String>[];
@@ -148,6 +150,7 @@ Future<int?> openReceiptCaptureFlow(
         listId: final owned,
       ):
         activeListId = owned ?? activeListId;
+        ownedByFlow = owned != null;
         document = doc;
         draftId = id;
         imagePaths = paths;
@@ -163,7 +166,7 @@ Future<int?> openReceiptCaptureFlow(
         document.state == ReceiptDocumentState.complete &&
         document.toParseResult().withinReconciliationTolerance) {
       if (!context.mounted) return null;
-      final reviewCurrency = activeListId == null
+      final reviewCurrency = activeListId == null || ownedByFlow
           ? document.metadata.currencyCode ?? currencyCode
           : currencyCode;
       final controller = ReceiptReviewController(
@@ -235,7 +238,7 @@ Future<int?> openReceiptCaptureFlow(
             doc.metadata.dateTime != null) {
           final created = await ListRepository(db).createList(
             title: cleanStoreName(doc.metadata.store!),
-            currencyCode: currencyCode,
+            currencyCode: doc.metadata.currencyCode ?? currencyCode,
             plannedAt: doc.metadata.dateTime,
           );
           await ShoppingRepository(db).startShopping(created);
@@ -570,6 +573,14 @@ Future<_AiOutcome> _readWithAi(
 
     switch (read) {
       case AiReceiptVerified(:final document):
+        final printed = document.metadata.currencyCode;
+        if (ownedListId != null && printed != null) {
+          // The list was opened before the currency was visible; it is still
+          // this receipt's own empty list, so it takes the receipt currency.
+          await (db.update(db.shoppingLists)
+                ..where((t) => t.id.equals(ownedListId!)))
+              .write(ShoppingListsCompanion(currencyCode: Value(printed)));
+        }
         await persist(document);
         return _AiProgress(
           doc: document,
