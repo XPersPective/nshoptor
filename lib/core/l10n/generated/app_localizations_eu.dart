@@ -1472,4 +1472,42 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Erakutsi ordainagiriak argazkitzeko aholkuak';
+
+  @override
+  String get listReceiptsSection => 'Tiketak';
+
+  @override
+  String get receiptStateComplete => 'Osatuta';
+
+  @override
+  String get receiptStateIncomplete => 'Osatu gabe';
+
+  @override
+  String get receiptStateFailed => 'Huts egin du';
+
+  @override
+  String get receiptStoreUnknown => 'Ez da denda irakurri';
+
+  @override
+  String get receiptDeleteAction => 'Ezabatu tiketa';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Tiket hau eta gehitu zituen artikuluak ezabatu? Geroago berriro inporta dezakezu.';
+
+  @override
+  String get receiptDeleted => 'Tiketa ezabatu da.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Erakutsi guztiak ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Erakutsi gutxiago';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tiketaren data: $date';
+  }
 }

@@ -1470,4 +1470,42 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Näytä kuitin kuvausvinkit';
+
+  @override
+  String get listReceiptsSection => 'Kuitit';
+
+  @override
+  String get receiptStateComplete => 'Valmis';
+
+  @override
+  String get receiptStateIncomplete => 'Keskeneräinen';
+
+  @override
+  String get receiptStateFailed => 'Epäonnistui';
+
+  @override
+  String get receiptStoreUnknown => 'Kauppaa ei luettu';
+
+  @override
+  String get receiptDeleteAction => 'Poista kuitti';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Poistetaanko tämä kuitti ja sen lisäämät tuotteet? Voit tuoda sen myöhemmin uudelleen.';
+
+  @override
+  String get receiptDeleted => 'Kuitti poistettu.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Näytä kaikki ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Näytä vähemmän';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kuitin päivämäärä: $date';
+  }
 }

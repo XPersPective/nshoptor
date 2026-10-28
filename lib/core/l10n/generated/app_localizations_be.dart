@@ -1475,4 +1475,42 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Паказваць парады па здымцы чэка';
+
+  @override
+  String get listReceiptsSection => 'Чэкі';
+
+  @override
+  String get receiptStateComplete => 'Завершаны';
+
+  @override
+  String get receiptStateIncomplete => 'Незавершаны';
+
+  @override
+  String get receiptStateFailed => 'Памылка';
+
+  @override
+  String get receiptStoreUnknown => 'Крама не прачытана';
+
+  @override
+  String get receiptDeleteAction => 'Выдаліць чэк';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Выдаліць гэты чэк і тавары, якія ён дадаў? Пазней вы зможаце імпартаваць яго зноў.';
+
+  @override
+  String get receiptDeleted => 'Чэк выдалены.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Паказаць усе ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Паказаць менш';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Дата чэка: $date';
+  }
 }

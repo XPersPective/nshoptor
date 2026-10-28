@@ -407,8 +407,7 @@
   "demoProductTomato": "Rajčata",
   "demoProductEggs": "Vejce",
   "demoProductCoffee": "Káva",
-  "demoProductDetergent": "Prací prostředek"
-,
+  "demoProductDetergent": "Prací prostředek",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Stejná účtenka: zahrňte poslední položku z předchozí fotky.",
   "captureTipNeverShow": "Již nezobrazovat",
   "captureTipOk": "Rozumím",
-  "captureTipsSetting": "Zobrazovat tipy k focení účtenky"
+  "captureTipsSetting": "Zobrazovat tipy k focení účtenky",
+  "listReceiptsSection": "Účtenky",
+  "receiptStateComplete": "Dokončeno",
+  "receiptStateIncomplete": "Neúplné",
+  "receiptStateFailed": "Selhalo",
+  "receiptStoreUnknown": "Obchod nebyl přečten",
+  "receiptDeleteAction": "Smazat účtenku",
+  "receiptDeleteConfirm": "Smazat tuto účtenku a položky, které přidala? Později ji můžete importovat znovu.",
+  "receiptDeleted": "Účtenka byla smazána.",
+  "listReceiptsShowAll": "Zobrazit vše ({count})",
+  "listReceiptsShowLess": "Zobrazit méně",
+  "receiptDateLabel": "Datum účtenky: {date}"
 }

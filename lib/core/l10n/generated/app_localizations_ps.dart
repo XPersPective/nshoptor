@@ -1457,4 +1457,42 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'د رسید اخیستلو لارښوونې وښایاست';
+
+  @override
+  String get listReceiptsSection => 'رسیدونه';
+
+  @override
+  String get receiptStateComplete => 'بشپړ';
+
+  @override
+  String get receiptStateIncomplete => 'نیمګړی';
+
+  @override
+  String get receiptStateFailed => 'ناکام';
+
+  @override
+  String get receiptStoreUnknown => 'پلورنځی ونه لوستل شو';
+
+  @override
+  String get receiptDeleteAction => 'رسید ړنګ کړئ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'دا رسید او هغه توکي چې زیات کړي دي ړنګ شي؟ وروسته یې بیا وارد کولی شئ.';
+
+  @override
+  String get receiptDeleted => 'رسید ړنګ شو.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ټول وښایاست ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'لږ وښایاست';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'د رسید نېټه: $date';
+  }
 }

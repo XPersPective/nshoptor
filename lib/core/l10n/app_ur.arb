@@ -396,8 +396,7 @@
   "demoProductTomato": "ٹماٹر",
   "demoProductEggs": "انڈے",
   "demoProductCoffee": "کافی",
-  "demoProductDetergent": "ڈٹرجنٹ"
-,
+  "demoProductDetergent": "ڈٹرجنٹ",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "وہی رسید: پچھلی تصویر کی آخری شے شامل کریں۔",
   "captureTipNeverShow": "دوبارہ نہ دکھائیں",
   "captureTipOk": "سمجھ گیا",
-  "captureTipsSetting": "رسید کھینچنے کے مشورے دکھائیں"
+  "captureTipsSetting": "رسید کھینچنے کے مشورے دکھائیں",
+  "listReceiptsSection": "رسیدیں",
+  "receiptStateComplete": "مکمل",
+  "receiptStateIncomplete": "نامکمل",
+  "receiptStateFailed": "ناکام",
+  "receiptStoreUnknown": "دکان پڑھی نہیں جا سکی",
+  "receiptDeleteAction": "رسید حذف کریں",
+  "receiptDeleteConfirm": "کیا یہ رسید اور اس کی شامل کردہ اشیاء حذف کی جائیں؟ آپ اسے بعد میں دوبارہ درآمد کر سکتے ہیں۔",
+  "receiptDeleted": "رسید حذف ہو گئی۔",
+  "listReceiptsShowAll": "سب دکھائیں ({count})",
+  "listReceiptsShowLess": "کم دکھائیں",
+  "receiptDateLabel": "رسید کی تاریخ: {date}"
 }

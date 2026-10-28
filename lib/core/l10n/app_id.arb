@@ -396,8 +396,7 @@
   "demoProductTomato": "Tomat",
   "demoProductEggs": "Telur",
   "demoProductCoffee": "Kopi",
-  "demoProductDetergent": "Deterjen"
-,
+  "demoProductDetergent": "Deterjen",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Struk yang sama: sertakan item terakhir dari foto sebelumnya.",
   "captureTipNeverShow": "Jangan tampilkan lagi",
   "captureTipOk": "Mengerti",
-  "captureTipsSetting": "Tampilkan tips memotret struk"
+  "captureTipsSetting": "Tampilkan tips memotret struk",
+  "listReceiptsSection": "Struk",
+  "receiptStateComplete": "Selesai",
+  "receiptStateIncomplete": "Belum lengkap",
+  "receiptStateFailed": "Gagal",
+  "receiptStoreUnknown": "Toko tidak terbaca",
+  "receiptDeleteAction": "Hapus struk",
+  "receiptDeleteConfirm": "Hapus struk ini dan item yang ditambahkannya? Anda dapat mengimpornya lagi nanti.",
+  "receiptDeleted": "Struk dihapus.",
+  "listReceiptsShowAll": "Tampilkan semua ({count})",
+  "listReceiptsShowLess": "Tampilkan lebih sedikit",
+  "receiptDateLabel": "Tanggal struk: {date}"
 }

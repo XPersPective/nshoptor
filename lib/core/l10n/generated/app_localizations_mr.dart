@@ -1461,4 +1461,42 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'पावती कॅप्चर टिप्स दाखवा';
+
+  @override
+  String get listReceiptsSection => 'पावत्या';
+
+  @override
+  String get receiptStateComplete => 'पूर्ण';
+
+  @override
+  String get receiptStateIncomplete => 'अपूर्ण';
+
+  @override
+  String get receiptStateFailed => 'अयशस्वी';
+
+  @override
+  String get receiptStoreUnknown => 'दुकान वाचता आले नाही';
+
+  @override
+  String get receiptDeleteAction => 'पावती हटवा';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ही पावती आणि तिने जोडलेल्या वस्तू हटवायच्या? नंतर ती पुन्हा आयात करता येईल.';
+
+  @override
+  String get receiptDeleted => 'पावती हटवली.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'सर्व दाखवा ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'कमी दाखवा';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'पावतीची तारीख: $date';
+  }
 }

@@ -407,8 +407,7 @@
   "demoProductTomato": "Ντομάτες",
   "demoProductEggs": "Αυγά",
   "demoProductCoffee": "Καφές",
-  "demoProductDetergent": "Απορρυπαντικό"
-,
+  "demoProductDetergent": "Απορρυπαντικό",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Ίδια απόδειξη: συμπεριλάβετε το τελευταίο προϊόν της προηγούμενης φωτογραφίας.",
   "captureTipNeverShow": "Να μην εμφανιστεί ξανά",
   "captureTipOk": "Το κατάλαβα",
-  "captureTipsSetting": "Εμφάνιση συμβουλών λήψης απόδειξης"
+  "captureTipsSetting": "Εμφάνιση συμβουλών λήψης απόδειξης",
+  "listReceiptsSection": "Αποδείξεις",
+  "receiptStateComplete": "Ολοκληρωμένη",
+  "receiptStateIncomplete": "Ελλιπής",
+  "receiptStateFailed": "Απέτυχε",
+  "receiptStoreUnknown": "Το κατάστημα δεν αναγνώστηκε",
+  "receiptDeleteAction": "Διαγραφή απόδειξης",
+  "receiptDeleteConfirm": "Διαγραφή αυτής της απόδειξης και των ειδών που πρόσθεσε; Μπορείτε να την εισαγάγετε ξανά αργότερα.",
+  "receiptDeleted": "Η απόδειξη διαγράφηκε.",
+  "listReceiptsShowAll": "Εμφάνιση όλων ({count})",
+  "listReceiptsShowLess": "Εμφάνιση λιγότερων",
+  "receiptDateLabel": "Ημερομηνία απόδειξης: {date}"
 }

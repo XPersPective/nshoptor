@@ -1464,4 +1464,42 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Tampilkan tips memotret struk';
+
+  @override
+  String get listReceiptsSection => 'Struk';
+
+  @override
+  String get receiptStateComplete => 'Selesai';
+
+  @override
+  String get receiptStateIncomplete => 'Belum lengkap';
+
+  @override
+  String get receiptStateFailed => 'Gagal';
+
+  @override
+  String get receiptStoreUnknown => 'Toko tidak terbaca';
+
+  @override
+  String get receiptDeleteAction => 'Hapus struk';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Hapus struk ini dan item yang ditambahkannya? Anda dapat mengimpornya lagi nanti.';
+
+  @override
+  String get receiptDeleted => 'Struk dihapus.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Tampilkan semua ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Tampilkan lebih sedikit';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tanggal struk: $date';
+  }
 }

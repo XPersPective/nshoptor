@@ -1476,4 +1476,42 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Rodyti kvito fotografavimo patarimus';
+
+  @override
+  String get listReceiptsSection => 'Kvitai';
+
+  @override
+  String get receiptStateComplete => 'Užbaigtas';
+
+  @override
+  String get receiptStateIncomplete => 'Neišsamus';
+
+  @override
+  String get receiptStateFailed => 'Nepavyko';
+
+  @override
+  String get receiptStoreUnknown => 'Parduotuvė nenuskaityta';
+
+  @override
+  String get receiptDeleteAction => 'Ištrinti kvitą';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Ištrinti šį kvitą ir jo pridėtas prekes? Vėliau galėsite jį importuoti iš naujo.';
+
+  @override
+  String get receiptDeleted => 'Kvitas ištrintas.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Rodyti visus ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Rodyti mažiau';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kvito data: $date';
+  }
 }

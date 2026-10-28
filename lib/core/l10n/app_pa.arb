@@ -396,8 +396,7 @@
   "demoProductTomato": "ਟਮਾਟਰ",
   "demoProductEggs": "ਆਂਡੇ",
   "demoProductCoffee": "ਕੌਫ਼ੀ",
-  "demoProductDetergent": "ਡਿਟਰਜੈਂਟ"
-,
+  "demoProductDetergent": "ਡਿਟਰਜੈਂਟ",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "ਉਹੀ ਰਸੀਦ: ਪਿਛਲੀ ਤਸਵੀਰ ਦੀ ਆਖਰੀ ਚੀਜ਼ ਸ਼ਾਮਲ ਕਰੋ।",
   "captureTipNeverShow": "ਦੁਬਾਰਾ ਨਾ ਦਿਖਾਓ",
   "captureTipOk": "ਸਮਝ ਗਿਆ",
-  "captureTipsSetting": "ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ"
+  "captureTipsSetting": "ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ",
+  "listReceiptsSection": "ਰਸੀਦਾਂ",
+  "receiptStateComplete": "ਪੂਰੀ",
+  "receiptStateIncomplete": "ਅਧੂਰੀ",
+  "receiptStateFailed": "ਅਸਫਲ",
+  "receiptStoreUnknown": "ਦੁਕਾਨ ਪੜ੍ਹੀ ਨਹੀਂ ਗਈ",
+  "receiptDeleteAction": "ਰਸੀਦ ਮਿਟਾਓ",
+  "receiptDeleteConfirm": "ਕੀ ਇਹ ਰਸੀਦ ਅਤੇ ਇਸ ਵੱਲੋਂ ਜੋੜੀਆਂ ਆਈਟਮਾਂ ਮਿਟਾਉਣੀਆਂ ਹਨ? ਤੁਸੀਂ ਇਸਨੂੰ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਆਯਾਤ ਕਰ ਸਕਦੇ ਹੋ।",
+  "receiptDeleted": "ਰਸੀਦ ਮਿਟਾਈ ਗਈ।",
+  "listReceiptsShowAll": "ਸਭ ਦਿਖਾਓ ({count})",
+  "listReceiptsShowLess": "ਘੱਟ ਦਿਖਾਓ",
+  "receiptDateLabel": "ਰਸੀਦ ਦੀ ਮਿਤੀ: {date}"
 }

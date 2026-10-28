@@ -396,8 +396,7 @@
   "demoProductTomato": "Paradajky",
   "demoProductEggs": "Vajcia",
   "demoProductCoffee": "Káva",
-  "demoProductDetergent": "Prací prášok"
-,
+  "demoProductDetergent": "Prací prášok",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Rovnaký bloček: zahrňte poslednú položku z predchádzajúcej fotky.",
   "captureTipNeverShow": "Už nezobrazovať",
   "captureTipOk": "Rozumiem",
-  "captureTipsSetting": "Zobrazovať tipy na fotenie bločku"
+  "captureTipsSetting": "Zobrazovať tipy na fotenie bločku",
+  "listReceiptsSection": "Bločky",
+  "receiptStateComplete": "Dokončený",
+  "receiptStateIncomplete": "Neúplný",
+  "receiptStateFailed": "Zlyhalo",
+  "receiptStoreUnknown": "Obchod sa neprečítal",
+  "receiptDeleteAction": "Odstrániť bloček",
+  "receiptDeleteConfirm": "Odstrániť tento bloček a položky, ktoré pridal? Neskôr ho môžete znova importovať.",
+  "receiptDeleted": "Bloček bol odstránený.",
+  "listReceiptsShowAll": "Zobraziť všetky ({count})",
+  "listReceiptsShowLess": "Zobraziť menej",
+  "receiptDateLabel": "Dátum bločku: {date}"
 }

@@ -1467,4 +1467,42 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ';
+
+  @override
+  String get listReceiptsSection => 'ರಸೀದಿಗಳು';
+
+  @override
+  String get receiptStateComplete => 'ಪೂರ್ಣ';
+
+  @override
+  String get receiptStateIncomplete => 'ಅಪೂರ್ಣ';
+
+  @override
+  String get receiptStateFailed => 'ವಿಫಲವಾಗಿದೆ';
+
+  @override
+  String get receiptStoreUnknown => 'ಅಂಗಡಿಯನ್ನು ಓದಲಾಗಿಲ್ಲ';
+
+  @override
+  String get receiptDeleteAction => 'ರಸೀದಿ ಅಳಿಸಿ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ಈ ರಸೀದಿ ಮತ್ತು ಅದು ಸೇರಿಸಿದ ಐಟಂಗಳನ್ನು ಅಳಿಸಬೇಕೇ? ನಂತರ ಅದನ್ನು ಮತ್ತೆ ಆಮದು ಮಾಡಬಹುದು.';
+
+  @override
+  String get receiptDeleted => 'ರಸೀದಿ ಅಳಿಸಲಾಗಿದೆ.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ಎಲ್ಲವನ್ನೂ ತೋರಿಸಿ ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'ಕಡಿಮೆ ತೋರಿಸಿ';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ರಸೀದಿ ದಿನಾಂಕ: $date';
+  }
 }

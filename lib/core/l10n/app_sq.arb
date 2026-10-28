@@ -396,8 +396,7 @@
   "demoProductTomato": "Domate",
   "demoProductEggs": "Vezë",
   "demoProductCoffee": "Kafe",
-  "demoProductDetergent": "Detergjent"
-,
+  "demoProductDetergent": "Detergjent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "E njëjta faturë: përfshi artikullin e fundit të fotos së mëparshme.",
   "captureTipNeverShow": "Mos e shfaq më",
   "captureTipOk": "E kuptova",
-  "captureTipsSetting": "Shfaq këshillat për fotografimin e faturës"
+  "captureTipsSetting": "Shfaq këshillat për fotografimin e faturës",
+  "listReceiptsSection": "Faturat",
+  "receiptStateComplete": "E plotë",
+  "receiptStateIncomplete": "E paplotë",
+  "receiptStateFailed": "Dështoi",
+  "receiptStoreUnknown": "Dyqani nuk u lexua",
+  "receiptDeleteAction": "Fshi faturën",
+  "receiptDeleteConfirm": "Të fshihet kjo faturë dhe artikujt që shtoi? Mund ta importoni sërish më vonë.",
+  "receiptDeleted": "Fatura u fshi.",
+  "listReceiptsShowAll": "Shfaq të gjitha ({count})",
+  "listReceiptsShowLess": "Shfaq më pak",
+  "receiptDateLabel": "Data e faturës: {date}"
 }

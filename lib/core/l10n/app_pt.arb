@@ -396,8 +396,7 @@
   "demoProductTomato": "Tomates",
   "demoProductEggs": "Ovos",
   "demoProductCoffee": "Café",
-  "demoProductDetergent": "Detergente"
-,
+  "demoProductDetergent": "Detergente",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Mesmo recibo: inclua o último item da foto anterior.",
   "captureTipNeverShow": "Não mostrar novamente",
   "captureTipOk": "Entendi",
-  "captureTipsSetting": "Mostrar dicas para fotografar o recibo"
+  "captureTipsSetting": "Mostrar dicas para fotografar o recibo",
+  "listReceiptsSection": "Recibos",
+  "receiptStateComplete": "Concluído",
+  "receiptStateIncomplete": "Incompleto",
+  "receiptStateFailed": "Falhou",
+  "receiptStoreUnknown": "Loja não lida",
+  "receiptDeleteAction": "Excluir recibo",
+  "receiptDeleteConfirm": "Excluir este recibo e os itens que ele adicionou? Você poderá importá-lo novamente depois.",
+  "receiptDeleted": "Recibo excluído.",
+  "listReceiptsShowAll": "Mostrar todos ({count})",
+  "listReceiptsShowLess": "Mostrar menos",
+  "receiptDateLabel": "Data do recibo: {date}"
 }

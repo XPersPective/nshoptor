@@ -1467,4 +1467,42 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Tunjukkan petua merakam resit';
+
+  @override
+  String get listReceiptsSection => 'Resit';
+
+  @override
+  String get receiptStateComplete => 'Lengkap';
+
+  @override
+  String get receiptStateIncomplete => 'Tidak lengkap';
+
+  @override
+  String get receiptStateFailed => 'Gagal';
+
+  @override
+  String get receiptStoreUnknown => 'Kedai tidak dibaca';
+
+  @override
+  String get receiptDeleteAction => 'Padam resit';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Padam resit ini dan item yang ditambahkannya? Anda boleh mengimportnya semula kemudian.';
+
+  @override
+  String get receiptDeleted => 'Resit dipadam.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Tunjukkan semua ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Tunjukkan kurang';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tarikh resit: $date';
+  }
 }

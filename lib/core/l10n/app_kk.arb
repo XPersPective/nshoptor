@@ -396,8 +396,7 @@
   "demoProductTomato": "Қызанақ",
   "demoProductEggs": "Жұмыртқа",
   "demoProductCoffee": "Кофе",
-  "demoProductDetergent": "Жуғыш зат"
-,
+  "demoProductDetergent": "Жуғыш зат",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Сол түбіртек: алдыңғы фотодағы соңғы тауарды қосыңыз.",
   "captureTipNeverShow": "Қайта көрсетпеу",
   "captureTipOk": "Түсіндім",
-  "captureTipsSetting": "Түбіртек түсіру кеңестерін көрсету"
+  "captureTipsSetting": "Түбіртек түсіру кеңестерін көрсету",
+  "listReceiptsSection": "Чектер",
+  "receiptStateComplete": "Аяқталды",
+  "receiptStateIncomplete": "Толық емес",
+  "receiptStateFailed": "Сәтсіз",
+  "receiptStoreUnknown": "Дүкен оқылмады",
+  "receiptDeleteAction": "Чекті жою",
+  "receiptDeleteConfirm": "Осы чекті және ол қосқан тауарларды жою керек пе? Кейін оны қайта импорттай аласыз.",
+  "receiptDeleted": "Чек жойылды.",
+  "listReceiptsShowAll": "Барлығын көрсету ({count})",
+  "listReceiptsShowLess": "Азырақ көрсету",
+  "receiptDateLabel": "Чек күні: {date}"
 }

@@ -407,8 +407,7 @@
   "demoProductTomato": "Pomidor",
   "demoProductEggs": "Yumurta",
   "demoProductCoffee": "Qəhvə",
-  "demoProductDetergent": "Yuyucu vasitə"
-,
+  "demoProductDetergent": "Yuyucu vasitə",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Eyni çek: əvvəlki fotodakı son məhsulu da daxil edin.",
   "captureTipNeverShow": "Bir daha göstərmə",
   "captureTipOk": "Anladım",
-  "captureTipsSetting": "Çek çəkilişi məsləhətlərini göstər"
+  "captureTipsSetting": "Çek çəkilişi məsləhətlərini göstər",
+  "listReceiptsSection": "Qəbzlər",
+  "receiptStateComplete": "Tamamlandı",
+  "receiptStateIncomplete": "Natamam",
+  "receiptStateFailed": "Uğursuz",
+  "receiptStoreUnknown": "Mağaza oxunmadı",
+  "receiptDeleteAction": "Qəbzi sil",
+  "receiptDeleteConfirm": "Bu qəbz və onun əlavə etdiyi məhsullar silinsin? Sonra yenidən idxal edə bilərsiniz.",
+  "receiptDeleted": "Qəbz silindi.",
+  "listReceiptsShowAll": "Hamısını göstər ({count})",
+  "listReceiptsShowLess": "Daha az göstər",
+  "receiptDateLabel": "Qəbz tarixi: {date}"
 }

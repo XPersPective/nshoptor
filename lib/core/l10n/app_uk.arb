@@ -396,8 +396,7 @@
   "demoProductTomato": "Помідори",
   "demoProductEggs": "Яйця",
   "demoProductCoffee": "Кава",
-  "demoProductDetergent": "Пральний порошок"
-,
+  "demoProductDetergent": "Пральний порошок",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Той самий чек: додайте останню позицію з попереднього фото.",
   "captureTipNeverShow": "Більше не показувати",
   "captureTipOk": "Зрозуміло",
-  "captureTipsSetting": "Показувати поради щодо зйомки чека"
+  "captureTipsSetting": "Показувати поради щодо зйомки чека",
+  "listReceiptsSection": "Чеки",
+  "receiptStateComplete": "Завершено",
+  "receiptStateIncomplete": "Незавершено",
+  "receiptStateFailed": "Помилка",
+  "receiptStoreUnknown": "Магазин не розпізнано",
+  "receiptDeleteAction": "Видалити чек",
+  "receiptDeleteConfirm": "Видалити цей чек і додані ним товари? Пізніше його можна імпортувати знову.",
+  "receiptDeleted": "Чек видалено.",
+  "listReceiptsShowAll": "Показати всі ({count})",
+  "listReceiptsShowLess": "Показати менше",
+  "receiptDateLabel": "Дата чека: {date}"
 }

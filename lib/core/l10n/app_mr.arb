@@ -396,8 +396,7 @@
   "demoProductTomato": "टोमॅटो",
   "demoProductEggs": "अंडी",
   "demoProductCoffee": "कॉफी",
-  "demoProductDetergent": "डिटर्जंट"
-,
+  "demoProductDetergent": "डिटर्जंट",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "तीच पावती: मागील फोटोमधील शेवटची वस्तू समाविष्ट करा.",
   "captureTipNeverShow": "पुन्हा दाखवू नका",
   "captureTipOk": "समजले",
-  "captureTipsSetting": "पावती कॅप्चर टिप्स दाखवा"
+  "captureTipsSetting": "पावती कॅप्चर टिप्स दाखवा",
+  "listReceiptsSection": "पावत्या",
+  "receiptStateComplete": "पूर्ण",
+  "receiptStateIncomplete": "अपूर्ण",
+  "receiptStateFailed": "अयशस्वी",
+  "receiptStoreUnknown": "दुकान वाचता आले नाही",
+  "receiptDeleteAction": "पावती हटवा",
+  "receiptDeleteConfirm": "ही पावती आणि तिने जोडलेल्या वस्तू हटवायच्या? नंतर ती पुन्हा आयात करता येईल.",
+  "receiptDeleted": "पावती हटवली.",
+  "listReceiptsShowAll": "सर्व दाखवा ({count})",
+  "listReceiptsShowLess": "कमी दाखवा",
+  "receiptDateLabel": "पावतीची तारीख: {date}"
 }

@@ -407,8 +407,7 @@
   "demoProductTomato": "Домати",
   "demoProductEggs": "Яйца",
   "demoProductCoffee": "Кафе",
-  "demoProductDetergent": "Перилен препарат"
-,
+  "demoProductDetergent": "Перилен препарат",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Същата касова бележка: включете последния артикул от предишната снимка.",
   "captureTipNeverShow": "Не показвай отново",
   "captureTipOk": "Разбрах",
-  "captureTipsSetting": "Показвай съвети за снимане на бележка"
+  "captureTipsSetting": "Показвай съвети за снимане на бележка",
+  "listReceiptsSection": "Касови бележки",
+  "receiptStateComplete": "Завършена",
+  "receiptStateIncomplete": "Непълна",
+  "receiptStateFailed": "Неуспешна",
+  "receiptStoreUnknown": "Магазинът не е разчетен",
+  "receiptDeleteAction": "Изтриване на бележката",
+  "receiptDeleteConfirm": "Да се изтрият ли тази бележка и добавените от нея артикули? По-късно можете да я импортирате отново.",
+  "receiptDeleted": "Бележката е изтрита.",
+  "listReceiptsShowAll": "Покажи всички ({count})",
+  "listReceiptsShowLess": "Покажи по-малко",
+  "receiptDateLabel": "Дата на бележката: {date}"
 }

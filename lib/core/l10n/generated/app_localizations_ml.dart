@@ -1464,4 +1464,42 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'രസീത് പകർത്താനുള്ള നുറുങ്ങുകൾ കാണിക്കുക';
+
+  @override
+  String get listReceiptsSection => 'രസീതുകൾ';
+
+  @override
+  String get receiptStateComplete => 'പൂർത്തിയായി';
+
+  @override
+  String get receiptStateIncomplete => 'അപൂർണ്ണം';
+
+  @override
+  String get receiptStateFailed => 'പരാജയപ്പെട്ടു';
+
+  @override
+  String get receiptStoreUnknown => 'കട വായിക്കാനായില്ല';
+
+  @override
+  String get receiptDeleteAction => 'രസീത് ഇല്ലാതാക്കുക';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ഈ രസീതും അത് ചേർത്ത ഇനങ്ങളും ഇല്ലാതാക്കണോ? പിന്നീട് വീണ്ടും ഇറക്കുമതി ചെയ്യാം.';
+
+  @override
+  String get receiptDeleted => 'രസീത് ഇല്ലാതാക്കി.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'എല്ലാം കാണിക്കുക ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'കുറച്ച് കാണിക്കുക';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'രസീത് തീയതി: $date';
+  }
 }

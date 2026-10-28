@@ -1464,4 +1464,42 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Fiş çekme ipuçlarını göster';
+
+  @override
+  String get listReceiptsSection => 'Fişler';
+
+  @override
+  String get receiptStateComplete => 'Tamamlandı';
+
+  @override
+  String get receiptStateIncomplete => 'Eksik';
+
+  @override
+  String get receiptStateFailed => 'Başarısız';
+
+  @override
+  String get receiptStoreUnknown => 'Mağaza okunamadı';
+
+  @override
+  String get receiptDeleteAction => 'Fişi sil';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Bu fiş ve eklediği ürünler silinsin mi? Daha sonra yeniden içe aktarabilirsiniz.';
+
+  @override
+  String get receiptDeleted => 'Fiş silindi.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Tümünü göster ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Daha az göster';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Fiş tarihi: $date';
+  }
 }

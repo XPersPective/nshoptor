@@ -1464,4 +1464,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Show receipt capture tips';
+
+  @override
+  String get listReceiptsSection => 'Receipts';
+
+  @override
+  String get receiptStateComplete => 'Complete';
+
+  @override
+  String get receiptStateIncomplete => 'Incomplete';
+
+  @override
+  String get receiptStateFailed => 'Failed';
+
+  @override
+  String get receiptStoreUnknown => 'Store not read';
+
+  @override
+  String get receiptDeleteAction => 'Delete receipt';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Delete this receipt and the items it added? You can import it again later.';
+
+  @override
+  String get receiptDeleted => 'Receipt deleted.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Show all ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Show less';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Receipt date: $date';
+  }
 }

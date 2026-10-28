@@ -1468,4 +1468,42 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'रसीद कैप्चर के सुझाव दिखाएँ';
+
+  @override
+  String get listReceiptsSection => 'रसीदें';
+
+  @override
+  String get receiptStateComplete => 'पूर्ण';
+
+  @override
+  String get receiptStateIncomplete => 'अधूरी';
+
+  @override
+  String get receiptStateFailed => 'विफल';
+
+  @override
+  String get receiptStoreUnknown => 'दुकान पढ़ी नहीं गई';
+
+  @override
+  String get receiptDeleteAction => 'रसीद हटाएं';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'यह रसीद और इसके जोड़े गए आइटम हटाएं? आप इसे बाद में फिर से आयात कर सकते हैं।';
+
+  @override
+  String get receiptDeleted => 'रसीद हटा दी गई।';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'सभी दिखाएं ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'कम दिखाएं';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'रसीद की तारीख: $date';
+  }
 }

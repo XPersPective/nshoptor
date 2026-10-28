@@ -396,8 +396,7 @@
   "demoProductTomato": "ခရမ်းချဉ်သီး",
   "demoProductEggs": "ကြက်ဥ",
   "demoProductCoffee": "ကော်ဖီ",
-  "demoProductDetergent": "ဆပ်ပြာမှုန့်"
-,
+  "demoProductDetergent": "ဆပ်ပြာမှုန့်",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "ပြေစာတစ်ခုတည်း- ယခင်ဓာတ်ပုံ၏ နောက်ဆုံးပစ္စည်းကို ထည့်ပါ။",
   "captureTipNeverShow": "ထပ်မပြပါနှင့်",
   "captureTipOk": "နားလည်ပြီ",
-  "captureTipsSetting": "ပြေစာရိုက်ယူရန် အကြံပြုချက်များ ပြပါ"
+  "captureTipsSetting": "ပြေစာရိုက်ယူရန် အကြံပြုချက်များ ပြပါ",
+  "listReceiptsSection": "ပြေစာများ",
+  "receiptStateComplete": "ပြီးဆုံး",
+  "receiptStateIncomplete": "မပြည့်စုံ",
+  "receiptStateFailed": "မအောင်မြင်",
+  "receiptStoreUnknown": "ဆိုင်ကို မဖတ်နိုင်ပါ",
+  "receiptDeleteAction": "ပြေစာ ဖျက်ရန်",
+  "receiptDeleteConfirm": "ဤပြေစာနှင့် ၎င်းထည့်ခဲ့သော ပစ္စည်းများကို ဖျက်မလား။ နောက်မှ ပြန်တင်သွင်းနိုင်ပါသည်။",
+  "receiptDeleted": "ပြေစာ ဖျက်ပြီးပါပြီ။",
+  "listReceiptsShowAll": "အားလုံးပြရန် ({count})",
+  "listReceiptsShowLess": "နည်းနည်းပြရန်",
+  "receiptDateLabel": "ပြေစာ ရက်စွဲ- {date}"
 }

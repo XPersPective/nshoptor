@@ -1463,4 +1463,42 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ';
+
+  @override
+  String get listReceiptsSection => 'ਰਸੀਦਾਂ';
+
+  @override
+  String get receiptStateComplete => 'ਪੂਰੀ';
+
+  @override
+  String get receiptStateIncomplete => 'ਅਧੂਰੀ';
+
+  @override
+  String get receiptStateFailed => 'ਅਸਫਲ';
+
+  @override
+  String get receiptStoreUnknown => 'ਦੁਕਾਨ ਪੜ੍ਹੀ ਨਹੀਂ ਗਈ';
+
+  @override
+  String get receiptDeleteAction => 'ਰਸੀਦ ਮਿਟਾਓ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ਕੀ ਇਹ ਰਸੀਦ ਅਤੇ ਇਸ ਵੱਲੋਂ ਜੋੜੀਆਂ ਆਈਟਮਾਂ ਮਿਟਾਉਣੀਆਂ ਹਨ? ਤੁਸੀਂ ਇਸਨੂੰ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਆਯਾਤ ਕਰ ਸਕਦੇ ਹੋ।';
+
+  @override
+  String get receiptDeleted => 'ਰਸੀਦ ਮਿਟਾਈ ਗਈ।';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ਸਭ ਦਿਖਾਓ ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'ਘੱਟ ਦਿਖਾਓ';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ਰਸੀਦ ਦੀ ਮਿਤੀ: $date';
+  }
 }

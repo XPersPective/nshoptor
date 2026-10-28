@@ -1471,4 +1471,42 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Баримт авах зөвлөгөөг харуулах';
+
+  @override
+  String get listReceiptsSection => 'Баримтууд';
+
+  @override
+  String get receiptStateComplete => 'Дууссан';
+
+  @override
+  String get receiptStateIncomplete => 'Дутуу';
+
+  @override
+  String get receiptStateFailed => 'Амжилтгүй';
+
+  @override
+  String get receiptStoreUnknown => 'Дэлгүүрийг уншиж чадсангүй';
+
+  @override
+  String get receiptDeleteAction => 'Баримт устгах';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Энэ баримт болон түүний нэмсэн бараануудыг устгах уу? Дараа нь дахин импортлох боломжтой.';
+
+  @override
+  String get receiptDeleted => 'Баримт устгагдлаа.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Бүгдийг харуулах ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Цөөнийг харуулах';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Баримтын огноо: $date';
+  }
 }

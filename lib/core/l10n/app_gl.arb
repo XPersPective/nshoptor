@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomates",
   "demoProductEggs": "Ovos",
   "demoProductCoffee": "Café",
-  "demoProductDetergent": "Deterxente"
-,
+  "demoProductDetergent": "Deterxente",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Mesmo recibo: inclúe o último artigo da foto anterior.",
   "captureTipNeverShow": "Non volver mostrar",
   "captureTipOk": "Entendido",
-  "captureTipsSetting": "Mostrar consellos para fotografar o recibo"
+  "captureTipsSetting": "Mostrar consellos para fotografar o recibo",
+  "listReceiptsSection": "Tíckets",
+  "receiptStateComplete": "Completo",
+  "receiptStateIncomplete": "Incompleto",
+  "receiptStateFailed": "Erro",
+  "receiptStoreUnknown": "Non se leu a tenda",
+  "receiptDeleteAction": "Eliminar tícket",
+  "receiptDeleteConfirm": "Queres eliminar este tícket e os artigos que engadiu? Máis tarde podes importalo de novo.",
+  "receiptDeleted": "Tícket eliminado.",
+  "listReceiptsShowAll": "Mostrar todos ({count})",
+  "listReceiptsShowLess": "Mostrar menos",
+  "receiptDateLabel": "Data do tícket: {date}"
 }

@@ -1465,4 +1465,42 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න';
+
+  @override
+  String get listReceiptsSection => 'රිසිට්පත්';
+
+  @override
+  String get receiptStateComplete => 'සම්පූර්ණයි';
+
+  @override
+  String get receiptStateIncomplete => 'අසම්පූර්ණයි';
+
+  @override
+  String get receiptStateFailed => 'අසාර්ථකයි';
+
+  @override
+  String get receiptStoreUnknown => 'වෙළඳසැල කියවිය නොහැකි විය';
+
+  @override
+  String get receiptDeleteAction => 'රිසිට්පත මකන්න';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'මෙම රිසිට්පත සහ එය එක් කළ අයිතම මකන්නද? පසුව නැවත ආයාත කළ හැක.';
+
+  @override
+  String get receiptDeleted => 'රිසිට්පත මකා දැමිණි.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'සියල්ල පෙන්වන්න ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'අඩුවෙන් පෙන්වන්න';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'රිසිට්පතේ දිනය: $date';
+  }
 }

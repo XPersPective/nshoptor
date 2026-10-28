@@ -1468,4 +1468,42 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Nyugtafotózási tippek megjelenítése';
+
+  @override
+  String get listReceiptsSection => 'Blokkok';
+
+  @override
+  String get receiptStateComplete => 'Kész';
+
+  @override
+  String get receiptStateIncomplete => 'Hiányos';
+
+  @override
+  String get receiptStateFailed => 'Sikertelen';
+
+  @override
+  String get receiptStoreUnknown => 'Az üzlet nem olvasható';
+
+  @override
+  String get receiptDeleteAction => 'Blokk törlése';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Törlöd ezt a blokkot és az általa hozzáadott tételeket? Később újra importálhatod.';
+
+  @override
+  String get receiptDeleted => 'Blokk törölve.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Az összes ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Kevesebb';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Blokk dátuma: $date';
+  }
 }

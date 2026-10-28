@@ -1472,4 +1472,42 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Ցուցադրել կտրոնի լուսանկարման խորհուրդները';
+
+  @override
+  String get listReceiptsSection => 'Կտրոններ';
+
+  @override
+  String get receiptStateComplete => 'Ավարտված';
+
+  @override
+  String get receiptStateIncomplete => 'Թերի';
+
+  @override
+  String get receiptStateFailed => 'Ձախողվեց';
+
+  @override
+  String get receiptStoreUnknown => 'Խանութը չկարդացվեց';
+
+  @override
+  String get receiptDeleteAction => 'Ջնջել կտրոնը';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Ջնջե՞լ այս կտրոնը և դրա ավելացրած ապրանքները։ Հետագայում կարող եք այն կրկին ներմուծել։';
+
+  @override
+  String get receiptDeleted => 'Կտրոնը ջնջվեց։';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Ցույց տալ բոլորը ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Ցույց տալ քիչ';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Կտրոնի ամսաթիվ՝ $date';
+  }
 }

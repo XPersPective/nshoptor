@@ -396,8 +396,7 @@
   "demoProductTomato": "Tómatar",
   "demoProductEggs": "Egg",
   "demoProductCoffee": "Kaffi",
-  "demoProductDetergent": "Þvottaefni"
-,
+  "demoProductDetergent": "Þvottaefni",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Sama kvittun: hafðu síðustu vöruna af fyrri mynd með.",
   "captureTipNeverShow": "Ekki sýna aftur",
   "captureTipOk": "Skilið",
-  "captureTipsSetting": "Sýna ráð til að mynda kvittun"
+  "captureTipsSetting": "Sýna ráð til að mynda kvittun",
+  "listReceiptsSection": "Kvittanir",
+  "receiptStateComplete": "Lokið",
+  "receiptStateIncomplete": "Ófullgerð",
+  "receiptStateFailed": "Mistókst",
+  "receiptStoreUnknown": "Verslun ekki lesin",
+  "receiptDeleteAction": "Eyða kvittun",
+  "receiptDeleteConfirm": "Eyða þessari kvittun og vörunum sem hún bætti við? Þú getur flutt hana inn aftur síðar.",
+  "receiptDeleted": "Kvittun eytt.",
+  "listReceiptsShowAll": "Sýna allt ({count})",
+  "listReceiptsShowLess": "Sýna minna",
+  "receiptDateLabel": "Dagsetning kvittunar: {date}"
 }

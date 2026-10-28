@@ -35,6 +35,7 @@ Future<int?> openReceiptCaptureFlow(
   Future<String?> Function()? pickImage,
   OcrTextSource? ocrSource,
   ReceiptImageStore? imageStore,
+  int? resumeDraftId,
   @visibleForTesting Future<String?> Function(String path)? encodeAiImage,
 }) async {
   final l10n = AppLocalizations.of(context);
@@ -64,7 +65,15 @@ Future<int?> openReceiptCaptureFlow(
   ReceiptDocument? document;
   int? draftId;
   var imagePaths = <String>[];
-  if (pending.isNotEmpty) {
+  // A receipt chosen in the list's Receipts section continues directly.
+  final resume = resumeDraftId == null
+      ? null
+      : pending.where((d) => d.id == resumeDraftId).firstOrNull;
+  if (resume != null) {
+    document = resume.document;
+    draftId = resume.id;
+    imagePaths = [...resume.imagePaths];
+  } else if (pending.isNotEmpty) {
     final selection = await showDialog<int>(
       context: context,
       builder: (dialogContext) => SimpleDialog(

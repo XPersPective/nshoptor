@@ -1418,4 +1418,41 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'レシート撮影のヒントを表示';
+
+  @override
+  String get listReceiptsSection => 'レシート';
+
+  @override
+  String get receiptStateComplete => '完了';
+
+  @override
+  String get receiptStateIncomplete => '未完了';
+
+  @override
+  String get receiptStateFailed => '失敗';
+
+  @override
+  String get receiptStoreUnknown => '店舗を読み取れません';
+
+  @override
+  String get receiptDeleteAction => 'レシートを削除';
+
+  @override
+  String get receiptDeleteConfirm => 'このレシートと追加された商品を削除しますか？後で再度取り込むことができます。';
+
+  @override
+  String get receiptDeleted => 'レシートを削除しました。';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'すべて表示（$count）';
+  }
+
+  @override
+  String get listReceiptsShowLess => '表示を減らす';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'レシートの日付: $date';
+  }
 }

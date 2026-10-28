@@ -396,8 +396,7 @@
   "demoProductTomato": "गोलभेडा",
   "demoProductEggs": "अण्डा",
   "demoProductCoffee": "कफी",
-  "demoProductDetergent": "डिटर्जेन्ट"
-,
+  "demoProductDetergent": "डिटर्जेन्ट",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "उही रसिद: अघिल्लो फोटोको अन्तिम सामान समावेश गर्नुहोस्।",
   "captureTipNeverShow": "फेरि नदेखाउनुहोस्",
   "captureTipOk": "बुझें",
-  "captureTipsSetting": "रसिद खिच्ने सुझाव देखाउनुहोस्"
+  "captureTipsSetting": "रसिद खिच्ने सुझाव देखाउनुहोस्",
+  "listReceiptsSection": "रसिदहरू",
+  "receiptStateComplete": "पूरा",
+  "receiptStateIncomplete": "अपूर्ण",
+  "receiptStateFailed": "असफल",
+  "receiptStoreUnknown": "पसल पढ्न सकिएन",
+  "receiptDeleteAction": "रसिद मेटाउनुहोस्",
+  "receiptDeleteConfirm": "यो रसिद र यसले थपेका सामानहरू मेटाउने? पछि फेरि आयात गर्न सक्नुहुन्छ।",
+  "receiptDeleted": "रसिद मेटाइयो।",
+  "listReceiptsShowAll": "सबै देखाउनुहोस् ({count})",
+  "listReceiptsShowLess": "कम देखाउनुहोस्",
+  "receiptDateLabel": "रसिदको मिति: {date}"
 }

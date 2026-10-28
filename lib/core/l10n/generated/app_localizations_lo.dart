@@ -1455,4 +1455,42 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ';
+
+  @override
+  String get listReceiptsSection => 'ໃບບິນ';
+
+  @override
+  String get receiptStateComplete => 'ສຳເລັດ';
+
+  @override
+  String get receiptStateIncomplete => 'ບໍ່ຄົບ';
+
+  @override
+  String get receiptStateFailed => 'ລົ້ມເຫຼວ';
+
+  @override
+  String get receiptStoreUnknown => 'ອ່ານຮ້ານບໍ່ໄດ້';
+
+  @override
+  String get receiptDeleteAction => 'ລຶບໃບບິນ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ລຶບໃບບິນນີ້ ແລະ ລາຍການທີ່ມັນເພີ່ມບໍ? ທ່ານສາມາດນຳເຂົ້າອີກຄັ້ງໃນພາຍຫຼັງ.';
+
+  @override
+  String get receiptDeleted => 'ລຶບໃບບິນແລ້ວ.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ສະແດງທັງໝົດ ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'ສະແດງໜ້ອຍລົງ';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ວັນທີໃບບິນ: $date';
+  }
 }

@@ -1464,4 +1464,42 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'رسید کھینچنے کے مشورے دکھائیں';
+
+  @override
+  String get listReceiptsSection => 'رسیدیں';
+
+  @override
+  String get receiptStateComplete => 'مکمل';
+
+  @override
+  String get receiptStateIncomplete => 'نامکمل';
+
+  @override
+  String get receiptStateFailed => 'ناکام';
+
+  @override
+  String get receiptStoreUnknown => 'دکان پڑھی نہیں جا سکی';
+
+  @override
+  String get receiptDeleteAction => 'رسید حذف کریں';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'کیا یہ رسید اور اس کی شامل کردہ اشیاء حذف کی جائیں؟ آپ اسے بعد میں دوبارہ درآمد کر سکتے ہیں۔';
+
+  @override
+  String get receiptDeleted => 'رسید حذف ہو گئی۔';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'سب دکھائیں ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'کم دکھائیں';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'رسید کی تاریخ: $date';
+  }
 }

@@ -396,8 +396,7 @@
   "demoProductTomato": "തക്കാളി",
   "demoProductEggs": "മുട്ട",
   "demoProductCoffee": "കാപ്പി",
-  "demoProductDetergent": "ഡിറ്റർജന്റ്"
-,
+  "demoProductDetergent": "ഡിറ്റർജന്റ്",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "അതേ രസീത്: മുമ്പത്തെ ഫോട്ടോയിലെ അവസാന ഇനം ഉൾപ്പെടുത്തുക.",
   "captureTipNeverShow": "വീണ്ടും കാണിക്കരുത്",
   "captureTipOk": "മനസ്സിലായി",
-  "captureTipsSetting": "രസീത് പകർത്താനുള്ള നുറുങ്ങുകൾ കാണിക്കുക"
+  "captureTipsSetting": "രസീത് പകർത്താനുള്ള നുറുങ്ങുകൾ കാണിക്കുക",
+  "listReceiptsSection": "രസീതുകൾ",
+  "receiptStateComplete": "പൂർത്തിയായി",
+  "receiptStateIncomplete": "അപൂർണ്ണം",
+  "receiptStateFailed": "പരാജയപ്പെട്ടു",
+  "receiptStoreUnknown": "കട വായിക്കാനായില്ല",
+  "receiptDeleteAction": "രസീത് ഇല്ലാതാക്കുക",
+  "receiptDeleteConfirm": "ഈ രസീതും അത് ചേർത്ത ഇനങ്ങളും ഇല്ലാതാക്കണോ? പിന്നീട് വീണ്ടും ഇറക്കുമതി ചെയ്യാം.",
+  "receiptDeleted": "രസീത് ഇല്ലാതാക്കി.",
+  "listReceiptsShowAll": "എല്ലാം കാണിക്കുക ({count})",
+  "listReceiptsShowLess": "കുറച്ച് കാണിക്കുക",
+  "receiptDateLabel": "രസീത് തീയതി: {date}"
 }

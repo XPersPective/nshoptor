@@ -1465,4 +1465,42 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Vis tips til fotografering af kvittering';
+
+  @override
+  String get listReceiptsSection => 'Kvitteringer';
+
+  @override
+  String get receiptStateComplete => 'Fuldført';
+
+  @override
+  String get receiptStateIncomplete => 'Ufuldstændig';
+
+  @override
+  String get receiptStateFailed => 'Mislykkedes';
+
+  @override
+  String get receiptStoreUnknown => 'Butik ikke læst';
+
+  @override
+  String get receiptDeleteAction => 'Slet kvittering';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Vil du slette denne kvittering og de varer, den tilføjede? Du kan importere den igen senere.';
+
+  @override
+  String get receiptDeleted => 'Kvittering slettet.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Vis alle ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Vis færre';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kvitteringsdato: $date';
+  }
 }

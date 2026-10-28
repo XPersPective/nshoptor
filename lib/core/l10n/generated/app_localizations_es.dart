@@ -1474,4 +1474,42 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Mostrar consejos para fotografiar el recibo';
+
+  @override
+  String get listReceiptsSection => 'Tickets';
+
+  @override
+  String get receiptStateComplete => 'Completo';
+
+  @override
+  String get receiptStateIncomplete => 'Incompleto';
+
+  @override
+  String get receiptStateFailed => 'Error';
+
+  @override
+  String get receiptStoreUnknown => 'Tienda no leída';
+
+  @override
+  String get receiptDeleteAction => 'Eliminar ticket';
+
+  @override
+  String get receiptDeleteConfirm =>
+      '¿Eliminar este ticket y los artículos que añadió? Podrás importarlo de nuevo más tarde.';
+
+  @override
+  String get receiptDeleted => 'Ticket eliminado.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Mostrar todos ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Mostrar menos';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Fecha del ticket: $date';
+  }
 }

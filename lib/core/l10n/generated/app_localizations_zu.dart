@@ -1476,4 +1476,42 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Bonisa amathiphu okuthatha irisidi';
+
+  @override
+  String get listReceiptsSection => 'Amarisidi';
+
+  @override
+  String get receiptStateComplete => 'Kuqediwe';
+
+  @override
+  String get receiptStateIncomplete => 'Akuphelele';
+
+  @override
+  String get receiptStateFailed => 'Kuhlulekile';
+
+  @override
+  String get receiptStoreUnknown => 'Isitolo asifundwanga';
+
+  @override
+  String get receiptDeleteAction => 'Susa irisidi';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Susa le risidi nezinto ezengeziwe yiyo? Ungayingenisa futhi kamuva.';
+
+  @override
+  String get receiptDeleted => 'Irisidi isusiwe.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Bonisa konke ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Bonisa okumbalwa';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Usuku lwerisidi: $date';
+  }
 }

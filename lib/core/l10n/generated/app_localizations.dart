@@ -2941,6 +2941,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show receipt capture tips'**
   String get captureTipsSetting;
+
+  /// No description provided for @listReceiptsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipts'**
+  String get listReceiptsSection;
+
+  /// No description provided for @receiptStateComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get receiptStateComplete;
+
+  /// No description provided for @receiptStateIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Incomplete'**
+  String get receiptStateIncomplete;
+
+  /// No description provided for @receiptStateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get receiptStateFailed;
+
+  /// No description provided for @receiptStoreUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Store not read'**
+  String get receiptStoreUnknown;
+
+  /// No description provided for @receiptDeleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete receipt'**
+  String get receiptDeleteAction;
+
+  /// No description provided for @receiptDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this receipt and the items it added? You can import it again later.'**
+  String get receiptDeleteConfirm;
+
+  /// No description provided for @receiptDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt deleted.'**
+  String get receiptDeleted;
+
+  /// No description provided for @listReceiptsShowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all ({count})'**
+  String listReceiptsShowAll(int count);
+
+  /// No description provided for @listReceiptsShowLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get listReceiptsShowLess;
+
+  /// No description provided for @receiptDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt date: {date}'**
+  String receiptDateLabel(String date);
 }
 
 class _AppLocalizationsDelegate

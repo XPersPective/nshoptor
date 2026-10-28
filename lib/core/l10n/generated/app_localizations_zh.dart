@@ -1407,4 +1407,41 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get captureTipsSetting => '显示收据拍摄提示';
+
+  @override
+  String get listReceiptsSection => '小票';
+
+  @override
+  String get receiptStateComplete => '已完成';
+
+  @override
+  String get receiptStateIncomplete => '未完成';
+
+  @override
+  String get receiptStateFailed => '失败';
+
+  @override
+  String get receiptStoreUnknown => '未识别商店';
+
+  @override
+  String get receiptDeleteAction => '删除小票';
+
+  @override
+  String get receiptDeleteConfirm => '要删除此小票及其添加的商品吗？之后可以再次导入。';
+
+  @override
+  String get receiptDeleted => '小票已删除。';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return '显示全部（$count）';
+  }
+
+  @override
+  String get listReceiptsShowLess => '收起';
+
+  @override
+  String receiptDateLabel(String date) {
+    return '小票日期：$date';
+  }
 }

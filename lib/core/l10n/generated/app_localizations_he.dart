@@ -1453,4 +1453,42 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'הצג טיפים לצילום קבלה';
+
+  @override
+  String get listReceiptsSection => 'קבלות';
+
+  @override
+  String get receiptStateComplete => 'הושלמה';
+
+  @override
+  String get receiptStateIncomplete => 'חלקית';
+
+  @override
+  String get receiptStateFailed => 'נכשלה';
+
+  @override
+  String get receiptStoreUnknown => 'החנות לא זוהתה';
+
+  @override
+  String get receiptDeleteAction => 'מחיקת קבלה';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'למחוק את הקבלה הזו ואת הפריטים שהיא הוסיפה? אפשר לייבא אותה שוב מאוחר יותר.';
+
+  @override
+  String get receiptDeleted => 'הקבלה נמחקה.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'הצגת הכול ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'הצגת פחות';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'תאריך הקבלה: $date';
+  }
 }

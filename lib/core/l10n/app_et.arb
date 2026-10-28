@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomatid",
   "demoProductEggs": "Munad",
   "demoProductCoffee": "Kohv",
-  "demoProductDetergent": "Pesuaine"
-,
+  "demoProductDetergent": "Pesuaine",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Sama kviitung: lisa eelmise foto viimane kaup.",
   "captureTipNeverShow": "Ära enam näita",
   "captureTipOk": "Selge",
-  "captureTipsSetting": "Näita kviitungi pildistamise nippe"
+  "captureTipsSetting": "Näita kviitungi pildistamise nippe",
+  "listReceiptsSection": "Tšekid",
+  "receiptStateComplete": "Valmis",
+  "receiptStateIncomplete": "Puudulik",
+  "receiptStateFailed": "Ebaõnnestus",
+  "receiptStoreUnknown": "Poodi ei loetud",
+  "receiptDeleteAction": "Kustuta tšekk",
+  "receiptDeleteConfirm": "Kas kustutada see tšekk ja selle lisatud tooted? Saad selle hiljem uuesti importida.",
+  "receiptDeleted": "Tšekk kustutatud.",
+  "listReceiptsShowAll": "Näita kõiki ({count})",
+  "listReceiptsShowLess": "Näita vähem",
+  "receiptDateLabel": "Tšeki kuupäev: {date}"
 }

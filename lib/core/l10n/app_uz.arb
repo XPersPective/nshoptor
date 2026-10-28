@@ -396,8 +396,7 @@
   "demoProductTomato": "Pomidor",
   "demoProductEggs": "Tuxum",
   "demoProductCoffee": "Qahva",
-  "demoProductDetergent": "Kir yuvish vositasi"
-,
+  "demoProductDetergent": "Kir yuvish vositasi",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Xuddi shu chek: oldingi suratdagi oxirgi mahsulotni kiriting.",
   "captureTipNeverShow": "Boshqa ko‘rsatilmasin",
   "captureTipOk": "Tushundim",
-  "captureTipsSetting": "Chek suratga olish maslahatlarini ko‘rsatish"
+  "captureTipsSetting": "Chek suratga olish maslahatlarini ko‘rsatish",
+  "listReceiptsSection": "Cheklar",
+  "receiptStateComplete": "Yakunlangan",
+  "receiptStateIncomplete": "Toʻliq emas",
+  "receiptStateFailed": "Muvaffaqiyatsiz",
+  "receiptStoreUnknown": "Doʻkon oʻqilmadi",
+  "receiptDeleteAction": "Chekni oʻchirish",
+  "receiptDeleteConfirm": "Bu chek va u qoʻshgan mahsulotlar oʻchirilsinmi? Keyinroq uni qayta import qilishingiz mumkin.",
+  "receiptDeleted": "Chek oʻchirildi.",
+  "listReceiptsShowAll": "Hammasini koʻrsatish ({count})",
+  "listReceiptsShowLess": "Kamroq koʻrsatish",
+  "receiptDateLabel": "Chek sanasi: {date}"
 }

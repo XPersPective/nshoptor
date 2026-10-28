@@ -407,8 +407,7 @@
   "demoProductTomato": "Paradicsom",
   "demoProductEggs": "Tojás",
   "demoProductCoffee": "Kávé",
-  "demoProductDetergent": "Mosószer"
-,
+  "demoProductDetergent": "Mosószer",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Ugyanaz a nyugta: az előző fotó utolsó tételét is tegye rá.",
   "captureTipNeverShow": "Ne jelenjen meg újra",
   "captureTipOk": "Értem",
-  "captureTipsSetting": "Nyugtafotózási tippek megjelenítése"
+  "captureTipsSetting": "Nyugtafotózási tippek megjelenítése",
+  "listReceiptsSection": "Blokkok",
+  "receiptStateComplete": "Kész",
+  "receiptStateIncomplete": "Hiányos",
+  "receiptStateFailed": "Sikertelen",
+  "receiptStoreUnknown": "Az üzlet nem olvasható",
+  "receiptDeleteAction": "Blokk törlése",
+  "receiptDeleteConfirm": "Törlöd ezt a blokkot és az általa hozzáadott tételeket? Később újra importálhatod.",
+  "receiptDeleted": "Blokk törölve.",
+  "listReceiptsShowAll": "Az összes ({count})",
+  "listReceiptsShowLess": "Kevesebb",
+  "receiptDateLabel": "Blokk dátuma: {date}"
 }

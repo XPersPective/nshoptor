@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomater",
   "demoProductEggs": "Æg",
   "demoProductCoffee": "Kaffe",
-  "demoProductDetergent": "Vaskemiddel"
-,
+  "demoProductDetergent": "Vaskemiddel",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Samme kvittering: tag den sidste vare fra det forrige billede med.",
   "captureTipNeverShow": "Vis ikke igen",
   "captureTipOk": "Forstået",
-  "captureTipsSetting": "Vis tips til fotografering af kvittering"
+  "captureTipsSetting": "Vis tips til fotografering af kvittering",
+  "listReceiptsSection": "Kvitteringer",
+  "receiptStateComplete": "Fuldført",
+  "receiptStateIncomplete": "Ufuldstændig",
+  "receiptStateFailed": "Mislykkedes",
+  "receiptStoreUnknown": "Butik ikke læst",
+  "receiptDeleteAction": "Slet kvittering",
+  "receiptDeleteConfirm": "Vil du slette denne kvittering og de varer, den tilføjede? Du kan importere den igen senere.",
+  "receiptDeleted": "Kvittering slettet.",
+  "listReceiptsShowAll": "Vis alle ({count})",
+  "listReceiptsShowLess": "Vis færre",
+  "receiptDateLabel": "Kvitteringsdato: {date}"
 }

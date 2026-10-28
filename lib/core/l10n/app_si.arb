@@ -396,8 +396,7 @@
   "demoProductTomato": "තක්කාලි",
   "demoProductEggs": "බිත්තර",
   "demoProductCoffee": "කෝපි",
-  "demoProductDetergent": "සබන් කුඩු"
-,
+  "demoProductDetergent": "සබන් කුඩු",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "එම රිසිට්පතම: පෙර ඡායාරූපයේ අවසාන භාණ්ඩය ඇතුළත් කරන්න.",
   "captureTipNeverShow": "නැවත නොපෙන්වන්න",
   "captureTipOk": "තේරුණා",
-  "captureTipsSetting": "රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න"
+  "captureTipsSetting": "රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න",
+  "listReceiptsSection": "රිසිට්පත්",
+  "receiptStateComplete": "සම්පූර්ණයි",
+  "receiptStateIncomplete": "අසම්පූර්ණයි",
+  "receiptStateFailed": "අසාර්ථකයි",
+  "receiptStoreUnknown": "වෙළඳසැල කියවිය නොහැකි විය",
+  "receiptDeleteAction": "රිසිට්පත මකන්න",
+  "receiptDeleteConfirm": "මෙම රිසිට්පත සහ එය එක් කළ අයිතම මකන්නද? පසුව නැවත ආයාත කළ හැක.",
+  "receiptDeleted": "රිසිට්පත මකා දැමිණි.",
+  "listReceiptsShowAll": "සියල්ල පෙන්වන්න ({count})",
+  "listReceiptsShowLess": "අඩුවෙන් පෙන්වන්න",
+  "receiptDateLabel": "රිසිට්පතේ දිනය: {date}"
 }

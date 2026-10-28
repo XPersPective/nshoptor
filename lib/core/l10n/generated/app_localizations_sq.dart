@@ -1470,4 +1470,42 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Shfaq këshillat për fotografimin e faturës';
+
+  @override
+  String get listReceiptsSection => 'Faturat';
+
+  @override
+  String get receiptStateComplete => 'E plotë';
+
+  @override
+  String get receiptStateIncomplete => 'E paplotë';
+
+  @override
+  String get receiptStateFailed => 'Dështoi';
+
+  @override
+  String get receiptStoreUnknown => 'Dyqani nuk u lexua';
+
+  @override
+  String get receiptDeleteAction => 'Fshi faturën';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Të fshihet kjo faturë dhe artikujt që shtoi? Mund ta importoni sërish më vonë.';
+
+  @override
+  String get receiptDeleted => 'Fatura u fshi.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Shfaq të gjitha ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Shfaq më pak';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data e faturës: $date';
+  }
 }

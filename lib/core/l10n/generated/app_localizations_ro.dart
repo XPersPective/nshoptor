@@ -1476,4 +1476,42 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Afișează sfaturile pentru fotografierea bonului';
+
+  @override
+  String get listReceiptsSection => 'Bonuri';
+
+  @override
+  String get receiptStateComplete => 'Complet';
+
+  @override
+  String get receiptStateIncomplete => 'Incomplet';
+
+  @override
+  String get receiptStateFailed => 'Eșuat';
+
+  @override
+  String get receiptStoreUnknown => 'Magazin necitit';
+
+  @override
+  String get receiptDeleteAction => 'Șterge bonul';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Ștergi acest bon și articolele adăugate de el? Îl poți importa din nou mai târziu.';
+
+  @override
+  String get receiptDeleted => 'Bon șters.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Afișează tot ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Afișează mai puțin';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data bonului: $date';
+  }
 }

@@ -1470,4 +1470,42 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Prikaži savjete za snimanje računa';
+
+  @override
+  String get listReceiptsSection => 'Računi';
+
+  @override
+  String get receiptStateComplete => 'Završen';
+
+  @override
+  String get receiptStateIncomplete => 'Nepotpun';
+
+  @override
+  String get receiptStateFailed => 'Neuspješno';
+
+  @override
+  String get receiptStoreUnknown => 'Trgovina nije pročitana';
+
+  @override
+  String get receiptDeleteAction => 'Izbriši račun';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Izbrisati ovaj račun i stavke koje je dodao? Kasnije ga možete ponovo uvesti.';
+
+  @override
+  String get receiptDeleted => 'Račun je izbrisan.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Prikaži sve ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Prikaži manje';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Datum računa: $date';
+  }
 }

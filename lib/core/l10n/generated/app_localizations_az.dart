@@ -1469,4 +1469,42 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Çek çəkilişi məsləhətlərini göstər';
+
+  @override
+  String get listReceiptsSection => 'Qəbzlər';
+
+  @override
+  String get receiptStateComplete => 'Tamamlandı';
+
+  @override
+  String get receiptStateIncomplete => 'Natamam';
+
+  @override
+  String get receiptStateFailed => 'Uğursuz';
+
+  @override
+  String get receiptStoreUnknown => 'Mağaza oxunmadı';
+
+  @override
+  String get receiptDeleteAction => 'Qəbzi sil';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Bu qəbz və onun əlavə etdiyi məhsullar silinsin? Sonra yenidən idxal edə bilərsiniz.';
+
+  @override
+  String get receiptDeleted => 'Qəbz silindi.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Hamısını göstər ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Daha az göstər';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Qəbz tarixi: $date';
+  }
 }

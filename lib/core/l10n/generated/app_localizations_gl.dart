@@ -1472,4 +1472,42 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Mostrar consellos para fotografar o recibo';
+
+  @override
+  String get listReceiptsSection => 'Tíckets';
+
+  @override
+  String get receiptStateComplete => 'Completo';
+
+  @override
+  String get receiptStateIncomplete => 'Incompleto';
+
+  @override
+  String get receiptStateFailed => 'Erro';
+
+  @override
+  String get receiptStoreUnknown => 'Non se leu a tenda';
+
+  @override
+  String get receiptDeleteAction => 'Eliminar tícket';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Queres eliminar este tícket e os artigos que engadiu? Máis tarde podes importalo de novo.';
+
+  @override
+  String get receiptDeleted => 'Tícket eliminado.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Mostrar todos ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Mostrar menos';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data do tícket: $date';
+  }
 }

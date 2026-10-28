@@ -1467,4 +1467,42 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Sýna ráð til að mynda kvittun';
+
+  @override
+  String get listReceiptsSection => 'Kvittanir';
+
+  @override
+  String get receiptStateComplete => 'Lokið';
+
+  @override
+  String get receiptStateIncomplete => 'Ófullgerð';
+
+  @override
+  String get receiptStateFailed => 'Mistókst';
+
+  @override
+  String get receiptStoreUnknown => 'Verslun ekki lesin';
+
+  @override
+  String get receiptDeleteAction => 'Eyða kvittun';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Eyða þessari kvittun og vörunum sem hún bætti við? Þú getur flutt hana inn aftur síðar.';
+
+  @override
+  String get receiptDeleted => 'Kvittun eytt.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Sýna allt ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Sýna minna';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Dagsetning kvittunar: $date';
+  }
 }

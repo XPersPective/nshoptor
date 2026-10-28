@@ -1471,4 +1471,42 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Прикажи совети за снимање сметка';
+
+  @override
+  String get listReceiptsSection => 'Сметки';
+
+  @override
+  String get receiptStateComplete => 'Завршена';
+
+  @override
+  String get receiptStateIncomplete => 'Нецелосна';
+
+  @override
+  String get receiptStateFailed => 'Неуспешно';
+
+  @override
+  String get receiptStoreUnknown => 'Продавницата не е прочитана';
+
+  @override
+  String get receiptDeleteAction => 'Избриши сметка';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Да се избрише оваа сметка и ставките што ги додаде? Подоцна можете повторно да ја увезете.';
+
+  @override
+  String get receiptDeleted => 'Сметката е избришана.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Прикажи ги сите ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Прикажи помалку';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Датум на сметката: $date';
+  }
 }
