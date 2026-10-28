@@ -221,6 +221,12 @@ class SubscriptionService extends ChangeNotifier {
                 : allowanceOf(b.productId).compareTo(allowanceOf(a.productId));
           });
     final best = relevant.isEmpty ? null : relevant.first;
+    // Owning the plan ends any purchase wait, even when the store stream
+    // reports the purchase under a different event (F01: stuck progress).
+    if (best != null && _purchasePending) {
+      _purchasePending = false;
+      notifyListeners();
+    }
     if (best?.productId == _productId && best?.token == _token) return;
     _productId = best?.productId;
     _token = best?.token;

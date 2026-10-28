@@ -739,6 +739,23 @@ void main() {
     await native.events.close();
   });
 
+  test('owning Pro ends a pending purchase wait even without a purchase event (F01)', () async {
+    final native = _NativeStore();
+    final s = SubscriptionService(store: SettingsStore(), iap: native)..start();
+    await Future<void>.delayed(Duration.zero);
+    native.launch = Completer<bool>();
+    final launch = s.buy(_offer(SubscriptionService.proId));
+    await Future<void>.delayed(Duration.zero);
+    native.launch!.complete(true);
+    await launch;
+    expect(s.busy, isTrue);
+    s.applyOwned([(productId: SubscriptionService.proId, token: 'owned-token')]);
+    expect(s.busy, isFalse);
+    expect(s.tier, isNot(Tier.free));
+    s.dispose();
+    await native.events.close();
+  });
+
   testWidgets(
     'legacy note, annual period and retry controls fit320dp2x Arabic',
     (tester) async {
