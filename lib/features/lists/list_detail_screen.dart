@@ -641,43 +641,29 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                         totalCount: visibleItems.length + unplanned.length,
                         seed: widget.listId,
                       );
-                return Column(
+                final headingStyle = Theme.of(context).textTheme.titleSmall
+                    ?.copyWith(fontWeight: FontWeight.w600);
+                final hasProducts = items.isNotEmpty || entries.isNotEmpty;
+                // F25: "Products" heading row; the sort control sits at the
+                // row end (start in RTL through Row directionality).
+                final productsHeader = Row(
+                  key: const Key('detail_products_header'),
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                      child: TextField(
-                        key: const Key('detail_item_search'),
-                        controller: _searchController,
-                        textInputAction: TextInputAction.search,
-                        onChanged: (value) =>
-                            setState(() => _searchQuery = value),
-                        onSubmitted: (_) => FocusScope.of(context).unfocus(),
-                        decoration: InputDecoration(
-                          labelText: material.searchFieldLabel,
-                          hintText: l10n.itemNameLabel,
-                          prefixIcon: const Icon(Icons.search),
-                          suffixIcon: _searchQuery.isEmpty
-                              ? null
-                              : IconButton(
-                                  key: const Key('detail_search_clear'),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 48,
-                                    minHeight: 48,
-                                  ),
-                                  tooltip: material.clearButtonTooltip,
-                                  icon: const Icon(Icons.close),
-                                  onPressed: () {
-                                    _searchController.clear();
-                                    setState(() => _searchQuery = '');
-                                  },
-                                ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 4),
+                        child: Semantics(
+                          header: true,
+                          child: Text(
+                            l10n.groupsSection,
+                            key: const Key('detail_products_heading'),
+                            style: headingStyle,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Align(
-                        alignment: AlignmentDirectional.centerEnd,
+                    Flexible(
                         child: PopupMenuButton<ItemSortMode>(
                           key: const Key('detail_item_sort'),
                           tooltip: l10n.listSortLabel,
@@ -712,6 +698,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                       _sortMode == ItemSortMode.custom
                                           ? l10n.listSortManual
                                           : l10n.listSortAz,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                   const Icon(Icons.arrow_drop_down),
@@ -720,19 +707,63 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                             ),
                           ),
                         ),
-                      ),
                     ),
+                  ],
+                );
+                // F25/F27: compact search lives with the product list and
+                // filters whichever sort order is active.
+                final searchField = Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: TextField(
+                    key: const Key('detail_item_search'),
+                    controller: _searchController,
+                    textInputAction: TextInputAction.search,
+                    onChanged: (value) => setState(() => _searchQuery = value),
+                    onSubmitted: (_) => FocusScope.of(context).unfocus(),
+                    decoration: InputDecoration(
+                      isDense: true,
+                      labelText: material.searchFieldLabel,
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: _searchQuery.isEmpty
+                          ? null
+                          : IconButton(
+                              key: const Key('detail_search_clear'),
+                              constraints: const BoxConstraints(
+                                minWidth: 48,
+                                minHeight: 48,
+                              ),
+                              tooltip: material.clearButtonTooltip,
+                              icon: const Icon(Icons.close),
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() => _searchQuery = '');
+                              },
+                            ),
+                    ),
+                  ),
+                );
+                return Column(
+                  children: [
                     Expanded(
                       child: ListView(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         children: [
                           Card(
-                            margin: const EdgeInsets.symmetric(vertical: 12),
+                            margin: const EdgeInsets.only(top: 12, bottom: 8),
                             child: Padding(
                               padding: const EdgeInsets.all(16),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Semantics(
+                                    header: true,
+                                    child: Text(
+                                      l10n.compareTotal,
+                                      key: const Key('detail_totals_heading'),
+                                      style: headingStyle,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
                                   _TotalsRow(
                                     items: items,
                                     entries: entries,
@@ -747,6 +778,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                               ),
                             ),
                           ),
+                          if (hasProducts) ...[productsHeader, searchField],
                           if (items.isEmpty && entries.isEmpty)
                             Padding(
                               padding: const EdgeInsets.all(16),

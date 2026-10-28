@@ -163,8 +163,6 @@ void main() {
       await _tapTab(tester, 'lists_tab_active');
       await _settle(tester);
 
-      await tester.tap(find.byKey(const Key('lists_search_button')));
-      await _settle(tester);
       await tester.enterText(
         find.byKey(const Key('lists_search_field')),
         'Yeni uzun',

@@ -89,11 +89,9 @@ void main() {
           expect(creation.height, receipt.height);
           expect(creation.height, greaterThanOrEqualTo(48));
           expect(creation.overlaps(receipt), isFalse);
-          for (final key in [
-            'lists_search_button',
-            'lists_sort_button',
-            'home_nav_discover',
-          ]) {
+          expect(find.byKey(const Key('lists_search_button')), findsNothing);
+          expect(find.byKey(const Key('lists_search_field')), findsOneWidget);
+          for (final key in ['lists_sort_button', 'home_nav_discover']) {
             final control = find.byKey(Key(key));
             expect(
               tester.getSize(control).shortestSide,
@@ -126,8 +124,6 @@ void main() {
       await tester.tap(find.byKey(const Key('list_cancel_button')));
       await settle(tester);
       expect(await db.select(db.shoppingLists).get(), hasLength(2));
-      await tester.tap(find.byKey(const Key('lists_search_button')));
-      await settle(tester);
       await tester.enterText(
         find.byKey(const Key('lists_search_field')),
         'Market',
@@ -138,7 +134,7 @@ void main() {
         findsOneWidget,
       );
       expect(find.text('Pazar'), findsNothing);
-      await tester.tap(find.byKey(const Key('lists_search_button')));
+      await tester.tap(find.byKey(const Key('lists_search_clear')));
       await settle(tester);
       expect(find.text('Pazar'), findsOneWidget);
       await close(tester);
