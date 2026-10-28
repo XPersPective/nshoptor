@@ -1125,6 +1125,15 @@ class AppLocalizationsSi extends AppLocalizations {
   String get csvExportAction => 'CSV අපනයනය කරන්න';
 
   @override
+  String get reportSharePdf => 'PDF ලෙස බෙදාගන්න';
+
+  @override
+  String get reportShareCsv => 'CSV ලෙස බෙදාගන්න';
+
+  @override
+  String get reportPrintAction => 'මුද්‍රණය කරන්න';
+
+  @override
   String get backupSizeWarning =>
       'JSON වලට ලේඛන ඇතුළත් වේ, ඡායාරූප ගොනු නොවේ. අපනයන සීමාව: 16 MB.';
 

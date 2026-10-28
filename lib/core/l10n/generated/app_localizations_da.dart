@@ -1126,6 +1126,15 @@ class AppLocalizationsDa extends AppLocalizations {
   String get csvExportAction => 'Eksporter CSV';
 
   @override
+  String get reportSharePdf => 'Del som PDF';
+
+  @override
+  String get reportShareCsv => 'Del som CSV';
+
+  @override
+  String get reportPrintAction => 'Udskriv';
+
+  @override
   String get backupSizeWarning =>
       'JSON indeholder poster, ikke fotofiler. Importgrænse: 16 MB.';
 

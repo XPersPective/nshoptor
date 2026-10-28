@@ -1128,6 +1128,15 @@ class AppLocalizationsAf extends AppLocalizations {
   String get csvExportAction => 'Eksporteer CSV';
 
   @override
+  String get reportSharePdf => 'Deel as PDF';
+
+  @override
+  String get reportShareCsv => 'Deel as CSV';
+
+  @override
+  String get reportPrintAction => 'Druk';
+
+  @override
   String get backupSizeWarning =>
       'JSON sluit rekords in, nie fotolêers nie. Invoergrens: 16 MB.';
 

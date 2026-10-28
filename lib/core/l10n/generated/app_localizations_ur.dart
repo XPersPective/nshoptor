@@ -1125,6 +1125,15 @@ class AppLocalizationsUr extends AppLocalizations {
   String get csvExportAction => 'CSV برآمد کریں';
 
   @override
+  String get reportSharePdf => 'PDF کے طور پر شیئر کریں';
+
+  @override
+  String get reportShareCsv => 'CSV کے طور پر شیئر کریں';
+
+  @override
+  String get reportPrintAction => 'پرنٹ کریں';
+
+  @override
   String get backupSizeWarning =>
       'JSON میں ریکارڈز شامل ہیں، فائلیں نہیں۔ امپورٹ کی حد: 16 MB.';
 

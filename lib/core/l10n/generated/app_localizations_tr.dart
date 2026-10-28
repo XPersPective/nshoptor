@@ -1125,6 +1125,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get csvExportAction => 'CSV dışa aktar';
 
   @override
+  String get reportSharePdf => 'PDF olarak paylaş';
+
+  @override
+  String get reportShareCsv => 'CSV olarak paylaş';
+
+  @override
+  String get reportPrintAction => 'Yazdır';
+
+  @override
   String get backupSizeWarning =>
       'JSON yalnız kayıtları içerir; fotoğraf dosyalarını içermez. İçe aktarma sınırı: 16 MB.';
 

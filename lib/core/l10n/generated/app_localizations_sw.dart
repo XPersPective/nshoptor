@@ -1128,6 +1128,15 @@ class AppLocalizationsSw extends AppLocalizations {
   String get csvExportAction => 'Tunza CSV';
 
   @override
+  String get reportSharePdf => 'Shiriki kama PDF';
+
+  @override
+  String get reportShareCsv => 'Shiriki kama CSV';
+
+  @override
+  String get reportPrintAction => 'Chapisha';
+
+  @override
   String get backupSizeWarning =>
       'JSON inarekodi, si faili za picha. Kikomo cha uingizaji: 16 MB.';
 

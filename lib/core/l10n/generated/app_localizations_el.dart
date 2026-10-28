@@ -1129,6 +1129,15 @@ class AppLocalizationsEl extends AppLocalizations {
   String get csvExportAction => 'Εξαγωγή CSV';
 
   @override
+  String get reportSharePdf => 'Κοινοποίηση ως PDF';
+
+  @override
+  String get reportShareCsv => 'Κοινοποίηση ως CSV';
+
+  @override
+  String get reportPrintAction => 'Εκτύπωση';
+
+  @override
   String get backupSizeWarning =>
       'Το JSON περιλαμβάνει αρχεία καταγραφών, όχι φωτογραφίες. Όριο εισαγωγής: 16 MB.';
 

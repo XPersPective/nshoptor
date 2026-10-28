@@ -1134,6 +1134,15 @@ class AppLocalizationsZu extends AppLocalizations {
   String get csvExportAction => 'Thumela i-CSV';
 
   @override
+  String get reportSharePdf => 'Yabelana njenge-PDF';
+
+  @override
+  String get reportShareCsv => 'Yabelana njenge-CSV';
+
+  @override
+  String get reportPrintAction => 'Phrinta';
+
+  @override
   String get backupSizeWarning =>
       'I-JSON ihlanganisa amarekhodi, hhayi amafayela ezingcaphulo. Umkhawulo wokungenisa: 16 MB.';
 

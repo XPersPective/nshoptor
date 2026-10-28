@@ -1127,6 +1127,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get csvExportAction => 'Xuất CSV';
 
   @override
+  String get reportSharePdf => 'Chia sẻ dạng PDF';
+
+  @override
+  String get reportShareCsv => 'Chia sẻ dạng CSV';
+
+  @override
+  String get reportPrintAction => 'In';
+
+  @override
   String get backupSizeWarning =>
       'JSON bao gồm các bản ghi, không phải tệp ảnh. Giới hạn nhập: 16 MB.';
 

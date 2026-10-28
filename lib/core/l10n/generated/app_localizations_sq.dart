@@ -1130,6 +1130,15 @@ class AppLocalizationsSq extends AppLocalizations {
   String get csvExportAction => 'Eksporto CSV';
 
   @override
+  String get reportSharePdf => 'Ndaj si PDF';
+
+  @override
+  String get reportShareCsv => 'Ndaj si CSV';
+
+  @override
+  String get reportPrintAction => 'Printo';
+
+  @override
   String get backupSizeWarning =>
       'JSON përfshin regjistra, jo skedarë fotoje. Kufiri i importit: 16 MB.';
 

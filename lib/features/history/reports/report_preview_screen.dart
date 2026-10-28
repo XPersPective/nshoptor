@@ -5,6 +5,7 @@ import '../../../core/money/format_locale.dart';
 import 'report_document.dart';
 import 'report_export_service.dart';
 import 'report_repository.dart';
+import 'report_share_menu.dart';
 
 class ReportPreviewScreen extends StatefulWidget {
   const ReportPreviewScreen({
@@ -21,52 +22,6 @@ class ReportPreviewScreen extends StatefulWidget {
 class _ReportPreviewScreenState extends State<ReportPreviewScreen> {
   bool _busy = false;
   double _zoom = 1;
-
-  Future<void> _export(ReportFileFormat format, {bool share = false}) async {
-    if (_busy) return;
-    final l = AppLocalizations.of(context);
-    final text = ReportText(
-      l,
-      formatLocaleCode(context),
-      widget.document.currencyCode,
-    );
-    final box = context.findRenderObject() as RenderBox?;
-    final origin = box == null
-        ? const Rect.fromLTWH(0, 0, 1, 1)
-        : box.localToGlobal(Offset.zero) & box.size;
-    final rtl = Directionality.of(context) == TextDirection.rtl;
-    setState(() => _busy = true);
-    try {
-      final data = await widget.exportService.bytes(
-        widget.document,
-        text,
-        format,
-        rtl: rtl,
-      );
-      if (!mounted) return;
-      if (share) {
-        await widget.exportService.share(data, format, origin);
-      } else if (await widget.exportService.save(
-        data,
-        format,
-        format == ReportFileFormat.pdf ? l.reportPdfAction : l.csvExportAction,
-      )) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l.reportSaved), showCloseIcon: true),
-          );
-        }
-      }
-    } catch (_) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l.saveFailed), showCloseIcon: true),
-        );
-      }
-    } finally {
-      if (mounted) setState(() => _busy = false);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,49 +73,14 @@ class _ReportPreviewScreenState extends State<ReportPreviewScreen> {
                 ),
               ],
               const SizedBox(height: 24),
-              if (_busy) const Center(child: CircularProgressIndicator()),
-              Wrap(
-                spacing: 12,
-                runSpacing: 8,
-                children: [
-                  OutlinedButton.icon(
-                    onPressed: _busy
-                        ? null
-                        : () => _export(ReportFileFormat.pdf),
-                    icon: const Icon(Icons.picture_as_pdf_outlined),
-                    label: Text(l.reportPdfAction),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: _busy
-                        ? null
-                        : () => _export(ReportFileFormat.csv),
-                    icon: const Icon(Icons.table_view_outlined),
-                    label: Text(l.csvExportAction),
-                  ),
-                  PopupMenuButton<ReportFileFormat>(
-                    enabled: !_busy,
-                    tooltip: l.reportShareAction,
-                    onSelected: (format) => _export(format, share: true),
-                    itemBuilder: (_) => [
-                      for (final format in ReportFileFormat.values)
-                        PopupMenuItem(
-                          value: format,
-                          child: Text(format.name.toUpperCase()),
-                        ),
-                    ],
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(Icons.share_outlined),
-                          const SizedBox(width: 8),
-                          Text(l.reportShareAction),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: ReportShareButton(
+                  key: const Key('report_share'),
+                  document: () async => widget.document,
+                  service: widget.exportService,
+                  onBusy: (busy) => setState(() => _busy = busy),
+                ),
               ),
             ],
           ),

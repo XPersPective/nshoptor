@@ -1093,6 +1093,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get csvExportAction => 'CSVをエクスポート';
 
   @override
+  String get reportSharePdf => 'PDFで共有';
+
+  @override
+  String get reportShareCsv => 'CSVで共有';
+
+  @override
+  String get reportPrintAction => '印刷';
+
+  @override
   String get backupSizeWarning =>
       'JSONにはレコードが含まれており、写真ファイルは含まれていません。インポート制限：16 MB。';
 

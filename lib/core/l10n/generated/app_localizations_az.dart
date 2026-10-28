@@ -1129,6 +1129,15 @@ class AppLocalizationsAz extends AppLocalizations {
   String get csvExportAction => 'CSV ixracat et';
 
   @override
+  String get reportSharePdf => 'PDF kimi paylaş';
+
+  @override
+  String get reportShareCsv => 'CSV kimi paylaş';
+
+  @override
+  String get reportPrintAction => 'Çap et';
+
+  @override
   String get backupSizeWarning =>
       'JSON faylı şəkil faylları əvəzinə qeydlər daşıyır. İdxal həddi: 16 MB.';
 

@@ -1128,6 +1128,15 @@ class AppLocalizationsLv extends AppLocalizations {
   String get csvExportAction => 'Eksportēt CSV';
 
   @override
+  String get reportSharePdf => 'Kopīgot kā PDF';
+
+  @override
+  String get reportShareCsv => 'Kopīgot kā CSV';
+
+  @override
+  String get reportPrintAction => 'Drukāt';
+
+  @override
   String get backupSizeWarning =>
       'JSON ietver ierakstus, nevis foto failus. Importa limits: 16 MB.';
 

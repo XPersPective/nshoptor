@@ -1115,6 +1115,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get csvExportAction => 'ייצוא CSV';
 
   @override
+  String get reportSharePdf => 'שיתוף כ-PDF';
+
+  @override
+  String get reportShareCsv => 'שיתוף כ-CSV';
+
+  @override
+  String get reportPrintAction => 'הדפסה';
+
+  @override
   String get backupSizeWarning =>
       'קובץ JSON כולל רשומות, לא קבצי תמונה. מגבלת ייבוא: 16 MB.';
 

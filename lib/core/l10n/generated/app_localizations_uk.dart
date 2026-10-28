@@ -1128,6 +1128,15 @@ class AppLocalizationsUk extends AppLocalizations {
   String get csvExportAction => 'Експорт CSV';
 
   @override
+  String get reportSharePdf => 'Поділитися як PDF';
+
+  @override
+  String get reportShareCsv => 'Поділитися як CSV';
+
+  @override
+  String get reportPrintAction => 'Друк';
+
+  @override
   String get backupSizeWarning =>
       'JSON містить записи, а не файли фото. Ліміт імпорту: 16 МБ.';
 

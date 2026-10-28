@@ -1128,6 +1128,15 @@ class AppLocalizationsSk extends AppLocalizations {
   String get csvExportAction => 'Exportovať CSV';
 
   @override
+  String get reportSharePdf => 'Zdieľať ako PDF';
+
+  @override
+  String get reportShareCsv => 'Zdieľať ako CSV';
+
+  @override
+  String get reportPrintAction => 'Tlačiť';
+
+  @override
   String get backupSizeWarning =>
       'JSON obsahuje záznamy, nie súborové fotky. Limit importu: 16 MB.';
 

@@ -1096,6 +1096,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String get csvExportAction => 'CSV 내보내기';
 
   @override
+  String get reportSharePdf => 'PDF로 공유';
+
+  @override
+  String get reportShareCsv => 'CSV로 공유';
+
+  @override
+  String get reportPrintAction => '인쇄';
+
+  @override
   String get backupSizeWarning =>
       'JSON에는 레코드가 포함되어 있으며 사진 파일은 포함되지 않습니다. 가져오기 제한: 16MB.';
 

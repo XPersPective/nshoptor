@@ -1121,6 +1121,15 @@ class AppLocalizationsTh extends AppLocalizations {
   String get csvExportAction => 'ส่งออก CSV';
 
   @override
+  String get reportSharePdf => 'แชร์เป็น PDF';
+
+  @override
+  String get reportShareCsv => 'แชร์เป็น CSV';
+
+  @override
+  String get reportPrintAction => 'พิมพ์';
+
+  @override
   String get backupSizeWarning =>
       'JSON มีบันทึกข้อมูล ไม่ใช่ไฟล์รูปภาพ ขีดจำกัดการนำเข้า: 16 MB';
 

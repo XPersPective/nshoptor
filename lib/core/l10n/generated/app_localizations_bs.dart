@@ -1127,6 +1127,15 @@ class AppLocalizationsBs extends AppLocalizations {
   String get csvExportAction => 'Izvezi CSV';
 
   @override
+  String get reportSharePdf => 'Podijeli kao PDF';
+
+  @override
+  String get reportShareCsv => 'Podijeli kao CSV';
+
+  @override
+  String get reportPrintAction => 'Štampaj';
+
+  @override
   String get backupSizeWarning =>
       'JSON uključuje zapise, a ne datoteke s fotografijama. Ograničenje uvoza: 16 MB.';
 

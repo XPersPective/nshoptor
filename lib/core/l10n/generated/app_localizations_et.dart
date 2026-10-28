@@ -1125,6 +1125,15 @@ class AppLocalizationsEt extends AppLocalizations {
   String get csvExportAction => 'Ekspordi CSV';
 
   @override
+  String get reportSharePdf => 'Jaga PDF-ina';
+
+  @override
+  String get reportShareCsv => 'Jaga CSV-na';
+
+  @override
+  String get reportPrintAction => 'Prindi';
+
+  @override
   String get backupSizeWarning =>
       'JSON sisaldab kirjeid, mitte fotofaile. Impordi piirang: 16 MB.';
 

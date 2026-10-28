@@ -1125,6 +1125,15 @@ class AppLocalizationsIs extends AppLocalizations {
   String get csvExportAction => 'Flytja út CSV';
 
   @override
+  String get reportSharePdf => 'Deila sem PDF';
+
+  @override
+  String get reportShareCsv => 'Deila sem CSV';
+
+  @override
+  String get reportPrintAction => 'Prenta';
+
+  @override
   String get backupSizeWarning =>
       'JSON inniheldur skrár, ekki ljósmyndaskrár. Innflutningstakmörk: 16 MB.';
 

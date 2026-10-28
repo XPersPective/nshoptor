@@ -1129,6 +1129,15 @@ class AppLocalizationsKn extends AppLocalizations {
   String get csvExportAction => 'CSV ರಫ್ತು';
 
   @override
+  String get reportSharePdf => 'PDF ಆಗಿ ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get reportShareCsv => 'CSV ಆಗಿ ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get reportPrintAction => 'ಮುದ್ರಿಸಿ';
+
+  @override
   String get backupSizeWarning =>
       'JSON ನಲ್ಲಿ ದಾಖಲೆಗಳಿವೆ, ಫೋಟೊ ಫೈಲ್‌ಗಳಲ್ಲ. ಆಮದು ಮಿತಿ: 16 MB.';
 

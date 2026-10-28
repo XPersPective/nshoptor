@@ -1129,6 +1129,15 @@ class AppLocalizationsBe extends AppLocalizations {
   String get csvExportAction => 'Экспарт CSV';
 
   @override
+  String get reportSharePdf => 'Абагуліць як PDF';
+
+  @override
+  String get reportShareCsv => 'Абагуліць як CSV';
+
+  @override
+  String get reportPrintAction => 'Друкаваць';
+
+  @override
   String get backupSizeWarning =>
       'JSON утрымлівае запісы, а не файлы фатаграфій. Ліміт імпарту: 16 МБ.';
 

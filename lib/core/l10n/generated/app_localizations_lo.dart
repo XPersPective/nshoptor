@@ -1121,6 +1121,15 @@ class AppLocalizationsLo extends AppLocalizations {
   String get csvExportAction => 'ສົ່ງອອກ CSV';
 
   @override
+  String get reportSharePdf => 'ແບ່ງປັນເປັນ PDF';
+
+  @override
+  String get reportShareCsv => 'ແບ່ງປັນເປັນ CSV';
+
+  @override
+  String get reportPrintAction => 'ພິມ';
+
+  @override
   String get backupSizeWarning =>
       'JSON ລວມມີຂໍ້ມູນບັນທຶກ, ບໍ່ແມ່ນໄຟລ໌ຮູບພາບ. ຂອບເຂດການນຳເຂົ້າ: 16 MB.';
 

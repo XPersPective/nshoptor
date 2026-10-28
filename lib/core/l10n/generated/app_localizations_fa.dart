@@ -1122,6 +1122,15 @@ class AppLocalizationsFa extends AppLocalizations {
   String get csvExportAction => 'خروجی CSV';
 
   @override
+  String get reportSharePdf => 'اشتراک‌گذاری به‌صورت PDF';
+
+  @override
+  String get reportShareCsv => 'اشتراک‌گذاری به‌صورت CSV';
+
+  @override
+  String get reportPrintAction => 'چاپ';
+
+  @override
   String get backupSizeWarning =>
       'فایل JSON شامل رکوردها است، نه عکس‌ها. محدودیت وارد کردن: ۱۶ مگابایت.';
 

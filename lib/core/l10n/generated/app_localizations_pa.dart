@@ -1126,6 +1126,15 @@ class AppLocalizationsPa extends AppLocalizations {
   String get csvExportAction => 'CSV ਐਕਸਪੋਰਟ ਕਰੋ';
 
   @override
+  String get reportSharePdf => 'PDF ਵਜੋਂ ਸਾਂਝਾ ਕਰੋ';
+
+  @override
+  String get reportShareCsv => 'CSV ਵਜੋਂ ਸਾਂਝਾ ਕਰੋ';
+
+  @override
+  String get reportPrintAction => 'ਪ੍ਰਿੰਟ ਕਰੋ';
+
+  @override
   String get backupSizeWarning =>
       'JSON ਵਿੱਚ ਰਿਕਾਰਡ ਹਨ, ਫੋਟੋ ਫਾਈਲਾਂ ਨਹੀਂ। ਇੰਪੋਰਟ ਲਿਮਿਟ: 16 MB.';
 

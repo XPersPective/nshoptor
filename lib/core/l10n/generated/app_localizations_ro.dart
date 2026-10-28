@@ -1130,6 +1130,15 @@ class AppLocalizationsRo extends AppLocalizations {
   String get csvExportAction => 'Exportare CSV';
 
   @override
+  String get reportSharePdf => 'Distribuie ca PDF';
+
+  @override
+  String get reportShareCsv => 'Distribuie ca CSV';
+
+  @override
+  String get reportPrintAction => 'Imprimă';
+
+  @override
   String get backupSizeWarning =>
       'JSON include înregistrări, nu fișiere foto. Limita de import: 16 MB.';
 

@@ -1130,6 +1130,15 @@ class AppLocalizationsHy extends AppLocalizations {
   String get csvExportAction => 'Արտահանել CSV';
 
   @override
+  String get reportSharePdf => 'Կիսվել որպես PDF';
+
+  @override
+  String get reportShareCsv => 'Կիսվել որպես CSV';
+
+  @override
+  String get reportPrintAction => 'Տպել';
+
+  @override
   String get backupSizeWarning =>
       'JSON-ը ներառում է գրառումներ, ոչ թե լուսանկարների ֆայլեր: Ներման սահմանաչափը՝ 16 MB:';
 

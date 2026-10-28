@@ -1133,6 +1133,15 @@ class AppLocalizationsTe extends AppLocalizations {
   String get csvExportAction => 'CSV ఎగుమతి';
 
   @override
+  String get reportSharePdf => 'PDFగా షేర్ చేయి';
+
+  @override
+  String get reportShareCsv => 'CSVగా షేర్ చేయి';
+
+  @override
+  String get reportPrintAction => 'ప్రింట్ చేయి';
+
+  @override
   String get backupSizeWarning =>
       'JSONలో రికార్డ్స్ ఉంటాయి, ఫోటో ఫైల్స్ కాదు. ఇంపోర్ట్ పరిమితి: 16 MB.';
 

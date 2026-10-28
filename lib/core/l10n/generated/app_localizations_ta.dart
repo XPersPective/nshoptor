@@ -1133,6 +1133,15 @@ class AppLocalizationsTa extends AppLocalizations {
   String get csvExportAction => 'CSV ஏற்றுமதி';
 
   @override
+  String get reportSharePdf => 'PDF ஆகப் பகிர்';
+
+  @override
+  String get reportShareCsv => 'CSV ஆகப் பகிர்';
+
+  @override
+  String get reportPrintAction => 'அச்சிடு';
+
+  @override
   String get backupSizeWarning =>
       'JSON-ல் பதிவுகள் உள்ளன, படக் கோப்புகள் அல்ல. இறக்குமதி வரம்பு: 16 MB.';
 

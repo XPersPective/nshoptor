@@ -1131,6 +1131,15 @@ class AppLocalizationsMy extends AppLocalizations {
   String get csvExportAction => 'CSV ထုတ်ယူရန်';
 
   @override
+  String get reportSharePdf => 'PDF အဖြစ် မျှဝေရန်';
+
+  @override
+  String get reportShareCsv => 'CSV အဖြစ် မျှဝေရန်';
+
+  @override
+  String get reportPrintAction => 'ပုံနှိပ်ရန်';
+
+  @override
   String get backupSizeWarning =>
       'JSON တွင် photo file များမပါဝင်ဘဲ record များသာ ပါရှိသည်။ Import လုပ်နိုင်သော အများဆုံးအရွယ်အစားမှာ 16 MB ဖြစ်သည်။';
 

@@ -1131,6 +1131,15 @@ class AppLocalizationsMn extends AppLocalizations {
   String get csvExportAction => 'CSV экспортлох';
 
   @override
+  String get reportSharePdf => 'PDF болгон хуваалцах';
+
+  @override
+  String get reportShareCsv => 'CSV болгон хуваалцах';
+
+  @override
+  String get reportPrintAction => 'Хэвлэх';
+
+  @override
   String get backupSizeWarning =>
       'JSON нь зураг файлуудыг агуулаагүй, бичлэгүүдийг агуулдаг. Импортлох хязгаар: 16 MB.';
 

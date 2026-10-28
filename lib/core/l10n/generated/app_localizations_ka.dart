@@ -1125,6 +1125,15 @@ class AppLocalizationsKa extends AppLocalizations {
   String get csvExportAction => 'CSV-ის ექსპორტი';
 
   @override
+  String get reportSharePdf => 'PDF-ად გაზიარება';
+
+  @override
+  String get reportShareCsv => 'CSV-ად გაზიარება';
+
+  @override
+  String get reportPrintAction => 'ბეჭდვა';
+
+  @override
   String get backupSizeWarning =>
       'JSON-ში ჩანაწერებია, არა ფოტოფაილები. იმპორტის ლიმიტი: 16 MB.';
 

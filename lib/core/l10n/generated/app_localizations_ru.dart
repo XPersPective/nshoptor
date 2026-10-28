@@ -1124,6 +1124,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get csvExportAction => 'Экспорт CSV';
 
   @override
+  String get reportSharePdf => 'Поделиться в PDF';
+
+  @override
+  String get reportShareCsv => 'Поделиться в CSV';
+
+  @override
+  String get reportPrintAction => 'Печать';
+
+  @override
   String get backupSizeWarning =>
       'JSON содержит записи, а не файлы фотографий. Лимит импорта: 16 МБ.';
 

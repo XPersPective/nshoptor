@@ -1123,6 +1123,15 @@ class AppLocalizationsPs extends AppLocalizations {
   String get csvExportAction => 'CSV صادر کړئ';
 
   @override
+  String get reportSharePdf => 'د PDF په توګه شریکول';
+
+  @override
+  String get reportShareCsv => 'د CSV په توګه شریکول';
+
+  @override
+  String get reportPrintAction => 'چاپ';
+
+  @override
   String get backupSizeWarning =>
       'JSON کې ریکارډونه شامل دي، د عکس فایلونه نه. د واردولو حد: ۱۶ MB.';
 

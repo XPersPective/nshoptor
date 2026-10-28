@@ -2336,6 +2336,24 @@ abstract class AppLocalizations {
   /// **'Export CSV'**
   String get csvExportAction;
 
+  /// No description provided for @reportSharePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as PDF'**
+  String get reportSharePdf;
+
+  /// No description provided for @reportShareCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as CSV'**
+  String get reportShareCsv;
+
+  /// No description provided for @reportPrintAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Print'**
+  String get reportPrintAction;
+
   /// No description provided for @backupSizeWarning.
   ///
   /// In en, this message translates to:

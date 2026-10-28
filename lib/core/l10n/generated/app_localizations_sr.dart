@@ -1126,6 +1126,15 @@ class AppLocalizationsSr extends AppLocalizations {
   String get csvExportAction => 'Извези CSV';
 
   @override
+  String get reportSharePdf => 'Подели као PDF';
+
+  @override
+  String get reportShareCsv => 'Подели као CSV';
+
+  @override
+  String get reportPrintAction => 'Штампај';
+
+  @override
   String get backupSizeWarning =>
       'JSON садржи записе, а не фајлове фотографија. Ограничење увоза: 16 MB.';
 

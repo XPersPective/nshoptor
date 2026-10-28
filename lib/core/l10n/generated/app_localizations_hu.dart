@@ -1128,6 +1128,15 @@ class AppLocalizationsHu extends AppLocalizations {
   String get csvExportAction => 'CSV export';
 
   @override
+  String get reportSharePdf => 'Megosztás PDF-ként';
+
+  @override
+  String get reportShareCsv => 'Megosztás CSV-ként';
+
+  @override
+  String get reportPrintAction => 'Nyomtatás';
+
+  @override
   String get backupSizeWarning =>
       'A JSON fájlok rekordokat tartalmaznak, nem képfájlokat. Importálási korlát: 16 MB.';
 
