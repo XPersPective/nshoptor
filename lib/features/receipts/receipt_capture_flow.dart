@@ -75,7 +75,12 @@ Future<int?> openReceiptCaptureFlow(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Text(
                   [
-                    draft.document.metadata.store ?? l10n.receiptContinueAction,
+                    draft.document.metadata.store == null
+                        ? l10n.receiptContinueAction
+                        : cleanStoreName(draft.document.metadata.store!),
+                    if (draft.document.metadata.dateTime != null)
+                      MaterialLocalizations.of(dialogContext)
+                          .formatShortDate(draft.document.metadata.dateTime!),
                     if (draft.document.metadata.documentNumber != null)
                       draft.document.metadata.documentNumber!,
                   ].join(' · '),
@@ -489,7 +494,6 @@ Future<_AiOutcome> _readWithAi(
   var needCapture = paths.isEmpty;
   var prepend = false;
   var replaceLast = false;
-  final automatic = pickImage == null;
   // Standalone captures get their list as soon as the header is read (F12).
   int? ownedListId;
   _AiStopped stop() => _AiStopped(listId: ownedListId);
@@ -650,7 +654,8 @@ Future<_AiOutcome> _readWithAi(
                   AiReceiptGap.bottom => l10n.receiptIncompleteTail,
                   AiReceiptGap.middle => l10n.receiptContinuationRejected,
                 },
-          automatic: automatic && !full && gap != AiReceiptGap.middle,
+          // No timed auto-camera: the user picks camera or photos.
+          automatic: false,
           canContinue: !full,
         );
         if (!context.mounted) return stop();

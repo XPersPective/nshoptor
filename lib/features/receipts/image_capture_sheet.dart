@@ -30,9 +30,11 @@ Future<CaptureOutcome> captureImageText(
     // receipt print legible while making recognition reliable.
     picker = () async => (await ImagePicker().pickImage(
       source: source,
-      maxWidth: 3000,
-      maxHeight: 3000,
-      imageQuality: 92,
+      // Native downscale (fast on every device); 1600px keeps receipt print
+      // legible for OCR and the image model, which then needs no re-encode.
+      maxWidth: 1600,
+      maxHeight: 1600,
+      imageQuality: 85,
     ))?.path;
   }
   final ownedSource = ocrSource == null ? _OwnedTextSource() : null;

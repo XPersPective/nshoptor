@@ -19,6 +19,15 @@ Future<String?> encodeImageForAi(String path) async {
   final file = File(path);
   if (!await file.exists()) return null;
   final bytes = await file.readAsBytes();
+  // Picker output is already a native-downscaled JPEG: send it untouched.
+  // Decoding and re-encoding in Dart took minutes on slow devices.
+  if (bytes.length <= aiImageMaxBytes &&
+      bytes.length > 3 &&
+      bytes[0] == 0xFF &&
+      bytes[1] == 0xD8 &&
+      bytes[2] == 0xFF) {
+    return base64Encode(bytes);
+  }
   return compute(_encode, bytes);
 }
 
