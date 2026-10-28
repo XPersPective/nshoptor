@@ -206,8 +206,9 @@ class ReceiptReviewController extends ChangeNotifier {
   int? confirmedTotalMinor;
 
   /// Kabul edilen satırların toplamı.
+  /// Every line not removed counts (F17: saving keeps undecided lines).
   int get acceptedTotalMinor => lines
-      .where((l) => l.status == ReviewStatus.accepted)
+      .where((l) => l.status != ReviewStatus.ignored)
       .fold<int>(0, (s, l) => s + l.lineTotalMinor);
 
   /// Kullanıcının toplamı düzgünleştirmesi (spec §6.9: toplam düzenlenebilir).
