@@ -6,26 +6,22 @@ import 'package:http/testing.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/features/ai/ai_client.dart';
 import 'package:nshoptor/features/receipts/ai_receipt_reader.dart';
-import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/receipt_document.dart';
 
-OcrScanResult _scan(List<String> rows) =>
-    OcrScanResult(lines: [for (final r in rows) OcrLine(text: r)]);
-
 AiClient _ai(
-  Map<String, dynamic> result, {
+  Map<String, dynamic> body, {
   int status = 200,
-  List<String>? log,
+  List<Map<String, dynamic>>? log,
 }) => AiClient(
   store: SettingsStore(),
   baseUrl: 'https://x',
   httpClient: MockClient((request) async {
-    log?.add(request.body);
+    log?.add(jsonDecode(request.body) as Map<String, dynamic>);
     return http.Response(
       jsonEncode(
         status == 200
-            ? {'tier': 'pro', 'used': 1, 'limit': 100, 'result': result}
-            : result,
+            ? {'tier': 'pro', 'used': 1, 'limit': 100, 'result': body}
+            : body,
       ),
       status,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -33,34 +29,19 @@ AiClient _ai(
   }),
 );
 
-const _rows = [
-  'ŞOK MARKETLER TİC.A.Ş',
-  'TARİH : 01/02/2024',
-  'FİŞ NO : 0259',
-  'OZMO FUN FİGÜRLÜ 23G %01 *13,50',
-  '1,033Kg X 99,00',
-  'TADPİ PİLİÇ BAGET KG %01 *102,27',
-  'FINISH QUANTUM ÖZEL %20 *259,00',
-  '25TLFINISH110TL *149,00-',
-  'TOPKDV *46,60',
-  'TOPLAM *225,77',
-];
+AiReceiptReader _reader(AiClient ai) =>
+    AiReceiptReader(ai, encode: (path) async => '/9j/$path');
 
-Map<String, dynamic> _answer() => {
-  'schema': 1,
+Map<String, dynamic> _sok() => {
+  'schema': 2,
+  'status': 'complete',
   'store': 'ŞOK MARKETLER TİC.A.Ş',
   'date': '2024-02-01',
   'time': '20:51:41',
-  'currency': 'TRY',
   'documentNumber': '0259',
+  'currency': 'TRY',
   'items': [
-    {
-      'name': 'OZMO FUN FİGÜRLÜ 23G',
-      'quantity': null,
-      'unit': null,
-      'unitPrice': null,
-      'lineTotal': '13.50',
-    },
+    {'name': 'OZMO FUN FİGÜRLÜ 23G', 'lineTotal': '13.50'},
     {
       'name': 'TADPİ PİLİÇ BAGET',
       'quantity': '1.033',
@@ -68,13 +49,7 @@ Map<String, dynamic> _answer() => {
       'unitPrice': '99.00',
       'lineTotal': '102.27',
     },
-    {
-      'name': 'FINISH QUANTUM ÖZEL',
-      'quantity': null,
-      'unit': null,
-      'unitPrice': null,
-      'lineTotal': '259.00',
-    },
+    {'name': 'FINISH QUANTUM ÖZEL', 'lineTotal': '259.00'},
   ],
   'discounts': [
     {'label': '25TLFINISH110TL', 'amount': '149.00'},
@@ -86,80 +61,155 @@ Map<String, dynamic> _answer() => {
 };
 
 void main() {
-  test('verified AI reading becomes canonical rows the deterministic pipeline reconciles', () async {
-    final sent = <String>[];
-    final reader = AiReceiptReader(_ai(_answer(), log: sent));
-    final rows = await reader.normalize(_scan(_rows), currencyCode: 'TRY');
-    expect(rows, isNotNull, reason: '${reader.lastResult is AiFailed ? (reader.lastResult as AiFailed).reason : reader.lastResult}');
-    final request = jsonDecode(sent.single) as Map<String, dynamic>;
-    expect(request['task'], 'read_receipt');
-    expect((request['input'] as Map)['currency'], 'TRY');
-
-    final document = ReceiptDocument.fromScan(rows!, currencyCode: 'TRY');
-    final result = document.toParseResult();
+  test('all photos of one receipt are sent together; verified reading builds the document', () async {
+    final log = <Map<String, dynamic>>[];
+    final read = await _reader(_ai(_sok(), log: log))
+        .read(['top', 'bottom'], currencyCode: 'TRY');
+    expect(log.single['task'], 'read_receipt_image');
+    expect((log.single['input'] as Map)['images'], ['/9j/top', '/9j/bottom']);
+    final document = (read as AiReceiptVerified).document;
+    final parsed = document.toParseResult();
     expect(document.state, ReceiptDocumentState.complete);
-    expect(result.totalMinor, 22577);
-    expect(result.taxMinor, 4660);
-    expect(result.discountMinor, 14900);
-    expect(result.lines.map((l) => l.lineTotalMinor), [1350, 10227, 25900]);
-    expect(result.lines[1].quantity!.toDbString(), '1.033');
-    expect(result.lines[1].unitPriceMinor, 9900);
-    expect(result.withinReconciliationTolerance, isTrue);
-    expect(result.storeCandidates.first, 'ŞOK MARKETLER TİC.A.Ş');
-    expect(result.dateCandidate, DateTime(2024, 2, 1, 20, 51, 41));
+    expect(parsed.lines.map((l) => l.lineTotalMinor), [1350, 10227, 25900]);
+    expect(parsed.lines[1].quantity!.toDbString(), '1.033');
+    expect(parsed.discountMinor, 14900);
+    expect(parsed.totalMinor, 22577);
+    expect(document.metadata.store, 'ŞOK MARKETLER TİC.A.Ş');
+    expect(document.metadata.documentNumber, '0259');
+    expect(document.metadata.dateTime, DateTime(2024, 2, 1, 20, 51, 41));
   });
 
-  test('an answer that does not reconcile exactly is never used', () async {
-    for (final mutate in <void Function(Map<String, dynamic>)>[
-      (a) => a['total'] = '225.78',
-      (a) => a['reconciles'] = false,
-      (a) => a['schema'] = 2,
-      (a) => a['currency'] = 'EUR',
-      (a) => (a['items'] as List)[0]['lineTotal'] = '1.234',
-      (a) => a['items'] = [],
-    ]) {
-      final answer = _answer();
-      mutate(answer);
-      final reader = AiReceiptReader(_ai(answer));
-      expect(await reader.normalize(_scan(_rows), currencyCode: 'TRY'), isNull);
-      expect(reader.lastResult, isA<AiFailed>());
-    }
+  test('Arabic and Japanese receipts in their own currencies are accepted', () {
+    final arabic = AiReceiptReader.interpret({
+      'schema': 2,
+      'status': 'complete',
+      'store': 'بنده هايبر',
+      'date': '2026-10-20',
+      'time': null,
+      'documentNumber': null,
+      'currency': 'SAR',
+      'items': [
+        {'name': 'حليب المراعي', 'lineTotal': '7.50'},
+        {'name': 'خبز', 'lineTotal': '2.00'},
+      ],
+      'discounts': [],
+      'total': '9.50',
+    }, currencyCode: 'SAR');
+    final doc = (arabic as AiReceiptVerified).document;
+    expect(doc.metadata.store, 'بنده هايبر');
+    expect(doc.metadata.currencyCode, 'SAR');
+    expect(doc.metadata.documentNumber, startsWith('AUTO-'));
+    expect(doc.productLines.map((l) => l.name), ['حليب المراعي', 'خبز']);
+
+    final japanese = AiReceiptReader.interpret({
+      'schema': 2,
+      'status': 'complete',
+      'store': 'セブン-イレブン',
+      'date': '2026-10-20',
+      'time': '09:12',
+      'documentNumber': '1234',
+      'currency': 'JPY',
+      'items': [
+        {'name': 'おにぎり', 'lineTotal': '150'},
+        {'name': 'お茶', 'lineTotal': '128'},
+      ],
+      'discounts': [],
+      'tax': '22',
+      'total': '278',
+    }, currencyCode: 'JPY');
+    final jp = (japanese as AiReceiptVerified).document.toParseResult();
+    expect(jp.totalMinor, 278);
+    expect(jp.lines.map((l) => l.name), ['おにぎり', 'お茶']);
   });
 
   test(
-    'offline, quota and provider failure keep the raw OCR scan and report why',
-    () async {
-      final quota = AiReceiptReader(
-        _ai({
-          'error': 'quota',
-          'tier': 'free',
-          'limit': 15,
-          'used': 15,
-        }, status: 429),
+    'model status guides the user instead of accepting partial receipts',
+    () {
+      for (final (status, gap) in [
+        ('top_missing', AiReceiptGap.top),
+        ('bottom_missing', AiReceiptGap.bottom),
+        ('middle_gap', AiReceiptGap.middle),
+      ]) {
+        final read = AiReceiptReader.interpret({
+          'schema': 2,
+          'status': status,
+        }, currencyCode: 'TRY');
+        expect((read as AiReceiptNeedsMore).gap, gap);
+      }
+      expect(
+        AiReceiptReader.interpret({
+          'schema': 2,
+          'status': 'unreadable',
+        }, currencyCode: 'TRY'),
+        isA<AiReceiptRetake>(),
       );
-      expect(await quota.normalize(_scan(_rows), currencyCode: 'TRY'), isNull);
-      expect(quota.lastResult, isA<AiQuota>());
-
-      final failed = AiReceiptReader(_ai({'error': 'ai_failed'}, status: 502));
-      expect(await failed.normalize(_scan(_rows), currencyCode: 'TRY'), isNull);
-      expect(failed.lastResult, isA<AiFailed>());
+      final noDate = _sok()..['date'] = null;
+      expect(
+        (AiReceiptReader.interpret(
+          noDate,
+          currencyCode: 'TRY',
+        ) as AiReceiptNeedsMore).gap,
+        AiReceiptGap.top,
+      );
     },
   );
 
-  test('disabled AI and oversize receipts make no request', () async {
-    final sent = <String>[];
-    final client = _ai(_answer(), log: sent)..enabled = false;
+  test('client re-verification rejects anything that does not add up', () {
+    for (final mutate in <void Function(Map<String, dynamic>)>[
+      (a) => a['total'] = '225.78',
+      (a) => a['schema'] = 1,
+      (a) => (a['items'] as List)[0]['lineTotal'] = '1.234',
+      (a) => (a['items'] as List)[0]['lineTotal'] = '0',
+      (a) => a['items'] = [],
+      (a) => a['currency'] = 'XXX',
+    ]) {
+      final answer = _sok();
+      mutate(answer);
+      expect(
+        AiReceiptReader.interpret(answer, currencyCode: 'TRY'),
+        isA<AiReceiptRetake>(),
+      );
+    }
+  });
+
+  test('failures route to retake or to the on-device path', () async {
+    final rejected = await _reader(
+      _ai({
+        'error': 'bad_model_output',
+        'reason': 'not_reconciled',
+      }, status: 502),
+    ).read(['a'], currencyCode: 'TRY');
+    expect((rejected as AiReceiptRetake).reason, 'rejected');
+
+    final quota = await _reader(
+      _ai({
+        'error': 'quota',
+        'tier': 'free',
+        'limit': 10,
+        'used': 10,
+      }, status: 429),
+    ).read(['a'], currencyCode: 'TRY');
+    expect((quota as AiReceiptUnavailable).result, isA<AiQuota>());
+
+    final log = <Map<String, dynamic>>[];
+    final off = _ai(_sok(), log: log)..enabled = false;
     expect(
-      await AiReceiptReader(client)
-          .normalize(_scan(_rows), currencyCode: 'TRY'),
-      isNull,
+      await _reader(off).read(['a'], currencyCode: 'TRY'),
+      isA<AiReceiptUnavailable>(),
     );
-    final big = _scan([for (var i = 0; i < 300; i++) 'ÜRÜN $i 1,00']);
-    final on = _ai(_answer(), log: sent);
+    final unreadable = AiReceiptReader(
+      _ai(_sok(), log: log),
+      encode: (_) async => null,
+    );
     expect(
-      await AiReceiptReader(on).normalize(big, currencyCode: 'TRY'),
-      isNull,
+      await unreadable.read(['a'], currencyCode: 'TRY'),
+      isA<AiReceiptRetake>(),
     );
-    expect(sent, isEmpty);
+    expect(
+      await _reader(_ai(_sok(), log: log))
+          .read(['1', '2', '3', '4', '5'], currencyCode: 'TRY'),
+      isA<AiReceiptRetake>(),
+    );
+    expect(log, isEmpty);
   });
 }

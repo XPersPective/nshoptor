@@ -23,11 +23,15 @@ Future<PriceCandidate?> readShelfCandidate(
 }) async {
   final l10n = AppLocalizations.of(context);
   try {
+    final client = AiService.client;
+    final aiOn = client != null && client.enabled;
     final capture = await captureImageText(
       context,
       title: l10n.scanPriceLabel,
       pickImage: pickImage,
       ocrSource: ocrSource,
+      // The image model reads any script; device OCR is only a fallback.
+      requireText: !aiOn,
     );
     if (capture is! CapturedImage) return null;
     final scan = capture.scan;
@@ -51,17 +55,33 @@ Future<PriceCandidate?> readShelfCandidate(
     }
     final local = ShelfPriceExtractor(defaultCurrency: currencyCode)
         .extract(scan.lines);
-    final client = AiService.client;
     final lang = Localizations.localeOf(context).languageCode;
     final ocrText = scan.lines.map((l) => l.text).join(String.fromCharCode(10));
     final reader = client == null
         ? null
         : AiLabelReader(client, localeCode: lang);
-    // The AI reading is primary whenever enabled; deterministic candidates
-    // remain as offline/over-quota fallback and as extra choices.
-    final fromAi =
-        await reader?.read(ocrText, currencyCode: currencyCode) ??
-        const <PriceCandidate>[];
+    // The photo-reading model is primary whenever enabled. If it is
+    // unavailable, the text model reads device OCR; deterministic candidates
+    // stay as extra choices and the offline fallback.
+    var fromAi =
+        await reader?.readImage(capture.path, currencyCode: currencyCode);
+    if (fromAi == null && reader != null && ocrText.trim().isNotEmpty) {
+      fromAi = await reader.read(ocrText, currencyCode: currencyCode);
+    }
+    fromAi ??= const <PriceCandidate>[];
+    if (fromAi.isEmpty && local.isEmpty) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.imageRecognitionFailed),
+              showCloseIcon: true,
+            ),
+          );
+      }
+      return null;
+    }
     if (!context.mounted) return null;
     final problem = reader?.lastResult;
     final notice = switch (problem) {
@@ -81,10 +101,11 @@ Future<PriceCandidate?> readShelfCandidate(
           ),
         );
     }
+    final aiCandidates = fromAi;
     final candidates = [
-      ...fromAi,
+      ...aiCandidates,
       ...local.where(
-        (a) => !fromAi.any(
+        (a) => !aiCandidates.any(
           (c) =>
               a.value == c.value &&
               a.isUnitPrice == c.isUnitPrice &&

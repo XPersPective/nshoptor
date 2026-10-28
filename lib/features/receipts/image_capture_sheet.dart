@@ -15,6 +15,7 @@ Future<CaptureOutcome> captureImageText(
   Future<String?> Function()? pickImage,
   OcrTextSource? ocrSource,
   ImageSource? preferredSource,
+  bool requireText = true,
 }) async {
   final l10n = AppLocalizations.of(context);
   Future<String?> Function() picker;
@@ -38,7 +39,11 @@ Future<CaptureOutcome> captureImageText(
   final source = ocrSource ?? ownedSource!;
   final CaptureOutcome outcome;
   try {
-    outcome = await scanImage(pickImage: picker, source: source);
+    outcome = await scanImage(
+      pickImage: picker,
+      source: source,
+      requireText: requireText,
+    );
   } finally {
     // Cancellation never creates a native recognizer. A cleanup failure must
     // not replace the original typed outcome (including an unavailable plugin).

@@ -475,7 +475,7 @@ String? _readStore(List<String> lines) {
   for (var i = 0; i < lines.length && i < 8; i++) {
     final line = lines[i];
     final folded = _fold(line);
-    if (RegExp(r'^(?:magaza|satici|store)\s*:\s*[a-z]').hasMatch(folded)) {
+    if (RegExp(r'^(?:magaza|satici|store)\s*:\s*\p{L}', unicode: true).hasMatch(folded)) {
       return line.substring(line.indexOf(':') + 1).trim();
     }
     if (!RegExp(r'[A-Za-zÇĞİÖŞÜçğıöşü]{2}').hasMatch(line) ||

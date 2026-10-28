@@ -22,13 +22,14 @@ export async function readBoundedText(source, maxBytes) {
 
 export const configured = env => String(env.AI_URL || '').startsWith('https://') && !!env.AI_KEY && !!env.AI_MODEL;
 
-export async function chatJson(env, system, user, { fetchImpl = fetch, maxTokens = 1200 } = {}) {
+export async function chatJson(env, system, user, { fetchImpl = fetch, maxTokens = 1200, model, timeoutMs } = {}) {
   const base = String(env.AI_URL || '').replace(/\/+$/, '');
   if (!configured(env)) {
     throw new AiError('ai_not_configured');
   }
   const body = {
-    model: env.AI_MODEL,
+    // `user` is a string or OpenAI-compatible content parts (text + image_url).
+    model: model || env.AI_MODEL,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: user },
@@ -44,7 +45,7 @@ export async function chatJson(env, system, user, { fetchImpl = fetch, maxTokens
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: 'Bearer ' + env.AI_KEY },
       body: JSON.stringify(body),
-      signal: AbortSignal.timeout(Number(env.AI_TIMEOUT_MS) || 20000),
+      signal: AbortSignal.timeout(timeoutMs || Number(env.AI_TIMEOUT_MS) || 20000),
     });
   } catch {
     throw new AiError('ai_unreachable');

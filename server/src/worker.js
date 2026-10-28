@@ -4,10 +4,15 @@ import { chatJson, AiError, readBoundedText, configured } from './ai.js';
 import { consume } from './quota.js';
 import { resolveEntitlement } from './play.js';
 import { resolveAppleEntitlement } from './apple.js';
-import { TASKS } from './tasks.js';
+import { TASKS as TEXT_TASKS } from './tasks.js';
+import { VISION_TASKS } from './vision_tasks.js';
+
+const TASKS = { ...TEXT_TASKS, ...VISION_TASKS };
 import { observeTrial, registerTrial, trialEnabled } from './trial.js';
 
 const MAX_BODY = 16 * 1024;
+// Image tasks carry up to four downscaled JPEG parts as base64.
+const MAX_IMAGE_BODY = 4 * 1024 * 1024;
 
 const json = (status, body) =>
   new Response(JSON.stringify(body), {
@@ -37,17 +42,19 @@ export async function handleAccess(request, env, { now = new Date() } = {}) {
 
 export async function handleAi(request, env, { fetchImpl = fetch, now = new Date() } = {}) {
   const length = Number(request.headers.get('content-length') || 0);
-  if (length > MAX_BODY) return json(413, { error: 'too_large' });
+  if (length > MAX_IMAGE_BODY) return json(413, { error: 'too_large' });
   let raw;
-  try { raw = await readBoundedText(request, MAX_BODY); }
+  try { raw = await readBoundedText(request, MAX_IMAGE_BODY); }
   catch (e) { return json(e instanceof RangeError ? 413 : 400, { error: e instanceof RangeError ? 'too_large' : 'bad_json' }); }
 
   let body;
-  try { body = JSON.parse(raw); } catch { return json(400, { error: 'bad_json' }); }
+  try { body = JSON.parse(raw); } catch { return json(raw.length > MAX_BODY ? 413 : 400, { error: raw.length > MAX_BODY ? 'too_large' : 'bad_json' }); }
   if (typeof body?.installId !== 'string' || !/^[a-f0-9]{32}$/.test(body.installId)) return json(400, { error: 'invalid_id' });
   const task = typeof body.task === 'string' && Object.hasOwn(TASKS, body.task) ? TASKS[body.task] : null;
   if (!task) return json(400, { error: 'unknown_task' });
-  if (JSON.stringify(body.input ?? null).length > (Number(env.MAX_INPUT_CHARS) || 6000)) {
+  // Only image tasks may use the larger envelope; text tasks keep 16 KiB.
+  if (!task.maxInputChars && raw.length > MAX_BODY) return json(413, { error: 'too_large' });
+  if (JSON.stringify(body.input ?? null).length > (task.maxInputChars || Number(env.MAX_INPUT_CHARS) || 6000)) {
     return json(413, { error: 'input_too_large' });
   }
   const input = task.validate(body.input);
@@ -80,12 +87,24 @@ export async function handleAi(request, env, { fetchImpl = fetch, now = new Date
       : json(503, { error: 'busy' });
   }
 
-  try {
-    const out = await chatJson(env, task.system(body.locale), task.user(input), { fetchImpl, maxTokens: task.maxTokens });
-    return json(200, { tier, used: quota.used, limit: quota.limit, result: task.clean(out, input) });
-  } catch (e) {
-    return json(502, { error: e instanceof AiError ? 'ai_failed' : 'bad_model_output' });
+  // One paid request may make a second, corrective model call when the first
+  // answer fails the task contract. The user is never charged twice.
+  const options = { fetchImpl, maxTokens: task.maxTokens, model: task.vision ? env.AI_VISION_MODEL || env.AI_MODEL : undefined, timeoutMs: task.timeoutMs };
+  let failure = 'bad_model_output';
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const system = task.system(body.locale) + (attempt && task.retryNote ? task.retryNote(failure) : '');
+    try {
+      const out = await chatJson(env, system, task.user(input), options);
+      return json(200, { tier, used: quota.used, limit: quota.limit, result: task.clean(out, input) });
+    } catch (e) {
+      if (e instanceof AiError && !['ai_not_json', 'ai_schema', 'ai_truncated'].includes(e.message)) {
+        return json(502, { error: 'ai_failed' });
+      }
+      failure = e instanceof AiError ? e.message : String(e?.message || 'bad_model_output').slice(0, 40);
+      if (!task.retryNote) break;
+    }
   }
+  return json(502, { error: 'bad_model_output', reason: /^[a-z_]{1,40}$/.test(failure) ? failure : 'bad_model_output' });
 }
 
 export default {

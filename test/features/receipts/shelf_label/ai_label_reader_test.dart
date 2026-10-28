@@ -143,4 +143,52 @@ void main() {
       isEmpty,
     );
   });
+
+  test(
+    'label photo reading returns AI candidates and rejects foreign currency',
+    () async {
+      AiLabelReader reader(Map<String, dynamic> result) => AiLabelReader(
+        _ai(
+          () => http.Response(
+            jsonEncode({
+              'tier': 'pro',
+              'used': 1,
+              'limit': 100,
+              'result': result,
+            }),
+            200,
+            headers: {'content-type': 'application/json; charset=utf-8'},
+          ),
+        ),
+      );
+      Future<String?> encode(String _) async => '/9j/x';
+      final found = await reader({
+        'schema': 1,
+        'status': 'ok',
+        'productName': 'حليب',
+        'price': '7.50',
+        'unitPrice': '5.00',
+        'unit': 'litre',
+        'currency': 'SAR',
+      }).readImage('p', currencyCode: 'SAR', encode: encode);
+      expect(found!.first.value.toDbString(), '7.50');
+      expect(found.first.productName, 'حليب');
+      expect(found.last.isUnitPrice, isTrue);
+      expect(found.last.unitCode, UnitCode.litre);
+      expect(
+        await reader({
+          'schema': 1,
+          'status': 'ok',
+          'price': '7.50',
+          'currency': 'EUR',
+        }).readImage('p', currencyCode: 'SAR', encode: encode),
+        isEmpty,
+      );
+      expect(
+        await reader({'schema': 1, 'status': 'unreadable'})
+            .readImage('p', currencyCode: 'SAR', encode: encode),
+        isEmpty,
+      );
+    },
+  );
 }

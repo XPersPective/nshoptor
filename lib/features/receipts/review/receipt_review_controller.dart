@@ -589,6 +589,7 @@ class ReceiptReviewController extends ChangeNotifier {
         }
         final linked = <int, PlannedItem>{};
         final alreadyPriced = <int>{};
+        final createdForReceipt = <String, int>{};
         for (final id
             in (document == null ? accepted : reviewed)
                 .map((l) => l.linkedPlannedItemId)
@@ -640,23 +641,25 @@ class ReceiptReviewController extends ChangeNotifier {
             }
             purchaseUnit = targetUnit;
           }
+          // Repeated rows of one receipt (the same product scanned twice) add
+          // purchases to one planned row; only prices from earlier shopping
+          // keep their row untouched.
           var plannedItemId = reuseTarget ? line.linkedPlannedItemId : null;
-          if (document != null && plannedItemId != null) {
-            alreadyPriced.add(plannedItemId);
-          }
           // Positive receipt lines absent from the plan still belong in the list:
           // create the smallest valid planned row, then link its purchase so the
           // completed receipt is visible in the same shopping history.
+          final createdKey = '${normalizeName(line.name)}|${purchaseUnit.dbCode}';
           if (plannedItemId == null &&
               !line.isDiscount &&
               quantity.isPositive) {
-            plannedItemId = await ItemRepository(_db).addItem(
-              listId: committedListId,
-              name: line.name,
-              quantity: quantity,
-              unitCode: purchaseUnit.dbCode,
-              priceIsUnitPrice: false,
-            );
+            plannedItemId = createdForReceipt[createdKey] ??=
+                await ItemRepository(_db).addItem(
+                  listId: committedListId,
+                  name: line.name,
+                  quantity: quantity,
+                  unitCode: purchaseUnit.dbCode,
+                  priceIsUnitPrice: false,
+                );
           }
           await repo.recordPurchase(
             listId: committedListId,

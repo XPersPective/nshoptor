@@ -194,7 +194,7 @@ void main() {
   });
 
   test(
-    'one unpriced plan row is filled once and repeated receipt rows survive',
+    'repeated receipt rows of one product stay on the same planned row',
     () async {
       final listId = await db
           .into(db.shoppingLists)
@@ -218,11 +218,26 @@ void main() {
       await controller.commit();
       final entries = await db.select(db.purchaseEntries).get();
       expect(entries, hasLength(2));
-      expect(entries.map((e) => e.plannedItemId).toSet(), hasLength(2));
-      expect(entries.where((e) => e.plannedItemId == item), hasLength(1));
+      // Repeated rows of one receipt never create a duplicate list row.
+      expect(entries.map((e) => e.plannedItemId).toSet(), {item});
+      expect(await db.select(db.plannedItems).get(), hasLength(1));
       expect(await db.select(db.receiptCandidateLines).get(), hasLength(2));
     },
   );
+
+  test('an unplanned product scanned twice becomes one list row', () async {
+    final controller = _review(
+      db,
+      _receipt(rows: ['OZMO FUN 13,50', 'OZMO FUN 13,50'], total: '27,00'),
+    );
+    addTearDown(controller.dispose);
+    await controller.commit();
+    final rows = await db.select(db.plannedItems).get();
+    expect(rows, hasLength(1));
+    final entries = await db.select(db.purchaseEntries).get();
+    expect(entries, hasLength(2));
+    expect(entries.map((e) => e.plannedItemId).toSet(), {rows.single.id});
+  });
 
   test('storage failure rolls back receipt, list, candidates and observations, then retries once', () async {
     await db.customStatement(
