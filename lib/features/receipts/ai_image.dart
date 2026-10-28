@@ -7,7 +7,10 @@ import 'package:image/image.dart' as img;
 /// Longest side and size budget of one photo sent to the image model. Receipt
 /// print stays legible at this size while a photo stays well below the
 /// server's per-image limit (≈750 KB).
-const aiImageMaxSide = 1600;
+// Live measurement (2026-10-28): 1280px reads the same receipt as 1600px
+// about 25% faster; long narrow photos keep 1600px so small print survives.
+const aiImageMaxSide = 1280;
+const aiTallImageMaxSide = 1600;
 const aiImageMaxBytes = 700 * 1024;
 
 /// Downscales and re-encodes a captured photo as base64 JPEG for the AI
@@ -26,12 +29,16 @@ String? _encode(Uint8List bytes) {
   final longest = oriented.width > oriented.height
       ? oriented.width
       : oriented.height;
-  final scaled = longest <= aiImageMaxSide
+  final shortest = oriented.width > oriented.height
+      ? oriented.height
+      : oriented.width;
+  final maxSide = longest > shortest * 2 ? aiTallImageMaxSide : aiImageMaxSide;
+  final scaled = longest <= maxSide
       ? oriented
       : img.copyResize(
           oriented,
-          width: oriented.width >= oriented.height ? aiImageMaxSide : null,
-          height: oriented.height > oriented.width ? aiImageMaxSide : null,
+          width: oriented.width >= oriented.height ? maxSide : null,
+          height: oriented.height > oriented.width ? maxSide : null,
           interpolation: img.Interpolation.average,
         );
   for (final quality in const [82, 70, 58]) {
