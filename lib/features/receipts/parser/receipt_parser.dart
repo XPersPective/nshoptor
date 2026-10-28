@@ -51,7 +51,13 @@ class ReceiptParser {
   );
   static const List<String> _subtotalMarkers = ['ara toplam', 'aratoplam'];
   static const List<String> _discountMarkers = ['indirim', 'iskonto'];
-  static const List<String> _taxMarkers = ['kdv', 'vergi', 'vat', 'tax'];
+  static const List<String> _taxMarkers = [
+    'kdv',
+    'topkdv',
+    'vergi',
+    'vat',
+    'tax',
+  ];
   static const List<String> _storeWords = ['market', 'mağaza', 'merk'];
   static const List<String> _skipWords = [
     'fiş',
@@ -84,6 +90,13 @@ class ReceiptParser {
   static final RegExp _phonePattern = RegExp(r'^\+?[\d\s-]{10,}$');
   static final RegExp _cardMaskPattern = RegExp(r'(\*{3,}\d{3,4}|\d{15,16})');
   static final RegExp _taxNoPattern = RegExp(r'\b\d{10,11}\b');
+
+  /// Turkish fiscal printers prefix amounts with one `*` (`*13,50`); a masked
+  /// card number such as `****1234` keeps its star run.
+  static final RegExp _pricePrefixStar = RegExp(r'(?<![*\d])\*(?=\d)');
+
+  /// Trailing VAT-rate column (`%01`, `%20`) is not part of a product name.
+  static final RegExp _vatRateSuffix = RegExp(r'\s*%\s*\d{1,2}$');
 
   /// Reading-order rows shared by parsing and overlapping receipt assembly.
   /// Coordinates belong to one photo; returned rows no longer carry them.
@@ -170,6 +183,7 @@ class ReceiptParser {
           .trim()
           .replaceFirst(RegExp(r'^[\s*#•·-]+$'), '')
           .replaceFirst(RegExp(r'[*\s]+$'), '')
+          .replaceAll(_pricePrefixStar, '')
           .replaceAll(RegExp(r'[₺€£$]'), '')
           .replaceFirst(RegExp(r'(?<=\d)\s*(?:[A-Z]{3}|TL)\s*$'), '')
           .trim();
@@ -189,6 +203,15 @@ class ReceiptParser {
       }
 
       if (_isStructuralLine(lower) || _isPaymentMetadata(lower)) continue;
+
+      // Turkish fiscal printers mark campaign discounts by a trailing minus
+      // (`25TLFINISH110TL *149,00-`) without an "indirim" word.
+      final trailingMinus = _trailingMinusAmount.firstMatch(text);
+      if (trailingMinus != null) {
+        discountMinor =
+            (discountMinor ?? 0) + _minorFrom(trailingMinus.group(1)!)!;
+        continue;
+      }
 
       // Toplamsal satırlar.
       final amount = _lastAmountMinor(text);
@@ -353,10 +376,14 @@ class ReceiptParser {
     return rows;
   }
 
+  RegExp get _trailingMinusAmount =>
+      RegExp('(?:^|[^\\d.,])\\*?\\s*($_amountPattern)\\s*[-−]\\s*\$');
+
   List<OcrLine> _mergeWrappedLines(List<OcrLine> lines) {
     final priceOnly = RegExp('^$_amountPattern\$');
     final merged = <OcrLine>[];
     final nameBuffer = <String>[];
+    OcrLine? pendingQuantity;
     for (final line in lines) {
       // Kampanya/sergi işaretleri (sondaki *, #, •) sonda fiyat yok sanıp
       // satırı yanlış birleştirebilir; birleştirme kararından önce soyulur.
@@ -364,6 +391,7 @@ class ReceiptParser {
           .trim()
           .replaceFirst(RegExp(r'^[\s*#•·-]+$'), '')
           .replaceFirst(RegExp(r'[\s*]+$'), '')
+          .replaceAll(_pricePrefixStar, '')
           .replaceAll(RegExp(r'[₺€£$]'), '')
           .replaceFirst(RegExp(r'(?<=\d)\s*(?:[A-Z]{3}|TL)\s*$'), '')
           .trim();
@@ -373,6 +401,7 @@ class ReceiptParser {
           _isStructuralLine(lower) ||
           _hasHeader(lower, _subtotalMarkers) ||
           _isDiscountLine(lower) ||
+          _trailingMinusAmount.hasMatch(text) ||
           _hasHeader(lower, _taxMarkers) ||
           _isTotalLine(lower) ||
           _isPaymentMetadata(lower) ||
@@ -382,8 +411,35 @@ class ReceiptParser {
 
       if (structural) {
         nameBuffer.clear();
+        if (pendingQuantity != null) merged.add(pendingQuantity);
+        pendingQuantity = null;
         merged.add(line);
         continue;
+      }
+      // Some printers print the weighed quantity row (`1,033Kg X 99,00`)
+      // above the product name and line total; hold it for that row.
+      if (_quantityOnlyRow.hasMatch(text)) {
+        if (pendingQuantity != null) merged.add(pendingQuantity);
+        pendingQuantity = OcrLine(
+          text: text,
+          boundingBoxTop: line.boundingBoxTop,
+        );
+        continue;
+      }
+      if (pendingQuantity != null) {
+        final split = RegExp('^(.+?)\\s+($_amountPattern)\$').firstMatch(text);
+        if (split != null) {
+          final name = split.group(1)!.replaceFirst(_vatRateSuffix, '').trim();
+          merged.add(
+            OcrLine(
+              text: '$name ${pendingQuantity.text} ${split.group(2)}',
+              boundingBoxTop: pendingQuantity.boundingBoxTop,
+            ),
+          );
+          pendingQuantity = null;
+          nameBuffer.clear();
+          continue;
+        }
       }
       if (priceOnly.hasMatch(text)) {
         // fiyat-satırı: önceki taşan ad satırlarıyla birleşir.
@@ -420,8 +476,14 @@ class ReceiptParser {
     if (nameBuffer.isNotEmpty) {
       merged.add(OcrLine(text: nameBuffer.join(' ')));
     }
+    if (pendingQuantity != null) merged.add(pendingQuantity);
     return merged;
   }
+
+  RegExp get _quantityOnlyRow => RegExp(
+    '^\\d+(?:[.,]\\d+)?\\s*(?:kg|gr|g|lt|l|ml)\\s*[xX×]\\s*$_amountPattern\$',
+    caseSensitive: false,
+  );
 
   /// Satır sonunda parasal değer var mı?
   // IDR's optional fraction must not make an invalid token/code's numeric
@@ -516,7 +578,7 @@ class ReceiptParser {
     // Basit satır: ad + sondaki fiyat (açgözlü ad yakalar: EKMEK).
     final simple = RegExp('^(.+)\\s+($_amountPattern)\$').firstMatch(text);
     if (simple != null) {
-      final name = simple.group(1)!.trim();
+      final name = simple.group(1)!.replaceFirst(_vatRateSuffix, '').trim();
       if (name.isEmpty) return null;
       if (currency == 'IDR' && RegExp(r'[-−+]\s*$').hasMatch(name)) {
         return null;
@@ -559,7 +621,7 @@ class ReceiptParser {
   bool _isPaymentMetadata(String text) =>
       RegExp(r'^kasa\s*(?:no\b|:|\d)', caseSensitive: false).hasMatch(text) ||
       RegExp(
-        r'^[*#•\s]*(?:nakit|kredi\s+kart[ıi]|banka\s+kart[ıi]|kart|visa|mastercard|cash|change|para\s*[üu]st[üu]|[öo]denen|payment|paid)(?=\s|:|$)',
+        r'^[*#•\s]*(?:nakit|kredi\s+kart[ıi]|banka\s+kart[ıi]|kart|visa|mastercard|cash|change|para\s*[üu]st[üu]|al[ıi]nan\s*para|[öo]denen|payment|paid)(?=\s|:|$)',
         caseSensitive: false,
       ).hasMatch(text);
 

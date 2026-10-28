@@ -24,7 +24,15 @@ Future<CaptureOutcome> captureImageText(
     final source =
         preferredSource ?? await showImageSourceSheet(context, title: title);
     if (source == null || !context.mounted) return const CaptureCancelled();
-    picker = () async => (await ImagePicker().pickImage(source: source))?.path;
+    // Gallery originals can be HEIC/HEIF or tens of megapixels, which the
+    // native recognizer rejects. Re-encoding to a bounded JPEG keeps fine
+    // receipt print legible while making recognition reliable.
+    picker = () async => (await ImagePicker().pickImage(
+      source: source,
+      maxWidth: 3000,
+      maxHeight: 3000,
+      imageQuality: 92,
+    ))?.path;
   }
   final ownedSource = ocrSource == null ? _OwnedTextSource() : null;
   final source = ocrSource ?? ownedSource!;
