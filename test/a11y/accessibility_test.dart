@@ -24,7 +24,7 @@ void main() {
       final navBar = tester.widget<NavigationBar>(find.byType(NavigationBar));
       expect(navBar.destinations.length, 3);
       expect(find.byKey(const Key('home_nav_discover')), findsOneWidget);
-      expect(find.byKey(const Key('lists_search_button')), findsOneWidget);
+      expect(find.byKey(const Key('lists_search_field')), findsOneWidget);
       expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
 
       await tester.pumpWidget(const SizedBox.shrink());
@@ -63,17 +63,13 @@ void main() {
                 reason: 'initial layout at $width/$themeMode/$locale',
               );
 
-              final search = find.byKey(const Key('lists_search_button'));
+              final search = find.byKey(const Key('lists_search_field'));
               final newList = find.byKey(const Key('lists_new_list_button'));
               expect(find.byType(NavigationBar), findsOneWidget);
               expect(find.byKey(const Key('lists_tab_active')), findsOneWidget);
+              expect(find.byKey(const Key('lists_search_button')), findsNothing);
               expect(search, findsOneWidget);
               expect(newList, findsOneWidget);
-              expect(
-                tester.getSemantics(search).flagsCollection.isButton,
-                isTrue,
-                reason: 'search must be a button at $width/$themeMode/$locale',
-              );
               expect(
                 tester.getSemantics(newList).flagsCollection.isButton,
                 isTrue,
@@ -82,13 +78,11 @@ void main() {
               );
               final searchHint = AppLocalizations.of(tester.element(search))
                   .searchListHint;
-              final searchData = tester.getSemantics(search).getSemanticsData();
               expect(
-                searchData.label == searchHint ||
-                    searchData.tooltip == searchHint,
-                isTrue,
+                find.bySemanticsLabel(RegExp(RegExp.escape(searchHint))),
+                findsWidgets,
                 reason:
-                    'search needs a spoken label or tooltip at $width/$themeMode/$locale',
+                    'search needs a spoken label at $width/$themeMode/$locale',
               );
               expect(
                 find.bySemanticsLabel(
@@ -99,24 +93,22 @@ void main() {
                     'new-list action needs a spoken label at $width/$themeMode/$locale',
               );
 
-              await tester.tap(search);
+              await tester.enterText(search, 'xyz');
               await tester.pumpAndSettle();
-              expect(
-                find.byKey(const Key('lists_search_field')),
-                findsOneWidget,
-              );
+              final clear = find.byKey(const Key('lists_search_clear'));
+              expect(tester.getSize(clear).shortestSide, greaterThanOrEqualTo(48));
               expect(
                 tester.takeException(),
                 isNull,
-                reason: 'search open at $width/$themeMode/$locale',
+                reason: 'search typed at $width/$themeMode/$locale',
               );
-              await tester.tap(search);
+              await tester.tap(clear);
+              FocusManager.instance.primaryFocus?.unfocus();
               await tester.pumpAndSettle();
-              expect(find.byKey(const Key('lists_search_field')), findsNothing);
               expect(
                 tester.takeException(),
                 isNull,
-                reason: 'search close at $width/$themeMode/$locale',
+                reason: 'search cleared at $width/$themeMode/$locale',
               );
             } finally {
               await tester.pumpWidget(const SizedBox.shrink());
@@ -215,7 +207,8 @@ void main() {
       await tester.pumpAndSettle();
 
       // RTL akışında hata atmamalı.
-      expect(find.byKey(const Key('lists_search_button')), findsOneWidget);
+      expect(find.byKey(const Key('lists_search_field')), findsOneWidget);
+      expect(find.byKey(const Key('lists_sort_button')), findsOneWidget);
 
       await db.close();
     });

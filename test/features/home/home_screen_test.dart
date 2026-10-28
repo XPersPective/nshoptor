@@ -392,6 +392,54 @@ void main() {
       await disposeApp(tester);
     },
   );
+
+  for (final rtl in [false, true]) {
+    testWidgets(
+      'Pro badge at 320dp ${rtl ? 'RTL' : 'LTR'}: ≥16dp from edge, 8–16dp from Discover, aligned (F02/F26)',
+      (tester) async {
+        await tester.binding.setSurfaceSize(const Size(320, 700));
+        final subs = SubscriptionService(store: SettingsStore());
+        await tester.pumpWidget(
+          MaterialApp(
+            locale: Locale(rtl ? 'ar' : 'tr'),
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: HomeShell(
+              db: db,
+              listRepository: ListRepository(db),
+              subscriptions: subs,
+            ),
+          ),
+        );
+        await settle(tester);
+
+        final badge = tester.getRect(find.byKey(const Key('home_plan_badge')));
+        final discover = find.byKey(const Key('home_nav_discover'));
+        final glyph = tester.getRect(
+          find.descendant(of: discover, matching: find.byType(Icon)),
+        );
+        if (rtl) {
+          expect(badge.left, greaterThanOrEqualTo(16));
+          expect(glyph.left - badge.right, inInclusiveRange(8, 16));
+        } else {
+          expect(320 - badge.right, greaterThanOrEqualTo(16));
+          expect(badge.left - glyph.right, inInclusiveRange(8, 16));
+        }
+        expect(badge.center.dy, moreOrLessEquals(glyph.center.dy, epsilon: 1));
+        final bar = tester.getRect(find.byType(AppBar));
+        expect(glyph.center.dy, lessThan(bar.top + kToolbarHeight));
+        expect(tester.getSize(discover).shortestSide, greaterThanOrEqualTo(48));
+        expect(tester.takeException(), isNull);
+        await disposeApp(tester);
+      },
+    );
+  }
+
   testWidgets('farklı para birimli listeler ayrı kartlarda raporlanır (T33)', (
     tester,
   ) async {

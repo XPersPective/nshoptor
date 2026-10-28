@@ -73,10 +73,16 @@ class ListsScreen extends StatefulWidget {
 
 class _ListsScreenState extends State<ListsScreen> {
   String _query = '';
-  bool _searching = false;
+  final _searchController = TextEditingController();
   bool _editorOpen = false;
   ListSortMode _sort = ListSortMode.fromCode(AppDefaults.listSort());
   final _orders = <ListStatus, List<int>>{};
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,62 +92,50 @@ class _ListsScreenState extends State<ListsScreen> {
       ListSortMode.title => l10n.listSortAz,
       ListSortMode.manual => l10n.listSortManual,
     };
-    final tools = <Widget>[
-      IconButton(
-        key: const Key('lists_search_button'),
-        tooltip: l10n.searchListHint,
-        icon: Icon(_searching ? Icons.close : Icons.search),
+    // F26: sort sits at the end of the tabs row (start in RTL).
+    final sortButton = Semantics(
+      value: sortLabel,
+      child: IconButton(
+        key: const Key('lists_sort_button'),
+        tooltip: '${l10n.listSortLabel}: $sortLabel',
+        icon: Icon(switch (_sort) {
+          ListSortMode.date => Icons.event_outlined,
+          ListSortMode.title => Icons.sort_by_alpha,
+          ListSortMode.manual => Icons.drag_indicator,
+        }),
         onPressed: () => setState(() {
-          _searching = !_searching;
-          if (!_searching) _query = '';
+          _sort = _sort.next;
+          AppDefaults.setListSort(_sort.name);
         }),
       ),
-      Semantics(
-        value: sortLabel,
-        child: IconButton(
-          key: const Key('lists_sort_button'),
-          tooltip: '${l10n.listSortLabel}: $sortLabel',
-          icon: Icon(switch (_sort) {
-            ListSortMode.date => Icons.event_outlined,
-            ListSortMode.title => Icons.sort_by_alpha,
-            ListSortMode.manual => Icons.drag_indicator,
-          }),
-          onPressed: () => setState(() {
-            _sort = _sort.next;
-            AppDefaults.setListSort(_sort.name);
-          }),
-        ),
-      ),
-      if (widget.onDiscover != null)
-        IconButton(
-          key: const Key('home_nav_discover'),
-          tooltip: l10n.navDiscover,
-          icon: const Icon(Icons.explore_outlined),
-          onPressed: widget.onDiscover,
-        ),
-    ];
-    return LayoutBuilder(
-      builder: (context, constraints) => DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            title: const BrandTitle(),
-            actions: [
-              ?widget.planBadge,
-              if (constraints.maxWidth >= 480) ...tools,
-            ],
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(
-                kTextTabBarHeight + (constraints.maxWidth < 480 ? 48 : 0),
+    );
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const BrandTitle(),
+          // F26/F02: [Discover][Pro] — Pro ends 16dp from the screen edge;
+          // Discover's 48dp target leaves a 12dp gap between glyph and badge.
+          actions: [
+            if (widget.onDiscover != null)
+              IconButton(
+                key: const Key('home_nav_discover'),
+                tooltip: l10n.navDiscover,
+                icon: const Icon(Icons.explore_outlined),
+                onPressed: widget.onDiscover,
               ),
-              child: Column(
-                children: [
-                  if (constraints.maxWidth < 480)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: tools,
-                    ),
-                  TabBar(
+            if (widget.planBadge != null) ...[
+              widget.planBadge!,
+              const SizedBox(width: 16),
+            ] else
+              const SizedBox(width: 4),
+          ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(48),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TabBar(
                     isScrollable: true,
                     tabAlignment: TabAlignment.start,
                     tabs: [
@@ -159,104 +153,157 @@ class _ListsScreenState extends State<ListsScreen> {
                       ),
                     ],
                   ),
+                ),
+                sortButton,
+                const SizedBox(width: 4),
+              ],
+            ),
+          ),
+        ),
+        body: Column(
+          children: [
+            // F26/F27: no show/hide toggle; search stays under the tabs and
+            // filters whichever sort order is active.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+              child: TextField(
+                key: const Key('lists_search_field'),
+                controller: _searchController,
+                textInputAction: TextInputAction.search,
+                onSubmitted: (_) => FocusScope.of(context).unfocus(),
+                decoration: InputDecoration(
+                  isDense: true,
+                  labelText: l10n.searchListHint,
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: _query.isEmpty
+                      ? null
+                      : IconButton(
+                          key: const Key('lists_search_clear'),
+                          constraints: const BoxConstraints(
+                            minWidth: 48,
+                            minHeight: 48,
+                          ),
+                          tooltip: MaterialLocalizations.of(context)
+                              .clearButtonTooltip,
+                          icon: const Icon(Icons.close),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() => _query = '');
+                          },
+                        ),
+                ),
+                onChanged: (v) => setState(() => _query = v.trim()),
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    sort: _sort,
+                    statuses: const {
+                      ListStatus.draft,
+                      ListStatus.planned,
+                      ListStatus.shopping,
+                    },
+                    orderKey: ListStatus.draft,
+                    order: _orders[ListStatus.draft],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.draft,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                    bannerController: widget.bannerController,
+                  ),
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    sort: _sort,
+                    statuses: const {ListStatus.completed},
+                    orderKey: ListStatus.completed,
+                    order: _orders[ListStatus.completed],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.completed,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                    bannerController: widget.bannerController,
+                  ),
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    sort: _sort,
+                    statuses: const {ListStatus.archived},
+                    orderKey: ListStatus.archived,
+                    order: _orders[ListStatus.archived],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.archived,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                    bannerController: widget.bannerController,
+                  ),
                 ],
               ),
             ),
-          ),
-          body: Column(
-            children: [
-              if (_searching)
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                  child: TextField(
-                    key: const Key('lists_search_field'),
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      hintText: l10n.searchListHint,
-                      prefixIcon: const Icon(Icons.search),
-                    ),
-                    onChanged: (v) => setState(() => _query = v.trim()),
-                  ),
-                ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    _ListsTab(
-                      repository: widget.repository,
-                      query: _query,
-                      sort: _sort,
-                      statuses: const {
-                        ListStatus.draft,
-                        ListStatus.planned,
-                        ListStatus.shopping,
-                      },
-                      orderKey: ListStatus.draft,
-                      order: _orders[ListStatus.draft],
-                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                        ListStatus.draft,
-                        lists,
-                        oldIndex,
-                        newIndex,
-                      ),
-                      emptyText: l10n.listsEmpty,
-                      onOpenListDetail: widget.onOpenListDetail,
-                      reminderScheduler: widget.reminderScheduler,
-                      bannerController: widget.bannerController,
-                    ),
-                    _ListsTab(
-                      repository: widget.repository,
-                      query: _query,
-                      sort: _sort,
-                      statuses: const {ListStatus.completed},
-                      orderKey: ListStatus.completed,
-                      order: _orders[ListStatus.completed],
-                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                        ListStatus.completed,
-                        lists,
-                        oldIndex,
-                        newIndex,
-                      ),
-                      emptyText: l10n.listsEmpty,
-                      onOpenListDetail: widget.onOpenListDetail,
-                      reminderScheduler: widget.reminderScheduler,
-                      bannerController: widget.bannerController,
-                    ),
-                    _ListsTab(
-                      repository: widget.repository,
-                      query: _query,
-                      sort: _sort,
-                      statuses: const {ListStatus.archived},
-                      orderKey: ListStatus.archived,
-                      order: _orders[ListStatus.archived],
-                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                        ListStatus.archived,
-                        lists,
-                        oldIndex,
-                        newIndex,
-                      ),
-                      emptyText: l10n.listsEmpty,
-                      onOpenListDetail: widget.onOpenListDetail,
-                      reminderScheduler: widget.reminderScheduler,
-                      bannerController: widget.bannerController,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
-              ? null
-              : SafeArea(
-                  top: false,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-                    child: IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
+          ],
+        ),
+        bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
+            ? null
+            : SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          child: FilledButton(
+                            key: const Key('lists_new_list_button'),
+                            style: FilledButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 12,
+                              ),
+                              minimumSize: const Size(48, 48),
+                            ),
+                            onPressed: _editorOpen
+                                ? null
+                                : () => _openEditor(context),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.add),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  child: Text(
+                                    l10n.newListButton,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        if (widget.onScanReceipt != null) ...[
+                          const SizedBox(width: 12),
                           Expanded(
-                            child: FilledButton(
-                              key: const Key('lists_new_list_button'),
+                            child: FilledButton.tonal(
+                              key: const Key('lists_receipt_button'),
                               style: FilledButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 12,
@@ -264,17 +311,17 @@ class _ListsScreenState extends State<ListsScreen> {
                                 ),
                                 minimumSize: const Size(48, 48),
                               ),
-                              onPressed: _editorOpen
+                              onPressed: widget.receiptBusy
                                   ? null
-                                  : () => _openEditor(context),
+                                  : widget.onScanReceipt,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Icon(Icons.add),
+                                  const Icon(Icons.receipt_long_outlined),
                                   const SizedBox(width: 8),
                                   Flexible(
                                     child: Text(
-                                      l10n.newListButton,
+                                      l10n.fromReceiptListButton,
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
@@ -282,43 +329,12 @@ class _ListsScreenState extends State<ListsScreen> {
                               ),
                             ),
                           ),
-                          if (widget.onScanReceipt != null) ...[
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: FilledButton.tonal(
-                                key: const Key('lists_receipt_button'),
-                                style: FilledButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 12,
-                                  ),
-                                  minimumSize: const Size(48, 48),
-                                ),
-                                onPressed: widget.receiptBusy
-                                    ? null
-                                    : widget.onScanReceipt,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Icon(Icons.receipt_long_outlined),
-                                    const SizedBox(width: 8),
-                                    Flexible(
-                                      child: Text(
-                                        l10n.fromReceiptListButton,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
                         ],
-                      ),
+                      ],
                     ),
                   ),
                 ),
-        ),
+              ),
       ),
     );
   }
@@ -434,37 +450,48 @@ class _ListsTab extends StatelessWidget {
         );
         if (lists.isEmpty) {
           final colors = Theme.of(context).colorScheme;
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: colors.secondaryContainer,
-                      shape: BoxShape.circle,
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Icon(
-                      Icons.receipt_long_outlined,
-                      size: 30,
-                      color: colors.onSecondaryContainer,
+          // Scrolls when the always-visible search leaves little height
+          // (320dp, 2x text) instead of overflowing.
+          return LayoutBuilder(
+            builder: (context, box) => SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: box.maxHeight),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: colors.secondaryContainer,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: const EdgeInsets.all(16),
+                          child: Icon(
+                            Icons.receipt_long_outlined,
+                            size: 30,
+                            color: colors.onSecondaryContainer,
+                          ),
+                        ),
+                        const SizedBox(height: 14),
+                        Text(
+                          emptyText,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(color: colors.onSurfaceVariant),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 14),
-                  Text(
-                    emptyText,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleMedium
-                        ?.copyWith(color: colors.onSurfaceVariant),
-                  ),
-                ],
+                ),
               ),
             ),
           );
         }
-        if (sort != ListSortMode.manual) {
+        // A filtered manual list keeps its saved order without drag handles:
+        // reordering a subset would rewrite the hidden lists' positions.
+        if (sort != ListSortMode.manual || query.isNotEmpty) {
           return ListView.builder(
             padding: const EdgeInsets.only(bottom: 12),
             itemCount: lists.length,

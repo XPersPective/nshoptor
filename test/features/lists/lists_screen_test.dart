@@ -9,6 +9,9 @@ import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/lists_screen.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
+import 'package:nshoptor/features/lists/list_scheduling.dart';
+import 'package:nshoptor/app/app_defaults.dart';
+import 'package:napp_core/napp_core.dart' show SettingsStore;
 
 void main() {
   setUp(() => AppFormatLocale.attach('tr'));
@@ -206,18 +209,133 @@ void main() {
     await tester.pumpWidget(subject());
     await settle(tester);
 
-    await tester.tap(find.byKey(const Key('lists_search_button')));
-    await settle(tester);
-    await tester.enterText(
-      find.byKey(const Key('lists_search_field')),
-      'market',
+    // F26: no show/hide toggle; the field is always under the tabs.
+    expect(find.byKey(const Key('lists_search_button')), findsNothing);
+    final field = find.byKey(const Key('lists_search_field'));
+    expect(field, findsOneWidget);
+    expect(
+      tester.getTopLeft(field).dy,
+      greaterThanOrEqualTo(tester.getBottomLeft(find.byType(TabBar)).dy),
     );
+    await tester.enterText(field, 'market');
     await settle(tester);
 
     expect(find.text('Pazar market'), findsOneWidget);
     expect(find.text('Bakkal'), findsNothing);
+    await tester.tap(find.byKey(const Key('lists_search_clear')));
+    await settle(tester);
+    expect(find.text('Bakkal'), findsOneWidget);
     await disposeApp(tester);
   });
+
+  testWidgets('search and sort work together; sort ends the tabs row (F26/F27)', (
+    tester,
+  ) async {
+    AppDefaults.attach(SettingsStore());
+    await repo.createList(title: 'Zeytin market', currencyCode: 'TRY');
+    await repo.createList(
+      title: 'Ayran market',
+      currencyCode: 'TRY',
+      plannedAt: DateTime.utc(2030),
+    );
+    await repo.createList(
+      title: 'Bakkal',
+      currencyCode: 'TRY',
+      plannedAt: DateTime.utc(2020),
+    );
+    await tester.pumpWidget(subject());
+    await settle(tester);
+
+    final sort = find.byKey(const Key('lists_sort_button'));
+    final tabs = tester.getRect(find.byType(TabBar));
+    expect(tester.getCenter(sort).dy, moreOrLessEquals(tabs.center.dy, epsilon: 2));
+    expect(tester.getTopLeft(sort).dx, greaterThanOrEqualTo(tabs.right));
+
+    await tester.enterText(find.byKey(const Key('lists_search_field')), 'market');
+    await settle(tester);
+    var sawManual = false;
+    var sawTitle = false;
+    for (var i = 0; i < ListSortMode.values.length; i++) {
+      await tester.tap(sort);
+      await settle(tester);
+      // Sorting keeps the query and its filter.
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('lists_search_field')))
+            .controller!
+            .text,
+        'market',
+      );
+      expect(find.text('Bakkal'), findsNothing);
+      expect(find.text('Ayran market'), findsOneWidget);
+      expect(find.text('Zeytin market'), findsOneWidget);
+      final mode = ListSortMode.fromCode(AppDefaults.listSort());
+      if (mode == ListSortMode.manual) {
+        sawManual = true;
+        // A filtered subset cannot be dragged into hidden lists' slots.
+        expect(find.byType(ReorderableListView), findsNothing);
+      }
+      if (mode == ListSortMode.title) {
+        sawTitle = true;
+        expect(
+          tester.getTopLeft(find.text('Ayran market')).dy,
+          lessThan(tester.getTopLeft(find.text('Zeytin market')).dy),
+        );
+      }
+    }
+    expect(sawManual && sawTitle, isTrue);
+    await disposeApp(tester);
+  });
+
+  for (final rtl in [false, true]) {
+    testWidgets('Discover and plan badge spacing at 320dp ${rtl ? 'RTL' : 'LTR'}', (
+      tester,
+    ) async {
+      await tester.binding.setSurfaceSize(const Size(320, 640));
+      var discover = 0;
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: Locale(rtl ? 'ar' : 'tr'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: ListsScreen(
+            repository: repo,
+            onDiscover: () => discover++,
+            planBadge: Container(
+              key: const Key('test_plan_badge'),
+              width: 64,
+              height: 28,
+              color: Colors.amber,
+            ),
+          ),
+        ),
+      );
+      await settle(tester);
+      final badge = tester.getRect(find.byKey(const Key('test_plan_badge')));
+      final button = find.byKey(const Key('home_nav_discover'));
+      final glyph = tester.getRect(
+        find.descendant(of: button, matching: find.byType(Icon)),
+      );
+      if (rtl) {
+        expect(badge.left, greaterThanOrEqualTo(16));
+        expect(glyph.left - badge.right, inInclusiveRange(8, 16));
+      } else {
+        expect(320 - badge.right, greaterThanOrEqualTo(16));
+        expect(badge.left - glyph.right, inInclusiveRange(8, 16));
+      }
+      expect(badge.center.dy, moreOrLessEquals(glyph.center.dy, epsilon: 1));
+      expect(tester.takeException(), isNull);
+      await tester.tap(button);
+      expect(discover, 1);
+      await tester.binding.setSurfaceSize(null);
+      await disposeApp(tester);
+    });
+  }
 
   testWidgets(
     'liste, tamamlananlar ve arşiv yatay sayfalardır; kart durum etiketi göstermez',

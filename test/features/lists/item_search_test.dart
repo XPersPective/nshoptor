@@ -14,6 +14,7 @@ import 'package:nshoptor/features/lists/item_repository.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
+import 'package:nshoptor/features/lists/taxonomy/item_sort.dart';
 import 'package:nshoptor/features/shopping_mode/shopping_repository.dart';
 
 void main() {
@@ -237,6 +238,82 @@ void main() {
       await close(tester);
     },
   );
+
+  testWidgets(
+    'Totals and Products headings; sort ends the products row; compact search (F25)',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(412, 1000));
+      await open(tester);
+      final totalsHeading = find.byKey(const Key('detail_totals_heading'));
+      final products = find.byKey(const Key('detail_products_heading'));
+      final totals = find.byKey(const Key('detail_totals'));
+      expect(find.text('Ürünler'), findsOneWidget);
+      double top(Finder f) => tester.getTopLeft(f).dy;
+      expect(top(totalsHeading), lessThan(top(totals)));
+      expect(top(totals), lessThan(top(products)));
+      expect(top(products), lessThan(top(search)));
+      expect(top(search), lessThan(top(row(0))));
+      final sort = find.byKey(const Key('detail_item_sort'));
+      expect(
+        tester.getCenter(sort).dy,
+        moreOrLessEquals(tester.getCenter(products).dy, epsilon: 2),
+      );
+      expect(
+        tester.getTopLeft(sort).dx,
+        greaterThan(tester.getCenter(products).dx),
+      );
+      expect(tester.getSize(sort).height, greaterThanOrEqualTo(48));
+      expect(tester.getSize(search).height, lessThanOrEqualTo(56));
+      await close(tester);
+    },
+  );
+
+  testWidgets('search and A–Z sort work together (F27)', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(412, 1100));
+    final ayran = await ItemRepository(db).addItem(
+      listId: listId,
+      name: 'Ayran',
+      quantity: DecimalFixed.fromInt(1),
+      unitCode: 'piece',
+      priceIsUnitPrice: false,
+      price: DecimalFixed.fromInt(5),
+    );
+    Finder ayranRow() => find.byKey(Key('detail_item_$ayran'));
+    double top(Finder f) => tester.getTopLeft(f).dy;
+    await open(tester);
+    // "a" matches Ispanak and Ayran only; manual order keeps Ispanak first.
+    await tester.enterText(search, 'a');
+    await tester.pumpAndSettle();
+    expect(row(0), findsNothing);
+    expect(row(2), findsNothing);
+    expect(top(row(1)), lessThan(top(ayranRow())));
+    await tester.tap(find.byKey(const Key('detail_item_sort')));
+    await tester.pumpAndSettle();
+    await tester.tap(
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is CheckedPopupMenuItem<ItemSortMode> &&
+            widget.value == ItemSortMode.alphabetical,
+      ),
+    );
+    await tester.pumpAndSettle();
+    // Sorting keeps the query and its filter; A–Z reorders the matches.
+    expect(tester.widget<TextField>(search).controller!.text, 'a');
+    expect(row(0), findsNothing);
+    expect(row(2), findsNothing);
+    expect(top(ayranRow()), lessThan(top(row(1))));
+    // Changing the query keeps A–Z.
+    await tester.enterText(search, 'n');
+    await tester.pumpAndSettle();
+    expect(row(2), findsNothing);
+    expect(top(ayranRow()), lessThan(top(row(0))));
+    // Clearing the query keeps A–Z for the whole list.
+    await tester.tap(find.byKey(const Key('detail_search_clear')));
+    await tester.pumpAndSettle();
+    expect(top(ayranRow()), lessThan(top(row(0))));
+    expect(top(row(1)), lessThan(top(row(2))));
+    await close(tester);
+  });
 
   testWidgets('read-only completed lists remain searchable', (tester) async {
     await lists.changeStatus(listId, ListStatus.planned);
