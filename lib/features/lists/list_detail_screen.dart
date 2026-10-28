@@ -959,6 +959,24 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     ShoppingList list,
   ) {
     final l10n = AppLocalizations.of(context);
+    final amount = formatMoney(
+      Money.fromMinorUnits(
+        entry.actualLineTotalMinorUnits,
+        Currency.fromCode(list.currencyCode),
+      ),
+      locale: formatLocaleCode(context),
+    );
+    // A receipt discount is not a product: name it and show only its amount.
+    if (entry.normalizedName == 'discount') {
+      return Card(
+        key: ValueKey('detail_unplanned_${entry.id}'),
+        child: ListTile(
+          leading: const Icon(Icons.local_offer_outlined),
+          title: Text(l10n.receiptDiscountLine),
+          trailing: Text(amount),
+        ),
+      );
+    }
     return Card(
       key: ValueKey('detail_unplanned_${entry.id}'),
       child: Padding(
@@ -970,9 +988,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
             Text(
               '${entry.actualQuantity} ${unitDisplayNameFromDb(entry.actualUnitCode, l10n)}',
             ),
-            Text(
-              '${l10n.compareUnplanned} · ${formatMoney(Money.fromMinorUnits(entry.actualLineTotalMinorUnits, Currency.fromCode(list.currencyCode)), locale: formatLocaleCode(context))}',
-            ),
+            Text('${l10n.compareUnplanned} · $amount'),
           ],
         ),
       ),
