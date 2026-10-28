@@ -350,7 +350,8 @@ void main() {
           await form(tester, focusPrices: true);
           final target = find.byKey(
             Key(
-              !home && !market ? 'item_price_field' : 'item_actual_price_field',
+              // F22: the empty price gets focus; both filled → market.
+              !home ? 'item_price_field' : 'item_actual_price_field',
             ),
           );
           final editable = tester.widget<EditableText>(

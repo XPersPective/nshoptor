@@ -305,9 +305,13 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     if (widget.focusActual) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
-        final bothEmpty =
-            _price.text.trim().isEmpty && _actualPrice.text.trim().isEmpty;
-        (bothEmpty || _mixedUnits ? _homePriceFocus : _marketPriceFocus)
+        // The empty price is the one to fill (F22): a receipt fills the
+        // market price, so the home estimate gets focus; both filled → market.
+        final homeEmpty = _price.text.trim().isEmpty;
+        final marketEmpty = _actualPrice.text.trim().isEmpty;
+        (_mixedUnits || homeEmpty && !marketEmpty || homeEmpty && marketEmpty
+                ? _homePriceFocus
+                : _marketPriceFocus)
             .requestFocus();
       });
     }
