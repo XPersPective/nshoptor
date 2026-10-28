@@ -421,6 +421,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
               value: _repo.keepScreenAwake,
               onChanged: (v) => setState(() => _repo.setKeepScreenAwake(v)),
             ),
+            SwitchListTile(
+              key: const Key('settings_capture_tips'),
+              secondary: const Icon(Icons.tips_and_updates_outlined),
+              title: Text(l10n.captureTipsSetting),
+              value: AppDefaults.captureTipsEnabled(),
+              onChanged: (v) =>
+                  setState(() => AppDefaults.setCaptureTipsEnabled(v)),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(l10n.roundingNote, style: text.bodySmall),

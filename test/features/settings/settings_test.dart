@@ -531,6 +531,20 @@ void main() {
     expect(AppDefaults.shoppingLimitMinor(currencyCode: currency), 150000);
     expect(find.textContaining(RegExp(r'1\D?500')), findsNWidgets(3));
 
+    // Capture tips can be turned back on from Settings (F38).
+    AppDefaults.setCaptureTipsEnabled(false);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+      home: SettingsScreen(repository: settings, languageController: LanguageController(store: SettingsStore())..load()),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('settings_capture_tips')));
+    await tester.pumpAndSettle();
+    expect(AppDefaults.captureTipsEnabled(), isTrue);
+
     // Removing a limit clears it.
     await tester.tap(find.byKey(const Key('settings_limit_shopping')));
     await tester.pumpAndSettle();
