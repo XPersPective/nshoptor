@@ -56,7 +56,12 @@ void main() {
     (tester) async {
       final requests = <List<Object?>>[];
       final answers = [
-        {'schema': 2, 'status': 'bottom_missing'},
+        {
+          'schema': 2,
+          'status': 'bottom_missing',
+          'store': 'بنده هايبر',
+          'date': '2026-10-20',
+        },
         _complete(),
       ];
       final ai = AiClient(
@@ -129,9 +134,16 @@ void main() {
       final l10n = await AppLocalizations.delegate.load(const Locale('ar'));
       expect(find.text(l10n.receiptIncompleteTail), findsOneWidget);
       expect(requests.single, ['/9j/photo-0']);
-      expect((await ReceiptDraftRepository(db).pending()).single.imagePaths, [
-        'photo-0',
-      ]);
+      // Header read: the list exists at once and owns the unfinished receipt.
+      final list = (await db.select(db.shoppingLists).get()).single;
+      expect(list.title, 'بنده هايبر');
+      expect(
+        (await ReceiptDraftRepository(db).pending(listId: list.id))
+            .single
+            .imagePaths,
+        ['photo-0'],
+      );
+      expect(await ReceiptDraftRepository(db).pending(), isEmpty);
 
       await tester.tap(find.byKey(const Key('receipt_capture_camera')));
       await settle();

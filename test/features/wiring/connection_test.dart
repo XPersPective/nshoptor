@@ -372,26 +372,16 @@ void main() {
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
       await tester.binding.handlePopRoute();
       await settle(tester);
-      await scan();
-      expect(find.byKey(const Key('receipt_resume_1')), findsOneWidget);
-      await tester.tap(find.byKey(const Key('receipt_resume_1')));
-      await settle(tester);
-      await tester.tap(find.byKey(const Key('receipt_cancel')));
-      await settle(tester);
-      expect(await db.select(db.shoppingLists).get(), isEmpty);
-      expect(await db.select(db.purchaseEntries).get(), isEmpty);
-      final pending = await db.select(db.receipts).get();
-      expect(pending, hasLength(1));
-      expect(pending.single.processingStatus, 'pending');
+      // Unfinished receipts belong to lists (F13): outside a list nothing is
+      // offered for resuming and header-less leftovers are dropped.
       ocr.lines.clear();
       await scan();
-      expect(find.byKey(const Key('receipt_new_capture')), findsOneWidget);
-      await tester.tap(find.byKey(const Key('receipt_new_capture')));
-      await settle(tester);
+      expect(find.byKey(const Key('receipt_resume_1')), findsNothing);
+      expect(find.byKey(const Key('receipt_new_capture')), findsNothing);
       expect(find.byKey(const Key('receipt_commit_button')), findsNothing);
       expect(await db.select(db.shoppingLists).get(), isEmpty);
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
-      expect(await db.select(db.receipts).get(), hasLength(1));
+      expect(await db.select(db.receipts).get(), isEmpty);
       await disposeApp(tester);
     },
   );

@@ -28,7 +28,6 @@ import '../lists/templates/template_repository.dart';
 import '../lists/list_detail_screen.dart';
 
 import '../receipts/receipt_capture_flow.dart';
-import '../receipts/receipt_draft_repository.dart';
 import '../receipts/receipt_image_store.dart';
 import '../receipts/ocr_text_source.dart';
 
@@ -118,7 +117,6 @@ class _HomeShellState extends State<HomeShell> {
   @override
   void initState() {
     super.initState();
-    unawaited(_refreshReceiptDrafts());
     widget.subscriptions?.addListener(_trialChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) {
@@ -318,29 +316,7 @@ class _HomeShellState extends State<HomeShell> {
             ),
     ];
     return Scaffold(
-      body: Column(
-        children: [
-          if (_tab == 0 && _receiptDrafts > 0)
-            SafeArea(
-              bottom: false,
-              child: MaterialBanner(
-                key: const Key('home_receipt_drafts_banner'),
-                leading: const Icon(Icons.receipt_long_outlined),
-                content: Text('${l10n.receiptDraftsTitle} ($_receiptDrafts)'),
-                actions: [
-                  TextButton(
-                    key: const Key('home_receipt_drafts_continue'),
-                    onPressed: _inputBusy
-                        ? null
-                        : () => _createFromReceipt(context),
-                    child: Text(l10n.receiptContinueAction),
-                  ),
-                ],
-              ),
-            ),
-          Expanded(child: IndexedStack(index: _tab, children: tabs)),
-        ],
-      ),
+      body: IndexedStack(index: _tab, children: tabs),
       // Banner bottom bar'ın altındadır (kullanıcı talebi 2026-10-02);
       // AdPolicy Pro'da hiç yüklemez, kalkınca boşluk kalmaz.
       bottomNavigationBar: Column(
@@ -397,20 +373,7 @@ class _HomeShellState extends State<HomeShell> {
       await _scanReceipt(context);
     } finally {
       if (mounted) setState(() => _inputBusy = false);
-      await _refreshReceiptDrafts();
     }
-  }
-
-  /// Unfinished receipts are surfaced on the main screen until completed, so a
-  /// receipt left half-scanned is never forgotten.
-  int _receiptDrafts = 0;
-  Future<void> _refreshReceiptDrafts() async {
-    try {
-      final count = (await ReceiptDraftRepository(widget.db).pending()).length;
-      if (mounted && count != _receiptDrafts) {
-        setState(() => _receiptDrafts = count);
-      }
-    } catch (_) {}
   }
 
   Future<void> _scanReceipt(BuildContext context) async {

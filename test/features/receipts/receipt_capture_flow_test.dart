@@ -50,11 +50,13 @@ void main() {
   late AppDatabase db;
   late _Images images;
   int? committed;
+  int? flowListId;
   Object? failure;
   setUp(() {
     db = AppDatabase(NativeDatabase.memory());
     images = _Images();
     committed = null;
+    flowListId = null;
     failure = null;
   });
   tearDown(() => db.close());
@@ -107,6 +109,7 @@ void main() {
                 context,
                 db: db,
                 currencyCode: 'TRY',
+                listId: flowListId,
                 pickImage: () async => cancel ? null : 'picker.img',
                 ocrSource: source,
                 imageStore: images,
@@ -120,6 +123,15 @@ void main() {
       ),
     ),
   );
+
+  // Headed unfinished receipts are owned by the list created for them.
+  Future<ReceiptDraft> ownedDraft() async {
+    final lists = await db.select(db.shoppingLists).get();
+    // A header-less part has no list yet; it lives only for this session.
+    return (await ReceiptDraftRepository(db)
+            .pending(listId: lists.isEmpty ? null : lists.single.id))
+        .single;
+  }
 
   Future<void> tap(WidgetTester tester, String key) async {
     final finder = find.byKey(Key(key));
@@ -155,12 +167,16 @@ void main() {
       expect(await db.select(db.shoppingLists).get(), isEmpty);
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
       await tap(tester, 'receipt_capture_later');
-      expect(
-        (await ReceiptDraftRepository(db).pending()).single.document.fragments,
-        hasLength(1),
-      );
+      // Store and date are known: the list now owns the unfinished receipt.
+      final list = (await db.select(db.shoppingLists).get()).single;
+      expect(list.title, 'A101 MARKET');
+      expect(await ReceiptDraftRepository(db).pending(), isEmpty);
+      final draft = (await ReceiptDraftRepository(db).pending(listId: list.id))
+          .single;
+      expect(draft.document.fragments, hasLength(1));
+      flowListId = list.id;
       await tap(tester, 'open_capture');
-      await tap(tester, 'receipt_resume_1');
+      await tap(tester, 'receipt_resume_${draft.id}');
       await tap(tester, 'receipt_capture_camera');
       expect(find.byKey(const Key('receipt_line_2')), findsOneWidget);
       await tap(tester, 'receipt_accept_all');
@@ -191,20 +207,26 @@ void main() {
       );
       await tap(tester, 'open_capture');
 
-      final quantityRow = tester.widgetList<Text>(
-        find.descendant(
-          of: find.byKey(const Key('receipt_line_0')),
-          matching: find.byType(Text),
-        ),
-      ).last.data!;
+      final quantityRow = tester
+          .widgetList<Text>(
+            find.descendant(
+              of: find.byKey(const Key('receipt_line_0')),
+              matching: find.byType(Text),
+            ),
+          )
+          .last
+          .data!;
       expect(quantityRow, startsWith('1 kg × '));
 
-      final plainRow = tester.widgetList<Text>(
-        find.descendant(
-          of: find.byKey(const Key('receipt_line_1')),
-          matching: find.byType(Text),
-        ),
-      ).last.data!;
+      final plainRow = tester
+          .widgetList<Text>(
+            find.descendant(
+              of: find.byKey(const Key('receipt_line_1')),
+              matching: find.byType(Text),
+            ),
+          )
+          .last
+          .data!;
       expect(plainRow, isNot(startsWith('·')));
       expect(plainRow, isNot(endsWith('×')));
 
@@ -240,7 +262,7 @@ void main() {
       );
       expect(images.copied, hasLength(1));
       await tap(tester, 'receipt_capture_later');
-      final draft = (await ReceiptDraftRepository(db).pending()).single;
+      final draft = await ownedDraft();
       expect(draft.document.fragments, hasLength(1));
       expect(draft.document.productLines, hasLength(2));
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
@@ -260,7 +282,7 @@ void main() {
       );
       await tap(tester, 'open_capture');
       await tap(tester, 'receipt_capture_gallery');
-      final draft = (await ReceiptDraftRepository(db).pending()).single;
+      final draft = await ownedDraft();
       expect(draft.imagePaths, ['owned-image-1', 'owned-image-0']);
       expect(draft.document.productLines.map((l) => l.name), [
         'ELMA',
@@ -286,12 +308,13 @@ void main() {
       await tap(tester, 'open_capture');
       await tap(tester, 'receipt_capture_gallery');
       await tap(tester, 'receipt_capture_later');
-      final draft = (await ReceiptDraftRepository(db).pending()).single;
+      final draft = await ownedDraft();
       expect(draft.document.productLines.single.name, 'ELMA');
       expect(draft.imagePaths, ['owned-image-0']);
       expect(images.copied, ['owned-image-0']);
       expect(images.removed, isEmpty);
-      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      // The header is known, so the list exists (F12) but has no purchases.
+      expect(await db.select(db.shoppingLists).get(), hasLength(1));
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
     },
   );
@@ -310,7 +333,7 @@ void main() {
       await tap(tester, 'open_capture');
       await tap(tester, 'receipt_capture_restart');
       expect(images.removed, ['owned-image-0']);
-      final draft = (await ReceiptDraftRepository(db).pending()).single;
+      final draft = await ownedDraft();
       expect(draft.imagePaths, ['owned-image-1']);
       await tap(tester, 'receipt_cancel');
     },

@@ -21,8 +21,15 @@ enum AiReceiptGap { top, bottom, middle }
 
 /// The model saw only part of the receipt: guide the user to the missing part.
 final class AiReceiptNeedsMore extends AiReceiptRead {
-  const AiReceiptNeedsMore(this.gap);
+  const AiReceiptNeedsMore(this.gap, {this.store, this.date});
   final AiReceiptGap gap;
+
+  /// Header read from the visible part, if any. A receipt is only kept (and
+  /// its list created) once store and date are known (F11-F12).
+  final String? store;
+  final DateTime? date;
+
+  bool get hasHeader => store != null && date != null;
 }
 
 /// Not a receipt, unreadable, or rejected twice by validation: retake.
@@ -106,15 +113,38 @@ class AiReceiptReader {
     required String currencyCode,
   }) {
     if (data['schema'] != 2) return const AiReceiptRetake('schema');
+    final store =
+        data['store'] is String && (data['store'] as String).trim().isNotEmpty
+        ? (data['store'] as String).trim()
+        : null;
+    final dateMatch = data['date'] is String
+        ? RegExp(r'^(\d{4})-(\d{2})-(\d{2})$')
+              .firstMatch(data['date'] as String)
+        : null;
+    final date = dateMatch == null
+        ? null
+        : DateTime(
+            int.parse(dateMatch[1]!),
+            int.parse(dateMatch[2]!),
+            int.parse(dateMatch[3]!),
+          );
     switch (data['status']) {
       case 'complete':
         break;
       case 'top_missing':
-        return const AiReceiptNeedsMore(AiReceiptGap.top);
+        return AiReceiptNeedsMore(AiReceiptGap.top, store: store, date: date);
       case 'bottom_missing':
-        return const AiReceiptNeedsMore(AiReceiptGap.bottom);
+        return AiReceiptNeedsMore(
+          AiReceiptGap.bottom,
+          store: store,
+          date: date,
+        );
       case 'middle_gap':
-        return const AiReceiptNeedsMore(AiReceiptGap.middle);
+        return AiReceiptNeedsMore(
+          AiReceiptGap.middle,
+          store: store,
+          date: date,
+        );
       default:
         return AiReceiptRetake('${data['status']}');
     }

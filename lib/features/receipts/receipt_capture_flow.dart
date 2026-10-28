@@ -7,6 +7,8 @@ import '../../core/l10n/generated/app_localizations.dart';
 import '../../data/db/app_database.dart';
 import '../ai/ai_client.dart';
 import '../lists/item_repository.dart';
+import '../lists/list_repository.dart';
+import '../shopping_mode/shopping_repository.dart';
 import 'ai_image.dart';
 import 'ai_receipt_reader.dart';
 import 'image_capture_service.dart';
@@ -37,8 +39,23 @@ Future<int?> openReceiptCaptureFlow(
   messenger.removeCurrentSnackBar();
   final drafts = ReceiptDraftRepository(db);
   final images = imageStore ?? ReceiptImageStore();
-  final pending = await drafts.pending(listId: listId);
+  // Unfinished receipts belong to their list (F13). Outside a list only
+  // header-less leftovers can exist; they identify nothing and are dropped.
+  if (listId == null) {
+    for (final stale in await drafts.pending()) {
+      await drafts.discard(stale.id);
+      for (final path in stale.imagePaths) {
+        try {
+          await images.removeOwned(path);
+        } catch (_) {}
+      }
+    }
+  }
+  final pending = listId == null
+      ? const <ReceiptDraft>[]
+      : await drafts.pending(listId: listId);
   if (!context.mounted) return null;
+  var activeListId = listId;
   ReceiptDocument? document;
   int? draftId;
   var imagePaths = <String>[];
@@ -100,6 +117,7 @@ Future<int?> openReceiptCaptureFlow(
         encode: encodeAiImage ?? encodeImageForAi,
         localeCode: Localizations.localeOf(context).languageCode,
       ),
+      db: db,
       drafts: drafts,
       images: images,
       listId: listId,
@@ -112,9 +130,16 @@ Future<int?> openReceiptCaptureFlow(
     );
     if (!context.mounted) return null;
     switch (outcome) {
-      case _AiStopped():
-        return null;
-      case _AiProgress(:final doc, :final id, :final paths, :final capture):
+      case _AiStopped(:final listId):
+        return listId;
+      case _AiProgress(
+        :final doc,
+        :final id,
+        :final paths,
+        :final capture,
+        listId: final owned,
+      ):
+        activeListId = owned ?? activeListId;
         document = doc;
         draftId = id;
         imagePaths = paths;
@@ -130,12 +155,12 @@ Future<int?> openReceiptCaptureFlow(
         document.state == ReceiptDocumentState.complete &&
         document.toParseResult().withinReconciliationTolerance) {
       if (!context.mounted) return null;
-      final reviewCurrency = listId == null
+      final reviewCurrency = activeListId == null
           ? document.metadata.currencyCode ?? currencyCode
           : currencyCode;
       final controller = ReceiptReviewController(
         db: db,
-        listId: listId,
+        listId: activeListId,
         title: title ?? document.metadata.store,
         currencyCode: reviewCurrency,
         document: document,
@@ -150,9 +175,9 @@ Future<int?> openReceiptCaptureFlow(
             builder: (_) => ReceiptReviewScreen(
               controller: controller,
               currency: reviewCurrency,
-              plannedItems: listId == null
+              plannedItems: activeListId == null
                   ? Future.value(const [])
-                  : ItemRepository(db).getItems(listId),
+                  : ItemRepository(db).getItems(activeListId),
             ),
           ),
         );
@@ -188,10 +213,33 @@ Future<int?> openReceiptCaptureFlow(
       );
       if (!context.mounted) return null;
       if (action == null || action == _CaptureAction.later) {
+        // A receipt whose store and date are known gets its list now, so it
+        // can be continued from inside that list (F12-F13); otherwise
+        // nothing identifies it and it is not kept outside a list.
+        final doc = document;
+        if (activeListId == null &&
+            draftId != null &&
+            doc.metadata.store != null &&
+            doc.metadata.dateTime != null) {
+          final created = await ListRepository(db).createList(
+            title: doc.metadata.store,
+            currencyCode: currencyCode,
+            plannedAt: doc.metadata.dateTime,
+          );
+          await ShoppingRepository(db).startShopping(created);
+          await drafts.discard(draftId);
+          draftId = await drafts.save(
+            document: doc,
+            listId: created,
+            imagePaths: imagePaths,
+          );
+          activeListId = created;
+        }
+        if (!context.mounted) return activeListId;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(l10n.receiptDraftSaved), showCloseIcon: true),
         );
-        return null;
+        return activeListId;
       }
     }
     if (!context.mounted) return null;
@@ -246,7 +294,7 @@ Future<int?> openReceiptCaptureFlow(
     try {
       draftId = await drafts.save(
         document: next,
-        listId: listId,
+        listId: activeListId,
         draftId: draftId,
         imagePaths: nextPaths,
       );
@@ -384,7 +432,10 @@ sealed class _AiOutcome {
 
 /// The user closed the flow; anything captured is already a saved draft.
 final class _AiStopped extends _AiOutcome {
-  const _AiStopped();
+  const _AiStopped({this.listId});
+
+  /// The list created for this receipt (F12), opened by the caller.
+  final int? listId;
 }
 
 /// Verified document (ready for review) or the state handed to the on-device
@@ -395,11 +446,13 @@ final class _AiProgress extends _AiOutcome {
     required this.id,
     required this.paths,
     this.capture,
+    this.listId,
   });
   final ReceiptDocument? doc;
   final int? id;
   final List<String> paths;
   final CapturedImage? capture;
+  final int? listId;
 }
 
 /// Image-model loop. Every request carries all photos of this receipt, so the
@@ -409,6 +462,7 @@ final class _AiProgress extends _AiOutcome {
 /// retake, and only a doubly verified reading reaches review.
 Future<_AiOutcome> _readWithAi(
   BuildContext context, {
+  required AppDatabase db,
   required AiReceiptReader reader,
   required ReceiptDraftRepository drafts,
   required ReceiptImageStore images,
@@ -430,18 +484,33 @@ Future<_AiOutcome> _readWithAi(
   var prepend = false;
   var replaceLast = false;
   final automatic = pickImage == null;
+  // Standalone captures get their list as soon as the header is read (F12).
+  int? ownedListId;
+  _AiStopped stop() => _AiStopped(listId: ownedListId);
 
   Future<void> persist(ReceiptDocument value) async {
     id = await drafts.save(
       document: value,
-      listId: listId,
+      listId: listId ?? ownedListId,
       draftId: id,
       imagePaths: paths,
     );
   }
 
+  Future<void> forgetAll() async {
+    if (id != null) await drafts.discard(id!);
+    for (final path in paths) {
+      try {
+        await images.removeOwned(path);
+      } catch (_) {}
+    }
+    id = null;
+    doc = null;
+    paths.clear();
+  }
+
   while (context.mounted) {
-    if (!context.mounted) return const _AiStopped();
+    if (!context.mounted) return stop();
     if (needCapture) {
       final capture = await captureImageText(
         context,
@@ -452,7 +521,7 @@ Future<_AiOutcome> _readWithAi(
         requireText: false,
       );
       if (!context.mounted || capture is! CapturedImage) {
-        return const _AiStopped();
+        return stop();
       }
       lastCapture = capture;
       final kept = await images.keep(capture.path) ?? capture.path;
@@ -469,25 +538,30 @@ Future<_AiOutcome> _readWithAi(
       }
       // Raw OCR (possibly empty for scripts the device cannot read) keeps the
       // draft restorable; the photos are the evidence the model rereads.
-      doc ??= ReceiptDocument.fromScan(
+      final current = doc ??= ReceiptDocument.fromScan(
         capture.scan,
         currencyCode: currencyCode,
       );
-      await persist(doc);
-      if (!context.mounted) return const _AiStopped();
+      await persist(current);
+      if (!context.mounted) return stop();
     }
-    if (!context.mounted) return const _AiStopped();
+    if (!context.mounted) return stop();
 
     final read = await _withProgress(
       context,
       reader.read(paths, currencyCode: currencyCode),
     );
-    if (!context.mounted) return const _AiStopped();
+    if (!context.mounted) return stop();
 
     switch (read) {
       case AiReceiptVerified(:final document):
         await persist(document);
-        return _AiProgress(doc: document, id: id, paths: paths);
+        return _AiProgress(
+          doc: document,
+          id: id,
+          paths: paths,
+          listId: ownedListId,
+        );
       case AiReceiptUnavailable(:final result):
         final notice = switch (result) {
           AiQuota(:final used, :final limit) => l10n.aiQuotaReached(
@@ -514,8 +588,50 @@ Future<_AiOutcome> _readWithAi(
           id: id,
           paths: paths,
           capture: single ? lastCapture : null,
+          listId: ownedListId,
         );
-      case AiReceiptNeedsMore(:final gap):
+      case AiReceiptNeedsMore(:final gap)
+          when listId == null && ownedListId == null && !read.hasHeader:
+        // Nothing identifies this receipt yet: keep nothing and ask for the
+        // top with store and date (F11).
+        await forgetAll();
+        if (!context.mounted) return stop();
+        final action = await _askNext(
+          context,
+          message: l10n.receiptIncompleteHeader,
+          automatic: false,
+          canContinue: true,
+        );
+        if (!context.mounted ||
+            action == null ||
+            action == _CaptureAction.later) {
+          return stop();
+        }
+        prepend = false;
+        replaceLast = false;
+        source = action == _CaptureAction.gallery
+            ? ImageSource.gallery
+            : ImageSource.camera;
+        needCapture = true;
+        if (gap == AiReceiptGap.top) continue;
+      case AiReceiptNeedsMore(:final gap, :final store, :final date):
+        if (listId == null && ownedListId == null && store != null) {
+          // Header known: the list exists from now on and owns the receipt.
+          ownedListId = await ListRepository(db).createList(
+            title: store,
+            currencyCode: currencyCode,
+            plannedAt: date,
+          );
+          await ShoppingRepository(db).startShopping(ownedListId);
+          final keep = [...paths];
+          if (id != null) await drafts.discard(id!);
+          id = null;
+          paths
+            ..clear()
+            ..addAll(keep);
+          await persist(doc!);
+          if (!context.mounted) return stop();
+        }
         final full = paths.length >= AiReceiptReader.maxPhotos;
         final action = await _askNext(
           context,
@@ -529,10 +645,10 @@ Future<_AiOutcome> _readWithAi(
           automatic: automatic && !full && gap != AiReceiptGap.middle,
           canContinue: !full,
         );
-        if (!context.mounted) return const _AiStopped();
+        if (!context.mounted) return stop();
         if (action == null || action == _CaptureAction.later) {
           _draftNotice(context);
-          return const _AiStopped();
+          return stop();
         }
         if (action == _CaptureAction.restart) {
           paths.clear();
@@ -557,10 +673,10 @@ Future<_AiOutcome> _readWithAi(
           automatic: false,
           canContinue: paths.isNotEmpty,
         );
-        if (!context.mounted) return const _AiStopped();
+        if (!context.mounted) return stop();
         if (action == null || action == _CaptureAction.later) {
           _draftNotice(context);
-          return const _AiStopped();
+          return stop();
         }
         if (action == _CaptureAction.restart) {
           paths.clear();
@@ -576,7 +692,7 @@ Future<_AiOutcome> _readWithAi(
         needCapture = true;
     }
   }
-  return const _AiStopped();
+  return stop();
 }
 
 Future<_CaptureAction?> _askNext(
