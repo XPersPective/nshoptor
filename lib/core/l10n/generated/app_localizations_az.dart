@@ -1469,4 +1469,38 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Çek çəkilişi məsləhətlərini göstər';
+
+  @override
+  String get tourSkip => 'Keç';
+
+  @override
+  String get tourNewListBody =>
+      'Alış-veriş siyahısı başladın və almaq istədiklərinizi əlavə edin.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Artıq alış-veriş etmisiniz? Çeki qiymətləri ilə siyahıya çevirin.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Çekin yuxarısından başlayın: əvvəl mağaza və tarixi çəkin, sonra qalan sətirlərlə davam edin.';
+
+  @override
+  String get tourTabsBody =>
+      'Aktiv, tamamlanmış və arxivlənmiş siyahılar arasında keçin. Sondakı düymə sıranı dəyişir.';
+
+  @override
+  String get tourDiscoverBody => 'Eyni tərtibatçının digər tətbiqlərinə baxın.';
+
+  @override
+  String get tourHelpBody =>
+      'Bu bələdçini yenidən görmək üçün bura toxunun. Cəmlərin və məhsulların izahı üçün siyahı açın.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planlaşdırılan, faktiki cəm və fərq alış-veriş etdikcə yenilənir.';
+
+  @override
+  String get tourItemsBody =>
+      'Məhsullarınız. Sıralarını burada dəyişin və ya axtarın.';
 }

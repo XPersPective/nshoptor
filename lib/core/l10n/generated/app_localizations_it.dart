@@ -1472,4 +1472,38 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Mostra i consigli per fotografare lo scontrino';
+
+  @override
+  String get tourSkip => 'Salta';
+
+  @override
+  String get tourNewListBody =>
+      'Crea una lista della spesa e aggiungi ciò che vuoi comprare.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Hai già fatto la spesa? Trasforma uno scontrino in una lista con i prezzi.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Parti dall\'alto dello scontrino: prima acquisisci negozio e data, poi continua con le righe restanti.';
+
+  @override
+  String get tourTabsBody =>
+      'Passa tra liste attive, completate e archiviate. Il pulsante alla fine cambia l\'ordine.';
+
+  @override
+  String get tourDiscoverBody => 'Scopri altre app dello stesso sviluppatore.';
+
+  @override
+  String get tourHelpBody =>
+      'Tocca qui per rivedere questa guida. Apri una lista per vedere spiegati totali e articoli.';
+
+  @override
+  String get tourTotalsBody =>
+      'I totali previsto, effettivo e la differenza si aggiornano mentre fai la spesa.';
+
+  @override
+  String get tourItemsBody =>
+      'I tuoi articoli. Cambiane l\'ordine o cercali qui.';
 }

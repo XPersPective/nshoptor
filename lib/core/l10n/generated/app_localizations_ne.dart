@@ -1466,4 +1466,38 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'रसिद खिच्ने सुझाव देखाउनुहोस्';
+
+  @override
+  String get tourSkip => 'छोड्नुहोस्';
+
+  @override
+  String get tourNewListBody =>
+      'किनमेल सूची सुरु गर्नुहोस् र किन्ने कुरा थप्नुहोस्।';
+
+  @override
+  String get tourFromReceiptBody =>
+      'किनमेल गरिसक्नुभयो? रसिदलाई मूल्यसहित सूचीमा बदल्नुहोस्।';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'रसिदको माथिबाट सुरु गर्नुहोस्: पहिले पसल र मिति लिनुहोस्, त्यसपछि बाँकी पङ्क्तिहरूसँग जारी राख्नुहोस्।';
+
+  @override
+  String get tourTabsBody =>
+      'सक्रिय, सम्पन्न र संग्रहित सूचीहरूबीच बदल्नुहोस्। अन्तिम बटनले क्रम बदल्छ।';
+
+  @override
+  String get tourDiscoverBody => 'उही विकासकर्ताका थप एपहरू हेर्नुहोस्।';
+
+  @override
+  String get tourHelpBody =>
+      'यो गाइड फेरि हेर्न यहाँ ट्याप गर्नुहोस्। जम्मा र सामानको व्याख्या हेर्न कुनै सूची खोल्नुहोस्।';
+
+  @override
+  String get tourTotalsBody =>
+      'योजना गरिएको, वास्तविक जम्मा र फरक किनमेल गर्दा अद्यावधिक हुन्छन्।';
+
+  @override
+  String get tourItemsBody =>
+      'तपाईंका सामान। यहाँ तिनको क्रम बदल्नुहोस् वा खोज्नुहोस्।';
 }

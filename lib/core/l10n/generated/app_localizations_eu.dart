@@ -1472,4 +1472,39 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Erakutsi ordainagiriak argazkitzeko aholkuak';
+
+  @override
+  String get tourSkip => 'Saltatu';
+
+  @override
+  String get tourNewListBody =>
+      'Hasi erosketa-zerrenda bat eta gehitu erosi nahi duzuna.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Erosketak egin dituzu? Bihurtu tiketa prezioak dituen zerrenda.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Hasi tiketaren goiko aldetik: lehenik denda eta data, gero jarraitu gainerako lerroekin.';
+
+  @override
+  String get tourTabsBody =>
+      'Aldatu zerrenda aktibo, osatu eta artxibatuen artean. Amaierako botoiak ordena aldatzen du.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Ikusi garatzaile beraren beste aplikazio batzuk.';
+
+  @override
+  String get tourHelpBody =>
+      'Sakatu hemen gida berriro ikusteko. Ireki zerrenda bat guztizkoen eta produktuen azalpena ikusteko.';
+
+  @override
+  String get tourTotalsBody =>
+      'Aurreikusitako, benetako guztizkoa eta aldea erosi ahala eguneratzen dira.';
+
+  @override
+  String get tourItemsBody =>
+      'Zure produktuak. Aldatu haien ordena edo bilatu hemen.';
 }

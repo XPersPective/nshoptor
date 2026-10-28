@@ -1470,4 +1470,37 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Näytä kuitin kuvausvinkit';
+
+  @override
+  String get tourSkip => 'Ohita';
+
+  @override
+  String get tourNewListBody => 'Aloita ostoslista ja lisää, mitä aiot ostaa.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Jo ostoksilla? Tee kuitista lista hintoineen.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Aloita kuitin yläosasta: ensin kauppa ja päivämäärä, sitten muut rivit.';
+
+  @override
+  String get tourTabsBody =>
+      'Vaihda aktiivisten, valmiiden ja arkistoitujen listojen välillä. Lopun painike vaihtaa järjestyksen.';
+
+  @override
+  String get tourDiscoverBody => 'Katso saman kehittäjän muita sovelluksia.';
+
+  @override
+  String get tourHelpBody =>
+      'Napauta tästä nähdäksesi oppaan uudelleen. Avaa lista nähdäksesi summien ja tuotteiden selitykset.';
+
+  @override
+  String get tourTotalsBody =>
+      'Suunniteltu, toteutunut summa ja erotus päivittyvät ostosten aikana.';
+
+  @override
+  String get tourItemsBody =>
+      'Tuotteesi. Muuta niiden järjestystä tai hae niitä tästä.';
 }

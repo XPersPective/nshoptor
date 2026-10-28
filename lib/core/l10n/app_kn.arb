@@ -396,8 +396,7 @@
   "demoProductTomato": "ಟೊಮೆಟೊ",
   "demoProductEggs": "ಮೊಟ್ಟೆ",
   "demoProductCoffee": "ಕಾಫಿ",
-  "demoProductDetergent": "ಡಿಟರ್ಜೆಂಟ್"
-,
+  "demoProductDetergent": "ಡಿಟರ್ಜೆಂಟ್",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "ಅದೇ ರಸೀದಿ: ಹಿಂದಿನ ಫೋಟೋದ ಕೊನೆಯ ವಸ್ತುವನ್ನು ಸೇರಿಸಿ.",
   "captureTipNeverShow": "ಮತ್ತೆ ತೋರಿಸಬೇಡಿ",
   "captureTipOk": "ಅರ್ಥವಾಯಿತು",
-  "captureTipsSetting": "ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ"
+  "captureTipsSetting": "ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ",
+  "tourSkip": "ಬಿಟ್ಟುಬಿಡಿ",
+  "tourNewListBody": "ಶಾಪಿಂಗ್ ಪಟ್ಟಿಯನ್ನು ಆರಂಭಿಸಿ, ಕೊಳ್ಳಬೇಕಾದುದನ್ನು ಸೇರಿಸಿ.",
+  "tourFromReceiptBody": "ಈಗಾಗಲೇ ಖರೀದಿಸಿದಿರಾ? ರಸೀದಿಯನ್ನು ಅದರ ಬೆಲೆಗಳೊಂದಿಗೆ ಪಟ್ಟಿಯಾಗಿಸಿ.",
+  "tourReceiptFlowBody": "ರಸೀದಿಯ ಮೇಲಿನಿಂದ ಆರಂಭಿಸಿ: ಮೊದಲು ಅಂಗಡಿ ಮತ್ತು ದಿನಾಂಕ, ನಂತರ ಉಳಿದ ಸಾಲುಗಳೊಂದಿಗೆ ಮುಂದುವರಿಸಿ.",
+  "tourTabsBody": "ಸಕ್ರಿಯ, ಪೂರ್ಣಗೊಂಡ ಮತ್ತು ಆರ್ಕೈವ್ ಪಟ್ಟಿಗಳ ನಡುವೆ ಬದಲಿಸಿ. ಕೊನೆಯ ಬಟನ್ ಕ್ರಮವನ್ನು ಬದಲಿಸುತ್ತದೆ.",
+  "tourDiscoverBody": "ಅದೇ ಡೆವಲಪರ್‌ನ ಇನ್ನಷ್ಟು ಆ್ಯಪ್‌ಗಳನ್ನು ನೋಡಿ.",
+  "tourHelpBody": "ಈ ಮಾರ್ಗದರ್ಶಿಯನ್ನು ಮತ್ತೆ ನೋಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ. ಮೊತ್ತ ಮತ್ತು ಐಟಂಗಳ ವಿವರಣೆಗೆ ಒಂದು ಪಟ್ಟಿಯನ್ನು ತೆರೆಯಿರಿ.",
+  "tourTotalsBody": "ಯೋಜಿತ, ನಿಜವಾದ ಮೊತ್ತ ಮತ್ತು ವ್ಯತ್ಯಾಸ ಖರೀದಿಸುವಾಗ ನವೀಕರಿಸಲ್ಪಡುತ್ತವೆ.",
+  "tourItemsBody": "ನಿಮ್ಮ ಐಟಂಗಳು. ಇಲ್ಲಿ ಅವುಗಳ ಕ್ರಮ ಬದಲಿಸಿ ಅಥವಾ ಹುಡುಕಿ."
 }

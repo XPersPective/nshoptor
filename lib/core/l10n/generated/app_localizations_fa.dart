@@ -1459,4 +1459,38 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'نمایش نکات عکس‌برداری از رسید';
+
+  @override
+  String get tourSkip => 'رد شدن';
+
+  @override
+  String get tourNewListBody =>
+      'یک فهرست خرید بسازید و آنچه قصد خریدش را دارید اضافه کنید.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'خرید کرده‌اید؟ رسید را با قیمت‌هایش به فهرست تبدیل کنید.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'از بالای رسید شروع کنید: اول فروشگاه و تاریخ را ثبت کنید، سپس با بقیه سطرها ادامه دهید.';
+
+  @override
+  String get tourTabsBody =>
+      'بین فهرست‌های فعال، تکمیل‌شده و بایگانی‌شده جابه‌جا شوید. دکمه انتها ترتیب را تغییر می‌دهد.';
+
+  @override
+  String get tourDiscoverBody => 'برنامه‌های دیگر همین توسعه‌دهنده را ببینید.';
+
+  @override
+  String get tourHelpBody =>
+      'برای دیدن دوباره این راهنما اینجا بزنید. یک فهرست باز کنید تا توضیح جمع‌ها و اقلام را ببینید.';
+
+  @override
+  String get tourTotalsBody =>
+      'جمع برنامه‌ریزی‌شده، واقعی و اختلاف هنگام خرید به‌روز می‌شود.';
+
+  @override
+  String get tourItemsBody =>
+      'اقلام شما. ترتیبشان را تغییر دهید یا اینجا جست‌وجو کنید.';
 }

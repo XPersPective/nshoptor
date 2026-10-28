@@ -1467,4 +1467,38 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Zobrazovat tipy k focení účtenky';
+
+  @override
+  String get tourSkip => 'Přeskočit';
+
+  @override
+  String get tourNewListBody =>
+      'Založte nákupní seznam a přidejte, co plánujete koupit.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Už máte nakoupeno? Udělejte z účtenky seznam s cenami.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Začněte nahoře na účtence: nejprve zachyťte obchod a datum, pak pokračujte zbylými řádky.';
+
+  @override
+  String get tourTabsBody =>
+      'Přepínejte mezi aktivními, dokončenými a archivovanými seznamy. Tlačítko na konci mění pořadí.';
+
+  @override
+  String get tourDiscoverBody => 'Další aplikace od stejného vývojáře.';
+
+  @override
+  String get tourHelpBody =>
+      'Klepnutím sem si průvodce pustíte znovu. Otevřete seznam a uvidíte vysvětlení součtů a položek.';
+
+  @override
+  String get tourTotalsBody =>
+      'Plánovaný, skutečný součet a rozdíl se při nákupu průběžně aktualizují.';
+
+  @override
+  String get tourItemsBody =>
+      'Vaše položky. Zde měňte jejich pořadí nebo je vyhledejte.';
 }

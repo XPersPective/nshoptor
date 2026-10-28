@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomàquets",
   "demoProductEggs": "Ous",
   "demoProductCoffee": "Cafè",
-  "demoProductDetergent": "Detergent"
-,
+  "demoProductDetergent": "Detergent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Mateix rebut: inclou l’últim article de la foto anterior.",
   "captureTipNeverShow": "No ho tornis a mostrar",
   "captureTipOk": "Entesos",
-  "captureTipsSetting": "Mostra els consells per fotografiar el rebut"
+  "captureTipsSetting": "Mostra els consells per fotografiar el rebut",
+  "tourSkip": "Omet",
+  "tourNewListBody": "Crea una llista de la compra i afegeix el que vols comprar.",
+  "tourFromReceiptBody": "Ja has comprat? Converteix un tiquet en una llista amb els preus.",
+  "tourReceiptFlowBody": "Comença per la part de dalt del tiquet: primer la botiga i la data, després continua amb la resta de línies.",
+  "tourTabsBody": "Canvia entre llistes actives, completades i arxivades. El botó del final canvia l'ordre.",
+  "tourDiscoverBody": "Mira més apps del mateix desenvolupador.",
+  "tourHelpBody": "Toca aquí per tornar a veure aquesta guia. Obre una llista per veure explicats els totals i els productes.",
+  "tourTotalsBody": "Els totals previst, real i la diferència s'actualitzen mentre compres.",
+  "tourItemsBody": "Els teus productes. Canvia'n l'ordre o cerca'ls aquí."
 }

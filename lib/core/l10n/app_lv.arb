@@ -396,8 +396,7 @@
   "demoProductTomato": "Tomāti",
   "demoProductEggs": "Olas",
   "demoProductCoffee": "Kafija",
-  "demoProductDetergent": "Mazgāšanas līdzeklis"
-,
+  "demoProductDetergent": "Mazgāšanas līdzeklis",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Tas pats čeks: iekļaujiet iepriekšējā foto pēdējo preci.",
   "captureTipNeverShow": "Vairs nerādīt",
   "captureTipOk": "Skaidrs",
-  "captureTipsSetting": "Rādīt čeka fotografēšanas padomus"
+  "captureTipsSetting": "Rādīt čeka fotografēšanas padomus",
+  "tourSkip": "Izlaist",
+  "tourNewListBody": "Sāciet iepirkumu sarakstu un pievienojiet, ko plānojat pirkt.",
+  "tourFromReceiptBody": "Jau iepirkāties? Pārvērtiet čeku sarakstā ar cenām.",
+  "tourReceiptFlowBody": "Sāciet čeka augšā: vispirms veikalu un datumu, pēc tam turpiniet ar pārējām rindām.",
+  "tourTabsBody": "Pārslēdzieties starp aktīviem, pabeigtiem un arhivētiem sarakstiem. Poga galā maina secību.",
+  "tourDiscoverBody": "Citas tā paša izstrādātāja lietotnes.",
+  "tourHelpBody": "Pieskarieties šeit, lai vēlreiz skatītu ceļvedi. Atveriet sarakstu, lai redzētu summu un preču skaidrojumu.",
+  "tourTotalsBody": "Plānotā, faktiskā summa un starpība atjaunojas iepirkšanās laikā.",
+  "tourItemsBody": "Jūsu preces. Šeit mainiet to secību vai meklējiet tās."
 }

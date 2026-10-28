@@ -396,8 +396,7 @@
   "demoProductTomato": "Помідори",
   "demoProductEggs": "Яйця",
   "demoProductCoffee": "Кава",
-  "demoProductDetergent": "Пральний порошок"
-,
+  "demoProductDetergent": "Пральний порошок",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Той самий чек: додайте останню позицію з попереднього фото.",
   "captureTipNeverShow": "Більше не показувати",
   "captureTipOk": "Зрозуміло",
-  "captureTipsSetting": "Показувати поради щодо зйомки чека"
+  "captureTipsSetting": "Показувати поради щодо зйомки чека",
+  "tourSkip": "Пропустити",
+  "tourNewListBody": "Створіть список покупок і додайте те, що плануєте купити.",
+  "tourFromReceiptBody": "Уже зробили покупки? Перетворіть чек на список із цінами.",
+  "tourReceiptFlowBody": "Почніть з верху чека: спершу зніміть магазин і дату, потім продовжуйте рештою рядків.",
+  "tourTabsBody": "Перемикайтеся між активними, завершеними та архівними списками. Кнопка в кінці змінює порядок.",
+  "tourDiscoverBody": "Інші застосунки того самого розробника.",
+  "tourHelpBody": "Торкніться тут, щоб переглянути посібник знову. Відкрийте список, щоб дізнатися про підсумки й товари.",
+  "tourTotalsBody": "Підсумки за планом, фактом і різницею оновлюються під час покупок.",
+  "tourItemsBody": "Ваші товари. Змінюйте їхній порядок або шукайте їх тут."
 }

@@ -407,8 +407,7 @@
   "demoProductTomato": "עגבניות",
   "demoProductEggs": "ביצים",
   "demoProductCoffee": "קפה",
-  "demoProductDetergent": "אבקת כביסה"
-,
+  "demoProductDetergent": "אבקת כביסה",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "אותה קבלה: כללו את הפריט האחרון מהתמונה הקודמת.",
   "captureTipNeverShow": "אל תציג שוב",
   "captureTipOk": "הבנתי",
-  "captureTipsSetting": "הצג טיפים לצילום קבלה"
+  "captureTipsSetting": "הצג טיפים לצילום קבלה",
+  "tourSkip": "דילוג",
+  "tourNewListBody": "התחילו רשימת קניות והוסיפו את מה שאתם מתכננים לקנות.",
+  "tourFromReceiptBody": "כבר קניתם? הפכו קבלה לרשימה עם המחירים שלה.",
+  "tourReceiptFlowBody": "התחילו בראש הקבלה: צלמו קודם את החנות והתאריך, ואז המשיכו עם שאר השורות.",
+  "tourTabsBody": "עברו בין רשימות פעילות, שהושלמו ובארכיון. הכפתור בסוף משנה את הסדר.",
+  "tourDiscoverBody": "ראו אפליקציות נוספות של אותו מפתח.",
+  "tourHelpBody": "הקישו כאן כדי לצפות שוב במדריך. פתחו רשימה כדי לקבל הסבר על הסכומים והפריטים.",
+  "tourTotalsBody": "הסכומים המתוכנן, בפועל וההפרש מתעדכנים בזמן הקנייה.",
+  "tourItemsBody": "הפריטים שלכם. שנו את הסדר או חפשו אותם כאן."
 }

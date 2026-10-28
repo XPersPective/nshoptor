@@ -1472,4 +1472,38 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Ցուցադրել կտրոնի լուսանկարման խորհուրդները';
+
+  @override
+  String get tourSkip => 'Բաց թողնել';
+
+  @override
+  String get tourNewListBody =>
+      'Սկսեք գնումների ցուցակ և ավելացրեք այն, ինչ պատրաստվում եք գնել։';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Արդեն գնումներ եք արե՞լ։ Կտրոնը դարձրեք ցուցակ՝ գներով։';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Սկսեք կտրոնի վերևից՝ նախ խանութն ու ամսաթիվը, հետո շարունակեք մնացած տողերով։';
+
+  @override
+  String get tourTabsBody =>
+      'Անցեք ակտիվ, ավարտված և արխիվացված ցուցակների միջև։ Վերջի կոճակը փոխում է հերթականությունը։';
+
+  @override
+  String get tourDiscoverBody => 'Նույն մշակողի այլ հավելվածներ։';
+
+  @override
+  String get tourHelpBody =>
+      'Հպեք այստեղ՝ ուղեցույցը կրկին դիտելու համար։ Բացեք ցուցակ՝ գումարների և ապրանքների բացատրությունը տեսնելու համար։';
+
+  @override
+  String get tourTotalsBody =>
+      'Պլանավորված, փաստացի գումարները և տարբերությունը թարմացվում են գնումների ընթացքում։';
+
+  @override
+  String get tourItemsBody =>
+      'Ձեր ապրանքները։ Այստեղ փոխեք դրանց հերթականությունը կամ որոնեք։';
 }

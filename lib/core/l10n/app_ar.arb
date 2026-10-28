@@ -407,8 +407,7 @@
   "demoProductTomato": "طماطم",
   "demoProductEggs": "بيض",
   "demoProductCoffee": "قهوة",
-  "demoProductDetergent": "منظف"
-,
+  "demoProductDetergent": "منظف",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "نفس الإيصال: ضمّن آخر عنصر من الصورة السابقة.",
   "captureTipNeverShow": "عدم الإظهار مرة أخرى",
   "captureTipOk": "فهمت",
-  "captureTipsSetting": "إظهار نصائح تصوير الإيصال"
+  "captureTipsSetting": "إظهار نصائح تصوير الإيصال",
+  "tourSkip": "تخطٍّ",
+  "tourNewListBody": "ابدأ قائمة تسوق وأضف ما تنوي شراءه.",
+  "tourFromReceiptBody": "تسوقت بالفعل؟ حوّل الإيصال إلى قائمة بأسعاره.",
+  "tourReceiptFlowBody": "ابدأ من أعلى الإيصال: صوّر المتجر والتاريخ أولًا، ثم تابع ببقية السطور.",
+  "tourTabsBody": "تنقّل بين القوائم النشطة والمكتملة والمؤرشفة. الزر في النهاية يغيّر الترتيب.",
+  "tourDiscoverBody": "اطّلع على تطبيقات أخرى من المطوّر نفسه.",
+  "tourHelpBody": "اضغط هنا لإعادة عرض هذا الدليل. افتح قائمة لترى شرح مجاميعها وعناصرها.",
+  "tourTotalsBody": "تتحدث مجاميع المخطط والفعلي والفرق أثناء تسوقك.",
+  "tourItemsBody": "عناصرك. غيّر ترتيبها أو ابحث عنها هنا."
 }

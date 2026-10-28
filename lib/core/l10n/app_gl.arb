@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomates",
   "demoProductEggs": "Ovos",
   "demoProductCoffee": "Café",
-  "demoProductDetergent": "Deterxente"
-,
+  "demoProductDetergent": "Deterxente",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Mesmo recibo: inclúe o último artigo da foto anterior.",
   "captureTipNeverShow": "Non volver mostrar",
   "captureTipOk": "Entendido",
-  "captureTipsSetting": "Mostrar consellos para fotografar o recibo"
+  "captureTipsSetting": "Mostrar consellos para fotografar o recibo",
+  "tourSkip": "Omitir",
+  "tourNewListBody": "Crea unha lista da compra e engade o que pensas mercar.",
+  "tourFromReceiptBody": "Xa fixeches a compra? Converte un tícket nunha lista cos seus prezos.",
+  "tourReceiptFlowBody": "Comeza pola parte superior do tícket: primeiro a tenda e a data, despois continúa co resto das liñas.",
+  "tourTabsBody": "Cambia entre listas activas, completadas e arquivadas. O botón do final cambia a orde.",
+  "tourDiscoverBody": "Mira máis apps do mesmo desenvolvedor.",
+  "tourHelpBody": "Toca aquí para ver de novo esta guía. Abre unha lista para ver explicados os totais e os produtos.",
+  "tourTotalsBody": "Os totais previsto, real e a diferenza actualízanse mentres compras.",
+  "tourItemsBody": "Os teus produtos. Cambia a súa orde ou búscaos aquí."
 }

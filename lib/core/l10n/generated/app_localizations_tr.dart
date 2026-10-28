@@ -1464,4 +1464,39 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Fiş çekme ipuçlarını göster';
+
+  @override
+  String get tourSkip => 'Geç';
+
+  @override
+  String get tourNewListBody =>
+      'Bir alışveriş listesi başlatın ve almayı planladıklarınızı ekleyin.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Alışverişi yaptınız mı? Fişi fiyatlarıyla birlikte listeye dönüştürün.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Fişin en üstünden başlayın: önce mağaza ve tarihi çekin, sonra kalan satırlarla devam edin.';
+
+  @override
+  String get tourTabsBody =>
+      'Aktif, tamamlanan ve arşivlenen listeler arasında geçin. Sondaki düğme sıralamayı değiştirir.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Aynı geliştiricinin diğer uygulamalarını görün.';
+
+  @override
+  String get tourHelpBody =>
+      'Bu rehberi yeniden izlemek için buraya dokunun. Toplamların ve ürünlerin anlatımı için bir liste açın.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planlanan, gerçek ve fark toplamları alışveriş yaptıkça güncellenir.';
+
+  @override
+  String get tourItemsBody =>
+      'Ürünleriniz. Sıralarını buradan değiştirin veya arayın.';
 }

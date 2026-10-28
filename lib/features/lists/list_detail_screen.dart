@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../core/money/format_locale.dart';
 
 import 'package:flutter/material.dart';
@@ -29,9 +31,12 @@ import '../shopping_mode/shopping_repository.dart';
 import '../shopping_mode/summary/result_repository.dart';
 import '../shopping_mode/summary/summary_screen.dart';
 import '../shopping_mode/summary/pdf_report.dart';
+
 import 'package:napp_ads/napp_ads.dart';
+
 import '../history/insights/budget_check.dart';
 import '../history/price_history/price_history_sheet.dart';
+import '../onboarding/coach_tour.dart';
 import '../onboarding/first_run_guide.dart';
 import '../receipts/ocr_text_source.dart';
 import '../receipts/receipt_capture_flow.dart';
@@ -114,6 +119,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   bool _editable = false;
   ListStatus? _status;
   BudgetStatus? _budgetStatus;
+  final _contentShown = Completer<void>();
 
   @override
   void initState() {
@@ -125,6 +131,21 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
     WidgetsBinding.instance.addObserver(this);
     _listFuture = _loadList();
+    if (AppDefaults.detailTourPending()) unawaited(_continueTour());
+  }
+
+  /// PB-201: the lists tour continues here once, after the list is shown.
+  Future<void> _continueTour() async {
+    try {
+      await _listFuture;
+    } catch (_) {
+      return;
+    }
+    // Items decide which controls (Items row, sort) are on screen.
+    await _contentShown.future;
+    await WidgetsBinding.instance.endOfFrame;
+    if (!mounted || ModalRoute.of(context)?.isCurrent == false) return;
+    await runDetailTour(context);
   }
 
   @override
@@ -510,6 +531,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                 await _checkBudgetAndWarn();
               } else if (action == 'receipt') {
                 await _scanReceipt(context);
+              } else if (action == 'help') {
+                await runDetailTour(context);
               } else if (action == 'archive') {
                 await widget.listRepository.changeStatus(
                   widget.listId,
@@ -570,6 +593,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                   child: Text(l10n.continueShoppingLabel),
                 ),
               PopupMenuItem(value: 'archive', child: Text(l10n.archiveAction)),
+              PopupMenuItem(
+                key: const Key('detail_how_to_use'),
+                value: 'help',
+                child: Text(l10n.howToUseLabel),
+              ),
             ],
           ),
         ],
@@ -596,6 +624,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
               builder: (context, entrySnap) {
                 final items = itemSnap.data ?? const <PlannedItem>[];
                 final entries = entrySnap.data ?? const <PurchaseEntry>[];
+                if (itemSnap.hasData &&
+                    entrySnap.hasData &&
+                    !_contentShown.isCompleted) {
+                  _contentShown.complete();
+                }
                 final locale = Localizations.localeOf(context).languageCode;
                 final searching = _searchQuery.trim().isNotEmpty;
                 final orderedItems = sortedItemsForView(
@@ -664,49 +697,47 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                       ),
                     ),
                     Flexible(
-                        child: PopupMenuButton<ItemSortMode>(
-                          key: const Key('detail_item_sort'),
-                          tooltip: l10n.listSortLabel,
-                          initialValue: _sortMode,
-                          enabled: !_busy && !_sortBusy,
-                          onSelected: _changeSort,
-                          itemBuilder: (_) => [
-                            CheckedPopupMenuItem(
-                              value: ItemSortMode.custom,
-                              checked: _sortMode == ItemSortMode.custom,
-                              child: Text(l10n.listSortManual),
-                            ),
-                            CheckedPopupMenuItem(
-                              value: ItemSortMode.alphabetical,
-                              checked: _sortMode == ItemSortMode.alphabetical,
-                              child: Text(l10n.listSortAz),
-                            ),
-                          ],
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(minHeight: 48),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(Icons.sort),
-                                  const SizedBox(width: 8),
-                                  Flexible(
-                                    child: Text(
-                                      _sortMode == ItemSortMode.custom
-                                          ? l10n.listSortManual
-                                          : l10n.listSortAz,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
+                      child: PopupMenuButton<ItemSortMode>(
+                        key: const Key('detail_item_sort'),
+                        tooltip: l10n.listSortLabel,
+                        initialValue: _sortMode,
+                        enabled: !_busy && !_sortBusy,
+                        onSelected: _changeSort,
+                        itemBuilder: (_) => [
+                          CheckedPopupMenuItem(
+                            value: ItemSortMode.custom,
+                            checked: _sortMode == ItemSortMode.custom,
+                            child: Text(l10n.listSortManual),
+                          ),
+                          CheckedPopupMenuItem(
+                            value: ItemSortMode.alphabetical,
+                            checked: _sortMode == ItemSortMode.alphabetical,
+                            child: Text(l10n.listSortAz),
+                          ),
+                        ],
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(minHeight: 48),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.sort),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  child: Text(
+                                    _sortMode == ItemSortMode.custom
+                                        ? l10n.listSortManual
+                                        : l10n.listSortAz,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  const Icon(Icons.arrow_drop_down),
-                                ],
-                              ),
+                                ),
+                                const Icon(Icons.arrow_drop_down),
+                              ],
                             ),
                           ),
                         ),
+                      ),
                     ),
                   ],
                 );
@@ -748,37 +779,46 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                       child: ListView(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         children: [
-                          Card(
-                            margin: const EdgeInsets.only(top: 12, bottom: 8),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Semantics(
-                                    header: true,
-                                    child: Text(
-                                      l10n.compareTotal,
-                                      key: const Key('detail_totals_heading'),
-                                      style: headingStyle,
+                          TourAnchor(
+                            id: TourTargets.detailTotals,
+                            child: Card(
+                              margin: const EdgeInsets.only(top: 12, bottom: 8),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Semantics(
+                                      header: true,
+                                      child: Text(
+                                        l10n.compareTotal,
+                                        key: const Key('detail_totals_heading'),
+                                        style: headingStyle,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  _TotalsRow(
-                                    items: items,
-                                    entries: entries,
-                                    currencyCode: list.currencyCode,
-                                  ),
-                                  _BudgetWarningRow(
-                                    list: list,
-                                    entries: entries,
-                                    status: _budgetStatus,
-                                  ),
-                                ],
+                                    const SizedBox(height: 8),
+                                    _TotalsRow(
+                                      items: items,
+                                      entries: entries,
+                                      currencyCode: list.currencyCode,
+                                    ),
+                                    _BudgetWarningRow(
+                                      list: list,
+                                      entries: entries,
+                                      status: _budgetStatus,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                          if (hasProducts) ...[productsHeader, searchField],
+                          if (hasProducts) ...[
+                            TourAnchor(
+                              id: TourTargets.detailItems,
+                              child: productsHeader,
+                            ),
+                            searchField,
+                          ],
                           if (items.isEmpty && entries.isEmpty)
                             Padding(
                               padding: const EdgeInsets.all(16),
@@ -884,7 +924,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              SizedBox(
+                              TourAnchor(
+                                id: TourTargets.detailAdd,
                                 // Tap = one item in the full form; mic = many
                                 // items spoken at once (draft with approval).
                                 child: TextField(
@@ -910,34 +951,37 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: OutlinedButton.icon(
-                                      key: const Key('detail_receipt_button'),
-                                      onPressed: _busy
-                                          ? null
-                                          : () => _scanReceipt(context),
-                                      icon: const Icon(
-                                        Icons.receipt_long_outlined,
-                                      ),
-                                      label: Text(
-                                        l10n.scanReceiptAction,
-                                        textAlign: TextAlign.center,
+                              TourAnchor(
+                                id: TourTargets.detailReceipt,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: OutlinedButton.icon(
+                                        key: const Key('detail_receipt_button'),
+                                        onPressed: _busy
+                                            ? null
+                                            : () => _scanReceipt(context),
+                                        icon: const Icon(
+                                          Icons.receipt_long_outlined,
+                                        ),
+                                        label: Text(
+                                          l10n.scanReceiptAction,
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  IconButton.outlined(
-                                    key: const Key('detail_receipt_help'),
-                                    tooltip: l10n.howToUseLabel,
-                                    onPressed: () => showScanHelpDialog(
-                                      context,
-                                      isReceipt: true,
+                                    const SizedBox(width: 8),
+                                    IconButton.outlined(
+                                      key: const Key('detail_receipt_help'),
+                                      tooltip: l10n.howToUseLabel,
+                                      onPressed: () => showScanHelpDialog(
+                                        context,
+                                        isReceipt: true,
+                                      ),
+                                      icon: const Icon(Icons.help_outline),
                                     ),
-                                    icon: const Icon(Icons.help_outline),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),

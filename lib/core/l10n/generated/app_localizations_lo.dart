@@ -1455,4 +1455,37 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ';
+
+  @override
+  String get tourSkip => 'ຂ້າມ';
+
+  @override
+  String get tourNewListBody =>
+      'ເລີ່ມລາຍການຊື້ເຄື່ອງ ແລະ ເພີ່ມສິ່ງທີ່ທ່ານຕັ້ງໃຈຈະຊື້.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ຊື້ເຄື່ອງແລ້ວບໍ? ປ່ຽນໃບບິນເປັນລາຍການພ້ອມລາຄາ.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ເລີ່ມຈາກທາງເທິງຂອງໃບບິນ: ຖ່າຍຮ້ານ ແລະ ວັນທີກ່ອນ, ແລ້ວສືບຕໍ່ກັບແຖວທີ່ເຫຼືອ.';
+
+  @override
+  String get tourTabsBody =>
+      'ສະຫຼັບລະຫວ່າງລາຍການທີ່ໃຊ້ງານ, ສຳເລັດແລ້ວ ແລະ ເກັບໄວ້. ປຸ່ມທ້າຍແຖວປ່ຽນລຳດັບ.';
+
+  @override
+  String get tourDiscoverBody => 'ເບິ່ງແອັບອື່ນຈາກຜູ້ພັດທະນາດຽວກັນ.';
+
+  @override
+  String get tourHelpBody =>
+      'ແຕະບ່ອນນີ້ເພື່ອເບິ່ງຄຳແນະນຳນີ້ອີກຄັ້ງ. ເປີດລາຍການເພື່ອເບິ່ງຄຳອະທິບາຍຍອດລວມ ແລະ ສິນຄ້າ.';
+
+  @override
+  String get tourTotalsBody =>
+      'ຍອດລວມຕາມແຜນ, ຍອດຈິງ ແລະ ສ່ວນຕ່າງຈະອັບເດດຂະນະທີ່ທ່ານຊື້.';
+
+  @override
+  String get tourItemsBody => 'ສິນຄ້າຂອງທ່ານ. ປ່ຽນລຳດັບ ຫຼື ຊອກຫາໄດ້ທີ່ນີ້.';
 }

@@ -396,8 +396,7 @@
   "demoProductTomato": "Pomidorai",
   "demoProductEggs": "Kiaušiniai",
   "demoProductCoffee": "Kava",
-  "demoProductDetergent": "Skalbiklis"
-,
+  "demoProductDetergent": "Skalbiklis",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Tas pats kvitas: įtraukite paskutinę ankstesnės nuotraukos prekę.",
   "captureTipNeverShow": "Daugiau nerodyti",
   "captureTipOk": "Supratau",
-  "captureTipsSetting": "Rodyti kvito fotografavimo patarimus"
+  "captureTipsSetting": "Rodyti kvito fotografavimo patarimus",
+  "tourSkip": "Praleisti",
+  "tourNewListBody": "Pradėkite pirkinių sąrašą ir įtraukite, ką planuojate pirkti.",
+  "tourFromReceiptBody": "Jau apsipirkote? Paverskite kvitą sąrašu su kainomis.",
+  "tourReceiptFlowBody": "Pradėkite nuo kvito viršaus: pirmiausia parduotuvę ir datą, tada tęskite kitomis eilutėmis.",
+  "tourTabsBody": "Perjunkite aktyvius, užbaigtus ir archyvuotus sąrašus. Mygtukas gale keičia tvarką.",
+  "tourDiscoverBody": "Daugiau to paties kūrėjo programėlių.",
+  "tourHelpBody": "Bakstelėkite čia, kad vėl peržiūrėtumėte vadovą. Atidarykite sąrašą, kad pamatytumėte sumų ir prekių paaiškinimą.",
+  "tourTotalsBody": "Planuota, faktinė suma ir skirtumas atnaujinami apsiperkant.",
+  "tourItemsBody": "Jūsų prekės. Čia keiskite jų tvarką arba ieškokite."
 }

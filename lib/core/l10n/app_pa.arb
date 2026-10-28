@@ -396,8 +396,7 @@
   "demoProductTomato": "ਟਮਾਟਰ",
   "demoProductEggs": "ਆਂਡੇ",
   "demoProductCoffee": "ਕੌਫ਼ੀ",
-  "demoProductDetergent": "ਡਿਟਰਜੈਂਟ"
-,
+  "demoProductDetergent": "ਡਿਟਰਜੈਂਟ",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "ਉਹੀ ਰਸੀਦ: ਪਿਛਲੀ ਤਸਵੀਰ ਦੀ ਆਖਰੀ ਚੀਜ਼ ਸ਼ਾਮਲ ਕਰੋ।",
   "captureTipNeverShow": "ਦੁਬਾਰਾ ਨਾ ਦਿਖਾਓ",
   "captureTipOk": "ਸਮਝ ਗਿਆ",
-  "captureTipsSetting": "ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ"
+  "captureTipsSetting": "ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ",
+  "tourSkip": "ਛੱਡੋ",
+  "tourNewListBody": "ਖਰੀਦਦਾਰੀ ਸੂਚੀ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਜੋ ਖਰੀਦਣਾ ਹੈ ਉਹ ਜੋੜੋ।",
+  "tourFromReceiptBody": "ਖਰੀਦਦਾਰੀ ਕਰ ਲਈ? ਰਸੀਦ ਨੂੰ ਉਸ ਦੀਆਂ ਕੀਮਤਾਂ ਸਮੇਤ ਸੂਚੀ ਵਿੱਚ ਬਦਲੋ।",
+  "tourReceiptFlowBody": "ਰਸੀਦ ਦੇ ਉੱਪਰੋਂ ਸ਼ੁਰੂ ਕਰੋ: ਪਹਿਲਾਂ ਦੁਕਾਨ ਅਤੇ ਤਾਰੀਖ ਲਓ, ਫਿਰ ਬਾਕੀ ਲਾਈਨਾਂ ਨਾਲ ਜਾਰੀ ਰੱਖੋ।",
+  "tourTabsBody": "ਸਰਗਰਮ, ਪੂਰੀਆਂ ਅਤੇ ਪੁਰਾਲੇਖ ਸੂਚੀਆਂ ਵਿਚਕਾਰ ਬਦਲੋ। ਅੰਤ ਵਾਲਾ ਬਟਨ ਕ੍ਰਮ ਬਦਲਦਾ ਹੈ।",
+  "tourDiscoverBody": "ਉਸੇ ਡਿਵੈਲਪਰ ਦੀਆਂ ਹੋਰ ਐਪਾਂ ਦੇਖੋ।",
+  "tourHelpBody": "ਇਹ ਗਾਈਡ ਦੁਬਾਰਾ ਦੇਖਣ ਲਈ ਇੱਥੇ ਟੈਪ ਕਰੋ। ਜੋੜ ਅਤੇ ਆਈਟਮਾਂ ਦੀ ਵਿਆਖਿਆ ਲਈ ਕੋਈ ਸੂਚੀ ਖੋਲ੍ਹੋ।",
+  "tourTotalsBody": "ਯੋਜਨਾਬੱਧ, ਅਸਲ ਜੋੜ ਅਤੇ ਫਰਕ ਖਰੀਦਦਾਰੀ ਦੌਰਾਨ ਅੱਪਡੇਟ ਹੁੰਦੇ ਹਨ।",
+  "tourItemsBody": "ਤੁਹਾਡੀਆਂ ਆਈਟਮਾਂ। ਇੱਥੇ ਇਹਨਾਂ ਦਾ ਕ੍ਰਮ ਬਦਲੋ ਜਾਂ ਲੱਭੋ।"
 }

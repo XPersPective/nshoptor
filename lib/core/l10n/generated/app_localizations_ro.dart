@@ -1476,4 +1476,39 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Afișează sfaturile pentru fotografierea bonului';
+
+  @override
+  String get tourSkip => 'Omite';
+
+  @override
+  String get tourNewListBody =>
+      'Începe o listă de cumpărături și adaugă ce vrei să cumperi.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Ai făcut deja cumpărăturile? Transformă bonul într-o listă cu prețuri.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Începe din partea de sus a bonului: întâi magazinul și data, apoi continuă cu restul rândurilor.';
+
+  @override
+  String get tourTabsBody =>
+      'Comută între listele active, finalizate și arhivate. Butonul de la capăt schimbă ordinea.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Vezi alte aplicații ale aceluiași dezvoltator.';
+
+  @override
+  String get tourHelpBody =>
+      'Atinge aici pentru a revedea ghidul. Deschide o listă pentru explicații despre totaluri și produse.';
+
+  @override
+  String get tourTotalsBody =>
+      'Totalurile planificat, real și diferența se actualizează în timp ce cumperi.';
+
+  @override
+  String get tourItemsBody =>
+      'Produsele tale. Schimbă-le ordinea sau caută-le aici.';
 }

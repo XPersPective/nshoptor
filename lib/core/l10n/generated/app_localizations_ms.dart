@@ -1467,4 +1467,38 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Tunjukkan petua merakam resit';
+
+  @override
+  String get tourSkip => 'Langkau';
+
+  @override
+  String get tourNewListBody =>
+      'Mulakan senarai beli-belah dan tambah apa yang anda mahu beli.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Sudah membeli-belah? Tukar resit kepada senarai dengan harganya.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Mulakan dari bahagian atas resit: ambil kedai dan tarikh dahulu, kemudian teruskan dengan baris lain.';
+
+  @override
+  String get tourTabsBody =>
+      'Tukar antara senarai aktif, selesai dan arkib. Butang di hujung menukar susunan.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Lihat aplikasi lain daripada pembangun yang sama.';
+
+  @override
+  String get tourHelpBody =>
+      'Ketik di sini untuk melihat panduan ini semula. Buka senarai untuk melihat penerangan jumlah dan item.';
+
+  @override
+  String get tourTotalsBody =>
+      'Jumlah dirancang, sebenar dan perbezaan dikemas kini semasa anda membeli-belah.';
+
+  @override
+  String get tourItemsBody => 'Item anda. Tukar susunan atau cari di sini.';
 }

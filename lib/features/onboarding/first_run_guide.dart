@@ -2,130 +2,109 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
+import 'coach_tour.dart';
 
-/// Short, replayable guide. Finishing or explicitly closing acknowledges first
-/// use. System back leaves the unfinished guide available next launch.
+/// "How to use": the coach-mark tour over the lists home (PB-201, F40).
+/// Inside the home shell it switches to the lists tab first, so Settings and
+/// the lists help button show the same tour over the real controls.
+/// Finishing or skipping acknowledges first use; system back leaves the
+/// first-run tour available next launch.
 Future<void> showFirstRunGuide(BuildContext context) async {
+  final host = GuidedTourHost.maybeOf(context);
+  if (host != null) return host.start();
+  await runHomeTour(context);
+}
+
+/// Lists home steps; finishing queues the list detail part for the next
+/// opened list.
+Future<void> runHomeTour(BuildContext context) async {
   final l10n = AppLocalizations.of(context);
-  final steps = [
-    (icon: Icons.add, title: l10n.addItemTooltip, body: l10n.guideAddBody),
-    (
-      icon: Icons.price_check,
-      title: l10n.actualPriceLabel,
-      body: l10n.guidePricesBody,
+  final outcome = await runCoachTour(context, [
+    TourStep(
+      target: TourTargets.listsNew,
+      icon: Icons.add,
+      title: l10n.newListButton,
+      body: l10n.tourNewListBody,
     ),
-    (
-      icon: Icons.mic_none,
-      title: l10n.voiceInputTitle,
-      body:
-          '${l10n.guideVoiceBody}\n\n${l10n.tipVoiceAdd}\n\n${l10n.voiceUnavailable}\n\n${l10n.aiOffline}',
-    ),
-    (
+    TourStep(
+      target: TourTargets.listsReceipt,
+      optional: true,
       icon: Icons.receipt_long_outlined,
+      title: l10n.fromReceiptListButton,
+      body: l10n.tourFromReceiptBody,
+    ),
+    TourStep(
+      icon: Icons.document_scanner_outlined,
       title: l10n.scanReceiptAction,
-      body: '${l10n.guideReceiptBody}\n\n${l10n.receiptLineActions}',
+      body: l10n.tourReceiptFlowBody,
+      visual: const _GuideStepDiagram(stepIndex: 3),
     ),
-    (
-      icon: Icons.insights_outlined,
-      title: l10n.navHistory,
-      body:
-          '${l10n.purchaseHistoryHint}\n\n${l10n.monthlyReportAction}\n${l10n.reportPdfAction}',
+    TourStep(
+      target: TourTargets.listsTabs,
+      icon: Icons.tab_outlined,
+      title: l10n.listsTitle,
+      body: l10n.tourTabsBody,
     ),
-    (
-      icon: Icons.notifications_none,
-      title: l10n.setReminderAction,
-      body:
-          '${l10n.reminderPickDate} → ${l10n.reminderPickTime}\n\n${l10n.reminderPermissionDenied}',
+    TourStep(
+      target: TourTargets.listsDiscover,
+      optional: true,
+      icon: Icons.explore_outlined,
+      title: l10n.navDiscover,
+      body: l10n.tourDiscoverBody,
     ),
-    (
+    TourStep(
+      target: TourTargets.listsPlan,
+      optional: true,
       icon: Icons.workspace_premium_outlined,
       title: l10n.plansTitle,
-      body:
-          '${l10n.guidePlanBody}\n\n${l10n.planCoreFeatures}\n\n${l10n.planBackup}',
+      body: l10n.guidePlanBody,
     ),
-  ];
-  var index = 0;
-  final completed = await showDialog<bool>(
-    context: context,
-    barrierDismissible: false,
-    builder: (ctx) => StatefulBuilder(
-      builder: (ctx, setState) {
-        final last = index == steps.length - 1;
-        final step = steps[index];
-        final material = MaterialLocalizations.of(ctx);
-        // A new subtree resets the scroll position when changing steps.
-        return KeyedSubtree(
-          key: ValueKey(index),
-          child: AlertDialog(
-            key: const Key('first_run_guide'),
-            insetPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 24,
-            ),
-            scrollable: true,
-            icon: Icon(step.icon),
-            title: Text(step.title),
-            content: Column(
-              key: ValueKey(index),
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Semantics(
-                  label: l10n.howToUseLabel,
-                  value: '${index + 1} / ${steps.length}',
-                  child: ExcludeSemantics(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${index + 1} / ${steps.length}',
-                          key: const Key('first_run_guide_progress'),
-                          style: Theme.of(ctx).textTheme.labelLarge,
-                        ),
-                        const SizedBox(height: 8),
-                        LinearProgressIndicator(
-                          value: (index + 1) / steps.length,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                _GuideStepDiagram(stepIndex: index),
-                const SizedBox(height: 16),
-                Text(step.body),
-              ],
-            ),
-            actions: [
-              TextButton(
-                key: const Key('first_run_guide_close'),
-                onPressed: () => Navigator.of(ctx).pop(true),
-                child: Text(material.closeButtonLabel),
-              ),
-              if (index > 0)
-                TextButton(
-                  key: const Key('first_run_guide_back'),
-                  onPressed: () => setState(() => index--),
-                  child: Text(material.backButtonTooltip),
-                ),
-              FilledButton(
-                key: const Key('first_run_guide_next'),
-                onPressed: () {
-                  if (last) {
-                    Navigator.of(ctx).pop(true);
-                  } else {
-                    setState(() => index++);
-                  }
-                },
-                child: Text(last ? l10n.guideDone : l10n.guideNext),
-              ),
-            ],
-          ),
-        );
-      },
+    TourStep(
+      target: TourTargets.listsHelp,
+      icon: Icons.help_outline,
+      title: l10n.howToUseLabel,
+      body: l10n.tourHelpBody,
     ),
-  );
-  if (completed == true) AppDefaults.markGuideSeen();
+  ]);
+  if (outcome == TourOutcome.dismissed) return;
+  AppDefaults.markGuideSeen();
+  AppDefaults.setDetailTourPending(outcome == TourOutcome.finished);
+}
+
+/// List detail steps: totals, items and sort, adding items, receipt scan.
+/// Steps whose control is not shown (read-only or empty list) are dropped.
+Future<void> runDetailTour(BuildContext context) async {
+  AppDefaults.setDetailTourPending(false);
+  final l10n = AppLocalizations.of(context);
+  await runCoachTour(context, [
+    TourStep(
+      target: TourTargets.detailTotals,
+      icon: Icons.calculate_outlined,
+      title: l10n.compareTotal,
+      body: l10n.tourTotalsBody,
+    ),
+    TourStep(
+      target: TourTargets.detailItems,
+      optional: true,
+      icon: Icons.sort,
+      title: l10n.groupsSection,
+      body: l10n.tourItemsBody,
+    ),
+    TourStep(
+      target: TourTargets.detailAdd,
+      optional: true,
+      icon: Icons.mic_none,
+      title: l10n.itemFormTitle,
+      body: '${l10n.guideAddBody}\n\n${l10n.guideVoiceBody}',
+    ),
+    TourStep(
+      target: TourTargets.detailReceipt,
+      optional: true,
+      icon: Icons.receipt_long_outlined,
+      title: l10n.scanReceiptAction,
+      body: '${l10n.guideReceiptBody}\n\n${l10n.tourReceiptFlowBody}',
+    ),
+  ]);
 }
 
 /// Visual help dialog for receipt / shelf-price camera buttons (N044, N045).

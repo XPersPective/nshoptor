@@ -2941,6 +2941,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show receipt capture tips'**
   String get captureTipsSetting;
+
+  /// No description provided for @tourSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get tourSkip;
+
+  /// No description provided for @tourNewListBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a shopping list and add what you plan to buy.'**
+  String get tourNewListBody;
+
+  /// No description provided for @tourFromReceiptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Already shopped? Turn a receipt into a list with its prices.'**
+  String get tourFromReceiptBody;
+
+  /// No description provided for @tourReceiptFlowBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start at the top of the receipt: capture the store and date first, then continue with the rest of the lines.'**
+  String get tourReceiptFlowBody;
+
+  /// No description provided for @tourTabsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch between active, completed and archived lists. The button at the end changes the order.'**
+  String get tourTabsBody;
+
+  /// No description provided for @tourDiscoverBody.
+  ///
+  /// In en, this message translates to:
+  /// **'See more apps from the same developer.'**
+  String get tourDiscoverBody;
+
+  /// No description provided for @tourHelpBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap here to replay this guide. Open a list to see its totals and items explained.'**
+  String get tourHelpBody;
+
+  /// No description provided for @tourTotalsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned, actual and difference totals update as you shop.'**
+  String get tourTotalsBody;
+
+  /// No description provided for @tourItemsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your items. Change their order or search them here.'**
+  String get tourItemsBody;
 }
 
 class _AppLocalizationsDelegate

@@ -396,8 +396,7 @@
   "demoProductTomato": "Nyanya",
   "demoProductEggs": "Mayai",
   "demoProductCoffee": "Kahawa",
-  "demoProductDetergent": "Sabuni ya unga"
-,
+  "demoProductDetergent": "Sabuni ya unga",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Risiti ile ile: jumuisha bidhaa ya mwisho ya picha iliyotangulia.",
   "captureTipNeverShow": "Usionyeshe tena",
   "captureTipOk": "Nimeelewa",
-  "captureTipsSetting": "Onyesha vidokezo vya kupiga picha ya risiti"
+  "captureTipsSetting": "Onyesha vidokezo vya kupiga picha ya risiti",
+  "tourSkip": "Ruka",
+  "tourNewListBody": "Anzisha orodha ya ununuzi na uongeze unachopanga kununua.",
+  "tourFromReceiptBody": "Umeshanunua? Geuza risiti kuwa orodha pamoja na bei zake.",
+  "tourReceiptFlowBody": "Anza juu ya risiti: piga duka na tarehe kwanza, kisha endelea na mistari iliyobaki.",
+  "tourTabsBody": "Badilisha kati ya orodha hai, zilizokamilika na zilizohifadhiwa. Kitufe cha mwisho hubadilisha mpangilio.",
+  "tourDiscoverBody": "Tazama programu zaidi za msanidi yuleyule.",
+  "tourHelpBody": "Gusa hapa kuona mwongozo huu tena. Fungua orodha kuona maelezo ya jumla na bidhaa.",
+  "tourTotalsBody": "Jumla iliyopangwa, halisi na tofauti husasishwa unaponunua.",
+  "tourItemsBody": "Bidhaa zako. Badilisha mpangilio wake au zitafute hapa."
 }

@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomaten",
   "demoProductEggs": "Eier",
   "demoProductCoffee": "Kaffee",
-  "demoProductDetergent": "Waschmittel"
-,
+  "demoProductDetergent": "Waschmittel",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Gleicher Beleg: Nimm den letzten Artikel des vorherigen Fotos mit auf.",
   "captureTipNeverShow": "Nicht mehr anzeigen",
   "captureTipOk": "Verstanden",
-  "captureTipsSetting": "Tipps zum Fotografieren von Belegen anzeigen"
+  "captureTipsSetting": "Tipps zum Fotografieren von Belegen anzeigen",
+  "tourSkip": "Überspringen",
+  "tourNewListBody": "Starte eine Einkaufsliste und füge hinzu, was du kaufen willst.",
+  "tourFromReceiptBody": "Schon eingekauft? Mach aus einem Kassenbon eine Liste mit Preisen.",
+  "tourReceiptFlowBody": "Beginne oben auf dem Bon: erst Geschäft und Datum aufnehmen, dann mit den übrigen Zeilen weitermachen.",
+  "tourTabsBody": "Wechsle zwischen aktiven, erledigten und archivierten Listen. Die Taste am Ende ändert die Reihenfolge.",
+  "tourDiscoverBody": "Weitere Apps desselben Entwicklers ansehen.",
+  "tourHelpBody": "Tippe hier, um diese Anleitung erneut zu sehen. Öffne eine Liste, um Summen und Artikel erklärt zu bekommen.",
+  "tourTotalsBody": "Geplante, tatsächliche und Differenzsummen werden beim Einkaufen aktualisiert.",
+  "tourItemsBody": "Deine Artikel. Ändere hier die Reihenfolge oder suche sie."
 }

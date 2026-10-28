@@ -396,8 +396,7 @@
   "demoProductTomato": "Roșii",
   "demoProductEggs": "Ouă",
   "demoProductCoffee": "Cafea",
-  "demoProductDetergent": "Detergent"
-,
+  "demoProductDetergent": "Detergent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Același bon: includeți ultimul produs din fotografia anterioară.",
   "captureTipNeverShow": "Nu mai afișa",
   "captureTipOk": "Am înțeles",
-  "captureTipsSetting": "Afișează sfaturile pentru fotografierea bonului"
+  "captureTipsSetting": "Afișează sfaturile pentru fotografierea bonului",
+  "tourSkip": "Omite",
+  "tourNewListBody": "Începe o listă de cumpărături și adaugă ce vrei să cumperi.",
+  "tourFromReceiptBody": "Ai făcut deja cumpărăturile? Transformă bonul într-o listă cu prețuri.",
+  "tourReceiptFlowBody": "Începe din partea de sus a bonului: întâi magazinul și data, apoi continuă cu restul rândurilor.",
+  "tourTabsBody": "Comută între listele active, finalizate și arhivate. Butonul de la capăt schimbă ordinea.",
+  "tourDiscoverBody": "Vezi alte aplicații ale aceluiași dezvoltator.",
+  "tourHelpBody": "Atinge aici pentru a revedea ghidul. Deschide o listă pentru explicații despre totaluri și produse.",
+  "tourTotalsBody": "Totalurile planificat, real și diferența se actualizează în timp ce cumperi.",
+  "tourItemsBody": "Produsele tale. Schimbă-le ordinea sau caută-le aici."
 }

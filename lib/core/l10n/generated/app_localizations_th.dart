@@ -1455,4 +1455,37 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'แสดงเคล็ดลับการถ่ายใบเสร็จ';
+
+  @override
+  String get tourSkip => 'ข้าม';
+
+  @override
+  String get tourNewListBody =>
+      'เริ่มรายการซื้อของและเพิ่มสิ่งที่คุณตั้งใจจะซื้อ';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ซื้อของแล้วใช่ไหม เปลี่ยนใบเสร็จเป็นรายการพร้อมราคา';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'เริ่มจากด้านบนของใบเสร็จ: ถ่ายร้านและวันที่ก่อน แล้วต่อด้วยบรรทัดที่เหลือ';
+
+  @override
+  String get tourTabsBody =>
+      'สลับระหว่างรายการที่ใช้งาน เสร็จแล้ว และเก็บถาวร ปุ่มท้ายแถวใช้เปลี่ยนลำดับ';
+
+  @override
+  String get tourDiscoverBody => 'ดูแอปอื่นจากผู้พัฒนาเดียวกัน';
+
+  @override
+  String get tourHelpBody =>
+      'แตะที่นี่เพื่อดูคำแนะนำนี้อีกครั้ง เปิดรายการเพื่อดูคำอธิบายยอดรวมและสินค้า';
+
+  @override
+  String get tourTotalsBody =>
+      'ยอดรวมตามแผน ยอดจริง และส่วนต่างจะอัปเดตขณะคุณซื้อของ';
+
+  @override
+  String get tourItemsBody => 'สินค้าของคุณ เปลี่ยนลำดับหรือค้นหาได้ที่นี่';
 }

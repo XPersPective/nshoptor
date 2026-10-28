@@ -396,8 +396,7 @@
   "demoProductTomato": "토마토",
   "demoProductEggs": "달걀",
   "demoProductCoffee": "커피",
-  "demoProductDetergent": "세제"
-,
+  "demoProductDetergent": "세제",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "같은 영수증입니다. 이전 사진의 마지막 품목을 포함하세요.",
   "captureTipNeverShow": "다시 표시하지 않음",
   "captureTipOk": "확인",
-  "captureTipsSetting": "영수증 촬영 팁 표시"
+  "captureTipsSetting": "영수증 촬영 팁 표시",
+  "tourSkip": "건너뛰기",
+  "tourNewListBody": "장보기 목록을 만들고 살 물건을 추가하세요.",
+  "tourFromReceiptBody": "이미 장을 보셨나요? 영수증을 가격이 포함된 목록으로 바꾸세요.",
+  "tourReceiptFlowBody": "영수증 맨 위부터 시작하세요. 먼저 매장과 날짜를 찍고 나머지 줄을 이어서 찍으세요.",
+  "tourTabsBody": "진행 중, 완료, 보관된 목록 사이를 전환합니다. 끝의 버튼으로 정렬 순서를 바꿉니다.",
+  "tourDiscoverBody": "같은 개발자의 다른 앱을 살펴보세요.",
+  "tourHelpBody": "여기를 탭하면 이 안내를 다시 볼 수 있습니다. 목록을 열면 합계와 품목 설명을 볼 수 있습니다.",
+  "tourTotalsBody": "계획, 실제 합계와 차액이 장을 보는 동안 업데이트됩니다.",
+  "tourItemsBody": "내 품목입니다. 여기에서 순서를 바꾸거나 검색하세요."
 }

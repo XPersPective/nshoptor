@@ -407,8 +407,7 @@
   "demoProductTomato": "Paradicsom",
   "demoProductEggs": "Tojás",
   "demoProductCoffee": "Kávé",
-  "demoProductDetergent": "Mosószer"
-,
+  "demoProductDetergent": "Mosószer",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Ugyanaz a nyugta: az előző fotó utolsó tételét is tegye rá.",
   "captureTipNeverShow": "Ne jelenjen meg újra",
   "captureTipOk": "Értem",
-  "captureTipsSetting": "Nyugtafotózási tippek megjelenítése"
+  "captureTipsSetting": "Nyugtafotózási tippek megjelenítése",
+  "tourSkip": "Kihagyás",
+  "tourNewListBody": "Kezdj egy bevásárlólistát, és add hozzá, amit venni szeretnél.",
+  "tourFromReceiptBody": "Már vásároltál? Alakítsd a blokkot listává az árakkal együtt.",
+  "tourReceiptFlowBody": "Kezdd a blokk tetején: előbb rögzítsd az üzletet és a dátumot, aztán folytasd a többi sorral.",
+  "tourTabsBody": "Válts az aktív, befejezett és archivált listák között. A végén lévő gomb a sorrendet váltja.",
+  "tourDiscoverBody": "Ugyanattól a fejlesztőtől származó további alkalmazások.",
+  "tourHelpBody": "Koppints ide az útmutató újbóli megtekintéséhez. Nyiss meg egy listát az összegek és tételek magyarázatához.",
+  "tourTotalsBody": "A tervezett, a tényleges összeg és a különbség vásárlás közben frissül.",
+  "tourItemsBody": "A tételeid. Itt módosíthatod a sorrendjüket vagy kereshetsz köztük."
 }

@@ -1463,4 +1463,38 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Түбіртек түсіру кеңестерін көрсету';
+
+  @override
+  String get tourSkip => 'Өткізу';
+
+  @override
+  String get tourNewListBody =>
+      'Сатып алу тізімін бастап, алатын заттарыңызды қосыңыз.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Сатып алып қойдыңыз ба? Чекті бағаларымен тізімге айналдырыңыз.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Чектің жоғарғы жағынан бастаңыз: алдымен дүкен мен күнді түсіріп, содан кейін қалған жолдармен жалғастырыңыз.';
+
+  @override
+  String get tourTabsBody =>
+      'Белсенді, аяқталған және мұрағаттағы тізімдер арасында ауысыңыз. Соңындағы түйме ретті өзгертеді.';
+
+  @override
+  String get tourDiscoverBody => 'Сол әзірлеушінің басқа қолданбалары.';
+
+  @override
+  String get tourHelpBody =>
+      'Нұсқаулықты қайта көру үшін осында түртіңіз. Сомалар мен тауарлардың түсіндірмесі үшін тізім ашыңыз.';
+
+  @override
+  String get tourTotalsBody =>
+      'Жоспарланған, нақты сома және айырма сатып алу кезінде жаңарады.';
+
+  @override
+  String get tourItemsBody =>
+      'Тауарларыңыз. Олардың ретін осында өзгертіңіз немесе іздеңіз.';
 }

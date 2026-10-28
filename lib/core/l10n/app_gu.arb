@@ -407,8 +407,7 @@
   "demoProductTomato": "ટમેટાં",
   "demoProductEggs": "ઈંડાં",
   "demoProductCoffee": "કોફી",
-  "demoProductDetergent": "ડિટર્જન્ટ"
-,
+  "demoProductDetergent": "ડિટર્જન્ટ",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "એ જ રસીદ: પાછલા ફોટાની છેલ્લી વસ્તુ સામેલ કરો.",
   "captureTipNeverShow": "ફરી બતાવશો નહીં",
   "captureTipOk": "સમજાયું",
-  "captureTipsSetting": "રસીદ કેપ્ચર ટીપ્સ બતાવો"
+  "captureTipsSetting": "રસીદ કેપ્ચર ટીપ્સ બતાવો",
+  "tourSkip": "છોડો",
+  "tourNewListBody": "ખરીદીની યાદી શરૂ કરો અને જે ખરીદવું છે તે ઉમેરો.",
+  "tourFromReceiptBody": "ખરીદી થઈ ગઈ? રસીદને તેની કિંમતો સાથે યાદીમાં ફેરવો.",
+  "tourReceiptFlowBody": "રસીદની ઉપરથી શરૂ કરો: પહેલાં દુકાન અને તારીખ લો, પછી બાકીની લીટીઓ સાથે આગળ વધો.",
+  "tourTabsBody": "સક્રિય, પૂર્ણ અને આર્કાઇવ કરેલી યાદીઓ વચ્ચે બદલો. છેલ્લું બટન ક્રમ બદલે છે.",
+  "tourDiscoverBody": "એ જ ડેવલપરની વધુ ઍપ જુઓ.",
+  "tourHelpBody": "આ માર્ગદર્શિકા ફરી જોવા અહીં ટૅપ કરો. કુલ અને વસ્તુઓની સમજ માટે કોઈ યાદી ખોલો.",
+  "tourTotalsBody": "આયોજિત, વાસ્તવિક કુલ અને તફાવત ખરીદી દરમિયાન અપડેટ થાય છે.",
+  "tourItemsBody": "તમારી વસ્તુઓ. અહીં તેમનો ક્રમ બદલો અથવા શોધો."
 }

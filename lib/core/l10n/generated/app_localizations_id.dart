@@ -1464,4 +1464,38 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Tampilkan tips memotret struk';
+
+  @override
+  String get tourSkip => 'Lewati';
+
+  @override
+  String get tourNewListBody =>
+      'Mulai daftar belanja dan tambahkan yang ingin Anda beli.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Sudah belanja? Ubah struk menjadi daftar beserta harganya.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Mulai dari bagian atas struk: ambil toko dan tanggal dulu, lalu lanjutkan dengan baris lainnya.';
+
+  @override
+  String get tourTabsBody =>
+      'Beralih antara daftar aktif, selesai, dan arsip. Tombol di ujung mengubah urutan.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Lihat aplikasi lain dari pengembang yang sama.';
+
+  @override
+  String get tourHelpBody =>
+      'Ketuk di sini untuk melihat panduan ini lagi. Buka daftar untuk melihat penjelasan total dan item.';
+
+  @override
+  String get tourTotalsBody =>
+      'Total rencana, aktual, dan selisih diperbarui saat Anda berbelanja.';
+
+  @override
+  String get tourItemsBody => 'Item Anda. Ubah urutannya atau cari di sini.';
 }

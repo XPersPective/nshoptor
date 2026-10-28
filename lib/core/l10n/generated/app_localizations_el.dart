@@ -1474,4 +1474,38 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Εμφάνιση συμβουλών λήψης απόδειξης';
+
+  @override
+  String get tourSkip => 'Παράλειψη';
+
+  @override
+  String get tourNewListBody =>
+      'Ξεκινήστε μια λίστα αγορών και προσθέστε ό,τι σκοπεύετε να αγοράσετε.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Ψωνίσατε ήδη; Κάντε την απόδειξη λίστα με τις τιμές της.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Ξεκινήστε από την κορυφή της απόδειξης: πρώτα το κατάστημα και η ημερομηνία, μετά συνεχίστε με τις υπόλοιπες γραμμές.';
+
+  @override
+  String get tourTabsBody =>
+      'Εναλλαγή μεταξύ ενεργών, ολοκληρωμένων και αρχειοθετημένων λιστών. Το κουμπί στο τέλος αλλάζει τη σειρά.';
+
+  @override
+  String get tourDiscoverBody => 'Δείτε άλλες εφαρμογές του ίδιου δημιουργού.';
+
+  @override
+  String get tourHelpBody =>
+      'Πατήστε εδώ για να δείτε ξανά τον οδηγό. Ανοίξτε μια λίστα για εξήγηση των συνόλων και των ειδών.';
+
+  @override
+  String get tourTotalsBody =>
+      'Τα σύνολα προγραμματισμένου, πραγματικού και διαφοράς ενημερώνονται καθώς ψωνίζετε.';
+
+  @override
+  String get tourItemsBody =>
+      'Τα είδη σας. Αλλάξτε τη σειρά τους ή αναζητήστε τα εδώ.';
 }

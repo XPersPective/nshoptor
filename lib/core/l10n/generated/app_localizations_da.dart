@@ -1465,4 +1465,38 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Vis tips til fotografering af kvittering';
+
+  @override
+  String get tourSkip => 'Spring over';
+
+  @override
+  String get tourNewListBody =>
+      'Start en indkøbsliste, og tilføj det, du vil købe.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Allerede handlet? Lav en kvittering om til en liste med priser.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Start øverst på kvitteringen: først butik og dato, fortsæt derefter med resten af linjerne.';
+
+  @override
+  String get tourTabsBody =>
+      'Skift mellem aktive, afsluttede og arkiverede lister. Knappen til sidst ændrer rækkefølgen.';
+
+  @override
+  String get tourDiscoverBody => 'Se flere apps fra samme udvikler.';
+
+  @override
+  String get tourHelpBody =>
+      'Tryk her for at se guiden igen. Åbn en liste for at få summer og varer forklaret.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planlagt, faktisk sum og forskel opdateres, mens du handler.';
+
+  @override
+  String get tourItemsBody =>
+      'Dine varer. Skift rækkefølge eller søg i dem her.';
 }

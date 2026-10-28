@@ -1472,4 +1472,38 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Tipps zum Fotografieren von Belegen anzeigen';
+
+  @override
+  String get tourSkip => 'Überspringen';
+
+  @override
+  String get tourNewListBody =>
+      'Starte eine Einkaufsliste und füge hinzu, was du kaufen willst.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Schon eingekauft? Mach aus einem Kassenbon eine Liste mit Preisen.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Beginne oben auf dem Bon: erst Geschäft und Datum aufnehmen, dann mit den übrigen Zeilen weitermachen.';
+
+  @override
+  String get tourTabsBody =>
+      'Wechsle zwischen aktiven, erledigten und archivierten Listen. Die Taste am Ende ändert die Reihenfolge.';
+
+  @override
+  String get tourDiscoverBody => 'Weitere Apps desselben Entwicklers ansehen.';
+
+  @override
+  String get tourHelpBody =>
+      'Tippe hier, um diese Anleitung erneut zu sehen. Öffne eine Liste, um Summen und Artikel erklärt zu bekommen.';
+
+  @override
+  String get tourTotalsBody =>
+      'Geplante, tatsächliche und Differenzsummen werden beim Einkaufen aktualisiert.';
+
+  @override
+  String get tourItemsBody =>
+      'Deine Artikel. Ändere hier die Reihenfolge oder suche sie.';
 }

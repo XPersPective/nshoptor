@@ -1476,4 +1476,38 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Rodyti kvito fotografavimo patarimus';
+
+  @override
+  String get tourSkip => 'Praleisti';
+
+  @override
+  String get tourNewListBody =>
+      'Pradėkite pirkinių sąrašą ir įtraukite, ką planuojate pirkti.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Jau apsipirkote? Paverskite kvitą sąrašu su kainomis.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Pradėkite nuo kvito viršaus: pirmiausia parduotuvę ir datą, tada tęskite kitomis eilutėmis.';
+
+  @override
+  String get tourTabsBody =>
+      'Perjunkite aktyvius, užbaigtus ir archyvuotus sąrašus. Mygtukas gale keičia tvarką.';
+
+  @override
+  String get tourDiscoverBody => 'Daugiau to paties kūrėjo programėlių.';
+
+  @override
+  String get tourHelpBody =>
+      'Bakstelėkite čia, kad vėl peržiūrėtumėte vadovą. Atidarykite sąrašą, kad pamatytumėte sumų ir prekių paaiškinimą.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planuota, faktinė suma ir skirtumas atnaujinami apsiperkant.';
+
+  @override
+  String get tourItemsBody =>
+      'Jūsų prekės. Čia keiskite jų tvarką arba ieškokite.';
 }

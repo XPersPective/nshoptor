@@ -1421,4 +1421,33 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get captureTipsSetting => '영수증 촬영 팁 표시';
+
+  @override
+  String get tourSkip => '건너뛰기';
+
+  @override
+  String get tourNewListBody => '장보기 목록을 만들고 살 물건을 추가하세요.';
+
+  @override
+  String get tourFromReceiptBody => '이미 장을 보셨나요? 영수증을 가격이 포함된 목록으로 바꾸세요.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      '영수증 맨 위부터 시작하세요. 먼저 매장과 날짜를 찍고 나머지 줄을 이어서 찍으세요.';
+
+  @override
+  String get tourTabsBody => '진행 중, 완료, 보관된 목록 사이를 전환합니다. 끝의 버튼으로 정렬 순서를 바꿉니다.';
+
+  @override
+  String get tourDiscoverBody => '같은 개발자의 다른 앱을 살펴보세요.';
+
+  @override
+  String get tourHelpBody =>
+      '여기를 탭하면 이 안내를 다시 볼 수 있습니다. 목록을 열면 합계와 품목 설명을 볼 수 있습니다.';
+
+  @override
+  String get tourTotalsBody => '계획, 실제 합계와 차액이 장을 보는 동안 업데이트됩니다.';
+
+  @override
+  String get tourItemsBody => '내 품목입니다. 여기에서 순서를 바꾸거나 검색하세요.';
 }

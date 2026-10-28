@@ -1475,4 +1475,39 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Ipakita ang mga tip sa pagkuha ng larawan ng resibo';
+
+  @override
+  String get tourSkip => 'Laktawan';
+
+  @override
+  String get tourNewListBody =>
+      'Magsimula ng shopping list at idagdag ang balak mong bilhin.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Nakapamili ka na? Gawing listahan ang resibo kasama ang mga presyo.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Magsimula sa itaas ng resibo: kunan muna ang tindahan at petsa, saka ituloy ang iba pang linya.';
+
+  @override
+  String get tourTabsBody =>
+      'Lumipat sa aktibo, tapos at naka-archive na listahan. Binabago ng button sa dulo ang ayos.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Tingnan ang iba pang app ng parehong developer.';
+
+  @override
+  String get tourHelpBody =>
+      'I-tap dito para ulitin ang gabay na ito. Magbukas ng listahan para makita ang paliwanag sa kabuuan at mga item.';
+
+  @override
+  String get tourTotalsBody =>
+      'Nag-a-update ang planado, aktwal at diperensiyang kabuuan habang namimili ka.';
+
+  @override
+  String get tourItemsBody =>
+      'Ang iyong mga item. Baguhin ang ayos o hanapin sila rito.';
 }

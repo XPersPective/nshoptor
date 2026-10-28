@@ -407,8 +407,7 @@
   "demoProductTomato": "گوجه‌فرنگی",
   "demoProductEggs": "تخم‌مرغ",
   "demoProductCoffee": "قهوه",
-  "demoProductDetergent": "شوینده"
-,
+  "demoProductDetergent": "شوینده",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "همان رسید: آخرین قلم عکس قبلی را هم بگنجانید.",
   "captureTipNeverShow": "دیگر نشان نده",
   "captureTipOk": "متوجه شدم",
-  "captureTipsSetting": "نمایش نکات عکس‌برداری از رسید"
+  "captureTipsSetting": "نمایش نکات عکس‌برداری از رسید",
+  "tourSkip": "رد شدن",
+  "tourNewListBody": "یک فهرست خرید بسازید و آنچه قصد خریدش را دارید اضافه کنید.",
+  "tourFromReceiptBody": "خرید کرده‌اید؟ رسید را با قیمت‌هایش به فهرست تبدیل کنید.",
+  "tourReceiptFlowBody": "از بالای رسید شروع کنید: اول فروشگاه و تاریخ را ثبت کنید، سپس با بقیه سطرها ادامه دهید.",
+  "tourTabsBody": "بین فهرست‌های فعال، تکمیل‌شده و بایگانی‌شده جابه‌جا شوید. دکمه انتها ترتیب را تغییر می‌دهد.",
+  "tourDiscoverBody": "برنامه‌های دیگر همین توسعه‌دهنده را ببینید.",
+  "tourHelpBody": "برای دیدن دوباره این راهنما اینجا بزنید. یک فهرست باز کنید تا توضیح جمع‌ها و اقلام را ببینید.",
+  "tourTotalsBody": "جمع برنامه‌ریزی‌شده، واقعی و اختلاف هنگام خرید به‌روز می‌شود.",
+  "tourItemsBody": "اقلام شما. ترتیبشان را تغییر دهید یا اینجا جست‌وجو کنید."
 }

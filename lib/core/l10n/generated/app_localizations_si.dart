@@ -1465,4 +1465,38 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න';
+
+  @override
+  String get tourSkip => 'මඟ හරින්න';
+
+  @override
+  String get tourNewListBody =>
+      'සාප්පු ලැයිස්තුවක් අරඹා මිලදී ගැනීමට අදහස් කරන දේ එක් කරන්න.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'දැනටමත් මිලදී ගත්තාද? රිසිට්පත එහි මිල ගණන් සමඟ ලැයිස්තුවක් කරන්න.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'රිසිට්පතේ ඉහළින් අරඹන්න: පළමුව වෙළඳසැල සහ දිනය, ඉන්පසු ඉතිරි පේළි සමඟ ඉදිරියට යන්න.';
+
+  @override
+  String get tourTabsBody =>
+      'සක්‍රිය, සම්පූර්ණ සහ සංරක්ෂිත ලැයිස්තු අතර මාරු වන්න. අවසානයේ බොත්තම අනුපිළිවෙල වෙනස් කරයි.';
+
+  @override
+  String get tourDiscoverBody => 'එම සංවර්ධකයාගේම තවත් යෙදුම් බලන්න.';
+
+  @override
+  String get tourHelpBody =>
+      'මෙම මාර්ගෝපදේශය නැවත බැලීමට මෙහි තට්ටු කරන්න. එකතු සහ අයිතම පැහැදිලි කිරීම සඳහා ලැයිස්තුවක් විවෘත කරන්න.';
+
+  @override
+  String get tourTotalsBody =>
+      'සැලසුම් කළ, සැබෑ එකතුව සහ වෙනස මිලදී ගන්නා විට යාවත්කාලීන වේ.';
+
+  @override
+  String get tourItemsBody =>
+      'ඔබගේ අයිතම. මෙහි ඒවායේ අනුපිළිවෙල වෙනස් කරන්න හෝ සොයන්න.';
 }

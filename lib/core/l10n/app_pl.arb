@@ -396,8 +396,7 @@
   "demoProductTomato": "Pomidory",
   "demoProductEggs": "Jajka",
   "demoProductCoffee": "Kawa",
-  "demoProductDetergent": "Proszek do prania"
-,
+  "demoProductDetergent": "Proszek do prania",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Ten sam paragon: uwzględnij ostatnią pozycję z poprzedniego zdjęcia.",
   "captureTipNeverShow": "Nie pokazuj ponownie",
   "captureTipOk": "Rozumiem",
-  "captureTipsSetting": "Pokazuj wskazówki dotyczące fotografowania paragonu"
+  "captureTipsSetting": "Pokazuj wskazówki dotyczące fotografowania paragonu",
+  "tourSkip": "Pomiń",
+  "tourNewListBody": "Utwórz listę zakupów i dodaj to, co planujesz kupić.",
+  "tourFromReceiptBody": "Już po zakupach? Zamień paragon w listę z cenami.",
+  "tourReceiptFlowBody": "Zacznij od góry paragonu: najpierw uchwyć sklep i datę, potem kontynuuj resztą pozycji.",
+  "tourTabsBody": "Przełączaj się między listami aktywnymi, ukończonymi i zarchiwizowanymi. Przycisk na końcu zmienia kolejność.",
+  "tourDiscoverBody": "Zobacz inne aplikacje tego samego twórcy.",
+  "tourHelpBody": "Dotknij tutaj, aby ponownie obejrzeć przewodnik. Otwórz listę, aby zobaczyć objaśnienie sum i produktów.",
+  "tourTotalsBody": "Sumy planowana, rzeczywista i różnica aktualizują się podczas zakupów.",
+  "tourItemsBody": "Twoje produkty. Zmieniaj tu ich kolejność lub je wyszukuj."
 }

@@ -1476,4 +1476,38 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Bonisa amathiphu okuthatha irisidi';
+
+  @override
+  String get tourSkip => 'Yeqa';
+
+  @override
+  String get tourNewListBody =>
+      'Qala uhlu lokuthenga bese wengeza okuhlela ukukuthenga.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Usuthengile? Shintsha irisidi ibe uhlu olunamanani alo.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Qala phezulu kwerisidi: thatha isitolo nosuku kuqala, bese uqhubeka nemigqa esele.';
+
+  @override
+  String get tourTabsBody =>
+      'Shintsha phakathi kohlu olusebenzayo, oluqediwe nolugciniwe. Inkinobho ekugcineni ishintsha ukuhleleka.';
+
+  @override
+  String get tourDiscoverBody => 'Bona ezinye izinhlelo zonjiniyela ofanayo.';
+
+  @override
+  String get tourHelpBody =>
+      'Thepha lapha ukuze ubone lo mhlahlandlela futhi. Vula uhlu ukuze ubone incazelo yezamba nezinto.';
+
+  @override
+  String get tourTotalsBody =>
+      'Izamba ezihleliwe, zangempela nomehluko ziyabuyekezwa njengoba uthenga.';
+
+  @override
+  String get tourItemsBody =>
+      'Izinto zakho. Shintsha ukuhleleka kwazo noma uzisesha lapha.';
 }

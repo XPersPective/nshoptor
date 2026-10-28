@@ -396,8 +396,7 @@
   "demoProductTomato": "Paradajky",
   "demoProductEggs": "Vajcia",
   "demoProductCoffee": "Káva",
-  "demoProductDetergent": "Prací prášok"
-,
+  "demoProductDetergent": "Prací prášok",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Rovnaký bloček: zahrňte poslednú položku z predchádzajúcej fotky.",
   "captureTipNeverShow": "Už nezobrazovať",
   "captureTipOk": "Rozumiem",
-  "captureTipsSetting": "Zobrazovať tipy na fotenie bločku"
+  "captureTipsSetting": "Zobrazovať tipy na fotenie bločku",
+  "tourSkip": "Preskočiť",
+  "tourNewListBody": "Založte nákupný zoznam a pridajte, čo plánujete kúpiť.",
+  "tourFromReceiptBody": "Už máte nakúpené? Urobte z bločku zoznam s cenami.",
+  "tourReceiptFlowBody": "Začnite hore na bločku: najprv zachyťte obchod a dátum, potom pokračujte ostatnými riadkami.",
+  "tourTabsBody": "Prepínajte medzi aktívnymi, dokončenými a archivovanými zoznamami. Tlačidlo na konci mení poradie.",
+  "tourDiscoverBody": "Ďalšie aplikácie od toho istého vývojára.",
+  "tourHelpBody": "Ťuknutím sem si sprievodcu pozriete znova. Otvorte zoznam a uvidíte vysvetlenie súčtov a položiek.",
+  "tourTotalsBody": "Plánovaný, skutočný súčet a rozdiel sa počas nákupu priebežne aktualizujú.",
+  "tourItemsBody": "Vaše položky. Tu meňte ich poradie alebo ich vyhľadajte."
 }

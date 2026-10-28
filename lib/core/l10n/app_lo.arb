@@ -396,8 +396,7 @@
   "demoProductTomato": "ໝາກເລັ່ນ",
   "demoProductEggs": "ໄຂ່",
   "demoProductCoffee": "ກາເຟ",
-  "demoProductDetergent": "ຜົງຊັກຟອກ"
-,
+  "demoProductDetergent": "ຜົງຊັກຟອກ",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "ໃບຮັບເງິນໃບດຽວກັນ: ໃສ່ລາຍການສຸດທ້າຍຂອງຮູບກ່ອນໜ້າ.",
   "captureTipNeverShow": "ບໍ່ຕ້ອງສະແດງອີກ",
   "captureTipOk": "ເຂົ້າໃຈແລ້ວ",
-  "captureTipsSetting": "ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ"
+  "captureTipsSetting": "ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ",
+  "tourSkip": "ຂ້າມ",
+  "tourNewListBody": "ເລີ່ມລາຍການຊື້ເຄື່ອງ ແລະ ເພີ່ມສິ່ງທີ່ທ່ານຕັ້ງໃຈຈະຊື້.",
+  "tourFromReceiptBody": "ຊື້ເຄື່ອງແລ້ວບໍ? ປ່ຽນໃບບິນເປັນລາຍການພ້ອມລາຄາ.",
+  "tourReceiptFlowBody": "ເລີ່ມຈາກທາງເທິງຂອງໃບບິນ: ຖ່າຍຮ້ານ ແລະ ວັນທີກ່ອນ, ແລ້ວສືບຕໍ່ກັບແຖວທີ່ເຫຼືອ.",
+  "tourTabsBody": "ສະຫຼັບລະຫວ່າງລາຍການທີ່ໃຊ້ງານ, ສຳເລັດແລ້ວ ແລະ ເກັບໄວ້. ປຸ່ມທ້າຍແຖວປ່ຽນລຳດັບ.",
+  "tourDiscoverBody": "ເບິ່ງແອັບອື່ນຈາກຜູ້ພັດທະນາດຽວກັນ.",
+  "tourHelpBody": "ແຕະບ່ອນນີ້ເພື່ອເບິ່ງຄຳແນະນຳນີ້ອີກຄັ້ງ. ເປີດລາຍການເພື່ອເບິ່ງຄຳອະທິບາຍຍອດລວມ ແລະ ສິນຄ້າ.",
+  "tourTotalsBody": "ຍອດລວມຕາມແຜນ, ຍອດຈິງ ແລະ ສ່ວນຕ່າງຈະອັບເດດຂະນະທີ່ທ່ານຊື້.",
+  "tourItemsBody": "ສິນຄ້າຂອງທ່ານ. ປ່ຽນລຳດັບ ຫຼື ຊອກຫາໄດ້ທີ່ນີ້."
 }

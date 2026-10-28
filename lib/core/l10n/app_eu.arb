@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomateak",
   "demoProductEggs": "Arrautzak",
   "demoProductCoffee": "Kafea",
-  "demoProductDetergent": "Garbigarria"
-,
+  "demoProductDetergent": "Garbigarria",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Ordainagiri bera: sartu aurreko argazkiko azken produktua.",
   "captureTipNeverShow": "Ez erakutsi berriro",
   "captureTipOk": "Ulertu dut",
-  "captureTipsSetting": "Erakutsi ordainagiriak argazkitzeko aholkuak"
+  "captureTipsSetting": "Erakutsi ordainagiriak argazkitzeko aholkuak",
+  "tourSkip": "Saltatu",
+  "tourNewListBody": "Hasi erosketa-zerrenda bat eta gehitu erosi nahi duzuna.",
+  "tourFromReceiptBody": "Erosketak egin dituzu? Bihurtu tiketa prezioak dituen zerrenda.",
+  "tourReceiptFlowBody": "Hasi tiketaren goiko aldetik: lehenik denda eta data, gero jarraitu gainerako lerroekin.",
+  "tourTabsBody": "Aldatu zerrenda aktibo, osatu eta artxibatuen artean. Amaierako botoiak ordena aldatzen du.",
+  "tourDiscoverBody": "Ikusi garatzaile beraren beste aplikazio batzuk.",
+  "tourHelpBody": "Sakatu hemen gida berriro ikusteko. Ireki zerrenda bat guztizkoen eta produktuen azalpena ikusteko.",
+  "tourTotalsBody": "Aurreikusitako, benetako guztizkoa eta aldea erosi ahala eguneratzen dira.",
+  "tourItemsBody": "Zure produktuak. Aldatu haien ordena edo bilatu hemen."
 }

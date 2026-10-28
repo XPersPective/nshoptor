@@ -1471,4 +1471,38 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Zobrazovať tipy na fotenie bločku';
+
+  @override
+  String get tourSkip => 'Preskočiť';
+
+  @override
+  String get tourNewListBody =>
+      'Založte nákupný zoznam a pridajte, čo plánujete kúpiť.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Už máte nakúpené? Urobte z bločku zoznam s cenami.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Začnite hore na bločku: najprv zachyťte obchod a dátum, potom pokračujte ostatnými riadkami.';
+
+  @override
+  String get tourTabsBody =>
+      'Prepínajte medzi aktívnymi, dokončenými a archivovanými zoznamami. Tlačidlo na konci mení poradie.';
+
+  @override
+  String get tourDiscoverBody => 'Ďalšie aplikácie od toho istého vývojára.';
+
+  @override
+  String get tourHelpBody =>
+      'Ťuknutím sem si sprievodcu pozriete znova. Otvorte zoznam a uvidíte vysvetlenie súčtov a položiek.';
+
+  @override
+  String get tourTotalsBody =>
+      'Plánovaný, skutočný súčet a rozdiel sa počas nákupu priebežne aktualizujú.';
+
+  @override
+  String get tourItemsBody =>
+      'Vaše položky. Tu meňte ich poradie alebo ich vyhľadajte.';
 }

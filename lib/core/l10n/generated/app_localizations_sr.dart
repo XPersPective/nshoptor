@@ -1470,4 +1470,38 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Прикажи савете за снимање рачуна';
+
+  @override
+  String get tourSkip => 'Прескочи';
+
+  @override
+  String get tourNewListBody =>
+      'Започните листу за куповину и додајте шта планирате да купите.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Већ сте купили? Претворите рачун у листу са ценама.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Почните од врха рачуна: прво снимите продавницу и датум, па наставите са осталим редовима.';
+
+  @override
+  String get tourTabsBody =>
+      'Прелазите између активних, завршених и архивираних листа. Дугме на крају мења редослед.';
+
+  @override
+  String get tourDiscoverBody => 'Друге апликације истог програмера.';
+
+  @override
+  String get tourHelpBody =>
+      'Додирните овде да поново погледате водич. Отворите листу да видите објашњење збирова и ставки.';
+
+  @override
+  String get tourTotalsBody =>
+      'Планирани, стварни збир и разлика се ажурирају док купујете.';
+
+  @override
+  String get tourItemsBody =>
+      'Ваше ставке. Промените им редослед или их претражите овде.';
 }

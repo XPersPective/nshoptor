@@ -407,8 +407,7 @@
   "demoProductTomato": "Rajčata",
   "demoProductEggs": "Vejce",
   "demoProductCoffee": "Káva",
-  "demoProductDetergent": "Prací prostředek"
-,
+  "demoProductDetergent": "Prací prostředek",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Stejná účtenka: zahrňte poslední položku z předchozí fotky.",
   "captureTipNeverShow": "Již nezobrazovat",
   "captureTipOk": "Rozumím",
-  "captureTipsSetting": "Zobrazovat tipy k focení účtenky"
+  "captureTipsSetting": "Zobrazovat tipy k focení účtenky",
+  "tourSkip": "Přeskočit",
+  "tourNewListBody": "Založte nákupní seznam a přidejte, co plánujete koupit.",
+  "tourFromReceiptBody": "Už máte nakoupeno? Udělejte z účtenky seznam s cenami.",
+  "tourReceiptFlowBody": "Začněte nahoře na účtence: nejprve zachyťte obchod a datum, pak pokračujte zbylými řádky.",
+  "tourTabsBody": "Přepínejte mezi aktivními, dokončenými a archivovanými seznamy. Tlačítko na konci mění pořadí.",
+  "tourDiscoverBody": "Další aplikace od stejného vývojáře.",
+  "tourHelpBody": "Klepnutím sem si průvodce pustíte znovu. Otevřete seznam a uvidíte vysvětlení součtů a položek.",
+  "tourTotalsBody": "Plánovaný, skutečný součet a rozdíl se při nákupu průběžně aktualizují.",
+  "tourItemsBody": "Vaše položky. Zde měňte jejich pořadí nebo je vyhledejte."
 }

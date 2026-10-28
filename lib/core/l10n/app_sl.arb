@@ -396,8 +396,7 @@
   "demoProductTomato": "Paradižnik",
   "demoProductEggs": "Jajca",
   "demoProductCoffee": "Kava",
-  "demoProductDetergent": "Detergent"
-,
+  "demoProductDetergent": "Detergent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Isti račun: vključite zadnji izdelek s prejšnje fotografije.",
   "captureTipNeverShow": "Ne prikaži več",
   "captureTipOk": "Razumem",
-  "captureTipsSetting": "Prikaži nasvete za slikanje računa"
+  "captureTipsSetting": "Prikaži nasvete za slikanje računa",
+  "tourSkip": "Preskoči",
+  "tourNewListBody": "Začnite nakupovalni seznam in dodajte, kar nameravate kupiti.",
+  "tourFromReceiptBody": "Ste že nakupovali? Spremenite račun v seznam s cenami.",
+  "tourReceiptFlowBody": "Začnite na vrhu računa: najprej zajemite trgovino in datum, nato nadaljujte s preostalimi vrsticami.",
+  "tourTabsBody": "Preklapljajte med aktivnimi, dokončanimi in arhiviranimi seznami. Gumb na koncu spremeni vrstni red.",
+  "tourDiscoverBody": "Druge aplikacije istega razvijalca.",
+  "tourHelpBody": "Tapnite tukaj za ponovni ogled vodiča. Odprite seznam za razlago vsot in izdelkov.",
+  "tourTotalsBody": "Načrtovana, dejanska vsota in razlika se med nakupovanjem posodabljajo.",
+  "tourItemsBody": "Vaši izdelki. Tukaj spremenite njihov vrstni red ali jih poiščite."
 }

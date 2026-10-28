@@ -1470,4 +1470,38 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Rādīt čeka fotografēšanas padomus';
+
+  @override
+  String get tourSkip => 'Izlaist';
+
+  @override
+  String get tourNewListBody =>
+      'Sāciet iepirkumu sarakstu un pievienojiet, ko plānojat pirkt.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Jau iepirkāties? Pārvērtiet čeku sarakstā ar cenām.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Sāciet čeka augšā: vispirms veikalu un datumu, pēc tam turpiniet ar pārējām rindām.';
+
+  @override
+  String get tourTabsBody =>
+      'Pārslēdzieties starp aktīviem, pabeigtiem un arhivētiem sarakstiem. Poga galā maina secību.';
+
+  @override
+  String get tourDiscoverBody => 'Citas tā paša izstrādātāja lietotnes.';
+
+  @override
+  String get tourHelpBody =>
+      'Pieskarieties šeit, lai vēlreiz skatītu ceļvedi. Atveriet sarakstu, lai redzētu summu un preču skaidrojumu.';
+
+  @override
+  String get tourTotalsBody =>
+      'Plānotā, faktiskā summa un starpība atjaunojas iepirkšanās laikā.';
+
+  @override
+  String get tourItemsBody =>
+      'Jūsu preces. Šeit mainiet to secību vai meklējiet tās.';
 }

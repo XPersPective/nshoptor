@@ -396,8 +396,7 @@
   "demoProductTomato": "ٹماٹر",
   "demoProductEggs": "انڈے",
   "demoProductCoffee": "کافی",
-  "demoProductDetergent": "ڈٹرجنٹ"
-,
+  "demoProductDetergent": "ڈٹرجنٹ",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "وہی رسید: پچھلی تصویر کی آخری شے شامل کریں۔",
   "captureTipNeverShow": "دوبارہ نہ دکھائیں",
   "captureTipOk": "سمجھ گیا",
-  "captureTipsSetting": "رسید کھینچنے کے مشورے دکھائیں"
+  "captureTipsSetting": "رسید کھینچنے کے مشورے دکھائیں",
+  "tourSkip": "چھوڑیں",
+  "tourNewListBody": "خریداری کی فہرست شروع کریں اور جو خریدنا ہے شامل کریں۔",
+  "tourFromReceiptBody": "خریداری کر چکے؟ رسید کو اس کی قیمتوں کے ساتھ فہرست میں بدلیں۔",
+  "tourReceiptFlowBody": "رسید کے اوپر سے شروع کریں: پہلے دکان اور تاریخ لیں، پھر باقی سطروں کے ساتھ جاری رکھیں۔",
+  "tourTabsBody": "فعال، مکمل اور محفوظ شدہ فہرستوں کے درمیان جائیں۔ آخر والا بٹن ترتیب بدلتا ہے۔",
+  "tourDiscoverBody": "اسی ڈویلپر کی مزید ایپس دیکھیں۔",
+  "tourHelpBody": "یہ رہنمائی دوبارہ دیکھنے کے لیے یہاں تھپتھپائیں۔ مجموعے اور اشیا کی وضاحت کے لیے کوئی فہرست کھولیں۔",
+  "tourTotalsBody": "منصوبہ بند، اصل اور فرق کے مجموعے خریداری کے دوران اپ ڈیٹ ہوتے ہیں۔",
+  "tourItemsBody": "آپ کی اشیا۔ یہاں ان کی ترتیب بدلیں یا انہیں تلاش کریں۔"
 }

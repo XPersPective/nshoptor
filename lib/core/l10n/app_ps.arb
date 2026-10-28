@@ -396,8 +396,7 @@
   "demoProductTomato": "رومیان",
   "demoProductEggs": "هګۍ",
   "demoProductCoffee": "قهوه",
-  "demoProductDetergent": "صابون"
-,
+  "demoProductDetergent": "صابون",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "ورته رسید: د مخکینۍ انځور وروستی توکی شامل کړئ.",
   "captureTipNeverShow": "بیا مه ښایئ",
   "captureTipOk": "پوه شوم",
-  "captureTipsSetting": "د رسید اخیستلو لارښوونې وښایاست"
+  "captureTipsSetting": "د رسید اخیستلو لارښوونې وښایاست",
+  "tourSkip": "تېرول",
+  "tourNewListBody": "د پیرودلو لېست پیل کړئ او هغه څه ورزیات کړئ چې اخلئ یې.",
+  "tourFromReceiptBody": "پېرود مو کړی؟ رسید د بیو سره په لېست بدل کړئ.",
+  "tourReceiptFlowBody": "د رسید له سر څخه پیل وکړئ: لومړی پلورنځی او نېټه واخلئ، بیا پاتې کرښې دوام ورکړئ.",
+  "tourTabsBody": "د فعالو، بشپړو او ارشیف شویو لېستونو ترمنځ واوړئ. په پای کې تڼۍ ترتیب بدلوي.",
+  "tourDiscoverBody": "د همدې جوړونکي نور اپونه وګورئ.",
+  "tourHelpBody": "د دې لارښود د بیا لیدو لپاره دلته ټک کړئ. د مجموعو او توکو د تشریح لپاره یو لېست پرانیزئ.",
+  "tourTotalsBody": "پلان شوي، اصلي او توپیر مجموعې د پېرود پر مهال تازه کېږي.",
+  "tourItemsBody": "ستاسو توکي. دلته یې ترتیب بدل کړئ یا یې ولټوئ."
 }

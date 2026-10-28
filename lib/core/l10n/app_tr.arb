@@ -428,8 +428,7 @@
   "demoProductTomato": "Domates",
   "demoProductEggs": "Yumurta",
   "demoProductCoffee": "Kahve",
-  "demoProductDetergent": "Deterjan"
-,
+  "demoProductDetergent": "Deterjan",
   "sendAction": "Gönder",
   "previousMonthAction": "Önceki ay",
   "nextMonthAction": "Sonraki ay",
@@ -472,5 +471,14 @@
   "captureTipContinue": "Aynı fiş: önceki fotoğraftaki son ürün de görünsün.",
   "captureTipNeverShow": "Bir daha gösterme",
   "captureTipOk": "Anladım",
-  "captureTipsSetting": "Fiş çekme ipuçlarını göster"
+  "captureTipsSetting": "Fiş çekme ipuçlarını göster",
+  "tourSkip": "Geç",
+  "tourNewListBody": "Bir alışveriş listesi başlatın ve almayı planladıklarınızı ekleyin.",
+  "tourFromReceiptBody": "Alışverişi yaptınız mı? Fişi fiyatlarıyla birlikte listeye dönüştürün.",
+  "tourReceiptFlowBody": "Fişin en üstünden başlayın: önce mağaza ve tarihi çekin, sonra kalan satırlarla devam edin.",
+  "tourTabsBody": "Aktif, tamamlanan ve arşivlenen listeler arasında geçin. Sondaki düğme sıralamayı değiştirir.",
+  "tourDiscoverBody": "Aynı geliştiricinin diğer uygulamalarını görün.",
+  "tourHelpBody": "Bu rehberi yeniden izlemek için buraya dokunun. Toplamların ve ürünlerin anlatımı için bir liste açın.",
+  "tourTotalsBody": "Planlanan, gerçek ve fark toplamları alışveriş yaptıkça güncellenir.",
+  "tourItemsBody": "Ürünleriniz. Sıralarını buradan değiştirin veya arayın."
 }

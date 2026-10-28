@@ -1418,4 +1418,31 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'レシート撮影のヒントを表示';
+
+  @override
+  String get tourSkip => 'スキップ';
+
+  @override
+  String get tourNewListBody => '買い物リストを作って、買う予定のものを追加しましょう。';
+
+  @override
+  String get tourFromReceiptBody => 'もう買い物を済ませましたか？レシートを価格付きのリストに変換できます。';
+
+  @override
+  String get tourReceiptFlowBody => 'レシートの上から始めます。まず店名と日付を撮り、続けて残りの行を撮ります。';
+
+  @override
+  String get tourTabsBody => '進行中・完了・アーカイブのリストを切り替えます。末尾のボタンで並び順を変更します。';
+
+  @override
+  String get tourDiscoverBody => '同じ開発者のほかのアプリを見る。';
+
+  @override
+  String get tourHelpBody => 'ここをタップするとこのガイドをもう一度見られます。リストを開くと合計と品目の説明が表示されます。';
+
+  @override
+  String get tourTotalsBody => '予定・実績の合計と差額は買い物中に更新されます。';
+
+  @override
+  String get tourItemsBody => '品目の一覧です。ここで並び順を変えたり検索したりできます。';
 }

@@ -1470,4 +1470,39 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Shfaq këshillat për fotografimin e faturës';
+
+  @override
+  String get tourSkip => 'Kapërce';
+
+  @override
+  String get tourNewListBody =>
+      'Nis një listë blerjesh dhe shto atë që planifikon të blesh.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'I ke bërë blerjet? Ktheje faturën në listë me çmimet.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Fillo nga maja e faturës: së pari dyqanin dhe datën, pastaj vazhdo me rreshtat e tjerë.';
+
+  @override
+  String get tourTabsBody =>
+      'Kalo mes listave aktive, të përfunduara dhe të arkivuara. Butoni në fund ndryshon renditjen.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Shiko aplikacione të tjera të të njëjtit zhvillues.';
+
+  @override
+  String get tourHelpBody =>
+      'Prek këtu për ta parë sërish udhëzuesin. Hap një listë për shpjegimin e totaleve dhe artikujve.';
+
+  @override
+  String get tourTotalsBody =>
+      'Totalet e planifikuara, reale dhe diferenca përditësohen ndërsa blen.';
+
+  @override
+  String get tourItemsBody =>
+      'Artikujt e tu. Ndrysho renditjen ose kërkoji këtu.';
 }

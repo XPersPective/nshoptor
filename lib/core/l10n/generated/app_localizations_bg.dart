@@ -1472,4 +1472,38 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Показвай съвети за снимане на бележка';
+
+  @override
+  String get tourSkip => 'Пропусни';
+
+  @override
+  String get tourNewListBody =>
+      'Създайте списък за пазаруване и добавете какво смятате да купите.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Вече пазарувахте? Превърнете касовата бележка в списък с цени.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Започнете от горната част на бележката: първо снимайте магазина и датата, после продължете с останалите редове.';
+
+  @override
+  String get tourTabsBody =>
+      'Превключвайте между активни, завършени и архивирани списъци. Бутонът в края сменя подредбата.';
+
+  @override
+  String get tourDiscoverBody => 'Още приложения от същия разработчик.';
+
+  @override
+  String get tourHelpBody =>
+      'Докоснете тук, за да видите ръководството отново. Отворете списък, за да видите обяснение на сумите и артикулите.';
+
+  @override
+  String get tourTotalsBody =>
+      'Планираната, реалната сума и разликата се обновяват, докато пазарувате.';
+
+  @override
+  String get tourItemsBody =>
+      'Вашите артикули. Сменете реда им или ги търсете тук.';
 }

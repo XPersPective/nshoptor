@@ -1465,4 +1465,38 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Visa tips för att fotografera kvitton';
+
+  @override
+  String get tourSkip => 'Hoppa över';
+
+  @override
+  String get tourNewListBody =>
+      'Starta en inköpslista och lägg till det du tänker köpa.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Redan handlat? Gör om ett kvitto till en lista med priser.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Börja högst upp på kvittot: först butik och datum, fortsätt sedan med resten av raderna.';
+
+  @override
+  String get tourTabsBody =>
+      'Växla mellan aktiva, klara och arkiverade listor. Knappen i slutet ändrar ordningen.';
+
+  @override
+  String get tourDiscoverBody => 'Se fler appar från samma utvecklare.';
+
+  @override
+  String get tourHelpBody =>
+      'Tryck här för att se guiden igen. Öppna en lista för att få summor och varor förklarade.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planerad, faktisk summa och skillnad uppdateras medan du handlar.';
+
+  @override
+  String get tourItemsBody =>
+      'Dina varor. Ändra ordning eller sök bland dem här.';
 }

@@ -396,8 +396,7 @@
   "demoProductTomato": "තක්කාලි",
   "demoProductEggs": "බිත්තර",
   "demoProductCoffee": "කෝපි",
-  "demoProductDetergent": "සබන් කුඩු"
-,
+  "demoProductDetergent": "සබන් කුඩු",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "එම රිසිට්පතම: පෙර ඡායාරූපයේ අවසාන භාණ්ඩය ඇතුළත් කරන්න.",
   "captureTipNeverShow": "නැවත නොපෙන්වන්න",
   "captureTipOk": "තේරුණා",
-  "captureTipsSetting": "රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න"
+  "captureTipsSetting": "රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න",
+  "tourSkip": "මඟ හරින්න",
+  "tourNewListBody": "සාප්පු ලැයිස්තුවක් අරඹා මිලදී ගැනීමට අදහස් කරන දේ එක් කරන්න.",
+  "tourFromReceiptBody": "දැනටමත් මිලදී ගත්තාද? රිසිට්පත එහි මිල ගණන් සමඟ ලැයිස්තුවක් කරන්න.",
+  "tourReceiptFlowBody": "රිසිට්පතේ ඉහළින් අරඹන්න: පළමුව වෙළඳසැල සහ දිනය, ඉන්පසු ඉතිරි පේළි සමඟ ඉදිරියට යන්න.",
+  "tourTabsBody": "සක්‍රිය, සම්පූර්ණ සහ සංරක්ෂිත ලැයිස්තු අතර මාරු වන්න. අවසානයේ බොත්තම අනුපිළිවෙල වෙනස් කරයි.",
+  "tourDiscoverBody": "එම සංවර්ධකයාගේම තවත් යෙදුම් බලන්න.",
+  "tourHelpBody": "මෙම මාර්ගෝපදේශය නැවත බැලීමට මෙහි තට්ටු කරන්න. එකතු සහ අයිතම පැහැදිලි කිරීම සඳහා ලැයිස්තුවක් විවෘත කරන්න.",
+  "tourTotalsBody": "සැලසුම් කළ, සැබෑ එකතුව සහ වෙනස මිලදී ගන්නා විට යාවත්කාලීන වේ.",
+  "tourItemsBody": "ඔබගේ අයිතම. මෙහි ඒවායේ අනුපිළිවෙල වෙනස් කරන්න හෝ සොයන්න."
 }

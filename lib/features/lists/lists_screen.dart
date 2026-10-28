@@ -22,6 +22,8 @@ import 'reminders/reminder_scheduler.dart';
 import 'reminders/reminders_repository.dart';
 import 'list_status.dart';
 import '../voice_input/dictation_mic_button.dart';
+import '../onboarding/coach_tour.dart';
+import '../onboarding/first_run_guide.dart';
 
 /// Liste durumlarının görünen adları (kanonik kod → l10n).
 String statusLabel(AppLocalizations l10n, ListStatus status) =>
@@ -109,6 +111,16 @@ class _ListsScreenState extends State<ListsScreen> {
         }),
       ),
     );
+    final helpInAppBar = MediaQuery.sizeOf(context).width >= 380;
+    final helpButton = TourAnchor(
+      id: TourTargets.listsHelp,
+      child: IconButton(
+        key: const Key('lists_help_button'),
+        tooltip: l10n.howToUseLabel,
+        icon: const Icon(Icons.help_outline),
+        onPressed: () => showFirstRunGuide(context),
+      ),
+    );
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -116,47 +128,58 @@ class _ListsScreenState extends State<ListsScreen> {
           title: const BrandTitle(),
           // F26/F02: [Discover][Pro] — Pro ends 16dp from the screen edge;
           // Discover's 48dp target leaves a 12dp gap between glyph and badge.
+          // F40: [?] replays the coach-mark tour; below 380dp the brand
+          // would shrink past legibility with long plan names, so it moves
+          // to the tabs row beside sort.
           actions: [
+            if (helpInAppBar) helpButton,
             if (widget.onDiscover != null)
-              IconButton(
-                key: const Key('home_nav_discover'),
-                tooltip: l10n.navDiscover,
-                icon: const Icon(Icons.explore_outlined),
-                onPressed: widget.onDiscover,
+              TourAnchor(
+                id: TourTargets.listsDiscover,
+                child: IconButton(
+                  key: const Key('home_nav_discover'),
+                  tooltip: l10n.navDiscover,
+                  icon: const Icon(Icons.explore_outlined),
+                  onPressed: widget.onDiscover,
+                ),
               ),
             if (widget.planBadge != null) ...[
-              widget.planBadge!,
+              TourAnchor(id: TourTargets.listsPlan, child: widget.planBadge!),
               const SizedBox(width: 16),
             ] else
               const SizedBox(width: 4),
           ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(48),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TabBar(
-                    isScrollable: true,
-                    tabAlignment: TabAlignment.start,
-                    tabs: [
-                      Tab(
-                        key: const Key('lists_tab_active'),
-                        text: l10n.listsTabActive,
-                      ),
-                      Tab(
-                        key: const Key('lists_tab_completed'),
-                        text: l10n.listsTabCompleted,
-                      ),
-                      Tab(
-                        key: const Key('lists_tab_archived'),
-                        text: l10n.listsTabArchived,
-                      ),
-                    ],
+            child: TourAnchor(
+              id: TourTargets.listsTabs,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TabBar(
+                      isScrollable: true,
+                      tabAlignment: TabAlignment.start,
+                      tabs: [
+                        Tab(
+                          key: const Key('lists_tab_active'),
+                          text: l10n.listsTabActive,
+                        ),
+                        Tab(
+                          key: const Key('lists_tab_completed'),
+                          text: l10n.listsTabCompleted,
+                        ),
+                        Tab(
+                          key: const Key('lists_tab_archived'),
+                          text: l10n.listsTabArchived,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                sortButton,
-                const SizedBox(width: 4),
-              ],
+                  if (!helpInAppBar) helpButton,
+                  sortButton,
+                  const SizedBox(width: 4),
+                ],
+              ),
             ),
           ),
         ),
@@ -272,38 +295,10 @@ class _ListsScreenState extends State<ListsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Expanded(
-                          child: FilledButton(
-                            key: const Key('lists_new_list_button'),
-                            style: FilledButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 12,
-                              ),
-                              minimumSize: const Size(48, 48),
-                            ),
-                            onPressed: _editorOpen
-                                ? null
-                                : () => _openEditor(context),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(Icons.add),
-                                const SizedBox(width: 8),
-                                Flexible(
-                                  child: Text(
-                                    l10n.newListButton,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        if (widget.onScanReceipt != null) ...[
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: FilledButton.tonal(
-                              key: const Key('lists_receipt_button'),
+                          child: TourAnchor(
+                            id: TourTargets.listsNew,
+                            child: FilledButton(
+                              key: const Key('lists_new_list_button'),
                               style: FilledButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 12,
@@ -311,21 +306,55 @@ class _ListsScreenState extends State<ListsScreen> {
                                 ),
                                 minimumSize: const Size(48, 48),
                               ),
-                              onPressed: widget.receiptBusy
+                              onPressed: _editorOpen
                                   ? null
-                                  : widget.onScanReceipt,
+                                  : () => _openEditor(context),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Icon(Icons.receipt_long_outlined),
+                                  const Icon(Icons.add),
                                   const SizedBox(width: 8),
                                   Flexible(
                                     child: Text(
-                                      l10n.fromReceiptListButton,
+                                      l10n.newListButton,
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (widget.onScanReceipt != null) ...[
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: TourAnchor(
+                              id: TourTargets.listsReceipt,
+                              child: FilledButton.tonal(
+                                key: const Key('lists_receipt_button'),
+                                style: FilledButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 12,
+                                  ),
+                                  minimumSize: const Size(48, 48),
+                                ),
+                                onPressed: widget.receiptBusy
+                                    ? null
+                                    : widget.onScanReceipt,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.receipt_long_outlined),
+                                    const SizedBox(width: 8),
+                                    Flexible(
+                                      child: Text(
+                                        l10n.fromReceiptListButton,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

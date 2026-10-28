@@ -1476,4 +1476,39 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Afficher les conseils de prise de vue du reçu';
+
+  @override
+  String get tourSkip => 'Passer';
+
+  @override
+  String get tourNewListBody =>
+      'Créez une liste de courses et ajoutez ce que vous prévoyez d\'acheter.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Déjà fait vos courses ? Transformez un ticket en liste avec ses prix.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Commencez par le haut du ticket : capturez d\'abord le magasin et la date, puis continuez avec le reste des lignes.';
+
+  @override
+  String get tourTabsBody =>
+      'Passez des listes actives aux listes terminées ou archivées. Le bouton au bout change l\'ordre.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Découvrez d\'autres applis du même développeur.';
+
+  @override
+  String get tourHelpBody =>
+      'Touchez ici pour revoir ce guide. Ouvrez une liste pour découvrir ses totaux et ses articles.';
+
+  @override
+  String get tourTotalsBody =>
+      'Les totaux prévu, réel et l\'écart se mettent à jour pendant vos courses.';
+
+  @override
+  String get tourItemsBody =>
+      'Vos articles. Changez leur ordre ou recherchez-les ici.';
 }

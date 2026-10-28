@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomatid",
   "demoProductEggs": "Munad",
   "demoProductCoffee": "Kohv",
-  "demoProductDetergent": "Pesuaine"
-,
+  "demoProductDetergent": "Pesuaine",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Sama kviitung: lisa eelmise foto viimane kaup.",
   "captureTipNeverShow": "Ära enam näita",
   "captureTipOk": "Selge",
-  "captureTipsSetting": "Näita kviitungi pildistamise nippe"
+  "captureTipsSetting": "Näita kviitungi pildistamise nippe",
+  "tourSkip": "Jäta vahele",
+  "tourNewListBody": "Alusta ostunimekirja ja lisa, mida plaanid osta.",
+  "tourFromReceiptBody": "Juba ostlesid? Tee tšekist hindadega nimekiri.",
+  "tourReceiptFlowBody": "Alusta tšeki ülaosast: esmalt pood ja kuupäev, siis jätka ülejäänud ridadega.",
+  "tourTabsBody": "Vaheta aktiivsete, lõpetatud ja arhiveeritud nimekirjade vahel. Lõpus olev nupp muudab järjekorda.",
+  "tourDiscoverBody": "Sama arendaja teised rakendused.",
+  "tourHelpBody": "Puuduta siin, et juhendit uuesti vaadata. Ava nimekiri, et näha summade ja toodete selgitust.",
+  "tourTotalsBody": "Plaanitud, tegelik summa ja vahe uuenevad ostlemise ajal.",
+  "tourItemsBody": "Sinu tooted. Muuda siin nende järjekorda või otsi neid."
 }

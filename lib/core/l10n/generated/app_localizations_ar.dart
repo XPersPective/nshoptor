@@ -1457,4 +1457,36 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'إظهار نصائح تصوير الإيصال';
+
+  @override
+  String get tourSkip => 'تخطٍّ';
+
+  @override
+  String get tourNewListBody => 'ابدأ قائمة تسوق وأضف ما تنوي شراءه.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'تسوقت بالفعل؟ حوّل الإيصال إلى قائمة بأسعاره.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ابدأ من أعلى الإيصال: صوّر المتجر والتاريخ أولًا، ثم تابع ببقية السطور.';
+
+  @override
+  String get tourTabsBody =>
+      'تنقّل بين القوائم النشطة والمكتملة والمؤرشفة. الزر في النهاية يغيّر الترتيب.';
+
+  @override
+  String get tourDiscoverBody => 'اطّلع على تطبيقات أخرى من المطوّر نفسه.';
+
+  @override
+  String get tourHelpBody =>
+      'اضغط هنا لإعادة عرض هذا الدليل. افتح قائمة لترى شرح مجاميعها وعناصرها.';
+
+  @override
+  String get tourTotalsBody =>
+      'تتحدث مجاميع المخطط والفعلي والفرق أثناء تسوقك.';
+
+  @override
+  String get tourItemsBody => 'عناصرك. غيّر ترتيبها أو ابحث عنها هنا.';
 }

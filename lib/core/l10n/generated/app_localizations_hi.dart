@@ -1468,4 +1468,38 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'रसीद कैप्चर के सुझाव दिखाएँ';
+
+  @override
+  String get tourSkip => 'छोड़ें';
+
+  @override
+  String get tourNewListBody =>
+      'खरीदारी सूची शुरू करें और जो खरीदना है उसे जोड़ें।';
+
+  @override
+  String get tourFromReceiptBody =>
+      'खरीदारी कर ली? रसीद को उसकी कीमतों के साथ सूची में बदलें।';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'रसीद के ऊपर से शुरू करें: पहले दुकान और तारीख लें, फिर बाकी पंक्तियों के साथ जारी रखें।';
+
+  @override
+  String get tourTabsBody =>
+      'सक्रिय, पूर्ण और संग्रहीत सूचियों के बीच बदलें। अंत वाला बटन क्रम बदलता है।';
+
+  @override
+  String get tourDiscoverBody => 'उसी डेवलपर के और ऐप देखें।';
+
+  @override
+  String get tourHelpBody =>
+      'यह गाइड फिर से देखने के लिए यहाँ टैप करें। योग और आइटम की व्याख्या देखने के लिए कोई सूची खोलें।';
+
+  @override
+  String get tourTotalsBody =>
+      'नियोजित, वास्तविक योग और अंतर खरीदारी के दौरान अपडेट होते हैं।';
+
+  @override
+  String get tourItemsBody =>
+      'आपके आइटम। यहाँ उनका क्रम बदलें या उन्हें खोजें।';
 }

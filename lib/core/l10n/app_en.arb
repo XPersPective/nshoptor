@@ -476,8 +476,7 @@
   "demoProductTomato": "Tomatoes",
   "demoProductEggs": "Eggs",
   "demoProductCoffee": "Coffee",
-  "demoProductDetergent": "Detergent"
-,
+  "demoProductDetergent": "Detergent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -514,13 +513,34 @@
   "planTrialEndedTitle": "Your Pro trial has ended",
   "planTrialEndedBody": "You can keep using lists, manual entry and on-device voice for free. Free includes 10 AI requests per calendar month. Choose annual Pro for 100 AI requests per month, no ads and backups. Your existing data stays with you.",
   "planContinueFree": "Continue with Free",
-  "@planTrialDaysLeft": {"placeholders": {"days": {"type": "int"}}},
-  "@planTrialHoursLeft": {"placeholders": {"hours": {"type": "int"}}},
+  "@planTrialDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "@planTrialHoursLeft": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
   "supportIdLabel": "Support ID",
   "supportEmailLabel": "Email support",
   "captureTipFirst": "Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.",
   "captureTipContinue": "Same receipt: include the last item of the previous photo.",
   "captureTipNeverShow": "Don't show again",
   "captureTipOk": "Got it",
-  "captureTipsSetting": "Show receipt capture tips"
+  "captureTipsSetting": "Show receipt capture tips",
+  "tourSkip": "Skip",
+  "tourNewListBody": "Start a shopping list and add what you plan to buy.",
+  "tourFromReceiptBody": "Already shopped? Turn a receipt into a list with its prices.",
+  "tourReceiptFlowBody": "Start at the top of the receipt: capture the store and date first, then continue with the rest of the lines.",
+  "tourTabsBody": "Switch between active, completed and archived lists. The button at the end changes the order.",
+  "tourDiscoverBody": "See more apps from the same developer.",
+  "tourHelpBody": "Tap here to replay this guide. Open a list to see its totals and items explained.",
+  "tourTotalsBody": "Planned, actual and difference totals update as you shop.",
+  "tourItemsBody": "Your items. Change their order or search them here."
 }

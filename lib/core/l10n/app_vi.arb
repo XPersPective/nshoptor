@@ -396,8 +396,7 @@
   "demoProductTomato": "Cà chua",
   "demoProductEggs": "Trứng",
   "demoProductCoffee": "Cà phê",
-  "demoProductDetergent": "Bột giặt"
-,
+  "demoProductDetergent": "Bột giặt",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Cùng một hóa đơn: bao gồm mặt hàng cuối cùng của ảnh trước.",
   "captureTipNeverShow": "Không hiện lại",
   "captureTipOk": "Đã hiểu",
-  "captureTipsSetting": "Hiện mẹo chụp hóa đơn"
+  "captureTipsSetting": "Hiện mẹo chụp hóa đơn",
+  "tourSkip": "Bỏ qua",
+  "tourNewListBody": "Tạo danh sách mua sắm và thêm những gì bạn định mua.",
+  "tourFromReceiptBody": "Đã mua xong? Biến hóa đơn thành danh sách kèm giá.",
+  "tourReceiptFlowBody": "Bắt đầu từ đầu hóa đơn: chụp cửa hàng và ngày trước, rồi tiếp tục với các dòng còn lại.",
+  "tourTabsBody": "Chuyển giữa danh sách đang dùng, đã xong và lưu trữ. Nút ở cuối đổi thứ tự.",
+  "tourDiscoverBody": "Xem thêm ứng dụng của cùng nhà phát triển.",
+  "tourHelpBody": "Chạm vào đây để xem lại hướng dẫn. Mở một danh sách để xem giải thích về tổng và mặt hàng.",
+  "tourTotalsBody": "Tổng dự kiến, thực tế và chênh lệch được cập nhật khi bạn mua sắm.",
+  "tourItemsBody": "Các mặt hàng của bạn. Đổi thứ tự hoặc tìm kiếm tại đây."
 }

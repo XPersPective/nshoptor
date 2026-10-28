@@ -396,8 +396,7 @@
   "demoProductTomato": "गोलभेडा",
   "demoProductEggs": "अण्डा",
   "demoProductCoffee": "कफी",
-  "demoProductDetergent": "डिटर्जेन्ट"
-,
+  "demoProductDetergent": "डिटर्जेन्ट",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "उही रसिद: अघिल्लो फोटोको अन्तिम सामान समावेश गर्नुहोस्।",
   "captureTipNeverShow": "फेरि नदेखाउनुहोस्",
   "captureTipOk": "बुझें",
-  "captureTipsSetting": "रसिद खिच्ने सुझाव देखाउनुहोस्"
+  "captureTipsSetting": "रसिद खिच्ने सुझाव देखाउनुहोस्",
+  "tourSkip": "छोड्नुहोस्",
+  "tourNewListBody": "किनमेल सूची सुरु गर्नुहोस् र किन्ने कुरा थप्नुहोस्।",
+  "tourFromReceiptBody": "किनमेल गरिसक्नुभयो? रसिदलाई मूल्यसहित सूचीमा बदल्नुहोस्।",
+  "tourReceiptFlowBody": "रसिदको माथिबाट सुरु गर्नुहोस्: पहिले पसल र मिति लिनुहोस्, त्यसपछि बाँकी पङ्क्तिहरूसँग जारी राख्नुहोस्।",
+  "tourTabsBody": "सक्रिय, सम्पन्न र संग्रहित सूचीहरूबीच बदल्नुहोस्। अन्तिम बटनले क्रम बदल्छ।",
+  "tourDiscoverBody": "उही विकासकर्ताका थप एपहरू हेर्नुहोस्।",
+  "tourHelpBody": "यो गाइड फेरि हेर्न यहाँ ट्याप गर्नुहोस्। जम्मा र सामानको व्याख्या हेर्न कुनै सूची खोल्नुहोस्।",
+  "tourTotalsBody": "योजना गरिएको, वास्तविक जम्मा र फरक किनमेल गर्दा अद्यावधिक हुन्छन्।",
+  "tourItemsBody": "तपाईंका सामान। यहाँ तिनको क्रम बदल्नुहोस् वा खोज्नुहोस्।"
 }

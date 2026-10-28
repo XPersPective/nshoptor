@@ -396,8 +396,7 @@
   "demoProductTomato": "Tomat",
   "demoProductEggs": "Telur",
   "demoProductCoffee": "Kopi",
-  "demoProductDetergent": "Deterjen"
-,
+  "demoProductDetergent": "Deterjen",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Struk yang sama: sertakan item terakhir dari foto sebelumnya.",
   "captureTipNeverShow": "Jangan tampilkan lagi",
   "captureTipOk": "Mengerti",
-  "captureTipsSetting": "Tampilkan tips memotret struk"
+  "captureTipsSetting": "Tampilkan tips memotret struk",
+  "tourSkip": "Lewati",
+  "tourNewListBody": "Mulai daftar belanja dan tambahkan yang ingin Anda beli.",
+  "tourFromReceiptBody": "Sudah belanja? Ubah struk menjadi daftar beserta harganya.",
+  "tourReceiptFlowBody": "Mulai dari bagian atas struk: ambil toko dan tanggal dulu, lalu lanjutkan dengan baris lainnya.",
+  "tourTabsBody": "Beralih antara daftar aktif, selesai, dan arsip. Tombol di ujung mengubah urutan.",
+  "tourDiscoverBody": "Lihat aplikasi lain dari pengembang yang sama.",
+  "tourHelpBody": "Ketuk di sini untuk melihat panduan ini lagi. Buka daftar untuk melihat penjelasan total dan item.",
+  "tourTotalsBody": "Total rencana, aktual, dan selisih diperbarui saat Anda berbelanja.",
+  "tourItemsBody": "Item Anda. Ubah urutannya atau cari di sini."
 }

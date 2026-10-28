@@ -396,8 +396,7 @@
   "demoProductTomato": "มะเขือเทศ",
   "demoProductEggs": "ไข่",
   "demoProductCoffee": "กาแฟ",
-  "demoProductDetergent": "ผงซักฟอก"
-,
+  "demoProductDetergent": "ผงซักฟอก",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "ใบเสร็จใบเดิม: ใส่รายการสุดท้ายของภาพก่อนหน้าด้วย",
   "captureTipNeverShow": "ไม่ต้องแสดงอีก",
   "captureTipOk": "เข้าใจแล้ว",
-  "captureTipsSetting": "แสดงเคล็ดลับการถ่ายใบเสร็จ"
+  "captureTipsSetting": "แสดงเคล็ดลับการถ่ายใบเสร็จ",
+  "tourSkip": "ข้าม",
+  "tourNewListBody": "เริ่มรายการซื้อของและเพิ่มสิ่งที่คุณตั้งใจจะซื้อ",
+  "tourFromReceiptBody": "ซื้อของแล้วใช่ไหม เปลี่ยนใบเสร็จเป็นรายการพร้อมราคา",
+  "tourReceiptFlowBody": "เริ่มจากด้านบนของใบเสร็จ: ถ่ายร้านและวันที่ก่อน แล้วต่อด้วยบรรทัดที่เหลือ",
+  "tourTabsBody": "สลับระหว่างรายการที่ใช้งาน เสร็จแล้ว และเก็บถาวร ปุ่มท้ายแถวใช้เปลี่ยนลำดับ",
+  "tourDiscoverBody": "ดูแอปอื่นจากผู้พัฒนาเดียวกัน",
+  "tourHelpBody": "แตะที่นี่เพื่อดูคำแนะนำนี้อีกครั้ง เปิดรายการเพื่อดูคำอธิบายยอดรวมและสินค้า",
+  "tourTotalsBody": "ยอดรวมตามแผน ยอดจริง และส่วนต่างจะอัปเดตขณะคุณซื้อของ",
+  "tourItemsBody": "สินค้าของคุณ เปลี่ยนลำดับหรือค้นหาได้ที่นี่"
 }

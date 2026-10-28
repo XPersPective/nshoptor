@@ -1461,4 +1461,38 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'पावती कॅप्चर टिप्स दाखवा';
+
+  @override
+  String get tourSkip => 'वगळा';
+
+  @override
+  String get tourNewListBody =>
+      'खरेदी यादी सुरू करा आणि जे घ्यायचे आहे ते जोडा.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'खरेदी झाली? पावतीला तिच्या किमतींसह यादीत बदला.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'पावतीच्या वरून सुरुवात करा: आधी दुकान आणि तारीख घ्या, मग उरलेल्या ओळींसह पुढे जा.';
+
+  @override
+  String get tourTabsBody =>
+      'सक्रिय, पूर्ण आणि संग्रहित याद्यांमध्ये बदला. शेवटचे बटण क्रम बदलते.';
+
+  @override
+  String get tourDiscoverBody => 'त्याच विकसकाची आणखी अ‍ॅप्स पहा.';
+
+  @override
+  String get tourHelpBody =>
+      'हे मार्गदर्शन पुन्हा पाहण्यासाठी येथे टॅप करा. बेरीज आणि वस्तूंचे स्पष्टीकरण पाहण्यासाठी एखादी यादी उघडा.';
+
+  @override
+  String get tourTotalsBody =>
+      'नियोजित, प्रत्यक्ष बेरीज आणि फरक खरेदी करताना अद्ययावत होतात.';
+
+  @override
+  String get tourItemsBody =>
+      'तुमच्या वस्तू. येथे त्यांचा क्रम बदला किंवा त्या शोधा.';
 }

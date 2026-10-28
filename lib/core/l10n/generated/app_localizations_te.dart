@@ -1475,4 +1475,38 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'రసీదు తీసే చిట్కాలను చూపించు';
+
+  @override
+  String get tourSkip => 'దాటవేయి';
+
+  @override
+  String get tourNewListBody =>
+      'షాపింగ్ జాబితా ప్రారంభించి కొనాలనుకున్నవి జోడించండి.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ఇప్పటికే కొన్నారా? రసీదును దాని ధరలతో జాబితాగా మార్చండి.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'రసీదు పై నుండి ప్రారంభించండి: ముందు దుకాణం మరియు తేదీ, తర్వాత మిగిలిన పంక్తులతో కొనసాగండి.';
+
+  @override
+  String get tourTabsBody =>
+      'సక్రియ, పూర్తయిన మరియు ఆర్కైవ్ జాబితాల మధ్య మారండి. చివరి బటన్ క్రమాన్ని మారుస్తుంది.';
+
+  @override
+  String get tourDiscoverBody => 'అదే డెవలపర్ ఇతర యాప్‌లను చూడండి.';
+
+  @override
+  String get tourHelpBody =>
+      'ఈ గైడ్‌ను మళ్లీ చూడడానికి ఇక్కడ నొక్కండి. మొత్తాలు మరియు అంశాల వివరణ కోసం ఒక జాబితాను తెరవండి.';
+
+  @override
+  String get tourTotalsBody =>
+      'ప్రణాళిక, వాస్తవ మొత్తం మరియు తేడా షాపింగ్ చేస్తూ ఉండగా నవీకరించబడతాయి.';
+
+  @override
+  String get tourItemsBody =>
+      'మీ అంశాలు. ఇక్కడ వాటి క్రమాన్ని మార్చండి లేదా వెతకండి.';
 }

@@ -1407,4 +1407,31 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get captureTipsSetting => '显示收据拍摄提示';
+
+  @override
+  String get tourSkip => '跳过';
+
+  @override
+  String get tourNewListBody => '创建购物清单，添加你打算购买的商品。';
+
+  @override
+  String get tourFromReceiptBody => '已经买完了？把小票变成带价格的清单。';
+
+  @override
+  String get tourReceiptFlowBody => '从小票顶部开始：先拍商店和日期，再继续拍其余行。';
+
+  @override
+  String get tourTabsBody => '在进行中、已完成和已归档清单之间切换。末尾的按钮可更改排序。';
+
+  @override
+  String get tourDiscoverBody => '查看同一开发者的更多应用。';
+
+  @override
+  String get tourHelpBody => '点按此处可再次查看本指南。打开一个清单即可查看总计和商品的说明。';
+
+  @override
+  String get tourTotalsBody => '计划、实际总额及差额会在购物时更新。';
+
+  @override
+  String get tourItemsBody => '你的商品。可在此更改顺序或搜索。';
 }

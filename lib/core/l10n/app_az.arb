@@ -407,8 +407,7 @@
   "demoProductTomato": "Pomidor",
   "demoProductEggs": "Yumurta",
   "demoProductCoffee": "Qəhvə",
-  "demoProductDetergent": "Yuyucu vasitə"
-,
+  "demoProductDetergent": "Yuyucu vasitə",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,14 @@
   "captureTipContinue": "Eyni çek: əvvəlki fotodakı son məhsulu da daxil edin.",
   "captureTipNeverShow": "Bir daha göstərmə",
   "captureTipOk": "Anladım",
-  "captureTipsSetting": "Çek çəkilişi məsləhətlərini göstər"
+  "captureTipsSetting": "Çek çəkilişi məsləhətlərini göstər",
+  "tourSkip": "Keç",
+  "tourNewListBody": "Alış-veriş siyahısı başladın və almaq istədiklərinizi əlavə edin.",
+  "tourFromReceiptBody": "Artıq alış-veriş etmisiniz? Çeki qiymətləri ilə siyahıya çevirin.",
+  "tourReceiptFlowBody": "Çekin yuxarısından başlayın: əvvəl mağaza və tarixi çəkin, sonra qalan sətirlərlə davam edin.",
+  "tourTabsBody": "Aktiv, tamamlanmış və arxivlənmiş siyahılar arasında keçin. Sondakı düymə sıranı dəyişir.",
+  "tourDiscoverBody": "Eyni tərtibatçının digər tətbiqlərinə baxın.",
+  "tourHelpBody": "Bu bələdçini yenidən görmək üçün bura toxunun. Cəmlərin və məhsulların izahı üçün siyahı açın.",
+  "tourTotalsBody": "Planlaşdırılan, faktiki cəm və fərq alış-veriş etdikcə yenilənir.",
+  "tourItemsBody": "Məhsullarınız. Sıralarını burada dəyişin və ya axtarın."
 }
