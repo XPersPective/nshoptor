@@ -1126,6 +1126,15 @@ class AppLocalizationsBn extends AppLocalizations {
   String get csvExportAction => 'CSV এক্সপোর্ট করুন';
 
   @override
+  String get reportSharePdf => 'PDF হিসেবে শেয়ার করুন';
+
+  @override
+  String get reportShareCsv => 'CSV হিসেবে শেয়ার করুন';
+
+  @override
+  String get reportPrintAction => 'প্রিন্ট করুন';
+
+  @override
   String get backupSizeWarning =>
       'JSON-এ রেকর্ড রয়েছে, ফটো ফাইল নয়। আমদানির সীমা: ১৬ এমবি।';
 

@@ -1131,6 +1131,15 @@ class AppLocalizationsUz extends AppLocalizations {
   String get csvExportAction => 'CSV eksport qilish';
 
   @override
+  String get reportSharePdf => 'PDF sifatida ulashish';
+
+  @override
+  String get reportShareCsv => 'CSV sifatida ulashish';
+
+  @override
+  String get reportPrintAction => 'Chop etish';
+
+  @override
   String get backupSizeWarning =>
       'JSON fayllarida rasm fayllari emas, yozuvlar mavjud. Import cheklovi: 16 MB.';
 

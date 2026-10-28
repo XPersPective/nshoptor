@@ -1124,6 +1124,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get csvExportAction => 'Export CSV';
 
   @override
+  String get reportSharePdf => 'Share as PDF';
+
+  @override
+  String get reportShareCsv => 'Share as CSV';
+
+  @override
+  String get reportPrintAction => 'Print';
+
+  @override
   String get backupSizeWarning =>
       'JSON includes records, not photo files. Import limit: 16 MB.';
 

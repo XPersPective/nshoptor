@@ -1127,6 +1127,15 @@ class AppLocalizationsKy extends AppLocalizations {
   String get csvExportAction => 'CSV экспорттоо';
 
   @override
+  String get reportSharePdf => 'PDF катары бөлүшүү';
+
+  @override
+  String get reportShareCsv => 'CSV катары бөлүшүү';
+
+  @override
+  String get reportPrintAction => 'Басып чыгаруу';
+
+  @override
   String get backupSizeWarning =>
       'JSON файлдарында сүрөт файлдары эмес, жазуулар бар. Импортоонун чеги: 16 МБ.';
 

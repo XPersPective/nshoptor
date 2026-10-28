@@ -1131,6 +1131,15 @@ class AppLocalizationsFi extends AppLocalizations {
   String get csvExportAction => 'Vie CSV';
 
   @override
+  String get reportSharePdf => 'Jaa PDF-tiedostona';
+
+  @override
+  String get reportShareCsv => 'Jaa CSV-tiedostona';
+
+  @override
+  String get reportPrintAction => 'Tulosta';
+
+  @override
   String get backupSizeWarning =>
       'JSON sisältää tietueita, ei valokuvatiedostoja. Tuontiraja: 16 Mt.';
 

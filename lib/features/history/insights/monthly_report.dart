@@ -1,16 +1,12 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 
-import '../../../app/app_defaults.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/money/currency.dart';
-import '../../../core/money/format_locale.dart';
 import '../../../core/money/money.dart';
 import '../../../core/money/money_format.dart';
 import '../../../data/db/app_database.dart';
 import '../../lists/starter_categories.dart';
-import '../../shopping_mode/summary/pdf_report.dart' show pdfPrintChannel;
 import '../../shopping_mode/summary/result_repository.dart';
 import 'insights_repository.dart';
 
@@ -116,49 +112,3 @@ thead{display:table-header-group}tr{break-inside:avoid}bdi{unicode-bidi:isolate}
 ${categoryRows.isEmpty ? '' : '<h2>${e(l10n.categoryLabel)}</h2><table><tbody>${categoryRows.join()}</tbody></table>'}
 </body></html>''';
 });
-
-/// Uses the same native print/save flow as individual shopping reports.
-Future<void> showPeriodReport(
-  BuildContext context, AppDatabase db, DateTime from, DateTime to,
-  String currencyCode, {required String periodLabel}
-) async {
-  final l10n = AppLocalizations.of(context);
-  final locale = formatLocaleCode(context);
-  final rtl = Directionality.of(context) == TextDirection.rtl;
-  try {
-    final html = await buildPeriodReport(db, from, to, currencyCode, l10n, locale,
-      periodLabel: periodLabel, rtl: rtl);
-    if (!context.mounted) return;
-    await pdfPrintChannel.invokeMethod<void>('print', {
-      'html': html,
-      'title': 'NShoptor-${from.toIso8601String().split('T').first}',
-    });
-  } catch (_) {
-    if (context.mounted) {
-      ScaffoldMessenger.of(context)
-        ..clearSnackBars()
-        ..showSnackBar(SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true));
-    }
-  }
-}
-
-/// Android yazdırma iletişim kutusunu açar (alışveriş raporuyla aynı kanal).
-Future<void> showMonthlyReport(BuildContext context, AppDatabase db, DateTime month, String currencyCode) async {
-  final l10n = AppLocalizations.of(context);
-  final locale = formatLocaleCode(context);
-  final rtl = Directionality.of(context) == TextDirection.rtl;
-  final monthLabel = MaterialLocalizations.of(context).formatMonthYear(month);
-  try {
-    final html = await buildMonthlyReport(db, month, currencyCode, l10n, locale,
-        monthLabel: monthLabel, rtl: rtl, limitMinor: AppDefaults.monthlyLimitMinor(currencyCode: currencyCode));
-    if (!context.mounted) return;
-    await pdfPrintChannel.invokeMethod<void>(
-        'print', {'html': html, 'title': 'NShoptor-${month.year}-${month.month.toString().padLeft(2, '0')}'});
-  } catch (_) {
-    if (context.mounted) {
-      ScaffoldMessenger.of(context)
-        ..clearSnackBars()
-        ..showSnackBar(SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1)));
-    }
-  }
-}

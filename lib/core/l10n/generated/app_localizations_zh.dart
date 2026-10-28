@@ -1087,6 +1087,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get csvExportAction => '导出 CSV';
 
   @override
+  String get reportSharePdf => '以 PDF 分享';
+
+  @override
+  String get reportShareCsv => '以 CSV 分享';
+
+  @override
+  String get reportPrintAction => '打印';
+
+  @override
   String get backupSizeWarning => 'JSON 包含记录，而非照片文件。导入限制：16 MB。';
 
   @override

@@ -1132,6 +1132,15 @@ class AppLocalizationsTl extends AppLocalizations {
   String get csvExportAction => 'I-export ang CSV';
 
   @override
+  String get reportSharePdf => 'Ibahagi bilang PDF';
+
+  @override
+  String get reportShareCsv => 'Ibahagi bilang CSV';
+
+  @override
+  String get reportPrintAction => 'I-print';
+
+  @override
   String get backupSizeWarning =>
       'Ang JSON ay naglalaman ng mga rekord, hindi mga file ng larawan. Limitasyon sa pag-import: 16 MB.';
 

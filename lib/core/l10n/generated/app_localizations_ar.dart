@@ -1114,6 +1114,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get csvExportAction => 'تصدير CSV';
 
   @override
+  String get reportSharePdf => 'مشاركة بصيغة PDF';
+
+  @override
+  String get reportShareCsv => 'مشاركة بصيغة CSV';
+
+  @override
+  String get reportPrintAction => 'طباعة';
+
+  @override
   String get backupSizeWarning =>
       'يحتوي ملف JSON على سجلات وليس ملفات صور. حد الاستيراد: 16 ميجابايت.';
 

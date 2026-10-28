@@ -11,7 +11,10 @@ import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 import 'insights_repository.dart';
 import 'limit_editor.dart';
-import 'monthly_report.dart';
+import '../reports/report_document.dart';
+import '../reports/report_period.dart';
+import '../reports/report_repository.dart';
+import '../reports/report_share_menu.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../core/quantity/unit_code.dart';
 import '../../lists/starter_categories.dart';
@@ -342,15 +345,23 @@ class _SpendingScreenState extends State<SpendingScreen> {
                           key: const Key('month_total'),
                         ),
                       ),
-                      TextButton.icon(
-                        key: const Key('monthly_report'),
-                        icon: const Icon(Icons.picture_as_pdf_outlined),
-                        label: Text(l10n.monthlyReportAction),
-                        onPressed: () => showMonthlyReport(
-                          context,
-                          widget.db,
-                          _month,
-                          _currency,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: ReportShareButton(
+                          key: const Key('monthly_report'),
+                          label: l10n.monthlyReportAction,
+                          document: () async {
+                            final month = _month;
+                            final report = await ReportRepository(widget.db).period(
+                              ReportPeriod.forSpan(ReportSpan.month, month),
+                              _currency,
+                            );
+                            return ReportDocument(
+                              title: '${l10n.monthlyReportAction} · ${ml.formatMonthYear(month)}',
+                              currencyCode: report.currencyCode,
+                              shopping: report.shopping,
+                            );
+                          },
                         ),
                       ),
                     ],

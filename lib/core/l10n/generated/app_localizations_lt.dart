@@ -1129,6 +1129,15 @@ class AppLocalizationsLt extends AppLocalizations {
   String get csvExportAction => 'Eksportuoti CSV';
 
   @override
+  String get reportSharePdf => 'Bendrinti kaip PDF';
+
+  @override
+  String get reportShareCsv => 'Bendrinti kaip CSV';
+
+  @override
+  String get reportPrintAction => 'Spausdinti';
+
+  @override
   String get backupSizeWarning =>
       'JSON failas įrašo duomenis, o ne nuotraukų failus. Importavimo limitas: 16 MB.';
 

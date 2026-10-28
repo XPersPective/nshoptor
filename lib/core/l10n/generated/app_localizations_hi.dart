@@ -1129,6 +1129,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get csvExportAction => 'CSV निर्यात करें';
 
   @override
+  String get reportSharePdf => 'PDF के रूप में शेयर करें';
+
+  @override
+  String get reportShareCsv => 'CSV के रूप में शेयर करें';
+
+  @override
+  String get reportPrintAction => 'प्रिंट करें';
+
+  @override
   String get backupSizeWarning =>
       'JSON में रिकॉर्ड्स हैं, फ़ोटो फ़ाइलें नहीं। आयात सीमा: 16 MB.';
 

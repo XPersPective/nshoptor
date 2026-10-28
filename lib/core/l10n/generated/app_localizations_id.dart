@@ -1125,6 +1125,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get csvExportAction => 'Ekspor CSV';
 
   @override
+  String get reportSharePdf => 'Bagikan sebagai PDF';
+
+  @override
+  String get reportShareCsv => 'Bagikan sebagai CSV';
+
+  @override
+  String get reportPrintAction => 'Cetak';
+
+  @override
   String get backupSizeWarning =>
       'JSON mencakup catatan, bukan file foto. Batas impor: 16 MB.';
 

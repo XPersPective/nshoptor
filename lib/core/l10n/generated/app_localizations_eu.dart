@@ -1129,6 +1129,15 @@ class AppLocalizationsEu extends AppLocalizations {
   String get csvExportAction => 'Esportatu CSV';
 
   @override
+  String get reportSharePdf => 'Partekatu PDF gisa';
+
+  @override
+  String get reportShareCsv => 'Partekatu CSV gisa';
+
+  @override
+  String get reportPrintAction => 'Inprimatu';
+
+  @override
   String get backupSizeWarning =>
       'JSON-k erregistroak ditu, ez argazki-fitxategiak. Inportazio muga: 16 MB.';
 

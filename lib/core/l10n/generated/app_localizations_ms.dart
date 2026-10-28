@@ -1129,6 +1129,15 @@ class AppLocalizationsMs extends AppLocalizations {
   String get csvExportAction => 'Eksport CSV';
 
   @override
+  String get reportSharePdf => 'Kongsi sebagai PDF';
+
+  @override
+  String get reportShareCsv => 'Kongsi sebagai CSV';
+
+  @override
+  String get reportPrintAction => 'Cetak';
+
+  @override
   String get backupSizeWarning =>
       'JSON mengandungi rekod, bukan fail foto. Had import: 16 MB.';
 

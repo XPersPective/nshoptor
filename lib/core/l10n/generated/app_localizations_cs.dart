@@ -1125,6 +1125,15 @@ class AppLocalizationsCs extends AppLocalizations {
   String get csvExportAction => 'Exportovat CSV';
 
   @override
+  String get reportSharePdf => 'Sdílet jako PDF';
+
+  @override
+  String get reportShareCsv => 'Sdílet jako CSV';
+
+  @override
+  String get reportPrintAction => 'Tisk';
+
+  @override
   String get backupSizeWarning =>
       'JSON obsahuje záznamy, nikoliv soubory fotografií. Limit importu: 16 MB.';
 

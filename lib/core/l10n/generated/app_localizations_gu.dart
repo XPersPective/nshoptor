@@ -1125,6 +1125,15 @@ class AppLocalizationsGu extends AppLocalizations {
   String get csvExportAction => 'CSV નિકાસ કરો';
 
   @override
+  String get reportSharePdf => 'PDF તરીકે શેર કરો';
+
+  @override
+  String get reportShareCsv => 'CSV તરીકે શેર કરો';
+
+  @override
+  String get reportPrintAction => 'પ્રિન્ટ કરો';
+
+  @override
   String get backupSizeWarning =>
       'JSON માં રેકોર્ડ્સ છે, ફોટો ફાઇલો નથી. આયાત મર્યાદા: 16 MB.';
 

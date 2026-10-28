@@ -1125,6 +1125,15 @@ class AppLocalizationsMl extends AppLocalizations {
   String get csvExportAction => 'CSV എക്സ്പോർട്ട് ചെയ്യുക';
 
   @override
+  String get reportSharePdf => 'PDF ആയി പങ്കിടുക';
+
+  @override
+  String get reportShareCsv => 'CSV ആയി പങ്കിടുക';
+
+  @override
+  String get reportPrintAction => 'പ്രിന്റ് ചെയ്യുക';
+
+  @override
   String get backupSizeWarning =>
       'JSON-ൽ റെക്കോർഡുകൾ ഉണ്ട്, ഫോട്ടോ ഫയലുകൾ അല്ല. ഇംപോർട്ട് പരിധി: 16 MB.';
 

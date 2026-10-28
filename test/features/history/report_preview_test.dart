@@ -44,7 +44,7 @@ Future<void> _capture(WidgetTester tester, String name) async {
 
 class _Export extends ReportExportService {
   Completer<Uint8List> pending = Completer();
-  int renders = 0, saves = 0, shares = 0;
+  int renders = 0, saves = 0, shares = 0, prints = 0;
   @override
   Future<Uint8List> bytes(
     ReportDocument document,
@@ -73,6 +73,15 @@ class _Export extends ReportExportService {
     Rect origin,
   ) async {
     shares++;
+  }
+
+  @override
+  Future<void> printReport(
+    ReportDocument document,
+    ReportText text, {
+    bool rtl = false,
+  }) async {
+    prints++;
   }
 }
 
@@ -208,7 +217,7 @@ void main() {
         expect(tester.takeException(), isNull);
         await _capture(tester, '${name}_zoomed');
         final l = AppLocalizations.of(tester.element(find.byType(Scaffold)));
-        final share = find.byTooltip(l.reportShareAction);
+        final share = find.byKey(const Key('report_share'));
         await tester.scrollUntilVisible(
           share,
           400,
@@ -219,11 +228,13 @@ void main() {
         await _capture(tester, '${name}_actions');
         await tester.tap(share);
         await tester.pumpAndSettle();
-        expect(find.text('PDF'), findsOneWidget);
-        expect(find.text('CSV'), findsOneWidget);
+        expect(find.descendant(of: share, matching: find.text(l.reportShareAction)), findsOneWidget);
+        expect(find.text(l.reportSharePdf), findsOneWidget);
+        expect(find.text(l.reportShareCsv), findsOneWidget);
+        expect(find.text(l.reportPrintAction), findsOneWidget);
         await tester.sendKeyEvent(LogicalKeyboardKey.escape);
         await tester.pumpAndSettle();
-        expect(find.text('PDF'), findsNothing);
+        expect(find.byKey(const Key('report_share_menu')), findsNothing);
         expect(tester.takeException(), isNull);
       } finally {
         semantics.dispose();
@@ -231,32 +242,47 @@ void main() {
     });
   }
   testWidgets(
-    'export rejects double taps, cancellation is quiet, errors permit retry',
+    'share rejects double taps, errors permit retry, print is reachable',
     (tester) async {
       final export = _Export();
       await tester.pumpWidget(subject(document(empty: true), service: export));
       await tester.pumpAndSettle();
       final l = AppLocalizations.of(tester.element(find.byType(Scaffold)));
       expect(find.byKey(const Key('report_grand_total')), findsOneWidget);
-      final button = find.widgetWithText(OutlinedButton, l.reportPdfAction);
-      await tester.ensureVisible(button);
-      await tester.tap(button);
-      await tester.pump();
-      await tester.tap(button);
+      final button = find.byKey(const Key('report_share'));
+      // The old separate save buttons are gone: one Share action only.
+      expect(find.widgetWithText(OutlinedButton, l.reportPdfAction), findsNothing);
+      expect(find.widgetWithText(OutlinedButton, l.csvExportAction), findsNothing);
+      Future<void> choose(String action) async {
+        await tester.ensureVisible(button);
+        await tester.tap(button);
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(Key('report_share_$action')));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 400));
+      }
+
+      await choose('pdf');
       expect(export.renders, 1);
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      await tester.tap(button, warnIfMissed: false);
+      await tester.pump();
+      expect(find.byKey(const Key('report_share_menu')), findsNothing);
+      expect(export.renders, 1);
       export.pending.complete(Uint8List.fromList('%PDF-qa'.codeUnits));
       await tester.pumpAndSettle();
-      expect(export.saves, 1);
-      expect(find.text(l.reportSaved), findsNothing);
+      expect(export.shares, 1);
+      expect(export.saves, 0);
       expect(find.text(l.saveFailed), findsNothing);
       export.pending = Completer();
-      await tester.tap(button);
-      await tester.pump();
+      await choose('csv');
       export.pending.completeError(StateError('synthetic renderer failure'));
       await tester.pumpAndSettle();
       expect(find.text(l.saveFailed), findsOneWidget);
-      expect(tester.widget<OutlinedButton>(button).onPressed, isNotNull);
+      expect(export.shares, 1);
+      await choose('print');
+      await tester.pumpAndSettle();
+      expect(export.prints, 1);
+      expect(export.renders, 2);
     },
   );
 }

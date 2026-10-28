@@ -1131,6 +1131,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get csvExportAction => 'Exporter en CSV';
 
   @override
+  String get reportSharePdf => 'Partager en PDF';
+
+  @override
+  String get reportShareCsv => 'Partager en CSV';
+
+  @override
+  String get reportPrintAction => 'Imprimer';
+
+  @override
   String get backupSizeWarning =>
       'Le JSON contient des enregistrements, pas des fichiers photo. Limite d\'importation : 16 Mo.';
 

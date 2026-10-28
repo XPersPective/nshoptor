@@ -1125,6 +1125,15 @@ class AppLocalizationsMr extends AppLocalizations {
   String get csvExportAction => 'CSV एक्सपोर्ट करा';
 
   @override
+  String get reportSharePdf => 'PDF म्हणून शेअर करा';
+
+  @override
+  String get reportShareCsv => 'CSV म्हणून शेअर करा';
+
+  @override
+  String get reportPrintAction => 'प्रिंट करा';
+
+  @override
   String get backupSizeWarning =>
       'JSON मध्ये रेकॉर्ड्स आहेत, फोटो फाइल्स नाहीत. आयात मर्यादा: 16 MB.';
 
