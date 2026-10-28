@@ -461,5 +461,12 @@
   "receiptDeleted": "Blokk törölve.",
   "listReceiptsShowAll": "Az összes ({count})",
   "listReceiptsShowLess": "Kevesebb",
-  "receiptDateLabel": "Blokk dátuma: {date}"
+  "receiptDateLabel": "Blokk dátuma: {date}",
+  "historyViewShopping": "Vásárlásonként",
+  "historyViewStore": "Üzletenként",
+  "historyViewProduct": "Termékenként",
+  "historyShareAll": "Összes megosztása",
+  "historyUnknownStore": "Ismeretlen üzlet",
+  "historyDailySpending": "Napi költés",
+  "historyResetPeriod": "Vissza erre a hétre"
 }

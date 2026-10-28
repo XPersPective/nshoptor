@@ -1521,4 +1521,25 @@ class AppLocalizationsSi extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'රිසිට්පතේ දිනය: $date';
   }
+
+  @override
+  String get historyViewShopping => 'සාප්පු සවාරිය අනුව';
+
+  @override
+  String get historyViewStore => 'සාප්පුව අනුව';
+
+  @override
+  String get historyViewProduct => 'නිෂ්පාදනය අනුව';
+
+  @override
+  String get historyShareAll => 'සියල්ල බෙදාගන්න';
+
+  @override
+  String get historyUnknownStore => 'නොදන්නා සාප්පුව';
+
+  @override
+  String get historyDailySpending => 'දෛනික වියදම';
+
+  @override
+  String get historyResetPeriod => 'මෙම සතියට ආපසු';
 }

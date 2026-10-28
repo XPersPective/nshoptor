@@ -461,5 +461,12 @@
   "receiptDeleted": "ਰਸੀਦ ਮਿਟਾਈ ਗਈ।",
   "listReceiptsShowAll": "ਸਭ ਦਿਖਾਓ ({count})",
   "listReceiptsShowLess": "ਘੱਟ ਦਿਖਾਓ",
-  "receiptDateLabel": "ਰਸੀਦ ਦੀ ਮਿਤੀ: {date}"
+  "receiptDateLabel": "ਰਸੀਦ ਦੀ ਮਿਤੀ: {date}",
+  "historyViewShopping": "ਖਰੀਦਦਾਰੀ ਅਨੁਸਾਰ",
+  "historyViewStore": "ਦੁਕਾਨ ਅਨੁਸਾਰ",
+  "historyViewProduct": "ਉਤਪਾਦ ਅਨੁਸਾਰ",
+  "historyShareAll": "ਸਭ ਸਾਂਝਾ ਕਰੋ",
+  "historyUnknownStore": "ਅਣਜਾਣ ਦੁਕਾਨ",
+  "historyDailySpending": "ਰੋਜ਼ਾਨਾ ਖਰਚ",
+  "historyResetPeriod": "ਇਸ ਹਫ਼ਤੇ ਵੱਲ ਵਾਪਸ ਜਾਓ"
 }

@@ -1526,4 +1526,25 @@ class AppLocalizationsBs extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Datum računa: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Po kupovini';
+
+  @override
+  String get historyViewStore => 'Po prodavnici';
+
+  @override
+  String get historyViewProduct => 'Po proizvodu';
+
+  @override
+  String get historyShareAll => 'Podijeli sve';
+
+  @override
+  String get historyUnknownStore => 'Nepoznata prodavnica';
+
+  @override
+  String get historyDailySpending => 'Dnevna potrošnja';
+
+  @override
+  String get historyResetPeriod => 'Nazad na ovu sedmicu';
 }

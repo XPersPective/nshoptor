@@ -1532,4 +1532,25 @@ class AppLocalizationsZu extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Usuku lwerisidi: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Ngokuthenga';
+
+  @override
+  String get historyViewStore => 'Ngesitolo';
+
+  @override
+  String get historyViewProduct => 'Ngomkhiqizo';
+
+  @override
+  String get historyShareAll => 'Yabelana ngakho konke';
+
+  @override
+  String get historyUnknownStore => 'Isitolo esingaziwa';
+
+  @override
+  String get historyDailySpending => 'Izindleko zansuku zonke';
+
+  @override
+  String get historyResetPeriod => 'Buyela kuleli sonto';
 }

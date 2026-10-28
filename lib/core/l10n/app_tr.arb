@@ -488,5 +488,12 @@
   "receiptDeleted": "Fiş silindi.",
   "listReceiptsShowAll": "Tümünü göster ({count})",
   "listReceiptsShowLess": "Daha az göster",
-  "receiptDateLabel": "Fiş tarihi: {date}"
+  "receiptDateLabel": "Fiş tarihi: {date}",
+  "historyViewShopping": "Alışverişe göre",
+  "historyViewStore": "Mağazaya göre",
+  "historyViewProduct": "Ürüne göre",
+  "historyShareAll": "Tümünü paylaş",
+  "historyUnknownStore": "Bilinmeyen mağaza",
+  "historyDailySpending": "Günlük harcama",
+  "historyResetPeriod": "Bu haftaya dön"
 }

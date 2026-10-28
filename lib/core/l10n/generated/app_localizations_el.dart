@@ -1530,4 +1530,25 @@ class AppLocalizationsEl extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Ημερομηνία απόδειξης: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Ανά αγορά';
+
+  @override
+  String get historyViewStore => 'Ανά κατάστημα';
+
+  @override
+  String get historyViewProduct => 'Ανά προϊόν';
+
+  @override
+  String get historyShareAll => 'Κοινοποίηση όλων';
+
+  @override
+  String get historyUnknownStore => 'Άγνωστο κατάστημα';
+
+  @override
+  String get historyDailySpending => 'Ημερήσια έξοδα';
+
+  @override
+  String get historyResetPeriod => 'Επιστροφή σε αυτή την εβδομάδα';
 }

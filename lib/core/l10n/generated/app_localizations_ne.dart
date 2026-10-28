@@ -1522,4 +1522,25 @@ class AppLocalizationsNe extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'रसिदको मिति: $date';
   }
+
+  @override
+  String get historyViewShopping => 'किनमेल अनुसार';
+
+  @override
+  String get historyViewStore => 'पसल अनुसार';
+
+  @override
+  String get historyViewProduct => 'उत्पादन अनुसार';
+
+  @override
+  String get historyShareAll => 'सबै साझा गर्नुहोस्';
+
+  @override
+  String get historyUnknownStore => 'अज्ञात पसल';
+
+  @override
+  String get historyDailySpending => 'दैनिक खर्च';
+
+  @override
+  String get historyResetPeriod => 'यो हप्तामा फर्कनुहोस्';
 }

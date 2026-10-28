@@ -461,5 +461,12 @@
   "receiptDeleted": "Чек удалён.",
   "listReceiptsShowAll": "Показать все ({count})",
   "listReceiptsShowLess": "Показать меньше",
-  "receiptDateLabel": "Дата чека: {date}"
+  "receiptDateLabel": "Дата чека: {date}",
+  "historyViewShopping": "По покупкам",
+  "historyViewStore": "По магазинам",
+  "historyViewProduct": "По товарам",
+  "historyShareAll": "Поделиться всем",
+  "historyUnknownStore": "Неизвестный магазин",
+  "historyDailySpending": "Расходы по дням",
+  "historyResetPeriod": "Вернуться к этой неделе"
 }

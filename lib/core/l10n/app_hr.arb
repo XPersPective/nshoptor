@@ -461,5 +461,12 @@
   "receiptDeleted": "Račun je izbrisan.",
   "listReceiptsShowAll": "Prikaži sve ({count})",
   "listReceiptsShowLess": "Prikaži manje",
-  "receiptDateLabel": "Datum računa: {date}"
+  "receiptDateLabel": "Datum računa: {date}",
+  "historyViewShopping": "Po kupnji",
+  "historyViewStore": "Po trgovini",
+  "historyViewProduct": "Po proizvodu",
+  "historyShareAll": "Podijeli sve",
+  "historyUnknownStore": "Nepoznata trgovina",
+  "historyDailySpending": "Dnevna potrošnja",
+  "historyResetPeriod": "Natrag na ovaj tjedan"
 }

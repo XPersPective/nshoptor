@@ -461,5 +461,12 @@
   "receiptDeleted": "Kuitti poistettu.",
   "listReceiptsShowAll": "Näytä kaikki ({count})",
   "listReceiptsShowLess": "Näytä vähemmän",
-  "receiptDateLabel": "Kuitin päivämäärä: {date}"
+  "receiptDateLabel": "Kuitin päivämäärä: {date}",
+  "historyViewShopping": "Ostoksittain",
+  "historyViewStore": "Kaupoittain",
+  "historyViewProduct": "Tuotteittain",
+  "historyShareAll": "Jaa kaikki",
+  "historyUnknownStore": "Tuntematon kauppa",
+  "historyDailySpending": "Päivittäiset menot",
+  "historyResetPeriod": "Takaisin tähän viikkoon"
 }

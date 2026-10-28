@@ -461,5 +461,12 @@
   "receiptDeleted": "Бележката е изтрита.",
   "listReceiptsShowAll": "Покажи всички ({count})",
   "listReceiptsShowLess": "Покажи по-малко",
-  "receiptDateLabel": "Дата на бележката: {date}"
+  "receiptDateLabel": "Дата на бележката: {date}",
+  "historyViewShopping": "По пазаруване",
+  "historyViewStore": "По магазин",
+  "historyViewProduct": "По продукт",
+  "historyShareAll": "Сподели всичко",
+  "historyUnknownStore": "Неизвестен магазин",
+  "historyDailySpending": "Дневни разходи",
+  "historyResetPeriod": "Към тази седмица"
 }

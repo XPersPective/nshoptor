@@ -461,5 +461,12 @@
   "receiptDeleted": "تم حذف الإيصال.",
   "listReceiptsShowAll": "عرض الكل ({count})",
   "listReceiptsShowLess": "عرض أقل",
-  "receiptDateLabel": "تاريخ الإيصال: {date}"
+  "receiptDateLabel": "تاريخ الإيصال: {date}",
+  "historyViewShopping": "حسب التسوق",
+  "historyViewStore": "حسب المتجر",
+  "historyViewProduct": "حسب المنتج",
+  "historyShareAll": "مشاركة الكل",
+  "historyUnknownStore": "متجر غير معروف",
+  "historyDailySpending": "الإنفاق اليومي",
+  "historyResetPeriod": "العودة إلى هذا الأسبوع"
 }

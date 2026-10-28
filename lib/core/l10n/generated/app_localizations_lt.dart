@@ -1532,4 +1532,25 @@ class AppLocalizationsLt extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Kvito data: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Pagal apsipirkimą';
+
+  @override
+  String get historyViewStore => 'Pagal parduotuvę';
+
+  @override
+  String get historyViewProduct => 'Pagal prekę';
+
+  @override
+  String get historyShareAll => 'Bendrinti viską';
+
+  @override
+  String get historyUnknownStore => 'Nežinoma parduotuvė';
+
+  @override
+  String get historyDailySpending => 'Dienos išlaidos';
+
+  @override
+  String get historyResetPeriod => 'Grįžti į šią savaitę';
 }

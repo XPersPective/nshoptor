@@ -461,5 +461,12 @@
   "receiptDeleted": "ลบใบเสร็จแล้ว",
   "listReceiptsShowAll": "แสดงทั้งหมด ({count})",
   "listReceiptsShowLess": "แสดงน้อยลง",
-  "receiptDateLabel": "วันที่ในใบเสร็จ: {date}"
+  "receiptDateLabel": "วันที่ในใบเสร็จ: {date}",
+  "historyViewShopping": "ตามการซื้อ",
+  "historyViewStore": "ตามร้าน",
+  "historyViewProduct": "ตามสินค้า",
+  "historyShareAll": "แชร์ทั้งหมด",
+  "historyUnknownStore": "ร้านที่ไม่รู้จัก",
+  "historyDailySpending": "ค่าใช้จ่ายรายวัน",
+  "historyResetPeriod": "กลับไปสัปดาห์นี้"
 }

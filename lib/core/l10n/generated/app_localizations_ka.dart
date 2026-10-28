@@ -1519,4 +1519,25 @@ class AppLocalizationsKa extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'ქვითრის თარიღი: $date';
   }
+
+  @override
+  String get historyViewShopping => 'შოპინგის მიხედვით';
+
+  @override
+  String get historyViewStore => 'მაღაზიის მიხედვით';
+
+  @override
+  String get historyViewProduct => 'პროდუქტის მიხედვით';
+
+  @override
+  String get historyShareAll => 'ყველაფრის გაზიარება';
+
+  @override
+  String get historyUnknownStore => 'უცნობი მაღაზია';
+
+  @override
+  String get historyDailySpending => 'დღიური ხარჯი';
+
+  @override
+  String get historyResetPeriod => 'ამ კვირაზე დაბრუნება';
 }

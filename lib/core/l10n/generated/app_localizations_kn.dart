@@ -1523,4 +1523,25 @@ class AppLocalizationsKn extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'ರಸೀದಿ ದಿನಾಂಕ: $date';
   }
+
+  @override
+  String get historyViewShopping => 'ಖರೀದಿ ಪ್ರಕಾರ';
+
+  @override
+  String get historyViewStore => 'ಅಂಗಡಿ ಪ್ರಕಾರ';
+
+  @override
+  String get historyViewProduct => 'ಉತ್ಪನ್ನ ಪ್ರಕಾರ';
+
+  @override
+  String get historyShareAll => 'ಎಲ್ಲವನ್ನೂ ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get historyUnknownStore => 'ಅಪರಿಚಿತ ಅಂಗಡಿ';
+
+  @override
+  String get historyDailySpending => 'ದೈನಂದಿನ ಖರ್ಚು';
+
+  @override
+  String get historyResetPeriod => 'ಈ ವಾರಕ್ಕೆ ಹಿಂತಿರುಗಿ';
 }

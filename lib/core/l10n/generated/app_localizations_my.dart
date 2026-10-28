@@ -1525,4 +1525,25 @@ class AppLocalizationsMy extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'ပြေစာ ရက်စွဲ- $date';
   }
+
+  @override
+  String get historyViewShopping => 'ဈေးဝယ်မှုအလိုက်';
+
+  @override
+  String get historyViewStore => 'ဆိုင်အလိုက်';
+
+  @override
+  String get historyViewProduct => 'ကုန်ပစ္စည်းအလိုက်';
+
+  @override
+  String get historyShareAll => 'အားလုံးမျှဝေရန်';
+
+  @override
+  String get historyUnknownStore => 'မသိသောဆိုင်';
+
+  @override
+  String get historyDailySpending => 'နေ့စဉ်အသုံးစရိတ်';
+
+  @override
+  String get historyResetPeriod => 'ဤအပတ်သို့ ပြန်သွားရန်';
 }

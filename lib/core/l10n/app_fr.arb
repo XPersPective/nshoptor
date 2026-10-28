@@ -461,5 +461,12 @@
   "receiptDeleted": "Ticket supprimé.",
   "listReceiptsShowAll": "Tout afficher ({count})",
   "listReceiptsShowLess": "Afficher moins",
-  "receiptDateLabel": "Date du ticket : {date}"
+  "receiptDateLabel": "Date du ticket : {date}",
+  "historyViewShopping": "Par course",
+  "historyViewStore": "Par magasin",
+  "historyViewProduct": "Par produit",
+  "historyShareAll": "Tout partager",
+  "historyUnknownStore": "Magasin inconnu",
+  "historyDailySpending": "Dépenses quotidiennes",
+  "historyResetPeriod": "Revenir à cette semaine"
 }

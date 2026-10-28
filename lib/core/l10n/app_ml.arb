@@ -461,5 +461,12 @@
   "receiptDeleted": "രസീത് ഇല്ലാതാക്കി.",
   "listReceiptsShowAll": "എല്ലാം കാണിക്കുക ({count})",
   "listReceiptsShowLess": "കുറച്ച് കാണിക്കുക",
-  "receiptDateLabel": "രസീത് തീയതി: {date}"
+  "receiptDateLabel": "രസീത് തീയതി: {date}",
+  "historyViewShopping": "ഷോപ്പിംഗ് അനുസരിച്ച്",
+  "historyViewStore": "കട അനുസരിച്ച്",
+  "historyViewProduct": "ഉൽപ്പന്നം അനുസരിച്ച്",
+  "historyShareAll": "എല്ലാം പങ്കിടുക",
+  "historyUnknownStore": "അജ്ഞാത കട",
+  "historyDailySpending": "ദൈനംദിന ചെലവ്",
+  "historyResetPeriod": "ഈ ആഴ്ചയിലേക്ക് മടങ്ങുക"
 }

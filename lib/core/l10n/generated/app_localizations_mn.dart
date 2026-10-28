@@ -1527,4 +1527,25 @@ class AppLocalizationsMn extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Баримтын огноо: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Худалдан авалтаар';
+
+  @override
+  String get historyViewStore => 'Дэлгүүрээр';
+
+  @override
+  String get historyViewProduct => 'Бүтээгдэхүүнээр';
+
+  @override
+  String get historyShareAll => 'Бүгдийг хуваалцах';
+
+  @override
+  String get historyUnknownStore => 'Тодорхойгүй дэлгүүр';
+
+  @override
+  String get historyDailySpending => 'Өдрийн зарлага';
+
+  @override
+  String get historyResetPeriod => 'Энэ долоо хоног руу буцах';
 }

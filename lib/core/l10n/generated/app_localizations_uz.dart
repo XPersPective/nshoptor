@@ -1529,4 +1529,25 @@ class AppLocalizationsUz extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Chek sanasi: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Xarid bo\'yicha';
+
+  @override
+  String get historyViewStore => 'Do\'kon bo\'yicha';
+
+  @override
+  String get historyViewProduct => 'Mahsulot bo\'yicha';
+
+  @override
+  String get historyShareAll => 'Hammasini ulashish';
+
+  @override
+  String get historyUnknownStore => 'Noma\'lum do\'kon';
+
+  @override
+  String get historyDailySpending => 'Kunlik xarajat';
+
+  @override
+  String get historyResetPeriod => 'Shu haftaga qaytish';
 }

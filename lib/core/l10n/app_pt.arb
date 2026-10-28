@@ -461,5 +461,12 @@
   "receiptDeleted": "Recibo excluído.",
   "listReceiptsShowAll": "Mostrar todos ({count})",
   "listReceiptsShowLess": "Mostrar menos",
-  "receiptDateLabel": "Data do recibo: {date}"
+  "receiptDateLabel": "Data do recibo: {date}",
+  "historyViewShopping": "Por compra",
+  "historyViewStore": "Por loja",
+  "historyViewProduct": "Por produto",
+  "historyShareAll": "Partilhar tudo",
+  "historyUnknownStore": "Loja desconhecida",
+  "historyDailySpending": "Gasto diário",
+  "historyResetPeriod": "Voltar a esta semana"
 }

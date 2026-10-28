@@ -461,5 +461,12 @@
   "receiptDeleted": "Fatura u fshi.",
   "listReceiptsShowAll": "Shfaq të gjitha ({count})",
   "listReceiptsShowLess": "Shfaq më pak",
-  "receiptDateLabel": "Data e faturës: {date}"
+  "receiptDateLabel": "Data e faturës: {date}",
+  "historyViewShopping": "Sipas blerjes",
+  "historyViewStore": "Sipas dyqanit",
+  "historyViewProduct": "Sipas produktit",
+  "historyShareAll": "Ndaj të gjitha",
+  "historyUnknownStore": "Dyqan i panjohur",
+  "historyDailySpending": "Shpenzimi ditor",
+  "historyResetPeriod": "Kthehu te kjo javë"
 }

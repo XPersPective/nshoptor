@@ -461,5 +461,12 @@
   "receiptDeleted": "Účtenka byla smazána.",
   "listReceiptsShowAll": "Zobrazit vše ({count})",
   "listReceiptsShowLess": "Zobrazit méně",
-  "receiptDateLabel": "Datum účtenky: {date}"
+  "receiptDateLabel": "Datum účtenky: {date}",
+  "historyViewShopping": "Podle nákupu",
+  "historyViewStore": "Podle obchodu",
+  "historyViewProduct": "Podle produktu",
+  "historyShareAll": "Sdílet vše",
+  "historyUnknownStore": "Neznámý obchod",
+  "historyDailySpending": "Denní útrata",
+  "historyResetPeriod": "Zpět na tento týden"
 }

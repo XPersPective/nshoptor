@@ -1519,4 +1519,25 @@ class AppLocalizationsGu extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'રસીદની તારીખ: $date';
   }
+
+  @override
+  String get historyViewShopping => 'ખરીદી મુજબ';
+
+  @override
+  String get historyViewStore => 'દુકાન મુજબ';
+
+  @override
+  String get historyViewProduct => 'ઉત્પાદન મુજબ';
+
+  @override
+  String get historyShareAll => 'બધું શેર કરો';
+
+  @override
+  String get historyUnknownStore => 'અજાણી દુકાન';
+
+  @override
+  String get historyDailySpending => 'દૈનિક ખર્ચ';
+
+  @override
+  String get historyResetPeriod => 'આ અઠવાડિયે પાછા જાઓ';
 }

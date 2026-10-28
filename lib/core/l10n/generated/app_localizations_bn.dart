@@ -1518,4 +1518,25 @@ class AppLocalizationsBn extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'রসিদের তারিখ: $date';
   }
+
+  @override
+  String get historyViewShopping => 'কেনাকাটা অনুযায়ী';
+
+  @override
+  String get historyViewStore => 'দোকান অনুযায়ী';
+
+  @override
+  String get historyViewProduct => 'পণ্য অনুযায়ী';
+
+  @override
+  String get historyShareAll => 'সব শেয়ার করুন';
+
+  @override
+  String get historyUnknownStore => 'অজানা দোকান';
+
+  @override
+  String get historyDailySpending => 'দৈনিক খরচ';
+
+  @override
+  String get historyResetPeriod => 'এই সপ্তাহে ফিরুন';
 }

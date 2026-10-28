@@ -461,5 +461,12 @@
   "receiptDeleted": "Risiti imefutwa.",
   "listReceiptsShowAll": "Onyesha zote ({count})",
   "listReceiptsShowLess": "Onyesha chache",
-  "receiptDateLabel": "Tarehe ya risiti: {date}"
+  "receiptDateLabel": "Tarehe ya risiti: {date}",
+  "historyViewShopping": "Kwa ununuzi",
+  "historyViewStore": "Kwa duka",
+  "historyViewProduct": "Kwa bidhaa",
+  "historyShareAll": "Shiriki zote",
+  "historyUnknownStore": "Duka lisilojulikana",
+  "historyDailySpending": "Matumizi ya kila siku",
+  "historyResetPeriod": "Rudi wiki hii"
 }

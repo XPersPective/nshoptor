@@ -461,5 +461,12 @@
   "receiptDeleted": "Struk dihapus.",
   "listReceiptsShowAll": "Tampilkan semua ({count})",
   "listReceiptsShowLess": "Tampilkan lebih sedikit",
-  "receiptDateLabel": "Tanggal struk: {date}"
+  "receiptDateLabel": "Tanggal struk: {date}",
+  "historyViewShopping": "Per belanja",
+  "historyViewStore": "Per toko",
+  "historyViewProduct": "Per produk",
+  "historyShareAll": "Bagikan semua",
+  "historyUnknownStore": "Toko tidak dikenal",
+  "historyDailySpending": "Pengeluaran harian",
+  "historyResetPeriod": "Kembali ke minggu ini"
 }

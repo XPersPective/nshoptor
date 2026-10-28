@@ -1513,4 +1513,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'تاريخ الإيصال: $date';
   }
+
+  @override
+  String get historyViewShopping => 'حسب التسوق';
+
+  @override
+  String get historyViewStore => 'حسب المتجر';
+
+  @override
+  String get historyViewProduct => 'حسب المنتج';
+
+  @override
+  String get historyShareAll => 'مشاركة الكل';
+
+  @override
+  String get historyUnknownStore => 'متجر غير معروف';
+
+  @override
+  String get historyDailySpending => 'الإنفاق اليومي';
+
+  @override
+  String get historyResetPeriod => 'العودة إلى هذا الأسبوع';
 }

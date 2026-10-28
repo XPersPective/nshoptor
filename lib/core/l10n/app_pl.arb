@@ -461,5 +461,12 @@
   "receiptDeleted": "Paragon usunięty.",
   "listReceiptsShowAll": "Pokaż wszystkie ({count})",
   "listReceiptsShowLess": "Pokaż mniej",
-  "receiptDateLabel": "Data paragonu: {date}"
+  "receiptDateLabel": "Data paragonu: {date}",
+  "historyViewShopping": "Według zakupów",
+  "historyViewStore": "Według sklepu",
+  "historyViewProduct": "Według produktu",
+  "historyShareAll": "Udostępnij wszystko",
+  "historyUnknownStore": "Nieznany sklep",
+  "historyDailySpending": "Wydatki dzienne",
+  "historyResetPeriod": "Wróć do tego tygodnia"
 }

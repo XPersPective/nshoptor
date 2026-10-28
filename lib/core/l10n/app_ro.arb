@@ -461,5 +461,12 @@
   "receiptDeleted": "Bon șters.",
   "listReceiptsShowAll": "Afișează tot ({count})",
   "listReceiptsShowLess": "Afișează mai puțin",
-  "receiptDateLabel": "Data bonului: {date}"
+  "receiptDateLabel": "Data bonului: {date}",
+  "historyViewShopping": "După cumpărături",
+  "historyViewStore": "După magazin",
+  "historyViewProduct": "După produs",
+  "historyShareAll": "Distribuie tot",
+  "historyUnknownStore": "Magazin necunoscut",
+  "historyDailySpending": "Cheltuieli zilnice",
+  "historyResetPeriod": "Înapoi la săptămâna aceasta"
 }

@@ -1531,4 +1531,25 @@ class AppLocalizationsFil extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Petsa ng resibo: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Ayon sa pamimili';
+
+  @override
+  String get historyViewStore => 'Ayon sa tindahan';
+
+  @override
+  String get historyViewProduct => 'Ayon sa produkto';
+
+  @override
+  String get historyShareAll => 'Ibahagi lahat';
+
+  @override
+  String get historyUnknownStore => 'Hindi kilalang tindahan';
+
+  @override
+  String get historyDailySpending => 'Pang-araw-araw na gastos';
+
+  @override
+  String get historyResetPeriod => 'Bumalik sa linggong ito';
 }

@@ -1523,4 +1523,25 @@ class AppLocalizationsMs extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Tarikh resit: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Mengikut belian';
+
+  @override
+  String get historyViewStore => 'Mengikut kedai';
+
+  @override
+  String get historyViewProduct => 'Mengikut produk';
+
+  @override
+  String get historyShareAll => 'Kongsi semua';
+
+  @override
+  String get historyUnknownStore => 'Kedai tidak diketahui';
+
+  @override
+  String get historyDailySpending => 'Perbelanjaan harian';
+
+  @override
+  String get historyResetPeriod => 'Kembali ke minggu ini';
 }

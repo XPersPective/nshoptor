@@ -461,5 +461,12 @@
   "receiptDeleted": "Čeks izdzēsts.",
   "listReceiptsShowAll": "Rādīt visus ({count})",
   "listReceiptsShowLess": "Rādīt mazāk",
-  "receiptDateLabel": "Čeka datums: {date}"
+  "receiptDateLabel": "Čeka datums: {date}",
+  "historyViewShopping": "Pēc iepirkšanās",
+  "historyViewStore": "Pēc veikala",
+  "historyViewProduct": "Pēc produkta",
+  "historyShareAll": "Kopīgot visu",
+  "historyUnknownStore": "Nezināms veikals",
+  "historyDailySpending": "Dienas tēriņi",
+  "historyResetPeriod": "Atpakaļ uz šo nedēļu"
 }

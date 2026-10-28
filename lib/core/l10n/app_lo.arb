@@ -461,5 +461,12 @@
   "receiptDeleted": "ລຶບໃບບິນແລ້ວ.",
   "listReceiptsShowAll": "ສະແດງທັງໝົດ ({count})",
   "listReceiptsShowLess": "ສະແດງໜ້ອຍລົງ",
-  "receiptDateLabel": "ວັນທີໃບບິນ: {date}"
+  "receiptDateLabel": "ວັນທີໃບບິນ: {date}",
+  "historyViewShopping": "ຕາມການຊື້",
+  "historyViewStore": "ຕາມຮ້ານ",
+  "historyViewProduct": "ຕາມສິນຄ້າ",
+  "historyShareAll": "ແບ່ງປັນທັງໝົດ",
+  "historyUnknownStore": "ຮ້ານທີ່ບໍ່ຮູ້ຈັກ",
+  "historyDailySpending": "ລາຍຈ່າຍລາຍວັນ",
+  "historyResetPeriod": "ກັບໄປອາທິດນີ້"
 }

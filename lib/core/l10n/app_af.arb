@@ -461,5 +461,12 @@
   "receiptDeleted": "Kwitansie uitgevee.",
   "listReceiptsShowAll": "Wys alles ({count})",
   "listReceiptsShowLess": "Wys minder",
-  "receiptDateLabel": "Kwitansiedatum: {date}"
+  "receiptDateLabel": "Kwitansiedatum: {date}",
+  "historyViewShopping": "Per inkopie",
+  "historyViewStore": "Per winkel",
+  "historyViewProduct": "Per produk",
+  "historyShareAll": "Deel alles",
+  "historyUnknownStore": "Onbekende winkel",
+  "historyDailySpending": "Daaglikse besteding",
+  "historyResetPeriod": "Terug na hierdie week"
 }

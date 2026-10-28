@@ -1532,4 +1532,25 @@ class AppLocalizationsFr extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Date du ticket : $date';
   }
+
+  @override
+  String get historyViewShopping => 'Par course';
+
+  @override
+  String get historyViewStore => 'Par magasin';
+
+  @override
+  String get historyViewProduct => 'Par produit';
+
+  @override
+  String get historyShareAll => 'Tout partager';
+
+  @override
+  String get historyUnknownStore => 'Magasin inconnu';
+
+  @override
+  String get historyDailySpending => 'Dépenses quotidiennes';
+
+  @override
+  String get historyResetPeriod => 'Revenir à cette semaine';
 }

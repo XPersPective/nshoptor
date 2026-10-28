@@ -1526,4 +1526,25 @@ class AppLocalizationsRu extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Дата чека: $date';
   }
+
+  @override
+  String get historyViewShopping => 'По покупкам';
+
+  @override
+  String get historyViewStore => 'По магазинам';
+
+  @override
+  String get historyViewProduct => 'По товарам';
+
+  @override
+  String get historyShareAll => 'Поделиться всем';
+
+  @override
+  String get historyUnknownStore => 'Неизвестный магазин';
+
+  @override
+  String get historyDailySpending => 'Расходы по дням';
+
+  @override
+  String get historyResetPeriod => 'Вернуться к этой неделе';
 }

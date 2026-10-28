@@ -461,5 +461,12 @@
   "receiptDeleted": "Irisidi isusiwe.",
   "listReceiptsShowAll": "Bonisa konke ({count})",
   "listReceiptsShowLess": "Bonisa okumbalwa",
-  "receiptDateLabel": "Usuku lwerisidi: {date}"
+  "receiptDateLabel": "Usuku lwerisidi: {date}",
+  "historyViewShopping": "Ngokuthenga",
+  "historyViewStore": "Ngesitolo",
+  "historyViewProduct": "Ngomkhiqizo",
+  "historyShareAll": "Yabelana ngakho konke",
+  "historyUnknownStore": "Isitolo esingaziwa",
+  "historyDailySpending": "Izindleko zansuku zonke",
+  "historyResetPeriod": "Buyela kuleli sonto"
 }

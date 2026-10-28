@@ -461,5 +461,12 @@
   "receiptDeleted": "Resit dipadam.",
   "listReceiptsShowAll": "Tunjukkan semua ({count})",
   "listReceiptsShowLess": "Tunjukkan kurang",
-  "receiptDateLabel": "Tarikh resit: {date}"
+  "receiptDateLabel": "Tarikh resit: {date}",
+  "historyViewShopping": "Mengikut belian",
+  "historyViewStore": "Mengikut kedai",
+  "historyViewProduct": "Mengikut produk",
+  "historyShareAll": "Kongsi semua",
+  "historyUnknownStore": "Kedai tidak diketahui",
+  "historyDailySpending": "Perbelanjaan harian",
+  "historyResetPeriod": "Kembali ke minggu ini"
 }

@@ -461,5 +461,12 @@
   "receiptDeleted": "Կտրոնը ջնջվեց։",
   "listReceiptsShowAll": "Ցույց տալ բոլորը ({count})",
   "listReceiptsShowLess": "Ցույց տալ քիչ",
-  "receiptDateLabel": "Կտրոնի ամսաթիվ՝ {date}"
+  "receiptDateLabel": "Կտրոնի ամսաթիվ՝ {date}",
+  "historyViewShopping": "Ըստ գնումների",
+  "historyViewStore": "Ըստ խանութի",
+  "historyViewProduct": "Ըստ ապրանքի",
+  "historyShareAll": "Կիսվել բոլորով",
+  "historyUnknownStore": "Անհայտ խանութ",
+  "historyDailySpending": "Օրական ծախս",
+  "historyResetPeriod": "Վերադառնալ այս շաբաթ"
 }

@@ -1531,4 +1531,25 @@ class AppLocalizationsTe extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'రసీదు తేదీ: $date';
   }
+
+  @override
+  String get historyViewShopping => 'షాపింగ్ వారీగా';
+
+  @override
+  String get historyViewStore => 'దుకాణం వారీగా';
+
+  @override
+  String get historyViewProduct => 'ఉత్పత్తి వారీగా';
+
+  @override
+  String get historyShareAll => 'అన్నీ షేర్ చేయండి';
+
+  @override
+  String get historyUnknownStore => 'తెలియని దుకాణం';
+
+  @override
+  String get historyDailySpending => 'రోజువారీ ఖర్చు';
+
+  @override
+  String get historyResetPeriod => 'ఈ వారానికి తిరిగి వెళ్ళండి';
 }

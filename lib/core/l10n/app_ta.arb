@@ -461,5 +461,12 @@
   "receiptDeleted": "ரசீது நீக்கப்பட்டது.",
   "listReceiptsShowAll": "அனைத்தையும் காட்டு ({count})",
   "listReceiptsShowLess": "குறைவாகக் காட்டு",
-  "receiptDateLabel": "ரசீது தேதி: {date}"
+  "receiptDateLabel": "ரசீது தேதி: {date}",
+  "historyViewShopping": "ஷாப்பிங் வாரியாக",
+  "historyViewStore": "கடை வாரியாக",
+  "historyViewProduct": "பொருள் வாரியாக",
+  "historyShareAll": "அனைத்தையும் பகிர்",
+  "historyUnknownStore": "தெரியாத கடை",
+  "historyDailySpending": "தினசரி செலவு",
+  "historyResetPeriod": "இந்த வாரத்திற்குத் திரும்பு"
 }

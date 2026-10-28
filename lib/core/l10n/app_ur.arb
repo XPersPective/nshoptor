@@ -461,5 +461,12 @@
   "receiptDeleted": "رسید حذف ہو گئی۔",
   "listReceiptsShowAll": "سب دکھائیں ({count})",
   "listReceiptsShowLess": "کم دکھائیں",
-  "receiptDateLabel": "رسید کی تاریخ: {date}"
+  "receiptDateLabel": "رسید کی تاریخ: {date}",
+  "historyViewShopping": "خریداری کے لحاظ سے",
+  "historyViewStore": "دکان کے لحاظ سے",
+  "historyViewProduct": "پروڈکٹ کے لحاظ سے",
+  "historyShareAll": "سب شیئر کریں",
+  "historyUnknownStore": "نامعلوم دکان",
+  "historyDailySpending": "روزانہ خرچ",
+  "historyResetPeriod": "اس ہفتے پر واپس جائیں"
 }

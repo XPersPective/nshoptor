@@ -461,5 +461,12 @@
   "receiptDeleted": "Bon verwijderd.",
   "listReceiptsShowAll": "Alles tonen ({count})",
   "listReceiptsShowLess": "Minder tonen",
-  "receiptDateLabel": "Bondatum: {date}"
+  "receiptDateLabel": "Bondatum: {date}",
+  "historyViewShopping": "Per aankoop",
+  "historyViewStore": "Per winkel",
+  "historyViewProduct": "Per product",
+  "historyShareAll": "Alles delen",
+  "historyUnknownStore": "Onbekende winkel",
+  "historyDailySpending": "Dagelijkse uitgaven",
+  "historyResetPeriod": "Terug naar deze week"
 }

@@ -1526,4 +1526,25 @@ class AppLocalizationsLv extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Čeka datums: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Pēc iepirkšanās';
+
+  @override
+  String get historyViewStore => 'Pēc veikala';
+
+  @override
+  String get historyViewProduct => 'Pēc produkta';
+
+  @override
+  String get historyShareAll => 'Kopīgot visu';
+
+  @override
+  String get historyUnknownStore => 'Nezināms veikals';
+
+  @override
+  String get historyDailySpending => 'Dienas tēriņi';
+
+  @override
+  String get historyResetPeriod => 'Atpakaļ uz šo nedēļu';
 }

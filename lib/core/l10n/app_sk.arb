@@ -461,5 +461,12 @@
   "receiptDeleted": "Bloček bol odstránený.",
   "listReceiptsShowAll": "Zobraziť všetky ({count})",
   "listReceiptsShowLess": "Zobraziť menej",
-  "receiptDateLabel": "Dátum bločku: {date}"
+  "receiptDateLabel": "Dátum bločku: {date}",
+  "historyViewShopping": "Podľa nákupu",
+  "historyViewStore": "Podľa obchodu",
+  "historyViewProduct": "Podľa produktu",
+  "historyShareAll": "Zdieľať všetko",
+  "historyUnknownStore": "Neznámy obchod",
+  "historyDailySpending": "Denné výdavky",
+  "historyResetPeriod": "Späť na tento týždeň"
 }

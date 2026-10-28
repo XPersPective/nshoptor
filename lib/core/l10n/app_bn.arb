@@ -461,5 +461,12 @@
   "receiptDeleted": "রসিদ মুছে ফেলা হয়েছে।",
   "listReceiptsShowAll": "সব দেখান ({count})",
   "listReceiptsShowLess": "কম দেখান",
-  "receiptDateLabel": "রসিদের তারিখ: {date}"
+  "receiptDateLabel": "রসিদের তারিখ: {date}",
+  "historyViewShopping": "কেনাকাটা অনুযায়ী",
+  "historyViewStore": "দোকান অনুযায়ী",
+  "historyViewProduct": "পণ্য অনুযায়ী",
+  "historyShareAll": "সব শেয়ার করুন",
+  "historyUnknownStore": "অজানা দোকান",
+  "historyDailySpending": "দৈনিক খরচ",
+  "historyResetPeriod": "এই সপ্তাহে ফিরুন"
 }

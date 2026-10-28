@@ -461,5 +461,12 @@
   "receiptDeleted": "Чек өчүрүлдү.",
   "listReceiptsShowAll": "Баарын көрсөтүү ({count})",
   "listReceiptsShowLess": "Азыраак көрсөтүү",
-  "receiptDateLabel": "Чектин күнү: {date}"
+  "receiptDateLabel": "Чектин күнү: {date}",
+  "historyViewShopping": "Сатып алуу боюнча",
+  "historyViewStore": "Дүкөн боюнча",
+  "historyViewProduct": "Товар боюнча",
+  "historyShareAll": "Баарын бөлүшүү",
+  "historyUnknownStore": "Белгисиз дүкөн",
+  "historyDailySpending": "Күнүмдүк чыгым",
+  "historyResetPeriod": "Ушул жумага кайтуу"
 }

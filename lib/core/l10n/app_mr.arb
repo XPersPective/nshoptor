@@ -461,5 +461,12 @@
   "receiptDeleted": "पावती हटवली.",
   "listReceiptsShowAll": "सर्व दाखवा ({count})",
   "listReceiptsShowLess": "कमी दाखवा",
-  "receiptDateLabel": "पावतीची तारीख: {date}"
+  "receiptDateLabel": "पावतीची तारीख: {date}",
+  "historyViewShopping": "खरेदीनुसार",
+  "historyViewStore": "दुकानानुसार",
+  "historyViewProduct": "उत्पादनानुसार",
+  "historyShareAll": "सर्व शेअर करा",
+  "historyUnknownStore": "अज्ञात दुकान",
+  "historyDailySpending": "दैनिक खर्च",
+  "historyResetPeriod": "या आठवड्यावर परत जा"
 }

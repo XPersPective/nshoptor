@@ -1526,4 +1526,25 @@ class AppLocalizationsAf extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Kwitansiedatum: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Per inkopie';
+
+  @override
+  String get historyViewStore => 'Per winkel';
+
+  @override
+  String get historyViewProduct => 'Per produk';
+
+  @override
+  String get historyShareAll => 'Deel alles';
+
+  @override
+  String get historyUnknownStore => 'Onbekende winkel';
+
+  @override
+  String get historyDailySpending => 'Daaglikse besteding';
+
+  @override
+  String get historyResetPeriod => 'Terug na hierdie week';
 }

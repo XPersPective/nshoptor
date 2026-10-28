@@ -461,5 +461,12 @@
   "receiptDeleted": "रसीद हटा दी गई।",
   "listReceiptsShowAll": "सभी दिखाएं ({count})",
   "listReceiptsShowLess": "कम दिखाएं",
-  "receiptDateLabel": "रसीद की तारीख: {date}"
+  "receiptDateLabel": "रसीद की तारीख: {date}",
+  "historyViewShopping": "खरीदारी के अनुसार",
+  "historyViewStore": "दुकान के अनुसार",
+  "historyViewProduct": "उत्पाद के अनुसार",
+  "historyShareAll": "सब शेयर करें",
+  "historyUnknownStore": "अज्ञात दुकान",
+  "historyDailySpending": "दैनिक खर्च",
+  "historyResetPeriod": "इस सप्ताह पर लौटें"
 }

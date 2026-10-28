@@ -1526,4 +1526,25 @@ class AppLocalizationsFi extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Kuitin päivämäärä: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Ostoksittain';
+
+  @override
+  String get historyViewStore => 'Kaupoittain';
+
+  @override
+  String get historyViewProduct => 'Tuotteittain';
+
+  @override
+  String get historyShareAll => 'Jaa kaikki';
+
+  @override
+  String get historyUnknownStore => 'Tuntematon kauppa';
+
+  @override
+  String get historyDailySpending => 'Päivittäiset menot';
+
+  @override
+  String get historyResetPeriod => 'Takaisin tähän viikkoon';
 }

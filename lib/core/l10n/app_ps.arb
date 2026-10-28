@@ -461,5 +461,12 @@
   "receiptDeleted": "رسید ړنګ شو.",
   "listReceiptsShowAll": "ټول وښایاست ({count})",
   "listReceiptsShowLess": "لږ وښایاست",
-  "receiptDateLabel": "د رسید نېټه: {date}"
+  "receiptDateLabel": "د رسید نېټه: {date}",
+  "historyViewShopping": "د پیرودنې له مخې",
+  "historyViewStore": "د هټۍ له مخې",
+  "historyViewProduct": "د محصول له مخې",
+  "historyShareAll": "ټول شریک کړئ",
+  "historyUnknownStore": "نامعلومه هټۍ",
+  "historyDailySpending": "ورځنی لګښت",
+  "historyResetPeriod": "دې اونۍ ته ستون شئ"
 }

@@ -461,5 +461,12 @@
   "receiptDeleted": "Η απόδειξη διαγράφηκε.",
   "listReceiptsShowAll": "Εμφάνιση όλων ({count})",
   "listReceiptsShowLess": "Εμφάνιση λιγότερων",
-  "receiptDateLabel": "Ημερομηνία απόδειξης: {date}"
+  "receiptDateLabel": "Ημερομηνία απόδειξης: {date}",
+  "historyViewShopping": "Ανά αγορά",
+  "historyViewStore": "Ανά κατάστημα",
+  "historyViewProduct": "Ανά προϊόν",
+  "historyShareAll": "Κοινοποίηση όλων",
+  "historyUnknownStore": "Άγνωστο κατάστημα",
+  "historyDailySpending": "Ημερήσια έξοδα",
+  "historyResetPeriod": "Επιστροφή σε αυτή την εβδομάδα"
 }

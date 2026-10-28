@@ -3043,6 +3043,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Receipt date: {date}'**
   String receiptDateLabel(String date);
+
+  /// No description provided for @historyViewShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'By shopping'**
+  String get historyViewShopping;
+
+  /// No description provided for @historyViewStore.
+  ///
+  /// In en, this message translates to:
+  /// **'By store'**
+  String get historyViewStore;
+
+  /// No description provided for @historyViewProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'By product'**
+  String get historyViewProduct;
+
+  /// No description provided for @historyShareAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Share all'**
+  String get historyShareAll;
+
+  /// No description provided for @historyUnknownStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown store'**
+  String get historyUnknownStore;
+
+  /// No description provided for @historyDailySpending.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily spending'**
+  String get historyDailySpending;
+
+  /// No description provided for @historyResetPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to this week'**
+  String get historyResetPeriod;
 }
 
 class _AppLocalizationsDelegate

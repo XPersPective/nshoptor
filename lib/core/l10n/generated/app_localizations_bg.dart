@@ -1528,4 +1528,25 @@ class AppLocalizationsBg extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Дата на бележката: $date';
   }
+
+  @override
+  String get historyViewShopping => 'По пазаруване';
+
+  @override
+  String get historyViewStore => 'По магазин';
+
+  @override
+  String get historyViewProduct => 'По продукт';
+
+  @override
+  String get historyShareAll => 'Сподели всичко';
+
+  @override
+  String get historyUnknownStore => 'Неизвестен магазин';
+
+  @override
+  String get historyDailySpending => 'Дневни разходи';
+
+  @override
+  String get historyResetPeriod => 'Към тази седмица';
 }

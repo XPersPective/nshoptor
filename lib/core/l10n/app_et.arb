@@ -461,5 +461,12 @@
   "receiptDeleted": "Tšekk kustutatud.",
   "listReceiptsShowAll": "Näita kõiki ({count})",
   "listReceiptsShowLess": "Näita vähem",
-  "receiptDateLabel": "Tšeki kuupäev: {date}"
+  "receiptDateLabel": "Tšeki kuupäev: {date}",
+  "historyViewShopping": "Ostude kaupa",
+  "historyViewStore": "Poodide kaupa",
+  "historyViewProduct": "Toodete kaupa",
+  "historyShareAll": "Jaga kõike",
+  "historyUnknownStore": "Tundmatu pood",
+  "historyDailySpending": "Päevased kulud",
+  "historyResetPeriod": "Tagasi sellesse nädalasse"
 }

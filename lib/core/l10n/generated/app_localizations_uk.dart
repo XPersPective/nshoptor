@@ -1529,4 +1529,25 @@ class AppLocalizationsUk extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Дата чека: $date';
   }
+
+  @override
+  String get historyViewShopping => 'За покупками';
+
+  @override
+  String get historyViewStore => 'За магазинами';
+
+  @override
+  String get historyViewProduct => 'За товарами';
+
+  @override
+  String get historyShareAll => 'Поділитися всім';
+
+  @override
+  String get historyUnknownStore => 'Невідомий магазин';
+
+  @override
+  String get historyDailySpending => 'Щоденні витрати';
+
+  @override
+  String get historyResetPeriod => 'Повернутися до цього тижня';
 }

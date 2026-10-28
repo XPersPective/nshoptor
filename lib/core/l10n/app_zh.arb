@@ -461,5 +461,12 @@
   "receiptDeleted": "小票已删除。",
   "listReceiptsShowAll": "显示全部（{count}）",
   "listReceiptsShowLess": "收起",
-  "receiptDateLabel": "小票日期：{date}"
+  "receiptDateLabel": "小票日期：{date}",
+  "historyViewShopping": "按购物",
+  "historyViewStore": "按商店",
+  "historyViewProduct": "按商品",
+  "historyShareAll": "全部分享",
+  "historyUnknownStore": "未知商店",
+  "historyDailySpending": "每日支出",
+  "historyResetPeriod": "返回本周"
 }

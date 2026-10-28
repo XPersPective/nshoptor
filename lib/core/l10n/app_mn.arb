@@ -461,5 +461,12 @@
   "receiptDeleted": "Баримт устгагдлаа.",
   "listReceiptsShowAll": "Бүгдийг харуулах ({count})",
   "listReceiptsShowLess": "Цөөнийг харуулах",
-  "receiptDateLabel": "Баримтын огноо: {date}"
+  "receiptDateLabel": "Баримтын огноо: {date}",
+  "historyViewShopping": "Худалдан авалтаар",
+  "historyViewStore": "Дэлгүүрээр",
+  "historyViewProduct": "Бүтээгдэхүүнээр",
+  "historyShareAll": "Бүгдийг хуваалцах",
+  "historyUnknownStore": "Тодорхойгүй дэлгүүр",
+  "historyDailySpending": "Өдрийн зарлага",
+  "historyResetPeriod": "Энэ долоо хоног руу буцах"
 }

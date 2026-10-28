@@ -461,5 +461,12 @@
   "receiptDeleted": "රිසිට්පත මකා දැමිණි.",
   "listReceiptsShowAll": "සියල්ල පෙන්වන්න ({count})",
   "listReceiptsShowLess": "අඩුවෙන් පෙන්වන්න",
-  "receiptDateLabel": "රිසිට්පතේ දිනය: {date}"
+  "receiptDateLabel": "රිසිට්පතේ දිනය: {date}",
+  "historyViewShopping": "සාප්පු සවාරිය අනුව",
+  "historyViewStore": "සාප්පුව අනුව",
+  "historyViewProduct": "නිෂ්පාදනය අනුව",
+  "historyShareAll": "සියල්ල බෙදාගන්න",
+  "historyUnknownStore": "නොදන්නා සාප්පුව",
+  "historyDailySpending": "දෛනික වියදම",
+  "historyResetPeriod": "මෙම සතියට ආපසු"
 }

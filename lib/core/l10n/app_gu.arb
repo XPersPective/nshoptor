@@ -461,5 +461,12 @@
   "receiptDeleted": "રસીદ કાઢી નાખી.",
   "listReceiptsShowAll": "બધું બતાવો ({count})",
   "listReceiptsShowLess": "ઓછું બતાવો",
-  "receiptDateLabel": "રસીદની તારીખ: {date}"
+  "receiptDateLabel": "રસીદની તારીખ: {date}",
+  "historyViewShopping": "ખરીદી મુજબ",
+  "historyViewStore": "દુકાન મુજબ",
+  "historyViewProduct": "ઉત્પાદન મુજબ",
+  "historyShareAll": "બધું શેર કરો",
+  "historyUnknownStore": "અજાણી દુકાન",
+  "historyDailySpending": "દૈનિક ખર્ચ",
+  "historyResetPeriod": "આ અઠવાડિયે પાછા જાઓ"
 }

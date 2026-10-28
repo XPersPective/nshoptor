@@ -461,5 +461,12 @@
   "receiptDeleted": "Scontrino eliminato.",
   "listReceiptsShowAll": "Mostra tutti ({count})",
   "listReceiptsShowLess": "Mostra meno",
-  "receiptDateLabel": "Data scontrino: {date}"
+  "receiptDateLabel": "Data scontrino: {date}",
+  "historyViewShopping": "Per spesa",
+  "historyViewStore": "Per negozio",
+  "historyViewProduct": "Per prodotto",
+  "historyShareAll": "Condividi tutto",
+  "historyUnknownStore": "Negozio sconosciuto",
+  "historyDailySpending": "Spesa giornaliera",
+  "historyResetPeriod": "Torna a questa settimana"
 }

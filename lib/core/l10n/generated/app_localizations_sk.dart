@@ -1527,4 +1527,25 @@ class AppLocalizationsSk extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Dátum bločku: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Podľa nákupu';
+
+  @override
+  String get historyViewStore => 'Podľa obchodu';
+
+  @override
+  String get historyViewProduct => 'Podľa produktu';
+
+  @override
+  String get historyShareAll => 'Zdieľať všetko';
+
+  @override
+  String get historyUnknownStore => 'Neznámy obchod';
+
+  @override
+  String get historyDailySpending => 'Denné výdavky';
+
+  @override
+  String get historyResetPeriod => 'Späť na tento týždeň';
 }

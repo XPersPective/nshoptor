@@ -461,5 +461,12 @@
   "receiptDeleted": "Kvittun eytt.",
   "listReceiptsShowAll": "Sýna allt ({count})",
   "listReceiptsShowLess": "Sýna minna",
-  "receiptDateLabel": "Dagsetning kvittunar: {date}"
+  "receiptDateLabel": "Dagsetning kvittunar: {date}",
+  "historyViewShopping": "Eftir innkaupum",
+  "historyViewStore": "Eftir verslun",
+  "historyViewProduct": "Eftir vöru",
+  "historyShareAll": "Deila öllu",
+  "historyUnknownStore": "Óþekkt verslun",
+  "historyDailySpending": "Dagleg útgjöld",
+  "historyResetPeriod": "Aftur í þessa viku"
 }

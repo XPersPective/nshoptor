@@ -461,5 +461,12 @@
   "receiptDeleted": "Kvitas ištrintas.",
   "listReceiptsShowAll": "Rodyti visus ({count})",
   "listReceiptsShowLess": "Rodyti mažiau",
-  "receiptDateLabel": "Kvito data: {date}"
+  "receiptDateLabel": "Kvito data: {date}",
+  "historyViewShopping": "Pagal apsipirkimą",
+  "historyViewStore": "Pagal parduotuvę",
+  "historyViewProduct": "Pagal prekę",
+  "historyShareAll": "Bendrinti viską",
+  "historyUnknownStore": "Nežinoma parduotuvė",
+  "historyDailySpending": "Dienos išlaidos",
+  "historyResetPeriod": "Grįžti į šią savaitę"
 }

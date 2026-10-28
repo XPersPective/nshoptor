@@ -1513,4 +1513,25 @@ class AppLocalizationsPs extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'د رسید نېټه: $date';
   }
+
+  @override
+  String get historyViewShopping => 'د پیرودنې له مخې';
+
+  @override
+  String get historyViewStore => 'د هټۍ له مخې';
+
+  @override
+  String get historyViewProduct => 'د محصول له مخې';
+
+  @override
+  String get historyShareAll => 'ټول شریک کړئ';
+
+  @override
+  String get historyUnknownStore => 'نامعلومه هټۍ';
+
+  @override
+  String get historyDailySpending => 'ورځنی لګښت';
+
+  @override
+  String get historyResetPeriod => 'دې اونۍ ته ستون شئ';
 }

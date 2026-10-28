@@ -461,5 +461,12 @@
   "receiptDeleted": "رسید حذف شد.",
   "listReceiptsShowAll": "نمایش همه ({count})",
   "listReceiptsShowLess": "نمایش کمتر",
-  "receiptDateLabel": "تاریخ رسید: {date}"
+  "receiptDateLabel": "تاریخ رسید: {date}",
+  "historyViewShopping": "بر اساس خرید",
+  "historyViewStore": "بر اساس فروشگاه",
+  "historyViewProduct": "بر اساس محصول",
+  "historyShareAll": "اشتراک‌گذاری همه",
+  "historyUnknownStore": "فروشگاه نامشخص",
+  "historyDailySpending": "هزینه روزانه",
+  "historyResetPeriod": "بازگشت به این هفته"
 }

@@ -461,5 +461,12 @@
   "receiptDeleted": "Đã xóa hóa đơn.",
   "listReceiptsShowAll": "Hiện tất cả ({count})",
   "listReceiptsShowLess": "Thu gọn",
-  "receiptDateLabel": "Ngày hóa đơn: {date}"
+  "receiptDateLabel": "Ngày hóa đơn: {date}",
+  "historyViewShopping": "Theo lần mua",
+  "historyViewStore": "Theo cửa hàng",
+  "historyViewProduct": "Theo sản phẩm",
+  "historyShareAll": "Chia sẻ tất cả",
+  "historyUnknownStore": "Cửa hàng không xác định",
+  "historyDailySpending": "Chi tiêu hằng ngày",
+  "historyResetPeriod": "Quay lại tuần này"
 }

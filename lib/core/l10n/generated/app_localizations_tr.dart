@@ -1520,4 +1520,25 @@ class AppLocalizationsTr extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Fiş tarihi: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Alışverişe göre';
+
+  @override
+  String get historyViewStore => 'Mağazaya göre';
+
+  @override
+  String get historyViewProduct => 'Ürüne göre';
+
+  @override
+  String get historyShareAll => 'Tümünü paylaş';
+
+  @override
+  String get historyUnknownStore => 'Bilinmeyen mağaza';
+
+  @override
+  String get historyDailySpending => 'Günlük harcama';
+
+  @override
+  String get historyResetPeriod => 'Bu haftaya dön';
 }

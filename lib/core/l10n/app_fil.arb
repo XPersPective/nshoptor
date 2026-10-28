@@ -461,5 +461,12 @@
   "receiptDeleted": "Nabura ang resibo.",
   "listReceiptsShowAll": "Ipakita lahat ({count})",
   "listReceiptsShowLess": "Ipakita nang mas kaunti",
-  "receiptDateLabel": "Petsa ng resibo: {date}"
+  "receiptDateLabel": "Petsa ng resibo: {date}",
+  "historyViewShopping": "Ayon sa pamimili",
+  "historyViewStore": "Ayon sa tindahan",
+  "historyViewProduct": "Ayon sa produkto",
+  "historyShareAll": "Ibahagi lahat",
+  "historyUnknownStore": "Hindi kilalang tindahan",
+  "historyDailySpending": "Pang-araw-araw na gastos",
+  "historyResetPeriod": "Bumalik sa linggong ito"
 }

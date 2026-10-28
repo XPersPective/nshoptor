@@ -461,5 +461,12 @@
   "receiptDeleted": "Чек жойылды.",
   "listReceiptsShowAll": "Барлығын көрсету ({count})",
   "listReceiptsShowLess": "Азырақ көрсету",
-  "receiptDateLabel": "Чек күні: {date}"
+  "receiptDateLabel": "Чек күні: {date}",
+  "historyViewShopping": "Сатып алу бойынша",
+  "historyViewStore": "Дүкен бойынша",
+  "historyViewProduct": "Тауар бойынша",
+  "historyShareAll": "Барлығын бөлісу",
+  "historyUnknownStore": "Белгісіз дүкен",
+  "historyDailySpending": "Күнделікті шығын",
+  "historyResetPeriod": "Осы аптаға оралу"
 }

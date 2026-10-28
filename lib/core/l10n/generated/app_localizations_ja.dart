@@ -1473,4 +1473,25 @@ class AppLocalizationsJa extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'レシートの日付: $date';
   }
+
+  @override
+  String get historyViewShopping => '買い物別';
+
+  @override
+  String get historyViewStore => '店舗別';
+
+  @override
+  String get historyViewProduct => '商品別';
+
+  @override
+  String get historyShareAll => 'すべて共有';
+
+  @override
+  String get historyUnknownStore => '不明な店舗';
+
+  @override
+  String get historyDailySpending => '日別の支出';
+
+  @override
+  String get historyResetPeriod => '今週に戻る';
 }

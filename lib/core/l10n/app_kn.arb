@@ -461,5 +461,12 @@
   "receiptDeleted": "ರಸೀದಿ ಅಳಿಸಲಾಗಿದೆ.",
   "listReceiptsShowAll": "ಎಲ್ಲವನ್ನೂ ತೋರಿಸಿ ({count})",
   "listReceiptsShowLess": "ಕಡಿಮೆ ತೋರಿಸಿ",
-  "receiptDateLabel": "ರಸೀದಿ ದಿನಾಂಕ: {date}"
+  "receiptDateLabel": "ರಸೀದಿ ದಿನಾಂಕ: {date}",
+  "historyViewShopping": "ಖರೀದಿ ಪ್ರಕಾರ",
+  "historyViewStore": "ಅಂಗಡಿ ಪ್ರಕಾರ",
+  "historyViewProduct": "ಉತ್ಪನ್ನ ಪ್ರಕಾರ",
+  "historyShareAll": "ಎಲ್ಲವನ್ನೂ ಹಂಚಿಕೊಳ್ಳಿ",
+  "historyUnknownStore": "ಅಪರಿಚಿತ ಅಂಗಡಿ",
+  "historyDailySpending": "ದೈನಂದಿನ ಖರ್ಚು",
+  "historyResetPeriod": "ಈ ವಾರಕ್ಕೆ ಹಿಂತಿರುಗಿ"
 }

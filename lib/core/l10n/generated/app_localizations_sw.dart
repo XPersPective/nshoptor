@@ -1526,4 +1526,25 @@ class AppLocalizationsSw extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Tarehe ya risiti: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Kwa ununuzi';
+
+  @override
+  String get historyViewStore => 'Kwa duka';
+
+  @override
+  String get historyViewProduct => 'Kwa bidhaa';
+
+  @override
+  String get historyShareAll => 'Shiriki zote';
+
+  @override
+  String get historyUnknownStore => 'Duka lisilojulikana';
+
+  @override
+  String get historyDailySpending => 'Matumizi ya kila siku';
+
+  @override
+  String get historyResetPeriod => 'Rudi wiki hii';
 }

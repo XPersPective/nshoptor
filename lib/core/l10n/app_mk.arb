@@ -461,5 +461,12 @@
   "receiptDeleted": "Сметката е избришана.",
   "listReceiptsShowAll": "Прикажи ги сите ({count})",
   "listReceiptsShowLess": "Прикажи помалку",
-  "receiptDateLabel": "Датум на сметката: {date}"
+  "receiptDateLabel": "Датум на сметката: {date}",
+  "historyViewShopping": "По купување",
+  "historyViewStore": "По продавница",
+  "historyViewProduct": "По производ",
+  "historyShareAll": "Сподели сè",
+  "historyUnknownStore": "Непозната продавница",
+  "historyDailySpending": "Дневна потрошувачка",
+  "historyResetPeriod": "Назад на оваа недела"
 }

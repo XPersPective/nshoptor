@@ -461,5 +461,12 @@
   "receiptDeleted": "Tiketa ezabatu da.",
   "listReceiptsShowAll": "Erakutsi guztiak ({count})",
   "listReceiptsShowLess": "Erakutsi gutxiago",
-  "receiptDateLabel": "Tiketaren data: {date}"
+  "receiptDateLabel": "Tiketaren data: {date}",
+  "historyViewShopping": "Erosketaren arabera",
+  "historyViewStore": "Dendaren arabera",
+  "historyViewProduct": "Produktuaren arabera",
+  "historyShareAll": "Partekatu dena",
+  "historyUnknownStore": "Denda ezezaguna",
+  "historyDailySpending": "Eguneko gastua",
+  "historyResetPeriod": "Itzuli aste honetara"
 }

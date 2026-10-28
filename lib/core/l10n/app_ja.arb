@@ -461,5 +461,12 @@
   "receiptDeleted": "レシートを削除しました。",
   "listReceiptsShowAll": "すべて表示（{count}）",
   "listReceiptsShowLess": "表示を減らす",
-  "receiptDateLabel": "レシートの日付: {date}"
+  "receiptDateLabel": "レシートの日付: {date}",
+  "historyViewShopping": "買い物別",
+  "historyViewStore": "店舗別",
+  "historyViewProduct": "商品別",
+  "historyShareAll": "すべて共有",
+  "historyUnknownStore": "不明な店舗",
+  "historyDailySpending": "日別の支出",
+  "historyResetPeriod": "今週に戻る"
 }

@@ -461,5 +461,12 @@
   "receiptDeleted": "రసీదు తొలగించబడింది.",
   "listReceiptsShowAll": "అన్నీ చూపు ({count})",
   "listReceiptsShowLess": "తక్కువ చూపు",
-  "receiptDateLabel": "రసీదు తేదీ: {date}"
+  "receiptDateLabel": "రసీదు తేదీ: {date}",
+  "historyViewShopping": "షాపింగ్ వారీగా",
+  "historyViewStore": "దుకాణం వారీగా",
+  "historyViewProduct": "ఉత్పత్తి వారీగా",
+  "historyShareAll": "అన్నీ షేర్ చేయండి",
+  "historyUnknownStore": "తెలియని దుకాణం",
+  "historyDailySpending": "రోజువారీ ఖర్చు",
+  "historyResetPeriod": "ఈ వారానికి తిరిగి వెళ్ళండి"
 }

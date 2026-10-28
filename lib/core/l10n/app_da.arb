@@ -461,5 +461,12 @@
   "receiptDeleted": "Kvittering slettet.",
   "listReceiptsShowAll": "Vis alle ({count})",
   "listReceiptsShowLess": "Vis færre",
-  "receiptDateLabel": "Kvitteringsdato: {date}"
+  "receiptDateLabel": "Kvitteringsdato: {date}",
+  "historyViewShopping": "Efter indkøb",
+  "historyViewStore": "Efter butik",
+  "historyViewProduct": "Efter produkt",
+  "historyShareAll": "Del alt",
+  "historyUnknownStore": "Ukendt butik",
+  "historyDailySpending": "Dagligt forbrug",
+  "historyResetPeriod": "Tilbage til denne uge"
 }

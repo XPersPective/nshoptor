@@ -1511,4 +1511,25 @@ class AppLocalizationsTh extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'วันที่ในใบเสร็จ: $date';
   }
+
+  @override
+  String get historyViewShopping => 'ตามการซื้อ';
+
+  @override
+  String get historyViewStore => 'ตามร้าน';
+
+  @override
+  String get historyViewProduct => 'ตามสินค้า';
+
+  @override
+  String get historyShareAll => 'แชร์ทั้งหมด';
+
+  @override
+  String get historyUnknownStore => 'ร้านที่ไม่รู้จัก';
+
+  @override
+  String get historyDailySpending => 'ค่าใช้จ่ายรายวัน';
+
+  @override
+  String get historyResetPeriod => 'กลับไปสัปดาห์นี้';
 }

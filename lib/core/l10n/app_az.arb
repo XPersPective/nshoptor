@@ -461,5 +461,12 @@
   "receiptDeleted": "Qəbz silindi.",
   "listReceiptsShowAll": "Hamısını göstər ({count})",
   "listReceiptsShowLess": "Daha az göstər",
-  "receiptDateLabel": "Qəbz tarixi: {date}"
+  "receiptDateLabel": "Qəbz tarixi: {date}",
+  "historyViewShopping": "Alış-verişə görə",
+  "historyViewStore": "Mağazaya görə",
+  "historyViewProduct": "Məhsula görə",
+  "historyShareAll": "Hamısını paylaş",
+  "historyUnknownStore": "Naməlum mağaza",
+  "historyDailySpending": "Gündəlik xərc",
+  "historyResetPeriod": "Bu həftəyə qayıt"
 }

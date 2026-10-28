@@ -1517,4 +1517,25 @@ class AppLocalizationsMr extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'पावतीची तारीख: $date';
   }
+
+  @override
+  String get historyViewShopping => 'खरेदीनुसार';
+
+  @override
+  String get historyViewStore => 'दुकानानुसार';
+
+  @override
+  String get historyViewProduct => 'उत्पादनानुसार';
+
+  @override
+  String get historyShareAll => 'सर्व शेअर करा';
+
+  @override
+  String get historyUnknownStore => 'अज्ञात दुकान';
+
+  @override
+  String get historyDailySpending => 'दैनिक खर्च';
+
+  @override
+  String get historyResetPeriod => 'या आठवड्यावर परत जा';
 }

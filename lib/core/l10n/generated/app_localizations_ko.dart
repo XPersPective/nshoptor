@@ -1476,4 +1476,25 @@ class AppLocalizationsKo extends AppLocalizations {
   String receiptDateLabel(String date) {
     return '영수증 날짜: $date';
   }
+
+  @override
+  String get historyViewShopping => '장보기별';
+
+  @override
+  String get historyViewStore => '매장별';
+
+  @override
+  String get historyViewProduct => '상품별';
+
+  @override
+  String get historyShareAll => '모두 공유';
+
+  @override
+  String get historyUnknownStore => '알 수 없는 매장';
+
+  @override
+  String get historyDailySpending => '일별 지출';
+
+  @override
+  String get historyResetPeriod => '이번 주로 돌아가기';
 }

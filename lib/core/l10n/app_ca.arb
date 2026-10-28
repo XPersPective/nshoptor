@@ -461,5 +461,12 @@
   "receiptDeleted": "Tiquet suprimit.",
   "listReceiptsShowAll": "Mostra-ho tot ({count})",
   "listReceiptsShowLess": "Mostra'n menys",
-  "receiptDateLabel": "Data del tiquet: {date}"
+  "receiptDateLabel": "Data del tiquet: {date}",
+  "historyViewShopping": "Per compra",
+  "historyViewStore": "Per botiga",
+  "historyViewProduct": "Per producte",
+  "historyShareAll": "Comparteix-ho tot",
+  "historyUnknownStore": "Botiga desconeguda",
+  "historyDailySpending": "Despesa diària",
+  "historyResetPeriod": "Torna a aquesta setmana"
 }

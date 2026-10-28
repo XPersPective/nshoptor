@@ -461,5 +461,12 @@
   "receiptDeleted": "ပြေစာ ဖျက်ပြီးပါပြီ။",
   "listReceiptsShowAll": "အားလုံးပြရန် ({count})",
   "listReceiptsShowLess": "နည်းနည်းပြရန်",
-  "receiptDateLabel": "ပြေစာ ရက်စွဲ- {date}"
+  "receiptDateLabel": "ပြေစာ ရက်စွဲ- {date}",
+  "historyViewShopping": "ဈေးဝယ်မှုအလိုက်",
+  "historyViewStore": "ဆိုင်အလိုက်",
+  "historyViewProduct": "ကုန်ပစ္စည်းအလိုက်",
+  "historyShareAll": "အားလုံးမျှဝေရန်",
+  "historyUnknownStore": "မသိသောဆိုင်",
+  "historyDailySpending": "နေ့စဉ်အသုံးစရိတ်",
+  "historyResetPeriod": "ဤအပတ်သို့ ပြန်သွားရန်"
 }

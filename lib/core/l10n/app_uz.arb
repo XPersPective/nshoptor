@@ -461,5 +461,12 @@
   "receiptDeleted": "Chek oʻchirildi.",
   "listReceiptsShowAll": "Hammasini koʻrsatish ({count})",
   "listReceiptsShowLess": "Kamroq koʻrsatish",
-  "receiptDateLabel": "Chek sanasi: {date}"
+  "receiptDateLabel": "Chek sanasi: {date}",
+  "historyViewShopping": "Xarid bo'yicha",
+  "historyViewStore": "Do'kon bo'yicha",
+  "historyViewProduct": "Mahsulot bo'yicha",
+  "historyShareAll": "Hammasini ulashish",
+  "historyUnknownStore": "Noma'lum do'kon",
+  "historyDailySpending": "Kunlik xarajat",
+  "historyResetPeriod": "Shu haftaga qaytish"
 }

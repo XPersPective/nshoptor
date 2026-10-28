@@ -461,5 +461,12 @@
   "receiptDeleted": "Beleg gelöscht.",
   "listReceiptsShowAll": "Alle anzeigen ({count})",
   "listReceiptsShowLess": "Weniger anzeigen",
-  "receiptDateLabel": "Belegdatum: {date}"
+  "receiptDateLabel": "Belegdatum: {date}",
+  "historyViewShopping": "Nach Einkauf",
+  "historyViewStore": "Nach Geschäft",
+  "historyViewProduct": "Nach Produkt",
+  "historyShareAll": "Alles teilen",
+  "historyUnknownStore": "Unbekanntes Geschäft",
+  "historyDailySpending": "Tägliche Ausgaben",
+  "historyResetPeriod": "Zurück zu dieser Woche"
 }

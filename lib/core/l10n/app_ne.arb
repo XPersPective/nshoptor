@@ -461,5 +461,12 @@
   "receiptDeleted": "रसिद मेटाइयो।",
   "listReceiptsShowAll": "सबै देखाउनुहोस् ({count})",
   "listReceiptsShowLess": "कम देखाउनुहोस्",
-  "receiptDateLabel": "रसिदको मिति: {date}"
+  "receiptDateLabel": "रसिदको मिति: {date}",
+  "historyViewShopping": "किनमेल अनुसार",
+  "historyViewStore": "पसल अनुसार",
+  "historyViewProduct": "उत्पादन अनुसार",
+  "historyShareAll": "सबै साझा गर्नुहोस्",
+  "historyUnknownStore": "अज्ञात पसल",
+  "historyDailySpending": "दैनिक खर्च",
+  "historyResetPeriod": "यो हप्तामा फर्कनुहोस्"
 }

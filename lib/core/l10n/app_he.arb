@@ -461,5 +461,12 @@
   "receiptDeleted": "הקבלה נמחקה.",
   "listReceiptsShowAll": "הצגת הכול ({count})",
   "listReceiptsShowLess": "הצגת פחות",
-  "receiptDateLabel": "תאריך הקבלה: {date}"
+  "receiptDateLabel": "תאריך הקבלה: {date}",
+  "historyViewShopping": "לפי קנייה",
+  "historyViewStore": "לפי חנות",
+  "historyViewProduct": "לפי מוצר",
+  "historyShareAll": "שתף הכול",
+  "historyUnknownStore": "חנות לא ידועה",
+  "historyDailySpending": "הוצאה יומית",
+  "historyResetPeriod": "חזרה לשבוע הזה"
 }

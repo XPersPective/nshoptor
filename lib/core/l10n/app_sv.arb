@@ -461,5 +461,12 @@
   "receiptDeleted": "Kvittot har raderats.",
   "listReceiptsShowAll": "Visa alla ({count})",
   "listReceiptsShowLess": "Visa färre",
-  "receiptDateLabel": "Kvittodatum: {date}"
+  "receiptDateLabel": "Kvittodatum: {date}",
+  "historyViewShopping": "Per inköp",
+  "historyViewStore": "Per butik",
+  "historyViewProduct": "Per produkt",
+  "historyShareAll": "Dela allt",
+  "historyUnknownStore": "Okänd butik",
+  "historyDailySpending": "Daglig utgift",
+  "historyResetPeriod": "Tillbaka till denna vecka"
 }

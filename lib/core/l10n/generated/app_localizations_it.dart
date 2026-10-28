@@ -1528,4 +1528,25 @@ class AppLocalizationsIt extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Data scontrino: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Per spesa';
+
+  @override
+  String get historyViewStore => 'Per negozio';
+
+  @override
+  String get historyViewProduct => 'Per prodotto';
+
+  @override
+  String get historyShareAll => 'Condividi tutto';
+
+  @override
+  String get historyUnknownStore => 'Negozio sconosciuto';
+
+  @override
+  String get historyDailySpending => 'Spesa giornaliera';
+
+  @override
+  String get historyResetPeriod => 'Torna a questa settimana';
 }

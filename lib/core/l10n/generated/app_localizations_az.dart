@@ -1525,4 +1525,25 @@ class AppLocalizationsAz extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Qəbz tarixi: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Alış-verişə görə';
+
+  @override
+  String get historyViewStore => 'Mağazaya görə';
+
+  @override
+  String get historyViewProduct => 'Məhsula görə';
+
+  @override
+  String get historyShareAll => 'Hamısını paylaş';
+
+  @override
+  String get historyUnknownStore => 'Naməlum mağaza';
+
+  @override
+  String get historyDailySpending => 'Gündəlik xərc';
+
+  @override
+  String get historyResetPeriod => 'Bu həftəyə qayıt';
 }

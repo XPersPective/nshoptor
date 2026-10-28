@@ -1462,4 +1462,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String receiptDateLabel(String date) {
     return '小票日期：$date';
   }
+
+  @override
+  String get historyViewShopping => '按购物';
+
+  @override
+  String get historyViewStore => '按商店';
+
+  @override
+  String get historyViewProduct => '按商品';
+
+  @override
+  String get historyShareAll => '全部分享';
+
+  @override
+  String get historyUnknownStore => '未知商店';
+
+  @override
+  String get historyDailySpending => '每日支出';
+
+  @override
+  String get historyResetPeriod => '返回本周';
 }

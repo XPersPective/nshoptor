@@ -461,5 +461,12 @@
   "receiptDeleted": "ქვითარი წაიშალა.",
   "listReceiptsShowAll": "ყველას ჩვენება ({count})",
   "listReceiptsShowLess": "ნაკლების ჩვენება",
-  "receiptDateLabel": "ქვითრის თარიღი: {date}"
+  "receiptDateLabel": "ქვითრის თარიღი: {date}",
+  "historyViewShopping": "შოპინგის მიხედვით",
+  "historyViewStore": "მაღაზიის მიხედვით",
+  "historyViewProduct": "პროდუქტის მიხედვით",
+  "historyShareAll": "ყველაფრის გაზიარება",
+  "historyUnknownStore": "უცნობი მაღაზია",
+  "historyDailySpending": "დღიური ხარჯი",
+  "historyResetPeriod": "ამ კვირაზე დაბრუნება"
 }

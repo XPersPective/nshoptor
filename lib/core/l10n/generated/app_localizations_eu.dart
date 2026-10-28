@@ -1528,4 +1528,25 @@ class AppLocalizationsEu extends AppLocalizations {
   String receiptDateLabel(String date) {
     return 'Tiketaren data: $date';
   }
+
+  @override
+  String get historyViewShopping => 'Erosketaren arabera';
+
+  @override
+  String get historyViewStore => 'Dendaren arabera';
+
+  @override
+  String get historyViewProduct => 'Produktuaren arabera';
+
+  @override
+  String get historyShareAll => 'Partekatu dena';
+
+  @override
+  String get historyUnknownStore => 'Denda ezezaguna';
+
+  @override
+  String get historyDailySpending => 'Eguneko gastua';
+
+  @override
+  String get historyResetPeriod => 'Itzuli aste honetara';
 }
