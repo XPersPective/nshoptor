@@ -505,6 +505,40 @@ void main() {
     subs.dispose();
   });
 
+
+  testWidgets('spending limits are editable from Settings and reach the spending checks', (tester) async {
+    AppDefaults.attach(SettingsStore());
+    await tester.binding.setSurfaceSize(const Size(800, 5000));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+      home: SettingsScreen(repository: settings, languageController: LanguageController(store: SettingsStore())..load()),
+    ));
+    await tester.pumpAndSettle();
+    final currency = AppDefaults.defaultCurrency();
+    for (final kind in ['week', 'month', 'shopping']) {
+      await tester.tap(find.byKey(Key('settings_limit_$kind')));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byKey(const Key('limit_field')), '1500');
+      await tester.tap(find.byKey(const Key('limit_save')));
+      await tester.pumpAndSettle();
+    }
+    final now = DateTime.now();
+    expect(AppDefaults.weeklyLimitMinor(currencyCode: currency, week: now), 150000);
+    expect(AppDefaults.monthlyLimitMinor(currencyCode: currency, month: DateTime(now.year, now.month)), 150000);
+    expect(AppDefaults.shoppingLimitMinor(currencyCode: currency), 150000);
+    expect(find.textContaining(RegExp(r'1\D?500')), findsNWidgets(3));
+
+    // Removing a limit clears it.
+    await tester.tap(find.byKey(const Key('settings_limit_shopping')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(AppLocalizations.of(tester.element(find.byType(AlertDialog))).monthlyLimitRemove));
+    await tester.pumpAndSettle();
+    expect(AppDefaults.shoppingLimitMinor(currencyCode: currency), isNull);
+    expect(tester.takeException(), isNull);
+  });
 }
 
 /// Bellekte çalışan ayar deposu (test için).

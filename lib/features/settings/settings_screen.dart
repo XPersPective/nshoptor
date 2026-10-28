@@ -30,6 +30,9 @@ import '../../../../core/app_version.dart';
 import '../../../../core/l10n/generated/app_localizations.dart';
 import '../../../../core/money/currency.dart';
 import '../../../../core/money/format_locale.dart';
+import '../../../../core/money/money.dart';
+import '../../../../core/money/money_format.dart';
+import '../history/insights/limit_editor.dart';
 import '../../../../core/quantity/unit_code.dart';
 import '../../../../core/quantity/unit_display.dart';
 import '../../app/language_controller.dart';
@@ -419,6 +422,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Text(
                 l10n.roundingNote,
                 style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+
+            _SectionTitle(
+              icon: Icons.savings_outlined,
+              label: l10n.spendingTitle,
+            ),
+            SpendingLimitTiles(
+              // Rebuilt with the default currency so limits follow it.
+              key: ValueKey('limits_${_repo.defaultCurrency}'),
+              formatMoney: (minor, code) => formatMoney(
+                Money.fromMinorUnits(minor, Currency.fromCode(code)),
+                locale: formatLocaleCode(context),
               ),
             ),
 

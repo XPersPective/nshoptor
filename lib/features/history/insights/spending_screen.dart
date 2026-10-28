@@ -10,6 +10,7 @@ import '../../../core/money/money_format.dart';
 import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 import 'insights_repository.dart';
+import 'limit_editor.dart';
 import 'monthly_report.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../core/quantity/unit_code.dart';
@@ -127,67 +128,12 @@ class _SpendingScreenState extends State<SpendingScreen> {
         _shoppingLimit,
       ),
     };
-    final digits = Currency.fromCode(_currency).minorUnitDigits;
-    final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context));
-    var text = current == null
-        ? ''
-        : DecimalFixed.fromMinorUnits(
-            current,
-            digits,
-          ).toDbString().replaceAll('.', sep.decimal);
-    final form = GlobalKey<FormState>();
-    int parse() {
-      final minor = MoneyParser.parseDecimal(
-        text,
-        separators: sep,
-        requirePositive: true,
-      ).toMinorUnits(digits);
-      if (minor <= 0) {
-        throw const FormatException('positive minor amount required');
-      }
-      return minor;
-    }
-
-    final result = await showDialog<int?>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(title),
-        content: Form(
-          key: form,
-          child: TextFormField(
-            validator: (_) {
-              try {
-                parse();
-                return null;
-              } on FormatException {
-                return l10n.invalidPriceError;
-              }
-            },
-            key: const Key('limit_field'),
-            initialValue: text,
-            onChanged: (value) => text = value,
-            autofocus: true,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(
-              helperText: help,
-              suffixText: _currency,
-            ),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, -1),
-            child: Text(l10n.monthlyLimitRemove),
-          ),
-          FilledButton(
-            key: const Key('limit_save'),
-            onPressed: () {
-              if (form.currentState!.validate()) Navigator.pop(ctx, parse());
-            },
-            child: Text(l10n.saveButton),
-          ),
-        ],
-      ),
+    final result = await showLimitEditor(
+      context,
+      title: title,
+      help: help,
+      current: current,
+      currency: _currency,
     );
     if (result == null || !mounted) return;
     final value = result < 0 ? null : result;
