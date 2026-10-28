@@ -443,5 +443,10 @@
   "planTrialEndedBody": "リスト、手動入力、端末内の音声機能は引き続き無料で利用できます。Free では暦月ごとに AI リクエストを 10 回利用できます。年間 Pro を選ぶと、月 100 回の AI リクエスト、広告なし、バックアップが利用できます。既存のデータはそのまま残ります。",
   "planContinueFree": "Free で続ける",
   "supportIdLabel": "サポート ID",
-  "supportEmailLabel": "メールサポート"
+  "supportEmailLabel": "メールサポート",
+  "captureTipFirst": "いちばん上から撮影してください。店名と日付が写っている必要があります。できるだけ多くの商品を収め、残りは次の写真に写してください。",
+  "captureTipContinue": "同じレシートです。前の写真の最後の商品を含めてください。",
+  "captureTipNeverShow": "今後表示しない",
+  "captureTipOk": "了解",
+  "captureTipsSetting": "レシート撮影のヒントを表示"
 }

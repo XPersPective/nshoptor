@@ -1399,18 +1399,17 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      '맨 위부터 시작하세요. 매장 이름과 날짜가 보여야 합니다. 가능한 한 많은 품목을 담고, 나머지는 다음 사진에 담으세요.';
 
   @override
-  String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+  String get captureTipContinue => '같은 영수증입니다. 이전 사진의 마지막 품목을 포함하세요.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => '다시 표시하지 않음';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => '확인';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => '영수증 촬영 팁 표시';
 }

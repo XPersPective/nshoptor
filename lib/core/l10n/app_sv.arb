@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Du kan fortsätta använda listor, manuell inmatning och röst på enheten gratis. Gratis innehåller 10 AI-förfrågningar per kalendermånad. Välj årlig Pro för 100 AI-förfrågningar i månaden, inga annonser och säkerhetskopior. Dina befintliga data finns kvar hos dig.",
   "planContinueFree": "Fortsätt gratis",
   "supportIdLabel": "Support-ID",
-  "supportEmailLabel": "E-postsupport"
+  "supportEmailLabel": "E-postsupport",
+  "captureTipFirst": "Börja högst upp: butikens namn och datum måste synas. Ta med så många varor du kan; resten kommer på nästa foto.",
+  "captureTipContinue": "Samma kvitto: ta med den sista varan från föregående foto.",
+  "captureTipNeverShow": "Visa inte igen",
+  "captureTipOk": "Uppfattat",
+  "captureTipsSetting": "Visa tips för att fotografera kvitton"
 }

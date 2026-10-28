@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Podes seguir usando listas, entrada manual e voz no dispositivo de balde. O plan gratuíto inclúe 10 solicitudes de IA por mes natural. Escolle Pro anual para ter 100 solicitudes de IA ao mes, sen anuncios e con copias de seguridade. Os teus datos seguirán contigo.",
   "planContinueFree": "Continuar gratis",
   "supportIdLabel": "ID de asistencia",
-  "supportEmailLabel": "Asistencia por correo electrónico"
+  "supportEmailLabel": "Asistencia por correo electrónico",
+  "captureTipFirst": "Comeza polo máis alto: deben verse o nome da tenda e a data. Inclúe tantos artigos como poidas; o resto irá na seguinte foto.",
+  "captureTipContinue": "Mesmo recibo: inclúe o último artigo da foto anterior.",
+  "captureTipNeverShow": "Non volver mostrar",
+  "captureTipOk": "Entendido",
+  "captureTipsSetting": "Mostrar consellos para fotografar o recibo"
 }

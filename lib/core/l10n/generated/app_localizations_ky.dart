@@ -1443,18 +1443,18 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Эң жогорудан баштаңыз: дүкөндүн аталышы жана күнү көрүнүшү керек. Мүмкүн болушунча көп товарды камтыңыз, калганы кийинки сүрөттө болот.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Ошол эле чек: мурунку сүрөттөгү акыркы товарды кошуңуз.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Экинчи көрсөтпө';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Түшүндүм';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Чекти тартуу кеңештерин көрсөтүү';
 }

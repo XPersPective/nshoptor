@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Joprojām bez maksas varat izmantot sarakstus, manuālu ievadi un ierīces balss funkciju. Bezmaksas plānā ir 10 AI pieprasījumi kalendārajā mēnesī. Izvēlieties gada Pro, lai saņemtu 100 AI pieprasījumus mēnesī, bez reklāmām un ar dublējumkopijām. Jūsu esošie dati paliks pie jums.",
   "planContinueFree": "Turpināt bez maksas",
   "supportIdLabel": "Atbalsta ID",
-  "supportEmailLabel": "Atbalsts e-pastā"
+  "supportEmailLabel": "Atbalsts e-pastā",
+  "captureTipFirst": "Sāciet pašā augšā: jābūt redzamam veikala nosaukumam un datumam. Iekļaujiet pēc iespējas vairāk preču, pārējās būs nākamajā foto.",
+  "captureTipContinue": "Tas pats čeks: iekļaujiet iepriekšējā foto pēdējo preci.",
+  "captureTipNeverShow": "Vairs nerādīt",
+  "captureTipOk": "Skaidrs",
+  "captureTipsSetting": "Rādīt čeka fotografēšanas padomus"
 }

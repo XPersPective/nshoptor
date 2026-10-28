@@ -1451,18 +1451,19 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Magsimula sa pinakaitaas: dapat makita ang pangalan ng tindahan at ang petsa. Isama ang pinakamaraming item hangga\'t kaya; ang natitira ay sa susunod na larawan.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Parehong resibo: isama ang huling item sa nakaraang larawan.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Huwag nang ipakita muli';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Nakuha ko';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting =>
+      'Ipakita ang mga tip sa pagkuha ng larawan ng resibo';
 }

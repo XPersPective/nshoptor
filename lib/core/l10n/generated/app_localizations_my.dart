@@ -1446,18 +1446,18 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'အပေါ်ဆုံးကစပါ- ဆိုင်အမည်နှင့် ရက်စွဲ မြင်ရရမည်။ ပစ္စည်းများကို တတ်နိုင်သမျှ ထည့်ပါ၊ ကျန်တာကို နောက်ဓာတ်ပုံတွင် ထည့်ပါ။';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'ပြေစာတစ်ခုတည်း- ယခင်ဓာတ်ပုံ၏ နောက်ဆုံးပစ္စည်းကို ထည့်ပါ။';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'ထပ်မပြပါနှင့်';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'နားလည်ပြီ';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'ပြေစာရိုက်ယူရန် အကြံပြုချက်များ ပြပါ';
 }

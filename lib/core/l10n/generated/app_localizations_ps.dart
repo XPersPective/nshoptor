@@ -1434,18 +1434,18 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'له بشپړ سر څخه پیل کړئ: د هټۍ نوم او نېټه باید ښکاره وي. څومره چې کولی شئ توکي شامل کړئ؛ پاتې به په راتلونکي انځور کې وي.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'ورته رسید: د مخکینۍ انځور وروستی توکی شامل کړئ.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'بیا مه ښایئ';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'پوه شوم';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'د رسید اخیستلو لارښوونې وښایاست';
 }

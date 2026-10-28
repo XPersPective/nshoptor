@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import '../../core/money/currency.dart';
+import '../../core/text/store_name.dart';
 import '../ai/ai_client.dart';
 import 'ai_image.dart';
 import 'ocr_text_source.dart';
@@ -192,7 +193,7 @@ class AiReceiptReader {
 
     final rows = <String>[];
     final store = one(data['store'], 80);
-    if (store != null) rows.add('STORE : $store');
+    if (store != null) rows.add('STORE : ${cleanStoreName(store)}');
     final date = data['date'] is String
         ? RegExp(r'^(\d{4})-(\d{2})-(\d{2})$')
               .firstMatch(data['date'] as String)

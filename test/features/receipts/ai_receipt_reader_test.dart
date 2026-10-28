@@ -74,7 +74,7 @@ void main() {
     expect(parsed.lines[1].quantity!.toDbString(), '1.033');
     expect(parsed.discountMinor, 14900);
     expect(parsed.totalMinor, 22577);
-    expect(document.metadata.store, 'ŞOK MARKETLER TİC.A.Ş');
+    expect(document.metadata.store, 'ŞOK MARKETLER');
     expect(document.metadata.documentNumber, '0259');
     expect(document.metadata.dateTime, DateTime(2024, 2, 1, 20, 51, 41));
   });

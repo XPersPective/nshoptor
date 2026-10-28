@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Du kannst Listen, manuelle Eingabe und die Spracheingabe auf dem Gerät weiterhin kostenlos nutzen. Der kostenlose Tarif umfasst 10 KI-Anfragen pro Kalendermonat. Wähle Pro im Jahresabo für 100 KI-Anfragen pro Monat, keine Werbung und Sicherungen. Deine vorhandenen Daten bleiben erhalten.",
   "planContinueFree": "Kostenlos fortfahren",
   "supportIdLabel": "Support-ID",
-  "supportEmailLabel": "E-Mail-Support"
+  "supportEmailLabel": "E-Mail-Support",
+  "captureTipFirst": "Beginne ganz oben: Geschäftsname und Datum müssen sichtbar sein. Erfasse so viele Artikel wie möglich; der Rest kommt aufs nächste Foto.",
+  "captureTipContinue": "Gleicher Beleg: Nimm den letzten Artikel des vorherigen Fotos mit auf.",
+  "captureTipNeverShow": "Nicht mehr anzeigen",
+  "captureTipOk": "Verstanden",
+  "captureTipsSetting": "Tipps zum Fotografieren von Belegen anzeigen"
 }

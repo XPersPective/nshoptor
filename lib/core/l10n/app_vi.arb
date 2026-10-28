@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Bạn vẫn có thể dùng danh sách, nhập thủ công và giọng nói trên thiết bị miễn phí. Gói Miễn phí có 10 yêu cầu AI mỗi tháng dương lịch. Chọn Pro hằng năm để có 100 yêu cầu AI mỗi tháng, không quảng cáo và có bản sao lưu. Dữ liệu hiện có vẫn thuộc về bạn.",
   "planContinueFree": "Tiếp tục miễn phí",
   "supportIdLabel": "ID hỗ trợ",
-  "supportEmailLabel": "Hỗ trợ qua email"
+  "supportEmailLabel": "Hỗ trợ qua email",
+  "captureTipFirst": "Bắt đầu từ trên cùng: phải thấy rõ tên cửa hàng và ngày. Chụp càng nhiều mặt hàng càng tốt, phần còn lại để ở ảnh tiếp theo.",
+  "captureTipContinue": "Cùng một hóa đơn: bao gồm mặt hàng cuối cùng của ảnh trước.",
+  "captureTipNeverShow": "Không hiện lại",
+  "captureTipOk": "Đã hiểu",
+  "captureTipsSetting": "Hiện mẹo chụp hóa đơn"
 }

@@ -1453,18 +1453,18 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Pradėkite pačiame viršuje: turi matytis parduotuvės pavadinimas ir data. Sutalpinkite kuo daugiau prekių, likusios bus kitoje nuotraukoje.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Tas pats kvitas: įtraukite paskutinę ankstesnės nuotraukos prekę.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Daugiau nerodyti';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Supratau';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Rodyti kvito fotografavimo patarimus';
 }

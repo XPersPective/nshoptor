@@ -443,5 +443,10 @@
   "planTrialEndedBody": "I dalje možete besplatno koristiti popise, ručni unos i glas na uređaju. Besplatni plan uključuje 10 AI zahtjeva po kalendarskom mjesecu. Odaberite godišnji Pro za 100 AI zahtjeva mjesečno, bez oglasa i uz sigurnosne kopije. Vaši postojeći podaci ostaju vaši.",
   "planContinueFree": "Nastavi besplatno",
   "supportIdLabel": "ID podrške",
-  "supportEmailLabel": "Podrška e-poštom"
+  "supportEmailLabel": "Podrška e-poštom",
+  "captureTipFirst": "Počnite sasvim od vrha: naziv trgovine i datum moraju biti vidljivi. Obuhvatite što više artikala, ostatak ide u sljedeću fotografiju.",
+  "captureTipContinue": "Isti račun: uključite zadnji artikl s prethodne fotografije.",
+  "captureTipNeverShow": "Ne prikazuj ponovno",
+  "captureTipOk": "Razumijem",
+  "captureTipsSetting": "Prikaži savjete za snimanje računa"
 }

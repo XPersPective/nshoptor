@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Je kunt lijsten, handmatige invoer en spraak op je apparaat gratis blijven gebruiken. Gratis bevat 10 AI-verzoeken per kalendermaand. Kies jaarlijks Pro voor 100 AI-verzoeken per maand, geen advertenties en back-ups. Je bestaande gegevens blijven van jou.",
   "planContinueFree": "Gratis doorgaan",
   "supportIdLabel": "Support-ID",
-  "supportEmailLabel": "E-mailondersteuning"
+  "supportEmailLabel": "E-mailondersteuning",
+  "captureTipFirst": "Begin helemaal bovenaan: de winkelnaam en de datum moeten zichtbaar zijn. Neem zoveel mogelijk artikelen mee; de rest komt op de volgende foto.",
+  "captureTipContinue": "Dezelfde bon: neem het laatste artikel van de vorige foto mee.",
+  "captureTipNeverShow": "Niet meer tonen",
+  "captureTipOk": "Begrepen",
+  "captureTipsSetting": "Tips voor het fotograferen van bonnen tonen"
 }

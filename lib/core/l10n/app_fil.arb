@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Maaari mo pa ring gamitin nang libre ang mga listahan, manu-manong paglalagay, at voice sa device. May 10 AI request bawat buwan sa Free. Piliin ang taunang Pro para sa 100 AI request bawat buwan, walang ads, at may mga backup. Mananatili sa iyo ang dati mong data.",
   "planContinueFree": "Magpatuloy nang Libre",
   "supportIdLabel": "Support ID",
-  "supportEmailLabel": "Suporta sa email"
+  "supportEmailLabel": "Suporta sa email",
+  "captureTipFirst": "Magsimula sa pinakaitaas: dapat makita ang pangalan ng tindahan at ang petsa. Isama ang pinakamaraming item hangga't kaya; ang natitira ay sa susunod na larawan.",
+  "captureTipContinue": "Parehong resibo: isama ang huling item sa nakaraang larawan.",
+  "captureTipNeverShow": "Huwag nang ipakita muli",
+  "captureTipOk": "Nakuha ko",
+  "captureTipsSetting": "Ipakita ang mga tip sa pagkuha ng larawan ng resibo"
 }

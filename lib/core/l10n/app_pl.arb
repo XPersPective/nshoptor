@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Nadal możesz bezpłatnie korzystać z list, ręcznego wprowadzania i głosu na urządzeniu. Plan Free obejmuje 10 zapytań AI w miesiącu kalendarzowym. Wybierz roczny Pro, aby otrzymywać 100 zapytań AI miesięcznie, bez reklam i z kopiami zapasowymi. Twoje dotychczasowe dane pozostaną z Tobą.",
   "planContinueFree": "Kontynuuj bezpłatnie",
   "supportIdLabel": "Identyfikator pomocy",
-  "supportEmailLabel": "Pomoc e-mailowa"
+  "supportEmailLabel": "Pomoc e-mailowa",
+  "captureTipFirst": "Zacznij od samej góry: nazwa sklepu i data muszą być widoczne. Zmieść jak najwięcej pozycji, reszta trafi na następne zdjęcie.",
+  "captureTipContinue": "Ten sam paragon: uwzględnij ostatnią pozycję z poprzedniego zdjęcia.",
+  "captureTipNeverShow": "Nie pokazuj ponownie",
+  "captureTipOk": "Rozumiem",
+  "captureTipsSetting": "Pokazuj wskazówki dotyczące fotografowania paragonu"
 }

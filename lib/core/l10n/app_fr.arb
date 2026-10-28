@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Vous pouvez continuer à utiliser gratuitement les listes, la saisie manuelle et la voix sur l’appareil. L’offre gratuite comprend 10 requêtes IA par mois calendaire. Choisissez Pro annuel pour 100 requêtes IA par mois, sans publicité et avec des sauvegardes. Vos données existantes restent avec vous.",
   "planContinueFree": "Continuer gratuitement",
   "supportIdLabel": "ID d’assistance",
-  "supportEmailLabel": "Assistance par e-mail"
+  "supportEmailLabel": "Assistance par e-mail",
+  "captureTipFirst": "Commencez tout en haut : le nom du magasin et la date doivent être visibles. Incluez le plus d’articles possible ; le reste ira dans la photo suivante.",
+  "captureTipContinue": "Même reçu : incluez le dernier article de la photo précédente.",
+  "captureTipNeverShow": "Ne plus afficher",
+  "captureTipOk": "Compris",
+  "captureTipsSetting": "Afficher les conseils de prise de vue du reçu"
 }

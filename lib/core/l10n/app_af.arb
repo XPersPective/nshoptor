@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Jy kan steeds gratis lyste, handmatige invoer en stemverwerking op jou toestel gebruik. Gratis sluit 10 KI-versoeke per kalendermaand in. Kies jaarlikse Pro vir 100 KI-versoeke per maand, geen advertensies en rugsteun. Jou bestaande data bly joune.",
   "planContinueFree": "Gaan voort met Gratis",
   "supportIdLabel": "Ondersteunings-ID",
-  "supportEmailLabel": "E-posondersteuning"
+  "supportEmailLabel": "E-posondersteuning",
+  "captureTipFirst": "Begin heel bo: die winkelnaam en datum moet sigbaar wees. Kry soveel items as moontlik in; die res kom in die volgende foto.",
+  "captureTipContinue": "Dieselfde kwitansie: sluit die laaste item van die vorige foto in.",
+  "captureTipNeverShow": "Moenie weer wys nie",
+  "captureTipOk": "Verstaan",
+  "captureTipsSetting": "Wys kwitansie-opnametips"
 }

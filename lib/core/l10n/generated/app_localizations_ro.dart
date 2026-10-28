@@ -1452,18 +1452,19 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Începeți chiar de sus: numele magazinului și data trebuie să fie vizibile. Includeți cât mai multe produse; restul merge în următoarea fotografie.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Același bon: includeți ultimul produs din fotografia anterioară.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Nu mai afișa';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Am înțeles';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting =>
+      'Afișează sfaturile pentru fotografierea bonului';
 }

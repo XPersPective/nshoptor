@@ -1445,18 +1445,18 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Kezdje a legfelülről: az üzlet nevének és a dátumnak látszania kell. Annyi tételt vegyen fel, amennyi elfér; a többi a következő fotóra kerül.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Ugyanaz a nyugta: az előző fotó utolsó tételét is tegye rá.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Ne jelenjen meg újra';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Értem';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Nyugtafotózási tippek megjelenítése';
 }

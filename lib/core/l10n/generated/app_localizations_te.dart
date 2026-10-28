@@ -1452,18 +1452,18 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'పైభాగం నుండి మొదలుపెట్టండి: దుకాణం పేరు, తేదీ కనిపించాలి. వీలైనన్ని వస్తువులను చేర్చండి; మిగతావి తర్వాతి ఫోటోలో ఉంటాయి.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'అదే రసీదు: ముందు ఫోటోలోని చివరి వస్తువును చేర్చండి.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'మళ్లీ చూపవద్దు';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'అర్థమైంది';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'రసీదు తీసే చిట్కాలను చూపించు';
 }

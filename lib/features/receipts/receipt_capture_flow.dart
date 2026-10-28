@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
+import '../../core/text/store_name.dart';
 import '../../data/db/app_database.dart';
 import '../ai/ai_client.dart';
 import '../lists/item_repository.dart';
@@ -162,7 +163,11 @@ Future<int?> openReceiptCaptureFlow(
       final controller = ReceiptReviewController(
         db: db,
         listId: activeListId,
-        title: title ?? document.metadata.store,
+        title:
+            title ??
+            (document.metadata.store == null
+                ? null
+                : cleanStoreName(document.metadata.store!)),
         currencyCode: reviewCurrency,
         document: document,
         draftId: draftId,
@@ -223,7 +228,7 @@ Future<int?> openReceiptCaptureFlow(
             doc.metadata.store != null &&
             doc.metadata.dateTime != null) {
           final created = await ListRepository(db).createList(
-            title: doc.metadata.store,
+            title: cleanStoreName(doc.metadata.store!),
             currencyCode: currencyCode,
             plannedAt: doc.metadata.dateTime,
           );
@@ -621,7 +626,7 @@ Future<_AiOutcome> _readWithAi(
         if (listId == null && ownedListId == null && store != null) {
           // Header known: the list exists from now on and owns the receipt.
           ownedListId = await ListRepository(db).createList(
-            title: store,
+            title: cleanStoreName(store),
             currencyCode: currencyCode,
             plannedAt: date,
           );

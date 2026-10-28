@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Voit jatkaa listojen, manuaalisen syötön ja laitteen puhetoiminnon käyttöä maksutta. Ilmainen sisältää 10 tekoälypyyntöä kalenterikuukaudessa. Valitse vuotuinen Pro, niin saat 100 tekoälypyyntöä kuukaudessa, ei mainoksia ja varmuuskopiot. Nykyiset tietosi säilyvät sinulla.",
   "planContinueFree": "Jatka ilmaiseksi",
   "supportIdLabel": "Tukitunnus",
-  "supportEmailLabel": "Sähköpostituki"
+  "supportEmailLabel": "Sähköpostituki",
+  "captureTipFirst": "Aloita aivan ylhäältä: kaupan nimen ja päivämäärän on näyttävä. Ota mukaan mahdollisimman monta tuotetta, loput tulevat seuraavaan kuvaan.",
+  "captureTipContinue": "Sama kuitti: ota mukaan edellisen kuvan viimeinen tuote.",
+  "captureTipNeverShow": "Älä näytä uudelleen",
+  "captureTipOk": "Selvä",
+  "captureTipsSetting": "Näytä kuitin kuvausvinkit"
 }

@@ -1448,18 +1448,18 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Хамгийн дээрээс эхлээрэй: дэлгүүрийн нэр, огноо харагдах ёстой. Аль болох олон бараа багтаа, үлдсэн нь дараагийн зурагт байна.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Нэг баримт: өмнөх зургийн сүүлийн барааг оруулна уу.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Дахин үзүүлэхгүй';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Ойлголоо';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Баримт авах зөвлөгөөг харуулах';
 }

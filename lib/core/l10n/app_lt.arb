@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Sąrašais, rankiniu įvedimu ir įrenginio balso funkcija galite naudotis nemokamai ir toliau. Nemokamas planas apima 10 DI užklausų per kalendorinį mėnesį. Pasirinkite metinį Pro ir gaukite 100 DI užklausų per mėnesį, be reklamų ir su atsarginėmis kopijomis. Esami jūsų duomenys liks su jumis.",
   "planContinueFree": "Tęsti nemokamai",
   "supportIdLabel": "Pagalbos ID",
-  "supportEmailLabel": "Pagalba el. paštu"
+  "supportEmailLabel": "Pagalba el. paštu",
+  "captureTipFirst": "Pradėkite pačiame viršuje: turi matytis parduotuvės pavadinimas ir data. Sutalpinkite kuo daugiau prekių, likusios bus kitoje nuotraukoje.",
+  "captureTipContinue": "Tas pats kvitas: įtraukite paskutinę ankstesnės nuotraukos prekę.",
+  "captureTipNeverShow": "Daugiau nerodyti",
+  "captureTipOk": "Supratau",
+  "captureTipsSetting": "Rodyti kvito fotografavimo patarimus"
 }

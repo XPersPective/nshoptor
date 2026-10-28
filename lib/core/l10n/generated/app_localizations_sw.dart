@@ -1446,18 +1446,19 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Anza juu kabisa: jina la duka na tarehe lazima vionekane. Jumuisha bidhaa nyingi uwezavyo; zilizobaki ziwe kwenye picha inayofuata.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Risiti ile ile: jumuisha bidhaa ya mwisho ya picha iliyotangulia.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Usionyeshe tena';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Nimeelewa';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting =>
+      'Onyesha vidokezo vya kupiga picha ya risiti';
 }

@@ -1447,18 +1447,18 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Fillo që nga maja: emri i dyqanit dhe data duhet të duken. Përfshi sa më shumë artikuj; pjesa tjetër shkon në foton tjetër.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'E njëjta faturë: përfshi artikullin e fundit të fotos së mëparshme.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Mos e shfaq më';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'E kuptova';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Shfaq këshillat për fotografimin e faturës';
 }

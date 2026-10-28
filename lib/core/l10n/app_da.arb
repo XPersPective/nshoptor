@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Du kan fortsat bruge lister, manuel indtastning og tale på enheden gratis. Gratisplanen indeholder 10 AI-anmodninger pr. kalendermåned. Vælg årlig Pro for 100 AI-anmodninger om måneden, ingen annoncer og sikkerhedskopier. Dine eksisterende data forbliver dine.",
   "planContinueFree": "Fortsæt gratis",
   "supportIdLabel": "Support-id",
-  "supportEmailLabel": "Support via e-mail"
+  "supportEmailLabel": "Support via e-mail",
+  "captureTipFirst": "Start helt øverst: butiksnavn og dato skal være synlige. Få så mange varer med som muligt; resten kommer på næste billede.",
+  "captureTipContinue": "Samme kvittering: tag den sidste vare fra det forrige billede med.",
+  "captureTipNeverShow": "Vis ikke igen",
+  "captureTipOk": "Forstået",
+  "captureTipsSetting": "Vis tips til fotografering af kvittering"
 }

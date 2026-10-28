@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Poți folosi în continuare gratuit listele, introducerea manuală și vocea pe dispozitiv. Planul Gratuit include 10 solicitări AI pe lună calendaristică. Alege Pro anual pentru 100 de solicitări AI pe lună, fără reclame și cu copii de siguranță. Datele existente rămân la tine.",
   "planContinueFree": "Continuă gratuit",
   "supportIdLabel": "ID de asistență",
-  "supportEmailLabel": "Asistență prin e-mail"
+  "supportEmailLabel": "Asistență prin e-mail",
+  "captureTipFirst": "Începeți chiar de sus: numele magazinului și data trebuie să fie vizibile. Includeți cât mai multe produse; restul merge în următoarea fotografie.",
+  "captureTipContinue": "Același bon: includeți ultimul produs din fotografia anterioară.",
+  "captureTipNeverShow": "Nu mai afișa",
+  "captureTipOk": "Am înțeles",
+  "captureTipsSetting": "Afișează sfaturile pentru fotografierea bonului"
 }

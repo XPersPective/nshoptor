@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Továbbra is ingyen használhatod a listákat, a kézi bevitelt és az eszközön működő hangfunkciót. Az ingyenes csomag naptári hónaponként 10 AI-kérést tartalmaz. Válaszd az éves Prót havi 100 AI-kérésért, reklámok nélkül és biztonsági mentésekkel. A meglévő adataid megmaradnak.",
   "planContinueFree": "Folytatás ingyenesen",
   "supportIdLabel": "Támogatási azonosító",
-  "supportEmailLabel": "E-mailes támogatás"
+  "supportEmailLabel": "E-mailes támogatás",
+  "captureTipFirst": "Kezdje a legfelülről: az üzlet nevének és a dátumnak látszania kell. Annyi tételt vegyen fel, amennyi elfér; a többi a következő fotóra kerül.",
+  "captureTipContinue": "Ugyanaz a nyugta: az előző fotó utolsó tételét is tegye rá.",
+  "captureTipNeverShow": "Ne jelenjen meg újra",
+  "captureTipOk": "Értem",
+  "captureTipsSetting": "Nyugtafotózási tippek megjelenítése"
 }

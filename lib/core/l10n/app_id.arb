@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Anda tetap dapat menggunakan daftar, input manual, dan suara di perangkat secara gratis. Paket Gratis mencakup 10 permintaan AI per bulan kalender. Pilih Pro tahunan untuk 100 permintaan AI per bulan, tanpa iklan, dan dengan pencadangan. Data Anda tetap tersimpan.",
   "planContinueFree": "Lanjutkan Gratis",
   "supportIdLabel": "ID Dukungan",
-  "supportEmailLabel": "Dukungan Email"
+  "supportEmailLabel": "Dukungan Email",
+  "captureTipFirst": "Mulai dari paling atas: nama toko dan tanggal harus terlihat. Masukkan sebanyak mungkin item; sisanya di foto berikutnya.",
+  "captureTipContinue": "Struk yang sama: sertakan item terakhir dari foto sebelumnya.",
+  "captureTipNeverShow": "Jangan tampilkan lagi",
+  "captureTipOk": "Mengerti",
+  "captureTipsSetting": "Tampilkan tips memotret struk"
 }

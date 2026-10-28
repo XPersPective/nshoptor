@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Pots continuar utilitzant llistes, entrada manual i veu al dispositiu de manera gratuïta. El pla gratuït inclou 10 sol·licituds d’IA per mes natural. Tria Pro anual per tenir 100 sol·licituds d’IA al mes, sense anuncis i amb còpies de seguretat. Les teves dades continuen sent teves.",
   "planContinueFree": "Continua amb el pla gratuït",
   "supportIdLabel": "ID de suport",
-  "supportEmailLabel": "Suport per correu electrònic"
+  "supportEmailLabel": "Suport per correu electrònic",
+  "captureTipFirst": "Comença pel capdamunt: s’han de veure el nom de la botiga i la data. Inclou tants articles com puguis; la resta anirà a la foto següent.",
+  "captureTipContinue": "Mateix rebut: inclou l’últim article de la foto anterior.",
+  "captureTipNeverShow": "No ho tornis a mostrar",
+  "captureTipOk": "Entesos",
+  "captureTipsSetting": "Mostra els consells per fotografiar el rebut"
 }

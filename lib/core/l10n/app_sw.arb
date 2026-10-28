@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Unaweza kuendelea kutumia orodha, kuingiza mwenyewe na sauti kwenye kifaa bila malipo. Mpango wa Bure una maombi 10 ya AI kwa mwezi wa kalenda. Chagua Pro ya mwaka kwa maombi 100 ya AI kwa mwezi, bila matangazo na ikiwa na nakala rudufu. Data yako iliyopo itabaki nawe.",
   "planContinueFree": "Endelea Bila Malipo",
   "supportIdLabel": "Kitambulisho cha Usaidizi",
-  "supportEmailLabel": "Usaidizi kwa Barua Pepe"
+  "supportEmailLabel": "Usaidizi kwa Barua Pepe",
+  "captureTipFirst": "Anza juu kabisa: jina la duka na tarehe lazima vionekane. Jumuisha bidhaa nyingi uwezavyo; zilizobaki ziwe kwenye picha inayofuata.",
+  "captureTipContinue": "Risiti ile ile: jumuisha bidhaa ya mwisho ya picha iliyotangulia.",
+  "captureTipNeverShow": "Usionyeshe tena",
+  "captureTipOk": "Nimeelewa",
+  "captureTipsSetting": "Onyesha vidokezo vya kupiga picha ya risiti"
 }

@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Anda masih boleh menggunakan senarai, input manual dan suara pada peranti secara percuma. Pelan Percuma merangkumi 10 permintaan AI setiap bulan kalendar. Pilih Pro tahunan untuk 100 permintaan AI sebulan, tanpa iklan dan dengan sandaran. Data sedia ada anda kekal bersama anda.",
   "planContinueFree": "Teruskan secara Percuma",
   "supportIdLabel": "ID Sokongan",
-  "supportEmailLabel": "Sokongan E-mel"
+  "supportEmailLabel": "Sokongan E-mel",
+  "captureTipFirst": "Mulakan dari bahagian paling atas: nama kedai dan tarikh mesti kelihatan. Muatkan seberapa banyak item yang boleh; selebihnya dalam foto seterusnya.",
+  "captureTipContinue": "Resit yang sama: sertakan item terakhir foto sebelumnya.",
+  "captureTipNeverShow": "Jangan tunjuk lagi",
+  "captureTipOk": "Faham",
+  "captureTipsSetting": "Tunjukkan petua merakam resit"
 }

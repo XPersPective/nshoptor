@@ -1440,18 +1440,17 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'একদম ওপর থেকে শুরু করুন: দোকানের নাম ও তারিখ দেখা যেতে হবে। যতগুলো সম্ভব আইটেম রাখুন, বাকিগুলো পরের ছবিতে থাকবে।';
 
   @override
-  String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+  String get captureTipContinue => 'একই রসিদ: আগের ছবির শেষ আইটেমটি রাখুন।';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'আর দেখাবেন না';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'বুঝেছি';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'রসিদ তোলার টিপস দেখান';
 }

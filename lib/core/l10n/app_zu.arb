@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Usengaqhubeka usebenzisa uhlu, ukufaka ngesandla nezwi kudivayisi mahhala. Uhlelo Lwamahhala lufaka izicelo ze-AI eziyi-10 ngenyanga yekhalenda. Khetha i-Pro yonyaka ukuze uthole izicelo ze-AI eziyi-100 ngenyanga, ngaphandle kwezikhangiso nangamakhophi ayisipele. Idatha yakho ekhona izohlala inawe.",
   "planContinueFree": "Qhubeka Mahhala",
   "supportIdLabel": "I-ID Yokwesekwa",
-  "supportEmailLabel": "Ukusekelwa nge-imeyili"
+  "supportEmailLabel": "Ukusekelwa nge-imeyili",
+  "captureTipFirst": "Qala phezulu kakhulu: igama lesitolo nosuku kufanele kubonakale. Faka izinto eziningi ngangokunokwenzeka; okusele kuya esithombeni esilandelayo.",
+  "captureTipContinue": "Irisidi elifanayo: faka into yokugcina yesithombe esedlule.",
+  "captureTipNeverShow": "Ungabonisi futhi",
+  "captureTipOk": "Ngiyaqonda",
+  "captureTipsSetting": "Bonisa amathiphu okuthatha irisidi"
 }

@@ -1440,18 +1440,18 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'დაიწყეთ ზემოდან: მაღაზიის სახელი და თარიღი უნდა ჩანდეს. მოათავსეთ რაც შეიძლება მეტი პროდუქტი, დანარჩენი შემდეგ ფოტოში იქნება.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'იგივე ქვითარი: ჩართეთ წინა ფოტოს ბოლო პროდუქტი.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'აღარ აჩვენო';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'გასაგებია';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'ქვითრის გადაღების რჩევების ჩვენება';
 }

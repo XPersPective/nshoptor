@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Sezname, ročni vnos in glasovne funkcije v napravi lahko še naprej uporabljate brezplačno. Brezplačni paket vključuje 10 zahtev za AI na koledarski mesec. Izberite letni Pro za 100 zahtev za AI na mesec, brez oglasov in z varnostnimi kopijami. Vaši obstoječi podatki ostanejo vaši.",
   "planContinueFree": "Nadaljuj brezplačno",
   "supportIdLabel": "ID podpore",
-  "supportEmailLabel": "Podpora po e-pošti"
+  "supportEmailLabel": "Podpora po e-pošti",
+  "captureTipFirst": "Začnite povsem na vrhu: ime trgovine in datum morata biti vidna. Zajemite čim več izdelkov, ostali bodo na naslednji fotografiji.",
+  "captureTipContinue": "Isti račun: vključite zadnji izdelek s prejšnje fotografije.",
+  "captureTipNeverShow": "Ne prikaži več",
+  "captureTipOk": "Razumem",
+  "captureTipsSetting": "Prikaži nasvete za slikanje računa"
 }

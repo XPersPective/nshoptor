@@ -1446,18 +1446,18 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Ən yuxarıdan başlayın: mağazanın adı və tarix görünməlidir. Mümkün qədər çox məhsulu sığışdırın, qalanı növbəti fotoda olsun.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Eyni çek: əvvəlki fotodakı son məhsulu da daxil edin.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Bir daha göstərmə';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Anladım';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Çek çəkilişi məsləhətlərini göstər';
 }

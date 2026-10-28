@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Þú getur áfram notað lista, handvirka innsláttar og tal á tækinu þér að kostnaðarlausu. Ókeypis áskrift inniheldur 10 AI-beiðnir á almanaksmánuði. Veldu árlegt Pro fyrir 100 AI-beiðnir á mánuði, engar auglýsingar og afrit. Gögnin þín haldast hjá þér.",
   "planContinueFree": "Halda áfram ókeypis",
   "supportIdLabel": "Auðkenni þjónustuvers",
-  "supportEmailLabel": "Þjónustuaðstoð í tölvupósti"
+  "supportEmailLabel": "Þjónustuaðstoð í tölvupósti",
+  "captureTipFirst": "Byrjaðu efst: nafn verslunar og dagsetning þurfa að sjást. Taktu með eins margar vörur og þú getur; restin fer á næstu mynd.",
+  "captureTipContinue": "Sama kvittun: hafðu síðustu vöruna af fyrri mynd með.",
+  "captureTipNeverShow": "Ekki sýna aftur",
+  "captureTipOk": "Skilið",
+  "captureTipsSetting": "Sýna ráð til að mynda kvittun"
 }

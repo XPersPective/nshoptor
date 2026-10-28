@@ -1449,18 +1449,18 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Սկսեք ամենավերևից՝ խանութի անունը և ամսաթիվը պետք է երևան։ Ներառեք հնարավորինս շատ ապրանք, մնացածը կլինի հաջորդ լուսանկարում։';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Նույն կտրոնը՝ ներառեք նախորդ լուսանկարի վերջին ապրանքը։';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Այլևս չցուցադրել';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Հասկացա';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Ցուցադրել կտրոնի լուսանկարման խորհուրդները';
 }

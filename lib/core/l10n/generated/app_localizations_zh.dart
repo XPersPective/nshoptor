@@ -1385,19 +1385,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get supportEmailLabel => '电子邮件支持';
 
   @override
-  String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+  String get captureTipFirst => '请从最顶部开始拍摄：必须拍到店名和日期。尽量多拍一些商品，其余的放在下一张照片中。';
 
   @override
-  String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+  String get captureTipContinue => '同一张收据：请包含上一张照片的最后一件商品。';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => '不再显示';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => '知道了';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => '显示收据拍摄提示';
 }

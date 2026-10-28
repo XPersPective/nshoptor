@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Pode continuar a usar listas, introdução manual e voz no dispositivo gratuitamente. O plano Gratuito inclui 10 pedidos de IA por mês civil. Escolha o Pro anual para ter 100 pedidos de IA por mês, sem anúncios e com cópias de segurança. Os seus dados atuais continuam consigo.",
   "planContinueFree": "Continuar gratuitamente",
   "supportIdLabel": "ID de suporte",
-  "supportEmailLabel": "Suporte por e-mail"
+  "supportEmailLabel": "Suporte por e-mail",
+  "captureTipFirst": "Comece bem pelo topo: o nome da loja e a data devem estar visíveis. Inclua o máximo de itens possível; o resto vai na próxima foto.",
+  "captureTipContinue": "Mesmo recibo: inclua o último item da foto anterior.",
+  "captureTipNeverShow": "Não mostrar novamente",
+  "captureTipOk": "Entendi",
+  "captureTipsSetting": "Mostrar dicas para fotografar o recibo"
 }

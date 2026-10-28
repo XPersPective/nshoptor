@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Seznamy, ruční zadávání i hlasové funkce v zařízení můžete dál používat zdarma. Bezplatný tarif zahrnuje 10 požadavků na AI za kalendářní měsíc. Zvolte roční Pro pro 100 požadavků na AI měsíčně, bez reklam a se zálohami. Vaše stávající data vám zůstanou.",
   "planContinueFree": "Pokračovat zdarma",
   "supportIdLabel": "ID podpory",
-  "supportEmailLabel": "Podpora e-mailem"
+  "supportEmailLabel": "Podpora e-mailem",
+  "captureTipFirst": "Začněte úplně nahoře: musí být vidět název obchodu a datum. Vyfoťte co nejvíc položek, zbytek bude na další fotce.",
+  "captureTipContinue": "Stejná účtenka: zahrňte poslední položku z předchozí fotky.",
+  "captureTipNeverShow": "Již nezobrazovat",
+  "captureTipOk": "Rozumím",
+  "captureTipsSetting": "Zobrazovat tipy k focení účtenky"
 }

@@ -1438,18 +1438,18 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Bắt đầu từ trên cùng: phải thấy rõ tên cửa hàng và ngày. Chụp càng nhiều mặt hàng càng tốt, phần còn lại để ở ảnh tiếp theo.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Cùng một hóa đơn: bao gồm mặt hàng cuối cùng của ảnh trước.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Không hiện lại';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Đã hiểu';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Hiện mẹo chụp hóa đơn';
 }

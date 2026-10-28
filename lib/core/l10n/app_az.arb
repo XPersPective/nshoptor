@@ -443,5 +443,10 @@
   "planTrialEndedBody": "Siyahılardan, əl ilə daxil etmədən və cihazdakı səs funksiyasından pulsuz istifadə edə bilərsiniz. Pulsuz plana hər təqvim ayında 10 AI sorğusu daxildir. Ayda 100 AI sorğusu, reklamsız istifadə və ehtiyat nüsxələr üçün illik Pro seçin. Mövcud məlumatlarınız sizdə qalır.",
   "planContinueFree": "Pulsuz davam et",
   "supportIdLabel": "Dəstək ID-si",
-  "supportEmailLabel": "E-poçtla dəstək"
+  "supportEmailLabel": "E-poçtla dəstək",
+  "captureTipFirst": "Ən yuxarıdan başlayın: mağazanın adı və tarix görünməlidir. Mümkün qədər çox məhsulu sığışdırın, qalanı növbəti fotoda olsun.",
+  "captureTipContinue": "Eyni çek: əvvəlki fotodakı son məhsulu da daxil edin.",
+  "captureTipNeverShow": "Bir daha göstərmə",
+  "captureTipOk": "Anladım",
+  "captureTipsSetting": "Çek çəkilişi məsləhətlərini göstər"
 }

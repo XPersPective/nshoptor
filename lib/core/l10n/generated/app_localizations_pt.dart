@@ -1449,18 +1449,18 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get captureTipFirst =>
-      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+      'Comece bem pelo topo: o nome da loja e a data devem estar visíveis. Inclua o máximo de itens possível; o resto vai na próxima foto.';
 
   @override
   String get captureTipContinue =>
-      'Same receipt: include the last item of the previous photo.';
+      'Mesmo recibo: inclua o último item da foto anterior.';
 
   @override
-  String get captureTipNeverShow => 'Don\'t show again';
+  String get captureTipNeverShow => 'Não mostrar novamente';
 
   @override
-  String get captureTipOk => 'Got it';
+  String get captureTipOk => 'Entendi';
 
   @override
-  String get captureTipsSetting => 'Show receipt capture tips';
+  String get captureTipsSetting => 'Mostrar dicas para fotografar o recibo';
 }
