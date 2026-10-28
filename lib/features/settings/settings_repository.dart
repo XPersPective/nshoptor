@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 // napp_core SettingsStore: bellek + SharedPreferences kalıcı anlatılığı.
-import 'package:napp_core/napp_core.dart';
+import 'package:napp_core/napp_core.dart' hide AppTheme;
 
 import '../../../data/db/app_database.dart';
+import '../../core/theme/app_theme.dart';
 import 'backup/backup_repository.dart';
 import '../lists/reminders/reminders_repository.dart';
 import '../lists/reminders/local_notifications_scheduler.dart';
@@ -66,7 +67,8 @@ class SettingsRepository {
       _settings.setString(formatLocaleKey, code);
   void setLanguage(String code) => _settings.setString(localeKey, code);
 
-  String get themeMode => _settings.getString(themeKey) ?? 'system';
+  String get themeMode =>
+      _settings.getString(themeKey) ?? AppTheme.defaultModeName;
   void setThemeMode(String value) => _settings.setString(themeKey, value);
 
   String get defaultCurrency => _settings.getString(currencyKey) ?? 'TRY';

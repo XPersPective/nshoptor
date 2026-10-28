@@ -29,6 +29,14 @@ class AppTheme {
   /// Marka tohum rengi: sakin yeşil-turkuaz.
   static const Color brandSeed = Color(0xFF0B8457);
 
+  /// Theme mode for a fresh install (F36): the brand dark-green premium look.
+  /// Only applies while no choice is stored; a saved `app.theme` always wins.
+  static const String defaultModeName = 'dark';
+
+  /// Brand dark-green surfaces (premium black + green) for the default
+  /// forest palette. Pure black stays a separate opt-in ([dark] `black`).
+  static const Color brandDarkSurface = Color(0xFF07140E);
+
   static ThemeData light({AppPalette palette = AppPalette.forest}) =>
       _base(Brightness.light, palette, black: false);
 
@@ -41,6 +49,16 @@ class AppTheme {
       seedColor: palette.seed,
       brightness: brightness,
     );
+    if (brightness == Brightness.dark && !black && palette == AppPalette.forest) {
+      scheme = scheme.copyWith(
+        surface: brandDarkSurface,
+        surfaceContainerLowest: const Color(0xFF040D09),
+        surfaceContainerLow: const Color(0xFF0C1C15),
+        surfaceContainer: const Color(0xFF10231A),
+        surfaceContainerHigh: const Color(0xFF162D22),
+        surfaceContainerHighest: const Color(0xFF1D372A),
+      );
+    }
     if (black) {
       scheme = scheme.copyWith(
         surface: Colors.black,
