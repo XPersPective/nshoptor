@@ -1470,4 +1470,25 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Prikaži nasvete za slikanje računa';
+
+  @override
+  String get historyViewShopping => 'Po nakupu';
+
+  @override
+  String get historyViewStore => 'Po trgovini';
+
+  @override
+  String get historyViewProduct => 'Po izdelku';
+
+  @override
+  String get historyShareAll => 'Deli vse';
+
+  @override
+  String get historyUnknownStore => 'Neznana trgovina';
+
+  @override
+  String get historyDailySpending => 'Dnevna poraba';
+
+  @override
+  String get historyResetPeriod => 'Nazaj na ta teden';
 }

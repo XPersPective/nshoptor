@@ -1466,4 +1466,25 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Чекти тартуу кеңештерин көрсөтүү';
+
+  @override
+  String get historyViewShopping => 'Сатып алуу боюнча';
+
+  @override
+  String get historyViewStore => 'Дүкөн боюнча';
+
+  @override
+  String get historyViewProduct => 'Товар боюнча';
+
+  @override
+  String get historyShareAll => 'Баарын бөлүшүү';
+
+  @override
+  String get historyUnknownStore => 'Белгисиз дүкөн';
+
+  @override
+  String get historyDailySpending => 'Күнүмдүк чыгым';
+
+  @override
+  String get historyResetPeriod => 'Ушул жумага кайтуу';
 }

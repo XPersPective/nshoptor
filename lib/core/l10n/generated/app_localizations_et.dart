@@ -1465,4 +1465,25 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Näita kviitungi pildistamise nippe';
+
+  @override
+  String get historyViewShopping => 'Ostude kaupa';
+
+  @override
+  String get historyViewStore => 'Poodide kaupa';
+
+  @override
+  String get historyViewProduct => 'Toodete kaupa';
+
+  @override
+  String get historyShareAll => 'Jaga kõike';
+
+  @override
+  String get historyUnknownStore => 'Tundmatu pood';
+
+  @override
+  String get historyDailySpending => 'Päevased kulud';
+
+  @override
+  String get historyResetPeriod => 'Tagasi sellesse nädalasse';
 }

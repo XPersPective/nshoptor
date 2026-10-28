@@ -451,5 +451,12 @@
   "captureTipContinue": "Ten sam paragon: uwzględnij ostatnią pozycję z poprzedniego zdjęcia.",
   "captureTipNeverShow": "Nie pokazuj ponownie",
   "captureTipOk": "Rozumiem",
-  "captureTipsSetting": "Pokazuj wskazówki dotyczące fotografowania paragonu"
+  "captureTipsSetting": "Pokazuj wskazówki dotyczące fotografowania paragonu",
+  "historyViewShopping": "Według zakupów",
+  "historyViewStore": "Według sklepu",
+  "historyViewProduct": "Według produktu",
+  "historyShareAll": "Udostępnij wszystko",
+  "historyUnknownStore": "Nieznany sklep",
+  "historyDailySpending": "Wydatki dzienne",
+  "historyResetPeriod": "Wróć do tego tygodnia"
 }

@@ -451,5 +451,12 @@
   "captureTipContinue": "Tas pats čeks: iekļaujiet iepriekšējā foto pēdējo preci.",
   "captureTipNeverShow": "Vairs nerādīt",
   "captureTipOk": "Skaidrs",
-  "captureTipsSetting": "Rādīt čeka fotografēšanas padomus"
+  "captureTipsSetting": "Rādīt čeka fotografēšanas padomus",
+  "historyViewShopping": "Pēc iepirkšanās",
+  "historyViewStore": "Pēc veikala",
+  "historyViewProduct": "Pēc produkta",
+  "historyShareAll": "Kopīgot visu",
+  "historyUnknownStore": "Nezināms veikals",
+  "historyDailySpending": "Dienas tēriņi",
+  "historyResetPeriod": "Atpakaļ uz šo nedēļu"
 }

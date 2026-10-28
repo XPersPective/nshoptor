@@ -1470,4 +1470,25 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Shfaq këshillat për fotografimin e faturës';
+
+  @override
+  String get historyViewShopping => 'Sipas blerjes';
+
+  @override
+  String get historyViewStore => 'Sipas dyqanit';
+
+  @override
+  String get historyViewProduct => 'Sipas produktit';
+
+  @override
+  String get historyShareAll => 'Ndaj të gjitha';
+
+  @override
+  String get historyUnknownStore => 'Dyqan i panjohur';
+
+  @override
+  String get historyDailySpending => 'Shpenzimi ditor';
+
+  @override
+  String get historyResetPeriod => 'Kthehu te kjo javë';
 }

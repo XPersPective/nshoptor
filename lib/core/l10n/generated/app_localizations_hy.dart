@@ -1472,4 +1472,25 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Ցուցադրել կտրոնի լուսանկարման խորհուրդները';
+
+  @override
+  String get historyViewShopping => 'Ըստ գնումների';
+
+  @override
+  String get historyViewStore => 'Ըստ խանութի';
+
+  @override
+  String get historyViewProduct => 'Ըստ ապրանքի';
+
+  @override
+  String get historyShareAll => 'Կիսվել բոլորով';
+
+  @override
+  String get historyUnknownStore => 'Անհայտ խանութ';
+
+  @override
+  String get historyDailySpending => 'Օրական ծախս';
+
+  @override
+  String get historyResetPeriod => 'Վերադառնալ այս շաբաթ';
 }

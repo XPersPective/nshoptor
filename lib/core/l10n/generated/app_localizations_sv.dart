@@ -1465,4 +1465,25 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Visa tips för att fotografera kvitton';
+
+  @override
+  String get historyViewShopping => 'Per inköp';
+
+  @override
+  String get historyViewStore => 'Per butik';
+
+  @override
+  String get historyViewProduct => 'Per produkt';
+
+  @override
+  String get historyShareAll => 'Dela allt';
+
+  @override
+  String get historyUnknownStore => 'Okänd butik';
+
+  @override
+  String get historyDailySpending => 'Daglig utgift';
+
+  @override
+  String get historyResetPeriod => 'Tillbaka till denna vecka';
 }

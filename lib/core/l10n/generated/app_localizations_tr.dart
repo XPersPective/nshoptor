@@ -1464,4 +1464,25 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Fiş çekme ipuçlarını göster';
+
+  @override
+  String get historyViewShopping => 'Alışverişe göre';
+
+  @override
+  String get historyViewStore => 'Mağazaya göre';
+
+  @override
+  String get historyViewProduct => 'Ürüne göre';
+
+  @override
+  String get historyShareAll => 'Tümünü paylaş';
+
+  @override
+  String get historyUnknownStore => 'Bilinmeyen mağaza';
+
+  @override
+  String get historyDailySpending => 'Günlük harcama';
+
+  @override
+  String get historyResetPeriod => 'Bu haftaya dön';
 }

@@ -451,5 +451,12 @@
   "captureTipContinue": "ಅದೇ ರಸೀದಿ: ಹಿಂದಿನ ಫೋಟೋದ ಕೊನೆಯ ವಸ್ತುವನ್ನು ಸೇರಿಸಿ.",
   "captureTipNeverShow": "ಮತ್ತೆ ತೋರಿಸಬೇಡಿ",
   "captureTipOk": "ಅರ್ಥವಾಯಿತು",
-  "captureTipsSetting": "ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ"
+  "captureTipsSetting": "ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ",
+  "historyViewShopping": "ಖರೀದಿ ಪ್ರಕಾರ",
+  "historyViewStore": "ಅಂಗಡಿ ಪ್ರಕಾರ",
+  "historyViewProduct": "ಉತ್ಪನ್ನ ಪ್ರಕಾರ",
+  "historyShareAll": "ಎಲ್ಲವನ್ನೂ ಹಂಚಿಕೊಳ್ಳಿ",
+  "historyUnknownStore": "ಅಪರಿಚಿತ ಅಂಗಡಿ",
+  "historyDailySpending": "ದೈನಂದಿನ ಖರ್ಚು",
+  "historyResetPeriod": "ಈ ವಾರಕ್ಕೆ ಹಿಂತಿರುಗಿ"
 }

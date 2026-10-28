@@ -451,5 +451,12 @@
   "captureTipContinue": "Исти рачун: укључите последњи артикал са претходне фотографије.",
   "captureTipNeverShow": "Не приказуј поново",
   "captureTipOk": "Разумем",
-  "captureTipsSetting": "Прикажи савете за снимање рачуна"
+  "captureTipsSetting": "Прикажи савете за снимање рачуна",
+  "historyViewShopping": "По куповини",
+  "historyViewStore": "По продавници",
+  "historyViewProduct": "По производу",
+  "historyShareAll": "Подели све",
+  "historyUnknownStore": "Непозната продавница",
+  "historyDailySpending": "Дневна потрошња",
+  "historyResetPeriod": "Назад на ову недељу"
 }

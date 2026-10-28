@@ -451,5 +451,12 @@
   "captureTipContinue": "Irisidi elifanayo: faka into yokugcina yesithombe esedlule.",
   "captureTipNeverShow": "Ungabonisi futhi",
   "captureTipOk": "Ngiyaqonda",
-  "captureTipsSetting": "Bonisa amathiphu okuthatha irisidi"
+  "captureTipsSetting": "Bonisa amathiphu okuthatha irisidi",
+  "historyViewShopping": "Ngokuthenga",
+  "historyViewStore": "Ngesitolo",
+  "historyViewProduct": "Ngomkhiqizo",
+  "historyShareAll": "Yabelana ngakho konke",
+  "historyUnknownStore": "Isitolo esingaziwa",
+  "historyDailySpending": "Izindleko zansuku zonke",
+  "historyResetPeriod": "Buyela kuleli sonto"
 }

@@ -451,5 +451,12 @@
   "captureTipContinue": "ໃບຮັບເງິນໃບດຽວກັນ: ໃສ່ລາຍການສຸດທ້າຍຂອງຮູບກ່ອນໜ້າ.",
   "captureTipNeverShow": "ບໍ່ຕ້ອງສະແດງອີກ",
   "captureTipOk": "ເຂົ້າໃຈແລ້ວ",
-  "captureTipsSetting": "ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ"
+  "captureTipsSetting": "ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ",
+  "historyViewShopping": "ຕາມການຊື້",
+  "historyViewStore": "ຕາມຮ້ານ",
+  "historyViewProduct": "ຕາມສິນຄ້າ",
+  "historyShareAll": "ແບ່ງປັນທັງໝົດ",
+  "historyUnknownStore": "ຮ້ານທີ່ບໍ່ຮູ້ຈັກ",
+  "historyDailySpending": "ລາຍຈ່າຍລາຍວັນ",
+  "historyResetPeriod": "ກັບໄປອາທິດນີ້"
 }

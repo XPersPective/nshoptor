@@ -451,5 +451,12 @@
   "captureTipContinue": "එම රිසිට්පතම: පෙර ඡායාරූපයේ අවසාන භාණ්ඩය ඇතුළත් කරන්න.",
   "captureTipNeverShow": "නැවත නොපෙන්වන්න",
   "captureTipOk": "තේරුණා",
-  "captureTipsSetting": "රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න"
+  "captureTipsSetting": "රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න",
+  "historyViewShopping": "සාප්පු සවාරිය අනුව",
+  "historyViewStore": "සාප්පුව අනුව",
+  "historyViewProduct": "නිෂ්පාදනය අනුව",
+  "historyShareAll": "සියල්ල බෙදාගන්න",
+  "historyUnknownStore": "නොදන්නා සාප්පුව",
+  "historyDailySpending": "දෛනික වියදම",
+  "historyResetPeriod": "මෙම සතියට ආපසු"
 }

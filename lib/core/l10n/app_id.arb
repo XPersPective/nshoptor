@@ -451,5 +451,12 @@
   "captureTipContinue": "Struk yang sama: sertakan item terakhir dari foto sebelumnya.",
   "captureTipNeverShow": "Jangan tampilkan lagi",
   "captureTipOk": "Mengerti",
-  "captureTipsSetting": "Tampilkan tips memotret struk"
+  "captureTipsSetting": "Tampilkan tips memotret struk",
+  "historyViewShopping": "Per belanja",
+  "historyViewStore": "Per toko",
+  "historyViewProduct": "Per produk",
+  "historyShareAll": "Bagikan semua",
+  "historyUnknownStore": "Toko tidak dikenal",
+  "historyDailySpending": "Pengeluaran harian",
+  "historyResetPeriod": "Kembali ke minggu ini"
 }

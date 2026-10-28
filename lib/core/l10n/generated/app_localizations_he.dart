@@ -1453,4 +1453,25 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'הצג טיפים לצילום קבלה';
+
+  @override
+  String get historyViewShopping => 'לפי קנייה';
+
+  @override
+  String get historyViewStore => 'לפי חנות';
+
+  @override
+  String get historyViewProduct => 'לפי מוצר';
+
+  @override
+  String get historyShareAll => 'שתף הכול';
+
+  @override
+  String get historyUnknownStore => 'חנות לא ידועה';
+
+  @override
+  String get historyDailySpending => 'הוצאה יומית';
+
+  @override
+  String get historyResetPeriod => 'חזרה לשבוע הזה';
 }

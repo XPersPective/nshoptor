@@ -451,5 +451,12 @@
   "captureTipContinue": "Sama kuitti: ota mukaan edellisen kuvan viimeinen tuote.",
   "captureTipNeverShow": "Älä näytä uudelleen",
   "captureTipOk": "Selvä",
-  "captureTipsSetting": "Näytä kuitin kuvausvinkit"
+  "captureTipsSetting": "Näytä kuitin kuvausvinkit",
+  "historyViewShopping": "Ostoksittain",
+  "historyViewStore": "Kaupoittain",
+  "historyViewProduct": "Tuotteittain",
+  "historyShareAll": "Jaa kaikki",
+  "historyUnknownStore": "Tuntematon kauppa",
+  "historyDailySpending": "Päivittäiset menot",
+  "historyResetPeriod": "Takaisin tähän viikkoon"
 }

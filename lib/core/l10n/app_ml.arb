@@ -451,5 +451,12 @@
   "captureTipContinue": "അതേ രസീത്: മുമ്പത്തെ ഫോട്ടോയിലെ അവസാന ഇനം ഉൾപ്പെടുത്തുക.",
   "captureTipNeverShow": "വീണ്ടും കാണിക്കരുത്",
   "captureTipOk": "മനസ്സിലായി",
-  "captureTipsSetting": "രസീത് പകർത്താനുള്ള നുറുങ്ങുകൾ കാണിക്കുക"
+  "captureTipsSetting": "രസീത് പകർത്താനുള്ള നുറുങ്ങുകൾ കാണിക്കുക",
+  "historyViewShopping": "ഷോപ്പിംഗ് അനുസരിച്ച്",
+  "historyViewStore": "കട അനുസരിച്ച്",
+  "historyViewProduct": "ഉൽപ്പന്നം അനുസരിച്ച്",
+  "historyShareAll": "എല്ലാം പങ്കിടുക",
+  "historyUnknownStore": "അജ്ഞാത കട",
+  "historyDailySpending": "ദൈനംദിന ചെലവ്",
+  "historyResetPeriod": "ഈ ആഴ്ചയിലേക്ക് മടങ്ങുക"
 }

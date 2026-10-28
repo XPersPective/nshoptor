@@ -1468,4 +1468,25 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Nyugtafotózási tippek megjelenítése';
+
+  @override
+  String get historyViewShopping => 'Vásárlásonként';
+
+  @override
+  String get historyViewStore => 'Üzletenként';
+
+  @override
+  String get historyViewProduct => 'Termékenként';
+
+  @override
+  String get historyShareAll => 'Összes megosztása';
+
+  @override
+  String get historyUnknownStore => 'Ismeretlen üzlet';
+
+  @override
+  String get historyDailySpending => 'Napi költés';
+
+  @override
+  String get historyResetPeriod => 'Vissza erre a hétre';
 }

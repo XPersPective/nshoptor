@@ -451,5 +451,12 @@
   "captureTipContinue": "Mateix rebut: inclou l’últim article de la foto anterior.",
   "captureTipNeverShow": "No ho tornis a mostrar",
   "captureTipOk": "Entesos",
-  "captureTipsSetting": "Mostra els consells per fotografiar el rebut"
+  "captureTipsSetting": "Mostra els consells per fotografiar el rebut",
+  "historyViewShopping": "Per compra",
+  "historyViewStore": "Per botiga",
+  "historyViewProduct": "Per producte",
+  "historyShareAll": "Comparteix-ho tot",
+  "historyUnknownStore": "Botiga desconeguda",
+  "historyDailySpending": "Despesa diària",
+  "historyResetPeriod": "Torna a aquesta setmana"
 }

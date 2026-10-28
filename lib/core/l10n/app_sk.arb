@@ -451,5 +451,12 @@
   "captureTipContinue": "Rovnaký bloček: zahrňte poslednú položku z predchádzajúcej fotky.",
   "captureTipNeverShow": "Už nezobrazovať",
   "captureTipOk": "Rozumiem",
-  "captureTipsSetting": "Zobrazovať tipy na fotenie bločku"
+  "captureTipsSetting": "Zobrazovať tipy na fotenie bločku",
+  "historyViewShopping": "Podľa nákupu",
+  "historyViewStore": "Podľa obchodu",
+  "historyViewProduct": "Podľa produktu",
+  "historyShareAll": "Zdieľať všetko",
+  "historyUnknownStore": "Neznámy obchod",
+  "historyDailySpending": "Denné výdavky",
+  "historyResetPeriod": "Späť na tento týždeň"
 }

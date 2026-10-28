@@ -451,5 +451,12 @@
   "captureTipContinue": "Gleicher Beleg: Nimm den letzten Artikel des vorherigen Fotos mit auf.",
   "captureTipNeverShow": "Nicht mehr anzeigen",
   "captureTipOk": "Verstanden",
-  "captureTipsSetting": "Tipps zum Fotografieren von Belegen anzeigen"
+  "captureTipsSetting": "Tipps zum Fotografieren von Belegen anzeigen",
+  "historyViewShopping": "Nach Einkauf",
+  "historyViewStore": "Nach Geschäft",
+  "historyViewProduct": "Nach Produkt",
+  "historyShareAll": "Alles teilen",
+  "historyUnknownStore": "Unbekanntes Geschäft",
+  "historyDailySpending": "Tägliche Ausgaben",
+  "historyResetPeriod": "Zurück zu dieser Woche"
 }

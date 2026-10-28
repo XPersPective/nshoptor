@@ -451,5 +451,12 @@
   "captureTipContinue": "Mesmo recibo: inclúe o último artigo da foto anterior.",
   "captureTipNeverShow": "Non volver mostrar",
   "captureTipOk": "Entendido",
-  "captureTipsSetting": "Mostrar consellos para fotografar o recibo"
+  "captureTipsSetting": "Mostrar consellos para fotografar o recibo",
+  "historyViewShopping": "Por compra",
+  "historyViewStore": "Por tenda",
+  "historyViewProduct": "Por produto",
+  "historyShareAll": "Compartir todo",
+  "historyUnknownStore": "Tenda descoñecida",
+  "historyDailySpending": "Gasto diario",
+  "historyResetPeriod": "Volver a esta semana"
 }

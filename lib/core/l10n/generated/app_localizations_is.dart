@@ -1467,4 +1467,25 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Sýna ráð til að mynda kvittun';
+
+  @override
+  String get historyViewShopping => 'Eftir innkaupum';
+
+  @override
+  String get historyViewStore => 'Eftir verslun';
+
+  @override
+  String get historyViewProduct => 'Eftir vöru';
+
+  @override
+  String get historyShareAll => 'Deila öllu';
+
+  @override
+  String get historyUnknownStore => 'Óþekkt verslun';
+
+  @override
+  String get historyDailySpending => 'Dagleg útgjöld';
+
+  @override
+  String get historyResetPeriod => 'Aftur í þessa viku';
 }

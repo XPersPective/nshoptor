@@ -451,5 +451,12 @@
   "captureTipContinue": "Xuddi shu chek: oldingi suratdagi oxirgi mahsulotni kiriting.",
   "captureTipNeverShow": "Boshqa ko‘rsatilmasin",
   "captureTipOk": "Tushundim",
-  "captureTipsSetting": "Chek suratga olish maslahatlarini ko‘rsatish"
+  "captureTipsSetting": "Chek suratga olish maslahatlarini ko‘rsatish",
+  "historyViewShopping": "Xarid bo'yicha",
+  "historyViewStore": "Do'kon bo'yicha",
+  "historyViewProduct": "Mahsulot bo'yicha",
+  "historyShareAll": "Hammasini ulashish",
+  "historyUnknownStore": "Noma'lum do'kon",
+  "historyDailySpending": "Kunlik xarajat",
+  "historyResetPeriod": "Shu haftaga qaytish"
 }

@@ -1474,4 +1474,25 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Mostra els consells per fotografiar el rebut';
+
+  @override
+  String get historyViewShopping => 'Per compra';
+
+  @override
+  String get historyViewStore => 'Per botiga';
+
+  @override
+  String get historyViewProduct => 'Per producte';
+
+  @override
+  String get historyShareAll => 'Comparteix-ho tot';
+
+  @override
+  String get historyUnknownStore => 'Botiga desconeguda';
+
+  @override
+  String get historyDailySpending => 'Despesa diària';
+
+  @override
+  String get historyResetPeriod => 'Torna a aquesta setmana';
 }

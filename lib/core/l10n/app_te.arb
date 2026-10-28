@@ -451,5 +451,12 @@
   "captureTipContinue": "అదే రసీదు: ముందు ఫోటోలోని చివరి వస్తువును చేర్చండి.",
   "captureTipNeverShow": "మళ్లీ చూపవద్దు",
   "captureTipOk": "అర్థమైంది",
-  "captureTipsSetting": "రసీదు తీసే చిట్కాలను చూపించు"
+  "captureTipsSetting": "రసీదు తీసే చిట్కాలను చూపించు",
+  "historyViewShopping": "షాపింగ్ వారీగా",
+  "historyViewStore": "దుకాణం వారీగా",
+  "historyViewProduct": "ఉత్పత్తి వారీగా",
+  "historyShareAll": "అన్నీ షేర్ చేయండి",
+  "historyUnknownStore": "తెలియని దుకాణం",
+  "historyDailySpending": "రోజువారీ ఖర్చు",
+  "historyResetPeriod": "ఈ వారానికి తిరిగి వెళ్ళండి"
 }

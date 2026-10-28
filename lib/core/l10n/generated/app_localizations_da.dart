@@ -1465,4 +1465,25 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Vis tips til fotografering af kvittering';
+
+  @override
+  String get historyViewShopping => 'Efter indkøb';
+
+  @override
+  String get historyViewStore => 'Efter butik';
+
+  @override
+  String get historyViewProduct => 'Efter produkt';
+
+  @override
+  String get historyShareAll => 'Del alt';
+
+  @override
+  String get historyUnknownStore => 'Ukendt butik';
+
+  @override
+  String get historyDailySpending => 'Dagligt forbrug';
+
+  @override
+  String get historyResetPeriod => 'Tilbage til denne uge';
 }

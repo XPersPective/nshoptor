@@ -1461,4 +1461,25 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Hiện mẹo chụp hóa đơn';
+
+  @override
+  String get historyViewShopping => 'Theo lần mua';
+
+  @override
+  String get historyViewStore => 'Theo cửa hàng';
+
+  @override
+  String get historyViewProduct => 'Theo sản phẩm';
+
+  @override
+  String get historyShareAll => 'Chia sẻ tất cả';
+
+  @override
+  String get historyUnknownStore => 'Cửa hàng không xác định';
+
+  @override
+  String get historyDailySpending => 'Chi tiêu hằng ngày';
+
+  @override
+  String get historyResetPeriod => 'Quay lại tuần này';
 }

@@ -451,5 +451,12 @@
   "captureTipContinue": "Resit yang sama: sertakan item terakhir foto sebelumnya.",
   "captureTipNeverShow": "Jangan tunjuk lagi",
   "captureTipOk": "Faham",
-  "captureTipsSetting": "Tunjukkan petua merakam resit"
+  "captureTipsSetting": "Tunjukkan petua merakam resit",
+  "historyViewShopping": "Mengikut belian",
+  "historyViewStore": "Mengikut kedai",
+  "historyViewProduct": "Mengikut produk",
+  "historyShareAll": "Kongsi semua",
+  "historyUnknownStore": "Kedai tidak diketahui",
+  "historyDailySpending": "Perbelanjaan harian",
+  "historyResetPeriod": "Kembali ke minggu ini"
 }

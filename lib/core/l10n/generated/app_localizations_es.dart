@@ -1474,4 +1474,25 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Mostrar consejos para fotografiar el recibo';
+
+  @override
+  String get historyViewShopping => 'Por compra';
+
+  @override
+  String get historyViewStore => 'Por tienda';
+
+  @override
+  String get historyViewProduct => 'Por producto';
+
+  @override
+  String get historyShareAll => 'Compartir todo';
+
+  @override
+  String get historyUnknownStore => 'Tienda desconocida';
+
+  @override
+  String get historyDailySpending => 'Gasto diario';
+
+  @override
+  String get historyResetPeriod => 'Volver a esta semana';
 }

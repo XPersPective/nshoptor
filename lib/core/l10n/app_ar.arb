@@ -451,5 +451,12 @@
   "captureTipContinue": "نفس الإيصال: ضمّن آخر عنصر من الصورة السابقة.",
   "captureTipNeverShow": "عدم الإظهار مرة أخرى",
   "captureTipOk": "فهمت",
-  "captureTipsSetting": "إظهار نصائح تصوير الإيصال"
+  "captureTipsSetting": "إظهار نصائح تصوير الإيصال",
+  "historyViewShopping": "حسب التسوق",
+  "historyViewStore": "حسب المتجر",
+  "historyViewProduct": "حسب المنتج",
+  "historyShareAll": "مشاركة الكل",
+  "historyUnknownStore": "متجر غير معروف",
+  "historyDailySpending": "الإنفاق اليومي",
+  "historyResetPeriod": "العودة إلى هذا الأسبوع"
 }

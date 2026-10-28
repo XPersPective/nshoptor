@@ -1476,4 +1476,25 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Afișează sfaturile pentru fotografierea bonului';
+
+  @override
+  String get historyViewShopping => 'După cumpărături';
+
+  @override
+  String get historyViewStore => 'După magazin';
+
+  @override
+  String get historyViewProduct => 'După produs';
+
+  @override
+  String get historyShareAll => 'Distribuie tot';
+
+  @override
+  String get historyUnknownStore => 'Magazin necunoscut';
+
+  @override
+  String get historyDailySpending => 'Cheltuieli zilnice';
+
+  @override
+  String get historyResetPeriod => 'Înapoi la săptămâna aceasta';
 }

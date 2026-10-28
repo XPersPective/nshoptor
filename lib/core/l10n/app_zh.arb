@@ -451,5 +451,12 @@
   "captureTipContinue": "同一张收据：请包含上一张照片的最后一件商品。",
   "captureTipNeverShow": "不再显示",
   "captureTipOk": "知道了",
-  "captureTipsSetting": "显示收据拍摄提示"
+  "captureTipsSetting": "显示收据拍摄提示",
+  "historyViewShopping": "按购物",
+  "historyViewStore": "按商店",
+  "historyViewProduct": "按商品",
+  "historyShareAll": "全部分享",
+  "historyUnknownStore": "未知商店",
+  "historyDailySpending": "每日支出",
+  "historyResetPeriod": "返回本周"
 }

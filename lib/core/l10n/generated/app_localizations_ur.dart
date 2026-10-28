@@ -1464,4 +1464,25 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'رسید کھینچنے کے مشورے دکھائیں';
+
+  @override
+  String get historyViewShopping => 'خریداری کے لحاظ سے';
+
+  @override
+  String get historyViewStore => 'دکان کے لحاظ سے';
+
+  @override
+  String get historyViewProduct => 'پروڈکٹ کے لحاظ سے';
+
+  @override
+  String get historyShareAll => 'سب شیئر کریں';
+
+  @override
+  String get historyUnknownStore => 'نامعلوم دکان';
+
+  @override
+  String get historyDailySpending => 'روزانہ خرچ';
+
+  @override
+  String get historyResetPeriod => 'اس ہفتے پر واپس جائیں';
 }

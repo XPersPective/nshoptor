@@ -451,5 +451,12 @@
   "captureTipContinue": "એ જ રસીદ: પાછલા ફોટાની છેલ્લી વસ્તુ સામેલ કરો.",
   "captureTipNeverShow": "ફરી બતાવશો નહીં",
   "captureTipOk": "સમજાયું",
-  "captureTipsSetting": "રસીદ કેપ્ચર ટીપ્સ બતાવો"
+  "captureTipsSetting": "રસીદ કેપ્ચર ટીપ્સ બતાવો",
+  "historyViewShopping": "ખરીદી મુજબ",
+  "historyViewStore": "દુકાન મુજબ",
+  "historyViewProduct": "ઉત્પાદન મુજબ",
+  "historyShareAll": "બધું શેર કરો",
+  "historyUnknownStore": "અજાણી દુકાન",
+  "historyDailySpending": "દૈનિક ખર્ચ",
+  "historyResetPeriod": "આ અઠવાડિયે પાછા જાઓ"
 }

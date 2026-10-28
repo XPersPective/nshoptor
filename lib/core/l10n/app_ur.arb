@@ -451,5 +451,12 @@
   "captureTipContinue": "وہی رسید: پچھلی تصویر کی آخری شے شامل کریں۔",
   "captureTipNeverShow": "دوبارہ نہ دکھائیں",
   "captureTipOk": "سمجھ گیا",
-  "captureTipsSetting": "رسید کھینچنے کے مشورے دکھائیں"
+  "captureTipsSetting": "رسید کھینچنے کے مشورے دکھائیں",
+  "historyViewShopping": "خریداری کے لحاظ سے",
+  "historyViewStore": "دکان کے لحاظ سے",
+  "historyViewProduct": "پروڈکٹ کے لحاظ سے",
+  "historyShareAll": "سب شیئر کریں",
+  "historyUnknownStore": "نامعلوم دکان",
+  "historyDailySpending": "روزانہ خرچ",
+  "historyResetPeriod": "اس ہفتے پر واپس جائیں"
 }

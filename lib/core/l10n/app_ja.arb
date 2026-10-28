@@ -451,5 +451,12 @@
   "captureTipContinue": "同じレシートです。前の写真の最後の商品を含めてください。",
   "captureTipNeverShow": "今後表示しない",
   "captureTipOk": "了解",
-  "captureTipsSetting": "レシート撮影のヒントを表示"
+  "captureTipsSetting": "レシート撮影のヒントを表示",
+  "historyViewShopping": "買い物別",
+  "historyViewStore": "店舗別",
+  "historyViewProduct": "商品別",
+  "historyShareAll": "すべて共有",
+  "historyUnknownStore": "不明な店舗",
+  "historyDailySpending": "日別の支出",
+  "historyResetPeriod": "今週に戻る"
 }

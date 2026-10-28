@@ -1473,4 +1473,25 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Показувати поради щодо зйомки чека';
+
+  @override
+  String get historyViewShopping => 'За покупками';
+
+  @override
+  String get historyViewStore => 'За магазинами';
+
+  @override
+  String get historyViewProduct => 'За товарами';
+
+  @override
+  String get historyShareAll => 'Поділитися всім';
+
+  @override
+  String get historyUnknownStore => 'Невідомий магазин';
+
+  @override
+  String get historyDailySpending => 'Щоденні витрати';
+
+  @override
+  String get historyResetPeriod => 'Повернутися до цього тижня';
 }

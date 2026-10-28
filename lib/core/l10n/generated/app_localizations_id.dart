@@ -1464,4 +1464,25 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Tampilkan tips memotret struk';
+
+  @override
+  String get historyViewShopping => 'Per belanja';
+
+  @override
+  String get historyViewStore => 'Per toko';
+
+  @override
+  String get historyViewProduct => 'Per produk';
+
+  @override
+  String get historyShareAll => 'Bagikan semua';
+
+  @override
+  String get historyUnknownStore => 'Toko tidak dikenal';
+
+  @override
+  String get historyDailySpending => 'Pengeluaran harian';
+
+  @override
+  String get historyResetPeriod => 'Kembali ke minggu ini';
 }

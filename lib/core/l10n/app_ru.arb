@@ -451,5 +451,12 @@
   "captureTipContinue": "Тот же чек: включите последнюю позицию с предыдущего фото.",
   "captureTipNeverShow": "Больше не показывать",
   "captureTipOk": "Понятно",
-  "captureTipsSetting": "Показывать советы по съёмке чека"
+  "captureTipsSetting": "Показывать советы по съёмке чека",
+  "historyViewShopping": "По покупкам",
+  "historyViewStore": "По магазинам",
+  "historyViewProduct": "По товарам",
+  "historyShareAll": "Поделиться всем",
+  "historyUnknownStore": "Неизвестный магазин",
+  "historyDailySpending": "Расходы по дням",
+  "historyResetPeriod": "Вернуться к этой неделе"
 }

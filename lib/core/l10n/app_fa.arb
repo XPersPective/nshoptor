@@ -451,5 +451,12 @@
   "captureTipContinue": "همان رسید: آخرین قلم عکس قبلی را هم بگنجانید.",
   "captureTipNeverShow": "دیگر نشان نده",
   "captureTipOk": "متوجه شدم",
-  "captureTipsSetting": "نمایش نکات عکس‌برداری از رسید"
+  "captureTipsSetting": "نمایش نکات عکس‌برداری از رسید",
+  "historyViewShopping": "بر اساس خرید",
+  "historyViewStore": "بر اساس فروشگاه",
+  "historyViewProduct": "بر اساس محصول",
+  "historyShareAll": "اشتراک‌گذاری همه",
+  "historyUnknownStore": "فروشگاه نامشخص",
+  "historyDailySpending": "هزینه روزانه",
+  "historyResetPeriod": "بازگشت به این هفته"
 }

@@ -1469,4 +1469,25 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Prikaži savjete za snimanje računa';
+
+  @override
+  String get historyViewShopping => 'Po kupnji';
+
+  @override
+  String get historyViewStore => 'Po trgovini';
+
+  @override
+  String get historyViewProduct => 'Po proizvodu';
+
+  @override
+  String get historyShareAll => 'Podijeli sve';
+
+  @override
+  String get historyUnknownStore => 'Nepoznata trgovina';
+
+  @override
+  String get historyDailySpending => 'Dnevna potrošnja';
+
+  @override
+  String get historyResetPeriod => 'Natrag na ovaj tjedan';
 }

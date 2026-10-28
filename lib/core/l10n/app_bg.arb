@@ -451,5 +451,12 @@
   "captureTipContinue": "Същата касова бележка: включете последния артикул от предишната снимка.",
   "captureTipNeverShow": "Не показвай отново",
   "captureTipOk": "Разбрах",
-  "captureTipsSetting": "Показвай съвети за снимане на бележка"
+  "captureTipsSetting": "Показвай съвети за снимане на бележка",
+  "historyViewShopping": "По пазаруване",
+  "historyViewStore": "По магазин",
+  "historyViewProduct": "По продукт",
+  "historyShareAll": "Сподели всичко",
+  "historyUnknownStore": "Неизвестен магазин",
+  "historyDailySpending": "Дневни разходи",
+  "historyResetPeriod": "Към тази седмица"
 }

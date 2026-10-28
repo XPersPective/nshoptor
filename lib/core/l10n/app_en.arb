@@ -522,5 +522,12 @@
   "captureTipContinue": "Same receipt: include the last item of the previous photo.",
   "captureTipNeverShow": "Don't show again",
   "captureTipOk": "Got it",
-  "captureTipsSetting": "Show receipt capture tips"
+  "captureTipsSetting": "Show receipt capture tips",
+  "historyViewShopping": "By shopping",
+  "historyViewStore": "By store",
+  "historyViewProduct": "By product",
+  "historyShareAll": "Share all",
+  "historyUnknownStore": "Unknown store",
+  "historyDailySpending": "Daily spending",
+  "historyResetPeriod": "Back to this week"
 }

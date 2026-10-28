@@ -451,5 +451,12 @@
   "captureTipContinue": "Stesso scontrino: includi l’ultimo articolo della foto precedente.",
   "captureTipNeverShow": "Non mostrare più",
   "captureTipOk": "Ho capito",
-  "captureTipsSetting": "Mostra i consigli per fotografare lo scontrino"
+  "captureTipsSetting": "Mostra i consigli per fotografare lo scontrino",
+  "historyViewShopping": "Per spesa",
+  "historyViewStore": "Per negozio",
+  "historyViewProduct": "Per prodotto",
+  "historyShareAll": "Condividi tutto",
+  "historyUnknownStore": "Negozio sconosciuto",
+  "historyDailySpending": "Spesa giornaliera",
+  "historyResetPeriod": "Torna a questa settimana"
 }

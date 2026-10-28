@@ -451,5 +451,12 @@
   "captureTipContinue": "אותה קבלה: כללו את הפריט האחרון מהתמונה הקודמת.",
   "captureTipNeverShow": "אל תציג שוב",
   "captureTipOk": "הבנתי",
-  "captureTipsSetting": "הצג טיפים לצילום קבלה"
+  "captureTipsSetting": "הצג טיפים לצילום קבלה",
+  "historyViewShopping": "לפי קנייה",
+  "historyViewStore": "לפי חנות",
+  "historyViewProduct": "לפי מוצר",
+  "historyShareAll": "שתף הכול",
+  "historyUnknownStore": "חנות לא ידועה",
+  "historyDailySpending": "הוצאה יומית",
+  "historyResetPeriod": "חזרה לשבוע הזה"
 }

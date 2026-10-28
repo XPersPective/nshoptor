@@ -1461,4 +1461,25 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'पावती कॅप्चर टिप्स दाखवा';
+
+  @override
+  String get historyViewShopping => 'खरेदीनुसार';
+
+  @override
+  String get historyViewStore => 'दुकानानुसार';
+
+  @override
+  String get historyViewProduct => 'उत्पादनानुसार';
+
+  @override
+  String get historyShareAll => 'सर्व शेअर करा';
+
+  @override
+  String get historyUnknownStore => 'अज्ञात दुकान';
+
+  @override
+  String get historyDailySpending => 'दैनिक खर्च';
+
+  @override
+  String get historyResetPeriod => 'या आठवड्यावर परत जा';
 }

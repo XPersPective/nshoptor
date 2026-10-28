@@ -451,5 +451,12 @@
   "captureTipContinue": "Ugyanaz a nyugta: az előző fotó utolsó tételét is tegye rá.",
   "captureTipNeverShow": "Ne jelenjen meg újra",
   "captureTipOk": "Értem",
-  "captureTipsSetting": "Nyugtafotózási tippek megjelenítése"
+  "captureTipsSetting": "Nyugtafotózási tippek megjelenítése",
+  "historyViewShopping": "Vásárlásonként",
+  "historyViewStore": "Üzletenként",
+  "historyViewProduct": "Termékenként",
+  "historyShareAll": "Összes megosztása",
+  "historyUnknownStore": "Ismeretlen üzlet",
+  "historyDailySpending": "Napi költés",
+  "historyResetPeriod": "Vissza erre a hétre"
 }

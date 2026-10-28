@@ -1472,4 +1472,25 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Показвай съвети за снимане на бележка';
+
+  @override
+  String get historyViewShopping => 'По пазаруване';
+
+  @override
+  String get historyViewStore => 'По магазин';
+
+  @override
+  String get historyViewProduct => 'По продукт';
+
+  @override
+  String get historyShareAll => 'Сподели всичко';
+
+  @override
+  String get historyUnknownStore => 'Неизвестен магазин';
+
+  @override
+  String get historyDailySpending => 'Дневни разходи';
+
+  @override
+  String get historyResetPeriod => 'Към тази седмица';
 }

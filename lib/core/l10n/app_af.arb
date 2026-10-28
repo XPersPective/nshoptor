@@ -451,5 +451,12 @@
   "captureTipContinue": "Dieselfde kwitansie: sluit die laaste item van die vorige foto in.",
   "captureTipNeverShow": "Moenie weer wys nie",
   "captureTipOk": "Verstaan",
-  "captureTipsSetting": "Wys kwitansie-opnametips"
+  "captureTipsSetting": "Wys kwitansie-opnametips",
+  "historyViewShopping": "Per inkopie",
+  "historyViewStore": "Per winkel",
+  "historyViewProduct": "Per produk",
+  "historyShareAll": "Deel alles",
+  "historyUnknownStore": "Onbekende winkel",
+  "historyDailySpending": "Daaglikse besteding",
+  "historyResetPeriod": "Terug na hierdie week"
 }

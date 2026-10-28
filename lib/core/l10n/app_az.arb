@@ -451,5 +451,12 @@
   "captureTipContinue": "Eyni çek: əvvəlki fotodakı son məhsulu da daxil edin.",
   "captureTipNeverShow": "Bir daha göstərmə",
   "captureTipOk": "Anladım",
-  "captureTipsSetting": "Çek çəkilişi məsləhətlərini göstər"
+  "captureTipsSetting": "Çek çəkilişi məsləhətlərini göstər",
+  "historyViewShopping": "Alış-verişə görə",
+  "historyViewStore": "Mağazaya görə",
+  "historyViewProduct": "Məhsula görə",
+  "historyShareAll": "Hamısını paylaş",
+  "historyUnknownStore": "Naməlum mağaza",
+  "historyDailySpending": "Gündəlik xərc",
+  "historyResetPeriod": "Bu həftəyə qayıt"
 }

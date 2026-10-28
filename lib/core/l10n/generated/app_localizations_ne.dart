@@ -1466,4 +1466,25 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'रसिद खिच्ने सुझाव देखाउनुहोस्';
+
+  @override
+  String get historyViewShopping => 'किनमेल अनुसार';
+
+  @override
+  String get historyViewStore => 'पसल अनुसार';
+
+  @override
+  String get historyViewProduct => 'उत्पादन अनुसार';
+
+  @override
+  String get historyShareAll => 'सबै साझा गर्नुहोस्';
+
+  @override
+  String get historyUnknownStore => 'अज्ञात पसल';
+
+  @override
+  String get historyDailySpending => 'दैनिक खर्च';
+
+  @override
+  String get historyResetPeriod => 'यो हप्तामा फर्कनुहोस्';
 }

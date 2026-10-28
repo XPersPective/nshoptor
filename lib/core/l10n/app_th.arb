@@ -451,5 +451,12 @@
   "captureTipContinue": "ใบเสร็จใบเดิม: ใส่รายการสุดท้ายของภาพก่อนหน้าด้วย",
   "captureTipNeverShow": "ไม่ต้องแสดงอีก",
   "captureTipOk": "เข้าใจแล้ว",
-  "captureTipsSetting": "แสดงเคล็ดลับการถ่ายใบเสร็จ"
+  "captureTipsSetting": "แสดงเคล็ดลับการถ่ายใบเสร็จ",
+  "historyViewShopping": "ตามการซื้อ",
+  "historyViewStore": "ตามร้าน",
+  "historyViewProduct": "ตามสินค้า",
+  "historyShareAll": "แชร์ทั้งหมด",
+  "historyUnknownStore": "ร้านที่ไม่รู้จัก",
+  "historyDailySpending": "ค่าใช้จ่ายรายวัน",
+  "historyResetPeriod": "กลับไปสัปดาห์นี้"
 }

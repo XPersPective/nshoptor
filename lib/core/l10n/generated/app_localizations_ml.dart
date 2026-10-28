@@ -1464,4 +1464,25 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'രസീത് പകർത്താനുള്ള നുറുങ്ങുകൾ കാണിക്കുക';
+
+  @override
+  String get historyViewShopping => 'ഷോപ്പിംഗ് അനുസരിച്ച്';
+
+  @override
+  String get historyViewStore => 'കട അനുസരിച്ച്';
+
+  @override
+  String get historyViewProduct => 'ഉൽപ്പന്നം അനുസരിച്ച്';
+
+  @override
+  String get historyShareAll => 'എല്ലാം പങ്കിടുക';
+
+  @override
+  String get historyUnknownStore => 'അജ്ഞാത കട';
+
+  @override
+  String get historyDailySpending => 'ദൈനംദിന ചെലവ്';
+
+  @override
+  String get historyResetPeriod => 'ഈ ആഴ്ചയിലേക്ക് മടങ്ങുക';
 }

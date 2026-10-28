@@ -1463,4 +1463,25 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'રસીદ કેપ્ચર ટીપ્સ બતાવો';
+
+  @override
+  String get historyViewShopping => 'ખરીદી મુજબ';
+
+  @override
+  String get historyViewStore => 'દુકાન મુજબ';
+
+  @override
+  String get historyViewProduct => 'ઉત્પાદન મુજબ';
+
+  @override
+  String get historyShareAll => 'બધું શેર કરો';
+
+  @override
+  String get historyUnknownStore => 'અજાણી દુકાન';
+
+  @override
+  String get historyDailySpending => 'દૈનિક ખર્ચ';
+
+  @override
+  String get historyResetPeriod => 'આ અઠવાડિયે પાછા જાઓ';
 }

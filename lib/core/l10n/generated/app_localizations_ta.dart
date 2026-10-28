@@ -1475,4 +1475,25 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'ரசீது எடுப்பதற்கான குறிப்புகளைக் காட்டு';
+
+  @override
+  String get historyViewShopping => 'ஷாப்பிங் வாரியாக';
+
+  @override
+  String get historyViewStore => 'கடை வாரியாக';
+
+  @override
+  String get historyViewProduct => 'பொருள் வாரியாக';
+
+  @override
+  String get historyShareAll => 'அனைத்தையும் பகிர்';
+
+  @override
+  String get historyUnknownStore => 'தெரியாத கடை';
+
+  @override
+  String get historyDailySpending => 'தினசரி செலவு';
+
+  @override
+  String get historyResetPeriod => 'இந்த வாரத்திற்குத் திரும்பு';
 }

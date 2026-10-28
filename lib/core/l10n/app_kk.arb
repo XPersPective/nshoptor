@@ -451,5 +451,12 @@
   "captureTipContinue": "Сол түбіртек: алдыңғы фотодағы соңғы тауарды қосыңыз.",
   "captureTipNeverShow": "Қайта көрсетпеу",
   "captureTipOk": "Түсіндім",
-  "captureTipsSetting": "Түбіртек түсіру кеңестерін көрсету"
+  "captureTipsSetting": "Түбіртек түсіру кеңестерін көрсету",
+  "historyViewShopping": "Сатып алу бойынша",
+  "historyViewStore": "Дүкен бойынша",
+  "historyViewProduct": "Тауар бойынша",
+  "historyShareAll": "Барлығын бөлісу",
+  "historyUnknownStore": "Белгісіз дүкен",
+  "historyDailySpending": "Күнделікті шығын",
+  "historyResetPeriod": "Осы аптаға оралу"
 }

@@ -1475,4 +1475,25 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Ipakita ang mga tip sa pagkuha ng larawan ng resibo';
+
+  @override
+  String get historyViewShopping => 'Ayon sa pamimili';
+
+  @override
+  String get historyViewStore => 'Ayon sa tindahan';
+
+  @override
+  String get historyViewProduct => 'Ayon sa produkto';
+
+  @override
+  String get historyShareAll => 'Ibahagi lahat';
+
+  @override
+  String get historyUnknownStore => 'Hindi kilalang tindahan';
+
+  @override
+  String get historyDailySpending => 'Pang-araw-araw na gastos';
+
+  @override
+  String get historyResetPeriod => 'Bumalik sa linggong ito';
 }

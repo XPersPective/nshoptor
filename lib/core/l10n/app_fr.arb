@@ -451,5 +451,12 @@
   "captureTipContinue": "Même reçu : incluez le dernier article de la photo précédente.",
   "captureTipNeverShow": "Ne plus afficher",
   "captureTipOk": "Compris",
-  "captureTipsSetting": "Afficher les conseils de prise de vue du reçu"
+  "captureTipsSetting": "Afficher les conseils de prise de vue du reçu",
+  "historyViewShopping": "Par course",
+  "historyViewStore": "Par magasin",
+  "historyViewProduct": "Par produit",
+  "historyShareAll": "Tout partager",
+  "historyUnknownStore": "Magasin inconnu",
+  "historyDailySpending": "Dépenses quotidiennes",
+  "historyResetPeriod": "Revenir à cette semaine"
 }

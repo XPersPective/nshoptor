@@ -1455,4 +1455,25 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ';
+
+  @override
+  String get historyViewShopping => 'ຕາມການຊື້';
+
+  @override
+  String get historyViewStore => 'ຕາມຮ້ານ';
+
+  @override
+  String get historyViewProduct => 'ຕາມສິນຄ້າ';
+
+  @override
+  String get historyShareAll => 'ແບ່ງປັນທັງໝົດ';
+
+  @override
+  String get historyUnknownStore => 'ຮ້ານທີ່ບໍ່ຮູ້ຈັກ';
+
+  @override
+  String get historyDailySpending => 'ລາຍຈ່າຍລາຍວັນ';
+
+  @override
+  String get historyResetPeriod => 'ກັບໄປອາທິດນີ້';
 }

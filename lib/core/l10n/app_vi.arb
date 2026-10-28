@@ -451,5 +451,12 @@
   "captureTipContinue": "Cùng một hóa đơn: bao gồm mặt hàng cuối cùng của ảnh trước.",
   "captureTipNeverShow": "Không hiện lại",
   "captureTipOk": "Đã hiểu",
-  "captureTipsSetting": "Hiện mẹo chụp hóa đơn"
+  "captureTipsSetting": "Hiện mẹo chụp hóa đơn",
+  "historyViewShopping": "Theo lần mua",
+  "historyViewStore": "Theo cửa hàng",
+  "historyViewProduct": "Theo sản phẩm",
+  "historyShareAll": "Chia sẻ tất cả",
+  "historyUnknownStore": "Cửa hàng không xác định",
+  "historyDailySpending": "Chi tiêu hằng ngày",
+  "historyResetPeriod": "Quay lại tuần này"
 }

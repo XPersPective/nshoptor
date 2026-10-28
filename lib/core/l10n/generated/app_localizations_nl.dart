@@ -1473,4 +1473,25 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Tips voor het fotograferen van bonnen tonen';
+
+  @override
+  String get historyViewShopping => 'Per aankoop';
+
+  @override
+  String get historyViewStore => 'Per winkel';
+
+  @override
+  String get historyViewProduct => 'Per product';
+
+  @override
+  String get historyShareAll => 'Alles delen';
+
+  @override
+  String get historyUnknownStore => 'Onbekende winkel';
+
+  @override
+  String get historyDailySpending => 'Dagelijkse uitgaven';
+
+  @override
+  String get historyResetPeriod => 'Terug naar deze week';
 }

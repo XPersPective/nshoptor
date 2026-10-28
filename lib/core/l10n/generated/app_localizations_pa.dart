@@ -1463,4 +1463,25 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ';
+
+  @override
+  String get historyViewShopping => 'ਖਰੀਦਦਾਰੀ ਅਨੁਸਾਰ';
+
+  @override
+  String get historyViewStore => 'ਦੁਕਾਨ ਅਨੁਸਾਰ';
+
+  @override
+  String get historyViewProduct => 'ਉਤਪਾਦ ਅਨੁਸਾਰ';
+
+  @override
+  String get historyShareAll => 'ਸਭ ਸਾਂਝਾ ਕਰੋ';
+
+  @override
+  String get historyUnknownStore => 'ਅਣਜਾਣ ਦੁਕਾਨ';
+
+  @override
+  String get historyDailySpending => 'ਰੋਜ਼ਾਨਾ ਖਰਚ';
+
+  @override
+  String get historyResetPeriod => 'ਇਸ ਹਫ਼ਤੇ ਵੱਲ ਵਾਪਸ ਜਾਓ';
 }

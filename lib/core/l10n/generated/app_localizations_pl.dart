@@ -1473,4 +1473,25 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get captureTipsSetting =>
       'Pokazuj wskazówki dotyczące fotografowania paragonu';
+
+  @override
+  String get historyViewShopping => 'Według zakupów';
+
+  @override
+  String get historyViewStore => 'Według sklepu';
+
+  @override
+  String get historyViewProduct => 'Według produktu';
+
+  @override
+  String get historyShareAll => 'Udostępnij wszystko';
+
+  @override
+  String get historyUnknownStore => 'Nieznany sklep';
+
+  @override
+  String get historyDailySpending => 'Wydatki dzienne';
+
+  @override
+  String get historyResetPeriod => 'Wróć do tego tygodnia';
 }

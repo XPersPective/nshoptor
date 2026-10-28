@@ -1459,4 +1459,25 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'نمایش نکات عکس‌برداری از رسید';
+
+  @override
+  String get historyViewShopping => 'بر اساس خرید';
+
+  @override
+  String get historyViewStore => 'بر اساس فروشگاه';
+
+  @override
+  String get historyViewProduct => 'بر اساس محصول';
+
+  @override
+  String get historyShareAll => 'اشتراک‌گذاری همه';
+
+  @override
+  String get historyUnknownStore => 'فروشگاه نامشخص';
+
+  @override
+  String get historyDailySpending => 'هزینه روزانه';
+
+  @override
+  String get historyResetPeriod => 'بازگشت به این هفته';
 }

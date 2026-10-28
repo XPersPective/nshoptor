@@ -451,5 +451,12 @@
   "captureTipContinue": "Samme kvittering: tag den sidste vare fra det forrige billede med.",
   "captureTipNeverShow": "Vis ikke igen",
   "captureTipOk": "Forstået",
-  "captureTipsSetting": "Vis tips til fotografering af kvittering"
+  "captureTipsSetting": "Vis tips til fotografering af kvittering",
+  "historyViewShopping": "Efter indkøb",
+  "historyViewStore": "Efter butik",
+  "historyViewProduct": "Efter produkt",
+  "historyShareAll": "Del alt",
+  "historyUnknownStore": "Ukendt butik",
+  "historyDailySpending": "Dagligt forbrug",
+  "historyResetPeriod": "Tilbage til denne uge"
 }

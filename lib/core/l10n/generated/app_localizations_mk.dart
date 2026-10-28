@@ -1471,4 +1471,25 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Прикажи совети за снимање сметка';
+
+  @override
+  String get historyViewShopping => 'По купување';
+
+  @override
+  String get historyViewStore => 'По продавница';
+
+  @override
+  String get historyViewProduct => 'По производ';
+
+  @override
+  String get historyShareAll => 'Сподели сè';
+
+  @override
+  String get historyUnknownStore => 'Непозната продавница';
+
+  @override
+  String get historyDailySpending => 'Дневна потрошувачка';
+
+  @override
+  String get historyResetPeriod => 'Назад на оваа недела';
 }

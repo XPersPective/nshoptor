@@ -451,5 +451,12 @@
   "captureTipContinue": "ورته رسید: د مخکینۍ انځور وروستی توکی شامل کړئ.",
   "captureTipNeverShow": "بیا مه ښایئ",
   "captureTipOk": "پوه شوم",
-  "captureTipsSetting": "د رسید اخیستلو لارښوونې وښایاست"
+  "captureTipsSetting": "د رسید اخیستلو لارښوونې وښایاست",
+  "historyViewShopping": "د پیرودنې له مخې",
+  "historyViewStore": "د هټۍ له مخې",
+  "historyViewProduct": "د محصول له مخې",
+  "historyShareAll": "ټول شریک کړئ",
+  "historyUnknownStore": "نامعلومه هټۍ",
+  "historyDailySpending": "ورځنی لګښت",
+  "historyResetPeriod": "دې اونۍ ته ستون شئ"
 }

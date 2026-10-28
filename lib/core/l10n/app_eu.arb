@@ -451,5 +451,12 @@
   "captureTipContinue": "Ordainagiri bera: sartu aurreko argazkiko azken produktua.",
   "captureTipNeverShow": "Ez erakutsi berriro",
   "captureTipOk": "Ulertu dut",
-  "captureTipsSetting": "Erakutsi ordainagiriak argazkitzeko aholkuak"
+  "captureTipsSetting": "Erakutsi ordainagiriak argazkitzeko aholkuak",
+  "historyViewShopping": "Erosketaren arabera",
+  "historyViewStore": "Dendaren arabera",
+  "historyViewProduct": "Produktuaren arabera",
+  "historyShareAll": "Partekatu dena",
+  "historyUnknownStore": "Denda ezezaguna",
+  "historyDailySpending": "Eguneko gastua",
+  "historyResetPeriod": "Itzuli aste honetara"
 }

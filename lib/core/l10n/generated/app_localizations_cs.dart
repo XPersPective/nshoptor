@@ -1467,4 +1467,25 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Zobrazovat tipy k focení účtenky';
+
+  @override
+  String get historyViewShopping => 'Podle nákupu';
+
+  @override
+  String get historyViewStore => 'Podle obchodu';
+
+  @override
+  String get historyViewProduct => 'Podle produktu';
+
+  @override
+  String get historyShareAll => 'Sdílet vše';
+
+  @override
+  String get historyUnknownStore => 'Neznámý obchod';
+
+  @override
+  String get historyDailySpending => 'Denní útrata';
+
+  @override
+  String get historyResetPeriod => 'Zpět na tento týden';
 }

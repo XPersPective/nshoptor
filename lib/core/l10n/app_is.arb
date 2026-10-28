@@ -451,5 +451,12 @@
   "captureTipContinue": "Sama kvittun: hafðu síðustu vöruna af fyrri mynd með.",
   "captureTipNeverShow": "Ekki sýna aftur",
   "captureTipOk": "Skilið",
-  "captureTipsSetting": "Sýna ráð til að mynda kvittun"
+  "captureTipsSetting": "Sýna ráð til að mynda kvittun",
+  "historyViewShopping": "Eftir innkaupum",
+  "historyViewStore": "Eftir verslun",
+  "historyViewProduct": "Eftir vöru",
+  "historyShareAll": "Deila öllu",
+  "historyUnknownStore": "Óþekkt verslun",
+  "historyDailySpending": "Dagleg útgjöld",
+  "historyResetPeriod": "Aftur í þessa viku"
 }

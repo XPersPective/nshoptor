@@ -451,5 +451,12 @@
   "captureTipContinue": "Նույն կտրոնը՝ ներառեք նախորդ լուսանկարի վերջին ապրանքը։",
   "captureTipNeverShow": "Այլևս չցուցադրել",
   "captureTipOk": "Հասկացա",
-  "captureTipsSetting": "Ցուցադրել կտրոնի լուսանկարման խորհուրդները"
+  "captureTipsSetting": "Ցուցադրել կտրոնի լուսանկարման խորհուրդները",
+  "historyViewShopping": "Ըստ գնումների",
+  "historyViewStore": "Ըստ խանութի",
+  "historyViewProduct": "Ըստ ապրանքի",
+  "historyShareAll": "Կիսվել բոլորով",
+  "historyUnknownStore": "Անհայտ խանութ",
+  "historyDailySpending": "Օրական ծախս",
+  "historyResetPeriod": "Վերադառնալ այս շաբաթ"
 }

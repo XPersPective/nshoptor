@@ -472,5 +472,12 @@
   "captureTipContinue": "Aynı fiş: önceki fotoğraftaki son ürün de görünsün.",
   "captureTipNeverShow": "Bir daha gösterme",
   "captureTipOk": "Anladım",
-  "captureTipsSetting": "Fiş çekme ipuçlarını göster"
+  "captureTipsSetting": "Fiş çekme ipuçlarını göster",
+  "historyViewShopping": "Alışverişe göre",
+  "historyViewStore": "Mağazaya göre",
+  "historyViewProduct": "Ürüne göre",
+  "historyShareAll": "Tümünü paylaş",
+  "historyUnknownStore": "Bilinmeyen mağaza",
+  "historyDailySpending": "Günlük harcama",
+  "historyResetPeriod": "Bu haftaya dön"
 }

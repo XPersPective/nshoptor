@@ -451,5 +451,12 @@
   "captureTipContinue": "E njëjta faturë: përfshi artikullin e fundit të fotos së mëparshme.",
   "captureTipNeverShow": "Mos e shfaq më",
   "captureTipOk": "E kuptova",
-  "captureTipsSetting": "Shfaq këshillat për fotografimin e faturës"
+  "captureTipsSetting": "Shfaq këshillat për fotografimin e faturës",
+  "historyViewShopping": "Sipas blerjes",
+  "historyViewStore": "Sipas dyqanit",
+  "historyViewProduct": "Sipas produktit",
+  "historyShareAll": "Ndaj të gjitha",
+  "historyUnknownStore": "Dyqan i panjohur",
+  "historyDailySpending": "Shpenzimi ditor",
+  "historyResetPeriod": "Kthehu te kjo javë"
 }

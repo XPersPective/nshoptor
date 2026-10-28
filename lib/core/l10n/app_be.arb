@@ -451,5 +451,12 @@
   "captureTipContinue": "Той жа чэк: уключыце апошнюю пазіцыю з папярэдняга здымка.",
   "captureTipNeverShow": "Больш не паказваць",
   "captureTipOk": "Зразумела",
-  "captureTipsSetting": "Паказваць парады па здымцы чэка"
+  "captureTipsSetting": "Паказваць парады па здымцы чэка",
+  "historyViewShopping": "Па пакупках",
+  "historyViewStore": "Па крамах",
+  "historyViewProduct": "Па таварах",
+  "historyShareAll": "Падзяліцца ўсім",
+  "historyUnknownStore": "Невядомая крама",
+  "historyDailySpending": "Штодзённыя выдаткі",
+  "historyResetPeriod": "Вярнуцца да гэтага тыдня"
 }

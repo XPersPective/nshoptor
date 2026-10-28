@@ -451,5 +451,12 @@
   "captureTipContinue": "Нэг баримт: өмнөх зургийн сүүлийн барааг оруулна уу.",
   "captureTipNeverShow": "Дахин үзүүлэхгүй",
   "captureTipOk": "Ойлголоо",
-  "captureTipsSetting": "Баримт авах зөвлөгөөг харуулах"
+  "captureTipsSetting": "Баримт авах зөвлөгөөг харуулах",
+  "historyViewShopping": "Худалдан авалтаар",
+  "historyViewStore": "Дэлгүүрээр",
+  "historyViewProduct": "Бүтээгдэхүүнээр",
+  "historyShareAll": "Бүгдийг хуваалцах",
+  "historyUnknownStore": "Тодорхойгүй дэлгүүр",
+  "historyDailySpending": "Өдрийн зарлага",
+  "historyResetPeriod": "Энэ долоо хоног руу буцах"
 }

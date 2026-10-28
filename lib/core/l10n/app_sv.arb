@@ -451,5 +451,12 @@
   "captureTipContinue": "Samma kvitto: ta med den sista varan från föregående foto.",
   "captureTipNeverShow": "Visa inte igen",
   "captureTipOk": "Uppfattat",
-  "captureTipsSetting": "Visa tips för att fotografera kvitton"
+  "captureTipsSetting": "Visa tips för att fotografera kvitton",
+  "historyViewShopping": "Per inköp",
+  "historyViewStore": "Per butik",
+  "historyViewProduct": "Per produkt",
+  "historyShareAll": "Dela allt",
+  "historyUnknownStore": "Okänd butik",
+  "historyDailySpending": "Daglig utgift",
+  "historyResetPeriod": "Tillbaka till denna vecka"
 }

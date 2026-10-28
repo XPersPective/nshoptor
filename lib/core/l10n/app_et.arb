@@ -451,5 +451,12 @@
   "captureTipContinue": "Sama kviitung: lisa eelmise foto viimane kaup.",
   "captureTipNeverShow": "Ära enam näita",
   "captureTipOk": "Selge",
-  "captureTipsSetting": "Näita kviitungi pildistamise nippe"
+  "captureTipsSetting": "Näita kviitungi pildistamise nippe",
+  "historyViewShopping": "Ostude kaupa",
+  "historyViewStore": "Poodide kaupa",
+  "historyViewProduct": "Toodete kaupa",
+  "historyShareAll": "Jaga kõike",
+  "historyUnknownStore": "Tundmatu pood",
+  "historyDailySpending": "Päevased kulud",
+  "historyResetPeriod": "Tagasi sellesse nädalasse"
 }

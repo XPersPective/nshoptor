@@ -451,5 +451,12 @@
   "captureTipContinue": "Той самий чек: додайте останню позицію з попереднього фото.",
   "captureTipNeverShow": "Більше не показувати",
   "captureTipOk": "Зрозуміло",
-  "captureTipsSetting": "Показувати поради щодо зйомки чека"
+  "captureTipsSetting": "Показувати поради щодо зйомки чека",
+  "historyViewShopping": "За покупками",
+  "historyViewStore": "За магазинами",
+  "historyViewProduct": "За товарами",
+  "historyShareAll": "Поділитися всім",
+  "historyUnknownStore": "Невідомий магазин",
+  "historyDailySpending": "Щоденні витрати",
+  "historyResetPeriod": "Повернутися до цього тижня"
 }

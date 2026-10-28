@@ -451,5 +451,12 @@
   "captureTipContinue": "Tas pats kvitas: įtraukite paskutinę ankstesnės nuotraukos prekę.",
   "captureTipNeverShow": "Daugiau nerodyti",
   "captureTipOk": "Supratau",
-  "captureTipsSetting": "Rodyti kvito fotografavimo patarimus"
+  "captureTipsSetting": "Rodyti kvito fotografavimo patarimus",
+  "historyViewShopping": "Pagal apsipirkimą",
+  "historyViewStore": "Pagal parduotuvę",
+  "historyViewProduct": "Pagal prekę",
+  "historyShareAll": "Bendrinti viską",
+  "historyUnknownStore": "Nežinoma parduotuvė",
+  "historyDailySpending": "Dienos išlaidos",
+  "historyResetPeriod": "Grįžti į šią savaitę"
 }

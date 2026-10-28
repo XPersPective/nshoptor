@@ -1463,4 +1463,25 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'ქვითრის გადაღების რჩევების ჩვენება';
+
+  @override
+  String get historyViewShopping => 'შოპინგის მიხედვით';
+
+  @override
+  String get historyViewStore => 'მაღაზიის მიხედვით';
+
+  @override
+  String get historyViewProduct => 'პროდუქტის მიხედვით';
+
+  @override
+  String get historyShareAll => 'ყველაფრის გაზიარება';
+
+  @override
+  String get historyUnknownStore => 'უცნობი მაღაზია';
+
+  @override
+  String get historyDailySpending => 'დღიური ხარჯი';
+
+  @override
+  String get historyResetPeriod => 'ამ კვირაზე დაბრუნება';
 }

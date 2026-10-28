@@ -451,5 +451,12 @@
   "captureTipContinue": "Ίδια απόδειξη: συμπεριλάβετε το τελευταίο προϊόν της προηγούμενης φωτογραφίας.",
   "captureTipNeverShow": "Να μην εμφανιστεί ξανά",
   "captureTipOk": "Το κατάλαβα",
-  "captureTipsSetting": "Εμφάνιση συμβουλών λήψης απόδειξης"
+  "captureTipsSetting": "Εμφάνιση συμβουλών λήψης απόδειξης",
+  "historyViewShopping": "Ανά αγορά",
+  "historyViewStore": "Ανά κατάστημα",
+  "historyViewProduct": "Ανά προϊόν",
+  "historyShareAll": "Κοινοποίηση όλων",
+  "historyUnknownStore": "Άγνωστο κατάστημα",
+  "historyDailySpending": "Ημερήσια έξοδα",
+  "historyResetPeriod": "Επιστροφή σε αυτή την εβδομάδα"
 }

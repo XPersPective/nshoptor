@@ -451,5 +451,12 @@
   "captureTipContinue": "იგივე ქვითარი: ჩართეთ წინა ფოტოს ბოლო პროდუქტი.",
   "captureTipNeverShow": "აღარ აჩვენო",
   "captureTipOk": "გასაგებია",
-  "captureTipsSetting": "ქვითრის გადაღების რჩევების ჩვენება"
+  "captureTipsSetting": "ქვითრის გადაღების რჩევების ჩვენება",
+  "historyViewShopping": "შოპინგის მიხედვით",
+  "historyViewStore": "მაღაზიის მიხედვით",
+  "historyViewProduct": "პროდუქტის მიხედვით",
+  "historyShareAll": "ყველაფრის გაზიარება",
+  "historyUnknownStore": "უცნობი მაღაზია",
+  "historyDailySpending": "დღიური ხარჯი",
+  "historyResetPeriod": "ამ კვირაზე დაბრუნება"
 }

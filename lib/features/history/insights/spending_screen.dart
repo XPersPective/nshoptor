@@ -11,6 +11,7 @@ import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 import 'insights_repository.dart';
 import 'limit_editor.dart';
+import 'value_bar_chart.dart';
 import '../reports/report_document.dart';
 import '../reports/report_period.dart';
 import '../reports/report_repository.dart';
@@ -49,9 +50,8 @@ class _SpendingScreenState extends State<SpendingScreen> {
   late DateTime _month = DateTime(_now.year, _now.month);
   late final String _currency =
       widget.currencyCode ?? AppDefaults.defaultCurrency();
-  late final Future<List<SpendPoint>> _points = InsightsRepository(
-    widget.db,
-  ).completedSpend(_currency);
+  late final Future<List<SpendPoint>> _points = InsightsRepository(widget.db)
+      .completedSpend(_currency);
   late final _analytics = (() async {
     final repo = InsightsRepository(widget.db);
     return (
@@ -92,9 +92,8 @@ class _SpendingScreenState extends State<SpendingScreen> {
 
   Future<List<PurchaseStats>> _loadSpan(SpendSpan span) {
     final r = span.range(_now);
-    return InsightsRepository(
-      widget.db,
-    ).purchaseStats(_currency, from: r.from.toUtc(), to: r.to.toUtc());
+    return InsightsRepository(widget.db)
+        .purchaseStats(_currency, from: r.from.toUtc(), to: r.to.toUtc());
   }
 
   String _money(int minor) => formatMoney(
@@ -352,12 +351,14 @@ class _SpendingScreenState extends State<SpendingScreen> {
                           label: l10n.monthlyReportAction,
                           document: () async {
                             final month = _month;
-                            final report = await ReportRepository(widget.db).period(
-                              ReportPeriod.forSpan(ReportSpan.month, month),
-                              _currency,
-                            );
+                            final report = await ReportRepository(widget.db)
+                                .period(
+                                  ReportPeriod.forSpan(ReportSpan.month, month),
+                                  _currency,
+                                );
                             return ReportDocument(
-                              title: '${l10n.monthlyReportAction} · ${ml.formatMonthYear(month)}',
+                              title:
+                                  '${l10n.monthlyReportAction} · ${ml.formatMonthYear(month)}',
                               currencyCode: report.currencyCode,
                               shopping: report.shopping,
                             );
@@ -374,9 +375,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                 child: ExpansionTile(
                   key: const Key('future_limits_tile'),
                   leading: const Icon(Icons.event_repeat_outlined),
-                  title: Text(
-                    '${l10n.nextPeriodAction} · ${l10n.budgetLabel}',
-                  ),
+                  title: Text('${l10n.nextPeriodAction} · ${l10n.budgetLabel}'),
                   children: [
                     ListTile(
                       key: const Key('next_weekly_limit_tile'),
@@ -422,7 +421,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              _BarChartCard(
+              ValueBarChartCard(
                 title: l10n.spendingWeekly,
                 bars: [
                   for (final (d, v) in weeks)
@@ -439,7 +438,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                 valueText: (v) => _money(v.toMinorUnits(0)),
               ),
               const SizedBox(height: 8),
-              _BarChartCard(
+              ValueBarChartCard(
                 title: l10n.spendingMonthly,
                 bars: [
                   for (final (d, v) in months)
@@ -460,7 +459,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                 limitMinor: _limit,
               ),
               const SizedBox(height: 8),
-              _BarChartCard(
+              ValueBarChartCard(
                 title: l10n.spendingYearly,
                 bars: [
                   for (final (d, v) in years)
@@ -527,7 +526,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                   final top = [...?s.data]
                     ..removeWhere((p) => p.actualMinor <= 0)
                     ..sort((a, b) => b.actualMinor.compareTo(a.actualMinor));
-                  return _BarChartCard(
+                  return ValueBarChartCard(
                     key: const Key('product_spending_chart'),
                     title: switch (_span) {
                       SpendSpan.week => l10n.historyThisWeek,
@@ -556,12 +555,11 @@ class _SpendingScreenState extends State<SpendingScreen> {
                   String quantity(DecimalFixed value) =>
                       value.toDbString().replaceAll(
                         '.',
-                        MoneySeparators.forLocaleCode(
-                          formatLocaleCode(context),
-                        ).decimal,
+                        MoneySeparators.forLocaleCode(formatLocaleCode(context))
+                            .decimal,
                       );
                   final children = <Widget>[
-                    _BarChartCard(
+                    ValueBarChartCard(
                       title: '${l10n.categoryLabel} · ${l10n.actualTotalLabel}',
                       bars: [
                         for (final s in data.categories)
@@ -572,7 +570,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                       ],
                       valueText: (v) => _money(v.toMinorUnits(0)),
                     ),
-                    _BarChartCard(
+                    ValueBarChartCard(
                       title: '${l10n.storeLabel} · ${l10n.actualTotalLabel}',
                       bars: [
                         for (final s in data.stores)
@@ -601,7 +599,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                           .toList();
                       final unitLabel = unitDisplayNameFromDb(unit, l10n);
                       children.add(
-                        _BarChartCard(
+                        ValueBarChartCard(
                           title:
                               '$title · ${l10n.purchasedQuantity} ($unitLabel)',
                           bars: [
@@ -633,9 +631,9 @@ class _SpendingScreenState extends State<SpendingScreen> {
                               children: [
                                 Text(
                                   byCategory ? category(p.name) : p.name,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.titleMedium,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium,
                                 ),
                                 Text(
                                   '${l10n.purchasedQuantity}: ${quantity(p.quantity)} ${unitDisplayNameFromDb(p.unitCode, l10n)}',
@@ -951,82 +949,6 @@ class MonthCalendar extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: cells,
-    );
-  }
-}
-
-class _BarChartCard extends StatelessWidget {
-  const _BarChartCard({
-    super.key,
-    required this.title,
-    required this.bars,
-    required this.valueText,
-    this.limitMinor,
-    this.valueLabels,
-  });
-  final String title;
-  final List<(String, DecimalFixed)> bars;
-  final String Function(DecimalFixed) valueText;
-  final int? limitMinor;
-  final List<String>? valueLabels;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    String display(int index, DecimalFixed value) =>
-        valueLabels?[index] ?? valueText(value);
-    final maxV = bars.fold<DecimalFixed>(
-      DecimalFixed.zero(),
-      (m, b) => b.$2.abs() > m ? b.$2.abs() : m,
-    );
-    // ponytail: nonzero bars have a 2% visual floor; exact labels remain authoritative.
-    // Keep every amount in the text flow at all screen widths.
-    double fraction(DecimalFixed v) => v.isZero || maxV.isZero
-        ? 0
-        : (v.abs().divide(maxV, scale: 6).toMinorUnits(6) / 1000000).clamp(
-            0.02,
-            1,
-          );
-    Color color(DecimalFixed v) =>
-        v.isNegative ||
-            limitMinor != null && v > DecimalFixed.fromInt(limitMinor!)
-        ? scheme.error
-        : scheme.primary;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 12),
-            if (bars.isEmpty)
-              Text(AppLocalizations.of(context).noPurchasesNote)
-            else ...[
-              for (final (index, (label, value)) in bars.indexed)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Semantics(
-                    label: '$label: ${display(index, value)}',
-                    excludeSemantics: true,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text('$label: ${display(index, value)}'),
-                        const SizedBox(height: 4),
-                        LinearProgressIndicator(
-                          value: fraction(value),
-                          minHeight: 8,
-                          color: color(value),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-            ],
-          ],
-        ),
-      ),
     );
   }
 }

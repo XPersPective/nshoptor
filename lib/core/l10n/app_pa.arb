@@ -451,5 +451,12 @@
   "captureTipContinue": "ਉਹੀ ਰਸੀਦ: ਪਿਛਲੀ ਤਸਵੀਰ ਦੀ ਆਖਰੀ ਚੀਜ਼ ਸ਼ਾਮਲ ਕਰੋ।",
   "captureTipNeverShow": "ਦੁਬਾਰਾ ਨਾ ਦਿਖਾਓ",
   "captureTipOk": "ਸਮਝ ਗਿਆ",
-  "captureTipsSetting": "ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ"
+  "captureTipsSetting": "ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ",
+  "historyViewShopping": "ਖਰੀਦਦਾਰੀ ਅਨੁਸਾਰ",
+  "historyViewStore": "ਦੁਕਾਨ ਅਨੁਸਾਰ",
+  "historyViewProduct": "ਉਤਪਾਦ ਅਨੁਸਾਰ",
+  "historyShareAll": "ਸਭ ਸਾਂਝਾ ਕਰੋ",
+  "historyUnknownStore": "ਅਣਜਾਣ ਦੁਕਾਨ",
+  "historyDailySpending": "ਰੋਜ਼ਾਨਾ ਖਰਚ",
+  "historyResetPeriod": "ਇਸ ਹਫ਼ਤੇ ਵੱਲ ਵਾਪਸ ਜਾਓ"
 }

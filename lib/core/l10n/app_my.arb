@@ -451,5 +451,12 @@
   "captureTipContinue": "ပြေစာတစ်ခုတည်း- ယခင်ဓာတ်ပုံ၏ နောက်ဆုံးပစ္စည်းကို ထည့်ပါ။",
   "captureTipNeverShow": "ထပ်မပြပါနှင့်",
   "captureTipOk": "နားလည်ပြီ",
-  "captureTipsSetting": "ပြေစာရိုက်ယူရန် အကြံပြုချက်များ ပြပါ"
+  "captureTipsSetting": "ပြေစာရိုက်ယူရန် အကြံပြုချက်များ ပြပါ",
+  "historyViewShopping": "ဈေးဝယ်မှုအလိုက်",
+  "historyViewStore": "ဆိုင်အလိုက်",
+  "historyViewProduct": "ကုန်ပစ္စည်းအလိုက်",
+  "historyShareAll": "အားလုံးမျှဝေရန်",
+  "historyUnknownStore": "မသိသောဆိုင်",
+  "historyDailySpending": "နေ့စဉ်အသုံးစရိတ်",
+  "historyResetPeriod": "ဤအပတ်သို့ ပြန်သွားရန်"
 }

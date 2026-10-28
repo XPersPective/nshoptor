@@ -451,5 +451,12 @@
   "captureTipContinue": "Risiti ile ile: jumuisha bidhaa ya mwisho ya picha iliyotangulia.",
   "captureTipNeverShow": "Usionyeshe tena",
   "captureTipOk": "Nimeelewa",
-  "captureTipsSetting": "Onyesha vidokezo vya kupiga picha ya risiti"
+  "captureTipsSetting": "Onyesha vidokezo vya kupiga picha ya risiti",
+  "historyViewShopping": "Kwa ununuzi",
+  "historyViewStore": "Kwa duka",
+  "historyViewProduct": "Kwa bidhaa",
+  "historyShareAll": "Shiriki zote",
+  "historyUnknownStore": "Duka lisilojulikana",
+  "historyDailySpending": "Matumizi ya kila siku",
+  "historyResetPeriod": "Rudi wiki hii"
 }

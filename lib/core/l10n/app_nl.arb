@@ -451,5 +451,12 @@
   "captureTipContinue": "Dezelfde bon: neem het laatste artikel van de vorige foto mee.",
   "captureTipNeverShow": "Niet meer tonen",
   "captureTipOk": "Begrepen",
-  "captureTipsSetting": "Tips voor het fotograferen van bonnen tonen"
+  "captureTipsSetting": "Tips voor het fotograferen van bonnen tonen",
+  "historyViewShopping": "Per aankoop",
+  "historyViewStore": "Per winkel",
+  "historyViewProduct": "Per product",
+  "historyShareAll": "Alles delen",
+  "historyUnknownStore": "Onbekende winkel",
+  "historyDailySpending": "Dagelijkse uitgaven",
+  "historyResetPeriod": "Terug naar deze week"
 }
