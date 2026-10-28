@@ -640,12 +640,17 @@ Future<_AiOutcome> _readWithAi(
             : ImageSource.camera;
         needCapture = true;
         if (gap == AiReceiptGap.top) continue;
-      case AiReceiptNeedsMore(:final gap, :final store, :final date):
+      case AiReceiptNeedsMore(
+        :final gap,
+        :final store,
+        :final date,
+        :final currency,
+      ):
         if (listId == null && ownedListId == null && store != null) {
           // Header known: the list exists from now on and owns the receipt.
           ownedListId = await ListRepository(db).createList(
             title: cleanStoreName(store),
-            currencyCode: currencyCode,
+            currencyCode: currency ?? currencyCode,
             plannedAt: date,
           );
           await ShoppingRepository(db).startShopping(ownedListId);

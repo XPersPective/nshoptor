@@ -74,7 +74,8 @@ export const VISION_TASKS = {
       'Before answering verify: sum(items.lineTotal) - sum(discounts.amount) = total (or sum(items.lineTotal) = total when prices are already net), and quantity x unitPrice = lineTotal for every row that has both. ' +
       'If the check fails, re-read the rows; if it still fails because something is not visible, use the status that explains it.',
     user: input => parts(
-      (input.currency ? `Expected currency: ${input.currency}. ` : '') + `Photos of one receipt, top to bottom: ${input.images.length}.`,
+      `Photos of one receipt, top to bottom: ${input.images.length}.` +
+        (input.currency ? ` Only if the receipt shows no currency at all, it is ${input.currency}; never convert amounts.` : ''),
       input.images),
     retryNote: failure =>
       `\nYour previous answer was rejected by validation (${failure}). Read every image again row by row, ` +
@@ -151,7 +152,8 @@ export const VISION_TASKS = {
       'price: the current price to pay for one sales unit (the prominent price; ignore crossed-out, previous or loyalty-only prices unless it is the only price). ' +
       'unitPrice and unit: the printed comparison price only when its basis is exactly 1 kilogram, 1 litre, 1 metre or 1 piece (unit kilogram, litre, meter or piece); for any other basis such as 100 g leave both null. ' +
       'productName: product text without prices, codes, dates or size noise. Use status "not_label" or "unreadable" with null fields when appropriate.',
-    user: input => parts((input.currency ? `Expected currency: ${input.currency}. ` : '') + 'Shelf label photo.', input.images),
+    user: input => parts('Shelf label photo.' +
+      (input.currency ? ` Only if the label shows no currency at all, it is ${input.currency}; never convert amounts.` : ''), input.images),
     retryNote: failure => `\nYour previous answer was rejected by validation (${failure}). Return the protocol exactly.`,
     clean(answer) {
       let out = answer;

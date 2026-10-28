@@ -22,8 +22,11 @@ enum AiReceiptGap { top, bottom, middle }
 
 /// The model saw only part of the receipt: guide the user to the missing part.
 final class AiReceiptNeedsMore extends AiReceiptRead {
-  const AiReceiptNeedsMore(this.gap, {this.store, this.date});
+  const AiReceiptNeedsMore(this.gap, {this.store, this.date, this.currency});
   final AiReceiptGap gap;
+
+  /// The receipt's own currency when printed (the list is created in it).
+  final String? currency;
 
   /// Header read from the visible part, if any. A receipt is only kept (and
   /// its list created) once store and date are known (F11-F12).
@@ -129,22 +132,34 @@ class AiReceiptReader {
             int.parse(dateMatch[2]!),
             int.parse(dateMatch[3]!),
           );
+    final partialCurrency =
+        data['currency'] is String &&
+            Currency.isKnownCode(data['currency'] as String)
+        ? (data['currency'] as String).toUpperCase()
+        : null;
     switch (data['status']) {
       case 'complete':
         break;
       case 'top_missing':
-        return AiReceiptNeedsMore(AiReceiptGap.top, store: store, date: date);
+        return AiReceiptNeedsMore(
+          AiReceiptGap.top,
+          store: store,
+          date: date,
+          currency: partialCurrency,
+        );
       case 'bottom_missing':
         return AiReceiptNeedsMore(
           AiReceiptGap.bottom,
           store: store,
           date: date,
+          currency: partialCurrency,
         );
       case 'middle_gap':
         return AiReceiptNeedsMore(
           AiReceiptGap.middle,
           store: store,
           date: date,
+          currency: partialCurrency,
         );
       default:
         return AiReceiptRetake('${data['status']}');
