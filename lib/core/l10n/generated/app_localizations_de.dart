@@ -520,7 +520,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Deine Listen, Preise, Kassenbons und Fotos bleiben auf deinem Gerät. Fotos und Sprache verlassen es nie. Ist die KI-Hilfe an, wird nur Text (z. B. Bonzeilen oder Diktiertes) zur Verarbeitung an unseren Server gesendet und nicht gespeichert.';
+      'Deine Listen, Preise, Kassenbons und Fotos werden auf deinem Gerät gespeichert. Die Stimme verlässt es nie. Wenn die KI-Hilfe aktiv ist, werden Fotos von Kassenbons und Preisschildern (verkleinert) sowie Text wie diktierte Artikel nur zum Auslesen an unseren Server gesendet; sie werden sofort verarbeitet und nie gespeichert.';
 
   @override
   String get aboutSection => 'Über';
@@ -779,7 +779,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Gleicht Kassenbons ab, liest Preisschilder und macht aus Sätzen Listen. Fotos und Sprache bleiben auf dem Gerät; nur Text wird verarbeitet.';
+      'Liest Kassenbons und Preisschilder aus Fotos, ordnet Kassenbons zu und macht aus Sätzen Listen. Fotos werden nur zum Auslesen gesendet und nie gespeichert.';
 
   @override
   String aiQuotaReached(int used, int limit) {

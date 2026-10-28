@@ -520,7 +520,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Les teves llistes, preus, rebuts i fotos es queden al teu dispositiu. Les fotos i la veu mai el deixen. Quan l\'ajuda IA està activada, només s\'envia text (per exemple, les línies del rebut o el que dictis) al nostre servidor per ser processat i no es desa.';
+      'Les teves llistes, preus, rebuts i fotos es desen al teu dispositiu. La veu no en surt mai. Quan l\'ajuda d\'IA està activada, les fotos de rebuts i d\'etiquetes de preu (reduïdes de mida) i el text, com els articles dictats, s\'envien al nostre servidor només per ser llegits; es processen immediatament i no s\'emmagatzemen mai.';
 
   @override
   String get aboutSection => 'Quant a';
@@ -779,7 +779,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Concilia rebuts, llegeix etiquetes de preu i converteix frases en llistes. Les fotos i la veu es queden al teu dispositiu; només es processa el text.';
+      'Llegeix rebuts i etiquetes de preu a partir de fotos, relaciona els rebuts i converteix frases en llistes. Les fotos s\'envien només per ser llegides i no s\'emmagatzemen mai.';
 
   @override
   String aiQuotaReached(int used, int limit) {

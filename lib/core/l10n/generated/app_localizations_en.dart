@@ -519,7 +519,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Your lists, prices, receipts and photos stay on your device. Photos and voice never leave it. When AI help is on, only text (for example receipt lines or what you dictated) is sent to our server to be processed and is not stored.';
+      'Your lists, prices, receipts and photos are stored on your device. Voice never leaves it. When AI help is on, receipt and price-label photos (reduced in size) and text such as dictated items are sent to our server only to be read; they are processed immediately and never stored.';
 
   @override
   String get aboutSection => 'About';
@@ -775,7 +775,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Matches receipts, reads price labels and turns sentences into lists. Photos and voice stay on your device; only text is processed.';
+      'Reads receipts and price labels from photos, matches receipts and turns sentences into lists. Photos are sent only to be read and are never stored.';
 
   @override
   String aiQuotaReached(int used, int limit) {

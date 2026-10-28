@@ -519,7 +519,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Sinu nimekirjad, hinnad, kviitungid ja pildid jäävad sinu seadmesse. Pildid ja hääl ei lahkunud kunagi seadmest. Kui AI abi on sees, saadetakse meie serverisse ainult tekst (näiteks kviitingu read või mida sa dikteersid) töötlemiseks ja seda ei säilitata.';
+      'Sinu nimekirjad, hinnad, kviitungid ja pildid salvestatakse sinu seadmesse. Hääl ei lahku sealt kunagi. Kui AI abi on sisse lülitatud, saadetakse kviitungite ja hinnasiltide pildid (vähendatud suuruses) ning tekst, näiteks dikteeritud kirjed, meie serverisse ainult lugemiseks; need töödeldakse kohe ja neid ei salvestata kunagi.';
 
   @override
   String get aboutSection => 'Teave';
@@ -777,7 +777,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Võrdleb kvite, loeb hinnasildid ja teisendab laused nimekirjaks. Pildid ja hääl jäävad sinu seadmesse; töödeldakse ainult teksti.';
+      'Loeb piltidelt kviitungeid ja hinnasilte, sobitab kviitungeid ning muudab laused nimekirjadeks. Pilte saadetakse ainult lugemiseks ja neid ei salvestata kunagi.';
 
   @override
   String aiQuotaReached(int used, int limit) {

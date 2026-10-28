@@ -521,7 +521,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Jūsų sąrašai, kainos, kvitai ir nuotraukos lieka jūsų įrenginyje. Nuotraukos ir balsas niekada jo nepalieka. Kai naudojama AI pagalba, į mūsų serverį siunčiamas tik tekstas (pvz., kvito eilutės arba tai, ką diktuojate) apdorojimui ir jis nėra saugomas.';
+      'Jūsų sąrašai, kainos, kvitai ir nuotraukos saugomi jūsų įrenginyje. Balsas jo niekada nepalieka. Kai įjungta AI pagalba, kvitų ir kainų etikečių nuotraukos (sumažinto dydžio) bei tekstas, pavyzdžiui, padiktuoti elementai, siunčiami į mūsų serverį tik perskaityti; jie apdorojami iš karto ir niekada nesaugomi.';
 
   @override
   String get aboutSection => 'Apie';
@@ -779,7 +779,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Sulygina čekius, skaito kainas ir paverčia sakinius sąrašais. Nuotraukos ir balsas lieka jūsų įrenginyje; apdorojamas tik tekstas.';
+      'Iš nuotraukų skaito kvitus ir kainų etiketes, suderina kvitus ir paverčia sakinius sąrašais. Nuotraukos siunčiamos tik perskaityti ir niekada nesaugomos.';
 
   @override
   String aiQuotaReached(int used, int limit) {

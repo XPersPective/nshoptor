@@ -521,7 +521,7 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Ang iyong mga listahan, presyo, resibo at litrato ay nananatili sa iyong device. Hindi lumalabas ang mga litrato at boses. Kapag naka-on ang AI help, ipinapadala lamang ang text (halimbawa, mga linya ng resibo o iyong binigkas) sa aming server para maproseso at hindi ito naii-save.';
+      'Ang iyong mga listahan, presyo, resibo at litrato ay nakaimbak sa iyong device. Hindi kailanman lumalabas dito ang boses. Kapag naka-on ang tulong ng AI, ang mga litrato ng resibo at price label (pinaliit ang laki) at teksto gaya ng idinikta mong mga item ay ipinapadala sa aming server para lang basahin; agad itong pinoproseso at hindi kailanman iniimbak.';
 
   @override
   String get aboutSection => 'Tungkol';
@@ -780,7 +780,7 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Ina-match ang resibo, binabasa ang label ng presyo, at ginagawa listahan mula sa pangungusap. Ang mga litrato at boses ay nananatili sa iyong device; ang teksto lamang ang pinoproseso.';
+      'Binabasa ang mga resibo at price label mula sa mga litrato, itinutugma ang mga resibo at ginagawang listahan ang mga pangungusap. Ipinapadala lang ang mga litrato para basahin at hindi kailanman iniimbak.';
 
   @override
   String aiQuotaReached(int used, int limit) {

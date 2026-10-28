@@ -520,7 +520,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Senarai, harga, resit dan foto anda kekal pada peranti anda. Foto dan suara tidak pernah keluar daripadanya. Apabila bantuan AI diaktifkan, hanya teks (contohnya baris resit atau apa yang anda ucapkan) dihantar ke pelayan kami untuk diproses dan tidak disimpan.';
+      'Senarai, harga, resit dan foto anda disimpan pada peranti anda. Suara tidak pernah meninggalkannya. Apabila bantuan AI dihidupkan, foto resit dan label harga (saiz dikecilkan) serta teks seperti item yang didiktekan dihantar ke pelayan kami hanya untuk dibaca; ia diproses serta-merta dan tidak pernah disimpan.';
 
   @override
   String get aboutSection => 'Mengenai';
@@ -780,7 +780,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Padankan resit, baca label harga dan tukar ayat menjadi senarai. Foto dan suara kekal pada peranti anda; hanya teks diproses.';
+      'Membaca resit dan label harga daripada foto, memadankan resit dan menukar ayat kepada senarai. Foto dihantar hanya untuk dibaca dan tidak pernah disimpan.';
 
   @override
   String aiQuotaReached(int used, int limit) {

@@ -521,7 +521,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Liste, prezzi, scontrini e foto restano sul tuo dispositivo. Foto e voce non lo lasciano mai. Con l\'aiuto IA attivo, solo il testo (ad esempio righe dello scontrino o ciò che hai dettato) viene inviato al nostro server per l\'elaborazione e non viene conservato.';
+      'Liste, prezzi, scontrini e foto sono archiviati sul tuo dispositivo. La voce non lo lascia mai. Quando l\'aiuto IA è attivo, le foto di scontrini ed etichette di prezzo (ridotte di dimensioni) e il testo, come gli articoli dettati, vengono inviati al nostro server solo per essere letti; vengono elaborati subito e mai archiviati.';
 
   @override
   String get aboutSection => 'Informazioni';
@@ -778,7 +778,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Abbina gli scontrini, legge le etichette dei prezzi e trasforma le frasi in liste. Foto e voce restano sul dispositivo; viene elaborato solo il testo.';
+      'Legge scontrini ed etichette di prezzo dalle foto, abbina gli scontrini e trasforma le frasi in liste. Le foto vengono inviate solo per essere lette e non vengono mai archiviate.';
 
   @override
   String aiQuotaReached(int used, int limit) {

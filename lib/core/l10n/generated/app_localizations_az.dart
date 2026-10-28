@@ -520,7 +520,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Siyahılarınız, qiymətləriniz, qəbullarınız və şəkilləriniz cihazınızda saxlanılır. Şəkillər və səs heç vaxt cihazdan çıxmır. AI kömək aktiv olduqda, yalnız mətn (məsələn, qəbul sətirləri və ya dictasiya etdiyiniz şey) emal üçün serverimizə göndərilir və saxlanılmır.';
+      'Siyahılarınız, qiymətləriniz, qəbullarınız və şəkilləriniz cihazınızda saxlanılır. Səs heç vaxt cihazdan çıxmır. AI kömək aktiv olduqda, qəbul və qiymət etiketi şəkilləri (ölçüsü azaldılmış) və diktə etdiyiniz maddələr kimi mətn yalnız oxunmaq üçün serverimizə göndərilir; dərhal emal olunur və heç vaxt saxlanılmır.';
 
   @override
   String get aboutSection => 'Haqqında';
@@ -779,7 +779,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Çekləri uyğunlaşdırır, qiymət etiketlərini oxuyur və cümlələri siyahıya çevirir. Şəkillər və səs cihazınızda qalır; yalnız mətn emal olunur.';
+      'Şəkillərdən qəbulları və qiymət etiketlərini oxuyur, qəbulları uyğunlaşdırır və cümlələri siyahıya çevirir. Şəkillər yalnız oxunmaq üçün göndərilir və heç vaxt saxlanılmır.';
 
   @override
   String aiQuotaReached(int used, int limit) {

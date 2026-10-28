@@ -520,7 +520,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Vos listes, prix, tickets et photos restent sur votre appareil. Les photos et la voix ne le quittent jamais. Quand l\'aide IA est activée, seul du texte (par exemple des lignes de ticket ou ce que vous avez dicté) est envoyé à notre serveur pour être traité, sans être conservé.';
+      'Vos listes, prix, tickets et photos sont stockés sur votre appareil. La voix ne le quitte jamais. Lorsque l\'aide IA est activée, les photos de tickets et d\'étiquettes de prix (réduites en taille) et le texte, comme les articles dictés, sont envoyés à notre serveur uniquement pour être lus ; ils sont traités immédiatement et jamais stockés.';
 
   @override
   String get aboutSection => 'À propos';
@@ -778,7 +778,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Associe les tickets, lit les étiquettes de prix et transforme des phrases en listes. Photos et voix restent sur l\'appareil ; seul le texte est traité.';
+      'Lit les tickets et les étiquettes de prix à partir de photos, rapproche les tickets et transforme des phrases en listes. Les photos sont envoyées uniquement pour être lues et ne sont jamais stockées.';
 
   @override
   String aiQuotaReached(int used, int limit) {

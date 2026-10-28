@@ -520,7 +520,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Ro\'yxatlaringiz, narxlaringiz, cheklaringiz va rasmlaringiz qurilmangizda saqlanadi. Rasmlar va ovoz hech qachon undan chiqmaydi. AI yordam yoqilganda, faqat matn (masalan, chek qatorlari yoki siz aytgan narsalar) serverga yuboriladi va saqlanmaydi.';
+      'Ro\'yxatlaringiz, narxlaringiz, cheklaringiz va rasmlaringiz qurilmangizda saqlanadi. Ovoz hech qachon uni tark etmaydi. AI yordami yoqilganda cheklar va narx yorliqlarining rasmlari (hajmi kichraytirilgan) hamda aytib yozdirilgan mahsulotlar kabi matn serverimizga faqat o\'qish uchun yuboriladi; ular darhol qayta ishlanadi va hech qachon saqlanmaydi.';
 
   @override
   String get aboutSection => 'Haqida';
@@ -778,7 +778,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Cheklarni moslashtiradi, narx yorliqlarini o‘qiydi va gaplarni ro‘yxatga aylantiradi. Rasmlar va ovoz qurilmangizda qoladi; faqat matn qayta ishlanadi.';
+      'Rasmlardan cheklar va narx yorliqlarini o\'qiydi, cheklarni moslashtiradi va gaplarni ro\'yxatga aylantiradi. Rasmlar faqat o\'qish uchun yuboriladi va hech qachon saqlanmaydi.';
 
   @override
   String aiQuotaReached(int used, int limit) {

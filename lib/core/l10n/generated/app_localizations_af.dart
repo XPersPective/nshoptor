@@ -520,7 +520,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Jou lyste, pryse, resceipts en foto\'s bly op jou toestel. Foto\'s en stemme vertrek nooit dit nie. Wanneer AI-hulp aangeskakel is, slegs teks (bv. resceipt-lyne of wat jy gedikteer het) word na ons bediener gestuur om verwerk te word en word nie gestoor nie.';
+      'Jou lyste, pryse, kwitansies en foto\'s word op jou toestel gestoor. Stem verlaat dit nooit. Wanneer AI-hulp aan is, word foto\'s van kwitansies en prysetikette (verklein) en teks soos gedikteerde items net na ons bediener gestuur om gelees te word; dit word onmiddellik verwerk en nooit gestoor nie.';
 
   @override
   String get aboutSection => 'Aangaande';
@@ -778,7 +778,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Pas kwiteansies toe, lees prysetikette en omskakel sinne na lyste. Foto\'s en stem bly op jou toestel; slegs teks word verwerk.';
+      'Lees kwitansies en prysetikette uit foto\'s, pas kwitansies by mekaar en skakel sinne om in lyste. Foto\'s word net gestuur om gelees te word en word nooit gestoor nie.';
 
   @override
   String aiQuotaReached(int used, int limit) {

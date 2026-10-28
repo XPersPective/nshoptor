@@ -521,7 +521,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Vaše zoznamy, ceny, účtenky a fotografie zostávajú vo vašom zariadení. Fotografie a hlas nikdy neopustia vaše zariadenie. Keď je pomoc AI aktívna, na náš server sa posiela iba text (napríklad riadky z účtenky alebo to, čo ste diktovali) na spracovanie a nie je ukladaný.';
+      'Vaše zoznamy, ceny, účtenky a fotografie sú uložené vo vašom zariadení. Hlas ho nikdy neopustí. Keď je pomoc AI zapnutá, fotografie účteniek a cenoviek (zmenšené) a text, napríklad nadiktované položky, sa odosielajú na náš server iba na prečítanie; spracujú sa okamžite a nikdy sa neukladajú.';
 
   @override
   String get aboutSection => 'O aplikácii';
@@ -780,7 +780,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Porovnáva účty, číta cenovky a mení vety na zoznamy. Fotky a hlas zostávajú vo vašom zariadení; spracováva sa len text.';
+      'Číta účtenky a cenovky z fotografií, páruje účtenky a mení vety na zoznamy. Fotografie sa odosielajú iba na prečítanie a nikdy sa neukladajú.';
 
   @override
   String aiQuotaReached(int used, int limit) {

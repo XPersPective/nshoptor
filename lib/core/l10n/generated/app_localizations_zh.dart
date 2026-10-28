@@ -512,7 +512,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      '您的清单、价格、收据和照片均保存在您的设备上。照片和语音永远不会离开您的设备。当开启 AI 帮助时，仅发送文本（例如收据行或您口述的内容）到我们的服务器进行处理，且不会被存储。';
+      '您的清单、价格、收据和照片均保存在您的设备上。语音永远不会离开您的设备。开启 AI 帮助后，收据和价格标签的照片（已缩小尺寸）以及口述条目等文本，仅会发送到我们的服务器进行识读；它们会被立即处理，绝不会被存储。';
 
   @override
   String get aboutSection => '关于';
@@ -761,7 +761,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiToggleTitle => 'AI 帮助';
 
   @override
-  String get aiToggleSubtitle => '匹配收据、读取价格标签并将句子转为列表。照片和语音保留在您的设备上；仅处理文本。';
+  String get aiToggleSubtitle =>
+      '从照片中识读收据和价格标签，匹配收据，并将句子转换为清单。照片仅为识读而发送，绝不会被存储。';
 
   @override
   String aiQuotaReached(int used, int limit) {

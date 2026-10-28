@@ -520,7 +520,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Je lijsten, prijzen, bonnen en foto\'s blijven op je apparaat. Foto\'s en stemmen verlaten het nooit. Wanneer AI-hulp is ingeschakeld, wordt alleen tekst (bijvoorbeeld bonregels of wat je hebt ingedikt) naar onze server gestuurd voor verwerking en niet bewaard.';
+      'Je lijsten, prijzen, bonnen en foto\'s worden op je apparaat opgeslagen. Je stem verlaat het nooit. Als AI-hulp aanstaat, worden foto\'s van bonnen en prijskaartjes (verkleind) en tekst, zoals gedicteerde items, alleen naar onze server gestuurd om gelezen te worden; ze worden direct verwerkt en nooit opgeslagen.';
 
   @override
   String get aboutSection => 'Over';
@@ -779,7 +779,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Kwitanties matchen, prijslabels lezen en zinnen omzetten naar lijsten. Foto\'s en spraak blijven op je apparaat; alleen tekst wordt verwerkt.';
+      'Leest bonnen en prijskaartjes van foto\'s, koppelt bonnen en maakt lijsten van zinnen. Foto\'s worden alleen gestuurd om gelezen te worden en nooit opgeslagen.';
 
   @override
   String aiQuotaReached(int used, int limit) {

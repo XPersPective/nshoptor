@@ -520,7 +520,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Tus listas, precios, tickets y fotos se quedan en tu dispositivo. Las fotos y la voz nunca salen de él. Con la ayuda de IA activada, solo se envía texto (por ejemplo líneas del ticket o lo que dictaste) a nuestro servidor para procesarlo, sin guardarlo.';
+      'Tus listas, precios, tickets y fotos se guardan en tu dispositivo. La voz nunca sale de él. Cuando la ayuda de IA está activada, las fotos de tickets y de etiquetas de precio (reducidas de tamaño) y el texto, como los artículos dictados, se envían a nuestro servidor solo para ser leídos; se procesan al instante y nunca se almacenan.';
 
   @override
   String get aboutSection => 'Acerca de';
@@ -779,7 +779,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Empareja tickets, lee etiquetas de precio y convierte frases en listas. Las fotos y la voz se quedan en el dispositivo; solo se procesa texto.';
+      'Lee tickets y etiquetas de precio a partir de fotos, relaciona tickets y convierte frases en listas. Las fotos se envían solo para ser leídas y nunca se almacenan.';
 
   @override
   String aiQuotaReached(int used, int limit) {

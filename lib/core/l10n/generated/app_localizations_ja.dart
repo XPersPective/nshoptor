@@ -513,7 +513,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'あなたのリスト、価格、レシート、写真はデバイス上に保存されます。写真や音声は外部に送信されません。AIヘルプを使用する場合、処理のためにテキスト（レシートの行や音声入力など）のみがサーバーに送信され、保存されることはありません。';
+      'リスト、価格、レシート、写真はデバイスに保存されます。音声がデバイスの外に出ることはありません。AIヘルプがオンの場合、レシートや値札の写真（サイズを縮小したもの）と、音声入力した品目などのテキストは、読み取りのためだけにサーバーへ送信されます。送信されたデータはすぐに処理され、保存されることはありません。';
 
   @override
   String get aboutSection => 'アプリ情報';
@@ -764,7 +764,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'レシートを照合し、価格ラベルを読み取り、文章からリストを作成します。写真と音声はデバイス上に残り、テキストのみが処理されます。';
+      '写真からレシートや値札を読み取り、レシートを照合し、文章をリストに変換します。写真は読み取りのためだけに送信され、保存されることはありません。';
 
   @override
   String aiQuotaReached(int used, int limit) {

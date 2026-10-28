@@ -513,7 +513,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      '리스트, 가격, 영수증 및 사진은 모두 기기에 보관됩니다. 사진과 음성은 절대 외부로 전송되지 않습니다. AI 도움이 활성화되면 텍스트(예: 영수증 항목 또는 음성 입력 내용)만 처리를 위해 서버로 전송되며 저장되지 않습니다.';
+      '리스트, 가격, 영수증 및 사진은 기기에 저장됩니다. 음성은 기기 밖으로 나가지 않습니다. AI 도움말이 켜져 있으면 영수증과 가격표 사진(크기를 줄인 것)과 받아쓰기한 항목 같은 텍스트가 읽기 목적으로만 서버로 전송되며, 즉시 처리된 후 저장되지 않습니다.';
 
   @override
   String get aboutSection => '소개';
@@ -765,7 +765,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      '영수증을 매칭하고 가격 라벨을 읽으며 문장을 목록으로 변환합니다. 사진과 음성은 기기 내부에 저장되며 텍스트만 처리됩니다.';
+      '사진에서 영수증과 가격표를 읽고, 영수증을 매칭하고, 문장을 리스트로 바꿔 줍니다. 사진은 읽기 위해서만 전송되며 저장되지 않습니다.';
 
   @override
   String aiQuotaReached(int used, int limit) {

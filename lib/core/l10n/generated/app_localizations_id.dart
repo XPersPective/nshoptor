@@ -519,7 +519,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Daftar, harga, struk, dan foto Anda tetap berada di perangkat. Foto dan suara tidak pernah keluar darinya. Saat bantuan AI aktif, hanya teks (misalnya baris struk atau apa yang Anda ucapkan) dikirim ke server kami untuk diproses dan tidak disimpan.';
+      'Daftar, harga, struk, dan foto Anda disimpan di perangkat Anda. Suara tidak pernah meninggalkannya. Saat bantuan AI aktif, foto struk dan label harga (ukurannya diperkecil) serta teks seperti item yang didiktekan dikirim ke server kami hanya untuk dibaca; semuanya langsung diproses dan tidak pernah disimpan.';
 
   @override
   String get aboutSection => 'Tentang';
@@ -778,7 +778,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Mencocokkan struk, membaca label harga, dan mengubah kalimat menjadi daftar. Foto dan suara tetap di perangkat Anda; hanya teks yang diproses.';
+      'Membaca struk dan label harga dari foto, mencocokkan struk, dan mengubah kalimat menjadi daftar. Foto dikirim hanya untuk dibaca dan tidak pernah disimpan.';
 
   @override
   String aiQuotaReached(int used, int limit) {

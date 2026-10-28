@@ -521,7 +521,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Jūsu saraksti, cenas, čeki un fotogrāfijas paliek ierīcē. Fotogrāfijas un balss nekad to neatstāj. Kad AI palīdzība ir ieslēgta, uz serveri tiek nosūtīts tikai teksts (piemēram, čeku rindas vai tas, ko jūs diktojat), lai to apstrādātu, un tas netiek glabāts.';
+      'Jūsu saraksti, cenas, čeki un fotogrāfijas tiek glabāti jūsu ierīcē. Balss to nekad nepamet. Kad AI palīdzība ir ieslēgta, čeku un cenu etiķešu fotogrāfijas (samazinātā izmērā) un teksts, piemēram, nodiktētie ieraksti, tiek nosūtīti uz mūsu serveri tikai nolasīšanai; tie tiek apstrādāti uzreiz un nekad netiek glabāti.';
 
   @override
   String get aboutSection => 'Par';
@@ -779,7 +779,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Salīdzina čeki, lasa cenu etiķetes un pārvērš teikumus sarakstos. Foto un balss paliek ierīcē; tiek apstrādāts tikai teksts.';
+      'Nolasa čekus un cenu etiķetes no fotogrāfijām, saskaņo čekus un pārvērš teikumus sarakstos. Fotogrāfijas tiek sūtītas tikai nolasīšanai un nekad netiek glabātas.';
 
   @override
   String aiQuotaReached(int used, int limit) {

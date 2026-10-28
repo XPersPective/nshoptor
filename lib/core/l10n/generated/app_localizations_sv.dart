@@ -519,7 +519,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Dina listor, priser, kvitton och bilder stannar på din enhet. Bilder och röst lämnar den aldrig. När AI-hjälp är aktiverad skickas endast text (till exempel raderna från ett kvitto eller vad du dikterat) till vår server för bearbetning och lagras inte.';
+      'Dina listor, priser, kvitton och bilder sparas på din enhet. Rösten lämnar den aldrig. När AI-hjälp är på skickas bilder på kvitton och prislappar (förminskade) samt text, till exempel dikterade varor, till vår server endast för att läsas; de bearbetas direkt och sparas aldrig.';
 
   @override
   String get aboutSection => 'Om';
@@ -777,7 +777,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Matchar kvitton, läser prisetiketter och omvandlar meningar till listor. Bilder och röst stannar på din enhet; endast text bearbetas.';
+      'Läser kvitton och prislappar från bilder, matchar kvitton och gör om meningar till listor. Bilder skickas endast för att läsas och sparas aldrig.';
 
   @override
   String aiQuotaReached(int used, int limit) {

@@ -521,7 +521,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Twoje listy, ceny, paragony i zdjęcia pozostają na urządzeniu. Zdjęcia i głos nigdy go nie opuszczają. Gdy pomoc AI jest włączona, tylko tekst (np. linie paragonu lub to, co dyktowałeś) jest wysyłany do naszego serwera w celu przetworzenia i nie jest przechowywany.';
+      'Twoje listy, ceny, paragony i zdjęcia są przechowywane na urządzeniu. Głos nigdy go nie opuszcza. Gdy pomoc AI jest włączona, zdjęcia paragonów i etykiet cenowych (pomniejszone) oraz tekst, np. podyktowane pozycje, są wysyłane na nasz serwer wyłącznie w celu odczytania; są przetwarzane natychmiast i nigdy nie są zapisywane.';
 
   @override
   String get aboutSection => 'O aplikacji';
@@ -780,7 +780,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Dopasowuje paragoni, czyta ceny na etykietach i zamienia zdania na listy. Zdjęcia i głos pozostają na Twoim urządzeniu; przetwarzany jest tylko tekst.';
+      'Odczytuje paragony i etykiety cenowe ze zdjęć, dopasowuje paragony i zamienia zdania w listy. Zdjęcia są wysyłane wyłącznie w celu odczytania i nigdy nie są zapisywane.';
 
   @override
   String aiQuotaReached(int used, int limit) {

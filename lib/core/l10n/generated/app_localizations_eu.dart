@@ -519,7 +519,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Zure zerrendak, prezioak, jasoen eta argazkiak zure gailuan geratzen dira. Argazkiak eta ahotsa inoiz ez dira kanpora ateratzen. AI laguntza aktibatuta badago, testua bakarrik (adibidez, jasoko lerroak edo diktatutakoa) bidaltzen da gure zerbitzura prozesatzeko eta ez da gordetzen.';
+      'Zure zerrendak, prezioak, ordainagiriak eta argazkiak zure gailuan gordetzen dira. Ahotsak ez du inoiz gailua uzten. AI laguntza aktibatuta dagoenean, ordainagirien eta prezio-etiketen argazkiak (tamaina txikituta) eta testua, esaterako diktatutako elementuak, gure zerbitzarira bidaltzen dira irakurtzeko soilik; berehala prozesatzen dira eta ez dira inoiz gordetzen.';
 
   @override
   String get aboutSection => 'Buruz';
@@ -778,7 +778,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Errezeptuak bat datoz, prezio-etiketak irakurtzen ditu eta esaldiak zerrendetan bihurtzen ditu. Argazkiak eta ahotsa zure gailuan geratzen dira; testua bakarrik prozesatzen da.';
+      'Argazkietatik ordainagiriak eta prezio-etiketak irakurtzen ditu, ordainagiriak parekatzen ditu eta esaldiak zerrenda bihurtzen ditu. Argazkiak irakurtzeko soilik bidaltzen dira eta ez dira inoiz gordetzen.';
 
   @override
   String aiQuotaReached(int used, int limit) {

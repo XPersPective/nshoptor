@@ -520,7 +520,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Danh sách, giá cả, biên lai và ảnh của bạn đều lưu trên thiết bị. Ảnh và giọng nói không bao giờ rời khỏi thiết bị của bạn. Khi tính năng AI trợ giúp được bật, chỉ văn bản (ví dụ: dòng từ biên lai hoặc nội dung bạn nói) được gửi đến máy chủ của chúng tôi để xử lý và không được lưu trữ.';
+      'Danh sách, giá cả, biên lai và ảnh của bạn được lưu trên thiết bị. Giọng nói không bao giờ rời khỏi thiết bị. Khi trợ lý AI bật, ảnh biên lai và nhãn giá (đã giảm kích thước) cùng văn bản như các mục bạn đọc cho ghi chép chỉ được gửi đến máy chủ của chúng tôi để đọc; chúng được xử lý ngay và không bao giờ được lưu trữ.';
 
   @override
   String get aboutSection => 'Giới thiệu';
@@ -778,7 +778,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'So khớp hóa đơn, đọc nhãn giá và chuyển câu thành danh sách. Ảnh và giọng nói được lưu trên thiết bị của bạn; chỉ có văn bản được xử lý.';
+      'Đọc biên lai và nhãn giá từ ảnh, đối chiếu biên lai và biến câu nói thành danh sách. Ảnh chỉ được gửi để đọc và không bao giờ được lưu trữ.';
 
   @override
   String aiQuotaReached(int used, int limit) {

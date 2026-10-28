@@ -522,7 +522,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Amalisti akho, izinto ezithengwayo, imiphumela namafoto ahlala kwidivayisi yakho. Amafoto nezwi azikaze zidlule kuyo. Uma usizo lwe-AI lulungisiwe, kuphela umbhalo (isibonelo imigqa yemiphumela noma lokho okushiwo) lithunyelwa eseva yethu ukuze luprosesiwe futhi alugcinwe.';
+      'Amalisti akho, amanani, amarisidi namafoto agcinwa kudivayisi yakho. Izwi alikaze liyishiye. Uma usizo lwe-AI luvuliwe, amafoto amarisidi namalebula amanani (anciphisiwe ngosayizi) nombhalo onjengezinto owuzisho ngezwi, kuthunyelwa kuseva yethu ukuze kufundwe kuphela; kucutshungulwa ngokushesha futhi akuze kugcinwe.';
 
   @override
   String get aboutSection => 'Mayelana';
@@ -782,7 +782,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Luhambanisa amarekhodi, lufunda izitika zamanani futhi luguqule izitatimende zibe yizinhlu. Izithombe nezwi kuhlala kwidivayisi yakho; kuphela umbhalo uyaphrosesiwa.';
+      'Ifunda amarisidi namalebula amanani emifanekisweni, ifanisa amarisidi futhi iguqula imisho ibe amalisti. Amafoto athunyelwa ukuze afundwe kuphela futhi awagcinwa neze.';
 
   @override
   String aiQuotaReached(int used, int limit) {

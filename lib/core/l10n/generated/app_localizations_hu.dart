@@ -520,7 +520,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'A listáid, árak, nyugták és fotók az eszközödön maradnak. A fotók és hangfelvételek soha nem hagyják el azt. Ha az AI segítség be van kapcsolva, csak szöveg (például nyugta sorok vagy amit felmondtál) kerül a szerverünkre feldolgozásra, és nem tároljuk el.';
+      'A listáid, árak, nyugták és fotók az eszközödön tárolódnak. A hang soha nem hagyja el. Ha az AI segítség be van kapcsolva, a nyugták és árcímkék fotói (csökkentett méretben), valamint a szöveg, például a diktált tételek, kizárólag beolvasás céljából kerülnek a szerverünkre; azonnal feldolgozzuk őket, és soha nem tároljuk.';
 
   @override
   String get aboutSection => 'Névjegy';
@@ -780,7 +780,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Összehasonlítja a nyugtákat, felismeri az árcímkéket, és mondatokból listát készít. A képek és hangfelvételek az eszközön maradnak; csak a szöveg kerül feldolgozásra.';
+      'Fotókról beolvassa a nyugtákat és árcímkéket, párosítja a nyugtákat, és mondatokból listát készít. A fotókat csak beolvasásra küldi el, és soha nem tárolja.';
 
   @override
   String aiQuotaReached(int used, int limit) {

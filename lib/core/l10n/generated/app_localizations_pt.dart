@@ -520,7 +520,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Suas listas, preços, cupons e fotos ficam no seu aparelho. Fotos e voz nunca saem dele. Com a ajuda de IA ativada, só texto (por exemplo linhas do cupom ou o que você ditou) é enviado ao nosso servidor para processamento, sem ser armazenado.';
+      'Suas listas, preços, cupons e fotos ficam salvos no seu aparelho. A voz nunca sai dele. Quando a ajuda de IA está ativada, fotos de cupons e de etiquetas de preço (reduzidas de tamanho) e texto, como itens ditados, são enviados ao nosso servidor apenas para serem lidos; eles são processados na hora e nunca armazenados.';
 
   @override
   String get aboutSection => 'Sobre';
@@ -780,7 +780,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Associa cupons, lê etiquetas de preço e transforma frases em listas. Fotos e voz ficam no aparelho; só o texto é processado.';
+      'Lê cupons e etiquetas de preço a partir de fotos, associa cupons e transforma frases em listas. As fotos são enviadas apenas para serem lidas e nunca são armazenadas.';
 
   @override
   String aiQuotaReached(int used, int limit) {

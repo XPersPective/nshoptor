@@ -520,7 +520,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Orodha zako, bei, risiti na picha zinaendelea kuwa kwenye kifaa chako. Picha na sauti haziondoki kamwe. Wakati msaada wa AI umewashwa, tu maandishi (kwa mfano mistari ya risiti au uliyosema) hutumwa kwenye seva yetu kuchakatwa na hayahifadhiwa.';
+      'Orodha zako, bei, risiti na picha huhifadhiwa kwenye kifaa chako. Sauti haiondoki kamwe. Msaada wa AI unapowashwa, picha za risiti na lebo za bei (zilizopunguzwa ukubwa) na maandishi kama vitu ulivyoviamuru hutumwa kwa seva yetu kwa ajili ya kusomwa tu; huchakatwa mara moja na hazihifadhiwi kamwe.';
 
   @override
   String get aboutSection => 'Kuhusu';
@@ -778,7 +778,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Inalinganisha risiti, inasoma lebo za bei na kubadilisha sentensi kuwa orodha. Picha na sauti zinaendelea kwenye kifaa chako; tu maandishi yanachakatwa.';
+      'Husoma risiti na lebo za bei kutoka kwenye picha, huoanisha risiti na hubadilisha sentensi kuwa orodha. Picha hutumwa kwa ajili ya kusomwa tu na hazihifadhiwi kamwe.';
 
   @override
   String aiQuotaReached(int used, int limit) {

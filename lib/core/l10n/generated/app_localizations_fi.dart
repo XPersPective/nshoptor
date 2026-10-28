@@ -520,7 +520,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listasi, hinnat, kuitit ja valokuvat säilyvät laitteellasi. Valokuvat ja ääni eivät koskaan poistu laitteestasi. Kun tekoälyavustin on käytössä, vain teksti (esim. kuitirivit tai diktoimaasi) lähetetään palvelimellemme prosessoitavaaksi eikä sitä säilytetä.';
+      'Listasi, hinnat, kuitit ja valokuvat tallennetaan laitteellesi. Ääni ei poistu koskaan laitteelta. Kun AI-avustaja on päällä, kuittien ja hintalappujen valokuvat (pienennettyinä) sekä teksti, kuten sanelemasi tuotteet, lähetetään palvelimellemme vain luettaviksi; ne käsitellään heti, eikä niitä tallenneta koskaan.';
 
   @override
   String get aboutSection => 'Tietoja';
@@ -778,7 +778,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Yhdistää kuitit, lukee hintalappuja ja muuntaa lauseet listoiksi. Kuvat ja ääni pysyvät laitteellasi; vain tekstiä käsitellään.';
+      'Lukee kuitit ja hintalaput valokuvista, täsmää kuitit ja muuttaa lauseet listoiksi. Valokuvat lähetetään vain luettaviksi, eikä niitä tallenneta koskaan.';
 
   @override
   String aiQuotaReached(int used, int limit) {

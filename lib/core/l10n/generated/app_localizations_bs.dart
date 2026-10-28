@@ -520,7 +520,7 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Vaši popisi, cijene, računi i fotografije ostaju na vašem uređaju. Fotografije i glas nikada ne napuštaju uređaj. Kada je AI pomoć uključena, samo tekst (npr. stavke s računa ili ono što ste dictirali) šalje se na naš poslužitelj radi obrade i ne pohranjuje se.';
+      'Vaši popisi, cijene, računi i fotografije pohranjeni su na vašem uređaju. Glas ga nikada ne napušta. Kada je pomoć AI uključena, fotografije računa i cjenovnih oznaka (smanjene veličine) te tekst, poput diktiranih stavki, šalju se na naš server samo radi čitanja; obrađuju se odmah i nikada se ne pohranjuju.';
 
   @override
   String get aboutSection => 'O aplikaciji';
@@ -778,7 +778,7 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Uparuje račune, čita cijene s etiketa i pretvara rečenice u liste. Fotografije i glas ostaju na vašem uređaju; obrađuje se samo tekst.';
+      'Čita račune i cjenovne oznake s fotografija, uparuje račune i pretvara rečenice u popise. Fotografije se šalju samo radi čitanja i nikada se ne pohranjuju.';
 
   @override
   String aiQuotaReached(int used, int limit) {

@@ -520,7 +520,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Vaši seznami, cene, računi in fotografije ostanejo na vaši napravi. Fotografije in glas nikoli ne zapustijo naprave. Ko je pomoč AI vklopljena, se na naš strežnik pošlje le besedilo (na primer vrstice iz računa ali kar ste diktirali) za obdelavo in se ne shrani.';
+      'Vaši seznami, cene, računi in fotografije so shranjeni v vaši napravi. Glas je nikoli ne zapusti. Ko je pomoč AI vklopljena, se fotografije računov in cenovnih oznak (pomanjšane) ter besedilo, na primer narekovani izdelki, pošljejo na naš strežnik samo za branje; obdelajo se takoj in se nikoli ne shranijo.';
 
   @override
   String get aboutSection => 'O nas';
@@ -778,7 +778,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Ujema račune, bere cenike in pretvarja stavke v sezname. Fotografije in glas ostanejo na vašem napravi; obdeluje se le besedilo.';
+      'Bere račune in cenovne oznake s fotografij, ujema račune in pretvarja stavke v sezname. Fotografije se pošljejo samo za branje in se nikoli ne shranijo.';
 
   @override
   String aiQuotaReached(int used, int limit) {

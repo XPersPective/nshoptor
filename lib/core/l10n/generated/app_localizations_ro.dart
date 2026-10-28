@@ -520,7 +520,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listele, prețurile, chitanțele și pozele tale rămân pe dispozitiv. Pozele și vocea nu părăsesc niciodată dispozitivul. Când asistența AI este activă, doar textul (de exemplu, liniile din chitanță sau ceea ce ai dictat) este trimis pe serverul nostru pentru procesare și nu este stocat.';
+      'Listele, prețurile, chitanțele și pozele tale sunt stocate pe dispozitivul tău. Vocea nu îl părăsește niciodată. Când ajutorul AI este activat, pozele cu chitanțe și etichete de preț (reduse ca dimensiune) și textul, cum ar fi articolele dictate, sunt trimise către serverul nostru doar pentru a fi citite; sunt procesate imediat și nu sunt stocate niciodată.';
 
   @override
   String get aboutSection => 'Despre';
@@ -778,7 +778,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Potrivește chitanțele, citește etichetele de preț și transformă propozițiile în liste. Fotografiile și vocea rămân pe dispozitivul tău; doar textul este procesat.';
+      'Citește chitanțe și etichete de preț din poze, potrivește chitanțele și transformă propozițiile în liste. Pozele sunt trimise doar pentru a fi citite și nu sunt stocate niciodată.';
 
   @override
   String aiQuotaReached(int used, int limit) {

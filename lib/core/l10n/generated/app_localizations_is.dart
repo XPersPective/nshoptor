@@ -520,7 +520,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listarnir þínir, verð, kvittanir og myndir geymast á tækinu þínu. Myndir og rödd yfirgefa aldrei tækið. Þegar AI-hjálp er virk, er aðeins texta (til dæmis línur frá kvittun eða það sem þú sagðir) sent til okkar netþjóns til vinnslu og er ekki geymt.';
+      'Listarnir þínir, verð, kvittanir og myndir eru vistuð á tækinu þínu. Röddin yfirgefur það aldrei. Þegar AI aðstoð er virk eru myndir af kvittunum og verðmiðum (minnkaðar) og texti, svo sem atriði sem þú talar inn, send á netþjóninn okkar eingöngu til lestrar; þetta er unnið strax og aldrei vistað.';
 
   @override
   String get aboutSection => 'Um';
@@ -778,7 +778,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Samanburður við kvittanir, lestur verðmiða og breyting setninga í lista. Myndir og rödd eru á tækinu þínu; aðeins texti er vinnslinn.';
+      'Les kvittanir og verðmiða úr myndum, passar saman kvittanir og breytir setningum í lista. Myndir eru sendar eingöngu til lestrar og aldrei vistaðar.';
 
   @override
   String aiQuotaReached(int used, int limit) {

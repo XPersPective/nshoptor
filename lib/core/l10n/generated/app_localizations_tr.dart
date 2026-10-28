@@ -518,7 +518,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listelerin, fiyatların, fişlerin ve fotoğrafların cihazında kalır. Fotoğraf ve ses asla cihazdan çıkmaz. Yapay zekâ yardımı açıkken yalnızca metin (örneğin fiş satırları ya da söylediklerin) işlenmek üzere sunucumuza gider ve saklanmaz.';
+      'Listelerin, fiyatların, fişlerin ve fotoğrafların cihazında saklanır. Ses asla cihazdan çıkmaz. Yapay zekâ yardımı açıkken fiş ve fiyat etiketi fotoğrafları (küçültülmüş) ile sesli girdiğin ürünler gibi metinler yalnızca okunmak üzere sunucumuza gönderilir; anında işlenir ve asla saklanmaz.';
 
   @override
   String get aboutSection => 'Hakkında';
@@ -774,7 +774,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Fişi eşleştirir, raf etiketini okur, cümleden liste çıkarır. Fotoğraf ve ses cihazında kalır; yalnızca metin işlenir.';
+      'Fotoğraflardan fişleri ve fiyat etiketlerini okur, fişleri eşleştirir ve cümleleri listeye dönüştürür. Fotoğraflar yalnızca okunmak üzere gönderilir ve asla saklanmaz.';
 
   @override
   String aiQuotaReached(int used, int limit) {

@@ -520,7 +520,7 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'As túas listas, prezos, recibos e fotos permanecen no teu dispositivo. As fotos e a voz nunca saen del. Cando a axuda de IA está activada, só se envía ao noso servidor texto (por exemplo, liñas do recibo ou o que ditaches) para procesalo e non se almacena.';
+      'As túas listas, prezos, recibos e fotos gárdanse no teu dispositivo. A voz nunca sae del. Cando a axuda de IA está activada, as fotos de recibos e de etiquetas de prezo (reducidas de tamaño) e o texto, como os artigos ditados, envíanse ao noso servidor só para seren lidos; procésanse de inmediato e nunca se almacenan.';
 
   @override
   String get aboutSection => 'Sobre';
@@ -780,7 +780,7 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Emparella recibos, le etiquetas de prezos e converte frases en listas. As fotos e a voz permanecen no teu dispositivo; só se procesa o texto.';
+      'Le recibos e etiquetas de prezo a partir de fotos, relaciona recibos e converte frases en listas. As fotos envíanse só para seren lidas e nunca se almacenan.';
 
   @override
   String aiQuotaReached(int used, int limit) {

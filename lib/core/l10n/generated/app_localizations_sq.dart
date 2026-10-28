@@ -521,7 +521,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listat, çmimet, faturat dhe fotografitë tuaja qëndrojnë në pajisjen tuaj. Fotografitë dhe zëri kurrë nuk largohen prej saj. Kur ndihma AI është aktive, vetëm teksti (p.sh. linjat e faturës ose ajo që diktuat) dërgohet te serveri ynë për t\'u përpunuar dhe nuk ruhet.';
+      'Listat, çmimet, faturat dhe fotografitë tuaja ruhen në pajisjen tuaj. Zëri nuk e braktis asnjëherë. Kur ndihma AI është e aktivizuar, fotografitë e faturave dhe të etiketave të çmimeve (të zvogëluara) dhe teksti, si artikujt e diktuar, dërgohen te serveri ynë vetëm për t\'u lexuar; përpunohen menjëherë dhe nuk ruhen kurrë.';
 
   @override
   String get aboutSection => 'Rreth';
@@ -780,7 +780,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Përputh faturat, lexon etiketat e çmimeve dhe kthen fjali në lista. Fotot dhe zëri mbeten te pajisja jote; vetëm teksti përpunohet.';
+      'Lexon faturat dhe etiketat e çmimeve nga fotografitë, përputh faturat dhe i kthen fjalitë në lista. Fotografitë dërgohen vetëm për t\'u lexuar dhe nuk ruhen kurrë.';
 
   @override
   String aiQuotaReached(int used, int limit) {

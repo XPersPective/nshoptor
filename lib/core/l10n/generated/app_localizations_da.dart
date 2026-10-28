@@ -519,7 +519,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Dine lister, priser, kvitteringer og fotos bliver på din enhed. Fotos og stemme forlader aldrig den. Når AI-hjælp er aktiveret, sendes kun tekst (f.eks. kvitteringslinjer eller det, du har dikteret) til vores server til behandling og gemmes ikke.';
+      'Dine lister, priser, kvitteringer og fotos gemmes på din enhed. Stemmen forlader den aldrig. Når AI-hjælp er slået til, sendes fotos af kvitteringer og prisskilte (formindsket) og tekst, f.eks. dikterede varer, kun til vores server for at blive læst; de behandles med det samme og gemmes aldrig.';
 
   @override
   String get aboutSection => 'Om';
@@ -776,7 +776,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Matcher kvitteringer, læser prislabel og omdanner sætninger til lister. Fotos og stemme bliver på din enhed; kun tekst behandles.';
+      'Læser kvitteringer og prisskilte fra fotos, matcher kvitteringer og laver sætninger om til lister. Fotos sendes kun for at blive læst og gemmes aldrig.';
 
   @override
   String aiQuotaReached(int used, int limit) {
