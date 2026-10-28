@@ -137,3 +137,31 @@ test('an offline model falls through to the next configured model', async () => 
   assert.equal(res.status, 200);
   assert.deepEqual(seen, ['offline-model', 'gemma']);
 });
+
+test('a slow model is hedged: the next model answers and wins', async () => {
+  const e = env();
+  e.AI_VISION_MODEL = 'slow-model,fast-model';
+  const order = [];
+  const fetchImpl = async (_, init) => {
+    const { model } = JSON.parse(init.body);
+    order.push(model);
+    if (model === 'slow-model') {
+      await new Promise((resolve, reject) => {
+        const t = setTimeout(resolve, 5000);
+        init.signal.addEventListener('abort', () => { clearTimeout(t); reject(new Error('aborted')); });
+      });
+    }
+    return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(receipt()) } }] }));
+  };
+  const original = VISION_TASKS.read_receipt_image.hedgeAfterMs;
+  VISION_TASKS.read_receipt_image.hedgeAfterMs = 50;
+  try {
+    const started = Date.now();
+    const res = await handleAi(req({ installId: ID, task: 'read_receipt_image', input: { images: [JPEG] } }), e, { fetchImpl });
+    assert.equal(res.status, 200);
+    assert.deepEqual(order, ['slow-model', 'fast-model']);
+    assert.ok(Date.now() - started < 2000);
+  } finally {
+    VISION_TASKS.read_receipt_image.hedgeAfterMs = original;
+  }
+});

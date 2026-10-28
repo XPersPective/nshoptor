@@ -44,6 +44,7 @@ export const VISION_TASKS = {
     vision: true,
     maxTokens: 8192,
     timeoutMs: 60000,
+    hedgeAfterMs: 12000,
     maxInputChars: MAX_IMAGES * MAX_IMAGE_CHARS + 2000,
     validate(input) {
       const list = images(input);
@@ -137,6 +138,7 @@ export const VISION_TASKS = {
     vision: true,
     maxTokens: 1024,
     timeoutMs: 45000,
+    hedgeAfterMs: 10000,
     maxInputChars: MAX_IMAGE_CHARS + 2000,
     validate(input) {
       const list = images(input);

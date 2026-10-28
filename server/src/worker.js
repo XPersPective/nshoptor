@@ -89,7 +89,7 @@ export async function handleAi(request, env, { fetchImpl = fetch, now = new Date
 
   // One paid request may make a second, corrective model call when the first
   // answer fails the task contract. The user is never charged twice.
-  const options = { fetchImpl, maxTokens: task.maxTokens, model: task.vision ? env.AI_VISION_MODEL || env.AI_MODEL : undefined, timeoutMs: task.timeoutMs };
+  const options = { fetchImpl, maxTokens: task.maxTokens, model: task.vision ? env.AI_VISION_MODEL || env.AI_MODEL : undefined, timeoutMs: task.timeoutMs, hedgeAfterMs: task.hedgeAfterMs };
   let failure = 'bad_model_output';
   let shape;
   for (let attempt = 0; attempt < 2; attempt++) {
