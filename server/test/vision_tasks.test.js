@@ -38,7 +38,6 @@ test('a complete receipt must reconcile exactly and keep each row arithmetic', (
     o => { o.items[1].lineTotal = '103.27'; o.total = '226.77'; },
     o => { o.items[0].lineTotal = '13,50'; },
     o => { o.items = []; },
-    o => { o.total = null; },
     o => { o.discounts = [{ amount: '-149' }]; },
     o => { o.schema = 1; },
     o => { o.status = 'done'; },
@@ -106,11 +105,11 @@ test('image tasks use the vision model, carry photos and retry once without a se
 
 test('a second invalid answer fails with a reason; text tasks keep their 16 KiB envelope', async () => {
   const e = env();
-  const fetchImpl = async () => new Response(JSON.stringify({ choices: [{ message: { content: '{"schema":2,"status":"complete","items":[]}' } }] }));
+  const fetchImpl = async () => new Response(JSON.stringify({ choices: [{ message: { content: '{"schema":2,"status":"complete","store":"S","date":"2024-02-01","total":"1.00","items":[]}' } }] }));
   const res = await handleAi(req({ installId: ID, task: 'read_receipt_image', input: { images: [JPEG] } }), e, { fetchImpl });
   assert.equal(res.status, 502);
   assert.deepEqual(await res.json(), { error: 'bad_model_output', reason: 'invalid_items',
-    shape: { keys: ['schema', 'status', 'items'], status: 'complete' } });
+    shape: { keys: ['schema', 'status', 'store', 'date', 'total', 'items'], status: 'complete' } });
   const text = await handleAi(req({ installId: ID, task: 'parse_list', input: { text: 'x' }, pad: 'p'.repeat(20_000) }), e, { fetchImpl });
   assert.equal(text.status, 413);
 });
@@ -120,7 +119,7 @@ test('an echoed status option list is accepted only when the full arithmetic hol
   assert.equal(R.clean(echoed).status, 'complete');
   assert.equal(R.clean({ ...receipt(), status: ['bottom_missing'] }).status, 'bottom_missing');
   assert.equal(R.clean({ ...receipt(), status: ' Complete ' }).status, 'complete');
-  assert.throws(() => R.clean({ ...receipt(), status: { any: 1 }, total: null }), /missing_total/);
+  assert.equal(R.clean({ ...receipt(), status: { any: 1 }, total: null }).status, 'bottom_missing');
 });
 
 test('an offline model falls through to the next configured model', async () => {
@@ -164,4 +163,10 @@ test('a slow model is hedged: the next model answers and wins', async () => {
   } finally {
     VISION_TASKS.read_receipt_image.hedgeAfterMs = original;
   }
+});
+
+test('a complete claim without header or total is reported as the missing part', () => {
+  assert.equal(R.clean({ ...receipt(), store: null }).status, 'top_missing');
+  assert.equal(R.clean({ ...receipt(), date: 'yesterday' }).status, 'top_missing');
+  assert.equal(R.clean({ ...receipt(), total: null }).status, 'bottom_missing');
 });

@@ -100,7 +100,12 @@ export const VISION_TASKS = {
         documentNumber: text(out.documentNumber, 40) || null,
         currency: currency(out.currency),
       };
-      if (out.status !== 'complete') return { ...header, items: [], discounts: [], tax: null, subtotal: null, total: null };
+      const partial = status => ({ ...header, status, items: [], discounts: [], tax: null, subtotal: null, total: null });
+      if (out.status !== 'complete') return partial(out.status);
+      // A "complete" claim is checked against what makes a receipt complete:
+      // without store and date the top is missing; without a total the bottom.
+      if (!header.store || !header.date) return partial('top_missing');
+      if (amount(out.total) === null) return partial('bottom_missing');
 
       if (!Array.isArray(out.items) || out.items.length === 0 || out.items.length > 150) throw new Error('invalid_items');
       const items = out.items.map(i => {
