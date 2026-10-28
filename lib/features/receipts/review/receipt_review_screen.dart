@@ -103,9 +103,6 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
 
     final diff = _c.reconciliationDifference;
     final metadata = _c.document?.metadata;
-    final decisionsComplete = _c.lines.every(
-      (l) => l.status != ReviewStatus.pending,
-    );
     final material = MaterialLocalizations.of(context);
     final printedAt = metadata?.dateTime;
     final metadataText = [
@@ -194,7 +191,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                         metadataText,
                         key: const Key('receipt_document_metadata'),
                       ),
-                    if (diff != null && decisionsComplete)
+                    if (diff != null)
                       Text(
                         '${l10n.receiptDiff}: ${money(diff)}',
                         style: TextStyle(
@@ -301,17 +298,11 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (!_c.reviewResolved) Text(l10n.receiptResolveLines),
                     Wrap(
                       spacing: 12,
                       runSpacing: 8,
                       alignment: WrapAlignment.end,
                       children: [
-                        TextButton(
-                          key: const Key('receipt_accept_all'),
-                          onPressed: _editable ? _c.acceptAll : null,
-                          child: Text(l10n.receiptCommit),
-                        ),
                         FilledButton(
                           key: const Key('receipt_commit_button'),
                           onPressed:

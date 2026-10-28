@@ -657,18 +657,39 @@ class ReceiptReviewController extends ChangeNotifier {
           // Positive receipt lines absent from the plan still belong in the list:
           // create the smallest valid planned row, then link its purchase so the
           // completed receipt is visible in the same shopping history.
-          final createdKey = '${normalizeName(line.name)}|${purchaseUnit.dbCode}';
+          final createdKey =
+              '${normalizeName(line.name)}|${purchaseUnit.dbCode}';
           if (plannedItemId == null &&
               !line.isDiscount &&
               quantity.isPositive) {
-            plannedItemId = createdForReceipt[createdKey] ??=
-                await ItemRepository(_db).addItem(
-                  listId: committedListId,
-                  name: line.name,
-                  quantity: quantity,
-                  unitCode: purchaseUnit.dbCode,
-                  priceIsUnitPrice: false,
-                );
+            final existing = createdForReceipt[createdKey];
+            if (existing == null) {
+              plannedItemId = createdForReceipt[createdKey] =
+                  await ItemRepository(_db).addItem(
+                    listId: committedListId,
+                    name: line.name,
+                    quantity: quantity,
+                    unitCode: purchaseUnit.dbCode,
+                    priceIsUnitPrice: false,
+                  );
+            } else {
+              // The same product scanned again: one row whose quantity is the
+              // sum of the receipt rows.
+              plannedItemId = existing;
+              final row = await (_db.select(
+                _db.plannedItems,
+              )..where((t) => t.id.equals(existing))).getSingle();
+              await (_db.update(
+                _db.plannedItems,
+              )..where((t) => t.id.equals(existing))).write(
+                PlannedItemsCompanion(
+                  plannedQuantity: Value(
+                    (DecimalFixed.parse(row.plannedQuantity) + quantity)
+                        .toDbString(),
+                  ),
+                ),
+              );
+            }
           }
           await repo.recordPurchase(
             listId: committedListId,

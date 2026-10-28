@@ -234,6 +234,7 @@ void main() {
     await controller.commit();
     final rows = await db.select(db.plannedItems).get();
     expect(rows, hasLength(1));
+    expect(DecimalFixed.parse(rows.single.plannedQuantity).toDbString(), '2');
     final entries = await db.select(db.purchaseEntries).get();
     expect(entries, hasLength(2));
     expect(entries.map((e) => e.plannedItemId).toSet(), {rows.single.id});

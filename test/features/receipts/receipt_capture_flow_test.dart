@@ -179,7 +179,6 @@ void main() {
       await tap(tester, 'receipt_resume_${draft.id}');
       await tap(tester, 'receipt_capture_camera');
       expect(find.byKey(const Key('receipt_line_2')), findsOneWidget);
-      await tap(tester, 'receipt_accept_all');
       await tap(tester, 'receipt_commit_button');
       expect(failure, isNull);
       expect(committed, isNotNull);
@@ -230,7 +229,6 @@ void main() {
       expect(plainRow, isNot(startsWith('·')));
       expect(plainRow, isNot(endsWith('×')));
 
-      await tap(tester, 'receipt_accept_all');
       await tap(tester, 'receipt_commit_button');
       expect(failure, isNull);
       expect(committed, isNotNull);
