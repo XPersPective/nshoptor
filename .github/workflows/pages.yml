@@ -6,6 +6,8 @@ on:
     paths:
       - 'website/**'
       - 'tool/site/**'
+      - 'lib/core/l10n/app_*.arb'
+      - 'lib/core/l10n/language_names.dart'
       - '.github/workflows/pages.yml'
 permissions:
   contents: read
