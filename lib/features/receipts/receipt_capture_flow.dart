@@ -17,6 +17,7 @@ import 'image_capture_service.dart';
 import 'image_capture_sheet.dart';
 import 'ocr_text_source.dart';
 import 'receipt_document.dart';
+import 'shelf_label/mlkit_text_source.dart';
 import 'receipt_draft_repository.dart';
 import 'receipt_image_store.dart';
 import 'review/receipt_review_controller.dart';
@@ -528,7 +529,9 @@ Future<_AiOutcome> _readWithAi(
         context,
         title: l10n.scanReceiptAction,
         pickImage: pickImage,
-        ocrSource: ocrSource,
+        // The image model reads the photo; device OCR runs only if the model
+        // is unreachable (it took minutes on slow devices before the request).
+        ocrSource: const _NoOcr(),
         preferredSource: source,
         requireText: false,
       );
@@ -591,15 +594,26 @@ Future<_AiOutcome> _readWithAi(
               SnackBar(content: Text(notice), showCloseIcon: true),
             );
         }
-        final single =
-            paths.length == 1 &&
-            lastCapture != null &&
-            lastCapture.scan.lines.any((l) => l.text.trim().isNotEmpty);
+        CapturedImage? offline;
+        if (paths.length == 1 && lastCapture != null) {
+          final owned = ocrSource == null ? MlKitTextSource() : null;
+          try {
+            final scan = await (ocrSource ?? owned!).scan(lastCapture.path);
+            if (scan.lines.any((l) => l.text.trim().isNotEmpty)) {
+              offline = CapturedImage(path: lastCapture.path, scan: scan);
+            }
+          } catch (_) {
+          } finally {
+            try {
+              await owned?.dispose();
+            } catch (_) {}
+          }
+        }
         return _AiProgress(
-          doc: single ? null : doc,
+          doc: offline != null ? null : doc,
           id: id,
           paths: paths,
-          capture: single ? lastCapture : null,
+          capture: offline,
           listId: ownedListId,
         );
       case AiReceiptNeedsMore(:final gap)
@@ -783,4 +797,12 @@ Future<void> _captureTip(BuildContext context, {required bool first}) async {
     ),
   );
   if (never == true) AppDefaults.setCaptureTipsEnabled(false);
+}
+
+/// Placeholder text source for image-model captures: no device OCR.
+final class _NoOcr implements OcrTextSource {
+  const _NoOcr();
+  @override
+  Future<OcrScanResult> scan(String imagePath) async =>
+      const OcrScanResult(lines: []);
 }

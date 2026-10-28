@@ -6,6 +6,7 @@ import '../../ai/ai_client.dart';
 import '../ocr_text_source.dart';
 import '../ocr_currency.dart';
 import 'ai_label_reader.dart';
+import 'mlkit_text_source.dart';
 import '../image_capture_service.dart';
 import '../image_capture_sheet.dart';
 import 'price_candidate_sheet.dart';
@@ -29,15 +30,37 @@ Future<PriceCandidate?> readShelfCandidate(
       context,
       title: l10n.scanPriceLabel,
       pickImage: pickImage,
-      ocrSource: ocrSource,
-      // The image model reads any script; device OCR is only a fallback.
+      // The image model reads any script; device OCR runs only when it is
+      // needed as a fallback (it is slow on weak devices).
+      ocrSource: aiOn ? const _NoOcr() : ocrSource,
       requireText: !aiOn,
     );
     if (capture is! CapturedImage) return null;
-    final scan = capture.scan;
+    if (!context.mounted) return null;
+    final lang = Localizations.localeOf(context).languageCode;
+    final reader = client == null
+        ? null
+        : AiLabelReader(client, localeCode: lang);
+    var fromAi = await reader?.readImage(
+      capture.path,
+      currencyCode: currencyCode,
+    );
+    var scan = capture.scan;
+    if (aiOn && (fromAi == null || fromAi.isEmpty)) {
+      final owned = ocrSource == null ? MlKitTextSource() : null;
+      try {
+        scan = await (ocrSource ?? owned!).scan(capture.path);
+      } catch (_) {
+        scan = const OcrScanResult(lines: []);
+      } finally {
+        try {
+          await owned?.dispose();
+        } catch (_) {}
+      }
+    }
     if (!context.mounted) return null;
     final evidence = detectOcrCurrency(
-      scan.lines.map((l) => l.text).join('\n'),
+      scan.lines.map((l) => l.text).join(String.fromCharCode(10)),
       fallback: currencyCode,
     );
     if (evidence.conflictsWith(currencyCode)) {
@@ -55,18 +78,7 @@ Future<PriceCandidate?> readShelfCandidate(
     }
     final local = ShelfPriceExtractor(defaultCurrency: currencyCode)
         .extract(scan.lines);
-    final lang = Localizations.localeOf(context).languageCode;
     final ocrText = scan.lines.map((l) => l.text).join(String.fromCharCode(10));
-    final reader = client == null
-        ? null
-        : AiLabelReader(client, localeCode: lang);
-    // The photo-reading model is primary whenever enabled. If it is
-    // unavailable, the text model reads device OCR; deterministic candidates
-    // stay as extra choices and the offline fallback.
-    var fromAi = await reader?.readImage(
-      capture.path,
-      currencyCode: currencyCode,
-    );
     if (fromAi == null && reader != null && ocrText.trim().isNotEmpty) {
       fromAi = await reader.read(ocrText, currencyCode: currencyCode);
     }
@@ -148,3 +160,10 @@ Future<String?> readShelfPrice(
   pickImage: pickImage,
   ocrSource: ocrSource,
 ))?.value.toDbString();
+
+final class _NoOcr implements OcrTextSource {
+  const _NoOcr();
+  @override
+  Future<OcrScanResult> scan(String imagePath) async =>
+      const OcrScanResult(lines: []);
+}
