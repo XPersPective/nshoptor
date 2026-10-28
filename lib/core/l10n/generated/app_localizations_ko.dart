@@ -1421,4 +1421,22 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get captureTipsSetting => '영수증 촬영 팁 표시';
+
+  @override
+  String get receiptReadingProgress => 'Reading the receipt…';
+
+  @override
+  String get receiptReadInBackground => 'Continue in background';
+
+  @override
+  String get receiptReadDoneTitle => 'Receipt read';
+
+  @override
+  String get receiptReadDoneBody => 'Tap to review and save it.';
+
+  @override
+  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+
+  @override
+  String get receiptReadFailedTitle => 'The receipt could not be read';
 }

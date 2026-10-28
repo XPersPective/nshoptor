@@ -22,6 +22,52 @@ class LocalNotificationsScheduler implements ReminderScheduler {
   static final _selected = StreamController<int>.broadcast();
   static Stream<int> get selectedReminders => _selected.stream;
 
+  /// Taps on "receipt read" notifications, as the list id to open.
+  static final _receiptLists = StreamController<int>.broadcast();
+  static Stream<int> get selectedReceiptLists => _receiptLists.stream;
+
+  static int? receiptListFromPayload(String? payload) {
+    final match = RegExp(r'^receipt-list:([1-9]\d{0,9})$').firstMatch(payload ?? '');
+    final id = match == null ? null : int.tryParse(match.group(1)!);
+    return id != null && id <= 2147483647 ? id : null;
+  }
+
+  Future<int?> initialReceiptListId() async {
+    await _ensureInit();
+    final launch = await _plugin.getNotificationAppLaunchDetails();
+    return launch?.didNotificationLaunchApp == true
+        ? receiptListFromPayload(launch?.notificationResponse?.payload)
+        : null;
+  }
+
+  /// Immediate notification when a receipt finishes reading in the
+  /// background (F08). Permission is never requested here: without it the
+  /// result simply waits in the list.
+  Future<void> showReceiptResult({
+    required int id,
+    required String title,
+    required String body,
+    int? listId,
+  }) async {
+    await _ensureInit();
+    await _plugin.show(
+      id: id,
+      title: title,
+      body: body,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          _channelId,
+          'NShoptor',
+          channelDescription: 'Shopping reminders',
+          importance: Importance.high,
+          priority: Priority.high,
+        ),
+        iOS: const DarwinNotificationDetails(),
+      ),
+      payload: listId == null ? null : 'receipt-list:$listId',
+    );
+  }
+
   static int? reminderIdFromPayload(String? payload) {
     final match = RegExp(r'^reminder:([1-9]\d{0,9})$').firstMatch(payload ?? '');
     final id = match == null ? null : int.tryParse(match.group(1)!);
@@ -65,6 +111,8 @@ class LocalNotificationsScheduler implements ReminderScheduler {
       onDidReceiveNotificationResponse: (response) {
         final id = reminderIdFromPayload(response.payload);
         if (id != null) _selected.add(id);
+        final list = receiptListFromPayload(response.payload);
+        if (list != null) _receiptLists.add(list);
       },
     );
     final ios = _plugin.resolvePlatformSpecificImplementation<

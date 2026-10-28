@@ -472,5 +472,11 @@
   "captureTipContinue": "Aynı fiş: önceki fotoğraftaki son ürün de görünsün.",
   "captureTipNeverShow": "Bir daha gösterme",
   "captureTipOk": "Anladım",
-  "captureTipsSetting": "Fiş çekme ipuçlarını göster"
+  "captureTipsSetting": "Fiş çekme ipuçlarını göster",
+  "receiptReadingProgress": "Fiş okunuyor…",
+  "receiptReadInBackground": "Arka planda devam et",
+  "receiptReadDoneTitle": "Fiş okundu",
+  "receiptReadDoneBody": "İncelemek ve kaydetmek için dokunun.",
+  "receiptReadMoreTitle": "Fişin devamını çekin",
+  "receiptReadFailedTitle": "Fiş okunamadı"
 }

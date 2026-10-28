@@ -2941,6 +2941,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show receipt capture tips'**
   String get captureTipsSetting;
+
+  /// No description provided for @receiptReadingProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading the receipt…'**
+  String get receiptReadingProgress;
+
+  /// No description provided for @receiptReadInBackground.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue in background'**
+  String get receiptReadInBackground;
+
+  /// No description provided for @receiptReadDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt read'**
+  String get receiptReadDoneTitle;
+
+  /// No description provided for @receiptReadDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to review and save it.'**
+  String get receiptReadDoneBody;
+
+  /// No description provided for @receiptReadMoreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Photograph the rest of the receipt'**
+  String get receiptReadMoreTitle;
+
+  /// No description provided for @receiptReadFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The receipt could not be read'**
+  String get receiptReadFailedTitle;
 }
 
 class _AppLocalizationsDelegate

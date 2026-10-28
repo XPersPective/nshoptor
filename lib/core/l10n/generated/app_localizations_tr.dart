@@ -1464,4 +1464,22 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get captureTipsSetting => 'Fiş çekme ipuçlarını göster';
+
+  @override
+  String get receiptReadingProgress => 'Fiş okunuyor…';
+
+  @override
+  String get receiptReadInBackground => 'Arka planda devam et';
+
+  @override
+  String get receiptReadDoneTitle => 'Fiş okundu';
+
+  @override
+  String get receiptReadDoneBody => 'İncelemek ve kaydetmek için dokunun.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fişin devamını çekin';
+
+  @override
+  String get receiptReadFailedTitle => 'Fiş okunamadı';
 }

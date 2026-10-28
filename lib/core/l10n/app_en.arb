@@ -522,5 +522,11 @@
   "captureTipContinue": "Same receipt: include the last item of the previous photo.",
   "captureTipNeverShow": "Don't show again",
   "captureTipOk": "Got it",
-  "captureTipsSetting": "Show receipt capture tips"
+  "captureTipsSetting": "Show receipt capture tips",
+  "receiptReadingProgress": "Reading the receipt…",
+  "receiptReadInBackground": "Continue in background",
+  "receiptReadDoneTitle": "Receipt read",
+  "receiptReadDoneBody": "Tap to review and save it.",
+  "receiptReadMoreTitle": "Photograph the rest of the receipt",
+  "receiptReadFailedTitle": "The receipt could not be read"
 }

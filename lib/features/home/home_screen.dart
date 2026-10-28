@@ -110,6 +110,7 @@ class _HomeShellState extends State<HomeShell> {
   int _tab = 0;
   final _nativeReminders = LocalNotificationsScheduler();
   StreamSubscription<int>? _notificationSubscription;
+  StreamSubscription<int>? _receiptSubscription;
   final _openedReminders = <int>{};
   Future<void> _reminderNavigation = Future<void>.value();
   bool _trialNoticeShowing = false;
@@ -126,9 +127,16 @@ class _HomeShellState extends State<HomeShell> {
       if (!mounted || widget.reminderScheduler != null) return;
       _notificationSubscription = LocalNotificationsScheduler.selectedReminders
           .listen((id) => unawaited(_openReminder(id)));
+      // A receipt read in the background opens its list (F08).
+      _receiptSubscription = LocalNotificationsScheduler.selectedReceiptLists
+          .listen((id) {
+            if (mounted) unawaited(_openShopping(context, id));
+          });
       try {
         final id = await _nativeReminders.initialReminderId();
         if (id != null && mounted) await _openReminder(id);
+        final list = await _nativeReminders.initialReceiptListId();
+        if (list != null && mounted) await _openShopping(context, list);
       } catch (_) {
         // Unsupported native notification services leave manual lists usable.
       }
@@ -139,6 +147,7 @@ class _HomeShellState extends State<HomeShell> {
   void dispose() {
     widget.subscriptions?.removeListener(_trialChanged);
     unawaited(_notificationSubscription?.cancel());
+    unawaited(_receiptSubscription?.cancel());
     super.dispose();
   }
 

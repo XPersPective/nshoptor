@@ -11,6 +11,7 @@ import '../../data/db/app_database.dart';
 import '../ai/ai_client.dart';
 import '../lists/item_repository.dart';
 import '../lists/list_repository.dart';
+import '../lists/reminders/local_notifications_scheduler.dart';
 import '../shopping_mode/shopping_repository.dart';
 import 'ai_image.dart';
 import 'ai_receipt_reader.dart';
@@ -565,10 +566,26 @@ Future<_AiOutcome> _readWithAi(
     }
     if (!context.mounted) return stop();
 
-    final read = await _withProgress(
-      context,
-      reader.read(paths, currencyCode: currencyCode),
-    );
+    final job = reader.read([...paths], currencyCode: currencyCode);
+    final waited = await _readingProgress(context, job);
+    if (waited == null) {
+      // The user left; the reading finishes in the background and reports
+      // with a notification that opens the list (F08).
+      unawaited(
+        _finishInBackground(
+          job,
+          db: db,
+          drafts: drafts,
+          l10n: l10n,
+          draftId: id,
+          listId: listId ?? ownedListId,
+          photos: [...paths],
+          currencyCode: currencyCode,
+        ),
+      );
+      return stop();
+    }
+    final read = waited;
     if (!context.mounted) return stop();
 
     switch (read) {
@@ -766,24 +783,147 @@ void _draftNotice(BuildContext context) {
   );
 }
 
-/// Blocks input while the model reads; the request itself has a timeout.
-Future<T> _withProgress<T>(BuildContext context, Future<T> work) async {
+/// Progress while the model reads. Returns the reading, or null when the
+/// user chose to continue in the background.
+Future<AiReceiptRead?> _readingProgress(
+  BuildContext context,
+  Future<AiReceiptRead> work,
+) async {
+  final l10n = AppLocalizations.of(context);
   final navigator = Navigator.of(context, rootNavigator: true);
+  final done = Completer<AiReceiptRead?>();
   var open = true;
   unawaited(
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => const PopScope(
+      builder: (dialogContext) => PopScope(
         canPop: false,
-        child: Center(child: CircularProgressIndicator()),
+        child: AlertDialog(
+          key: const Key('receipt_reading_progress'),
+          content: Row(
+            children: [
+              const SizedBox.square(
+                dimension: 32,
+                child: CircularProgressIndicator(),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Semantics(
+                  liveRegion: true,
+                  child: Text(l10n.receiptReadingProgress),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              key: const Key('receipt_read_in_background'),
+              onPressed: () {
+                if (!done.isCompleted) done.complete(null);
+              },
+              child: Text(l10n.receiptReadInBackground),
+            ),
+          ],
+        ),
       ),
     ).whenComplete(() => open = false),
   );
+  unawaited(
+    work.then(
+      (value) {
+        if (!done.isCompleted) done.complete(value);
+      },
+      onError: (Object e, StackTrace st) {
+        if (!done.isCompleted) done.completeError(e, st);
+      },
+    ),
+  );
   try {
-    return await work;
+    return await done.future;
   } finally {
     if (open && navigator.mounted) navigator.pop();
+  }
+}
+
+/// Completes a reading the user sent to the background: keeps the result in
+/// the list's receipt draft and tells the user with a notification whose tap
+/// opens that list (F08). Notifications are best effort.
+Future<void> _finishInBackground(
+  Future<AiReceiptRead> job, {
+  required AppDatabase db,
+  required ReceiptDraftRepository drafts,
+  required AppLocalizations l10n,
+  required int? draftId,
+  required int? listId,
+  required List<String> photos,
+  required String currencyCode,
+}) async {
+  final notifier = LocalNotificationsScheduler();
+  final notificationId =
+      900000000 + DateTime.now().millisecondsSinceEpoch % 99999999;
+  int? owner = listId;
+  try {
+    final read = await job;
+    Future<int> ensureList(String store, DateTime? at, String? currency) async {
+      final known = owner;
+      if (known != null) return known;
+      final created = await ListRepository(db).createList(
+        title: cleanStoreName(store),
+        currencyCode: currency ?? currencyCode,
+        plannedAt: at,
+      );
+      await ShoppingRepository(db).startShopping(created);
+      owner = created;
+      return created;
+    }
+
+    Future<void> keepIn(int list, ReceiptDocument document) async {
+      final previous = draftId;
+      if (previous != null) await drafts.discard(previous);
+      await drafts.save(document: document, listId: list, imagePaths: photos);
+    }
+
+    switch (read) {
+      case AiReceiptVerified(:final document):
+        final list = await ensureList(
+          document.metadata.store ?? '?',
+          document.metadata.dateTime,
+          document.metadata.currencyCode,
+        );
+        await keepIn(list, document);
+        await notifier.showReceiptResult(
+          id: notificationId,
+          title: l10n.receiptReadDoneTitle,
+          body: l10n.receiptReadDoneBody,
+          listId: list,
+        );
+      case AiReceiptNeedsMore(:final store, :final date, :final currency)
+          when store != null && date != null:
+        final hadList = owner != null;
+        final list = await ensureList(store, date, currency);
+        if (!hadList && draftId != null) {
+          final anonymous = (await drafts.pending())
+              .where((d) => d.id == draftId)
+              .firstOrNull;
+          if (anonymous != null) await keepIn(list, anonymous.document);
+        }
+        await notifier.showReceiptResult(
+          id: notificationId,
+          title: l10n.receiptReadMoreTitle,
+          body: l10n.receiptIncompleteTail,
+          listId: list,
+        );
+      default:
+        await notifier.showReceiptResult(
+          id: notificationId,
+          title: l10n.receiptReadFailedTitle,
+          body: l10n.receiptIncompleteHeader,
+          listId: owner,
+        );
+    }
+  } catch (_) {
+    // The draft (if any) stays in its list; nothing else to do.
   }
 }
 
