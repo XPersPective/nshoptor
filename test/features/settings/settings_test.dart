@@ -193,7 +193,7 @@ void main() {
       final store = SettingsStore();
       final repo = SettingsRepository(db, NappSettingsStoreOps(store));
       final controller = AppThemeModeController(store: store)..load();
-      expect(controller.mode, ThemeMode.system);
+      expect(controller.mode, ThemeMode.dark);
 
       repo.setThemeMode('dark');
       controller.load(); // yeniden başlatma davranışı

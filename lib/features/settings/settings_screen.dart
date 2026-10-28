@@ -205,15 +205,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
+        // One step up the type scale from the default app-bar title (F34).
         title: Text(l10n.navSettings),
+        titleTextStyle: text.headlineSmall?.copyWith(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+        // The plan badge never touches the screen edge (F02), LTR and RTL.
+        actionsPadding: const EdgeInsetsDirectional.only(end: 16),
         actions: [
           // Current plan at a glance; tap opens the plans. Large text keeps
           // only the icon (label in the tooltip) so the app bar never overflows.
           ListenableBuilder(
             listenable: widget.subscriptions ?? _neverChanges,
-            builder: (context, _) => PlanBadge(
+            builder: (context, _) => Center(
+              child: PlanBadge(
               badgeKey: const Key('settings_plan_badge'),
               label: _planLabel(l10n),
               trial:
@@ -223,6 +231,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onPressed: () => widget.subscriptions != null
                   ? _openPlans(context)
                   : _openPaywall(context),
+              ),
             ),
           ),
           if (widget.giftFlow != null) widget.giftFlow!,
@@ -233,29 +242,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
         builder: (context, _) => ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 8),
-              child: Row(
-                children: [
-                  Icon(Icons.workspace_premium_outlined, size: 18),
-                  SizedBox(width: 8),
-                  BrandWordmark(size: 15, suffix: 'Pro'),
-                ],
-              ),
-            ),
             ListTile(
               key: const Key('settings_pro_row'),
               leading: const Icon(Icons.workspace_premium_outlined),
               title: widget.subscriptions == null
                   ? Text(_proUnlocked ? l10n.proActiveLabel : l10n.proBuyLabel)
                   : switch (_tier) {
-                      Tier.max => const Align(
+                      Tier.max => Align(
                         alignment: AlignmentDirectional.centerStart,
-                        child: BrandWordmark(size: 16, suffix: 'Max'),
+                        child: BrandWordmark(
+                          size: text.titleMedium?.fontSize ?? 16,
+                          suffix: 'Max',
+                        ),
                       ),
-                      Tier.pro => const Align(
+                      Tier.pro => Align(
                         alignment: AlignmentDirectional.centerStart,
-                        child: BrandWordmark(size: 16, suffix: 'Pro'),
+                        child: BrandWordmark(
+                          size: text.titleMedium?.fontSize ?? 16,
+                          suffix: 'Pro',
+                        ),
                       ),
                       Tier.free => Text(l10n.plansAction),
                     },
@@ -270,7 +275,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   : _openPlans(context),
             ),
 
-            _SectionTitle(icon: Icons.language, label: l10n.languageLabel),
+            // F35: no caption above the dropdowns; the field label names them
+            // (visible and announced by TalkBack).
+            const SizedBox(height: 16),
             DropdownButtonFormField<String>(
               isExpanded: true,
               key: const Key('settings_language_dropdown'),
@@ -292,7 +299,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             // Biçim yereli DİLDEN BAĞIMSIZ seçilir (C-001, PB-042).
-            _SectionTitle(icon: Icons.numbers, label: l10n.formatLocaleLabel),
+            const SizedBox(height: 16),
             DropdownButtonFormField<String>(
               isExpanded: true,
               key: const Key('settings_format_locale_dropdown'),
@@ -317,10 +324,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
             ),
 
-            _SectionTitle(
-              icon: Icons.dark_mode_outlined,
-              label: l10n.themeLabel,
-            ),
+            const SizedBox(height: 16),
             DropdownButtonFormField<String>(
               isExpanded: true,
               key: const Key('settings_theme_dropdown'),
@@ -340,10 +344,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: _setThemeMode,
             ),
             const SizedBox(height: 12),
-            Text(
-              l10n.paletteLabel,
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
+            Text(l10n.paletteLabel, style: text.titleSmall),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
@@ -410,19 +411,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onChanged: (v) => setState(() => _repo.setDefaultCurrency(v!)),
               ),
             ),
-            CheckboxListTile(
+            // F37: "keep screen on" applies only in shopping mode; the
+            // subtitle says where it takes effect.
+            SwitchListTile(
+              key: const Key('settings_keep_awake'),
               secondary: const Icon(Icons.light_mode_outlined),
-              title: Text(l10n.keepAwakeLabel),
+              title: Text(l10n.keepScreenAwake),
+              subtitle: Text(l10n.shoppingTitle),
               value: _repo.keepScreenAwake,
-              onChanged: (v) =>
-                  setState(() => _repo.setKeepScreenAwake(v ?? false)),
+              onChanged: (v) => setState(() => _repo.setKeepScreenAwake(v)),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                l10n.roundingNote,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              child: Text(l10n.roundingNote, style: text.bodySmall),
             ),
 
             _SectionTitle(
@@ -444,7 +445,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(l10n.backupSizeWarning),
+              child: Text(l10n.backupSizeWarning, style: text.bodySmall),
             ),
             // Yedekleme Pro'ya özeldir (standart §3.8): Pro değilken
             // kilit simgesi + dokunuş paywall açar.
@@ -570,10 +571,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                l10n.privacyInfoBody,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+              child: Text(l10n.privacyInfoBody, style: text.bodyMedium),
             ),
 
             _SectionTitle(
@@ -644,10 +642,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _SectionTitle(icon: Icons.mic_none, label: l10n.voiceSettingsLabel),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                l10n.permissionsBody,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              child: Text(l10n.permissionsBody, style: text.bodySmall),
             ),
 
             // Destructive actions stay separate from optional assistance.
@@ -986,7 +981,12 @@ class _SectionTitle extends StatelessWidget {
           Icon(icon, size: 18),
           const SizedBox(width: 8),
           Expanded(
-            child: Text(label, style: Theme.of(context).textTheme.titleSmall),
+            child: Text(
+              label,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
           ),
         ],
       ),

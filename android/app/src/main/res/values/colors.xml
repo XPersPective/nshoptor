@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Dark splash background = app dark surface (forest palette), so the native and Flutter splash match. -->
-    <color name="splash_dark">#0F1511</color>
+    <color name="splash_dark">#07140E</color>
 </resources>
