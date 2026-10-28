@@ -317,12 +317,12 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                           onPressed:
                               _editable &&
                                   _c.documentReady &&
-                                  _c.reviewResolved &&
                                   !_c.currencyNeedsConfirmation &&
                                   (_c.detectedCurrency == null ||
                                       _c.detectedCurrency == widget.currency) &&
+                                  // Lines are kept unless removed (F17).
                                   _c.lines.any(
-                                    (l) => l.status == ReviewStatus.accepted,
+                                    (l) => l.status != ReviewStatus.ignored,
                                   )
                               ? () => _commit(context)
                               : null,
@@ -452,6 +452,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
 
   Future<void> _commit(BuildContext context) async {
     if (_saving) return;
+    _c.acceptPending();
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     setState(() {

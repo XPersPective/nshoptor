@@ -175,6 +175,15 @@ class ReceiptReviewController extends ChangeNotifier {
   bool get isPartialSelection =>
       document != null && acceptedTotalMinor != document!.metadata.totalMinor;
 
+  /// Saving keeps every line the user did not remove (F17).
+  void acceptPending() {
+    for (final line in lines) {
+      if (line.status == ReviewStatus.pending) {
+        line.status = ReviewStatus.accepted;
+      }
+    }
+  }
+
   void acceptAll() {
     for (final line in lines) {
       line.status = ReviewStatus.accepted;

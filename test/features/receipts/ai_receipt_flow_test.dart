@@ -152,6 +152,15 @@ void main() {
       expect(requests.last, ['/9j/photo-0', '/9j/photo-1']);
       expect(find.byKey(const Key('receipt_line_1')), findsOneWidget);
       expect(find.text('حليب'), findsWidgets);
+
+      // Saving keeps every line without per-line approval (F17).
+      await tester.ensureVisible(
+        find.byKey(const Key('receipt_commit_button')),
+      );
+      await tester.tap(find.byKey(const Key('receipt_commit_button')));
+      await settle();
+      expect(failure, isNull);
+      expect(await db.select(db.purchaseEntries).get(), hasLength(2));
     },
   );
 }
