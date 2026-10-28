@@ -396,8 +396,7 @@
   "demoProductTomato": "ಟೊಮೆಟೊ",
   "demoProductEggs": "ಮೊಟ್ಟೆ",
   "demoProductCoffee": "ಕಾಫಿ",
-  "demoProductDetergent": "ಡಿಟರ್ಜೆಂಟ್"
-,
+  "demoProductDetergent": "ಡಿಟರ್ಜೆಂಟ್",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "ಅದೇ ರಸೀದಿ: ಹಿಂದಿನ ಫೋಟೋದ ಕೊನೆಯ ವಸ್ತುವನ್ನು ಸೇರಿಸಿ.",
   "captureTipNeverShow": "ಮತ್ತೆ ತೋರಿಸಬೇಡಿ",
   "captureTipOk": "ಅರ್ಥವಾಯಿತು",
-  "captureTipsSetting": "ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ"
+  "captureTipsSetting": "ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ",
+  "listReceiptsSection": "ರಸೀದಿಗಳು",
+  "receiptStateComplete": "ಪೂರ್ಣ",
+  "receiptStateIncomplete": "ಅಪೂರ್ಣ",
+  "receiptStateFailed": "ವಿಫಲವಾಗಿದೆ",
+  "receiptStoreUnknown": "ಅಂಗಡಿಯನ್ನು ಓದಲಾಗಿಲ್ಲ",
+  "receiptDeleteAction": "ರಸೀದಿ ಅಳಿಸಿ",
+  "receiptDeleteConfirm": "ಈ ರಸೀದಿ ಮತ್ತು ಅದು ಸೇರಿಸಿದ ಐಟಂಗಳನ್ನು ಅಳಿಸಬೇಕೇ? ನಂತರ ಅದನ್ನು ಮತ್ತೆ ಆಮದು ಮಾಡಬಹುದು.",
+  "receiptDeleted": "ರಸೀದಿ ಅಳಿಸಲಾಗಿದೆ.",
+  "listReceiptsShowAll": "ಎಲ್ಲವನ್ನೂ ತೋರಿಸಿ ({count})",
+  "listReceiptsShowLess": "ಕಡಿಮೆ ತೋರಿಸಿ",
+  "receiptDateLabel": "ರಸೀದಿ ದಿನಾಂಕ: {date}"
 }

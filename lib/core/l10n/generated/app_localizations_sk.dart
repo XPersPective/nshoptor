@@ -1489,4 +1489,42 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Bločky';
+
+  @override
+  String get receiptStateComplete => 'Dokončený';
+
+  @override
+  String get receiptStateIncomplete => 'Neúplný';
+
+  @override
+  String get receiptStateFailed => 'Zlyhalo';
+
+  @override
+  String get receiptStoreUnknown => 'Obchod sa neprečítal';
+
+  @override
+  String get receiptDeleteAction => 'Odstrániť bloček';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Odstrániť tento bloček a položky, ktoré pridal? Neskôr ho môžete znova importovať.';
+
+  @override
+  String get receiptDeleted => 'Bloček bol odstránený.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Zobraziť všetky ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Zobraziť menej';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Dátum bločku: $date';
+  }
 }

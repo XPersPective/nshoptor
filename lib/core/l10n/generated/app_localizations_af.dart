@@ -1488,4 +1488,42 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Kwitansies';
+
+  @override
+  String get receiptStateComplete => 'Voltooi';
+
+  @override
+  String get receiptStateIncomplete => 'Onvolledig';
+
+  @override
+  String get receiptStateFailed => 'Misluk';
+
+  @override
+  String get receiptStoreUnknown => 'Winkel nie gelees nie';
+
+  @override
+  String get receiptDeleteAction => 'Vee kwitansie uit';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Vee hierdie kwitansie en die items wat dit bygevoeg het uit? Jy kan dit later weer invoer.';
+
+  @override
+  String get receiptDeleted => 'Kwitansie uitgevee.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Wys alles ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Wys minder';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kwitansiedatum: $date';
+  }
 }

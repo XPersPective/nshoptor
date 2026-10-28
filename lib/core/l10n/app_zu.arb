@@ -396,8 +396,7 @@
   "demoProductTomato": "Utamatisi",
   "demoProductEggs": "Amaqanda",
   "demoProductCoffee": "Ikhofi",
-  "demoProductDetergent": "Insipho yokuwasha"
-,
+  "demoProductDetergent": "Insipho yokuwasha",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Irisidi elifanayo: faka into yokugcina yesithombe esedlule.",
   "captureTipNeverShow": "Ungabonisi futhi",
   "captureTipOk": "Ngiyaqonda",
-  "captureTipsSetting": "Bonisa amathiphu okuthatha irisidi"
+  "captureTipsSetting": "Bonisa amathiphu okuthatha irisidi",
+  "listReceiptsSection": "Amarisidi",
+  "receiptStateComplete": "Kuqediwe",
+  "receiptStateIncomplete": "Akuphelele",
+  "receiptStateFailed": "Kuhlulekile",
+  "receiptStoreUnknown": "Isitolo asifundwanga",
+  "receiptDeleteAction": "Susa irisidi",
+  "receiptDeleteConfirm": "Susa le risidi nezinto ezengeziwe yiyo? Ungayingenisa futhi kamuva.",
+  "receiptDeleted": "Irisidi isusiwe.",
+  "listReceiptsShowAll": "Bonisa konke ({count})",
+  "listReceiptsShowLess": "Bonisa okumbalwa",
+  "receiptDateLabel": "Usuku lwerisidi: {date}"
 }

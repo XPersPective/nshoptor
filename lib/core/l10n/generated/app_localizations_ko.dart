@@ -1439,4 +1439,41 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => '영수증';
+
+  @override
+  String get receiptStateComplete => '완료';
+
+  @override
+  String get receiptStateIncomplete => '미완료';
+
+  @override
+  String get receiptStateFailed => '실패';
+
+  @override
+  String get receiptStoreUnknown => '매장을 읽지 못함';
+
+  @override
+  String get receiptDeleteAction => '영수증 삭제';
+
+  @override
+  String get receiptDeleteConfirm => '이 영수증과 추가된 항목을 삭제할까요? 나중에 다시 가져올 수 있습니다.';
+
+  @override
+  String get receiptDeleted => '영수증이 삭제되었습니다.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return '모두 보기($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => '간단히 보기';
+
+  @override
+  String receiptDateLabel(String date) {
+    return '영수증 날짜: $date';
+  }
 }

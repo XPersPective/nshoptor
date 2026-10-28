@@ -1493,4 +1493,42 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Mga resibo';
+
+  @override
+  String get receiptStateComplete => 'Kumpleto';
+
+  @override
+  String get receiptStateIncomplete => 'Hindi kumpleto';
+
+  @override
+  String get receiptStateFailed => 'Nabigo';
+
+  @override
+  String get receiptStoreUnknown => 'Hindi nabasa ang tindahan';
+
+  @override
+  String get receiptDeleteAction => 'Burahin ang resibo';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Burahin ang resibong ito at ang mga item na idinagdag nito? Maaari mo itong i-import muli mamaya.';
+
+  @override
+  String get receiptDeleted => 'Nabura ang resibo.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Ipakita lahat ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Ipakita nang mas kaunti';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Petsa ng resibo: $date';
+  }
 }

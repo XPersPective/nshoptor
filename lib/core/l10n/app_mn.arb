@@ -396,8 +396,7 @@
   "demoProductTomato": "Улаан лооль",
   "demoProductEggs": "Өндөг",
   "demoProductCoffee": "Кофе",
-  "demoProductDetergent": "Угаалгын нунтаг"
-,
+  "demoProductDetergent": "Угаалгын нунтаг",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Нэг баримт: өмнөх зургийн сүүлийн барааг оруулна уу.",
   "captureTipNeverShow": "Дахин үзүүлэхгүй",
   "captureTipOk": "Ойлголоо",
-  "captureTipsSetting": "Баримт авах зөвлөгөөг харуулах"
+  "captureTipsSetting": "Баримт авах зөвлөгөөг харуулах",
+  "listReceiptsSection": "Баримтууд",
+  "receiptStateComplete": "Дууссан",
+  "receiptStateIncomplete": "Дутуу",
+  "receiptStateFailed": "Амжилтгүй",
+  "receiptStoreUnknown": "Дэлгүүрийг уншиж чадсангүй",
+  "receiptDeleteAction": "Баримт устгах",
+  "receiptDeleteConfirm": "Энэ баримт болон түүний нэмсэн бараануудыг устгах уу? Дараа нь дахин импортлох боломжтой.",
+  "receiptDeleted": "Баримт устгагдлаа.",
+  "listReceiptsShowAll": "Бүгдийг харуулах ({count})",
+  "listReceiptsShowLess": "Цөөнийг харуулах",
+  "receiptDateLabel": "Баримтын огноо: {date}"
 }

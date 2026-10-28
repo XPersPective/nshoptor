@@ -1491,4 +1491,42 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Cheklar';
+
+  @override
+  String get receiptStateComplete => 'Yakunlangan';
+
+  @override
+  String get receiptStateIncomplete => 'Toʻliq emas';
+
+  @override
+  String get receiptStateFailed => 'Muvaffaqiyatsiz';
+
+  @override
+  String get receiptStoreUnknown => 'Doʻkon oʻqilmadi';
+
+  @override
+  String get receiptDeleteAction => 'Chekni oʻchirish';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Bu chek va u qoʻshgan mahsulotlar oʻchirilsinmi? Keyinroq uni qayta import qilishingiz mumkin.';
+
+  @override
+  String get receiptDeleted => 'Chek oʻchirildi.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Hammasini koʻrsatish ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Kamroq koʻrsatish';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Chek sanasi: $date';
+  }
 }

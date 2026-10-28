@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomaatit",
   "demoProductEggs": "Kananmunat",
   "demoProductCoffee": "Kahvi",
-  "demoProductDetergent": "Pesuaine"
-,
+  "demoProductDetergent": "Pesuaine",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Sama kuitti: ota mukaan edellisen kuvan viimeinen tuote.",
   "captureTipNeverShow": "Älä näytä uudelleen",
   "captureTipOk": "Selvä",
-  "captureTipsSetting": "Näytä kuitin kuvausvinkit"
+  "captureTipsSetting": "Näytä kuitin kuvausvinkit",
+  "listReceiptsSection": "Kuitit",
+  "receiptStateComplete": "Valmis",
+  "receiptStateIncomplete": "Keskeneräinen",
+  "receiptStateFailed": "Epäonnistui",
+  "receiptStoreUnknown": "Kauppaa ei luettu",
+  "receiptDeleteAction": "Poista kuitti",
+  "receiptDeleteConfirm": "Poistetaanko tämä kuitti ja sen lisäämät tuotteet? Voit tuoda sen myöhemmin uudelleen.",
+  "receiptDeleted": "Kuitti poistettu.",
+  "listReceiptsShowAll": "Näytä kaikki ({count})",
+  "listReceiptsShowLess": "Näytä vähemmän",
+  "receiptDateLabel": "Kuitin päivämäärä: {date}"
 }

@@ -1483,4 +1483,42 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Tšekid';
+
+  @override
+  String get receiptStateComplete => 'Valmis';
+
+  @override
+  String get receiptStateIncomplete => 'Puudulik';
+
+  @override
+  String get receiptStateFailed => 'Ebaõnnestus';
+
+  @override
+  String get receiptStoreUnknown => 'Poodi ei loetud';
+
+  @override
+  String get receiptDeleteAction => 'Kustuta tšekk';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Kas kustutada see tšekk ja selle lisatud tooted? Saad selle hiljem uuesti importida.';
+
+  @override
+  String get receiptDeleted => 'Tšekk kustutatud.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Näita kõiki ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Näita vähem';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tšeki kuupäev: $date';
+  }
 }

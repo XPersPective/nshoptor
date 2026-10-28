@@ -396,8 +396,7 @@
   "demoProductTomato": "ໝາກເລັ່ນ",
   "demoProductEggs": "ໄຂ່",
   "demoProductCoffee": "ກາເຟ",
-  "demoProductDetergent": "ຜົງຊັກຟອກ"
-,
+  "demoProductDetergent": "ຜົງຊັກຟອກ",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "ໃບຮັບເງິນໃບດຽວກັນ: ໃສ່ລາຍການສຸດທ້າຍຂອງຮູບກ່ອນໜ້າ.",
   "captureTipNeverShow": "ບໍ່ຕ້ອງສະແດງອີກ",
   "captureTipOk": "ເຂົ້າໃຈແລ້ວ",
-  "captureTipsSetting": "ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ"
+  "captureTipsSetting": "ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ",
+  "listReceiptsSection": "ໃບບິນ",
+  "receiptStateComplete": "ສຳເລັດ",
+  "receiptStateIncomplete": "ບໍ່ຄົບ",
+  "receiptStateFailed": "ລົ້ມເຫຼວ",
+  "receiptStoreUnknown": "ອ່ານຮ້ານບໍ່ໄດ້",
+  "receiptDeleteAction": "ລຶບໃບບິນ",
+  "receiptDeleteConfirm": "ລຶບໃບບິນນີ້ ແລະ ລາຍການທີ່ມັນເພີ່ມບໍ? ທ່ານສາມາດນຳເຂົ້າອີກຄັ້ງໃນພາຍຫຼັງ.",
+  "receiptDeleted": "ລຶບໃບບິນແລ້ວ.",
+  "listReceiptsShowAll": "ສະແດງທັງໝົດ ({count})",
+  "listReceiptsShowLess": "ສະແດງໜ້ອຍລົງ",
+  "receiptDateLabel": "ວັນທີໃບບິນ: {date}"
 }

@@ -1473,4 +1473,42 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'ใบเสร็จ';
+
+  @override
+  String get receiptStateComplete => 'เสร็จสมบูรณ์';
+
+  @override
+  String get receiptStateIncomplete => 'ไม่สมบูรณ์';
+
+  @override
+  String get receiptStateFailed => 'ล้มเหลว';
+
+  @override
+  String get receiptStoreUnknown => 'อ่านชื่อร้านไม่ได้';
+
+  @override
+  String get receiptDeleteAction => 'ลบใบเสร็จ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ลบใบเสร็จนี้และรายการที่เพิ่มเข้ามาหรือไม่ คุณนำเข้าอีกครั้งได้ภายหลัง';
+
+  @override
+  String get receiptDeleted => 'ลบใบเสร็จแล้ว';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'แสดงทั้งหมด ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'แสดงน้อยลง';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'วันที่ในใบเสร็จ: $date';
+  }
 }

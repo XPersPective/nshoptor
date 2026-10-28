@@ -1479,4 +1479,42 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Hóa đơn';
+
+  @override
+  String get receiptStateComplete => 'Hoàn tất';
+
+  @override
+  String get receiptStateIncomplete => 'Chưa hoàn tất';
+
+  @override
+  String get receiptStateFailed => 'Thất bại';
+
+  @override
+  String get receiptStoreUnknown => 'Không đọc được cửa hàng';
+
+  @override
+  String get receiptDeleteAction => 'Xóa hóa đơn';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Xóa hóa đơn này và các mặt hàng nó đã thêm? Bạn có thể nhập lại sau.';
+
+  @override
+  String get receiptDeleted => 'Đã xóa hóa đơn.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Hiện tất cả ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Thu gọn';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Ngày hóa đơn: $date';
+  }
 }

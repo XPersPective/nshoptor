@@ -1481,4 +1481,42 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'ქვითრები';
+
+  @override
+  String get receiptStateComplete => 'დასრულებული';
+
+  @override
+  String get receiptStateIncomplete => 'არასრული';
+
+  @override
+  String get receiptStateFailed => 'ვერ მოხერხდა';
+
+  @override
+  String get receiptStoreUnknown => 'მაღაზია ვერ წაიკითხა';
+
+  @override
+  String get receiptDeleteAction => 'ქვითრის წაშლა';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'წაიშალოს ეს ქვითარი და მის მიერ დამატებული ნივთები? მოგვიანებით შეგიძლიათ ხელახლა შემოიტანოთ.';
+
+  @override
+  String get receiptDeleted => 'ქვითარი წაიშალა.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ყველას ჩვენება ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'ნაკლების ჩვენება';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ქვითრის თარიღი: $date';
+  }
 }

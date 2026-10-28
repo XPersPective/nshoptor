@@ -1493,4 +1493,42 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'ரசீதுகள்';
+
+  @override
+  String get receiptStateComplete => 'முடிந்தது';
+
+  @override
+  String get receiptStateIncomplete => 'முழுமையற்றது';
+
+  @override
+  String get receiptStateFailed => 'தோல்வி';
+
+  @override
+  String get receiptStoreUnknown => 'கடை படிக்கப்படவில்லை';
+
+  @override
+  String get receiptDeleteAction => 'ரசீதை நீக்கு';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'இந்த ரசீதையும் அது சேர்த்த பொருட்களையும் நீக்கவா? பின்னர் மீண்டும் இறக்குமதி செய்யலாம்.';
+
+  @override
+  String get receiptDeleted => 'ரசீது நீக்கப்பட்டது.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'அனைத்தையும் காட்டு ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'குறைவாகக் காட்டு';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ரசீது தேதி: $date';
+  }
 }

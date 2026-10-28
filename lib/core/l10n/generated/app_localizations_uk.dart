@@ -1491,4 +1491,42 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Чеки';
+
+  @override
+  String get receiptStateComplete => 'Завершено';
+
+  @override
+  String get receiptStateIncomplete => 'Незавершено';
+
+  @override
+  String get receiptStateFailed => 'Помилка';
+
+  @override
+  String get receiptStoreUnknown => 'Магазин не розпізнано';
+
+  @override
+  String get receiptDeleteAction => 'Видалити чек';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Видалити цей чек і додані ним товари? Пізніше його можна імпортувати знову.';
+
+  @override
+  String get receiptDeleted => 'Чек видалено.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Показати всі ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Показати менше';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Дата чека: $date';
+  }
 }

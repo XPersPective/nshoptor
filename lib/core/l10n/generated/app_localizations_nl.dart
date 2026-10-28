@@ -1491,4 +1491,42 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Bonnen';
+
+  @override
+  String get receiptStateComplete => 'Voltooid';
+
+  @override
+  String get receiptStateIncomplete => 'Onvolledig';
+
+  @override
+  String get receiptStateFailed => 'Mislukt';
+
+  @override
+  String get receiptStoreUnknown => 'Winkel niet gelezen';
+
+  @override
+  String get receiptDeleteAction => 'Bon verwijderen';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Deze bon en de toegevoegde artikelen verwijderen? Je kunt hem later opnieuw importeren.';
+
+  @override
+  String get receiptDeleted => 'Bon verwijderd.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Alles tonen ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Minder tonen';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Bondatum: $date';
+  }
 }

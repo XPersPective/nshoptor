@@ -1492,4 +1492,42 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Αποδείξεις';
+
+  @override
+  String get receiptStateComplete => 'Ολοκληρωμένη';
+
+  @override
+  String get receiptStateIncomplete => 'Ελλιπής';
+
+  @override
+  String get receiptStateFailed => 'Απέτυχε';
+
+  @override
+  String get receiptStoreUnknown => 'Το κατάστημα δεν αναγνώστηκε';
+
+  @override
+  String get receiptDeleteAction => 'Διαγραφή απόδειξης';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Διαγραφή αυτής της απόδειξης και των ειδών που πρόσθεσε; Μπορείτε να την εισαγάγετε ξανά αργότερα.';
+
+  @override
+  String get receiptDeleted => 'Η απόδειξη διαγράφηκε.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Εμφάνιση όλων ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Εμφάνιση λιγότερων';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Ημερομηνία απόδειξης: $date';
+  }
 }

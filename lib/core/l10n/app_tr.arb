@@ -428,8 +428,7 @@
   "demoProductTomato": "Domates",
   "demoProductEggs": "Yumurta",
   "demoProductCoffee": "Kahve",
-  "demoProductDetergent": "Deterjan"
-,
+  "demoProductDetergent": "Deterjan",
   "sendAction": "Gönder",
   "previousMonthAction": "Önceki ay",
   "nextMonthAction": "Sonraki ay",
@@ -478,5 +477,16 @@
   "receiptReadDoneTitle": "Fiş okundu",
   "receiptReadDoneBody": "İncelemek ve kaydetmek için dokunun.",
   "receiptReadMoreTitle": "Fişin devamını çekin",
-  "receiptReadFailedTitle": "Fiş okunamadı"
+  "receiptReadFailedTitle": "Fiş okunamadı",
+  "listReceiptsSection": "Fişler",
+  "receiptStateComplete": "Tamamlandı",
+  "receiptStateIncomplete": "Eksik",
+  "receiptStateFailed": "Başarısız",
+  "receiptStoreUnknown": "Mağaza okunamadı",
+  "receiptDeleteAction": "Fişi sil",
+  "receiptDeleteConfirm": "Bu fiş ve eklediği ürünler silinsin mi? Daha sonra yeniden içe aktarabilirsiniz.",
+  "receiptDeleted": "Fiş silindi.",
+  "listReceiptsShowAll": "Tümünü göster ({count})",
+  "listReceiptsShowLess": "Daha az göster",
+  "receiptDateLabel": "Fiş tarihi: {date}"
 }

@@ -1487,4 +1487,42 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'ပြေစာများ';
+
+  @override
+  String get receiptStateComplete => 'ပြီးဆုံး';
+
+  @override
+  String get receiptStateIncomplete => 'မပြည့်စုံ';
+
+  @override
+  String get receiptStateFailed => 'မအောင်မြင်';
+
+  @override
+  String get receiptStoreUnknown => 'ဆိုင်ကို မဖတ်နိုင်ပါ';
+
+  @override
+  String get receiptDeleteAction => 'ပြေစာ ဖျက်ရန်';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ဤပြေစာနှင့် ၎င်းထည့်ခဲ့သော ပစ္စည်းများကို ဖျက်မလား။ နောက်မှ ပြန်တင်သွင်းနိုင်ပါသည်။';
+
+  @override
+  String get receiptDeleted => 'ပြေစာ ဖျက်ပြီးပါပြီ။';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'အားလုံးပြရန် ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'နည်းနည်းပြရန်';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ပြေစာ ရက်စွဲ- $date';
+  }
 }

@@ -396,8 +396,7 @@
   "demoProductTomato": "토마토",
   "demoProductEggs": "달걀",
   "demoProductCoffee": "커피",
-  "demoProductDetergent": "세제"
-,
+  "demoProductDetergent": "세제",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "같은 영수증입니다. 이전 사진의 마지막 품목을 포함하세요.",
   "captureTipNeverShow": "다시 표시하지 않음",
   "captureTipOk": "확인",
-  "captureTipsSetting": "영수증 촬영 팁 표시"
+  "captureTipsSetting": "영수증 촬영 팁 표시",
+  "listReceiptsSection": "영수증",
+  "receiptStateComplete": "완료",
+  "receiptStateIncomplete": "미완료",
+  "receiptStateFailed": "실패",
+  "receiptStoreUnknown": "매장을 읽지 못함",
+  "receiptDeleteAction": "영수증 삭제",
+  "receiptDeleteConfirm": "이 영수증과 추가된 항목을 삭제할까요? 나중에 다시 가져올 수 있습니다.",
+  "receiptDeleted": "영수증이 삭제되었습니다.",
+  "listReceiptsShowAll": "모두 보기({count})",
+  "listReceiptsShowLess": "간단히 보기",
+  "receiptDateLabel": "영수증 날짜: {date}"
 }

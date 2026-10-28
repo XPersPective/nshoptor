@@ -1490,4 +1490,42 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Scontrini';
+
+  @override
+  String get receiptStateComplete => 'Completo';
+
+  @override
+  String get receiptStateIncomplete => 'Incompleto';
+
+  @override
+  String get receiptStateFailed => 'Non riuscito';
+
+  @override
+  String get receiptStoreUnknown => 'Negozio non letto';
+
+  @override
+  String get receiptDeleteAction => 'Elimina scontrino';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Eliminare questo scontrino e gli articoli che ha aggiunto? Potrai importarlo di nuovo in seguito.';
+
+  @override
+  String get receiptDeleted => 'Scontrino eliminato.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Mostra tutti ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Mostra meno';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data scontrino: $date';
+  }
 }

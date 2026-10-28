@@ -1485,4 +1485,42 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Účtenky';
+
+  @override
+  String get receiptStateComplete => 'Dokončeno';
+
+  @override
+  String get receiptStateIncomplete => 'Neúplné';
+
+  @override
+  String get receiptStateFailed => 'Selhalo';
+
+  @override
+  String get receiptStoreUnknown => 'Obchod nebyl přečten';
+
+  @override
+  String get receiptDeleteAction => 'Smazat účtenku';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Smazat tuto účtenku a položky, které přidala? Později ji můžete importovat znovu.';
+
+  @override
+  String get receiptDeleted => 'Účtenka byla smazána.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Zobrazit vše ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Zobrazit méně';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Datum účtenky: $date';
+  }
 }

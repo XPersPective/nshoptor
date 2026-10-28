@@ -396,8 +396,7 @@
   "demoProductTomato": "Tomater",
   "demoProductEggs": "Ägg",
   "demoProductCoffee": "Kaffe",
-  "demoProductDetergent": "Tvättmedel"
-,
+  "demoProductDetergent": "Tvättmedel",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Samma kvitto: ta med den sista varan från föregående foto.",
   "captureTipNeverShow": "Visa inte igen",
   "captureTipOk": "Uppfattat",
-  "captureTipsSetting": "Visa tips för att fotografera kvitton"
+  "captureTipsSetting": "Visa tips för att fotografera kvitton",
+  "listReceiptsSection": "Kvitton",
+  "receiptStateComplete": "Klart",
+  "receiptStateIncomplete": "Ofullständigt",
+  "receiptStateFailed": "Misslyckades",
+  "receiptStoreUnknown": "Butiken lästes inte",
+  "receiptDeleteAction": "Radera kvitto",
+  "receiptDeleteConfirm": "Radera det här kvittot och varorna det lade till? Du kan importera det igen senare.",
+  "receiptDeleted": "Kvittot har raderats.",
+  "listReceiptsShowAll": "Visa alla ({count})",
+  "listReceiptsShowLess": "Visa färre",
+  "receiptDateLabel": "Kvittodatum: {date}"
 }

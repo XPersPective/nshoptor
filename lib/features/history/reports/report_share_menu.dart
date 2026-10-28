@@ -68,6 +68,49 @@ Future<ReportShareAction?> showReportShareMenu(BuildContext context) {
   );
 }
 
+/// Opens [showReportShareMenu] and runs the chosen action for [document]:
+/// shares a PDF or CSV file through the system share sheet, or prints.
+/// Shared by [ReportShareButton] and menu entries such as the list overflow.
+Future<void> shareReportFromMenu(
+  BuildContext context, {
+  required Future<ReportDocument> Function() document,
+  ReportExportService service = const ReportExportService(),
+  ValueChanged<bool>? onBusy,
+}) async {
+  final action = await showReportShareMenu(context);
+  if (action == null || !context.mounted) return;
+  final l = AppLocalizations.of(context);
+  final locale = formatLocaleCode(context);
+  final rtl = Directionality.of(context) == TextDirection.rtl;
+  final messenger = ScaffoldMessenger.of(context);
+  final box = context.findRenderObject() as RenderBox?;
+  final origin = box == null || !box.hasSize
+      ? const Rect.fromLTWH(0, 0, 1, 1)
+      : box.localToGlobal(Offset.zero) & box.size;
+  onBusy?.call(true);
+  try {
+    final loaded = await document();
+    final text = ReportText(l, locale, loaded.currencyCode);
+    switch (action) {
+      case ReportShareAction.pdf || ReportShareAction.csv:
+        final format = action == ReportShareAction.pdf
+            ? ReportFileFormat.pdf
+            : ReportFileFormat.csv;
+        final data = await service.bytes(loaded, text, format, rtl: rtl);
+        if (!context.mounted) return;
+        await service.share(data, format, origin);
+      case ReportShareAction.print:
+        await service.printReport(loaded, text, rtl: rtl);
+    }
+  } catch (_) {
+    messenger
+      ..clearSnackBars()
+      ..showSnackBar(SnackBar(content: Text(l.saveFailed), showCloseIcon: true));
+  } finally {
+    onBusy?.call(false);
+  }
+}
+
 /// One Share action for a report: opens [showReportShareMenu], then shares a
 /// PDF or CSV file through the system share sheet, or prints.
 class ReportShareButton extends StatefulWidget {
@@ -105,41 +148,14 @@ class _ReportShareButtonState extends State<ReportShareButton> {
 
   Future<void> _open() async {
     if (_busy) return;
-    final action = await showReportShareMenu(context);
-    if (action == null || !mounted) return;
-    final l = AppLocalizations.of(context);
-    final locale = formatLocaleCode(context);
-    final rtl = Directionality.of(context) == TextDirection.rtl;
-    final messenger = ScaffoldMessenger.of(context);
-    final box = context.findRenderObject() as RenderBox?;
-    final origin = box == null || !box.hasSize
-        ? const Rect.fromLTWH(0, 0, 1, 1)
-        : box.localToGlobal(Offset.zero) & box.size;
-    _setBusy(true);
-    try {
-      final document = await widget.document();
-      final text = ReportText(l, locale, document.currencyCode);
-      final service = widget.service;
-      switch (action) {
-        case ReportShareAction.pdf || ReportShareAction.csv:
-          final format = action == ReportShareAction.pdf
-              ? ReportFileFormat.pdf
-              : ReportFileFormat.csv;
-          final data = await service.bytes(document, text, format, rtl: rtl);
-          if (!mounted) return;
-          await service.share(data, format, origin);
-        case ReportShareAction.print:
-          await service.printReport(document, text, rtl: rtl);
-      }
-    } catch (_) {
-      messenger
-        ..clearSnackBars()
-        ..showSnackBar(
-          SnackBar(content: Text(l.saveFailed), showCloseIcon: true),
-        );
-    } finally {
-      if (mounted) _setBusy(false);
-    }
+    await shareReportFromMenu(
+      context,
+      document: widget.document,
+      service: widget.service,
+      onBusy: (busy) {
+        if (mounted) _setBusy(busy);
+      },
+    );
   }
 
   @override

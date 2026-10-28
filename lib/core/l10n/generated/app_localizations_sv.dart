@@ -1483,4 +1483,42 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Kvitton';
+
+  @override
+  String get receiptStateComplete => 'Klart';
+
+  @override
+  String get receiptStateIncomplete => 'Ofullständigt';
+
+  @override
+  String get receiptStateFailed => 'Misslyckades';
+
+  @override
+  String get receiptStoreUnknown => 'Butiken lästes inte';
+
+  @override
+  String get receiptDeleteAction => 'Radera kvitto';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Radera det här kvittot och varorna det lade till? Du kan importera det igen senare.';
+
+  @override
+  String get receiptDeleted => 'Kvittot har raderats.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Visa alla ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Visa färre';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kvittodatum: $date';
+  }
 }

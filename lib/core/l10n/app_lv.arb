@@ -396,8 +396,7 @@
   "demoProductTomato": "Tomāti",
   "demoProductEggs": "Olas",
   "demoProductCoffee": "Kafija",
-  "demoProductDetergent": "Mazgāšanas līdzeklis"
-,
+  "demoProductDetergent": "Mazgāšanas līdzeklis",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Tas pats čeks: iekļaujiet iepriekšējā foto pēdējo preci.",
   "captureTipNeverShow": "Vairs nerādīt",
   "captureTipOk": "Skaidrs",
-  "captureTipsSetting": "Rādīt čeka fotografēšanas padomus"
+  "captureTipsSetting": "Rādīt čeka fotografēšanas padomus",
+  "listReceiptsSection": "Čeki",
+  "receiptStateComplete": "Pabeigts",
+  "receiptStateIncomplete": "Nepilnīgs",
+  "receiptStateFailed": "Neizdevās",
+  "receiptStoreUnknown": "Veikals nav nolasīts",
+  "receiptDeleteAction": "Dzēst čeku",
+  "receiptDeleteConfirm": "Vai dzēst šo čeku un tā pievienotās preces? Vēlāk to varēsiet importēt vēlreiz.",
+  "receiptDeleted": "Čeks izdzēsts.",
+  "listReceiptsShowAll": "Rādīt visus ({count})",
+  "listReceiptsShowLess": "Rādīt mazāk",
+  "receiptDateLabel": "Čeka datums: {date}"
 }

@@ -1477,4 +1477,42 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'رسیدها';
+
+  @override
+  String get receiptStateComplete => 'کامل';
+
+  @override
+  String get receiptStateIncomplete => 'ناقص';
+
+  @override
+  String get receiptStateFailed => 'ناموفق';
+
+  @override
+  String get receiptStoreUnknown => 'فروشگاه خوانده نشد';
+
+  @override
+  String get receiptDeleteAction => 'حذف رسید';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'این رسید و اقلامی که اضافه کرده حذف شوند؟ بعداً می‌توانید دوباره آن را وارد کنید.';
+
+  @override
+  String get receiptDeleted => 'رسید حذف شد.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'نمایش همه ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'نمایش کمتر';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'تاریخ رسید: $date';
+  }
 }

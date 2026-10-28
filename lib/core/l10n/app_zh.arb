@@ -396,8 +396,7 @@
   "demoProductTomato": "番茄",
   "demoProductEggs": "鸡蛋",
   "demoProductCoffee": "咖啡",
-  "demoProductDetergent": "洗涤剂"
-,
+  "demoProductDetergent": "洗涤剂",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "同一张收据：请包含上一张照片的最后一件商品。",
   "captureTipNeverShow": "不再显示",
   "captureTipOk": "知道了",
-  "captureTipsSetting": "显示收据拍摄提示"
+  "captureTipsSetting": "显示收据拍摄提示",
+  "listReceiptsSection": "小票",
+  "receiptStateComplete": "已完成",
+  "receiptStateIncomplete": "未完成",
+  "receiptStateFailed": "失败",
+  "receiptStoreUnknown": "未识别商店",
+  "receiptDeleteAction": "删除小票",
+  "receiptDeleteConfirm": "要删除此小票及其添加的商品吗？之后可以再次导入。",
+  "receiptDeleted": "小票已删除。",
+  "listReceiptsShowAll": "显示全部（{count}）",
+  "listReceiptsShowLess": "收起",
+  "receiptDateLabel": "小票日期：{date}"
 }

@@ -1491,4 +1491,42 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Paragony';
+
+  @override
+  String get receiptStateComplete => 'Ukończony';
+
+  @override
+  String get receiptStateIncomplete => 'Niekompletny';
+
+  @override
+  String get receiptStateFailed => 'Niepowodzenie';
+
+  @override
+  String get receiptStoreUnknown => 'Nie odczytano sklepu';
+
+  @override
+  String get receiptDeleteAction => 'Usuń paragon';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Usunąć ten paragon i dodane przez niego produkty? Później możesz zaimportować go ponownie.';
+
+  @override
+  String get receiptDeleted => 'Paragon usunięty.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Pokaż wszystkie ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Pokaż mniej';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data paragonu: $date';
+  }
 }

@@ -1490,4 +1490,42 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Касови бележки';
+
+  @override
+  String get receiptStateComplete => 'Завършена';
+
+  @override
+  String get receiptStateIncomplete => 'Непълна';
+
+  @override
+  String get receiptStateFailed => 'Неуспешна';
+
+  @override
+  String get receiptStoreUnknown => 'Магазинът не е разчетен';
+
+  @override
+  String get receiptDeleteAction => 'Изтриване на бележката';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Да се изтрият ли тази бележка и добавените от нея артикули? По-късно можете да я импортирате отново.';
+
+  @override
+  String get receiptDeleted => 'Бележката е изтрита.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Покажи всички ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Покажи по-малко';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Дата на бележката: $date';
+  }
 }

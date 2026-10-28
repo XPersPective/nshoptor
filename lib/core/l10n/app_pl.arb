@@ -396,8 +396,7 @@
   "demoProductTomato": "Pomidory",
   "demoProductEggs": "Jajka",
   "demoProductCoffee": "Kawa",
-  "demoProductDetergent": "Proszek do prania"
-,
+  "demoProductDetergent": "Proszek do prania",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Ten sam paragon: uwzględnij ostatnią pozycję z poprzedniego zdjęcia.",
   "captureTipNeverShow": "Nie pokazuj ponownie",
   "captureTipOk": "Rozumiem",
-  "captureTipsSetting": "Pokazuj wskazówki dotyczące fotografowania paragonu"
+  "captureTipsSetting": "Pokazuj wskazówki dotyczące fotografowania paragonu",
+  "listReceiptsSection": "Paragony",
+  "receiptStateComplete": "Ukończony",
+  "receiptStateIncomplete": "Niekompletny",
+  "receiptStateFailed": "Niepowodzenie",
+  "receiptStoreUnknown": "Nie odczytano sklepu",
+  "receiptDeleteAction": "Usuń paragon",
+  "receiptDeleteConfirm": "Usunąć ten paragon i dodane przez niego produkty? Później możesz zaimportować go ponownie.",
+  "receiptDeleted": "Paragon usunięty.",
+  "listReceiptsShowAll": "Pokaż wszystkie ({count})",
+  "listReceiptsShowLess": "Pokaż mniej",
+  "receiptDateLabel": "Data paragonu: {date}"
 }

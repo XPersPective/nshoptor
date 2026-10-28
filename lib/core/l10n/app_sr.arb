@@ -396,8 +396,7 @@
   "demoProductTomato": "Paradajz",
   "demoProductEggs": "Jaja",
   "demoProductCoffee": "Kafa",
-  "demoProductDetergent": "Deterdžent"
-,
+  "demoProductDetergent": "Deterdžent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Исти рачун: укључите последњи артикал са претходне фотографије.",
   "captureTipNeverShow": "Не приказуј поново",
   "captureTipOk": "Разумем",
-  "captureTipsSetting": "Прикажи савете за снимање рачуна"
+  "captureTipsSetting": "Прикажи савете за снимање рачуна",
+  "listReceiptsSection": "Рачуни",
+  "receiptStateComplete": "Завршен",
+  "receiptStateIncomplete": "Непотпун",
+  "receiptStateFailed": "Неуспешно",
+  "receiptStoreUnknown": "Продавница није прочитана",
+  "receiptDeleteAction": "Избриши рачун",
+  "receiptDeleteConfirm": "Избрисати овај рачун и ставке које је додао? Касније га можете поново увести.",
+  "receiptDeleted": "Рачун је избрисан.",
+  "listReceiptsShowAll": "Прикажи све ({count})",
+  "listReceiptsShowLess": "Прикажи мање",
+  "receiptDateLabel": "Датум рачуна: {date}"
 }

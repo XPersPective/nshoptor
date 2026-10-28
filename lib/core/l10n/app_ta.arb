@@ -396,8 +396,7 @@
   "demoProductTomato": "தக்காளி",
   "demoProductEggs": "முட்டை",
   "demoProductCoffee": "காபி",
-  "demoProductDetergent": "சவர்க்காரம்"
-,
+  "demoProductDetergent": "சவர்க்காரம்",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "அதே ரசீது: முந்தைய படத்தின் கடைசிப் பொருளைச் சேர்க்கவும்.",
   "captureTipNeverShow": "மீண்டும் காட்டாதே",
   "captureTipOk": "புரிந்தது",
-  "captureTipsSetting": "ரசீது எடுப்பதற்கான குறிப்புகளைக் காட்டு"
+  "captureTipsSetting": "ரசீது எடுப்பதற்கான குறிப்புகளைக் காட்டு",
+  "listReceiptsSection": "ரசீதுகள்",
+  "receiptStateComplete": "முடிந்தது",
+  "receiptStateIncomplete": "முழுமையற்றது",
+  "receiptStateFailed": "தோல்வி",
+  "receiptStoreUnknown": "கடை படிக்கப்படவில்லை",
+  "receiptDeleteAction": "ரசீதை நீக்கு",
+  "receiptDeleteConfirm": "இந்த ரசீதையும் அது சேர்த்த பொருட்களையும் நீக்கவா? பின்னர் மீண்டும் இறக்குமதி செய்யலாம்.",
+  "receiptDeleted": "ரசீது நீக்கப்பட்டது.",
+  "listReceiptsShowAll": "அனைத்தையும் காட்டு ({count})",
+  "listReceiptsShowLess": "குறைவாகக் காட்டு",
+  "receiptDateLabel": "ரசீது தேதி: {date}"
 }

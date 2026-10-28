@@ -1475,4 +1475,42 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'الإيصالات';
+
+  @override
+  String get receiptStateComplete => 'مكتمل';
+
+  @override
+  String get receiptStateIncomplete => 'غير مكتمل';
+
+  @override
+  String get receiptStateFailed => 'فشل';
+
+  @override
+  String get receiptStoreUnknown => 'لم تتم قراءة المتجر';
+
+  @override
+  String get receiptDeleteAction => 'حذف الإيصال';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'هل تريد حذف هذا الإيصال والعناصر التي أضافها؟ يمكنك استيراده مرة أخرى لاحقًا.';
+
+  @override
+  String get receiptDeleted => 'تم حذف الإيصال.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'عرض الكل ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'عرض أقل';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'تاريخ الإيصال: $date';
+  }
 }

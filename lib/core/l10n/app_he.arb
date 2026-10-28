@@ -407,8 +407,7 @@
   "demoProductTomato": "עגבניות",
   "demoProductEggs": "ביצים",
   "demoProductCoffee": "קפה",
-  "demoProductDetergent": "אבקת כביסה"
-,
+  "demoProductDetergent": "אבקת כביסה",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "אותה קבלה: כללו את הפריט האחרון מהתמונה הקודמת.",
   "captureTipNeverShow": "אל תציג שוב",
   "captureTipOk": "הבנתי",
-  "captureTipsSetting": "הצג טיפים לצילום קבלה"
+  "captureTipsSetting": "הצג טיפים לצילום קבלה",
+  "listReceiptsSection": "קבלות",
+  "receiptStateComplete": "הושלמה",
+  "receiptStateIncomplete": "חלקית",
+  "receiptStateFailed": "נכשלה",
+  "receiptStoreUnknown": "החנות לא זוהתה",
+  "receiptDeleteAction": "מחיקת קבלה",
+  "receiptDeleteConfirm": "למחוק את הקבלה הזו ואת הפריטים שהיא הוסיפה? אפשר לייבא אותה שוב מאוחר יותר.",
+  "receiptDeleted": "הקבלה נמחקה.",
+  "listReceiptsShowAll": "הצגת הכול ({count})",
+  "listReceiptsShowLess": "הצגת פחות",
+  "receiptDateLabel": "תאריך הקבלה: {date}"
 }

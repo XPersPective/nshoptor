@@ -1480,4 +1480,42 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'রসিদ';
+
+  @override
+  String get receiptStateComplete => 'সম্পূর্ণ';
+
+  @override
+  String get receiptStateIncomplete => 'অসম্পূর্ণ';
+
+  @override
+  String get receiptStateFailed => 'ব্যর্থ';
+
+  @override
+  String get receiptStoreUnknown => 'দোকান পড়া যায়নি';
+
+  @override
+  String get receiptDeleteAction => 'রসিদ মুছুন';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'এই রসিদ এবং এটি যে আইটেমগুলো যোগ করেছে তা মুছবেন? পরে আবার এটি আমদানি করতে পারবেন।';
+
+  @override
+  String get receiptDeleted => 'রসিদ মুছে ফেলা হয়েছে।';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'সব দেখান ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'কম দেখান';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'রসিদের তারিখ: $date';
+  }
 }

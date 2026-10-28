@@ -1488,4 +1488,42 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Čeki';
+
+  @override
+  String get receiptStateComplete => 'Pabeigts';
+
+  @override
+  String get receiptStateIncomplete => 'Nepilnīgs';
+
+  @override
+  String get receiptStateFailed => 'Neizdevās';
+
+  @override
+  String get receiptStoreUnknown => 'Veikals nav nolasīts';
+
+  @override
+  String get receiptDeleteAction => 'Dzēst čeku';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Vai dzēst šo čeku un tā pievienotās preces? Vēlāk to varēsiet importēt vēlreiz.';
+
+  @override
+  String get receiptDeleted => 'Čeks izdzēsts.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Rādīt visus ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Rādīt mazāk';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Čeka datums: $date';
+  }
 }

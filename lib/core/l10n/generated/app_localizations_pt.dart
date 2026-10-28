@@ -1490,4 +1490,42 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Recibos';
+
+  @override
+  String get receiptStateComplete => 'Concluído';
+
+  @override
+  String get receiptStateIncomplete => 'Incompleto';
+
+  @override
+  String get receiptStateFailed => 'Falhou';
+
+  @override
+  String get receiptStoreUnknown => 'Loja não lida';
+
+  @override
+  String get receiptDeleteAction => 'Excluir recibo';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Excluir este recibo e os itens que ele adicionou? Você poderá importá-lo novamente depois.';
+
+  @override
+  String get receiptDeleted => 'Recibo excluído.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Mostrar todos ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Mostrar menos';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data do recibo: $date';
+  }
 }

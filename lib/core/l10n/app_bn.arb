@@ -407,8 +407,7 @@
   "demoProductTomato": "টমেটো",
   "demoProductEggs": "ডিম",
   "demoProductCoffee": "কফি",
-  "demoProductDetergent": "ডিটারজেন্ট"
-,
+  "demoProductDetergent": "ডিটারজেন্ট",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "একই রসিদ: আগের ছবির শেষ আইটেমটি রাখুন।",
   "captureTipNeverShow": "আর দেখাবেন না",
   "captureTipOk": "বুঝেছি",
-  "captureTipsSetting": "রসিদ তোলার টিপস দেখান"
+  "captureTipsSetting": "রসিদ তোলার টিপস দেখান",
+  "listReceiptsSection": "রসিদ",
+  "receiptStateComplete": "সম্পূর্ণ",
+  "receiptStateIncomplete": "অসম্পূর্ণ",
+  "receiptStateFailed": "ব্যর্থ",
+  "receiptStoreUnknown": "দোকান পড়া যায়নি",
+  "receiptDeleteAction": "রসিদ মুছুন",
+  "receiptDeleteConfirm": "এই রসিদ এবং এটি যে আইটেমগুলো যোগ করেছে তা মুছবেন? পরে আবার এটি আমদানি করতে পারবেন।",
+  "receiptDeleted": "রসিদ মুছে ফেলা হয়েছে।",
+  "listReceiptsShowAll": "সব দেখান ({count})",
+  "listReceiptsShowLess": "কম দেখান",
+  "receiptDateLabel": "রসিদের তারিখ: {date}"
 }

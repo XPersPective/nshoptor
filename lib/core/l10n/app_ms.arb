@@ -396,8 +396,7 @@
   "demoProductTomato": "Tomato",
   "demoProductEggs": "Telur",
   "demoProductCoffee": "Kopi",
-  "demoProductDetergent": "Detergen"
-,
+  "demoProductDetergent": "Detergen",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Resit yang sama: sertakan item terakhir foto sebelumnya.",
   "captureTipNeverShow": "Jangan tunjuk lagi",
   "captureTipOk": "Faham",
-  "captureTipsSetting": "Tunjukkan petua merakam resit"
+  "captureTipsSetting": "Tunjukkan petua merakam resit",
+  "listReceiptsSection": "Resit",
+  "receiptStateComplete": "Lengkap",
+  "receiptStateIncomplete": "Tidak lengkap",
+  "receiptStateFailed": "Gagal",
+  "receiptStoreUnknown": "Kedai tidak dibaca",
+  "receiptDeleteAction": "Padam resit",
+  "receiptDeleteConfirm": "Padam resit ini dan item yang ditambahkannya? Anda boleh mengimportnya semula kemudian.",
+  "receiptDeleted": "Resit dipadam.",
+  "listReceiptsShowAll": "Tunjukkan semua ({count})",
+  "listReceiptsShowLess": "Tunjukkan kurang",
+  "receiptDateLabel": "Tarikh resit: {date}"
 }

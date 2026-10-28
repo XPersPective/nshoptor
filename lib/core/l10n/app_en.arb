@@ -476,8 +476,7 @@
   "demoProductTomato": "Tomatoes",
   "demoProductEggs": "Eggs",
   "demoProductCoffee": "Coffee",
-  "demoProductDetergent": "Detergent"
-,
+  "demoProductDetergent": "Detergent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -514,8 +513,20 @@
   "planTrialEndedTitle": "Your Pro trial has ended",
   "planTrialEndedBody": "You can keep using lists, manual entry and on-device voice for free. Free includes 10 AI requests per calendar month. Choose annual Pro for 100 AI requests per month, no ads and backups. Your existing data stays with you.",
   "planContinueFree": "Continue with Free",
-  "@planTrialDaysLeft": {"placeholders": {"days": {"type": "int"}}},
-  "@planTrialHoursLeft": {"placeholders": {"hours": {"type": "int"}}},
+  "@planTrialDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "@planTrialHoursLeft": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
   "supportIdLabel": "Support ID",
   "supportEmailLabel": "Email support",
   "captureTipFirst": "Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.",
@@ -528,5 +539,30 @@
   "receiptReadDoneTitle": "Receipt read",
   "receiptReadDoneBody": "Tap to review and save it.",
   "receiptReadMoreTitle": "Photograph the rest of the receipt",
-  "receiptReadFailedTitle": "The receipt could not be read"
+  "receiptReadFailedTitle": "The receipt could not be read",
+  "listReceiptsSection": "Receipts",
+  "receiptStateComplete": "Complete",
+  "receiptStateIncomplete": "Incomplete",
+  "receiptStateFailed": "Failed",
+  "receiptStoreUnknown": "Store not read",
+  "receiptDeleteAction": "Delete receipt",
+  "receiptDeleteConfirm": "Delete this receipt and the items it added? You can import it again later.",
+  "receiptDeleted": "Receipt deleted.",
+  "listReceiptsShowAll": "Show all ({count})",
+  "listReceiptsShowLess": "Show less",
+  "receiptDateLabel": "Receipt date: {date}",
+  "@listReceiptsShowAll": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@receiptDateLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -1481,4 +1481,42 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Чектер';
+
+  @override
+  String get receiptStateComplete => 'Аяқталды';
+
+  @override
+  String get receiptStateIncomplete => 'Толық емес';
+
+  @override
+  String get receiptStateFailed => 'Сәтсіз';
+
+  @override
+  String get receiptStoreUnknown => 'Дүкен оқылмады';
+
+  @override
+  String get receiptDeleteAction => 'Чекті жою';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Осы чекті және ол қосқан тауарларды жою керек пе? Кейін оны қайта импорттай аласыз.';
+
+  @override
+  String get receiptDeleted => 'Чек жойылды.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Барлығын көрсету ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Азырақ көрсету';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Чек күні: $date';
+  }
 }

@@ -407,8 +407,7 @@
   "demoProductTomato": "Tamaties",
   "demoProductEggs": "Eiers",
   "demoProductCoffee": "Koffie",
-  "demoProductDetergent": "Wasmiddel"
-,
+  "demoProductDetergent": "Wasmiddel",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Dieselfde kwitansie: sluit die laaste item van die vorige foto in.",
   "captureTipNeverShow": "Moenie weer wys nie",
   "captureTipOk": "Verstaan",
-  "captureTipsSetting": "Wys kwitansie-opnametips"
+  "captureTipsSetting": "Wys kwitansie-opnametips",
+  "listReceiptsSection": "Kwitansies",
+  "receiptStateComplete": "Voltooi",
+  "receiptStateIncomplete": "Onvolledig",
+  "receiptStateFailed": "Misluk",
+  "receiptStoreUnknown": "Winkel nie gelees nie",
+  "receiptDeleteAction": "Vee kwitansie uit",
+  "receiptDeleteConfirm": "Vee hierdie kwitansie en die items wat dit bygevoeg het uit? Jy kan dit later weer invoer.",
+  "receiptDeleted": "Kwitansie uitgevee.",
+  "listReceiptsShowAll": "Wys alles ({count})",
+  "listReceiptsShowLess": "Wys minder",
+  "receiptDateLabel": "Kwitansiedatum: {date}"
 }

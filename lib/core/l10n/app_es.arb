@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomates",
   "demoProductEggs": "Huevos",
   "demoProductCoffee": "Café",
-  "demoProductDetergent": "Detergente"
-,
+  "demoProductDetergent": "Detergente",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Mismo recibo: incluye el último artículo de la foto anterior.",
   "captureTipNeverShow": "No volver a mostrar",
   "captureTipOk": "Entendido",
-  "captureTipsSetting": "Mostrar consejos para fotografiar el recibo"
+  "captureTipsSetting": "Mostrar consejos para fotografiar el recibo",
+  "listReceiptsSection": "Tickets",
+  "receiptStateComplete": "Completo",
+  "receiptStateIncomplete": "Incompleto",
+  "receiptStateFailed": "Error",
+  "receiptStoreUnknown": "Tienda no leída",
+  "receiptDeleteAction": "Eliminar ticket",
+  "receiptDeleteConfirm": "¿Eliminar este ticket y los artículos que añadió? Podrás importarlo de nuevo más tarde.",
+  "receiptDeleted": "Ticket eliminado.",
+  "listReceiptsShowAll": "Mostrar todos ({count})",
+  "listReceiptsShowLess": "Mostrar menos",
+  "receiptDateLabel": "Fecha del ticket: {date}"
 }

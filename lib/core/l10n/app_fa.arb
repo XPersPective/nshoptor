@@ -407,8 +407,7 @@
   "demoProductTomato": "گوجه‌فرنگی",
   "demoProductEggs": "تخم‌مرغ",
   "demoProductCoffee": "قهوه",
-  "demoProductDetergent": "شوینده"
-,
+  "demoProductDetergent": "شوینده",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "همان رسید: آخرین قلم عکس قبلی را هم بگنجانید.",
   "captureTipNeverShow": "دیگر نشان نده",
   "captureTipOk": "متوجه شدم",
-  "captureTipsSetting": "نمایش نکات عکس‌برداری از رسید"
+  "captureTipsSetting": "نمایش نکات عکس‌برداری از رسید",
+  "listReceiptsSection": "رسیدها",
+  "receiptStateComplete": "کامل",
+  "receiptStateIncomplete": "ناقص",
+  "receiptStateFailed": "ناموفق",
+  "receiptStoreUnknown": "فروشگاه خوانده نشد",
+  "receiptDeleteAction": "حذف رسید",
+  "receiptDeleteConfirm": "این رسید و اقلامی که اضافه کرده حذف شوند؟ بعداً می‌توانید دوباره آن را وارد کنید.",
+  "receiptDeleted": "رسید حذف شد.",
+  "listReceiptsShowAll": "نمایش همه ({count})",
+  "listReceiptsShowLess": "نمایش کمتر",
+  "receiptDateLabel": "تاریخ رسید: {date}"
 }

@@ -1488,4 +1488,42 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Risiti';
+
+  @override
+  String get receiptStateComplete => 'Imekamilika';
+
+  @override
+  String get receiptStateIncomplete => 'Haijakamilika';
+
+  @override
+  String get receiptStateFailed => 'Imeshindikana';
+
+  @override
+  String get receiptStoreUnknown => 'Duka halikusomwa';
+
+  @override
+  String get receiptDeleteAction => 'Futa risiti';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Ungependa kufuta risiti hii na bidhaa ilizoongeza? Unaweza kuiingiza tena baadaye.';
+
+  @override
+  String get receiptDeleted => 'Risiti imefutwa.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Onyesha zote ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Onyesha chache';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tarehe ya risiti: $date';
+  }
 }

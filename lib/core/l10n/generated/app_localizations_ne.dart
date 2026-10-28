@@ -1484,4 +1484,42 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'रसिदहरू';
+
+  @override
+  String get receiptStateComplete => 'पूरा';
+
+  @override
+  String get receiptStateIncomplete => 'अपूर्ण';
+
+  @override
+  String get receiptStateFailed => 'असफल';
+
+  @override
+  String get receiptStoreUnknown => 'पसल पढ्न सकिएन';
+
+  @override
+  String get receiptDeleteAction => 'रसिद मेटाउनुहोस्';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'यो रसिद र यसले थपेका सामानहरू मेटाउने? पछि फेरि आयात गर्न सक्नुहुन्छ।';
+
+  @override
+  String get receiptDeleted => 'रसिद मेटाइयो।';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'सबै देखाउनुहोस् ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'कम देखाउनुहोस्';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'रसिदको मिति: $date';
+  }
 }

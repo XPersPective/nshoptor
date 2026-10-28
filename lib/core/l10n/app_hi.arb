@@ -407,8 +407,7 @@
   "demoProductTomato": "टमाटर",
   "demoProductEggs": "अंडे",
   "demoProductCoffee": "कॉफ़ी",
-  "demoProductDetergent": "डिटर्जेंट"
-,
+  "demoProductDetergent": "डिटर्जेंट",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "वही रसीद: पिछली फ़ोटो का आखिरी आइटम शामिल करें।",
   "captureTipNeverShow": "दोबारा न दिखाएँ",
   "captureTipOk": "समझ गया",
-  "captureTipsSetting": "रसीद कैप्चर के सुझाव दिखाएँ"
+  "captureTipsSetting": "रसीद कैप्चर के सुझाव दिखाएँ",
+  "listReceiptsSection": "रसीदें",
+  "receiptStateComplete": "पूर्ण",
+  "receiptStateIncomplete": "अधूरी",
+  "receiptStateFailed": "विफल",
+  "receiptStoreUnknown": "दुकान पढ़ी नहीं गई",
+  "receiptDeleteAction": "रसीद हटाएं",
+  "receiptDeleteConfirm": "यह रसीद और इसके जोड़े गए आइटम हटाएं? आप इसे बाद में फिर से आयात कर सकते हैं।",
+  "receiptDeleted": "रसीद हटा दी गई।",
+  "listReceiptsShowAll": "सभी दिखाएं ({count})",
+  "listReceiptsShowLess": "कम दिखाएं",
+  "receiptDateLabel": "रसीद की तारीख: {date}"
 }

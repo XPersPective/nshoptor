@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomaten",
   "demoProductEggs": "Eier",
   "demoProductCoffee": "Kaffee",
-  "demoProductDetergent": "Waschmittel"
-,
+  "demoProductDetergent": "Waschmittel",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Gleicher Beleg: Nimm den letzten Artikel des vorherigen Fotos mit auf.",
   "captureTipNeverShow": "Nicht mehr anzeigen",
   "captureTipOk": "Verstanden",
-  "captureTipsSetting": "Tipps zum Fotografieren von Belegen anzeigen"
+  "captureTipsSetting": "Tipps zum Fotografieren von Belegen anzeigen",
+  "listReceiptsSection": "Belege",
+  "receiptStateComplete": "Vollständig",
+  "receiptStateIncomplete": "Unvollständig",
+  "receiptStateFailed": "Fehlgeschlagen",
+  "receiptStoreUnknown": "Geschäft nicht erkannt",
+  "receiptDeleteAction": "Beleg löschen",
+  "receiptDeleteConfirm": "Diesen Beleg und die hinzugefügten Artikel löschen? Du kannst ihn später erneut importieren.",
+  "receiptDeleted": "Beleg gelöscht.",
+  "listReceiptsShowAll": "Alle anzeigen ({count})",
+  "listReceiptsShowLess": "Weniger anzeigen",
+  "receiptDateLabel": "Belegdatum: {date}"
 }

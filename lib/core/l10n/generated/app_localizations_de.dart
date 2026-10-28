@@ -1490,4 +1490,42 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Belege';
+
+  @override
+  String get receiptStateComplete => 'Vollständig';
+
+  @override
+  String get receiptStateIncomplete => 'Unvollständig';
+
+  @override
+  String get receiptStateFailed => 'Fehlgeschlagen';
+
+  @override
+  String get receiptStoreUnknown => 'Geschäft nicht erkannt';
+
+  @override
+  String get receiptDeleteAction => 'Beleg löschen';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Diesen Beleg und die hinzugefügten Artikel löschen? Du kannst ihn später erneut importieren.';
+
+  @override
+  String get receiptDeleted => 'Beleg gelöscht.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Alle anzeigen ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Weniger anzeigen';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Belegdatum: $date';
+  }
 }

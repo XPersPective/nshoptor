@@ -28,7 +28,11 @@ import '../shopping_mode/shopping_mode_screen.dart';
 import '../shopping_mode/shopping_repository.dart';
 import '../shopping_mode/summary/result_repository.dart';
 import '../shopping_mode/summary/summary_screen.dart';
-import '../shopping_mode/summary/pdf_report.dart';
+import '../history/reports/report_document.dart';
+import '../history/reports/report_export_service.dart';
+import '../history/reports/report_repository.dart';
+import '../history/reports/report_share_menu.dart';
+import '../../core/text/store_name.dart';
 import 'package:napp_ads/napp_ads.dart';
 import '../history/insights/budget_check.dart';
 import '../history/price_history/price_history_sheet.dart';
@@ -36,6 +40,7 @@ import '../onboarding/first_run_guide.dart';
 import '../receipts/ocr_text_source.dart';
 import '../receipts/receipt_capture_flow.dart';
 import '../receipts/receipt_image_store.dart';
+import '../receipts/receipt_repository.dart';
 import '../receipts/shelf_label/shelf_price_flow.dart';
 import '../receipts/shelf_label/price_candidates.dart';
 import '../voice_input/stt_speech_service.dart';
@@ -66,6 +71,7 @@ class ListDetailScreen extends StatefulWidget {
     this.reminderScheduler,
     this.onShelfPricePressed,
     this.bannerController,
+    this.reportExportService,
   });
 
   final AppDatabase db;
@@ -87,6 +93,9 @@ class ListDetailScreen extends StatefulWidget {
   final Future<String?> Function(BuildContext)? onShelfPricePressed;
   final BannerAdController? bannerController;
 
+  /// Test enjeksiyonu; verilmezse sistem paylaşım/yazdırma servisi.
+  final ReportExportService? reportExportService;
+
   @override
   State<ListDetailScreen> createState() => _ListDetailScreenState();
 }
@@ -103,6 +112,13 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   bool _awake = false;
   bool _lockBusy = false;
   late final ShoppingRepository _shoppingRepo = ShoppingRepository(widget.db);
+  late final ReceiptRepository _receiptRepo = ReceiptRepository(
+    widget.db,
+    images: widget.receiptImageStore,
+  );
+  late final Stream<List<ListReceipt>> _receipts = _receiptRepo.watchForList(
+    widget.listId,
+  );
   late Future<ShoppingList> _listFuture;
   bool _busy = false;
   bool _reminderBusy = false;
@@ -478,11 +494,9 @@ class _ListDetailScreenState extends State<ListDetailScreen>
             key: const Key('detail_more_menu'),
             tooltip: MaterialLocalizations.of(context).moreButtonTooltip,
             onSelected: (action) async {
-              if (action == 'pdf') {
+              if (action == 'share') {
                 if (_busy) return;
-                setState(() => _busy = true);
-                await showPdfReport(context, widget.db, widget.listId);
-                if (mounted) setState(() => _busy = false);
+                await _shareReport(context);
               } else if (action == 'compare') {
                 await Navigator.of(context).push(
                   MaterialPageRoute<void>(
@@ -542,9 +556,9 @@ class _ListDetailScreenState extends State<ListDetailScreen>
             itemBuilder: (_) => [
               PopupMenuItem(value: 'compare', child: Text(l10n.compareAction)),
               PopupMenuItem(
-                key: const Key('detail_report_pdf'),
-                value: 'pdf',
-                child: Text(l10n.reportPdfAction),
+                key: const Key('detail_report_share'),
+                value: 'share',
+                child: Text(l10n.reportShareAction),
               ),
               PopupMenuItem(
                 key: const Key('detail_set_reminder'),
@@ -745,7 +759,16 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                 return Column(
                   children: [
                     Expanded(
-                      child: ListView(
+                      child: StreamBuilder<List<ListReceipt>>(
+                        stream: _receipts,
+                        builder: (context, receiptSnap) {
+                        final receipts =
+                            receiptSnap.data ?? const <ListReceipt>[];
+                        final printedAt = receipts
+                            .map((r) => r.printedAt)
+                            .whereType<DateTime>()
+                            .firstOrNull;
+                        return ListView(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         children: [
                           Card(
@@ -774,10 +797,49 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                     entries: entries,
                                     status: _budgetStatus,
                                   ),
+                                  // F19: the printed receipt date/time.
+                                  if (printedAt != null)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8),
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.event_outlined,
+                                            size: 18,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Expanded(
+                                            child: Text(
+                                              l10n.receiptDateLabel(
+                                                _formatPrinted(
+                                                  context,
+                                                  printedAt,
+                                                ),
+                                              ),
+                                              key: const Key(
+                                                'detail_receipt_date',
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),
                           ),
+                          if (receipts.isNotEmpty)
+                            _ReceiptsSection(
+                              receipts: receipts,
+                              fallbackCurrency: list.currencyCode,
+                              onOpen: _busy || !_editable
+                                  ? null
+                                  : (receipt) => _scanReceipt(
+                                      context,
+                                      resumeDraftId: receipt.id,
+                                    ),
+                              onDelete: _busy ? null : _deleteReceipt,
+                            ),
                           if (hasProducts) ...[productsHeader, searchField],
                           if (items.isEmpty && entries.isEmpty)
                             Padding(
@@ -873,6 +935,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                               ),
                             ),
                         ],
+                      );
+                        },
                       ),
                     ),
                     if (_editable)
@@ -1340,7 +1404,74 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     _refresh();
   }
 
-  Future<void> _scanReceipt(BuildContext context) async {
+  Future<void> _shareReport(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    await shareReportFromMenu(
+      context,
+      service: widget.reportExportService ?? const ReportExportService(),
+      onBusy: (busy) {
+        if (mounted) setState(() => _busy = busy);
+      },
+      document: () async {
+        final report = await ReportRepository(widget.db).shopping(
+          widget.listId,
+        );
+        return ReportDocument(
+          title:
+              report.list.title ?? report.list.generatedTitle ?? l10n.listsTitle,
+          currencyCode: report.list.currencyCode,
+          shopping: [report],
+        );
+      },
+    );
+  }
+
+  Future<void> _deleteReceipt(ListReceipt receipt) async {
+    if (_busy) return;
+    final l10n = AppLocalizations.of(context);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.receiptDeleteAction),
+        content: Text(l10n.receiptDeleteConfirm),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(l10n.cancelButton),
+          ),
+          FilledButton(
+            key: const Key('receipt_delete_confirm'),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(l10n.deleteButton),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    setState(() => _busy = true);
+    try {
+      await _receiptRepo.delete(receipt.id);
+      if (!mounted) return;
+      _refresh();
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..showSnackBar(
+          SnackBar(content: Text(l10n.receiptDeleted), showCloseIcon: true),
+        );
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
+          );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _scanReceipt(BuildContext context, {int? resumeDraftId}) async {
     if (_busy) return;
     final l10n = AppLocalizations.of(context);
     setState(() => _busy = true);
@@ -1356,6 +1487,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         ocrSource: widget.ocrSource,
         imageStore: widget.receiptImageStore,
         ai: AiService.client,
+        resumeDraftId: resumeDraftId,
       );
       if (mounted) {
         _refresh();
@@ -1604,6 +1736,186 @@ class _BudgetWarningRow extends StatelessWidget {
         messages.join(' · '),
         key: const Key('detail_budget_warning'),
         style: TextStyle(color: Theme.of(context).colorScheme.error),
+      ),
+    );
+  }
+}
+
+String _formatPrinted(BuildContext context, DateTime at) {
+  final material = MaterialLocalizations.of(context);
+  final local = at.toLocal();
+  final date = material.formatShortDate(local);
+  if (local.hour == 0 && local.minute == 0) return date;
+  final time = material.formatTimeOfDay(
+    TimeOfDay.fromDateTime(local),
+    alwaysUse24HourFormat: MediaQuery.maybeAlwaysUse24HourFormatOf(context) ??
+        false,
+  );
+  return '$date $time';
+}
+
+/// F13: every receipt of the list with its state; long lists stay short.
+class _ReceiptsSection extends StatefulWidget {
+  const _ReceiptsSection({
+    required this.receipts,
+    required this.fallbackCurrency,
+    required this.onOpen,
+    required this.onDelete,
+  });
+
+  final List<ListReceipt> receipts;
+  final String fallbackCurrency;
+  final ValueChanged<ListReceipt>? onOpen;
+  final ValueChanged<ListReceipt>? onDelete;
+
+  static const collapsedCount = 3;
+
+  @override
+  State<_ReceiptsSection> createState() => _ReceiptsSectionState();
+}
+
+class _ReceiptsSectionState extends State<_ReceiptsSection> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final receipts = widget.receipts;
+    final overflow = receipts.length > _ReceiptsSection.collapsedCount;
+    final shown = _expanded || !overflow
+        ? receipts
+        : receipts.take(_ReceiptsSection.collapsedCount).toList();
+    return Card(
+      key: const Key('detail_receipts_section'),
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 4),
+              child: Semantics(
+                header: true,
+                child: Text(
+                  '${l10n.listReceiptsSection} (${receipts.length})',
+                  key: const Key('detail_receipts_heading'),
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            for (final receipt in shown) _row(context, receipt),
+            if (overflow)
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton(
+                  key: const Key('detail_receipts_toggle'),
+                  style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
+                  onPressed: () => setState(() => _expanded = !_expanded),
+                  child: Text(
+                    _expanded
+                        ? l10n.listReceiptsShowLess
+                        : l10n.listReceiptsShowAll(receipts.length),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _row(BuildContext context, ListReceipt receipt) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final dark = theme.brightness == Brightness.dark;
+    final complete = SemanticDelta.palette(SpendingDirection.underPlan);
+    final (icon, color, stateText) = switch (receipt.state) {
+      ListReceiptState.complete => (
+        Icons.check_circle_outline,
+        dark ? complete.dark : complete.light,
+        l10n.receiptStateComplete,
+      ),
+      ListReceiptState.incomplete => (
+        Icons.pending_outlined,
+        dark ? const Color(0xFFFFB951) : const Color(0xFF8A5300),
+        l10n.receiptStateIncomplete,
+      ),
+      ListReceiptState.failed => (
+        Icons.error_outline,
+        theme.colorScheme.error,
+        l10n.receiptStateFailed,
+      ),
+    };
+    final cleaned = receipt.store == null ? '' : cleanStoreName(receipt.store!);
+    final store = cleaned.isEmpty ? l10n.receiptStoreUnknown : cleaned;
+    final total = receipt.totalMinor == null
+        ? null
+        : formatMoney(
+            Money.fromMinorUnits(
+              receipt.totalMinor!,
+              Currency.fromCode(receipt.currencyCode ?? widget.fallbackCurrency),
+            ),
+            locale: formatLocaleCode(context),
+          );
+    final subtitle = [
+      if (receipt.printedAt != null)
+        _formatPrinted(context, receipt.printedAt!),
+      stateText,
+    ].join(' · ');
+    final canOpen =
+        receipt.state == ListReceiptState.incomplete && widget.onOpen != null;
+    final delete = widget.onDelete;
+    return ListTile(
+      key: ValueKey('detail_receipt_${receipt.id}'),
+      minTileHeight: 56,
+      contentPadding: const EdgeInsetsDirectional.only(start: 16, end: 4),
+      leading: Icon(icon, color: color),
+      title: Text(store, maxLines: 2, overflow: TextOverflow.ellipsis),
+      subtitle: Text(subtitle, style: TextStyle(color: color)),
+      onTap: canOpen ? () => widget.onOpen!(receipt) : null,
+      onLongPress: delete == null ? null : () => delete(receipt),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (total != null)
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.sizeOf(context).width * 0.3,
+              ),
+              child: Text(
+                total,
+                key: ValueKey('detail_receipt_total_${receipt.id}'),
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.end,
+              ),
+            ),
+          PopupMenuButton<String>(
+            key: ValueKey('detail_receipt_menu_${receipt.id}'),
+            tooltip: MaterialLocalizations.of(context).moreButtonTooltip,
+            enabled: delete != null || canOpen,
+            onSelected: (value) {
+              if (value == 'delete') delete?.call(receipt);
+              if (value == 'continue') widget.onOpen?.call(receipt);
+            },
+            itemBuilder: (_) => [
+              if (canOpen)
+                PopupMenuItem(
+                  value: 'continue',
+                  child: Text(l10n.receiptContinueAction),
+                ),
+              PopupMenuItem(
+                key: ValueKey('detail_receipt_delete_${receipt.id}'),
+                value: 'delete',
+                enabled: delete != null,
+                child: Text(l10n.receiptDeleteAction),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

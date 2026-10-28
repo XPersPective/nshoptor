@@ -407,8 +407,7 @@
   "demoProductTomato": "Kamatis",
   "demoProductEggs": "Itlog",
   "demoProductCoffee": "Kape",
-  "demoProductDetergent": "Sabong panlaba"
-,
+  "demoProductDetergent": "Sabong panlaba",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Parehong resibo: isama ang huling item sa nakaraang larawan.",
   "captureTipNeverShow": "Huwag nang ipakita muli",
   "captureTipOk": "Nakuha ko",
-  "captureTipsSetting": "Ipakita ang mga tip sa pagkuha ng larawan ng resibo"
+  "captureTipsSetting": "Ipakita ang mga tip sa pagkuha ng larawan ng resibo",
+  "listReceiptsSection": "Mga resibo",
+  "receiptStateComplete": "Kumpleto",
+  "receiptStateIncomplete": "Hindi kumpleto",
+  "receiptStateFailed": "Nabigo",
+  "receiptStoreUnknown": "Hindi nabasa ang tindahan",
+  "receiptDeleteAction": "Burahin ang resibo",
+  "receiptDeleteConfirm": "Burahin ang resibong ito at ang mga item na idinagdag nito? Maaari mo itong i-import muli mamaya.",
+  "receiptDeleted": "Nabura ang resibo.",
+  "listReceiptsShowAll": "Ipakita lahat ({count})",
+  "listReceiptsShowLess": "Ipakita nang mas kaunti",
+  "receiptDateLabel": "Petsa ng resibo: {date}"
 }

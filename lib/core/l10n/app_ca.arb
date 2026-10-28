@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomàquets",
   "demoProductEggs": "Ous",
   "demoProductCoffee": "Cafè",
-  "demoProductDetergent": "Detergent"
-,
+  "demoProductDetergent": "Detergent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Mateix rebut: inclou l’últim article de la foto anterior.",
   "captureTipNeverShow": "No ho tornis a mostrar",
   "captureTipOk": "Entesos",
-  "captureTipsSetting": "Mostra els consells per fotografiar el rebut"
+  "captureTipsSetting": "Mostra els consells per fotografiar el rebut",
+  "listReceiptsSection": "Tiquets",
+  "receiptStateComplete": "Complet",
+  "receiptStateIncomplete": "Incomplet",
+  "receiptStateFailed": "Error",
+  "receiptStoreUnknown": "No s'ha llegit la botiga",
+  "receiptDeleteAction": "Suprimeix el tiquet",
+  "receiptDeleteConfirm": "Vols suprimir aquest tiquet i els articles que ha afegit? Més endavant el pots tornar a importar.",
+  "receiptDeleted": "Tiquet suprimit.",
+  "listReceiptsShowAll": "Mostra-ho tot ({count})",
+  "listReceiptsShowLess": "Mostra'n menys",
+  "receiptDateLabel": "Data del tiquet: {date}"
 }

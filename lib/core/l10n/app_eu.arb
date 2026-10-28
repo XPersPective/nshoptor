@@ -407,8 +407,7 @@
   "demoProductTomato": "Tomateak",
   "demoProductEggs": "Arrautzak",
   "demoProductCoffee": "Kafea",
-  "demoProductDetergent": "Garbigarria"
-,
+  "demoProductDetergent": "Garbigarria",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Ordainagiri bera: sartu aurreko argazkiko azken produktua.",
   "captureTipNeverShow": "Ez erakutsi berriro",
   "captureTipOk": "Ulertu dut",
-  "captureTipsSetting": "Erakutsi ordainagiriak argazkitzeko aholkuak"
+  "captureTipsSetting": "Erakutsi ordainagiriak argazkitzeko aholkuak",
+  "listReceiptsSection": "Tiketak",
+  "receiptStateComplete": "Osatuta",
+  "receiptStateIncomplete": "Osatu gabe",
+  "receiptStateFailed": "Huts egin du",
+  "receiptStoreUnknown": "Ez da denda irakurri",
+  "receiptDeleteAction": "Ezabatu tiketa",
+  "receiptDeleteConfirm": "Tiket hau eta gehitu zituen artikuluak ezabatu? Geroago berriro inporta dezakezu.",
+  "receiptDeleted": "Tiketa ezabatu da.",
+  "listReceiptsShowAll": "Erakutsi guztiak ({count})",
+  "listReceiptsShowLess": "Erakutsi gutxiago",
+  "receiptDateLabel": "Tiketaren data: {date}"
 }

@@ -407,8 +407,7 @@
   "demoProductTomato": "Памідоры",
   "demoProductEggs": "Яйкі",
   "demoProductCoffee": "Кава",
-  "demoProductDetergent": "Мыйны сродак"
-,
+  "demoProductDetergent": "Мыйны сродак",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Той жа чэк: уключыце апошнюю пазіцыю з папярэдняга здымка.",
   "captureTipNeverShow": "Больш не паказваць",
   "captureTipOk": "Зразумела",
-  "captureTipsSetting": "Паказваць парады па здымцы чэка"
+  "captureTipsSetting": "Паказваць парады па здымцы чэка",
+  "listReceiptsSection": "Чэкі",
+  "receiptStateComplete": "Завершаны",
+  "receiptStateIncomplete": "Незавершаны",
+  "receiptStateFailed": "Памылка",
+  "receiptStoreUnknown": "Крама не прачытана",
+  "receiptDeleteAction": "Выдаліць чэк",
+  "receiptDeleteConfirm": "Выдаліць гэты чэк і тавары, якія ён дадаў? Пазней вы зможаце імпартаваць яго зноў.",
+  "receiptDeleted": "Чэк выдалены.",
+  "listReceiptsShowAll": "Паказаць усе ({count})",
+  "listReceiptsShowLess": "Паказаць менш",
+  "receiptDateLabel": "Дата чэка: {date}"
 }

@@ -396,8 +396,7 @@
   "demoProductTomato": "టమాటాలు",
   "demoProductEggs": "గుడ్లు",
   "demoProductCoffee": "కాఫీ",
-  "demoProductDetergent": "డిటర్జెంట్"
-,
+  "demoProductDetergent": "డిటర్జెంట్",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "అదే రసీదు: ముందు ఫోటోలోని చివరి వస్తువును చేర్చండి.",
   "captureTipNeverShow": "మళ్లీ చూపవద్దు",
   "captureTipOk": "అర్థమైంది",
-  "captureTipsSetting": "రసీదు తీసే చిట్కాలను చూపించు"
+  "captureTipsSetting": "రసీదు తీసే చిట్కాలను చూపించు",
+  "listReceiptsSection": "రసీదులు",
+  "receiptStateComplete": "పూర్తయింది",
+  "receiptStateIncomplete": "అసంపూర్ణం",
+  "receiptStateFailed": "విఫలమైంది",
+  "receiptStoreUnknown": "దుకాణం చదవబడలేదు",
+  "receiptDeleteAction": "రసీదును తొలగించు",
+  "receiptDeleteConfirm": "ఈ రసీదును మరియు అది జోడించిన అంశాలను తొలగించాలా? తర్వాత మళ్లీ దిగుమతి చేయవచ్చు.",
+  "receiptDeleted": "రసీదు తొలగించబడింది.",
+  "listReceiptsShowAll": "అన్నీ చూపు ({count})",
+  "listReceiptsShowLess": "తక్కువ చూపు",
+  "receiptDateLabel": "రసీదు తేదీ: {date}"
 }

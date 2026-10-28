@@ -396,8 +396,7 @@
   "demoProductTomato": "Tomaten",
   "demoProductEggs": "Eieren",
   "demoProductCoffee": "Koffie",
-  "demoProductDetergent": "Wasmiddel"
-,
+  "demoProductDetergent": "Wasmiddel",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "Dezelfde bon: neem het laatste artikel van de vorige foto mee.",
   "captureTipNeverShow": "Niet meer tonen",
   "captureTipOk": "Begrepen",
-  "captureTipsSetting": "Tips voor het fotograferen van bonnen tonen"
+  "captureTipsSetting": "Tips voor het fotograferen van bonnen tonen",
+  "listReceiptsSection": "Bonnen",
+  "receiptStateComplete": "Voltooid",
+  "receiptStateIncomplete": "Onvolledig",
+  "receiptStateFailed": "Mislukt",
+  "receiptStoreUnknown": "Winkel niet gelezen",
+  "receiptDeleteAction": "Bon verwijderen",
+  "receiptDeleteConfirm": "Deze bon en de toegevoegde artikelen verwijderen? Je kunt hem later opnieuw importeren.",
+  "receiptDeleted": "Bon verwijderd.",
+  "listReceiptsShowAll": "Alles tonen ({count})",
+  "listReceiptsShowLess": "Minder tonen",
+  "receiptDateLabel": "Bondatum: {date}"
 }

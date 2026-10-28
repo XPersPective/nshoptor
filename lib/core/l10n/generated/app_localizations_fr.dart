@@ -1494,4 +1494,42 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Tickets';
+
+  @override
+  String get receiptStateComplete => 'Terminé';
+
+  @override
+  String get receiptStateIncomplete => 'Incomplet';
+
+  @override
+  String get receiptStateFailed => 'Échec';
+
+  @override
+  String get receiptStoreUnknown => 'Magasin non lu';
+
+  @override
+  String get receiptDeleteAction => 'Supprimer le ticket';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Supprimer ce ticket et les articles qu\'il a ajoutés ? Vous pourrez l\'importer de nouveau plus tard.';
+
+  @override
+  String get receiptDeleted => 'Ticket supprimé.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Tout afficher ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Afficher moins';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Date du ticket : $date';
+  }
 }

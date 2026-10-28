@@ -407,8 +407,7 @@
   "demoProductTomato": "ટમેટાં",
   "demoProductEggs": "ઈંડાં",
   "demoProductCoffee": "કોફી",
-  "demoProductDetergent": "ડિટર્જન્ટ"
-,
+  "demoProductDetergent": "ડિટર્જન્ટ",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -451,5 +450,16 @@
   "captureTipContinue": "એ જ રસીદ: પાછલા ફોટાની છેલ્લી વસ્તુ સામેલ કરો.",
   "captureTipNeverShow": "ફરી બતાવશો નહીં",
   "captureTipOk": "સમજાયું",
-  "captureTipsSetting": "રસીદ કેપ્ચર ટીપ્સ બતાવો"
+  "captureTipsSetting": "રસીદ કેપ્ચર ટીપ્સ બતાવો",
+  "listReceiptsSection": "રસીદો",
+  "receiptStateComplete": "પૂર્ણ",
+  "receiptStateIncomplete": "અપૂર્ણ",
+  "receiptStateFailed": "નિષ્ફળ",
+  "receiptStoreUnknown": "દુકાન વાંચી શકાઈ નથી",
+  "receiptDeleteAction": "રસીદ કાઢી નાખો",
+  "receiptDeleteConfirm": "આ રસીદ અને તેણે ઉમેરેલી વસ્તુઓ કાઢી નાખવી છે? તમે પછીથી તેને ફરી આયાત કરી શકો છો.",
+  "receiptDeleted": "રસીદ કાઢી નાખી.",
+  "listReceiptsShowAll": "બધું બતાવો ({count})",
+  "listReceiptsShowLess": "ઓછું બતાવો",
+  "receiptDateLabel": "રસીદની તારીખ: {date}"
 }

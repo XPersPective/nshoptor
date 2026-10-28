@@ -1492,4 +1492,42 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Tiquets';
+
+  @override
+  String get receiptStateComplete => 'Complet';
+
+  @override
+  String get receiptStateIncomplete => 'Incomplet';
+
+  @override
+  String get receiptStateFailed => 'Error';
+
+  @override
+  String get receiptStoreUnknown => 'No s\'ha llegit la botiga';
+
+  @override
+  String get receiptDeleteAction => 'Suprimeix el tiquet';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Vols suprimir aquest tiquet i els articles que ha afegit? Més endavant el pots tornar a importar.';
+
+  @override
+  String get receiptDeleted => 'Tiquet suprimit.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Mostra-ho tot ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Mostra\'n menys';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data del tiquet: $date';
+  }
 }

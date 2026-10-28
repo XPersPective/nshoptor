@@ -1481,4 +1481,42 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'રસીદો';
+
+  @override
+  String get receiptStateComplete => 'પૂર્ણ';
+
+  @override
+  String get receiptStateIncomplete => 'અપૂર્ણ';
+
+  @override
+  String get receiptStateFailed => 'નિષ્ફળ';
+
+  @override
+  String get receiptStoreUnknown => 'દુકાન વાંચી શકાઈ નથી';
+
+  @override
+  String get receiptDeleteAction => 'રસીદ કાઢી નાખો';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'આ રસીદ અને તેણે ઉમેરેલી વસ્તુઓ કાઢી નાખવી છે? તમે પછીથી તેને ફરી આયાત કરી શકો છો.';
+
+  @override
+  String get receiptDeleted => 'રસીદ કાઢી નાખી.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'બધું બતાવો ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'ઓછું બતાવો';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'રસીદની તારીખ: $date';
+  }
 }
