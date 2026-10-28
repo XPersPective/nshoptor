@@ -8,6 +8,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/home/home_screen.dart';
+import 'package:nshoptor/features/receipts/ocr_text_source.dart';
+import 'package:nshoptor/features/receipts/receipt_document.dart';
+import 'package:nshoptor/features/receipts/receipt_draft_repository.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/lists_screen.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
@@ -230,7 +233,13 @@ void main() {
     await tester.tap(find.byKey(Key('history_list_$id')));
     await settle(tester);
     expect(
-      tester.widget<ReportPreviewScreen>(find.byType(ReportPreviewScreen)).document.shopping.single.list.id,
+      tester
+          .widget<ReportPreviewScreen>(find.byType(ReportPreviewScreen))
+          .document
+          .shopping
+          .single
+          .list
+          .id,
       id,
     );
     expect((await ListRepository(db).getById(id)).status, 'completed');
@@ -444,4 +453,36 @@ void main() {
 
     await disposeApp(tester);
   });
+
+  testWidgets(
+    'an unfinished receipt is announced on the main screen until resumed',
+    (tester) async {
+      await tester.pumpWidget(subject());
+      await settle(tester);
+      expect(find.byKey(const Key('home_receipt_drafts_banner')), findsNothing);
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.runAsync(
+        () => ReceiptDraftRepository(db).save(
+          document: ReceiptDocument.fromScan(
+            const OcrScanResult(lines: [OcrLine(text: 'ELMA 20,00')]),
+            currencyCode: 'TRY',
+          ),
+        ),
+      );
+      await tester.pumpWidget(subject());
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 50)),
+      );
+      await settle(tester);
+      expect(
+        find.byKey(const Key('home_receipt_drafts_banner')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('home_receipt_drafts_continue')),
+        findsOneWidget,
+      );
+      await disposeApp(tester);
+    },
+  );
 }
