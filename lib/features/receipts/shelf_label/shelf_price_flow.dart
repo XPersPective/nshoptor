@@ -63,8 +63,10 @@ Future<PriceCandidate?> readShelfCandidate(
     // The photo-reading model is primary whenever enabled. If it is
     // unavailable, the text model reads device OCR; deterministic candidates
     // stay as extra choices and the offline fallback.
-    var fromAi =
-        await reader?.readImage(capture.path, currencyCode: currencyCode);
+    var fromAi = await reader?.readImage(
+      capture.path,
+      currencyCode: currencyCode,
+    );
     if (fromAi == null && reader != null && ocrText.trim().isNotEmpty) {
       fromAi = await reader.read(ocrText, currencyCode: currencyCode);
     }
@@ -114,7 +116,11 @@ Future<PriceCandidate?> readShelfCandidate(
         ),
       ),
     ];
-    final picked = await showPriceCandidateSheet(context, candidates);
+    final picked = await showPriceCandidateSheet(
+      context,
+      candidates,
+      imagePath: capture.path,
+    );
     return picked;
   } catch (_) {
     if (context.mounted) {
