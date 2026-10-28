@@ -1447,4 +1447,21 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get supportEmailLabel => 'Підтримка електронною поштою';
+
+  @override
+  String get captureTipFirst =>
+      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+
+  @override
+  String get captureTipContinue =>
+      'Same receipt: include the last item of the previous photo.';
+
+  @override
+  String get captureTipNeverShow => 'Don\'t show again';
+
+  @override
+  String get captureTipOk => 'Got it';
+
+  @override
+  String get captureTipsSetting => 'Show receipt capture tips';
 }

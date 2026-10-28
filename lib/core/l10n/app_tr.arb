@@ -464,5 +464,10 @@
   "planTrialEndedBody": "Listeleri, elle giriş yapmayı ve cihazda çalışan ses özelliğini ücretsiz kullanmaya devam edebilirsin. Ücretsiz planda takvim ayı başına 10 yapay zekâ isteği bulunur. Ayda 100 yapay zekâ isteği, reklamsız kullanım ve yedekleme için yıllık Pro’yu seç. Mevcut verilerin sende kalır.",
   "planContinueFree": "Ücretsiz devam et",
   "supportIdLabel": "Destek kimliği",
-  "supportEmailLabel": "E-posta ile destek"
+  "supportEmailLabel": "E-posta ile destek",
+  "captureTipFirst": "En üstten başlayın: mağaza adı ve tarih görünmeli. Sığdığı kadar ürünü çekin; kalanı sonraki fotoğrafa.",
+  "captureTipContinue": "Aynı fiş: önceki fotoğraftaki son ürün de görünsün.",
+  "captureTipNeverShow": "Bir daha gösterme",
+  "captureTipOk": "Anladım",
+  "captureTipsSetting": "Fiş çekme ipuçlarını göster"
 }

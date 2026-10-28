@@ -36,6 +36,14 @@ class AppDefaults {
 
   static void markGuideSeen() => _store?.setBool(_guideSeenKey, true);
 
+  /// Short receipt capture tips (F05/F06); "don't show again" turns them off
+  /// and Settings can turn them back on. Without a store (tests) they stay off.
+  static const captureTipsKey = 'capture_tips_enabled';
+  static bool captureTipsEnabled() =>
+      _store != null && (_store!.getBool(captureTipsKey) ?? true);
+  static void setCaptureTipsEnabled(bool value) =>
+      _store?.setBool(captureTipsKey, value);
+
   static bool keepScreenAwake() =>
       _store?.getBool(SettingsRepository.keepAwakeKey) ?? false;
   static void setKeepScreenAwake(bool value) =>

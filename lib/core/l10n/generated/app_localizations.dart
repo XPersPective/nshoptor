@@ -2893,6 +2893,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email support'**
   String get supportEmailLabel;
+
+  /// No description provided for @captureTipFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.'**
+  String get captureTipFirst;
+
+  /// No description provided for @captureTipContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Same receipt: include the last item of the previous photo.'**
+  String get captureTipContinue;
+
+  /// No description provided for @captureTipNeverShow.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t show again'**
+  String get captureTipNeverShow;
+
+  /// No description provided for @captureTipOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get captureTipOk;
+
+  /// No description provided for @captureTipsSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Show receipt capture tips'**
+  String get captureTipsSetting;
 }
 
 class _AppLocalizationsDelegate

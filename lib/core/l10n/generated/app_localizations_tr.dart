@@ -1438,4 +1438,21 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get supportEmailLabel => 'E-posta ile destek';
+
+  @override
+  String get captureTipFirst =>
+      'En üstten başlayın: mağaza adı ve tarih görünmeli. Sığdığı kadar ürünü çekin; kalanı sonraki fotoğrafa.';
+
+  @override
+  String get captureTipContinue =>
+      'Aynı fiş: önceki fotoğraftaki son ürün de görünsün.';
+
+  @override
+  String get captureTipNeverShow => 'Bir daha gösterme';
+
+  @override
+  String get captureTipOk => 'Anladım';
+
+  @override
+  String get captureTipsSetting => 'Fiş çekme ipuçlarını göster';
 }

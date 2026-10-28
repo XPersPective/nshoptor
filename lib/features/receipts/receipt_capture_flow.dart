@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../data/db/app_database.dart';
 import '../ai/ai_client.dart';
@@ -512,6 +513,8 @@ Future<_AiOutcome> _readWithAi(
   while (context.mounted) {
     if (!context.mounted) return stop();
     if (needCapture) {
+      await _captureTip(context, first: paths.isEmpty || prepend);
+      if (!context.mounted) return stop();
       final capture = await captureImageText(
         context,
         title: l10n.scanReceiptAction,
@@ -742,4 +745,32 @@ Future<T> _withProgress<T>(BuildContext context, Future<T> work) async {
   } finally {
     if (open && navigator.mounted) navigator.pop();
   }
+}
+
+/// One short tip before a receipt photo (F05/F06). "Don't show again" turns
+/// tips off; Settings turns them back on.
+Future<void> _captureTip(BuildContext context, {required bool first}) async {
+  if (!AppDefaults.captureTipsEnabled()) return;
+  final l10n = AppLocalizations.of(context);
+  final never = await showDialog<bool>(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      key: Key(first ? 'capture_tip_first' : 'capture_tip_continue'),
+      icon: const Icon(Icons.receipt_long_outlined),
+      content: Text(first ? l10n.captureTipFirst : l10n.captureTipContinue),
+      actions: [
+        TextButton(
+          key: const Key('capture_tip_never'),
+          onPressed: () => Navigator.pop(dialogContext, true),
+          child: Text(l10n.captureTipNeverShow),
+        ),
+        FilledButton(
+          key: const Key('capture_tip_ok'),
+          onPressed: () => Navigator.pop(dialogContext, false),
+          child: Text(l10n.captureTipOk),
+        ),
+      ],
+    ),
+  );
+  if (never == true) AppDefaults.setCaptureTipsEnabled(false);
 }
