@@ -22,7 +22,9 @@
   ],
   "vars": {
     "AI_URL": "https://evren-llmapi.ssyz.org.tr/v1",
-    "AI_MODEL": "qwen3.8-flash-next",
+    // Comma lists are fallback chains (ADR-008); vision models read photos.
+    "AI_MODEL": "qwen3.8-flash-next,gemma-4-31b,deepseek-v4.1-flash",
+    "AI_VISION_MODEL": "gemma-4-31b,qwen3-vl-30b,qwen3.8-flash-next",
     "AI_NOTHINK": "1",
     "AI_TIMEOUT_MS": "20000",
     "QUOTA_FREE": "10",

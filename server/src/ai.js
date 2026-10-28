@@ -22,14 +22,29 @@ export async function readBoundedText(source, maxBytes) {
 
 export const configured = env => String(env.AI_URL || '').startsWith('https://') && !!env.AI_KEY && !!env.AI_MODEL;
 
-export async function chatJson(env, system, user, { fetchImpl = fetch, maxTokens = 1200, model, timeoutMs } = {}) {
-  const base = String(env.AI_URL || '').replace(/\/+$/, '');
-  if (!configured(env)) {
-    throw new AiError('ai_not_configured');
+// A model setting may list fallbacks ("a,b,c"): when one model is offline,
+// overloaded or unreachable the next one answers. Invalid output does not
+// switch models; the task's own retry handles that.
+export async function chatJson(env, system, user, options = {}) {
+  if (!configured(env)) throw new AiError('ai_not_configured');
+  const models = String(options.model || env.AI_MODEL).split(',').map(m => m.trim()).filter(Boolean);
+  let last;
+  for (const model of models) {
+    try {
+      return await chatOnce(env, system, user, { ...options, model });
+    } catch (e) {
+      last = e;
+      if (!(e instanceof AiError) || !/^ai_(unreachable|http_(404|408|409|425|429|5\d\d))$/.test(e.message)) throw e;
+    }
   }
+  throw last ?? new AiError('ai_not_configured');
+}
+
+async function chatOnce(env, system, user, { fetchImpl = fetch, maxTokens = 1200, model, timeoutMs } = {}) {
+  const base = String(env.AI_URL || '').replace(/\/+$/, '');
   const body = {
     // `user` is a string or OpenAI-compatible content parts (text + image_url).
-    model: model || env.AI_MODEL,
+    model,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: user },

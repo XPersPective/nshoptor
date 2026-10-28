@@ -122,3 +122,18 @@ test('an echoed status option list is accepted only when the full arithmetic hol
   assert.equal(R.clean({ ...receipt(), status: ' Complete ' }).status, 'complete');
   assert.throws(() => R.clean({ ...receipt(), status: { any: 1 }, total: null }), /missing_total/);
 });
+
+test('an offline model falls through to the next configured model', async () => {
+  const e = env();
+  e.AI_VISION_MODEL = 'offline-model, gemma';
+  const seen = [];
+  const fetchImpl = async (_, init) => {
+    const { model } = JSON.parse(init.body);
+    seen.push(model);
+    if (model === 'offline-model') return new Response('{}', { status: 503 });
+    return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(receipt()) } }] }));
+  };
+  const res = await handleAi(req({ installId: ID, task: 'read_receipt_image', input: { images: [JPEG] } }), e, { fetchImpl });
+  assert.equal(res.status, 200);
+  assert.deepEqual(seen, ['offline-model', 'gemma']);
+});
