@@ -53,11 +53,12 @@ export const VISION_TASKS = {
       'You read retail receipts from any country, language, script and layout. The user sends 1-4 photos of ONE receipt, ordered from top to bottom; consecutive photos may overlap. ' +
       COMMON +
       ' Protocol receipt.v2:\n' +
-      '{"schema":2,"status":' + JSON.stringify(RECEIPT_STATUSES) + ',"store":string|null,"date":"YYYY-MM-DD"|null,"time":"HH:MM:SS"|null,' +
+      '{"schema":2,"status":"<ONE status string>","store":string|null,"date":"YYYY-MM-DD"|null,"time":"HH:MM:SS"|null,' +
       '"documentNumber":string|null,"currency":ISO-4217|null,' +
       '"items":[{"name":string,"quantity":string|null,"unit":' + JSON.stringify(UNITS) + '|null,"unitPrice":string|null,"lineTotal":string}],' +
       '"discounts":[{"label":string,"amount":string}],"tax":string|null,"subtotal":string|null,"total":string|null}\n' +
-      'status: "complete" only when the merchant header, every product row and the final payable total are all visible. ' +
+      'status is exactly one of these strings: ' + RECEIPT_STATUSES.map(v => `"${v}"`).join(', ') + ' (a single string, never a list or object). ' +
+      '"complete" only when the merchant header, every product row and the final payable total are all visible. ' +
       '"top_missing" when the header or first rows are cut off; "bottom_missing" when the payable total is not visible; ' +
       '"middle_gap" when consecutive photos do not overlap so rows may be missing; "not_receipt" for any other picture; ' +
       '"unreadable" when glare, blur, folds or darkness hide amounts. When status is not "complete", items may be empty.\n' +
@@ -77,9 +78,17 @@ export const VISION_TASKS = {
     retryNote: failure =>
       `\nYour previous answer was rejected by validation (${failure}). Read every image again row by row, ` +
       'copy every amount exactly, include every product row and discount once, and set status honestly.',
-    clean(out) {
-      if (!out || typeof out !== 'object' || Array.isArray(out) || out.schema !== 2) throw new Error('invalid_receipt');
-      if (!RECEIPT_STATUSES.includes(out.status)) throw new Error('invalid_status');
+    clean(answer) {
+      let out = answer;
+      if (!out || typeof out !== 'object' || Array.isArray(out) || Number(out.schema) !== 2) throw new Error('invalid_receipt');
+      // Models sometimes echo the schema's option list. A single listed value is
+      // taken; an echoed list counts as "complete" only if the full arithmetic
+      // below holds (a cut-off receipt has no reconcilable total).
+      let status = typeof out.status === 'string' ? out.status.trim().toLowerCase() : out.status;
+      if (Array.isArray(status)) status = status.length === 1 ? String(status[0]).trim().toLowerCase() : 'complete';
+      else if (status && typeof status === 'object') status = 'complete';
+      if (!RECEIPT_STATUSES.includes(status)) throw new Error('invalid_status');
+      out = { ...out, status };
       const header = {
         schema: 2,
         status: out.status,
@@ -135,16 +144,19 @@ export const VISION_TASKS = {
     },
     system: () =>
       'You read one supermarket shelf price label from any country, language and script. ' + COMMON +
-      ' Protocol label.v1: {"schema":1,"status":"ok"|"not_label"|"unreadable","productName":string|null,"price":string|null,' +
+      ' Protocol label.v1: {"schema":1,"status":"<one of: ok, not_label, unreadable>","productName":string|null,"price":string|null,' +
       '"unitPrice":string|null,"unit":' + JSON.stringify(UNITS) + '|null,"currency":ISO-4217|null}. ' +
       'price: the current price to pay for one sales unit (the prominent price; ignore crossed-out, previous or loyalty-only prices unless it is the only price). ' +
       'unitPrice and unit: the printed comparison price only when its basis is exactly 1 kilogram, 1 litre, 1 metre or 1 piece (unit kilogram, litre, meter or piece); for any other basis such as 100 g leave both null. ' +
       'productName: product text without prices, codes, dates or size noise. Use status "not_label" or "unreadable" with null fields when appropriate.',
     user: input => parts((input.currency ? `Expected currency: ${input.currency}. ` : '') + 'Shelf label photo.', input.images),
     retryNote: failure => `\nYour previous answer was rejected by validation (${failure}). Return the protocol exactly.`,
-    clean(out) {
-      if (!out || typeof out !== 'object' || Array.isArray(out) || out.schema !== 1) throw new Error('invalid_label');
-      if (!['ok', 'not_label', 'unreadable'].includes(out.status)) throw new Error('invalid_status');
+    clean(answer) {
+      let out = answer;
+      if (!out || typeof out !== 'object' || Array.isArray(out) || Number(out.schema) !== 1) throw new Error('invalid_label');
+      const status = typeof out.status === 'string' ? out.status.trim().toLowerCase() : 'ok';
+      if (!['ok', 'not_label', 'unreadable'].includes(status)) throw new Error('invalid_status');
+      out = { ...out, status };
       if (out.status !== 'ok') return { schema: 1, status: out.status, productName: null, price: null, unitPrice: null, unit: null, currency: null };
       const price = amount(out.price), unitPrice = amount(out.unitPrice);
       if (price === null && unitPrice === null) throw new Error('missing_price');

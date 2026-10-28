@@ -91,10 +91,16 @@ export async function handleAi(request, env, { fetchImpl = fetch, now = new Date
   // answer fails the task contract. The user is never charged twice.
   const options = { fetchImpl, maxTokens: task.maxTokens, model: task.vision ? env.AI_VISION_MODEL || env.AI_MODEL : undefined, timeoutMs: task.timeoutMs };
   let failure = 'bad_model_output';
+  let shape;
   for (let attempt = 0; attempt < 2; attempt++) {
     const system = task.system(body.locale) + (attempt && task.retryNote ? task.retryNote(failure) : '');
     try {
       const out = await chatJson(env, system, task.user(input), options);
+      // Diagnostics without content: top-level field names and a short status.
+      shape = out && typeof out === 'object' && !Array.isArray(out)
+        ? { keys: Object.keys(out).slice(0, 16).map(k => String(k).replace(/[^A-Za-z_]/g, '').slice(0, 24)),
+          status: typeof out.status === 'string' && /^[A-Za-z_ -]{1,24}$/.test(out.status) ? out.status : typeof out.status }
+        : { type: Array.isArray(out) ? 'array' : typeof out };
       return json(200, { tier, used: quota.used, limit: quota.limit, result: task.clean(out, input) });
     } catch (e) {
       if (e instanceof AiError && !['ai_not_json', 'ai_schema', 'ai_truncated'].includes(e.message)) {
@@ -104,7 +110,7 @@ export async function handleAi(request, env, { fetchImpl = fetch, now = new Date
       if (!task.retryNote) break;
     }
   }
-  return json(502, { error: 'bad_model_output', reason: /^[a-z_]{1,40}$/.test(failure) ? failure : 'bad_model_output' });
+  return json(502, { error: 'bad_model_output', reason: /^[a-z_]{1,40}$/.test(failure) ? failure : 'bad_model_output', ...(task.retryNote && shape ? { shape } : {}) });
 }
 
 export default {

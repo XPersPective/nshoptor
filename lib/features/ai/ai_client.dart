@@ -99,11 +99,15 @@ class AiClient {
     return id;
   }
 
+  /// [timeout] overrides the default for slow tasks such as photo reading,
+  /// where the server may also make one corrective model call.
   Future<AiResult> request(
     String task,
     Map<String, Object?> input, {
     String locale = 'en',
+    Duration? timeout,
   }) async {
+    final limit = timeout ?? this.timeout;
     if (!enabled) return const AiFailed('disabled');
     var cred = credential?.call();
     var apple = appleTransaction?.call();
@@ -133,9 +137,9 @@ class AiClient {
       final req = http.Request('POST', Uri.parse('$baseUrl/v1/ai'))
         ..headers['content-type'] = 'application/json'
         ..body = body;
-      final res = await _http.send(req).timeout(timeout);
+      final res = await _http.send(req).timeout(limit);
       final bytes = <int>[];
-      await for (final chunk in res.stream.timeout(timeout)) {
+      await for (final chunk in res.stream.timeout(limit)) {
         bytes.addAll(chunk);
         if (bytes.length > maxResponseBytes) return const AiFailed('too_large');
       }

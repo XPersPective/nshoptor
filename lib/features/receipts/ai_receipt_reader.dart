@@ -81,10 +81,12 @@ class AiReceiptReader {
     }
     final AiResult response;
     try {
-      response = await ai.request('read_receipt_image', {
-        'images': images,
-        'currency': currencyCode,
-      }, locale: localeCode);
+      response = await ai.request(
+        'read_receipt_image',
+        {'images': images, 'currency': currencyCode},
+        locale: localeCode,
+        timeout: const Duration(seconds: 150),
+      );
     } catch (_) {
       return const AiReceiptUnavailable(AiFailed('request'));
     }

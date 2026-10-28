@@ -32,10 +32,15 @@ class AiLabelReader {
     if (image == null) return null;
     final AiResult r;
     try {
-      r = await ai.request('read_label_image', {
-        'images': [image],
-        'currency': currencyCode,
-      }, locale: localeCode);
+      r = await ai.request(
+        'read_label_image',
+        {
+          'images': [image],
+          'currency': currencyCode,
+        },
+        locale: localeCode,
+        timeout: const Duration(seconds: 100),
+      );
     } catch (_) {
       lastResult = const AiFailed('request');
       return null;

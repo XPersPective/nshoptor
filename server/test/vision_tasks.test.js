@@ -109,7 +109,16 @@ test('a second invalid answer fails with a reason; text tasks keep their 16 KiB 
   const fetchImpl = async () => new Response(JSON.stringify({ choices: [{ message: { content: '{"schema":2,"status":"complete","items":[]}' } }] }));
   const res = await handleAi(req({ installId: ID, task: 'read_receipt_image', input: { images: [JPEG] } }), e, { fetchImpl });
   assert.equal(res.status, 502);
-  assert.deepEqual(await res.json(), { error: 'bad_model_output', reason: 'invalid_items' });
+  assert.deepEqual(await res.json(), { error: 'bad_model_output', reason: 'invalid_items',
+    shape: { keys: ['schema', 'status', 'items'], status: 'complete' } });
   const text = await handleAi(req({ installId: ID, task: 'parse_list', input: { text: 'x' }, pad: 'p'.repeat(20_000) }), e, { fetchImpl });
   assert.equal(text.status, 413);
+});
+
+test('an echoed status option list is accepted only when the full arithmetic holds', () => {
+  const echoed = { ...receipt(), status: ['complete', 'top_missing', 'bottom_missing'] };
+  assert.equal(R.clean(echoed).status, 'complete');
+  assert.equal(R.clean({ ...receipt(), status: ['bottom_missing'] }).status, 'bottom_missing');
+  assert.equal(R.clean({ ...receipt(), status: ' Complete ' }).status, 'complete');
+  assert.throws(() => R.clean({ ...receipt(), status: { any: 1 }, total: null }), /missing_total/);
 });
