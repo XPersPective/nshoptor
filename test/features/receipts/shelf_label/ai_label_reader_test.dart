@@ -108,4 +108,39 @@ void main() {
     );
     expect(await reader.read('x', currencyCode: 'TRY'), isEmpty);
   });
+
+  test('AI price printed on an unusual layout is accepted only when the exact number is on the label', () async {
+    AiLabelReader reader() => AiLabelReader(
+      _ai(
+        () => http.Response(
+          jsonEncode({
+            'tier': 'pro',
+            'used': 1,
+            'limit': 100,
+            'result': {
+              'productName': 'SÜT',
+              'price': '42.50',
+              'unitPrice': null,
+            },
+          }),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        ),
+      ),
+    );
+    final found = await reader().read(
+      'SÜT 1 LT\nFiyat\n42,50',
+      currencyCode: 'TRY',
+    );
+    expect(found.single.value.toDbString(), '42.50');
+    expect(found.single.isUnitPrice, isFalse);
+    expect(
+      await reader().read('SÜT 1 LT\nFiyat\n43,50', currencyCode: 'TRY'),
+      isEmpty,
+    );
+    expect(
+      await reader().read('SÜT\n42,50 TL / kg', currencyCode: 'TRY'),
+      isEmpty,
+    );
+  });
 }

@@ -164,6 +164,7 @@ test('each task sends its bounded output allowance to the current provider', asy
   const cases = [
     ['parse_list', { text: 'milk' }, { items: [] }, 4096],
     ['read_label', { text: 'MILK 20' }, { price: '20', unitPrice: null }, 512],
+    ['read_receipt', { text: 'MILK 10,00\nTOPLAM 10,00' }, { schema: 1, items: [{ name: 'MILK', lineTotal: '10.00' }], total: '10.00' }, 8192],
     ['match_receipt', { lines: [{ i: 0, text: 'A' }], planned: [{ id: 1, name: 'milk' }] },
       { matches: [{ i: 0, plannedId: null }] }, 8192],
   ];

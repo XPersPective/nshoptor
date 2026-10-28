@@ -17,6 +17,32 @@ class AiLabelReader {
 
   static const aiConfidence = 'ai';
 
+  /// Package price whose exact amount is printed as its own number on the label
+  /// and is not part of a per-unit price already found locally.
+  PriceCandidate? _printedPackage(String text, DecimalFixed? amount) {
+    if (amount == null) return null;
+    for (final m in RegExp(r'\d+(?:[.,]\d+)*').allMatches(text)) {
+      var token = m.group(0)!;
+      final comma = token.lastIndexOf(','), dot = token.lastIndexOf('.');
+      final decimalAt = comma > dot ? comma : dot;
+      token = decimalAt < 0
+          ? token
+          : '${token.substring(0, decimalAt).replaceAll(RegExp(r'[.,]'), '')}.${token.substring(decimalAt + 1)}';
+      final value = DecimalFixed.tryParse(token);
+      if (value == null || value != amount) continue;
+      final tail = text.substring(m.end).trimLeft();
+      if (RegExp(r'^(?:₺|tl|try)?\s*/').hasMatch(tail.toLowerCase())) continue;
+      return PriceCandidate(
+        value: amount,
+        currencyCode: '',
+        sourceLine: m.group(0)!,
+        confidence: aiConfidence,
+        isUnitPrice: false,
+      );
+    }
+    return null;
+  }
+
   Future<List<PriceCandidate>> read(
     String ocrText, {
     required String currencyCode,
@@ -55,7 +81,9 @@ class AiLabelReader {
     PriceCandidate? evidenceFor(DecimalFixed? amount) => amount == null
         ? null
         : local.where((c) => c.value == amount).firstOrNull;
-    final package = evidenceFor(price);
+    // A layout the local extractor cannot structure still counts as evidence
+    // when the exact amount is printed on the label; it carries no unit claim.
+    final package = evidenceFor(price) ?? _printedPackage(text, price);
     final unitEvidence = local
         .where(
           (c) => c.value == unitPrice && c.isUnitPrice && c.unitCode == unit,

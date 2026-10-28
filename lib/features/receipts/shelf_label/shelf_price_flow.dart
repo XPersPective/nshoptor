@@ -57,12 +57,11 @@ Future<PriceCandidate?> readShelfCandidate(
     final reader = client == null
         ? null
         : AiLabelReader(client, localeCode: lang);
-    final locallyClear =
-        local.isNotEmpty && local.every((c) => c.confidence == 'high');
-    final fromAi = locallyClear
-        ? const <PriceCandidate>[]
-        : await reader?.read(ocrText, currencyCode: currencyCode) ??
-              const <PriceCandidate>[];
+    // The AI reading is primary whenever enabled; deterministic candidates
+    // remain as offline/over-quota fallback and as extra choices.
+    final fromAi =
+        await reader?.read(ocrText, currencyCode: currencyCode) ??
+        const <PriceCandidate>[];
     if (!context.mounted) return null;
     final problem = reader?.lastResult;
     final notice = switch (problem) {
@@ -83,14 +82,14 @@ Future<PriceCandidate?> readShelfCandidate(
         );
     }
     final candidates = [
-      ...local,
-      ...fromAi.where(
-        (c) => !local.any(
-          (a) =>
+      ...fromAi,
+      ...local.where(
+        (a) => !fromAi.any(
+          (c) =>
               a.value == c.value &&
-              a.unitCode == c.unitCode &&
               a.isUnitPrice == c.isUnitPrice &&
-              a.priceQuantity == c.priceQuantity,
+              (c.unitCode == null || a.unitCode == c.unitCode) &&
+              (c.priceQuantity == null || a.priceQuantity == c.priceQuantity),
         ),
       ),
     ];

@@ -7,6 +7,7 @@ import '../../core/l10n/generated/app_localizations.dart';
 import '../../data/db/app_database.dart';
 import '../ai/ai_client.dart';
 import '../lists/item_repository.dart';
+import 'ai_receipt_reader.dart';
 import 'image_capture_service.dart';
 import 'image_capture_sheet.dart';
 import 'ocr_text_source.dart';
@@ -176,7 +177,43 @@ Future<int?> openReceiptCaptureFlow(
     final prepending =
         !retake && document?.state == ReceiptDocumentState.incompleteHeader;
     if (document == null || retake) {
-      next = ReceiptDocument.fromScan(capture.scan, currencyCode: currencyCode);
+      // A verified AI reading replaces the raw rows with canonical rows that
+      // the same deterministic parser, document state and totals check consume.
+      // Unverified, offline or over-quota readings keep the raw OCR scan.
+      var scan = capture.scan;
+      final aiClient = ai ?? AiService.client;
+      if (aiClient != null) {
+        final reader = AiReceiptReader(
+          aiClient,
+          localeCode: Localizations.localeOf(context).languageCode,
+        );
+        final normalized = await reader.normalize(
+          capture.scan,
+          currencyCode: currencyCode,
+        );
+        if (!context.mounted) return null;
+        if (normalized != null) {
+          scan = normalized;
+        } else {
+          final notice = switch (reader.lastResult) {
+            AiQuota(:final used, :final limit) => l10n.aiQuotaReached(
+              used,
+              limit,
+            ),
+            AiOffline() => l10n.aiOffline,
+            AiFailed() => l10n.aiFailed,
+            _ => null,
+          };
+          if (notice != null) {
+            ScaffoldMessenger.of(context)
+              ..clearSnackBars()
+              ..showSnackBar(
+                SnackBar(content: Text(notice), showCloseIcon: true),
+              );
+          }
+        }
+      }
+      next = ReceiptDocument.fromScan(scan, currencyCode: currencyCode);
     } else {
       final joined = document.state == ReceiptDocumentState.incompleteHeader
           ? document.prepend(capture.scan)
