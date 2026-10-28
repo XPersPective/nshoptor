@@ -189,7 +189,12 @@ class ResultRepository {
 
       final variance = comparable ? actualLine - plannedLine : 0;
       final percent = comparable ? _percent(variance, plannedLine, digits) : null;
-      final quantityChanged = !compatible || actualQty == null || actualQty.compareTo(plannedQty) != 0;
+      // A row that exists only because a receipt was read carries no plan
+      // intent: its quantity cannot have "changed" (F18).
+      final receiptOnly = item.plannedLineTotalMinorUnits == null &&
+          itemEntries.every((e) => e.source == 'receiptOcr');
+      final quantityChanged = !receiptOnly &&
+          (!compatible || actualQty == null || actualQty.compareTo(plannedQty) != 0);
       // "Pahalandı/ucuzladı" yargısı birim fiyat farkına dayanır; birim
       // fiyat aynıysa (veya kayıtsızsa) satır farkı yönü bildirmez
       // (spec §6.11: miktar artışı pahalandı demek değildir).
