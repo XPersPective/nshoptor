@@ -498,4 +498,23 @@ void main() {
 
     await disposeApp(tester);
   });
+
+  testWidgets('the main screen shows budget progress only when a limit is set', (
+    tester,
+  ) async {
+    AppDefaults.attach(SettingsStore());
+    await tester.pumpWidget(subject());
+    await settle(tester);
+    expect(find.byKey(const Key('history_budget_card')), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
+    AppDefaults.setMonthlyLimitMinor(
+      150000,
+      currencyCode: AppDefaults.defaultCurrency(),
+    );
+    await tester.pumpWidget(subject());
+    await settle(tester);
+    expect(find.byKey(const Key('history_budget_card')), findsOneWidget);
+    expect(find.byKey(const Key('history_budget_month')), findsOneWidget);
+    await disposeApp(tester);
+  });
 }

@@ -12,6 +12,7 @@ import '../../core/theme/semantic_colors.dart';
 import '../../data/db/app_database.dart';
 import '../lists/list_repository.dart';
 import '../lists/lists_screen.dart';
+import '../history/insights/history_budget_card.dart';
 import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
 import '../history/history_screen.dart';
@@ -254,6 +255,7 @@ class _HomeShellState extends State<HomeShell> {
   // Settings is rebuilt on each visit: ad availability (daily gift) and the
   // plan badge change outside its own state.
   int _settingsVisit = 0;
+  int _budgetVisit = 0;
 
   /// Plan simgesi, abonelik değişince kendini günceller (satın alma, iptal).
   Widget _planBadgeLive(BuildContext context) {
@@ -313,6 +315,28 @@ class _HomeShellState extends State<HomeShell> {
         onScanReceipt: () => _createFromReceipt(context),
         receiptBusy: _inputBusy,
         onDiscover: () => _openDiscover(context),
+        budgetCard: HistoryBudgetCard(
+          // Rebuilt on every return to the Lists tab so spending is current.
+          key: ValueKey('home_budget_$_budgetVisit'),
+          db: widget.db,
+          currencyCode: AppDefaults.defaultCurrency(),
+          now: DateTime.now(),
+          money: (minor) => formatMoney(
+            Money.fromMinorUnits(
+              minor,
+              Currency.fromCode(AppDefaults.defaultCurrency()),
+            ),
+            locale: formatLocaleCode(context),
+          ),
+          onEdit: () async {
+            await Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => SpendingScreen(db: widget.db),
+              ),
+            );
+            if (mounted) setState(() => _budgetVisit++);
+          },
+        ),
       ),
       HistoryPlaceholder(
         db: widget.db,
@@ -345,6 +369,7 @@ class _HomeShellState extends State<HomeShell> {
               selectedIndex: _tab,
               onDestinationSelected: (i) => setState(() {
                 if (i == 2 && _tab != 2) _settingsVisit++;
+                if (i == 0 && _tab != 0) _budgetVisit++;
                 _tab = i;
               }),
               destinations: [
@@ -392,7 +417,12 @@ class _HomeShellState extends State<HomeShell> {
     try {
       await _scanReceipt(context);
     } finally {
-      if (mounted) setState(() => _inputBusy = false);
+      if (mounted) {
+        setState(() {
+          _inputBusy = false;
+          _budgetVisit++;
+        });
+      }
     }
   }
 

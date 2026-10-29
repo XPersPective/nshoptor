@@ -51,6 +51,7 @@ class ListsScreen extends StatefulWidget {
     this.receiptBusy = false,
     this.onDiscover,
     this.planBadge,
+    this.budgetCard,
   });
 
   final ListRepository repository;
@@ -68,6 +69,9 @@ class ListsScreen extends StatefulWidget {
 
   /// Plan simgesi (ana sayfanın üstünde); verilmezse gösterilmez.
   final Widget? planBadge;
+
+  /// Weekly/monthly budget progress shown above the lists when limits exist.
+  final Widget? budgetCard;
 
   @override
   State<ListsScreen> createState() => _ListsScreenState();
@@ -185,6 +189,7 @@ class _ListsScreenState extends State<ListsScreen> {
         ),
         body: Column(
           children: [
+            ?widget.budgetCard,
             // F26/F27: no show/hide toggle; search stays under the tabs and
             // filters whichever sort order is active.
             Padding(
