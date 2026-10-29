@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Druge aplikacije istega razvijalca.",
   "tourHelpBody": "Tapnite tukaj za ponovni ogled vodiča. Odprite seznam za razlago vsot in izdelkov.",
   "tourTotalsBody": "Načrtovana, dejanska vsota in razlika se med nakupovanjem posodabljajo.",
-  "tourItemsBody": "Vaši izdelki. Tukaj spremenite njihov vrstni red ali jih poiščite."
+  "tourItemsBody": "Vaši izdelki. Tukaj spremenite njihov vrstni red ali jih poiščite.",
+  "receiptReadingProgress": "Branje računa …",
+  "receiptReadInBackground": "Nadaljuj v ozadju",
+  "receiptReadDoneTitle": "Račun prebran",
+  "receiptReadDoneBody": "Tapnite za pregled in shranjevanje.",
+  "receiptReadMoreTitle": "Fotografirajte preostanek računa",
+  "receiptReadFailedTitle": "Računa ni bilo mogoče prebrati"
 }

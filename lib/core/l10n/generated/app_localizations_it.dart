@@ -1474,22 +1474,22 @@ class AppLocalizationsIt extends AppLocalizations {
       'Mostra i consigli per fotografare lo scontrino';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Lettura dello scontrino…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Continua in background';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Scontrino letto';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Tocca per rivederlo e salvarlo.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fotografa il resto dello scontrino';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Impossibile leggere lo scontrino';
 
   @override
   String get listReceiptsSection => 'Scontrini';

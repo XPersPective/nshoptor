@@ -1457,22 +1457,22 @@ class AppLocalizationsLo extends AppLocalizations {
   String get captureTipsSetting => 'ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'ກຳລັງອ່ານໃບຮັບເງິນ…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'ສືບຕໍ່ໃນພື້ນຫຼັງ';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'ອ່ານໃບຮັບເງິນແລ້ວ';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'ແຕະເພື່ອກວດສອບ ແລະບັນທຶກ.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'ຖ່າຍຮູບສ່ວນທີ່ເຫຼືອຂອງໃບຮັບເງິນ';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'ບໍ່ສາມາດອ່ານໃບຮັບເງິນໄດ້';
 
   @override
   String get listReceiptsSection => 'ໃບບິນ';

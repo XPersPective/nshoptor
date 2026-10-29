@@ -477,5 +477,11 @@
   "tourDiscoverBody": "একই ডেভেলপারের আরও অ্যাপ দেখুন।",
   "tourHelpBody": "এই গাইড আবার দেখতে এখানে আলতো চাপুন। মোট ও আইটেমের ব্যাখ্যা দেখতে একটি তালিকা খুলুন।",
   "tourTotalsBody": "পরিকল্পিত, প্রকৃত মোট ও পার্থক্য কেনাকাটার সময় হালনাগাদ হয়।",
-  "tourItemsBody": "আপনার আইটেম। এখানে এদের ক্রম বদলান বা খুঁজুন।"
+  "tourItemsBody": "আপনার আইটেম। এখানে এদের ক্রম বদলান বা খুঁজুন।",
+  "receiptReadingProgress": "রসিদ পড়া হচ্ছে…",
+  "receiptReadInBackground": "ব্যাকগ্রাউন্ডে চালিয়ে যান",
+  "receiptReadDoneTitle": "রসিদ পড়া হয়েছে",
+  "receiptReadDoneBody": "দেখে সংরক্ষণ করতে ট্যাপ করুন।",
+  "receiptReadMoreTitle": "রসিদের বাকি অংশের ছবি তুলুন",
+  "receiptReadFailedTitle": "রসিদ পড়া যায়নি"
 }

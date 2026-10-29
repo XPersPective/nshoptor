@@ -1465,22 +1465,22 @@ class AppLocalizationsPa extends AppLocalizations {
   String get captureTipsSetting => 'ਰਸੀਦ ਕੈਪਚਰ ਸੁਝਾਅ ਦਿਖਾਓ';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'ਰਸੀਦ ਪੜ੍ਹੀ ਜਾ ਰਹੀ ਹੈ…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'ਰਸੀਦ ਪੜ੍ਹੀ ਗਈ';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'ਜਾਂਚ ਕੇ ਸੰਭਾਲਣ ਲਈ ਟੈਪ ਕਰੋ।';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'ਰਸੀਦ ਦੇ ਬਾਕੀ ਹਿੱਸੇ ਦੀ ਫ਼ੋਟੋ ਲਓ';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'ਰਸੀਦ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ';
 
   @override
   String get listReceiptsSection => 'ਰਸੀਦਾਂ';

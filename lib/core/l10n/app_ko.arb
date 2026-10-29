@@ -477,5 +477,11 @@
   "tourDiscoverBody": "같은 개발자의 다른 앱을 살펴보세요.",
   "tourHelpBody": "여기를 탭하면 이 안내를 다시 볼 수 있습니다. 목록을 열면 합계와 품목 설명을 볼 수 있습니다.",
   "tourTotalsBody": "계획, 실제 합계와 차액이 장을 보는 동안 업데이트됩니다.",
-  "tourItemsBody": "내 품목입니다. 여기에서 순서를 바꾸거나 검색하세요."
+  "tourItemsBody": "내 품목입니다. 여기에서 순서를 바꾸거나 검색하세요.",
+  "receiptReadingProgress": "영수증을 읽는 중…",
+  "receiptReadInBackground": "백그라운드에서 계속",
+  "receiptReadDoneTitle": "영수증을 읽었습니다",
+  "receiptReadDoneBody": "탭하여 확인하고 저장하세요.",
+  "receiptReadMoreTitle": "영수증의 나머지 부분을 촬영하세요",
+  "receiptReadFailedTitle": "영수증을 읽을 수 없습니다"
 }

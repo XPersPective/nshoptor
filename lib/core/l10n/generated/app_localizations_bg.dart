@@ -1474,22 +1474,22 @@ class AppLocalizationsBg extends AppLocalizations {
   String get captureTipsSetting => 'Показвай съвети за снимане на бележка';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Касовата бележка се чете…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Продължи на заден план';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Бележката е прочетена';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Докоснете, за да прегледате и запазите.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Снимайте останалата част от бележката';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Бележката не можа да бъде прочетена';
 
   @override
   String get listReceiptsSection => 'Касови бележки';

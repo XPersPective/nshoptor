@@ -1463,22 +1463,22 @@ class AppLocalizationsMr extends AppLocalizations {
   String get captureTipsSetting => 'पावती कॅप्चर टिप्स दाखवा';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'पावती वाचत आहे…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'पार्श्वभूमीत सुरू ठेवा';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'पावती वाचली';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'तपासून जतन करण्यासाठी टॅप करा.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'पावतीच्या उर्वरित भागाचा फोटो घ्या';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'पावती वाचता आली नाही';
 
   @override
   String get listReceiptsSection => 'पावत्या';

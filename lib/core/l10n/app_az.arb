@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Eyni tərtibatçının digər tətbiqlərinə baxın.",
   "tourHelpBody": "Bu bələdçini yenidən görmək üçün bura toxunun. Cəmlərin və məhsulların izahı üçün siyahı açın.",
   "tourTotalsBody": "Planlaşdırılan, faktiki cəm və fərq alış-veriş etdikcə yenilənir.",
-  "tourItemsBody": "Məhsullarınız. Sıralarını burada dəyişin və ya axtarın."
+  "tourItemsBody": "Məhsullarınız. Sıralarını burada dəyişin və ya axtarın.",
+  "receiptReadingProgress": "Çek oxunur…",
+  "receiptReadInBackground": "Arxa planda davam et",
+  "receiptReadDoneTitle": "Çek oxundu",
+  "receiptReadDoneBody": "Yoxlamaq və saxlamaq üçün toxunun.",
+  "receiptReadMoreTitle": "Çekin qalan hissəsini çəkin",
+  "receiptReadFailedTitle": "Çeki oxumaq mümkün olmadı"
 }

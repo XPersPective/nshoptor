@@ -1477,22 +1477,22 @@ class AppLocalizationsTa extends AppLocalizations {
   String get captureTipsSetting => 'ரசீது எடுப்பதற்கான குறிப்புகளைக் காட்டு';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'ரசீது படிக்கப்படுகிறது…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'பின்னணியில் தொடரவும்';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'ரசீது படிக்கப்பட்டது';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'சரிபார்த்துச் சேமிக்க தட்டவும்.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'ரசீதின் மீதமுள்ள பகுதியைப் படமெடுக்கவும்';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'ரசீதைப் படிக்க முடியவில்லை';
 
   @override
   String get listReceiptsSection => 'ரசீதுகள்';

@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Découvrez d'autres applis du même développeur.",
   "tourHelpBody": "Touchez ici pour revoir ce guide. Ouvrez une liste pour découvrir ses totaux et ses articles.",
   "tourTotalsBody": "Les totaux prévu, réel et l'écart se mettent à jour pendant vos courses.",
-  "tourItemsBody": "Vos articles. Changez leur ordre ou recherchez-les ici."
+  "tourItemsBody": "Vos articles. Changez leur ordre ou recherchez-les ici.",
+  "receiptReadingProgress": "Lecture du reçu…",
+  "receiptReadInBackground": "Continuer en arrière-plan",
+  "receiptReadDoneTitle": "Reçu lu",
+  "receiptReadDoneBody": "Touchez pour le vérifier et l’enregistrer.",
+  "receiptReadMoreTitle": "Photographiez le reste du reçu",
+  "receiptReadFailedTitle": "Impossible de lire le reçu"
 }

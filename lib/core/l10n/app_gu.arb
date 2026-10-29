@@ -477,5 +477,11 @@
   "tourDiscoverBody": "એ જ ડેવલપરની વધુ ઍપ જુઓ.",
   "tourHelpBody": "આ માર્ગદર્શિકા ફરી જોવા અહીં ટૅપ કરો. કુલ અને વસ્તુઓની સમજ માટે કોઈ યાદી ખોલો.",
   "tourTotalsBody": "આયોજિત, વાસ્તવિક કુલ અને તફાવત ખરીદી દરમિયાન અપડેટ થાય છે.",
-  "tourItemsBody": "તમારી વસ્તુઓ. અહીં તેમનો ક્રમ બદલો અથવા શોધો."
+  "tourItemsBody": "તમારી વસ્તુઓ. અહીં તેમનો ક્રમ બદલો અથવા શોધો.",
+  "receiptReadingProgress": "રસીદ વાંચી રહ્યા છીએ…",
+  "receiptReadInBackground": "બેકગ્રાઉન્ડમાં ચાલુ રાખો",
+  "receiptReadDoneTitle": "રસીદ વાંચી લીધી",
+  "receiptReadDoneBody": "તપાસીને સાચવવા માટે ટૅપ કરો.",
+  "receiptReadMoreTitle": "રસીદના બાકીના ભાગનો ફોટો લો",
+  "receiptReadFailedTitle": "રસીદ વાંચી શકાઈ નહીં"
 }

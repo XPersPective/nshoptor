@@ -1469,22 +1469,22 @@ class AppLocalizationsIs extends AppLocalizations {
   String get captureTipsSetting => 'Sýna ráð til að mynda kvittun';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Les kvittun…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Halda áfram í bakgrunni';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Kvittun lesin';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Ýttu til að yfirfara og vista.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Taktu mynd af restinni af kvittuninni';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Ekki tókst að lesa kvittunina';
 
   @override
   String get listReceiptsSection => 'Kvittanir';

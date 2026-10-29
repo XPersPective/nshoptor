@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Mira més apps del mateix desenvolupador.",
   "tourHelpBody": "Toca aquí per tornar a veure aquesta guia. Obre una llista per veure explicats els totals i els productes.",
   "tourTotalsBody": "Els totals previst, real i la diferència s'actualitzen mentre compres.",
-  "tourItemsBody": "Els teus productes. Canvia'n l'ordre o cerca'ls aquí."
+  "tourItemsBody": "Els teus productes. Canvia'n l'ordre o cerca'ls aquí.",
+  "receiptReadingProgress": "S’està llegint el rebut…",
+  "receiptReadInBackground": "Continua en segon pla",
+  "receiptReadDoneTitle": "Rebut llegit",
+  "receiptReadDoneBody": "Toca per revisar-lo i desar-lo.",
+  "receiptReadMoreTitle": "Fotografia la resta del rebut",
+  "receiptReadFailedTitle": "No s’ha pogut llegir el rebut"
 }

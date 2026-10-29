@@ -1467,22 +1467,22 @@ class AppLocalizationsDa extends AppLocalizations {
   String get captureTipsSetting => 'Vis tips til fotografering af kvittering';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Læser kvitteringen…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Fortsæt i baggrunden';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Kvittering læst';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Tryk for at gennemgå og gemme den.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fotografér resten af kvitteringen';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Kvitteringen kunne ikke læses';
 
   @override
   String get listReceiptsSection => 'Kvitteringer';

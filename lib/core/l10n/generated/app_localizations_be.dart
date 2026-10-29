@@ -1477,22 +1477,22 @@ class AppLocalizationsBe extends AppLocalizations {
   String get captureTipsSetting => 'Паказваць парады па здымцы чэка';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Чытаецца чэк…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Працягнуць у фоне';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Чэк прачытаны';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Націсніце, каб праверыць і захаваць.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Сфатаграфуйце астатнюю частку чэка';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Не атрымалася прачытаць чэк';
 
   @override
   String get listReceiptsSection => 'Чэкі';

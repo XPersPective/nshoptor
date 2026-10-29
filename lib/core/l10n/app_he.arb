@@ -477,5 +477,11 @@
   "tourDiscoverBody": "ראו אפליקציות נוספות של אותו מפתח.",
   "tourHelpBody": "הקישו כאן כדי לצפות שוב במדריך. פתחו רשימה כדי לקבל הסבר על הסכומים והפריטים.",
   "tourTotalsBody": "הסכומים המתוכנן, בפועל וההפרש מתעדכנים בזמן הקנייה.",
-  "tourItemsBody": "הפריטים שלכם. שנו את הסדר או חפשו אותם כאן."
+  "tourItemsBody": "הפריטים שלכם. שנו את הסדר או חפשו אותם כאן.",
+  "receiptReadingProgress": "הקבלה נקראת…",
+  "receiptReadInBackground": "המשך ברקע",
+  "receiptReadDoneTitle": "הקבלה נקראה",
+  "receiptReadDoneBody": "הקישו כדי לבדוק ולשמור.",
+  "receiptReadMoreTitle": "צלמו את שאר הקבלה",
+  "receiptReadFailedTitle": "לא ניתן היה לקרוא את הקבלה"
 }

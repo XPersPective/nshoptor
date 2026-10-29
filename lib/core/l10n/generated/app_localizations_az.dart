@@ -1471,22 +1471,22 @@ class AppLocalizationsAz extends AppLocalizations {
   String get captureTipsSetting => 'Çek çəkilişi məsləhətlərini göstər';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Çek oxunur…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Arxa planda davam et';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Çek oxundu';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Yoxlamaq və saxlamaq üçün toxunun.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Çekin qalan hissəsini çəkin';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Çeki oxumaq mümkün olmadı';
 
   @override
   String get listReceiptsSection => 'Qəbzlər';

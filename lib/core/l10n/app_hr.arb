@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Druge aplikacije istog razvojnog programera.",
   "tourHelpBody": "Dodirnite ovdje za ponovni prikaz vodiča. Otvorite popis za objašnjenje zbrojeva i stavki.",
   "tourTotalsBody": "Planirani, stvarni zbroj i razlika ažuriraju se dok kupujete.",
-  "tourItemsBody": "Vaše stavke. Ovdje im promijenite redoslijed ili ih pretražite."
+  "tourItemsBody": "Vaše stavke. Ovdje im promijenite redoslijed ili ih pretražite.",
+  "receiptReadingProgress": "Čitanje računa…",
+  "receiptReadInBackground": "Nastavi u pozadini",
+  "receiptReadDoneTitle": "Račun je pročitan",
+  "receiptReadDoneBody": "Dodirnite za pregled i spremanje.",
+  "receiptReadMoreTitle": "Fotografirajte ostatak računa",
+  "receiptReadFailedTitle": "Račun nije moguće pročitati"
 }

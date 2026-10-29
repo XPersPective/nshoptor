@@ -1474,22 +1474,22 @@ class AppLocalizationsGl extends AppLocalizations {
   String get captureTipsSetting => 'Mostrar consellos para fotografar o recibo';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Lendo o recibo…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Continuar en segundo plano';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Recibo lido';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Toca para revisalo e gardalo.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fotografa o resto do recibo';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Non se puido ler o recibo';
 
   @override
   String get listReceiptsSection => 'Tíckets';

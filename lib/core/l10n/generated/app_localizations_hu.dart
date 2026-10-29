@@ -1470,22 +1470,22 @@ class AppLocalizationsHu extends AppLocalizations {
   String get captureTipsSetting => 'Nyugtafotózási tippek megjelenítése';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Nyugta olvasása…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Folytatás a háttérben';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Nyugta beolvasva';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Koppintson az áttekintéshez és mentéshez.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fényképezze le a nyugta többi részét';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'A nyugtát nem sikerült beolvasni';
 
   @override
   String get listReceiptsSection => 'Blokkok';

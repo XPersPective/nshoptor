@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Lihat aplikasi lain daripada pembangun yang sama.",
   "tourHelpBody": "Ketik di sini untuk melihat panduan ini semula. Buka senarai untuk melihat penerangan jumlah dan item.",
   "tourTotalsBody": "Jumlah dirancang, sebenar dan perbezaan dikemas kini semasa anda membeli-belah.",
-  "tourItemsBody": "Item anda. Tukar susunan atau cari di sini."
+  "tourItemsBody": "Item anda. Tukar susunan atau cari di sini.",
+  "receiptReadingProgress": "Membaca resit…",
+  "receiptReadInBackground": "Teruskan di latar belakang",
+  "receiptReadDoneTitle": "Resit dibaca",
+  "receiptReadDoneBody": "Ketik untuk menyemak dan menyimpannya.",
+  "receiptReadMoreTitle": "Ambil gambar bahagian resit yang selebihnya",
+  "receiptReadFailedTitle": "Resit tidak dapat dibaca"
 }

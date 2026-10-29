@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Scopri altre app dello stesso sviluppatore.",
   "tourHelpBody": "Tocca qui per rivedere questa guida. Apri una lista per vedere spiegati totali e articoli.",
   "tourTotalsBody": "I totali previsto, effettivo e la differenza si aggiornano mentre fai la spesa.",
-  "tourItemsBody": "I tuoi articoli. Cambiane l'ordine o cercali qui."
+  "tourItemsBody": "I tuoi articoli. Cambiane l'ordine o cercali qui.",
+  "receiptReadingProgress": "Lettura dello scontrino…",
+  "receiptReadInBackground": "Continua in background",
+  "receiptReadDoneTitle": "Scontrino letto",
+  "receiptReadDoneBody": "Tocca per rivederlo e salvarlo.",
+  "receiptReadMoreTitle": "Fotografa il resto dello scontrino",
+  "receiptReadFailedTitle": "Impossibile leggere lo scontrino"
 }

@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Shiko aplikacione të tjera të të njëjtit zhvillues.",
   "tourHelpBody": "Prek këtu për ta parë sërish udhëzuesin. Hap një listë për shpjegimin e totaleve dhe artikujve.",
   "tourTotalsBody": "Totalet e planifikuara, reale dhe diferenca përditësohen ndërsa blen.",
-  "tourItemsBody": "Artikujt e tu. Ndrysho renditjen ose kërkoji këtu."
+  "tourItemsBody": "Artikujt e tu. Ndrysho renditjen ose kërkoji këtu.",
+  "receiptReadingProgress": "Po lexohet fatura…",
+  "receiptReadInBackground": "Vazhdo në sfond",
+  "receiptReadDoneTitle": "Fatura u lexua",
+  "receiptReadDoneBody": "Prek për ta shqyrtuar dhe ruajtur.",
+  "receiptReadMoreTitle": "Fotografo pjesën tjetër të faturës",
+  "receiptReadFailedTitle": "Fatura nuk mund të lexohej"
 }

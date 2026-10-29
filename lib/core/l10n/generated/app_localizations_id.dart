@@ -1466,22 +1466,22 @@ class AppLocalizationsId extends AppLocalizations {
   String get captureTipsSetting => 'Tampilkan tips memotret struk';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Membaca struk…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Lanjutkan di latar belakang';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Struk terbaca';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Ketuk untuk meninjau dan menyimpannya.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Foto sisa struk';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Struk tidak dapat dibaca';
 
   @override
   String get listReceiptsSection => 'Struk';

@@ -1423,22 +1423,22 @@ class AppLocalizationsKo extends AppLocalizations {
   String get captureTipsSetting => '영수증 촬영 팁 표시';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => '영수증을 읽는 중…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => '백그라운드에서 계속';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => '영수증을 읽었습니다';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => '탭하여 확인하고 저장하세요.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => '영수증의 나머지 부분을 촬영하세요';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => '영수증을 읽을 수 없습니다';
 
   @override
   String get listReceiptsSection => '영수증';

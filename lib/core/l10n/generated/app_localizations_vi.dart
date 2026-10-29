@@ -1463,22 +1463,22 @@ class AppLocalizationsVi extends AppLocalizations {
   String get captureTipsSetting => 'Hiện mẹo chụp hóa đơn';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Đang đọc hóa đơn…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Tiếp tục trong nền';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Đã đọc hóa đơn';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Nhấn để xem lại và lưu.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Chụp phần còn lại của hóa đơn';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Không thể đọc hóa đơn';
 
   @override
   String get listReceiptsSection => 'Hóa đơn';

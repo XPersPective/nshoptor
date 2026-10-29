@@ -1457,22 +1457,22 @@ class AppLocalizationsTh extends AppLocalizations {
   String get captureTipsSetting => 'แสดงเคล็ดลับการถ่ายใบเสร็จ';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'กำลังอ่านใบเสร็จ…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'ทำต่อในเบื้องหลัง';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'อ่านใบเสร็จแล้ว';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'แตะเพื่อตรวจสอบและบันทึก';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'ถ่ายภาพส่วนที่เหลือของใบเสร็จ';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'อ่านใบเสร็จไม่ได้';
 
   @override
   String get listReceiptsSection => 'ใบเสร็จ';

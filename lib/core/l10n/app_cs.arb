@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Další aplikace od stejného vývojáře.",
   "tourHelpBody": "Klepnutím sem si průvodce pustíte znovu. Otevřete seznam a uvidíte vysvětlení součtů a položek.",
   "tourTotalsBody": "Plánovaný, skutečný součet a rozdíl se při nákupu průběžně aktualizují.",
-  "tourItemsBody": "Vaše položky. Zde měňte jejich pořadí nebo je vyhledejte."
+  "tourItemsBody": "Vaše položky. Zde měňte jejich pořadí nebo je vyhledejte.",
+  "receiptReadingProgress": "Čtení účtenky…",
+  "receiptReadInBackground": "Pokračovat na pozadí",
+  "receiptReadDoneTitle": "Účtenka přečtena",
+  "receiptReadDoneBody": "Klepnutím ji zkontrolujete a uložíte.",
+  "receiptReadMoreTitle": "Vyfoťte zbytek účtenky",
+  "receiptReadFailedTitle": "Účtenku se nepodařilo přečíst"
 }

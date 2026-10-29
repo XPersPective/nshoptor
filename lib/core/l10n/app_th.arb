@@ -477,5 +477,11 @@
   "tourDiscoverBody": "ดูแอปอื่นจากผู้พัฒนาเดียวกัน",
   "tourHelpBody": "แตะที่นี่เพื่อดูคำแนะนำนี้อีกครั้ง เปิดรายการเพื่อดูคำอธิบายยอดรวมและสินค้า",
   "tourTotalsBody": "ยอดรวมตามแผน ยอดจริง และส่วนต่างจะอัปเดตขณะคุณซื้อของ",
-  "tourItemsBody": "สินค้าของคุณ เปลี่ยนลำดับหรือค้นหาได้ที่นี่"
+  "tourItemsBody": "สินค้าของคุณ เปลี่ยนลำดับหรือค้นหาได้ที่นี่",
+  "receiptReadingProgress": "กำลังอ่านใบเสร็จ…",
+  "receiptReadInBackground": "ทำต่อในเบื้องหลัง",
+  "receiptReadDoneTitle": "อ่านใบเสร็จแล้ว",
+  "receiptReadDoneBody": "แตะเพื่อตรวจสอบและบันทึก",
+  "receiptReadMoreTitle": "ถ่ายภาพส่วนที่เหลือของใบเสร็จ",
+  "receiptReadFailedTitle": "อ่านใบเสร็จไม่ได้"
 }

@@ -1459,22 +1459,22 @@ class AppLocalizationsPs extends AppLocalizations {
   String get captureTipsSetting => 'د رسید اخیستلو لارښوونې وښایاست';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'رسید لوستل کیږي…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'په شالید کې دوام ورکړئ';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'رسید ولوستل شو';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'د کتلو او ساتلو لپاره ټک کړئ.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'د رسید پاتې برخه عکس کړئ';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'رسید ونه لوستل شو';
 
   @override
   String get listReceiptsSection => 'رسیدونه';

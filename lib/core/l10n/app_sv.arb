@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Se fler appar från samma utvecklare.",
   "tourHelpBody": "Tryck här för att se guiden igen. Öppna en lista för att få summor och varor förklarade.",
   "tourTotalsBody": "Planerad, faktisk summa och skillnad uppdateras medan du handlar.",
-  "tourItemsBody": "Dina varor. Ändra ordning eller sök bland dem här."
+  "tourItemsBody": "Dina varor. Ändra ordning eller sök bland dem här.",
+  "receiptReadingProgress": "Läser kvittot…",
+  "receiptReadInBackground": "Fortsätt i bakgrunden",
+  "receiptReadDoneTitle": "Kvittot har lästs",
+  "receiptReadDoneBody": "Tryck för att granska och spara.",
+  "receiptReadMoreTitle": "Fotografera resten av kvittot",
+  "receiptReadFailedTitle": "Kvittot kunde inte läsas"
 }

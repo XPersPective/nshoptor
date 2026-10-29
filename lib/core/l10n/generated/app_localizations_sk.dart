@@ -1473,22 +1473,22 @@ class AppLocalizationsSk extends AppLocalizations {
   String get captureTipsSetting => 'Zobrazovať tipy na fotenie bločku';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Číta sa bloček…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Pokračovať na pozadí';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Bloček prečítaný';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Klepnutím ho skontrolujete a uložíte.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Odfoťte zvyšok bločku';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Bloček sa nepodarilo prečítať';
 
   @override
   String get listReceiptsSection => 'Bločky';

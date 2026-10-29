@@ -1475,22 +1475,22 @@ class AppLocalizationsUk extends AppLocalizations {
   String get captureTipsSetting => 'Показувати поради щодо зйомки чека';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Чек зчитується…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Продовжити у фоні';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Чек зчитано';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Торкніться, щоб перевірити й зберегти.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Сфотографуйте решту чека';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Не вдалося зчитати чек';
 
   @override
   String get listReceiptsSection => 'Чеки';

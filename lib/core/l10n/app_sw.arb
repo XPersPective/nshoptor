@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Tazama programu zaidi za msanidi yuleyule.",
   "tourHelpBody": "Gusa hapa kuona mwongozo huu tena. Fungua orodha kuona maelezo ya jumla na bidhaa.",
   "tourTotalsBody": "Jumla iliyopangwa, halisi na tofauti husasishwa unaponunua.",
-  "tourItemsBody": "Bidhaa zako. Badilisha mpangilio wake au zitafute hapa."
+  "tourItemsBody": "Bidhaa zako. Badilisha mpangilio wake au zitafute hapa.",
+  "receiptReadingProgress": "Inasoma risiti…",
+  "receiptReadInBackground": "Endelea chinichini",
+  "receiptReadDoneTitle": "Risiti imesomwa",
+  "receiptReadDoneBody": "Gusa ili kukagua na kuhifadhi.",
+  "receiptReadMoreTitle": "Piga picha sehemu iliyobaki ya risiti",
+  "receiptReadFailedTitle": "Risiti haikuweza kusomwa"
 }

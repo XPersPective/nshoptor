@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Ugyanattól a fejlesztőtől származó további alkalmazások.",
   "tourHelpBody": "Koppints ide az útmutató újbóli megtekintéséhez. Nyiss meg egy listát az összegek és tételek magyarázatához.",
   "tourTotalsBody": "A tervezett, a tényleges összeg és a különbség vásárlás közben frissül.",
-  "tourItemsBody": "A tételeid. Itt módosíthatod a sorrendjüket vagy kereshetsz köztük."
+  "tourItemsBody": "A tételeid. Itt módosíthatod a sorrendjüket vagy kereshetsz köztük.",
+  "receiptReadingProgress": "Nyugta olvasása…",
+  "receiptReadInBackground": "Folytatás a háttérben",
+  "receiptReadDoneTitle": "Nyugta beolvasva",
+  "receiptReadDoneBody": "Koppintson az áttekintéshez és mentéshez.",
+  "receiptReadMoreTitle": "Fényképezze le a nyugta többi részét",
+  "receiptReadFailedTitle": "A nyugtát nem sikerült beolvasni"
 }

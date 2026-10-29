@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Sama arendaja teised rakendused.",
   "tourHelpBody": "Puuduta siin, et juhendit uuesti vaadata. Ava nimekiri, et näha summade ja toodete selgitust.",
   "tourTotalsBody": "Plaanitud, tegelik summa ja vahe uuenevad ostlemise ajal.",
-  "tourItemsBody": "Sinu tooted. Muuda siin nende järjekorda või otsi neid."
+  "tourItemsBody": "Sinu tooted. Muuda siin nende järjekorda või otsi neid.",
+  "receiptReadingProgress": "Kviitungit loetakse…",
+  "receiptReadInBackground": "Jätka taustal",
+  "receiptReadDoneTitle": "Kviitung loetud",
+  "receiptReadDoneBody": "Puuduta, et üle vaadata ja salvestada.",
+  "receiptReadMoreTitle": "Pildista kviitungi ülejäänud osa",
+  "receiptReadFailedTitle": "Kviitungit ei õnnestunud lugeda"
 }

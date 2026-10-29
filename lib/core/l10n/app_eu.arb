@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Ikusi garatzaile beraren beste aplikazio batzuk.",
   "tourHelpBody": "Sakatu hemen gida berriro ikusteko. Ireki zerrenda bat guztizkoen eta produktuen azalpena ikusteko.",
   "tourTotalsBody": "Aurreikusitako, benetako guztizkoa eta aldea erosi ahala eguneratzen dira.",
-  "tourItemsBody": "Zure produktuak. Aldatu haien ordena edo bilatu hemen."
+  "tourItemsBody": "Zure produktuak. Aldatu haien ordena edo bilatu hemen.",
+  "receiptReadingProgress": "Ordainagiria irakurtzen…",
+  "receiptReadInBackground": "Jarraitu atzeko planoan",
+  "receiptReadDoneTitle": "Ordainagiria irakurrita",
+  "receiptReadDoneBody": "Sakatu berrikusteko eta gordetzeko.",
+  "receiptReadMoreTitle": "Atera argazkia ordainagiriaren gainerakoari",
+  "receiptReadFailedTitle": "Ezin izan da ordainagiria irakurri"
 }

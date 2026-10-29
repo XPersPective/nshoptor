@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Sien meer toepassings van dieselfde ontwikkelaar.",
   "tourHelpBody": "Tik hier om hierdie gids weer te sien. Maak 'n lys oop om die totale en items verduidelik te sien.",
   "tourTotalsBody": "Beplande, werklike en verskiltotale word bygewerk terwyl jy koop.",
-  "tourItemsBody": "Jou items. Verander hul volgorde of soek hulle hier."
+  "tourItemsBody": "Jou items. Verander hul volgorde of soek hulle hier.",
+  "receiptReadingProgress": "Kwitansie word gelees…",
+  "receiptReadInBackground": "Gaan voort op die agtergrond",
+  "receiptReadDoneTitle": "Kwitansie gelees",
+  "receiptReadDoneBody": "Tik om dit na te gaan en te stoor.",
+  "receiptReadMoreTitle": "Foto die res van die kwitansie",
+  "receiptReadFailedTitle": "Die kwitansie kon nie gelees word nie"
 }

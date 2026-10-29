@@ -1468,22 +1468,22 @@ class AppLocalizationsKy extends AppLocalizations {
   String get captureTipsSetting => 'Чекти тартуу кеңештерин көрсөтүү';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Чек окулууда…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Фондо улантуу';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Чек окулду';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Текшерип, сактоо үчүн таптаңыз.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Чектин калган бөлүгүн сүрөткө тартыңыз';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Чекти окуу мүмкүн болбоду';
 
   @override
   String get listReceiptsSection => 'Чектер';

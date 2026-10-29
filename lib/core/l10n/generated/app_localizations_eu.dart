@@ -1474,22 +1474,23 @@ class AppLocalizationsEu extends AppLocalizations {
       'Erakutsi ordainagiriak argazkitzeko aholkuak';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Ordainagiria irakurtzen…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Jarraitu atzeko planoan';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Ordainagiria irakurrita';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Sakatu berrikusteko eta gordetzeko.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle =>
+      'Atera argazkia ordainagiriaren gainerakoari';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Ezin izan da ordainagiria irakurri';
 
   @override
   String get listReceiptsSection => 'Tiketak';

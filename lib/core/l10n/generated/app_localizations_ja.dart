@@ -1420,22 +1420,22 @@ class AppLocalizationsJa extends AppLocalizations {
   String get captureTipsSetting => 'レシート撮影のヒントを表示';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'レシートを読み取り中…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'バックグラウンドで続ける';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'レシートを読み取りました';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'タップして確認・保存します。';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'レシートの残りを撮影してください';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'レシートを読み取れませんでした';
 
   @override
   String get listReceiptsSection => 'レシート';

@@ -1468,22 +1468,22 @@ class AppLocalizationsNe extends AppLocalizations {
   String get captureTipsSetting => 'रसिद खिच्ने सुझाव देखाउनुहोस्';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'रसिद पढ्दै…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'पृष्ठभूमिमा जारी राख्नुहोस्';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'रसिद पढियो';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'जाँच गरी सुरक्षित गर्न ट्याप गर्नुहोस्।';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'रसिदको बाँकी भागको फोटो खिच्नुहोस्';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'रसिद पढ्न सकिएन';
 
   @override
   String get listReceiptsSection => 'रसिदहरू';

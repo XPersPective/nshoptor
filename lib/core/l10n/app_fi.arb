@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Katso saman kehittäjän muita sovelluksia.",
   "tourHelpBody": "Napauta tästä nähdäksesi oppaan uudelleen. Avaa lista nähdäksesi summien ja tuotteiden selitykset.",
   "tourTotalsBody": "Suunniteltu, toteutunut summa ja erotus päivittyvät ostosten aikana.",
-  "tourItemsBody": "Tuotteesi. Muuta niiden järjestystä tai hae niitä tästä."
+  "tourItemsBody": "Tuotteesi. Muuta niiden järjestystä tai hae niitä tästä.",
+  "receiptReadingProgress": "Luetaan kuittia…",
+  "receiptReadInBackground": "Jatka taustalla",
+  "receiptReadDoneTitle": "Kuitti luettu",
+  "receiptReadDoneBody": "Napauta tarkistaaksesi ja tallentaaksesi.",
+  "receiptReadMoreTitle": "Ota kuva kuitin loppuosasta",
+  "receiptReadFailedTitle": "Kuittia ei voitu lukea"
 }

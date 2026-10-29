@@ -1472,22 +1472,22 @@ class AppLocalizationsSq extends AppLocalizations {
   String get captureTipsSetting => 'Shfaq këshillat për fotografimin e faturës';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Po lexohet fatura…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Vazhdo në sfond';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Fatura u lexua';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Prek për ta shqyrtuar dhe ruajtur.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fotografo pjesën tjetër të faturës';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Fatura nuk mund të lexohej';
 
   @override
   String get listReceiptsSection => 'Faturat';

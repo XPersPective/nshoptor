@@ -477,5 +477,11 @@
   "tourDiscoverBody": "उसी डेवलपर के और ऐप देखें।",
   "tourHelpBody": "यह गाइड फिर से देखने के लिए यहाँ टैप करें। योग और आइटम की व्याख्या देखने के लिए कोई सूची खोलें।",
   "tourTotalsBody": "नियोजित, वास्तविक योग और अंतर खरीदारी के दौरान अपडेट होते हैं।",
-  "tourItemsBody": "आपके आइटम। यहाँ उनका क्रम बदलें या उन्हें खोजें।"
+  "tourItemsBody": "आपके आइटम। यहाँ उनका क्रम बदलें या उन्हें खोजें।",
+  "receiptReadingProgress": "रसीद पढ़ी जा रही है…",
+  "receiptReadInBackground": "बैकग्राउंड में जारी रखें",
+  "receiptReadDoneTitle": "रसीद पढ़ ली गई",
+  "receiptReadDoneBody": "जाँचने और सहेजने के लिए टैप करें।",
+  "receiptReadMoreTitle": "रसीद के बाकी हिस्से की फ़ोटो लें",
+  "receiptReadFailedTitle": "रसीद पढ़ी नहीं जा सकी"
 }

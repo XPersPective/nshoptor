@@ -1472,22 +1472,22 @@ class AppLocalizationsFi extends AppLocalizations {
   String get captureTipsSetting => 'Näytä kuitin kuvausvinkit';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Luetaan kuittia…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Jatka taustalla';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Kuitti luettu';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Napauta tarkistaaksesi ja tallentaaksesi.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Ota kuva kuitin loppuosasta';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Kuittia ei voitu lukea';
 
   @override
   String get listReceiptsSection => 'Kuitit';

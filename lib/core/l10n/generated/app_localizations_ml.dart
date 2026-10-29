@@ -1466,22 +1466,23 @@ class AppLocalizationsMl extends AppLocalizations {
   String get captureTipsSetting => 'രസീത് പകർത്താനുള്ള നുറുങ്ങുകൾ കാണിക്കുക';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'രസീത് വായിക്കുന്നു…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'പശ്ചാത്തലത്തിൽ തുടരുക';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'രസീത് വായിച്ചു';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'പരിശോധിച്ച് സേവ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle =>
+      'രസീതിന്റെ ബാക്കി ഭാഗത്തിന്റെ ഫോട്ടോ എടുക്കുക';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'രസീത് വായിക്കാൻ കഴിഞ്ഞില്ല';
 
   @override
   String get listReceiptsSection => 'രസീതുകൾ';

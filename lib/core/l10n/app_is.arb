@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Sjáðu fleiri öpp frá sama forritara.",
   "tourHelpBody": "Ýttu hér til að sjá leiðarvísinn aftur. Opnaðu lista til að fá útskýringu á samtölum og vörum.",
   "tourTotalsBody": "Áætluð, raunveruleg samtala og mismunur uppfærast meðan þú verslar.",
-  "tourItemsBody": "Vörurnar þínar. Breyttu röðinni eða leitaðu að þeim hér."
+  "tourItemsBody": "Vörurnar þínar. Breyttu röðinni eða leitaðu að þeim hér.",
+  "receiptReadingProgress": "Les kvittun…",
+  "receiptReadInBackground": "Halda áfram í bakgrunni",
+  "receiptReadDoneTitle": "Kvittun lesin",
+  "receiptReadDoneBody": "Ýttu til að yfirfara og vista.",
+  "receiptReadMoreTitle": "Taktu mynd af restinni af kvittuninni",
+  "receiptReadFailedTitle": "Ekki tókst að lesa kvittunina"
 }

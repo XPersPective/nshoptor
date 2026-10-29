@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Shu dasturchining boshqa ilovalarini ko'ring.",
   "tourHelpBody": "Bu qo'llanmani qayta ko'rish uchun shu yerga bosing. Jami va mahsulotlar izohini ko'rish uchun ro'yxat oching.",
   "tourTotalsBody": "Rejalangan, haqiqiy jami va farq xarid davomida yangilanadi.",
-  "tourItemsBody": "Mahsulotlaringiz. Tartibini shu yerda o'zgartiring yoki qidiring."
+  "tourItemsBody": "Mahsulotlaringiz. Tartibini shu yerda o'zgartiring yoki qidiring.",
+  "receiptReadingProgress": "Chek o‘qilmoqda…",
+  "receiptReadInBackground": "Fonda davom ettirish",
+  "receiptReadDoneTitle": "Chek o‘qildi",
+  "receiptReadDoneBody": "Tekshirib saqlash uchun bosing.",
+  "receiptReadMoreTitle": "Chekning qolgan qismini suratga oling",
+  "receiptReadFailedTitle": "Chekni o‘qib bo‘lmadi"
 }

@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Tingnan ang iba pang app ng parehong developer.",
   "tourHelpBody": "I-tap dito para ulitin ang gabay na ito. Magbukas ng listahan para makita ang paliwanag sa kabuuan at mga item.",
   "tourTotalsBody": "Nag-a-update ang planado, aktwal at diperensiyang kabuuan habang namimili ka.",
-  "tourItemsBody": "Ang iyong mga item. Baguhin ang ayos o hanapin sila rito."
+  "tourItemsBody": "Ang iyong mga item. Baguhin ang ayos o hanapin sila rito.",
+  "receiptReadingProgress": "Binabasa ang resibo…",
+  "receiptReadInBackground": "Magpatuloy sa background",
+  "receiptReadDoneTitle": "Nabasa na ang resibo",
+  "receiptReadDoneBody": "I-tap para suriin at i-save ito.",
+  "receiptReadMoreTitle": "Kunan ang natitirang bahagi ng resibo",
+  "receiptReadFailedTitle": "Hindi nabasa ang resibo"
 }

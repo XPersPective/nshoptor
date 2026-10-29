@@ -1473,22 +1473,22 @@ class AppLocalizationsMn extends AppLocalizations {
   String get captureTipsSetting => 'Баримт авах зөвлөгөөг харуулах';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Баримтыг уншиж байна…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Далд үргэлжлүүлэх';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Баримт уншигдлаа';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Шалгаж хадгалахын тулд товшино уу.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Баримтын үлдсэн хэсгийг зургийн авна уу';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Баримтыг уншиж чадсангүй';
 
   @override
   String get listReceiptsSection => 'Баримтууд';

@@ -1476,22 +1476,23 @@ class AppLocalizationsEl extends AppLocalizations {
   String get captureTipsSetting => 'Εμφάνιση συμβουλών λήψης απόδειξης';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Ανάγνωση απόδειξης…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Συνέχεια στο παρασκήνιο';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Η απόδειξη διαβάστηκε';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Πατήστε για έλεγχο και αποθήκευση.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Φωτογραφίστε το υπόλοιπο της απόδειξης';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle =>
+      'Δεν ήταν δυνατή η ανάγνωση της απόδειξης';
 
   @override
   String get listReceiptsSection => 'Αποδείξεις';

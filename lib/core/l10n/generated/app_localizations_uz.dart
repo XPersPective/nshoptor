@@ -1475,22 +1475,22 @@ class AppLocalizationsUz extends AppLocalizations {
       'Chek suratga olish maslahatlarini ko‘rsatish';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Chek o‘qilmoqda…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Fonda davom ettirish';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Chek o‘qildi';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Tekshirib saqlash uchun bosing.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Chekning qolgan qismini suratga oling';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Chekni o‘qib bo‘lmadi';
 
   @override
   String get listReceiptsSection => 'Cheklar';

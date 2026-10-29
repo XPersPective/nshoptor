@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Se flere apps fra samme udvikler.",
   "tourHelpBody": "Tryk her for at se guiden igen. Åbn en liste for at få summer og varer forklaret.",
   "tourTotalsBody": "Planlagt, faktisk sum og forskel opdateres, mens du handler.",
-  "tourItemsBody": "Dine varer. Skift rækkefølge eller søg i dem her."
+  "tourItemsBody": "Dine varer. Skift rækkefølge eller søg i dem her.",
+  "receiptReadingProgress": "Læser kvitteringen…",
+  "receiptReadInBackground": "Fortsæt i baggrunden",
+  "receiptReadDoneTitle": "Kvittering læst",
+  "receiptReadDoneBody": "Tryk for at gennemgå og gemme den.",
+  "receiptReadMoreTitle": "Fotografér resten af kvitteringen",
+  "receiptReadFailedTitle": "Kvitteringen kunne ikke læses"
 }

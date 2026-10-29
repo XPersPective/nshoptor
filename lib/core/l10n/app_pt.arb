@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Veja mais apps do mesmo desenvolvedor.",
   "tourHelpBody": "Toque aqui para rever este guia. Abra uma lista para ver os totais e os itens explicados.",
   "tourTotalsBody": "Os totais previsto, real e a diferença são atualizados enquanto você compra.",
-  "tourItemsBody": "Seus itens. Mude a ordem ou pesquise-os aqui."
+  "tourItemsBody": "Seus itens. Mude a ordem ou pesquise-os aqui.",
+  "receiptReadingProgress": "Lendo o recibo…",
+  "receiptReadInBackground": "Continuar em segundo plano",
+  "receiptReadDoneTitle": "Recibo lido",
+  "receiptReadDoneBody": "Toque para revisar e salvar.",
+  "receiptReadMoreTitle": "Fotografe o restante do recibo",
+  "receiptReadFailedTitle": "Não foi possível ler o recibo"
 }

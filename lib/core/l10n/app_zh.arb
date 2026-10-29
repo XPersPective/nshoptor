@@ -477,5 +477,11 @@
   "tourDiscoverBody": "查看同一开发者的更多应用。",
   "tourHelpBody": "点按此处可再次查看本指南。打开一个清单即可查看总计和商品的说明。",
   "tourTotalsBody": "计划、实际总额及差额会在购物时更新。",
-  "tourItemsBody": "你的商品。可在此更改顺序或搜索。"
+  "tourItemsBody": "你的商品。可在此更改顺序或搜索。",
+  "receiptReadingProgress": "正在读取收据…",
+  "receiptReadInBackground": "在后台继续",
+  "receiptReadDoneTitle": "收据已读取",
+  "receiptReadDoneBody": "点按即可查看并保存。",
+  "receiptReadMoreTitle": "请拍摄收据的其余部分",
+  "receiptReadFailedTitle": "无法读取收据"
 }

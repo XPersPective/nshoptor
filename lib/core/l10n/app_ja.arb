@@ -477,5 +477,11 @@
   "tourDiscoverBody": "同じ開発者のほかのアプリを見る。",
   "tourHelpBody": "ここをタップするとこのガイドをもう一度見られます。リストを開くと合計と品目の説明が表示されます。",
   "tourTotalsBody": "予定・実績の合計と差額は買い物中に更新されます。",
-  "tourItemsBody": "品目の一覧です。ここで並び順を変えたり検索したりできます。"
+  "tourItemsBody": "品目の一覧です。ここで並び順を変えたり検索したりできます。",
+  "receiptReadingProgress": "レシートを読み取り中…",
+  "receiptReadInBackground": "バックグラウンドで続ける",
+  "receiptReadDoneTitle": "レシートを読み取りました",
+  "receiptReadDoneBody": "タップして確認・保存します。",
+  "receiptReadMoreTitle": "レシートの残りを撮影してください",
+  "receiptReadFailedTitle": "レシートを読み取れませんでした"
 }

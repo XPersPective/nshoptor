@@ -477,5 +477,11 @@
   "tourDiscoverBody": "ਉਸੇ ਡਿਵੈਲਪਰ ਦੀਆਂ ਹੋਰ ਐਪਾਂ ਦੇਖੋ।",
   "tourHelpBody": "ਇਹ ਗਾਈਡ ਦੁਬਾਰਾ ਦੇਖਣ ਲਈ ਇੱਥੇ ਟੈਪ ਕਰੋ। ਜੋੜ ਅਤੇ ਆਈਟਮਾਂ ਦੀ ਵਿਆਖਿਆ ਲਈ ਕੋਈ ਸੂਚੀ ਖੋਲ੍ਹੋ।",
   "tourTotalsBody": "ਯੋਜਨਾਬੱਧ, ਅਸਲ ਜੋੜ ਅਤੇ ਫਰਕ ਖਰੀਦਦਾਰੀ ਦੌਰਾਨ ਅੱਪਡੇਟ ਹੁੰਦੇ ਹਨ।",
-  "tourItemsBody": "ਤੁਹਾਡੀਆਂ ਆਈਟਮਾਂ। ਇੱਥੇ ਇਹਨਾਂ ਦਾ ਕ੍ਰਮ ਬਦਲੋ ਜਾਂ ਲੱਭੋ।"
+  "tourItemsBody": "ਤੁਹਾਡੀਆਂ ਆਈਟਮਾਂ। ਇੱਥੇ ਇਹਨਾਂ ਦਾ ਕ੍ਰਮ ਬਦਲੋ ਜਾਂ ਲੱਭੋ।",
+  "receiptReadingProgress": "ਰਸੀਦ ਪੜ੍ਹੀ ਜਾ ਰਹੀ ਹੈ…",
+  "receiptReadInBackground": "ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਜਾਰੀ ਰੱਖੋ",
+  "receiptReadDoneTitle": "ਰਸੀਦ ਪੜ੍ਹੀ ਗਈ",
+  "receiptReadDoneBody": "ਜਾਂਚ ਕੇ ਸੰਭਾਲਣ ਲਈ ਟੈਪ ਕਰੋ।",
+  "receiptReadMoreTitle": "ਰਸੀਦ ਦੇ ਬਾਕੀ ਹਿੱਸੇ ਦੀ ਫ਼ੋਟੋ ਲਓ",
+  "receiptReadFailedTitle": "ਰਸੀਦ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ"
 }

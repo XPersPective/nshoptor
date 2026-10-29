@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Lihat aplikasi lain dari pengembang yang sama.",
   "tourHelpBody": "Ketuk di sini untuk melihat panduan ini lagi. Buka daftar untuk melihat penjelasan total dan item.",
   "tourTotalsBody": "Total rencana, aktual, dan selisih diperbarui saat Anda berbelanja.",
-  "tourItemsBody": "Item Anda. Ubah urutannya atau cari di sini."
+  "tourItemsBody": "Item Anda. Ubah urutannya atau cari di sini.",
+  "receiptReadingProgress": "Membaca struk…",
+  "receiptReadInBackground": "Lanjutkan di latar belakang",
+  "receiptReadDoneTitle": "Struk terbaca",
+  "receiptReadDoneBody": "Ketuk untuk meninjau dan menyimpannya.",
+  "receiptReadMoreTitle": "Foto sisa struk",
+  "receiptReadFailedTitle": "Struk tidak dapat dibaca"
 }

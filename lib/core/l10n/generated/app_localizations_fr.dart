@@ -1478,22 +1478,23 @@ class AppLocalizationsFr extends AppLocalizations {
       'Afficher les conseils de prise de vue du reçu';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Lecture du reçu…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Continuer en arrière-plan';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Reçu lu';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody =>
+      'Touchez pour le vérifier et l’enregistrer.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Photographiez le reste du reçu';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Impossible de lire le reçu';
 
   @override
   String get listReceiptsSection => 'Tickets';

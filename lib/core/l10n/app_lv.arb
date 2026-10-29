@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Citas tā paša izstrādātāja lietotnes.",
   "tourHelpBody": "Pieskarieties šeit, lai vēlreiz skatītu ceļvedi. Atveriet sarakstu, lai redzētu summu un preču skaidrojumu.",
   "tourTotalsBody": "Plānotā, faktiskā summa un starpība atjaunojas iepirkšanās laikā.",
-  "tourItemsBody": "Jūsu preces. Šeit mainiet to secību vai meklējiet tās."
+  "tourItemsBody": "Jūsu preces. Šeit mainiet to secību vai meklējiet tās.",
+  "receiptReadingProgress": "Čeks tiek lasīts…",
+  "receiptReadInBackground": "Turpināt fonā",
+  "receiptReadDoneTitle": "Čeks nolasīts",
+  "receiptReadDoneBody": "Pieskarieties, lai pārskatītu un saglabātu.",
+  "receiptReadMoreTitle": "Nofotografējiet pārējo čeka daļu",
+  "receiptReadFailedTitle": "Čeku neizdevās nolasīt"
 }

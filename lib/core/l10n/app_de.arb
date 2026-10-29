@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Weitere Apps desselben Entwicklers ansehen.",
   "tourHelpBody": "Tippe hier, um diese Anleitung erneut zu sehen. Öffne eine Liste, um Summen und Artikel erklärt zu bekommen.",
   "tourTotalsBody": "Geplante, tatsächliche und Differenzsummen werden beim Einkaufen aktualisiert.",
-  "tourItemsBody": "Deine Artikel. Ändere hier die Reihenfolge oder suche sie."
+  "tourItemsBody": "Deine Artikel. Ändere hier die Reihenfolge oder suche sie.",
+  "receiptReadingProgress": "Beleg wird gelesen…",
+  "receiptReadInBackground": "Im Hintergrund fortsetzen",
+  "receiptReadDoneTitle": "Beleg gelesen",
+  "receiptReadDoneBody": "Tippe, um ihn zu prüfen und zu speichern.",
+  "receiptReadMoreTitle": "Fotografiere den Rest des Belegs",
+  "receiptReadFailedTitle": "Der Beleg konnte nicht gelesen werden"
 }

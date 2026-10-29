@@ -1461,22 +1461,22 @@ class AppLocalizationsFa extends AppLocalizations {
   String get captureTipsSetting => 'نمایش نکات عکس‌برداری از رسید';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'در حال خواندن رسید…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'ادامه در پس‌زمینه';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'رسید خوانده شد';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'برای بررسی و ذخیره ضربه بزنید.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'از بقیهٔ رسید عکس بگیرید';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'رسید خوانده نشد';
 
   @override
   String get listReceiptsSection => 'رسیدها';

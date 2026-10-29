@@ -1467,22 +1467,22 @@ class AppLocalizationsSi extends AppLocalizations {
   String get captureTipsSetting => 'රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'රිසිට්පත කියවමින්…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'පසුබිමේ දිගටම කරගෙන යන්න';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'රිසිට්පත කියවා ඇත';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'සමාලෝචනය කර සුරැකීමට තට්ටු කරන්න.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'රිසිට්පතේ ඉතිරි කොටස ඡායාරූපගත කරන්න';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'රිසිට්පත කියවීමට නොහැකි විය';
 
   @override
   String get listReceiptsSection => 'රිසිට්පත්';

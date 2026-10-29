@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Daugiau to paties kūrėjo programėlių.",
   "tourHelpBody": "Bakstelėkite čia, kad vėl peržiūrėtumėte vadovą. Atidarykite sąrašą, kad pamatytumėte sumų ir prekių paaiškinimą.",
   "tourTotalsBody": "Planuota, faktinė suma ir skirtumas atnaujinami apsiperkant.",
-  "tourItemsBody": "Jūsų prekės. Čia keiskite jų tvarką arba ieškokite."
+  "tourItemsBody": "Jūsų prekės. Čia keiskite jų tvarką arba ieškokite.",
+  "receiptReadingProgress": "Skaitomas kvitas…",
+  "receiptReadInBackground": "Tęsti fone",
+  "receiptReadDoneTitle": "Kvitas perskaitytas",
+  "receiptReadDoneBody": "Palieskite, kad peržiūrėtumėte ir išsaugotumėte.",
+  "receiptReadMoreTitle": "Nufotografuokite likusią kvito dalį",
+  "receiptReadFailedTitle": "Nepavyko perskaityti kvito"
 }

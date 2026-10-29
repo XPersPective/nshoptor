@@ -1469,22 +1469,22 @@ class AppLocalizationsKn extends AppLocalizations {
   String get captureTipsSetting => 'ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'ರಸೀದಿಯನ್ನು ಓದಲಾಗುತ್ತಿದೆ…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಮುಂದುವರಿಸಿ';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'ರಸೀದಿ ಓದಲಾಗಿದೆ';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'ಪರಿಶೀಲಿಸಿ ಉಳಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'ರಸೀದಿಯ ಉಳಿದ ಭಾಗದ ಫೋಟೋ ತೆಗೆಯಿರಿ';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'ರಸೀದಿಯನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
 
   @override
   String get listReceiptsSection => 'ರಸೀದಿಗಳು';

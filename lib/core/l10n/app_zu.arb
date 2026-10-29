@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Bona ezinye izinhlelo zonjiniyela ofanayo.",
   "tourHelpBody": "Thepha lapha ukuze ubone lo mhlahlandlela futhi. Vula uhlu ukuze ubone incazelo yezamba nezinto.",
   "tourTotalsBody": "Izamba ezihleliwe, zangempela nomehluko ziyabuyekezwa njengoba uthenga.",
-  "tourItemsBody": "Izinto zakho. Shintsha ukuhleleka kwazo noma uzisesha lapha."
+  "tourItemsBody": "Izinto zakho. Shintsha ukuhleleka kwazo noma uzisesha lapha.",
+  "receiptReadingProgress": "Iyifunda irisidi…",
+  "receiptReadInBackground": "Qhubeka ngemuva",
+  "receiptReadDoneTitle": "Irisidi lifundiwe",
+  "receiptReadDoneBody": "Thepha ukuze ubuyekeze futhi ulondoloze.",
+  "receiptReadMoreTitle": "Thatha isithombe sesinye isigaba serisidi",
+  "receiptReadFailedTitle": "Irisidi alikwazanga ukufundwa"
 }

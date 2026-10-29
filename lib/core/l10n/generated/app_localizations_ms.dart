@@ -1469,22 +1469,23 @@ class AppLocalizationsMs extends AppLocalizations {
   String get captureTipsSetting => 'Tunjukkan petua merakam resit';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Membaca resit…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Teruskan di latar belakang';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Resit dibaca';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Ketik untuk menyemak dan menyimpannya.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle =>
+      'Ambil gambar bahagian resit yang selebihnya';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Resit tidak dapat dibaca';
 
   @override
   String get listReceiptsSection => 'Resit';

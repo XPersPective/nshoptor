@@ -1409,22 +1409,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get captureTipsSetting => '显示收据拍摄提示';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => '正在读取收据…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => '在后台继续';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => '收据已读取';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => '点按即可查看并保存。';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => '请拍摄收据的其余部分';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => '无法读取收据';
 
   @override
   String get listReceiptsSection => '小票';

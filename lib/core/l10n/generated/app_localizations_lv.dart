@@ -1472,22 +1472,23 @@ class AppLocalizationsLv extends AppLocalizations {
   String get captureTipsSetting => 'Rādīt čeka fotografēšanas padomus';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Čeks tiek lasīts…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Turpināt fonā';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Čeks nolasīts';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody =>
+      'Pieskarieties, lai pārskatītu un saglabātu.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Nofotografējiet pārējo čeka daļu';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Čeku neizdevās nolasīt';
 
   @override
   String get listReceiptsSection => 'Čeki';

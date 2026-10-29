@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Bekijk meer apps van dezelfde ontwikkelaar.",
   "tourHelpBody": "Tik hier om deze uitleg opnieuw te zien. Open een lijst voor uitleg over totalen en artikelen.",
   "tourTotalsBody": "Geplande, werkelijke en verschiltotalen worden tijdens het winkelen bijgewerkt.",
-  "tourItemsBody": "Je artikelen. Wijzig hier de volgorde of zoek ze op."
+  "tourItemsBody": "Je artikelen. Wijzig hier de volgorde of zoek ze op.",
+  "receiptReadingProgress": "Bon wordt gelezen…",
+  "receiptReadInBackground": "Doorgaan op de achtergrond",
+  "receiptReadDoneTitle": "Bon gelezen",
+  "receiptReadDoneBody": "Tik om te controleren en op te slaan.",
+  "receiptReadMoreTitle": "Fotografeer de rest van de bon",
+  "receiptReadFailedTitle": "De bon kon niet worden gelezen"
 }

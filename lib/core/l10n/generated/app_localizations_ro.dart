@@ -1478,22 +1478,22 @@ class AppLocalizationsRo extends AppLocalizations {
       'Afișează sfaturile pentru fotografierea bonului';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Se citește bonul…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Continuă în fundal';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Bon citit';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Atingeți pentru a-l verifica și salva.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fotografiați restul bonului';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Bonul nu a putut fi citit';
 
   @override
   String get listReceiptsSection => 'Bonuri';

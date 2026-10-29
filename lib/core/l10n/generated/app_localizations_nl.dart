@@ -1475,22 +1475,22 @@ class AppLocalizationsNl extends AppLocalizations {
       'Tips voor het fotograferen van bonnen tonen';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Bon wordt gelezen…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Doorgaan op de achtergrond';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Bon gelezen';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Tik om te controleren en op te slaan.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fotografeer de rest van de bon';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'De bon kon niet worden gelezen';
 
   @override
   String get listReceiptsSection => 'Bonnen';

@@ -1477,22 +1477,22 @@ class AppLocalizationsTe extends AppLocalizations {
   String get captureTipsSetting => 'రసీదు తీసే చిట్కాలను చూపించు';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'రసీదును చదువుతోంది…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'బ్యాక్‌గ్రౌండ్‌లో కొనసాగించండి';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'రసీదు చదవబడింది';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'సమీక్షించి సేవ్ చేయడానికి నొక్కండి.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'రసీదులోని మిగతా భాగం ఫోటో తీయండి';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'రసీదును చదవలేకపోయాం';
 
   @override
   String get listReceiptsSection => 'రసీదులు';

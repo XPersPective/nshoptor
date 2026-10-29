@@ -477,5 +477,11 @@
   "tourDiscoverBody": "اطّلع على تطبيقات أخرى من المطوّر نفسه.",
   "tourHelpBody": "اضغط هنا لإعادة عرض هذا الدليل. افتح قائمة لترى شرح مجاميعها وعناصرها.",
   "tourTotalsBody": "تتحدث مجاميع المخطط والفعلي والفرق أثناء تسوقك.",
-  "tourItemsBody": "عناصرك. غيّر ترتيبها أو ابحث عنها هنا."
+  "tourItemsBody": "عناصرك. غيّر ترتيبها أو ابحث عنها هنا.",
+  "receiptReadingProgress": "جارٍ قراءة الإيصال…",
+  "receiptReadInBackground": "المتابعة في الخلفية",
+  "receiptReadDoneTitle": "تمت قراءة الإيصال",
+  "receiptReadDoneBody": "اضغط للمراجعة والحفظ.",
+  "receiptReadMoreTitle": "صوّر باقي الإيصال",
+  "receiptReadFailedTitle": "تعذّرت قراءة الإيصال"
 }

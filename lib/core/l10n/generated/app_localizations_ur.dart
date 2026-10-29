@@ -1466,22 +1466,22 @@ class AppLocalizationsUr extends AppLocalizations {
   String get captureTipsSetting => 'رسید کھینچنے کے مشورے دکھائیں';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'رسید پڑھی جا رہی ہے…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'پس منظر میں جاری رکھیں';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'رسید پڑھ لی گئی';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'جانچنے اور محفوظ کرنے کے لیے ٹیپ کریں۔';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'رسید کے باقی حصے کی تصویر لیں';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'رسید پڑھی نہیں جا سکی';
 
   @override
   String get listReceiptsSection => 'رسیدیں';

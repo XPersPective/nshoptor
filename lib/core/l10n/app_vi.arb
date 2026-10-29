@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Xem thêm ứng dụng của cùng nhà phát triển.",
   "tourHelpBody": "Chạm vào đây để xem lại hướng dẫn. Mở một danh sách để xem giải thích về tổng và mặt hàng.",
   "tourTotalsBody": "Tổng dự kiến, thực tế và chênh lệch được cập nhật khi bạn mua sắm.",
-  "tourItemsBody": "Các mặt hàng của bạn. Đổi thứ tự hoặc tìm kiếm tại đây."
+  "tourItemsBody": "Các mặt hàng của bạn. Đổi thứ tự hoặc tìm kiếm tại đây.",
+  "receiptReadingProgress": "Đang đọc hóa đơn…",
+  "receiptReadInBackground": "Tiếp tục trong nền",
+  "receiptReadDoneTitle": "Đã đọc hóa đơn",
+  "receiptReadDoneBody": "Nhấn để xem lại và lưu.",
+  "receiptReadMoreTitle": "Chụp phần còn lại của hóa đơn",
+  "receiptReadFailedTitle": "Không thể đọc hóa đơn"
 }

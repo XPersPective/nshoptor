@@ -1470,22 +1470,22 @@ class AppLocalizationsHi extends AppLocalizations {
   String get captureTipsSetting => 'रसीद कैप्चर के सुझाव दिखाएँ';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'रसीद पढ़ी जा रही है…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'बैकग्राउंड में जारी रखें';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'रसीद पढ़ ली गई';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'जाँचने और सहेजने के लिए टैप करें।';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'रसीद के बाकी हिस्से की फ़ोटो लें';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'रसीद पढ़ी नहीं जा सकी';
 
   @override
   String get listReceiptsSection => 'रसीदें';

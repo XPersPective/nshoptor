@@ -477,5 +477,11 @@
   "tourDiscoverBody": "Ďalšie aplikácie od toho istého vývojára.",
   "tourHelpBody": "Ťuknutím sem si sprievodcu pozriete znova. Otvorte zoznam a uvidíte vysvetlenie súčtov a položiek.",
   "tourTotalsBody": "Plánovaný, skutočný súčet a rozdiel sa počas nákupu priebežne aktualizujú.",
-  "tourItemsBody": "Vaše položky. Tu meňte ich poradie alebo ich vyhľadajte."
+  "tourItemsBody": "Vaše položky. Tu meňte ich poradie alebo ich vyhľadajte.",
+  "receiptReadingProgress": "Číta sa bloček…",
+  "receiptReadInBackground": "Pokračovať na pozadí",
+  "receiptReadDoneTitle": "Bloček prečítaný",
+  "receiptReadDoneBody": "Klepnutím ho skontrolujete a uložíte.",
+  "receiptReadMoreTitle": "Odfoťte zvyšok bločku",
+  "receiptReadFailedTitle": "Bloček sa nepodarilo prečítať"
 }

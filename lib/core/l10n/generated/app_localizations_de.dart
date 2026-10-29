@@ -1474,22 +1474,22 @@ class AppLocalizationsDe extends AppLocalizations {
       'Tipps zum Fotografieren von Belegen anzeigen';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Beleg wird gelesen…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Im Hintergrund fortsetzen';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Beleg gelesen';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Tippe, um ihn zu prüfen und zu speichern.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fotografiere den Rest des Belegs';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Der Beleg konnte nicht gelesen werden';
 
   @override
   String get listReceiptsSection => 'Belege';

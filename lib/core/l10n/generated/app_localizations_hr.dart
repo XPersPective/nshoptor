@@ -1471,22 +1471,22 @@ class AppLocalizationsHr extends AppLocalizations {
   String get captureTipsSetting => 'Prikaži savjete za snimanje računa';
 
   @override
-  String get receiptReadingProgress => 'Reading the receipt…';
+  String get receiptReadingProgress => 'Čitanje računa…';
 
   @override
-  String get receiptReadInBackground => 'Continue in background';
+  String get receiptReadInBackground => 'Nastavi u pozadini';
 
   @override
-  String get receiptReadDoneTitle => 'Receipt read';
+  String get receiptReadDoneTitle => 'Račun je pročitan';
 
   @override
-  String get receiptReadDoneBody => 'Tap to review and save it.';
+  String get receiptReadDoneBody => 'Dodirnite za pregled i spremanje.';
 
   @override
-  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+  String get receiptReadMoreTitle => 'Fotografirajte ostatak računa';
 
   @override
-  String get receiptReadFailedTitle => 'The receipt could not be read';
+  String get receiptReadFailedTitle => 'Račun nije moguće pročitati';
 
   @override
   String get listReceiptsSection => 'Računi';

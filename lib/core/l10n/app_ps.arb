@@ -477,5 +477,11 @@
   "tourDiscoverBody": "د همدې جوړونکي نور اپونه وګورئ.",
   "tourHelpBody": "د دې لارښود د بیا لیدو لپاره دلته ټک کړئ. د مجموعو او توکو د تشریح لپاره یو لېست پرانیزئ.",
   "tourTotalsBody": "پلان شوي، اصلي او توپیر مجموعې د پېرود پر مهال تازه کېږي.",
-  "tourItemsBody": "ستاسو توکي. دلته یې ترتیب بدل کړئ یا یې ولټوئ."
+  "tourItemsBody": "ستاسو توکي. دلته یې ترتیب بدل کړئ یا یې ولټوئ.",
+  "receiptReadingProgress": "رسید لوستل کیږي…",
+  "receiptReadInBackground": "په شالید کې دوام ورکړئ",
+  "receiptReadDoneTitle": "رسید ولوستل شو",
+  "receiptReadDoneBody": "د کتلو او ساتلو لپاره ټک کړئ.",
+  "receiptReadMoreTitle": "د رسید پاتې برخه عکس کړئ",
+  "receiptReadFailedTitle": "رسید ونه لوستل شو"
 }
