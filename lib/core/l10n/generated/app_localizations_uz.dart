@@ -1585,4 +1585,9 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Mahsulotlaringiz. Tartibini shu yerda o\'zgartiring yoki qidiring.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

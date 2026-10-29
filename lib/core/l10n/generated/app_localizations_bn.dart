@@ -1572,4 +1572,9 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get tourItemsBody => 'আপনার আইটেম। এখানে এদের ক্রম বদলান বা খুঁজুন।';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

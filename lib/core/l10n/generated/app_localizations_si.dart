@@ -1576,4 +1576,9 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'ඔබගේ අයිතම. මෙහි ඒවායේ අනුපිළිවෙල වෙනස් කරන්න හෝ සොයන්න.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

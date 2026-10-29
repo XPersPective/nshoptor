@@ -1526,4 +1526,9 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tourItemsBody => '내 품목입니다. 여기에서 순서를 바꾸거나 검색하세요.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

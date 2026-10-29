@@ -1575,4 +1575,9 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get tourItemsBody => 'Item Anda. Ubah urutannya atau cari di sini.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

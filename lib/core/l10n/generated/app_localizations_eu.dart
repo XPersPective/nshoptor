@@ -1585,4 +1585,9 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Zure produktuak. Aldatu haien ordena edo bilatu hemen.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

@@ -1576,4 +1576,9 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'നിങ്ങളുടെ ഇനങ്ങൾ. ഇവിടെ അവയുടെ ക്രമം മാറ്റുകയോ തിരയുകയോ ചെയ്യൂ.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

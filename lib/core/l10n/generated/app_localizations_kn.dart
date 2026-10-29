@@ -1578,4 +1578,9 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'ನಿಮ್ಮ ಐಟಂಗಳು. ಇಲ್ಲಿ ಅವುಗಳ ಕ್ರಮ ಬದಲಿಸಿ ಅಥವಾ ಹುಡುಕಿ.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

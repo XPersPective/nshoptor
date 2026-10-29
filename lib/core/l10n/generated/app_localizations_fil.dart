@@ -1587,4 +1587,9 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Ang iyong mga item. Baguhin ang ayos o hanapin sila rito.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

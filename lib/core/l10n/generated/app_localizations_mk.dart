@@ -1582,4 +1582,9 @@ class AppLocalizationsMk extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Вашите ставки. Сменете го редоследот или пребарајте ги тука.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

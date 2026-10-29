@@ -1582,4 +1582,9 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Jūsu preces. Šeit mainiet to secību vai meklējiet tās.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

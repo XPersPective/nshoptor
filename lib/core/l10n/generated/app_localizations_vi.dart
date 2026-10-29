@@ -1572,4 +1572,9 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Các mặt hàng của bạn. Đổi thứ tự hoặc tìm kiếm tại đây.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

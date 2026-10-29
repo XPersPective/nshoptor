@@ -1565,4 +1565,9 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get tourItemsBody => 'ສິນຄ້າຂອງທ່ານ. ປ່ຽນລຳດັບ ຫຼື ຊອກຫາໄດ້ທີ່ນີ້.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

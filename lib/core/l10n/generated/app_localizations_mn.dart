@@ -1582,4 +1582,9 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Таны бараа. Эндээс дарааллыг нь өөрчлөх эсвэл хайна уу.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

@@ -1573,4 +1573,9 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'თქვენი ნივთები. აქ შეცვალეთ მათი თანმიმდევრობა ან მოძებნეთ ისინი.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

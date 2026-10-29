@@ -504,5 +504,6 @@
   "tourDiscoverBody": "Aynı geliştiricinin diğer uygulamalarını görün.",
   "tourHelpBody": "Bu rehberi yeniden izlemek için buraya dokunun. Toplamların ve ürünlerin anlatımı için bir liste açın.",
   "tourTotalsBody": "Planlanan, gerçek ve fark toplamları alışveriş yaptıkça güncellenir.",
-  "tourItemsBody": "Ürünleriniz. Sıralarını buradan değiştirin veya arayın."
+  "tourItemsBody": "Ürünleriniz. Sıralarını buradan değiştirin veya arayın.",
+  "budgetAlertNear": "Limitin %{percent} kadarı kullanıldı"
 }

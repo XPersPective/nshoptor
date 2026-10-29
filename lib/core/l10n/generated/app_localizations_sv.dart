@@ -1576,4 +1576,9 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Dina varor. Ändra ordning eller sök bland dem här.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

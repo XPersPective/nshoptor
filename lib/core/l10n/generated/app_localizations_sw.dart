@@ -1581,4 +1581,9 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Bidhaa zako. Badilisha mpangilio wake au zitafute hapa.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

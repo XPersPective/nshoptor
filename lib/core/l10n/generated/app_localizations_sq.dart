@@ -1582,4 +1582,9 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Artikujt e tu. Ndrysho renditjen ose kërkoji këtu.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

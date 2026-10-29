@@ -1585,4 +1585,9 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Els teus productes. Canvia\'n l\'ordre o cerca\'ls aquí.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

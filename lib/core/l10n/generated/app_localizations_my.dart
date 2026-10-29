@@ -1581,4 +1581,9 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'သင့်ပစ္စည်းများ။ ဤနေရာတွင် အစီအစဉ်ပြောင်းပါ သို့မဟုတ် ရှာပါ။';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

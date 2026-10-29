@@ -1570,4 +1570,9 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'اقلام شما. ترتیبشان را تغییر دهید یا اینجا جست‌وجو کنید.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

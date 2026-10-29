@@ -1588,4 +1588,9 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Izinto zakho. Shintsha ukuhleleka kwazo noma uzisesha lapha.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

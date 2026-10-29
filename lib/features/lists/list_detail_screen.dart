@@ -38,6 +38,7 @@ import '../../core/text/store_name.dart';
 
 import 'package:napp_ads/napp_ads.dart';
 
+import '../history/insights/budget_alerts.dart';
 import '../history/insights/budget_check.dart';
 import '../history/price_history/price_history_sheet.dart';
 import '../onboarding/coach_tour.dart';
@@ -296,14 +297,29 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         _editable = list.status != 'completed' && list.status != 'archived';
         _budgetStatus = budget;
       });
+      _alertBudget(budget);
     }
     return list;
+  }
+
+  /// 80% / 100% weekly and monthly budget notifications (F33).
+  void _alertBudget(BudgetStatus status) {
+    unawaited(
+      BudgetAlerts.check(
+        status,
+        AppLocalizations.of(context),
+        locale: formatLocaleCode(context),
+        reference: DateTime.now(),
+        listId: widget.listId,
+      ),
+    );
   }
 
   Future<void> _checkBudgetAndWarn() async {
     final status = await evaluateBudgetStatus(widget.db, listId: widget.listId);
     if (!mounted) return;
     setState(() => _budgetStatus = status);
+    _alertBudget(status);
     if (!status.anyOver) return;
     final l10n = AppLocalizations.of(context);
     final currency = Currency.fromCode(status.currencyCode);

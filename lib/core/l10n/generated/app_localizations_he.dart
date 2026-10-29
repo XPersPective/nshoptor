@@ -1563,4 +1563,9 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get tourItemsBody => 'הפריטים שלכם. שנו את הסדר או חפשו אותם כאן.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

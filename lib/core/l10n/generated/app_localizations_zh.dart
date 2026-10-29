@@ -1510,4 +1510,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tourItemsBody => '你的商品。可在此更改顺序或搜索。';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

@@ -1581,4 +1581,9 @@ class AppLocalizationsSr extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Ваше ставке. Промените им редослед или их претражите овде.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

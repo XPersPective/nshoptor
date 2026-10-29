@@ -3139,6 +3139,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your items. Change their order or search them here.'**
   String get tourItemsBody;
+
+  /// No description provided for @budgetAlertNear.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% of the limit used'**
+  String budgetAlertNear(String percent);
 }
 
 class _AppLocalizationsDelegate

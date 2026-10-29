@@ -1577,4 +1577,9 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'तपाईंका सामान। यहाँ तिनको क्रम बदल्नुहोस् वा खोज्नुहोस्।';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

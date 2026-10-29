@@ -1578,4 +1578,9 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Vörurnar þínar. Breyttu röðinni eða leitaðu að þeim hér.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

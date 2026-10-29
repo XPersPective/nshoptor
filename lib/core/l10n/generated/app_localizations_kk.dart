@@ -1575,4 +1575,9 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Тауарларыңыз. Олардың ретін осында өзгертіңіз немесе іздеңіз.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

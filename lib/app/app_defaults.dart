@@ -45,6 +45,12 @@ class AppDefaults {
 
   /// Short receipt capture tips (F05/F06); "don't show again" turns them off
   /// and Settings can turn them back on. Without a store (tests) they stay off.
+  /// Highest budget alert level (0, 80, 100) already sent for a period key.
+  static int budgetAlertLevel(String key) =>
+      _store?.getInt('budget_alert.$key') ?? 0;
+  static void setBudgetAlertLevel(String key, int level) =>
+      _store?.setInt('budget_alert.$key', level);
+
   static const captureTipsKey = 'capture_tips_enabled';
   static bool captureTipsEnabled() =>
       _store != null && (_store!.getBool(captureTipsKey) ?? true);

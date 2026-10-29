@@ -1567,4 +1567,9 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get tourItemsBody => 'ستاسو توکي. دلته یې ترتیب بدل کړئ یا یې ولټوئ.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

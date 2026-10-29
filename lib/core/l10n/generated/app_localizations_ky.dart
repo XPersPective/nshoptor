@@ -1578,4 +1578,9 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Буюмдарыңыз. Алардын тартибин ушул жерден өзгөртүңүз же издеңиз.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

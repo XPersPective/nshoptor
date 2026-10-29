@@ -1576,4 +1576,9 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Dine varer. Skift rækkefølge eller søg i dem her.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

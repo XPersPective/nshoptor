@@ -1580,4 +1580,9 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Tuotteesi. Muuta niiden järjestystä tai hae niitä tästä.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

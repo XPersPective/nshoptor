@@ -1521,4 +1521,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tourItemsBody => '品目の一覧です。ここで並び順を変えたり検索したりできます。';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

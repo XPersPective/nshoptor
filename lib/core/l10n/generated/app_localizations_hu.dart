@@ -1580,4 +1580,9 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'A tételeid. Itt módosíthatod a sorrendjüket vagy kereshetsz köztük.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

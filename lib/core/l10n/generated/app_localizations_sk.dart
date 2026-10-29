@@ -1582,4 +1582,9 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get tourItemsBody =>
       'Vaše položky. Tu meňte ich poradie alebo ich vyhľadajte.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

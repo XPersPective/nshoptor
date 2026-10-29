@@ -580,5 +580,13 @@
   "tourDiscoverBody": "See more apps from the same developer.",
   "tourHelpBody": "Tap here to replay this guide. Open a list to see its totals and items explained.",
   "tourTotalsBody": "Planned, actual and difference totals update as you shop.",
-  "tourItemsBody": "Your items. Change their order or search them here."
+  "tourItemsBody": "Your items. Change their order or search them here.",
+  "budgetAlertNear": "{percent}% of the limit used",
+  "@budgetAlertNear": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  }
 }
