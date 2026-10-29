@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Đã đọc hóa đơn",
   "receiptReadDoneBody": "Nhấn để xem lại và lưu.",
   "receiptReadMoreTitle": "Chụp phần còn lại của hóa đơn",
-  "receiptReadFailedTitle": "Không thể đọc hóa đơn"
+  "receiptReadFailedTitle": "Không thể đọc hóa đơn",
+  "budgetAlertNear": "Đã dùng {percent}% hạn mức"
 }

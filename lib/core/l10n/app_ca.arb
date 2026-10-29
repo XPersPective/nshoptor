@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Rebut llegit",
   "receiptReadDoneBody": "Toca per revisar-lo i desar-lo.",
   "receiptReadMoreTitle": "Fotografia la resta del rebut",
-  "receiptReadFailedTitle": "No s’ha pogut llegir el rebut"
+  "receiptReadFailedTitle": "No s’ha pogut llegir el rebut",
+  "budgetAlertNear": "S'ha utilitzat el {percent}% del límit"
 }

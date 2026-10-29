@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "رسید خوانده شد",
   "receiptReadDoneBody": "برای بررسی و ذخیره ضربه بزنید.",
   "receiptReadMoreTitle": "از بقیهٔ رسید عکس بگیرید",
-  "receiptReadFailedTitle": "رسید خوانده نشد"
+  "receiptReadFailedTitle": "رسید خوانده نشد",
+  "budgetAlertNear": "{percent}٪ از سقف مصرف شده است"
 }

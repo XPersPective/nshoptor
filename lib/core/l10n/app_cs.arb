@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Účtenka přečtena",
   "receiptReadDoneBody": "Klepnutím ji zkontrolujete a uložíte.",
   "receiptReadMoreTitle": "Vyfoťte zbytek účtenky",
-  "receiptReadFailedTitle": "Účtenku se nepodařilo přečíst"
+  "receiptReadFailedTitle": "Účtenku se nepodařilo přečíst",
+  "budgetAlertNear": "Využito {percent} % limitu"
 }

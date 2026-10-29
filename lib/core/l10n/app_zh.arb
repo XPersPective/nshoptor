@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "收据已读取",
   "receiptReadDoneBody": "点按即可查看并保存。",
   "receiptReadMoreTitle": "请拍摄收据的其余部分",
-  "receiptReadFailedTitle": "无法读取收据"
+  "receiptReadFailedTitle": "无法读取收据",
+  "budgetAlertNear": "已使用限额的{percent}%"
 }

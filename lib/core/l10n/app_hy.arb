@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Կտրոնը կարդացվեց",
   "receiptReadDoneBody": "Հպեք՝ ստուգելու և պահելու համար։",
   "receiptReadMoreTitle": "Լուսանկարեք կտրոնի մնացած մասը",
-  "receiptReadFailedTitle": "Կտրոնը չհաջողվեց կարդալ"
+  "receiptReadFailedTitle": "Կտրոնը չհաջողվեց կարդալ",
+  "budgetAlertNear": "Սահմանաչափի {percent}%-ն օգտագործվել է"
 }

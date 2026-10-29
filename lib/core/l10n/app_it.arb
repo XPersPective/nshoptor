@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Scontrino letto",
   "receiptReadDoneBody": "Tocca per rivederlo e salvarlo.",
   "receiptReadMoreTitle": "Fotografa il resto dello scontrino",
-  "receiptReadFailedTitle": "Impossibile leggere lo scontrino"
+  "receiptReadFailedTitle": "Impossibile leggere lo scontrino",
+  "budgetAlertNear": "Usato il {percent}% del limite"
 }

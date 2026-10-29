@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Kvitas perskaitytas",
   "receiptReadDoneBody": "Palieskite, kad peržiūrėtumėte ir išsaugotumėte.",
   "receiptReadMoreTitle": "Nufotografuokite likusią kvito dalį",
-  "receiptReadFailedTitle": "Nepavyko perskaityti kvito"
+  "receiptReadFailedTitle": "Nepavyko perskaityti kvito",
+  "budgetAlertNear": "Panaudota {percent} % limito"
 }

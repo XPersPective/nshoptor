@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "رسید ولوستل شو",
   "receiptReadDoneBody": "د کتلو او ساتلو لپاره ټک کړئ.",
   "receiptReadMoreTitle": "د رسید پاتې برخه عکس کړئ",
-  "receiptReadFailedTitle": "رسید ونه لوستل شو"
+  "receiptReadFailedTitle": "رسید ونه لوستل شو",
+  "budgetAlertNear": "د حد {percent}٪ کارول شوی دی"
 }

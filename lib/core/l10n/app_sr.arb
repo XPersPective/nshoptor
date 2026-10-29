@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Рачун је прочитан",
   "receiptReadDoneBody": "Додирните да прегледате и сачувате.",
   "receiptReadMoreTitle": "Фотографишите остатак рачуна",
-  "receiptReadFailedTitle": "Рачун није могуће прочитати"
+  "receiptReadFailedTitle": "Рачун није могуће прочитати",
+  "budgetAlertNear": "Искоришћено је {percent}% лимита"
 }

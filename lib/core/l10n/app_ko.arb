@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "영수증을 읽었습니다",
   "receiptReadDoneBody": "탭하여 확인하고 저장하세요.",
   "receiptReadMoreTitle": "영수증의 나머지 부분을 촬영하세요",
-  "receiptReadFailedTitle": "영수증을 읽을 수 없습니다"
+  "receiptReadFailedTitle": "영수증을 읽을 수 없습니다",
+  "budgetAlertNear": "한도의 {percent}% 사용됨"
 }

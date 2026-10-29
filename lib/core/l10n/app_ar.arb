@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "تمت قراءة الإيصال",
   "receiptReadDoneBody": "اضغط للمراجعة والحفظ.",
   "receiptReadMoreTitle": "صوّر باقي الإيصال",
-  "receiptReadFailedTitle": "تعذّرت قراءة الإيصال"
+  "receiptReadFailedTitle": "تعذّرت قراءة الإيصال",
+  "budgetAlertNear": "تم استخدام {percent}٪ من الحد"
 }

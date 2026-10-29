@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Чек окулду",
   "receiptReadDoneBody": "Текшерип, сактоо үчүн таптаңыз.",
   "receiptReadMoreTitle": "Чектин калган бөлүгүн сүрөткө тартыңыз",
-  "receiptReadFailedTitle": "Чекти окуу мүмкүн болбоду"
+  "receiptReadFailedTitle": "Чекти окуу мүмкүн болбоду",
+  "budgetAlertNear": "Лимиттин {percent}% колдонулду"
 }

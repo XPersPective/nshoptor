@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Resit dibaca",
   "receiptReadDoneBody": "Ketik untuk menyemak dan menyimpannya.",
   "receiptReadMoreTitle": "Ambil gambar bahagian resit yang selebihnya",
-  "receiptReadFailedTitle": "Resit tidak dapat dibaca"
+  "receiptReadFailedTitle": "Resit tidak dapat dibaca",
+  "budgetAlertNear": "{percent}% daripada had telah digunakan"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Nabasa na ang resibo",
   "receiptReadDoneBody": "I-tap para suriin at i-save ito.",
   "receiptReadMoreTitle": "Kunan ang natitirang bahagi ng resibo",
-  "receiptReadFailedTitle": "Hindi nabasa ang resibo"
+  "receiptReadFailedTitle": "Hindi nabasa ang resibo",
+  "budgetAlertNear": "{percent}% ng limit ang nagamit na"
 }

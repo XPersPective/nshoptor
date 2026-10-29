@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Struk terbaca",
   "receiptReadDoneBody": "Ketuk untuk meninjau dan menyimpannya.",
   "receiptReadMoreTitle": "Foto sisa struk",
-  "receiptReadFailedTitle": "Struk tidak dapat dibaca"
+  "receiptReadFailedTitle": "Struk tidak dapat dibaca",
+  "budgetAlertNear": "{percent}% dari batas telah digunakan"
 }

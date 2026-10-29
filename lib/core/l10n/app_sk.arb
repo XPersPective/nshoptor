@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Bloček prečítaný",
   "receiptReadDoneBody": "Klepnutím ho skontrolujete a uložíte.",
   "receiptReadMoreTitle": "Odfoťte zvyšok bločku",
-  "receiptReadFailedTitle": "Bloček sa nepodarilo prečítať"
+  "receiptReadFailedTitle": "Bloček sa nepodarilo prečítať",
+  "budgetAlertNear": "Využitých {percent} % limitu"
 }

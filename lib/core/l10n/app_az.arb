@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Çek oxundu",
   "receiptReadDoneBody": "Yoxlamaq və saxlamaq üçün toxunun.",
   "receiptReadMoreTitle": "Çekin qalan hissəsini çəkin",
-  "receiptReadFailedTitle": "Çeki oxumaq mümkün olmadı"
+  "receiptReadFailedTitle": "Çeki oxumaq mümkün olmadı",
+  "budgetAlertNear": "Limitin {percent}% istifadə olunub"
 }

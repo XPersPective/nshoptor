@@ -1586,6 +1586,6 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String budgetAlertNear(String percent) {
-    return '$percent% of the limit used';
+    return 'Usouse o $percent% do límite';
   }
 }

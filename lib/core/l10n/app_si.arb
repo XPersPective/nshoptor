@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "රිසිට්පත කියවා ඇත",
   "receiptReadDoneBody": "සමාලෝචනය කර සුරැකීමට තට්ටු කරන්න.",
   "receiptReadMoreTitle": "රිසිට්පතේ ඉතිරි කොටස ඡායාරූපගත කරන්න",
-  "receiptReadFailedTitle": "රිසිට්පත කියවීමට නොහැකි විය"
+  "receiptReadFailedTitle": "රිසිට්පත කියවීමට නොහැකි විය",
+  "budgetAlertNear": "සීමාවෙන් {percent}% ක් භාවිතා කර ඇත"
 }

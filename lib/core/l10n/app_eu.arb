@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Ordainagiria irakurrita",
   "receiptReadDoneBody": "Sakatu berrikusteko eta gordetzeko.",
   "receiptReadMoreTitle": "Atera argazkia ordainagiriaren gainerakoari",
-  "receiptReadFailedTitle": "Ezin izan da ordainagiria irakurri"
+  "receiptReadFailedTitle": "Ezin izan da ordainagiria irakurri",
+  "budgetAlertNear": "Mugaren %{percent} erabili da"
 }

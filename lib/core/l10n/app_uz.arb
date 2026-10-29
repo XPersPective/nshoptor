@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Chek o‘qildi",
   "receiptReadDoneBody": "Tekshirib saqlash uchun bosing.",
   "receiptReadMoreTitle": "Chekning qolgan qismini suratga oling",
-  "receiptReadFailedTitle": "Chekni o‘qib bo‘lmadi"
+  "receiptReadFailedTitle": "Chekni o‘qib bo‘lmadi",
+  "budgetAlertNear": "Limitning {percent}% ishlatildi"
 }

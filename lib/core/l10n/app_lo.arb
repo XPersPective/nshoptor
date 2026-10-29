@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "ອ່ານໃບຮັບເງິນແລ້ວ",
   "receiptReadDoneBody": "ແຕະເພື່ອກວດສອບ ແລະບັນທຶກ.",
   "receiptReadMoreTitle": "ຖ່າຍຮູບສ່ວນທີ່ເຫຼືອຂອງໃບຮັບເງິນ",
-  "receiptReadFailedTitle": "ບໍ່ສາມາດອ່ານໃບຮັບເງິນໄດ້"
+  "receiptReadFailedTitle": "ບໍ່ສາມາດອ່ານໃບຮັບເງິນໄດ້",
+  "budgetAlertNear": "ໃຊ້ໄປແລ້ວ {percent}% ຂອງວົງເງິນ"
 }

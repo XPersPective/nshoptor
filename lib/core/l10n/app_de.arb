@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Beleg gelesen",
   "receiptReadDoneBody": "Tippe, um ihn zu prüfen und zu speichern.",
   "receiptReadMoreTitle": "Fotografiere den Rest des Belegs",
-  "receiptReadFailedTitle": "Der Beleg konnte nicht gelesen werden"
+  "receiptReadFailedTitle": "Der Beleg konnte nicht gelesen werden",
+  "budgetAlertNear": "{percent} % des Limits verbraucht"
 }

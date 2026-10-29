@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "ქვითარი წაკითხულია",
   "receiptReadDoneBody": "შეეხეთ გადასახედად და შესანახად.",
   "receiptReadMoreTitle": "გადაიღეთ ქვითრის დანარჩენი ნაწილი",
-  "receiptReadFailedTitle": "ქვითრის წაკითხვა ვერ მოხერხდა"
+  "receiptReadFailedTitle": "ქვითრის წაკითხვა ვერ მოხერხდა",
+  "budgetAlertNear": "ლიმიტის {percent}% გამოყენებულია"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "रसीद पढ़ ली गई",
   "receiptReadDoneBody": "जाँचने और सहेजने के लिए टैप करें।",
   "receiptReadMoreTitle": "रसीद के बाकी हिस्से की फ़ोटो लें",
-  "receiptReadFailedTitle": "रसीद पढ़ी नहीं जा सकी"
+  "receiptReadFailedTitle": "रसीद पढ़ी नहीं जा सकी",
+  "budgetAlertNear": "सीमा का {percent}% उपयोग हो चुका है"
 }

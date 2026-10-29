@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "ਰਸੀਦ ਪੜ੍ਹੀ ਗਈ",
   "receiptReadDoneBody": "ਜਾਂਚ ਕੇ ਸੰਭਾਲਣ ਲਈ ਟੈਪ ਕਰੋ।",
   "receiptReadMoreTitle": "ਰਸੀਦ ਦੇ ਬਾਕੀ ਹਿੱਸੇ ਦੀ ਫ਼ੋਟੋ ਲਓ",
-  "receiptReadFailedTitle": "ਰਸੀਦ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ"
+  "receiptReadFailedTitle": "ਰਸੀਦ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ",
+  "budgetAlertNear": "ਸੀਮਾ ਦਾ {percent}% ਵਰਤਿਆ ਜਾ ਚੁੱਕਾ ਹੈ"
 }

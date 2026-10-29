@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "রসিদ পড়া হয়েছে",
   "receiptReadDoneBody": "দেখে সংরক্ষণ করতে ট্যাপ করুন।",
   "receiptReadMoreTitle": "রসিদের বাকি অংশের ছবি তুলুন",
-  "receiptReadFailedTitle": "রসিদ পড়া যায়নি"
+  "receiptReadFailedTitle": "রসিদ পড়া যায়নি",
+  "budgetAlertNear": "সীমার {percent}% ব্যবহৃত হয়েছে"
 }

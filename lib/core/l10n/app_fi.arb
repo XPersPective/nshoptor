@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Kuitti luettu",
   "receiptReadDoneBody": "Napauta tarkistaaksesi ja tallentaaksesi.",
   "receiptReadMoreTitle": "Ota kuva kuitin loppuosasta",
-  "receiptReadFailedTitle": "Kuittia ei voitu lukea"
+  "receiptReadFailedTitle": "Kuittia ei voitu lukea",
+  "budgetAlertNear": "Rajasta käytetty {percent} %"
 }

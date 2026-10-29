@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "レシートを読み取りました",
   "receiptReadDoneBody": "タップして確認・保存します。",
   "receiptReadMoreTitle": "レシートの残りを撮影してください",
-  "receiptReadFailedTitle": "レシートを読み取れませんでした"
+  "receiptReadFailedTitle": "レシートを読み取れませんでした",
+  "budgetAlertNear": "上限の{percent}%を使用しました"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Paragon odczytany",
   "receiptReadDoneBody": "Dotknij, aby sprawdzić i zapisać.",
   "receiptReadMoreTitle": "Sfotografuj resztę paragonu",
-  "receiptReadFailedTitle": "Nie udało się odczytać paragonu"
+  "receiptReadFailedTitle": "Nie udało się odczytać paragonu",
+  "budgetAlertNear": "Wykorzystano {percent}% limitu"
 }

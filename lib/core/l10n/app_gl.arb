@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Recibo lido",
   "receiptReadDoneBody": "Toca para revisalo e gardalo.",
   "receiptReadMoreTitle": "Fotografa o resto do recibo",
-  "receiptReadFailedTitle": "Non se puido ler o recibo"
+  "receiptReadFailedTitle": "Non se puido ler o recibo",
+  "budgetAlertNear": "Usouse o {percent}% do límite"
 }

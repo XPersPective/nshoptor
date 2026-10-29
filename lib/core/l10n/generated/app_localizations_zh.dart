@@ -1513,6 +1513,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String budgetAlertNear(String percent) {
-    return '$percent% of the limit used';
+    return '已使用限额的$percent%';
   }
 }

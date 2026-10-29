@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Čeks nolasīts",
   "receiptReadDoneBody": "Pieskarieties, lai pārskatītu un saglabātu.",
   "receiptReadMoreTitle": "Nofotografējiet pārējo čeka daļu",
-  "receiptReadFailedTitle": "Čeku neizdevās nolasīt"
+  "receiptReadFailedTitle": "Čeku neizdevās nolasīt",
+  "budgetAlertNear": "Izmantoti {percent}% no limita"
 }

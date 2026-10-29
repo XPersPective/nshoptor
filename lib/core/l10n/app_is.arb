@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Kvittun lesin",
   "receiptReadDoneBody": "Ýttu til að yfirfara og vista.",
   "receiptReadMoreTitle": "Taktu mynd af restinni af kvittuninni",
-  "receiptReadFailedTitle": "Ekki tókst að lesa kvittunina"
+  "receiptReadFailedTitle": "Ekki tókst að lesa kvittunina",
+  "budgetAlertNear": "{percent}% af mörkunum notuð"
 }

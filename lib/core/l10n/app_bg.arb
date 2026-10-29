@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Бележката е прочетена",
   "receiptReadDoneBody": "Докоснете, за да прегледате и запазите.",
   "receiptReadMoreTitle": "Снимайте останалата част от бележката",
-  "receiptReadFailedTitle": "Бележката не можа да бъде прочетена"
+  "receiptReadFailedTitle": "Бележката не можа да бъде прочетена",
+  "budgetAlertNear": "Използвани са {percent}% от лимита"
 }

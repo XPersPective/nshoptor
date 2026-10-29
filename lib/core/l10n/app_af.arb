@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Kwitansie gelees",
   "receiptReadDoneBody": "Tik om dit na te gaan en te stoor.",
   "receiptReadMoreTitle": "Foto die res van die kwitansie",
-  "receiptReadFailedTitle": "Die kwitansie kon nie gelees word nie"
+  "receiptReadFailedTitle": "Die kwitansie kon nie gelees word nie",
+  "budgetAlertNear": "{percent}% van die limiet gebruik"
 }

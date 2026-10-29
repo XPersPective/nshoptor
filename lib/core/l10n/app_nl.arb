@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Bon gelezen",
   "receiptReadDoneBody": "Tik om te controleren en op te slaan.",
   "receiptReadMoreTitle": "Fotografeer de rest van de bon",
-  "receiptReadFailedTitle": "De bon kon niet worden gelezen"
+  "receiptReadFailedTitle": "De bon kon niet worden gelezen",
+  "budgetAlertNear": "{percent}% van de limiet gebruikt"
 }

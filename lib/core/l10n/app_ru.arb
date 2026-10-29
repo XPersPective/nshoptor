@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Чек прочитан",
   "receiptReadDoneBody": "Нажмите, чтобы проверить и сохранить.",
   "receiptReadMoreTitle": "Сфотографируйте остальную часть чека",
-  "receiptReadFailedTitle": "Не удалось прочитать чек"
+  "receiptReadFailedTitle": "Не удалось прочитать чек",
+  "budgetAlertNear": "Использовано {percent}% лимита"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Баримт уншигдлаа",
   "receiptReadDoneBody": "Шалгаж хадгалахын тулд товшино уу.",
   "receiptReadMoreTitle": "Баримтын үлдсэн хэсгийг зургийн авна уу",
-  "receiptReadFailedTitle": "Баримтыг уншиж чадсангүй"
+  "receiptReadFailedTitle": "Баримтыг уншиж чадсангүй",
+  "budgetAlertNear": "Лимитийн {percent}% ашиглагдсан"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Bon citit",
   "receiptReadDoneBody": "Atingeți pentru a-l verifica și salva.",
   "receiptReadMoreTitle": "Fotografiați restul bonului",
-  "receiptReadFailedTitle": "Bonul nu a putut fi citit"
+  "receiptReadFailedTitle": "Bonul nu a putut fi citit",
+  "budgetAlertNear": "{percent}% din limită a fost folosit"
 }

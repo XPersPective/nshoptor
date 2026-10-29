@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "อ่านใบเสร็จแล้ว",
   "receiptReadDoneBody": "แตะเพื่อตรวจสอบและบันทึก",
   "receiptReadMoreTitle": "ถ่ายภาพส่วนที่เหลือของใบเสร็จ",
-  "receiptReadFailedTitle": "อ่านใบเสร็จไม่ได้"
+  "receiptReadFailedTitle": "อ่านใบเสร็จไม่ได้",
+  "budgetAlertNear": "ใช้ไปแล้ว {percent}% ของวงเงิน"
 }

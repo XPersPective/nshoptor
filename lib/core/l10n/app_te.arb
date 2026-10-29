@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "రసీదు చదవబడింది",
   "receiptReadDoneBody": "సమీక్షించి సేవ్ చేయడానికి నొక్కండి.",
   "receiptReadMoreTitle": "రసీదులోని మిగతా భాగం ఫోటో తీయండి",
-  "receiptReadFailedTitle": "రసీదును చదవలేకపోయాం"
+  "receiptReadFailedTitle": "రసీదును చదవలేకపోయాం",
+  "budgetAlertNear": "పరిమితిలో {percent}% ఉపయోగించబడింది"
 }

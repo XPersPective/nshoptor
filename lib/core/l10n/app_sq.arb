@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Fatura u lexua",
   "receiptReadDoneBody": "Prek për ta shqyrtuar dhe ruajtur.",
   "receiptReadMoreTitle": "Fotografo pjesën tjetër të faturës",
-  "receiptReadFailedTitle": "Fatura nuk mund të lexohej"
+  "receiptReadFailedTitle": "Fatura nuk mund të lexohej",
+  "budgetAlertNear": "U përdor {percent}% e kufirit"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Irisidi lifundiwe",
   "receiptReadDoneBody": "Thepha ukuze ubuyekeze futhi ulondoloze.",
   "receiptReadMoreTitle": "Thatha isithombe sesinye isigaba serisidi",
-  "receiptReadFailedTitle": "Irisidi alikwazanga ukufundwa"
+  "receiptReadFailedTitle": "Irisidi alikwazanga ukufundwa",
+  "budgetAlertNear": "Ukukhawulelwa kusetshenziswe ngo-{percent}%"
 }

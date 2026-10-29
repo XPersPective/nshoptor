@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Сметката е прочитана",
   "receiptReadDoneBody": "Допрете за преглед и зачувување.",
   "receiptReadMoreTitle": "Фотографирајте го остатокот од сметката",
-  "receiptReadFailedTitle": "Сметката не можеше да се прочита"
+  "receiptReadFailedTitle": "Сметката не можеше да се прочита",
+  "budgetAlertNear": "Искористени се {percent}% од лимитот"
 }

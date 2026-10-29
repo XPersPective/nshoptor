@@ -1581,6 +1581,6 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String budgetAlertNear(String percent) {
-    return '$percent% of the limit used';
+    return 'ಮಿತಿಯ $percent% ಬಳಸಲಾಗಿದೆ';
   }
 }

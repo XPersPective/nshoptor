@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Kvittering læst",
   "receiptReadDoneBody": "Tryk for at gennemgå og gemme den.",
   "receiptReadMoreTitle": "Fotografér resten af kvitteringen",
-  "receiptReadFailedTitle": "Kvitteringen kunne ikke læses"
+  "receiptReadFailedTitle": "Kvitteringen kunne ikke læses",
+  "budgetAlertNear": "{percent}% af grænsen er brugt"
 }

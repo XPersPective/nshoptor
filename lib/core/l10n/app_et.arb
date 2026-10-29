@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Kviitung loetud",
   "receiptReadDoneBody": "Puuduta, et üle vaadata ja salvestada.",
   "receiptReadMoreTitle": "Pildista kviitungi ülejäänud osa",
-  "receiptReadFailedTitle": "Kviitungit ei õnnestunud lugeda"
+  "receiptReadFailedTitle": "Kviitungit ei õnnestunud lugeda",
+  "budgetAlertNear": "Limiidist on kasutatud {percent}%"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "രസീത് വായിച്ചു",
   "receiptReadDoneBody": "പരിശോധിച്ച് സേവ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക.",
   "receiptReadMoreTitle": "രസീതിന്റെ ബാക്കി ഭാഗത്തിന്റെ ഫോട്ടോ എടുക്കുക",
-  "receiptReadFailedTitle": "രസീത് വായിക്കാൻ കഴിഞ്ഞില്ല"
+  "receiptReadFailedTitle": "രസീത് വായിക്കാൻ കഴിഞ്ഞില്ല",
+  "budgetAlertNear": "പരിധിയുടെ {percent}% ഉപയോഗിച്ചു"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Račun prebran",
   "receiptReadDoneBody": "Tapnite za pregled in shranjevanje.",
   "receiptReadMoreTitle": "Fotografirajte preostanek računa",
-  "receiptReadFailedTitle": "Računa ni bilo mogoče prebrati"
+  "receiptReadFailedTitle": "Računa ni bilo mogoče prebrati",
+  "budgetAlertNear": "Porabljenih {percent} % omejitve"
 }

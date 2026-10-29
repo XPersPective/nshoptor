@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Түбіртек оқылды",
   "receiptReadDoneBody": "Тексеріп, сақтау үшін түртіңіз.",
   "receiptReadMoreTitle": "Түбіртектің қалған бөлігін суретке түсіріңіз",
-  "receiptReadFailedTitle": "Түбіртекті оқу мүмкін болмады"
+  "receiptReadFailedTitle": "Түбіртекті оқу мүмкін болмады",
+  "budgetAlertNear": "Лимиттің {percent}% пайдаланылды"
 }

@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "הקבלה נקראה",
   "receiptReadDoneBody": "הקישו כדי לבדוק ולשמור.",
   "receiptReadMoreTitle": "צלמו את שאר הקבלה",
-  "receiptReadFailedTitle": "לא ניתן היה לקרוא את הקבלה"
+  "receiptReadFailedTitle": "לא ניתן היה לקרוא את הקבלה",
+  "budgetAlertNear": "נוצלו {percent}% מהמגבלה"
 }

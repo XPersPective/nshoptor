@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "रसिद पढियो",
   "receiptReadDoneBody": "जाँच गरी सुरक्षित गर्न ट्याप गर्नुहोस्।",
   "receiptReadMoreTitle": "रसिदको बाँकी भागको फोटो खिच्नुहोस्",
-  "receiptReadFailedTitle": "रसिद पढ्न सकिएन"
+  "receiptReadFailedTitle": "रसिद पढ्न सकिएन",
+  "budgetAlertNear": "सीमाको {percent}% प्रयोग भइसक्यो"
 }

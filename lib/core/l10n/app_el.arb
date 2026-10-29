@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Η απόδειξη διαβάστηκε",
   "receiptReadDoneBody": "Πατήστε για έλεγχο και αποθήκευση.",
   "receiptReadMoreTitle": "Φωτογραφίστε το υπόλοιπο της απόδειξης",
-  "receiptReadFailedTitle": "Δεν ήταν δυνατή η ανάγνωση της απόδειξης"
+  "receiptReadFailedTitle": "Δεν ήταν δυνατή η ανάγνωση της απόδειξης",
+  "budgetAlertNear": "Χρησιμοποιήθηκε το {percent}% του ορίου"
 }

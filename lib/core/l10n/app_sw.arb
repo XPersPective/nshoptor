@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Risiti imesomwa",
   "receiptReadDoneBody": "Gusa ili kukagua na kuhifadhi.",
   "receiptReadMoreTitle": "Piga picha sehemu iliyobaki ya risiti",
-  "receiptReadFailedTitle": "Risiti haikuweza kusomwa"
+  "receiptReadFailedTitle": "Risiti haikuweza kusomwa",
+  "budgetAlertNear": "Asilimia {percent} ya kikomo imetumika"
 }

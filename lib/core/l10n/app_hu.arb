@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Nyugta beolvasva",
   "receiptReadDoneBody": "Koppintson az áttekintéshez és mentéshez.",
   "receiptReadMoreTitle": "Fényképezze le a nyugta többi részét",
-  "receiptReadFailedTitle": "A nyugtát nem sikerült beolvasni"
+  "receiptReadFailedTitle": "A nyugtát nem sikerült beolvasni",
+  "budgetAlertNear": "A limit {percent}%-a felhasználva"
 }

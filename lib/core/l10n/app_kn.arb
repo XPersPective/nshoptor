@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "ರಸೀದಿ ಓದಲಾಗಿದೆ",
   "receiptReadDoneBody": "ಪರಿಶೀಲಿಸಿ ಉಳಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.",
   "receiptReadMoreTitle": "ರಸೀದಿಯ ಉಳಿದ ಭಾಗದ ಫೋಟೋ ತೆಗೆಯಿರಿ",
-  "receiptReadFailedTitle": "ರಸೀದಿಯನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"
+  "receiptReadFailedTitle": "ರಸೀದಿಯನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
+  "budgetAlertNear": "ಮಿತಿಯ {percent}% ಬಳಸಲಾಗಿದೆ"
 }

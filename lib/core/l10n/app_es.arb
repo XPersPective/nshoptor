@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Recibo leído",
   "receiptReadDoneBody": "Toca para revisarlo y guardarlo.",
   "receiptReadMoreTitle": "Fotografía el resto del recibo",
-  "receiptReadFailedTitle": "No se pudo leer el recibo"
+  "receiptReadFailedTitle": "No se pudo leer el recibo",
+  "budgetAlertNear": "Se ha usado el {percent}% del límite"
 }

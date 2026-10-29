@@ -1589,6 +1589,6 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String budgetAlertNear(String percent) {
-    return '$percent% of the limit used';
+    return 'Выкарыстана $percent% ад ліміту';
   }
 }

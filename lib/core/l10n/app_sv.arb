@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "Kvittot har lästs",
   "receiptReadDoneBody": "Tryck för att granska och spara.",
   "receiptReadMoreTitle": "Fotografera resten av kvittot",
-  "receiptReadFailedTitle": "Kvittot kunde inte läsas"
+  "receiptReadFailedTitle": "Kvittot kunde inte läsas",
+  "budgetAlertNear": "{percent} % av gränsen har använts"
 }

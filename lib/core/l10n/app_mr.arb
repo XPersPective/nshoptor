@@ -483,5 +483,6 @@
   "receiptReadDoneTitle": "पावती वाचली",
   "receiptReadDoneBody": "तपासून जतन करण्यासाठी टॅप करा.",
   "receiptReadMoreTitle": "पावतीच्या उर्वरित भागाचा फोटो घ्या",
-  "receiptReadFailedTitle": "पावती वाचता आली नाही"
+  "receiptReadFailedTitle": "पावती वाचता आली नाही",
+  "budgetAlertNear": "मर्यादेच्या {percent}% वापरले"
 }
