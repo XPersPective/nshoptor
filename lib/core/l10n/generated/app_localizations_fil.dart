@@ -766,8 +766,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get formatLocaleLabel => 'Format ng numero at pera';
 
   @override
-  String get formatLocaleSystem =>
-      'Format ng device (Latin digits; kung hindi, English)';
+  String get formatLocaleSystem => 'Format ng device';
 
   @override
   String get formatLocaleTr => 'Turko (1.234,56)';

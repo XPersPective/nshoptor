@@ -241,7 +241,7 @@
   "aboutOpenRow": "حول التطبيق والمصدر المفتوح",
   "voiceAddItemAction": "إضافة بالصوت",
   "formatLocaleLabel": "تنسيق الأرقام والعملة",
-  "formatLocaleSystem": "تنسيق الجهاز (أرقام لاتينية؛ وإلا إنجليزي)",
+  "formatLocaleSystem": "تنسيق الجهاز",
   "formatLocaleTr": "التركية (1.234,56)",
   "formatLocaleEn": "الإنجليزية (1,234.56)",
   "aiToggleTitle": "مساعدة الذكاء الاصطناعي",

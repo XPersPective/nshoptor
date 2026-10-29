@@ -761,8 +761,7 @@ class AppLocalizationsKk extends AppLocalizations {
   String get formatLocaleLabel => 'Сандар мен валюта форматы';
 
   @override
-  String get formatLocaleSystem =>
-      'Құрылғы форматы (Латын цифрлары; әйтпесе ағылшынша)';
+  String get formatLocaleSystem => 'Құрылғы форматы';
 
   @override
   String get formatLocaleTr => 'Түрікше (1.234,56)';

@@ -90,7 +90,7 @@ void main() {
       91000,
     );
     expect(
-      ReceiptParser(currency: 'KWD').parse(_scan(['TOT AL 20.123'])).totalMinor,
+      ReceiptParser(currency: 'KWD').parse(_scan(['TOT AL 20٫123'])).totalMinor,
       20123,
     );
     expect(
@@ -265,7 +265,7 @@ void main() {
     );
     expect(
       ReceiptParser(currency: 'KWD')
-          .parse(_scan(['PRODUCT 17.500']))
+          .parse(_scan(['PRODUCT 17٫500']))
           .lines
           .single
           .lineTotalMinor,

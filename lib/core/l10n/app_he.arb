@@ -241,7 +241,7 @@
   "aboutOpenRow": "אודות וקוד פתוח",
   "voiceAddItemAction": "הוסף בקול",
   "formatLocaleLabel": "פורמט מספרים ומטבע",
-  "formatLocaleSystem": "תצורת המכשיר (ספרות לטיניות; אחרת באנגלית)",
+  "formatLocaleSystem": "תצורת המכשיר",
   "formatLocaleTr": "טורקי (1.234,56)",
   "formatLocaleEn": "אנגלית (1,234.56)",
   "aiToggleTitle": "עזרה של AI",

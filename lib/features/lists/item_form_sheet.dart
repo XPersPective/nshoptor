@@ -182,7 +182,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   void _prefillFields() {
     if (_prefilled || !_currencyLoaded) return;
     _prefilled = true;
-    String local(String value) => value.replaceAll('.', _separators.decimal);
+    String local(String value) => _separators.formatInput(value);
     final item = widget.existing;
     if (item != null) {
       _name.text = item.name;
@@ -548,11 +548,9 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       final amount = _tryParse(field.text);
       if (!isUnit || amount == null || oldBasis == nextBasis) return;
       try {
-        field.text = _displayUnitAmount(
-          amount,
-          oldBasis,
-          nextBasis,
-        ).toInputString().replaceAll('.', _separators.decimal);
+        field.text = _separators.formatInput(
+          _displayUnitAmount(amount, oldBasis, nextBasis).toInputString(),
+        );
       } catch (_) {
         if (actual) {
           _actualBasisInvalid = true;
@@ -588,9 +586,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     final unit = actual ? _actualUnit : _unit;
     final confirming = actual && _pendingActualPrice != null;
     if (confirming) {
-      controller.text = _pendingActualPrice!.toInputString().replaceAll(
-        '.',
-        _separators.decimal,
+      controller.text = _separators.formatInput(
+        _pendingActualPrice!.toInputString(),
       );
       _pendingActualPrice = null;
     }
@@ -620,9 +617,10 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                   priceUnit: PriceInput.displayUnit(unit),
                 ) -
                 discount;
-      controller.text = (converted.isNegative ? DecimalFixed.zero() : converted)
-          .toInputString()
-          .replaceAll('.', _separators.decimal);
+      controller.text = _separators.formatInput(
+        (converted.isNegative ? DecimalFixed.zero() : converted)
+            .toInputString(),
+      );
     }
     setState(() {
       if (actual) {
@@ -748,7 +746,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     // Initial values are localized by _prefillFields after context is available.
     if (_prefilled) {
       for (final field in [_quantity, _price]) {
-        field.text = field.text.replaceAll('.', _separators.decimal);
+        field.text = _separators.formatInput(field.text);
       }
     }
   }
@@ -796,10 +794,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
           : c.value;
       _actualPriceIsUnitPrice = c.isUnitPrice || c.priceQuantity != null;
       _pendingActualPrice = null;
-      _actualPrice.text = amount.toInputString().replaceAll(
-        '.',
-        _separators.decimal,
-      );
+      _actualPrice.text = _separators.formatInput(amount.toInputString());
       _photoCurrencyMismatch = false;
       _actualBasisInvalid = false;
       _actualMeaningRequired = false;

@@ -766,8 +766,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get formatLocaleLabel => 'Թվերի և արժույթի ձևաչափ';
 
   @override
-  String get formatLocaleSystem =>
-      'Սարքի ձևաչափ (Լատինական թվեր; հակառակ դեպքում անգլերեն)';
+  String get formatLocaleSystem => 'Սարքի ձևաչափ';
 
   @override
   String get formatLocaleTr => 'Թուրքերեն (1.234,56)';

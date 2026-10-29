@@ -764,8 +764,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get formatLocaleLabel => 'Format număr și valută';
 
   @override
-  String get formatLocaleSystem =>
-      'Formatul dispozitivului (cifre latine; altfel engleză)';
+  String get formatLocaleSystem => 'Formatul dispozitivului';
 
   @override
   String get formatLocaleTr => 'Turcă (1.234,56)';

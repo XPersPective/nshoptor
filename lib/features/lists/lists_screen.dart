@@ -853,12 +853,13 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
     if (_budgetPrefilled == null && widget.existing?.budgetMinorUnits != null) {
       _budgetPrefilled = '';
       final existing = widget.existing!;
-      final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context))
-          .decimal;
-      _budget.text = _minorToInput(
-        existing.budgetMinorUnits!,
-        Currency.fromCode(existing.currencyCode),
-        sep,
+      final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context));
+      _budget.text = sep.formatInput(
+        _minorToInput(
+          existing.budgetMinorUnits!,
+          Currency.fromCode(existing.currencyCode),
+          '.',
+        ),
       );
     }
   }

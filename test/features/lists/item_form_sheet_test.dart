@@ -37,6 +37,7 @@ void main() {
     WidgetTester tester,
     int listId, {
     PlannedItem? existing,
+    Locale uiLocale = const Locale('tr'),
     List<PurchaseEntry> entries = const [],
     Future<String?> Function(BuildContext)? scan,
     Future<PriceCandidate?> Function(BuildContext)? shelfCandidate,
@@ -45,7 +46,7 @@ void main() {
     await StarterCategories().seedIfEmpty(db);
     await tester.pumpWidget(
       MaterialApp(
-        locale: const Locale('tr'),
+        locale: uiLocale,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -71,6 +72,52 @@ void main() {
     // Uzun formun tamamını görünür kılar (kaydırma gerektirmesin).
     await tester.binding.setSurfaceSize(const Size(800, 1600));
     await tester.pumpAndSettle();
+  }
+
+  for (final (format, ui, quantity, price, currency, expected, prefill) in [
+    ('fa_IR', 'fa', '۲', '۱۲۳٫۴۵', 'TRY', 12345, '۱۲۳٫۴۵'),
+    ('ar_EG', 'ar', '٢', '١٢٣٫٤٥٦', 'KWD', 123456, '١٢٣٫٤٥٦'),
+    ('bn', 'bn', '২', '১২৩.৪৫', 'EUR', 12345, '১২৩.৪৫'),
+    ('de_DE', 'de', '2', '1.234,56', 'EUR', 123456, '1234,56'),
+    ('ja_JP', 'ja', '２', '１，２３４', 'JPY', 1234, '1234'),
+  ]) {
+    testWidgets(
+      'native numeric entry saves exact money and reopens in $format',
+      (tester) async {
+        AppFormatLocale.attach(format);
+        final listId = await db
+            .into(db.shoppingLists)
+            .insert(ShoppingListsCompanion.insert(currencyCode: currency));
+        await openForm(tester, listId, uiLocale: Locale(ui));
+        await tester.enterText(
+          find.byKey(const Key('item_name_field')),
+          'Rice',
+        );
+        await tester.enterText(
+          find.byKey(const Key('item_quantity_field')),
+          quantity,
+        );
+        await tester.enterText(
+          find.byKey(const Key('item_price_field')),
+          price,
+        );
+        await settleAndSave(tester);
+        final row = (await db.select(db.plannedItems).get()).single;
+        expect(row.plannedQuantity, '2');
+        expect(row.plannedLineTotalMinorUnits, expected);
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pumpAndSettle();
+        await openForm(tester, listId, existing: row, uiLocale: Locale(ui));
+        expect(
+          tester
+              .widget<TextField>(find.byKey(const Key('item_price_field')))
+              .controller!
+              .text,
+          prefill,
+        );
+        await disposeApp(tester);
+      },
+    );
   }
 
   testWidgets(

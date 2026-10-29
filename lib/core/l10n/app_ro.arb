@@ -241,7 +241,7 @@
   "aboutOpenRow": "Despre & open source",
   "voiceAddItemAction": "Adaugă prin voce",
   "formatLocaleLabel": "Format număr și valută",
-  "formatLocaleSystem": "Formatul dispozitivului (cifre latine; altfel engleză)",
+  "formatLocaleSystem": "Formatul dispozitivului",
   "formatLocaleTr": "Turcă (1.234,56)",
   "formatLocaleEn": "Engleză (1,234.56)",
   "aiToggleTitle": "Ajutor AI",

@@ -760,8 +760,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get formatLocaleLabel => 'Sayı ve para biçimi';
 
   @override
-  String get formatLocaleSystem =>
-      'Cihaz biçimi (Latin rakamlar; diğerlerinde İngilizce)';
+  String get formatLocaleSystem => 'Cihaz biçimi';
 
   @override
   String get formatLocaleTr => 'Türkçe (1.234,56)';

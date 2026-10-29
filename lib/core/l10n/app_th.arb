@@ -241,7 +241,7 @@
   "aboutOpenRow": "เกี่ยวกับ & โอเพนซอร์ส",
   "voiceAddItemAction": "เพิ่มด้วยเสียง",
   "formatLocaleLabel": "รูปแบบตัวเลขและสกุลเงิน",
-  "formatLocaleSystem": "รูปแบบของอุปกรณ์ (ตัวเลขละติน; หากไม่ใช่เป็นภาษาอังกฤษ)",
+  "formatLocaleSystem": "รูปแบบของอุปกรณ์",
   "formatLocaleTr": "ตุรกี (1.234,56)",
   "formatLocaleEn": "อังกฤษ (1,234.56)",
   "aiToggleTitle": "ช่วยเหลือโดย AI",

@@ -765,8 +765,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get formatLocaleLabel => 'Skaičių ir valiutos formatavimas';
 
   @override
-  String get formatLocaleSystem =>
-      'Įrenginio formatas (Lotyniški skaitmenys; kitu atveju anglų kalba)';
+  String get formatLocaleSystem => 'Įrenginio formatas';
 
   @override
   String get formatLocaleTr => 'Turkų (1.234,56)';

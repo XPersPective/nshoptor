@@ -7,7 +7,6 @@ import '../../../core/money/currency.dart';
 import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/money.dart';
 import '../../../core/money/money_format.dart';
-import '../../../core/money/money_parser.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../data/db/app_database.dart';
 import '../../receipts/receipt_document.dart';
@@ -68,7 +67,7 @@ class ReportText {
       : DateFormat.yMd(locale).add_Hm().format(date.toLocal());
   String quantity(DecimalFixed? quantity, String? unit) => quantity == null
       ? '—'
-      : '${formatQuantityNumber(quantity, decimalSeparator: MoneySeparators.forLocaleCode(locale).decimal)} ${unitDisplayNameFromDb(unit ?? '', l10n)}';
+      : '${formatQuantityNumber(quantity, locale: locale)} ${unitDisplayNameFromDb(unit ?? '', l10n)}';
   String actualQuantity(ReportProduct product) => product.isDiscount
       ? '—'
       : product.actualQuantities

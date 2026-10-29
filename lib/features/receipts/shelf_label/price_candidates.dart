@@ -5,6 +5,7 @@ import '../../../core/money/currency.dart';
 import '../../../core/quantity/unit_code.dart';
 import '../ocr_text_source.dart';
 import '../ocr_currency.dart';
+import '../ocr_number_view.dart';
 
 /// Raf etiketinden çıkarılan fiyat adayı (spec §6.8).
 class PriceCandidate {
@@ -73,11 +74,14 @@ class ShelfPriceExtractor {
     final origins = <PriceCandidate, OcrLine>{};
     final explicit = <PriceCandidate>{};
     for (final line in lines) {
+      final view = OcrNumberView(line.text);
+      if (!view.valid) continue;
+      final text = view.text;
       // Hacim/ağırlık miktarı görünen satırlarda (ör. '1 LT SÜT') tam sayı
       // fiyat sanılmaz.
-      final quantityMatches = _quantityPattern.allMatches(line.text).toList();
+      final quantityMatches = _quantityPattern.allMatches(text).toList();
       final matches = _pricePattern
-          .allMatches(line.text)
+          .allMatches(text)
           .where(
             (m) =>
                 !quantityMatches.any(
@@ -100,19 +104,17 @@ class ShelfPriceExtractor {
         }
         if (RegExp(r'^\d{8,}$').hasMatch(raw)) continue; // barcode/product code
 
-        final around = line.text.substring(
+        final around = text.substring(
           match.end,
-          index + 1 < matches.length
-              ? matches[index + 1].start
-              : line.text.length,
+          index + 1 < matches.length ? matches[index + 1].start : text.length,
         );
-        final before = line.text.substring(
+        final before = text.substring(
           index == 0 ? 0 : matches[index - 1].end,
           match.start,
         );
         final hasCurrency =
-            _currencyWords.any(line.text.contains) ||
-            RegExp(r'[₺€$]').hasMatch(line.text);
+            _currencyWords.any(text.contains) ||
+            RegExp(r'[₺€$]').hasMatch(text);
         final prefixUnit = RegExp(
           r'^\s*(kg|gr|g|lt|l|ml|adet)\s*[:=]?\s*$',
           caseSensitive: false,
@@ -120,10 +122,10 @@ class ShelfPriceExtractor {
         final isUnit =
             prefixUnit != null ||
             RegExp(
-              r'[/]\s*(?:\d+(?:[.,]\d+)?\s*)?(kg|gr|g|lt|L|ml|adet)\b',
+              r'[/]\s*(?:\d+(?:[.,\u066b]\d+)?\s*)?(kg|gr|g|lt|L|ml|adet)\b',
               caseSensitive: false,
             ).hasMatch(around);
-        final wellFormed = RegExp(r'^\d{1,3}([.,]\d{3})*[.,]\d{2}$')
+        final wellFormed = RegExp(r'^\d{1,3}([.,\u066b]\d{3})*[.,\u066b]\d{2}$')
             .hasMatch(raw);
 
         String confidence;
@@ -138,7 +140,7 @@ class ShelfPriceExtractor {
         UnitCode? unit;
         if (isUnit) {
           final code = RegExp(
-            r'/\s*(?:\d+(?:[.,]\d+)?\s*)?(kg|gr|g|lt|l|ml|adet)\b',
+            r'/\s*(?:\d+(?:[.,\u066b]\d+)?\s*)?(kg|gr|g|lt|l|ml|adet)\b',
             caseSensitive: false,
           ).firstMatch(around)?.group(1)?.toLowerCase();
           unit = switch (code) {
@@ -160,13 +162,15 @@ class ShelfPriceExtractor {
             .takeWhile((l) => !identical(l, line))
             .where(
               (l) =>
-                  RegExp(r'[A-Za-z\u00c0-\uffff]').hasMatch(l.text) &&
-                  !RegExp(r'[₺€$]|\d+[.,]\d{2}').hasMatch(l.text),
+                  OcrNumberView(l.text).valid &&
+                  RegExp(r'\p{L}', unicode: true).hasMatch(l.text) &&
+                  !RegExp(r'[₺€$]|\d+[.,\u066b]\d{2}')
+                      .hasMatch(OcrNumberView(l.text).text),
             );
         final names = preceding.where((l) => _separateBasis(l.text) == null);
         final name = _nearbyProductName(line, names);
         final explicitBasis = RegExp(
-          r'/\s*(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml)\b',
+          r'/\s*(\d+(?:[.,\u066b]\d+)?)\s*(kg|gr|g|lt|l|ml)\b',
           caseSensitive: false,
         ).firstMatch(around);
         final inlinePackage = quantityMatches
@@ -174,11 +178,12 @@ class ShelfPriceExtractor {
               (q) =>
                   q.start >= (index == 0 ? 0 : matches[index - 1].end) &&
                   q.end <= match.start &&
-                  !RegExp(r'/\s*$').hasMatch(line.text.substring(0, q.start)),
+                  !RegExp(r'/\s*$').hasMatch(text.substring(0, q.start)),
             )
             .firstOrNull;
         final package = !isUnit
-            ? inlinePackage ?? _quantityPattern.firstMatch(name ?? '')
+            ? inlinePackage ??
+                  _quantityPattern.firstMatch(OcrNumberView(name ?? '').text)
             : null;
         final basisQuantity = explicitBasis?.group(1) ?? package?.group(1);
         final basisCode = explicitBasis?.group(2) ?? package?.group(2);
@@ -198,7 +203,11 @@ class ShelfPriceExtractor {
             unitCode: unit,
             priceQuantity: basisQuantity == null
                 ? null
-                : DecimalFixed.tryParse(basisQuantity.replaceAll(',', '.')),
+                : DecimalFixed.tryParse(
+                    basisQuantity
+                        .replaceAll(',', '.')
+                        .replaceAll('\u066b', '.'),
+                  ),
           ),
         );
         origins[candidates.last] = line;
@@ -218,7 +227,7 @@ class ShelfPriceExtractor {
   }
 
   static final _quantityPattern = RegExp(
-    r'\b(\d+(?:[.,]\d+)?)\s*(kg|gr|g|lt|l|ml|adet)\b',
+    r'\b(\d+(?:[.,\u066b]\d+)?)\s*(kg|gr|g|lt|l|ml|adet)\b',
     caseSensitive: false,
   );
   static UnitCode? _unit(String code) => switch (code.toLowerCase()) {
@@ -243,14 +252,20 @@ class ShelfPriceExtractor {
   ///   aksi halde binlik (kaldırılır).
   String? _normalizePriceText(String raw) {
     final digits = Currency.fromCode(defaultCurrency).minorUnitDigits;
+    if (ambiguousOcrAmount(raw, digits)) return null;
+    raw = raw.replaceAll('\u066b', '.');
+    if (digits == 0) return wholeOcrAmount(raw)?.toString();
     final comma = raw.lastIndexOf(','), dot = raw.lastIndexOf('.');
     if (comma >= 0 && dot >= 0) {
       final decimal = comma > dot ? ',' : '.';
       final grouping = decimal == ',' ? '.' : ',';
       final parts = raw.split(decimal);
-      if (parts.length != 2 ||
-          parts.last.length > digits ||
-          !RegExp(r'^\d{1,3}(?:[.,]\d{3})*$').hasMatch(parts.first)) {
+      final group = RegExp.escape(grouping);
+      final validGrouping =
+          RegExp('^\\d{1,3}(?:$group\\d{3})*\$').hasMatch(parts.first) ||
+          RegExp('^\\d{1,2}(?:$group\\d{2})+$group\\d{3}\$')
+              .hasMatch(parts.first);
+      if (parts.length != 2 || parts.last.length > digits || !validGrouping) {
         return null;
       }
       return '${parts.first.replaceAll(grouping, '')}.${parts.last}';
@@ -269,7 +284,7 @@ class ShelfPriceExtractor {
   }
 
   // Consume the complete numeric token: never turn 12.3456 into 12.34 + 56.
-  RegExp get _pricePattern => RegExp(r'(\d+(?:[.,]\d+)*)');
+  RegExp get _pricePattern => RegExp(r'(\d+(?:[.,\u066b]\d+)*)');
   static const List<String> _currencyWords = [
     'TL',
     'TRY',
@@ -309,17 +324,22 @@ String? _nearbyProductName(OcrLine price, Iterable<OcrLine> names) {
 }
 
 _ShelfBasis? _separateBasis(String text) {
+  final view = OcrNumberView(text);
+  if (!view.valid) return null;
+  text = view.text;
   final match = RegExp(
     r'^\s*(?:(?:birim\s*fiyat[ıi]?|unit\s*price)\s*[:=]?\s*)?'
     r'(?:(?:[A-Z]{3}|TL|[₺€£$])\s*)?/?\s*'
-    r'(?:(\d+(?:[.,]\d+)?)\s*)?(kg|gr|g|lt|l|ml|adet)'
+    r'(?:(\d+(?:[.,\u066b]\d+)?)\s*)?(kg|gr|g|lt|l|ml|adet)'
     r'\s*(?:[A-Z]{3}|TL|[₺€£$])?\s*$',
     caseSensitive: false,
   ).firstMatch(text);
   if (match == null) return null;
   final quantity = match.group(1) == null
       ? null
-      : DecimalFixed.tryParse(match.group(1)!.replaceAll(',', '.'));
+      : DecimalFixed.tryParse(
+          match.group(1)!.replaceAll(',', '.').replaceAll('\u066b', '.'),
+        );
   if (quantity != null && !quantity.isPositive) return null;
   final unit = ShelfPriceExtractor._unit(match.group(2)!);
   if (unit == null) return null;

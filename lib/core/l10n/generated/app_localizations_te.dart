@@ -768,8 +768,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get formatLocaleLabel => 'సంఖ్య & కరెన్సి ఫార్మాట్';
 
   @override
-  String get formatLocaleSystem =>
-      'డివైస్ ఫార్మాట్ (లాటిన్ అంకెలు; ఇతరత్రా ఇంగ్లీష్)';
+  String get formatLocaleSystem => 'డివైస్ ఫార్మాట్';
 
   @override
   String get formatLocaleTr => 'తుర్కీ (1.234,56)';

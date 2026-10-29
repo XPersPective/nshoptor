@@ -241,7 +241,7 @@
   "aboutOpenRow": "Névjegy és nyílt forráskód",
   "voiceAddItemAction": "Hozzáadás hanggal",
   "formatLocaleLabel": "Szám- és pénznemformátum",
-  "formatLocaleSystem": "Eszköz formátuma (Latin számjegyek; egyébként angol)",
+  "formatLocaleSystem": "Eszköz formátuma",
   "formatLocaleTr": "Török (1.234,56)",
   "formatLocaleEn": "Angol (1,234.56)",
   "aiToggleTitle": "AI segítség",

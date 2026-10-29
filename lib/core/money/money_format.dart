@@ -3,6 +3,7 @@ import 'package:intl/number_symbols_data.dart';
 
 import 'locale_conventions.dart';
 import 'money.dart';
+import 'number_glyphs.dart';
 
 /// Locale-aware, `double` kullanmadan para biçimleyici (spec §7.1).
 ///
@@ -15,8 +16,7 @@ String formatMoney(Money money, {String locale = 'en'}) {
   locale = knownNumberLocale(locale);
   final digits = money.currency.minorUnitDigits;
   final symbol = money.currency.displaySymbol;
-  final symbols =
-      numberFormatSymbols[locale] ?? numberFormatSymbols['en']!;
+  final symbols = numberFormatSymbols[locale] ?? numberFormatSymbols['en']!;
   final negative = money.minorUnits < 0;
   final abs = money.minorUnits.abs();
 
@@ -31,14 +31,14 @@ String formatMoney(Money money, {String locale = 'en'}) {
 
   final body = digits == 0
       ? grouped
-      : '$grouped${symbols.DECIMAL_SEP}${(abs % divisor).toString().padLeft(digits, '0')}';
+      : '$grouped${symbols.DECIMAL_SEP}${localizeNumberDigits((abs % divisor).toString().padLeft(digits, '0'), symbols.ZERO_DIGIT)}';
 
   final withSymbol = usesSuffixCurrency(locale)
       ? '$body $symbol'
       : symbol == money.currency.code
-          ? '$symbol $body' // ISO kodu rakama yapışmasın: `USD 3.49`
-          : '$symbol$body';
-  return negative ? '-$withSymbol' : withSymbol;
+      ? '$symbol $body' // ISO kodu rakama yapışmasın: `USD 3.49`
+      : '$symbol$body';
+  return negative ? '${symbols.MINUS_SIGN}$withSymbol' : withSymbol;
 }
 
 int _pow10(int n) {

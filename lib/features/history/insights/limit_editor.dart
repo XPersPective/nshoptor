@@ -22,10 +22,9 @@ Future<int?> showLimitEditor(
   final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context));
   var text = current == null
       ? ''
-      : DecimalFixed.fromMinorUnits(
-          current,
-          digits,
-        ).toDbString().replaceAll('.', sep.decimal);
+      : sep.formatInput(
+          DecimalFixed.fromMinorUnits(current, digits).toDbString(),
+        );
   final form = GlobalKey<FormState>();
   int parse() {
     final minor = MoneyParser.parseDecimal(

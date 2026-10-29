@@ -766,8 +766,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get formatLocaleLabel => 'Format nombor & mata wang';
 
   @override
-  String get formatLocaleSystem =>
-      'Format peranti (angka Latin; jika tidak, Bahasa Inggeris)';
+  String get formatLocaleSystem => 'Format peranti';
 
   @override
   String get formatLocaleTr => 'Turki (1.234,56)';

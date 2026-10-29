@@ -553,11 +553,8 @@ class _SpendingScreenState extends State<SpendingScreen> {
                   String category(String label) =>
                       StarterCategories().labelOf(l10n, label);
                   String quantity(DecimalFixed value) =>
-                      value.toDbString().replaceAll(
-                        '.',
-                        MoneySeparators.forLocaleCode(formatLocaleCode(context))
-                            .decimal,
-                      );
+                      MoneySeparators.forLocaleCode(formatLocaleCode(context))
+                          .formatInput(value.toDbString());
                   final children = <Widget>[
                     ValueBarChartCard(
                       title: '${l10n.categoryLabel} · ${l10n.actualTotalLabel}',

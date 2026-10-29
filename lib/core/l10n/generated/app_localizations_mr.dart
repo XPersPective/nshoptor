@@ -764,8 +764,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get formatLocaleLabel => 'संख्या आणि चलन स्वरूप';
 
   @override
-  String get formatLocaleSystem =>
-      'डिव्हाइस फॉरमॅट (लॅटिन अंकांसह; अन्यथा इंग्रजी)';
+  String get formatLocaleSystem => 'डिव्हाइस फॉरमॅट';
 
   @override
   String get formatLocaleTr => 'तुर्की (1.234,56)';

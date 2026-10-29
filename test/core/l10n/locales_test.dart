@@ -18,12 +18,33 @@ import 'package:nshoptor/data/db/app_database.dart';
 
 void main() {
   test('new flow messages are translated in every app language', () {
-    const keys = ['voiceStopListening', 'keepAwakeFailed', 'formatLocaleSystem', 'saveFailed', 'deleteItemConfirm', 'clearPurchaseConfirm',
-      'reportPdfAction', 'reportNotInvoice', 'purchaseVisits', 'purchaseInterval',
-      'purchasedQuantity', 'purchaseAnalyticsHint', 'purchaseHistoryHint', 'planLegacyRights', 'receiptReplaces', 'voiceUnsupportedLanguage', 'voiceModelDownloading', 'historyThisWeek', 'historyProductsSection'];
-    final en = jsonDecode(File('lib/core/l10n/app_en.arb').readAsStringSync()) as Map;
+    const keys = [
+      'voiceStopListening',
+      'keepAwakeFailed',
+      'formatLocaleSystem',
+      'saveFailed',
+      'deleteItemConfirm',
+      'clearPurchaseConfirm',
+      'reportPdfAction',
+      'reportNotInvoice',
+      'purchaseVisits',
+      'purchaseInterval',
+      'purchasedQuantity',
+      'purchaseAnalyticsHint',
+      'purchaseHistoryHint',
+      'planLegacyRights',
+      'receiptReplaces',
+      'voiceUnsupportedLanguage',
+      'voiceModelDownloading',
+      'historyThisWeek',
+      'historyProductsSection',
+    ];
+    final en =
+        jsonDecode(File('lib/core/l10n/app_en.arb').readAsStringSync()) as Map;
     for (final code in appLanguages.keys.where((c) => c != 'en')) {
-      final arb = jsonDecode(File('lib/core/l10n/app_$code.arb').readAsStringSync()) as Map;
+      final arb = jsonDecode(
+        File('lib/core/l10n/app_$code.arb').readAsStringSync(),
+      ) as Map;
       for (final key in keys) {
         expect(arb[key], isA<String>(), reason: '$code:$key');
         expect(arb[key], isNot(en[key]), reason: '$code:$key English fallback');
@@ -33,9 +54,13 @@ void main() {
   });
   test('tüm ARB dosyaları en ile aynı anahtar ve yer tutuculara sahip', () {
     final dir = Directory('lib/core/l10n');
-    final en = jsonDecode(File('${dir.path}/app_en.arb').readAsStringSync()) as Map<String, dynamic>;
+    final en = jsonDecode(
+      File('${dir.path}/app_en.arb').readAsStringSync(),
+    ) as Map<String, dynamic>;
     final keys = en.keys.where((k) => !k.startsWith('@')).toSet();
-    final arbs = dir.listSync().whereType<File>().where((f) => f.path.endsWith('.arb'));
+    final arbs = dir.listSync().whereType<File>().where(
+      (f) => f.path.endsWith('.arb'),
+    );
     expect(arbs.length, greaterThanOrEqualTo(71));
     for (final f in arbs) {
       final d = jsonDecode(f.readAsStringSync()) as Map<String, dynamic>;
@@ -43,80 +68,105 @@ void main() {
       expect(keys.difference(ks), isEmpty, reason: '${f.path} eksik anahtar');
       for (final k in keys) {
         final ph = RegExp(r'\{(\w+)\}');
-        expect(ph.allMatches('${d[k]}').map((m) => m[1]).toSet(),
-            ph.allMatches('${en[k]}').map((m) => m[1]).toSet(),
-            reason: '${f.path}:$k yer tutucu');
+        expect(
+          ph.allMatches('${d[k]}').map((m) => m[1]).toSet(),
+          ph.allMatches('${en[k]}').map((m) => m[1]).toSet(),
+          reason: '${f.path}:$k yer tutucu',
+        );
       }
     }
   });
 
-  test('trial countdowns show distinct localized values in every supported locale', () {
-    final locales = AppLocalizations.supportedLocales;
-    expect(locales, hasLength(71));
+  test(
+    'trial countdowns show distinct localized values in every supported locale',
+    () {
+      final locales = AppLocalizations.supportedLocales;
+      expect(locales, hasLength(71));
 
-    for (final locale in locales) {
-      final l10n = lookupAppLocalizations(locale);
-      final numberFormat = NumberFormat.decimalPattern(locale.toString());
+      for (final locale in locales) {
+        final l10n = lookupAppLocalizations(locale);
+        final numberFormat = NumberFormat.decimalPattern(locale.toString());
 
-      void expectLabel(String label, String key, {int? numericCount}) {
-        expect(label, isNot(contains('#')), reason: '${locale.languageCode}:$key');
-        if (numericCount != null) {
-          final localizedNumber = numberFormat.format(numericCount);
+        void expectLabel(String label, String key, {int? numericCount}) {
           expect(
-            label.contains(numericCount.toString()) || label.contains(localizedNumber),
-            isTrue,
-            reason: '${locale.languageCode}:$key must show $numericCount',
+            label,
+            isNot(contains('#')),
+            reason: '${locale.languageCode}:$key',
+          );
+          if (numericCount != null) {
+            final localizedNumber = numberFormat.format(numericCount);
+            expect(
+              label.contains(numericCount.toString()) ||
+                  label.contains(localizedNumber),
+              isTrue,
+              reason: '${locale.languageCode}:$key must show $numericCount',
+            );
+          }
+        }
+
+        final dayLabels = [
+          l10n.planTrialDaysLeft(1),
+          l10n.planTrialDaysLeft(2),
+          l10n.planTrialDaysLeft(7),
+        ];
+        final hourLabels = [
+          l10n.planTrialHoursLeft(1),
+          l10n.planTrialHoursLeft(2),
+          l10n.planTrialHoursLeft(23),
+        ];
+        final naturalArabicForms = locale.languageCode == 'ar';
+        for (var i = 0; i < dayLabels.length; i++) {
+          expectLabel(
+            dayLabels[i],
+            'planTrialDaysLeft',
+            numericCount: naturalArabicForms && i < 2 ? null : [1, 2, 7][i],
           );
         }
-      }
-
-      final dayLabels = [
-        l10n.planTrialDaysLeft(1),
-        l10n.planTrialDaysLeft(2),
-        l10n.planTrialDaysLeft(7),
-      ];
-      final hourLabels = [
-        l10n.planTrialHoursLeft(1),
-        l10n.planTrialHoursLeft(2),
-        l10n.planTrialHoursLeft(23),
-      ];
-      final naturalArabicForms = locale.languageCode == 'ar';
-      for (var i = 0; i < dayLabels.length; i++) {
-        expectLabel(
-          dayLabels[i],
-          'planTrialDaysLeft',
-          numericCount: naturalArabicForms && i < 2 ? null : [1, 2, 7][i],
+        for (var i = 0; i < hourLabels.length; i++) {
+          expectLabel(
+            hourLabels[i],
+            'planTrialHoursLeft',
+            numericCount: naturalArabicForms && i < 2 ? null : [1, 2, 23][i],
+          );
+        }
+        expect(
+          dayLabels.toSet(),
+          hasLength(dayLabels.length),
+          reason: '${locale.languageCode}:day values',
         );
-      }
-      for (var i = 0; i < hourLabels.length; i++) {
-        expectLabel(
-          hourLabels[i],
-          'planTrialHoursLeft',
-          numericCount: naturalArabicForms && i < 2 ? null : [1, 2, 23][i],
+        expect(
+          hourLabels.toSet(),
+          hasLength(hourLabels.length),
+          reason: '${locale.languageCode}:hour values',
         );
-      }
-      expect(dayLabels.toSet(), hasLength(dayLabels.length), reason: '${locale.languageCode}:day values');
-      expect(hourLabels.toSet(), hasLength(hourLabels.length), reason: '${locale.languageCode}:hour values');
 
-      if (naturalArabicForms) {
-        expect(dayLabels[0], 'يوم واحد متبقٍ');
-        expect(dayLabels[1], 'يومان متبقيان');
-        expect(hourLabels[0], 'ساعة واحدة متبقية');
-        expect(hourLabels[1], 'ساعتان متبقيتان');
+        if (naturalArabicForms) {
+          expect(dayLabels[0], 'يوم واحد متبقٍ');
+          expect(dayLabels[1], 'يومان متبقيان');
+          expect(hourLabels[0], 'ساعة واحدة متبقية');
+          expect(hourLabels[1], 'ساعتان متبقيتان');
+        }
       }
-    }
-  });
+    },
+  );
 
   test('71 dil: her kodun ARB dosyası var ve para yazımı geri okunur', () {
     expect(appLanguages.length, 71);
     final eur = Currency.fromCode('EUR');
     for (final code in appLanguages.keys) {
-      expect(File('lib/core/l10n/app_$code.arb').existsSync(), isTrue, reason: code);
+      expect(
+        File('lib/core/l10n/app_$code.arb').existsSync(),
+        isTrue,
+        reason: code,
+      );
       final loc = AppFormatLocale.forLanguage(code);
       final text = formatMoney(Money.fromMinorUnits(1250, eur), locale: loc);
-      final number = RegExp(r'\d+[.,]\d+').firstMatch(text)![0]!;
+      final number = text.replaceAll(eur.displaySymbol, '').trim();
       expect(
-        MoneyParser.parseDecimal(number, separators: MoneySeparators.forLocaleCode(loc)).toDbString(),
+        MoneyParser.parseDecimal(
+          number,
+          separators: MoneySeparators.forLocaleCode(loc),
+        ).toDbString(),
         '12.50',
         reason: '$code → $text',
       );
@@ -125,17 +175,32 @@ void main() {
 
   test('Almanca: virgüllü giriş ve sonek sembol', () {
     final eur = Currency.fromCode('EUR');
-    expect(formatMoney(Money.fromMinorUnits(123456, eur), locale: 'de'), '1.234,56 €');
-    expect(MoneyParser.parseDecimal('12,5', separators: MoneySeparators.forLocaleCode('de')).toDbString(), '12.5');
-    expect(MoneySeparators.forLocaleCode('ar'), MoneySeparators.en);
+    expect(
+      formatMoney(Money.fromMinorUnits(123456, eur), locale: 'de'),
+      '1.234,56 €',
+    );
+    expect(
+      MoneyParser.parseDecimal(
+        '12,5',
+        separators: MoneySeparators.forLocaleCode('de'),
+      ).toDbString(),
+      '12.5',
+    );
+    expect(MoneySeparators.forLocaleCode('ar').decimal, '.');
+    expect(MoneySeparators.forLocaleCode('ar').zeroDigit, '0');
   });
 
   testWidgets('Arapça arayüz sağdan sola', (tester) async {
     final db = AppDatabase(NativeDatabase.memory());
-    await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: const Locale('ar')));
+    await tester.pumpWidget(
+      NShoptorApp(db: db, fixedLocale: const Locale('ar')),
+    );
     await tester.pumpAndSettle();
     expect(find.text('القوائم'), findsWidgets);
-    expect(Directionality.of(tester.element(find.text('القوائم').first)), TextDirection.rtl);
+    expect(
+      Directionality.of(tester.element(find.text('القوائم').first)),
+      TextDirection.rtl,
+    );
     await tester.pumpWidget(const SizedBox.shrink());
     final closing = db.close();
     await tester.pump(const Duration(milliseconds: 1));
@@ -143,10 +208,23 @@ void main() {
   });
 
   test('all71 plan quota promises are10/100/300', () {
-    for (final file in Directory('lib/core/l10n').listSync().whereType<File>().where((f) => f.path.endsWith('.arb'))) {
+    for (final file in Directory(
+      'lib/core/l10n',
+    ).listSync().whereType<File>().where((f) => f.path.endsWith('.arb'))) {
       final arb = jsonDecode(file.readAsStringSync()) as Map;
-      for (final (key, count) in [('planFreeAi', '10'), ('planProAi', '100'), ('planMaxAi', '300')]) {
-        expect(RegExp(r'\d+').allMatches(arb[key] as String).map((m) => m.group(0)).toList(), [count], reason: file.path);
+      for (final (key, count) in [
+        ('planFreeAi', '10'),
+        ('planProAi', '100'),
+        ('planMaxAi', '300'),
+      ]) {
+        expect(
+          RegExp(r'\d+')
+              .allMatches(arb[key] as String)
+              .map((m) => m.group(0))
+              .toList(),
+          [count],
+          reason: file.path,
+        );
       }
     }
   });
@@ -172,16 +250,27 @@ void main() {
     }
   });
 
-  testWidgets('71 dilin hepsinde uygulama açılır; RTL diller sağdan sola', (tester) async {
+  testWidgets('71 dilin hepsinde uygulama açılır; RTL diller sağdan sola', (
+    tester,
+  ) async {
     for (final code in appLanguages.keys) {
       final db = AppDatabase(NativeDatabase.memory());
       await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: Locale(code)));
       await tester.pumpAndSettle();
       // Yalnız Cupertino Peştuca bilmez (Android'de kullanılmaz); başka uyarı hatadır.
-      expect(tester.takeException(), code == 'ps' ? isNotNull : isNull, reason: code);
+      expect(
+        tester.takeException(),
+        code == 'ps' ? isNotNull : isNull,
+        reason: code,
+      );
       final dir = Directionality.of(tester.element(find.byType(NavigationBar)));
-      expect(dir, const {'ar', 'fa', 'he', 'ur', 'ps'}.contains(code) ? TextDirection.rtl : TextDirection.ltr,
-          reason: code);
+      expect(
+        dir,
+        const {'ar', 'fa', 'he', 'ur', 'ps'}.contains(code)
+            ? TextDirection.rtl
+            : TextDirection.ltr,
+        reason: code,
+      );
       await tester.pumpWidget(const SizedBox.shrink());
       final closing = db.close();
       await tester.pump(const Duration(milliseconds: 1));
@@ -189,30 +278,35 @@ void main() {
     }
   });
 
-  testWidgets('uzun çeviriler (el ka hy nl fi hu de ru): sekmeler taşmadan çizilir', (tester) async {
-    // Test ortamı yazı tipi taşımaz (Ahem her glifi 1 em çizer → sahte taşma);
-    // gerçek metrik için Segoe UI (Latin/Yunan/Kiril/Gürcü/Ermeni) yüklenir.
-    const segoe = 'C:/Windows/Fonts/segoeui.ttf';
-    if (!File(segoe).existsSync()) return;
-    final roboto = FontLoader('Roboto')
-      ..addFont(Future.value(ByteData.sublistView(File(segoe).readAsBytesSync())));
-    await roboto.load();
-    tester.view.physicalSize = const Size(1080, 1920);
-    tester.view.devicePixelRatio = 3;
-    addTearDown(tester.view.reset);
-    for (final code in ['el', 'ka', 'hy', 'nl', 'fi', 'hu', 'de', 'ru']) {
-      final db = AppDatabase(NativeDatabase.memory());
-      await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: Locale(code)));
-      await tester.pumpAndSettle();
-      for (var tab = 0; tab < 3; tab++) {
-        await tester.tap(find.byType(NavigationDestination).at(tab));
+  testWidgets(
+    'uzun çeviriler (el ka hy nl fi hu de ru): sekmeler taşmadan çizilir',
+    (tester) async {
+      // Test ortamı yazı tipi taşımaz (Ahem her glifi 1 em çizer → sahte taşma);
+      // gerçek metrik için Segoe UI (Latin/Yunan/Kiril/Gürcü/Ermeni) yüklenir.
+      const segoe = 'C:/Windows/Fonts/segoeui.ttf';
+      if (!File(segoe).existsSync()) return;
+      final roboto = FontLoader('Roboto')
+        ..addFont(
+          Future.value(ByteData.sublistView(File(segoe).readAsBytesSync())),
+        );
+      await roboto.load();
+      tester.view.physicalSize = const Size(1080, 1920);
+      tester.view.devicePixelRatio = 3;
+      addTearDown(tester.view.reset);
+      for (final code in ['el', 'ka', 'hy', 'nl', 'fi', 'hu', 'de', 'ru']) {
+        final db = AppDatabase(NativeDatabase.memory());
+        await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: Locale(code)));
         await tester.pumpAndSettle();
-        expect(tester.takeException(), isNull, reason: '$code sekme $tab');
+        for (var tab = 0; tab < 3; tab++) {
+          await tester.tap(find.byType(NavigationDestination).at(tab));
+          await tester.pumpAndSettle();
+          expect(tester.takeException(), isNull, reason: '$code sekme $tab');
+        }
+        await tester.pumpWidget(const SizedBox.shrink());
+        final closing = db.close();
+        await tester.pump(const Duration(milliseconds: 1));
+        await closing;
       }
-      await tester.pumpWidget(const SizedBox.shrink());
-      final closing = db.close();
-      await tester.pump(const Duration(milliseconds: 1));
-      await closing;
-    }
-  });
+    },
+  );
 }

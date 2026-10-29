@@ -9,7 +9,6 @@ import '../../../core/money/currency.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
-import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 
 import 'receipt_review_controller.dart';
@@ -421,9 +420,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         ? null
         : formatQuantityNumber(
             line.quantity!,
-            decimalSeparator: MoneySeparators.forLocaleCode(
-              formatLocaleCode(context),
-            ).decimal,
+            locale: formatLocaleCode(context),
           );
     final unit = line.unitCode == null
         ? ''

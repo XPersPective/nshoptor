@@ -56,9 +56,9 @@ Future<PriceCandidate?> showPriceCandidateSheet(
             ListTile(
               key: Key('price_candidate_$i'),
               title: Text(
-                '${c.value.toDbString().replaceAll('.', MoneySeparators.forLocaleCode(formatLocaleCode(context)).decimal)} ${c.currencyCode}'
+                '${MoneySeparators.forLocaleCode(formatLocaleCode(context)).formatInput(c.value.toDbString())} ${c.currencyCode}'
                 '${c.unitCode != null
-                    ? ' / ${c.priceQuantity?.toDbString() ?? ''} ${unitDisplayName(c.unitCode!, l10n)}'
+                    ? ' / ${c.priceQuantity == null ? '' : MoneySeparators.forLocaleCode(formatLocaleCode(context)).formatInput(c.priceQuantity!.toDbString())} ${unitDisplayName(c.unitCode!, l10n)}'
                     : c.isUnitPrice
                     ? ' · ${l10n.pricingModeUnitPrice}'
                     : ' · ${l10n.pricingModeLineTotal}'}',

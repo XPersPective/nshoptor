@@ -762,8 +762,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get formatLocaleLabel => 'Nummer- og valutaformat';
 
   @override
-  String get formatLocaleSystem =>
-      'Enhedsformat (Latinske cifre; ellers engelsk)';
+  String get formatLocaleSystem => 'Enhedsformat';
 
   @override
   String get formatLocaleTr => 'Tyrkisk (1.234,56)';

@@ -766,8 +766,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get formatLocaleLabel => 'Format liczb i waluty';
 
   @override
-  String get formatLocaleSystem =>
-      'Format urządzenia (cyfry łacińskie; w przeciwnym razie angielski)';
+  String get formatLocaleSystem => 'Format urządzenia';
 
   @override
   String get formatLocaleTr => 'Turecki (1.234,56)';

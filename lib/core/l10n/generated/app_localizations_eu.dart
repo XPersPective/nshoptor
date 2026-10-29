@@ -764,8 +764,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get formatLocaleLabel => 'Zenbaki eta moneta-formatua';
 
   @override
-  String get formatLocaleSystem =>
-      'Gailuaren formatua (digitu latindarrak; bestela ingelesez';
+  String get formatLocaleSystem => 'Gailuaren formatua';
 
   @override
   String get formatLocaleTr => 'Turkiera (1.234,56)';

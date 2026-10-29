@@ -766,8 +766,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get formatLocaleLabel => 'Тоо ба валютын формат';
 
   @override
-  String get formatLocaleSystem =>
-      'Төхөөрөмжийн хэлбэр (Латин цифр; бусад нь Англи)';
+  String get formatLocaleSystem => 'Төхөөрөмжийн хэлбэр';
 
   @override
   String get formatLocaleTr => 'Турк (1.234,56)';

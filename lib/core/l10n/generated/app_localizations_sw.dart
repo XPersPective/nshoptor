@@ -764,8 +764,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get formatLocaleLabel => 'Namba na muundo wa sarafu';
 
   @override
-  String get formatLocaleSystem =>
-      'Muundo wa kifaa (tarakimu za Kihindi; vinginevyo Kiingereza)';
+  String get formatLocaleSystem => 'Muundo wa kifaa';
 
   @override
   String get formatLocaleTr => 'Kituruki (1.234,56)';

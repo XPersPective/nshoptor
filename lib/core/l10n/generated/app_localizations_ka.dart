@@ -764,8 +764,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get formatLocaleLabel => 'რიცხვების და ვალუტის ფორმატი';
 
   @override
-  String get formatLocaleSystem =>
-      'მოწყობილობის ფორმატი (ლათინური ციფრები; სხვა შემთხვევაში ინგლისურად)';
+  String get formatLocaleSystem => 'მოწყობილობის ფორმატი';
 
   @override
   String get formatLocaleTr => 'თურქული (1.234,56)';

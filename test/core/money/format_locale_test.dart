@@ -15,72 +15,97 @@ void main() {
     (const Locale('en', 'GB'), 'en_GB'),
     (const Locale('en', 'IN'), 'en_IN'),
     (const Locale('ar', 'KW'), 'ar_KW'),
-    (const Locale('fa', 'IR'), 'en'),
+    (const Locale('fa', 'IR'), 'fa_IR'),
+    (const Locale('ar', 'EG'), 'ar_EG'),
   ]) {
-    testWidgets('device $device region/fallback independent of Turkish UI', (tester) async {
+    testWidgets('device $device region/fallback independent of Turkish UI', (
+      tester,
+    ) async {
       tester.binding.platformDispatcher.localeTestValue = device;
       addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
       late String resolved;
-      await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
-        supportedLocales: AppLocalizations.supportedLocales,
-        localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
-        home: Builder(builder: (context) { resolved = formatLocaleCode(context); return const SizedBox.shrink(); })));
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: Builder(
+            builder: (context) {
+              resolved = formatLocaleCode(context);
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
+      );
       expect(resolved, expected);
     });
   }
 
-  testWidgets('system follows device region independently of app language', (tester) async {
+  testWidgets('system follows device region independently of app language', (
+    tester,
+  ) async {
     AppFormatLocale.attach(null);
-    tester.binding.platformDispatcher.localeTestValue = const Locale('tr', 'TR');
+    tester.binding.platformDispatcher.localeTestValue = const Locale(
+      'tr',
+      'TR',
+    );
     addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
     late String resolved;
-    await tester.pumpWidget(MaterialApp(
-      locale: const Locale('en'),
-      supportedLocales: const [Locale('tr'), Locale('en')],
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      home: Builder(
-        builder: (context) {
-          resolved = AppFormatLocale.effective(context);
-          return const SizedBox.shrink();
-        },
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('en'),
+        supportedLocales: const [Locale('tr'), Locale('en')],
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Builder(
+          builder: (context) {
+            resolved = AppFormatLocale.effective(context);
+            return const SizedBox.shrink();
+          },
+        ),
       ),
-    ));
+    );
     expect(resolved, 'tr_TR');
   });
 
   testWidgets('tr biçim ayarı en arayüzde bile tr kalır', (tester) async {
     AppFormatLocale.attach('tr');
     late String resolved;
-    await tester.pumpWidget(MaterialApp(
-      locale: const Locale('en'),
-      supportedLocales: const [Locale('tr'), Locale('en')],
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      home: Builder(
-        builder: (context) {
-          resolved = AppFormatLocale.effective(context);
-          return const SizedBox.shrink();
-        },
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('en'),
+        supportedLocales: const [Locale('tr'), Locale('en')],
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Builder(
+          builder: (context) {
+            resolved = AppFormatLocale.effective(context);
+            return const SizedBox.shrink();
+          },
+        ),
       ),
-    ));
+    );
     expect(resolved, 'tr');
     // Ayrıştırıcı da aynı ayracı kullanır: "1.234,56" tr biçimi.
     expect(
-      MoneyParser.parseDecimal('1.234,56',
-              separators: MoneySeparators.forLocaleCode(resolved),
-              requirePositive: true)
-          .toString()
-          .startsWith('1234.56'),
+      MoneyParser.parseDecimal(
+        '1.234,56',
+        separators: MoneySeparators.forLocaleCode(resolved),
+        requirePositive: true,
+      ).toString().startsWith('1234.56'),
       isTrue,
     );
   });

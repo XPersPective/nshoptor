@@ -765,8 +765,7 @@ class AppLocalizationsMk extends AppLocalizations {
   String get formatLocaleLabel => 'Формат на број и валута';
 
   @override
-  String get formatLocaleSystem =>
-      'Формат на уредата (Латинички цифри; инаку англиски)';
+  String get formatLocaleSystem => 'Формат на уредата';
 
   @override
   String get formatLocaleTr => 'Турски (1.234,56)';

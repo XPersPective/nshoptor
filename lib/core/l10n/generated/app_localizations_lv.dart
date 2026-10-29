@@ -765,8 +765,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get formatLocaleLabel => 'Skaitļu un valūtas formāts';
 
   @override
-  String get formatLocaleSystem =>
-      'Ierīces formāts (Latīņu cipari; citādi angļu valodā)';
+  String get formatLocaleSystem => 'Ierīces formāts';
 
   @override
   String get formatLocaleTr => 'Turku (1.234,56)';

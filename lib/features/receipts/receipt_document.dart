@@ -3,6 +3,7 @@ import 'dart:convert';
 import '../../core/money/currency.dart';
 import '../../core/money/money_parser.dart';
 import '../../core/util/normalize_name.dart';
+import 'ocr_number_view.dart';
 import 'ocr_currency.dart';
 import 'ocr_text_source.dart';
 import 'parser/receipt_parse_result.dart';
@@ -391,25 +392,28 @@ List<int>? _productPositions(
   return positions;
 }
 
-String _fold(String text) => text
-    .replaceAll('İ', 'i')
-    .replaceAll('I', 'ı')
-    .toLowerCase()
-    .replaceAll('ı', 'i')
-    .replaceAll('ş', 's')
-    .replaceAll('ğ', 'g')
-    .replaceAll('ü', 'u')
-    .replaceAll('ö', 'o')
-    .replaceAll('ç', 'c')
-    .replaceAll(RegExp(r'\s+'), ' ')
-    .trim();
+String _fold(String text) {
+  final view = OcrNumberView(text);
+  return (view.valid ? view.text : text)
+      .replaceAll('İ', 'i')
+      .replaceAll('I', 'ı')
+      .toLowerCase()
+      .replaceAll('ı', 'i')
+      .replaceAll('ş', 's')
+      .replaceAll('ğ', 'g')
+      .replaceAll('ü', 'u')
+      .replaceAll('ö', 'o')
+      .replaceAll('ç', 'c')
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .trim();
+}
 
 String _overlapText(ReceiptLineCandidate line) => _fold(line.rawText);
 
 bool _isDocumentMetadata(String text, String? store) {
   final folded = _fold(text);
   return store != null && folded == _fold(store) ||
-      _date.hasMatch(text) &&
+      _date.hasMatch(folded) &&
           (RegExp(r'^\d').hasMatch(folded) ||
               RegExp(r'^(?:tarih|date|satici|kasa|saat|time|satis\s+tarihi)\b')
                   .hasMatch(folded)) ||
@@ -470,16 +474,21 @@ String? _readDocumentNumber(List<String> lines) {
 
 String? _readStore(List<String> lines) {
   final headerAnchor = lines.indexWhere(
-    (line) => _documentNumber.hasMatch(_fold(line)) || _date.hasMatch(line),
+    (line) =>
+        _documentNumber.hasMatch(_fold(line)) || _date.hasMatch(_fold(line)),
   );
   for (var i = 0; i < lines.length && i < 8; i++) {
     final line = lines[i];
     final folded = _fold(line);
-    if (RegExp(r'^(?:magaza|satici|store)\s*:\s*\p{L}', unicode: true).hasMatch(folded)) {
-      return line.substring(line.indexOf(':') + 1).trim();
+    if (RegExp(
+      r'^(?:magaza|satici|store)\s*:\s*\p{L}',
+      unicode: true,
+    ).hasMatch(folded)) {
+      final view = OcrNumberView(line);
+      return view.originalSlice(view.text.indexOf(':') + 1).trim();
     }
     if (!RegExp(r'[A-Za-zÇĞİÖŞÜçğıöşü]{2}').hasMatch(line) ||
-        RegExp(r'\d+[.,]\d+|\d{1,2}:\d{2}').hasMatch(line) ||
+        RegExp(r'\d+[.,\u066b]\d+|\d{1,2}:\d{2}').hasMatch(folded) ||
         RegExp(
           r'^(?:tarih|saat|fis|fatura|belge|kdv|vergi|vkn|tel|kasa|kasiyer|satis|sube|adres|satici|magaza|store|toplam|ara toplam|nakit|kart|kredi|banka|e[ -]?arsiv)\b',
         ).hasMatch(folded)) {
@@ -495,7 +504,7 @@ String? _readStore(List<String> lines) {
     if (namedMerchant ||
         headerAnchor > i &&
             line == line.toUpperCase() &&
-            !_date.hasMatch(line)) {
+            !_date.hasMatch(folded)) {
       return line;
     }
   }
@@ -504,7 +513,7 @@ String? _readStore(List<String> lines) {
 
 final _date = RegExp(
   r'(?<!\d)(?:(\d{4})-(\d{1,2})-(\d{1,2})|'
-  r'(\d{1,2})[./-](\d{1,2})[./-](\d{2}|\d{4}))(?!\d)',
+  r'(\d{1,2})[./\u066b-](\d{1,2})[./\u066b-](\d{2}|\d{4}))(?!\d)',
 );
 final _time = RegExp(
   r'(?<![\d:])([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?(?![\d:])',
@@ -514,7 +523,9 @@ DateTime? _readDateTime(List<String> lines) {
   DateTime? date;
   RegExpMatch? time;
   for (final line in lines) {
-    final match = _date.firstMatch(line);
+    final view = OcrNumberView(line);
+    if (!view.valid) continue;
+    final match = _date.firstMatch(view.text);
     if (date == null && match != null) {
       final yearFirst = match.group(1) != null;
       var year = int.parse(match.group(yearFirst ? 1 : 6)!);
@@ -531,8 +542,8 @@ DateTime? _readDateTime(List<String> lines) {
     if (time == null &&
         (match != null ||
             RegExp(r'\b(?:saat|time)\b').hasMatch(_fold(line)) ||
-            RegExp(r'^\d{1,2}:\d{2}(?::\d{2})?$').hasMatch(line))) {
-      time = _time.firstMatch(line);
+            RegExp(r'^\d{1,2}:\d{2}(?::\d{2})?$').hasMatch(view.text))) {
+      time = _time.firstMatch(view.text);
     }
   }
   if (date == null || time == null) return null;
@@ -553,7 +564,7 @@ final _totalLine = RegExp(
   r'^[*#\s]*(?:genel\s+toplam|toplam(?:\s+tutar)?|odenecek(?:\s+tutar)?|grand\s+total|total)'
   r'\s*[:=*]?\s*'
   '(?:$_currencyToken)?'
-  r'\s*(\d+(?:[.,]\d+)*)\s*'
+  r'\s*(\d+(?:[.,\u066b]\d+)*)\s*'
   '(?:$_currencyToken)?'
   r'\s*$',
 );
@@ -564,10 +575,13 @@ int? _readTotal(List<String> lines, String currencyCode) {
   for (final line in lines) {
     final raw = _totalLine.firstMatch(_fold(line))?.group(1);
     if (raw == null) continue;
+    if (digits == 0) {
+      final amount = wholeOcrAmount(raw);
+      if (amount != null) totals.add(amount);
+      continue;
+    }
     try {
-      final separators = raw.lastIndexOf(',') > raw.lastIndexOf('.')
-          ? MoneySeparators.tr
-          : MoneySeparators.en;
+      final separators = ocrAmountSeparators(raw, minorDigits: digits);
       final amount = MoneyParser.parseDecimal(raw, separators: separators);
       if (amount.scale <= digits) totals.add(amount.toMinorUnits(digits));
     } on FormatException {

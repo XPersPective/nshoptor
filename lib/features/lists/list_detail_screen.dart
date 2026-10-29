@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import '../../core/money/format_locale.dart';
+import '../../core/money/money_parser.dart';
 
 import 'package:flutter/material.dart';
 
@@ -1131,7 +1132,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
           children: [
             Text(entry.name),
             Text(
-              '${entry.actualQuantity} ${unitDisplayNameFromDb(entry.actualUnitCode, l10n)}',
+              '${MoneySeparators.forLocaleCode(formatLocaleCode(context)).formatInput(entry.actualQuantity)} ${unitDisplayNameFromDb(entry.actualUnitCode, l10n)}',
             ),
             Text('${l10n.compareUnplanned} · $amount'),
           ],
@@ -1211,7 +1212,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${item.plannedQuantity} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
+                              '${MoneySeparators.forLocaleCode(formatLocaleCode(context)).formatInput(item.plannedQuantity)} ${unitDisplayNameFromDb(item.plannedUnitCode, l10n)}',
                               style: Theme.of(context).textTheme.bodySmall,
                             ),
                             const SizedBox(height: 8),

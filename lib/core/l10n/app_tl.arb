@@ -241,7 +241,7 @@
   "aboutOpenRow": "Tungkol & open source",
   "voiceAddItemAction": "Magdagdag gamit ang boses",
   "formatLocaleLabel": "Format ng numero at pera",
-  "formatLocaleSystem": "Format ng device (Latin digits; kung hindi, English)",
+  "formatLocaleSystem": "Format ng device",
   "formatLocaleTr": "Turko (1.234,56)",
   "formatLocaleEn": "Ingles (1,234.56)",
   "aiToggleTitle": "Tulong AI",

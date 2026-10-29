@@ -92,7 +92,7 @@ void main() {
     for (final scenario in [
       (context: 'TRY', currency: 'IDR', amount: '91000', minor: 9100000),
       (context: 'JPY', currency: 'TRY', amount: '20,00', minor: 2000),
-      (context: 'JPY', currency: 'KWD', amount: '20.123', minor: 20123),
+      (context: 'JPY', currency: 'KWD', amount: '20٫123', minor: 20123),
     ]) {
       final rawLines = [
         ..._header(),

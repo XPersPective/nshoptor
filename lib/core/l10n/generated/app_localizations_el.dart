@@ -765,8 +765,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get formatLocaleLabel => 'Μορφή αριθμών και νομίσματος';
 
   @override
-  String get formatLocaleSystem =>
-      'Μορφή συσκευής (Λατινικά ψηφία· διαφορετικά Αγγλικά)';
+  String get formatLocaleSystem => 'Μορφή συσκευής';
 
   @override
   String get formatLocaleTr => 'Τουρκικά (1.234,56)';

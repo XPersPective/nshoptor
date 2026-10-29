@@ -764,7 +764,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get formatLocaleLabel => 'نمبر اور کرنسی کی فارمیٹ';
 
   @override
-  String get formatLocaleSystem => 'ڈیوائس فارمیٹ (لینی ڈیجٹس؛ ورنہ انگریزی)';
+  String get formatLocaleSystem => 'ڈیوائس فارمیٹ';
 
   @override
   String get formatLocaleTr => 'ترکی (1.234,56)';

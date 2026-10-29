@@ -761,8 +761,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get formatLocaleLabel => 'ຮູບແບບຕົວເລກ ແລະ ສັນຍາລັກເງິນ';
 
   @override
-  String get formatLocaleSystem =>
-      'ຕົວຢ່າງຂອງອຸປະກອນ (ຕົວເລກ Latin; ຖ້າບໍ່ແມ່ນ English)';
+  String get formatLocaleSystem => 'ຕົວຢ່າງຂອງອຸປະກອນ';
 
   @override
   String get formatLocaleTr => 'ຕວກກີ (1.234,56)';

@@ -763,8 +763,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get formatLocaleLabel => 'Nummer- och valutainställningar';
 
   @override
-  String get formatLocaleSystem =>
-      'Enhetens format (Latinska siffror; annars engelska)';
+  String get formatLocaleSystem => 'Enhetens format';
 
   @override
   String get formatLocaleTr => 'Turkiska (1.234,56)';
