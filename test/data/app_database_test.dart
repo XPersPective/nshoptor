@@ -78,9 +78,9 @@ void main() {
   });
 
   group('migration', () {
-    test('fresh database uses schema 4 and all tables exist', () async {
+    test('fresh database uses schema 5 and all tables exist', () async {
       final version = await db.customSelect('PRAGMA user_version').getSingle();
-      expect(version.data['user_version'], 4);
+      expect(version.data['user_version'], 5);
       final tables = await db
           .customSelect("SELECT name FROM sqlite_master WHERE type='table'")
           .get();
@@ -140,7 +140,7 @@ void main() {
         final version = await reopened
             .customSelect('PRAGMA user_version')
             .getSingle();
-        expect(version.data['user_version'], 4);
+        expect(version.data['user_version'], 5);
         final row =
             (await reopened.select(reopened.purchaseEntries).get()).single;
         expect(row.pricingInputMode, isNull);
@@ -254,7 +254,7 @@ void main() {
         final version = await reopened
             .customSelect('PRAGMA user_version')
             .getSingle();
-        expect(version.data['user_version'], 4);
+        expect(version.data['user_version'], 5);
         final foreignKeyErrors = await reopened
             .customSelect('PRAGMA foreign_key_check')
             .get();
@@ -401,6 +401,9 @@ void main() {
 }
 
 Future<void> _removeReceiptIdentitySchema(AppDatabase db) async {
+  await db.customStatement(
+    'ALTER TABLE planned_items DROP COLUMN created_by_receipt_id',
+  );
   await db.customStatement('DROP INDEX receipts_identity_unique');
   for (final column in [
     'document_number',

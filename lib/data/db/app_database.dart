@@ -71,6 +71,13 @@ class ShoppingLists extends Table {
 /// Planlanan ürünler.
 class PlannedItems extends Table {
   IntColumn get id => integer().autoIncrement()();
+
+  /// Explicit creator; null means manual or unknown legacy provenance.
+  IntColumn get createdByReceiptId => integer().nullable().references(
+    Receipts,
+    #id,
+    onDelete: KeyAction.setNull,
+  )();
   IntColumn get listId =>
       integer().references(ShoppingLists, #id, onDelete: KeyAction.cascade)();
   IntColumn get productId =>
@@ -329,7 +336,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -350,6 +357,10 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(receipts, receipts.identityKey);
         await m.addColumn(receipts, receipts.captureDataJson);
         await _createReceiptIdentityIndex();
+      }
+      if (from < 5) {
+        // Old ownership cannot be inferred safely from timestamps/links.
+        await m.addColumn(plannedItems, plannedItems.createdByReceiptId);
       }
       assert(from < to);
     },

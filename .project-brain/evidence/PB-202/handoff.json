@@ -1,0 +1,37 @@
+{
+  "protocol": 1,
+  "task": "PB-202",
+  "status": "READY",
+  "contract": "2265cb8a30f2d6fa",
+  "areas": [
+    "lib/data/db/**",
+    "lib/features/lists/item_repository.dart",
+    "lib/features/receipts/**",
+    "lib/features/settings/backup/backup_repository.dart",
+    "test/data/**",
+    "test/features/receipts/**",
+    "test/features/settings/backup/**"
+  ],
+  "inputs": [
+    ".project-brain/decisions/ADR-009.md",
+    "lib/features/shopping_mode/shopping_repository.dart",
+    "test/features/lists/item_repository_test.dart"
+  ],
+  "resume": [
+    "Next: Resolve supported native registry and qualified HIGH-risk acceptance; preserve this tested unshipped schema-v5 checkpoint; next app items are F03/F07/F10/F23 and native/device gates",
+    "Failing: Formal PB start/check unavailable: registered native model marked unavailable; qualified HIGH-risk review metadata absent",
+    "Dirty: Only PB-202 checkpoint paths are staged; inherited website and old tracking edits remain unstaged"
+  ],
+  "external": [],
+  "open_criteria": [
+    "d6671be0",
+    "adeff5f5",
+    "548dd923",
+    "ecdb236e"
+  ],
+  "readback_required": false,
+  "private_logs": "not exported; new environments must recheck when receipts are unavailable",
+  "digest": "33a9f343fbae464d",
+  "files": 57,
+  "checks_reusable_here": false
+}

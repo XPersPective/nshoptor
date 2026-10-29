@@ -1,6 +1,7 @@
 # Current Architecture
 
 ## Start here (2026-10-29)
+- New development checkpoint PB-202: explicit receipt-created row ownership (schema v5), safe deletion/restore and late background-result guards. 977 Flutter tests PASS (2 opt-in visual reviews skipped), analyzer clean; Android debug build PASS (432s). See `references/ownership-takeover-2026-10-29.md`. Not shipped or formally accepted; existing native-registry gate remains unresolved. Session user explicitly chose EXEC=S-ML, REV=S-ML.
 - Read `references/handoff-2026-10-29.md` first: done work, checks already done (do not repeat), remaining work in order. It supersedes the Next and Latest handoff sections below, which are history from 2026-10-27.
 - Current release 1.3.1+26 (a2965db): Android internal [26], iOS uploaded (not on TestFlight). 964 Flutter + 83 server tests pass. AI reading per ADR-008; device feedback F01-F41 in references/device-feedback-2026-10-28.md.
 - Old release packages deleted; hashes in the handoff and privately in original-notes/release-packages-deleted-2026-10-29.csv. Only artifacts/releases/1.3.1-26 remains.
@@ -29,7 +30,7 @@
 - Signed19 private artifacts/releases/1.3.1-19: Android97139147bytes SHA6c6286abec9337a4543b425dda136aa6e4ca2c219db518da9e2f31c279498714; iOS47158362bytes SHAb023adc9fe32407868e7ef62daa7e52ef8d141a984d215a49ecf5965735ecf2c. Private internal-19/candidate-19-actions receipts authoritative; transient signed GHA artifacts removed.20workflows verify exactsource/version/signing/identity/privacy/16KB; Android retains same-source signedAPK+AAB.
 
 ## Map (load only needed domains)
-- lib/features/receipts +test/features/receipts: OCR/document/durable/fixedmoney/approval/dedup; lib/data/db Drift4.
+- lib/features/receipts +test/features/receipts: OCR/document/durable/fixedmoney/approval/dedup; lib/data/db Drift5 (PB-202 development; store build26 is schema4).
 - lib/features/history/reports +ios/Runner/HtmlPrintBridge.swift: report snapshot/export/native; active PB-147/178/179/180.
 - lib/features/subscription, lib/features/ai, server: trial/ownership/verifier/quota; server/APPLE_ENTITLEMENTS.md, PB-159/167/176.
 - lib/features/lists, home, shopping_mode, settings: items/prices/completion/reopen/guide/backup/reminders; PB-141..155 on demand.
@@ -39,7 +40,12 @@
 - PB-161security/162cleanup/163storemedia-release; intake-2026-10-24.md earlier scope loaded only as needed.
 - Prior Current hash-archived privately: original-notes/project-brain-history/2026-10-27-f9fe7c3ee5df/current.md SHA f9fe7c3ee5dfaba8b646861888c3fa0c0b57c0e9a8bb23f2940c9a3ce90b8f3c. Historical CI/captures/provenance there and earlier history. Old temporary-AVD/pool exceptions superseded.
 
+## receipt-storage
+Sources: `lib/data/db/**`, `lib/features/receipts/**`, `lib/features/lists/item_repository.dart`, `lib/features/settings/backup/backup_repository.dart`, `test/features/receipts/**`, `test/data/**`, `test/features/settings/backup/**`
+- OBSERVED: PB-202 uses an explicit nullable creator, conservative legacy retention and transactional restore validation. Full Flutter977/targeted279 and analyzer checks passed locally; see the ownership takeover reference for hashes and remaining formal/native gates.
+
 ## Next
+0. PB-202 development supersedes only the receipt-delete heuristic gap in the older handoff. Preserve actual native-registry/reviewer limitation; do not invent ratings or acceptance. Finish remaining app/device gates from the 2026-10-29 handoff before store/site work. Historical F20 origin remains unconfirmed.
 1. PB185 committed/pushed; general40504070806/native40504070978SUCCESS, stronger independentnative source reviewPASS. Read reminderUI40558135204 before retry/rebuild20. Report40500500966 firstgesturecancel/reopenpassed, secondSaveAXmissingthoughvisiblypresent; screenshot-backed visualgate proposal inPB178Resume, notimplemented. PB184Androidmedia40500506104 SUCCESS, artifact12733336060 verified SHA3b197642f7786f6ade53fa146a5c2ea6c07a91e173cbff0d76c6f7973f9a0b0b. DistinctmediaAPK installed/launchedonsharedAVD, olddebug18preserved; captureactualscreensnext, neveruninstalloldapp. DataSafetyAPI400/readbackunchanged→Consoleimportvalidationnext, notdone.
 2. After app gates pass, sign20 AAB+APK/IPA, hash/identity/privacy/readback before uploads.19consumed; preserve uncertain external actions. Use Release Harbor/existing authorization, no repeated permission loop.
 3. Finish payment/device/reminder/a11y/declaration gates, professional store visuals/video/locales and publication stages. Website/SEO/relocation LAST. Tests/uploads do not equal public release.

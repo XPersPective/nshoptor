@@ -258,6 +258,10 @@ class ReceiptReviewController extends ChangeNotifier {
     final planned = await (_db.select(
       _db.plannedItems,
     )..where((t) => t.listId.equals(listId!))).get();
+    planned.removeWhere(
+      (item) =>
+          item.createdByReceiptId != null && item.createdByReceiptId != draftId,
+    );
     final inputs = _matchInputs();
     final outcome = await AiReceiptMatcher(client, localeCode: localeCode)
         .match(
@@ -312,7 +316,7 @@ class ReceiptReviewController extends ChangeNotifier {
         ),
     ];
     final matches = await ReceiptMatcher(_db)
-        .match(candidates, listId: listId!);
+        .match(candidates, listId: listId!, receiptId: draftId);
     if (_disposed || !listEquals(inputs, _matchInputs())) return;
     var changed = false;
     for (final (line, item, confidence) in matches) {
@@ -668,6 +672,7 @@ class ReceiptReviewController extends ChangeNotifier {
               plannedItemId = createdForReceipt[createdKey] =
                   await ItemRepository(_db).addItem(
                     listId: committedListId,
+                    createdByReceiptId: receiptId,
                     name: line.name,
                     quantity: quantity,
                     unitCode: purchaseUnit.dbCode,

@@ -37,7 +37,16 @@ class ItemRepository {
     String? note,
     DecimalFixed? maxAcceptablePrice,
     int? existingId,
+    int? createdByReceiptId,
   }) => _db.transaction(() async {
+    if (createdByReceiptId != null) {
+      final receipt = await (_db.select(
+        _db.receipts,
+      )..where((t) => t.id.equals(createdByReceiptId))).getSingleOrNull();
+      if (existingId != null || receipt?.listId != listId) {
+        throw ArgumentError('Receipt creator must own a new row in its list');
+      }
+    }
     if (name.trim().isEmpty ||
         !quantity.isPositive ||
         (price?.isNegative ?? false) ||
@@ -125,6 +134,9 @@ class ItemRepository {
     }
     final values = PlannedItemsCompanion.insert(
       listId: listId,
+      createdByReceiptId: createdByReceiptId == null
+          ? const Value.absent()
+          : Value(createdByReceiptId),
       name: name,
       normalizedName: normalizedName,
       brand: Value(brand),

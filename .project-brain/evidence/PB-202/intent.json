@@ -1,0 +1,8 @@
+{
+  "contract": "2265cb8a30f2d6fa",
+  "epoch": "e66391c0a6a4f3f3",
+  "independent": false,
+  "intent": "4eea9d63611f3510",
+  "note": "Implementation still serves confirmed F15/F20; explicit verification-only shopping repository and item tests added to Inputs; no fabricated formal evidence",
+  "protocol": 1
+}

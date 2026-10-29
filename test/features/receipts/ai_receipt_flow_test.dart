@@ -14,6 +14,7 @@ import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/receipt_capture_flow.dart';
 import 'package:nshoptor/features/receipts/receipt_draft_repository.dart';
 import 'package:nshoptor/features/receipts/receipt_image_store.dart';
+import 'package:nshoptor/features/receipts/receipt_repository.dart';
 
 /// Device OCR that cannot read the script (e.g. Arabic): always empty.
 class _Blind implements OcrTextSource {
@@ -156,6 +157,13 @@ void main() {
         ['photo-0'],
       );
       expect(await ReceiptDraftRepository(db).pending(), isEmpty);
+      final partialDraft = (await ReceiptDraftRepository(
+        db,
+      ).pending(listId: list.id)).single;
+      expect(
+        (await db.select(db.plannedItems).get()).single.createdByReceiptId,
+        partialDraft.id,
+      );
 
       await tester.tap(find.byKey(const Key('receipt_capture_camera')));
       await settle();
@@ -183,6 +191,17 @@ void main() {
         (await db.select(db.shoppingLists).get()).single.currencyCode,
         'SAR',
       );
+      final receipt = (await db.select(db.receipts).get()).single;
+      expect(receipt.id, partialDraft.id);
+      expect(
+        (await db.select(db.plannedItems).get()).map(
+          (i) => i.createdByReceiptId,
+        ),
+        everyElement(receipt.id),
+      );
+      await ReceiptRepository(db).delete(receipt.id);
+      expect(await db.select(db.plannedItems).get(), isEmpty);
+      expect(await db.select(db.purchaseEntries).get(), isEmpty);
     },
   );
 }

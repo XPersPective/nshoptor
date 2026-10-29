@@ -255,10 +255,10 @@ Future<int?> openReceiptCaptureFlow(
             plannedAt: doc.metadata.dateTime,
           );
           await ShoppingRepository(db).startShopping(created);
-          await drafts.discard(draftId);
           draftId = await drafts.save(
             document: doc,
             listId: created,
+            draftId: draftId,
             imagePaths: imagePaths,
           );
           activeListId = created;
@@ -695,18 +695,12 @@ Future<_AiOutcome> _readWithAi(
             plannedAt: date,
           );
           await ShoppingRepository(db).startShopping(ownedListId);
-          final keep = [...paths];
-          if (id != null) await drafts.discard(id!);
-          id = null;
-          paths
-            ..clear()
-            ..addAll(keep);
           await persist(doc!);
           if (!context.mounted) return stop();
         }
         final owner = listId ?? ownedListId;
         if (owner != null) {
-          await _addVisibleItems(db, owner, visibleItems);
+          await _addVisibleItems(db, owner, id!, visibleItems);
           if (!context.mounted) return stop();
         }
         final full = paths.length >= AiReceiptReader.maxPhotos;
@@ -896,20 +890,40 @@ Future<void> _finishInBackground(
       return created;
     }
 
-    Future<void> keepIn(int list, ReceiptDocument document) async {
-      final previous = draftId;
-      if (previous != null) await drafts.discard(previous);
-      await drafts.save(document: document, listId: list, imagePaths: photos);
+    Future<int> keepIn(int list, ReceiptDocument document) => drafts.save(
+      document: document,
+      listId: list,
+      draftId: draftId,
+      imagePaths: photos,
+    );
+
+    Future<Receipt> currentDraft() async {
+      final draft = await (db.select(
+        db.receipts,
+      )..where((t) => t.id.equals(draftId ?? -1))).getSingleOrNull();
+      if (draft == null ||
+          draft.processingStatus != 'pending' ||
+          draft.identityKey != null ||
+          draft.imagePaths.length != photos.length ||
+          !Iterable<int>.generate(photos.length)
+              .every((i) => draft.imagePaths[i] == photos[i])) {
+        throw StateError('Background receipt was deleted or superseded');
+      }
+      return draft;
     }
 
     switch (read) {
       case AiReceiptVerified(:final document):
-        final list = await ensureList(
-          document.metadata.store ?? '?',
-          document.metadata.dateTime,
-          document.metadata.currencyCode,
-        );
-        await keepIn(list, document);
+        final list = await db.transaction(() async {
+          await currentDraft();
+          final list = await ensureList(
+            document.metadata.store ?? '?',
+            document.metadata.dateTime,
+            document.metadata.currencyCode,
+          );
+          await keepIn(list, document);
+          return list;
+        });
         await notifier.showReceiptResult(
           id: notificationId,
           title: l10n.receiptReadDoneTitle,
@@ -923,15 +937,16 @@ Future<void> _finishInBackground(
             :final visibleItems,
           )
           when store != null && date != null:
-        final hadList = owner != null;
-        final list = await ensureList(store, date, currency);
-        await _addVisibleItems(db, list, visibleItems);
-        if (!hadList && draftId != null) {
-          final anonymous = (await drafts.pending())
-              .where((d) => d.id == draftId)
-              .firstOrNull;
-          if (anonymous != null) await keepIn(list, anonymous.document);
-        }
+        final list = await db.transaction(() async {
+          final draft = await currentDraft();
+          final list = await ensureList(store, date, currency);
+          final id = await keepIn(
+            list,
+            ReceiptDocument.decode(draft.captureDataJson!),
+          );
+          await _addVisibleItems(db, list, id, visibleItems);
+          return list;
+        });
         await notifier.showReceiptResult(
           id: notificationId,
           title: l10n.receiptReadMoreTitle,
@@ -993,12 +1008,15 @@ final class _NoOcr implements OcrTextSource {
 Future<void> _addVisibleItems(
   AppDatabase db,
   int listId,
+  int receiptId,
   List<({String name, String? quantity, String? unit})> rows,
 ) async {
   if (rows.isEmpty) return;
   final existing = {
     for (final item in await ItemRepository(db).getItems(listId))
-      normalizeName(item.name),
+      if (item.createdByReceiptId == null ||
+          item.createdByReceiptId == receiptId)
+        normalizeName(item.name),
   };
   for (final row in rows) {
     final key = normalizeName(row.name);
@@ -1010,6 +1028,7 @@ Future<void> _addVisibleItems(
     try {
       await ItemRepository(db).addItem(
         listId: listId,
+        createdByReceiptId: receiptId,
         name: row.name,
         quantity: quantity != null && quantity.isPositive
             ? quantity

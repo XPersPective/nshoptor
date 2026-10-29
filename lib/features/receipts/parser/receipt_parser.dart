@@ -709,10 +709,16 @@ class ReceiptMatcher {
   Future<List<(ReceiptLineCandidate, PlannedItem?, String)>> match(
     List<ReceiptLineCandidate> lines, {
     required int listId,
+    int? receiptId,
   }) async {
     final items = await (_db.select(
       _db.plannedItems,
     )..where((t) => t.listId.equals(listId))).get();
+    items.removeWhere(
+      (item) =>
+          item.createdByReceiptId != null &&
+          item.createdByReceiptId != receiptId,
+    );
     return [
       for (final line in lines)
         (

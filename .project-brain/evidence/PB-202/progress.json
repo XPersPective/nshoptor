@@ -1,0 +1,11 @@
+{
+  "protocol": 1,
+  "next": "Resolve supported native registry and qualified HIGH-risk acceptance; preserve this tested unshipped schema-v5 checkpoint; next app items are F03/F07/F10/F23 and native/device gates",
+  "failing": "Formal PB start/check unavailable: registered native model marked unavailable; qualified HIGH-risk review metadata absent",
+  "dirty": "Only PB-202 checkpoint paths are staged; inherited website and old tracking edits remain unstaged",
+  "strategy": "Keep actual tests/build and bounded source review observations separate from formal acceptance; no alias/rating bypass",
+  "attempt": "e53b658a13438e67",
+  "repeats": 1,
+  "contract": "2265cb8a30f2d6fa",
+  "usage": {}
+}

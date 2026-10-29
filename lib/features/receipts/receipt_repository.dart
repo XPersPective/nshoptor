@@ -90,25 +90,29 @@ class ReceiptRepository {
   /// candidate lines. The identity is freed with the row, so the same receipt
   /// can be imported again. Owned photos no other receipt references are
   /// removed after the transaction commits.
-  Future<bool> delete(int receiptId) async {
+  Future<bool> delete(int receiptId, {bool pendingOnly = false}) async {
     final orphanImages = await _db.transaction(() async {
       final receipt = await (_db.select(
         _db.receipts,
       )..where((t) => t.id.equals(receiptId))).getSingleOrNull();
-      if (receipt == null) return null;
+      if (receipt == null ||
+          pendingOnly &&
+              (receipt.processingStatus != 'pending' ||
+                  receipt.identityKey != null)) {
+        return null;
+      }
       final entries = await (_db.select(
         _db.purchaseEntries,
       )..where((t) => t.receiptId.equals(receiptId))).get();
       final entryIds = entries.map((e) => e.id).toList();
-      // Rows the user planned (or linked during review) existed before the
-      // receipt; only rows created for unplanned receipt lines are removed.
-      final linked = {
-        for (final line in await (_db.select(
-          _db.receiptCandidateLines,
-        )..where((t) => t.receiptId.equals(receiptId))).get())
-          if (line.linkedPlannedItemId != null) line.linkedPlannedItemId!,
+      // Include unfinished, unpriced rows as well as approved purchases.
+      final owned = await (_db.select(
+        _db.plannedItems,
+      )..where((t) => t.createdByReceiptId.equals(receiptId))).get();
+      final touched = {
+        ...entries.map((e) => e.plannedItemId).whereType<int>(),
+        ...owned.map((i) => i.id),
       };
-      final touched = entries.map((e) => e.plannedItemId).whereType<int>();
 
       if (entryIds.isNotEmpty) {
         final observations = await (_db.select(
@@ -132,7 +136,7 @@ class ReceiptRepository {
         )..where((t) => t.id.isIn(entryIds))).go();
       }
 
-      for (final itemId in touched.toSet()) {
+      for (final itemId in touched) {
         final item = await (_db.select(
           _db.plannedItems,
         )..where((t) => t.id.equals(itemId))).getSingleOrNull();
@@ -142,9 +146,8 @@ class ReceiptRepository {
         )..where((t) => t.plannedItemId.equals(itemId))).get();
         if (others.isNotEmpty) continue;
         final createdByReceipt =
-            !linked.contains(itemId) &&
-            item.listId == receipt.listId &&
-            !item.createdAt.isBefore(receipt.createdAt);
+            item.createdByReceiptId == receiptId &&
+            item.listId == receipt.listId;
         if (createdByReceipt) {
           await (_db.delete(
             _db.plannedItems,

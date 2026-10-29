@@ -1872,1698 +1872,6 @@ class ShoppingListsCompanion extends UpdateCompanion<ShoppingList> {
   }
 }
 
-class $ProductMemoryTable extends ProductMemory
-    with TableInfo<$ProductMemoryTable, ProductMemoryData> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $ProductMemoryTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-    'id',
-    aliasedName,
-    false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const VerificationMeta _canonicalNameMeta = const VerificationMeta(
-    'canonicalName',
-  );
-  @override
-  late final GeneratedColumn<String> canonicalName = GeneratedColumn<String>(
-    'canonical_name',
-    aliasedName,
-    false,
-    additionalChecks: GeneratedColumn.checkTextLength(
-      minTextLength: 1,
-      maxTextLength: 500,
-    ),
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _normalizedNameMeta = const VerificationMeta(
-    'normalizedName',
-  );
-  @override
-  late final GeneratedColumn<String> normalizedName = GeneratedColumn<String>(
-    'normalized_name',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _defaultCategoryIdMeta = const VerificationMeta(
-    'defaultCategoryId',
-  );
-  @override
-  late final GeneratedColumn<int> defaultCategoryId = GeneratedColumn<int>(
-    'default_category_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES categories (id)',
-    ),
-  );
-  static const VerificationMeta _defaultUnitCodeMeta = const VerificationMeta(
-    'defaultUnitCode',
-  );
-  @override
-  late final GeneratedColumn<String> defaultUnitCode = GeneratedColumn<String>(
-    'default_unit_code',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _favoriteMeta = const VerificationMeta(
-    'favorite',
-  );
-  @override
-  late final GeneratedColumn<bool> favorite = GeneratedColumn<bool>(
-    'favorite',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("favorite" IN (0, 1))',
-    ),
-    defaultValue: const Constant(false),
-  );
-  static const VerificationMeta _useCountMeta = const VerificationMeta(
-    'useCount',
-  );
-  @override
-  late final GeneratedColumn<int> useCount = GeneratedColumn<int>(
-    'use_count',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultValue: const Constant(0),
-  );
-  static const VerificationMeta _lastUsedAtMeta = const VerificationMeta(
-    'lastUsedAt',
-  );
-  @override
-  late final GeneratedColumn<DateTime> lastUsedAt = GeneratedColumn<DateTime>(
-    'last_used_at',
-    aliasedName,
-    true,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: false,
-  );
-  @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    canonicalName,
-    normalizedName,
-    defaultCategoryId,
-    defaultUnitCode,
-    favorite,
-    useCount,
-    lastUsedAt,
-  ];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'product_memory';
-  @override
-  VerificationContext validateIntegrity(
-    Insertable<ProductMemoryData> instance, {
-    bool isInserting = false,
-  }) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('canonical_name')) {
-      context.handle(
-        _canonicalNameMeta,
-        canonicalName.isAcceptableOrUnknown(
-          data['canonical_name']!,
-          _canonicalNameMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_canonicalNameMeta);
-    }
-    if (data.containsKey('normalized_name')) {
-      context.handle(
-        _normalizedNameMeta,
-        normalizedName.isAcceptableOrUnknown(
-          data['normalized_name']!,
-          _normalizedNameMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_normalizedNameMeta);
-    }
-    if (data.containsKey('default_category_id')) {
-      context.handle(
-        _defaultCategoryIdMeta,
-        defaultCategoryId.isAcceptableOrUnknown(
-          data['default_category_id']!,
-          _defaultCategoryIdMeta,
-        ),
-      );
-    }
-    if (data.containsKey('default_unit_code')) {
-      context.handle(
-        _defaultUnitCodeMeta,
-        defaultUnitCode.isAcceptableOrUnknown(
-          data['default_unit_code']!,
-          _defaultUnitCodeMeta,
-        ),
-      );
-    }
-    if (data.containsKey('favorite')) {
-      context.handle(
-        _favoriteMeta,
-        favorite.isAcceptableOrUnknown(data['favorite']!, _favoriteMeta),
-      );
-    }
-    if (data.containsKey('use_count')) {
-      context.handle(
-        _useCountMeta,
-        useCount.isAcceptableOrUnknown(data['use_count']!, _useCountMeta),
-      );
-    }
-    if (data.containsKey('last_used_at')) {
-      context.handle(
-        _lastUsedAtMeta,
-        lastUsedAt.isAcceptableOrUnknown(
-          data['last_used_at']!,
-          _lastUsedAtMeta,
-        ),
-      );
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  ProductMemoryData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return ProductMemoryData(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}id'],
-      )!,
-      canonicalName: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}canonical_name'],
-      )!,
-      normalizedName: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}normalized_name'],
-      )!,
-      defaultCategoryId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}default_category_id'],
-      ),
-      defaultUnitCode: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}default_unit_code'],
-      ),
-      favorite: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}favorite'],
-      )!,
-      useCount: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}use_count'],
-      )!,
-      lastUsedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}last_used_at'],
-      ),
-    );
-  }
-
-  @override
-  $ProductMemoryTable createAlias(String alias) {
-    return $ProductMemoryTable(attachedDatabase, alias);
-  }
-}
-
-class ProductMemoryData extends DataClass
-    implements Insertable<ProductMemoryData> {
-  final int id;
-  final String canonicalName;
-  final String normalizedName;
-  final int? defaultCategoryId;
-  final String? defaultUnitCode;
-  final bool favorite;
-  final int useCount;
-  final DateTime? lastUsedAt;
-  const ProductMemoryData({
-    required this.id,
-    required this.canonicalName,
-    required this.normalizedName,
-    this.defaultCategoryId,
-    this.defaultUnitCode,
-    required this.favorite,
-    required this.useCount,
-    this.lastUsedAt,
-  });
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
-    map['canonical_name'] = Variable<String>(canonicalName);
-    map['normalized_name'] = Variable<String>(normalizedName);
-    if (!nullToAbsent || defaultCategoryId != null) {
-      map['default_category_id'] = Variable<int>(defaultCategoryId);
-    }
-    if (!nullToAbsent || defaultUnitCode != null) {
-      map['default_unit_code'] = Variable<String>(defaultUnitCode);
-    }
-    map['favorite'] = Variable<bool>(favorite);
-    map['use_count'] = Variable<int>(useCount);
-    if (!nullToAbsent || lastUsedAt != null) {
-      map['last_used_at'] = Variable<DateTime>(lastUsedAt);
-    }
-    return map;
-  }
-
-  ProductMemoryCompanion toCompanion(bool nullToAbsent) {
-    return ProductMemoryCompanion(
-      id: Value(id),
-      canonicalName: Value(canonicalName),
-      normalizedName: Value(normalizedName),
-      defaultCategoryId: defaultCategoryId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(defaultCategoryId),
-      defaultUnitCode: defaultUnitCode == null && nullToAbsent
-          ? const Value.absent()
-          : Value(defaultUnitCode),
-      favorite: Value(favorite),
-      useCount: Value(useCount),
-      lastUsedAt: lastUsedAt == null && nullToAbsent
-          ? const Value.absent()
-          : Value(lastUsedAt),
-    );
-  }
-
-  factory ProductMemoryData.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ProductMemoryData(
-      id: serializer.fromJson<int>(json['id']),
-      canonicalName: serializer.fromJson<String>(json['canonicalName']),
-      normalizedName: serializer.fromJson<String>(json['normalizedName']),
-      defaultCategoryId: serializer.fromJson<int?>(json['defaultCategoryId']),
-      defaultUnitCode: serializer.fromJson<String?>(json['defaultUnitCode']),
-      favorite: serializer.fromJson<bool>(json['favorite']),
-      useCount: serializer.fromJson<int>(json['useCount']),
-      lastUsedAt: serializer.fromJson<DateTime?>(json['lastUsedAt']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'canonicalName': serializer.toJson<String>(canonicalName),
-      'normalizedName': serializer.toJson<String>(normalizedName),
-      'defaultCategoryId': serializer.toJson<int?>(defaultCategoryId),
-      'defaultUnitCode': serializer.toJson<String?>(defaultUnitCode),
-      'favorite': serializer.toJson<bool>(favorite),
-      'useCount': serializer.toJson<int>(useCount),
-      'lastUsedAt': serializer.toJson<DateTime?>(lastUsedAt),
-    };
-  }
-
-  ProductMemoryData copyWith({
-    int? id,
-    String? canonicalName,
-    String? normalizedName,
-    Value<int?> defaultCategoryId = const Value.absent(),
-    Value<String?> defaultUnitCode = const Value.absent(),
-    bool? favorite,
-    int? useCount,
-    Value<DateTime?> lastUsedAt = const Value.absent(),
-  }) => ProductMemoryData(
-    id: id ?? this.id,
-    canonicalName: canonicalName ?? this.canonicalName,
-    normalizedName: normalizedName ?? this.normalizedName,
-    defaultCategoryId: defaultCategoryId.present
-        ? defaultCategoryId.value
-        : this.defaultCategoryId,
-    defaultUnitCode: defaultUnitCode.present
-        ? defaultUnitCode.value
-        : this.defaultUnitCode,
-    favorite: favorite ?? this.favorite,
-    useCount: useCount ?? this.useCount,
-    lastUsedAt: lastUsedAt.present ? lastUsedAt.value : this.lastUsedAt,
-  );
-  ProductMemoryData copyWithCompanion(ProductMemoryCompanion data) {
-    return ProductMemoryData(
-      id: data.id.present ? data.id.value : this.id,
-      canonicalName: data.canonicalName.present
-          ? data.canonicalName.value
-          : this.canonicalName,
-      normalizedName: data.normalizedName.present
-          ? data.normalizedName.value
-          : this.normalizedName,
-      defaultCategoryId: data.defaultCategoryId.present
-          ? data.defaultCategoryId.value
-          : this.defaultCategoryId,
-      defaultUnitCode: data.defaultUnitCode.present
-          ? data.defaultUnitCode.value
-          : this.defaultUnitCode,
-      favorite: data.favorite.present ? data.favorite.value : this.favorite,
-      useCount: data.useCount.present ? data.useCount.value : this.useCount,
-      lastUsedAt: data.lastUsedAt.present
-          ? data.lastUsedAt.value
-          : this.lastUsedAt,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('ProductMemoryData(')
-          ..write('id: $id, ')
-          ..write('canonicalName: $canonicalName, ')
-          ..write('normalizedName: $normalizedName, ')
-          ..write('defaultCategoryId: $defaultCategoryId, ')
-          ..write('defaultUnitCode: $defaultUnitCode, ')
-          ..write('favorite: $favorite, ')
-          ..write('useCount: $useCount, ')
-          ..write('lastUsedAt: $lastUsedAt')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    id,
-    canonicalName,
-    normalizedName,
-    defaultCategoryId,
-    defaultUnitCode,
-    favorite,
-    useCount,
-    lastUsedAt,
-  );
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is ProductMemoryData &&
-          other.id == this.id &&
-          other.canonicalName == this.canonicalName &&
-          other.normalizedName == this.normalizedName &&
-          other.defaultCategoryId == this.defaultCategoryId &&
-          other.defaultUnitCode == this.defaultUnitCode &&
-          other.favorite == this.favorite &&
-          other.useCount == this.useCount &&
-          other.lastUsedAt == this.lastUsedAt);
-}
-
-class ProductMemoryCompanion extends UpdateCompanion<ProductMemoryData> {
-  final Value<int> id;
-  final Value<String> canonicalName;
-  final Value<String> normalizedName;
-  final Value<int?> defaultCategoryId;
-  final Value<String?> defaultUnitCode;
-  final Value<bool> favorite;
-  final Value<int> useCount;
-  final Value<DateTime?> lastUsedAt;
-  const ProductMemoryCompanion({
-    this.id = const Value.absent(),
-    this.canonicalName = const Value.absent(),
-    this.normalizedName = const Value.absent(),
-    this.defaultCategoryId = const Value.absent(),
-    this.defaultUnitCode = const Value.absent(),
-    this.favorite = const Value.absent(),
-    this.useCount = const Value.absent(),
-    this.lastUsedAt = const Value.absent(),
-  });
-  ProductMemoryCompanion.insert({
-    this.id = const Value.absent(),
-    required String canonicalName,
-    required String normalizedName,
-    this.defaultCategoryId = const Value.absent(),
-    this.defaultUnitCode = const Value.absent(),
-    this.favorite = const Value.absent(),
-    this.useCount = const Value.absent(),
-    this.lastUsedAt = const Value.absent(),
-  }) : canonicalName = Value(canonicalName),
-       normalizedName = Value(normalizedName);
-  static Insertable<ProductMemoryData> custom({
-    Expression<int>? id,
-    Expression<String>? canonicalName,
-    Expression<String>? normalizedName,
-    Expression<int>? defaultCategoryId,
-    Expression<String>? defaultUnitCode,
-    Expression<bool>? favorite,
-    Expression<int>? useCount,
-    Expression<DateTime>? lastUsedAt,
-  }) {
-    return RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (canonicalName != null) 'canonical_name': canonicalName,
-      if (normalizedName != null) 'normalized_name': normalizedName,
-      if (defaultCategoryId != null) 'default_category_id': defaultCategoryId,
-      if (defaultUnitCode != null) 'default_unit_code': defaultUnitCode,
-      if (favorite != null) 'favorite': favorite,
-      if (useCount != null) 'use_count': useCount,
-      if (lastUsedAt != null) 'last_used_at': lastUsedAt,
-    });
-  }
-
-  ProductMemoryCompanion copyWith({
-    Value<int>? id,
-    Value<String>? canonicalName,
-    Value<String>? normalizedName,
-    Value<int?>? defaultCategoryId,
-    Value<String?>? defaultUnitCode,
-    Value<bool>? favorite,
-    Value<int>? useCount,
-    Value<DateTime?>? lastUsedAt,
-  }) {
-    return ProductMemoryCompanion(
-      id: id ?? this.id,
-      canonicalName: canonicalName ?? this.canonicalName,
-      normalizedName: normalizedName ?? this.normalizedName,
-      defaultCategoryId: defaultCategoryId ?? this.defaultCategoryId,
-      defaultUnitCode: defaultUnitCode ?? this.defaultUnitCode,
-      favorite: favorite ?? this.favorite,
-      useCount: useCount ?? this.useCount,
-      lastUsedAt: lastUsedAt ?? this.lastUsedAt,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<int>(id.value);
-    }
-    if (canonicalName.present) {
-      map['canonical_name'] = Variable<String>(canonicalName.value);
-    }
-    if (normalizedName.present) {
-      map['normalized_name'] = Variable<String>(normalizedName.value);
-    }
-    if (defaultCategoryId.present) {
-      map['default_category_id'] = Variable<int>(defaultCategoryId.value);
-    }
-    if (defaultUnitCode.present) {
-      map['default_unit_code'] = Variable<String>(defaultUnitCode.value);
-    }
-    if (favorite.present) {
-      map['favorite'] = Variable<bool>(favorite.value);
-    }
-    if (useCount.present) {
-      map['use_count'] = Variable<int>(useCount.value);
-    }
-    if (lastUsedAt.present) {
-      map['last_used_at'] = Variable<DateTime>(lastUsedAt.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('ProductMemoryCompanion(')
-          ..write('id: $id, ')
-          ..write('canonicalName: $canonicalName, ')
-          ..write('normalizedName: $normalizedName, ')
-          ..write('defaultCategoryId: $defaultCategoryId, ')
-          ..write('defaultUnitCode: $defaultUnitCode, ')
-          ..write('favorite: $favorite, ')
-          ..write('useCount: $useCount, ')
-          ..write('lastUsedAt: $lastUsedAt')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class $PlannedItemsTable extends PlannedItems
-    with TableInfo<$PlannedItemsTable, PlannedItem> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $PlannedItemsTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-    'id',
-    aliasedName,
-    false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const VerificationMeta _listIdMeta = const VerificationMeta('listId');
-  @override
-  late final GeneratedColumn<int> listId = GeneratedColumn<int>(
-    'list_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES shopping_lists (id) ON DELETE CASCADE',
-    ),
-  );
-  static const VerificationMeta _productIdMeta = const VerificationMeta(
-    'productId',
-  );
-  @override
-  late final GeneratedColumn<int> productId = GeneratedColumn<int>(
-    'product_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES product_memory (id)',
-    ),
-  );
-  static const VerificationMeta _nameMeta = const VerificationMeta('name');
-  @override
-  late final GeneratedColumn<String> name = GeneratedColumn<String>(
-    'name',
-    aliasedName,
-    false,
-    additionalChecks: GeneratedColumn.checkTextLength(
-      minTextLength: 1,
-      maxTextLength: 500,
-    ),
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _normalizedNameMeta = const VerificationMeta(
-    'normalizedName',
-  );
-  @override
-  late final GeneratedColumn<String> normalizedName = GeneratedColumn<String>(
-    'normalized_name',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _brandMeta = const VerificationMeta('brand');
-  @override
-  late final GeneratedColumn<String> brand = GeneratedColumn<String>(
-    'brand',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _categoryIdMeta = const VerificationMeta(
-    'categoryId',
-  );
-  @override
-  late final GeneratedColumn<int> categoryId = GeneratedColumn<int>(
-    'category_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES categories (id)',
-    ),
-  );
-  static const VerificationMeta _aisleIdMeta = const VerificationMeta(
-    'aisleId',
-  );
-  @override
-  late final GeneratedColumn<int> aisleId = GeneratedColumn<int>(
-    'aisle_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES aisles (id)',
-    ),
-  );
-  static const VerificationMeta _plannedQuantityMeta = const VerificationMeta(
-    'plannedQuantity',
-  );
-  @override
-  late final GeneratedColumn<String> plannedQuantity = GeneratedColumn<String>(
-    'planned_quantity',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _plannedUnitCodeMeta = const VerificationMeta(
-    'plannedUnitCode',
-  );
-  @override
-  late final GeneratedColumn<String> plannedUnitCode = GeneratedColumn<String>(
-    'planned_unit_code',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _pricingInputModeMeta = const VerificationMeta(
-    'pricingInputMode',
-  );
-  @override
-  late final GeneratedColumn<String> pricingInputMode = GeneratedColumn<String>(
-    'pricing_input_mode',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _plannedUnitPriceMeta = const VerificationMeta(
-    'plannedUnitPrice',
-  );
-  @override
-  late final GeneratedColumn<String> plannedUnitPrice = GeneratedColumn<String>(
-    'planned_unit_price',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _plannedLineTotalMinorUnitsMeta =
-      const VerificationMeta('plannedLineTotalMinorUnits');
-  @override
-  late final GeneratedColumn<int> plannedLineTotalMinorUnits =
-      GeneratedColumn<int>(
-        'planned_line_total_minor_units',
-        aliasedName,
-        true,
-        type: DriftSqlType.int,
-        requiredDuringInsert: false,
-      );
-  static const VerificationMeta _maxAcceptablePriceMeta =
-      const VerificationMeta('maxAcceptablePrice');
-  @override
-  late final GeneratedColumn<String> maxAcceptablePrice =
-      GeneratedColumn<String>(
-        'max_acceptable_price',
-        aliasedName,
-        true,
-        type: DriftSqlType.string,
-        requiredDuringInsert: false,
-      );
-  static const VerificationMeta _requiredFlagMeta = const VerificationMeta(
-    'requiredFlag',
-  );
-  @override
-  late final GeneratedColumn<bool> requiredFlag = GeneratedColumn<bool>(
-    'required_flag',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("required_flag" IN (0, 1))',
-    ),
-    defaultValue: const Constant(false),
-  );
-  static const VerificationMeta _noteMeta = const VerificationMeta('note');
-  @override
-  late final GeneratedColumn<String> note = GeneratedColumn<String>(
-    'note',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
-    'sortOrder',
-  );
-  @override
-  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
-    'sort_order',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultValue: const Constant(0),
-  );
-  static const VerificationMeta _statusMeta = const VerificationMeta('status');
-  @override
-  late final GeneratedColumn<String> status = GeneratedColumn<String>(
-    'status',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    defaultValue: const Constant('pending'),
-  );
-  static const VerificationMeta _createdAtMeta = const VerificationMeta(
-    'createdAt',
-  );
-  @override
-  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
-    'created_at',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: false,
-    defaultValue: currentDateAndTime,
-  );
-  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
-    'updatedAt',
-  );
-  @override
-  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
-    'updated_at',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: false,
-    defaultValue: currentDateAndTime,
-  );
-  @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    listId,
-    productId,
-    name,
-    normalizedName,
-    brand,
-    categoryId,
-    aisleId,
-    plannedQuantity,
-    plannedUnitCode,
-    pricingInputMode,
-    plannedUnitPrice,
-    plannedLineTotalMinorUnits,
-    maxAcceptablePrice,
-    requiredFlag,
-    note,
-    sortOrder,
-    status,
-    createdAt,
-    updatedAt,
-  ];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'planned_items';
-  @override
-  VerificationContext validateIntegrity(
-    Insertable<PlannedItem> instance, {
-    bool isInserting = false,
-  }) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('list_id')) {
-      context.handle(
-        _listIdMeta,
-        listId.isAcceptableOrUnknown(data['list_id']!, _listIdMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_listIdMeta);
-    }
-    if (data.containsKey('product_id')) {
-      context.handle(
-        _productIdMeta,
-        productId.isAcceptableOrUnknown(data['product_id']!, _productIdMeta),
-      );
-    }
-    if (data.containsKey('name')) {
-      context.handle(
-        _nameMeta,
-        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_nameMeta);
-    }
-    if (data.containsKey('normalized_name')) {
-      context.handle(
-        _normalizedNameMeta,
-        normalizedName.isAcceptableOrUnknown(
-          data['normalized_name']!,
-          _normalizedNameMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_normalizedNameMeta);
-    }
-    if (data.containsKey('brand')) {
-      context.handle(
-        _brandMeta,
-        brand.isAcceptableOrUnknown(data['brand']!, _brandMeta),
-      );
-    }
-    if (data.containsKey('category_id')) {
-      context.handle(
-        _categoryIdMeta,
-        categoryId.isAcceptableOrUnknown(data['category_id']!, _categoryIdMeta),
-      );
-    }
-    if (data.containsKey('aisle_id')) {
-      context.handle(
-        _aisleIdMeta,
-        aisleId.isAcceptableOrUnknown(data['aisle_id']!, _aisleIdMeta),
-      );
-    }
-    if (data.containsKey('planned_quantity')) {
-      context.handle(
-        _plannedQuantityMeta,
-        plannedQuantity.isAcceptableOrUnknown(
-          data['planned_quantity']!,
-          _plannedQuantityMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_plannedQuantityMeta);
-    }
-    if (data.containsKey('planned_unit_code')) {
-      context.handle(
-        _plannedUnitCodeMeta,
-        plannedUnitCode.isAcceptableOrUnknown(
-          data['planned_unit_code']!,
-          _plannedUnitCodeMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_plannedUnitCodeMeta);
-    }
-    if (data.containsKey('pricing_input_mode')) {
-      context.handle(
-        _pricingInputModeMeta,
-        pricingInputMode.isAcceptableOrUnknown(
-          data['pricing_input_mode']!,
-          _pricingInputModeMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_pricingInputModeMeta);
-    }
-    if (data.containsKey('planned_unit_price')) {
-      context.handle(
-        _plannedUnitPriceMeta,
-        plannedUnitPrice.isAcceptableOrUnknown(
-          data['planned_unit_price']!,
-          _plannedUnitPriceMeta,
-        ),
-      );
-    }
-    if (data.containsKey('planned_line_total_minor_units')) {
-      context.handle(
-        _plannedLineTotalMinorUnitsMeta,
-        plannedLineTotalMinorUnits.isAcceptableOrUnknown(
-          data['planned_line_total_minor_units']!,
-          _plannedLineTotalMinorUnitsMeta,
-        ),
-      );
-    }
-    if (data.containsKey('max_acceptable_price')) {
-      context.handle(
-        _maxAcceptablePriceMeta,
-        maxAcceptablePrice.isAcceptableOrUnknown(
-          data['max_acceptable_price']!,
-          _maxAcceptablePriceMeta,
-        ),
-      );
-    }
-    if (data.containsKey('required_flag')) {
-      context.handle(
-        _requiredFlagMeta,
-        requiredFlag.isAcceptableOrUnknown(
-          data['required_flag']!,
-          _requiredFlagMeta,
-        ),
-      );
-    }
-    if (data.containsKey('note')) {
-      context.handle(
-        _noteMeta,
-        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
-      );
-    }
-    if (data.containsKey('sort_order')) {
-      context.handle(
-        _sortOrderMeta,
-        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
-      );
-    }
-    if (data.containsKey('status')) {
-      context.handle(
-        _statusMeta,
-        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
-      );
-    }
-    if (data.containsKey('created_at')) {
-      context.handle(
-        _createdAtMeta,
-        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
-      );
-    }
-    if (data.containsKey('updated_at')) {
-      context.handle(
-        _updatedAtMeta,
-        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
-      );
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  PlannedItem map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return PlannedItem(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}id'],
-      )!,
-      listId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}list_id'],
-      )!,
-      productId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}product_id'],
-      ),
-      name: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}name'],
-      )!,
-      normalizedName: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}normalized_name'],
-      )!,
-      brand: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}brand'],
-      ),
-      categoryId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}category_id'],
-      ),
-      aisleId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}aisle_id'],
-      ),
-      plannedQuantity: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}planned_quantity'],
-      )!,
-      plannedUnitCode: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}planned_unit_code'],
-      )!,
-      pricingInputMode: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}pricing_input_mode'],
-      )!,
-      plannedUnitPrice: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}planned_unit_price'],
-      ),
-      plannedLineTotalMinorUnits: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}planned_line_total_minor_units'],
-      ),
-      maxAcceptablePrice: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}max_acceptable_price'],
-      ),
-      requiredFlag: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}required_flag'],
-      )!,
-      note: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}note'],
-      ),
-      sortOrder: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}sort_order'],
-      )!,
-      status: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}status'],
-      )!,
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
-      )!,
-    );
-  }
-
-  @override
-  $PlannedItemsTable createAlias(String alias) {
-    return $PlannedItemsTable(attachedDatabase, alias);
-  }
-}
-
-class PlannedItem extends DataClass implements Insertable<PlannedItem> {
-  final int id;
-  final int listId;
-  final int? productId;
-  final String name;
-  final String normalizedName;
-  final String? brand;
-  final int? categoryId;
-  final int? aisleId;
-
-  /// DecimalFixed dizesi (ondalıklı miktar, örn. `1.5`).
-  final String plannedQuantity;
-  final String plannedUnitCode;
-
-  /// unitPrice | lineTotal — kullanıcının girdiği taraf (spec §6.2).
-  final String pricingInputMode;
-  final String? plannedUnitPrice;
-  final int? plannedLineTotalMinorUnits;
-  final String? maxAcceptablePrice;
-  final bool requiredFlag;
-  final String? note;
-  final int sortOrder;
-
-  /// pending | inCart | notFound | gaveUp | alternativeBought
-  final String status;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  const PlannedItem({
-    required this.id,
-    required this.listId,
-    this.productId,
-    required this.name,
-    required this.normalizedName,
-    this.brand,
-    this.categoryId,
-    this.aisleId,
-    required this.plannedQuantity,
-    required this.plannedUnitCode,
-    required this.pricingInputMode,
-    this.plannedUnitPrice,
-    this.plannedLineTotalMinorUnits,
-    this.maxAcceptablePrice,
-    required this.requiredFlag,
-    this.note,
-    required this.sortOrder,
-    required this.status,
-    required this.createdAt,
-    required this.updatedAt,
-  });
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
-    map['list_id'] = Variable<int>(listId);
-    if (!nullToAbsent || productId != null) {
-      map['product_id'] = Variable<int>(productId);
-    }
-    map['name'] = Variable<String>(name);
-    map['normalized_name'] = Variable<String>(normalizedName);
-    if (!nullToAbsent || brand != null) {
-      map['brand'] = Variable<String>(brand);
-    }
-    if (!nullToAbsent || categoryId != null) {
-      map['category_id'] = Variable<int>(categoryId);
-    }
-    if (!nullToAbsent || aisleId != null) {
-      map['aisle_id'] = Variable<int>(aisleId);
-    }
-    map['planned_quantity'] = Variable<String>(plannedQuantity);
-    map['planned_unit_code'] = Variable<String>(plannedUnitCode);
-    map['pricing_input_mode'] = Variable<String>(pricingInputMode);
-    if (!nullToAbsent || plannedUnitPrice != null) {
-      map['planned_unit_price'] = Variable<String>(plannedUnitPrice);
-    }
-    if (!nullToAbsent || plannedLineTotalMinorUnits != null) {
-      map['planned_line_total_minor_units'] = Variable<int>(
-        plannedLineTotalMinorUnits,
-      );
-    }
-    if (!nullToAbsent || maxAcceptablePrice != null) {
-      map['max_acceptable_price'] = Variable<String>(maxAcceptablePrice);
-    }
-    map['required_flag'] = Variable<bool>(requiredFlag);
-    if (!nullToAbsent || note != null) {
-      map['note'] = Variable<String>(note);
-    }
-    map['sort_order'] = Variable<int>(sortOrder);
-    map['status'] = Variable<String>(status);
-    map['created_at'] = Variable<DateTime>(createdAt);
-    map['updated_at'] = Variable<DateTime>(updatedAt);
-    return map;
-  }
-
-  PlannedItemsCompanion toCompanion(bool nullToAbsent) {
-    return PlannedItemsCompanion(
-      id: Value(id),
-      listId: Value(listId),
-      productId: productId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(productId),
-      name: Value(name),
-      normalizedName: Value(normalizedName),
-      brand: brand == null && nullToAbsent
-          ? const Value.absent()
-          : Value(brand),
-      categoryId: categoryId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(categoryId),
-      aisleId: aisleId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(aisleId),
-      plannedQuantity: Value(plannedQuantity),
-      plannedUnitCode: Value(plannedUnitCode),
-      pricingInputMode: Value(pricingInputMode),
-      plannedUnitPrice: plannedUnitPrice == null && nullToAbsent
-          ? const Value.absent()
-          : Value(plannedUnitPrice),
-      plannedLineTotalMinorUnits:
-          plannedLineTotalMinorUnits == null && nullToAbsent
-          ? const Value.absent()
-          : Value(plannedLineTotalMinorUnits),
-      maxAcceptablePrice: maxAcceptablePrice == null && nullToAbsent
-          ? const Value.absent()
-          : Value(maxAcceptablePrice),
-      requiredFlag: Value(requiredFlag),
-      note: note == null && nullToAbsent ? const Value.absent() : Value(note),
-      sortOrder: Value(sortOrder),
-      status: Value(status),
-      createdAt: Value(createdAt),
-      updatedAt: Value(updatedAt),
-    );
-  }
-
-  factory PlannedItem.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return PlannedItem(
-      id: serializer.fromJson<int>(json['id']),
-      listId: serializer.fromJson<int>(json['listId']),
-      productId: serializer.fromJson<int?>(json['productId']),
-      name: serializer.fromJson<String>(json['name']),
-      normalizedName: serializer.fromJson<String>(json['normalizedName']),
-      brand: serializer.fromJson<String?>(json['brand']),
-      categoryId: serializer.fromJson<int?>(json['categoryId']),
-      aisleId: serializer.fromJson<int?>(json['aisleId']),
-      plannedQuantity: serializer.fromJson<String>(json['plannedQuantity']),
-      plannedUnitCode: serializer.fromJson<String>(json['plannedUnitCode']),
-      pricingInputMode: serializer.fromJson<String>(json['pricingInputMode']),
-      plannedUnitPrice: serializer.fromJson<String?>(json['plannedUnitPrice']),
-      plannedLineTotalMinorUnits: serializer.fromJson<int?>(
-        json['plannedLineTotalMinorUnits'],
-      ),
-      maxAcceptablePrice: serializer.fromJson<String?>(
-        json['maxAcceptablePrice'],
-      ),
-      requiredFlag: serializer.fromJson<bool>(json['requiredFlag']),
-      note: serializer.fromJson<String?>(json['note']),
-      sortOrder: serializer.fromJson<int>(json['sortOrder']),
-      status: serializer.fromJson<String>(json['status']),
-      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
-      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'listId': serializer.toJson<int>(listId),
-      'productId': serializer.toJson<int?>(productId),
-      'name': serializer.toJson<String>(name),
-      'normalizedName': serializer.toJson<String>(normalizedName),
-      'brand': serializer.toJson<String?>(brand),
-      'categoryId': serializer.toJson<int?>(categoryId),
-      'aisleId': serializer.toJson<int?>(aisleId),
-      'plannedQuantity': serializer.toJson<String>(plannedQuantity),
-      'plannedUnitCode': serializer.toJson<String>(plannedUnitCode),
-      'pricingInputMode': serializer.toJson<String>(pricingInputMode),
-      'plannedUnitPrice': serializer.toJson<String?>(plannedUnitPrice),
-      'plannedLineTotalMinorUnits': serializer.toJson<int?>(
-        plannedLineTotalMinorUnits,
-      ),
-      'maxAcceptablePrice': serializer.toJson<String?>(maxAcceptablePrice),
-      'requiredFlag': serializer.toJson<bool>(requiredFlag),
-      'note': serializer.toJson<String?>(note),
-      'sortOrder': serializer.toJson<int>(sortOrder),
-      'status': serializer.toJson<String>(status),
-      'createdAt': serializer.toJson<DateTime>(createdAt),
-      'updatedAt': serializer.toJson<DateTime>(updatedAt),
-    };
-  }
-
-  PlannedItem copyWith({
-    int? id,
-    int? listId,
-    Value<int?> productId = const Value.absent(),
-    String? name,
-    String? normalizedName,
-    Value<String?> brand = const Value.absent(),
-    Value<int?> categoryId = const Value.absent(),
-    Value<int?> aisleId = const Value.absent(),
-    String? plannedQuantity,
-    String? plannedUnitCode,
-    String? pricingInputMode,
-    Value<String?> plannedUnitPrice = const Value.absent(),
-    Value<int?> plannedLineTotalMinorUnits = const Value.absent(),
-    Value<String?> maxAcceptablePrice = const Value.absent(),
-    bool? requiredFlag,
-    Value<String?> note = const Value.absent(),
-    int? sortOrder,
-    String? status,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) => PlannedItem(
-    id: id ?? this.id,
-    listId: listId ?? this.listId,
-    productId: productId.present ? productId.value : this.productId,
-    name: name ?? this.name,
-    normalizedName: normalizedName ?? this.normalizedName,
-    brand: brand.present ? brand.value : this.brand,
-    categoryId: categoryId.present ? categoryId.value : this.categoryId,
-    aisleId: aisleId.present ? aisleId.value : this.aisleId,
-    plannedQuantity: plannedQuantity ?? this.plannedQuantity,
-    plannedUnitCode: plannedUnitCode ?? this.plannedUnitCode,
-    pricingInputMode: pricingInputMode ?? this.pricingInputMode,
-    plannedUnitPrice: plannedUnitPrice.present
-        ? plannedUnitPrice.value
-        : this.plannedUnitPrice,
-    plannedLineTotalMinorUnits: plannedLineTotalMinorUnits.present
-        ? plannedLineTotalMinorUnits.value
-        : this.plannedLineTotalMinorUnits,
-    maxAcceptablePrice: maxAcceptablePrice.present
-        ? maxAcceptablePrice.value
-        : this.maxAcceptablePrice,
-    requiredFlag: requiredFlag ?? this.requiredFlag,
-    note: note.present ? note.value : this.note,
-    sortOrder: sortOrder ?? this.sortOrder,
-    status: status ?? this.status,
-    createdAt: createdAt ?? this.createdAt,
-    updatedAt: updatedAt ?? this.updatedAt,
-  );
-  PlannedItem copyWithCompanion(PlannedItemsCompanion data) {
-    return PlannedItem(
-      id: data.id.present ? data.id.value : this.id,
-      listId: data.listId.present ? data.listId.value : this.listId,
-      productId: data.productId.present ? data.productId.value : this.productId,
-      name: data.name.present ? data.name.value : this.name,
-      normalizedName: data.normalizedName.present
-          ? data.normalizedName.value
-          : this.normalizedName,
-      brand: data.brand.present ? data.brand.value : this.brand,
-      categoryId: data.categoryId.present
-          ? data.categoryId.value
-          : this.categoryId,
-      aisleId: data.aisleId.present ? data.aisleId.value : this.aisleId,
-      plannedQuantity: data.plannedQuantity.present
-          ? data.plannedQuantity.value
-          : this.plannedQuantity,
-      plannedUnitCode: data.plannedUnitCode.present
-          ? data.plannedUnitCode.value
-          : this.plannedUnitCode,
-      pricingInputMode: data.pricingInputMode.present
-          ? data.pricingInputMode.value
-          : this.pricingInputMode,
-      plannedUnitPrice: data.plannedUnitPrice.present
-          ? data.plannedUnitPrice.value
-          : this.plannedUnitPrice,
-      plannedLineTotalMinorUnits: data.plannedLineTotalMinorUnits.present
-          ? data.plannedLineTotalMinorUnits.value
-          : this.plannedLineTotalMinorUnits,
-      maxAcceptablePrice: data.maxAcceptablePrice.present
-          ? data.maxAcceptablePrice.value
-          : this.maxAcceptablePrice,
-      requiredFlag: data.requiredFlag.present
-          ? data.requiredFlag.value
-          : this.requiredFlag,
-      note: data.note.present ? data.note.value : this.note,
-      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
-      status: data.status.present ? data.status.value : this.status,
-      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
-      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('PlannedItem(')
-          ..write('id: $id, ')
-          ..write('listId: $listId, ')
-          ..write('productId: $productId, ')
-          ..write('name: $name, ')
-          ..write('normalizedName: $normalizedName, ')
-          ..write('brand: $brand, ')
-          ..write('categoryId: $categoryId, ')
-          ..write('aisleId: $aisleId, ')
-          ..write('plannedQuantity: $plannedQuantity, ')
-          ..write('plannedUnitCode: $plannedUnitCode, ')
-          ..write('pricingInputMode: $pricingInputMode, ')
-          ..write('plannedUnitPrice: $plannedUnitPrice, ')
-          ..write('plannedLineTotalMinorUnits: $plannedLineTotalMinorUnits, ')
-          ..write('maxAcceptablePrice: $maxAcceptablePrice, ')
-          ..write('requiredFlag: $requiredFlag, ')
-          ..write('note: $note, ')
-          ..write('sortOrder: $sortOrder, ')
-          ..write('status: $status, ')
-          ..write('createdAt: $createdAt, ')
-          ..write('updatedAt: $updatedAt')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    id,
-    listId,
-    productId,
-    name,
-    normalizedName,
-    brand,
-    categoryId,
-    aisleId,
-    plannedQuantity,
-    plannedUnitCode,
-    pricingInputMode,
-    plannedUnitPrice,
-    plannedLineTotalMinorUnits,
-    maxAcceptablePrice,
-    requiredFlag,
-    note,
-    sortOrder,
-    status,
-    createdAt,
-    updatedAt,
-  );
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is PlannedItem &&
-          other.id == this.id &&
-          other.listId == this.listId &&
-          other.productId == this.productId &&
-          other.name == this.name &&
-          other.normalizedName == this.normalizedName &&
-          other.brand == this.brand &&
-          other.categoryId == this.categoryId &&
-          other.aisleId == this.aisleId &&
-          other.plannedQuantity == this.plannedQuantity &&
-          other.plannedUnitCode == this.plannedUnitCode &&
-          other.pricingInputMode == this.pricingInputMode &&
-          other.plannedUnitPrice == this.plannedUnitPrice &&
-          other.plannedLineTotalMinorUnits == this.plannedLineTotalMinorUnits &&
-          other.maxAcceptablePrice == this.maxAcceptablePrice &&
-          other.requiredFlag == this.requiredFlag &&
-          other.note == this.note &&
-          other.sortOrder == this.sortOrder &&
-          other.status == this.status &&
-          other.createdAt == this.createdAt &&
-          other.updatedAt == this.updatedAt);
-}
-
-class PlannedItemsCompanion extends UpdateCompanion<PlannedItem> {
-  final Value<int> id;
-  final Value<int> listId;
-  final Value<int?> productId;
-  final Value<String> name;
-  final Value<String> normalizedName;
-  final Value<String?> brand;
-  final Value<int?> categoryId;
-  final Value<int?> aisleId;
-  final Value<String> plannedQuantity;
-  final Value<String> plannedUnitCode;
-  final Value<String> pricingInputMode;
-  final Value<String?> plannedUnitPrice;
-  final Value<int?> plannedLineTotalMinorUnits;
-  final Value<String?> maxAcceptablePrice;
-  final Value<bool> requiredFlag;
-  final Value<String?> note;
-  final Value<int> sortOrder;
-  final Value<String> status;
-  final Value<DateTime> createdAt;
-  final Value<DateTime> updatedAt;
-  const PlannedItemsCompanion({
-    this.id = const Value.absent(),
-    this.listId = const Value.absent(),
-    this.productId = const Value.absent(),
-    this.name = const Value.absent(),
-    this.normalizedName = const Value.absent(),
-    this.brand = const Value.absent(),
-    this.categoryId = const Value.absent(),
-    this.aisleId = const Value.absent(),
-    this.plannedQuantity = const Value.absent(),
-    this.plannedUnitCode = const Value.absent(),
-    this.pricingInputMode = const Value.absent(),
-    this.plannedUnitPrice = const Value.absent(),
-    this.plannedLineTotalMinorUnits = const Value.absent(),
-    this.maxAcceptablePrice = const Value.absent(),
-    this.requiredFlag = const Value.absent(),
-    this.note = const Value.absent(),
-    this.sortOrder = const Value.absent(),
-    this.status = const Value.absent(),
-    this.createdAt = const Value.absent(),
-    this.updatedAt = const Value.absent(),
-  });
-  PlannedItemsCompanion.insert({
-    this.id = const Value.absent(),
-    required int listId,
-    this.productId = const Value.absent(),
-    required String name,
-    required String normalizedName,
-    this.brand = const Value.absent(),
-    this.categoryId = const Value.absent(),
-    this.aisleId = const Value.absent(),
-    required String plannedQuantity,
-    required String plannedUnitCode,
-    required String pricingInputMode,
-    this.plannedUnitPrice = const Value.absent(),
-    this.plannedLineTotalMinorUnits = const Value.absent(),
-    this.maxAcceptablePrice = const Value.absent(),
-    this.requiredFlag = const Value.absent(),
-    this.note = const Value.absent(),
-    this.sortOrder = const Value.absent(),
-    this.status = const Value.absent(),
-    this.createdAt = const Value.absent(),
-    this.updatedAt = const Value.absent(),
-  }) : listId = Value(listId),
-       name = Value(name),
-       normalizedName = Value(normalizedName),
-       plannedQuantity = Value(plannedQuantity),
-       plannedUnitCode = Value(plannedUnitCode),
-       pricingInputMode = Value(pricingInputMode);
-  static Insertable<PlannedItem> custom({
-    Expression<int>? id,
-    Expression<int>? listId,
-    Expression<int>? productId,
-    Expression<String>? name,
-    Expression<String>? normalizedName,
-    Expression<String>? brand,
-    Expression<int>? categoryId,
-    Expression<int>? aisleId,
-    Expression<String>? plannedQuantity,
-    Expression<String>? plannedUnitCode,
-    Expression<String>? pricingInputMode,
-    Expression<String>? plannedUnitPrice,
-    Expression<int>? plannedLineTotalMinorUnits,
-    Expression<String>? maxAcceptablePrice,
-    Expression<bool>? requiredFlag,
-    Expression<String>? note,
-    Expression<int>? sortOrder,
-    Expression<String>? status,
-    Expression<DateTime>? createdAt,
-    Expression<DateTime>? updatedAt,
-  }) {
-    return RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (listId != null) 'list_id': listId,
-      if (productId != null) 'product_id': productId,
-      if (name != null) 'name': name,
-      if (normalizedName != null) 'normalized_name': normalizedName,
-      if (brand != null) 'brand': brand,
-      if (categoryId != null) 'category_id': categoryId,
-      if (aisleId != null) 'aisle_id': aisleId,
-      if (plannedQuantity != null) 'planned_quantity': plannedQuantity,
-      if (plannedUnitCode != null) 'planned_unit_code': plannedUnitCode,
-      if (pricingInputMode != null) 'pricing_input_mode': pricingInputMode,
-      if (plannedUnitPrice != null) 'planned_unit_price': plannedUnitPrice,
-      if (plannedLineTotalMinorUnits != null)
-        'planned_line_total_minor_units': plannedLineTotalMinorUnits,
-      if (maxAcceptablePrice != null)
-        'max_acceptable_price': maxAcceptablePrice,
-      if (requiredFlag != null) 'required_flag': requiredFlag,
-      if (note != null) 'note': note,
-      if (sortOrder != null) 'sort_order': sortOrder,
-      if (status != null) 'status': status,
-      if (createdAt != null) 'created_at': createdAt,
-      if (updatedAt != null) 'updated_at': updatedAt,
-    });
-  }
-
-  PlannedItemsCompanion copyWith({
-    Value<int>? id,
-    Value<int>? listId,
-    Value<int?>? productId,
-    Value<String>? name,
-    Value<String>? normalizedName,
-    Value<String?>? brand,
-    Value<int?>? categoryId,
-    Value<int?>? aisleId,
-    Value<String>? plannedQuantity,
-    Value<String>? plannedUnitCode,
-    Value<String>? pricingInputMode,
-    Value<String?>? plannedUnitPrice,
-    Value<int?>? plannedLineTotalMinorUnits,
-    Value<String?>? maxAcceptablePrice,
-    Value<bool>? requiredFlag,
-    Value<String?>? note,
-    Value<int>? sortOrder,
-    Value<String>? status,
-    Value<DateTime>? createdAt,
-    Value<DateTime>? updatedAt,
-  }) {
-    return PlannedItemsCompanion(
-      id: id ?? this.id,
-      listId: listId ?? this.listId,
-      productId: productId ?? this.productId,
-      name: name ?? this.name,
-      normalizedName: normalizedName ?? this.normalizedName,
-      brand: brand ?? this.brand,
-      categoryId: categoryId ?? this.categoryId,
-      aisleId: aisleId ?? this.aisleId,
-      plannedQuantity: plannedQuantity ?? this.plannedQuantity,
-      plannedUnitCode: plannedUnitCode ?? this.plannedUnitCode,
-      pricingInputMode: pricingInputMode ?? this.pricingInputMode,
-      plannedUnitPrice: plannedUnitPrice ?? this.plannedUnitPrice,
-      plannedLineTotalMinorUnits:
-          plannedLineTotalMinorUnits ?? this.plannedLineTotalMinorUnits,
-      maxAcceptablePrice: maxAcceptablePrice ?? this.maxAcceptablePrice,
-      requiredFlag: requiredFlag ?? this.requiredFlag,
-      note: note ?? this.note,
-      sortOrder: sortOrder ?? this.sortOrder,
-      status: status ?? this.status,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<int>(id.value);
-    }
-    if (listId.present) {
-      map['list_id'] = Variable<int>(listId.value);
-    }
-    if (productId.present) {
-      map['product_id'] = Variable<int>(productId.value);
-    }
-    if (name.present) {
-      map['name'] = Variable<String>(name.value);
-    }
-    if (normalizedName.present) {
-      map['normalized_name'] = Variable<String>(normalizedName.value);
-    }
-    if (brand.present) {
-      map['brand'] = Variable<String>(brand.value);
-    }
-    if (categoryId.present) {
-      map['category_id'] = Variable<int>(categoryId.value);
-    }
-    if (aisleId.present) {
-      map['aisle_id'] = Variable<int>(aisleId.value);
-    }
-    if (plannedQuantity.present) {
-      map['planned_quantity'] = Variable<String>(plannedQuantity.value);
-    }
-    if (plannedUnitCode.present) {
-      map['planned_unit_code'] = Variable<String>(plannedUnitCode.value);
-    }
-    if (pricingInputMode.present) {
-      map['pricing_input_mode'] = Variable<String>(pricingInputMode.value);
-    }
-    if (plannedUnitPrice.present) {
-      map['planned_unit_price'] = Variable<String>(plannedUnitPrice.value);
-    }
-    if (plannedLineTotalMinorUnits.present) {
-      map['planned_line_total_minor_units'] = Variable<int>(
-        plannedLineTotalMinorUnits.value,
-      );
-    }
-    if (maxAcceptablePrice.present) {
-      map['max_acceptable_price'] = Variable<String>(maxAcceptablePrice.value);
-    }
-    if (requiredFlag.present) {
-      map['required_flag'] = Variable<bool>(requiredFlag.value);
-    }
-    if (note.present) {
-      map['note'] = Variable<String>(note.value);
-    }
-    if (sortOrder.present) {
-      map['sort_order'] = Variable<int>(sortOrder.value);
-    }
-    if (status.present) {
-      map['status'] = Variable<String>(status.value);
-    }
-    if (createdAt.present) {
-      map['created_at'] = Variable<DateTime>(createdAt.value);
-    }
-    if (updatedAt.present) {
-      map['updated_at'] = Variable<DateTime>(updatedAt.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('PlannedItemsCompanion(')
-          ..write('id: $id, ')
-          ..write('listId: $listId, ')
-          ..write('productId: $productId, ')
-          ..write('name: $name, ')
-          ..write('normalizedName: $normalizedName, ')
-          ..write('brand: $brand, ')
-          ..write('categoryId: $categoryId, ')
-          ..write('aisleId: $aisleId, ')
-          ..write('plannedQuantity: $plannedQuantity, ')
-          ..write('plannedUnitCode: $plannedUnitCode, ')
-          ..write('pricingInputMode: $pricingInputMode, ')
-          ..write('plannedUnitPrice: $plannedUnitPrice, ')
-          ..write('plannedLineTotalMinorUnits: $plannedLineTotalMinorUnits, ')
-          ..write('maxAcceptablePrice: $maxAcceptablePrice, ')
-          ..write('requiredFlag: $requiredFlag, ')
-          ..write('note: $note, ')
-          ..write('sortOrder: $sortOrder, ')
-          ..write('status: $status, ')
-          ..write('createdAt: $createdAt, ')
-          ..write('updatedAt: $updatedAt')
-          ..write(')'))
-        .toString();
-  }
-}
-
 class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -4670,6 +2978,1759 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
           ..write('captureDataJson: $captureDataJson, ')
           ..write('processingStatus: $processingStatus, ')
           ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ProductMemoryTable extends ProductMemory
+    with TableInfo<$ProductMemoryTable, ProductMemoryData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ProductMemoryTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _canonicalNameMeta = const VerificationMeta(
+    'canonicalName',
+  );
+  @override
+  late final GeneratedColumn<String> canonicalName = GeneratedColumn<String>(
+    'canonical_name',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 500,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _normalizedNameMeta = const VerificationMeta(
+    'normalizedName',
+  );
+  @override
+  late final GeneratedColumn<String> normalizedName = GeneratedColumn<String>(
+    'normalized_name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _defaultCategoryIdMeta = const VerificationMeta(
+    'defaultCategoryId',
+  );
+  @override
+  late final GeneratedColumn<int> defaultCategoryId = GeneratedColumn<int>(
+    'default_category_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES categories (id)',
+    ),
+  );
+  static const VerificationMeta _defaultUnitCodeMeta = const VerificationMeta(
+    'defaultUnitCode',
+  );
+  @override
+  late final GeneratedColumn<String> defaultUnitCode = GeneratedColumn<String>(
+    'default_unit_code',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _favoriteMeta = const VerificationMeta(
+    'favorite',
+  );
+  @override
+  late final GeneratedColumn<bool> favorite = GeneratedColumn<bool>(
+    'favorite',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("favorite" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _useCountMeta = const VerificationMeta(
+    'useCount',
+  );
+  @override
+  late final GeneratedColumn<int> useCount = GeneratedColumn<int>(
+    'use_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _lastUsedAtMeta = const VerificationMeta(
+    'lastUsedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> lastUsedAt = GeneratedColumn<DateTime>(
+    'last_used_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    canonicalName,
+    normalizedName,
+    defaultCategoryId,
+    defaultUnitCode,
+    favorite,
+    useCount,
+    lastUsedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'product_memory';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ProductMemoryData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('canonical_name')) {
+      context.handle(
+        _canonicalNameMeta,
+        canonicalName.isAcceptableOrUnknown(
+          data['canonical_name']!,
+          _canonicalNameMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_canonicalNameMeta);
+    }
+    if (data.containsKey('normalized_name')) {
+      context.handle(
+        _normalizedNameMeta,
+        normalizedName.isAcceptableOrUnknown(
+          data['normalized_name']!,
+          _normalizedNameMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_normalizedNameMeta);
+    }
+    if (data.containsKey('default_category_id')) {
+      context.handle(
+        _defaultCategoryIdMeta,
+        defaultCategoryId.isAcceptableOrUnknown(
+          data['default_category_id']!,
+          _defaultCategoryIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('default_unit_code')) {
+      context.handle(
+        _defaultUnitCodeMeta,
+        defaultUnitCode.isAcceptableOrUnknown(
+          data['default_unit_code']!,
+          _defaultUnitCodeMeta,
+        ),
+      );
+    }
+    if (data.containsKey('favorite')) {
+      context.handle(
+        _favoriteMeta,
+        favorite.isAcceptableOrUnknown(data['favorite']!, _favoriteMeta),
+      );
+    }
+    if (data.containsKey('use_count')) {
+      context.handle(
+        _useCountMeta,
+        useCount.isAcceptableOrUnknown(data['use_count']!, _useCountMeta),
+      );
+    }
+    if (data.containsKey('last_used_at')) {
+      context.handle(
+        _lastUsedAtMeta,
+        lastUsedAt.isAcceptableOrUnknown(
+          data['last_used_at']!,
+          _lastUsedAtMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ProductMemoryData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ProductMemoryData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      canonicalName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}canonical_name'],
+      )!,
+      normalizedName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}normalized_name'],
+      )!,
+      defaultCategoryId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}default_category_id'],
+      ),
+      defaultUnitCode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}default_unit_code'],
+      ),
+      favorite: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}favorite'],
+      )!,
+      useCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}use_count'],
+      )!,
+      lastUsedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}last_used_at'],
+      ),
+    );
+  }
+
+  @override
+  $ProductMemoryTable createAlias(String alias) {
+    return $ProductMemoryTable(attachedDatabase, alias);
+  }
+}
+
+class ProductMemoryData extends DataClass
+    implements Insertable<ProductMemoryData> {
+  final int id;
+  final String canonicalName;
+  final String normalizedName;
+  final int? defaultCategoryId;
+  final String? defaultUnitCode;
+  final bool favorite;
+  final int useCount;
+  final DateTime? lastUsedAt;
+  const ProductMemoryData({
+    required this.id,
+    required this.canonicalName,
+    required this.normalizedName,
+    this.defaultCategoryId,
+    this.defaultUnitCode,
+    required this.favorite,
+    required this.useCount,
+    this.lastUsedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['canonical_name'] = Variable<String>(canonicalName);
+    map['normalized_name'] = Variable<String>(normalizedName);
+    if (!nullToAbsent || defaultCategoryId != null) {
+      map['default_category_id'] = Variable<int>(defaultCategoryId);
+    }
+    if (!nullToAbsent || defaultUnitCode != null) {
+      map['default_unit_code'] = Variable<String>(defaultUnitCode);
+    }
+    map['favorite'] = Variable<bool>(favorite);
+    map['use_count'] = Variable<int>(useCount);
+    if (!nullToAbsent || lastUsedAt != null) {
+      map['last_used_at'] = Variable<DateTime>(lastUsedAt);
+    }
+    return map;
+  }
+
+  ProductMemoryCompanion toCompanion(bool nullToAbsent) {
+    return ProductMemoryCompanion(
+      id: Value(id),
+      canonicalName: Value(canonicalName),
+      normalizedName: Value(normalizedName),
+      defaultCategoryId: defaultCategoryId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(defaultCategoryId),
+      defaultUnitCode: defaultUnitCode == null && nullToAbsent
+          ? const Value.absent()
+          : Value(defaultUnitCode),
+      favorite: Value(favorite),
+      useCount: Value(useCount),
+      lastUsedAt: lastUsedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lastUsedAt),
+    );
+  }
+
+  factory ProductMemoryData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ProductMemoryData(
+      id: serializer.fromJson<int>(json['id']),
+      canonicalName: serializer.fromJson<String>(json['canonicalName']),
+      normalizedName: serializer.fromJson<String>(json['normalizedName']),
+      defaultCategoryId: serializer.fromJson<int?>(json['defaultCategoryId']),
+      defaultUnitCode: serializer.fromJson<String?>(json['defaultUnitCode']),
+      favorite: serializer.fromJson<bool>(json['favorite']),
+      useCount: serializer.fromJson<int>(json['useCount']),
+      lastUsedAt: serializer.fromJson<DateTime?>(json['lastUsedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'canonicalName': serializer.toJson<String>(canonicalName),
+      'normalizedName': serializer.toJson<String>(normalizedName),
+      'defaultCategoryId': serializer.toJson<int?>(defaultCategoryId),
+      'defaultUnitCode': serializer.toJson<String?>(defaultUnitCode),
+      'favorite': serializer.toJson<bool>(favorite),
+      'useCount': serializer.toJson<int>(useCount),
+      'lastUsedAt': serializer.toJson<DateTime?>(lastUsedAt),
+    };
+  }
+
+  ProductMemoryData copyWith({
+    int? id,
+    String? canonicalName,
+    String? normalizedName,
+    Value<int?> defaultCategoryId = const Value.absent(),
+    Value<String?> defaultUnitCode = const Value.absent(),
+    bool? favorite,
+    int? useCount,
+    Value<DateTime?> lastUsedAt = const Value.absent(),
+  }) => ProductMemoryData(
+    id: id ?? this.id,
+    canonicalName: canonicalName ?? this.canonicalName,
+    normalizedName: normalizedName ?? this.normalizedName,
+    defaultCategoryId: defaultCategoryId.present
+        ? defaultCategoryId.value
+        : this.defaultCategoryId,
+    defaultUnitCode: defaultUnitCode.present
+        ? defaultUnitCode.value
+        : this.defaultUnitCode,
+    favorite: favorite ?? this.favorite,
+    useCount: useCount ?? this.useCount,
+    lastUsedAt: lastUsedAt.present ? lastUsedAt.value : this.lastUsedAt,
+  );
+  ProductMemoryData copyWithCompanion(ProductMemoryCompanion data) {
+    return ProductMemoryData(
+      id: data.id.present ? data.id.value : this.id,
+      canonicalName: data.canonicalName.present
+          ? data.canonicalName.value
+          : this.canonicalName,
+      normalizedName: data.normalizedName.present
+          ? data.normalizedName.value
+          : this.normalizedName,
+      defaultCategoryId: data.defaultCategoryId.present
+          ? data.defaultCategoryId.value
+          : this.defaultCategoryId,
+      defaultUnitCode: data.defaultUnitCode.present
+          ? data.defaultUnitCode.value
+          : this.defaultUnitCode,
+      favorite: data.favorite.present ? data.favorite.value : this.favorite,
+      useCount: data.useCount.present ? data.useCount.value : this.useCount,
+      lastUsedAt: data.lastUsedAt.present
+          ? data.lastUsedAt.value
+          : this.lastUsedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProductMemoryData(')
+          ..write('id: $id, ')
+          ..write('canonicalName: $canonicalName, ')
+          ..write('normalizedName: $normalizedName, ')
+          ..write('defaultCategoryId: $defaultCategoryId, ')
+          ..write('defaultUnitCode: $defaultUnitCode, ')
+          ..write('favorite: $favorite, ')
+          ..write('useCount: $useCount, ')
+          ..write('lastUsedAt: $lastUsedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    canonicalName,
+    normalizedName,
+    defaultCategoryId,
+    defaultUnitCode,
+    favorite,
+    useCount,
+    lastUsedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ProductMemoryData &&
+          other.id == this.id &&
+          other.canonicalName == this.canonicalName &&
+          other.normalizedName == this.normalizedName &&
+          other.defaultCategoryId == this.defaultCategoryId &&
+          other.defaultUnitCode == this.defaultUnitCode &&
+          other.favorite == this.favorite &&
+          other.useCount == this.useCount &&
+          other.lastUsedAt == this.lastUsedAt);
+}
+
+class ProductMemoryCompanion extends UpdateCompanion<ProductMemoryData> {
+  final Value<int> id;
+  final Value<String> canonicalName;
+  final Value<String> normalizedName;
+  final Value<int?> defaultCategoryId;
+  final Value<String?> defaultUnitCode;
+  final Value<bool> favorite;
+  final Value<int> useCount;
+  final Value<DateTime?> lastUsedAt;
+  const ProductMemoryCompanion({
+    this.id = const Value.absent(),
+    this.canonicalName = const Value.absent(),
+    this.normalizedName = const Value.absent(),
+    this.defaultCategoryId = const Value.absent(),
+    this.defaultUnitCode = const Value.absent(),
+    this.favorite = const Value.absent(),
+    this.useCount = const Value.absent(),
+    this.lastUsedAt = const Value.absent(),
+  });
+  ProductMemoryCompanion.insert({
+    this.id = const Value.absent(),
+    required String canonicalName,
+    required String normalizedName,
+    this.defaultCategoryId = const Value.absent(),
+    this.defaultUnitCode = const Value.absent(),
+    this.favorite = const Value.absent(),
+    this.useCount = const Value.absent(),
+    this.lastUsedAt = const Value.absent(),
+  }) : canonicalName = Value(canonicalName),
+       normalizedName = Value(normalizedName);
+  static Insertable<ProductMemoryData> custom({
+    Expression<int>? id,
+    Expression<String>? canonicalName,
+    Expression<String>? normalizedName,
+    Expression<int>? defaultCategoryId,
+    Expression<String>? defaultUnitCode,
+    Expression<bool>? favorite,
+    Expression<int>? useCount,
+    Expression<DateTime>? lastUsedAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (canonicalName != null) 'canonical_name': canonicalName,
+      if (normalizedName != null) 'normalized_name': normalizedName,
+      if (defaultCategoryId != null) 'default_category_id': defaultCategoryId,
+      if (defaultUnitCode != null) 'default_unit_code': defaultUnitCode,
+      if (favorite != null) 'favorite': favorite,
+      if (useCount != null) 'use_count': useCount,
+      if (lastUsedAt != null) 'last_used_at': lastUsedAt,
+    });
+  }
+
+  ProductMemoryCompanion copyWith({
+    Value<int>? id,
+    Value<String>? canonicalName,
+    Value<String>? normalizedName,
+    Value<int?>? defaultCategoryId,
+    Value<String?>? defaultUnitCode,
+    Value<bool>? favorite,
+    Value<int>? useCount,
+    Value<DateTime?>? lastUsedAt,
+  }) {
+    return ProductMemoryCompanion(
+      id: id ?? this.id,
+      canonicalName: canonicalName ?? this.canonicalName,
+      normalizedName: normalizedName ?? this.normalizedName,
+      defaultCategoryId: defaultCategoryId ?? this.defaultCategoryId,
+      defaultUnitCode: defaultUnitCode ?? this.defaultUnitCode,
+      favorite: favorite ?? this.favorite,
+      useCount: useCount ?? this.useCount,
+      lastUsedAt: lastUsedAt ?? this.lastUsedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (canonicalName.present) {
+      map['canonical_name'] = Variable<String>(canonicalName.value);
+    }
+    if (normalizedName.present) {
+      map['normalized_name'] = Variable<String>(normalizedName.value);
+    }
+    if (defaultCategoryId.present) {
+      map['default_category_id'] = Variable<int>(defaultCategoryId.value);
+    }
+    if (defaultUnitCode.present) {
+      map['default_unit_code'] = Variable<String>(defaultUnitCode.value);
+    }
+    if (favorite.present) {
+      map['favorite'] = Variable<bool>(favorite.value);
+    }
+    if (useCount.present) {
+      map['use_count'] = Variable<int>(useCount.value);
+    }
+    if (lastUsedAt.present) {
+      map['last_used_at'] = Variable<DateTime>(lastUsedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProductMemoryCompanion(')
+          ..write('id: $id, ')
+          ..write('canonicalName: $canonicalName, ')
+          ..write('normalizedName: $normalizedName, ')
+          ..write('defaultCategoryId: $defaultCategoryId, ')
+          ..write('defaultUnitCode: $defaultUnitCode, ')
+          ..write('favorite: $favorite, ')
+          ..write('useCount: $useCount, ')
+          ..write('lastUsedAt: $lastUsedAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $PlannedItemsTable extends PlannedItems
+    with TableInfo<$PlannedItemsTable, PlannedItem> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PlannedItemsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _createdByReceiptIdMeta =
+      const VerificationMeta('createdByReceiptId');
+  @override
+  late final GeneratedColumn<int> createdByReceiptId = GeneratedColumn<int>(
+    'created_by_receipt_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES receipts (id) ON DELETE SET NULL',
+    ),
+  );
+  static const VerificationMeta _listIdMeta = const VerificationMeta('listId');
+  @override
+  late final GeneratedColumn<int> listId = GeneratedColumn<int>(
+    'list_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES shopping_lists (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _productIdMeta = const VerificationMeta(
+    'productId',
+  );
+  @override
+  late final GeneratedColumn<int> productId = GeneratedColumn<int>(
+    'product_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES product_memory (id)',
+    ),
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 500,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _normalizedNameMeta = const VerificationMeta(
+    'normalizedName',
+  );
+  @override
+  late final GeneratedColumn<String> normalizedName = GeneratedColumn<String>(
+    'normalized_name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _brandMeta = const VerificationMeta('brand');
+  @override
+  late final GeneratedColumn<String> brand = GeneratedColumn<String>(
+    'brand',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _categoryIdMeta = const VerificationMeta(
+    'categoryId',
+  );
+  @override
+  late final GeneratedColumn<int> categoryId = GeneratedColumn<int>(
+    'category_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES categories (id)',
+    ),
+  );
+  static const VerificationMeta _aisleIdMeta = const VerificationMeta(
+    'aisleId',
+  );
+  @override
+  late final GeneratedColumn<int> aisleId = GeneratedColumn<int>(
+    'aisle_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES aisles (id)',
+    ),
+  );
+  static const VerificationMeta _plannedQuantityMeta = const VerificationMeta(
+    'plannedQuantity',
+  );
+  @override
+  late final GeneratedColumn<String> plannedQuantity = GeneratedColumn<String>(
+    'planned_quantity',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _plannedUnitCodeMeta = const VerificationMeta(
+    'plannedUnitCode',
+  );
+  @override
+  late final GeneratedColumn<String> plannedUnitCode = GeneratedColumn<String>(
+    'planned_unit_code',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _pricingInputModeMeta = const VerificationMeta(
+    'pricingInputMode',
+  );
+  @override
+  late final GeneratedColumn<String> pricingInputMode = GeneratedColumn<String>(
+    'pricing_input_mode',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _plannedUnitPriceMeta = const VerificationMeta(
+    'plannedUnitPrice',
+  );
+  @override
+  late final GeneratedColumn<String> plannedUnitPrice = GeneratedColumn<String>(
+    'planned_unit_price',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _plannedLineTotalMinorUnitsMeta =
+      const VerificationMeta('plannedLineTotalMinorUnits');
+  @override
+  late final GeneratedColumn<int> plannedLineTotalMinorUnits =
+      GeneratedColumn<int>(
+        'planned_line_total_minor_units',
+        aliasedName,
+        true,
+        type: DriftSqlType.int,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _maxAcceptablePriceMeta =
+      const VerificationMeta('maxAcceptablePrice');
+  @override
+  late final GeneratedColumn<String> maxAcceptablePrice =
+      GeneratedColumn<String>(
+        'max_acceptable_price',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _requiredFlagMeta = const VerificationMeta(
+    'requiredFlag',
+  );
+  @override
+  late final GeneratedColumn<bool> requiredFlag = GeneratedColumn<bool>(
+    'required_flag',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("required_flag" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _noteMeta = const VerificationMeta('note');
+  @override
+  late final GeneratedColumn<String> note = GeneratedColumn<String>(
+    'note',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<int> sortOrder = GeneratedColumn<int>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('pending'),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    createdByReceiptId,
+    listId,
+    productId,
+    name,
+    normalizedName,
+    brand,
+    categoryId,
+    aisleId,
+    plannedQuantity,
+    plannedUnitCode,
+    pricingInputMode,
+    plannedUnitPrice,
+    plannedLineTotalMinorUnits,
+    maxAcceptablePrice,
+    requiredFlag,
+    note,
+    sortOrder,
+    status,
+    createdAt,
+    updatedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'planned_items';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PlannedItem> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('created_by_receipt_id')) {
+      context.handle(
+        _createdByReceiptIdMeta,
+        createdByReceiptId.isAcceptableOrUnknown(
+          data['created_by_receipt_id']!,
+          _createdByReceiptIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('list_id')) {
+      context.handle(
+        _listIdMeta,
+        listId.isAcceptableOrUnknown(data['list_id']!, _listIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_listIdMeta);
+    }
+    if (data.containsKey('product_id')) {
+      context.handle(
+        _productIdMeta,
+        productId.isAcceptableOrUnknown(data['product_id']!, _productIdMeta),
+      );
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('normalized_name')) {
+      context.handle(
+        _normalizedNameMeta,
+        normalizedName.isAcceptableOrUnknown(
+          data['normalized_name']!,
+          _normalizedNameMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_normalizedNameMeta);
+    }
+    if (data.containsKey('brand')) {
+      context.handle(
+        _brandMeta,
+        brand.isAcceptableOrUnknown(data['brand']!, _brandMeta),
+      );
+    }
+    if (data.containsKey('category_id')) {
+      context.handle(
+        _categoryIdMeta,
+        categoryId.isAcceptableOrUnknown(data['category_id']!, _categoryIdMeta),
+      );
+    }
+    if (data.containsKey('aisle_id')) {
+      context.handle(
+        _aisleIdMeta,
+        aisleId.isAcceptableOrUnknown(data['aisle_id']!, _aisleIdMeta),
+      );
+    }
+    if (data.containsKey('planned_quantity')) {
+      context.handle(
+        _plannedQuantityMeta,
+        plannedQuantity.isAcceptableOrUnknown(
+          data['planned_quantity']!,
+          _plannedQuantityMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_plannedQuantityMeta);
+    }
+    if (data.containsKey('planned_unit_code')) {
+      context.handle(
+        _plannedUnitCodeMeta,
+        plannedUnitCode.isAcceptableOrUnknown(
+          data['planned_unit_code']!,
+          _plannedUnitCodeMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_plannedUnitCodeMeta);
+    }
+    if (data.containsKey('pricing_input_mode')) {
+      context.handle(
+        _pricingInputModeMeta,
+        pricingInputMode.isAcceptableOrUnknown(
+          data['pricing_input_mode']!,
+          _pricingInputModeMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_pricingInputModeMeta);
+    }
+    if (data.containsKey('planned_unit_price')) {
+      context.handle(
+        _plannedUnitPriceMeta,
+        plannedUnitPrice.isAcceptableOrUnknown(
+          data['planned_unit_price']!,
+          _plannedUnitPriceMeta,
+        ),
+      );
+    }
+    if (data.containsKey('planned_line_total_minor_units')) {
+      context.handle(
+        _plannedLineTotalMinorUnitsMeta,
+        plannedLineTotalMinorUnits.isAcceptableOrUnknown(
+          data['planned_line_total_minor_units']!,
+          _plannedLineTotalMinorUnitsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('max_acceptable_price')) {
+      context.handle(
+        _maxAcceptablePriceMeta,
+        maxAcceptablePrice.isAcceptableOrUnknown(
+          data['max_acceptable_price']!,
+          _maxAcceptablePriceMeta,
+        ),
+      );
+    }
+    if (data.containsKey('required_flag')) {
+      context.handle(
+        _requiredFlagMeta,
+        requiredFlag.isAcceptableOrUnknown(
+          data['required_flag']!,
+          _requiredFlagMeta,
+        ),
+      );
+    }
+    if (data.containsKey('note')) {
+      context.handle(
+        _noteMeta,
+        note.isAcceptableOrUnknown(data['note']!, _noteMeta),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PlannedItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PlannedItem(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      createdByReceiptId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}created_by_receipt_id'],
+      ),
+      listId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}list_id'],
+      )!,
+      productId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}product_id'],
+      ),
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      normalizedName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}normalized_name'],
+      )!,
+      brand: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}brand'],
+      ),
+      categoryId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}category_id'],
+      ),
+      aisleId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}aisle_id'],
+      ),
+      plannedQuantity: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}planned_quantity'],
+      )!,
+      plannedUnitCode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}planned_unit_code'],
+      )!,
+      pricingInputMode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pricing_input_mode'],
+      )!,
+      plannedUnitPrice: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}planned_unit_price'],
+      ),
+      plannedLineTotalMinorUnits: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}planned_line_total_minor_units'],
+      ),
+      maxAcceptablePrice: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}max_acceptable_price'],
+      ),
+      requiredFlag: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}required_flag'],
+      )!,
+      note: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}note'],
+      ),
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}sort_order'],
+      )!,
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+    );
+  }
+
+  @override
+  $PlannedItemsTable createAlias(String alias) {
+    return $PlannedItemsTable(attachedDatabase, alias);
+  }
+}
+
+class PlannedItem extends DataClass implements Insertable<PlannedItem> {
+  final int id;
+
+  /// Explicit creator; null means manual or unknown legacy provenance.
+  final int? createdByReceiptId;
+  final int listId;
+  final int? productId;
+  final String name;
+  final String normalizedName;
+  final String? brand;
+  final int? categoryId;
+  final int? aisleId;
+
+  /// DecimalFixed dizesi (ondalıklı miktar, örn. `1.5`).
+  final String plannedQuantity;
+  final String plannedUnitCode;
+
+  /// unitPrice | lineTotal — kullanıcının girdiği taraf (spec §6.2).
+  final String pricingInputMode;
+  final String? plannedUnitPrice;
+  final int? plannedLineTotalMinorUnits;
+  final String? maxAcceptablePrice;
+  final bool requiredFlag;
+  final String? note;
+  final int sortOrder;
+
+  /// pending | inCart | notFound | gaveUp | alternativeBought
+  final String status;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  const PlannedItem({
+    required this.id,
+    this.createdByReceiptId,
+    required this.listId,
+    this.productId,
+    required this.name,
+    required this.normalizedName,
+    this.brand,
+    this.categoryId,
+    this.aisleId,
+    required this.plannedQuantity,
+    required this.plannedUnitCode,
+    required this.pricingInputMode,
+    this.plannedUnitPrice,
+    this.plannedLineTotalMinorUnits,
+    this.maxAcceptablePrice,
+    required this.requiredFlag,
+    this.note,
+    required this.sortOrder,
+    required this.status,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    if (!nullToAbsent || createdByReceiptId != null) {
+      map['created_by_receipt_id'] = Variable<int>(createdByReceiptId);
+    }
+    map['list_id'] = Variable<int>(listId);
+    if (!nullToAbsent || productId != null) {
+      map['product_id'] = Variable<int>(productId);
+    }
+    map['name'] = Variable<String>(name);
+    map['normalized_name'] = Variable<String>(normalizedName);
+    if (!nullToAbsent || brand != null) {
+      map['brand'] = Variable<String>(brand);
+    }
+    if (!nullToAbsent || categoryId != null) {
+      map['category_id'] = Variable<int>(categoryId);
+    }
+    if (!nullToAbsent || aisleId != null) {
+      map['aisle_id'] = Variable<int>(aisleId);
+    }
+    map['planned_quantity'] = Variable<String>(plannedQuantity);
+    map['planned_unit_code'] = Variable<String>(plannedUnitCode);
+    map['pricing_input_mode'] = Variable<String>(pricingInputMode);
+    if (!nullToAbsent || plannedUnitPrice != null) {
+      map['planned_unit_price'] = Variable<String>(plannedUnitPrice);
+    }
+    if (!nullToAbsent || plannedLineTotalMinorUnits != null) {
+      map['planned_line_total_minor_units'] = Variable<int>(
+        plannedLineTotalMinorUnits,
+      );
+    }
+    if (!nullToAbsent || maxAcceptablePrice != null) {
+      map['max_acceptable_price'] = Variable<String>(maxAcceptablePrice);
+    }
+    map['required_flag'] = Variable<bool>(requiredFlag);
+    if (!nullToAbsent || note != null) {
+      map['note'] = Variable<String>(note);
+    }
+    map['sort_order'] = Variable<int>(sortOrder);
+    map['status'] = Variable<String>(status);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    return map;
+  }
+
+  PlannedItemsCompanion toCompanion(bool nullToAbsent) {
+    return PlannedItemsCompanion(
+      id: Value(id),
+      createdByReceiptId: createdByReceiptId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdByReceiptId),
+      listId: Value(listId),
+      productId: productId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(productId),
+      name: Value(name),
+      normalizedName: Value(normalizedName),
+      brand: brand == null && nullToAbsent
+          ? const Value.absent()
+          : Value(brand),
+      categoryId: categoryId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(categoryId),
+      aisleId: aisleId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(aisleId),
+      plannedQuantity: Value(plannedQuantity),
+      plannedUnitCode: Value(plannedUnitCode),
+      pricingInputMode: Value(pricingInputMode),
+      plannedUnitPrice: plannedUnitPrice == null && nullToAbsent
+          ? const Value.absent()
+          : Value(plannedUnitPrice),
+      plannedLineTotalMinorUnits:
+          plannedLineTotalMinorUnits == null && nullToAbsent
+          ? const Value.absent()
+          : Value(plannedLineTotalMinorUnits),
+      maxAcceptablePrice: maxAcceptablePrice == null && nullToAbsent
+          ? const Value.absent()
+          : Value(maxAcceptablePrice),
+      requiredFlag: Value(requiredFlag),
+      note: note == null && nullToAbsent ? const Value.absent() : Value(note),
+      sortOrder: Value(sortOrder),
+      status: Value(status),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+    );
+  }
+
+  factory PlannedItem.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PlannedItem(
+      id: serializer.fromJson<int>(json['id']),
+      createdByReceiptId: serializer.fromJson<int?>(json['createdByReceiptId']),
+      listId: serializer.fromJson<int>(json['listId']),
+      productId: serializer.fromJson<int?>(json['productId']),
+      name: serializer.fromJson<String>(json['name']),
+      normalizedName: serializer.fromJson<String>(json['normalizedName']),
+      brand: serializer.fromJson<String?>(json['brand']),
+      categoryId: serializer.fromJson<int?>(json['categoryId']),
+      aisleId: serializer.fromJson<int?>(json['aisleId']),
+      plannedQuantity: serializer.fromJson<String>(json['plannedQuantity']),
+      plannedUnitCode: serializer.fromJson<String>(json['plannedUnitCode']),
+      pricingInputMode: serializer.fromJson<String>(json['pricingInputMode']),
+      plannedUnitPrice: serializer.fromJson<String?>(json['plannedUnitPrice']),
+      plannedLineTotalMinorUnits: serializer.fromJson<int?>(
+        json['plannedLineTotalMinorUnits'],
+      ),
+      maxAcceptablePrice: serializer.fromJson<String?>(
+        json['maxAcceptablePrice'],
+      ),
+      requiredFlag: serializer.fromJson<bool>(json['requiredFlag']),
+      note: serializer.fromJson<String?>(json['note']),
+      sortOrder: serializer.fromJson<int>(json['sortOrder']),
+      status: serializer.fromJson<String>(json['status']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'createdByReceiptId': serializer.toJson<int?>(createdByReceiptId),
+      'listId': serializer.toJson<int>(listId),
+      'productId': serializer.toJson<int?>(productId),
+      'name': serializer.toJson<String>(name),
+      'normalizedName': serializer.toJson<String>(normalizedName),
+      'brand': serializer.toJson<String?>(brand),
+      'categoryId': serializer.toJson<int?>(categoryId),
+      'aisleId': serializer.toJson<int?>(aisleId),
+      'plannedQuantity': serializer.toJson<String>(plannedQuantity),
+      'plannedUnitCode': serializer.toJson<String>(plannedUnitCode),
+      'pricingInputMode': serializer.toJson<String>(pricingInputMode),
+      'plannedUnitPrice': serializer.toJson<String?>(plannedUnitPrice),
+      'plannedLineTotalMinorUnits': serializer.toJson<int?>(
+        plannedLineTotalMinorUnits,
+      ),
+      'maxAcceptablePrice': serializer.toJson<String?>(maxAcceptablePrice),
+      'requiredFlag': serializer.toJson<bool>(requiredFlag),
+      'note': serializer.toJson<String?>(note),
+      'sortOrder': serializer.toJson<int>(sortOrder),
+      'status': serializer.toJson<String>(status),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+    };
+  }
+
+  PlannedItem copyWith({
+    int? id,
+    Value<int?> createdByReceiptId = const Value.absent(),
+    int? listId,
+    Value<int?> productId = const Value.absent(),
+    String? name,
+    String? normalizedName,
+    Value<String?> brand = const Value.absent(),
+    Value<int?> categoryId = const Value.absent(),
+    Value<int?> aisleId = const Value.absent(),
+    String? plannedQuantity,
+    String? plannedUnitCode,
+    String? pricingInputMode,
+    Value<String?> plannedUnitPrice = const Value.absent(),
+    Value<int?> plannedLineTotalMinorUnits = const Value.absent(),
+    Value<String?> maxAcceptablePrice = const Value.absent(),
+    bool? requiredFlag,
+    Value<String?> note = const Value.absent(),
+    int? sortOrder,
+    String? status,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) => PlannedItem(
+    id: id ?? this.id,
+    createdByReceiptId: createdByReceiptId.present
+        ? createdByReceiptId.value
+        : this.createdByReceiptId,
+    listId: listId ?? this.listId,
+    productId: productId.present ? productId.value : this.productId,
+    name: name ?? this.name,
+    normalizedName: normalizedName ?? this.normalizedName,
+    brand: brand.present ? brand.value : this.brand,
+    categoryId: categoryId.present ? categoryId.value : this.categoryId,
+    aisleId: aisleId.present ? aisleId.value : this.aisleId,
+    plannedQuantity: plannedQuantity ?? this.plannedQuantity,
+    plannedUnitCode: plannedUnitCode ?? this.plannedUnitCode,
+    pricingInputMode: pricingInputMode ?? this.pricingInputMode,
+    plannedUnitPrice: plannedUnitPrice.present
+        ? plannedUnitPrice.value
+        : this.plannedUnitPrice,
+    plannedLineTotalMinorUnits: plannedLineTotalMinorUnits.present
+        ? plannedLineTotalMinorUnits.value
+        : this.plannedLineTotalMinorUnits,
+    maxAcceptablePrice: maxAcceptablePrice.present
+        ? maxAcceptablePrice.value
+        : this.maxAcceptablePrice,
+    requiredFlag: requiredFlag ?? this.requiredFlag,
+    note: note.present ? note.value : this.note,
+    sortOrder: sortOrder ?? this.sortOrder,
+    status: status ?? this.status,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
+  PlannedItem copyWithCompanion(PlannedItemsCompanion data) {
+    return PlannedItem(
+      id: data.id.present ? data.id.value : this.id,
+      createdByReceiptId: data.createdByReceiptId.present
+          ? data.createdByReceiptId.value
+          : this.createdByReceiptId,
+      listId: data.listId.present ? data.listId.value : this.listId,
+      productId: data.productId.present ? data.productId.value : this.productId,
+      name: data.name.present ? data.name.value : this.name,
+      normalizedName: data.normalizedName.present
+          ? data.normalizedName.value
+          : this.normalizedName,
+      brand: data.brand.present ? data.brand.value : this.brand,
+      categoryId: data.categoryId.present
+          ? data.categoryId.value
+          : this.categoryId,
+      aisleId: data.aisleId.present ? data.aisleId.value : this.aisleId,
+      plannedQuantity: data.plannedQuantity.present
+          ? data.plannedQuantity.value
+          : this.plannedQuantity,
+      plannedUnitCode: data.plannedUnitCode.present
+          ? data.plannedUnitCode.value
+          : this.plannedUnitCode,
+      pricingInputMode: data.pricingInputMode.present
+          ? data.pricingInputMode.value
+          : this.pricingInputMode,
+      plannedUnitPrice: data.plannedUnitPrice.present
+          ? data.plannedUnitPrice.value
+          : this.plannedUnitPrice,
+      plannedLineTotalMinorUnits: data.plannedLineTotalMinorUnits.present
+          ? data.plannedLineTotalMinorUnits.value
+          : this.plannedLineTotalMinorUnits,
+      maxAcceptablePrice: data.maxAcceptablePrice.present
+          ? data.maxAcceptablePrice.value
+          : this.maxAcceptablePrice,
+      requiredFlag: data.requiredFlag.present
+          ? data.requiredFlag.value
+          : this.requiredFlag,
+      note: data.note.present ? data.note.value : this.note,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+      status: data.status.present ? data.status.value : this.status,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PlannedItem(')
+          ..write('id: $id, ')
+          ..write('createdByReceiptId: $createdByReceiptId, ')
+          ..write('listId: $listId, ')
+          ..write('productId: $productId, ')
+          ..write('name: $name, ')
+          ..write('normalizedName: $normalizedName, ')
+          ..write('brand: $brand, ')
+          ..write('categoryId: $categoryId, ')
+          ..write('aisleId: $aisleId, ')
+          ..write('plannedQuantity: $plannedQuantity, ')
+          ..write('plannedUnitCode: $plannedUnitCode, ')
+          ..write('pricingInputMode: $pricingInputMode, ')
+          ..write('plannedUnitPrice: $plannedUnitPrice, ')
+          ..write('plannedLineTotalMinorUnits: $plannedLineTotalMinorUnits, ')
+          ..write('maxAcceptablePrice: $maxAcceptablePrice, ')
+          ..write('requiredFlag: $requiredFlag, ')
+          ..write('note: $note, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('status: $status, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+    id,
+    createdByReceiptId,
+    listId,
+    productId,
+    name,
+    normalizedName,
+    brand,
+    categoryId,
+    aisleId,
+    plannedQuantity,
+    plannedUnitCode,
+    pricingInputMode,
+    plannedUnitPrice,
+    plannedLineTotalMinorUnits,
+    maxAcceptablePrice,
+    requiredFlag,
+    note,
+    sortOrder,
+    status,
+    createdAt,
+    updatedAt,
+  ]);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PlannedItem &&
+          other.id == this.id &&
+          other.createdByReceiptId == this.createdByReceiptId &&
+          other.listId == this.listId &&
+          other.productId == this.productId &&
+          other.name == this.name &&
+          other.normalizedName == this.normalizedName &&
+          other.brand == this.brand &&
+          other.categoryId == this.categoryId &&
+          other.aisleId == this.aisleId &&
+          other.plannedQuantity == this.plannedQuantity &&
+          other.plannedUnitCode == this.plannedUnitCode &&
+          other.pricingInputMode == this.pricingInputMode &&
+          other.plannedUnitPrice == this.plannedUnitPrice &&
+          other.plannedLineTotalMinorUnits == this.plannedLineTotalMinorUnits &&
+          other.maxAcceptablePrice == this.maxAcceptablePrice &&
+          other.requiredFlag == this.requiredFlag &&
+          other.note == this.note &&
+          other.sortOrder == this.sortOrder &&
+          other.status == this.status &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt);
+}
+
+class PlannedItemsCompanion extends UpdateCompanion<PlannedItem> {
+  final Value<int> id;
+  final Value<int?> createdByReceiptId;
+  final Value<int> listId;
+  final Value<int?> productId;
+  final Value<String> name;
+  final Value<String> normalizedName;
+  final Value<String?> brand;
+  final Value<int?> categoryId;
+  final Value<int?> aisleId;
+  final Value<String> plannedQuantity;
+  final Value<String> plannedUnitCode;
+  final Value<String> pricingInputMode;
+  final Value<String?> plannedUnitPrice;
+  final Value<int?> plannedLineTotalMinorUnits;
+  final Value<String?> maxAcceptablePrice;
+  final Value<bool> requiredFlag;
+  final Value<String?> note;
+  final Value<int> sortOrder;
+  final Value<String> status;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  const PlannedItemsCompanion({
+    this.id = const Value.absent(),
+    this.createdByReceiptId = const Value.absent(),
+    this.listId = const Value.absent(),
+    this.productId = const Value.absent(),
+    this.name = const Value.absent(),
+    this.normalizedName = const Value.absent(),
+    this.brand = const Value.absent(),
+    this.categoryId = const Value.absent(),
+    this.aisleId = const Value.absent(),
+    this.plannedQuantity = const Value.absent(),
+    this.plannedUnitCode = const Value.absent(),
+    this.pricingInputMode = const Value.absent(),
+    this.plannedUnitPrice = const Value.absent(),
+    this.plannedLineTotalMinorUnits = const Value.absent(),
+    this.maxAcceptablePrice = const Value.absent(),
+    this.requiredFlag = const Value.absent(),
+    this.note = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.status = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+  });
+  PlannedItemsCompanion.insert({
+    this.id = const Value.absent(),
+    this.createdByReceiptId = const Value.absent(),
+    required int listId,
+    this.productId = const Value.absent(),
+    required String name,
+    required String normalizedName,
+    this.brand = const Value.absent(),
+    this.categoryId = const Value.absent(),
+    this.aisleId = const Value.absent(),
+    required String plannedQuantity,
+    required String plannedUnitCode,
+    required String pricingInputMode,
+    this.plannedUnitPrice = const Value.absent(),
+    this.plannedLineTotalMinorUnits = const Value.absent(),
+    this.maxAcceptablePrice = const Value.absent(),
+    this.requiredFlag = const Value.absent(),
+    this.note = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.status = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+  }) : listId = Value(listId),
+       name = Value(name),
+       normalizedName = Value(normalizedName),
+       plannedQuantity = Value(plannedQuantity),
+       plannedUnitCode = Value(plannedUnitCode),
+       pricingInputMode = Value(pricingInputMode);
+  static Insertable<PlannedItem> custom({
+    Expression<int>? id,
+    Expression<int>? createdByReceiptId,
+    Expression<int>? listId,
+    Expression<int>? productId,
+    Expression<String>? name,
+    Expression<String>? normalizedName,
+    Expression<String>? brand,
+    Expression<int>? categoryId,
+    Expression<int>? aisleId,
+    Expression<String>? plannedQuantity,
+    Expression<String>? plannedUnitCode,
+    Expression<String>? pricingInputMode,
+    Expression<String>? plannedUnitPrice,
+    Expression<int>? plannedLineTotalMinorUnits,
+    Expression<String>? maxAcceptablePrice,
+    Expression<bool>? requiredFlag,
+    Expression<String>? note,
+    Expression<int>? sortOrder,
+    Expression<String>? status,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (createdByReceiptId != null)
+        'created_by_receipt_id': createdByReceiptId,
+      if (listId != null) 'list_id': listId,
+      if (productId != null) 'product_id': productId,
+      if (name != null) 'name': name,
+      if (normalizedName != null) 'normalized_name': normalizedName,
+      if (brand != null) 'brand': brand,
+      if (categoryId != null) 'category_id': categoryId,
+      if (aisleId != null) 'aisle_id': aisleId,
+      if (plannedQuantity != null) 'planned_quantity': plannedQuantity,
+      if (plannedUnitCode != null) 'planned_unit_code': plannedUnitCode,
+      if (pricingInputMode != null) 'pricing_input_mode': pricingInputMode,
+      if (plannedUnitPrice != null) 'planned_unit_price': plannedUnitPrice,
+      if (plannedLineTotalMinorUnits != null)
+        'planned_line_total_minor_units': plannedLineTotalMinorUnits,
+      if (maxAcceptablePrice != null)
+        'max_acceptable_price': maxAcceptablePrice,
+      if (requiredFlag != null) 'required_flag': requiredFlag,
+      if (note != null) 'note': note,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (status != null) 'status': status,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+    });
+  }
+
+  PlannedItemsCompanion copyWith({
+    Value<int>? id,
+    Value<int?>? createdByReceiptId,
+    Value<int>? listId,
+    Value<int?>? productId,
+    Value<String>? name,
+    Value<String>? normalizedName,
+    Value<String?>? brand,
+    Value<int?>? categoryId,
+    Value<int?>? aisleId,
+    Value<String>? plannedQuantity,
+    Value<String>? plannedUnitCode,
+    Value<String>? pricingInputMode,
+    Value<String?>? plannedUnitPrice,
+    Value<int?>? plannedLineTotalMinorUnits,
+    Value<String?>? maxAcceptablePrice,
+    Value<bool>? requiredFlag,
+    Value<String?>? note,
+    Value<int>? sortOrder,
+    Value<String>? status,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+  }) {
+    return PlannedItemsCompanion(
+      id: id ?? this.id,
+      createdByReceiptId: createdByReceiptId ?? this.createdByReceiptId,
+      listId: listId ?? this.listId,
+      productId: productId ?? this.productId,
+      name: name ?? this.name,
+      normalizedName: normalizedName ?? this.normalizedName,
+      brand: brand ?? this.brand,
+      categoryId: categoryId ?? this.categoryId,
+      aisleId: aisleId ?? this.aisleId,
+      plannedQuantity: plannedQuantity ?? this.plannedQuantity,
+      plannedUnitCode: plannedUnitCode ?? this.plannedUnitCode,
+      pricingInputMode: pricingInputMode ?? this.pricingInputMode,
+      plannedUnitPrice: plannedUnitPrice ?? this.plannedUnitPrice,
+      plannedLineTotalMinorUnits:
+          plannedLineTotalMinorUnits ?? this.plannedLineTotalMinorUnits,
+      maxAcceptablePrice: maxAcceptablePrice ?? this.maxAcceptablePrice,
+      requiredFlag: requiredFlag ?? this.requiredFlag,
+      note: note ?? this.note,
+      sortOrder: sortOrder ?? this.sortOrder,
+      status: status ?? this.status,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (createdByReceiptId.present) {
+      map['created_by_receipt_id'] = Variable<int>(createdByReceiptId.value);
+    }
+    if (listId.present) {
+      map['list_id'] = Variable<int>(listId.value);
+    }
+    if (productId.present) {
+      map['product_id'] = Variable<int>(productId.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (normalizedName.present) {
+      map['normalized_name'] = Variable<String>(normalizedName.value);
+    }
+    if (brand.present) {
+      map['brand'] = Variable<String>(brand.value);
+    }
+    if (categoryId.present) {
+      map['category_id'] = Variable<int>(categoryId.value);
+    }
+    if (aisleId.present) {
+      map['aisle_id'] = Variable<int>(aisleId.value);
+    }
+    if (plannedQuantity.present) {
+      map['planned_quantity'] = Variable<String>(plannedQuantity.value);
+    }
+    if (plannedUnitCode.present) {
+      map['planned_unit_code'] = Variable<String>(plannedUnitCode.value);
+    }
+    if (pricingInputMode.present) {
+      map['pricing_input_mode'] = Variable<String>(pricingInputMode.value);
+    }
+    if (plannedUnitPrice.present) {
+      map['planned_unit_price'] = Variable<String>(plannedUnitPrice.value);
+    }
+    if (plannedLineTotalMinorUnits.present) {
+      map['planned_line_total_minor_units'] = Variable<int>(
+        plannedLineTotalMinorUnits.value,
+      );
+    }
+    if (maxAcceptablePrice.present) {
+      map['max_acceptable_price'] = Variable<String>(maxAcceptablePrice.value);
+    }
+    if (requiredFlag.present) {
+      map['required_flag'] = Variable<bool>(requiredFlag.value);
+    }
+    if (note.present) {
+      map['note'] = Variable<String>(note.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<int>(sortOrder.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PlannedItemsCompanion(')
+          ..write('id: $id, ')
+          ..write('createdByReceiptId: $createdByReceiptId, ')
+          ..write('listId: $listId, ')
+          ..write('productId: $productId, ')
+          ..write('name: $name, ')
+          ..write('normalizedName: $normalizedName, ')
+          ..write('brand: $brand, ')
+          ..write('categoryId: $categoryId, ')
+          ..write('aisleId: $aisleId, ')
+          ..write('plannedQuantity: $plannedQuantity, ')
+          ..write('plannedUnitCode: $plannedUnitCode, ')
+          ..write('pricingInputMode: $pricingInputMode, ')
+          ..write('plannedUnitPrice: $plannedUnitPrice, ')
+          ..write('plannedLineTotalMinorUnits: $plannedLineTotalMinorUnits, ')
+          ..write('maxAcceptablePrice: $maxAcceptablePrice, ')
+          ..write('requiredFlag: $requiredFlag, ')
+          ..write('note: $note, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('status: $status, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt')
           ..write(')'))
         .toString();
   }
@@ -8795,9 +8856,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $CategoriesTable categories = $CategoriesTable(this);
   late final $AislesTable aisles = $AislesTable(this);
   late final $ShoppingListsTable shoppingLists = $ShoppingListsTable(this);
+  late final $ReceiptsTable receipts = $ReceiptsTable(this);
   late final $ProductMemoryTable productMemory = $ProductMemoryTable(this);
   late final $PlannedItemsTable plannedItems = $PlannedItemsTable(this);
-  late final $ReceiptsTable receipts = $ReceiptsTable(this);
   late final $PurchaseEntriesTable purchaseEntries = $PurchaseEntriesTable(
     this,
   );
@@ -8818,9 +8879,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     categories,
     aisles,
     shoppingLists,
+    receipts,
     productMemory,
     plannedItems,
-    receipts,
     purchaseEntries,
     productAliases,
     priceObservations,
@@ -8843,14 +8904,21 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         'shopping_lists',
         limitUpdateKind: UpdateKind.delete,
       ),
-      result: [TableUpdate('planned_items', kind: UpdateKind.delete)],
+      result: [TableUpdate('receipts', kind: UpdateKind.update)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'receipts',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('planned_items', kind: UpdateKind.update)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
         'shopping_lists',
         limitUpdateKind: UpdateKind.delete,
       ),
-      result: [TableUpdate('receipts', kind: UpdateKind.update)],
+      result: [TableUpdate('planned_items', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
@@ -10282,24 +10350,6 @@ final class $$ShoppingListsTableReferences
     );
   }
 
-  static MultiTypedResultKey<$PlannedItemsTable, List<PlannedItem>>
-  _plannedItemsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.plannedItems,
-    aliasName: 'shopping_lists__id__planned_items__list_id',
-  );
-
-  $$PlannedItemsTableProcessedTableManager get plannedItemsRefs {
-    final manager = $$PlannedItemsTableTableManager(
-      $_db,
-      $_db.plannedItems,
-    ).filter((f) => f.listId.id.sqlEquals($_itemColumn<int>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_plannedItemsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
   static MultiTypedResultKey<$ReceiptsTable, List<Receipt>> _receiptsRefsTable(
     _$AppDatabase db,
   ) => MultiTypedResultKey.fromTable(
@@ -10314,6 +10364,24 @@ final class $$ShoppingListsTableReferences
     ).filter((f) => f.listId.id.sqlEquals($_itemColumn<int>('id')!));
 
     final cache = $_typedResult.readTableOrNull(_receiptsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$PlannedItemsTable, List<PlannedItem>>
+  _plannedItemsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.plannedItems,
+    aliasName: 'shopping_lists__id__planned_items__list_id',
+  );
+
+  $$PlannedItemsTableProcessedTableManager get plannedItemsRefs {
+    final manager = $$PlannedItemsTableTableManager(
+      $_db,
+      $_db.plannedItems,
+    ).filter((f) => f.listId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_plannedItemsRefsTable($_db));
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
     );
@@ -10470,31 +10538,6 @@ class $$ShoppingListsTableFilterComposer
     return composer;
   }
 
-  Expression<bool> plannedItemsRefs(
-    Expression<bool> Function($$PlannedItemsTableFilterComposer f) f,
-  ) {
-    final $$PlannedItemsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.plannedItems,
-      getReferencedColumn: (t) => t.listId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PlannedItemsTableFilterComposer(
-            $db: $db,
-            $table: $db.plannedItems,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
   Expression<bool> receiptsRefs(
     Expression<bool> Function($$ReceiptsTableFilterComposer f) f,
   ) {
@@ -10511,6 +10554,31 @@ class $$ShoppingListsTableFilterComposer
           }) => $$ReceiptsTableFilterComposer(
             $db: $db,
             $table: $db.receipts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> plannedItemsRefs(
+    Expression<bool> Function($$PlannedItemsTableFilterComposer f) f,
+  ) {
+    final $$PlannedItemsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.plannedItems,
+      getReferencedColumn: (t) => t.listId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlannedItemsTableFilterComposer(
+            $db: $db,
+            $table: $db.plannedItems,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -10776,31 +10844,6 @@ class $$ShoppingListsTableAnnotationComposer
     return composer;
   }
 
-  Expression<T> plannedItemsRefs<T extends Object>(
-    Expression<T> Function($$PlannedItemsTableAnnotationComposer a) f,
-  ) {
-    final $$PlannedItemsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.plannedItems,
-      getReferencedColumn: (t) => t.listId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PlannedItemsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.plannedItems,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
   Expression<T> receiptsRefs<T extends Object>(
     Expression<T> Function($$ReceiptsTableAnnotationComposer a) f,
   ) {
@@ -10817,6 +10860,31 @@ class $$ShoppingListsTableAnnotationComposer
           }) => $$ReceiptsTableAnnotationComposer(
             $db: $db,
             $table: $db.receipts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> plannedItemsRefs<T extends Object>(
+    Expression<T> Function($$PlannedItemsTableAnnotationComposer a) f,
+  ) {
+    final $$PlannedItemsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.plannedItems,
+      getReferencedColumn: (t) => t.listId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlannedItemsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.plannedItems,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -10892,8 +10960,8 @@ class $$ShoppingListsTableTableManager
           ShoppingList,
           PrefetchHooks Function({
             bool storeId,
-            bool plannedItemsRefs,
             bool receiptsRefs,
+            bool plannedItemsRefs,
             bool purchaseEntriesRefs,
             bool remindersRefs,
           })
@@ -10996,16 +11064,16 @@ class $$ShoppingListsTableTableManager
           prefetchHooksCallback:
               ({
                 storeId = false,
-                plannedItemsRefs = false,
                 receiptsRefs = false,
+                plannedItemsRefs = false,
                 purchaseEntriesRefs = false,
                 remindersRefs = false,
               }) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
-                    if (plannedItemsRefs) db.plannedItems,
                     if (receiptsRefs) db.receipts,
+                    if (plannedItemsRefs) db.plannedItems,
                     if (purchaseEntriesRefs) db.purchaseEntries,
                     if (remindersRefs) db.reminders,
                   ],
@@ -11041,27 +11109,6 @@ class $$ShoppingListsTableTableManager
                       },
                   getPrefetchedDataCallback: (items) async {
                     return [
-                      if (plannedItemsRefs)
-                        await $_getPrefetchedData<
-                          ShoppingList,
-                          $ShoppingListsTable,
-                          PlannedItem
-                        >(
-                          currentTable: table,
-                          referencedTable: $$ShoppingListsTableReferences
-                              ._plannedItemsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$ShoppingListsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).plannedItemsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.listId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
                       if (receiptsRefs)
                         await $_getPrefetchedData<
                           ShoppingList,
@@ -11077,6 +11124,27 @@ class $$ShoppingListsTableTableManager
                                 table,
                                 p0,
                               ).receiptsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.listId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (plannedItemsRefs)
+                        await $_getPrefetchedData<
+                          ShoppingList,
+                          $ShoppingListsTable,
+                          PlannedItem
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ShoppingListsTableReferences
+                              ._plannedItemsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ShoppingListsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).plannedItemsRefs,
                           referencedItemsForCurrentItem:
                               (item, referencedItems) => referencedItems.where(
                                 (e) => e.listId == item.id,
@@ -11147,10 +11215,895 @@ typedef $$ShoppingListsTableProcessedTableManager =
       ShoppingList,
       PrefetchHooks Function({
         bool storeId,
-        bool plannedItemsRefs,
         bool receiptsRefs,
+        bool plannedItemsRefs,
         bool purchaseEntriesRefs,
         bool remindersRefs,
+      })
+    >;
+typedef $$ReceiptsTableCreateCompanionBuilder = ReceiptsCompanion Function({
+  Value<int> id,
+  Value<int?> listId,
+  Value<List<String>> imagePaths,
+  Value<String?> rawOcrText,
+  Value<String?> detectedStore,
+  Value<String?> confirmedStore,
+  Value<DateTime?> detectedAt,
+  Value<DateTime?> confirmedAt,
+  Value<String?> detectedCurrency,
+  Value<String?> confirmedCurrency,
+  Value<int?> detectedTotalMinorUnits,
+  Value<int?> confirmedTotalMinorUnits,
+  Value<String?> parserVersion,
+  Value<String?> documentNumber,
+  Value<String?> identityKey,
+  Value<String?> captureDataJson,
+  Value<String> processingStatus,
+  Value<DateTime> createdAt,
+});
+typedef $$ReceiptsTableUpdateCompanionBuilder = ReceiptsCompanion Function({
+  Value<int> id,
+  Value<int?> listId,
+  Value<List<String>> imagePaths,
+  Value<String?> rawOcrText,
+  Value<String?> detectedStore,
+  Value<String?> confirmedStore,
+  Value<DateTime?> detectedAt,
+  Value<DateTime?> confirmedAt,
+  Value<String?> detectedCurrency,
+  Value<String?> confirmedCurrency,
+  Value<int?> detectedTotalMinorUnits,
+  Value<int?> confirmedTotalMinorUnits,
+  Value<String?> parserVersion,
+  Value<String?> documentNumber,
+  Value<String?> identityKey,
+  Value<String?> captureDataJson,
+  Value<String> processingStatus,
+  Value<DateTime> createdAt,
+});
+
+final class $$ReceiptsTableReferences
+    extends BaseReferences<_$AppDatabase, $ReceiptsTable, Receipt> {
+  $$ReceiptsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ShoppingListsTable _listIdTable(_$AppDatabase db) =>
+      db.shoppingLists.createAlias('receipts__list_id__shopping_lists__id');
+
+  $$ShoppingListsTableProcessedTableManager? get listId {
+    final $_column = $_itemColumn<int>('list_id');
+    if ($_column == null) return null;
+    final manager = $$ShoppingListsTableTableManager(
+      $_db,
+      $_db.shoppingLists,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_listIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static MultiTypedResultKey<$PlannedItemsTable, List<PlannedItem>>
+  _plannedItemsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.plannedItems,
+    aliasName: 'receipts__id__planned_items__created_by_receipt_id',
+  );
+
+  $$PlannedItemsTableProcessedTableManager get plannedItemsRefs {
+    final manager = $$PlannedItemsTableTableManager($_db, $_db.plannedItems)
+        .filter(
+          (f) => f.createdByReceiptId.id.sqlEquals($_itemColumn<int>('id')!),
+        );
+
+    final cache = $_typedResult.readTableOrNull(_plannedItemsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$PurchaseEntriesTable, List<PurchaseEntry>>
+  _purchaseEntriesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.purchaseEntries,
+    aliasName: 'receipts__id__purchase_entries__receipt_id',
+  );
+
+  $$PurchaseEntriesTableProcessedTableManager get purchaseEntriesRefs {
+    final manager = $$PurchaseEntriesTableTableManager(
+      $_db,
+      $_db.purchaseEntries,
+    ).filter((f) => f.receiptId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _purchaseEntriesRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<
+    $ReceiptCandidateLinesTable,
+    List<ReceiptCandidateLine>
+  >
+  _receiptCandidateLinesRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.receiptCandidateLines,
+        aliasName: 'receipts__id__receipt_candidate_lines__receipt_id',
+      );
+
+  $$ReceiptCandidateLinesTableProcessedTableManager
+  get receiptCandidateLinesRefs {
+    final manager = $$ReceiptCandidateLinesTableTableManager(
+      $_db,
+      $_db.receiptCandidateLines,
+    ).filter((f) => f.receiptId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _receiptCandidateLinesRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$ReceiptsTableFilterComposer
+    extends Composer<_$AppDatabase, $ReceiptsTable> {
+  $$ReceiptsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnWithTypeConverterFilters<List<String>, List<String>, String>
+  get imagePaths => $composableBuilder(
+    column: $table.imagePaths,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
+
+  ColumnFilters<String> get rawOcrText => $composableBuilder(
+    column: $table.rawOcrText,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get detectedStore => $composableBuilder(
+    column: $table.detectedStore,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get confirmedStore => $composableBuilder(
+    column: $table.confirmedStore,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get detectedAt => $composableBuilder(
+    column: $table.detectedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get confirmedAt => $composableBuilder(
+    column: $table.confirmedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get detectedCurrency => $composableBuilder(
+    column: $table.detectedCurrency,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get confirmedCurrency => $composableBuilder(
+    column: $table.confirmedCurrency,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get detectedTotalMinorUnits => $composableBuilder(
+    column: $table.detectedTotalMinorUnits,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get confirmedTotalMinorUnits => $composableBuilder(
+    column: $table.confirmedTotalMinorUnits,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get parserVersion => $composableBuilder(
+    column: $table.parserVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get documentNumber => $composableBuilder(
+    column: $table.documentNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get identityKey => $composableBuilder(
+    column: $table.identityKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get captureDataJson => $composableBuilder(
+    column: $table.captureDataJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get processingStatus => $composableBuilder(
+    column: $table.processingStatus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ShoppingListsTableFilterComposer get listId {
+    final $$ShoppingListsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.listId,
+      referencedTable: $db.shoppingLists,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ShoppingListsTableFilterComposer(
+            $db: $db,
+            $table: $db.shoppingLists,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<bool> plannedItemsRefs(
+    Expression<bool> Function($$PlannedItemsTableFilterComposer f) f,
+  ) {
+    final $$PlannedItemsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.plannedItems,
+      getReferencedColumn: (t) => t.createdByReceiptId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlannedItemsTableFilterComposer(
+            $db: $db,
+            $table: $db.plannedItems,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> purchaseEntriesRefs(
+    Expression<bool> Function($$PurchaseEntriesTableFilterComposer f) f,
+  ) {
+    final $$PurchaseEntriesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.purchaseEntries,
+      getReferencedColumn: (t) => t.receiptId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PurchaseEntriesTableFilterComposer(
+            $db: $db,
+            $table: $db.purchaseEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> receiptCandidateLinesRefs(
+    Expression<bool> Function($$ReceiptCandidateLinesTableFilterComposer f) f,
+  ) {
+    final $$ReceiptCandidateLinesTableFilterComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.receiptCandidateLines,
+          getReferencedColumn: (t) => t.receiptId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$ReceiptCandidateLinesTableFilterComposer(
+                $db: $db,
+                $table: $db.receiptCandidateLines,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+}
+
+class $$ReceiptsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ReceiptsTable> {
+  $$ReceiptsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get imagePaths => $composableBuilder(
+    column: $table.imagePaths,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get rawOcrText => $composableBuilder(
+    column: $table.rawOcrText,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get detectedStore => $composableBuilder(
+    column: $table.detectedStore,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get confirmedStore => $composableBuilder(
+    column: $table.confirmedStore,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get detectedAt => $composableBuilder(
+    column: $table.detectedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get confirmedAt => $composableBuilder(
+    column: $table.confirmedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get detectedCurrency => $composableBuilder(
+    column: $table.detectedCurrency,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get confirmedCurrency => $composableBuilder(
+    column: $table.confirmedCurrency,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get detectedTotalMinorUnits => $composableBuilder(
+    column: $table.detectedTotalMinorUnits,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get confirmedTotalMinorUnits => $composableBuilder(
+    column: $table.confirmedTotalMinorUnits,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get parserVersion => $composableBuilder(
+    column: $table.parserVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get documentNumber => $composableBuilder(
+    column: $table.documentNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get identityKey => $composableBuilder(
+    column: $table.identityKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get captureDataJson => $composableBuilder(
+    column: $table.captureDataJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get processingStatus => $composableBuilder(
+    column: $table.processingStatus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ShoppingListsTableOrderingComposer get listId {
+    final $$ShoppingListsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.listId,
+      referencedTable: $db.shoppingLists,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ShoppingListsTableOrderingComposer(
+            $db: $db,
+            $table: $db.shoppingLists,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ReceiptsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ReceiptsTable> {
+  $$ReceiptsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<List<String>, String> get imagePaths =>
+      $composableBuilder(
+        column: $table.imagePaths,
+        builder: (column) => column,
+      );
+
+  GeneratedColumn<String> get rawOcrText => $composableBuilder(
+    column: $table.rawOcrText,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get detectedStore => $composableBuilder(
+    column: $table.detectedStore,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get confirmedStore => $composableBuilder(
+    column: $table.confirmedStore,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get detectedAt => $composableBuilder(
+    column: $table.detectedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get confirmedAt => $composableBuilder(
+    column: $table.confirmedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get detectedCurrency => $composableBuilder(
+    column: $table.detectedCurrency,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get confirmedCurrency => $composableBuilder(
+    column: $table.confirmedCurrency,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get detectedTotalMinorUnits => $composableBuilder(
+    column: $table.detectedTotalMinorUnits,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get confirmedTotalMinorUnits => $composableBuilder(
+    column: $table.confirmedTotalMinorUnits,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get parserVersion => $composableBuilder(
+    column: $table.parserVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get documentNumber => $composableBuilder(
+    column: $table.documentNumber,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get identityKey => $composableBuilder(
+    column: $table.identityKey,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get captureDataJson => $composableBuilder(
+    column: $table.captureDataJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get processingStatus => $composableBuilder(
+    column: $table.processingStatus,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  $$ShoppingListsTableAnnotationComposer get listId {
+    final $$ShoppingListsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.listId,
+      referencedTable: $db.shoppingLists,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ShoppingListsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.shoppingLists,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<T> plannedItemsRefs<T extends Object>(
+    Expression<T> Function($$PlannedItemsTableAnnotationComposer a) f,
+  ) {
+    final $$PlannedItemsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.plannedItems,
+      getReferencedColumn: (t) => t.createdByReceiptId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PlannedItemsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.plannedItems,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> purchaseEntriesRefs<T extends Object>(
+    Expression<T> Function($$PurchaseEntriesTableAnnotationComposer a) f,
+  ) {
+    final $$PurchaseEntriesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.purchaseEntries,
+      getReferencedColumn: (t) => t.receiptId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PurchaseEntriesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.purchaseEntries,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> receiptCandidateLinesRefs<T extends Object>(
+    Expression<T> Function($$ReceiptCandidateLinesTableAnnotationComposer a) f,
+  ) {
+    final $$ReceiptCandidateLinesTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.receiptCandidateLines,
+          getReferencedColumn: (t) => t.receiptId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$ReceiptCandidateLinesTableAnnotationComposer(
+                $db: $db,
+                $table: $db.receiptCandidateLines,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+}
+
+class $$ReceiptsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ReceiptsTable,
+          Receipt,
+          $$ReceiptsTableFilterComposer,
+          $$ReceiptsTableOrderingComposer,
+          $$ReceiptsTableAnnotationComposer,
+          $$ReceiptsTableCreateCompanionBuilder,
+          $$ReceiptsTableUpdateCompanionBuilder,
+          (Receipt, $$ReceiptsTableReferences),
+          Receipt,
+          PrefetchHooks Function({
+            bool listId,
+            bool plannedItemsRefs,
+            bool purchaseEntriesRefs,
+            bool receiptCandidateLinesRefs,
+          })
+        > {
+  $$ReceiptsTableTableManager(_$AppDatabase db, $ReceiptsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ReceiptsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ReceiptsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ReceiptsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int?> listId = const Value.absent(),
+                Value<List<String>> imagePaths = const Value.absent(),
+                Value<String?> rawOcrText = const Value.absent(),
+                Value<String?> detectedStore = const Value.absent(),
+                Value<String?> confirmedStore = const Value.absent(),
+                Value<DateTime?> detectedAt = const Value.absent(),
+                Value<DateTime?> confirmedAt = const Value.absent(),
+                Value<String?> detectedCurrency = const Value.absent(),
+                Value<String?> confirmedCurrency = const Value.absent(),
+                Value<int?> detectedTotalMinorUnits = const Value.absent(),
+                Value<int?> confirmedTotalMinorUnits = const Value.absent(),
+                Value<String?> parserVersion = const Value.absent(),
+                Value<String?> documentNumber = const Value.absent(),
+                Value<String?> identityKey = const Value.absent(),
+                Value<String?> captureDataJson = const Value.absent(),
+                Value<String> processingStatus = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+              }) => ReceiptsCompanion(
+                id: id,
+                listId: listId,
+                imagePaths: imagePaths,
+                rawOcrText: rawOcrText,
+                detectedStore: detectedStore,
+                confirmedStore: confirmedStore,
+                detectedAt: detectedAt,
+                confirmedAt: confirmedAt,
+                detectedCurrency: detectedCurrency,
+                confirmedCurrency: confirmedCurrency,
+                detectedTotalMinorUnits: detectedTotalMinorUnits,
+                confirmedTotalMinorUnits: confirmedTotalMinorUnits,
+                parserVersion: parserVersion,
+                documentNumber: documentNumber,
+                identityKey: identityKey,
+                captureDataJson: captureDataJson,
+                processingStatus: processingStatus,
+                createdAt: createdAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int?> listId = const Value.absent(),
+                Value<List<String>> imagePaths = const Value.absent(),
+                Value<String?> rawOcrText = const Value.absent(),
+                Value<String?> detectedStore = const Value.absent(),
+                Value<String?> confirmedStore = const Value.absent(),
+                Value<DateTime?> detectedAt = const Value.absent(),
+                Value<DateTime?> confirmedAt = const Value.absent(),
+                Value<String?> detectedCurrency = const Value.absent(),
+                Value<String?> confirmedCurrency = const Value.absent(),
+                Value<int?> detectedTotalMinorUnits = const Value.absent(),
+                Value<int?> confirmedTotalMinorUnits = const Value.absent(),
+                Value<String?> parserVersion = const Value.absent(),
+                Value<String?> documentNumber = const Value.absent(),
+                Value<String?> identityKey = const Value.absent(),
+                Value<String?> captureDataJson = const Value.absent(),
+                Value<String> processingStatus = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+              }) => ReceiptsCompanion.insert(
+                id: id,
+                listId: listId,
+                imagePaths: imagePaths,
+                rawOcrText: rawOcrText,
+                detectedStore: detectedStore,
+                confirmedStore: confirmedStore,
+                detectedAt: detectedAt,
+                confirmedAt: confirmedAt,
+                detectedCurrency: detectedCurrency,
+                confirmedCurrency: confirmedCurrency,
+                detectedTotalMinorUnits: detectedTotalMinorUnits,
+                confirmedTotalMinorUnits: confirmedTotalMinorUnits,
+                parserVersion: parserVersion,
+                documentNumber: documentNumber,
+                identityKey: identityKey,
+                captureDataJson: captureDataJson,
+                processingStatus: processingStatus,
+                createdAt: createdAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$ReceiptsTable, Receipt>(table),
+                  $$ReceiptsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({
+                listId = false,
+                plannedItemsRefs = false,
+                purchaseEntriesRefs = false,
+                receiptCandidateLinesRefs = false,
+              }) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (plannedItemsRefs) db.plannedItems,
+                    if (purchaseEntriesRefs) db.purchaseEntries,
+                    if (receiptCandidateLinesRefs) db.receiptCandidateLines,
+                  ],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (listId) {
+                          state = state.withJoin(
+                            currentTable: table,
+                            currentColumn: table.listId,
+                            referencedTable: $$ReceiptsTableReferences
+                                ._listIdTable(db),
+                            referencedColumn: $$ReceiptsTableReferences
+                                ._listIdTable(db)
+                                .id,
+                          ) as T;
+                        }
+
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (plannedItemsRefs)
+                        await $_getPrefetchedData<
+                          Receipt,
+                          $ReceiptsTable,
+                          PlannedItem
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ReceiptsTableReferences
+                              ._plannedItemsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ReceiptsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).plannedItemsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.createdByReceiptId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (purchaseEntriesRefs)
+                        await $_getPrefetchedData<
+                          Receipt,
+                          $ReceiptsTable,
+                          PurchaseEntry
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ReceiptsTableReferences
+                              ._purchaseEntriesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ReceiptsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).purchaseEntriesRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.receiptId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (receiptCandidateLinesRefs)
+                        await $_getPrefetchedData<
+                          Receipt,
+                          $ReceiptsTable,
+                          ReceiptCandidateLine
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ReceiptsTableReferences
+                              ._receiptCandidateLinesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ReceiptsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).receiptCandidateLinesRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.receiptId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$ReceiptsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ReceiptsTable,
+      Receipt,
+      $$ReceiptsTableFilterComposer,
+      $$ReceiptsTableOrderingComposer,
+      $$ReceiptsTableAnnotationComposer,
+      $$ReceiptsTableCreateCompanionBuilder,
+      $$ReceiptsTableUpdateCompanionBuilder,
+      (Receipt, $$ReceiptsTableReferences),
+      Receipt,
+      PrefetchHooks Function({
+        bool listId,
+        bool plannedItemsRefs,
+        bool purchaseEntriesRefs,
+        bool receiptCandidateLinesRefs,
       })
     >;
 typedef $$ProductMemoryTableCreateCompanionBuilder =
@@ -11828,6 +12781,7 @@ typedef $$ProductMemoryTableProcessedTableManager =
 typedef $$PlannedItemsTableCreateCompanionBuilder =
     PlannedItemsCompanion Function({
       Value<int> id,
+      Value<int?> createdByReceiptId,
       required int listId,
       Value<int?> productId,
       required String name,
@@ -11851,6 +12805,7 @@ typedef $$PlannedItemsTableCreateCompanionBuilder =
 typedef $$PlannedItemsTableUpdateCompanionBuilder =
     PlannedItemsCompanion Function({
       Value<int> id,
+      Value<int?> createdByReceiptId,
       Value<int> listId,
       Value<int?> productId,
       Value<String> name,
@@ -11875,6 +12830,24 @@ typedef $$PlannedItemsTableUpdateCompanionBuilder =
 final class $$PlannedItemsTableReferences
     extends BaseReferences<_$AppDatabase, $PlannedItemsTable, PlannedItem> {
   $$PlannedItemsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ReceiptsTable _createdByReceiptIdTable(_$AppDatabase db) => db
+      .receipts
+      .createAlias('planned_items__created_by_receipt_id__receipts__id');
+
+  $$ReceiptsTableProcessedTableManager? get createdByReceiptId {
+    final $_column = $_itemColumn<int>('created_by_receipt_id');
+    if ($_column == null) return null;
+    final manager = $$ReceiptsTableTableManager(
+      $_db,
+      $_db.receipts,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_createdByReceiptIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
 
   static $ShoppingListsTable _listIdTable(_$AppDatabase db) => db.shoppingLists
       .createAlias('planned_items__list_id__shopping_lists__id');
@@ -12084,6 +13057,29 @@ class $$PlannedItemsTableFilterComposer
     column: $table.updatedAt,
     builder: (column) => ColumnFilters(column),
   );
+
+  $$ReceiptsTableFilterComposer get createdByReceiptId {
+    final $$ReceiptsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.createdByReceiptId,
+      referencedTable: $db.receipts,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ReceiptsTableFilterComposer(
+            $db: $db,
+            $table: $db.receipts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
 
   $$ShoppingListsTableFilterComposer get listId {
     final $$ShoppingListsTableFilterComposer composer = $composerBuilder(
@@ -12318,6 +13314,29 @@ class $$PlannedItemsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  $$ReceiptsTableOrderingComposer get createdByReceiptId {
+    final $$ReceiptsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.createdByReceiptId,
+      referencedTable: $db.receipts,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ReceiptsTableOrderingComposer(
+            $db: $db,
+            $table: $db.receipts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
   $$ShoppingListsTableOrderingComposer get listId {
     final $$ShoppingListsTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -12484,6 +13503,29 @@ class $$PlannedItemsTableAnnotationComposer
   GeneratedColumn<DateTime> get updatedAt =>
       $composableBuilder(column: $table.updatedAt, builder: (column) => column);
 
+  $$ReceiptsTableAnnotationComposer get createdByReceiptId {
+    final $$ReceiptsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.createdByReceiptId,
+      referencedTable: $db.receipts,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ReceiptsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.receipts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
   $$ShoppingListsTableAnnotationComposer get listId {
     final $$ShoppingListsTableAnnotationComposer composer = $composerBuilder(
       composer: this,
@@ -12642,6 +13684,7 @@ class $$PlannedItemsTableTableManager
           (PlannedItem, $$PlannedItemsTableReferences),
           PlannedItem,
           PrefetchHooks Function({
+            bool createdByReceiptId,
             bool listId,
             bool productId,
             bool categoryId,
@@ -12664,6 +13707,7 @@ class $$PlannedItemsTableTableManager
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
+                Value<int?> createdByReceiptId = const Value.absent(),
                 Value<int> listId = const Value.absent(),
                 Value<int?> productId = const Value.absent(),
                 Value<String> name = const Value.absent(),
@@ -12685,6 +13729,7 @@ class $$PlannedItemsTableTableManager
                 Value<DateTime> updatedAt = const Value.absent(),
               }) => PlannedItemsCompanion(
                 id: id,
+                createdByReceiptId: createdByReceiptId,
                 listId: listId,
                 productId: productId,
                 name: name,
@@ -12708,6 +13753,7 @@ class $$PlannedItemsTableTableManager
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
+                Value<int?> createdByReceiptId = const Value.absent(),
                 required int listId,
                 Value<int?> productId = const Value.absent(),
                 required String name,
@@ -12729,6 +13775,7 @@ class $$PlannedItemsTableTableManager
                 Value<DateTime> updatedAt = const Value.absent(),
               }) => PlannedItemsCompanion.insert(
                 id: id,
+                createdByReceiptId: createdByReceiptId,
                 listId: listId,
                 productId: productId,
                 name: name,
@@ -12759,6 +13806,7 @@ class $$PlannedItemsTableTableManager
               .toList(),
           prefetchHooksCallback:
               ({
+                createdByReceiptId = false,
                 listId = false,
                 productId = false,
                 categoryId = false,
@@ -12788,6 +13836,17 @@ class $$PlannedItemsTableTableManager
                           dynamic
                         >
                       >(state) {
+                        if (createdByReceiptId) {
+                          state = state.withJoin(
+                            currentTable: table,
+                            currentColumn: table.createdByReceiptId,
+                            referencedTable: $$PlannedItemsTableReferences
+                                ._createdByReceiptIdTable(db),
+                            referencedColumn: $$PlannedItemsTableReferences
+                                ._createdByReceiptIdTable(db)
+                                .id,
+                          ) as T;
+                        }
                         if (listId) {
                           state = state.withJoin(
                             currentTable: table,
@@ -12900,802 +13959,11 @@ typedef $$PlannedItemsTableProcessedTableManager =
       (PlannedItem, $$PlannedItemsTableReferences),
       PlannedItem,
       PrefetchHooks Function({
+        bool createdByReceiptId,
         bool listId,
         bool productId,
         bool categoryId,
         bool aisleId,
-        bool purchaseEntriesRefs,
-        bool receiptCandidateLinesRefs,
-      })
-    >;
-typedef $$ReceiptsTableCreateCompanionBuilder = ReceiptsCompanion Function({
-  Value<int> id,
-  Value<int?> listId,
-  Value<List<String>> imagePaths,
-  Value<String?> rawOcrText,
-  Value<String?> detectedStore,
-  Value<String?> confirmedStore,
-  Value<DateTime?> detectedAt,
-  Value<DateTime?> confirmedAt,
-  Value<String?> detectedCurrency,
-  Value<String?> confirmedCurrency,
-  Value<int?> detectedTotalMinorUnits,
-  Value<int?> confirmedTotalMinorUnits,
-  Value<String?> parserVersion,
-  Value<String?> documentNumber,
-  Value<String?> identityKey,
-  Value<String?> captureDataJson,
-  Value<String> processingStatus,
-  Value<DateTime> createdAt,
-});
-typedef $$ReceiptsTableUpdateCompanionBuilder = ReceiptsCompanion Function({
-  Value<int> id,
-  Value<int?> listId,
-  Value<List<String>> imagePaths,
-  Value<String?> rawOcrText,
-  Value<String?> detectedStore,
-  Value<String?> confirmedStore,
-  Value<DateTime?> detectedAt,
-  Value<DateTime?> confirmedAt,
-  Value<String?> detectedCurrency,
-  Value<String?> confirmedCurrency,
-  Value<int?> detectedTotalMinorUnits,
-  Value<int?> confirmedTotalMinorUnits,
-  Value<String?> parserVersion,
-  Value<String?> documentNumber,
-  Value<String?> identityKey,
-  Value<String?> captureDataJson,
-  Value<String> processingStatus,
-  Value<DateTime> createdAt,
-});
-
-final class $$ReceiptsTableReferences
-    extends BaseReferences<_$AppDatabase, $ReceiptsTable, Receipt> {
-  $$ReceiptsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $ShoppingListsTable _listIdTable(_$AppDatabase db) =>
-      db.shoppingLists.createAlias('receipts__list_id__shopping_lists__id');
-
-  $$ShoppingListsTableProcessedTableManager? get listId {
-    final $_column = $_itemColumn<int>('list_id');
-    if ($_column == null) return null;
-    final manager = $$ShoppingListsTableTableManager(
-      $_db,
-      $_db.shoppingLists,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_listIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static MultiTypedResultKey<$PurchaseEntriesTable, List<PurchaseEntry>>
-  _purchaseEntriesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
-    db.purchaseEntries,
-    aliasName: 'receipts__id__purchase_entries__receipt_id',
-  );
-
-  $$PurchaseEntriesTableProcessedTableManager get purchaseEntriesRefs {
-    final manager = $$PurchaseEntriesTableTableManager(
-      $_db,
-      $_db.purchaseEntries,
-    ).filter((f) => f.receiptId.id.sqlEquals($_itemColumn<int>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _purchaseEntriesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $ReceiptCandidateLinesTable,
-    List<ReceiptCandidateLine>
-  >
-  _receiptCandidateLinesRefsTable(_$AppDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.receiptCandidateLines,
-        aliasName: 'receipts__id__receipt_candidate_lines__receipt_id',
-      );
-
-  $$ReceiptCandidateLinesTableProcessedTableManager
-  get receiptCandidateLinesRefs {
-    final manager = $$ReceiptCandidateLinesTableTableManager(
-      $_db,
-      $_db.receiptCandidateLines,
-    ).filter((f) => f.receiptId.id.sqlEquals($_itemColumn<int>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _receiptCandidateLinesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
-
-class $$ReceiptsTableFilterComposer
-    extends Composer<_$AppDatabase, $ReceiptsTable> {
-  $$ReceiptsTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnWithTypeConverterFilters<List<String>, List<String>, String>
-  get imagePaths => $composableBuilder(
-    column: $table.imagePaths,
-    builder: (column) => ColumnWithTypeConverterFilters(column),
-  );
-
-  ColumnFilters<String> get rawOcrText => $composableBuilder(
-    column: $table.rawOcrText,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get detectedStore => $composableBuilder(
-    column: $table.detectedStore,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get confirmedStore => $composableBuilder(
-    column: $table.confirmedStore,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<DateTime> get detectedAt => $composableBuilder(
-    column: $table.detectedAt,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<DateTime> get confirmedAt => $composableBuilder(
-    column: $table.confirmedAt,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get detectedCurrency => $composableBuilder(
-    column: $table.detectedCurrency,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get confirmedCurrency => $composableBuilder(
-    column: $table.confirmedCurrency,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get detectedTotalMinorUnits => $composableBuilder(
-    column: $table.detectedTotalMinorUnits,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get confirmedTotalMinorUnits => $composableBuilder(
-    column: $table.confirmedTotalMinorUnits,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get parserVersion => $composableBuilder(
-    column: $table.parserVersion,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get documentNumber => $composableBuilder(
-    column: $table.documentNumber,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get identityKey => $composableBuilder(
-    column: $table.identityKey,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get captureDataJson => $composableBuilder(
-    column: $table.captureDataJson,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get processingStatus => $composableBuilder(
-    column: $table.processingStatus,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  $$ShoppingListsTableFilterComposer get listId {
-    final $$ShoppingListsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.listId,
-      referencedTable: $db.shoppingLists,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ShoppingListsTableFilterComposer(
-            $db: $db,
-            $table: $db.shoppingLists,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<bool> purchaseEntriesRefs(
-    Expression<bool> Function($$PurchaseEntriesTableFilterComposer f) f,
-  ) {
-    final $$PurchaseEntriesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.purchaseEntries,
-      getReferencedColumn: (t) => t.receiptId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PurchaseEntriesTableFilterComposer(
-            $db: $db,
-            $table: $db.purchaseEntries,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> receiptCandidateLinesRefs(
-    Expression<bool> Function($$ReceiptCandidateLinesTableFilterComposer f) f,
-  ) {
-    final $$ReceiptCandidateLinesTableFilterComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.receiptCandidateLines,
-          getReferencedColumn: (t) => t.receiptId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$ReceiptCandidateLinesTableFilterComposer(
-                $db: $db,
-                $table: $db.receiptCandidateLines,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-}
-
-class $$ReceiptsTableOrderingComposer
-    extends Composer<_$AppDatabase, $ReceiptsTable> {
-  $$ReceiptsTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get imagePaths => $composableBuilder(
-    column: $table.imagePaths,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get rawOcrText => $composableBuilder(
-    column: $table.rawOcrText,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get detectedStore => $composableBuilder(
-    column: $table.detectedStore,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get confirmedStore => $composableBuilder(
-    column: $table.confirmedStore,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<DateTime> get detectedAt => $composableBuilder(
-    column: $table.detectedAt,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<DateTime> get confirmedAt => $composableBuilder(
-    column: $table.confirmedAt,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get detectedCurrency => $composableBuilder(
-    column: $table.detectedCurrency,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get confirmedCurrency => $composableBuilder(
-    column: $table.confirmedCurrency,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get detectedTotalMinorUnits => $composableBuilder(
-    column: $table.detectedTotalMinorUnits,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get confirmedTotalMinorUnits => $composableBuilder(
-    column: $table.confirmedTotalMinorUnits,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get parserVersion => $composableBuilder(
-    column: $table.parserVersion,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get documentNumber => $composableBuilder(
-    column: $table.documentNumber,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get identityKey => $composableBuilder(
-    column: $table.identityKey,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get captureDataJson => $composableBuilder(
-    column: $table.captureDataJson,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get processingStatus => $composableBuilder(
-    column: $table.processingStatus,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  $$ShoppingListsTableOrderingComposer get listId {
-    final $$ShoppingListsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.listId,
-      referencedTable: $db.shoppingLists,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ShoppingListsTableOrderingComposer(
-            $db: $db,
-            $table: $db.shoppingLists,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-}
-
-class $$ReceiptsTableAnnotationComposer
-    extends Composer<_$AppDatabase, $ReceiptsTable> {
-  $$ReceiptsTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  GeneratedColumn<int> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumnWithTypeConverter<List<String>, String> get imagePaths =>
-      $composableBuilder(
-        column: $table.imagePaths,
-        builder: (column) => column,
-      );
-
-  GeneratedColumn<String> get rawOcrText => $composableBuilder(
-    column: $table.rawOcrText,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get detectedStore => $composableBuilder(
-    column: $table.detectedStore,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get confirmedStore => $composableBuilder(
-    column: $table.confirmedStore,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<DateTime> get detectedAt => $composableBuilder(
-    column: $table.detectedAt,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<DateTime> get confirmedAt => $composableBuilder(
-    column: $table.confirmedAt,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get detectedCurrency => $composableBuilder(
-    column: $table.detectedCurrency,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get confirmedCurrency => $composableBuilder(
-    column: $table.confirmedCurrency,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<int> get detectedTotalMinorUnits => $composableBuilder(
-    column: $table.detectedTotalMinorUnits,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<int> get confirmedTotalMinorUnits => $composableBuilder(
-    column: $table.confirmedTotalMinorUnits,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get parserVersion => $composableBuilder(
-    column: $table.parserVersion,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get documentNumber => $composableBuilder(
-    column: $table.documentNumber,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get identityKey => $composableBuilder(
-    column: $table.identityKey,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get captureDataJson => $composableBuilder(
-    column: $table.captureDataJson,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get processingStatus => $composableBuilder(
-    column: $table.processingStatus,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<DateTime> get createdAt =>
-      $composableBuilder(column: $table.createdAt, builder: (column) => column);
-
-  $$ShoppingListsTableAnnotationComposer get listId {
-    final $$ShoppingListsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.listId,
-      referencedTable: $db.shoppingLists,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ShoppingListsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.shoppingLists,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<T> purchaseEntriesRefs<T extends Object>(
-    Expression<T> Function($$PurchaseEntriesTableAnnotationComposer a) f,
-  ) {
-    final $$PurchaseEntriesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.purchaseEntries,
-      getReferencedColumn: (t) => t.receiptId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$PurchaseEntriesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.purchaseEntries,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> receiptCandidateLinesRefs<T extends Object>(
-    Expression<T> Function($$ReceiptCandidateLinesTableAnnotationComposer a) f,
-  ) {
-    final $$ReceiptCandidateLinesTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.receiptCandidateLines,
-          getReferencedColumn: (t) => t.receiptId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$ReceiptCandidateLinesTableAnnotationComposer(
-                $db: $db,
-                $table: $db.receiptCandidateLines,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-}
-
-class $$ReceiptsTableTableManager
-    extends
-        RootTableManager<
-          _$AppDatabase,
-          $ReceiptsTable,
-          Receipt,
-          $$ReceiptsTableFilterComposer,
-          $$ReceiptsTableOrderingComposer,
-          $$ReceiptsTableAnnotationComposer,
-          $$ReceiptsTableCreateCompanionBuilder,
-          $$ReceiptsTableUpdateCompanionBuilder,
-          (Receipt, $$ReceiptsTableReferences),
-          Receipt,
-          PrefetchHooks Function({
-            bool listId,
-            bool purchaseEntriesRefs,
-            bool receiptCandidateLinesRefs,
-          })
-        > {
-  $$ReceiptsTableTableManager(_$AppDatabase db, $ReceiptsTable table)
-    : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$ReceiptsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$ReceiptsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$ReceiptsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<int?> listId = const Value.absent(),
-                Value<List<String>> imagePaths = const Value.absent(),
-                Value<String?> rawOcrText = const Value.absent(),
-                Value<String?> detectedStore = const Value.absent(),
-                Value<String?> confirmedStore = const Value.absent(),
-                Value<DateTime?> detectedAt = const Value.absent(),
-                Value<DateTime?> confirmedAt = const Value.absent(),
-                Value<String?> detectedCurrency = const Value.absent(),
-                Value<String?> confirmedCurrency = const Value.absent(),
-                Value<int?> detectedTotalMinorUnits = const Value.absent(),
-                Value<int?> confirmedTotalMinorUnits = const Value.absent(),
-                Value<String?> parserVersion = const Value.absent(),
-                Value<String?> documentNumber = const Value.absent(),
-                Value<String?> identityKey = const Value.absent(),
-                Value<String?> captureDataJson = const Value.absent(),
-                Value<String> processingStatus = const Value.absent(),
-                Value<DateTime> createdAt = const Value.absent(),
-              }) => ReceiptsCompanion(
-                id: id,
-                listId: listId,
-                imagePaths: imagePaths,
-                rawOcrText: rawOcrText,
-                detectedStore: detectedStore,
-                confirmedStore: confirmedStore,
-                detectedAt: detectedAt,
-                confirmedAt: confirmedAt,
-                detectedCurrency: detectedCurrency,
-                confirmedCurrency: confirmedCurrency,
-                detectedTotalMinorUnits: detectedTotalMinorUnits,
-                confirmedTotalMinorUnits: confirmedTotalMinorUnits,
-                parserVersion: parserVersion,
-                documentNumber: documentNumber,
-                identityKey: identityKey,
-                captureDataJson: captureDataJson,
-                processingStatus: processingStatus,
-                createdAt: createdAt,
-              ),
-          createCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<int?> listId = const Value.absent(),
-                Value<List<String>> imagePaths = const Value.absent(),
-                Value<String?> rawOcrText = const Value.absent(),
-                Value<String?> detectedStore = const Value.absent(),
-                Value<String?> confirmedStore = const Value.absent(),
-                Value<DateTime?> detectedAt = const Value.absent(),
-                Value<DateTime?> confirmedAt = const Value.absent(),
-                Value<String?> detectedCurrency = const Value.absent(),
-                Value<String?> confirmedCurrency = const Value.absent(),
-                Value<int?> detectedTotalMinorUnits = const Value.absent(),
-                Value<int?> confirmedTotalMinorUnits = const Value.absent(),
-                Value<String?> parserVersion = const Value.absent(),
-                Value<String?> documentNumber = const Value.absent(),
-                Value<String?> identityKey = const Value.absent(),
-                Value<String?> captureDataJson = const Value.absent(),
-                Value<String> processingStatus = const Value.absent(),
-                Value<DateTime> createdAt = const Value.absent(),
-              }) => ReceiptsCompanion.insert(
-                id: id,
-                listId: listId,
-                imagePaths: imagePaths,
-                rawOcrText: rawOcrText,
-                detectedStore: detectedStore,
-                confirmedStore: confirmedStore,
-                detectedAt: detectedAt,
-                confirmedAt: confirmedAt,
-                detectedCurrency: detectedCurrency,
-                confirmedCurrency: confirmedCurrency,
-                detectedTotalMinorUnits: detectedTotalMinorUnits,
-                confirmedTotalMinorUnits: confirmedTotalMinorUnits,
-                parserVersion: parserVersion,
-                documentNumber: documentNumber,
-                identityKey: identityKey,
-                captureDataJson: captureDataJson,
-                processingStatus: processingStatus,
-                createdAt: createdAt,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable<$ReceiptsTable, Receipt>(table),
-                  $$ReceiptsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback:
-              ({
-                listId = false,
-                purchaseEntriesRefs = false,
-                receiptCandidateLinesRefs = false,
-              }) {
-                return PrefetchHooks(
-                  db: db,
-                  explicitlyWatchedTables: [
-                    if (purchaseEntriesRefs) db.purchaseEntries,
-                    if (receiptCandidateLinesRefs) db.receiptCandidateLines,
-                  ],
-                  addJoins:
-                      <
-                        T extends TableManagerState<
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic
-                        >
-                      >(state) {
-                        if (listId) {
-                          state = state.withJoin(
-                            currentTable: table,
-                            currentColumn: table.listId,
-                            referencedTable: $$ReceiptsTableReferences
-                                ._listIdTable(db),
-                            referencedColumn: $$ReceiptsTableReferences
-                                ._listIdTable(db)
-                                .id,
-                          ) as T;
-                        }
-
-                        return state;
-                      },
-                  getPrefetchedDataCallback: (items) async {
-                    return [
-                      if (purchaseEntriesRefs)
-                        await $_getPrefetchedData<
-                          Receipt,
-                          $ReceiptsTable,
-                          PurchaseEntry
-                        >(
-                          currentTable: table,
-                          referencedTable: $$ReceiptsTableReferences
-                              ._purchaseEntriesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$ReceiptsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).purchaseEntriesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.receiptId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                      if (receiptCandidateLinesRefs)
-                        await $_getPrefetchedData<
-                          Receipt,
-                          $ReceiptsTable,
-                          ReceiptCandidateLine
-                        >(
-                          currentTable: table,
-                          referencedTable: $$ReceiptsTableReferences
-                              ._receiptCandidateLinesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$ReceiptsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).receiptCandidateLinesRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.receiptId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
-                    ];
-                  },
-                );
-              },
-        ),
-      );
-}
-
-typedef $$ReceiptsTableProcessedTableManager =
-    ProcessedTableManager<
-      _$AppDatabase,
-      $ReceiptsTable,
-      Receipt,
-      $$ReceiptsTableFilterComposer,
-      $$ReceiptsTableOrderingComposer,
-      $$ReceiptsTableAnnotationComposer,
-      $$ReceiptsTableCreateCompanionBuilder,
-      $$ReceiptsTableUpdateCompanionBuilder,
-      (Receipt, $$ReceiptsTableReferences),
-      Receipt,
-      PrefetchHooks Function({
-        bool listId,
         bool purchaseEntriesRefs,
         bool receiptCandidateLinesRefs,
       })
@@ -16958,12 +17226,12 @@ class $AppDatabaseManager {
       $$AislesTableTableManager(_db, _db.aisles);
   $$ShoppingListsTableTableManager get shoppingLists =>
       $$ShoppingListsTableTableManager(_db, _db.shoppingLists);
+  $$ReceiptsTableTableManager get receipts =>
+      $$ReceiptsTableTableManager(_db, _db.receipts);
   $$ProductMemoryTableTableManager get productMemory =>
       $$ProductMemoryTableTableManager(_db, _db.productMemory);
   $$PlannedItemsTableTableManager get plannedItems =>
       $$PlannedItemsTableTableManager(_db, _db.plannedItems);
-  $$ReceiptsTableTableManager get receipts =>
-      $$ReceiptsTableTableManager(_db, _db.receipts);
   $$PurchaseEntriesTableTableManager get purchaseEntries =>
       $$PurchaseEntriesTableTableManager(_db, _db.purchaseEntries);
   $$ProductAliasesTableTableManager get productAliases =>

@@ -174,6 +174,14 @@ void main() {
       ..linkLine(0, item);
     addTearDown(second.dispose);
     await second.commit();
+    final receipts = await (db.select(
+      db.receipts,
+    )..where((t) => t.listId.equals(listId))).get();
+    expect(receipts, hasLength(2));
+    expect(
+      receipts.map((r) => r.confirmedStore),
+      containsAll(['A101 MARKET', 'BİM MARKET']),
+    );
     final entries = await db.select(db.purchaseEntries).get();
     expect(entries, hasLength(3));
     expect(

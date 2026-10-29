@@ -4,6 +4,7 @@ import 'package:drift/drift.dart';
 
 import '../../data/db/app_database.dart';
 import 'receipt_document.dart';
+import 'receipt_repository.dart';
 
 final class ReceiptDraft {
   const ReceiptDraft({
@@ -77,7 +78,7 @@ class ReceiptDraftRepository {
       )..where((t) => t.id.equals(draftId))).getSingleOrNull();
       if (existing == null ||
           existing.processingStatus != 'pending' ||
-          existing.listId != listId ||
+          (existing.listId != null && existing.listId != listId) ||
           existing.identityKey != null) {
         throw StateError('Receipt draft is no longer editable');
       }
@@ -116,12 +117,7 @@ class ReceiptDraftRepository {
     ];
   }
 
-  Future<void> discard(int draftId) =>
-      (_db.delete(_db.receipts)..where(
-            (t) =>
-                t.id.equals(draftId) &
-                t.processingStatus.equals('pending') &
-                t.identityKey.isNull(),
-          ))
-          .go();
+  Future<void> discard(int draftId) async {
+    await ReceiptRepository(_db).delete(draftId, pendingOnly: true);
+  }
 }

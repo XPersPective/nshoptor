@@ -186,6 +186,7 @@ class BackupRepository {
         'plannedItemId': 'plannedItems',
         'linkedPlannedItemId': 'plannedItems',
         'receiptId': 'receipts',
+        'createdByReceiptId': 'receipts',
         'purchaseEntryId': 'purchaseEntries',
       };
       const decimals = {
@@ -224,10 +225,16 @@ class BackupRepository {
           }
           final receipt = sections['receipts']?[row['receiptId']];
           final listId = row['listId'] ?? receipt?['listId'];
+          final creator = sections['receipts']?[row['createdByReceiptId']];
+          if (row['createdByReceiptId'] != null &&
+              creator?['listId'] != listId) {
+            throw const FormatException('receipt creator must own the list');
+          }
           for (final field in [
             'plannedItemId',
             'linkedPlannedItemId',
             'receiptId',
+            'createdByReceiptId',
           ]) {
             final parent = sections[references[field]]?[row[field]];
             if (listId != null &&
@@ -321,6 +328,18 @@ class BackupRepository {
       } else {
         await _importSeparate(data);
       }
+      // Merge retains local-only children. Validate the resulting relation,
+      // not just the incoming snapshot, before committing any writes.
+      final foreignCreators = await _db
+          .customSelect(
+            'SELECT p.id FROM planned_items p JOIN receipts r '
+            'ON r.id = p.created_by_receipt_id '
+            'WHERE r.list_id IS NULL OR r.list_id != p.list_id LIMIT 1',
+          )
+          .get();
+      if (foreignCreators.isNotEmpty) {
+        throw const FormatException('cross-list receipt creator after restore');
+      }
     });
     return preview;
   }
@@ -358,14 +377,20 @@ class BackupRepository {
       ShoppingList.fromJson,
     );
     await put(
-      _db.plannedItems,
-      data['plannedItems'] as List<dynamic>?,
-      PlannedItem.fromJson,
-    );
-    await put(
       _db.receipts,
       data['receipts'] as List<dynamic>?,
       _receiptFromJson,
+    );
+    await put(
+      _db.plannedItems,
+      data['plannedItems'] as List<dynamic>?,
+      (json) => PlannedItem.fromJson(json)
+          .toCompanion(false)
+          .copyWith(
+            createdByReceiptId: json.containsKey('createdByReceiptId')
+                ? Value(json['createdByReceiptId'] as int?)
+                : const Value.absent(),
+          ),
     );
     await put(
       _db.purchaseEntries,
@@ -463,6 +488,14 @@ class BackupRepository {
       await _db.into(_db.aisles).insert(Aisle.fromJson(json));
     }
 
+    // Receipt creators must exist before their planned rows.
+    next = await _nextId(_db.receipts);
+    for (final json in _asMaps(data['receipts'])) {
+      allocate(receiptIds, json, next++);
+      json['listId'] = remap(listIds, json['listId']);
+      await _db.into(_db.receipts).insert(_receiptFromJson(json));
+    }
+
     // 4) planlanan ürünler
     next = await _nextId(_db.plannedItems);
     for (final json in _asMaps(data['plannedItems'])) {
@@ -472,15 +505,11 @@ class BackupRepository {
       json['productId'] = remap(productIds, json['productId']);
       json['categoryId'] = remap(categoryIds, json['categoryId']);
       json['aisleId'] = remap(aisleIds, json['aisleId']);
+      json['createdByReceiptId'] = remap(
+        receiptIds,
+        json['createdByReceiptId'],
+      );
       await _db.into(_db.plannedItems).insert(PlannedItem.fromJson(json));
-    }
-
-    // Fişler satın alım kayıtlarından önce: receiptId FK'sı hazır olmalı.
-    next = await _nextId(_db.receipts);
-    for (final json in _asMaps(data['receipts'])) {
-      allocate(receiptIds, json, next++);
-      json['listId'] = remap(listIds, json['listId']);
-      await _db.into(_db.receipts).insert(_receiptFromJson(json));
     }
 
     // 5) satın alım kayıtları (yeni id tahsisi ile)
