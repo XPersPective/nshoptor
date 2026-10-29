@@ -64,7 +64,7 @@ jobs:
       IOS_ASC_KEY_ID: ${{ secrets.NSHOPTOR_ASC_KEY_ID }}
       IOS_ASC_ISSUER_ID: ${{ secrets.NSHOPTOR_ASC_ISSUER_ID }}
       IOS_VERSION: 1.3.1
-      IOS_BUILD_NUMBER: '26'
+      IOS_BUILD_NUMBER: '27'
       IOS_PROFILE_NAME: NShoptor AppStore
 
     steps:
@@ -84,7 +84,7 @@ jobs:
           [[ "$actual_sha" == "$EXPECTED_SHA" ]] || { echo 'Checked-out source does not match expected_sha'; exit 1; }
           printf 'IOS_RELEASE_TEMP=%s/nshoptor-ios-release\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
           printf 'IOS_KEYCHAIN_PATH=%s/nshoptor-ios-release.keychain-db\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
-          grep -Eq '^version:[[:space:]]*1\.3\.1\+26[[:space:]]*$' pubspec.yaml || { echo 'Source version must be 1.3.1+26 for this candidate'; exit 1; }
+          grep -Eq '^version:[[:space:]]*1\.3\.1\+27[[:space:]]*$' pubspec.yaml || { echo 'Source version must be 1.3.1+27 for this candidate'; exit 1; }
           test -d "$DEVELOPER_DIR"
           xcode_version="$(xcodebuild -version)"
           grep -Fq 'Xcode 26.3' <<< "$xcode_version" || { echo 'Xcode 26.3 is required'; exit 1; }
@@ -207,7 +207,7 @@ jobs:
       - name: Retain only signed IPA and sanitized receipt for one day
         uses: actions/upload-artifact@v4
         with:
-          name: signed-ios-26
+          name: signed-ios-27
           path: |
             build/ios/ipa/*.ipa
             ${{ runner.temp }}/nshoptor-ios-release/verification.json

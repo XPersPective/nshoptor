@@ -1,6 +1,8 @@
 from pathlib import Path
 import html
 import json
+from locale_data import (LANGUAGES, RTL, canonical as locale_canonical, direction,
+                         hreflang_links, language_chooser, relative_page, translation)
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = 'https://xperspective.github.io/nshoptor/'
@@ -34,7 +36,7 @@ COPY = {
    ['İnternet olmadan kullanabilir miyim?','Temel listeler ve kaydettiğiniz fiyatlar cihazınızda tutulur. Yapay zeka yardımı, satın alma ve mağaza bağlantıları internet ister. Ses tanıma ve metin okuma, cihazın desteklediği dil ve kurulu modellere bağlıdır; gerekirse elle giriş yapabilirsiniz.'],
    ['Evdeki fiyatı girmem gerekiyor mu?','Hayır. Doğrudan market fiyatını yazabilirsiniz. Market fiyatı doluysa ürün alındı olarak görünür; 0 geçerlidir. Alanı tamamen temizlerseniz otomatik alındı durumu kalkar. Evdeki fiyat tek başına ürünü alındı yapmaz.'],
    ['Fiş ve raf etiketi okumaya güvenebilir miyim?','Okunan metin ve yapay zekanın önerileri hatalı olabilir. Ürünleri, miktarları ve özellikle birim/toplam tutarları kaydetmeden doğrulayın. Işık, bulanıklık ve baskı düzeni sonucu etkiler.'],
-   ['Yapay zekaya hangi bilgiler gönderiliyor?','Yapay zeka yardımı isteğe bağlıdır; Ayarlar bölümünden kapatabilirsiniz. Kullanıldığında seçili görev metni ve dil sunucu üzerinden sağlayıcıya gönderilir. Sunucu kota ve satın alma doğrulaması için ek kayıtlar işler. Ayrıntılı veri akışı ve saklama bilgileri gizlilik politikasındadır.'],
+   ['Yapay zekaya hangi bilgiler gönderiliyor?','Yapay zeka yardımı isteğe bağlıdır; Ayarlar bölümünden kapatabilirsiniz. Kullanıldığında küçültülmüş fiş/etiket fotoğrafları (JPEG) veya seçili görev metni ve dil sunucu üzerinden sağlayıcıya gönderilir; Worker bunları kalıcı kaydetmez. Sunucu kota ve satın alma doğrulaması için ek kayıtlar işler. Ayrıntılı veri akışı ve saklama bilgileri gizlilik politikasındadır.'],
    ['Rapor ve yedekleme ücretsiz mi?','Alışveriş özeti, PDF ve CSV raporları temel özelliklerdendir. JSON yedekleme ve geri yükleme Pro hakkına dahildir; mevcut Max hakları da korunur. Satın almadan önce uygulamadaki güncel özellikleri ve Google Play fiyatını inceleyin.'],
    ['Ücretli planlar nasıl çalışır?','Yeni ücretli teklif yalnız yıllık Pro aboneliğidir: geçerli yerel vergiler öncesi baz fiyat yılda 1 ABD dolarıdır. Pro, her ay 100 yapay zeka isteği, reklamsız kullanım ve JSON yedekleme/geri yükleme içerir. Ücretsiz plan ayda 10 istek sunar. Yerelleştirilmiş nihai fiyat ve geçerli vergiler satın almadan önce Google Play’de gösterilir; her ülkede ödenecek tutarın tam 1 ABD doları olması garanti edilmez. İptal edilene kadar her yıl otomatik yenilenir. Aboneliğinizi Google Play’den yönetebilir veya iptal edebilirsiniz. Mevcut Pro/Max hakları ve satın almaları geri yükleme desteği korunur.'],
    ['iPhone veya Android için nereden edinebilirim?','Android mağaza adresini aşağıdan kontrol edebilirsiniz. Herkese açık indirme durumu bu sitede henüz doğrulanmamıştır; erişim test hesabına veya ülkeye bağlı olabilir. Doğrulanmış bir App Store ürün bağlantısı bulunmadığından iOS indirme düğmesi sunulmuyor.']],
@@ -70,7 +72,7 @@ COPY = {
    ['Can I use it offline?','Basic lists and recorded prices stay on your device. AI help, purchases and store links need internet. Speech recognition and text reading depend on your device’s supported languages and installed models. Manual entry remains available.'],
    ['Do I need to enter a home price?','No. You can enter a market price directly. Any recorded market price marks the item purchased, including 0. Clearing the field removes the automatic purchased state. A home price alone does not mark an item purchased.'],
    ['Can I rely on receipt and shelf-label reading?','Text recognition and AI suggestions can make mistakes. Check products, quantities and especially unit versus total amounts before saving. Lighting, blur and print layouts can affect the result.'],
-   ['What is sent to AI?','AI help is optional and can be switched off in Settings. When used, selected task text and language are sent through our server to the provider. The server also processes quota and purchase-verification metadata. See the privacy policy for the full data flow and retention details.'],
+   ['What is sent to AI?','AI help is optional and can be switched off in Settings. When used, reduced-size receipt/label photos (JPEG) or selected task text and language are sent through our server to the provider; our Worker never stores them. The server also processes quota and purchase-verification metadata. See the privacy policy for the full data flow and retention details.'],
    ['Are reports and backups free?','Shopping summaries, PDF and CSV reports are core features. JSON backup and restore are included in Pro; existing Max access is also preserved. Check the current features in the app and the Google Play price before purchasing.'],
    ['How do paid plans work?','The only new paid offer is an annual Pro subscription: USD 1 per year base price before applicable local taxes. Pro includes 100 AI requests each month, no ads, and JSON backup and restore. Free includes 10 requests each month. Google Play shows the final localized price and applicable taxes before purchase; the payable amount is not guaranteed to be exactly USD 1 in every country. It renews automatically each year until cancelled. Manage or cancel in Google Play. Existing Pro/Max rights and purchase restoration remain supported.'],
    ['Where can I get it for Android or iPhone?','Check the Android store address below. Public download availability has not been verified on this site; access may depend on a test account or country. No verified App Store product link is available, so an iOS download button is not offered.']],
@@ -92,16 +94,14 @@ def build(lang,c):
  faqs = ''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs'])
  rows = ''.join(f'<div class="demo-row"><span class="circle checked" aria-hidden="true">✓</span><div class="product"><strong>{esc(c["names"][i])}</strong><small>{esc(c["units"][i])}</small></div><span class="price">{amount}</span></div>' for i,amount in [(1,'40,00 ₺' if lang=='tr' else 'TRY 40.00'),(2,'34,50 ₺' if lang=='tr' else 'TRY 34.50')])
  return f'''<!doctype html>
-<html lang="{lang}">
+<html lang="{lang}" dir="ltr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(c['title'])}</title>
 <meta name="description" content="{esc(c['description'])}">
 <meta name="theme-color" content="#17392e">
 <link rel="canonical" href="{canonical}">
-<link rel="alternate" hreflang="tr" href="{BASE}">
-<link rel="alternate" hreflang="en" href="{BASE}en/">
-<link rel="alternate" hreflang="x-default" href="{BASE}">
+{hreflang_links()}
 <meta property="og:type" content="website"><meta property="og:site_name" content="NShoptor">
 <meta property="og:title" content="{esc(c['title'])}"><meta property="og:description" content="{esc(c['description'])}">
 <meta property="og:url" content="{canonical}"><meta property="og:locale" content="{'tr_TR' if lang=='tr' else 'en_GB'}">
@@ -115,6 +115,7 @@ def build(lang,c):
 <a class="skip" href="#main">{esc(c['skip'])}</a>
 <div class="wrap">
 <header><a class="brand" href="{prefix or './'}" aria-label="NShoptor"><img src="{prefix}assets/icon.png" width="34" height="34" alt="">NShoptor</a><nav aria-label="{'Ana gezinme' if lang=='tr' else 'Main navigation'}"><a class="guide-link" href="#guide">{esc(c['guide'])}</a><a href="#download">{esc(c['download'])}</a><a class="language" lang="{c['other_lang']}" hreflang="{c['other_lang']}" href="{prefix + c['other_path'] or './'}">{esc(c['other'])}</a></nav></header>
+{language_chooser(lang)}
 <main id="main">
 <section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">{esc(c['eyebrow'])}</p><h1 id="hero-title">{c['headline']}</h1><p class="lead">{esc(c['lead'])}</p><a class="button" href="#guide">{esc(c['cta'])}<span aria-hidden="true">↗</span></a><p class="micro">{esc(c['note'])}</p></div>
 <div class="demo-stage"><div class="demo"><div class="demo-top"><span>{esc(c['demo_label'])}</span><span aria-hidden="true">↗</span></div><h2>{esc(c['demo_date'])}</h2><p class="demo-sub">{esc(c['demo_sub'])}</p><div class="demo-row"><span class="circle" data-circle role="img" aria-label="{'Alınmadı' if lang=='tr' else 'Not purchased'}"></span><div class="product"><strong>{esc(c['names'][0])}</strong><small>{esc(c['units'][0])}</small></div><span class="price" data-price>—</span></div>{rows}<label for="market-price">{esc(c['input'])}</label><div class="price-input"><input id="market-price" data-market-price type="text" inputmode="decimal" autocomplete="off" maxlength="9" aria-describedby="price-hint price-status" placeholder="{'85,50' if lang=='tr' else '85.50'}"><span aria-hidden="true">₺</span></div><p id="price-hint" class="micro">{esc(c['hint'])}</p><p id="price-status" class="demo-status" data-status aria-live="polite">{'Market fiyatı henüz yok. Ürün tiksiz.' if lang=='tr' else 'No market price yet. The item is not checked.'}</p><div class="demo-total"><span>{esc(c['sum'])}</span><strong data-total>{'74,50 ₺' if lang=='tr' else 'TRY 74.50'}</strong></div><noscript><p class="micro">{'Bu örneği etkileşimli kullanmak için JavaScript gerekir.' if lang=='tr' else 'JavaScript is needed for the interactive example.'}</p></noscript></div><p class="demo-caption">{esc(c['caption'])}</p></div></section>
@@ -127,9 +128,66 @@ def build(lang,c):
 <footer><span>{esc(c['footer'])}</span><div><a href="{PRIVACY}">{esc(c['privacy'])}</a><a href="mailto:devcrazypenguin@gmail.com">{esc(c['contact'])}</a><a href="https://github.com/XPersPective/nshoptor">{esc(c['source'])}</a></div></footer>
 </div></body></html>'''
 
+def build_localized(lang):
+ c = translation(lang)
+ canonical = locale_canonical(lang)
+ title = f'NShoptor — {c["slogan"]}'
+ description = c['aboutBody']
+ schema = {'@context':'https://schema.org','@type':'WebSite','name':'NShoptor',
+           'url':canonical,'inLanguage':lang,'description':description,
+           'publisher':{'@type':'Organization','name':'Crazy Penguin'}}
+ guides = [('itemFormTitle','guideAddBody'), ('voiceInputTitle','guideVoiceBody'),
+           ('priceCandidatesTitle','guidePricesBody'), ('receiptReviewTitle','guideReceiptBody')]
+ steps = ''.join(f'<article class="step"><span class="number" aria-hidden="true">0{i}</span><h3>{esc(c[heading])}</h3><p data-source="{body}">{esc(c[body])}</p></article>'
+                 for i,(heading,body) in enumerate(guides,1))
+ plans = ''.join(f'<p data-source="{key}">{esc(c[key])}</p>' for key in ('plansLegal','planLegacyRights'))
+ schema_json = json.dumps(schema, ensure_ascii=False).replace('<','\\u003c')
+ return f'''<!doctype html>
+<html lang="{lang}" dir="{direction(lang)}">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{esc(title)}</title><meta name="description" content="{esc(description)}">
+<meta name="theme-color" content="#17392e"><link rel="canonical" href="{canonical}">
+{hreflang_links()}
+<meta property="og:type" content="website"><meta property="og:site_name" content="NShoptor">
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{canonical}">
+<meta property="og:locale" content="{lang}"><meta property="og:image" content="{BASE}assets/social.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="NShoptor">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/icon.png"><link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">{schema_json}</script>
+</head><body class="localized-page">
+<a class="skip" href="#main">{esc(c['howToUseLabel'])}</a>
+<div class="wrap">
+<header><a class="brand" href="./" aria-label="NShoptor"><img src="../assets/icon.png" width="34" height="34" alt=""><bdi>NShoptor</bdi></a><nav aria-label="{esc(c['howToUseLabel'])}"><a href="#guide">{esc(c['howToUseLabel'])}</a><a href="#plans">{esc(c['plansTitle'])}</a></nav></header>
+{language_chooser(lang)}
+<main id="main">
+<section class="localized-hero" aria-labelledby="hero-title"><p class="eyebrow"><bdi>NShoptor · Crazy Penguin</bdi></p><h1 id="hero-title" data-source="slogan">{esc(c['slogan'])}</h1><p class="lead" data-source="aboutBody">{esc(description)}</p><a class="button" href="#guide">{esc(c['howToUseLabel'])}<span aria-hidden="true">↓</span></a></section>
+<section class="section" id="guide" aria-labelledby="guide-title"><h2 id="guide-title">{esc(c['howToUseLabel'])}</h2><div class="steps localized-steps">{steps}</div></section>
+<section class="localized-plans" id="plans" aria-labelledby="plans-title"><h2 id="plans-title">{esc(c['plansTitle'])}</h2><div class="plan-grid"><article><h3>{esc(c['planFree'])}</h3><p data-source="planFreeAi">{esc(c['planFreeAi'])}</p></article><article><h3><bdi>Pro</bdi></h3><p data-source="planProAi">{esc(c['planProAi'])}</p><p data-source="planNoAds">{esc(c['planNoAds'])}</p><p data-source="planBackup">{esc(c['planBackup'])}</p></article></div>{plans}<a class="button" href="{PLAY}"><bdi>Google Play</bdi><span aria-hidden="true">↗</span></a></section>
+</main><footer><span><bdi>Crazy Penguin · NShoptor</bdi></span><div><a href="{PRIVACY}">{esc(c['privacyInfoLabel'])}</a><a href="mailto:devcrazypenguin@gmail.com">{esc(c['supportEmailLabel'])}</a></div></footer>
+</div></body></html>'''
+
+
+def build_page(language):
+ return build(language, COPY[language]) if language in COPY else build_localized(language)
+
+
+def build_sitemap():
+ import xml.etree.ElementTree as ET
+ namespace = 'http://www.sitemaps.org/schemas/sitemap/0.9'
+ ET.register_namespace('', namespace)
+ root = ET.Element(f'{{{namespace}}}urlset')
+ for language in LANGUAGES:
+  entry = ET.SubElement(root, f'{{{namespace}}}url')
+  ET.SubElement(entry, f'{{{namespace}}}loc').text = locale_canonical(language)
+ return '<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(root, encoding='unicode') + '\n'
+
+
 if __name__ == '__main__':
- for language, copy in COPY.items():
-  output = ROOT / 'website' / ('en/index.html' if language=='en' else 'index.html')
+ for language in LANGUAGES:
+  output = ROOT / 'website' / relative_page(language)
   output.parent.mkdir(parents=True, exist_ok=True)
-  output.write_text(build(language,copy), encoding='utf-8')
- print('Generated Turkish and English pages.')
+  output.write_text(build_page(language), encoding='utf-8')
+ (ROOT/'website/sitemap.xml').write_text(build_sitemap(), encoding='utf-8')
+ print(f'Generated {len(LANGUAGES)} app-language pages and sitemap; TR/EN interactive pages preserved.')

@@ -3,6 +3,8 @@ Status: CONFIRMED
 
 ## Goal
 
+2026-10-29 kullanıcı: "bu bütün diller için geçerli ve onların kendi rakamlarıyla"; "bütün işleri bitir ve yayınla artık". Ülkeye uygun rakam/fiş biçimi giriş, hesap ve gösterimde doğrulanır; GitHub macOS üzerinden iOS kontrolleri yapılır; bütün site/mağaza açıklamaları ve gerçek görseller güncellenerek Android+iOS yayını tamamlanır (PB-204/205/206).
+
 2026-10-26 son ek: "Önce ... Project Brain’e işle ... projenin içini temizle ... Store Automasyonun kalıntıları kaldır ... gizlilik ... açık kaynak ... kontrolünü yap ... contributor olarak cloud’u ... kaldır ... daha güzel [video] ... büyük fotoğraflar ... iOS linkini de koy ... Bir şey söylediğimde de yapacağın işi bırakma ... uygulama ... Site işi en son." PB-161 güvenlik/atıf, PB-162 hiyerarşi/temizlik, PB-163 görsel/video/çok dilli iki mağaza yayını olarak kaydedildi. Basit mekanik işler düşük modelde; mimari ve final doğrulama direktörde. Önce mevcut uygulama kabulü, sonra bu yayın hazırlıkları ve site; güvenlik denetimi hemen paralel yürür.
 
 2026-10-26 kullanıcı: "devral isleri bitir hem play store hem app store ... tum dillerde yayimla". Son sıralama: "Bu faturaları doğru okuyor değil mi? Ve diğer yapılacakların hepsini yap. Site işi en son ... Eksiksiz, premium düzeyde". Önce Android+iOS uygulama/fiş/fatura doğruluğu ve bütün açık kabul ölçütleri; sonra mağaza sunumu/ASO ve site/SEO. Mevcut yayın yetkisi tekrar sorulmaz; doğrulanmamış sonuç tamamlandı sayılmaz.
@@ -82,3 +84,7 @@ Son kullanıcı eki (2026-10-24): "urunlerin tiklileri asagiya kaymali. urunlerd
 ## 2026-10-24 — Kapsamın tamamına devam
 
 Kullanıcı: "ürün sıralama ve daha birçok ek özellik; yapılacakların hepsini bitirmeni istemiştim". Son fiyat/grafik sürümü bütün ürünün tamamlandığı anlamına gelmez. PB-138 ürün sıralama; PB-139 iOS native/CI; PB-140 bütün R01–R74 açıklarının somut kontrollerle kapanmasını takip eder. Üretim terfisi yine kullanıcı dahili test kabulünden sonradır.
+
+## Latest user direction 2026-10-29
+- User: "bu bütün diller için geçerli ve onların kendi rakamlarıyla"; native country/receipt number conventions must work throughout entry, calculation and display, using existing supported packages where safe. Latin-only restriction is a fallback to report explicitly, not an assumed audience limit (PB-204/206, ADR-010).
+- User: "bütün işleri bitir ve yayınla artık"; finish actual Android/iOS correctness, use the public repository's GitHub macOS runners for iOS verification, make all site/store descriptions and real media current and publish. This explicitly continues existing publishing authority; app checks precede site work (PB-205, existing PB-163/176).
