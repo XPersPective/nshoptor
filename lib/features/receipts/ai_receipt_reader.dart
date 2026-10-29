@@ -22,7 +22,17 @@ enum AiReceiptGap { top, bottom, middle }
 
 /// The model saw only part of the receipt: guide the user to the missing part.
 final class AiReceiptNeedsMore extends AiReceiptRead {
-  const AiReceiptNeedsMore(this.gap, {this.store, this.date, this.currency});
+  const AiReceiptNeedsMore(
+    this.gap, {
+    this.store,
+    this.date,
+    this.currency,
+    this.visibleItems = const [],
+  });
+
+  /// Product rows already readable on the visible part (F16): shown in the
+  /// list right away, priced only when the whole receipt is saved.
+  final List<({String name, String? quantity, String? unit})> visibleItems;
   final AiReceiptGap gap;
 
   /// The receipt's own currency when printed (the list is created in it).
@@ -137,6 +147,20 @@ class AiReceiptReader {
             Currency.isKnownCode(data['currency'] as String)
         ? (data['currency'] as String).toUpperCase()
         : null;
+    final visible = <({String name, String? quantity, String? unit})>[
+      if (data['items'] is List)
+        for (final item in data['items'] as List)
+          if (item is Map &&
+              item['name'] is String &&
+              (item['name'] as String).trim().isNotEmpty)
+            (
+              name: (item['name'] as String).trim(),
+              quantity: item['quantity'] is String
+                  ? item['quantity'] as String
+                  : null,
+              unit: item['unit'] is String ? item['unit'] as String : null,
+            ),
+    ];
     switch (data['status']) {
       case 'complete':
         break;
@@ -153,6 +177,7 @@ class AiReceiptReader {
           store: store,
           date: date,
           currency: partialCurrency,
+          visibleItems: visible,
         );
       case 'middle_gap':
         return AiReceiptNeedsMore(
@@ -160,6 +185,7 @@ class AiReceiptReader {
           store: store,
           date: date,
           currency: partialCurrency,
+          visibleItems: visible,
         );
       default:
         return AiReceiptRetake('${data['status']}');

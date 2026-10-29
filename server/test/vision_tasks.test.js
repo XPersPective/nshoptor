@@ -170,3 +170,12 @@ test('a complete claim without header or total is reported as the missing part',
   assert.equal(R.clean({ ...receipt(), date: 'yesterday' }).status, 'top_missing');
   assert.equal(R.clean({ ...receipt(), total: null }).status, 'bottom_missing');
 });
+
+test('a cut-off receipt returns its visible rows, never priced as a whole', () => {
+  const out = R.clean({ ...receipt(), status: 'bottom_missing', total: null,
+    items: [...receipt().items, { name: '', lineTotal: '1' }, { name: 'BAD', lineTotal: 'x' }] });
+  assert.equal(out.status, 'bottom_missing');
+  assert.equal(out.items.length, 3);
+  assert.equal(out.total, null);
+  assert.deepEqual(R.clean({ ...receipt(), status: 'top_missing' }).items, []);
+});

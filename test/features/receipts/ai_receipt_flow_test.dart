@@ -61,6 +61,10 @@ void main() {
           'status': 'bottom_missing',
           'store': 'بنده هايبر',
           'date': '2026-10-20',
+          // Rows visible on the cut-off part go to the list at once (F16).
+          'items': [
+            {'name': 'حليب', 'lineTotal': '7.50'},
+          ],
         },
         _complete(),
       ];
@@ -69,6 +73,10 @@ void main() {
         baseUrl: 'https://x',
         httpClient: MockClient((request) async {
           final body = jsonDecode(request.body) as Map<String, dynamic>;
+          if (body['task'] != 'read_receipt_image') {
+            // Line matching is not under test: let the app fall back.
+            return http.Response('{"error":"ai_failed"}', 502);
+          }
           requests.add((body['input'] as Map)['images'] as List);
           return http.Response(
             jsonEncode({
@@ -138,6 +146,9 @@ void main() {
       // Header read: the list exists at once and owns the unfinished receipt.
       final list = (await db.select(db.shoppingLists).get()).single;
       expect(list.title, 'بنده هايبر');
+      expect((await db.select(db.plannedItems).get()).map((i) => i.name), [
+        'حليب',
+      ]);
       expect(
         (await ReceiptDraftRepository(db).pending(listId: list.id))
             .single
@@ -162,6 +173,12 @@ void main() {
       await settle();
       expect(failure, isNull);
       expect(await db.select(db.purchaseEntries).get(), hasLength(2));
+      // The early row is priced by the saved receipt, not duplicated.
+      expect(
+        (await db.select(db.plannedItems).get()).map((i) => i.name).toList()
+          ..sort(),
+        ['حليب', 'خبز']..sort(),
+      );
       expect(
         (await db.select(db.shoppingLists).get()).single.currencyCode,
         'SAR',

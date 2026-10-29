@@ -7,6 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/text/store_name.dart';
+import '../../core/util/normalize_name.dart';
+import '../../core/quantity/unit_code.dart';
+import '../../core/money/decimal_fixed.dart';
 import '../../data/db/app_database.dart';
 import '../ai/ai_client.dart';
 import '../lists/item_repository.dart';
@@ -682,6 +685,7 @@ Future<_AiOutcome> _readWithAi(
         :final store,
         :final date,
         :final currency,
+        :final visibleItems,
       ):
         if (listId == null && ownedListId == null && store != null) {
           // Header known: the list exists from now on and owns the receipt.
@@ -698,6 +702,11 @@ Future<_AiOutcome> _readWithAi(
             ..clear()
             ..addAll(keep);
           await persist(doc!);
+          if (!context.mounted) return stop();
+        }
+        final owner = listId ?? ownedListId;
+        if (owner != null) {
+          await _addVisibleItems(db, owner, visibleItems);
           if (!context.mounted) return stop();
         }
         final full = paths.length >= AiReceiptReader.maxPhotos;
@@ -907,10 +916,16 @@ Future<void> _finishInBackground(
           body: l10n.receiptReadDoneBody,
           listId: list,
         );
-      case AiReceiptNeedsMore(:final store, :final date, :final currency)
+      case AiReceiptNeedsMore(
+            :final store,
+            :final date,
+            :final currency,
+            :final visibleItems,
+          )
           when store != null && date != null:
         final hadList = owner != null;
         final list = await ensureList(store, date, currency);
+        await _addVisibleItems(db, list, visibleItems);
         if (!hadList && draftId != null) {
           final anonymous = (await drafts.pending())
               .where((d) => d.id == draftId)
@@ -970,4 +985,40 @@ final class _NoOcr implements OcrTextSource {
   @override
   Future<OcrScanResult> scan(String imagePath) async =>
       const OcrScanResult(lines: []);
+}
+
+/// Adds the product rows readable on a cut-off receipt to its list right
+/// away (F16). They carry no price yet; the saved receipt links its lines to
+/// these rows. Rows already on the list are not added twice.
+Future<void> _addVisibleItems(
+  AppDatabase db,
+  int listId,
+  List<({String name, String? quantity, String? unit})> rows,
+) async {
+  if (rows.isEmpty) return;
+  final existing = {
+    for (final item in await ItemRepository(db).getItems(listId))
+      normalizeName(item.name),
+  };
+  for (final row in rows) {
+    final key = normalizeName(row.name);
+    if (key.isEmpty || !existing.add(key)) continue;
+    final quantity = row.quantity == null
+        ? null
+        : DecimalFixed.tryParse(row.quantity!);
+    final unit = UnitCode.values.where((u) => u.dbCode == row.unit).firstOrNull;
+    try {
+      await ItemRepository(db).addItem(
+        listId: listId,
+        name: row.name,
+        quantity: quantity != null && quantity.isPositive
+            ? quantity
+            : DecimalFixed.fromInt(1),
+        unitCode: (unit ?? UnitCode.adet).dbCode,
+        priceIsUnitPrice: false,
+      );
+    } catch (_) {
+      // A row that cannot be stored is left for the saved receipt.
+    }
+  }
 }

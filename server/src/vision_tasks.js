@@ -100,7 +100,18 @@ export const VISION_TASKS = {
         documentNumber: text(out.documentNumber, 40) || null,
         currency: currency(out.currency),
       };
-      const partial = status => ({ ...header, status, items: [], discounts: [], tax: null, subtotal: null, total: null });
+      // Rows already visible on a cut-off receipt are returned so the list can
+      // show them before the total is read (F16). Only well-formed rows pass;
+      // nothing partial is ever priced or reconciled.
+      const visibleRows = () => (Array.isArray(out.items) ? out.items : []).slice(0, 150).flatMap(i => {
+        const name = text(i?.name, 80);
+        const lineTotal = amount(i?.lineTotal);
+        if (!name || lineTotal === null) return [];
+        return [{ name, quantity: amount(i?.quantity), unit: UNITS.includes(i?.unit) ? i.unit : null, unitPrice: amount(i?.unitPrice), lineTotal }];
+      });
+      const partial = status => ({ ...header, status,
+        items: status === 'bottom_missing' || status === 'middle_gap' ? visibleRows() : [],
+        discounts: [], tax: null, subtotal: null, total: null });
       if (out.status !== 'complete') return partial(out.status);
       // A "complete" claim is checked against what makes a receipt complete:
       // without store and date the top is missing; without a total the bottom.
