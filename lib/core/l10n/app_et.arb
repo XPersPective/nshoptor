@@ -468,5 +468,14 @@
   "historyShareAll": "Jaga kõike",
   "historyUnknownStore": "Tundmatu pood",
   "historyDailySpending": "Päevased kulud",
-  "historyResetPeriod": "Tagasi sellesse nädalasse"
+  "historyResetPeriod": "Tagasi sellesse nädalasse",
+  "tourSkip": "Jäta vahele",
+  "tourNewListBody": "Alusta ostunimekirja ja lisa, mida plaanid osta.",
+  "tourFromReceiptBody": "Juba ostlesid? Tee tšekist hindadega nimekiri.",
+  "tourReceiptFlowBody": "Alusta tšeki ülaosast: esmalt pood ja kuupäev, siis jätka ülejäänud ridadega.",
+  "tourTabsBody": "Vaheta aktiivsete, lõpetatud ja arhiveeritud nimekirjade vahel. Lõpus olev nupp muudab järjekorda.",
+  "tourDiscoverBody": "Sama arendaja teised rakendused.",
+  "tourHelpBody": "Puuduta siin, et juhendit uuesti vaadata. Ava nimekiri, et näha summade ja toodete selgitust.",
+  "tourTotalsBody": "Plaanitud, tegelik summa ja vahe uuenevad ostlemise ajal.",
+  "tourItemsBody": "Sinu tooted. Muuda siin nende järjekorda või otsi neid."
 }

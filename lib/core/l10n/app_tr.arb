@@ -495,5 +495,14 @@
   "historyShareAll": "Tümünü paylaş",
   "historyUnknownStore": "Bilinmeyen mağaza",
   "historyDailySpending": "Günlük harcama",
-  "historyResetPeriod": "Bu haftaya dön"
+  "historyResetPeriod": "Bu haftaya dön",
+  "tourSkip": "Geç",
+  "tourNewListBody": "Bir alışveriş listesi başlatın ve almayı planladıklarınızı ekleyin.",
+  "tourFromReceiptBody": "Alışverişi yaptınız mı? Fişi fiyatlarıyla birlikte listeye dönüştürün.",
+  "tourReceiptFlowBody": "Fişin en üstünden başlayın: önce mağaza ve tarihi çekin, sonra kalan satırlarla devam edin.",
+  "tourTabsBody": "Aktif, tamamlanan ve arşivlenen listeler arasında geçin. Sondaki düğme sıralamayı değiştirir.",
+  "tourDiscoverBody": "Aynı geliştiricinin diğer uygulamalarını görün.",
+  "tourHelpBody": "Bu rehberi yeniden izlemek için buraya dokunun. Toplamların ve ürünlerin anlatımı için bir liste açın.",
+  "tourTotalsBody": "Planlanan, gerçek ve fark toplamları alışveriş yaptıkça güncellenir.",
+  "tourItemsBody": "Ürünleriniz. Sıralarını buradan değiştirin veya arayın."
 }

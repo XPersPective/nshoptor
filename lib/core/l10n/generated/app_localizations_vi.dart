@@ -1538,4 +1538,38 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Quay lại tuần này';
+
+  @override
+  String get tourSkip => 'Bỏ qua';
+
+  @override
+  String get tourNewListBody =>
+      'Tạo danh sách mua sắm và thêm những gì bạn định mua.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Đã mua xong? Biến hóa đơn thành danh sách kèm giá.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Bắt đầu từ đầu hóa đơn: chụp cửa hàng và ngày trước, rồi tiếp tục với các dòng còn lại.';
+
+  @override
+  String get tourTabsBody =>
+      'Chuyển giữa danh sách đang dùng, đã xong và lưu trữ. Nút ở cuối đổi thứ tự.';
+
+  @override
+  String get tourDiscoverBody => 'Xem thêm ứng dụng của cùng nhà phát triển.';
+
+  @override
+  String get tourHelpBody =>
+      'Chạm vào đây để xem lại hướng dẫn. Mở một danh sách để xem giải thích về tổng và mặt hàng.';
+
+  @override
+  String get tourTotalsBody =>
+      'Tổng dự kiến, thực tế và chênh lệch được cập nhật khi bạn mua sắm.';
+
+  @override
+  String get tourItemsBody =>
+      'Các mặt hàng của bạn. Đổi thứ tự hoặc tìm kiếm tại đây.';
 }

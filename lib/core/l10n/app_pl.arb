@@ -468,5 +468,14 @@
   "historyShareAll": "Udostępnij wszystko",
   "historyUnknownStore": "Nieznany sklep",
   "historyDailySpending": "Wydatki dzienne",
-  "historyResetPeriod": "Wróć do tego tygodnia"
+  "historyResetPeriod": "Wróć do tego tygodnia",
+  "tourSkip": "Pomiń",
+  "tourNewListBody": "Utwórz listę zakupów i dodaj to, co planujesz kupić.",
+  "tourFromReceiptBody": "Już po zakupach? Zamień paragon w listę z cenami.",
+  "tourReceiptFlowBody": "Zacznij od góry paragonu: najpierw uchwyć sklep i datę, potem kontynuuj resztą pozycji.",
+  "tourTabsBody": "Przełączaj się między listami aktywnymi, ukończonymi i zarchiwizowanymi. Przycisk na końcu zmienia kolejność.",
+  "tourDiscoverBody": "Zobacz inne aplikacje tego samego twórcy.",
+  "tourHelpBody": "Dotknij tutaj, aby ponownie obejrzeć przewodnik. Otwórz listę, aby zobaczyć objaśnienie sum i produktów.",
+  "tourTotalsBody": "Sumy planowana, rzeczywista i różnica aktualizują się podczas zakupów.",
+  "tourItemsBody": "Twoje produkty. Zmieniaj tu ich kolejność lub je wyszukuj."
 }

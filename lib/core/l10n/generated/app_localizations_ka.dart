@@ -1540,4 +1540,37 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'ამ კვირაზე დაბრუნება';
+
+  @override
+  String get tourSkip => 'გამოტოვება';
+
+  @override
+  String get tourNewListBody =>
+      'დაიწყეთ საყიდლების სია და დაამატეთ, რისი ყიდვაც გეგმავთ.';
+
+  @override
+  String get tourFromReceiptBody => 'უკვე იყიდეთ? აქციეთ ქვითარი სიად ფასებით.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'დაიწყეთ ქვითრის ზემოდან: ჯერ მაღაზია და თარიღი, შემდეგ გააგრძელეთ დანარჩენი ხაზებით.';
+
+  @override
+  String get tourTabsBody =>
+      'გადადით აქტიურ, დასრულებულ და დაარქივებულ სიებს შორის. ბოლოში ღილაკი ცვლის თანმიმდევრობას.';
+
+  @override
+  String get tourDiscoverBody => 'იხილეთ იმავე დეველოპერის სხვა აპები.';
+
+  @override
+  String get tourHelpBody =>
+      'შეეხეთ აქ ამ გზამკვლევის ხელახლა სანახავად. გახსენით სია ჯამებისა და ნივთების ახსნის სანახავად.';
+
+  @override
+  String get tourTotalsBody =>
+      'დაგეგმილი, ფაქტობრივი ჯამი და სხვაობა ყიდვისას განახლდება.';
+
+  @override
+  String get tourItemsBody =>
+      'თქვენი ნივთები. აქ შეცვალეთ მათი თანმიმდევრობა ან მოძებნეთ ისინი.';
 }

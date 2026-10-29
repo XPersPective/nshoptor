@@ -468,5 +468,14 @@
   "historyShareAll": "Partilhar tudo",
   "historyUnknownStore": "Loja desconhecida",
   "historyDailySpending": "Gasto diário",
-  "historyResetPeriod": "Voltar a esta semana"
+  "historyResetPeriod": "Voltar a esta semana",
+  "tourSkip": "Pular",
+  "tourNewListBody": "Crie uma lista de compras e adicione o que pretende comprar.",
+  "tourFromReceiptBody": "Já fez as compras? Transforme um recibo em lista com os preços.",
+  "tourReceiptFlowBody": "Comece pelo topo do recibo: capture primeiro a loja e a data e depois continue com as demais linhas.",
+  "tourTabsBody": "Alterne entre listas ativas, concluídas e arquivadas. O botão no final muda a ordem.",
+  "tourDiscoverBody": "Veja mais apps do mesmo desenvolvedor.",
+  "tourHelpBody": "Toque aqui para rever este guia. Abra uma lista para ver os totais e os itens explicados.",
+  "tourTotalsBody": "Os totais previsto, real e a diferença são atualizados enquanto você compra.",
+  "tourItemsBody": "Seus itens. Mude a ordem ou pesquise-os aqui."
 }

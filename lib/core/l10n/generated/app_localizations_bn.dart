@@ -1539,4 +1539,37 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'এই সপ্তাহে ফিরুন';
+
+  @override
+  String get tourSkip => 'এড়িয়ে যান';
+
+  @override
+  String get tourNewListBody =>
+      'একটি কেনাকাটার তালিকা শুরু করুন এবং যা কিনবেন তা যোগ করুন।';
+
+  @override
+  String get tourFromReceiptBody =>
+      'কেনাকাটা হয়ে গেছে? রসিদকে দামসহ তালিকায় পরিণত করুন।';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'রসিদের উপর থেকে শুরু করুন: প্রথমে দোকান ও তারিখ নিন, তারপর বাকি লাইনগুলো দিয়ে চালিয়ে যান।';
+
+  @override
+  String get tourTabsBody =>
+      'সক্রিয়, সম্পন্ন ও সংরক্ষিত তালিকার মধ্যে বদলান। শেষের বোতামটি ক্রম পরিবর্তন করে।';
+
+  @override
+  String get tourDiscoverBody => 'একই ডেভেলপারের আরও অ্যাপ দেখুন।';
+
+  @override
+  String get tourHelpBody =>
+      'এই গাইড আবার দেখতে এখানে আলতো চাপুন। মোট ও আইটেমের ব্যাখ্যা দেখতে একটি তালিকা খুলুন।';
+
+  @override
+  String get tourTotalsBody =>
+      'পরিকল্পিত, প্রকৃত মোট ও পার্থক্য কেনাকাটার সময় হালনাগাদ হয়।';
+
+  @override
+  String get tourItemsBody => 'আপনার আইটেম। এখানে এদের ক্রম বদলান বা খুঁজুন।';
 }

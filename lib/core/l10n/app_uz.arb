@@ -468,5 +468,14 @@
   "historyShareAll": "Hammasini ulashish",
   "historyUnknownStore": "Noma'lum do'kon",
   "historyDailySpending": "Kunlik xarajat",
-  "historyResetPeriod": "Shu haftaga qaytish"
+  "historyResetPeriod": "Shu haftaga qaytish",
+  "tourSkip": "O'tkazib yuborish",
+  "tourNewListBody": "Xarid ro'yxatini boshlang va olmoqchi bo'lganlaringizni qo'shing.",
+  "tourFromReceiptBody": "Xarid qilib bo'ldingizmi? Chekni narxlari bilan ro'yxatga aylantiring.",
+  "tourReceiptFlowBody": "Chekning yuqorisidan boshlang: avval do'kon va sanani oling, so'ng qolgan qatorlar bilan davom eting.",
+  "tourTabsBody": "Faol, yakunlangan va arxivlangan ro'yxatlar orasida almashing. Oxiridagi tugma tartibni o'zgartiradi.",
+  "tourDiscoverBody": "Shu dasturchining boshqa ilovalarini ko'ring.",
+  "tourHelpBody": "Bu qo'llanmani qayta ko'rish uchun shu yerga bosing. Jami va mahsulotlar izohini ko'rish uchun ro'yxat oching.",
+  "tourTotalsBody": "Rejalangan, haqiqiy jami va farq xarid davomida yangilanadi.",
+  "tourItemsBody": "Mahsulotlaringiz. Tartibini shu yerda o'zgartiring yoki qidiring."
 }

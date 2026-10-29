@@ -468,5 +468,14 @@
   "historyShareAll": "Del alt",
   "historyUnknownStore": "Ukendt butik",
   "historyDailySpending": "Dagligt forbrug",
-  "historyResetPeriod": "Tilbage til denne uge"
+  "historyResetPeriod": "Tilbage til denne uge",
+  "tourSkip": "Spring over",
+  "tourNewListBody": "Start en indkøbsliste, og tilføj det, du vil købe.",
+  "tourFromReceiptBody": "Allerede handlet? Lav en kvittering om til en liste med priser.",
+  "tourReceiptFlowBody": "Start øverst på kvitteringen: først butik og dato, fortsæt derefter med resten af linjerne.",
+  "tourTabsBody": "Skift mellem aktive, afsluttede og arkiverede lister. Knappen til sidst ændrer rækkefølgen.",
+  "tourDiscoverBody": "Se flere apps fra samme udvikler.",
+  "tourHelpBody": "Tryk her for at se guiden igen. Åbn en liste for at få summer og varer forklaret.",
+  "tourTotalsBody": "Planlagt, faktisk sum og forskel opdateres, mens du handler.",
+  "tourItemsBody": "Dine varer. Skift rækkefølge eller søg i dem her."
 }

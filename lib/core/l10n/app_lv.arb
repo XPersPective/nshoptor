@@ -468,5 +468,14 @@
   "historyShareAll": "Kopīgot visu",
   "historyUnknownStore": "Nezināms veikals",
   "historyDailySpending": "Dienas tēriņi",
-  "historyResetPeriod": "Atpakaļ uz šo nedēļu"
+  "historyResetPeriod": "Atpakaļ uz šo nedēļu",
+  "tourSkip": "Izlaist",
+  "tourNewListBody": "Sāciet iepirkumu sarakstu un pievienojiet, ko plānojat pirkt.",
+  "tourFromReceiptBody": "Jau iepirkāties? Pārvērtiet čeku sarakstā ar cenām.",
+  "tourReceiptFlowBody": "Sāciet čeka augšā: vispirms veikalu un datumu, pēc tam turpiniet ar pārējām rindām.",
+  "tourTabsBody": "Pārslēdzieties starp aktīviem, pabeigtiem un arhivētiem sarakstiem. Poga galā maina secību.",
+  "tourDiscoverBody": "Citas tā paša izstrādātāja lietotnes.",
+  "tourHelpBody": "Pieskarieties šeit, lai vēlreiz skatītu ceļvedi. Atveriet sarakstu, lai redzētu summu un preču skaidrojumu.",
+  "tourTotalsBody": "Plānotā, faktiskā summa un starpība atjaunojas iepirkšanās laikā.",
+  "tourItemsBody": "Jūsu preces. Šeit mainiet to secību vai meklējiet tās."
 }

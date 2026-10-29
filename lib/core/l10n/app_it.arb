@@ -468,5 +468,14 @@
   "historyShareAll": "Condividi tutto",
   "historyUnknownStore": "Negozio sconosciuto",
   "historyDailySpending": "Spesa giornaliera",
-  "historyResetPeriod": "Torna a questa settimana"
+  "historyResetPeriod": "Torna a questa settimana",
+  "tourSkip": "Salta",
+  "tourNewListBody": "Crea una lista della spesa e aggiungi ciò che vuoi comprare.",
+  "tourFromReceiptBody": "Hai già fatto la spesa? Trasforma uno scontrino in una lista con i prezzi.",
+  "tourReceiptFlowBody": "Parti dall'alto dello scontrino: prima acquisisci negozio e data, poi continua con le righe restanti.",
+  "tourTabsBody": "Passa tra liste attive, completate e archiviate. Il pulsante alla fine cambia l'ordine.",
+  "tourDiscoverBody": "Scopri altre app dello stesso sviluppatore.",
+  "tourHelpBody": "Tocca qui per rivedere questa guida. Apri una lista per vedere spiegati totali e articoli.",
+  "tourTotalsBody": "I totali previsto, effettivo e la differenza si aggiornano mentre fai la spesa.",
+  "tourItemsBody": "I tuoi articoli. Cambiane l'ordine o cercali qui."
 }

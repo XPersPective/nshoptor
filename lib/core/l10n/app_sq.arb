@@ -468,5 +468,14 @@
   "historyShareAll": "Ndaj të gjitha",
   "historyUnknownStore": "Dyqan i panjohur",
   "historyDailySpending": "Shpenzimi ditor",
-  "historyResetPeriod": "Kthehu te kjo javë"
+  "historyResetPeriod": "Kthehu te kjo javë",
+  "tourSkip": "Kapërce",
+  "tourNewListBody": "Nis një listë blerjesh dhe shto atë që planifikon të blesh.",
+  "tourFromReceiptBody": "I ke bërë blerjet? Ktheje faturën në listë me çmimet.",
+  "tourReceiptFlowBody": "Fillo nga maja e faturës: së pari dyqanin dhe datën, pastaj vazhdo me rreshtat e tjerë.",
+  "tourTabsBody": "Kalo mes listave aktive, të përfunduara dhe të arkivuara. Butoni në fund ndryshon renditjen.",
+  "tourDiscoverBody": "Shiko aplikacione të tjera të të njëjtit zhvillues.",
+  "tourHelpBody": "Prek këtu për ta parë sërish udhëzuesin. Hap një listë për shpjegimin e totaleve dhe artikujve.",
+  "tourTotalsBody": "Totalet e planifikuara, reale dhe diferenca përditësohen ndërsa blen.",
+  "tourItemsBody": "Artikujt e tu. Ndrysho renditjen ose kërkoji këtu."
 }

@@ -1550,4 +1550,38 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Wróć do tego tygodnia';
+
+  @override
+  String get tourSkip => 'Pomiń';
+
+  @override
+  String get tourNewListBody =>
+      'Utwórz listę zakupów i dodaj to, co planujesz kupić.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Już po zakupach? Zamień paragon w listę z cenami.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Zacznij od góry paragonu: najpierw uchwyć sklep i datę, potem kontynuuj resztą pozycji.';
+
+  @override
+  String get tourTabsBody =>
+      'Przełączaj się między listami aktywnymi, ukończonymi i zarchiwizowanymi. Przycisk na końcu zmienia kolejność.';
+
+  @override
+  String get tourDiscoverBody => 'Zobacz inne aplikacje tego samego twórcy.';
+
+  @override
+  String get tourHelpBody =>
+      'Dotknij tutaj, aby ponownie obejrzeć przewodnik. Otwórz listę, aby zobaczyć objaśnienie sum i produktów.';
+
+  @override
+  String get tourTotalsBody =>
+      'Sumy planowana, rzeczywista i różnica aktualizują się podczas zakupów.';
+
+  @override
+  String get tourItemsBody =>
+      'Twoje produkty. Zmieniaj tu ich kolejność lub je wyszukuj.';
 }

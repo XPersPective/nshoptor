@@ -468,5 +468,14 @@
   "historyShareAll": "Jaa kaikki",
   "historyUnknownStore": "Tuntematon kauppa",
   "historyDailySpending": "Päivittäiset menot",
-  "historyResetPeriod": "Takaisin tähän viikkoon"
+  "historyResetPeriod": "Takaisin tähän viikkoon",
+  "tourSkip": "Ohita",
+  "tourNewListBody": "Aloita ostoslista ja lisää, mitä aiot ostaa.",
+  "tourFromReceiptBody": "Jo ostoksilla? Tee kuitista lista hintoineen.",
+  "tourReceiptFlowBody": "Aloita kuitin yläosasta: ensin kauppa ja päivämäärä, sitten muut rivit.",
+  "tourTabsBody": "Vaihda aktiivisten, valmiiden ja arkistoitujen listojen välillä. Lopun painike vaihtaa järjestyksen.",
+  "tourDiscoverBody": "Katso saman kehittäjän muita sovelluksia.",
+  "tourHelpBody": "Napauta tästä nähdäksesi oppaan uudelleen. Avaa lista nähdäksesi summien ja tuotteiden selitykset.",
+  "tourTotalsBody": "Suunniteltu, toteutunut summa ja erotus päivittyvät ostosten aikana.",
+  "tourItemsBody": "Tuotteesi. Muuta niiden järjestystä tai hae niitä tästä."
 }

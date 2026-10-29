@@ -1547,4 +1547,38 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Rudi wiki hii';
+
+  @override
+  String get tourSkip => 'Ruka';
+
+  @override
+  String get tourNewListBody =>
+      'Anzisha orodha ya ununuzi na uongeze unachopanga kununua.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Umeshanunua? Geuza risiti kuwa orodha pamoja na bei zake.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Anza juu ya risiti: piga duka na tarehe kwanza, kisha endelea na mistari iliyobaki.';
+
+  @override
+  String get tourTabsBody =>
+      'Badilisha kati ya orodha hai, zilizokamilika na zilizohifadhiwa. Kitufe cha mwisho hubadilisha mpangilio.';
+
+  @override
+  String get tourDiscoverBody => 'Tazama programu zaidi za msanidi yuleyule.';
+
+  @override
+  String get tourHelpBody =>
+      'Gusa hapa kuona mwongozo huu tena. Fungua orodha kuona maelezo ya jumla na bidhaa.';
+
+  @override
+  String get tourTotalsBody =>
+      'Jumla iliyopangwa, halisi na tofauti husasishwa unaponunua.';
+
+  @override
+  String get tourItemsBody =>
+      'Bidhaa zako. Badilisha mpangilio wake au zitafute hapa.';
 }

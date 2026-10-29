@@ -468,5 +468,14 @@
   "historyShareAll": "Ibahagi lahat",
   "historyUnknownStore": "Hindi kilalang tindahan",
   "historyDailySpending": "Pang-araw-araw na gastos",
-  "historyResetPeriod": "Bumalik sa linggong ito"
+  "historyResetPeriod": "Bumalik sa linggong ito",
+  "tourSkip": "Laktawan",
+  "tourNewListBody": "Magsimula ng shopping list at idagdag ang balak mong bilhin.",
+  "tourFromReceiptBody": "Nakapamili ka na? Gawing listahan ang resibo kasama ang mga presyo.",
+  "tourReceiptFlowBody": "Magsimula sa itaas ng resibo: kunan muna ang tindahan at petsa, saka ituloy ang iba pang linya.",
+  "tourTabsBody": "Lumipat sa aktibo, tapos at naka-archive na listahan. Binabago ng button sa dulo ang ayos.",
+  "tourDiscoverBody": "Tingnan ang iba pang app ng parehong developer.",
+  "tourHelpBody": "I-tap dito para ulitin ang gabay na ito. Magbukas ng listahan para makita ang paliwanag sa kabuuan at mga item.",
+  "tourTotalsBody": "Nag-a-update ang planado, aktwal at diperensiyang kabuuan habang namimili ka.",
+  "tourItemsBody": "Ang iyong mga item. Baguhin ang ayos o hanapin sila rito."
 }

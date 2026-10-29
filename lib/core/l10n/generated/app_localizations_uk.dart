@@ -1550,4 +1550,38 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Повернутися до цього тижня';
+
+  @override
+  String get tourSkip => 'Пропустити';
+
+  @override
+  String get tourNewListBody =>
+      'Створіть список покупок і додайте те, що плануєте купити.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Уже зробили покупки? Перетворіть чек на список із цінами.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Почніть з верху чека: спершу зніміть магазин і дату, потім продовжуйте рештою рядків.';
+
+  @override
+  String get tourTabsBody =>
+      'Перемикайтеся між активними, завершеними та архівними списками. Кнопка в кінці змінює порядок.';
+
+  @override
+  String get tourDiscoverBody => 'Інші застосунки того самого розробника.';
+
+  @override
+  String get tourHelpBody =>
+      'Торкніться тут, щоб переглянути посібник знову. Відкрийте список, щоб дізнатися про підсумки й товари.';
+
+  @override
+  String get tourTotalsBody =>
+      'Підсумки за планом, фактом і різницею оновлюються під час покупок.';
+
+  @override
+  String get tourItemsBody =>
+      'Ваші товари. Змінюйте їхній порядок або шукайте їх тут.';
 }

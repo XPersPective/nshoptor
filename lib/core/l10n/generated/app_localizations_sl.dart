@@ -1547,4 +1547,38 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Nazaj na ta teden';
+
+  @override
+  String get tourSkip => 'Preskoči';
+
+  @override
+  String get tourNewListBody =>
+      'Začnite nakupovalni seznam in dodajte, kar nameravate kupiti.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Ste že nakupovali? Spremenite račun v seznam s cenami.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Začnite na vrhu računa: najprej zajemite trgovino in datum, nato nadaljujte s preostalimi vrsticami.';
+
+  @override
+  String get tourTabsBody =>
+      'Preklapljajte med aktivnimi, dokončanimi in arhiviranimi seznami. Gumb na koncu spremeni vrstni red.';
+
+  @override
+  String get tourDiscoverBody => 'Druge aplikacije istega razvijalca.';
+
+  @override
+  String get tourHelpBody =>
+      'Tapnite tukaj za ponovni ogled vodiča. Odprite seznam za razlago vsot in izdelkov.';
+
+  @override
+  String get tourTotalsBody =>
+      'Načrtovana, dejanska vsota in razlika se med nakupovanjem posodabljajo.';
+
+  @override
+  String get tourItemsBody =>
+      'Vaši izdelki. Tukaj spremenite njihov vrstni red ali jih poiščite.';
 }

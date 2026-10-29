@@ -1540,4 +1540,38 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'ਇਸ ਹਫ਼ਤੇ ਵੱਲ ਵਾਪਸ ਜਾਓ';
+
+  @override
+  String get tourSkip => 'ਛੱਡੋ';
+
+  @override
+  String get tourNewListBody =>
+      'ਖਰੀਦਦਾਰੀ ਸੂਚੀ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਜੋ ਖਰੀਦਣਾ ਹੈ ਉਹ ਜੋੜੋ।';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ਖਰੀਦਦਾਰੀ ਕਰ ਲਈ? ਰਸੀਦ ਨੂੰ ਉਸ ਦੀਆਂ ਕੀਮਤਾਂ ਸਮੇਤ ਸੂਚੀ ਵਿੱਚ ਬਦਲੋ।';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ਰਸੀਦ ਦੇ ਉੱਪਰੋਂ ਸ਼ੁਰੂ ਕਰੋ: ਪਹਿਲਾਂ ਦੁਕਾਨ ਅਤੇ ਤਾਰੀਖ ਲਓ, ਫਿਰ ਬਾਕੀ ਲਾਈਨਾਂ ਨਾਲ ਜਾਰੀ ਰੱਖੋ।';
+
+  @override
+  String get tourTabsBody =>
+      'ਸਰਗਰਮ, ਪੂਰੀਆਂ ਅਤੇ ਪੁਰਾਲੇਖ ਸੂਚੀਆਂ ਵਿਚਕਾਰ ਬਦਲੋ। ਅੰਤ ਵਾਲਾ ਬਟਨ ਕ੍ਰਮ ਬਦਲਦਾ ਹੈ।';
+
+  @override
+  String get tourDiscoverBody => 'ਉਸੇ ਡਿਵੈਲਪਰ ਦੀਆਂ ਹੋਰ ਐਪਾਂ ਦੇਖੋ।';
+
+  @override
+  String get tourHelpBody =>
+      'ਇਹ ਗਾਈਡ ਦੁਬਾਰਾ ਦੇਖਣ ਲਈ ਇੱਥੇ ਟੈਪ ਕਰੋ। ਜੋੜ ਅਤੇ ਆਈਟਮਾਂ ਦੀ ਵਿਆਖਿਆ ਲਈ ਕੋਈ ਸੂਚੀ ਖੋਲ੍ਹੋ।';
+
+  @override
+  String get tourTotalsBody =>
+      'ਯੋਜਨਾਬੱਧ, ਅਸਲ ਜੋੜ ਅਤੇ ਫਰਕ ਖਰੀਦਦਾਰੀ ਦੌਰਾਨ ਅੱਪਡੇਟ ਹੁੰਦੇ ਹਨ।';
+
+  @override
+  String get tourItemsBody =>
+      'ਤੁਹਾਡੀਆਂ ਆਈਟਮਾਂ। ਇੱਥੇ ਇਹਨਾਂ ਦਾ ਕ੍ਰਮ ਬਦਲੋ ਜਾਂ ਲੱਭੋ।';
 }

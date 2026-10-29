@@ -1549,4 +1549,37 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Voltar a esta semana';
+
+  @override
+  String get tourSkip => 'Pular';
+
+  @override
+  String get tourNewListBody =>
+      'Crie uma lista de compras e adicione o que pretende comprar.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Já fez as compras? Transforme um recibo em lista com os preços.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Comece pelo topo do recibo: capture primeiro a loja e a data e depois continue com as demais linhas.';
+
+  @override
+  String get tourTabsBody =>
+      'Alterne entre listas ativas, concluídas e arquivadas. O botão no final muda a ordem.';
+
+  @override
+  String get tourDiscoverBody => 'Veja mais apps do mesmo desenvolvedor.';
+
+  @override
+  String get tourHelpBody =>
+      'Toque aqui para rever este guia. Abra uma lista para ver os totais e os itens explicados.';
+
+  @override
+  String get tourTotalsBody =>
+      'Os totais previsto, real e a diferença são atualizados enquanto você compra.';
+
+  @override
+  String get tourItemsBody => 'Seus itens. Mude a ordem ou pesquise-os aqui.';
 }

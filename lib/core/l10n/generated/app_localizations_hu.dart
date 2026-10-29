@@ -1545,4 +1545,39 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Vissza erre a hétre';
+
+  @override
+  String get tourSkip => 'Kihagyás';
+
+  @override
+  String get tourNewListBody =>
+      'Kezdj egy bevásárlólistát, és add hozzá, amit venni szeretnél.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Már vásároltál? Alakítsd a blokkot listává az árakkal együtt.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Kezdd a blokk tetején: előbb rögzítsd az üzletet és a dátumot, aztán folytasd a többi sorral.';
+
+  @override
+  String get tourTabsBody =>
+      'Válts az aktív, befejezett és archivált listák között. A végén lévő gomb a sorrendet váltja.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Ugyanattól a fejlesztőtől származó további alkalmazások.';
+
+  @override
+  String get tourHelpBody =>
+      'Koppints ide az útmutató újbóli megtekintéséhez. Nyiss meg egy listát az összegek és tételek magyarázatához.';
+
+  @override
+  String get tourTotalsBody =>
+      'A tervezett, a tényleges összeg és a különbség vásárlás közben frissül.';
+
+  @override
+  String get tourItemsBody =>
+      'A tételeid. Itt módosíthatod a sorrendjüket vagy kereshetsz köztük.';
 }

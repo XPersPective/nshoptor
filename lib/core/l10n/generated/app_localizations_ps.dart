@@ -1534,4 +1534,37 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'دې اونۍ ته ستون شئ';
+
+  @override
+  String get tourSkip => 'تېرول';
+
+  @override
+  String get tourNewListBody =>
+      'د پیرودلو لېست پیل کړئ او هغه څه ورزیات کړئ چې اخلئ یې.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'پېرود مو کړی؟ رسید د بیو سره په لېست بدل کړئ.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'د رسید له سر څخه پیل وکړئ: لومړی پلورنځی او نېټه واخلئ، بیا پاتې کرښې دوام ورکړئ.';
+
+  @override
+  String get tourTabsBody =>
+      'د فعالو، بشپړو او ارشیف شویو لېستونو ترمنځ واوړئ. په پای کې تڼۍ ترتیب بدلوي.';
+
+  @override
+  String get tourDiscoverBody => 'د همدې جوړونکي نور اپونه وګورئ.';
+
+  @override
+  String get tourHelpBody =>
+      'د دې لارښود د بیا لیدو لپاره دلته ټک کړئ. د مجموعو او توکو د تشریح لپاره یو لېست پرانیزئ.';
+
+  @override
+  String get tourTotalsBody =>
+      'پلان شوي، اصلي او توپیر مجموعې د پېرود پر مهال تازه کېږي.';
+
+  @override
+  String get tourItemsBody => 'ستاسو توکي. دلته یې ترتیب بدل کړئ یا یې ولټوئ.';
 }

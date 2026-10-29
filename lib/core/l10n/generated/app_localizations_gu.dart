@@ -1540,4 +1540,37 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'આ અઠવાડિયે પાછા જાઓ';
+
+  @override
+  String get tourSkip => 'છોડો';
+
+  @override
+  String get tourNewListBody =>
+      'ખરીદીની યાદી શરૂ કરો અને જે ખરીદવું છે તે ઉમેરો.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ખરીદી થઈ ગઈ? રસીદને તેની કિંમતો સાથે યાદીમાં ફેરવો.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'રસીદની ઉપરથી શરૂ કરો: પહેલાં દુકાન અને તારીખ લો, પછી બાકીની લીટીઓ સાથે આગળ વધો.';
+
+  @override
+  String get tourTabsBody =>
+      'સક્રિય, પૂર્ણ અને આર્કાઇવ કરેલી યાદીઓ વચ્ચે બદલો. છેલ્લું બટન ક્રમ બદલે છે.';
+
+  @override
+  String get tourDiscoverBody => 'એ જ ડેવલપરની વધુ ઍપ જુઓ.';
+
+  @override
+  String get tourHelpBody =>
+      'આ માર્ગદર્શિકા ફરી જોવા અહીં ટૅપ કરો. કુલ અને વસ્તુઓની સમજ માટે કોઈ યાદી ખોલો.';
+
+  @override
+  String get tourTotalsBody =>
+      'આયોજિત, વાસ્તવિક કુલ અને તફાવત ખરીદી દરમિયાન અપડેટ થાય છે.';
+
+  @override
+  String get tourItemsBody => 'તમારી વસ્તુઓ. અહીં તેમનો ક્રમ બદલો અથવા શોધો.';
 }

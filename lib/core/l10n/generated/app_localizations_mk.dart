@@ -1548,4 +1548,38 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Назад на оваа недела';
+
+  @override
+  String get tourSkip => 'Прескокни';
+
+  @override
+  String get tourNewListBody =>
+      'Започнете список за купување и додадете што планирате да купите.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Веќе купивте? Претворете ја сметката во список со цени.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Почнете од врвот на сметката: прво снимете ја продавницата и датумот, па продолжете со останатите редови.';
+
+  @override
+  String get tourTabsBody =>
+      'Префрлајте се меѓу активни, завршени и архивирани списоци. Копчето на крајот го менува редоследот.';
+
+  @override
+  String get tourDiscoverBody => 'Други апликации од истиот развивач.';
+
+  @override
+  String get tourHelpBody =>
+      'Допрете тука за повторно да го видите водичот. Отворете список за објаснување на збировите и ставките.';
+
+  @override
+  String get tourTotalsBody =>
+      'Планираниот, вистинскиот збир и разликата се ажурираат додека купувате.';
+
+  @override
+  String get tourItemsBody =>
+      'Вашите ставки. Сменете го редоследот или пребарајте ги тука.';
 }

@@ -468,5 +468,14 @@
   "historyShareAll": "Kongsi semua",
   "historyUnknownStore": "Kedai tidak diketahui",
   "historyDailySpending": "Perbelanjaan harian",
-  "historyResetPeriod": "Kembali ke minggu ini"
+  "historyResetPeriod": "Kembali ke minggu ini",
+  "tourSkip": "Langkau",
+  "tourNewListBody": "Mulakan senarai beli-belah dan tambah apa yang anda mahu beli.",
+  "tourFromReceiptBody": "Sudah membeli-belah? Tukar resit kepada senarai dengan harganya.",
+  "tourReceiptFlowBody": "Mulakan dari bahagian atas resit: ambil kedai dan tarikh dahulu, kemudian teruskan dengan baris lain.",
+  "tourTabsBody": "Tukar antara senarai aktif, selesai dan arkib. Butang di hujung menukar susunan.",
+  "tourDiscoverBody": "Lihat aplikasi lain daripada pembangun yang sama.",
+  "tourHelpBody": "Ketik di sini untuk melihat panduan ini semula. Buka senarai untuk melihat penerangan jumlah dan item.",
+  "tourTotalsBody": "Jumlah dirancang, sebenar dan perbezaan dikemas kini semasa anda membeli-belah.",
+  "tourItemsBody": "Item anda. Tukar susunan atau cari di sini."
 }

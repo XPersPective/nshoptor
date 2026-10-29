@@ -468,5 +468,14 @@
   "historyShareAll": "Yabelana ngakho konke",
   "historyUnknownStore": "Isitolo esingaziwa",
   "historyDailySpending": "Izindleko zansuku zonke",
-  "historyResetPeriod": "Buyela kuleli sonto"
+  "historyResetPeriod": "Buyela kuleli sonto",
+  "tourSkip": "Yeqa",
+  "tourNewListBody": "Qala uhlu lokuthenga bese wengeza okuhlela ukukuthenga.",
+  "tourFromReceiptBody": "Usuthengile? Shintsha irisidi ibe uhlu olunamanani alo.",
+  "tourReceiptFlowBody": "Qala phezulu kwerisidi: thatha isitolo nosuku kuqala, bese uqhubeka nemigqa esele.",
+  "tourTabsBody": "Shintsha phakathi kohlu olusebenzayo, oluqediwe nolugciniwe. Inkinobho ekugcineni ishintsha ukuhleleka.",
+  "tourDiscoverBody": "Bona ezinye izinhlelo zonjiniyela ofanayo.",
+  "tourHelpBody": "Thepha lapha ukuze ubone lo mhlahlandlela futhi. Vula uhlu ukuze ubone incazelo yezamba nezinto.",
+  "tourTotalsBody": "Izamba ezihleliwe, zangempela nomehluko ziyabuyekezwa njengoba uthenga.",
+  "tourItemsBody": "Izinto zakho. Shintsha ukuhleleka kwazo noma uzisesha lapha."
 }

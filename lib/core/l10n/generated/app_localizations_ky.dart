@@ -1543,4 +1543,39 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Ушул жумага кайтуу';
+
+  @override
+  String get tourSkip => 'Өткөрүү';
+
+  @override
+  String get tourNewListBody =>
+      'Сатып алуу тизмесин баштап, ала турган нерселериңизди кошуңуз.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Сатып алып койдуңузбу? Чекти баалары менен тизмеге айлантыңыз.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Чектин жогору жагынан баштаңыз: адегенде дүкөн менен күндү тартып, андан кийин калган саптар менен улантыңыз.';
+
+  @override
+  String get tourTabsBody =>
+      'Активдүү, бүткөн жана архивделген тизмелердин ортосунда которулуңуз. Аягындагы баскыч тартипти өзгөртөт.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Ошол эле иштеп чыгуучунун башка колдонмолору.';
+
+  @override
+  String get tourHelpBody =>
+      'Колдонмону кайра көрүү үчүн бул жерди басыңыз. Суммалар менен буюмдардын түшүндүрмөсү үчүн тизме ачыңыз.';
+
+  @override
+  String get tourTotalsBody =>
+      'Пландалган, чыныгы сумма жана айырма сатып алуу учурунда жаңыланат.';
+
+  @override
+  String get tourItemsBody =>
+      'Буюмдарыңыз. Алардын тартибин ушул жерден өзгөртүңүз же издеңиз.';
 }

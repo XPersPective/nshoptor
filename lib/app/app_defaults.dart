@@ -36,6 +36,13 @@ class AppDefaults {
 
   static void markGuideSeen() => _store?.setBool(_guideSeenKey, true);
 
+  /// Set when the lists tour is finished: the next opened list continues
+  /// the tour with its own controls once (PB-201). Off without a store.
+  static const _detailTourKey = 'guide.detail_pending';
+  static bool detailTourPending() => _store?.getBool(_detailTourKey) ?? false;
+  static void setDetailTourPending(bool value) =>
+      _store?.setBool(_detailTourKey, value);
+
   /// Short receipt capture tips (F05/F06); "don't show again" turns them off
   /// and Settings can turn them back on. Without a store (tests) they stay off.
   static const captureTipsKey = 'capture_tips_enabled';

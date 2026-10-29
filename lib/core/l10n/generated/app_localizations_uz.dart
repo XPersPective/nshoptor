@@ -1550,4 +1550,39 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Shu haftaga qaytish';
+
+  @override
+  String get tourSkip => 'O\'tkazib yuborish';
+
+  @override
+  String get tourNewListBody =>
+      'Xarid ro\'yxatini boshlang va olmoqchi bo\'lganlaringizni qo\'shing.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Xarid qilib bo\'ldingizmi? Chekni narxlari bilan ro\'yxatga aylantiring.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Chekning yuqorisidan boshlang: avval do\'kon va sanani oling, so\'ng qolgan qatorlar bilan davom eting.';
+
+  @override
+  String get tourTabsBody =>
+      'Faol, yakunlangan va arxivlangan ro\'yxatlar orasida almashing. Oxiridagi tugma tartibni o\'zgartiradi.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Shu dasturchining boshqa ilovalarini ko\'ring.';
+
+  @override
+  String get tourHelpBody =>
+      'Bu qo\'llanmani qayta ko\'rish uchun shu yerga bosing. Jami va mahsulotlar izohini ko\'rish uchun ro\'yxat oching.';
+
+  @override
+  String get tourTotalsBody =>
+      'Rejalangan, haqiqiy jami va farq xarid davomida yangilanadi.';
+
+  @override
+  String get tourItemsBody =>
+      'Mahsulotlaringiz. Tartibini shu yerda o\'zgartiring yoki qidiring.';
 }

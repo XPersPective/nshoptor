@@ -571,5 +571,14 @@
   "historyShareAll": "Share all",
   "historyUnknownStore": "Unknown store",
   "historyDailySpending": "Daily spending",
-  "historyResetPeriod": "Back to this week"
+  "historyResetPeriod": "Back to this week",
+  "tourSkip": "Skip",
+  "tourNewListBody": "Start a shopping list and add what you plan to buy.",
+  "tourFromReceiptBody": "Already shopped? Turn a receipt into a list with its prices.",
+  "tourReceiptFlowBody": "Start at the top of the receipt: capture the store and date first, then continue with the rest of the lines.",
+  "tourTabsBody": "Switch between active, completed and archived lists. The button at the end changes the order.",
+  "tourDiscoverBody": "See more apps from the same developer.",
+  "tourHelpBody": "Tap here to replay this guide. Open a list to see its totals and items explained.",
+  "tourTotalsBody": "Planned, actual and difference totals update as you shop.",
+  "tourItemsBody": "Your items. Change their order or search them here."
 }

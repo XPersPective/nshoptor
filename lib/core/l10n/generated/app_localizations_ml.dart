@@ -1541,4 +1541,38 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'ഈ ആഴ്ചയിലേക്ക് മടങ്ങുക';
+
+  @override
+  String get tourSkip => 'ഒഴിവാക്കുക';
+
+  @override
+  String get tourNewListBody =>
+      'ഒരു ഷോപ്പിങ് ലിസ്റ്റ് തുടങ്ങി വാങ്ങാനുള്ളവ ചേർക്കൂ.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ഇതിനകം വാങ്ങിയോ? രസീത് അതിലെ വിലകളോടെ ലിസ്റ്റാക്കൂ.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'രസീതിന്റെ മുകളിൽ നിന്ന് തുടങ്ങൂ: ആദ്യം കടയും തീയതിയും, പിന്നെ ബാക്കി വരികളുമായി തുടരൂ.';
+
+  @override
+  String get tourTabsBody =>
+      'സജീവ, പൂർത്തിയായ, ആർക്കൈവ് ചെയ്ത ലിസ്റ്റുകൾക്കിടയിൽ മാറൂ. അവസാനത്തെ ബട്ടൺ ക്രമം മാറ്റുന്നു.';
+
+  @override
+  String get tourDiscoverBody => 'അതേ ഡെവലപ്പറുടെ കൂടുതൽ ആപ്പുകൾ കാണൂ.';
+
+  @override
+  String get tourHelpBody =>
+      'ഈ ഗൈഡ് വീണ്ടും കാണാൻ ഇവിടെ ടാപ്പ് ചെയ്യൂ. ആകെത്തുകകളുടെയും ഇനങ്ങളുടെയും വിശദീകരണത്തിന് ഒരു ലിസ്റ്റ് തുറക്കൂ.';
+
+  @override
+  String get tourTotalsBody =>
+      'ആസൂത്രിത, യഥാർത്ഥ ആകെത്തുകയും വ്യത്യാസവും വാങ്ങുമ്പോൾ പുതുക്കപ്പെടും.';
+
+  @override
+  String get tourItemsBody =>
+      'നിങ്ങളുടെ ഇനങ്ങൾ. ഇവിടെ അവയുടെ ക്രമം മാറ്റുകയോ തിരയുകയോ ചെയ്യൂ.';
 }

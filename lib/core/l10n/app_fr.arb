@@ -468,5 +468,14 @@
   "historyShareAll": "Tout partager",
   "historyUnknownStore": "Magasin inconnu",
   "historyDailySpending": "Dépenses quotidiennes",
-  "historyResetPeriod": "Revenir à cette semaine"
+  "historyResetPeriod": "Revenir à cette semaine",
+  "tourSkip": "Passer",
+  "tourNewListBody": "Créez une liste de courses et ajoutez ce que vous prévoyez d'acheter.",
+  "tourFromReceiptBody": "Déjà fait vos courses ? Transformez un ticket en liste avec ses prix.",
+  "tourReceiptFlowBody": "Commencez par le haut du ticket : capturez d'abord le magasin et la date, puis continuez avec le reste des lignes.",
+  "tourTabsBody": "Passez des listes actives aux listes terminées ou archivées. Le bouton au bout change l'ordre.",
+  "tourDiscoverBody": "Découvrez d'autres applis du même développeur.",
+  "tourHelpBody": "Touchez ici pour revoir ce guide. Ouvrez une liste pour découvrir ses totaux et ses articles.",
+  "tourTotalsBody": "Les totaux prévu, réel et l'écart se mettent à jour pendant vos courses.",
+  "tourItemsBody": "Vos articles. Changez leur ordre ou recherchez-les ici."
 }

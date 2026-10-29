@@ -1546,4 +1546,39 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'ဤအပတ်သို့ ပြန်သွားရန်';
+
+  @override
+  String get tourSkip => 'ကျော်ရန်';
+
+  @override
+  String get tourNewListBody =>
+      'ဈေးဝယ်စာရင်းတစ်ခု စတင်ပြီး ဝယ်မည့်အရာများကို ထည့်ပါ။';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ဝယ်ပြီးပြီလား။ ပြေစာကို ဈေးနှုန်းများနှင့်အတူ စာရင်းအဖြစ် ပြောင်းပါ။';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ပြေစာ၏ အပေါ်ဆုံးမှ စပါ- ဦးစွာ ဆိုင်နှင့် ရက်စွဲကို ရိုက်ပြီး ကျန်လိုင်းများဖြင့် ဆက်လုပ်ပါ။';
+
+  @override
+  String get tourTabsBody =>
+      'အသုံးပြုဆဲ၊ ပြီးဆုံးပြီး နှင့် သိမ်းဆည်းထားသော စာရင်းများကြား ပြောင်းပါ။ အဆုံးရှိ ခလုတ်သည် အစီအစဉ်ကို ပြောင်းသည်။';
+
+  @override
+  String get tourDiscoverBody =>
+      'တူညီသော ဆော့ဖ်ဝဲရေးသူ၏ အခြားအက်ပ်များကို ကြည့်ပါ။';
+
+  @override
+  String get tourHelpBody =>
+      'ဤလမ်းညွှန်ကို ထပ်ကြည့်ရန် ဤနေရာကို တို့ပါ။ စုစုပေါင်းနှင့် ပစ္စည်းများ ရှင်းလင်းချက်အတွက် စာရင်းတစ်ခု ဖွင့်ပါ။';
+
+  @override
+  String get tourTotalsBody =>
+      'စီစဉ်ထားသော၊ အမှန်တကယ် စုစုပေါင်းနှင့် ကွာခြားချက်များ ဈေးဝယ်နေစဉ် အပ်ဒိတ်ဖြစ်သည်။';
+
+  @override
+  String get tourItemsBody =>
+      'သင့်ပစ္စည်းများ။ ဤနေရာတွင် အစီအစဉ်ပြောင်းပါ သို့မဟုတ် ရှာပါ။';
 }

@@ -16,6 +16,7 @@ import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
 import '../history/history_screen.dart';
 import '../discover/discover_screen.dart';
+import '../onboarding/coach_tour.dart';
 import '../onboarding/first_run_guide.dart';
 import '../subscription/plan_badge.dart';
 import '../subscription/subscription_paywall.dart';
@@ -121,7 +122,7 @@ class _HomeShellState extends State<HomeShell> {
     widget.subscriptions?.addListener(_trialChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) {
-        await showFirstRunGuide(context);
+        await runHomeTour(context);
       }
       if (mounted) await _maybeTrialNotice();
       if (!mounted || widget.reminderScheduler != null) return;
@@ -293,6 +294,13 @@ class _HomeShellState extends State<HomeShell> {
     if (mounted) setState(() {});
   }
 
+  /// "How to use" from any tab: show the lists tab, then tour its controls.
+  Future<void> _startTour() async {
+    if (_tab != 0) setState(() => _tab = 0);
+    await WidgetsBinding.instance.endOfFrame;
+    if (mounted) await runHomeTour(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -324,38 +332,41 @@ class _HomeShellState extends State<HomeShell> {
               giftFlow: widget.giftFlow,
             ),
     ];
-    return Scaffold(
-      body: IndexedStack(index: _tab, children: tabs),
-      // Banner bottom bar'ın altındadır (kullanıcı talebi 2026-10-02);
-      // AdPolicy Pro'da hiç yüklemez, kalkınca boşluk kalmaz.
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          NavigationBar(
-            selectedIndex: _tab,
-            onDestinationSelected: (i) => setState(() {
-              if (i == 2 && _tab != 2) _settingsVisit++;
-              _tab = i;
-            }),
-            destinations: [
-              NavigationDestination(
-                icon: const Icon(Icons.list_outlined),
-                selectedIcon: const Icon(Icons.list),
-                label: l10n.navLists,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.history_outlined),
-                selectedIcon: const Icon(Icons.history),
-                label: l10n.navHistory,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.settings_outlined),
-                selectedIcon: const Icon(Icons.settings),
-                label: l10n.navSettings,
-              ),
-            ],
-          ),
-        ],
+    return GuidedTourHost(
+      start: _startTour,
+      child: Scaffold(
+        body: IndexedStack(index: _tab, children: tabs),
+        // Banner bottom bar'ın altındadır (kullanıcı talebi 2026-10-02);
+        // AdPolicy Pro'da hiç yüklemez, kalkınca boşluk kalmaz.
+        bottomNavigationBar: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            NavigationBar(
+              selectedIndex: _tab,
+              onDestinationSelected: (i) => setState(() {
+                if (i == 2 && _tab != 2) _settingsVisit++;
+                _tab = i;
+              }),
+              destinations: [
+                NavigationDestination(
+                  icon: const Icon(Icons.list_outlined),
+                  selectedIcon: const Icon(Icons.list),
+                  label: l10n.navLists,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.history_outlined),
+                  selectedIcon: const Icon(Icons.history),
+                  label: l10n.navHistory,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.settings_outlined),
+                  selectedIcon: const Icon(Icons.settings),
+                  label: l10n.navSettings,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -468,5 +468,14 @@
   "historyShareAll": "Deel alles",
   "historyUnknownStore": "Onbekende winkel",
   "historyDailySpending": "Daaglikse besteding",
-  "historyResetPeriod": "Terug na hierdie week"
+  "historyResetPeriod": "Terug na hierdie week",
+  "tourSkip": "Slaan oor",
+  "tourNewListBody": "Begin 'n inkopielys en voeg by wat jy beplan om te koop.",
+  "tourFromReceiptBody": "Klaar gekoop? Maak 'n kwitansie 'n lys met pryse.",
+  "tourReceiptFlowBody": "Begin bo-aan die kwitansie: eers die winkel en datum, gaan dan voort met die res van die reëls.",
+  "tourTabsBody": "Wissel tussen aktiewe, voltooide en geargiveerde lyste. Die knoppie aan die einde verander die volgorde.",
+  "tourDiscoverBody": "Sien meer toepassings van dieselfde ontwikkelaar.",
+  "tourHelpBody": "Tik hier om hierdie gids weer te sien. Maak 'n lys oop om die totale en items verduidelik te sien.",
+  "tourTotalsBody": "Beplande, werklike en verskiltotale word bygewerk terwyl jy koop.",
+  "tourItemsBody": "Jou items. Verander hul volgorde of soek hulle hier."
 }

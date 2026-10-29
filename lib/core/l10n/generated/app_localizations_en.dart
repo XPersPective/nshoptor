@@ -1541,4 +1541,38 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Back to this week';
+
+  @override
+  String get tourSkip => 'Skip';
+
+  @override
+  String get tourNewListBody =>
+      'Start a shopping list and add what you plan to buy.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Already shopped? Turn a receipt into a list with its prices.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Start at the top of the receipt: capture the store and date first, then continue with the rest of the lines.';
+
+  @override
+  String get tourTabsBody =>
+      'Switch between active, completed and archived lists. The button at the end changes the order.';
+
+  @override
+  String get tourDiscoverBody => 'See more apps from the same developer.';
+
+  @override
+  String get tourHelpBody =>
+      'Tap here to replay this guide. Open a list to see its totals and items explained.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planned, actual and difference totals update as you shop.';
+
+  @override
+  String get tourItemsBody =>
+      'Your items. Change their order or search them here.';
 }

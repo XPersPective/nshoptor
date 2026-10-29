@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../core/money/format_locale.dart';
 
 import 'package:flutter/material.dart';
@@ -33,9 +35,12 @@ import '../history/reports/report_export_service.dart';
 import '../history/reports/report_repository.dart';
 import '../history/reports/report_share_menu.dart';
 import '../../core/text/store_name.dart';
+
 import 'package:napp_ads/napp_ads.dart';
+
 import '../history/insights/budget_check.dart';
 import '../history/price_history/price_history_sheet.dart';
+import '../onboarding/coach_tour.dart';
 import '../onboarding/first_run_guide.dart';
 import '../receipts/ocr_text_source.dart';
 import '../receipts/receipt_capture_flow.dart';
@@ -130,6 +135,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   bool _editable = false;
   ListStatus? _status;
   BudgetStatus? _budgetStatus;
+  final _contentShown = Completer<void>();
 
   @override
   void initState() {
@@ -141,6 +147,21 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
     WidgetsBinding.instance.addObserver(this);
     _listFuture = _loadList();
+    if (AppDefaults.detailTourPending()) unawaited(_continueTour());
+  }
+
+  /// PB-201: the lists tour continues here once, after the list is shown.
+  Future<void> _continueTour() async {
+    try {
+      await _listFuture;
+    } catch (_) {
+      return;
+    }
+    // Items decide which controls (Items row, sort) are on screen.
+    await _contentShown.future;
+    await WidgetsBinding.instance.endOfFrame;
+    if (!mounted || ModalRoute.of(context)?.isCurrent == false) return;
+    await runDetailTour(context);
   }
 
   @override
@@ -524,6 +545,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                 await _checkBudgetAndWarn();
               } else if (action == 'receipt') {
                 await _scanReceipt(context);
+              } else if (action == 'help') {
+                await runDetailTour(context);
               } else if (action == 'archive') {
                 await widget.listRepository.changeStatus(
                   widget.listId,
@@ -584,6 +607,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                   child: Text(l10n.continueShoppingLabel),
                 ),
               PopupMenuItem(value: 'archive', child: Text(l10n.archiveAction)),
+              PopupMenuItem(
+                key: const Key('detail_how_to_use'),
+                value: 'help',
+                child: Text(l10n.howToUseLabel),
+              ),
             ],
           ),
         ],
@@ -610,6 +638,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
               builder: (context, entrySnap) {
                 final items = itemSnap.data ?? const <PlannedItem>[];
                 final entries = entrySnap.data ?? const <PurchaseEntry>[];
+                if (itemSnap.hasData &&
+                    entrySnap.hasData &&
+                    !_contentShown.isCompleted) {
+                  _contentShown.complete();
+                }
                 final locale = Localizations.localeOf(context).languageCode;
                 final searching = _searchQuery.trim().isNotEmpty;
                 final orderedItems = sortedItemsForView(
@@ -678,49 +711,47 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                       ),
                     ),
                     Flexible(
-                        child: PopupMenuButton<ItemSortMode>(
-                          key: const Key('detail_item_sort'),
-                          tooltip: l10n.listSortLabel,
-                          initialValue: _sortMode,
-                          enabled: !_busy && !_sortBusy,
-                          onSelected: _changeSort,
-                          itemBuilder: (_) => [
-                            CheckedPopupMenuItem(
-                              value: ItemSortMode.custom,
-                              checked: _sortMode == ItemSortMode.custom,
-                              child: Text(l10n.listSortManual),
-                            ),
-                            CheckedPopupMenuItem(
-                              value: ItemSortMode.alphabetical,
-                              checked: _sortMode == ItemSortMode.alphabetical,
-                              child: Text(l10n.listSortAz),
-                            ),
-                          ],
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(minHeight: 48),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(Icons.sort),
-                                  const SizedBox(width: 8),
-                                  Flexible(
-                                    child: Text(
-                                      _sortMode == ItemSortMode.custom
-                                          ? l10n.listSortManual
-                                          : l10n.listSortAz,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
+                      child: PopupMenuButton<ItemSortMode>(
+                        key: const Key('detail_item_sort'),
+                        tooltip: l10n.listSortLabel,
+                        initialValue: _sortMode,
+                        enabled: !_busy && !_sortBusy,
+                        onSelected: _changeSort,
+                        itemBuilder: (_) => [
+                          CheckedPopupMenuItem(
+                            value: ItemSortMode.custom,
+                            checked: _sortMode == ItemSortMode.custom,
+                            child: Text(l10n.listSortManual),
+                          ),
+                          CheckedPopupMenuItem(
+                            value: ItemSortMode.alphabetical,
+                            checked: _sortMode == ItemSortMode.alphabetical,
+                            child: Text(l10n.listSortAz),
+                          ),
+                        ],
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(minHeight: 48),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.sort),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  child: Text(
+                                    _sortMode == ItemSortMode.custom
+                                        ? l10n.listSortManual
+                                        : l10n.listSortAz,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  const Icon(Icons.arrow_drop_down),
-                                ],
-                              ),
+                                ),
+                                const Icon(Icons.arrow_drop_down),
+                              ],
                             ),
                           ),
                         ),
+                      ),
                     ),
                   ],
                 );
@@ -762,180 +793,209 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                       child: StreamBuilder<List<ListReceipt>>(
                         stream: _receipts,
                         builder: (context, receiptSnap) {
-                        final receipts =
-                            receiptSnap.data ?? const <ListReceipt>[];
-                        final printedAt = receipts
-                            .map((r) => r.printedAt)
-                            .whereType<DateTime>()
-                            .firstOrNull;
-                        return ListView(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        children: [
-                          Card(
-                            margin: const EdgeInsets.only(top: 12, bottom: 8),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Semantics(
-                                    header: true,
-                                    child: Text(
-                                      l10n.compareTotal,
-                                      key: const Key('detail_totals_heading'),
-                                      style: headingStyle,
-                                    ),
+                          final receipts =
+                              receiptSnap.data ?? const <ListReceipt>[];
+                          final printedAt = receipts
+                              .map((r) => r.printedAt)
+                              .whereType<DateTime>()
+                              .firstOrNull;
+                          return ListView(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            children: [
+                              TourAnchor(
+                                id: TourTargets.detailTotals,
+                                child: Card(
+                                  margin: const EdgeInsets.only(
+                                    top: 12,
+                                    bottom: 8,
                                   ),
-                                  const SizedBox(height: 8),
-                                  _TotalsRow(
-                                    items: items,
-                                    entries: entries,
-                                    currencyCode: list.currencyCode,
-                                  ),
-                                  _BudgetWarningRow(
-                                    list: list,
-                                    entries: entries,
-                                    status: _budgetStatus,
-                                  ),
-                                  // F19: the printed receipt date/time.
-                                  if (printedAt != null)
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8),
-                                      child: Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.event_outlined,
-                                            size: 18,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Semantics(
+                                          header: true,
+                                          child: Text(
+                                            l10n.compareTotal,
+                                            key: const Key(
+                                              'detail_totals_heading',
+                                            ),
+                                            style: headingStyle,
                                           ),
-                                          const SizedBox(width: 8),
-                                          Expanded(
-                                            child: Text(
-                                              l10n.receiptDateLabel(
-                                                _formatPrinted(
-                                                  context,
-                                                  printedAt,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        _TotalsRow(
+                                          items: items,
+                                          entries: entries,
+                                          currencyCode: list.currencyCode,
+                                        ),
+                                        _BudgetWarningRow(
+                                          list: list,
+                                          entries: entries,
+                                          status: _budgetStatus,
+                                        ),
+                                        // F19: the printed receipt date/time.
+                                        if (printedAt != null)
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 8,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.event_outlined,
+                                                  size: 18,
                                                 ),
-                                              ),
-                                              key: const Key(
-                                                'detail_receipt_date',
-                                              ),
+                                                const SizedBox(width: 8),
+                                                Expanded(
+                                                  child: Text(
+                                                    l10n.receiptDateLabel(
+                                                      _formatPrinted(
+                                                        context,
+                                                        printedAt,
+                                                      ),
+                                                    ),
+                                                    key: const Key(
+                                                      'detail_receipt_date',
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                      ],
                                     ),
-                                ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          if (receipts.isNotEmpty)
-                            _ReceiptsSection(
-                              receipts: receipts,
-                              fallbackCurrency: list.currencyCode,
-                              onOpen: _busy || !_editable
-                                  ? null
-                                  : (receipt) => _scanReceipt(
+                              if (receipts.isNotEmpty)
+                                _ReceiptsSection(
+                                  receipts: receipts,
+                                  fallbackCurrency: list.currencyCode,
+                                  onOpen: _busy || !_editable
+                                      ? null
+                                      : (receipt) => _scanReceipt(
+                                          context,
+                                          resumeDraftId: receipt.id,
+                                        ),
+                                  onDelete: _busy ? null : _deleteReceipt,
+                                ),
+                              if (hasProducts) ...[
+                                TourAnchor(
+                                  id: TourTargets.detailItems,
+                                  child: productsHeader,
+                                ),
+                                searchField,
+                              ],
+                              if (items.isEmpty && entries.isEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    children: [
+                                      Text(l10n.itemsEmptyTitle),
+                                      Text(l10n.itemsEmptyBody),
+                                    ],
+                                  ),
+                                ),
+                              if (searching &&
+                                  visibleItems.isEmpty &&
+                                  unplanned.isEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    children: [
+                                      const Icon(Icons.search_off),
+                                      Text(
+                                        '${l10n.statusNotFound}: $_searchQuery',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      TextButton.icon(
+                                        key: const Key('detail_search_reset'),
+                                        onPressed: () {
+                                          _searchController.clear();
+                                          setState(() => _searchQuery = '');
+                                          FocusScope.of(context).unfocus();
+                                        },
+                                        icon: const Icon(Icons.clear),
+                                        label: Text(
+                                          material.clearButtonTooltip,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              if (_sortMode == ItemSortMode.alphabetical) ...[
+                                for (final (rowIndex, row)
+                                    in alphabeticalRows.indexed)
+                                  if (row.item != null)
+                                    _buildItemCard(
                                       context,
-                                      resumeDraftId: receipt.id,
+                                      row.item!,
+                                      entries,
+                                      list,
+                                      rowIndex,
+                                      draggable: false,
+                                      showBannerBelow: bannerSlot == rowIndex,
+                                    )
+                                  else
+                                    _buildUnplannedCard(
+                                      context,
+                                      row.entry!,
+                                      list,
                                     ),
-                              onDelete: _busy ? null : _deleteReceipt,
-                            ),
-                          if (hasProducts) ...[productsHeader, searchField],
-                          if (items.isEmpty && entries.isEmpty)
-                            Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                children: [
-                                  Text(l10n.itemsEmptyTitle),
-                                  Text(l10n.itemsEmptyBody),
-                                ],
-                              ),
-                            ),
-                          if (searching &&
-                              visibleItems.isEmpty &&
-                              unplanned.isEmpty)
-                            Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                children: [
-                                  const Icon(Icons.search_off),
-                                  Text(
-                                    '${l10n.statusNotFound}: $_searchQuery',
-                                    textAlign: TextAlign.center,
+                              ] else ...[
+                                if (visibleItems.isNotEmpty)
+                                  ReorderableListView.builder(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    buildDefaultDragHandles: false,
+                                    itemCount: visibleItems.length,
+                                    onReorderItem: (oldIndex, newIndex) =>
+                                        !reorderable
+                                        ? null
+                                        : _reorderItems(
+                                            orderedItems,
+                                            entries,
+                                            oldIndex,
+                                            newIndex,
+                                          ),
+                                    itemBuilder: (context, index) =>
+                                        _buildItemCard(
+                                          context,
+                                          visibleItems[index],
+                                          entries,
+                                          list,
+                                          index,
+                                          draggable: reorderable,
+                                          showBannerBelow: bannerSlot == index,
+                                        ),
                                   ),
-                                  TextButton.icon(
-                                    key: const Key('detail_search_reset'),
-                                    onPressed: () {
-                                      _searchController.clear();
-                                      setState(() => _searchQuery = '');
-                                      FocusScope.of(context).unfocus();
-                                    },
-                                    icon: const Icon(Icons.clear),
-                                    label: Text(material.clearButtonTooltip),
+                                for (final entry in unplanned)
+                                  _buildUnplannedCard(context, entry, list),
+                              ],
+                              if (_editable &&
+                                  (items.isNotEmpty || entries.isNotEmpty))
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 16,
                                   ),
-                                ],
-                              ),
-                            ),
-                          if (_sortMode == ItemSortMode.alphabetical) ...[
-                            for (final (rowIndex, row)
-                                in alphabeticalRows.indexed)
-                              if (row.item != null)
-                                _buildItemCard(
-                                  context,
-                                  row.item!,
-                                  entries,
-                                  list,
-                                  rowIndex,
-                                  draggable: false,
-                                  showBannerBelow: bannerSlot == rowIndex,
-                                )
-                              else
-                                _buildUnplannedCard(context, row.entry!, list),
-                          ] else ...[
-                            if (visibleItems.isNotEmpty)
-                              ReorderableListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                buildDefaultDragHandles: false,
-                                itemCount: visibleItems.length,
-                                onReorderItem: (oldIndex, newIndex) =>
-                                    !reorderable
-                                    ? null
-                                    : _reorderItems(
-                                        orderedItems,
-                                        entries,
-                                        oldIndex,
-                                        newIndex,
-                                      ),
-                                itemBuilder: (context, index) => _buildItemCard(
-                                  context,
-                                  visibleItems[index],
-                                  entries,
-                                  list,
-                                  index,
-                                  draggable: reorderable,
-                                  showBannerBelow: bannerSlot == index,
+                                  child: OutlinedButton.icon(
+                                    key: const Key('detail_finish_button'),
+                                    onPressed: _busy
+                                        ? null
+                                        : _finishAndShowResult,
+                                    icon: const Icon(Icons.check),
+                                    label: Text(
+                                      l10n.finishAndSeeResult,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            for (final entry in unplanned)
-                              _buildUnplannedCard(context, entry, list),
-                          ],
-                          if (_editable &&
-                              (items.isNotEmpty || entries.isNotEmpty))
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              child: OutlinedButton.icon(
-                                key: const Key('detail_finish_button'),
-                                onPressed: _busy ? null : _finishAndShowResult,
-                                icon: const Icon(Icons.check),
-                                label: Text(
-                                  l10n.finishAndSeeResult,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                        ],
-                      );
+                            ],
+                          );
                         },
                       ),
                     ),
@@ -948,7 +1008,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              SizedBox(
+                              TourAnchor(
+                                id: TourTargets.detailAdd,
                                 // Tap = one item in the full form; mic = many
                                 // items spoken at once (draft with approval).
                                 child: TextField(
@@ -974,34 +1035,37 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: OutlinedButton.icon(
-                                      key: const Key('detail_receipt_button'),
-                                      onPressed: _busy
-                                          ? null
-                                          : () => _scanReceipt(context),
-                                      icon: const Icon(
-                                        Icons.receipt_long_outlined,
-                                      ),
-                                      label: Text(
-                                        l10n.scanReceiptAction,
-                                        textAlign: TextAlign.center,
+                              TourAnchor(
+                                id: TourTargets.detailReceipt,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: OutlinedButton.icon(
+                                        key: const Key('detail_receipt_button'),
+                                        onPressed: _busy
+                                            ? null
+                                            : () => _scanReceipt(context),
+                                        icon: const Icon(
+                                          Icons.receipt_long_outlined,
+                                        ),
+                                        label: Text(
+                                          l10n.scanReceiptAction,
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  IconButton.outlined(
-                                    key: const Key('detail_receipt_help'),
-                                    tooltip: l10n.howToUseLabel,
-                                    onPressed: () => showScanHelpDialog(
-                                      context,
-                                      isReceipt: true,
+                                    const SizedBox(width: 8),
+                                    IconButton.outlined(
+                                      key: const Key('detail_receipt_help'),
+                                      tooltip: l10n.howToUseLabel,
+                                      onPressed: () => showScanHelpDialog(
+                                        context,
+                                        isReceipt: true,
+                                      ),
+                                      icon: const Icon(Icons.help_outline),
                                     ),
-                                    icon: const Icon(Icons.help_outline),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -1413,12 +1477,13 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         if (mounted) setState(() => _busy = busy);
       },
       document: () async {
-        final report = await ReportRepository(widget.db).shopping(
-          widget.listId,
-        );
+        final report = await ReportRepository(widget.db)
+            .shopping(widget.listId);
         return ReportDocument(
           title:
-              report.list.title ?? report.list.generatedTitle ?? l10n.listsTitle,
+              report.list.title ??
+              report.list.generatedTitle ??
+              l10n.listsTitle,
           currencyCode: report.list.currencyCode,
           shopping: [report],
         );
@@ -1748,8 +1813,8 @@ String _formatPrinted(BuildContext context, DateTime at) {
   if (local.hour == 0 && local.minute == 0) return date;
   final time = material.formatTimeOfDay(
     TimeOfDay.fromDateTime(local),
-    alwaysUse24HourFormat: MediaQuery.maybeAlwaysUse24HourFormatOf(context) ??
-        false,
+    alwaysUse24HourFormat:
+        MediaQuery.maybeAlwaysUse24HourFormatOf(context) ?? false,
   );
   return '$date $time';
 }
@@ -1857,7 +1922,9 @@ class _ReceiptsSectionState extends State<_ReceiptsSection> {
         : formatMoney(
             Money.fromMinorUnits(
               receipt.totalMinor!,
-              Currency.fromCode(receipt.currencyCode ?? widget.fallbackCurrency),
+              Currency.fromCode(
+                receipt.currencyCode ?? widget.fallbackCurrency,
+              ),
             ),
             locale: formatLocaleCode(context),
           );

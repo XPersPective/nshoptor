@@ -1541,4 +1541,38 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'اس ہفتے پر واپس جائیں';
+
+  @override
+  String get tourSkip => 'چھوڑیں';
+
+  @override
+  String get tourNewListBody =>
+      'خریداری کی فہرست شروع کریں اور جو خریدنا ہے شامل کریں۔';
+
+  @override
+  String get tourFromReceiptBody =>
+      'خریداری کر چکے؟ رسید کو اس کی قیمتوں کے ساتھ فہرست میں بدلیں۔';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'رسید کے اوپر سے شروع کریں: پہلے دکان اور تاریخ لیں، پھر باقی سطروں کے ساتھ جاری رکھیں۔';
+
+  @override
+  String get tourTabsBody =>
+      'فعال، مکمل اور محفوظ شدہ فہرستوں کے درمیان جائیں۔ آخر والا بٹن ترتیب بدلتا ہے۔';
+
+  @override
+  String get tourDiscoverBody => 'اسی ڈویلپر کی مزید ایپس دیکھیں۔';
+
+  @override
+  String get tourHelpBody =>
+      'یہ رہنمائی دوبارہ دیکھنے کے لیے یہاں تھپتھپائیں۔ مجموعے اور اشیا کی وضاحت کے لیے کوئی فہرست کھولیں۔';
+
+  @override
+  String get tourTotalsBody =>
+      'منصوبہ بند، اصل اور فرق کے مجموعے خریداری کے دوران اپ ڈیٹ ہوتے ہیں۔';
+
+  @override
+  String get tourItemsBody =>
+      'آپ کی اشیا۔ یہاں ان کی ترتیب بدلیں یا انہیں تلاش کریں۔';
 }

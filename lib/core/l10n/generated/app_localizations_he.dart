@@ -1530,4 +1530,37 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'חזרה לשבוע הזה';
+
+  @override
+  String get tourSkip => 'דילוג';
+
+  @override
+  String get tourNewListBody =>
+      'התחילו רשימת קניות והוסיפו את מה שאתם מתכננים לקנות.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'כבר קניתם? הפכו קבלה לרשימה עם המחירים שלה.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'התחילו בראש הקבלה: צלמו קודם את החנות והתאריך, ואז המשיכו עם שאר השורות.';
+
+  @override
+  String get tourTabsBody =>
+      'עברו בין רשימות פעילות, שהושלמו ובארכיון. הכפתור בסוף משנה את הסדר.';
+
+  @override
+  String get tourDiscoverBody => 'ראו אפליקציות נוספות של אותו מפתח.';
+
+  @override
+  String get tourHelpBody =>
+      'הקישו כאן כדי לצפות שוב במדריך. פתחו רשימה כדי לקבל הסבר על הסכומים והפריטים.';
+
+  @override
+  String get tourTotalsBody =>
+      'הסכומים המתוכנן, בפועל וההפרש מתעדכנים בזמן הקנייה.';
+
+  @override
+  String get tourItemsBody => 'הפריטים שלכם. שנו את הסדר או חפשו אותם כאן.';
 }

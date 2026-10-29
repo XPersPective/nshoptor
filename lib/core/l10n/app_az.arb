@@ -468,5 +468,14 @@
   "historyShareAll": "Hamısını paylaş",
   "historyUnknownStore": "Naməlum mağaza",
   "historyDailySpending": "Gündəlik xərc",
-  "historyResetPeriod": "Bu həftəyə qayıt"
+  "historyResetPeriod": "Bu həftəyə qayıt",
+  "tourSkip": "Keç",
+  "tourNewListBody": "Alış-veriş siyahısı başladın və almaq istədiklərinizi əlavə edin.",
+  "tourFromReceiptBody": "Artıq alış-veriş etmisiniz? Çeki qiymətləri ilə siyahıya çevirin.",
+  "tourReceiptFlowBody": "Çekin yuxarısından başlayın: əvvəl mağaza və tarixi çəkin, sonra qalan sətirlərlə davam edin.",
+  "tourTabsBody": "Aktiv, tamamlanmış və arxivlənmiş siyahılar arasında keçin. Sondakı düymə sıranı dəyişir.",
+  "tourDiscoverBody": "Eyni tərtibatçının digər tətbiqlərinə baxın.",
+  "tourHelpBody": "Bu bələdçini yenidən görmək üçün bura toxunun. Cəmlərin və məhsulların izahı üçün siyahı açın.",
+  "tourTotalsBody": "Planlaşdırılan, faktiki cəm və fərq alış-veriş etdikcə yenilənir.",
+  "tourItemsBody": "Məhsullarınız. Sıralarını burada dəyişin və ya axtarın."
 }

@@ -1542,4 +1542,38 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Tagasi sellesse nädalasse';
+
+  @override
+  String get tourSkip => 'Jäta vahele';
+
+  @override
+  String get tourNewListBody =>
+      'Alusta ostunimekirja ja lisa, mida plaanid osta.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Juba ostlesid? Tee tšekist hindadega nimekiri.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Alusta tšeki ülaosast: esmalt pood ja kuupäev, siis jätka ülejäänud ridadega.';
+
+  @override
+  String get tourTabsBody =>
+      'Vaheta aktiivsete, lõpetatud ja arhiveeritud nimekirjade vahel. Lõpus olev nupp muudab järjekorda.';
+
+  @override
+  String get tourDiscoverBody => 'Sama arendaja teised rakendused.';
+
+  @override
+  String get tourHelpBody =>
+      'Puuduta siin, et juhendit uuesti vaadata. Ava nimekiri, et näha summade ja toodete selgitust.';
+
+  @override
+  String get tourTotalsBody =>
+      'Plaanitud, tegelik summa ja vahe uuenevad ostlemise ajal.';
+
+  @override
+  String get tourItemsBody =>
+      'Sinu tooted. Muuda siin nende järjekorda või otsi neid.';
 }

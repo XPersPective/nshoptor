@@ -468,5 +468,14 @@
   "historyShareAll": "Deila öllu",
   "historyUnknownStore": "Óþekkt verslun",
   "historyDailySpending": "Dagleg útgjöld",
-  "historyResetPeriod": "Aftur í þessa viku"
+  "historyResetPeriod": "Aftur í þessa viku",
+  "tourSkip": "Sleppa",
+  "tourNewListBody": "Byrjaðu innkaupalista og bættu við því sem þú ætlar að kaupa.",
+  "tourFromReceiptBody": "Búin(n) að versla? Breyttu kvittun í lista með verðum.",
+  "tourReceiptFlowBody": "Byrjaðu efst á kvittuninni: fyrst verslun og dagsetningu, haltu svo áfram með restina af línunum.",
+  "tourTabsBody": "Skiptu á milli virkra, lokinna og safnaðra lista. Hnappurinn í lokin breytir röðinni.",
+  "tourDiscoverBody": "Sjáðu fleiri öpp frá sama forritara.",
+  "tourHelpBody": "Ýttu hér til að sjá leiðarvísinn aftur. Opnaðu lista til að fá útskýringu á samtölum og vörum.",
+  "tourTotalsBody": "Áætluð, raunveruleg samtala og mismunur uppfærast meðan þú verslar.",
+  "tourItemsBody": "Vörurnar þínar. Breyttu röðinni eða leitaðu að þeim hér."
 }

@@ -468,5 +468,14 @@
   "historyShareAll": "Podijeli sve",
   "historyUnknownStore": "Nepoznata trgovina",
   "historyDailySpending": "Dnevna potrošnja",
-  "historyResetPeriod": "Natrag na ovaj tjedan"
+  "historyResetPeriod": "Natrag na ovaj tjedan",
+  "tourSkip": "Preskoči",
+  "tourNewListBody": "Započnite popis za kupnju i dodajte što planirate kupiti.",
+  "tourFromReceiptBody": "Već ste kupili? Pretvorite račun u popis s cijenama.",
+  "tourReceiptFlowBody": "Počnite od vrha računa: najprije snimite trgovinu i datum, zatim nastavite s ostalim redcima.",
+  "tourTabsBody": "Prebacujte se između aktivnih, završenih i arhiviranih popisa. Gumb na kraju mijenja redoslijed.",
+  "tourDiscoverBody": "Druge aplikacije istog razvojnog programera.",
+  "tourHelpBody": "Dodirnite ovdje za ponovni prikaz vodiča. Otvorite popis za objašnjenje zbrojeva i stavki.",
+  "tourTotalsBody": "Planirani, stvarni zbroj i razlika ažuriraju se dok kupujete.",
+  "tourItemsBody": "Vaše stavke. Ovdje im promijenite redoslijed ili ih pretražite."
 }

@@ -1544,4 +1544,38 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Aftur í þessa viku';
+
+  @override
+  String get tourSkip => 'Sleppa';
+
+  @override
+  String get tourNewListBody =>
+      'Byrjaðu innkaupalista og bættu við því sem þú ætlar að kaupa.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Búin(n) að versla? Breyttu kvittun í lista með verðum.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Byrjaðu efst á kvittuninni: fyrst verslun og dagsetningu, haltu svo áfram með restina af línunum.';
+
+  @override
+  String get tourTabsBody =>
+      'Skiptu á milli virkra, lokinna og safnaðra lista. Hnappurinn í lokin breytir röðinni.';
+
+  @override
+  String get tourDiscoverBody => 'Sjáðu fleiri öpp frá sama forritara.';
+
+  @override
+  String get tourHelpBody =>
+      'Ýttu hér til að sjá leiðarvísinn aftur. Opnaðu lista til að fá útskýringu á samtölum og vörum.';
+
+  @override
+  String get tourTotalsBody =>
+      'Áætluð, raunveruleg samtala og mismunur uppfærast meðan þú verslar.';
+
+  @override
+  String get tourItemsBody =>
+      'Vörurnar þínar. Breyttu röðinni eða leitaðu að þeim hér.';
 }

@@ -1550,4 +1550,38 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Terug naar deze week';
+
+  @override
+  String get tourSkip => 'Overslaan';
+
+  @override
+  String get tourNewListBody =>
+      'Begin een boodschappenlijst en voeg toe wat je wilt kopen.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Al boodschappen gedaan? Maak van een kassabon een lijst met prijzen.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Begin bovenaan de bon: leg eerst winkel en datum vast en ga dan verder met de overige regels.';
+
+  @override
+  String get tourTabsBody =>
+      'Wissel tussen actieve, voltooide en gearchiveerde lijsten. De knop aan het eind wijzigt de volgorde.';
+
+  @override
+  String get tourDiscoverBody => 'Bekijk meer apps van dezelfde ontwikkelaar.';
+
+  @override
+  String get tourHelpBody =>
+      'Tik hier om deze uitleg opnieuw te zien. Open een lijst voor uitleg over totalen en artikelen.';
+
+  @override
+  String get tourTotalsBody =>
+      'Geplande, werkelijke en verschiltotalen worden tijdens het winkelen bijgewerkt.';
+
+  @override
+  String get tourItemsBody =>
+      'Je artikelen. Wijzig hier de volgorde of zoek ze op.';
 }

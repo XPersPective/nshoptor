@@ -126,13 +126,13 @@ void main() {
       expect(find.byKey(const Key('delete_all_dialog_1')), findsNothing);
       await tester.tap(guide);
       await tester.pumpAndSettle();
-      expect(find.text('1 / 7'), findsOneWidget);
+      expect(find.text('1 / 4'), findsOneWidget);
       await tester.tap(find.byKey(const Key('first_run_guide_close')));
       await tester.pumpAndSettle();
       expect(AppDefaults.guideSeen(), isTrue);
       await tester.tap(guide);
       await tester.pumpAndSettle();
-      expect(find.text('1 / 7'), findsOneWidget);
+      expect(find.text('1 / 4'), findsOneWidget);
       await tester.tap(find.byKey(const Key('first_run_guide_close')));
       await tester.pumpAndSettle();
       Future<void> answer(bool yes) async {

@@ -1548,4 +1548,38 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Энэ долоо хоног руу буцах';
+
+  @override
+  String get tourSkip => 'Алгасах';
+
+  @override
+  String get tourNewListBody =>
+      'Худалдан авалтын жагсаалт эхлүүлж, авах зүйлсээ нэмнэ үү.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Аль хэдийн худалдан авсан уу? Баримтыг үнэтэй нь жагсаалт болгоорой.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Баримтын дээд хэсгээс эхлээрэй: эхлээд дэлгүүр, огноог авч, дараа нь үлдсэн мөрүүдээр үргэлжлүүлнэ үү.';
+
+  @override
+  String get tourTabsBody =>
+      'Идэвхтэй, дууссан, архивласан жагсаалтуудын хооронд шилжинэ үү. Төгсгөлийн товч дарааллыг өөрчилнө.';
+
+  @override
+  String get tourDiscoverBody => 'Ижил хөгжүүлэгчийн бусад аппууд.';
+
+  @override
+  String get tourHelpBody =>
+      'Энэ зааврыг дахин үзэхийн тулд энд дарна уу. Нийлбэр, барааны тайлбарыг харахын тулд жагсаалт нээнэ үү.';
+
+  @override
+  String get tourTotalsBody =>
+      'Төлөвлөсөн, бодит нийлбэр болон зөрүү худалдан авах явцад шинэчлэгдэнэ.';
+
+  @override
+  String get tourItemsBody =>
+      'Таны бараа. Эндээс дарааллыг нь өөрчлөх эсвэл хайна уу.';
 }

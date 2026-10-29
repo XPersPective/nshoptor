@@ -1547,4 +1547,39 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Terug na hierdie week';
+
+  @override
+  String get tourSkip => 'Slaan oor';
+
+  @override
+  String get tourNewListBody =>
+      'Begin \'n inkopielys en voeg by wat jy beplan om te koop.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Klaar gekoop? Maak \'n kwitansie \'n lys met pryse.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Begin bo-aan die kwitansie: eers die winkel en datum, gaan dan voort met die res van die reëls.';
+
+  @override
+  String get tourTabsBody =>
+      'Wissel tussen aktiewe, voltooide en geargiveerde lyste. Die knoppie aan die einde verander die volgorde.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Sien meer toepassings van dieselfde ontwikkelaar.';
+
+  @override
+  String get tourHelpBody =>
+      'Tik hier om hierdie gids weer te sien. Maak \'n lys oop om die totale en items verduidelik te sien.';
+
+  @override
+  String get tourTotalsBody =>
+      'Beplande, werklike en verskiltotale word bygewerk terwyl jy koop.';
+
+  @override
+  String get tourItemsBody =>
+      'Jou items. Verander hul volgorde of soek hulle hier.';
 }

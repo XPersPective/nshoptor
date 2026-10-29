@@ -1544,4 +1544,38 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'ಈ ವಾರಕ್ಕೆ ಹಿಂತಿರುಗಿ';
+
+  @override
+  String get tourSkip => 'ಬಿಟ್ಟುಬಿಡಿ';
+
+  @override
+  String get tourNewListBody =>
+      'ಶಾಪಿಂಗ್ ಪಟ್ಟಿಯನ್ನು ಆರಂಭಿಸಿ, ಕೊಳ್ಳಬೇಕಾದುದನ್ನು ಸೇರಿಸಿ.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ಈಗಾಗಲೇ ಖರೀದಿಸಿದಿರಾ? ರಸೀದಿಯನ್ನು ಅದರ ಬೆಲೆಗಳೊಂದಿಗೆ ಪಟ್ಟಿಯಾಗಿಸಿ.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ರಸೀದಿಯ ಮೇಲಿನಿಂದ ಆರಂಭಿಸಿ: ಮೊದಲು ಅಂಗಡಿ ಮತ್ತು ದಿನಾಂಕ, ನಂತರ ಉಳಿದ ಸಾಲುಗಳೊಂದಿಗೆ ಮುಂದುವರಿಸಿ.';
+
+  @override
+  String get tourTabsBody =>
+      'ಸಕ್ರಿಯ, ಪೂರ್ಣಗೊಂಡ ಮತ್ತು ಆರ್ಕೈವ್ ಪಟ್ಟಿಗಳ ನಡುವೆ ಬದಲಿಸಿ. ಕೊನೆಯ ಬಟನ್ ಕ್ರಮವನ್ನು ಬದಲಿಸುತ್ತದೆ.';
+
+  @override
+  String get tourDiscoverBody => 'ಅದೇ ಡೆವಲಪರ್‌ನ ಇನ್ನಷ್ಟು ಆ್ಯಪ್‌ಗಳನ್ನು ನೋಡಿ.';
+
+  @override
+  String get tourHelpBody =>
+      'ಈ ಮಾರ್ಗದರ್ಶಿಯನ್ನು ಮತ್ತೆ ನೋಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ. ಮೊತ್ತ ಮತ್ತು ಐಟಂಗಳ ವಿವರಣೆಗೆ ಒಂದು ಪಟ್ಟಿಯನ್ನು ತೆರೆಯಿರಿ.';
+
+  @override
+  String get tourTotalsBody =>
+      'ಯೋಜಿತ, ನಿಜವಾದ ಮೊತ್ತ ಮತ್ತು ವ್ಯತ್ಯಾಸ ಖರೀದಿಸುವಾಗ ನವೀಕರಿಸಲ್ಪಡುತ್ತವೆ.';
+
+  @override
+  String get tourItemsBody =>
+      'ನಿಮ್ಮ ಐಟಂಗಳು. ಇಲ್ಲಿ ಅವುಗಳ ಕ್ರಮ ಬದಲಿಸಿ ಅಥವಾ ಹುಡುಕಿ.';
 }

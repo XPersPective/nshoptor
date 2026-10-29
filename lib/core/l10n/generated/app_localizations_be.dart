@@ -1552,4 +1552,38 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'Вярнуцца да гэтага тыдня';
+
+  @override
+  String get tourSkip => 'Прапусціць';
+
+  @override
+  String get tourNewListBody =>
+      'Стварыце спіс пакупак і дадайце тое, што плануеце купіць.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Ужо зрабілі пакупкі? Ператварыце чэк у спіс з цэнамі.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Пачніце з верху чэка: спачатку здымiце краму і дату, потым працягвайце астатнімі радкамі.';
+
+  @override
+  String get tourTabsBody =>
+      'Пераключайцеся паміж актыўнымі, завершанымі і архіўнымі спісамі. Кнопка ў канцы мяняе парадак.';
+
+  @override
+  String get tourDiscoverBody => 'Іншыя праграмы таго ж распрацоўшчыка.';
+
+  @override
+  String get tourHelpBody =>
+      'Націсніце тут, каб зноў паглядзець даведнік. Адкрыйце спіс, каб даведацца пра вынікі і тавары.';
+
+  @override
+  String get tourTotalsBody =>
+      'Вынікі па плане, факце і розніцы абнаўляюцца падчас пакупак.';
+
+  @override
+  String get tourItemsBody =>
+      'Вашы тавары. Мяняйце іх парадак або шукайце іх тут.';
 }

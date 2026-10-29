@@ -468,5 +468,14 @@
   "historyShareAll": "Dela allt",
   "historyUnknownStore": "Okänd butik",
   "historyDailySpending": "Daglig utgift",
-  "historyResetPeriod": "Tillbaka till denna vecka"
+  "historyResetPeriod": "Tillbaka till denna vecka",
+  "tourSkip": "Hoppa över",
+  "tourNewListBody": "Starta en inköpslista och lägg till det du tänker köpa.",
+  "tourFromReceiptBody": "Redan handlat? Gör om ett kvitto till en lista med priser.",
+  "tourReceiptFlowBody": "Börja högst upp på kvittot: först butik och datum, fortsätt sedan med resten av raderna.",
+  "tourTabsBody": "Växla mellan aktiva, klara och arkiverade listor. Knappen i slutet ändrar ordningen.",
+  "tourDiscoverBody": "Se fler appar från samma utvecklare.",
+  "tourHelpBody": "Tryck här för att se guiden igen. Öppna en lista för att få summor och varor förklarade.",
+  "tourTotalsBody": "Planerad, faktisk summa och skillnad uppdateras medan du handlar.",
+  "tourItemsBody": "Dina varor. Ändra ordning eller sök bland dem här."
 }

@@ -1552,4 +1552,38 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get historyResetPeriod => 'இந்த வாரத்திற்குத் திரும்பு';
+
+  @override
+  String get tourSkip => 'தவிர்';
+
+  @override
+  String get tourNewListBody =>
+      'ஒரு ஷாப்பிங் பட்டியலைத் தொடங்கி வாங்க வேண்டியவற்றைச் சேர்க்கவும்.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ஏற்கனவே வாங்கிவிட்டீர்களா? ரசீதை அதன் விலைகளுடன் பட்டியலாக மாற்றுங்கள்.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ரசீதின் மேலிருந்து தொடங்குங்கள்: முதலில் கடை மற்றும் தேதி, பிறகு மீதமுள்ள வரிகளுடன் தொடருங்கள்.';
+
+  @override
+  String get tourTabsBody =>
+      'செயலில் உள்ள, முடிந்த மற்றும் காப்பகப் பட்டியல்களுக்கு இடையே மாறுங்கள். இறுதியில் உள்ள பொத்தான் வரிசையை மாற்றும்.';
+
+  @override
+  String get tourDiscoverBody => 'அதே டெவலப்பரின் மேலும் ஆப்ஸைப் பாருங்கள்.';
+
+  @override
+  String get tourHelpBody =>
+      'இந்த வழிகாட்டியை மீண்டும் பார்க்க இங்கே தட்டவும். மொத்தங்கள் மற்றும் பொருட்களின் விளக்கத்திற்கு ஒரு பட்டியலைத் திறக்கவும்.';
+
+  @override
+  String get tourTotalsBody =>
+      'திட்டமிட்ட, உண்மையான மொத்தம் மற்றும் வேறுபாடு வாங்கும்போது புதுப்பிக்கப்படும்.';
+
+  @override
+  String get tourItemsBody =>
+      'உங்கள் பொருட்கள். இங்கே அவற்றின் வரிசையை மாற்றவும் அல்லது தேடவும்.';
 }
