@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:napp_core/napp_core.dart' show SettingsStore;
+import 'package:nshoptor/app/app_defaults.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/core/theme/app_theme.dart';
 import 'package:nshoptor/features/receipts/image_capture_service.dart';
@@ -186,6 +188,37 @@ void main() {
         expect(find.textContaining('private'), findsNothing);
         await tester.pumpWidget(const SizedBox.shrink());
       }
+    },
+  );
+
+  testWidgets(
+    'unified receipt capture sheet shows inline tip and dismisses permanently',
+    (tester) async {
+      final store = SettingsStore();
+      AppDefaults.attach(store);
+      AppDefaults.setCaptureTipsEnabled(true);
+      await tester.pumpWidget(
+        _app(
+          Builder(
+            builder: (context) => TextButton(
+              onPressed: () => showImageSourceSheet(
+                context,
+                title: AppLocalizations.of(context).scanReceiptAction,
+              ),
+              child: const Text('open'),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('open'));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('capture_tip_first')), findsOneWidget);
+      expect(find.byKey(const Key('image_source_camera')), findsOneWidget);
+      expect(find.byKey(const Key('image_source_gallery')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('capture_tip_never')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('capture_tip_first')), findsNothing);
+      expect(AppDefaults.captureTipsEnabled(), isFalse);
     },
   );
 }

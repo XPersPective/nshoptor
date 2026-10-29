@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../onboarding/first_run_guide.dart';
 import 'image_capture_service.dart';
@@ -75,59 +76,98 @@ Future<ImageSource?> showImageSourceSheet(
   required String title,
 }) {
   final l10n = AppLocalizations.of(context);
+  final isReceipt = title == l10n.scanReceiptAction;
+  var showTip = isReceipt && AppDefaults.captureTipsEnabled();
   return showModalBottomSheet<ImageSource>(
     context: context,
     showDragHandle: true,
     isScrollControlled: true,
-    builder: (sheetContext) => SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    title,
-                    style: Theme.of(sheetContext).textTheme.titleLarge,
+    builder: (sheetContext) => StatefulBuilder(
+      builder: (sheetContext, setSheetState) => SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: Theme.of(sheetContext).textTheme.titleLarge,
+                    ),
                   ),
-                ),
-                IconButton(
-                  key: const Key('image_source_help'),
-                  tooltip: l10n.howToUseLabel,
-                  onPressed: () => showScanHelpDialog(
-                    sheetContext,
-                    isReceipt: title == l10n.scanReceiptAction,
+                  IconButton(
+                    key: const Key('image_source_help'),
+                    tooltip: l10n.howToUseLabel,
+                    onPressed: () => showScanHelpDialog(
+                      sheetContext,
+                      isReceipt: isReceipt,
+                    ),
+                    icon: const Icon(Icons.help_outline),
                   ),
-                  icon: const Icon(Icons.help_outline),
+                ],
+              ),
+              if (showTip) ...[
+                const SizedBox(height: 8),
+                Container(
+                  key: const Key('capture_tip_first'),
+                  padding: const EdgeInsets.fromLTRB(12, 10, 8, 4),
+                  decoration: BoxDecoration(
+                    color: Theme.of(
+                      sheetContext,
+                    ).colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.captureTipFirst,
+                        style: Theme.of(sheetContext).textTheme.bodyMedium,
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: TextButton(
+                          key: const Key('capture_tip_never'),
+                          onPressed: () {
+                            AppDefaults.setCaptureTipsEnabled(false);
+                            setSheetState(() => showTip = false);
+                          },
+                          child: Text(l10n.captureTipNeverShow),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
-            ),
-            const SizedBox(height: 16),
-            FilledButton.icon(
-              key: const Key('image_source_camera'),
-              onPressed: () => Navigator.pop(sheetContext, ImageSource.camera),
-              icon: const Icon(Icons.photo_camera_outlined),
-              label: Text(l10n.imageCameraAction),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size(48, 56),
-                padding: const EdgeInsets.all(16),
+              const SizedBox(height: 16),
+              FilledButton.icon(
+                key: const Key('image_source_camera'),
+                onPressed: () =>
+                    Navigator.pop(sheetContext, ImageSource.camera),
+                icon: const Icon(Icons.photo_camera_outlined),
+                label: Text(l10n.imageCameraAction),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size(48, 56),
+                  padding: const EdgeInsets.all(16),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            FilledButton.tonalIcon(
-              key: const Key('image_source_gallery'),
-              onPressed: () => Navigator.pop(sheetContext, ImageSource.gallery),
-              icon: const Icon(Icons.photo_library_outlined),
-              label: Text(l10n.imageGalleryAction),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size(48, 56),
-                padding: const EdgeInsets.all(16),
+              const SizedBox(height: 8),
+              FilledButton.tonalIcon(
+                key: const Key('image_source_gallery'),
+                onPressed: () =>
+                    Navigator.pop(sheetContext, ImageSource.gallery),
+                icon: const Icon(Icons.photo_library_outlined),
+                label: Text(l10n.imageGalleryAction),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size(48, 56),
+                  padding: const EdgeInsets.all(16),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ),

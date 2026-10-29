@@ -396,14 +396,27 @@ class _ContinuationSheetState extends State<_ContinuationSheet> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    Widget action(_CaptureAction action, String label, IconData icon) =>
-        FilledButton.tonalIcon(
-          key: Key('receipt_capture_${action.name}'),
-          onPressed: () => _finish(action),
-          style: FilledButton.styleFrom(minimumSize: const Size(48, 56)),
-          icon: Icon(icon),
-          label: Text(label),
-        );
+    final showTip = widget.canContinue && AppDefaults.captureTipsEnabled();
+    Widget action(
+      _CaptureAction action,
+      String label,
+      IconData icon, {
+      bool primary = false,
+    }) => primary
+        ? FilledButton.icon(
+            key: Key('receipt_capture_${action.name}'),
+            onPressed: () => _finish(action),
+            style: FilledButton.styleFrom(minimumSize: const Size(48, 56)),
+            icon: Icon(icon),
+            label: Text(label),
+          )
+        : FilledButton.tonalIcon(
+            key: Key('receipt_capture_${action.name}'),
+            onPressed: () => _finish(action),
+            style: FilledButton.styleFrom(minimumSize: const Size(48, 56)),
+            icon: Icon(icon),
+            label: Text(label),
+          );
     return PopScope(
       onPopInvokedWithResult: (didPop, _) {
         if (didPop) _timer?.cancel();
@@ -420,12 +433,46 @@ class _ContinuationSheetState extends State<_ContinuationSheet> {
               ),
               const SizedBox(height: 12),
               Semantics(liveRegion: true, child: Text(widget.message)),
+              if (showTip) ...[
+                const SizedBox(height: 12),
+                Container(
+                  key: const Key('capture_tip_continue'),
+                  padding: const EdgeInsets.fromLTRB(12, 10, 8, 4),
+                  decoration: BoxDecoration(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.captureTipContinue,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: TextButton(
+                          key: const Key('capture_tip_never'),
+                          onPressed: () {
+                            AppDefaults.setCaptureTipsEnabled(false);
+                            setState(() {});
+                          },
+                          child: Text(l10n.captureTipNeverShow),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
               const SizedBox(height: 16),
               if (widget.canContinue) ...[
                 action(
                   _CaptureAction.camera,
                   l10n.imageCameraAction,
                   Icons.photo_camera_outlined,
+                  primary: true,
                 ),
                 const SizedBox(height: 8),
                 action(
@@ -511,6 +558,7 @@ Future<_AiOutcome> _readWithAi(
   var needCapture = paths.isEmpty;
   var prepend = false;
   var replaceLast = false;
+  Future<AiReceiptRead>? inFlightJob;
   // Standalone captures get their list as soon as the header is read (F12).
   int? ownedListId;
   _AiStopped stop() => _AiStopped(listId: ownedListId);
@@ -539,8 +587,10 @@ Future<_AiOutcome> _readWithAi(
   while (context.mounted) {
     if (!context.mounted) return stop();
     if (needCapture) {
-      await _captureTip(context, first: paths.isEmpty || prepend);
-      if (!context.mounted) return stop();
+      if (pickImage != null) {
+        await _captureTip(context, first: paths.isEmpty || prepend);
+        if (!context.mounted) return stop();
+      }
       final capture = await captureImageText(
         context,
         title: l10n.scanReceiptAction,
@@ -551,53 +601,74 @@ Future<_AiOutcome> _readWithAi(
         preferredSource: source,
         requireText: false,
       );
-      if (!context.mounted || capture is! CapturedImage) {
-        return stop();
-      }
-      lastCapture = capture;
-      final kept = await images.keep(capture.path) ?? capture.path;
-      if (replaceLast && paths.isNotEmpty) {
-        final old = prepend ? paths.removeAt(0) : paths.removeLast();
-        try {
-          await images.removeOwned(old);
-        } catch (_) {}
-      }
-      if (prepend) {
-        paths.insert(0, kept);
-      } else {
-        paths.add(kept);
-      }
-      // Raw OCR (possibly empty for scripts the device cannot read) keeps the
-      // draft restorable; the photos are the evidence the model rereads.
-      final current = doc ??= ReceiptDocument.fromScan(
-        capture.scan,
-        currencyCode: currencyCode,
-      );
-      await persist(current);
       if (!context.mounted) return stop();
+      if (capture is! CapturedImage) {
+        if (inFlightJob != null) {
+          needCapture = false;
+        } else {
+          return stop();
+        }
+      } else {
+        inFlightJob = null;
+        lastCapture = capture;
+        final kept = await images.keep(capture.path) ?? capture.path;
+        if (replaceLast && paths.isNotEmpty) {
+          final old = prepend ? paths.removeAt(0) : paths.removeLast();
+          try {
+            await images.removeOwned(old);
+          } catch (_) {}
+        }
+        if (prepend) {
+          paths.insert(0, kept);
+        } else {
+          paths.add(kept);
+        }
+        // Raw OCR (possibly empty for scripts the device cannot read) keeps the
+        // draft restorable; the photos are the evidence the model rereads.
+        final current = doc ??= ReceiptDocument.fromScan(
+          capture.scan,
+          currencyCode: currencyCode,
+        );
+        await persist(current);
+        if (!context.mounted) return stop();
+      }
     }
     if (!context.mounted) return stop();
 
-    final job = reader.read([...paths], currencyCode: currencyCode);
-    final waited = await _readingProgress(context, job);
-    if (waited == null) {
-      // The user left; the reading finishes in the background and reports
-      // with a notification that opens the list (F08).
-      unawaited(
-        _finishInBackground(
-          job,
-          db: db,
-          drafts: drafts,
-          l10n: l10n,
-          draftId: id,
-          listId: listId ?? ownedListId,
-          photos: [...paths],
-          currencyCode: currencyCode,
-        ),
-      );
-      return stop();
+    final job =
+        inFlightJob ??= reader.read([...paths], currencyCode: currencyCode);
+    final step = await _readingProgress(
+      context,
+      job,
+      canAddPhoto: paths.length < AiReceiptReader.maxPhotos,
+    );
+    final AiReceiptRead read;
+    switch (step) {
+      case _ReadingAddPhoto():
+        needCapture = true;
+        prepend = false;
+        replaceLast = false;
+        continue;
+      case _ReadingBackgrounded():
+        // The user left; the reading finishes in the background and reports
+        // with a notification that opens the list (F08).
+        unawaited(
+          _finishInBackground(
+            job,
+            db: db,
+            drafts: drafts,
+            l10n: l10n,
+            draftId: id,
+            listId: listId ?? ownedListId,
+            photos: [...paths],
+            currencyCode: currencyCode,
+          ),
+        );
+        return stop();
+      case _ReadingCompleted(read: final completed):
+        inFlightJob = null;
+        read = completed;
     }
-    final read = waited;
     if (!context.mounted) return stop();
 
     switch (read) {
@@ -795,15 +866,33 @@ void _draftNotice(BuildContext context) {
   );
 }
 
-/// Progress while the model reads. Returns the reading, or null when the
-/// user chose to continue in the background.
-Future<AiReceiptRead?> _readingProgress(
+sealed class _ReadingStep {
+  const _ReadingStep();
+}
+
+final class _ReadingCompleted extends _ReadingStep {
+  const _ReadingCompleted(this.read);
+  final AiReceiptRead read;
+}
+
+final class _ReadingBackgrounded extends _ReadingStep {
+  const _ReadingBackgrounded();
+}
+
+final class _ReadingAddPhoto extends _ReadingStep {
+  const _ReadingAddPhoto();
+}
+
+/// Progress while the model reads. Returns the reading, background handoff, or
+/// immediate next-photo capture (F07/F08).
+Future<_ReadingStep> _readingProgress(
   BuildContext context,
-  Future<AiReceiptRead> work,
-) async {
+  Future<AiReceiptRead> work, {
+  required bool canAddPhoto,
+}) async {
   final l10n = AppLocalizations.of(context);
   final navigator = Navigator.of(context, rootNavigator: true);
-  final done = Completer<AiReceiptRead?>();
+  final done = Completer<_ReadingStep>();
   var open = true;
   unawaited(
     showDialog<void>(
@@ -829,10 +918,23 @@ Future<AiReceiptRead?> _readingProgress(
             ],
           ),
           actions: [
+            if (canAddPhoto)
+              TextButton.icon(
+                key: const Key('receipt_capture_next_now'),
+                onPressed: () {
+                  if (!done.isCompleted) {
+                    done.complete(const _ReadingAddPhoto());
+                  }
+                },
+                icon: const Icon(Icons.add_a_photo_outlined),
+                label: Text(l10n.receiptContinueAction),
+              ),
             TextButton(
               key: const Key('receipt_read_in_background'),
               onPressed: () {
-                if (!done.isCompleted) done.complete(null);
+                if (!done.isCompleted) {
+                  done.complete(const _ReadingBackgrounded());
+                }
               },
               child: Text(l10n.receiptReadInBackground),
             ),
@@ -844,7 +946,7 @@ Future<AiReceiptRead?> _readingProgress(
   unawaited(
     work.then(
       (value) {
-        if (!done.isCompleted) done.complete(value);
+        if (!done.isCompleted) done.complete(_ReadingCompleted(value));
       },
       onError: (Object e, StackTrace st) {
         if (!done.isCompleted) done.completeError(e, st);

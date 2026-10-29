@@ -61,6 +61,27 @@ Map<String, dynamic> _sok() => {
 };
 
 void main() {
+  test(
+    'canonical AI KWD decimals survive durable replay without OCR guessing',
+    () {
+      final data = _sok()
+        ..['currency'] = 'KWD'
+        ..['items'] = [
+          {'name': 'MILK', 'lineTotal': '1.234'},
+        ]
+        ..['discounts'] = []
+        ..['tax'] = null
+        ..['total'] = '1.234';
+      final result = AiReceiptReader.interpret(data, currencyCode: 'KWD');
+      final doc = (result as AiReceiptVerified).document;
+      expect(doc.metadata.totalMinor, 1234);
+      expect(doc.toParseResult().totalMinor, 1234);
+      final replay = ReceiptDocument.decode(doc.encode());
+      expect(replay.state, ReceiptDocumentState.complete);
+      expect(replay.productLines.single.lineTotalMinor, 1234);
+      expect(replay.toParseResult().withinReconciliationTolerance, isTrue);
+    },
+  );
   test('all photos of one receipt are sent together; verified reading builds the document', () async {
     final log = <Map<String, dynamic>>[];
     final read = await _reader(_ai(_sok(), log: log))

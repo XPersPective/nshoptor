@@ -346,6 +346,9 @@ class AiReceiptReader {
     if (digits == 0) return '$minor';
     final text = minor.toString().padLeft(digits + 1, '0');
     final cut = text.length - digits;
-    return '${text.substring(0, cut)},${text.substring(cut)}';
+    // Synthetic rows retain an explicit decimal role through document replay.
+    // The model's input schema remains canonical ASCII with a dot decimal.
+    final separator = digits == 3 ? '\u066b' : ',';
+    return '${text.substring(0, cut)}$separator${text.substring(cut)}';
   }
 }

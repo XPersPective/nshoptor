@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:drift/native.dart';
@@ -202,6 +203,85 @@ void main() {
       await ReceiptRepository(db).delete(receipt.id);
       expect(await db.select(db.plannedItems).get(), isEmpty);
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
+    },
+  );
+
+  testWidgets(
+    'back-to-back photo capture adds the next photo without waiting for the first AI read',
+    (tester) async {
+      final firstRead = Completer<http.Response>();
+      final requests = <List<Object?>>[];
+      final ai = AiClient(
+        store: SettingsStore(),
+        baseUrl: 'https://x',
+        httpClient: MockClient((request) async {
+          final body = jsonDecode(request.body) as Map<String, dynamic>;
+          if (body['task'] != 'read_receipt_image') {
+            return http.Response('{"error":"ai_failed"}', 502);
+          }
+          final images = (body['input'] as Map)['images'] as List;
+          requests.add(images);
+          if (images.length == 1) return firstRead.future;
+          return http.Response(
+            jsonEncode({
+              'tier': 'pro',
+              'used': 2,
+              'limit': 100,
+              'result': _complete(),
+            }),
+            200,
+            headers: {'content-type': 'application/json; charset=utf-8'},
+          );
+        }),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('ar'),
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: Scaffold(
+            body: Builder(
+              builder: (context) => TextButton(
+                key: const Key('open'),
+                onPressed: () => openReceiptCaptureFlow(
+                  context,
+                  db: db,
+                  currencyCode: 'USD',
+                  ai: ai,
+                  pickImage: () async => 'picked.jpg',
+                  ocrSource: _Blind(),
+                  imageStore: _Images(),
+                  encodeAiImage: (path) async => '/9j/$path',
+                ),
+                child: const Text('open'),
+              ),
+            ),
+          ),
+        ),
+      );
+      Future<void> settle() async {
+        for (var i = 0; i < 20; i++) {
+          await tester.pump(const Duration(milliseconds: 50));
+          await tester.runAsync(() async {});
+        }
+      }
+
+      await tester.tap(find.byKey(const Key('open')));
+      await settle();
+      expect(find.byKey(const Key('receipt_reading_progress')), findsOneWidget);
+      expect(find.byKey(const Key('receipt_capture_next_now')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('receipt_capture_next_now')));
+      await settle();
+      expect(requests.last, ['/9j/photo-0', '/9j/photo-1']);
+      expect(find.byKey(const Key('receipt_line_1')), findsOneWidget);
+      firstRead.complete(http.Response('{"error":"ai_failed"}', 502));
+      await settle();
+      await tester.pumpWidget(const SizedBox.shrink());
     },
   );
 }
