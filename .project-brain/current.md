@@ -1,5 +1,10 @@
 # Current Architecture
 
+## Start here (2026-10-29)
+- Read `references/handoff-2026-10-29.md` first: done work, checks already done (do not repeat), remaining work in order. It supersedes the Next and Latest handoff sections below, which are history from 2026-10-27.
+- Current release 1.3.1+26 (a2965db): Android internal [26], iOS uploaded (not on TestFlight). 964 Flutter + 83 server tests pass. AI reading per ADR-008; device feedback F01-F41 in references/device-feedback-2026-10-28.md.
+- Old release packages deleted; hashes in the handoff and privately in original-notes/release-packages-deleted-2026-10-29.csv. Only artifacts/releases/1.3.1-26 remains.
+
 ## Read first
 - Order: Android+iOS app/receipt correctness, stores next, website LAST. Existing full/publishing authorization persists. Project Brain development, Release Harbor publishing. NO Store Automation/CLI Agent Pool/AI coauthors/new Android AVD. Only shared Medium_Phone_API_36.0; leave other sessions untouched. Bounded native workers; director designs/reviews architecture/security.
 - Branch codex/app-takeover-20261026; draft PR https://github.com/XPersPective/nshoptor/pull/1 . Exact source/run bindings private candidate-20-checkpoint-2026-10-27.json. Latest general CI40493507085 SUCCESS (analyzer/tests/server/gitleaks/Androidreleasecompile); native40493506996 SUCCESS including pinned real receipt OCR and all PDF variants. PB-182 bounded fixture retries/8stdlib tests and native Luna review PASS.
