@@ -1,0 +1,8 @@
+{
+  "contract": "402c0489be68325f",
+  "epoch": "7c0f795c3d2538a9",
+  "independent": false,
+  "intent": "4eea9d63611f3510",
+  "note": "Confirmed History narrow spacing bug; reuse existing Material theme and unchanged period/currency behavior",
+  "protocol": 1
+}

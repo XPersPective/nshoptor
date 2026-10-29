@@ -1,7 +1,7 @@
 {
   "protocol": 1,
   "task": "PB-202",
-  "status": "READY",
+  "status": "BLOCKED",
   "contract": "2265cb8a30f2d6fa",
   "areas": [
     "lib/data/db/**",

@@ -1,6 +1,7 @@
 # Current Architecture
 
 ## Start here (2026-10-29)
+- Latest app-only correction PB-203: History date selector/currency floating-label overlap reproduced and fixed. Four compact/wide TR/AR renders inspected; History109 tests, analyzer and incremental Android debug build PASS. See `references/history-spacing-2026-10-29.md`. Both PB-202/203 remain unshipped and formally blocked by native registry; no new release/upload.
 - New development checkpoint PB-202: explicit receipt-created row ownership (schema v5), safe deletion/restore and late background-result guards. 977 Flutter tests PASS (2 opt-in visual reviews skipped), analyzer clean; Android debug build PASS (432s). See `references/ownership-takeover-2026-10-29.md`. Not shipped or formally accepted; existing native-registry gate remains unresolved. Session user explicitly chose EXEC=S-ML, REV=S-ML.
 - Read `references/handoff-2026-10-29.md` first: done work, checks already done (do not repeat), remaining work in order. It supersedes the Next and Latest handoff sections below, which are history from 2026-10-27.
 - Current release 1.3.1+26 (a2965db): Android internal [26], iOS uploaded (not on TestFlight). 964 Flutter + 83 server tests pass. AI reading per ADR-008; device feedback F01-F41 in references/device-feedback-2026-10-28.md.

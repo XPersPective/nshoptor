@@ -258,7 +258,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               if (currencies.length > 1)
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  // The floating label paints above the field's box. Keep
+                  // it clear of the date button, including at large text.
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                   child: DropdownButtonFormField<String>(
                     initialValue: _currency,
                     decoration: InputDecoration(labelText: l.currencyLabel),
