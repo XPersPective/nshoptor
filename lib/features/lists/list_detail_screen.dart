@@ -1904,6 +1904,11 @@ class _ReceiptsSectionState extends State<_ReceiptsSection> {
         dark ? complete.dark : complete.light,
         l10n.receiptStateComplete,
       ),
+      ListReceiptState.readyToReview => (
+        Icons.fact_check_outlined,
+        theme.colorScheme.primary,
+        l10n.receiptReadDoneBody,
+      ),
       ListReceiptState.incomplete => (
         Icons.pending_outlined,
         dark ? const Color(0xFFFFB951) : const Color(0xFF8A5300),
@@ -1934,7 +1939,9 @@ class _ReceiptsSectionState extends State<_ReceiptsSection> {
       stateText,
     ].join(' · ');
     final canOpen =
-        receipt.state == ListReceiptState.incomplete && widget.onOpen != null;
+        (receipt.state == ListReceiptState.incomplete ||
+            receipt.state == ListReceiptState.readyToReview) &&
+        widget.onOpen != null;
     final delete = widget.onDelete;
     return ListTile(
       key: ValueKey('detail_receipt_${receipt.id}'),

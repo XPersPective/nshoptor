@@ -1,11 +1,13 @@
 import 'package:drift/drift.dart';
 
 import '../../data/db/app_database.dart';
+import 'receipt_document.dart';
 import 'receipt_image_store.dart';
 
 /// Where a receipt of a list stands (F13): approved, still being captured,
 /// or stopped with an error.
-enum ListReceiptState { complete, incomplete, failed }
+/// readyToReview: read and verified, waiting only for the user's Save.
+enum ListReceiptState { complete, readyToReview, incomplete, failed }
 
 /// One receipt as the list detail shows it.
 final class ListReceipt {
@@ -36,9 +38,22 @@ class ReceiptRepository {
   final AppDatabase _db;
   final ReceiptImageStore _images;
 
+  static bool _ready(Receipt r) {
+    final json = r.captureDataJson;
+    if (json == null) return false;
+    try {
+      final document = ReceiptDocument.decode(json);
+      return document.state == ReceiptDocumentState.complete &&
+          document.toParseResult().withinReconciliationTolerance;
+    } catch (_) {
+      return false;
+    }
+  }
+
   static ListReceipt _view(Receipt r) => ListReceipt(
     id: r.id,
     state: switch (r.processingStatus) {
+      'pending' when _ready(r) => ListReceiptState.readyToReview,
       'pending' => ListReceiptState.incomplete,
       'error' => ListReceiptState.failed,
       _ => ListReceiptState.complete,
