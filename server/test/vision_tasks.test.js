@@ -179,3 +179,19 @@ test('a cut-off receipt returns its visible rows, never priced as a whole', () =
   assert.equal(out.total, null);
   assert.deepEqual(R.clean({ ...receipt(), status: 'top_missing' }).items, []);
 });
+
+test('a wrong answer from one model waits for a valid one from the next', async () => {
+  const e = env();
+  e.AI_VISION_MODEL = 'sloppy-model,careful-model';
+  const seen = [];
+  const fetchImpl = async (_, init) => {
+    const { model } = JSON.parse(init.body);
+    seen.push(model);
+    const answer = model === 'sloppy-model' ? { ...receipt(), total: '999.99' } : receipt();
+    return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(answer) } }] }));
+  };
+  const res = await handleAi(req({ installId: ID, task: 'read_receipt_image', input: { images: [JPEG] } }), e, { fetchImpl });
+  assert.equal(res.status, 200);
+  assert.equal((await res.json()).result.total, '225.77');
+  assert.deepEqual(seen, ['sloppy-model', 'careful-model']);
+});

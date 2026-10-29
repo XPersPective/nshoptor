@@ -94,14 +94,18 @@ export async function handleAi(request, env, { fetchImpl = fetch, now = new Date
   let shape;
   for (let attempt = 0; attempt < 2; attempt++) {
     const system = task.system(body.locale) + (attempt && task.retryNote ? task.retryNote(failure) : '');
+    // Diagnostics without content: top-level field names and a short status.
+    const describe = out => out && typeof out === 'object' && !Array.isArray(out)
+      ? { keys: Object.keys(out).slice(0, 16).map(k => String(k).replace(/[^A-Za-z_]/g, '').slice(0, 24)),
+        status: typeof out.status === 'string' && /^[A-Za-z_ -]{1,24}$/.test(out.status) ? out.status : typeof out.status }
+      : { type: Array.isArray(out) ? 'array' : typeof out };
     try {
-      const out = await chatJson(env, system, task.user(input), options);
-      // Diagnostics without content: top-level field names and a short status.
-      shape = out && typeof out === 'object' && !Array.isArray(out)
-        ? { keys: Object.keys(out).slice(0, 16).map(k => String(k).replace(/[^A-Za-z_]/g, '').slice(0, 24)),
-          status: typeof out.status === 'string' && /^[A-Za-z_ -]{1,24}$/.test(out.status) ? out.status : typeof out.status }
-        : { type: Array.isArray(out) ? 'array' : typeof out };
-      return json(200, { tier, used: quota.used, limit: quota.limit, result: task.clean(out, input) });
+      const result = await chatJson(env, system, task.user(input), {
+        ...options,
+        accept: out => { shape = describe(out); return task.clean(out, input); },
+        onReject: out => { shape = describe(out); },
+      });
+      return json(200, { tier, used: quota.used, limit: quota.limit, result });
     } catch (e) {
       if (e instanceof AiError && !['ai_not_json', 'ai_schema', 'ai_truncated'].includes(e.message)) {
         return json(502, { error: 'ai_failed' });

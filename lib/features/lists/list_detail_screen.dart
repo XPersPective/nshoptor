@@ -890,6 +890,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                 _ReceiptsSection(
                                   receipts: receipts,
                                   fallbackCurrency: list.currencyCode,
+                                  fallbackStore: list.title,
                                   onOpen: _busy || !_editable
                                       ? null
                                       : (receipt) => _scanReceipt(
@@ -1840,12 +1841,16 @@ class _ReceiptsSection extends StatefulWidget {
   const _ReceiptsSection({
     required this.receipts,
     required this.fallbackCurrency,
+    this.fallbackStore,
     required this.onOpen,
     required this.onDelete,
   });
 
   final List<ListReceipt> receipts;
   final String fallbackCurrency;
+
+  /// The list's own name (a receipt's store) when the draft has none yet.
+  final String? fallbackStore;
   final ValueChanged<ListReceipt>? onOpen;
   final ValueChanged<ListReceipt>? onDelete;
 
@@ -1937,7 +1942,12 @@ class _ReceiptsSectionState extends State<_ReceiptsSection> {
       ),
     };
     final cleaned = receipt.store == null ? '' : cleanStoreName(receipt.store!);
-    final store = cleaned.isEmpty ? l10n.receiptStoreUnknown : cleaned;
+    final fallback = widget.fallbackStore?.trim() ?? '';
+    final store = cleaned.isNotEmpty
+        ? cleaned
+        : fallback.isNotEmpty
+        ? fallback
+        : l10n.receiptStoreUnknown;
     final total = receipt.totalMinor == null
         ? null
         : formatMoney(

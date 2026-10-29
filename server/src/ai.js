@@ -32,7 +32,12 @@ export async function chatJson(env, system, user, options = {}) {
   let last;
   for (const model of models) {
     try {
-      return await chatOnce(env, system, user, { ...options, model });
+      const raw = await chatOnce(env, system, user, { ...options, model });
+      if (!options.accept) return raw;
+      try { return options.accept(raw); } catch (error) {
+        options.onReject?.(raw, error);
+        throw error;
+      }
     } catch (e) {
       last = e;
       if (!(e instanceof AiError) || !/^ai_(unreachable|http_(404|408|409|425|429|5\d\d))$/.test(e.message)) throw e;
@@ -56,8 +61,20 @@ function hedged(env, system, user, options, models) {
       const controller = new AbortController();
       controllers.push(controller);
       active++;
-      chatOnce(env, system, user, { ...options, model, signal: controller.signal }).then(value => {
+      chatOnce(env, system, user, { ...options, model, signal: controller.signal }).then(raw => {
         if (settled) return;
+        // With `accept`, only an answer that passes the task contract wins;
+        // a wrong answer from one model keeps waiting for the others.
+        let value = raw;
+        if (options.accept) {
+          try { value = options.accept(raw); } catch (error) {
+            active--;
+            lastError = error;
+            options.onReject?.(raw, error);
+            if (!launch() && active === 0) { finish(); reject(lastError); }
+            return;
+          }
+        }
         finish();
         for (const c of controllers) if (c !== controller) c.abort();
         resolve(value);
