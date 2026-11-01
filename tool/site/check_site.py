@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / 'website'
 sys.path.insert(0, str(Path(__file__).parent))
-from build_site import BASE, build_page, build_sitemap
+from build_site import BASE, build_page, build_privacy_page, build_sitemap
 from locale_data import LANGUAGES, RTL, REQUIRED, canonical as locale_canonical, relative_page, translation
 
 
@@ -52,9 +52,9 @@ def check():
         if not condition:
             failures.append(message)
 
-    expected_pages = {relative_page(lang) for lang in LANGUAGES}
+    expected_pages = {relative_page(lang) for lang in LANGUAGES} | {'privacy/index.html'}
     actual_pages = {path.relative_to(SITE).as_posix() for path in SITE.rglob('index.html')}
-    require(actual_pages == expected_pages and len(actual_pages) == 71, 'Exactly 71 unique language pages; no stale/extra pages')
+    require(actual_pages == expected_pages and len(actual_pages) == 72, 'Exactly 71 language pages + privacy page; no stale/extra pages')
     english = translation('en')
     for lang in LANGUAGES:
         rel = relative_page(lang)
@@ -111,7 +111,7 @@ def check():
             for description in attrs.get('aria-describedby', '').split():
                 require(description in p.ids, f'{rel}: missing description {description}')
         require('apps.apple.com' not in source, f'{rel}: no unverified iOS product URL')
-        require('com.crazypenguin.nshoptor' in source and 'docs/store/privacy-policy.md' in source, f'{rel}: store/privacy links')
+        require('com.crazypenguin.nshoptor' in source and BASE + 'privacy/' in source, f'{rel}: store/privacy links')
         require(not any(t == 'script' and a.get('src','').startswith(('https:', '//')) for t,a in p.tags), f'{rel}: no external scripts')
         if lang in ('tr','en'):
             require('aria-live="polite"' in source and 'inputmode="decimal"' in source, f'{rel}: accessible demo')
@@ -133,6 +133,15 @@ def check():
             require('data-market-price' not in source, f'{rel}: no untranslated interactive demo')
             require(data['privacyInfoBody'] not in rendered, f'{rel}: omit simplified privacy storage statement')
         require('7-day free trial' not in source and '7 gün ücretsiz' not in source, f'{rel}: no unverified fixed trial promise')
+    privacy_path = SITE / 'privacy/index.html'
+    privacy_source = privacy_path.read_text(encoding='utf-8')
+    p = Page()
+    p.feed(privacy_source)
+    require(privacy_source == build_privacy_page(), 'privacy/index.html: stale generated output from docs/store/privacy-policy.md')
+    require(sum(t == 'h1' for t, _ in p.tags) == 1, 'privacy/index.html: one H1')
+    require(not p.duplicates, 'privacy/index.html: duplicate IDs')
+    require('devcrazypenguin@gmail.com' in privacy_source, 'privacy/index.html: contact email')
+    require(BASE + 'privacy/' in privacy_source, 'privacy/index.html: canonical Pages URL')
     sitemap = ET.parse(SITE / 'sitemap.xml')
     urls = {node.text for node in sitemap.findall('.//{*}loc')}
     require(urls == {locale_canonical(code) for code in LANGUAGES} and len(sitemap.findall('.//{*}loc')) == 71, 'Sitemap exactly71 canonical URLs')
@@ -156,3 +165,4 @@ def check():
 
 if __name__ == '__main__':
     check()
+

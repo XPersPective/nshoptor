@@ -1,12 +1,13 @@
 from pathlib import Path
 import html
 import json
+import re
 from locale_data import (LANGUAGES, RTL, canonical as locale_canonical, direction,
                          hreflang_links, language_chooser, relative_page, translation)
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = 'https://xperspective.github.io/nshoptor/'
-PRIVACY = 'https://github.com/XPersPective/nshoptor/blob/main/docs/store/privacy-policy.md'
+PRIVACY = BASE + 'privacy/'
 PLAY = 'https://play.google.com/store/apps/details?id=com.crazypenguin.nshoptor'
 COPY = {
  'tr': {
@@ -173,6 +174,82 @@ def build_page(language):
  return build(language, COPY[language]) if language in COPY else build_localized(language)
 
 
+def md_inline(text):
+ text = html.escape(text, quote=False)
+ text = re.sub(r'\[([^\]]+)\]\(([^)\s]+)\)', r'<a href="\2">\1</a>', text)
+ text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
+ text = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<em>\1</em>', text)
+ return text
+
+def md_to_html(markdown):
+ out, in_list, seen_h1 = [], False, False
+ for line in markdown.replace('\r\n', '\n').split('\n'):
+  heading = re.match(r'^(#{1,4})\s+(.*)$', line)
+  item = re.match(r'^\s*[-*]\s+(.*)$', line)
+  if heading and not item:
+   if in_list:
+    out.append('</ul>')
+    in_list = False
+   level = len(heading.group(1))
+   if level == 1 and seen_h1:
+    level = 2
+   if level == 1:
+    seen_h1 = True
+   out.append(f'<h{level}>{md_inline(heading.group(2).strip())}</h{level}>')
+  elif item:
+   if not in_list:
+    out.append('<ul>')
+    in_list = True
+   out.append(f'<li>{md_inline(item.group(1).strip())}</li>')
+  elif not line.strip():
+   if in_list:
+    out.append('</ul>')
+    in_list = False
+  else:
+   if in_list:
+    out.append('</ul>')
+    in_list = False
+   out.append(f'<p>{md_inline(line.strip())}</p>')
+ if in_list:
+  out.append('</ul>')
+ return '\n'.join(out)
+
+def build_privacy_page():
+ markdown = (ROOT / 'docs/store/privacy-policy.md').read_text(encoding='utf-8')
+ canonical = BASE + 'privacy/'
+ title = 'NShoptor — Gizlilik Politikası / Privacy Policy'
+ body = md_to_html(markdown)
+ return f'''<!doctype html>
+<html lang="tr" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{esc(title)}</title>
+<meta name="description" content="NShoptor gizlilik politikası: verileriniz nerede tutulur, yapay zeka yardımı, haklar ve iletişim.">
+<meta name="theme-color" content="#17392e"><link rel="canonical" href="{canonical}">
+<link rel="icon" href="../assets/icon.png"><link rel="stylesheet" href="../assets/site.css">
+<style>
+body{{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.65;color:#1c2430;background:#fff}}
+header{{border-bottom:1px solid #e5e8ee;background:#f7f9fc}}
+.shell{{max-width:760px;margin:0 auto;padding:14px 16px}}
+.brand{{font-weight:700;color:#133;display:flex;align-items:center;gap:8px;text-decoration:none}}
+.doc{{max-width:760px;margin:0 auto;padding:32px 16px 48px}}
+.doc h1{{margin-top:0;font-size:1.6em}} .doc h2{{margin-top:2em;font-size:1.25em}} .doc h3{{margin-top:1.5em}}
+.doc a{{color:#17659c;overflow-wrap:anywhere}} .doc li{{margin:.3em 0}}
+footer{{max-width:760px;margin:0 auto;padding:0 16px 40px;color:#5b6572;font-size:.92em}}
+footer a{{color:#17659c}}
+@media (prefers-color-scheme:dark){{body{{color:#e6e9ef;background:#161a20}}header{{background:#1b2129;border-color:#2a323d}}footer{{color:#98a2b0}}footer a,.doc a{{color:#7db3e0}}}}
+</style>
+</head>
+<body>
+<header><div class="shell"><a class="brand" href="../"><img src="../assets/icon.png" width="34" height="34" alt="NShoptor">NShoptor</a></div></header>
+<main class="doc" id="main">
+{body}
+</main>
+<footer><span>Crazy Penguin · NShoptor</span> · <a href="{BASE}">Ana sayfa</a></footer>
+</body></html>
+'''
+
+
 def build_sitemap():
  import xml.etree.ElementTree as ET
  namespace = 'http://www.sitemaps.org/schemas/sitemap/0.9'
@@ -189,5 +266,9 @@ if __name__ == '__main__':
   output = ROOT / 'website' / relative_page(language)
   output.parent.mkdir(parents=True, exist_ok=True)
   output.write_text(build_page(language), encoding='utf-8')
+ privacy_output = ROOT / 'website/privacy/index.html'
+ privacy_output.parent.mkdir(parents=True, exist_ok=True)
+ privacy_output.write_text(build_privacy_page(), encoding='utf-8')
  (ROOT/'website/sitemap.xml').write_text(build_sitemap(), encoding='utf-8')
- print(f'Generated {len(LANGUAGES)} app-language pages and sitemap; TR/EN interactive pages preserved.')
+ print(f'Generated {len(LANGUAGES)} app-language pages, privacy page and sitemap; TR/EN interactive pages preserved.')
+
