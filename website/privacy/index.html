@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NShoptor — Gizlilik Politikası</title>
+<meta name="description" content="NShoptor akıllı alışveriş listesi gizlilik politikası.">
+<link rel="canonical" href="https://xperspective.github.io/nshoptor/privacy/">
+<style>
+:root{color-scheme:light dark}
+body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.65;color:#1c2430;background:#fff}
+header{border-bottom:1px solid #e5e8ee;background:#f7f9fc}
+.shell{max-width:760px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.brand{font-weight:700;color:#133;display:flex;align-items:center;gap:8px;text-decoration:none}
+.doc{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+.doc h1{margin-top:0;font-size:1.6em} .doc h2{margin-top:2em;font-size:1.25em} .doc h3{margin-top:1.5em}
+.doc a{overflow-wrap:anywhere} .doc code{background:#f1f3f7;padding:1px 5px;border-radius:4px}
+footer{max-width:760px;margin:0 auto;padding:0 16px 40px;color:#5b6572;font-size:.92em}
+@media (prefers-color-scheme:dark){body{color:#e6e9ef;background:#161a20}header{background:#1b2129;border-color:#2a323d}.doc code{background:#242b34}footer{color:#98a2b0}}
+</style>
+</head>
+<body>
+<header><div class="shell"><a class="brand" href="/">&#128056; Crazy Penguin &middot; NShoptor</a></div></header>
+<main class="doc">
+<h1>Gizlilik Politikası — NShoptor</h1>
+<p><strong>Son güncelleme:</strong> 2026-10-30 · <strong>Uygulama:</strong> NShoptor (Crazy Penguin)</p>
+<p>*English version below.*</p>
+<h2>Verileriniz nerede?</h2>
+<p>Liste, fiyat, fiş/etiket fotoğrafı ve ayarlar <strong>yalnızca cihazınızda</strong>,</p>
+<p>uygulamanın deposunda saklanır. Hesap açmazsınız. İsteğe bağlı AI yardımı açıkken</p>
+<p>küçültülmüş fiş/etiket fotoğrafları (JPEG) ve seçtiğiniz görev metni yalnızca</p>
+<p>okunmak üzere gönderilir; kota ve satın alma doğrulamasıyla ilişkili sunucu kayıtları vardır.</p>
+<h2>Yapay zeka yardımı</h2>
+<p>Fiş ve raf etiketi fotoğraflarını okuma, fiş satırlarını eşleştirme ve cümleden liste</p>
+<p>oluşturma için isteğe bağlı yapay zeka yardımı vardır (Ayarlar → Yapay zeka</p>
+<p>yardımı ile kapatılabilir).</p>
+<ul>
+<li>Yapay zeka kapalıyken cihaz içi OCR ve desteklenen cihaz içi konuşma tanıma fotoğraf veya sesi karşıya yüklemez; ses hiçbir zaman cihazdan çıkmaz ve ağ üzerinden ses tanıma fallback'i yoktur. Kurulu model yoksa manuel giriş çalışır.</li>
+<li>AI kullanırken küçültülmüş fiş/etiket fotoğrafları (JPEG), görev metni, dil, kurulum kimliği ve varsa mağaza satın alma kanıtı (Google Play jetonu veya desteklenen iOS sürümünde Apple imzalı işlem) HTTPS üzerinden Cloudflare vekilimize gider. Qwen görüntü/metin sağlayıcısına yalnız görev girdisi (küçültülmüş fotoğraf veya metin) ve dil iletilir; kurulum kimliği ve satın alma kanıtı iletilmez.</li>
+<li>Worker gönderilen fotoğrafları ve giriş metnini kalıcı kaydetmez; anında işleyip sonucu döner. Sağlayıcının saklama/eğitim uygulamaları için doğrulanmamış garanti vermiyoruz.</li>
+<li>Sunucu kurulum veya doğrulanmış satın alma özetiyle aylık kota, günlük toplam ve plan/sahiplik kayıtları tutar; bunları anonim veri diye nitelemiyoruz.</li>
+</ul>
+<h2>Abonelik ve satın almalar</h2>
+<p>Yeni yıllık Pro aboneliği (<code>nshoptor_pro_v2</code>, geçerli vergiler öncesi baz fiyat yılda 1 ABD doları, ayda 100 yapay zeka isteği) cihazın desteklenen mağazası üzerinden yapılır. Mevcut Pro/Max ve</p>
+<p>önceden alınmış ömür boyu reklamsız haklar korunur; ödeme bilgilerinizi biz görmeyiz. Yapay zeka</p>
+<p>kotanızı belirlemek için satın alma jetonu Google Play'de doğrulanır;</p>
+<p>jeton yalnız doğrulamada geçici işlenir. Sunucuda SHA-256 özeti, plan ve</p>
+<p>bağlı jetonların ortak kota sahipliği saklanır. Yetki önbelleği süreli;</p>
+<p>sahiplik kayıtları otomatik silinmez, belirlenmiş silme süresi yoktur.</p>
+<p>Desteklenen iOS sürümünde Apple imzalı işlem kanıtı sunucuda geçici doğrulanır;</p>
+<p>güncel abonelik durumu Apple’dan sorgulanır. Kota kimliği ortam, uygulama ve</p>
+<p>orijinal abonelik numarasının SHA-256 özetidir; yenileme veya yeniden kurulum yeni</p>
+<p>ücretli kota oluşturmaz. Apple ödeme bilgileri bize verilmez. Bu açıklama App Store</p>
+<p>yayınının veya Apple hesabı bağlantısının tamamlandığı anlamına gelmez.</p>
+<h2>Reklam</h2>
+<p>Ücretsiz sürüm Google AdMob reklamları (banner ve isteğe</p>
+<p>bağlı ödüllü video) gösterir; ilk 7 gün reklam yoktur. AdMob cihazınız için</p>
+<p>reklam/cihaz kimlikleri, IP kaynaklı yaklaşık konum, etkileşim ve tanılama</p>
+<p>verilerini işleyebilir. AB/İngiltere'de kişiselleştirilmiş reklam</p>
+<p>yalnızca onayınızla gösterilir (https://policies.google.com/privacy).</p>
+<p>Pro, Max veya ömür boyu reklamsız hakla reklam gösterilmez; onay/SDK</p>
+<p>başlatma işlemlerinin hiç çalışmadığı anlamına gelmez.</p>
+<h2>İnternet kullanımı</h2>
+<p>Uygulama yalnızca şunlar için internete bağlanır: yapay zeka yardımı</p>
+<p>(yukarıda), reklamlar, desteklenen Google Play/App Store satın alma işlemleri, "Keşfet"</p>
+<p>bölümündeki diğer uygulamalar listesi (GitHub'daki genel bir dosya; kişisel</p>
+<p>alışveriş verisi eklenmez; bağlantı bilgileri işlenebilir), mağaza/paylaşım</p>
+<p>bağlantıları ve seçtiğiniz bulut dosya sağlayıcısı.</p>
+<h2>Haklarınız (KVKK/GDPR)</h2>
+<ul>
+<li><strong>Erişim/taşınabilirlik:</strong> Ayarlar → Yedekleme ile verilerinizi JSON olarak</li>
+</ul>
+<p>dışa aktarabilirsiniz (ücretli planlar).</p>
+<ul>
+<li><strong>Silme:</strong> Ayarlar → Tüm verileri sil alışveriş veritabanını temizler; paylaşılan tercihler silinmez. Kaldırma uygulama özel deposunu kaldırır. Dışa aktarılan dosyalar ve sunucu kota/sahiplik kayıtları bu işlemlerle silinmez. Sunucu verileriyle ilgili talepler için aşağıdaki e-postaya yazabilirsiniz.</li>
+<li>Reklam kimliğini cihaz ayarlarından sıfırlayabilir/kapatabilirsiniz.</li>
+</ul>
+<h2>Çocuklar</h2>
+<p>NShoptor çocuklara yönelik değildir ve bilerek çocuklardan veri toplamaz.</p>
+<h2>İletişim</h2>
+<p>devcrazypenguin@gmail.com</p>
+<h2>Açık kaynak</h2>
+<p>NShoptor GNU GPL-3.0 lisansıyla açık kaynaktır; yukarıdakilerin tamamı</p>
+<p>kaynak kodunda doğrulanabilir: https://github.com/XPersPective/nshoptor</p>
+<p>---</p>
+<h1>Privacy Policy — NShoptor</h1>
+<p><strong>Last updated:</strong> 2026-10-30 · <strong>App:</strong> NShoptor (Crazy Penguin)</p>
+<h2>Where is your data?</h2>
+<p>Lists, prices, receipt/label photos and settings are stored **only on your</p>
+<p>device**, in the app's storage. No account registration is required.</p>
+<p>When optional AI help is enabled, reduced-size receipt/label photos (JPEG) and</p>
+<p>selected task text are sent only to be read; the backend retains quota and</p>
+<p>purchase-verification metadata.</p>
+<h2>AI help</h2>
+<p>Optional AI help reads receipt and shelf-label photos, matches receipt lines and</p>
+<p>turns a sentence into a list (switch it off in Settings → AI help).</p>
+<ul>
+<li>When AI help is off, on-device OCR and supported on-device speech do not upload photos or audio; voice audio never leaves the device and there is no network speech fallback. Missing installed models leave manual input available.</li>
+<li>When AI help is used, reduced-size receipt/label photos (JPEG), task text, locale, install ID and optional store purchase proof (a Google Play token or, in supported iOS builds, an Apple-signed transaction) are sent over HTTPS to our Cloudflare proxy. Qwen receives only the task input (reduced-size photo or text) and locale, not the install ID or purchase proof.</li>
+<li>The Worker processes photos and input text transiently and never stores them. We make no unverified guarantee about the provider's retention or training practices.</li>
+<li>The backend retains monthly installation/purchase-hash quota, daily totals and entitlement/ownership metadata; we do not describe these records as anonymous.</li>
+</ul>
+<h2>Subscriptions and purchases</h2>
+<p>New annual Pro subscriptions (<code>nshoptor_pro_v2</code>, USD 1/year base price before applicable taxes, 100 AI requests/month) are handled</p>
+<p>by the device's supported store; we never see your payment details. Existing Pro/Max and previously</p>
+<p>purchased ad-free for life entitlements remain supported. To set your AI allowance the</p>
+<p>purchase token is processed transiently for Google verification. The server</p>
+<p>retains its SHA-256 hash, plan and linked-token quota ownership. Authorization</p>
+<p>cache entries expire; ownership metadata has no scheduled deletion period.</p>
+<p>In supported iOS builds the Apple-signed transaction is verified transiently on</p>
+<p>the server and current subscription status is queried from Apple. The quota</p>
+<p>identity is a SHA-256 hash of environment, app and original subscription ID;</p>
+<p>renewal or reinstallation does not create a fresh paid quota. Apple does not</p>
+<p>provide us with your payment details. This description does not establish that</p>
+<p>an App Store release or Apple account connection has been completed.</p>
+<h2>Ads</h2>
+<p>The free version shows Google AdMob ads (banner and optional</p>
+<p>rewarded video); there are no ads in the first 7 days. AdMob may collect your</p>
+<p>advertising/device identifiers, IP-derived approximate location, interactions</p>
+<p>and diagnostics. In the EU/UK personalised ads are shown only with your</p>
+<p>consent (https://policies.google.com/privacy). Pro, Max and ad-free for life</p>
+<p>disable ad display; consent/SDK initialization can still run.</p>
+<h2>Internet use</h2>
+<p>The app connects to the internet only for: AI help (above), ads, supported Google Play/App Store</p>
+<p>purchases, the "Discover" list of other apps (a public file on GitHub; no</p>
+<p>shopping data is attached; connection metadata may be processed), store/share</p>
+<p>links and the cloud file provider you choose for an export.</p>
+<h2>Your rights (GDPR)</h2>
+<ul>
+<li><strong>Access/portability:</strong> export your data as JSON in Settings → Backup</li>
+</ul>
+<p>(paid plans).</p>
+<ul>
+<li><strong>Deletion:</strong> Settings → Delete all data clears the shopping database, not shared preferences. Uninstalling removes app-private storage. Neither removes exported files or backend quota/ownership records. Contact the email below about backend data requests.</li>
+<li>You can reset or turn off your advertising ID in your device settings.</li>
+</ul>
+<h2>Children</h2>
+<p>NShoptor is not directed at children and does not knowingly collect data from</p>
+<p>children.</p>
+<h2>Contact</h2>
+<p>devcrazypenguin@gmail.com</p>
+<h2>Open source</h2>
+<p>NShoptor is open source under GNU GPL-3.0; everything above can be checked in</p>
+<p>the source code: https://github.com/XPersPective/nshoptor</p>
+</main>
+<footer>Crazy Penguin &middot; <a href="https://github.com/XPersPective/nshoptor">GitHub</a> &middot; devcrazypenguin@gmail.com</footer>
+</body>
+</html>
