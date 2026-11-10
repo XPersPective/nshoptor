@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Nhấn để xem lại và lưu.",
   "receiptReadMoreTitle": "Chụp phần còn lại của hóa đơn",
   "receiptReadFailedTitle": "Không thể đọc hóa đơn",
-  "budgetAlertNear": "Đã dùng {percent}% hạn mức"
+  "budgetAlertNear": "Đã dùng {percent}% hạn mức",
+  "receiptReviewNowAction": "Kiểm tra và sửa",
+  "receiptEditDetailsTitle": "Chi tiết biên lai",
+  "receiptSaveAnywayTitle": "Tổng không khớp",
+  "receiptSaveAnywayBody": "Tổng các mặt hàng chênh {difference} so với tổng hóa đơn. Vẫn lưu chứ?",
+  "receiptSaveAnywayAction": "Vẫn lưu",
+  "receiptNeedsDetails": "Thêm cửa hàng và ngày để lưu biên lai này.",
+  "receiptMissingFields": "Không đọc được: {fields}. Bạn có thể điền các mục này khi xem lại.",
+  "cameraAccessDenied": "Quyền truy cập máy ảnh đang tắt. Bật trong Cài đặt để quét hóa đơn và nhãn giá.",
+  "openSettingsAction": "Mở Cài đặt",
+  "priceManualEntryAction": "Nhập giá thủ công",
+  "priceRetakeAction": "Chụp ảnh khác",
+  "receiptDateTimeLabel": "Ngày và giờ"
 }

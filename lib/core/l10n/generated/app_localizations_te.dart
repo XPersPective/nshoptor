@@ -1590,4 +1590,46 @@ class AppLocalizationsTe extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'పరిమితిలో $percent% ఉపయోగించబడింది';
   }
+
+  @override
+  String get receiptReviewNowAction => 'సమీక్షించి సరిచేయండి';
+
+  @override
+  String get receiptEditDetailsTitle => 'రసీదు వివరాలు';
+
+  @override
+  String get receiptDateTimeLabel => 'తేదీ మరియు సమయం';
+
+  @override
+  String get receiptSaveAnywayTitle => 'మొత్తం సరిపోలడం లేదు';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'వస్తువుల మొత్తం రసీదు మొత్తం నుండి $difference తేడా ఉంది. ఏమైనా సేవ్ చేయాలా?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'ఏమైనా సేవ్ చేయండి';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ఈ రసీదును సేవ్ చేయడానికి దుకాణం మరియు తేదీని జోడించండి.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'చదవలేకపోయాం: $fields. సమీక్షించేటప్పుడు వీటిని పూరించవచ్చు.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'కెమెరా యాక్సెస్ ఆఫ్‌లో ఉంది. రసీదులు మరియు లేబుల్స్ స్కాన్ చేయడానికి సెట్టింగ్‌లలో దీన్ని ఆన్ చేయండి.';
+
+  @override
+  String get openSettingsAction => 'సెట్టింగ్‌లను తెరవండి';
+
+  @override
+  String get priceManualEntryAction => 'ధరను మాన్యువల్‌గా నమోదు చేయండి';
+
+  @override
+  String get priceRetakeAction => 'మరో ఫోటో తీయండి';
 }

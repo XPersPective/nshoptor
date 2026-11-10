@@ -48,6 +48,27 @@ class ReceiptParser {
     'genel toplam',
     'total',
     'grand total',
+    'gesamt',
+    'summe',
+    'montant total',
+    'total ttc',
+    'totale',
+    'итого',
+    'إجمالي',
+    '合計',
+    '総計',
+    '总计',
+  ];
+  static const List<String> _subtotalMarkers = [
+    'ara toplam',
+    'aratoplam',
+    'subtotal',
+    'sub-total',
+    'zwischenbetrag',
+    'zwischensumme',
+    'sous-total',
+    'subtotale',
+    'подитог',
   ];
   static final String _splitTotalCurrencyPattern =
       r'(?:\b(?:' +
@@ -62,7 +83,6 @@ class ReceiptParser {
     caseSensitive: false,
     unicode: true,
   );
-  static const List<String> _subtotalMarkers = ['ara toplam', 'aratoplam'];
   static const List<String> _discountMarkers = ['indirim', 'iskonto'];
   static const List<String> _taxMarkers = [
     'kdv',
@@ -122,7 +142,7 @@ class ReceiptParser {
   /// Reading-order rows shared by parsing and overlapping receipt assembly.
   /// Coordinates belong to one photo; returned rows no longer carry them.
   List<OcrLine> readingRows(OcrScanResult scan) {
-    final rows = _reconstructRows(scan.lines);
+    var rows = _reconstructRows(scan.lines);
     final currencyEvidence = detectOcrCurrency(
       rows.map((line) => line.text).join('\n'),
       fallback: currency,
@@ -134,6 +154,18 @@ class ReceiptParser {
             reconciliationToleranceMinor: reconciliationToleranceMinor,
           )
         : this;
+    // Repair digit/letter confusions (`*1O,50`) once, after row assembly, so
+    // merged products, totals and quantity rows all see the same fixed text.
+    rows = [
+      for (final line in rows)
+        OcrLine(
+          text: repairConfusableAmounts(line.text),
+          boundingBoxTop: line.boundingBoxTop,
+          boundingBoxLeft: line.boundingBoxLeft,
+          boundingBoxHeight: line.boundingBoxHeight,
+          boundingBoxWidth: line.boundingBoxWidth,
+        ),
+    ];
     return List.unmodifiable(rows.map(normalizer._normalizeSplitTotalLabel));
   }
 
@@ -518,8 +550,22 @@ class ReceiptParser {
     return merged;
   }
 
+  /// Count-only row above an item: `2 X 6,25`, `2 AD X 6,25`, `1,033KG X 99,00`.
+  /// The unit is optional: bare `3 X 12,50` is the most common Turkish form.
   RegExp get _quantityOnlyRow => RegExp(
-    '^\\d+(?:[.,\u066b]\\d+)?\\s*(?:kg|gr|g|lt|l|ml)\\s*[xX×]\\s*$_amountPattern\$',
+    '^\\d+(?:[.,\u066b]\\d+)?\\s*'
+    '(?:kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket)?\\s*'
+    '[xX×]\\s*$_amountPattern\$',
+    caseSensitive: false,
+  );
+
+  /// Names made only of count syntax — digits, x, %, units and separators —
+  /// are quantity leftovers (`2 X`, `3 AD`, `1,5KG`), never products. A digit
+  /// is required so letter-only OCR scraps keep their old low-confidence path.
+  static final RegExp _quantityLikeName = RegExp(
+    r'^(?=[\d\s.,\u066bxX×*%+\-\u2013\u2014]*\d)'
+    r'[\d\s.,\u066bxX×*%+\-\u2013\u2014]+$'
+    r'|^\d+(?:[.,\u066b]\d+)?\s*(?:kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket)$',
     caseSensitive: false,
   );
 
@@ -543,9 +589,12 @@ class ReceiptParser {
   }
 
   /// Ürün satırı: `SUT 2X32,90 64,00` | `DOMATES 1,5KG X42,90 64,35` |
-  /// `EKMEK 15,00`. Dönüşüm: name + opsiyonel miktar/birim fiyat + son fiyat.
+  /// `EKMEK 2 AD X 6,25 12,50` | `EKMEK 15,00`. Dönüşüm: name + opsiyonel
+  /// miktar/birim fiyat + son fiyat.
   RegExp get _quantityPricePattern => RegExp(
-    r'(?<!\S)(\d+(?:[.,\u066b]\d+)?)\s*(kg|gr|g|lt|l|ml|adet|x)?\s*(?:x|X|×)\s*'
+    r'(?<!\S)(\d+(?:[.,\u066b]\d+)?)\s*'
+    '(kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket|x)?\\s*'
+    r'(?:x|X|×)\s*'
     '($_amountPattern)\\s+($_amountPattern)\$',
     caseSensitive: false,
   );
@@ -607,7 +656,7 @@ class ReceiptParser {
           'gr' || 'g' => UnitCode.gram,
           'lt' || 'l' => UnitCode.litre,
           'ml' => UnitCode.mililitre,
-          'adet' || 'ad' || 'pcs' || 'piece' || 'x' => UnitCode.adet,
+          'adet' || 'adt' || 'ad' || 'pcs' || 'piece' || 'x' => UnitCode.adet,
           'paket' || 'pkg' => UnitCode.paket,
           _ => null,
         },
@@ -627,6 +676,9 @@ class ReceiptParser {
           .length;
       final name = view.originalSlice(0, nameEnd).trim();
       if (name.isEmpty) return null;
+      // A leftover count/quantity token (`2 X`, `1,5KG`, `%8`) is structural,
+      // not a product, whatever price ended up beside it.
+      if (_quantityLikeName.hasMatch(name)) return null;
       if (currency == 'IDR' && RegExp(r'[-−+]\s*$').hasMatch(name)) {
         return null;
       }
@@ -650,15 +702,21 @@ class ReceiptParser {
     (marker) => RegExp(
       r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|$)',
       caseSensitive: false,
-    ).hasMatch(text),
+    ).hasMatch(_keywordFold(text)),
   );
 
   bool _hasHeader(String text, List<String> markers) => markers.any(
     (marker) => RegExp(
       r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|\(|%|$)',
       caseSensitive: false,
-    ).hasMatch(text),
+    ).hasMatch(_keywordFold(text)),
   );
+
+  /// OCR reads letters inside keywords too (`T0PLAM`, `F1S`). Folding the
+  /// digit→letter direction lets keyword matching survive single-glyph slips
+  /// without loosening the amount grammar.
+  static String _keywordFold(String text) =>
+      text.replaceAll('0', 'o').replaceAll('1', 'l').replaceAll('5', 's');
 
   bool _isStructuralLine(String text) =>
       _hasHeader(text, _skipWords) ||

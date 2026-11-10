@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Toca per revisar-lo i desar-lo.",
   "receiptReadMoreTitle": "Fotografia la resta del rebut",
   "receiptReadFailedTitle": "No s’ha pogut llegir el rebut",
-  "budgetAlertNear": "S'ha utilitzat el {percent}% del límit"
+  "budgetAlertNear": "S'ha utilitzat el {percent}% del límit",
+  "receiptReviewNowAction": "Revisa i corregeix",
+  "receiptEditDetailsTitle": "Detalls del rebut",
+  "receiptSaveAnywayTitle": "El total no coincideix",
+  "receiptSaveAnywayBody": "Els articles difereixen del total del rebut en {difference}. Vols desar-lo igualment?",
+  "receiptSaveAnywayAction": "Desa igualment",
+  "receiptNeedsDetails": "Afegeix la botiga i la data per desar aquest rebut.",
+  "receiptMissingFields": "No s'ha pogut llegir: {fields}. Pots omplir-ho mentre ho revises.",
+  "cameraAccessDenied": "L'accés a la càmera està desactivat. Activa'l a la configuració per escapar rebuts i etiquetes.",
+  "openSettingsAction": "Obre la configuració",
+  "priceManualEntryAction": "Introdueix el preu manualment",
+  "priceRetakeAction": "Fes una altra foto",
+  "receiptDateTimeLabel": "Data i hora"
 }

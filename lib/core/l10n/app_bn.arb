@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "দেখে সংরক্ষণ করতে ট্যাপ করুন।",
   "receiptReadMoreTitle": "রসিদের বাকি অংশের ছবি তুলুন",
   "receiptReadFailedTitle": "রসিদ পড়া যায়নি",
-  "budgetAlertNear": "সীমার {percent}% ব্যবহৃত হয়েছে"
+  "budgetAlertNear": "সীমার {percent}% ব্যবহৃত হয়েছে",
+  "receiptReviewNowAction": "যাচাই করে ঠিক করুন",
+  "receiptEditDetailsTitle": "রসিদের তথ্য",
+  "receiptSaveAnywayTitle": "মোট অংক মিলছে না",
+  "receiptSaveAnywayBody": "পণ্যগুলোর যোগফল রসিদের মোট অংকের থেকে {difference} আলাদা। তবুও সংরক্ষণ করবেন?",
+  "receiptSaveAnywayAction": "তবুও সংরক্ষণ করুন",
+  "receiptNeedsDetails": "এই রসিদটি সংরক্ষণ করতে দোকান ও তারিখ দিন।",
+  "receiptMissingFields": "পড়া যায়নি: {fields}। যাচাইয়ের সময় এগুলো পূরণ করতে পারবেন।",
+  "cameraAccessDenied": "ক্যামেরার অনুমতি বন্ধ। রসিদ ও লেবেল স্ক্যান করতে সেটিংসে চালু করুন।",
+  "openSettingsAction": "সেটিংস খুলুন",
+  "priceManualEntryAction": "মূল্য ম্যানুয়ালি লিখুন",
+  "priceRetakeAction": "আবার ছবি তুলুন",
+  "receiptDateTimeLabel": "তারিখ ও সময়"
 }

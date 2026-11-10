@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Допрете за преглед и зачувување.",
   "receiptReadMoreTitle": "Фотографирајте го остатокот од сметката",
   "receiptReadFailedTitle": "Сметката не можеше да се прочита",
-  "budgetAlertNear": "Искористени се {percent}% од лимитот"
+  "budgetAlertNear": "Искористени се {percent}% од лимитот",
+  "receiptReviewNowAction": "Проверете и поправете",
+  "receiptEditDetailsTitle": "Податоци за сметката",
+  "receiptSaveAnywayTitle": "Износот не се совпаѓа",
+  "receiptSaveAnywayBody": "Збирот на производите се разликува за {difference} од вкупниот износ на сметката. Да зачувам и покрај тоа?",
+  "receiptSaveAnywayAction": "Зачувај и покрај тоа",
+  "receiptNeedsDetails": "Додадете продавница и датум за да ја зачувате сметката.",
+  "receiptMissingFields": "Не може да се прочита: {fields}. Може да ги пополните при прегледот.",
+  "cameraAccessDenied": "Пристапот до камерата е исклучен. Вклучете го во Поставките за да скенирате сметки и етикети.",
+  "openSettingsAction": "Отвори Поставки",
+  "priceManualEntryAction": "Внесете ја цената рачно",
+  "priceRetakeAction": "Сликајте повторно",
+  "receiptDateTimeLabel": "Датум и време"
 }

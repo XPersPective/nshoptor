@@ -1574,4 +1574,46 @@ class AppLocalizationsFa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent٪ از سقف مصرف شده است';
   }
+
+  @override
+  String get receiptReviewNowAction => 'بررسی و اصلاح کنید';
+
+  @override
+  String get receiptEditDetailsTitle => 'جزئیات رسید';
+
+  @override
+  String get receiptDateTimeLabel => 'تاریخ و ساعت';
+
+  @override
+  String get receiptSaveAnywayTitle => 'جمع کل مطابقت ندارد';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'مجموع موارد با مبلغ کل رسید $difference اختلاف دارد. به هر حال ذخیره شود؟';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'به هر حال ذخیره کن';
+
+  @override
+  String get receiptNeedsDetails =>
+      'برای ذخیره این رسید، فروشگاه و تاریخ را وارد کنید.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'خوانده نشد: $fields. می‌توانید هنگام بررسی آن‌ها را پر کنید.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'دسترسی دوربین خاموش است. برای اسکن رسید و برچسب، آن را از تنظیمات روشن کنید.';
+
+  @override
+  String get openSettingsAction => 'باز کردن تنظیمات';
+
+  @override
+  String get priceManualEntryAction => 'وارد کردن دستی قیمت';
+
+  @override
+  String get priceRetakeAction => 'عکس دیگری بگیرید';
 }

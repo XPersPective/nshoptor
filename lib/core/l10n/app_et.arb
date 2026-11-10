@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Puuduta, et üle vaadata ja salvestada.",
   "receiptReadMoreTitle": "Pildista kviitungi ülejäänud osa",
   "receiptReadFailedTitle": "Kviitungit ei õnnestunud lugeda",
-  "budgetAlertNear": "Limiidist on kasutatud {percent}%"
+  "budgetAlertNear": "Limiidist on kasutatud {percent}%",
+  "receiptReviewNowAction": "Kontrolli ja paranda",
+  "receiptEditDetailsTitle": "Kviitungi andmed",
+  "receiptSaveAnywayTitle": "Kogusumma ei klapi",
+  "receiptSaveAnywayBody": "Kaubad erinevad kviitungi kogusummast {difference} võrra. Salvestada sellegipoolest?",
+  "receiptSaveAnywayAction": "Salvesta sellegipoolest",
+  "receiptNeedsDetails": "Selle kviitungi salvestamiseks lisa pood ja kuupäev.",
+  "receiptMissingFields": "Ei saanud lugeda: {fields}. Saad need ülevaatamise ajal ise täita.",
+  "cameraAccessDenied": "Kaamerale juurdepääs on väljas. Lülita see seadetest sisse, et skaneerida kviitungeid ja hinnasilte.",
+  "openSettingsAction": "Ava seaded",
+  "priceManualEntryAction": "Sisesta hind käsitsi",
+  "priceRetakeAction": "Pildista uuesti",
+  "receiptDateTimeLabel": "Kuupäev ja kellaaeg"
 }

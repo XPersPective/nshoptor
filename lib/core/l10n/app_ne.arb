@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "जाँच गरी सुरक्षित गर्न ट्याप गर्नुहोस्।",
   "receiptReadMoreTitle": "रसिदको बाँकी भागको फोटो खिच्नुहोस्",
   "receiptReadFailedTitle": "रसिद पढ्न सकिएन",
-  "budgetAlertNear": "सीमाको {percent}% प्रयोग भइसक्यो"
+  "budgetAlertNear": "सीमाको {percent}% प्रयोग भइसक्यो",
+  "receiptReviewNowAction": "जाँचेर सच्याउनुहोस्",
+  "receiptEditDetailsTitle": "रसिद विवरण",
+  "receiptSaveAnywayTitle": "कुल रकम मिलेन",
+  "receiptSaveAnywayBody": "वस्तुहरूको जम्मा रसिदको कुल रकमभन्दा {difference} फरक छ। तैपनि सुरक्षित गर्नुहुन्छ?",
+  "receiptSaveAnywayAction": "तैपनि सुरक्षित गर्नुहोस्",
+  "receiptNeedsDetails": "यो रसिद सुरक्षित गर्न पसल र मिति थप्नुहोस्।",
+  "receiptMissingFields": "पढ्न सकिएन: {fields}। समीक्षा गर्दा यी भर्न सक्नुहुन्छ।",
+  "cameraAccessDenied": "क्यामेरा पहुँच बन्द छ। रसिद र लेबल स्क्यान गर्न सेटिङहरूमा यसलाई खोल्नुहोस्।",
+  "openSettingsAction": "सेटिङहरू खोल्नुहोस्",
+  "priceManualEntryAction": "मूल्य म्यानुअली प्रविष्ट गर्नुहोस्",
+  "priceRetakeAction": "अर्को फोटो खिच्नुहोस्",
+  "receiptDateTimeLabel": "मिति र समय"
 }

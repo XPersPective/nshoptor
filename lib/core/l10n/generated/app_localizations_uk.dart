@@ -1588,4 +1588,46 @@ class AppLocalizationsUk extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Використано $percent% ліміту';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Перевірити й виправити';
+
+  @override
+  String get receiptEditDetailsTitle => 'Дані чека';
+
+  @override
+  String get receiptDateTimeLabel => 'Дата і час';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Сума не збігається';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Сума товарів відрізняється від загальної суми чека на $difference. Усе одно зберегти?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Усе одно зберегти';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Додайте магазин і дату, щоб зберегти цей чек.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Не вдалося прочитати: $fields. Це можна заповнити під час перевірки.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Доступ до камери вимкнено. Увімкніть його в налаштуваннях, щоб сканувати чеки та етикетки.';
+
+  @override
+  String get openSettingsAction => 'Відкрити налаштування';
+
+  @override
+  String get priceManualEntryAction => 'Ввести ціну вручну';
+
+  @override
+  String get priceRetakeAction => 'Перезняти фото';
 }

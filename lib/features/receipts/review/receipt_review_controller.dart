@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:drift/drift.dart' show Value, BooleanExpressionOperators;
 
@@ -67,10 +69,14 @@ class ReviewLine {
   final String normalizedName;
   DecimalFixed? quantity;
   UnitCode? unitCode;
-  final int? unitPriceMinor;
+  int? unitPriceMinor;
   int lineTotalMinor;
   ReviewStatus status;
   int? linkedPlannedItemId;
+
+  /// Kullanıcının elle düzelttiği alanlar: kanıt satırı değişmez, onay
+  /// yazımı bu değerleri kullanır (spec §6.9 düzenlenebilir satır).
+  bool userEdited = false;
 
   /// Bağlantısız kabul edilen satır plansız ürün olarak eklenir (spec §6.9).
   bool isUnplanned;
@@ -168,6 +174,27 @@ class ReceiptReviewController extends ChangeNotifier {
       document!.state == ReceiptDocumentState.complete &&
           document!.toParseResult().withinReconciliationTolerance;
 
+  /// A reading the user can already review and correct: at least one line was
+  /// recognized. The strict [documentReady] path stays unchanged; this gate
+  /// only opens the review screen, never the automatic write.
+  bool get reviewable => document == null || lines.isNotEmpty;
+
+  /// Store and date are the minimum a saved receipt must identify; they can
+  /// come from OCR or from the user's edit. A number alone never identifies.
+  bool get hasMinimumIdentity {
+    final store = confirmedStore ?? detectedStore ?? document?.metadata.store;
+    final at = confirmedDate ?? detectedDate ?? document?.metadata.dateTime;
+    return store != null && store.trim().isNotEmpty && at != null;
+  }
+
+  /// Her zaman gösterilen başlık: kullanıcı düzeltmesi OCR adayına öncelik
+  /// alır, eksik alanlar NULL kalır (uydurulmaz).
+  String? get displayStore =>
+      confirmedStore ?? detectedStore ?? document?.metadata.store;
+  DateTime? get displayDate =>
+      confirmedDate ?? detectedDate ?? document?.metadata.dateTime;
+  String? get displayDocumentNumber => document?.metadata.documentNumber;
+
   bool get reviewResolved =>
       document == null ||
       lines.every((line) => line.status != ReviewStatus.pending);
@@ -214,6 +241,41 @@ class ReceiptReviewController extends ChangeNotifier {
   /// Kullanıcının toplamı düzgünleştirmesi (spec §6.9: toplam düzenlenebilir).
   void setReportedTotal(int minor) {
     reportedTotalMinor = minor;
+    notifyListeners();
+  }
+
+  /// Başlık düzeltmesi: mağaza ve tarih/saat kullanıcı onayıyla kesinleşir.
+  void setDetails({String? store, DateTime? dateTime}) {
+    if (store != null && store.trim().isNotEmpty) confirmedStore = store.trim();
+    if (dateTime != null) confirmedDate = dateTime;
+    notifyListeners();
+  }
+
+  /// Satır düzeltmesi (spec §6.9): ad, miktar/birim ve tutar kullanıcı
+  /// onayıyla değişir; ham OCR kanıtı [ReviewLine.rawText] olarak kalır.
+  void editLine(
+    int index, {
+    required String name,
+    DecimalFixed? quantity,
+    UnitCode? unitCode,
+    int? lineTotalMinor,
+  }) {
+    if (index < 0 || index >= lines.length) return;
+    final line = lines[index];
+    final trimmed = name.trim();
+    if (trimmed.isEmpty) return;
+    line
+      ..name = trimmed
+      ..quantity = quantity
+      ..unitCode = unitCode
+      ..userEdited = true;
+    if (lineTotalMinor != null &&
+        lineTotalMinor != 0 &&
+        lineTotalMinor != line.lineTotalMinor) {
+      line.lineTotalMinor = lineTotalMinor;
+      // The printed unit price no longer matches the corrected total.
+      line.unitPriceMinor = null;
+    }
     notifyListeners();
   }
 
@@ -446,13 +508,67 @@ class ReceiptReviewController extends ChangeNotifier {
 
   Future<void> commit({
     ReceiptSelection selection = ReceiptSelection.wholeReceipt,
-  }) => _commitFuture ??= _commitOnce(selection).onError((error, stack) {
+    bool overrideIncomplete = false,
+  }) => _commitFuture ??= _commitOnce(
+    selection,
+    overrideIncomplete,
+  ).onError((error, stack) {
     _commitFuture = null;
     Error.throwWithStackTrace(error!, stack);
   });
 
-  Future<void> _commitOnce(ReceiptSelection selection) async {
-    if (!documentReady) throw const ReceiptIncomplete();
+  /// Identity for a document whose printed header is incomplete: the user has
+  /// confirmed store and date, and the number (or a stable content key built
+  /// like `AiReceiptReader._contentKey`) makes the approved receipt unique.
+  String? _resolvedIdentity() {
+    final doc = document;
+    if (doc == null) return null;
+    final store = (confirmedStore ?? doc.metadata.store)?.trim();
+    final at = confirmedDate ?? doc.metadata.dateTime;
+    if (store == null || store.isEmpty || at == null) return null;
+    final currency =
+        doc.metadata.currencyCode ?? detectedCurrency ?? currencyCode;
+    final printed = doc.metadata.documentNumber;
+    final number =
+        printed != null && printed.isNotEmpty
+        ? printed.toUpperCase()
+        // Stable across line edits: the same physical receipt re-scanned and
+        // corrected differently must still collide with its earlier save
+        // (store + minute + currency + total identify it well enough).
+        : 'AUTO-${_contentFnv(store, at, currency)}';
+    final minute = DateTime(at.year, at.month, at.day, at.hour, at.minute);
+    return jsonEncode([
+      'receipt-v2',
+      normalizeName(store),
+      minute.toIso8601String(),
+      number,
+      currency,
+    ]);
+  }
+
+  String _contentFnv(String store, DateTime at, String currency) {
+    var hash = 0x811c9dc5;
+    final source = '$store|${at.year}-${at.month}-${at.day}|$currency'
+        '|${reportedTotalMinor ?? document?.metadata.totalMinor}';
+    for (final unit in utf8.encode(source)) {
+      hash ^= unit;
+      hash = (hash * 0x01000193) & 0xffffffff;
+    }
+    return hash.toRadixString(16).padLeft(8, '0').toUpperCase();
+  }
+
+  Future<void> _commitOnce(
+    ReceiptSelection selection,
+    bool overrideIncomplete,
+  ) async {
+    // The strict path stays exactly as before. A reading the user explicitly
+    // corrected can be saved with [overrideIncomplete] once store and date
+    // are known; nothing is written without that confirmation.
+    final strict = documentReady;
+    if (!strict &&
+        (!overrideIncomplete || !reviewable || !hasMinimumIdentity)) {
+      throw const ReceiptIncomplete();
+    }
     if (!reviewResolved) throw const ReceiptUnresolvedLines();
     if (isPartialSelection && selection != ReceiptSelection.confirmedSubset) {
       throw const ReceiptPartialNeedsConfirmation();
@@ -472,21 +588,22 @@ class ReceiptReviewController extends ChangeNotifier {
           isUnplanned: line.isUnplanned,
         )..isDiscount = line.isDiscount,
     ];
+    final commitIdentity = strict ? document?.identity : _resolvedIdentity();
     try {
       final committedId = await _db.transaction(() async {
-        final identity = document?.identity;
+        final identity = commitIdentity;
         if (document != null) {
           if (identity == null) throw const ReceiptIncomplete();
+          final printedNumber = document!.metadata.documentNumber;
+          var sameIdentity = _db.receipts.identityKey.equals(identity);
+          if (printedNumber != null) {
+            sameIdentity = sameIdentity |
+                _db.receipts.documentNumber.equals(printedNumber);
+          }
           final previous =
-              await (_db.select(_db.receipts)..where(
-                    (t) =>
-                        t.identityKey.isNotNull() &
-                        (t.identityKey.equals(identity) |
-                            t.documentNumber.equals(
-                              document!.metadata.documentNumber!,
-                            )),
-                  ))
-                  .get();
+              await (_db.select(
+                _db.receipts,
+              )..where((t) => t.identityKey.isNotNull() & sameIdentity)).get();
           for (final receipt in previous) {
             // Version1 keys used exact seconds. Recompute from retained OCR
             // (or its stored metadata) to protect already-approved documents.
@@ -719,7 +836,7 @@ class ReceiptReviewController extends ChangeNotifier {
     } catch (error) {
       // Another connection may win the unique constraint after our read.
       // Resolve that outcome only after this transaction has rolled back.
-      final identity = document?.identity;
+      final identity = commitIdentity;
       if (identity != null && error is! ReceiptAlreadyImported) {
         final previous = await (_db.select(
           _db.receipts,

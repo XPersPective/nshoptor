@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Докоснете, за да прегледате и запазите.",
   "receiptReadMoreTitle": "Снимайте останалата част от бележката",
   "receiptReadFailedTitle": "Бележката не можа да бъде прочетена",
-  "budgetAlertNear": "Използвани са {percent}% от лимита"
+  "budgetAlertNear": "Използвани са {percent}% от лимита",
+  "receiptReviewNowAction": "Проверете и коригирайте",
+  "receiptEditDetailsTitle": "Детайли на бележката",
+  "receiptSaveAnywayTitle": "Общата сума не съвпада",
+  "receiptSaveAnywayBody": "Артикулите се различават с {difference} от общата сума на бележката. Да се запази ли въпреки това?",
+  "receiptSaveAnywayAction": "Запази въпреки това",
+  "receiptNeedsDetails": "Добавете магазина и датата, за да запазите тази бележка.",
+  "receiptMissingFields": "Не можа да се прочете: {fields}. Може да ги попълните при прегледа.",
+  "cameraAccessDenied": "Достъпът до камерата е изключен. Включете го в настройките, за да сканирате бележки и етикети.",
+  "openSettingsAction": "Отворете настройките",
+  "priceManualEntryAction": "Въведете цената ръчно",
+  "priceRetakeAction": "Направете нова снимка",
+  "receiptDateTimeLabel": "Дата и час"
 }

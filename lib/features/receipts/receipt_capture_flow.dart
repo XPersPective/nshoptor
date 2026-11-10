@@ -21,7 +21,12 @@ import 'ai_receipt_reader.dart';
 import 'image_capture_service.dart';
 import 'image_capture_sheet.dart';
 import 'ocr_text_source.dart';
-import 'receipt_document.dart';
+import 'receipt_document.dart'
+    show
+        ReceiptAppended,
+        ReceiptDocument,
+        ReceiptDocumentState,
+        ReceiptHeaderField;
 import 'shelf_label/mlkit_text_source.dart';
 import 'receipt_draft_repository.dart';
 import 'receipt_image_store.dart';
@@ -69,6 +74,9 @@ Future<int?> openReceiptCaptureFlow(
   ReceiptDocument? document;
   int? draftId;
   var imagePaths = <String>[];
+  // "Review and fix" handed back by the AI loop; consumed at the while loop
+  // where openReview() is already defined (PB-207).
+  var pendingReview = false;
   // A receipt chosen in the list's Receipts section continues directly.
   final resume = resumeDraftId == null
       ? null
@@ -126,7 +134,6 @@ Future<int?> openReceiptCaptureFlow(
   // The image model is the primary reader for every language and layout. The
   // on-device OCR path below remains for offline use, exhausted quota or a
   // disabled AI, continuing from whatever the AI path already saved.
-  CaptureOutcome? handoff;
   final aiClient = ai ?? AiService.client;
   final alreadyReady =
       document != null &&
@@ -159,7 +166,7 @@ Future<int?> openReceiptCaptureFlow(
         :final doc,
         :final id,
         :final paths,
-        :final capture,
+        :final openReview,
         listId: final owned,
       ):
         activeListId = owned ?? activeListId;
@@ -167,84 +174,106 @@ Future<int?> openReceiptCaptureFlow(
         document = doc;
         draftId = id;
         imagePaths = paths;
-        handoff = capture;
+        pendingReview = openReview && doc != null;
     }
   }
 
   _CaptureAction? action;
-  var automatic = pickImage == null;
   var rejected = false;
+  // The review screen is reachable both by a perfect reading and by the
+  // user's explicit "review and fix" choice on an imperfect one (PB-207).
+  Future<int?> openReview(ReceiptDocument doc) async {
+    if (!context.mounted) return null;
+    final reviewCurrency = activeListId == null || ownedByFlow
+        ? doc.metadata.currencyCode ?? currencyCode
+        : currencyCode;
+    final controller = ReceiptReviewController(
+      db: db,
+      listId: activeListId,
+      title:
+          title ??
+          (doc.metadata.store == null
+              ? null
+              : cleanStoreName(doc.metadata.store!)),
+      currencyCode: reviewCurrency,
+      document: doc,
+      draftId: draftId,
+      parseResult: doc.toParseResult(),
+      ai: ai,
+      localeCode: Localizations.localeOf(context).languageCode,
+    );
+    try {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => ReceiptReviewScreen(
+            controller: controller,
+            currency: reviewCurrency,
+            plannedItems: activeListId == null
+                ? Future.value(const [])
+                : ItemRepository(db).getItems(activeListId),
+          ),
+        ),
+      );
+    } finally {
+      controller.dispose();
+    }
+    return controller.listId;
+  }
+
   while (context.mounted) {
+    if (pendingReview) {
+      pendingReview = false;
+      final doc = document;
+      if (doc != null && doc.productLines.isNotEmpty) {
+        return await openReview(doc);
+      }
+    }
     if (document != null &&
         document.state == ReceiptDocumentState.complete &&
         document.toParseResult().withinReconciliationTolerance) {
-      if (!context.mounted) return null;
-      final reviewCurrency = activeListId == null || ownedByFlow
-          ? document.metadata.currencyCode ?? currencyCode
-          : currencyCode;
-      final controller = ReceiptReviewController(
-        db: db,
-        listId: activeListId,
-        title:
-            title ??
-            (document.metadata.store == null
-                ? null
-                : cleanStoreName(document.metadata.store!)),
-        currencyCode: reviewCurrency,
-        document: document,
-        draftId: draftId,
-        parseResult: document.toParseResult(),
-        ai: ai,
-        localeCode: Localizations.localeOf(context).languageCode,
-      );
-      try {
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => ReceiptReviewScreen(
-              controller: controller,
-              currency: reviewCurrency,
-              plannedItems: activeListId == null
-                  ? Future.value(const [])
-                  : ItemRepository(db).getItems(activeListId),
-            ),
-          ),
-        );
-      } finally {
-        controller.dispose();
-      }
-      return controller.listId;
+      return await openReview(document);
     }
-    if (document != null) {
+    final doc = document;
+    if (doc != null) {
       if (!context.mounted) return null;
-      final message = rejected
-          ? l10n.receiptContinuationRejected
-          : switch (document.state) {
-              ReceiptDocumentState.incompleteHeader =>
-                l10n.receiptIncompleteHeader,
-              ReceiptDocumentState.incompleteTail => l10n.receiptIncompleteTail,
-              ReceiptDocumentState.complete => l10n.receiptTotalMismatch,
-            };
+      String messageFor(ReceiptDocument doc) {
+        if (rejected) return l10n.receiptContinuationRejected;
+        if (doc.state == ReceiptDocumentState.incompleteHeader) {
+          // Say WHICH header fields stayed unread instead of a generic tip.
+          final fieldLabels = [
+            for (final field in doc.metadata.missingHeaderFields)
+              switch (field) {
+                ReceiptHeaderField.store => l10n.storeLabel,
+                ReceiptHeaderField.dateTime => l10n.receiptDateTimeLabel,
+                ReceiptHeaderField.documentNumber => l10n.reportReceiptNumber,
+                ReceiptHeaderField.currency => l10n.currencyLabel,
+              },
+          ].join(', ');
+          return '${l10n.receiptIncompleteHeader}\n${l10n.receiptMissingFields(fieldLabels)}';
+        }
+        return doc.state == ReceiptDocumentState.incompleteTail
+            ? l10n.receiptIncompleteTail
+            : l10n.receiptTotalMismatch;
+      }
+      final canReview = doc.productLines.isNotEmpty;
       action = await showModalBottomSheet<_CaptureAction>(
         context: context,
         showDragHandle: true,
         isScrollControlled: true,
         builder: (_) => _ContinuationSheet(
-          message: message,
-          automatic:
-              automatic &&
-              !rejected &&
-              document!.fragments.length < 25 &&
-              !MediaQuery.accessibleNavigationOf(context) &&
-              MediaQuery.textScalerOf(context).scale(1) <= 1.5,
-          canContinue: document!.fragments.length < 25,
+          message: messageFor(doc),
+          canContinue: doc.fragments.length < 25,
+          canReview: canReview,
         ),
       );
       if (!context.mounted) return null;
+      if (action == _CaptureAction.review && canReview) {
+        return await openReview(doc);
+      }
       if (action == null || action == _CaptureAction.later) {
         // A receipt whose store and date are known gets its list now, so it
         // can be continued from inside that list (F12-F13); otherwise
         // nothing identifies it and it is not kept outside a list.
-        final doc = document;
         if (activeListId == null &&
             draftId != null &&
             doc.metadata.store != null &&
@@ -272,7 +301,6 @@ Future<int?> openReceiptCaptureFlow(
     }
     if (!context.mounted) return null;
     final capture =
-        handoff ??
         await captureImageText(
           context,
           title: l10n.scanReceiptAction,
@@ -285,11 +313,18 @@ Future<int?> openReceiptCaptureFlow(
             _ => null,
           },
         );
-    handoff = null;
     if (!context.mounted) return null;
+    if (capture is CaptureCancelled) {
+      // The user closed the camera; earlier evidence stays durable (F13).
+      return null;
+    }
     if (capture is! CapturedImage) {
-      // Cancel/permission failure exits without a forced reopening loop. Any
-      // earlier evidence is already durable and offered on the next entry.
+      // An unreadable photo is not a dead end when evidence already exists:
+      // show the continuation sheet (retake/gallery/review) instead (PB-207).
+      if (document != null) {
+        rejected = true;
+        continue;
+      }
       return null;
     }
     ReceiptDocument next;
@@ -305,7 +340,6 @@ Future<int?> openReceiptCaptureFlow(
           : document.append(capture.scan);
       if (joined is! ReceiptAppended) {
         rejected = true;
-        automatic = false;
         continue;
       }
       next = joined.document;
@@ -346,50 +380,32 @@ Future<int?> openReceiptCaptureFlow(
     }
     document = next;
     imagePaths = nextPaths;
-    automatic = pickImage == null;
     rejected = false;
   }
   return null;
 }
 
-enum _CaptureAction { camera, gallery, restart, later }
+enum _CaptureAction { review, camera, gallery, restart, later }
 
 class _ContinuationSheet extends StatefulWidget {
   const _ContinuationSheet({
     required this.message,
-    required this.automatic,
     required this.canContinue,
+    this.canReview = false,
   });
   final String message;
-  final bool automatic;
   final bool canContinue;
+
+  /// At least one product row is readable: the user can review and fix the
+  /// reading now instead of retaking photos (PB-207).
+  final bool canReview;
 
   @override
   State<_ContinuationSheet> createState() => _ContinuationSheetState();
 }
 
 class _ContinuationSheetState extends State<_ContinuationSheet> {
-  Timer? _timer;
-  @override
-  void initState() {
-    super.initState();
-    if (widget.automatic) {
-      _timer = Timer(const Duration(seconds: 3), () {
-        if (mounted && ModalRoute.of(context)?.isCurrent == true) {
-          _finish(_CaptureAction.camera);
-        }
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
   void _finish(_CaptureAction action) {
-    _timer?.cancel();
     Navigator.pop(context, action);
   }
 
@@ -418,9 +434,6 @@ class _ContinuationSheetState extends State<_ContinuationSheet> {
             label: Text(label),
           );
     return PopScope(
-      onPopInvokedWithResult: (didPop, _) {
-        if (didPop) _timer?.cancel();
-      },
       child: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
@@ -467,12 +480,21 @@ class _ContinuationSheetState extends State<_ContinuationSheet> {
                 ),
               ],
               const SizedBox(height: 16),
+              if (widget.canReview) ...[
+                action(
+                  _CaptureAction.review,
+                  l10n.receiptReviewNowAction,
+                  Icons.fact_check_outlined,
+                  primary: true,
+                ),
+                const SizedBox(height: 8),
+              ],
               if (widget.canContinue) ...[
                 action(
                   _CaptureAction.camera,
                   l10n.imageCameraAction,
                   Icons.photo_camera_outlined,
-                  primary: true,
+                  primary: !widget.canReview,
                 ),
                 const SizedBox(height: 8),
                 action(
@@ -520,14 +542,17 @@ final class _AiProgress extends _AiOutcome {
     required this.doc,
     required this.id,
     required this.paths,
-    this.capture,
     this.listId,
+    this.openReview = false,
   });
   final ReceiptDocument? doc;
   final int? id;
   final List<String> paths;
-  final CapturedImage? capture;
   final int? listId;
+
+  /// The user chose "review and fix" inside an AI-loop sheet: open the review
+  /// screen with whatever was read so far (PB-207).
+  final bool openReview;
 }
 
 /// Image-model loop. Every request carries all photos of this receipt, so the
@@ -553,7 +578,6 @@ Future<_AiOutcome> _readWithAi(
   final paths = [...photos];
   var id = draftId;
   var doc = document;
-  CapturedImage? lastCapture;
   ImageSource? source;
   var needCapture = paths.isEmpty;
   var prepend = false;
@@ -610,7 +634,6 @@ Future<_AiOutcome> _readWithAi(
         }
       } else {
         inFlightJob = null;
-        lastCapture = capture;
         final kept = await images.keep(capture.path) ?? capture.path;
         if (replaceLast && paths.isNotEmpty) {
           final old = prepend ? paths.removeAt(0) : paths.removeLast();
@@ -705,26 +728,46 @@ Future<_AiOutcome> _readWithAi(
               SnackBar(content: Text(notice), showCloseIcon: true),
             );
         }
-        CapturedImage? offline;
-        if (paths.length == 1 && lastCapture != null) {
+        // Offline/quota handoff: read EVERY saved photo on the device, in
+        // order, so the user reviews whatever was captured so far instead of
+        // losing all but the last photo (PB-207).
+        ReceiptDocument? offlineDoc;
+        if (paths.isNotEmpty) {
           final owned = ocrSource == null ? MlKitTextSource() : null;
           try {
-            final scan = await (ocrSource ?? owned!).scan(lastCapture.path);
-            if (scan.lines.any((l) => l.text.trim().isNotEmpty)) {
-              offline = CapturedImage(path: lastCapture.path, scan: scan);
+            for (final path in paths) {
+              final OcrScanResult scan;
+              try {
+                scan = await (ocrSource ?? owned!).scan(path);
+              } catch (_) {
+                continue;
+              }
+              if (!scan.lines.any((l) => l.text.trim().isNotEmpty)) continue;
+              if (offlineDoc == null) {
+                offlineDoc = ReceiptDocument.fromScan(
+                  scan,
+                  currencyCode: currencyCode,
+                );
+              } else {
+                final joined = offlineDoc.append(scan);
+                if (joined is ReceiptAppended) offlineDoc = joined.document;
+              }
             }
-          } catch (_) {
           } finally {
             try {
               await owned?.dispose();
             } catch (_) {}
           }
         }
+        if (offlineDoc != null) {
+          // The draft still holds the pre-dropout stub: persist the
+          // device-built document so approval compares against it (PB-207).
+          await persist(offlineDoc);
+        }
         return _AiProgress(
-          doc: offline != null ? null : doc,
+          doc: offlineDoc ?? doc,
           id: id,
           paths: paths,
-          capture: offline,
           listId: ownedListId,
         );
       case AiReceiptNeedsMore(:final gap)
@@ -736,7 +779,6 @@ Future<_AiOutcome> _readWithAi(
         final action = await _askNext(
           context,
           message: l10n.receiptIncompleteHeader,
-          automatic: false,
           canContinue: true,
         );
         if (!context.mounted ||
@@ -785,13 +827,22 @@ Future<_AiOutcome> _readWithAi(
                   AiReceiptGap.middle => l10n.receiptContinuationRejected,
                 },
           // No timed auto-camera: the user picks camera or photos.
-          automatic: false,
           canContinue: !full,
+          canReview: doc?.productLines.isNotEmpty ?? false,
         );
         if (!context.mounted) return stop();
         if (action == null || action == _CaptureAction.later) {
           _draftNotice(context);
           return stop();
+        }
+        if (action == _CaptureAction.review) {
+          return _AiProgress(
+            doc: doc,
+            id: id,
+            paths: paths,
+            listId: ownedListId,
+            openReview: true,
+          );
         }
         if (action == _CaptureAction.restart) {
           paths.clear();
@@ -813,13 +864,22 @@ Future<_AiOutcome> _readWithAi(
           message: reason == 'mismatch' || reason == 'rejected'
               ? l10n.receiptTotalMismatch
               : l10n.imageRecognitionFailed,
-          automatic: false,
           canContinue: paths.isNotEmpty,
+          canReview: (doc?.productLines.isNotEmpty ?? false) || paths.isNotEmpty,
         );
         if (!context.mounted) return stop();
         if (action == null || action == _CaptureAction.later) {
           _draftNotice(context);
           return stop();
+        }
+        if (action == _CaptureAction.review) {
+          return _AiProgress(
+            doc: doc,
+            id: id,
+            paths: paths,
+            listId: ownedListId,
+            openReview: true,
+          );
         }
         if (action == _CaptureAction.restart) {
           paths.clear();
@@ -841,19 +901,16 @@ Future<_AiOutcome> _readWithAi(
 Future<_CaptureAction?> _askNext(
   BuildContext context, {
   required String message,
-  required bool automatic,
   required bool canContinue,
+  bool canReview = false,
 }) => showModalBottomSheet<_CaptureAction>(
   context: context,
   showDragHandle: true,
   isScrollControlled: true,
   builder: (_) => _ContinuationSheet(
     message: message,
-    automatic:
-        automatic &&
-        !MediaQuery.accessibleNavigationOf(context) &&
-        MediaQuery.textScalerOf(context).scale(1) <= 1.5,
     canContinue: canContinue,
+    canReview: canReview,
   ),
 );
 

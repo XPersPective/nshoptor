@@ -1580,4 +1580,46 @@ class AppLocalizationsMl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'പരിധിയുടെ $percent% ഉപയോഗിച്ചു';
   }
+
+  @override
+  String get receiptReviewNowAction => 'പരിശോധിച്ച് ശരിയാക്കുക';
+
+  @override
+  String get receiptEditDetailsTitle => 'രസീതിന്റെ വിവരങ്ങൾ';
+
+  @override
+  String get receiptDateTimeLabel => 'തീയതിയും സമയവും';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ആകെത്തുക യോജിക്കുന്നില്ല';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ഇനങ്ങളുടെ തുക രസീതിലെ മൊത്തത്തിൽ നിന്ന് $difference വ്യത്യാസമുണ്ട്. എങ്കിലും സേവ് ചെയ്യണോ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'എങ്കിലും സേവ് ചെയ്യുക';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ഈ രസീത് സേവ് ചെയ്യാൻ കടയും തീയതിയും ചേർക്കുക.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'വായിക്കാനായില്ല: $fields. പരിശോധനയ്ക്കിടെ ഇവ പൂരിപ്പിക്കാം.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'ക്യാമറ ആക്സസ് ഓഫാണ്. രസീതും ലേബലും സ്കാൻ ചെയ്യാൻ സെറ്റിംഗുകളിൽ ഓണാക്കുക.';
+
+  @override
+  String get openSettingsAction => 'സെറ്റിംഗുകൾ തുറക്കുക';
+
+  @override
+  String get priceManualEntryAction => 'വില സ്വയം നൽകുക';
+
+  @override
+  String get priceRetakeAction => 'മറ്റൊരു ഫോട്ടോ എടുക്കുക';
 }

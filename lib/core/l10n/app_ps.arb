@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "د کتلو او ساتلو لپاره ټک کړئ.",
   "receiptReadMoreTitle": "د رسید پاتې برخه عکس کړئ",
   "receiptReadFailedTitle": "رسید ونه لوستل شو",
-  "budgetAlertNear": "د حد {percent}٪ کارول شوی دی"
+  "budgetAlertNear": "د حد {percent}٪ کارول شوی دی",
+  "receiptReviewNowAction": "بیاکتنه او سمول",
+  "receiptEditDetailsTitle": "د رسید تفصیلات",
+  "receiptSaveAnywayTitle": "ټولټال سمون نه خوري",
+  "receiptSaveAnywayBody": "د توکو مجموعه د رسید له ټولټال څخه {difference} توپیر لري. بیا هم خوندي کړئ؟",
+  "receiptSaveAnywayAction": "بیا هم خوندي کړه",
+  "receiptNeedsDetails": "دغه رسید خوندي کولو لپاره هټۍ او نېټه ورزیاته کړه.",
+  "receiptMissingFields": "لوستل نشو: {fields}. د بیاکتنې په جریان کې یې ډکولی شئ.",
+  "cameraAccessDenied": "کیمرې ته لاسرسی بند دی. د رسیدونو او لیبلونو سکن لپاره یې په تنظیماتو کې پرانیځئ.",
+  "openSettingsAction": "تنظیمات پرانیستل",
+  "priceManualEntryAction": "بیه په لاسي ډول داخل کړئ",
+  "priceRetakeAction": "بله انځور واخلئ",
+  "receiptDateTimeLabel": "نېټه او وخت"
 }

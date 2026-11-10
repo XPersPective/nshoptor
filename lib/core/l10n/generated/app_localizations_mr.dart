@@ -1576,4 +1576,46 @@ class AppLocalizationsMr extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'मर्यादेच्या $percent% वापरले';
   }
+
+  @override
+  String get receiptReviewNowAction => 'तपासा आणि दुरुस्त करा';
+
+  @override
+  String get receiptEditDetailsTitle => 'पावती तपशील';
+
+  @override
+  String get receiptDateTimeLabel => 'तारीख आणि वेळ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'एकूण रक्कम जुळत नाही';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'वस्तूंची बेरीज पावतीच्या एकूण रकमेपेक्षा $difference ने वेगळी आहे. तरीही जतन करायचे?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'तरीही जतन करा';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ही पावती जतन करण्यासाठी दुकान आणि तारीख जोडा.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'वाचता आले नाही: $fields. तपासताना तुम्ही हे भरू शकता.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'कॅमेरा परवानगी बंद आहे. पावत्या आणि लेबल स्कॅन करण्यासाठी ती सेटिंग्जमध्ये सुरू करा.';
+
+  @override
+  String get openSettingsAction => 'सेटिंग्ज उघडा';
+
+  @override
+  String get priceManualEntryAction => 'किंमत स्वतः टाका';
+
+  @override
+  String get priceRetakeAction => 'दुसरा फोटो काढा';
 }

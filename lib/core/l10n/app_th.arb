@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "แตะเพื่อตรวจสอบและบันทึก",
   "receiptReadMoreTitle": "ถ่ายภาพส่วนที่เหลือของใบเสร็จ",
   "receiptReadFailedTitle": "อ่านใบเสร็จไม่ได้",
-  "budgetAlertNear": "ใช้ไปแล้ว {percent}% ของวงเงิน"
+  "budgetAlertNear": "ใช้ไปแล้ว {percent}% ของวงเงิน",
+  "receiptReviewNowAction": "ตรวจสอบและแก้ไข",
+  "receiptEditDetailsTitle": "รายละเอียดใบเสร็จ",
+  "receiptSaveAnywayTitle": "ยอดรวมไม่ตรงกัน",
+  "receiptSaveAnywayBody": "ยอดรวมสินค้าต่างจากยอดรวมในใบเสร็จ {difference} จะบันทึกอยู่ดีหรือไม่",
+  "receiptSaveAnywayAction": "บันทึกอยู่ดี",
+  "receiptNeedsDetails": "เพิ่มร้านค้าและวันที่เพื่อบันทึกใบเสร็จนี้",
+  "receiptMissingFields": "อ่านไม่ได้: {fields} คุณกรอกข้อมูลเหล่านี้ได้ขณะตรวจสอบ",
+  "cameraAccessDenied": "การเข้าถึงกล้องปิดอยู่ เปิดในการตั้งค่าเพื่อสแกนใบเสร็จและป้ายราคา",
+  "openSettingsAction": "เปิดการตั้งค่า",
+  "priceManualEntryAction": "กรอกราคาเอง",
+  "priceRetakeAction": "ถ่ายรูปใหม่",
+  "receiptDateTimeLabel": "วันที่และเวลา"
 }

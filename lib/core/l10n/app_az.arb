@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Yoxlamaq və saxlamaq üçün toxunun.",
   "receiptReadMoreTitle": "Çekin qalan hissəsini çəkin",
   "receiptReadFailedTitle": "Çeki oxumaq mümkün olmadı",
-  "budgetAlertNear": "Limitin {percent}% istifadə olunub"
+  "budgetAlertNear": "Limitin {percent}% istifadə olunub",
+  "receiptReviewNowAction": "Yoxla və düzəlt",
+  "receiptEditDetailsTitle": "Çek məlumatları",
+  "receiptSaveAnywayTitle": "Yekun məbləğ uyğun gəlmir",
+  "receiptSaveAnywayBody": "Məhsullar çekin yekun məbləğindən {difference} fərqlənir. Yenə də saxlanılsın?",
+  "receiptSaveAnywayAction": "Yenə də saxla",
+  "receiptNeedsDetails": "Bu çeki saxlamaq üçün mağaza və tarix daxil edin.",
+  "receiptMissingFields": "Oxunmadı: {fields}. Bunları yoxlayarkən doldura bilərsiniz.",
+  "cameraAccessDenied": "Kameraya giriş bağlıdır. Çek və etiket oxumaq üçün onu Tənzimləmələrdən açın.",
+  "openSettingsAction": "Tənzimləmələri aç",
+  "priceManualEntryAction": "Qiyməti əl ilə daxil et",
+  "priceRetakeAction": "Yenidən çək",
+  "receiptDateTimeLabel": "Tarix və saat"
 }

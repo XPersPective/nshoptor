@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Tryck för att granska och spara.",
   "receiptReadMoreTitle": "Fotografera resten av kvittot",
   "receiptReadFailedTitle": "Kvittot kunde inte läsas",
-  "budgetAlertNear": "{percent} % av gränsen har använts"
+  "budgetAlertNear": "{percent} % av gränsen har använts",
+  "receiptReviewNowAction": "Granska och rätta",
+  "receiptEditDetailsTitle": "Kvittouppgifter",
+  "receiptSaveAnywayTitle": "Totalen stämmer inte",
+  "receiptSaveAnywayBody": "Varorna skiljer sig med {difference} från kvittots totalsumma. Spara ändå?",
+  "receiptSaveAnywayAction": "Spara ändå",
+  "receiptNeedsDetails": "Lägg till butik och datum för att spara det här kvittot.",
+  "receiptMissingFields": "Kunde inte läsas: {fields}. Du kan fylla i dem under granskningen.",
+  "cameraAccessDenied": "Kameraåtkomsten är av. Slå på den i inställningarna för att skanna kvitton och etiketter.",
+  "openSettingsAction": "Öppna inställningarna",
+  "priceManualEntryAction": "Ange priset manuellt",
+  "priceRetakeAction": "Ta ett nytt foto",
+  "receiptDateTimeLabel": "Datum och tid"
 }

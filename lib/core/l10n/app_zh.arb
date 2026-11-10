@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "点按即可查看并保存。",
   "receiptReadMoreTitle": "请拍摄收据的其余部分",
   "receiptReadFailedTitle": "无法读取收据",
-  "budgetAlertNear": "已使用限额的{percent}%"
+  "budgetAlertNear": "已使用限额的{percent}%",
+  "receiptReviewNowAction": "检查并修正",
+  "receiptEditDetailsTitle": "收据详情",
+  "receiptSaveAnywayTitle": "总额不符",
+  "receiptSaveAnywayBody": "商品总额与收据总额相差{difference}。仍要保存吗？",
+  "receiptSaveAnywayAction": "仍要保存",
+  "receiptNeedsDetails": "请添加商店和日期以保存这张收据。",
+  "receiptMissingFields": "无法读取：{fields}。您可以在检查时补填。",
+  "cameraAccessDenied": "相机权限已关闭。请在设置中开启，以便扫描收据和标签。",
+  "openSettingsAction": "打开设置",
+  "priceManualEntryAction": "手动输入价格",
+  "priceRetakeAction": "重新拍照",
+  "receiptDateTimeLabel": "日期和时间"
 }

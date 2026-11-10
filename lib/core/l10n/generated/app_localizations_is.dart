@@ -1582,4 +1582,46 @@ class AppLocalizationsIs extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% af mörkunum notuð';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Skoðaðu og lagaðu';
+
+  @override
+  String get receiptEditDetailsTitle => 'Upplýsingar kvittunar';
+
+  @override
+  String get receiptDateTimeLabel => 'Dagsetning og tími';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Heildarupphæðin stemmir ekki';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Vörurnar afvíkja um $difference frá heildarupphæð kvittunarinnar. Vista samt?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Vista samt';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Bættu verslun og dagsetningu við til að vista þessa kvittun.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Gat ekki lesið: $fields. Þú getur fyllt þetta út við yfirferðina.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Aðgangur að myndavél er slökkt. Kveiktu á honum í stillingum til að skanna kvittanir og verðmerki.';
+
+  @override
+  String get openSettingsAction => 'Opna stillingar';
+
+  @override
+  String get priceManualEntryAction => 'Sláðu inn verð handvirkt';
+
+  @override
+  String get priceRetakeAction => 'Taka aðra mynd';
 }

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/money/currency.dart';
+import '../../../core/money/money_parser.dart';
+import '../../../core/money/decimal_fixed.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
@@ -101,15 +103,14 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     );
 
     final diff = _c.reconciliationDifference;
-    final metadata = _c.document?.metadata;
     final material = MaterialLocalizations.of(context);
-    final printedAt = metadata?.dateTime;
+    final printedAt = _c.displayDate;
     final metadataText = [
-      if (metadata?.store != null) metadata!.store!,
+      if (_c.displayStore != null) _c.displayStore!,
       if (printedAt != null)
         '${material.formatCompactDate(printedAt)} ${material.formatTimeOfDay(TimeOfDay.fromDateTime(printedAt))}',
-      if (metadata?.documentNumber != null)
-        '${l10n.reportReceiptNumber}: ${metadata!.documentNumber}',
+      if (_c.displayDocumentNumber != null)
+        '${l10n.reportReceiptNumber}: ${_c.displayDocumentNumber}',
     ].join('\n');
     return PopScope(
       canPop: !_saving,
@@ -175,6 +176,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
               ),
             Card(
               child: ListTile(
+                onTap: _editable ? _editDetails : null,
                 leading: const Icon(Icons.receipt_long),
                 title: Text(
                   _c.reportedTotalMinor == null
@@ -306,7 +308,12 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                           key: const Key('receipt_commit_button'),
                           onPressed:
                               _editable &&
-                                  _c.documentReady &&
+                                  // A perfect reading saves directly; an
+                                  // imperfect one needs store+date so the
+                                  // user can fix and confirm it here (PB-207).
+                                  (_c.documentReady ||
+                                      _c.reviewable &&
+                                          _c.hasMinimumIdentity) &&
                                   !_c.currencyNeedsConfirmation &&
                                   (_c.detectedCurrency == null ||
                                       _c.detectedCurrency == widget.currency) &&
@@ -314,7 +321,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                                   _c.lines.any(
                                     (l) => l.status != ReviewStatus.ignored,
                                   )
-                              ? () => _commit(context)
+                              ? () => _commit()
                               : null,
                           child: Stack(
                             alignment: Alignment.center,
@@ -366,6 +373,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         title: Text(line.name),
         children: [
           for (final (key, label) in [
+            ('edit', l10n.editAction),
             ('link', l10n.linkToItem),
             if (line.linkedPlannedItemId != null)
               ('unlink', l10n.groupUnplanned),
@@ -383,6 +391,8 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     );
     if (!mounted) return;
     switch (action) {
+      case 'edit':
+        await _editLine(index);
       case 'link':
         final items = await widget.plannedItems;
         if (!mounted) return;
@@ -415,6 +425,214 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     }
   }
 
+  /// Line correction dialog (PB-207): name, quantity and amount stay fully
+  /// editable; the raw OCR evidence is untouched and shown to auditors.
+  Future<void> _editLine(int index) async {
+    final l10n = AppLocalizations.of(context);
+    final line = _c.lines[index];
+    final separators = MoneySeparators.forLocaleCode(
+      formatLocaleCode(context),
+    );
+    final digits = Currency.fromCode(widget.currency).minorUnitDigits;
+    final name = TextEditingController(text: line.name);
+    final amount = TextEditingController(
+      text: MoneySeparators.forLocaleCode(
+        formatLocaleCode(context),
+      ).formatInput(
+        DecimalFixed.fromMinorUnits(line.lineTotalMinor, digits).toDbString(),
+      ),
+    );
+    final quantity = TextEditingController(
+      text: line.quantity?.toDbString() ?? '',
+    );
+    final saved = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        key: Key('receipt_edit_line_$index'),
+        title: Text(l10n.editAction),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              key: const Key('receipt_edit_line_name'),
+              controller: name,
+              decoration: InputDecoration(labelText: l10n.itemNameLabel),
+            ),
+            TextField(
+              key: const Key('receipt_edit_line_quantity'),
+              controller: quantity,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: InputDecoration(labelText: l10n.quantityLabel),
+            ),
+            TextField(
+              key: const Key('receipt_edit_line_amount'),
+              controller: amount,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: InputDecoration(
+                labelText: l10n.pricingModeLineTotal,
+                suffixText: widget.currency,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(l10n.cancelButton),
+          ),
+          FilledButton(
+            key: const Key('receipt_edit_line_save'),
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: Text(l10n.saveButton),
+          ),
+        ],
+      ),
+    );
+    if (saved != true) return;
+    DecimalFixed? parsedQuantity;
+    final quantityText = quantity.text.trim();
+    if (quantityText.isNotEmpty) {
+      parsedQuantity = DecimalFixed.tryParse(
+        quantityText.replaceAll(',', '.'),
+      );
+      if (parsedQuantity == null || parsedQuantity.isNegative) {
+        if (mounted) {
+          setState(() => _failureMessage = l10n.invalidQuantityError);
+        }
+        return;
+      }
+    }
+    final minor = MoneyParser.parseDecimal(
+      amount.text.trim(),
+      separators: separators,
+    ).toMinorUnits(digits);
+    _c.editLine(
+      index,
+      name: name.text,
+      quantity: parsedQuantity,
+      unitCode: line.unitCode,
+      lineTotalMinor: minor,
+    );
+  }
+
+  /// Header correction dialog (PB-207): store, date/time and the printed
+  /// total. Confirmed values feed the save gate and the receipt identity.
+  Future<void> _editDetails() async {
+    final l10n = AppLocalizations.of(context);
+    final separators = MoneySeparators.forLocaleCode(
+      formatLocaleCode(context),
+    );
+    final digits = Currency.fromCode(widget.currency).minorUnitDigits;
+    final store = TextEditingController(text: _c.displayStore ?? '');
+    final total = TextEditingController(
+      text: _c.reportedTotalMinor == null
+          ? ''
+          : separators.formatInput(
+              DecimalFixed.fromMinorUnits(
+                _c.reportedTotalMinor!,
+                digits,
+              ).toDbString(),
+            ),
+    );
+    var dateTime = _c.displayDate;
+    String dateLabel(DateTime value) {
+      final material = MaterialLocalizations.of(context);
+      return '${material.formatCompactDate(value)} '
+          '${material.formatTimeOfDay(TimeOfDay.fromDateTime(value))}';
+    }
+    final saved = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (dialogContext, setDialogState) => AlertDialog(
+          key: const Key('receipt_edit_details'),
+          title: Text(l10n.receiptEditDetailsTitle),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                key: const Key('receipt_edit_details_store'),
+                controller: store,
+                decoration: InputDecoration(labelText: l10n.storeLabel),
+              ),
+              const SizedBox(height: 12),
+              OutlinedButton.icon(
+                key: const Key('receipt_edit_details_date'),
+                onPressed: () async {
+                  final date = await showDatePicker(
+                    context: dialogContext,
+                    initialDate: dateTime ?? DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime.now().add(const Duration(days: 1)),
+                  );
+                  if (date == null || !dialogContext.mounted) return;
+                  final time = await showTimePicker(
+                    context: dialogContext,
+                    initialTime: dateTime == null
+                        ? TimeOfDay.now()
+                        : TimeOfDay.fromDateTime(dateTime!),
+                  );
+                  setDialogState(() {
+                    dateTime = DateTime(
+                      date.year,
+                      date.month,
+                      date.day,
+                      time?.hour ?? 0,
+                      time?.minute ?? 0,
+                    );
+                  });
+                },
+                icon: const Icon(Icons.event_outlined),
+                label: Text(
+                  dateTime == null
+                      ? l10n.receiptDateTimeLabel
+                      : dateLabel(dateTime!),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                key: const Key('receipt_edit_details_total'),
+                controller: total,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                decoration: InputDecoration(
+                  labelText: l10n.receiptTotal,
+                  suffixText: widget.currency,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: Text(l10n.cancelButton),
+            ),
+            FilledButton(
+              key: const Key('receipt_edit_details_save'),
+              onPressed: () => Navigator.pop(dialogContext, true),
+              child: Text(l10n.saveButton),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (saved != true) return;
+    final totalText = total.text.trim();
+    if (totalText.isNotEmpty) {
+      _c.setReportedTotal(
+        MoneyParser.parseDecimal(
+          totalText,
+          separators: separators,
+        ).toMinorUnits(digits),
+      );
+    }
+    _c.setDetails(store: store.text, dateTime: dateTime);
+  }
+
   String _lineQty(ReviewLine line) {
     final q = line.quantity == null
         ? null
@@ -438,7 +656,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     return '$quantity × $price';
   }
 
-  Future<void> _commit(BuildContext context) async {
+  Future<void> _commit() async {
     if (_saving) return;
     _c.acceptPending();
     final l10n = AppLocalizations.of(context);
@@ -449,7 +667,56 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
     });
     try {
       var selection = ReceiptSelection.wholeReceipt;
-      if (_c.isPartialSelection) {
+      // An imperfect reading is saved only through explicit confirmation:
+      // missing store/date first, then the recorded difference (PB-207).
+      final strict = _c.documentReady;
+      if (!strict) {
+        if (!_c.hasMinimumIdentity) {
+          await _editDetails();
+          if (!_c.hasMinimumIdentity) {
+            if (mounted) {
+              setState(() => _failureMessage = l10n.receiptNeedsDetails);
+            }
+            return;
+          }
+        }
+        if (!mounted) return;
+        final difference = _c.reconciliationDifference;
+        final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            key: const Key('receipt_save_anyway'),
+            title: Text(l10n.receiptSaveAnywayTitle),
+            content: Text(
+              difference == null
+                  ? l10n.receiptTotalUnknown
+                  : l10n.receiptSaveAnywayBody(
+                      '${difference > 0 ? '+' : ''}'
+                      '${formatMoney(Money.fromMinorUnits(difference, Currency.fromCode(widget.currency)), locale: formatLocaleCode(context))}',
+                    ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: Text(l10n.cancelButton),
+              ),
+              FilledButton(
+                key: const Key('receipt_save_anyway_confirm'),
+                onPressed: () => Navigator.pop(ctx, true),
+                child: Text(l10n.receiptSaveAnywayAction),
+              ),
+            ],
+          ),
+        );
+        if (!context.mounted || confirmed != true) return;
+        // That dialog IS the difference confirmation: a partial save needs
+        // no second prompt on the corrected path.
+        if (_c.isPartialSelection) {
+          selection = ReceiptSelection.confirmedSubset;
+        }
+      }
+      if (!mounted) return;
+      if (strict && _c.isPartialSelection) {
         final confirmed = await showDialog<bool>(
           context: context,
           builder: (ctx) => AlertDialog(
@@ -471,7 +738,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         selection = ReceiptSelection.confirmedSubset;
       }
       final previous = await _c.replacementEntries();
-      if (!context.mounted) return;
+      if (!mounted) return;
       if (previous.isNotEmpty) {
         final currency = Currency.fromCode(widget.currency);
         String money(int minor) => formatMoney(
@@ -508,10 +775,11 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
             ],
           ),
         );
-        if (confirmed != true) return;
+        if (!mounted || confirmed != true) return;
       }
-      await _c.commit(selection: selection);
-      if (!context.mounted) return;
+      if (!mounted) return;
+      await _c.commit(selection: selection, overrideIncomplete: !strict);
+      if (!mounted) return;
       messenger
         ..clearSnackBars()
         ..showSnackBar(

@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Koppintson az áttekintéshez és mentéshez.",
   "receiptReadMoreTitle": "Fényképezze le a nyugta többi részét",
   "receiptReadFailedTitle": "A nyugtát nem sikerült beolvasni",
-  "budgetAlertNear": "A limit {percent}%-a felhasználva"
+  "budgetAlertNear": "A limit {percent}%-a felhasználva",
+  "receiptReviewNowAction": "Ellenőrzés és javítás",
+  "receiptEditDetailsTitle": "Nyugta adatai",
+  "receiptSaveAnywayTitle": "Az összeg nem egyezik",
+  "receiptSaveAnywayBody": "A tételek {difference} eltéréssel különböznek a nyugta végösszegétől. Mentés mégis?",
+  "receiptSaveAnywayAction": "Mentés mégis",
+  "receiptNeedsDetails": "A nyugta mentéséhez adja meg az üzletet és a dátumot.",
+  "receiptMissingFields": "Nem olvasható: {fields}. Ezeket ellenőrzés közben kitöltheti.",
+  "cameraAccessDenied": "A kamerához való hozzáférés ki van kapcsolva. Kapcsolja be a Beállításokban a nyugták és címkék beolvasásához.",
+  "openSettingsAction": "Beállítások megnyitása",
+  "priceManualEntryAction": "Ár megadása kézzel",
+  "priceRetakeAction": "Új fénykép készítése",
+  "receiptDateTimeLabel": "Dátum és idő"
 }

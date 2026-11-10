@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "برای بررسی و ذخیره ضربه بزنید.",
   "receiptReadMoreTitle": "از بقیهٔ رسید عکس بگیرید",
   "receiptReadFailedTitle": "رسید خوانده نشد",
-  "budgetAlertNear": "{percent}٪ از سقف مصرف شده است"
+  "budgetAlertNear": "{percent}٪ از سقف مصرف شده است",
+  "receiptReviewNowAction": "بررسی و اصلاح کنید",
+  "receiptEditDetailsTitle": "جزئیات رسید",
+  "receiptSaveAnywayTitle": "جمع کل مطابقت ندارد",
+  "receiptSaveAnywayBody": "مجموع موارد با مبلغ کل رسید {difference} اختلاف دارد. به هر حال ذخیره شود؟",
+  "receiptSaveAnywayAction": "به هر حال ذخیره کن",
+  "receiptNeedsDetails": "برای ذخیره این رسید، فروشگاه و تاریخ را وارد کنید.",
+  "receiptMissingFields": "خوانده نشد: {fields}. می‌توانید هنگام بررسی آن‌ها را پر کنید.",
+  "cameraAccessDenied": "دسترسی دوربین خاموش است. برای اسکن رسید و برچسب، آن را از تنظیمات روشن کنید.",
+  "openSettingsAction": "باز کردن تنظیمات",
+  "priceManualEntryAction": "وارد کردن دستی قیمت",
+  "priceRetakeAction": "عکس دیگری بگیرید",
+  "receiptDateTimeLabel": "تاریخ و ساعت"
 }

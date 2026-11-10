@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Ýttu til að yfirfara og vista.",
   "receiptReadMoreTitle": "Taktu mynd af restinni af kvittuninni",
   "receiptReadFailedTitle": "Ekki tókst að lesa kvittunina",
-  "budgetAlertNear": "{percent}% af mörkunum notuð"
+  "budgetAlertNear": "{percent}% af mörkunum notuð",
+  "receiptReviewNowAction": "Skoðaðu og lagaðu",
+  "receiptEditDetailsTitle": "Upplýsingar kvittunar",
+  "receiptSaveAnywayTitle": "Heildarupphæðin stemmir ekki",
+  "receiptSaveAnywayBody": "Vörurnar afvíkja um {difference} frá heildarupphæð kvittunarinnar. Vista samt?",
+  "receiptSaveAnywayAction": "Vista samt",
+  "receiptNeedsDetails": "Bættu verslun og dagsetningu við til að vista þessa kvittun.",
+  "receiptMissingFields": "Gat ekki lesið: {fields}. Þú getur fyllt þetta út við yfirferðina.",
+  "cameraAccessDenied": "Aðgangur að myndavél er slökkt. Kveiktu á honum í stillingum til að skanna kvittanir og verðmerki.",
+  "openSettingsAction": "Opna stillingar",
+  "priceManualEntryAction": "Sláðu inn verð handvirkt",
+  "priceRetakeAction": "Taka aðra mynd",
+  "receiptDateTimeLabel": "Dagsetning og tími"
 }

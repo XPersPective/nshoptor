@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Tik om dit na te gaan en te stoor.",
   "receiptReadMoreTitle": "Foto die res van die kwitansie",
   "receiptReadFailedTitle": "Die kwitansie kon nie gelees word nie",
-  "budgetAlertNear": "{percent}% van die limiet gebruik"
+  "budgetAlertNear": "{percent}% van die limiet gebruik",
+  "receiptReviewNowAction": "Kontroleer en maak reg",
+  "receiptEditDetailsTitle": "Kwitansiebesonderhede",
+  "receiptSaveAnywayTitle": "Totaal stem nie ooreen nie",
+  "receiptSaveAnywayBody": "Die items verskil {difference} van die kwitansietotaal. Stoor in elk geval?",
+  "receiptSaveAnywayAction": "Stoor in elk geval",
+  "receiptNeedsDetails": "Voeg die winkel en datum by om hierdie kwitansie te stoor.",
+  "receiptMissingFields": "Kon nie lees nie: {fields}. Jy kan dit invul terwyl jy hersien.",
+  "cameraAccessDenied": "Kamertoegang is af. Skakel dit in Instellings aan om kwitansies en etikette te skandeer.",
+  "openSettingsAction": "Maak Instellings oop",
+  "priceManualEntryAction": "Voer prys handmatig in",
+  "priceRetakeAction": "Neem weer 'n foto",
+  "receiptDateTimeLabel": "Datum en tyd"
 }

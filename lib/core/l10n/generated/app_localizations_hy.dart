@@ -1587,4 +1587,46 @@ class AppLocalizationsHy extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Սահմանաչափի $percent%-ն օգտագործվել է';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Ստուգեք և ուղղեք';
+
+  @override
+  String get receiptEditDetailsTitle => 'Կտրոնի տվյալները';
+
+  @override
+  String get receiptDateTimeLabel => 'Ամսաթիվ և ժամ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Գումարը չի համընկնում';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Ապրանքների գումարը $difference-ով տարբերվում է կտրոնի ընդհանուր գումարից։ Պահպանել այնուամենայնիվ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Պահպանել այնուամենայնիվ';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Ավելացրեք խանութը և ամսաթիվը՝ պահպանելու այս կտրոնը։';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Չհաջողվեց կարդալ՝ $fields։ Դրանք կարող եք լրացնել ստուգելիս։';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Տեսախցիկի հասանելիությունն անջատված է։ Միացրեք այն կարգավորումներից՝ կտրոններ և պիտակներ սկանավորելու համար։';
+
+  @override
+  String get openSettingsAction => 'Բացել կարգավորումները';
+
+  @override
+  String get priceManualEntryAction => 'Գինը մուտքագրեք ձեռքով';
+
+  @override
+  String get priceRetakeAction => 'Նկարեք մեկ այլ լուսանկար';
 }

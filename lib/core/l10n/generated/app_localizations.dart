@@ -3145,6 +3145,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{percent}% of the limit used'**
   String budgetAlertNear(String percent);
+
+  /// No description provided for @receiptReviewNowAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Review and fix'**
+  String get receiptReviewNowAction;
+
+  /// No description provided for @receiptEditDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt details'**
+  String get receiptEditDetailsTitle;
+
+  /// No description provided for @receiptDateTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date and time'**
+  String get receiptDateTimeLabel;
+
+  /// No description provided for @receiptSaveAnywayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Total does not match'**
+  String get receiptSaveAnywayTitle;
+
+  /// No description provided for @receiptSaveAnywayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The items differ from the receipt total by {difference}. Save anyway?'**
+  String receiptSaveAnywayBody(String difference);
+
+  /// No description provided for @receiptSaveAnywayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save anyway'**
+  String get receiptSaveAnywayAction;
+
+  /// No description provided for @receiptNeedsDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the store and date to save this receipt.'**
+  String get receiptNeedsDetails;
+
+  /// No description provided for @receiptMissingFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read: {fields}. You can fill these in while reviewing.'**
+  String receiptMissingFields(String fields);
+
+  /// No description provided for @cameraAccessDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera access is off. Turn it on in Settings to scan receipts and labels.'**
+  String get cameraAccessDenied;
+
+  /// No description provided for @openSettingsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get openSettingsAction;
+
+  /// No description provided for @priceManualEntryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter price manually'**
+  String get priceManualEntryAction;
+
+  /// No description provided for @priceRetakeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Take another photo'**
+  String get priceRetakeAction;
 }
 
 class _AppLocalizationsDelegate

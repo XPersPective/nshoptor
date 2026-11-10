@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "ਜਾਂਚ ਕੇ ਸੰਭਾਲਣ ਲਈ ਟੈਪ ਕਰੋ।",
   "receiptReadMoreTitle": "ਰਸੀਦ ਦੇ ਬਾਕੀ ਹਿੱਸੇ ਦੀ ਫ਼ੋਟੋ ਲਓ",
   "receiptReadFailedTitle": "ਰਸੀਦ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ",
-  "budgetAlertNear": "ਸੀਮਾ ਦਾ {percent}% ਵਰਤਿਆ ਜਾ ਚੁੱਕਾ ਹੈ"
+  "budgetAlertNear": "ਸੀਮਾ ਦਾ {percent}% ਵਰਤਿਆ ਜਾ ਚੁੱਕਾ ਹੈ",
+  "receiptReviewNowAction": "ਜਾਂਚੋ ਅਤੇ ਠੀਕ ਕਰੋ",
+  "receiptEditDetailsTitle": "ਰਸੀਦ ਦੇ ਵੇਰਵੇ",
+  "receiptSaveAnywayTitle": "ਕੁੱਲ ਰਕਮ ਮੇਲ ਨਹੀਂ ਖਾਂਦੀ",
+  "receiptSaveAnywayBody": "ਚੀਜ਼ਾਂ ਦਾ ਜੋੜ ਰਸੀਦ ਦੇ ਕੁੱਲ ਨਾਲੋਂ {difference} ਵੱਖਰਾ ਹੈ। ਫਿਰ ਵੀ ਸੇਵ ਕਰਨਾ?",
+  "receiptSaveAnywayAction": "ਫਿਰ ਵੀ ਸੇਵ ਕਰੋ",
+  "receiptNeedsDetails": "ਇਹ ਰਸੀਦ ਸੇਵ ਕਰਨ ਲਈ ਦੁਕਾਨ ਅਤੇ ਤਾਰੀਖ ਸ਼ਾਮਲ ਕਰੋ।",
+  "receiptMissingFields": "ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ: {fields}। ਜਾਂਚ ਦੌਰਾਨ ਤੁਸੀਂ ਇਹ ਭਰ ਸਕਦੇ ਹੋ।",
+  "cameraAccessDenied": "ਕੈਮਰਾ ਦੀ ਪਹੁੰਚ ਬੰਦ ਹੈ। ਰਸੀਦਾਂ ਅਤੇ ਲੇਬਲ ਸਕੈਨ ਕਰਨ ਲਈ ਇਸ ਨੂੰ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਚਾਲੂ ਕਰੋ।",
+  "openSettingsAction": "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ",
+  "priceManualEntryAction": "ਕੀਮਤ ਮੈਨੁਅਲੀ ਦਰਜ ਕਰੋ",
+  "priceRetakeAction": "ਹੋਰ ਫੋਟੋ ਖਿੱਚੋ",
+  "receiptDateTimeLabel": "ਤਾਰੀਖ ਅਤੇ ਸਮਾਂ"
 }

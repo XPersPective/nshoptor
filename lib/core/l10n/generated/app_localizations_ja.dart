@@ -1526,4 +1526,45 @@ class AppLocalizationsJa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '上限の$percent%を使用しました';
   }
+
+  @override
+  String get receiptReviewNowAction => '確認して修正';
+
+  @override
+  String get receiptEditDetailsTitle => 'レシートの詳細';
+
+  @override
+  String get receiptDateTimeLabel => '日付と時刻';
+
+  @override
+  String get receiptSaveAnywayTitle => '合計が一致しません';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return '商品合計がレシートの合計と$difference異なります。このまま保存しますか？';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'このまま保存';
+
+  @override
+  String get receiptNeedsDetails => 'このレシートを保存するには店舗と日付を入力してください。';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return '読み取れませんでした：$fields。確認中に入力できます。';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'カメラへのアクセスがオフです。レシートやラベルをスキャンするには設定でオンにしてください。';
+
+  @override
+  String get openSettingsAction => '設定を開く';
+
+  @override
+  String get priceManualEntryAction => '価格を手動で入力';
+
+  @override
+  String get priceRetakeAction => '撮り直す';
 }

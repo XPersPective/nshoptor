@@ -48,6 +48,14 @@ Map<String, dynamic> _complete() => {
   'reconciles': true,
 };
 
+
+class _Frames implements OcrTextSource {
+  _Frames(this.frames);
+  final List<OcrScanResult> frames;
+  @override
+  Future<OcrScanResult> scan(String _) async => frames.removeAt(0);
+}
+
 void main() {
   late AppDatabase db;
   setUp(() => db = AppDatabase(NativeDatabase.memory()));
@@ -281,6 +289,107 @@ void main() {
       expect(find.byKey(const Key('receipt_line_1')), findsOneWidget);
       firstRead.complete(http.Response('{"error":"ai_failed"}', 502));
       await settle();
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
+  testWidgets(
+    'AI dropout reads every saved photo on-device and reaches review',
+    (tester) async {
+      // The proxy is over quota for both requests.
+      final ai = AiClient(
+        store: SettingsStore(),
+        baseUrl: 'https://x',
+        httpClient: MockClient((request) async => http.Response(
+              jsonEncode({
+                'error': 'quota',
+                'tier': 'free',
+                'limit': 3,
+                'used': 3,
+              }),
+              429,
+              headers: {'content-type': 'application/json; charset=utf-8'},
+            )),
+      );
+      // Device OCR frames: the dropout reads photo-0 on-device; the next
+      // photo is captured through the main loop's device path and joined.
+      final frames = [
+        OcrScanResult(lines: [
+          for (final text in [
+            'A101 MARKET',
+            'TARİH: 24.10.2026',
+            'SAAT: 18:41',
+            'FİŞ NO: 000123',
+            'ELMA 20,00',
+          ])
+            OcrLine(text: text),
+        ]),
+        OcrScanResult(lines: [
+          for (final text in ['ELMA 20,00', 'SÜT 30,00', 'TOPLAM 50,00 TL'])
+            OcrLine(text: text),
+        ]),
+      ];
+      final source = _Frames(frames);
+      Object? failure;
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: const Locale('tr'),
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: Scaffold(
+            body: Builder(
+              builder: (context) => TextButton(
+                key: const Key('open'),
+                onPressed: () async {
+                  try {
+                    await openReceiptCaptureFlow(
+                      context,
+                      db: db,
+                      currencyCode: 'TRY',
+                      ai: ai,
+                      pickImage: () async => 'picked.jpg',
+                      ocrSource: source,
+                      imageStore: _Images(),
+                      encodeAiImage: (path) async => '/9j/$path',
+                    );
+                  } catch (e) {
+                    failure = e;
+                  }
+                },
+                child: const Text('open'),
+              ),
+            ),
+          ),
+        ),
+      );
+      Future<void> settle() async {
+        for (var i = 0; i < 30; i++) {
+          await tester.pump(const Duration(milliseconds: 100));
+          await tester.runAsync(() async {});
+        }
+      }
+
+      await tester.tap(find.byKey(const Key('open')));
+      await settle();
+      // First dropout: the on-device reading recovered the header part, so
+      // the continuation sheet offers review, camera and gallery.
+      expect(find.byKey(const Key('receipt_capture_review')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('receipt_capture_camera')));
+      await settle();
+      // Both photos were read on-device and joined: review opens with the
+      // complete reading, ready to save (PB-207).
+      expect(failure, isNull);
+      expect(find.byKey(const Key('receipt_line_1')), findsOneWidget);
+      expect(find.text('SÜT'), findsOneWidget);
+      final save = tester.widget<FilledButton>(
+        find.byKey(const Key('receipt_commit_button')),
+      );
+      expect(save.onPressed, isNotNull);
       await tester.pumpWidget(const SizedBox.shrink());
     },
   );

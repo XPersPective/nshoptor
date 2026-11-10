@@ -1590,4 +1590,46 @@ class AppLocalizationsEl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Χρησιμοποιήθηκε το $percent% του ορίου';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Ελέγξτε και διορθώστε';
+
+  @override
+  String get receiptEditDetailsTitle => 'Στοιχεία απόδειξης';
+
+  @override
+  String get receiptDateTimeLabel => 'Ημερομηνία και ώρα';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Το σύνολο δεν ταιριάζει';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Τα είδη διαφέρουν κατά $difference από το σύνολο της απόδειξης. Να αποθηκευτεί ούτως ή άλλως;';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Αποθήκευση ούτως ή άλλως';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Προσθέστε το κατάστημα και την ημερομηνία για να αποθηκεύσετε την απόδειξη.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Δεν ήταν δυνατή η ανάγνωση: $fields. Μπορείτε να τα συμπληρώσετε κατά τον έλεγχο.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Η πρόσβαση στην κάμερα είναι απενεργοποιημένη. Ενεργοποιήστε την στις ρυθμίσεις για να σαρώνετε αποδείξεις και ετικέτες.';
+
+  @override
+  String get openSettingsAction => 'Άνοιγμα ρυθμίσεων';
+
+  @override
+  String get priceManualEntryAction => 'Εισαγωγή τιμής χειροκίνητα';
+
+  @override
+  String get priceRetakeAction => 'Βγάλτε άλλη φωτογραφία';
 }

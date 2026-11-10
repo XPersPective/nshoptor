@@ -1580,4 +1580,46 @@ class AppLocalizationsSi extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'සීමාවෙන් $percent% ක් භාවිතා කර ඇත';
   }
+
+  @override
+  String get receiptReviewNowAction => 'සමාලෝචනය කර නිවැරදි කරන්න';
+
+  @override
+  String get receiptEditDetailsTitle => 'රිසිට්පතේ විස්තර';
+
+  @override
+  String get receiptDateTimeLabel => 'දිනය සහ වේලාව';
+
+  @override
+  String get receiptSaveAnywayTitle => 'මුළු මුදල නොගැළපේ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'භාණ්ඩ එකතුව රිසිට්පතේ මුළු මුදලෙන් $difference කින් වෙනස් වේ. කෙසේ හෝ සුරකින්නද?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'කෙසේ හෝ සුරකින්න';
+
+  @override
+  String get receiptNeedsDetails =>
+      'මෙම රිසිට්පත සුරැකීමට සාප්පුව සහ දිනය එක් කරන්න.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'කියවිය නොහැකි විය: $fields. සමාලෝචනය කරන අතරතුර මේවා පුරවන්න පුළුවන.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'කැමරා ප්‍රවේශය වසා ඇත. රිසිට්පත් සහ ලේබල් පරීක්ෂා කිරීමට සැකසුම් තුළින් එය සක්‍රිය කරන්න.';
+
+  @override
+  String get openSettingsAction => 'සැකසුම් විවෘත කරන්න';
+
+  @override
+  String get priceManualEntryAction => 'මිල අතින් ඇතුළත් කරන්න';
+
+  @override
+  String get priceRetakeAction => 'වෙනත් ඡායාරූපයක් ගන්න';
 }

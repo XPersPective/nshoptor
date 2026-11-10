@@ -561,7 +561,7 @@ final _currencyToken =
     '(?:${Currency.all.map((currency) => currency.code.toLowerCase()).join('|')}'
     r'|tl|[₺€£$])';
 final _totalLine = RegExp(
-  r'^[*#\s]*(?:genel\s+toplam|toplam(?:\s+tutar)?|odenecek(?:\s+tutar)?|grand\s+total|total)'
+  r'^[*#\s]*(?:genel\s+t[o0]plam|t[o0]plam(?:\s+tutar)?|[o0]denecek(?:\s+tutar)?|grand\s+t[o0]tal|t[o0]tal|summe|gesamt)'
   r'\s*[:=*]?\s*'
   '(?:$_currencyToken)?'
   r'\s*(\d+(?:[.,\u066b]\d+)*)\s*'
@@ -573,7 +573,9 @@ int? _readTotal(List<String> lines, String currencyCode) {
   final totals = <int>{};
   final digits = Currency.fromCode(currencyCode).minorUnitDigits;
   for (final line in lines) {
-    final raw = _totalLine.firstMatch(_fold(line))?.group(1);
+    final raw = _totalLine.firstMatch(
+      repairConfusableAmounts(_fold(line)),
+    )?.group(1);
     if (raw == null) continue;
     if (digits == 0) {
       final amount = wholeOcrAmount(raw);

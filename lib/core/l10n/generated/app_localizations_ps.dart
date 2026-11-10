@@ -1571,4 +1571,46 @@ class AppLocalizationsPs extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'د حد $percent٪ کارول شوی دی';
   }
+
+  @override
+  String get receiptReviewNowAction => 'بیاکتنه او سمول';
+
+  @override
+  String get receiptEditDetailsTitle => 'د رسید تفصیلات';
+
+  @override
+  String get receiptDateTimeLabel => 'نېټه او وخت';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ټولټال سمون نه خوري';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'د توکو مجموعه د رسید له ټولټال څخه $difference توپیر لري. بیا هم خوندي کړئ؟';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'بیا هم خوندي کړه';
+
+  @override
+  String get receiptNeedsDetails =>
+      'دغه رسید خوندي کولو لپاره هټۍ او نېټه ورزیاته کړه.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'لوستل نشو: $fields. د بیاکتنې په جریان کې یې ډکولی شئ.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'کیمرې ته لاسرسی بند دی. د رسیدونو او لیبلونو سکن لپاره یې په تنظیماتو کې پرانیځئ.';
+
+  @override
+  String get openSettingsAction => 'تنظیمات پرانیستل';
+
+  @override
+  String get priceManualEntryAction => 'بیه په لاسي ډول داخل کړئ';
+
+  @override
+  String get priceRetakeAction => 'بله انځور واخلئ';
 }

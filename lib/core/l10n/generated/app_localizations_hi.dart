@@ -1583,4 +1583,46 @@ class AppLocalizationsHi extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'सीमा का $percent% उपयोग हो चुका है';
   }
+
+  @override
+  String get receiptReviewNowAction => 'जाँच कर ठीक करें';
+
+  @override
+  String get receiptEditDetailsTitle => 'रसीद का विवरण';
+
+  @override
+  String get receiptDateTimeLabel => 'तारीख और समय';
+
+  @override
+  String get receiptSaveAnywayTitle => 'कुल राशि मेल नहीं खा रही';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'वस्तुओं का योग रसीद के कुल से $difference अलग है। फिर भी सेव करें?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'फिर भी सेव करें';
+
+  @override
+  String get receiptNeedsDetails =>
+      'यह रसीद सेव करने के लिए दुकान और तारीख जोड़ें।';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'पढ़ा नहीं जा सका: $fields। समीक्षा करते समय आप इन्हें भर सकते हैं।';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'कैमरा ऐक्सेस बंद है। रसीद और लेबल स्कैन करने के लिए इसे सेटिंग्स में चालू करें।';
+
+  @override
+  String get openSettingsAction => 'सेटिंग्स खोलें';
+
+  @override
+  String get priceManualEntryAction => 'कीमत मैन्युअल रूप से दर्ज करें';
+
+  @override
+  String get priceRetakeAction => 'दूसरी फ़ोटो लें';
 }

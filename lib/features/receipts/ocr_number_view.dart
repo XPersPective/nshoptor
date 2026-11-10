@@ -136,3 +136,49 @@ MoneySeparators ocrAmountSeparators(String raw, {int? minorDigits}) {
 /// Currency precision alone cannot establish the receipt's printed convention.
 bool ambiguousOcrAmount(String raw, int? minorDigits) =>
     minorDigits == 3 && RegExp(r'^\d{1,3}[.,]\d{3}$').hasMatch(raw);
+
+/// OCR often reads digits as look-alike letters (`*1O,50`, `T0PLAM 45,4O`).
+/// Repairing happens ONLY on the line's trailing amount token - optionally
+/// the token before a trailing currency word - and only when the repaired
+/// token is a complete plain amount. Product text (`1.5LB`, `6x1,5l`,
+/// `330ML`), receipt numbers (`FIS NO.0012`) and separator-less tokens stay
+/// exactly as read.
+final RegExp _confusableToken = RegExp(r'[\dOoIılLSsBb]+[.,٫][\dOoIılLSsBb,.٫]*');
+final RegExp _plainAmount = RegExp(r'^\d+(?:[.,٫]\d+)?$');
+const Set<String> _trailingCurrencyWords = {
+  'TL', 'TRY', 'EUR', 'USD', 'GBP', 'KR', 'KRS', '\u20ba', '\u20ac', '\u00a3', '\u0024',
+};
+
+String repairConfusableAmounts(String text) {
+  if (!text.contains(RegExp(r'[OoI\u0131lLSsBb]'))) return text;
+  final trimmed = text.trim();
+  final words = trimmed.split(RegExp(r'\s+'));
+  if (words.isEmpty) return text;
+  var index = words.length - 1;
+  if (words.length > 1 &&
+      _trailingCurrencyWords.contains(words.last.replaceAll('*', ''))) {
+    index -= 1; // repair the amount just before the currency word
+  }
+  if (index < 0) return text;
+  // Only receipt markers (`*`, `#`, `%`) may precede the amount; a letter
+  // prefix (NO., AD, KG) means this is not a bare amount token.
+  final marker = RegExp(r'^[*#\u2022\u00b7%]+').stringMatch(words[index]) ?? '';
+  final candidate = words[index].substring(marker.length);
+  final match = _confusableToken.stringMatch(candidate);
+  if (match == null || match != candidate) return text;
+  if (!candidate.contains(RegExp(r'\d'))) return text;
+  final repaired = candidate
+      .replaceAll('O', '0')
+      .replaceAll('o', '0')
+      .replaceAll('I', '1')
+      .replaceAll('\u0131', '1')
+      .replaceAll('l', '1')
+      .replaceAll('S', '5')
+      .replaceAll('s', '5')
+      .replaceAll('B', '8')
+      .replaceAll('b', '8');
+  if (!_plainAmount.hasMatch(repaired)) return text;
+  if (repaired == candidate) return text;
+  words[index] = '$marker$repaired';
+  return words.join(' ');
+}

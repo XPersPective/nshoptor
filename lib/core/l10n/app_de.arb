@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Tippe, um ihn zu prüfen und zu speichern.",
   "receiptReadMoreTitle": "Fotografiere den Rest des Belegs",
   "receiptReadFailedTitle": "Der Beleg konnte nicht gelesen werden",
-  "budgetAlertNear": "{percent} % des Limits verbraucht"
+  "budgetAlertNear": "{percent} % des Limits verbraucht",
+  "receiptReviewNowAction": "Prüfen und korrigieren",
+  "receiptEditDetailsTitle": "Belegdetails",
+  "receiptSaveAnywayTitle": "Summe stimmt nicht",
+  "receiptSaveAnywayBody": "Die Artikel weichen um {difference} vom Gesamtbetrag des Belegs ab. Trotzdem speichern?",
+  "receiptSaveAnywayAction": "Trotzdem speichern",
+  "receiptNeedsDetails": "Gib Geschäft und Datum an, um diesen Beleg zu speichern.",
+  "receiptMissingFields": "Konnte nicht gelesen werden: {fields}. Du kannst das beim Prüfen ergänzen.",
+  "cameraAccessDenied": "Der Kamerazugriff ist aus. Aktiviere ihn in den Einstellungen, um Belege und Etiketten zu scannen.",
+  "openSettingsAction": "Einstellungen öffnen",
+  "priceManualEntryAction": "Preis manuell eingeben",
+  "priceRetakeAction": "Neues Foto aufnehmen",
+  "receiptDateTimeLabel": "Datum und Uhrzeit"
 }

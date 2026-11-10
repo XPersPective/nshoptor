@@ -8,7 +8,8 @@ import 'package:napp_core/napp_core.dart';
 
 /// AI vekiline (server/, ADR-004) tek kapı. Uygulama hiçbir sır taşımaz:
 /// yalnız rastgele kurulum kimliği ve mağazanın doğrulanacak satın alma kanıtı
-/// gönderilir; fotoğraf/ses asla gönderilmez, yalnız metin (C-020).
+/// gönderilir. Fiş/etiket okuma istekleri küçültülmüş geçici fotoğraf kopyası
+/// içerebilir (ADR-004); ses asla gönderilmez (C-020).
 sealed class AiResult {
   const AiResult();
 }
@@ -167,7 +168,9 @@ class AiClient {
     } on SocketException {
       return const AiOffline();
     } on TimeoutException {
-      return const AiOffline();
+      // A timeout with a working connection is a retryable failure, not
+      // offline: users saw "no connection" while their network worked.
+      return const AiFailed('timeout');
     } on http.ClientException {
       return const AiOffline();
     } on FormatException {

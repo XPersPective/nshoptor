@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Napauta tarkistaaksesi ja tallentaaksesi.",
   "receiptReadMoreTitle": "Ota kuva kuitin loppuosasta",
   "receiptReadFailedTitle": "Kuittia ei voitu lukea",
-  "budgetAlertNear": "Rajasta käytetty {percent} %"
+  "budgetAlertNear": "Rajasta käytetty {percent} %",
+  "receiptReviewNowAction": "Tarkista ja korjaa",
+  "receiptEditDetailsTitle": "Kuitin tiedot",
+  "receiptSaveAnywayTitle": "Loppusumma ei täsmää",
+  "receiptSaveAnywayBody": "Tuotteiden summa eroaa kuitin loppusummasta {difference}. Tallennetaanko silti?",
+  "receiptSaveAnywayAction": "Tallenna silti",
+  "receiptNeedsDetails": "Lisää kauppa ja päivämäärä tallentaaksesi kuitin.",
+  "receiptMissingFields": "Ei voitu lukea: {fields}. Voit täyttää ne tarkistuksen aikana.",
+  "cameraAccessDenied": "Kameran käyttöoikeus on pois päältä. Ota se käyttöön asetuksista skannataksesi kuitteja ja hintalappuja.",
+  "openSettingsAction": "Avaa asetukset",
+  "priceManualEntryAction": "Syötä hinta manuaalisesti",
+  "priceRetakeAction": "Ota uusi kuva",
+  "receiptDateTimeLabel": "Päivämäärä ja kellonaika"
 }

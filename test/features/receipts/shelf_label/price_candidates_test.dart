@@ -332,4 +332,63 @@ void main() {
       expect(second.isUnitPrice, isFalse);
     },
   );
+
+  test('raised kuruş beside the big lira merges into one candidate', () {
+    // Common Turkish label: big "24" with a small superscript "95" = 24,95.
+    final candidates = extractor.extract([
+      box('24', top: 100, left: 40, width: 50, height: 40),
+      box('95', top: 102, left: 96, width: 26, height: 16),
+    ]);
+    expect(candidates, hasLength(1));
+    expect(candidates.single.value.toDbString(), '24.95');
+    expect(candidates.single.currencyCode, 'TRY');
+
+    // Merging is scale-invariant geometry, not text heuristics.
+    final scaled = extractor.extract([
+      box('24', top: 100, left: 40, width: 50, height: 40, scale: 4),
+      box('95', top: 102, left: 96, width: 26, height: 16, scale: 4),
+    ]);
+    expect(scaled.single.value.toDbString(), '24.95');
+  });
+
+  test('a small 2-digit number is not merged when it is not a superscript', () {
+    // Below the big number's vertical center (baseline companion, not cents).
+    for (final small in [
+      box('95', top: 124, left: 96, width: 26, height: 16),
+      // Entirely left of the big digits.
+      box('95', top: 102, left: 0, width: 26, height: 16),
+      // Same height: not a raised fraction at all.
+      box('95', top: 100, left: 96, width: 26, height: 40),
+      // A distant column to the right is another number, not cents.
+      box('95', top: 102, left: 400, width: 26, height: 16),
+    ]) {
+      final candidates = extractor.extract([
+        box('24', top: 100, left: 40, width: 50, height: 40),
+        small,
+      ]);
+      expect(
+        candidates.map((c) => c.value.toDbString()),
+        isNot(contains('24.95')),
+        reason: small.text,
+      );
+    }
+  });
+
+  test('bare 6+ digit integers are codes, not prices; TL keeps a real one', () {
+    expect(extractor.extract([line('8691234567890')]), isEmpty);
+    expect(extractor.extract([line('123456')]), isEmpty);
+    // A currency marker with its own amount rescues a large printed price.
+    expect(
+      extractor.extract([line('123456 TL')]).single.value.toDbString(),
+      '123456',
+    );
+    // The marker belongs to the price beside it, never to a barcode in the
+    // same line.
+    expect(
+      extractor
+          .extract([line('8691234567890 24,95 TL')])
+          .map((c) => c.value.toDbString()),
+      ['24.95'],
+    );
+  });
 }

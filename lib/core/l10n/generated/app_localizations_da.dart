@@ -1580,4 +1580,46 @@ class AppLocalizationsDa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% af grænsen er brugt';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Tjek og ret';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kvitteringsoplysninger';
+
+  @override
+  String get receiptDateTimeLabel => 'Dato og klokkeslæt';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totalen stemmer ikke';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Varerne afviger med $difference fra kvitteringens total. Gem alligevel?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Gem alligevel';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Tilføj butik og dato for at gemme denne kvittering.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Kunne ikke læses: $fields. Du kan udfylde dem under gennemgangen.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameraadgang er slået fra. Slå den til i indstillingerne for at scanne kvitteringer og labels.';
+
+  @override
+  String get openSettingsAction => 'Åbn indstillingerne';
+
+  @override
+  String get priceManualEntryAction => 'Indtast prisen manuelt';
+
+  @override
+  String get priceRetakeAction => 'Tag et nyt billede';
 }

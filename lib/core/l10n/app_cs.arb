@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Klepnutím ji zkontrolujete a uložíte.",
   "receiptReadMoreTitle": "Vyfoťte zbytek účtenky",
   "receiptReadFailedTitle": "Účtenku se nepodařilo přečíst",
-  "budgetAlertNear": "Využito {percent} % limitu"
+  "budgetAlertNear": "Využito {percent} % limitu",
+  "receiptReviewNowAction": "Zkontrolovat a opravit",
+  "receiptEditDetailsTitle": "Podrobnosti účtenky",
+  "receiptSaveAnywayTitle": "Celková částka nesouhlasí",
+  "receiptSaveAnywayBody": "Položky se liší o {difference} od celkové částky na účtence. Přesto uložit?",
+  "receiptSaveAnywayAction": "Přesto uložit",
+  "receiptNeedsDetails": "Pro uložení účtenky doplňte obchod a datum.",
+  "receiptMissingFields": "Nelze přečíst: {fields}. Můžete je doplnit při kontrole.",
+  "cameraAccessDenied": "Přístup ke kameře je vypnutý. Zapněte ho v nastavení, abyste mohli skenovat účtenky a cenovky.",
+  "openSettingsAction": "Otevřít nastavení",
+  "priceManualEntryAction": "Zadat cenu ručně",
+  "priceRetakeAction": "Vyfotit znovu",
+  "receiptDateTimeLabel": "Datum a čas"
 }

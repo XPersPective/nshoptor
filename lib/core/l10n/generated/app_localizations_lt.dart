@@ -1592,4 +1592,46 @@ class AppLocalizationsLt extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Panaudota $percent % limito';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Patikrinkite ir ištaisykite';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kvito duomenys';
+
+  @override
+  String get receiptDateTimeLabel => 'Data ir laikas';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Suma nesutampa';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Prekių suma skiriasi $difference nuo kvito sumos. Vis tiek išsaugoti?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Vis tiek išsaugoti';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Norėdami išsaugoti šį kvitą, pridėkite parduotuvę ir datą.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nepavyko perskaityti: $fields. Galite užpildyti peržiūrėdami.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameros prieiga išjungta. Įjunkite ją Nustatymuose, kad galėtumėte skenuoti kvitus ir kainų etiketes.';
+
+  @override
+  String get openSettingsAction => 'Atidaryti nustatymus';
+
+  @override
+  String get priceManualEntryAction => 'Įvesti kainą rankiniu būdu';
+
+  @override
+  String get priceRetakeAction => 'Fotografuoti iš naujo';
 }

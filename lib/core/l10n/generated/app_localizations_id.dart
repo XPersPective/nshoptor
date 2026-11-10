@@ -1579,4 +1579,46 @@ class AppLocalizationsId extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% dari batas telah digunakan';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Periksa dan perbaiki';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detail struk';
+
+  @override
+  String get receiptDateTimeLabel => 'Tanggal dan waktu';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Total tidak cocok';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Jumlah item berbeda $difference dari total struk. Tetap simpan?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Tetap simpan';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Tambahkan toko dan tanggal untuk menyimpan struk ini.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Tidak terbaca: $fields. Anda dapat mengisinya saat meninjau.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Akses kamera nonaktif. Aktifkan di Pengaturan untuk memindai struk dan label.';
+
+  @override
+  String get openSettingsAction => 'Buka Pengaturan';
+
+  @override
+  String get priceManualEntryAction => 'Masukkan harga secara manual';
+
+  @override
+  String get priceRetakeAction => 'Ambil foto lagi';
 }

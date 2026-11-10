@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Atingeți pentru a-l verifica și salva.",
   "receiptReadMoreTitle": "Fotografiați restul bonului",
   "receiptReadFailedTitle": "Bonul nu a putut fi citit",
-  "budgetAlertNear": "{percent}% din limită a fost folosit"
+  "budgetAlertNear": "{percent}% din limită a fost folosit",
+  "receiptReviewNowAction": "Verifică și corectează",
+  "receiptEditDetailsTitle": "Detalii bon",
+  "receiptSaveAnywayTitle": "Totalul nu corespunde",
+  "receiptSaveAnywayBody": "Suma produselor diferă cu {difference} de totalul bonului. Salvezi oricum?",
+  "receiptSaveAnywayAction": "Salvează oricum",
+  "receiptNeedsDetails": "Adaugă magazinul și data pentru a salva acest bon.",
+  "receiptMissingFields": "Nu s-a putut citi: {fields}. Le poți completa în timpul verificării.",
+  "cameraAccessDenied": "Accesul la cameră este oprit. Activează-l din Setări pentru a scana bonuri și etichete.",
+  "openSettingsAction": "Deschide Setările",
+  "priceManualEntryAction": "Introdu prețul manual",
+  "priceRetakeAction": "Fă altă fotografie",
+  "receiptDateTimeLabel": "Dată și oră"
 }

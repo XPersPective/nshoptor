@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "പരിശോധിച്ച് സേവ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക.",
   "receiptReadMoreTitle": "രസീതിന്റെ ബാക്കി ഭാഗത്തിന്റെ ഫോട്ടോ എടുക്കുക",
   "receiptReadFailedTitle": "രസീത് വായിക്കാൻ കഴിഞ്ഞില്ല",
-  "budgetAlertNear": "പരിധിയുടെ {percent}% ഉപയോഗിച്ചു"
+  "budgetAlertNear": "പരിധിയുടെ {percent}% ഉപയോഗിച്ചു",
+  "receiptReviewNowAction": "പരിശോധിച്ച് ശരിയാക്കുക",
+  "receiptEditDetailsTitle": "രസീതിന്റെ വിവരങ്ങൾ",
+  "receiptSaveAnywayTitle": "ആകെത്തുക യോജിക്കുന്നില്ല",
+  "receiptSaveAnywayBody": "ഇനങ്ങളുടെ തുക രസീതിലെ മൊത്തത്തിൽ നിന്ന് {difference} വ്യത്യാസമുണ്ട്. എങ്കിലും സേവ് ചെയ്യണോ?",
+  "receiptSaveAnywayAction": "എങ്കിലും സേവ് ചെയ്യുക",
+  "receiptNeedsDetails": "ഈ രസീത് സേവ് ചെയ്യാൻ കടയും തീയതിയും ചേർക്കുക.",
+  "receiptMissingFields": "വായിക്കാനായില്ല: {fields}. പരിശോധനയ്ക്കിടെ ഇവ പൂരിപ്പിക്കാം.",
+  "cameraAccessDenied": "ക്യാമറ ആക്സസ് ഓഫാണ്. രസീതും ലേബലും സ്കാൻ ചെയ്യാൻ സെറ്റിംഗുകളിൽ ഓണാക്കുക.",
+  "openSettingsAction": "സെറ്റിംഗുകൾ തുറക്കുക",
+  "priceManualEntryAction": "വില സ്വയം നൽകുക",
+  "priceRetakeAction": "മറ്റൊരു ഫോട്ടോ എടുക്കുക",
+  "receiptDateTimeLabel": "തീയതിയും സമയവും"
 }

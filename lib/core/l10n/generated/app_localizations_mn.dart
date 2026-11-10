@@ -1586,4 +1586,46 @@ class AppLocalizationsMn extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Лимитийн $percent% ашиглагдсан';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Шалгаж засна уу';
+
+  @override
+  String get receiptEditDetailsTitle => 'Баримтын мэдээлэл';
+
+  @override
+  String get receiptDateTimeLabel => 'Огноо, цаг';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Нийт дүн таарахгүй байна';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Барааны дүн баримтын нийт дүнээс $difference-ээр зөрж байна. Гэсэн хэдий ч хадгалах уу?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Гэсэн хэдий ч хадгалах';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Энэ баримтыг хадгалахын тулд дэлгүэр болон огноог оруулна уу.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Уншиж чадсангүй: $fields. Шалгаж байх үедээ бөглөнө үү.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Камерын хандалт хаалттай. Баримт болон үнийн шошго уншихын тулд Тохиргооноос нээгээрэй.';
+
+  @override
+  String get openSettingsAction => 'Тохиргоог нээх';
+
+  @override
+  String get priceManualEntryAction => 'Үнийг гараар оруулна уу';
+
+  @override
+  String get priceRetakeAction => 'Өөр зураг авна уу';
 }

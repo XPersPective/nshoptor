@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Нажмите, чтобы проверить и сохранить.",
   "receiptReadMoreTitle": "Сфотографируйте остальную часть чека",
   "receiptReadFailedTitle": "Не удалось прочитать чек",
-  "budgetAlertNear": "Использовано {percent}% лимита"
+  "budgetAlertNear": "Использовано {percent}% лимита",
+  "receiptReviewNowAction": "Проверить и исправить",
+  "receiptEditDetailsTitle": "Данные чека",
+  "receiptSaveAnywayTitle": "Сумма не совпадает",
+  "receiptSaveAnywayBody": "Сумма товаров отличается от итога чека на {difference}. Всё равно сохранить?",
+  "receiptSaveAnywayAction": "Всё равно сохранить",
+  "receiptNeedsDetails": "Добавьте магазин и дату, чтобы сохранить этот чек.",
+  "receiptMissingFields": "Не удалось прочитать: {fields}. Это можно заполнить при проверке.",
+  "cameraAccessDenied": "Доступ к камере выключен. Включите его в настройках, чтобы сканировать чеки и этикетки.",
+  "openSettingsAction": "Открыть настройки",
+  "priceManualEntryAction": "Ввести цену вручную",
+  "priceRetakeAction": "Снять заново",
+  "receiptDateTimeLabel": "Дата и время"
 }

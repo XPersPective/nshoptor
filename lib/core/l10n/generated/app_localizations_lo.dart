@@ -1569,4 +1569,46 @@ class AppLocalizationsLo extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ໃຊ້ໄປແລ້ວ $percent% ຂອງວົງເງິນ';
   }
+
+  @override
+  String get receiptReviewNowAction => 'ກວດສອບ ແລະ ແກ້ໄຂ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ລາຍລະອຽດໃບເກັບເງິນ';
+
+  @override
+  String get receiptDateTimeLabel => 'ວັນທີ ແລະ ເວລາ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ຍອດລວມບໍ່ກົງກັນ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ຍອດຂອງລາຍການ ແລະ ຍອດລວມໃນໃບເກັບເງິນຕ່າງກັນ $difference. ຍັງບັນທຶກແທ້ບໍ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'ບັນທຶກແທ້';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ໃສ່ຮ້ານຄ້າ ແລະ ວັນທີ ເພື່ອບັນທຶກໃບເກັບເງິນນີ້.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'ອ່ານບໍ່ອອກ: $fields. ສາມາດຕື່ມໄດ້ເວລາກວດສອບ.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'ການໃຊ້ກ້ອງຖ່າຍຮູບປິດຢູ່. ເປີດໃນການຕັ້ງຄ່າເພື່ອສະແກນໃບເກັບເງິນ ແລະ ປ້າຍລາຄາ.';
+
+  @override
+  String get openSettingsAction => 'ເປີດການຕັ້ງຄ່າ';
+
+  @override
+  String get priceManualEntryAction => 'ປ້ອນລາຄາເອງ';
+
+  @override
+  String get priceRetakeAction => 'ຖ່າຍຮູບໃໝ່';
 }

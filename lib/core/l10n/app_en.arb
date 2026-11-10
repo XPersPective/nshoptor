@@ -588,5 +588,31 @@
         "type": "String"
       }
     }
-  }
+  },
+  "receiptReviewNowAction": "Review and fix",
+  "receiptEditDetailsTitle": "Receipt details",
+  "receiptDateTimeLabel": "Date and time",
+  "receiptSaveAnywayTitle": "Total does not match",
+  "receiptSaveAnywayBody": "The items differ from the receipt total by {difference}. Save anyway?",
+  "@receiptSaveAnywayBody": {
+    "placeholders": {
+      "difference": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptSaveAnywayAction": "Save anyway",
+  "receiptNeedsDetails": "Add the store and date to save this receipt.",
+  "receiptMissingFields": "Could not read: {fields}. You can fill these in while reviewing.",
+  "@receiptMissingFields": {
+    "placeholders": {
+      "fields": {
+        "type": "String"
+      }
+    }
+  },
+  "cameraAccessDenied": "Camera access is off. Turn it on in Settings to scan receipts and labels.",
+  "openSettingsAction": "Open Settings",
+  "priceManualEntryAction": "Enter price manually",
+  "priceRetakeAction": "Take another photo"
 }

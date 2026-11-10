@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Шалгаж хадгалахын тулд товшино уу.",
   "receiptReadMoreTitle": "Баримтын үлдсэн хэсгийг зургийн авна уу",
   "receiptReadFailedTitle": "Баримтыг уншиж чадсангүй",
-  "budgetAlertNear": "Лимитийн {percent}% ашиглагдсан"
+  "budgetAlertNear": "Лимитийн {percent}% ашиглагдсан",
+  "receiptReviewNowAction": "Шалгаж засна уу",
+  "receiptEditDetailsTitle": "Баримтын мэдээлэл",
+  "receiptSaveAnywayTitle": "Нийт дүн таарахгүй байна",
+  "receiptSaveAnywayBody": "Барааны дүн баримтын нийт дүнээс {difference}-ээр зөрж байна. Гэсэн хэдий ч хадгалах уу?",
+  "receiptSaveAnywayAction": "Гэсэн хэдий ч хадгалах",
+  "receiptNeedsDetails": "Энэ баримтыг хадгалахын тулд дэлгүэр болон огноог оруулна уу.",
+  "receiptMissingFields": "Уншиж чадсангүй: {fields}. Шалгаж байх үедээ бөглөнө үү.",
+  "cameraAccessDenied": "Камерын хандалт хаалттай. Баримт болон үнийн шошго уншихын тулд Тохиргооноос нээгээрэй.",
+  "openSettingsAction": "Тохиргоог нээх",
+  "priceManualEntryAction": "Үнийг гараар оруулна уу",
+  "priceRetakeAction": "Өөр зураг авна уу",
+  "receiptDateTimeLabel": "Огноо, цаг"
 }

@@ -1580,4 +1580,46 @@ class AppLocalizationsSv extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent % av gränsen har använts';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Granska och rätta';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kvittouppgifter';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum och tid';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totalen stämmer inte';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Varorna skiljer sig med $difference från kvittots totalsumma. Spara ändå?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Spara ändå';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Lägg till butik och datum för att spara det här kvittot.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Kunde inte läsas: $fields. Du kan fylla i dem under granskningen.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameraåtkomsten är av. Slå på den i inställningarna för att skanna kvitton och etiketter.';
+
+  @override
+  String get openSettingsAction => 'Öppna inställningarna';
+
+  @override
+  String get priceManualEntryAction => 'Ange priset manuellt';
+
+  @override
+  String get priceRetakeAction => 'Ta ett nytt foto';
 }

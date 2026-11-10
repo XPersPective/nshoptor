@@ -1579,4 +1579,46 @@ class AppLocalizationsPa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ਸੀਮਾ ਦਾ $percent% ਵਰਤਿਆ ਜਾ ਚੁੱਕਾ ਹੈ';
   }
+
+  @override
+  String get receiptReviewNowAction => 'ਜਾਂਚੋ ਅਤੇ ਠੀਕ ਕਰੋ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ਰਸੀਦ ਦੇ ਵੇਰਵੇ';
+
+  @override
+  String get receiptDateTimeLabel => 'ਤਾਰੀਖ ਅਤੇ ਸਮਾਂ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ਕੁੱਲ ਰਕਮ ਮੇਲ ਨਹੀਂ ਖਾਂਦੀ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ਚੀਜ਼ਾਂ ਦਾ ਜੋੜ ਰਸੀਦ ਦੇ ਕੁੱਲ ਨਾਲੋਂ $difference ਵੱਖਰਾ ਹੈ। ਫਿਰ ਵੀ ਸੇਵ ਕਰਨਾ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'ਫਿਰ ਵੀ ਸੇਵ ਕਰੋ';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ਇਹ ਰਸੀਦ ਸੇਵ ਕਰਨ ਲਈ ਦੁਕਾਨ ਅਤੇ ਤਾਰੀਖ ਸ਼ਾਮਲ ਕਰੋ।';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ: $fields। ਜਾਂਚ ਦੌਰਾਨ ਤੁਸੀਂ ਇਹ ਭਰ ਸਕਦੇ ਹੋ।';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'ਕੈਮਰਾ ਦੀ ਪਹੁੰਚ ਬੰਦ ਹੈ। ਰਸੀਦਾਂ ਅਤੇ ਲੇਬਲ ਸਕੈਨ ਕਰਨ ਲਈ ਇਸ ਨੂੰ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਚਾਲੂ ਕਰੋ।';
+
+  @override
+  String get openSettingsAction => 'ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ';
+
+  @override
+  String get priceManualEntryAction => 'ਕੀਮਤ ਮੈਨੁਅਲੀ ਦਰਜ ਕਰੋ';
+
+  @override
+  String get priceRetakeAction => 'ਹੋਰ ਫੋਟੋ ਖਿੱਚੋ';
 }

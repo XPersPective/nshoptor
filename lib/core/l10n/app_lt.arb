@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Palieskite, kad peržiūrėtumėte ir išsaugotumėte.",
   "receiptReadMoreTitle": "Nufotografuokite likusią kvito dalį",
   "receiptReadFailedTitle": "Nepavyko perskaityti kvito",
-  "budgetAlertNear": "Panaudota {percent} % limito"
+  "budgetAlertNear": "Panaudota {percent} % limito",
+  "receiptReviewNowAction": "Patikrinkite ir ištaisykite",
+  "receiptEditDetailsTitle": "Kvito duomenys",
+  "receiptSaveAnywayTitle": "Suma nesutampa",
+  "receiptSaveAnywayBody": "Prekių suma skiriasi {difference} nuo kvito sumos. Vis tiek išsaugoti?",
+  "receiptSaveAnywayAction": "Vis tiek išsaugoti",
+  "receiptNeedsDetails": "Norėdami išsaugoti šį kvitą, pridėkite parduotuvę ir datą.",
+  "receiptMissingFields": "Nepavyko perskaityti: {fields}. Galite užpildyti peržiūrėdami.",
+  "cameraAccessDenied": "Kameros prieiga išjungta. Įjunkite ją Nustatymuose, kad galėtumėte skenuoti kvitus ir kainų etiketes.",
+  "openSettingsAction": "Atidaryti nustatymus",
+  "priceManualEntryAction": "Įvesti kainą rankiniu būdu",
+  "priceRetakeAction": "Fotografuoti iš naujo",
+  "receiptDateTimeLabel": "Data ir laikas"
 }

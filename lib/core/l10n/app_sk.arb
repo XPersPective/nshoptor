@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Klepnutím ho skontrolujete a uložíte.",
   "receiptReadMoreTitle": "Odfoťte zvyšok bločku",
   "receiptReadFailedTitle": "Bloček sa nepodarilo prečítať",
-  "budgetAlertNear": "Využitých {percent} % limitu"
+  "budgetAlertNear": "Využitých {percent} % limitu",
+  "receiptReviewNowAction": "Skontrolovať a opraviť",
+  "receiptEditDetailsTitle": "Podrobnosti bločka",
+  "receiptSaveAnywayTitle": "Súčet sa nezhoduje",
+  "receiptSaveAnywayBody": "Súčet položiek sa od celkovej sumy na bločku líši o {difference}. Uložiť aj tak?",
+  "receiptSaveAnywayAction": "Uložiť aj tak",
+  "receiptNeedsDetails": "Na uloženie tohto bločka doplňte obchod a dátum.",
+  "receiptMissingFields": "Nedalo sa prečítať: {fields}. Môžete ich doplniť pri kontrole.",
+  "cameraAccessDenied": "Prístup ku kamere je vypnutý. Zapnite ho v nastaveniach, aby ste mohli skenovať bločky a cenovky.",
+  "openSettingsAction": "Otvoriť nastavenia",
+  "priceManualEntryAction": "Zadať cenu ručne",
+  "priceRetakeAction": "Odfotiť znovu",
+  "receiptDateTimeLabel": "Dátum a čas"
 }

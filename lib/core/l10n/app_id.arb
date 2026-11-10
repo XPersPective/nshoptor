@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Ketuk untuk meninjau dan menyimpannya.",
   "receiptReadMoreTitle": "Foto sisa struk",
   "receiptReadFailedTitle": "Struk tidak dapat dibaca",
-  "budgetAlertNear": "{percent}% dari batas telah digunakan"
+  "budgetAlertNear": "{percent}% dari batas telah digunakan",
+  "receiptReviewNowAction": "Periksa dan perbaiki",
+  "receiptEditDetailsTitle": "Detail struk",
+  "receiptSaveAnywayTitle": "Total tidak cocok",
+  "receiptSaveAnywayBody": "Jumlah item berbeda {difference} dari total struk. Tetap simpan?",
+  "receiptSaveAnywayAction": "Tetap simpan",
+  "receiptNeedsDetails": "Tambahkan toko dan tanggal untuk menyimpan struk ini.",
+  "receiptMissingFields": "Tidak terbaca: {fields}. Anda dapat mengisinya saat meninjau.",
+  "cameraAccessDenied": "Akses kamera nonaktif. Aktifkan di Pengaturan untuk memindai struk dan label.",
+  "openSettingsAction": "Buka Pengaturan",
+  "priceManualEntryAction": "Masukkan harga secara manual",
+  "priceRetakeAction": "Ambil foto lagi",
+  "receiptDateTimeLabel": "Tanggal dan waktu"
 }

@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Pieskarieties, lai pārskatītu un saglabātu.",
   "receiptReadMoreTitle": "Nofotografējiet pārējo čeka daļu",
   "receiptReadFailedTitle": "Čeku neizdevās nolasīt",
-  "budgetAlertNear": "Izmantoti {percent}% no limita"
+  "budgetAlertNear": "Izmantoti {percent}% no limita",
+  "receiptReviewNowAction": "Pārbaudiet un izlabojiet",
+  "receiptEditDetailsTitle": "Kvīts dati",
+  "receiptSaveAnywayTitle": "Kopsumma neatbilst",
+  "receiptSaveAnywayBody": "Preču summa atšķiras no kvīts kopsummas par {difference}. Vai tomēr saglabāt?",
+  "receiptSaveAnywayAction": "Tomēr saglabāt",
+  "receiptNeedsDetails": "Lai saglabātu šo kvīti, pievienojiet veikalu un datumu.",
+  "receiptMissingFields": "Neizdevās nolasīt: {fields}. Varat aizpildīt pārskatot.",
+  "cameraAccessDenied": "Piekļuve kamerai ir izslēgta. Ieslēdziet to iestatījumos, lai skenētu kvītis un cenu etiķetes.",
+  "openSettingsAction": "Atvērt iestatījumus",
+  "priceManualEntryAction": "Ievadīt cenu manuāli",
+  "priceRetakeAction": "Uzņemt citu fotoattēlu",
+  "receiptDateTimeLabel": "Datums un laiks"
 }

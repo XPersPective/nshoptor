@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data' show BytesBuilder, Uint8List;
 
 import 'package:flutter/foundation.dart';
 import 'package:image/image.dart' as img;
@@ -20,15 +21,99 @@ Future<String?> encodeImageForAi(String path) async {
   if (!await file.exists()) return null;
   final bytes = await file.readAsBytes();
   // Picker output is already a native-downscaled JPEG: send it untouched.
-  // Decoding and re-encoding in Dart took minutes on slow devices.
+  // Decoding and re-encoding in Dart took minutes on slow devices. Exception:
+  // Android picker files can carry EXIF rotation as a tag with unrotated
+  // pixels; a model that ignores the tag would read the receipt sideways
+  // (PB-207), so oriented files always go through the baking path.
   if (bytes.length <= aiImageMaxBytes &&
       bytes.length > 3 &&
       bytes[0] == 0xFF &&
       bytes[1] == 0xD8 &&
-      bytes[2] == 0xFF) {
-    return base64Encode(bytes);
+      bytes[2] == 0xFF &&
+      jpegExifOrientation(bytes) <= 1) {
+    return base64Encode(stripJpegMetadata(bytes));
   }
   return compute(_encode, bytes);
+}
+
+/// Removes APP1 (Exif/GPS) and APP2 (color profiles) segments without
+/// re-encoding: the pixels are already upright, and no capture metadata
+/// should leave the device (ADR-004).
+Uint8List stripJpegMetadata(Uint8List bytes) {
+  if (bytes.length < 4 || bytes[0] != 0xFF || bytes[1] != 0xD8) return bytes;
+  final out = BytesBuilder(copy: false)
+    ..add([0xFF, 0xD8]);
+  var i = 2;
+  while (i + 4 <= bytes.length) {
+    if (bytes[i] != 0xFF) return bytes; // malformed: send as-is
+    final marker = bytes[i + 1];
+    if (marker == 0xDA) {
+      // Start of scan: everything from here is entropy-coded data.
+      out.add(bytes.sublist(i));
+      return out.toBytes();
+    }
+    final size = bytes[i + 2] << 8 | bytes[i + 3];
+    if (size < 2 || i + 2 + size > bytes.length) return bytes;
+    if (marker != 0xE1 && marker != 0xE2) {
+      out.add(bytes.sublist(i, i + 2 + size));
+    }
+    i += 2 + size;
+  }
+  return bytes;
+}
+
+/// Orientation tag of a JPEG's Exif (1 = normal). 0 = unknown/not found;
+/// anything above 1 means the pixels need rotating before upload.
+int jpegExifOrientation(Uint8List bytes) {
+  if (bytes.length < 12 || bytes[0] != 0xFF || bytes[1] != 0xD8) return 0;
+  var i = 2;
+  while (i + 4 <= bytes.length) {
+    if (bytes[i] != 0xFF) return 0;
+    final marker = bytes[i + 1];
+    if (marker == 0xE1) {
+      // APP1/Exif: expect the 4 bytes "Exif" then two zero bytes, then TIFF.
+      final start = i + 4;
+      if (start + 14 > bytes.length ||
+          bytes[start] != 0x45 || bytes[start + 1] != 0x78 ||
+          bytes[start + 2] != 0x69 || bytes[start + 3] != 0x66 ||
+          bytes[start + 4] != 0 || bytes[start + 5] != 0) {
+        return 0;
+      }
+      return _tiffOrientation(bytes, start + 6);
+    }
+    if (marker == 0xDA) return 0; // image data: no Exif ahead
+    final size = bytes[i + 2] << 8 | bytes[i + 3];
+    i += 2 + size;
+  }
+  return 0;
+}
+
+int _tiffOrientation(Uint8List b, int base) {
+  if (base + 8 > b.length) return 0;
+  final bigEndian = b[base] == 0x4D && b[base + 1] == 0x4D;
+  final littleEndian = b[base] == 0x49 && b[base + 1] == 0x49;
+  if (!bigEndian && !littleEndian) return 0;
+  int u16(int o) => bigEndian
+      ? b[base + o] << 8 | b[base + o + 1]
+      : b[base + o + 1] << 8 | b[base + o];
+  int u32(int o) => bigEndian
+      ? b[base + o] << 24 |
+            b[base + o + 1] << 16 |
+            b[base + o + 2] << 8 |
+            b[base + o + 3]
+      : b[base + o + 3] << 24 |
+            b[base + o + 2] << 16 |
+            b[base + o + 1] << 8 |
+            b[base + o];
+  final dirOffset = u32(4);
+  final dir = base + dirOffset;
+  if (dir + 2 > b.length) return 0;
+  final count = u16(dirOffset);
+  for (var e = 0; e < count && dir + 2 + e * 12 + 12 <= b.length; e++) {
+    final entry = dirOffset + 2 + e * 12;
+    if (u16(entry) == 0x0112) return u16(entry + 8);
+  }
+  return 0;
 }
 
 String? _encode(Uint8List bytes) {

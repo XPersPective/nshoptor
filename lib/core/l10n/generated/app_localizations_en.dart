@@ -1579,4 +1579,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% of the limit used';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Review and fix';
+
+  @override
+  String get receiptEditDetailsTitle => 'Receipt details';
+
+  @override
+  String get receiptDateTimeLabel => 'Date and time';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Total does not match';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'The items differ from the receipt total by $difference. Save anyway?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Save anyway';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Add the store and date to save this receipt.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Could not read: $fields. You can fill these in while reviewing.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Camera access is off. Turn it on in Settings to scan receipts and labels.';
+
+  @override
+  String get openSettingsAction => 'Open Settings';
+
+  @override
+  String get priceManualEntryAction => 'Enter price manually';
+
+  @override
+  String get priceRetakeAction => 'Take another photo';
 }

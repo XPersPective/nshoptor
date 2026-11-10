@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Dotknij, aby sprawdzić i zapisać.",
   "receiptReadMoreTitle": "Sfotografuj resztę paragonu",
   "receiptReadFailedTitle": "Nie udało się odczytać paragonu",
-  "budgetAlertNear": "Wykorzystano {percent}% limitu"
+  "budgetAlertNear": "Wykorzystano {percent}% limitu",
+  "receiptReviewNowAction": "Sprawdź i popraw",
+  "receiptEditDetailsTitle": "Szczegóły paragonu",
+  "receiptSaveAnywayTitle": "Suma się nie zgadza",
+  "receiptSaveAnywayBody": "Suma produktów różni się o {difference} od sumy na paragonie. Zapisać mimo to?",
+  "receiptSaveAnywayAction": "Zapisz mimo to",
+  "receiptNeedsDetails": "Dodaj sklep i datę, aby zapisać ten paragon.",
+  "receiptMissingFields": "Nie udało się odczytać: {fields}. Możesz je uzupełnić podczas sprawdzania.",
+  "cameraAccessDenied": "Dostęp do kamery jest wyłączony. Włącz go w ustawieniach, aby skanować paragony i etykiety.",
+  "openSettingsAction": "Otwórz ustawienia",
+  "priceManualEntryAction": "Wpisz cenę ręcznie",
+  "priceRetakeAction": "Zrób kolejne zdjęcie",
+  "receiptDateTimeLabel": "Data i godzina"
 }

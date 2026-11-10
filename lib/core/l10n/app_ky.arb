@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Текшерип, сактоо үчүн таптаңыз.",
   "receiptReadMoreTitle": "Чектин калган бөлүгүн сүрөткө тартыңыз",
   "receiptReadFailedTitle": "Чекти окуу мүмкүн болбоду",
-  "budgetAlertNear": "Лимиттин {percent}% колдонулду"
+  "budgetAlertNear": "Лимиттин {percent}% колдонулду",
+  "receiptReviewNowAction": "Текшерип, оңдоңуз",
+  "receiptEditDetailsTitle": "Чек маалыматтары",
+  "receiptSaveAnywayTitle": "Жалпы сумма туура келбейт",
+  "receiptSaveAnywayBody": "Товарлардын суммасы чектеги жалпы суммадан {difference} айырмаланат. Ошого карабастан сактайсызбы?",
+  "receiptSaveAnywayAction": "Ошого карабастан сактоо",
+  "receiptNeedsDetails": "Бул чекти сактоо үчүн дүкөндү жана күндү көрсөтүңүз.",
+  "receiptMissingFields": "Окулган жок: {fields}. Аларды текшерүү учурунда толтура аласыз.",
+  "cameraAccessDenied": "Камерага кирүү өчүк. Чектерди жана баа этикеткаларын сканерлөө үчүн аны жөндөөлөрдөн күйгүзүңүз.",
+  "openSettingsAction": "Жөндөөлөрдү ачуу",
+  "priceManualEntryAction": "Бааны кол менен киргизиңиз",
+  "priceRetakeAction": "Башка сүрөт тартыңыз",
+  "receiptDateTimeLabel": "Күн жана убакыт"
 }

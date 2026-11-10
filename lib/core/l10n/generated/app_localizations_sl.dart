@@ -1585,4 +1585,46 @@ class AppLocalizationsSl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Porabljenih $percent % omejitve';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Preglej in popravi';
+
+  @override
+  String get receiptEditDetailsTitle => 'Podatki računa';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum in ura';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Znesek se ne ujema';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Vsota izdelkov se od skupnega zneska na računu razlikuje za $difference. Vseeno shrani?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Vseeno shrani';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Za shranjevanje tega računa dodajte trgovino in datum.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ni bilo mogoče prebrati: $fields. Lahko jih izpolnite med pregledom.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Dostop do kamere je izklopljen. Vklopite ga v nastavitvah za optično branje računov in nalepk.';
+
+  @override
+  String get openSettingsAction => 'Odpri nastavitve';
+
+  @override
+  String get priceManualEntryAction => 'Vnesi ceno ročno';
+
+  @override
+  String get priceRetakeAction => 'Posnemi novo fotografijo';
 }

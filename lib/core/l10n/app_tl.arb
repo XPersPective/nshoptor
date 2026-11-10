@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "I-tap para suriin at i-save ito.",
   "receiptReadMoreTitle": "Kunan ang natitirang bahagi ng resibo",
   "receiptReadFailedTitle": "Hindi nabasa ang resibo",
-  "budgetAlertNear": "{percent}% ng limit ang nagamit na"
+  "budgetAlertNear": "{percent}% ng limit ang nagamit na",
+  "receiptReviewNowAction": "Suriin at itama",
+  "receiptEditDetailsTitle": "Mga detalye ng resibo",
+  "receiptSaveAnywayTitle": "Hindi tugma ang kabuuan",
+  "receiptSaveAnywayBody": "Nagkaiba ng {difference} ang mga item sa total ng resibo. I-save pa rin?",
+  "receiptSaveAnywayAction": "I-save pa rin",
+  "receiptNeedsDetails": "Idagdag ang tindahan at petsa para i-save ang resibong ito.",
+  "receiptMissingFields": "Hindi nabasa: {fields}. Maaari mong punan ang mga ito habang sinusuri.",
+  "cameraAccessDenied": "Sarado ang access sa camera. Buksan ito sa Mga Setting para i-scan ang mga resibo at label.",
+  "openSettingsAction": "Buksan ang Mga Setting",
+  "priceManualEntryAction": "Ilagay ang presyo nang manu-mano",
+  "priceRetakeAction": "Kumuha ng ibang larawan",
+  "receiptDateTimeLabel": "Petsa at oras"
 }

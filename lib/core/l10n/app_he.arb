@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "הקישו כדי לבדוק ולשמור.",
   "receiptReadMoreTitle": "צלמו את שאר הקבלה",
   "receiptReadFailedTitle": "לא ניתן היה לקרוא את הקבלה",
-  "budgetAlertNear": "נוצלו {percent}% מהמגבלה"
+  "budgetAlertNear": "נוצלו {percent}% מהמגבלה",
+  "receiptReviewNowAction": "לבדוק ולתקן",
+  "receiptEditDetailsTitle": "פרטי הקבלה",
+  "receiptSaveAnywayTitle": "הסכום אינו תואם",
+  "receiptSaveAnywayBody": "הפריטים שונים ב-{difference} מסכום הקבלה. לשמור בכל זאת?",
+  "receiptSaveAnywayAction": "לשמור בכל זאת",
+  "receiptNeedsDetails": "הוסיפו חנות ותאריך כדי לשמור את הקבלה הזו.",
+  "receiptMissingFields": "לא נקראו: {fields}. אפשר למלא אותם בזמן הבדיקה.",
+  "cameraAccessDenied": "הגישה למצלמה כבויה. הפעילו אותה בהגדרות כדי לסרוק קבלות ותוויות.",
+  "openSettingsAction": "פתיחת הגדרות",
+  "priceManualEntryAction": "הזנת מחיר ידנית",
+  "priceRetakeAction": "צילום תמונה נוספת",
+  "receiptDateTimeLabel": "תאריך ושעה"
 }

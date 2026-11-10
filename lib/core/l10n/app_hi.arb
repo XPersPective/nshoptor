@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "जाँचने और सहेजने के लिए टैप करें।",
   "receiptReadMoreTitle": "रसीद के बाकी हिस्से की फ़ोटो लें",
   "receiptReadFailedTitle": "रसीद पढ़ी नहीं जा सकी",
-  "budgetAlertNear": "सीमा का {percent}% उपयोग हो चुका है"
+  "budgetAlertNear": "सीमा का {percent}% उपयोग हो चुका है",
+  "receiptReviewNowAction": "जाँच कर ठीक करें",
+  "receiptEditDetailsTitle": "रसीद का विवरण",
+  "receiptSaveAnywayTitle": "कुल राशि मेल नहीं खा रही",
+  "receiptSaveAnywayBody": "वस्तुओं का योग रसीद के कुल से {difference} अलग है। फिर भी सेव करें?",
+  "receiptSaveAnywayAction": "फिर भी सेव करें",
+  "receiptNeedsDetails": "यह रसीद सेव करने के लिए दुकान और तारीख जोड़ें।",
+  "receiptMissingFields": "पढ़ा नहीं जा सका: {fields}। समीक्षा करते समय आप इन्हें भर सकते हैं।",
+  "cameraAccessDenied": "कैमरा ऐक्सेस बंद है। रसीद और लेबल स्कैन करने के लिए इसे सेटिंग्स में चालू करें।",
+  "openSettingsAction": "सेटिंग्स खोलें",
+  "priceManualEntryAction": "कीमत मैन्युअल रूप से दर्ज करें",
+  "priceRetakeAction": "दूसरी फ़ोटो लें",
+  "receiptDateTimeLabel": "तारीख और समय"
 }

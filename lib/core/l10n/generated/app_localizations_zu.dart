@@ -1592,4 +1592,46 @@ class AppLocalizationsZu extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Ukukhawulelwa kusetshenziswe ngo-$percent%';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Hlola futhi ulungise';
+
+  @override
+  String get receiptEditDetailsTitle => 'Imininingwane yerisidi';
+
+  @override
+  String get receiptDateTimeLabel => 'Usuku nesikhathi';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Isamba asifani';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Isamba sezinto sihlukana nesamba serisidi ngo-$difference. Sigcine noma kunjalo?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Gcina noma kunjalo';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Faka isitolo nosuku ukuze ulondoloze le risidi.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ayifundwanga: $fields. Ungazigcwalisa ngenkathi ubuka.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Ukufinyelela kukamera kuvaliwe. Vula kumazilungiselelo ukuze uskane amarisidi namalebula.';
+
+  @override
+  String get openSettingsAction => 'Vula izilungiselelo';
+
+  @override
+  String get priceManualEntryAction => 'Faka inani ngesandla';
+
+  @override
+  String get priceRetakeAction => 'Thatha esinye isithombe';
 }

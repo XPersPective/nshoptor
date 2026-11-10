@@ -1587,4 +1587,46 @@ class AppLocalizationsGl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Usouse o $percent% do límite';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Revisar e corrixir';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detalles do recibo';
+
+  @override
+  String get receiptDateTimeLabel => 'Data e hora';
+
+  @override
+  String get receiptSaveAnywayTitle => 'O total non coincide';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Os artigos difiren do total do recibo en $difference. Gardar igualmente?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Gardar igualmente';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Engade a tenda e a data para gardar este recibo.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Non se puido ler: $fields. Podes completalos ao revisar.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'O acceso á cámara está desactivado. Actívao nos Axustes para escanear recibos e etiquetas.';
+
+  @override
+  String get openSettingsAction => 'Abrir os Axustes';
+
+  @override
+  String get priceManualEntryAction => 'Introducir o prezo a man';
+
+  @override
+  String get priceRetakeAction => 'Facer outra foto';
 }

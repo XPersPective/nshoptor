@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "შეეხეთ გადასახედად და შესანახად.",
   "receiptReadMoreTitle": "გადაიღეთ ქვითრის დანარჩენი ნაწილი",
   "receiptReadFailedTitle": "ქვითრის წაკითხვა ვერ მოხერხდა",
-  "budgetAlertNear": "ლიმიტის {percent}% გამოყენებულია"
+  "budgetAlertNear": "ლიმიტის {percent}% გამოყენებულია",
+  "receiptReviewNowAction": "გადახედეთ და შეასწორეთ",
+  "receiptEditDetailsTitle": "ქვითრის დეტალები",
+  "receiptSaveAnywayTitle": "ჯამი არ ემთხვევა",
+  "receiptSaveAnywayBody": "პროდუქტების ჯამი ქვითრის ჯამს აცდება {difference}-ით. მაინც შევინახოთ?",
+  "receiptSaveAnywayAction": "მაინც შენახვა",
+  "receiptNeedsDetails": "ამ ქვითრის შესანახად მიუთითეთ მაღაზია და თარიღი.",
+  "receiptMissingFields": "ვერ წაიკითხა: {fields}. შეგიძლიათ შეავსოთ გადახედვისას.",
+  "cameraAccessDenied": "კამერის წვდომა გამორთულია. ჩართეთ ის პარამეტრებიდან, რომ დაასკანიროთ ქვითრები და ეტიკეტები.",
+  "openSettingsAction": "პარამეტრების გახსნა",
+  "priceManualEntryAction": "შეიყვანეთ ფასი ხელით",
+  "priceRetakeAction": "სხვა ფოტო გადაიღეთ",
+  "receiptDateTimeLabel": "თარიღი და დრო"
 }

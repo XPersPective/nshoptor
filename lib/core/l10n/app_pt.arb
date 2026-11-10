@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Toque para revisar e salvar.",
   "receiptReadMoreTitle": "Fotografe o restante do recibo",
   "receiptReadFailedTitle": "Não foi possível ler o recibo",
-  "budgetAlertNear": "{percent}% do limite utilizado"
+  "budgetAlertNear": "{percent}% do limite utilizado",
+  "receiptReviewNowAction": "Revisar e corrigir",
+  "receiptEditDetailsTitle": "Detalhes do recibo",
+  "receiptSaveAnywayTitle": "O total não confere",
+  "receiptSaveAnywayBody": "Os artigos diferem do total do recibo em {difference}. Salvar mesmo assim?",
+  "receiptSaveAnywayAction": "Salvar mesmo assim",
+  "receiptNeedsDetails": "Adicione a loja e a data para salvar este recibo.",
+  "receiptMissingFields": "Não foi possível ler: {fields}. Você pode preencher isso durante a revisão.",
+  "cameraAccessDenied": "O acesso à câmera está desativado. Ative-o nos Ajustes para ler recibos e etiquetas.",
+  "openSettingsAction": "Abrir Ajustes",
+  "priceManualEntryAction": "Inserir o preço manualmente",
+  "priceRetakeAction": "Tirar outra foto",
+  "receiptDateTimeLabel": "Data e hora"
 }

@@ -1589,4 +1589,46 @@ class AppLocalizationsUz extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Limitning $percent% ishlatildi';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Tekshirib, tuzating';
+
+  @override
+  String get receiptEditDetailsTitle => 'Chek ma\'lumotlari';
+
+  @override
+  String get receiptDateTimeLabel => 'Sana va vaqt';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Jami summa mos kelmaydi';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Mahsulotlar summasi chek jami bilan $difference farq qiladi. Baribir saqlansinmi?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Baribir saqlash';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Bu chekni saqlash uchun do\'kon va sanani kiriting.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'O\'qilmadi: $fields. Ularni ko\'rib chiqish paytida to\'ldirishingiz mumkin.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameraga kirish yopiq. Cheklar va yorliqlarni skanerlash uchun uni sozlamalardan yoqing.';
+
+  @override
+  String get openSettingsAction => 'Sozlamalarni ochish';
+
+  @override
+  String get priceManualEntryAction => 'Narxni qo\'lda kiriting';
+
+  @override
+  String get priceRetakeAction => 'Boshqa suratga oling';
 }

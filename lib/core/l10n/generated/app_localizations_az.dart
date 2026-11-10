@@ -1584,4 +1584,46 @@ class AppLocalizationsAz extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Limitin $percent% istifadə olunub';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Yoxla və düzəlt';
+
+  @override
+  String get receiptEditDetailsTitle => 'Çek məlumatları';
+
+  @override
+  String get receiptDateTimeLabel => 'Tarix və saat';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Yekun məbləğ uyğun gəlmir';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Məhsullar çekin yekun məbləğindən $difference fərqlənir. Yenə də saxlanılsın?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Yenə də saxla';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Bu çeki saxlamaq üçün mağaza və tarix daxil edin.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Oxunmadı: $fields. Bunları yoxlayarkən doldura bilərsiniz.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameraya giriş bağlıdır. Çek və etiket oxumaq üçün onu Tənzimləmələrdən açın.';
+
+  @override
+  String get openSettingsAction => 'Tənzimləmələri aç';
+
+  @override
+  String get priceManualEntryAction => 'Qiyməti əl ilə daxil et';
+
+  @override
+  String get priceRetakeAction => 'Yenidən çək';
 }

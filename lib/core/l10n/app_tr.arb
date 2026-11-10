@@ -505,5 +505,17 @@
   "tourHelpBody": "Bu rehberi yeniden izlemek için buraya dokunun. Toplamların ve ürünlerin anlatımı için bir liste açın.",
   "tourTotalsBody": "Planlanan, gerçek ve fark toplamları alışveriş yaptıkça güncellenir.",
   "tourItemsBody": "Ürünleriniz. Sıralarını buradan değiştirin veya arayın.",
-  "budgetAlertNear": "Limitin %{percent} kadarı kullanıldı"
+  "budgetAlertNear": "Limitin %{percent} kadarı kullanıldı",
+  "receiptReviewNowAction": "Kontrol et ve düzelt",
+  "receiptEditDetailsTitle": "Fiş bilgileri",
+  "receiptDateTimeLabel": "Tarih ve saat",
+  "receiptSaveAnywayTitle": "Toplam tutmuyor",
+  "receiptSaveAnywayBody": "Ürünlerin toplamı fiş toplamından {difference} farklı. Yine de kaydedilsin mi?",
+  "receiptSaveAnywayAction": "Yine de kaydet",
+  "receiptNeedsDetails": "Bu fişi kaydetmek için mağaza ve tarihi girin.",
+  "receiptMissingFields": "Okunamayan: {fields}. Kontrol ederken doldurabilirsiniz.",
+  "cameraAccessDenied": "Kamera izni kapalı. Fiş ve etiket okumak için Ayarlar'dan açın.",
+  "openSettingsAction": "Ayarları aç",
+  "priceManualEntryAction": "Fiyatı elle gir",
+  "priceRetakeAction": "Yeniden çek"
 }

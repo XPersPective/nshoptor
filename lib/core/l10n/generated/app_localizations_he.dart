@@ -1568,4 +1568,46 @@ class AppLocalizationsHe extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'נוצלו $percent% מהמגבלה';
   }
+
+  @override
+  String get receiptReviewNowAction => 'לבדוק ולתקן';
+
+  @override
+  String get receiptEditDetailsTitle => 'פרטי הקבלה';
+
+  @override
+  String get receiptDateTimeLabel => 'תאריך ושעה';
+
+  @override
+  String get receiptSaveAnywayTitle => 'הסכום אינו תואם';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'הפריטים שונים ב-$difference מסכום הקבלה. לשמור בכל זאת?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'לשמור בכל זאת';
+
+  @override
+  String get receiptNeedsDetails =>
+      'הוסיפו חנות ותאריך כדי לשמור את הקבלה הזו.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'לא נקראו: $fields. אפשר למלא אותם בזמן הבדיקה.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'הגישה למצלמה כבויה. הפעילו אותה בהגדרות כדי לסרוק קבלות ותוויות.';
+
+  @override
+  String get openSettingsAction => 'פתיחת הגדרות';
+
+  @override
+  String get priceManualEntryAction => 'הזנת מחיר ידנית';
+
+  @override
+  String get priceRetakeAction => 'צילום תמונה נוספת';
 }

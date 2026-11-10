@@ -1577,4 +1577,46 @@ class AppLocalizationsKa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ლიმიტის $percent% გამოყენებულია';
   }
+
+  @override
+  String get receiptReviewNowAction => 'გადახედეთ და შეასწორეთ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ქვითრის დეტალები';
+
+  @override
+  String get receiptDateTimeLabel => 'თარიღი და დრო';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ჯამი არ ემთხვევა';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'პროდუქტების ჯამი ქვითრის ჯამს აცდება $difference-ით. მაინც შევინახოთ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'მაინც შენახვა';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ამ ქვითრის შესანახად მიუთითეთ მაღაზია და თარიღი.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'ვერ წაიკითხა: $fields. შეგიძლიათ შეავსოთ გადახედვისას.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'კამერის წვდომა გამორთულია. ჩართეთ ის პარამეტრებიდან, რომ დაასკანიროთ ქვითრები და ეტიკეტები.';
+
+  @override
+  String get openSettingsAction => 'პარამეტრების გახსნა';
+
+  @override
+  String get priceManualEntryAction => 'შეიყვანეთ ფასი ხელით';
+
+  @override
+  String get priceRetakeAction => 'სხვა ფოტო გადაიღეთ';
 }

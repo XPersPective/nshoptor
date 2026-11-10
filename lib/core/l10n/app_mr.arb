@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "तपासून जतन करण्यासाठी टॅप करा.",
   "receiptReadMoreTitle": "पावतीच्या उर्वरित भागाचा फोटो घ्या",
   "receiptReadFailedTitle": "पावती वाचता आली नाही",
-  "budgetAlertNear": "मर्यादेच्या {percent}% वापरले"
+  "budgetAlertNear": "मर्यादेच्या {percent}% वापरले",
+  "receiptReviewNowAction": "तपासा आणि दुरुस्त करा",
+  "receiptEditDetailsTitle": "पावती तपशील",
+  "receiptSaveAnywayTitle": "एकूण रक्कम जुळत नाही",
+  "receiptSaveAnywayBody": "वस्तूंची बेरीज पावतीच्या एकूण रकमेपेक्षा {difference} ने वेगळी आहे. तरीही जतन करायचे?",
+  "receiptSaveAnywayAction": "तरीही जतन करा",
+  "receiptNeedsDetails": "ही पावती जतन करण्यासाठी दुकान आणि तारीख जोडा.",
+  "receiptMissingFields": "वाचता आले नाही: {fields}. तपासताना तुम्ही हे भरू शकता.",
+  "cameraAccessDenied": "कॅमेरा परवानगी बंद आहे. पावत्या आणि लेबल स्कॅन करण्यासाठी ती सेटिंग्जमध्ये सुरू करा.",
+  "openSettingsAction": "सेटिंग्ज उघडा",
+  "priceManualEntryAction": "किंमत स्वतः टाका",
+  "priceRetakeAction": "दुसरा फोटो काढा",
+  "receiptDateTimeLabel": "तारीख आणि वेळ"
 }

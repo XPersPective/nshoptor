@@ -1569,4 +1569,46 @@ class AppLocalizationsTh extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ใช้ไปแล้ว $percent% ของวงเงิน';
   }
+
+  @override
+  String get receiptReviewNowAction => 'ตรวจสอบและแก้ไข';
+
+  @override
+  String get receiptEditDetailsTitle => 'รายละเอียดใบเสร็จ';
+
+  @override
+  String get receiptDateTimeLabel => 'วันที่และเวลา';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ยอดรวมไม่ตรงกัน';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ยอดรวมสินค้าต่างจากยอดรวมในใบเสร็จ $difference จะบันทึกอยู่ดีหรือไม่';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'บันทึกอยู่ดี';
+
+  @override
+  String get receiptNeedsDetails =>
+      'เพิ่มร้านค้าและวันที่เพื่อบันทึกใบเสร็จนี้';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'อ่านไม่ได้: $fields คุณกรอกข้อมูลเหล่านี้ได้ขณะตรวจสอบ';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'การเข้าถึงกล้องปิดอยู่ เปิดในการตั้งค่าเพื่อสแกนใบเสร็จและป้ายราคา';
+
+  @override
+  String get openSettingsAction => 'เปิดการตั้งค่า';
+
+  @override
+  String get priceManualEntryAction => 'กรอกราคาเอง';
+
+  @override
+  String get priceRetakeAction => 'ถ่ายรูปใหม่';
 }

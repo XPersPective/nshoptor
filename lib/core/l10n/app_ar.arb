@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "اضغط للمراجعة والحفظ.",
   "receiptReadMoreTitle": "صوّر باقي الإيصال",
   "receiptReadFailedTitle": "تعذّرت قراءة الإيصال",
-  "budgetAlertNear": "تم استخدام {percent}٪ من الحد"
+  "budgetAlertNear": "تم استخدام {percent}٪ من الحد",
+  "receiptReviewNowAction": "راجع وصحّح",
+  "receiptEditDetailsTitle": "تفاصيل الإيصال",
+  "receiptSaveAnywayTitle": "الإجمالي غير مطابق",
+  "receiptSaveAnywayBody": "تختلف العناصر عن إجمالي الإيصال بمقدار {difference}. هل تريد الحفظ رغم ذلك؟",
+  "receiptSaveAnywayAction": "الحفظ رغم ذلك",
+  "receiptNeedsDetails": "أضف المتجر والتاريخ لحفظ هذا الإيصال.",
+  "receiptMissingFields": "لم تتم قراءة: {fields}. يمكنك تعبئتها أثناء المراجعة.",
+  "cameraAccessDenied": "الوصول إلى الكاميرا متوقف. فعّله من الإعدادات لمسح الإيصالات والملصقات.",
+  "openSettingsAction": "فتح الإعدادات",
+  "priceManualEntryAction": "إدخال السعر يدويًا",
+  "priceRetakeAction": "التقاط صورة أخرى",
+  "receiptDateTimeLabel": "التاريخ والوقت"
 }

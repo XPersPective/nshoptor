@@ -1582,4 +1582,46 @@ class AppLocalizationsKy extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Лимиттин $percent% колдонулду';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Текшерип, оңдоңуз';
+
+  @override
+  String get receiptEditDetailsTitle => 'Чек маалыматтары';
+
+  @override
+  String get receiptDateTimeLabel => 'Күн жана убакыт';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Жалпы сумма туура келбейт';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Товарлардын суммасы чектеги жалпы суммадан $difference айырмаланат. Ошого карабастан сактайсызбы?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Ошого карабастан сактоо';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Бул чекти сактоо үчүн дүкөндү жана күндү көрсөтүңүз.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Окулган жок: $fields. Аларды текшерүү учурунда толтура аласыз.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Камерага кирүү өчүк. Чектерди жана баа этикеткаларын сканерлөө үчүн аны жөндөөлөрдөн күйгүзүңүз.';
+
+  @override
+  String get openSettingsAction => 'Жөндөөлөрдү ачуу';
+
+  @override
+  String get priceManualEntryAction => 'Бааны кол менен киргизиңиз';
+
+  @override
+  String get priceRetakeAction => 'Башка сүрөт тартыңыз';
 }

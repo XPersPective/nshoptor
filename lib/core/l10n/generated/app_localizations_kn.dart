@@ -1582,4 +1582,46 @@ class AppLocalizationsKn extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ಮಿತಿಯ $percent% ಬಳಸಲಾಗಿದೆ';
   }
+
+  @override
+  String get receiptReviewNowAction => 'ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಸರಿಪಡಿಸಿ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ರಸೀದಿ ವಿವರಗಳು';
+
+  @override
+  String get receiptDateTimeLabel => 'ದಿನಾಂಕ ಮತ್ತು ಸಮಯ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ಒಟ್ಟು ಮೊತ್ತ ತಾಳೆಯಾಗುತ್ತಿಲ್ಲ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ವಸ್ತುಗಳ ಮೊತ್ತ ರಸೀದಿಯ ಒಟ್ಟು ಮೊತ್ತದಿಂದ $difference ವ್ಯತ್ಯಾಸವಿದೆ. ಇನ್ನೂ ಉಳಿಸಬೇಕೆ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'ಇನ್ನೂ ಉಳಿಸಿ';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ಈ ರಸೀದಿಯನ್ನು ಉಳಿಸಲು ಅಂಗಡಿ ಮತ್ತು ದಿನಾಂಕವನ್ನು ಸೇರಿಸಿ.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'ಓದಲಾಗಲಿಲ್ಲ: $fields. ಪರಿಶೀಲಿಸುವಾಗ ಇವನ್ನು ಭರ್ತಿ ಮಾಡಬಹುದು.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶ ಆಫ್ ಇದೆ. ರಸೀದಿ ಮತ್ತು ಲೇಬಲ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಆನ್ ಮಾಡಿ.';
+
+  @override
+  String get openSettingsAction => 'ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ';
+
+  @override
+  String get priceManualEntryAction => 'ಬೆಲೆಯನ್ನು ಕೈಯಾರೆ ನಮೂದಿಸಿ';
+
+  @override
+  String get priceRetakeAction => 'ಇನ್ನೊಂದು ಫೋಟೋ ತೆಗೆಯಿರಿ';
 }

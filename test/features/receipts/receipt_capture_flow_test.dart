@@ -413,4 +413,53 @@ void main() {
       },
     );
   }
+
+  testWidgets(
+    'review-and-fix opens the review screen for an imperfect reading',
+    (tester) async {
+      // Products and total readable; store/date/number missing.
+      final frames = _Frames([
+        _scan(['ELMA 20,00', 'EKMEK 40,00', 'TOPLAM 60,00']),
+      ]);
+      await tester.pumpWidget(app(frames));
+      await tap(tester, 'open_capture');
+      // No timed auto-camera: the continuation sheet waits for the user.
+      await tester.pump(const Duration(seconds: 4));
+      expect(find.byKey(const Key('receipt_capture_review')), findsOneWidget);
+      await tap(tester, 'receipt_capture_review');
+      expect(find.byKey(const Key('receipt_line_1')), findsOneWidget);
+      // Store and date are unknown: saving stays disabled until corrected.
+      final save = tester.widget<FilledButton>(
+        find.byKey(const Key('receipt_commit_button')),
+      );
+      expect(save.onPressed, isNull);
+      await tap(tester, 'receipt_cancel');
+      expect(committed, isNull);
+      expect(failure, isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
+  testWidgets(
+    'an unreadable photo keeps captured evidence instead of closing the flow',
+    (tester) async {
+      final frames = _Frames([
+        _scan([..._header, 'ELMA 20,00']),
+        _scan([]), // second photo reads nothing at all
+      ]);
+      await tester.pumpWidget(app(frames));
+      await tap(tester, 'open_capture');
+      await tap(tester, 'receipt_capture_camera');
+      // The empty reading reopens the continuation sheet, not a dead end.
+      expect(find.byKey(const Key('receipt_capture_review')), findsOneWidget);
+      await tap(tester, 'receipt_capture_later');
+      expect(failure, isNull);
+      // The first photo's evidence survives as a draft owned by its list.
+      final list = (await db.select(db.shoppingLists).get()).single;
+      final draft =
+          (await ReceiptDraftRepository(db).pending(listId: list.id)).single;
+      expect(draft.document.productLines, isNotEmpty);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
 }

@@ -1586,4 +1586,46 @@ class AppLocalizationsAf extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% van die limiet gebruik';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kontroleer en maak reg';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kwitansiebesonderhede';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum en tyd';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totaal stem nie ooreen nie';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Die items verskil $difference van die kwitansietotaal. Stoor in elk geval?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Stoor in elk geval';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Voeg die winkel en datum by om hierdie kwitansie te stoor.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Kon nie lees nie: $fields. Jy kan dit invul terwyl jy hersien.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kamertoegang is af. Skakel dit in Instellings aan om kwitansies en etikette te skandeer.';
+
+  @override
+  String get openSettingsAction => 'Maak Instellings oop';
+
+  @override
+  String get priceManualEntryAction => 'Voer prys handmatig in';
+
+  @override
+  String get priceRetakeAction => 'Neem weer \'n foto';
 }

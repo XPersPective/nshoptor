@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Prek për ta shqyrtuar dhe ruajtur.",
   "receiptReadMoreTitle": "Fotografo pjesën tjetër të faturës",
   "receiptReadFailedTitle": "Fatura nuk mund të lexohej",
-  "budgetAlertNear": "U përdor {percent}% e kufirit"
+  "budgetAlertNear": "U përdor {percent}% e kufirit",
+  "receiptReviewNowAction": "Kontrollo dhe korrigjo",
+  "receiptEditDetailsTitle": "Detajet e faturës",
+  "receiptSaveAnywayTitle": "Totali nuk përputhet",
+  "receiptSaveAnywayBody": "Shuma e artikujve ndryshon me {difference} nga totali i faturës. Të ruaj megjithatë?",
+  "receiptSaveAnywayAction": "Ruaj megjithatë",
+  "receiptNeedsDetails": "Shto dyqanin dhe datën për ta ruajtur këtë faturë.",
+  "receiptMissingFields": "Nuk u lexua: {fields}. Mund t'i plotësosh gjatë rishikimit.",
+  "cameraAccessDenied": "Qasja në kamera është e çaktivizuar. Aktivizoje në Cilësimet për të skanuar fatura dhe etiketa.",
+  "openSettingsAction": "Hap Cilësimet",
+  "priceManualEntryAction": "Fut çmimin manualisht",
+  "priceRetakeAction": "Bëj një foto tjetër",
+  "receiptDateTimeLabel": "Data dhe ora"
 }

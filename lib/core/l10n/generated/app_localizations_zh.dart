@@ -1515,4 +1515,44 @@ class AppLocalizationsZh extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '已使用限额的$percent%';
   }
+
+  @override
+  String get receiptReviewNowAction => '检查并修正';
+
+  @override
+  String get receiptEditDetailsTitle => '收据详情';
+
+  @override
+  String get receiptDateTimeLabel => '日期和时间';
+
+  @override
+  String get receiptSaveAnywayTitle => '总额不符';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return '商品总额与收据总额相差$difference。仍要保存吗？';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => '仍要保存';
+
+  @override
+  String get receiptNeedsDetails => '请添加商店和日期以保存这张收据。';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return '无法读取：$fields。您可以在检查时补填。';
+  }
+
+  @override
+  String get cameraAccessDenied => '相机权限已关闭。请在设置中开启，以便扫描收据和标签。';
+
+  @override
+  String get openSettingsAction => '打开设置';
+
+  @override
+  String get priceManualEntryAction => '手动输入价格';
+
+  @override
+  String get priceRetakeAction => '重新拍照';
 }

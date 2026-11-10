@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "စစ်ဆေးပြီး သိမ်းရန် ထိပါ။",
   "receiptReadMoreTitle": "ပြေစာ၏ ကျန်အပိုင်းကို ဓာတ်ပုံရိုက်ပါ",
   "receiptReadFailedTitle": "ပြေစာကို ဖတ်၍မရပါ",
-  "budgetAlertNear": "ကန့်သတ်ချက်၏ {percent}% အသုံးပြုပြီး"
+  "budgetAlertNear": "ကန့်သတ်ချက်၏ {percent}% အသုံးပြုပြီး",
+  "receiptReviewNowAction": "စစ်ဆေးပြီး ပြင်ဆင်ပါ",
+  "receiptEditDetailsTitle": "ပြေစာအချက်အလက်များ",
+  "receiptSaveAnywayTitle": "စုစုပေါင်း မကိုက်ညီပါ",
+  "receiptSaveAnywayBody": "ပစ္စည်းများ စုစုပေါင်းသည် ပြေစာ စုစုပေါင်းနှင့် {difference} ကွာဟနေပါသည်။ သို့သော်လည်း သိမ်းဆည်းမလား?",
+  "receiptSaveAnywayAction": "သို့သော် သိမ်းဆည်းမည်",
+  "receiptNeedsDetails": "ဤပြေစာကို သိမ်းဆည်းရန် ဆိုင်နှင့် ရက်စွဲ ထည့်ပါ။",
+  "receiptMissingFields": "မဖတ်နိုင်ခဲ့ပါ: {fields}။ စစ်ဆေးချိန်တွင် ဖြည့်နိုင်ပါသည်။",
+  "cameraAccessDenied": "ကင်မရာ ခွင့်ပြုချက် ပိတ်ထားပါသည်။ ပြေစာနှင့် အမှတ်အသားများကို ဖတ်ရန် ဆက်တင်များတွင် ဖွင့်ပါ။",
+  "openSettingsAction": "ဆက်တင်များ ဖွင့်ရန်",
+  "priceManualEntryAction": "ဈေးနှုန်းကို လက်ဖြင့် ထည့်ပါ",
+  "priceRetakeAction": "ဓာတ်ပုံ အသစ် ရိုက်ပါ",
+  "receiptDateTimeLabel": "ရက်စွဲနှင့် အချိန်"
 }

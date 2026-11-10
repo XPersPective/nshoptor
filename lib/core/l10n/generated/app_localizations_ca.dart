@@ -1589,4 +1589,46 @@ class AppLocalizationsCa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'S\'ha utilitzat el $percent% del límit';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Revisa i corregeix';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detalls del rebut';
+
+  @override
+  String get receiptDateTimeLabel => 'Data i hora';
+
+  @override
+  String get receiptSaveAnywayTitle => 'El total no coincideix';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Els articles difereixen del total del rebut en $difference. Vols desar-lo igualment?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Desa igualment';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Afegeix la botiga i la data per desar aquest rebut.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'No s\'ha pogut llegir: $fields. Pots omplir-ho mentre ho revises.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'L\'accés a la càmera està desactivat. Activa\'l a la configuració per escapar rebuts i etiquetes.';
+
+  @override
+  String get openSettingsAction => 'Obre la configuració';
+
+  @override
+  String get priceManualEntryAction => 'Introdueix el preu manualment';
+
+  @override
+  String get priceRetakeAction => 'Fes una altra foto';
 }

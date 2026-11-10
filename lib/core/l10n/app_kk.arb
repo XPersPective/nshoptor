@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Тексеріп, сақтау үшін түртіңіз.",
   "receiptReadMoreTitle": "Түбіртектің қалған бөлігін суретке түсіріңіз",
   "receiptReadFailedTitle": "Түбіртекті оқу мүмкін болмады",
-  "budgetAlertNear": "Лимиттің {percent}% пайдаланылды"
+  "budgetAlertNear": "Лимиттің {percent}% пайдаланылды",
+  "receiptReviewNowAction": "Тексеріп, түзетіңіз",
+  "receiptEditDetailsTitle": "Түбіртек мәліметтері",
+  "receiptSaveAnywayTitle": "Жалпы сома сәйкес емес",
+  "receiptSaveAnywayBody": "Тауарлар сомасы мен түбіртектегі жалпы сома арасында {difference} айырмашылық бар. Соған қарамастан сақтау керек пе?",
+  "receiptSaveAnywayAction": "Соған қарамастан сақтау",
+  "receiptNeedsDetails": "Бұл түбіртекті сақтау үшін дүкен мен күнді көрсетіңіз.",
+  "receiptMissingFields": "Оқылмады: {fields}. Оларды тексеру кезінде толтыра аласыз.",
+  "cameraAccessDenied": "Камераға қол жеткізу өшірулі. Түбіртектер мен баға жапсырмаларын сканерлеу үшін оны баптаулардан қосыңыз.",
+  "openSettingsAction": "Баптауларды ашу",
+  "priceManualEntryAction": "Бағаны қолмен енгізіңіз",
+  "priceRetakeAction": "Басқа фотосурет түсіріңіз",
+  "receiptDateTimeLabel": "Күн және уақыт"
 }

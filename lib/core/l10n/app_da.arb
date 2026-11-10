@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Tryk for at gennemgå og gemme den.",
   "receiptReadMoreTitle": "Fotografér resten af kvitteringen",
   "receiptReadFailedTitle": "Kvitteringen kunne ikke læses",
-  "budgetAlertNear": "{percent}% af grænsen er brugt"
+  "budgetAlertNear": "{percent}% af grænsen er brugt",
+  "receiptReviewNowAction": "Tjek og ret",
+  "receiptEditDetailsTitle": "Kvitteringsoplysninger",
+  "receiptSaveAnywayTitle": "Totalen stemmer ikke",
+  "receiptSaveAnywayBody": "Varerne afviger med {difference} fra kvitteringens total. Gem alligevel?",
+  "receiptSaveAnywayAction": "Gem alligevel",
+  "receiptNeedsDetails": "Tilføj butik og dato for at gemme denne kvittering.",
+  "receiptMissingFields": "Kunne ikke læses: {fields}. Du kan udfylde dem under gennemgangen.",
+  "cameraAccessDenied": "Kameraadgang er slået fra. Slå den til i indstillingerne for at scanne kvitteringer og labels.",
+  "openSettingsAction": "Åbn indstillingerne",
+  "priceManualEntryAction": "Indtast prisen manuelt",
+  "priceRetakeAction": "Tag et nyt billede",
+  "receiptDateTimeLabel": "Dato og klokkeslæt"
 }

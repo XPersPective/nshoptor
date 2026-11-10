@@ -1580,4 +1580,46 @@ class AppLocalizationsTr extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Limitin %$percent kadarı kullanıldı';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kontrol et ve düzelt';
+
+  @override
+  String get receiptEditDetailsTitle => 'Fiş bilgileri';
+
+  @override
+  String get receiptDateTimeLabel => 'Tarih ve saat';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Toplam tutmuyor';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Ürünlerin toplamı fiş toplamından $difference farklı. Yine de kaydedilsin mi?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Yine de kaydet';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Bu fişi kaydetmek için mağaza ve tarihi girin.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Okunamayan: $fields. Kontrol ederken doldurabilirsiniz.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kamera izni kapalı. Fiş ve etiket okumak için Ayarlar\'dan açın.';
+
+  @override
+  String get openSettingsAction => 'Ayarları aç';
+
+  @override
+  String get priceManualEntryAction => 'Fiyatı elle gir';
+
+  @override
+  String get priceRetakeAction => 'Yeniden çek';
 }

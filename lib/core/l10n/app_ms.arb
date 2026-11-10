@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Ketik untuk menyemak dan menyimpannya.",
   "receiptReadMoreTitle": "Ambil gambar bahagian resit yang selebihnya",
   "receiptReadFailedTitle": "Resit tidak dapat dibaca",
-  "budgetAlertNear": "{percent}% daripada had telah digunakan"
+  "budgetAlertNear": "{percent}% daripada had telah digunakan",
+  "receiptReviewNowAction": "Semak dan betulkan",
+  "receiptEditDetailsTitle": "Butiran resit",
+  "receiptSaveAnywayTitle": "Jumlah tidak sepadan",
+  "receiptSaveAnywayBody": "Jumlah item berbeza {difference} daripada jumlah resit. Simpan juga?",
+  "receiptSaveAnywayAction": "Simpan juga",
+  "receiptNeedsDetails": "Tambahkan kedai dan tarikh untuk menyimpan resit ini.",
+  "receiptMissingFields": "Tidak dapat dibaca: {fields}. Anda boleh isikan semasa menyemak.",
+  "cameraAccessDenied": "Akses kamera dimatikan. Hidupkan dalam Tetapan untuk mengimbas resit dan label.",
+  "openSettingsAction": "Buka Tetapan",
+  "priceManualEntryAction": "Masukkan harga secara manual",
+  "priceRetakeAction": "Ambil foto lain",
+  "receiptDateTimeLabel": "Tarikh dan masa"
 }

@@ -1577,4 +1577,46 @@ class AppLocalizationsGu extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'મર્યાદાનો $percent% ઉપયોગ થયો';
   }
+
+  @override
+  String get receiptReviewNowAction => 'તપાસો અને સુધારો';
+
+  @override
+  String get receiptEditDetailsTitle => 'રસીદની વિગતો';
+
+  @override
+  String get receiptDateTimeLabel => 'તારીખ અને સમય';
+
+  @override
+  String get receiptSaveAnywayTitle => 'કુલ રકમ મેળ ખાતી નથી';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'વસ્તુઓનો કુલ રસીદના કુલથી $difference જુદો છે. છતાં પણ સેવ કરવું?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'છતાં પણ સેવ કરો';
+
+  @override
+  String get receiptNeedsDetails =>
+      'આ રસીદ સેવ કરવા માટે દુકાન અને તારીખ ઉમેરો.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'વાંચી શકાયું નહીં: $fields. તપાસ દરમિયાન તમે આ ભરી શકો છો.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'કૅમેરાની પરવાનગી બંધ છે. રસીદ અને લેબલ સ્કેન કરવા માટે તેને સેટિંગ્સમાં ચાલુ કરો.';
+
+  @override
+  String get openSettingsAction => 'સેટિંગ્સ ખોલો';
+
+  @override
+  String get priceManualEntryAction => 'કિંમત જાતે દાખલ કરો';
+
+  @override
+  String get priceRetakeAction => 'બીજો ફોટો લો';
 }

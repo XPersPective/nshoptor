@@ -1585,4 +1585,46 @@ class AppLocalizationsMy extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ကန့်သတ်ချက်၏ $percent% အသုံးပြုပြီး';
   }
+
+  @override
+  String get receiptReviewNowAction => 'စစ်ဆေးပြီး ပြင်ဆင်ပါ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ပြေစာအချက်အလက်များ';
+
+  @override
+  String get receiptDateTimeLabel => 'ရက်စွဲနှင့် အချိန်';
+
+  @override
+  String get receiptSaveAnywayTitle => 'စုစုပေါင်း မကိုက်ညီပါ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ပစ္စည်းများ စုစုပေါင်းသည် ပြေစာ စုစုပေါင်းနှင့် $difference ကွာဟနေပါသည်။ သို့သော်လည်း သိမ်းဆည်းမလား?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'သို့သော် သိမ်းဆည်းမည်';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ဤပြေစာကို သိမ်းဆည်းရန် ဆိုင်နှင့် ရက်စွဲ ထည့်ပါ။';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'မဖတ်နိုင်ခဲ့ပါ: $fields။ စစ်ဆေးချိန်တွင် ဖြည့်နိုင်ပါသည်။';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'ကင်မရာ ခွင့်ပြုချက် ပိတ်ထားပါသည်။ ပြေစာနှင့် အမှတ်အသားများကို ဖတ်ရန် ဆက်တင်များတွင် ဖွင့်ပါ။';
+
+  @override
+  String get openSettingsAction => 'ဆက်တင်များ ဖွင့်ရန်';
+
+  @override
+  String get priceManualEntryAction => 'ဈေးနှုန်းကို လက်ဖြင့် ထည့်ပါ';
+
+  @override
+  String get priceRetakeAction => 'ဓာတ်ပုံ အသစ် ရိုက်ပါ';
 }

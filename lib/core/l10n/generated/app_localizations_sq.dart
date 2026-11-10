@@ -1586,4 +1586,46 @@ class AppLocalizationsSq extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'U përdor $percent% e kufirit';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kontrollo dhe korrigjo';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detajet e faturës';
+
+  @override
+  String get receiptDateTimeLabel => 'Data dhe ora';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totali nuk përputhet';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Shuma e artikujve ndryshon me $difference nga totali i faturës. Të ruaj megjithatë?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Ruaj megjithatë';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Shto dyqanin dhe datën për ta ruajtur këtë faturë.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nuk u lexua: $fields. Mund t\'i plotësosh gjatë rishikimit.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Qasja në kamera është e çaktivizuar. Aktivizoje në Cilësimet për të skanuar fatura dhe etiketa.';
+
+  @override
+  String get openSettingsAction => 'Hap Cilësimet';
+
+  @override
+  String get priceManualEntryAction => 'Fut çmimin manualisht';
+
+  @override
+  String get priceRetakeAction => 'Bëj një foto tjetër';
 }

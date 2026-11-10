@@ -1582,4 +1582,46 @@ class AppLocalizationsNe extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'सीमाको $percent% प्रयोग भइसक्यो';
   }
+
+  @override
+  String get receiptReviewNowAction => 'जाँचेर सच्याउनुहोस्';
+
+  @override
+  String get receiptEditDetailsTitle => 'रसिद विवरण';
+
+  @override
+  String get receiptDateTimeLabel => 'मिति र समय';
+
+  @override
+  String get receiptSaveAnywayTitle => 'कुल रकम मिलेन';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'वस्तुहरूको जम्मा रसिदको कुल रकमभन्दा $difference फरक छ। तैपनि सुरक्षित गर्नुहुन्छ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'तैपनि सुरक्षित गर्नुहोस्';
+
+  @override
+  String get receiptNeedsDetails =>
+      'यो रसिद सुरक्षित गर्न पसल र मिति थप्नुहोस्।';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'पढ्न सकिएन: $fields। समीक्षा गर्दा यी भर्न सक्नुहुन्छ।';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'क्यामेरा पहुँच बन्द छ। रसिद र लेबल स्क्यान गर्न सेटिङहरूमा यसलाई खोल्नुहोस्।';
+
+  @override
+  String get openSettingsAction => 'सेटिङहरू खोल्नुहोस्';
+
+  @override
+  String get priceManualEntryAction => 'मूल्य म्यानुअली प्रविष्ट गर्नुहोस्';
+
+  @override
+  String get priceRetakeAction => 'अर्को फोटो खिच्नुहोस्';
 }

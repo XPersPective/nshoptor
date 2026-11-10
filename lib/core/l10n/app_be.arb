@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Націсніце, каб праверыць і захаваць.",
   "receiptReadMoreTitle": "Сфатаграфуйце астатнюю частку чэка",
   "receiptReadFailedTitle": "Не атрымалася прачытаць чэк",
-  "budgetAlertNear": "Выкарыстана {percent}% ад ліміту"
+  "budgetAlertNear": "Выкарыстана {percent}% ад ліміту",
+  "receiptReviewNowAction": "Праверце і выправіце",
+  "receiptEditDetailsTitle": "Звесткі чэка",
+  "receiptSaveAnywayTitle": "Сума не супадае",
+  "receiptSaveAnywayBody": "Сума тавараў адрозніваецца ад выніковай сумы чэка на {difference}. Захаваць усё роўна?",
+  "receiptSaveAnywayAction": "Захаваць усё роўна",
+  "receiptNeedsDetails": "Дадайце краму і дату, каб захаваць гэты чэк.",
+  "receiptMissingFields": "Не ўдалося прачытаць: {fields}. Гэта можна запоўніць падчас праверкі.",
+  "cameraAccessDenied": "Доступ да камеры выключаны. Уключыце яго ў наладах, каб сканаваць чэкі і цэннікі.",
+  "openSettingsAction": "Адкрыць налады",
+  "priceManualEntryAction": "Увесці цэну ўручную",
+  "priceRetakeAction": "Зрабіць іншае фота",
+  "receiptDateTimeLabel": "Дата і час"
 }

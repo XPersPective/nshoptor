@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Toca para revisalo e gardalo.",
   "receiptReadMoreTitle": "Fotografa o resto do recibo",
   "receiptReadFailedTitle": "Non se puido ler o recibo",
-  "budgetAlertNear": "Usouse o {percent}% do límite"
+  "budgetAlertNear": "Usouse o {percent}% do límite",
+  "receiptReviewNowAction": "Revisar e corrixir",
+  "receiptEditDetailsTitle": "Detalles do recibo",
+  "receiptSaveAnywayTitle": "O total non coincide",
+  "receiptSaveAnywayBody": "Os artigos difiren do total do recibo en {difference}. Gardar igualmente?",
+  "receiptSaveAnywayAction": "Gardar igualmente",
+  "receiptNeedsDetails": "Engade a tenda e a data para gardar este recibo.",
+  "receiptMissingFields": "Non se puido ler: {fields}. Podes completalos ao revisar.",
+  "cameraAccessDenied": "O acceso á cámara está desactivado. Actívao nos Axustes para escanear recibos e etiquetas.",
+  "openSettingsAction": "Abrir os Axustes",
+  "priceManualEntryAction": "Introducir o prezo a man",
+  "priceRetakeAction": "Facer outra foto",
+  "receiptDateTimeLabel": "Data e hora"
 }

@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Gusa ili kukagua na kuhifadhi.",
   "receiptReadMoreTitle": "Piga picha sehemu iliyobaki ya risiti",
   "receiptReadFailedTitle": "Risiti haikuweza kusomwa",
-  "budgetAlertNear": "Asilimia {percent} ya kikomo imetumika"
+  "budgetAlertNear": "Asilimia {percent} ya kikomo imetumika",
+  "receiptReviewNowAction": "Kagua na urekebishe",
+  "receiptEditDetailsTitle": "Maelezo ya risiti",
+  "receiptSaveAnywayTitle": "Jumla hailingani",
+  "receiptSaveAnywayBody": "Jumla ya bidhaa inatofautiana kwa {difference} na jumla ya risiti. Ihifadhi vyovyote vile?",
+  "receiptSaveAnywayAction": "Hifadhi vyovyote vile",
+  "receiptNeedsDetails": "Ongeza duka na tarehe kuhifadhi risiti hii.",
+  "receiptMissingFields": "Haikusomwa: {fields}. Unaweza kuzijaza unapokagua.",
+  "cameraAccessDenied": "Ruhusa ya kamera imezimwa. Iwashe kwenye Mipangilio ili uskane risiti na lebo.",
+  "openSettingsAction": "Fungua Mipangilio",
+  "priceManualEntryAction": "Weka bei kwa mkono",
+  "priceRetakeAction": "Piga picha nyingine",
+  "receiptDateTimeLabel": "Tarehe na saa"
 }

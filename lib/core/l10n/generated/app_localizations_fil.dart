@@ -1591,4 +1591,46 @@ class AppLocalizationsFil extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% ng limit ang nagamit na';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Suriin at itama';
+
+  @override
+  String get receiptEditDetailsTitle => 'Mga detalye ng resibo';
+
+  @override
+  String get receiptDateTimeLabel => 'Petsa at oras';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Hindi tugma ang kabuuan';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Nagkaiba ng $difference ang mga item sa total ng resibo. I-save pa rin?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'I-save pa rin';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Idagdag ang tindahan at petsa para i-save ang resibong ito.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Hindi nabasa: $fields. Maaari mong punan ang mga ito habang sinusuri.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Sarado ang access sa camera. Buksan ito sa Mga Setting para i-scan ang mga resibo at label.';
+
+  @override
+  String get openSettingsAction => 'Buksan ang Mga Setting';
+
+  @override
+  String get priceManualEntryAction => 'Ilagay ang presyo nang manu-mano';
+
+  @override
+  String get priceRetakeAction => 'Kumuha ng ibang larawan';
 }

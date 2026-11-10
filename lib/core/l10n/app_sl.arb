@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Tapnite za pregled in shranjevanje.",
   "receiptReadMoreTitle": "Fotografirajte preostanek računa",
   "receiptReadFailedTitle": "Računa ni bilo mogoče prebrati",
-  "budgetAlertNear": "Porabljenih {percent} % omejitve"
+  "budgetAlertNear": "Porabljenih {percent} % omejitve",
+  "receiptReviewNowAction": "Preglej in popravi",
+  "receiptEditDetailsTitle": "Podatki računa",
+  "receiptSaveAnywayTitle": "Znesek se ne ujema",
+  "receiptSaveAnywayBody": "Vsota izdelkov se od skupnega zneska na računu razlikuje za {difference}. Vseeno shrani?",
+  "receiptSaveAnywayAction": "Vseeno shrani",
+  "receiptNeedsDetails": "Za shranjevanje tega računa dodajte trgovino in datum.",
+  "receiptMissingFields": "Ni bilo mogoče prebrati: {fields}. Lahko jih izpolnite med pregledom.",
+  "cameraAccessDenied": "Dostop do kamere je izklopljen. Vklopite ga v nastavitvah za optično branje računov in nalepk.",
+  "openSettingsAction": "Odpri nastavitve",
+  "priceManualEntryAction": "Vnesi ceno ročno",
+  "priceRetakeAction": "Posnemi novo fotografijo",
+  "receiptDateTimeLabel": "Datum in ura"
 }

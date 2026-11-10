@@ -1583,4 +1583,46 @@ class AppLocalizationsMs extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% daripada had telah digunakan';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Semak dan betulkan';
+
+  @override
+  String get receiptEditDetailsTitle => 'Butiran resit';
+
+  @override
+  String get receiptDateTimeLabel => 'Tarikh dan masa';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Jumlah tidak sepadan';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Jumlah item berbeza $difference daripada jumlah resit. Simpan juga?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Simpan juga';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Tambahkan kedai dan tarikh untuk menyimpan resit ini.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Tidak dapat dibaca: $fields. Anda boleh isikan semasa menyemak.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Akses kamera dimatikan. Hidupkan dalam Tetapan untuk mengimbas resit dan label.';
+
+  @override
+  String get openSettingsAction => 'Buka Tetapan';
+
+  @override
+  String get priceManualEntryAction => 'Masukkan harga secara manual';
+
+  @override
+  String get priceRetakeAction => 'Ambil foto lain';
 }

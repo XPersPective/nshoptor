@@ -1584,4 +1584,46 @@ class AppLocalizationsHu extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'A limit $percent%-a felhasználva';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Ellenőrzés és javítás';
+
+  @override
+  String get receiptEditDetailsTitle => 'Nyugta adatai';
+
+  @override
+  String get receiptDateTimeLabel => 'Dátum és idő';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Az összeg nem egyezik';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'A tételek $difference eltéréssel különböznek a nyugta végösszegétől. Mentés mégis?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Mentés mégis';
+
+  @override
+  String get receiptNeedsDetails =>
+      'A nyugta mentéséhez adja meg az üzletet és a dátumot.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nem olvasható: $fields. Ezeket ellenőrzés közben kitöltheti.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'A kamerához való hozzáférés ki van kapcsolva. Kapcsolja be a Beállításokban a nyugták és címkék beolvasásához.';
+
+  @override
+  String get openSettingsAction => 'Beállítások megnyitása';
+
+  @override
+  String get priceManualEntryAction => 'Ár megadása kézzel';
+
+  @override
+  String get priceRetakeAction => 'Új fénykép készítése';
 }

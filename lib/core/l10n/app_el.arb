@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Πατήστε για έλεγχο και αποθήκευση.",
   "receiptReadMoreTitle": "Φωτογραφίστε το υπόλοιπο της απόδειξης",
   "receiptReadFailedTitle": "Δεν ήταν δυνατή η ανάγνωση της απόδειξης",
-  "budgetAlertNear": "Χρησιμοποιήθηκε το {percent}% του ορίου"
+  "budgetAlertNear": "Χρησιμοποιήθηκε το {percent}% του ορίου",
+  "receiptReviewNowAction": "Ελέγξτε και διορθώστε",
+  "receiptEditDetailsTitle": "Στοιχεία απόδειξης",
+  "receiptSaveAnywayTitle": "Το σύνολο δεν ταιριάζει",
+  "receiptSaveAnywayBody": "Τα είδη διαφέρουν κατά {difference} από το σύνολο της απόδειξης. Να αποθηκευτεί ούτως ή άλλως;",
+  "receiptSaveAnywayAction": "Αποθήκευση ούτως ή άλλως",
+  "receiptNeedsDetails": "Προσθέστε το κατάστημα και την ημερομηνία για να αποθηκεύσετε την απόδειξη.",
+  "receiptMissingFields": "Δεν ήταν δυνατή η ανάγνωση: {fields}. Μπορείτε να τα συμπληρώσετε κατά τον έλεγχο.",
+  "cameraAccessDenied": "Η πρόσβαση στην κάμερα είναι απενεργοποιημένη. Ενεργοποιήστε την στις ρυθμίσεις για να σαρώνετε αποδείξεις και ετικέτες.",
+  "openSettingsAction": "Άνοιγμα ρυθμίσεων",
+  "priceManualEntryAction": "Εισαγωγή τιμής χειροκίνητα",
+  "priceRetakeAction": "Βγάλτε άλλη φωτογραφία",
+  "receiptDateTimeLabel": "Ημερομηνία και ώρα"
 }

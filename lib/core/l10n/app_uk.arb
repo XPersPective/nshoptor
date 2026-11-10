@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Торкніться, щоб перевірити й зберегти.",
   "receiptReadMoreTitle": "Сфотографуйте решту чека",
   "receiptReadFailedTitle": "Не вдалося зчитати чек",
-  "budgetAlertNear": "Використано {percent}% ліміту"
+  "budgetAlertNear": "Використано {percent}% ліміту",
+  "receiptReviewNowAction": "Перевірити й виправити",
+  "receiptEditDetailsTitle": "Дані чека",
+  "receiptSaveAnywayTitle": "Сума не збігається",
+  "receiptSaveAnywayBody": "Сума товарів відрізняється від загальної суми чека на {difference}. Усе одно зберегти?",
+  "receiptSaveAnywayAction": "Усе одно зберегти",
+  "receiptNeedsDetails": "Додайте магазин і дату, щоб зберегти цей чек.",
+  "receiptMissingFields": "Не вдалося прочитати: {fields}. Це можна заповнити під час перевірки.",
+  "cameraAccessDenied": "Доступ до камери вимкнено. Увімкніть його в налаштуваннях, щоб сканувати чеки та етикетки.",
+  "openSettingsAction": "Відкрити налаштування",
+  "priceManualEntryAction": "Ввести ціну вручну",
+  "priceRetakeAction": "Перезняти фото",
+  "receiptDateTimeLabel": "Дата і час"
 }

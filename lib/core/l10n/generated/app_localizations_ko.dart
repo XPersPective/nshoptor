@@ -1531,4 +1531,44 @@ class AppLocalizationsKo extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '한도의 $percent% 사용됨';
   }
+
+  @override
+  String get receiptReviewNowAction => '확인하고 수정';
+
+  @override
+  String get receiptEditDetailsTitle => '영수증 정보';
+
+  @override
+  String get receiptDateTimeLabel => '날짜와 시간';
+
+  @override
+  String get receiptSaveAnywayTitle => '합계가 일치하지 않습니다';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return '품목 합계가 영수증 총액과 $difference 차이납니다. 그래도 저장할까요?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => '그래도 저장';
+
+  @override
+  String get receiptNeedsDetails => '이 영수증을 저장하려면 매장과 날짜를 입력하세요.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return '인식하지 못함: $fields. 확인하면서 채워 넣을 수 있어요.';
+  }
+
+  @override
+  String get cameraAccessDenied => '카메라 접근이 꺼져 있습니다. 영수증과 라벨을 스캔하려면 설정에서 켜세요.';
+
+  @override
+  String get openSettingsAction => '설정 열기';
+
+  @override
+  String get priceManualEntryAction => '가격 직접 입력';
+
+  @override
+  String get priceRetakeAction => '다시 촬영';
 }

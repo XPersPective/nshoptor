@@ -1592,4 +1592,46 @@ class AppLocalizationsRo extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% din limită a fost folosit';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Verifică și corectează';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detalii bon';
+
+  @override
+  String get receiptDateTimeLabel => 'Dată și oră';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totalul nu corespunde';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Suma produselor diferă cu $difference de totalul bonului. Salvezi oricum?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Salvează oricum';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Adaugă magazinul și data pentru a salva acest bon.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nu s-a putut citi: $fields. Le poți completa în timpul verificării.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Accesul la cameră este oprit. Activează-l din Setări pentru a scana bonuri și etichete.';
+
+  @override
+  String get openSettingsAction => 'Deschide Setările';
+
+  @override
+  String get priceManualEntryAction => 'Introdu prețul manual';
+
+  @override
+  String get priceRetakeAction => 'Fă altă fotografie';
 }

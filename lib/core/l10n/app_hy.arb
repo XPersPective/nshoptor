@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Հպեք՝ ստուգելու և պահելու համար։",
   "receiptReadMoreTitle": "Լուսանկարեք կտրոնի մնացած մասը",
   "receiptReadFailedTitle": "Կտրոնը չհաջողվեց կարդալ",
-  "budgetAlertNear": "Սահմանաչափի {percent}%-ն օգտագործվել է"
+  "budgetAlertNear": "Սահմանաչափի {percent}%-ն օգտագործվել է",
+  "receiptReviewNowAction": "Ստուգեք և ուղղեք",
+  "receiptEditDetailsTitle": "Կտրոնի տվյալները",
+  "receiptSaveAnywayTitle": "Գումարը չի համընկնում",
+  "receiptSaveAnywayBody": "Ապրանքների գումարը {difference}-ով տարբերվում է կտրոնի ընդհանուր գումարից։ Պահպանել այնուամենայնիվ?",
+  "receiptSaveAnywayAction": "Պահպանել այնուամենայնիվ",
+  "receiptNeedsDetails": "Ավելացրեք խանութը և ամսաթիվը՝ պահպանելու այս կտրոնը։",
+  "receiptMissingFields": "Չհաջողվեց կարդալ՝ {fields}։ Դրանք կարող եք լրացնել ստուգելիս։",
+  "cameraAccessDenied": "Տեսախցիկի հասանելիությունն անջատված է։ Միացրեք այն կարգավորումներից՝ կտրոններ և պիտակներ սկանավորելու համար։",
+  "openSettingsAction": "Բացել կարգավորումները",
+  "priceManualEntryAction": "Գինը մուտքագրեք ձեռքով",
+  "priceRetakeAction": "Նկարեք մեկ այլ լուսանկար",
+  "receiptDateTimeLabel": "Ամսաթիվ և ժամ"
 }

@@ -1586,4 +1586,46 @@ class AppLocalizationsLv extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Izmantoti $percent% no limita';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Pārbaudiet un izlabojiet';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kvīts dati';
+
+  @override
+  String get receiptDateTimeLabel => 'Datums un laiks';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Kopsumma neatbilst';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Preču summa atšķiras no kvīts kopsummas par $difference. Vai tomēr saglabāt?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Tomēr saglabāt';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Lai saglabātu šo kvīti, pievienojiet veikalu un datumu.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Neizdevās nolasīt: $fields. Varat aizpildīt pārskatot.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Piekļuve kamerai ir izslēgta. Ieslēdziet to iestatījumos, lai skenētu kvītis un cenu etiķetes.';
+
+  @override
+  String get openSettingsAction => 'Atvērt iestatījumus';
+
+  @override
+  String get priceManualEntryAction => 'Ievadīt cenu manuāli';
+
+  @override
+  String get priceRetakeAction => 'Uzņemt citu fotoattēlu';
 }

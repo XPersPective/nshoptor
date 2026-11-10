@@ -1590,4 +1590,46 @@ class AppLocalizationsTa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'வரம்பில் $percent% பயன்படுத்தப்பட்டது';
   }
+
+  @override
+  String get receiptReviewNowAction => 'சரிபார்த்து சரிசெய்யுங்கள்';
+
+  @override
+  String get receiptEditDetailsTitle => 'ரசீது விவரங்கள்';
+
+  @override
+  String get receiptDateTimeLabel => 'தேதி மற்றும் நேரம்';
+
+  @override
+  String get receiptSaveAnywayTitle => 'மொத்தம் பொருந்தவில்லை';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'பொருட்களின் தொகை ரசீதின் மொத்தத்திலிருந்து $difference வேறுபடுகிறது. எப்படியும் சேமிக்கவா?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'எப்படியும் சேமி';
+
+  @override
+  String get receiptNeedsDetails =>
+      'இந்த ரசீதை சேமிக்க கடை மற்றும் தேதியைச் சேர்க்கவும்.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'படிக்க முடியவில்லை: $fields. சரிபார்க்கும்போது இவற்றை நிரப்பலாம்.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'கேமரா அணுகல் முடக்கப்பட்டுள்ளது. ரசீது மற்றும் லேபிள்களை ஸ்கேன் செய்ய அமைப்புகளில் இயக்கவும்.';
+
+  @override
+  String get openSettingsAction => 'அமைப்புகளைத் திற';
+
+  @override
+  String get priceManualEntryAction => 'விலையை கைமுறையாக உள்ளிடு';
+
+  @override
+  String get priceRetakeAction => 'மற்றொரு படம் எடுக்கவும்';
 }

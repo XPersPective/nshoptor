@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "ಪರಿಶೀಲಿಸಿ ಉಳಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.",
   "receiptReadMoreTitle": "ರಸೀದಿಯ ಉಳಿದ ಭಾಗದ ಫೋಟೋ ತೆಗೆಯಿರಿ",
   "receiptReadFailedTitle": "ರಸೀದಿಯನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
-  "budgetAlertNear": "ಮಿತಿಯ {percent}% ಬಳಸಲಾಗಿದೆ"
+  "budgetAlertNear": "ಮಿತಿಯ {percent}% ಬಳಸಲಾಗಿದೆ",
+  "receiptReviewNowAction": "ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಸರಿಪಡಿಸಿ",
+  "receiptEditDetailsTitle": "ರಸೀದಿ ವಿವರಗಳು",
+  "receiptSaveAnywayTitle": "ಒಟ್ಟು ಮೊತ್ತ ತಾಳೆಯಾಗುತ್ತಿಲ್ಲ",
+  "receiptSaveAnywayBody": "ವಸ್ತುಗಳ ಮೊತ್ತ ರಸೀದಿಯ ಒಟ್ಟು ಮೊತ್ತದಿಂದ {difference} ವ್ಯತ್ಯಾಸವಿದೆ. ಇನ್ನೂ ಉಳಿಸಬೇಕೆ?",
+  "receiptSaveAnywayAction": "ಇನ್ನೂ ಉಳಿಸಿ",
+  "receiptNeedsDetails": "ಈ ರಸೀದಿಯನ್ನು ಉಳಿಸಲು ಅಂಗಡಿ ಮತ್ತು ದಿನಾಂಕವನ್ನು ಸೇರಿಸಿ.",
+  "receiptMissingFields": "ಓದಲಾಗಲಿಲ್ಲ: {fields}. ಪರಿಶೀಲಿಸುವಾಗ ಇವನ್ನು ಭರ್ತಿ ಮಾಡಬಹುದು.",
+  "cameraAccessDenied": "ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶ ಆಫ್ ಇದೆ. ರಸೀದಿ ಮತ್ತು ಲೇಬಲ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಆನ್ ಮಾಡಿ.",
+  "openSettingsAction": "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ",
+  "priceManualEntryAction": "ಬೆಲೆಯನ್ನು ಕೈಯಾರೆ ನಮೂದಿಸಿ",
+  "priceRetakeAction": "ಇನ್ನೊಂದು ಫೋಟೋ ತೆಗೆಯಿರಿ",
+  "receiptDateTimeLabel": "ದಿನಾಂಕ ಮತ್ತು ಸಮಯ"
 }

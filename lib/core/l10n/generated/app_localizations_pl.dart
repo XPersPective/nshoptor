@@ -1588,4 +1588,46 @@ class AppLocalizationsPl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Wykorzystano $percent% limitu';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Sprawdź i popraw';
+
+  @override
+  String get receiptEditDetailsTitle => 'Szczegóły paragonu';
+
+  @override
+  String get receiptDateTimeLabel => 'Data i godzina';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Suma się nie zgadza';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Suma produktów różni się o $difference od sumy na paragonie. Zapisać mimo to?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Zapisz mimo to';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Dodaj sklep i datę, aby zapisać ten paragon.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nie udało się odczytać: $fields. Możesz je uzupełnić podczas sprawdzania.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Dostęp do kamery jest wyłączony. Włącz go w ustawieniach, aby skanować paragony i etykiety.';
+
+  @override
+  String get openSettingsAction => 'Otwórz ustawienia';
+
+  @override
+  String get priceManualEntryAction => 'Wpisz cenę ręcznie';
+
+  @override
+  String get priceRetakeAction => 'Zrób kolejne zdjęcie';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
@@ -29,13 +30,15 @@ Future<CaptureOutcome> captureImageText(
     // Gallery originals can be HEIC/HEIF or tens of megapixels, which the
     // native recognizer rejects. Re-encoding to a bounded JPEG keeps fine
     // receipt print legible while making recognition reliable.
+    // On-device OCR needs ~13px per character on 48-column receipts:
+    // 2560px keeps small print readable; the image model keeps the measured
+    // 1600px so its upload still needs no slow re-encode (PB-207).
+    final longSide = requireText ? 2560.0 : 1600.0;
     picker = () async => (await ImagePicker().pickImage(
       source: source,
-      // Native downscale (fast on every device); 1600px keeps receipt print
-      // legible for OCR and the image model, which then needs no re-encode.
-      maxWidth: 1600,
-      maxHeight: 1600,
-      imageQuality: 85,
+      maxWidth: longSide,
+      maxHeight: longSide,
+      imageQuality: requireText ? 88 : 85,
     ))?.path;
   }
   final ownedSource = ocrSource == null ? _OwnedTextSource() : null;
@@ -59,6 +62,40 @@ Future<CaptureOutcome> captureImageText(
     }
   }
   if (context.mounted && outcome is CaptureFailed) {
+    // iOS never re-asks after a camera denial: without a way to Settings the
+    // camera flow is a dead end, so that case gets a dialog (PB-207).
+    if (outcome.errorCode == 'camera_access_denied') {
+      final openSettings = await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          key: const Key('camera_access_denied'),
+          content: Text(l10n.cameraAccessDenied),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: Text(l10n.cancelButton),
+            ),
+            FilledButton(
+              key: const Key('camera_open_settings'),
+              onPressed: () => Navigator.pop(dialogContext, true),
+              child: Text(l10n.openSettingsAction),
+            ),
+          ],
+        ),
+      );
+      if (openSettings == true) {
+        try {
+          await launchUrl(
+            Uri.parse('app-settings:'),
+            mode: LaunchMode.externalApplication,
+          );
+        } catch (_) {
+          // Settings deep link unavailable: the dialog already told the user
+          // what to change.
+        }
+      }
+      return outcome;
+    }
     final message = switch (outcome.stage) {
       CaptureStage.capture => l10n.imageCaptureFailed,
       CaptureStage.recognition => l10n.imageRecognitionFailed,

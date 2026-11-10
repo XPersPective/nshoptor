@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Tocca per rivederlo e salvarlo.",
   "receiptReadMoreTitle": "Fotografa il resto dello scontrino",
   "receiptReadFailedTitle": "Impossibile leggere lo scontrino",
-  "budgetAlertNear": "Usato il {percent}% del limite"
+  "budgetAlertNear": "Usato il {percent}% del limite",
+  "receiptReviewNowAction": "Controlla e correggi",
+  "receiptEditDetailsTitle": "Dettagli dello scontrino",
+  "receiptSaveAnywayTitle": "Il totale non corrisponde",
+  "receiptSaveAnywayBody": "Gli articoli differiscono dal totale dello scontrino di {difference}. Salvare comunque?",
+  "receiptSaveAnywayAction": "Salva comunque",
+  "receiptNeedsDetails": "Aggiungi negozio e data per salvare questo scontrino.",
+  "receiptMissingFields": "Impossibile leggere: {fields}. Puoi compilarli durante la verifica.",
+  "cameraAccessDenied": "L'accesso alla fotocamera è disattivato. Attivalo nelle Impostazioni per scansionare scontrini ed etichette.",
+  "openSettingsAction": "Apri Impostazioni",
+  "priceManualEntryAction": "Inserisci il prezzo a mano",
+  "priceRetakeAction": "Scatta un'altra foto",
+  "receiptDateTimeLabel": "Data e ora"
 }

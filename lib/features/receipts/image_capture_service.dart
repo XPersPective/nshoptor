@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart' show PlatformException;
+
 import 'ocr_text_source.dart';
 
 /// Result of selecting an image and recognizing its text. Parsing and native
@@ -42,7 +44,15 @@ Future<CaptureOutcome> scanImage({
   final String? path;
   try {
     path = await pickImage();
-  } catch (_) {
+  } catch (error) {
+    // image_picker reports denied camera access with this code; iOS never
+    // re-asks, so the UI offers a way to Settings (PB-207).
+    if (error is PlatformException && error.code == 'camera_access_denied') {
+      return const CaptureFailed(
+        stage: CaptureStage.capture,
+        errorCode: 'camera_access_denied',
+      );
+    }
     return const CaptureFailed(
       stage: CaptureStage.capture,
       errorCode: 'capture_failed',

@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Tik om te controleren en op te slaan.",
   "receiptReadMoreTitle": "Fotografeer de rest van de bon",
   "receiptReadFailedTitle": "De bon kon niet worden gelezen",
-  "budgetAlertNear": "{percent}% van de limiet gebruikt"
+  "budgetAlertNear": "{percent}% van de limiet gebruikt",
+  "receiptReviewNowAction": "Controleren en corrigeren",
+  "receiptEditDetailsTitle": "Bondetails",
+  "receiptSaveAnywayTitle": "Totaal komt niet overeen",
+  "receiptSaveAnywayBody": "De artikelen wijken {difference} af van het totaal op de bon. Toch opslaan?",
+  "receiptSaveAnywayAction": "Toch opslaan",
+  "receiptNeedsDetails": "Voeg de winkel en datum toe om deze bon op te slaan.",
+  "receiptMissingFields": "Kon niet worden gelezen: {fields}. Je kunt dit invullen tijdens het controleren.",
+  "cameraAccessDenied": "Cameratoegang staat uit. Zet hem aan in de instellingen om bonnen en labels te scannen.",
+  "openSettingsAction": "Instellingen openen",
+  "priceManualEntryAction": "Prijs handmatig invoeren",
+  "priceRetakeAction": "Nieuwe foto maken",
+  "receiptDateTimeLabel": "Datum en tijd"
 }

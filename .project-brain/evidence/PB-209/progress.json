@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "lib/features/discover/app_icon_cache.dart, lib/features/discover/discover_screen.dart, lib/features/discover/embedded_apps.dart, lib/features/home/home_screen.dart, test/features/discover/app_icon_cache_test.dart",
+  "strategy": "check",
+  "attempt": "d00fdc636923c4a2",
+  "repeats": 0,
+  "contract": "215cd4f75bd0cf67",
+  "usage": {
+    "checks": 1,
+    "seconds": 442.875
+  }
+}

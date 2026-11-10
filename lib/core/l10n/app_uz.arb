@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "Tekshirib saqlash uchun bosing.",
   "receiptReadMoreTitle": "Chekning qolgan qismini suratga oling",
   "receiptReadFailedTitle": "Chekni o‘qib bo‘lmadi",
-  "budgetAlertNear": "Limitning {percent}% ishlatildi"
+  "budgetAlertNear": "Limitning {percent}% ishlatildi",
+  "receiptReviewNowAction": "Tekshirib, tuzating",
+  "receiptEditDetailsTitle": "Chek ma'lumotlari",
+  "receiptSaveAnywayTitle": "Jami summa mos kelmaydi",
+  "receiptSaveAnywayBody": "Mahsulotlar summasi chek jami bilan {difference} farq qiladi. Baribir saqlansinmi?",
+  "receiptSaveAnywayAction": "Baribir saqlash",
+  "receiptNeedsDetails": "Bu chekni saqlash uchun do'kon va sanani kiriting.",
+  "receiptMissingFields": "O'qilmadi: {fields}. Ularni ko'rib chiqish paytida to'ldirishingiz mumkin.",
+  "cameraAccessDenied": "Kameraga kirish yopiq. Cheklar va yorliqlarni skanerlash uchun uni sozlamalardan yoqing.",
+  "openSettingsAction": "Sozlamalarni ochish",
+  "priceManualEntryAction": "Narxni qo'lda kiriting",
+  "priceRetakeAction": "Boshqa suratga oling",
+  "receiptDateTimeLabel": "Sana va vaqt"
 }

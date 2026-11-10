@@ -484,5 +484,17 @@
   "receiptReadDoneBody": "タップして確認・保存します。",
   "receiptReadMoreTitle": "レシートの残りを撮影してください",
   "receiptReadFailedTitle": "レシートを読み取れませんでした",
-  "budgetAlertNear": "上限の{percent}%を使用しました"
+  "budgetAlertNear": "上限の{percent}%を使用しました",
+  "receiptReviewNowAction": "確認して修正",
+  "receiptEditDetailsTitle": "レシートの詳細",
+  "receiptSaveAnywayTitle": "合計が一致しません",
+  "receiptSaveAnywayBody": "商品合計がレシートの合計と{difference}異なります。このまま保存しますか？",
+  "receiptSaveAnywayAction": "このまま保存",
+  "receiptNeedsDetails": "このレシートを保存するには店舗と日付を入力してください。",
+  "receiptMissingFields": "読み取れませんでした：{fields}。確認中に入力できます。",
+  "cameraAccessDenied": "カメラへのアクセスがオフです。レシートやラベルをスキャンするには設定でオンにしてください。",
+  "openSettingsAction": "設定を開く",
+  "priceManualEntryAction": "価格を手動で入力",
+  "priceRetakeAction": "撮り直す",
+  "receiptDateTimeLabel": "日付と時刻"
 }

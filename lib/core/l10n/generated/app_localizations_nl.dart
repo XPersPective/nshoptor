@@ -1588,4 +1588,46 @@ class AppLocalizationsNl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% van de limiet gebruikt';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Controleren en corrigeren';
+
+  @override
+  String get receiptEditDetailsTitle => 'Bondetails';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum en tijd';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totaal komt niet overeen';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'De artikelen wijken $difference af van het totaal op de bon. Toch opslaan?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Toch opslaan';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Voeg de winkel en datum toe om deze bon op te slaan.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Kon niet worden gelezen: $fields. Je kunt dit invullen tijdens het controleren.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Cameratoegang staat uit. Zet hem aan in de instellingen om bonnen en labels te scannen.';
+
+  @override
+  String get openSettingsAction => 'Instellingen openen';
+
+  @override
+  String get priceManualEntryAction => 'Prijs handmatig invoeren';
+
+  @override
+  String get priceRetakeAction => 'Nieuwe foto maken';
 }

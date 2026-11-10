@@ -1584,4 +1584,46 @@ class AppLocalizationsFi extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Rajasta käytetty $percent %';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Tarkista ja korjaa';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kuitin tiedot';
+
+  @override
+  String get receiptDateTimeLabel => 'Päivämäärä ja kellonaika';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Loppusumma ei täsmää';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Tuotteiden summa eroaa kuitin loppusummasta $difference. Tallennetaanko silti?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Tallenna silti';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Lisää kauppa ja päivämäärä tallentaaksesi kuitin.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ei voitu lukea: $fields. Voit täyttää ne tarkistuksen aikana.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameran käyttöoikeus on pois päältä. Ota se käyttöön asetuksista skannataksesi kuitteja ja hintalappuja.';
+
+  @override
+  String get openSettingsAction => 'Avaa asetukset';
+
+  @override
+  String get priceManualEntryAction => 'Syötä hinta manuaalisesti';
+
+  @override
+  String get priceRetakeAction => 'Ota uusi kuva';
 }

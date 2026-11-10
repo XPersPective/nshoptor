@@ -1576,4 +1576,46 @@ class AppLocalizationsVi extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Đã dùng $percent% hạn mức';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kiểm tra và sửa';
+
+  @override
+  String get receiptEditDetailsTitle => 'Chi tiết biên lai';
+
+  @override
+  String get receiptDateTimeLabel => 'Ngày và giờ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Tổng không khớp';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Tổng các mặt hàng chênh $difference so với tổng hóa đơn. Vẫn lưu chứ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Vẫn lưu';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Thêm cửa hàng và ngày để lưu biên lai này.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Không đọc được: $fields. Bạn có thể điền các mục này khi xem lại.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Quyền truy cập máy ảnh đang tắt. Bật trong Cài đặt để quét hóa đơn và nhãn giá.';
+
+  @override
+  String get openSettingsAction => 'Mở Cài đặt';
+
+  @override
+  String get priceManualEntryAction => 'Nhập giá thủ công';
+
+  @override
+  String get priceRetakeAction => 'Chụp ảnh khác';
 }

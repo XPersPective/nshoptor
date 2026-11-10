@@ -18,7 +18,7 @@ isim içermediği için anonim veya kişisel veri dışı saymayın.
 | Kurulum kimliği / satın alma SHA-256 özeti / plan / bağlı kota sahipliği | Worker/D1; yetki önbelleği süreli, sahiplik süresiz tutulur; kimlikler Qwen'e iletilmez | Kota, işlevsellik ve kötüye kullanım önleme; AI kullanılırken |
 | Satın alma geçmişi / Play jetonu | Google Play doğrulaması; ham jeton kalıcı kaydedilmez | İsteğe bağlı ücretli özellik |
 | IP kaynaklı yaklaşık konum, cihaz/reklam kimlikleri, ürün etkileşimleri, tanılama | AdMob/Google SDK işleme ve paylaşımı; reklamsız hak SDK hiç başlamaz garantisi değildir | Reklam, analitik, dolandırıcılık önleme |
-| Fotoğraf/ses | Uygulamanın OCR/ses akışları yüklemez; cihazda işlenir | Yerel giriş |
+| Fotoğraf/ses | Fiş/etiket fotoğrafı: cihaz OCR'u yereldir; AI okuma AÇIKken küçültülmüş geçici kopya HTTPS ile vekile gider ve kalıcı tutulmaz. Ses yereldir | Yerel giriş + isteğe bağlı AI (kapatılabilir) |
 | Kullanıcının dışa aktardığı dosya | Seçilen sistem/bulut dosya sağlayıcısı | Kullanıcının başlattığı kaydetme |
 
 AI için "geçici işleme" veya hizmet sağlayıcı paylaşım istisnası otomatik

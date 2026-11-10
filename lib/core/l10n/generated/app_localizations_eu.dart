@@ -1589,4 +1589,46 @@ class AppLocalizationsEu extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Mugaren %$percent erabili da';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Berrikusi eta zuzendu';
+
+  @override
+  String get receiptEditDetailsTitle => 'Ordainagiriaren xehetasunak';
+
+  @override
+  String get receiptDateTimeLabel => 'Data eta ordua';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Guztizkoa ez dator bat';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Artikuluak ez datoz bat ordainagiriaren guztizkoarekin, $difference aldea dago. Hala ere gorde?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Gorde hala ere';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Gehitu denda eta data ordainagiri hau gordetzeko.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ezin izan da irakurri: $fields. Berrikustean bete ditzakezu.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kamerarako sarbidea desaktibatuta dago. Gaitu ezarpenetan ordainagiriak eta etiketak eskaneatzeko.';
+
+  @override
+  String get openSettingsAction => 'Ireki ezarpenak';
+
+  @override
+  String get priceManualEntryAction => 'Sartu prezioa eskuz';
+
+  @override
+  String get priceRetakeAction => 'Atera beste argazki bat';
 }

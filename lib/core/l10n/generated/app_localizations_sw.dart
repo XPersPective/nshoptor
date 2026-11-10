@@ -1585,4 +1585,46 @@ class AppLocalizationsSw extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Asilimia $percent ya kikomo imetumika';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kagua na urekebishe';
+
+  @override
+  String get receiptEditDetailsTitle => 'Maelezo ya risiti';
+
+  @override
+  String get receiptDateTimeLabel => 'Tarehe na saa';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Jumla hailingani';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Jumla ya bidhaa inatofautiana kwa $difference na jumla ya risiti. Ihifadhi vyovyote vile?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Hifadhi vyovyote vile';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Ongeza duka na tarehe kuhifadhi risiti hii.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Haikusomwa: $fields. Unaweza kuzijaza unapokagua.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Ruhusa ya kamera imezimwa. Iwashe kwenye Mipangilio ili uskane risiti na lebo.';
+
+  @override
+  String get openSettingsAction => 'Fungua Mipangilio';
+
+  @override
+  String get priceManualEntryAction => 'Weka bei kwa mkono';
+
+  @override
+  String get priceRetakeAction => 'Piga picha nyingine';
 }

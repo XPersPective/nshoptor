@@ -1580,4 +1580,46 @@ class AppLocalizationsEt extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Limiidist on kasutatud $percent%';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kontrolli ja paranda';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kviitungi andmed';
+
+  @override
+  String get receiptDateTimeLabel => 'Kuupäev ja kellaaeg';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Kogusumma ei klapi';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Kaubad erinevad kviitungi kogusummast $difference võrra. Salvestada sellegipoolest?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Salvesta sellegipoolest';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Selle kviitungi salvestamiseks lisa pood ja kuupäev.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ei saanud lugeda: $fields. Saad need ülevaatamise ajal ise täita.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kaamerale juurdepääs on väljas. Lülita see seadetest sisse, et skaneerida kviitungeid ja hinnasilte.';
+
+  @override
+  String get openSettingsAction => 'Ava seaded';
+
+  @override
+  String get priceManualEntryAction => 'Sisesta hind käsitsi';
+
+  @override
+  String get priceRetakeAction => 'Pildista uuesti';
 }

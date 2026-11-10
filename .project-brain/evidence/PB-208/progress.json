@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "lib/features/receipts/shelf_label/ai_label_reader.dart, lib/features/receipts/shelf_label/mlkit_text_source.dart, lib/features/receipts/shelf_label/price_candidate_sheet.dart, lib/features/receipts/shelf_label/price_candidates.dart, lib/features/receipts/shelf_label/shelf_price_flow.dart; inspect git status for the complete dirty set",
+  "strategy": "check",
+  "attempt": "9aea6aaca2cac248",
+  "repeats": 0,
+  "contract": "b38f4ee2d359ceb7",
+  "usage": {
+    "checks": 1,
+    "seconds": 171.531
+  }
+}

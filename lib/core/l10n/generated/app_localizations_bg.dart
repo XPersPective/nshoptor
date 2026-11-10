@@ -1587,4 +1587,46 @@ class AppLocalizationsBg extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Използвани са $percent% от лимита';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Проверете и коригирайте';
+
+  @override
+  String get receiptEditDetailsTitle => 'Детайли на бележката';
+
+  @override
+  String get receiptDateTimeLabel => 'Дата и час';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Общата сума не съвпада';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Артикулите се различават с $difference от общата сума на бележката. Да се запази ли въпреки това?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Запази въпреки това';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Добавете магазина и датата, за да запазите тази бележка.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Не можа да се прочете: $fields. Може да ги попълните при прегледа.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Достъпът до камерата е изключен. Включете го в настройките, за да сканирате бележки и етикети.';
+
+  @override
+  String get openSettingsAction => 'Отворете настройките';
+
+  @override
+  String get priceManualEntryAction => 'Въведете цената ръчно';
+
+  @override
+  String get priceRetakeAction => 'Направете нова снимка';
 }

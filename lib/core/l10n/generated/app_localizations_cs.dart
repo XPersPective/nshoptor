@@ -1582,4 +1582,46 @@ class AppLocalizationsCs extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Využito $percent % limitu';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Zkontrolovat a opravit';
+
+  @override
+  String get receiptEditDetailsTitle => 'Podrobnosti účtenky';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum a čas';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Celková částka nesouhlasí';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Položky se liší o $difference od celkové částky na účtence. Přesto uložit?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Přesto uložit';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Pro uložení účtenky doplňte obchod a datum.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nelze přečíst: $fields. Můžete je doplnit při kontrole.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Přístup ke kameře je vypnutý. Zapněte ho v nastavení, abyste mohli skenovat účtenky a cenovky.';
+
+  @override
+  String get openSettingsAction => 'Otevřít nastavení';
+
+  @override
+  String get priceManualEntryAction => 'Zadat cenu ručně';
+
+  @override
+  String get priceRetakeAction => 'Vyfotit znovu';
 }

@@ -17,6 +17,7 @@ import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
 import '../history/history_screen.dart';
 import '../discover/discover_screen.dart';
+import '../discover/embedded_apps.dart';
 import '../onboarding/coach_tour.dart';
 import '../onboarding/first_run_guide.dart';
 import '../subscription/plan_badge.dart';
@@ -406,6 +407,9 @@ class _HomeShellState extends State<HomeShell> {
                   repository: OtherAppsRepository(
                     appsUrl: widget.appIdentity!.otherAppsUrl!,
                     cacheStore: widget.appsCacheStore,
+                    // First offline launch still lists the sibling apps
+                    // (PB-209); the feed refreshes daily from the network.
+                    embedded: embeddedOtherApps,
                   ),
                 ),
         ),

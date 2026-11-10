@@ -1586,4 +1586,46 @@ class AppLocalizationsMk extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Искористени се $percent% од лимитот';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Проверете и поправете';
+
+  @override
+  String get receiptEditDetailsTitle => 'Податоци за сметката';
+
+  @override
+  String get receiptDateTimeLabel => 'Датум и време';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Износот не се совпаѓа';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Збирот на производите се разликува за $difference од вкупниот износ на сметката. Да зачувам и покрај тоа?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Зачувај и покрај тоа';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Додадете продавница и датум за да ја зачувате сметката.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Не може да се прочита: $fields. Може да ги пополните при прегледот.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Пристапот до камерата е исклучен. Вклучете го во Поставките за да скенирате сметки и етикети.';
+
+  @override
+  String get openSettingsAction => 'Отвори Поставки';
+
+  @override
+  String get priceManualEntryAction => 'Внесете ја цената рачно';
+
+  @override
+  String get priceRetakeAction => 'Сликајте повторно';
 }

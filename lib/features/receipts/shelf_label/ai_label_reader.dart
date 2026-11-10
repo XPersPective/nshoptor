@@ -6,9 +6,10 @@ import 'price_candidates.dart';
 import '../ocr_currency.dart';
 import '../ocr_text_source.dart';
 
-/// Raf etiketi: cihazda okunan OCR metninden fiyatı AI ile çıkarır (PB-052).
-/// Fotoğraf gönderilmez, yalnız metin. Sonuçlar yalnız adaydır; kullanıcı
-/// seçer. Başarısızlıkta boş liste — çağıran yerel çıkarımı kullanır.
+/// Raf etiketi: AI açıkken küçültülmüş fotoğraf kopyası okuma için vekile
+/// gider (PB-052, ADR-004); AI kapalıysa hiçbir şey gönderilmez. Sonuçlar
+/// yalnız adaydır; kullanıcı seçer. Başarısızlıkta boş liste — çağıran
+/// yerel çıkarımı kullanır.
 class AiLabelReader {
   AiLabelReader(this.ai, {this.localeCode = 'tr'});
 

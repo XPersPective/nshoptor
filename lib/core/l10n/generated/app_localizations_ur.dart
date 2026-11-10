@@ -1580,4 +1580,46 @@ class AppLocalizationsUr extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'حد کا $percent٪ استعمال ہو چکا ہے';
   }
+
+  @override
+  String get receiptReviewNowAction => 'جائزہ لیں اور درست کریں';
+
+  @override
+  String get receiptEditDetailsTitle => 'رسید کی تفصیلات';
+
+  @override
+  String get receiptDateTimeLabel => 'تاریخ اور وقت';
+
+  @override
+  String get receiptSaveAnywayTitle => 'کل رقم میل نہیں کھاتی';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'اشیا کا مجموعہ رسید کی کل رقم سے $difference مختلف ہے۔ پھر بھی محفوظ کریں؟';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'پھر بھی محفوظ کریں';
+
+  @override
+  String get receiptNeedsDetails =>
+      'اس رسید کو محفوظ کرنے کے لیے دکان اور تاریخ شامل کریں۔';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'پڑھا نہیں جا سکا: $fields۔ آپ جائزے کے دوران یہ بھر سکتے ہیں۔';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'کیمرے تک رسائی بند ہے۔ رسیدیں اور لیبل اسکین کرنے کے لیے اسے ترتیبات میں کھولیں۔';
+
+  @override
+  String get openSettingsAction => 'ترتیبات کھولیں';
+
+  @override
+  String get priceManualEntryAction => 'قیمت خود درج کریں';
+
+  @override
+  String get priceRetakeAction => 'دوسری تصویر لیں';
 }
