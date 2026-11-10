@@ -58,6 +58,15 @@ class ReceiptParser {
     '合計',
     '総計',
     '总计',
+    'ödenecek tutar',
+    'odenecek tutar',
+    'ödenecek',
+    'odenecek',
+    'fatura tutarı',
+    'fatura tutari',
+    'amount due',
+    'total due',
+    'balance due',
   ];
   static const List<String> _subtotalMarkers = [
     'ara toplam',
@@ -95,6 +104,10 @@ class ReceiptParser {
   static const List<String> _skipWords = [
     'fiş',
     'fis',
+    'fatura',
+    'invoice',
+    'e-arşiv',
+    'e-arsiv',
     'no:',
     'no :',
     'kasiyer',
@@ -253,14 +266,13 @@ class ReceiptParser {
         dateCandidate = _tryParseDate(text);
       }
 
-      // Telefon / kart / vergi no satırları asla ürün veya toplam değildir.
+      // Telefon / kart / vergi no / ödeme meta satırları asla ürün veya toplam değildir.
       if (_phonePattern.hasMatch(text) ||
           _cardMaskPattern.hasMatch(text) ||
-          _taxNoPattern.hasMatch(text)) {
+          _taxNoPattern.hasMatch(text) ||
+          _isPaymentMetadata(lower)) {
         continue;
       }
-
-      if (_isStructuralLine(lower) || _isPaymentMetadata(lower)) continue;
 
       // Turkish fiscal printers mark campaign discounts by a trailing minus
       // (`25TLFINISH110TL *149,00-`) without an "indirim" word.
@@ -291,6 +303,8 @@ class ReceiptParser {
           continue;
         }
       }
+
+      if (_isStructuralLine(lower)) continue;
 
       // Mağaza adayı: fiş başındaki, harf ağırlıklı kısa satırlar.
       if (storeCandidates.isEmpty &&

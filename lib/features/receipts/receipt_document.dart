@@ -561,12 +561,13 @@ final _currencyToken =
     '(?:${Currency.all.map((currency) => currency.code.toLowerCase()).join('|')}'
     r'|tl|[₺€£$])';
 final _totalLine = RegExp(
-  r'^[*#\s]*(?:genel\s+t[o0]plam|t[o0]plam(?:\s+tutar)?|[o0]denecek(?:\s+tutar)?|grand\s+t[o0]tal|t[o0]tal|summe|gesamt)'
+  r'^[*#\s]*(?:genel\s+t[o0]plam|t[o0]plam(?:\s+tutar)?|fatura\s+tutar[ıi]|[o0]denecek(?:\s+tutar)?|grand\s+t[o0]tal|t[o0]tal|amount\s+due|total\s+due|summe|gesamt)'
   r'\s*[:=*]?\s*'
   '(?:$_currencyToken)?'
   r'\s*(\d+(?:[.,\u066b]\d+)*)\s*'
   '(?:$_currencyToken)?'
   r'\s*$',
+  caseSensitive: false,
 );
 
 int? _readTotal(List<String> lines, String currencyCode) {
