@@ -12,6 +12,15 @@
 	<string>Add shopping items by speaking, for example one kilo of apples.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Turn your spoken shopping items into text on your device.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to deliver relevant ads and keep the free tier supported.</string>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>cstr6suwn9.skadnetwork</string>
+		</dict>
+	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

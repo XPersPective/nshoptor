@@ -55,6 +55,10 @@ class ReceiptParser {
     'totale',
     'итого',
     'إجمالي',
+    'المجموع',
+    'المجموع الكلي',
+    'الصافي',
+    'المبلغ المستحق',
     '合計',
     '総計',
     '总计',
@@ -78,6 +82,7 @@ class ReceiptParser {
     'sous-total',
     'subtotale',
     'подитог',
+    'المجموع الفرعي',
   ];
   static final String _splitTotalCurrencyPattern =
       r'(?:\b(?:' +
@@ -92,13 +97,20 @@ class ReceiptParser {
     caseSensitive: false,
     unicode: true,
   );
-  static const List<String> _discountMarkers = ['indirim', 'iskonto'];
+  static const List<String> _discountMarkers = [
+    'indirim',
+    'iskonto',
+    'خصم',
+    'تخفيض',
+  ];
   static const List<String> _taxMarkers = [
     'kdv',
     'topkdv',
     'vergi',
     'vat',
     'tax',
+    'ضريبة',
+    'ض.ق.م',
   ];
   static const List<String> _storeWords = ['market', 'mağaza', 'merk'];
   static const List<String> _skipWords = [
@@ -811,17 +823,30 @@ class ReceiptParser {
   }
 
   DateTime? _tryParseDate(String text) {
-    final m =
-        RegExp(r'(\d{1,2})[./\u066b-](\d{1,2})[./\u066b-](\d{2,4})')
-            .firstMatch(text);
+    final iso = RegExp(
+      r'(\d{4})[./\u066b-](\d{1,2})[./\u066b-](\d{1,2})',
+    ).firstMatch(text);
+    if (iso != null) {
+      final year = int.parse(iso.group(1)!);
+      final month = int.parse(iso.group(2)!);
+      final day = int.parse(iso.group(3)!);
+      if (month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+        final dt = DateTime(year, month, day);
+        if (dt.year == year && dt.month == month && dt.day == day) return dt;
+      }
+    }
+    final m = RegExp(
+      r'(\d{1,2})[./\u066b-](\d{1,2})[./\u066b-](\d{2,4})',
+    ).firstMatch(text);
     if (m == null) return null;
+    final day = int.parse(m.group(1)!);
+    final month = int.parse(m.group(2)!);
     var year = int.parse(m.group(3)!);
     if (year < 100) year += 2000;
-    try {
-      return DateTime(year, int.parse(m.group(2)!), int.parse(m.group(1)!));
-    } on FormatException {
-      return null;
-    }
+    if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+    final dt = DateTime(year, month, day);
+    if (dt.year != year || dt.month != month || dt.day != day) return null;
+    return dt;
   }
 
   bool _hasDigits(String text) => RegExp(r'\d').hasMatch(text);

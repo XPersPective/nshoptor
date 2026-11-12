@@ -251,6 +251,14 @@ class ReceiptReviewController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Para birimi uyuşmazlığını/belirsizliğini kullanıcı onayıyla çözer.
+  void confirmCurrency(String currencyCode) {
+    confirmedCurrency = currencyCode;
+    detectedCurrency = currencyCode;
+    currencyNeedsConfirmation = false;
+    notifyListeners();
+  }
+
   /// Satır düzeltmesi (spec §6.9): ad, miktar/birim ve tutar kullanıcı
   /// onayıyla değişir; ham OCR kanıtı [ReviewLine.rawText] olarak kalır.
   void editLine(
@@ -437,11 +445,15 @@ class ReceiptReviewController extends ChangeNotifier {
           'Receipt units require confirmation before merging',
         );
       }
-      secondQuantity = UnitConversion.convert(
-        secondQuantity,
-        second.unitCode!,
-        first.unitCode!,
-      );
+      try {
+        secondQuantity = UnitConversion.convert(
+          secondQuantity,
+          second.unitCode!,
+          first.unitCode!,
+        );
+      } on UnsupportedConversionError {
+        secondQuantity = null;
+      }
     }
     first
       ..name = '${first.name} ${second.name}'.trim()
@@ -640,8 +652,9 @@ class ReceiptReviewController extends ChangeNotifier {
           throw StateError('Receipt requires an active shopping list');
         }
         if (currencyNeedsConfirmation ||
-            document != null &&
-                document!.metadata.currencyCode != list.currencyCode ||
+            (confirmedCurrency == null &&
+                document != null &&
+                document!.metadata.currencyCode != list.currencyCode) ||
             detectedCurrency != null && detectedCurrency != list.currencyCode ||
             confirmedCurrency != null &&
                 confirmedCurrency != list.currencyCode) {

@@ -5,6 +5,7 @@ import 'package:nshoptor/core/money/decimal_fixed.dart';
 import 'package:nshoptor/core/quantity/unit_code.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
+import 'package:nshoptor/features/receipts/parser/receipt_parser.dart';
 import 'package:nshoptor/features/receipts/receipt_document.dart';
 import 'package:nshoptor/features/receipts/review/receipt_review_controller.dart';
 
@@ -137,5 +138,93 @@ void main() {
     expect(saveOnce, throwsA(isA<ReceiptAlreadyImported>()));
     expect((await db.select(db.receipts).get()), hasLength(1));
     expect((await db.select(db.purchaseEntries).get()), hasLength(2));
+  });
+
+  test('confirmCurrency clears currency mismatch/ambiguity and allows commit',
+      () async {
+    final doc = ReceiptDocument.fromScan(
+      OcrScanResult(
+        lines: [
+          for (final text in [
+            'MIGROS MARKET',
+            '2026-10-24',
+            'FIS NO: 0042',
+            'ELMA 20,00 \$',
+            'TOPLAM 20,00 \$',
+          ])
+            OcrLine(text: text),
+        ],
+      ),
+      currencyCode: 'TRY',
+    );
+    final controller = controllerFor(doc);
+    controller.currencyNeedsConfirmation = true;
+    controller.detectedCurrency = 'USD';
+    controller.confirmCurrency('TRY');
+    expect(controller.currencyNeedsConfirmation, isFalse);
+    expect(controller.detectedCurrency, 'TRY');
+    expect(controller.confirmedCurrency, 'TRY');
+    controller.setDetails(
+      store: 'MIGROS MARKET',
+      dateTime: DateTime(2026, 10, 24),
+    );
+    controller.acceptPending();
+    await controller.commit(
+      selection: ReceiptSelection.confirmedSubset,
+      overrideIncomplete: true,
+    );
+    expect(await db.select(db.purchaseEntries).get(), hasLength(1));
+  });
+
+  test('cross-dimension units do not crash mergeLines', () async {
+    final doc = unreadHeader();
+    final controller = controllerFor(doc);
+    controller.editLine(
+      0,
+      name: 'Süt',
+      quantity: DecimalFixed.fromInt(2),
+      unitCode: UnitCode.litre,
+      lineTotalMinor: 2000,
+    );
+    controller.editLine(
+      1,
+      name: 'Ekmek',
+      quantity: DecimalFixed.fromInt(1),
+      unitCode: UnitCode.adet,
+      lineTotalMinor: 4000,
+    );
+    controller.mergeLines(0, 1);
+    expect(controller.lines, hasLength(1));
+    expect(controller.lines[0].lineTotalMinor, 6000);
+    controller.setDetails(
+      store: 'A101 MARKET',
+      dateTime: DateTime(2026, 11, 1, 18, 41),
+    );
+    controller.acceptPending();
+    await controller.commit(
+      selection: ReceiptSelection.confirmedSubset,
+      overrideIncomplete: true,
+    );
+    expect(await db.select(db.purchaseEntries).get(), hasLength(1));
+  });
+
+  test('ReceiptParser parses ISO YYYY-MM-DD dates and Arabic total markers',
+      () {
+    final parsed = ReceiptParser().parse(
+      OcrScanResult(
+        lines: [
+          for (final text in const [
+            'متجر النور',
+            '2026-10-24',
+            'حليب 15,00',
+            'المجموع 15,00',
+          ])
+            OcrLine(text: text),
+        ],
+      ),
+    );
+    expect(parsed.dateCandidate, DateTime(2026, 10, 24));
+    expect(parsed.totalMinor, 1500);
+    expect(parsed.lines.map((e) => e.name), ['حليب']);
   });
 }

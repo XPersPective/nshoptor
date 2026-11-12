@@ -113,6 +113,12 @@ Future<void> main() async {
   policy.startSession(DateTime.now());
   AdPolicyPersistence.save(adsAdapter, policy);
   final bannerController = BannerAdController(policy: policy);
+  final hasBannerUnit = adUnitEnabled(
+    platform: defaultTargetPlatform,
+    releaseMode: kReleaseMode,
+    androidUnit: const String.fromEnvironment('ADMOB_BANNER_ANDROID'),
+    iosUnit: const String.fromEnvironment('ADMOB_BANNER_IOS'),
+  );
   final rewardedManager = RewardedAdManager(policy: policy);
   final hasRewardedUnit = adUnitEnabled(
     platform: defaultTargetPlatform,
@@ -126,7 +132,7 @@ Future<void> main() async {
     onReady: () => policy.setSdkReady(true),
     load: () async {
       policy.setPro(adFree());
-      bannerController.load();
+      if (hasBannerUnit) bannerController.load();
       if (hasRewardedUnit) await rewardedManager.load();
     },
   );

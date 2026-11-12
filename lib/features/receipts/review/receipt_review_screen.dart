@@ -133,10 +133,27 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                     _c.detectedCurrency != widget.currency)
               Padding(
                 padding: const EdgeInsets.all(12),
-                child: Text(
-                  '${l10n.currencyLabel}: ${_c.detectedCurrency ?? '?'} → ${widget.currency}. ${l10n.invalidAmountError}',
-                  key: const Key('receipt_currency_mismatch'),
-                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '${l10n.currencyLabel}: ${_c.detectedCurrency ?? '?'} → ${widget.currency}. ${l10n.invalidAmountError}',
+                        key: const Key('receipt_currency_mismatch'),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    FilledButton.tonalIcon(
+                      key: const Key('receipt_confirm_currency'),
+                      onPressed: _editable
+                          ? () => _c.confirmCurrency(widget.currency)
+                          : null,
+                      icon: const Icon(Icons.check, size: 18),
+                      label: Text(widget.currency),
+                    ),
+                  ],
                 ),
               ),
             if (_failureMessage != null)

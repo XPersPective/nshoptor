@@ -71,7 +71,8 @@ Future<PriceCandidate?> readShelfCandidate(
         scan.lines.map((l) => l.text).join(String.fromCharCode(10)),
         fallback: currencyCode,
       );
-      if (evidence.conflictsWith(currencyCode)) {
+      final currencyConflict = evidence.conflictsWith(currencyCode);
+      if (currencyConflict) {
         ScaffoldMessenger.of(context)
           ..clearSnackBars()
           ..showSnackBar(
@@ -82,10 +83,11 @@ Future<PriceCandidate?> readShelfCandidate(
               showCloseIcon: true,
             ),
           );
-        return null;
       }
-      final local = ShelfPriceExtractor(defaultCurrency: currencyCode)
-          .extract(scan.lines);
+      final local = currencyConflict
+          ? const <PriceCandidate>[]
+          : ShelfPriceExtractor(defaultCurrency: currencyCode)
+              .extract(scan.lines);
       final ocrText = scan.lines
           .map((l) => l.text)
           .join(String.fromCharCode(10));
