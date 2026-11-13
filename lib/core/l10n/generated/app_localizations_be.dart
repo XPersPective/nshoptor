@@ -1638,4 +1638,32 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Грыфель';
+
+  @override
+  String get receiptContinueSame => 'Працягнуць той жа чэк';
+
+  @override
+  String get receiptCaptureDone => 'Гатова';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count старонак захопана';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Чэк у чарзе — падрыхтоўка ў фоне.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Да $max старонак можна дадаць на адзін чэк.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Чытаем цэннікавую этикетку…';
+
+  @override
+  String get shelfLabelContinueOther => 'Сканаваць іншы тавар';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Цэннікавая этикетка чытаецца ў фоне.';
 }

@@ -11,6 +11,7 @@ import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/ai/ai_client.dart';
+import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/receipt_capture_flow.dart';
 import 'package:nshoptor/features/receipts/receipt_draft_repository.dart';
@@ -42,6 +43,10 @@ void main() {
           baseUrl: 'https://x',
           httpClient: MockClient((_) => answer.future),
         );
+        final ownerListId = await ListRepository(db).createList(
+          title: 'A101 MARKET',
+          currencyCode: 'TRY',
+        );
         int? returned = -1;
         await tester.pumpWidget(
           MaterialApp(
@@ -61,6 +66,7 @@ void main() {
                     returned = await openReceiptCaptureFlow(
                       context,
                       db: db,
+                      listId: ownerListId,
                       currencyCode: 'TRY',
                       ai: ai,
                       pickImage: () async => 'picked.jpg',
@@ -92,11 +98,14 @@ void main() {
         await settle();
         expect(find.byKey(const Key('receipt_reading_progress')), findsNothing);
         expect(returned, isNull);
-        final initial = (await ReceiptDraftRepository(db).pending()).single;
+        final initial = (await ReceiptDraftRepository(
+          db,
+        ).pending(listId: ownerListId)).single;
         if (scenario == 'deleted') {
           await ReceiptRepository(db).delete(initial.id);
         } else if (scenario == 'superseded') {
           await ReceiptDraftRepository(db).save(
+            listId: ownerListId,
             draftId: initial.id,
             document: initial.document,
             imagePaths: ['replacement-photo'],
@@ -133,9 +142,10 @@ void main() {
         await settle();
 
         if (scenario == 'deleted' || scenario == 'superseded') {
-          expect(await db.select(db.shoppingLists).get(), isEmpty);
           expect(await db.select(db.plannedItems).get(), isEmpty);
-          final drafts = await ReceiptDraftRepository(db).pending();
+          final drafts = await ReceiptDraftRepository(
+            db,
+          ).pending(listId: ownerListId);
           if (scenario == 'deleted') {
             expect(drafts, isEmpty);
           } else {

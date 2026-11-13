@@ -1,11 +1,30 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+import 'package:napp_core/napp_core.dart' show SettingsStore;
 
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
+import 'package:nshoptor/features/ai/ai_client.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/shelf_label/price_candidates.dart';
 import 'package:nshoptor/features/receipts/shelf_label/shelf_price_flow.dart';
+
+class _CountingOcr implements OcrTextSource {
+  _CountingOcr(this.result);
+  final OcrScanResult result;
+  int calls = 0;
+
+  @override
+  Future<OcrScanResult> scan(String _) async {
+    calls++;
+    return result;
+  }
+}
 
 OcrScanResult _scan(List<String> rows) =>
     OcrScanResult(lines: [for (final text in rows) OcrLine(text: text)]);
@@ -157,6 +176,156 @@ void main() {
     await tester.pumpAndSettle();
     expect(result, isNull);
     expect(picks, 2);
+  });
+
+  testWidgets('Server Vision AI is primary for shelf labels and skips ML Kit', (
+    tester,
+  ) async {
+    final countingOcr = _CountingOcr(_scan(['99,00 TL']));
+    final ai = AiClient(
+      store: SettingsStore(),
+      baseUrl: 'https://x',
+      httpClient: MockClient((request) async {
+        final body = jsonDecode(request.body) as Map<String, dynamic>;
+        expect(body['task'], 'read_label_image');
+        return http.Response(
+          jsonEncode({
+            'tier': 'pro',
+            'used': 1,
+            'limit': 100,
+            'result': {
+              'schema': 1,
+              'status': 'ok',
+              'productName': 'Çay 500 g',
+              'price': '49.90',
+              'currency': 'TRY',
+            },
+          }),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        );
+      }),
+    );
+
+    PriceCandidate? picked;
+    await tester.pumpWidget(_app((context) async {
+      picked = await readShelfCandidate(
+        context,
+        currencyCode: 'TRY',
+        ai: ai,
+        pickImage: () async => 'label-ai.img',
+        ocrSource: countingOcr,
+        encodeAiImage: (p) async => '/9j/$p',
+      );
+    }));
+    await tester.tap(find.byKey(const Key('open_flow')));
+    for (var i = 0; i < 20; i++) {
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.runAsync(() async {});
+    }
+    await tester.pumpAndSettle();
+
+    expect(countingOcr.calls, 0);
+    await tester.tap(find.byKey(const Key('price_candidate_0')));
+    await tester.pumpAndSettle();
+    expect(picked?.value.toDbString(), '49.90');
+    expect(picked?.productName, 'Çay 500 g');
+  });
+
+  testWidgets('unavailable AI falls back cleanly to local OCR once', (
+    tester,
+  ) async {
+    final countingOcr = _CountingOcr(_scan(['KAHVE 18,50 TL']));
+    final ai = AiClient(
+      store: SettingsStore(),
+      baseUrl: 'https://x',
+      httpClient: MockClient(
+        (_) async => http.Response('{"error":"offline"}', 503),
+      ),
+    );
+
+    PriceCandidate? picked;
+    await tester.pumpWidget(_app((context) async {
+      picked = await readShelfCandidate(
+        context,
+        currencyCode: 'TRY',
+        ai: ai,
+        pickImage: () async => 'label-off.img',
+        ocrSource: countingOcr,
+        encodeAiImage: (p) async => '/9j/$p',
+      );
+    }));
+    await tester.tap(find.byKey(const Key('open_flow')));
+    for (var i = 0; i < 20; i++) {
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.runAsync(() async {});
+    }
+    await tester.pumpAndSettle();
+
+    expect(countingOcr.calls, 1);
+    await tester.tap(find.byKey(const Key('price_candidate_0')));
+    await tester.pumpAndSettle();
+    expect(picked?.value.toDbString(), '18.50');
+  });
+
+  testWidgets('non-blocking shelf label capture lets user move to next item before AI finishes', (
+    tester,
+  ) async {
+    final pendingAi = Completer<http.Response>();
+    final ai = AiClient(
+      store: SettingsStore(),
+      baseUrl: 'https://x',
+      httpClient: MockClient((_) => pendingAi.future),
+    );
+    final resolved = <List<PriceCandidate>>[];
+    var picks = 0;
+
+    await tester.pumpWidget(_app((context) async {
+      await readShelfCandidate(
+        context,
+        currencyCode: 'TRY',
+        ai: ai,
+        pickImage: () async => 'label-${picks++}.img',
+        ocrSource: _CountingOcr(_scan(const [])),
+        encodeAiImage: (p) async => '/9j/$p',
+        onBackgroundResolved: resolved.add,
+      );
+    }));
+
+    await tester.tap(find.byKey(const Key('open_flow')));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+
+    expect(find.byKey(const Key('shelf_label_reading_progress')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('shelf_label_continue_other')));
+    await tester.pumpAndSettle();
+
+    // Caller unblocked immediately and can open next capture right away.
+    expect(find.byKey(const Key('open_flow')), findsOneWidget);
+    expect(resolved, isEmpty);
+
+    pendingAi.complete(
+      http.Response(
+        jsonEncode({
+          'tier': 'pro',
+          'used': 1,
+          'limit': 100,
+          'result': {
+            'schema': 1,
+            'status': 'ok',
+            'productName': 'Peynir',
+            'price': '79.50',
+            'currency': 'TRY',
+          },
+        }),
+        200,
+        headers: {'content-type': 'application/json; charset=utf-8'},
+      ),
+    );
+    await tester.runAsync(() async {});
+    await tester.pumpAndSettle();
+    expect(resolved, hasLength(1));
+    expect(resolved.single.single.value.toDbString(), '79.50');
   });
 }
 

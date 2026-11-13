@@ -1634,4 +1634,33 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Leiklip';
+
+  @override
+  String get receiptContinueSame => 'Gaan voort met dieselfde kwitansie';
+
+  @override
+  String get receiptCaptureDone => 'Klaar';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count bladsye vasgelê';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Kwitansie in waglys — word agtertoets voorberei.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Tot $max bladsye kan per kwitansie gevoeg word.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lees prysetiket…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skandeer nog \'n item';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Prysetiket word agtertoets gelees.';
 }

@@ -1628,4 +1628,34 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get paletteSlate => 'سلیٹ';
+
+  @override
+  String get receiptContinueSame => 'یہی رسید جاری رکھیں';
+
+  @override
+  String get receiptCaptureDone => 'مکمل';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count صفحات کیمرے میں لیے گئے';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'رسید قطار میں ہے — پس منظر میں تیار ہو رہی ہے۔';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ایک رسید میں زیادہ سے زیادہ $max صفحات شامل کیے جا سکتے ہیں۔';
+  }
+
+  @override
+  String get shelfLabelReading => 'قیمت کا لیبل پڑھا جا رہا ہے…';
+
+  @override
+  String get shelfLabelContinueOther => 'کوئی اور آئٹم اسکین کریں';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'قیمت کا لیبل پس منظر میں پڑھا جا رہا ہے۔';
 }

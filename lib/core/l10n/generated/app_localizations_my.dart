@@ -1633,4 +1633,34 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get paletteSlate => 'ကျောက်သင်ပုန်း';
+
+  @override
+  String get receiptContinueSame => 'ဆက်လက်ပြုလုပ်မည်';
+
+  @override
+  String get receiptCaptureDone => 'ပြီးဆုံးပါပြီ';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count စာမျက်နှာကို ဖမ်းယူပြီးပါပြီ';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ရိတ်သံချုပ်စာရွက်ကို အစဉ်လိုက် ထည့်ထားပြီး — နောက်ခံတွင် ပြင်ဆင်နေသည်။';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ရိတ်သံချုပ်စာရွက်တစ်ခုစီအတွက် $max စာမျက်နှာအထိ ထည့်နိုင်သည်။';
+  }
+
+  @override
+  String get shelfLabelReading => 'ဈေးနှုန်းပစ္စည်းအမှတ်အသားကို ဖတ်နေသည်…';
+
+  @override
+  String get shelfLabelContinueOther => 'ပစ္စည်းအခြားကို စကန်ဖတ်မည်';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'ဈေးနှုန်းပစ္စည်းအမှတ်အသားကို နောက်ခံတွင် ဖတ်နေသည်။';
 }

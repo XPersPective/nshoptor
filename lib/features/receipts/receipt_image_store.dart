@@ -1,7 +1,10 @@
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:path_provider/path_provider.dart';
+
+import 'ai_image.dart';
 
 /// Copies picker cache files into app-owned storage before saving a draft.
 class ReceiptImageStore {
@@ -12,6 +15,47 @@ class ReceiptImageStore {
     '${(await getApplicationDocumentsDirectory()).path}/receipt_media',
   );
 
+  Future<String> _allocateFilePath() async {
+    final target = directoryOverride ?? await directory();
+    await target.create(recursive: true);
+    final name =
+        '${DateTime.now().microsecondsSinceEpoch}-'
+        '${Random.secure().nextInt(0x7fffffff)}.img';
+    return '${target.path}/$name';
+  }
+
+  /// Stores already compressed JPEG bytes directly in app-owned storage.
+  Future<String> keepBytes(Uint8List bytes) async {
+    if (bytes.length > 30 * 1024 * 1024) {
+      throw const FormatException('Receipt image exceeds local limit');
+    }
+    final destination = File(await _allocateFilePath());
+    try {
+      await destination.writeAsBytes(bytes, flush: true);
+      return destination.path;
+    } catch (_) {
+      try {
+        await removeOwned(destination.path);
+      } catch (_) {}
+      rethrow;
+    }
+  }
+
+  /// Compresses [sourcePath] into a compact JPEG (`<= 1280px`, `<= 350 KB`,
+  /// EXIF-stripped) before persisting it to app-owned media storage. Falls
+  /// back to [keep] when [compress] returns null (e.g. test doubles or
+  /// non-image synthetic test paths).
+  Future<String?> keepCompressed(
+    String sourcePath, {
+    Future<Uint8List?> Function(String path)? compress,
+  }) async {
+    final compressed = await (compress ?? compressImageForAi)(sourcePath);
+    if (compressed != null) {
+      return keepBytes(compressed);
+    }
+    return keep(sourcePath);
+  }
+
   Future<String?> keep(String sourcePath) async {
     final source = File(sourcePath);
     // Injected synthetic OCR has no backing file. Its text evidence still
@@ -20,12 +64,7 @@ class ReceiptImageStore {
     if (await source.length() > 30 * 1024 * 1024) {
       throw const FormatException('Receipt image exceeds local limit');
     }
-    final target = directoryOverride ?? await directory();
-    await target.create(recursive: true);
-    final name =
-        '${DateTime.now().microsecondsSinceEpoch}-'
-        '${Random.secure().nextInt(0x7fffffff)}.img';
-    final destination = File('${target.path}/$name');
+    final destination = File(await _allocateFilePath());
     try {
       return (await source.copy(destination.path)).path;
     } catch (_) {

@@ -1633,4 +1633,33 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Skrilavec';
+
+  @override
+  String get receiptContinueSame => 'Nadaljuj z istim računom';
+
+  @override
+  String get receiptCaptureDone => 'Končano';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count strani zajetih';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Račun je v čakalni vrsti — priprava v ozadju.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Na račun lahko dodate do $max strani.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Branje cenovne nalepke…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skeniraj drug izdelek';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Cenovna nalepka se bere v ozadju.';
 }

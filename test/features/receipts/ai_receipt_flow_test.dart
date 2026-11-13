@@ -11,6 +11,7 @@ import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/ai/ai_client.dart';
+import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/receipt_capture_flow.dart';
 import 'package:nshoptor/features/receipts/receipt_draft_repository.dart';
@@ -100,6 +101,10 @@ void main() {
           );
         }),
       );
+      final ownerListId = await ListRepository(db).createList(
+        title: 'بنده هايبر',
+        currencyCode: 'SAR',
+      );
       Object? failure;
       await tester.pumpWidget(
         MaterialApp(
@@ -120,8 +125,8 @@ void main() {
                     await openReceiptCaptureFlow(
                       context,
                       db: db,
-                      // Device currency differs from the receipt (F: emulator en-US).
-                      currencyCode: 'USD',
+                      listId: ownerListId,
+                      currencyCode: 'SAR',
                       ai: ai,
                       pickImage: () async => 'picked.jpg',
                       ocrSource: _Blind(),
@@ -242,6 +247,10 @@ void main() {
           );
         }),
       );
+      final ownerListId = await ListRepository(db).createList(
+        title: 'بنده هايبر',
+        currencyCode: 'SAR',
+      );
       await tester.pumpWidget(
         MaterialApp(
           locale: const Locale('ar'),
@@ -259,7 +268,8 @@ void main() {
                 onPressed: () => openReceiptCaptureFlow(
                   context,
                   db: db,
-                  currencyCode: 'USD',
+                  listId: ownerListId,
+                  currencyCode: 'SAR',
                   ai: ai,
                   pickImage: () async => 'picked.jpg',
                   ocrSource: _Blind(),
@@ -329,6 +339,10 @@ void main() {
             OcrLine(text: text),
         ]),
       ];
+      final ownerListId = await ListRepository(db).createList(
+        title: 'A101 MARKET',
+        currencyCode: 'TRY',
+      );
       final source = _Frames(frames);
       Object? failure;
       await tester.pumpWidget(
@@ -350,6 +364,7 @@ void main() {
                     await openReceiptCaptureFlow(
                       context,
                       db: db,
+                      listId: ownerListId,
                       currencyCode: 'TRY',
                       ai: ai,
                       pickImage: () async => 'picked.jpg',

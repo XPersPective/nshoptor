@@ -6,6 +6,7 @@ import '../ai/ai_client.dart';
 import 'ai_image.dart';
 import 'ocr_text_source.dart';
 import 'receipt_document.dart';
+import 'shelf_label/mlkit_text_source.dart';
 
 /// Where a receipt reading stands after one AI request.
 sealed class AiReceiptRead {
@@ -351,4 +352,118 @@ class AiReceiptReader {
     final separator = digits == 3 ? '\u066b' : ',';
     return '${text.substring(0, cut)}$separator${text.substring(cut)}';
   }
+}
+
+/// Outcome of the unified receipt-parsing pipeline where Server Vision AI is
+/// primary and on-device ML Kit executes solely as offline/AI-disabled fallback.
+sealed class ReceiptParseOutcome {
+  const ReceiptParseOutcome();
+}
+
+final class ReceiptParsedDocument extends ReceiptParseOutcome {
+  const ReceiptParsedDocument(
+    this.document, {
+    required this.usedAi,
+    this.unavailableResult,
+  });
+
+  final ReceiptDocument document;
+  final bool usedAi;
+  final AiResult? unavailableResult;
+}
+
+final class ReceiptParseNeedsMoreOrRetake extends ReceiptParseOutcome {
+  const ReceiptParseNeedsMoreOrRetake(this.read);
+  final AiReceiptRead read;
+}
+
+final class ReceiptParseFailed extends ReceiptParseOutcome {
+  const ReceiptParseFailed({this.unavailableResult});
+  final AiResult? unavailableResult;
+}
+
+/// Runs Server Vision AI (`read_receipt_image`) first whenever [ai] is
+/// enabled, invoking on-device ML Kit (`MlKitTextSource` or injected
+/// [ocrFallback]) **only** when AI is disabled, offline, or unavailable.
+Future<ReceiptParseOutcome> parseReceiptImages({
+  required List<String> photoPaths,
+  required String currencyCode,
+  AiClient? ai,
+  String localeCode = 'en',
+  Future<String?> Function(String path) encode = encodeImageForAi,
+  OcrTextSource? ocrFallback,
+}) async {
+  AiResult? unavailableResult;
+  if (ai != null && ai.enabled) {
+    final reader = AiReceiptReader(
+      ai,
+      localeCode: localeCode,
+      encode: encode,
+    );
+    final aiOutcome = await reader.read(
+      photoPaths,
+      currencyCode: currencyCode,
+    );
+    switch (aiOutcome) {
+      case AiReceiptVerified(:final document):
+        return ReceiptParsedDocument(document, usedAi: true);
+      case AiReceiptNeedsMore():
+      case AiReceiptRetake():
+        return ReceiptParseNeedsMoreOrRetake(aiOutcome);
+      case AiReceiptUnavailable(:final result):
+        unavailableResult = result;
+    }
+  }
+
+  // Explicit offline / AI-disabled fallback: run on-device OCR only here.
+  final doc = await scanReceiptOfflineFallback(
+    photoPaths: photoPaths,
+    currencyCode: currencyCode,
+    ocrFallback: ocrFallback,
+  );
+
+  if (doc != null) {
+    return ReceiptParsedDocument(
+      doc,
+      usedAi: false,
+      unavailableResult: unavailableResult,
+    );
+  }
+  return ReceiptParseFailed(unavailableResult: unavailableResult);
+}
+
+/// Reads [photoPaths] with on-device ML Kit (or an injected [ocrFallback])
+/// strictly as an offline/AI-disabled fallback and disposes owned native
+/// recognizers cleanly.
+Future<ReceiptDocument?> scanReceiptOfflineFallback({
+  required List<String> photoPaths,
+  required String currencyCode,
+  OcrTextSource? ocrFallback,
+}) async {
+  if (photoPaths.isEmpty) return null;
+  final owned = ocrFallback == null ? MlKitTextSource() : null;
+  final source = ocrFallback ?? owned!;
+  ReceiptDocument? doc;
+  try {
+    for (final path in photoPaths) {
+      final OcrScanResult scan;
+      try {
+        scan = await source.scan(path);
+      } catch (_) {
+        continue;
+      }
+      if (!scan.lines.any((line) => line.text.trim().isNotEmpty)) continue;
+      if (doc == null) {
+        doc = ReceiptDocument.fromScan(scan, currencyCode: currencyCode);
+      } else {
+        final joined = doc.append(scan);
+        if (joined is ReceiptAppended) doc = joined.document;
+      }
+    }
+  } finally {
+    try {
+      await owned?.dispose();
+    } catch (_) {}
+  }
+  return doc;
 }

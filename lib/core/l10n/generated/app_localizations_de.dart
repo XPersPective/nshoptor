@@ -1635,4 +1635,34 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Schiefer';
+
+  @override
+  String get receiptContinueSame => 'Weiter mit gleichem Beleg';
+
+  @override
+  String get receiptCaptureDone => 'Fertig';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count Seiten erfasst';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Beleg in der Warteschlange — wird im Hintergrund vorbereitet.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Pro Beleg können bis zu $max Seiten hinzugefügt werden.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Preisetikett wird gelesen…';
+
+  @override
+  String get shelfLabelContinueOther => 'Ein anderes Produkt scannen';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Preisetikett wird im Hintergrund gelesen.';
 }

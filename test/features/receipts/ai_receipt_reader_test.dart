@@ -6,7 +6,20 @@ import 'package:http/testing.dart';
 import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/features/ai/ai_client.dart';
 import 'package:nshoptor/features/receipts/ai_receipt_reader.dart';
+import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/receipt_document.dart';
+
+class _CountingOcr implements OcrTextSource {
+  _CountingOcr(this.result);
+  final OcrScanResult result;
+  int calls = 0;
+
+  @override
+  Future<OcrScanResult> scan(String _) async {
+    calls++;
+    return result;
+  }
+}
 
 AiClient _ai(
   Map<String, dynamic> body, {
@@ -232,5 +245,42 @@ void main() {
       isA<AiReceiptRetake>(),
     );
     expect(log, isEmpty);
+  });
+
+  test('parseReceiptImages uses Server Vision AI first and skips ML Kit unless AI unavailable', () async {
+    final ocrPrimary = _CountingOcr(const OcrScanResult(lines: []));
+    final aiOutcome = await parseReceiptImages(
+      photoPaths: const ['p1.jpg'],
+      currencyCode: 'TRY',
+      ai: _ai(_sok()),
+      encode: (p) async => '/9j/$p',
+      ocrFallback: ocrPrimary,
+    );
+    expect(aiOutcome, isA<ReceiptParsedDocument>());
+    expect((aiOutcome as ReceiptParsedDocument).usedAi, isTrue);
+    expect(ocrPrimary.calls, 0);
+
+    final ocrOffline = _CountingOcr(
+      const OcrScanResult(
+        lines: [
+          OcrLine(text: 'MIGROS'),
+          OcrLine(text: 'TARIH: 24.10.2026 SAAT: 18:41'),
+          OcrLine(text: 'FIS NO: 123'),
+          OcrLine(text: 'SUT 20,00'),
+          OcrLine(text: 'TOPLAM 20,00 TL'),
+        ],
+      ),
+    );
+    final offAi = _ai(_sok())..enabled = false;
+    final offlineOutcome = await parseReceiptImages(
+      photoPaths: const ['p2.jpg'],
+      currencyCode: 'TRY',
+      ai: offAi,
+      encode: (p) async => '/9j/$p',
+      ocrFallback: ocrOffline,
+    );
+    expect(offlineOutcome, isA<ReceiptParsedDocument>());
+    expect((offlineOutcome as ReceiptParsedDocument).usedAi, isFalse);
+    expect(ocrOffline.calls, 1);
   });
 }

@@ -1636,4 +1636,33 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Łupek';
+
+  @override
+  String get receiptContinueSame => 'Kontynuuj ten sam paragon';
+
+  @override
+  String get receiptCaptureDone => 'Gotowe';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'Przechwycono $count stron';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Paragon w kolejce — przetwarzanie w tle.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Do paragonu można dodać do $max stron.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Odczyt etykiety cenowej…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skanuj kolejny produkt';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Etykieta cenowa jest odczytywana w tle.';
 }

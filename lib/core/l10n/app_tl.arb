@@ -498,5 +498,13 @@
   "priceRetakeAction": "Kumuha ng ibang larawan",
   "receiptDateTimeLabel": "Petsa at oras",
   "paletteSage": "Sambong",
-  "paletteSlate": "Batong-pisara"
+  "paletteSlate": "Batong-pisara",
+  "receiptContinueSame": "Magpatuloy sa receipt na iyon",
+  "receiptCaptureDone": "Tapos na",
+  "receiptSessionPagesCount": "{count} na pahina ang nakakuha",
+  "receiptQueuedNotice": "Naka-queue na ang receipt — pinaproseso sa background.",
+  "receiptMaxPagesNote": "Hanggang {max} na pahina ang maaaring idagdag sa bawat receipt.",
+  "shelfLabelReading": "Binabasa ang label ng presyo…",
+  "shelfLabelContinueOther": "Mag-scan ng ibang item",
+  "shelfLabelQueuedNotice": "Binabasa ang label ng presyo sa background."
 }

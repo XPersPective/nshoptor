@@ -1630,4 +1630,33 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Flöguberg';
+
+  @override
+  String get receiptContinueSame => 'Halda áfram með sama kvitt';
+
+  @override
+  String get receiptCaptureDone => 'Lokið';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count síður teknar upp';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Kvitt í biðröð — undirbúningur í bakgrunni.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hægt er að bæta allt að $max síðum við hvern kvitt.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Les verðmiða…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skanna annað vöru';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Verðmiði er lesinn í bakgrunni.';
 }

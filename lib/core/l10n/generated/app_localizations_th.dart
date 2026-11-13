@@ -1617,4 +1617,32 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get paletteSlate => 'สีหินชนวน';
+
+  @override
+  String get receiptContinueSame => 'ดำเนินการต่อด้วยใบเสร็จเดิม';
+
+  @override
+  String get receiptCaptureDone => 'เสร็จสิ้น';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'จับภาพแล้ว $count หน้า';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'รอคิวใบเสร็จ — กำลังเตรียมการในพื้นหลัง';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'เพิ่มได้สูงสุด $max หน้าต่อหนึ่งใบเสร็จ';
+  }
+
+  @override
+  String get shelfLabelReading => 'กำลังอ่านป้ายราคา…';
+
+  @override
+  String get shelfLabelContinueOther => 'สแกนสินค้าชิ้นอื่น';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ป้ายราคากำลังอ่านอยู่เบื้องหลัง';
 }

@@ -1573,4 +1573,32 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get paletteSlate => 'スレート';
+
+  @override
+  String get receiptContinueSame => '同じレシートを続ける';
+
+  @override
+  String get receiptCaptureDone => '完了';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$countページ撮影済み';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'レシートがキューに追加されました — 背景で準備中。';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return '1つのレシートには最大$maxページまで追加できます。';
+  }
+
+  @override
+  String get shelfLabelReading => '価格ラベルを読み取り中…';
+
+  @override
+  String get shelfLabelContinueOther => '別の商品をスキャン';
+
+  @override
+  String get shelfLabelQueuedNotice => '価格ラベルは背景で読み取り中です。';
 }

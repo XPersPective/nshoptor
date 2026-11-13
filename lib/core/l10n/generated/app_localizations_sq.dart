@@ -1634,4 +1634,32 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Rrasë';
+
+  @override
+  String get receiptContinueSame => 'Vazhdo me të njëjtin faturë';
+
+  @override
+  String get receiptCaptureDone => 'U krye';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count faqe të kapura';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Fatura në radhë — po përgatitet në sfond.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Maksimumi $max faqe mund të shtohen për çdo faturë.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Duke lexuar etiketën e çmimit…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skano një artikull tjetër';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Etiketa e çmimit po lexohet në sfond.';
 }

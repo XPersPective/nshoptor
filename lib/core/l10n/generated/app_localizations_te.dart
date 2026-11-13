@@ -1638,4 +1638,34 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get paletteSlate => 'స్లేట్';
+
+  @override
+  String get receiptContinueSame => 'అదే రసీదుతో కొనసాగండి';
+
+  @override
+  String get receiptCaptureDone => 'పూర్తయింది';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count పేజీలు క్యాప్చర్ చేయబడ్డాయి';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'రసీదు వరుసలో ఉంది — బ్యాక్‌గ్రౌండ్‌లో సిద్ధం చేయబడుతోంది.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ఒక రసీదుకు గరిష్ఠంగా $max పేజీలను జోడించవచ్చు.';
+  }
+
+  @override
+  String get shelfLabelReading => 'ధర లేబుల్ చదివిస్తున్నాము…';
+
+  @override
+  String get shelfLabelContinueOther => 'మరొక ఆइटెమ్ స్కాన్ చేయండి';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'ధర లేబుల్ బ్యాక్‌గ్రౌండ్‌లో చదివిస్తున్నారు.';
 }

@@ -1628,4 +1628,33 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get paletteSlate => 'ස්ලේට්';
+
+  @override
+  String get receiptContinueSame => 'එම රිසිට්පතම ඉදිරියට යන්න';
+
+  @override
+  String get receiptCaptureDone => 'අවසන්';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count පිටු ගැනීම සම්පූර්ණයි';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'රිසිට්පත වාරයේ තබා ඇත — පසුබිමේ සකස් කරමින්.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'රිසිට්පතකට $max දක්වා පිටු එකතු කළ හැක.';
+  }
+
+  @override
+  String get shelfLabelReading => 'මිල ලේබලය කියවමින්…';
+
+  @override
+  String get shelfLabelContinueOther => 'වෙනත් අයිතමයක් ස්කෑන් කරන්න';
+
+  @override
+  String get shelfLabelQueuedNotice => 'මිල ලේබලය පසුබිමේ කියවමින් පවතී.';
 }

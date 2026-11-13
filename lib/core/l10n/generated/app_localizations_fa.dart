@@ -1622,4 +1622,34 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get paletteSlate => 'سنگ‌لوح';
+
+  @override
+  String get receiptContinueSame => 'ادامه همان رسید';
+
+  @override
+  String get receiptCaptureDone => 'انجام شد';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count صفحه اسکن شد';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'رسید در صف پردازش است — آماده‌سازی در پس‌زمینه.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'تا $max صفحه می‌توان به هر رسید اضافه کرد.';
+  }
+
+  @override
+  String get shelfLabelReading => 'در حال خواندن برچسب قیمت…';
+
+  @override
+  String get shelfLabelContinueOther => 'اسکن یک کالای دیگر';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'برچسب قیمت در پس‌زمینه در حال خواندن است.';
 }

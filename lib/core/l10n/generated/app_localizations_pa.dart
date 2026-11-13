@@ -1627,4 +1627,34 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get paletteSlate => 'ਸਲੇਟ';
+
+  @override
+  String get receiptContinueSame => 'ਉਹੀ ਰਸੀਦ ਜਾਰੀ ਰੱਖੋ';
+
+  @override
+  String get receiptCaptureDone => 'ਹੋ ਗਿਆ';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count ਪੰਨੇ ਕੈਪਚਰ ਹੋਏ';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ਰਸੀਦ ਕਤਾਰ ਵਿੱਚ ਹੈ — ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਤਿਆਰ ਹੋ ਰਹੀ ਹੈ।';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ਇੱਕ ਰਸੀਦ ਲਈ ਵੱਧ ਤੋਂ ਵੱਧ $max ਪੰਨੇ ਜੋੜੇ ਜਾ ਸਕਦੇ ਹਨ।';
+  }
+
+  @override
+  String get shelfLabelReading => 'ਮੁੱਲ ਲੇਬਲ ਪੜ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ…';
+
+  @override
+  String get shelfLabelContinueOther => 'ਕੋਈ ਹੋਰ ਆਈਟਮ ਸਕੈਨ ਕਰੋ';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'ਮੁੱਲ ਲੇਬਲ ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਪੜ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ।';
 }

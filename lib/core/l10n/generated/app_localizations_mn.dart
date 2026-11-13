@@ -1634,4 +1634,33 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Саарал';
+
+  @override
+  String get receiptContinueSame => 'Ижил баримтыг үргэлжлүүлэх';
+
+  @override
+  String get receiptCaptureDone => 'Дууссан';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count хуудас авсан';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Баримт дараалалд орлоо — арын горимд бэлтгэж байна.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Нэг баримтад $max хуудас хүртэл нэмж болно.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Үнийн шошгыг уншиж байна…';
+
+  @override
+  String get shelfLabelContinueOther => 'Өөр бүтээгдэхүүнийг сканнердах';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Үнийн шошгыг арын горимд уншиж байна.';
 }

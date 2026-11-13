@@ -1616,4 +1616,32 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get paletteSlate => 'צפחה';
+
+  @override
+  String get receiptContinueSame => 'המשך באותו קבלה';
+
+  @override
+  String get receiptCaptureDone => 'סיום';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count עמודים תועדו';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'הקבלה בתור — מתכוננת ברקע.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ניתן להוסיף עד $max עמודים לכל קבלה.';
+  }
+
+  @override
+  String get shelfLabelReading => 'קורא מדבקת מחיר…';
+
+  @override
+  String get shelfLabelContinueOther => 'סרוק פריט נוסף';
+
+  @override
+  String get shelfLabelQueuedNotice => 'מדבקת המחיר נקראת ברקע.';
 }

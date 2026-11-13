@@ -1627,4 +1627,34 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Sabak';
+
+  @override
+  String get receiptContinueSame => 'Lanjutkan dengan struk yang sama';
+
+  @override
+  String get receiptCaptureDone => 'Selesai';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count halaman berhasil diambil';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Struk masuk antrean — sedang diproses di latar belakang.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hingga $max halaman dapat ditambahkan per struk.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Membaca label harga…';
+
+  @override
+  String get shelfLabelContinueOther => 'Pindai item lain';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Label harga sedang dibaca di latar belakang.';
 }

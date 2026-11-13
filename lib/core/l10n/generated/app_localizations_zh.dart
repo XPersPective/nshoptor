@@ -1561,4 +1561,32 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get paletteSlate => '板岩';
+
+  @override
+  String get receiptContinueSame => '继续同一收据';
+
+  @override
+  String get receiptCaptureDone => '完成';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '已捕获 $count 页';
+  }
+
+  @override
+  String get receiptQueuedNotice => '收据已排队——后台正在准备。';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return '每张收据最多可添加 $max 页。';
+  }
+
+  @override
+  String get shelfLabelReading => '正在读取价格标签…';
+
+  @override
+  String get shelfLabelContinueOther => '扫描其他商品';
+
+  @override
+  String get shelfLabelQueuedNotice => '价格标签正在后台读取。';
 }

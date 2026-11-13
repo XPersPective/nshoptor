@@ -519,5 +519,13 @@
   "priceManualEntryAction": "Fiyatı elle gir",
   "priceRetakeAction": "Yeniden çek",
   "paletteSage": "Adaçayı",
-  "paletteSlate": "Arduvaz"
+  "paletteSlate": "Arduvaz",
+  "receiptContinueSame": "Aynı fişe devam",
+  "receiptCaptureDone": "Tamam",
+  "receiptSessionPagesCount": "{count} sayfa çekildi",
+  "receiptQueuedNotice": "Fiş sıraya alındı — arka planda hazırlanıyor.",
+  "receiptMaxPagesNote": "Bir fiş için en fazla {max} fotoğraf eklenebilir.",
+  "shelfLabelReading": "Fiyat etiketi okunuyor…",
+  "shelfLabelContinueOther": "Başka ürüne geç",
+  "shelfLabelQueuedNotice": "Fiyat etiketi arka planda okunuyor."
 }

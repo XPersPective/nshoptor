@@ -1638,4 +1638,34 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Σχιστόλιθος';
+
+  @override
+  String get receiptContinueSame => 'Συνέχεια με το ίδιο απόδειξη';
+
+  @override
+  String get receiptCaptureDone => 'Ολοκλήρωση';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count σελίδες καταγράφηκαν';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Η απόδειξη περιμένει στη σειρά — προετοιμάζεται στο παρασκήνιο.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Μπορούν να προστεθούν έως $max σελίδες ανά απόδειξη.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Ανάγνωση ετικέτας τιμής…';
+
+  @override
+  String get shelfLabelContinueOther => 'Σάρωση άλλου προϊόντος';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Η ετικέτα τιμής αναγιγνώσκεται στο παρασκήνιο.';
 }

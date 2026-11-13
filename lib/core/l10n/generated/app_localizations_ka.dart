@@ -1625,4 +1625,32 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get paletteSlate => 'ფიქალი';
+
+  @override
+  String get receiptContinueSame => 'გაგრძელება იგივე ჩიზით';
+
+  @override
+  String get receiptCaptureDone => 'დასრულდა';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count გვერდი დაფიქსირებულია';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'ჩიზი რიგშია — ფონურად მზადდება.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ერთ ჩიზზე მაქსიმუმ $max გვერდის დამატება შეიძლება.';
+  }
+
+  @override
+  String get shelfLabelReading => 'ღირებულების ეტიკეტის კითხვა…';
+
+  @override
+  String get shelfLabelContinueOther => 'სხვა პროდუქტის სკანირება';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ღირებულების ეტიკეტი ფონურად კითხვას.';
 }

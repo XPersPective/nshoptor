@@ -1640,4 +1640,33 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Itshe elimpunga';
+
+  @override
+  String get receiptContinueSame => 'Qhubeka ngereceipt efanayo';
+
+  @override
+  String get receiptCaptureDone => 'Kwenziwe';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count amaphepha abambeke';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Ireceipt ilindele — iqala ukulungiswa emva.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Kufika ku-$max amaphepha angafakwa kureceipt ngayinye.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Ufunda isikhwama sesitolo…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skana enye into';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Isikhwama sesitolo siyafundwa emva.';
 }

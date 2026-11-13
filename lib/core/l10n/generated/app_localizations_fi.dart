@@ -1632,4 +1632,32 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Liuske';
+
+  @override
+  String get receiptContinueSame => 'Jatka samalla kuitilla';
+
+  @override
+  String get receiptCaptureDone => 'Valmis';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sivua kuvattu';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Kuitu jonossa — valmistautuu taustalla.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Kuittiin voi lisätä enintään $max sivua.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Luetaan hyllynsiltaa…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skannaa toinen tuote';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Hyllynsiltaa luetaan taustalla.';
 }

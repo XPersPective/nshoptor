@@ -1624,4 +1624,33 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Đá phiến';
+
+  @override
+  String get receiptContinueSame => 'Tiếp tục với hóa đơn này';
+
+  @override
+  String get receiptCaptureDone => 'Xong';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'Đã chụp $count trang';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Hóa đơn đang chờ xử lý — chuẩn bị trong nền.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Tối đa $max trang có thể thêm vào mỗi hóa đơn.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Đang đọc nhãn giá…';
+
+  @override
+  String get shelfLabelContinueOther => 'Quét mục khác';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Nhãn giá đang được đọc trong nền.';
 }

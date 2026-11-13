@@ -1636,4 +1636,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Pizarra';
+
+  @override
+  String get receiptContinueSame => 'Continuar con el mismo recibo';
+
+  @override
+  String get receiptCaptureDone => 'Hecho';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count páginas capturadas';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Recibo en cola — preparándose en segundo plano.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Se pueden añadir hasta $max páginas por recibo.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Leyendo etiqueta de precio…';
+
+  @override
+  String get shelfLabelContinueOther => 'Escanear otro artículo';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'La etiqueta de precio se está leyendo en segundo plano.';
 }

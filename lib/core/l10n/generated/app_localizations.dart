@@ -3229,6 +3229,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Slate'**
   String get paletteSlate;
+
+  /// No description provided for @receiptContinueSame.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue same receipt'**
+  String get receiptContinueSame;
+
+  /// No description provided for @receiptCaptureDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get receiptCaptureDone;
+
+  /// No description provided for @receiptSessionPagesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 page captured} other{{count} pages captured}}'**
+  String receiptSessionPagesCount(int count);
+
+  /// No description provided for @receiptQueuedNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt queued — preparing in the background.'**
+  String get receiptQueuedNotice;
+
+  /// No description provided for @receiptMaxPagesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to {max} pages can be added per receipt.'**
+  String receiptMaxPagesNote(int max);
+
+  /// No description provided for @shelfLabelReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading price label…'**
+  String get shelfLabelReading;
+
+  /// No description provided for @shelfLabelContinueOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan another item'**
+  String get shelfLabelContinueOther;
+
+  /// No description provided for @shelfLabelQueuedNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price label is reading in the background.'**
+  String get shelfLabelQueuedNotice;
 }
 
 class _AppLocalizationsDelegate

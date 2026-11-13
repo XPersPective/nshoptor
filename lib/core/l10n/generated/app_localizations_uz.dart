@@ -1637,4 +1637,34 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Slanets';
+
+  @override
+  String get receiptContinueSame => 'Xuddi shu chekni davom ettirish';
+
+  @override
+  String get receiptCaptureDone => 'Tayyor';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sahifa o\'qildi';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Chek navbatga qo\'yildi — fon rejimida tayyorlanmoqda.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Har bir chekka eng ko\'pi bilan $max sahifa qo\'shish mumkin.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Narx yorlig\'i o\'qilmoqda…';
+
+  @override
+  String get shelfLabelContinueOther => 'Boshqa mahsulotni skanerlash';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Narx yorlig\'i fon rejimida o\'qilmoqda.';
 }

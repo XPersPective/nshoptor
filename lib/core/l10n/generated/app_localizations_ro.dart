@@ -1640,4 +1640,34 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Ardezie';
+
+  @override
+  String get receiptContinueSame => 'Continuă cu același chitanță';
+
+  @override
+  String get receiptCaptureDone => 'Gata';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pagini capturate';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Chitanța a fost adăugată în coadă — se pregătește în fundal.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Se pot adăuga până la $max pagini per chitanță.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Se citește eticheta de preț…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scanează un alt produs';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Eticheta de preț este în curs de citire în fundal.';
 }

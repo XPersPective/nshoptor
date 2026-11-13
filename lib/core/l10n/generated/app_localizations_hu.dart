@@ -1632,4 +1632,33 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Pala';
+
+  @override
+  String get receiptContinueSame => 'Folytatás ugyanazzal a számlával';
+
+  @override
+  String get receiptCaptureDone => 'Kész';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count oldal rögzítve';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'A számla sorba állítva – előkészítés folyamatban.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Egy számlához maximum $max oldal adható hozzá.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Árcímke olvasása…';
+
+  @override
+  String get shelfLabelContinueOther => 'Másik termék beolvasása';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Az árcímke háttérben olvasható.';
 }

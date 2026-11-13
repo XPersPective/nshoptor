@@ -1577,4 +1577,32 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get paletteSlate => '슬레이트';
+
+  @override
+  String get receiptContinueSame => '같은 영수증 계속하기';
+
+  @override
+  String get receiptCaptureDone => '완료';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count페이지 캡처됨';
+  }
+
+  @override
+  String get receiptQueuedNotice => '영수증이 대기열에 추가되었습니다 — 백그라운드에서 준비 중입니다.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return '영수증당 최대 $max페이지까지 추가할 수 있습니다.';
+  }
+
+  @override
+  String get shelfLabelReading => '가격 라벨 읽는 중…';
+
+  @override
+  String get shelfLabelContinueOther => '다른 항목 스캔';
+
+  @override
+  String get shelfLabelQueuedNotice => '가격 라벨이 백그라운드에서 읽히는 중입니다.';
 }

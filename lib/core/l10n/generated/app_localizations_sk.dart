@@ -1634,4 +1634,33 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Bridlica';
+
+  @override
+  String get receiptContinueSame => 'Pokračovať s rovnakým účtenkou';
+
+  @override
+  String get receiptCaptureDone => 'Hotovo';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count strán zachytených';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Účtenka zaradená do fronty — pripravuje sa na pozadí.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Na jednu účtenku možno pridať až $max strán.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Čítanie cenovky…';
+
+  @override
+  String get shelfLabelContinueOther => 'Naskenovať ďalší produkt';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Cenovka sa číta na pozadí.';
 }

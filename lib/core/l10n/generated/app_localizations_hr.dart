@@ -1632,4 +1632,33 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Škriljavac';
+
+  @override
+  String get receiptContinueSame => 'Nastavi s istim računom';
+
+  @override
+  String get receiptCaptureDone => 'Gotovo';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count stranica uhvaćeno';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Račun u redu čekanja — priprema se u pozadini.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Moguće je dodati do $max stranica po računu.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Čitanje cijene…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skeniraj drugi proizvod';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Cijena se čita u pozadini.';
 }

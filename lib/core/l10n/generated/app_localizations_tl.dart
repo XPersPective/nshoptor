@@ -1639,4 +1639,34 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Batong-pisara';
+
+  @override
+  String get receiptContinueSame => 'Magpatuloy sa receipt na iyon';
+
+  @override
+  String get receiptCaptureDone => 'Tapos na';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count na pahina ang nakakuha';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Naka-queue na ang receipt — pinaproseso sa background.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hanggang $max na pahina ang maaaring idagdag sa bawat receipt.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Binabasa ang label ng presyo…';
+
+  @override
+  String get shelfLabelContinueOther => 'Mag-scan ng ibang item';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Binabasa ang label ng presyo sa background.';
 }

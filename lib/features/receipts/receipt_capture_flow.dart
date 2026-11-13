@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:drift/drift.dart' show Value;
 import 'package:flutter/material.dart';
@@ -27,13 +28,21 @@ import 'receipt_document.dart'
         ReceiptDocument,
         ReceiptDocumentState,
         ReceiptHeaderField;
-import 'shelf_label/mlkit_text_source.dart';
 import 'receipt_draft_repository.dart';
 import 'receipt_image_store.dart';
 import 'review/receipt_review_controller.dart';
 import 'review/receipt_review_screen.dart';
 
+/// Optional global hook invoked immediately when a capture-first receipt
+/// session is queued so background scheduling/draining wakes without UI delay.
+void Function(int receiptId)? onReceiptEnqueued;
+
 /// One acquisition/recovery path for new and existing shopping lists.
+///
+/// Standalone capture (`listId == null && resumeDraftId == null`) uses the
+/// capture-first batch session flow: snap 1+ pages (`Aynı fişe devam` /
+/// `Tamam`), compress immediately, persist an independent `queued` row, and
+/// close right away without waiting for OCR or Server AI.
 Future<int?> openReceiptCaptureFlow(
   BuildContext context, {
   required AppDatabase db,
@@ -45,7 +54,9 @@ Future<int?> openReceiptCaptureFlow(
   OcrTextSource? ocrSource,
   ReceiptImageStore? imageStore,
   int? resumeDraftId,
+  void Function(int receiptId)? onEnqueued,
   @visibleForTesting Future<String?> Function(String path)? encodeAiImage,
+  @visibleForTesting Future<Uint8List?> Function(String path)? compressImage,
 }) async {
   final l10n = AppLocalizations.of(context);
   final messenger = ScaffoldMessenger.of(context);
@@ -53,18 +64,20 @@ Future<int?> openReceiptCaptureFlow(
   messenger.removeCurrentSnackBar();
   final drafts = ReceiptDraftRepository(db);
   final images = imageStore ?? ReceiptImageStore();
-  // Unfinished receipts belong to their list (F13). Outside a list only
-  // header-less leftovers can exist; they identify nothing and are dropped.
-  if (listId == null) {
-    for (final stale in await drafts.pending()) {
-      await drafts.discard(stale.id);
-      for (final path in stale.imagePaths) {
-        try {
-          await images.removeOwned(path);
-        } catch (_) {}
-      }
-    }
+
+  if (listId == null && resumeDraftId == null) {
+    await _runCaptureFirstBatchFlow(
+      context,
+      drafts: drafts,
+      images: images,
+      currencyCode: currencyCode,
+      pickImage: pickImage,
+      onEnqueued: onEnqueued ?? onReceiptEnqueued,
+      compressImage: compressImage,
+    );
+    return null;
   }
+
   final pending = listId == null
       ? const <ReceiptDraft>[]
       : await drafts.pending(listId: listId);
@@ -202,9 +215,10 @@ Future<int?> openReceiptCaptureFlow(
       ai: ai,
       localeCode: Localizations.localeOf(context).languageCode,
     );
+    var committed = false;
     try {
-      await Navigator.of(context).push(
-        MaterialPageRoute<void>(
+      committed = (await Navigator.of(context).push<bool>(
+        MaterialPageRoute<bool>(
           builder: (_) => ReceiptReviewScreen(
             controller: controller,
             currency: reviewCurrency,
@@ -213,11 +227,11 @@ Future<int?> openReceiptCaptureFlow(
                 : ItemRepository(db).getItems(activeListId),
           ),
         ),
-      );
+      )) ?? false;
     } finally {
       controller.dispose();
     }
-    return controller.listId;
+    return committed ? controller.listId : null;
   }
 
   while (context.mounted) {
@@ -729,36 +743,12 @@ Future<_AiOutcome> _readWithAi(
             );
         }
         // Offline/quota handoff: read EVERY saved photo on the device, in
-        // order, so the user reviews whatever was captured so far instead of
-        // losing all but the last photo (PB-207).
-        ReceiptDocument? offlineDoc;
-        if (paths.isNotEmpty) {
-          final owned = ocrSource == null ? MlKitTextSource() : null;
-          try {
-            for (final path in paths) {
-              final OcrScanResult scan;
-              try {
-                scan = await (ocrSource ?? owned!).scan(path);
-              } catch (_) {
-                continue;
-              }
-              if (!scan.lines.any((l) => l.text.trim().isNotEmpty)) continue;
-              if (offlineDoc == null) {
-                offlineDoc = ReceiptDocument.fromScan(
-                  scan,
-                  currencyCode: currencyCode,
-                );
-              } else {
-                final joined = offlineDoc.append(scan);
-                if (joined is ReceiptAppended) offlineDoc = joined.document;
-              }
-            }
-          } finally {
-            try {
-              await owned?.dispose();
-            } catch (_) {}
-          }
-        }
+        // order, using the shared offline fallback helper (PB-207 / PB-213).
+        final offlineDoc = await scanReceiptOfflineFallback(
+          photoPaths: paths,
+          currencyCode: currencyCode,
+          ocrFallback: ocrSource,
+        );
         if (offlineDoc != null) {
           // The draft still holds the pre-dropout stub: persist the
           // device-built document so approval compares against it (PB-207).
@@ -1198,5 +1188,202 @@ Future<void> _addVisibleItems(
     } catch (_) {
       // A row that cannot be stored is left for the saved receipt.
     }
+  }
+}
+
+enum _BatchSessionChoice { continueSame, done }
+
+Future<void> _runCaptureFirstBatchFlow(
+  BuildContext context, {
+  required ReceiptDraftRepository drafts,
+  required ReceiptImageStore images,
+  required String currencyCode,
+  Future<String?> Function()? pickImage,
+  void Function(int receiptId)? onEnqueued,
+  Future<Uint8List?> Function(String path)? compressImage,
+}) async {
+  final l10n = AppLocalizations.of(context);
+  final paths = <String>[];
+  var captureNext = true;
+
+  Future<void> cleanupUnqueued() async {
+    for (final path in paths) {
+      try {
+        await images.removeOwned(path);
+      } catch (_) {}
+    }
+  }
+
+  while (true) {
+    if (!context.mounted) {
+      await cleanupUnqueued();
+      return;
+    }
+    if (captureNext) {
+      final capture = await captureImageText(
+        context,
+        title: l10n.scanReceiptAction,
+        pickImage: pickImage,
+        // Capture-first: never run device ML Kit while snapping photos.
+        ocrSource: const _NoOcr(),
+        requireText: false,
+      );
+      if (!context.mounted) {
+        await cleanupUnqueued();
+        return;
+      }
+      if (capture is CapturedImage) {
+        try {
+          final stored =
+              await images.keepCompressed(
+                capture.path,
+                compress: compressImage,
+              ) ??
+              capture.path;
+          paths.add(stored);
+        } catch (_) {
+          if (paths.isEmpty) return;
+        }
+      } else if (paths.isEmpty) {
+        return;
+      }
+    }
+
+    if (!context.mounted) {
+      await cleanupUnqueued();
+      return;
+    }
+
+    final choice = await showModalBottomSheet<_BatchSessionChoice>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (_) => ReceiptBatchSessionSheet(
+        pageCount: paths.length,
+        maxPages: AiReceiptReader.maxPhotos,
+      ),
+    );
+    if (!context.mounted) {
+      await cleanupUnqueued();
+      return;
+    }
+    switch (choice) {
+      case _BatchSessionChoice.continueSame:
+        captureNext = true;
+      case _BatchSessionChoice.done:
+        final receiptId = await drafts.enqueueCaptured(
+          imagePaths: paths,
+          currencyCode: currencyCode,
+        );
+        onEnqueued?.call(receiptId);
+        if (context.mounted) {
+          ScaffoldMessenger.of(context)
+            ..clearSnackBars()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(l10n.receiptQueuedNotice),
+                showCloseIcon: true,
+              ),
+            );
+        }
+        return;
+      case null:
+        await cleanupUnqueued();
+        return;
+    }
+  }
+}
+
+/// Streamlined post-snap continuation sheet offering ONLY "Continue same
+/// receipt" (`Aynı fişe devam`) or "Done" (`Tamam`) so multiple receipts never
+/// mix inside one capture session.
+class ReceiptBatchSessionSheet extends StatelessWidget {
+  const ReceiptBatchSessionSheet({
+    super.key,
+    required this.pageCount,
+    required this.maxPages,
+  });
+
+  final int pageCount;
+  final int maxPages;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final canAddMore = pageCount < maxPages;
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+        child: Column(
+          key: const Key('receipt_batch_sheet'),
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.receipt_long_outlined,
+                  color: theme.colorScheme.primary,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Semantics(
+                    liveRegion: true,
+                    child: Text(
+                      l10n.receiptSessionPagesCount(pageCount),
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            if (!canAddMore) ...[
+              const SizedBox(height: 8),
+              Text(
+                l10n.receiptMaxPagesNote(maxPages),
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
+            const SizedBox(height: 16),
+            FilledButton.tonalIcon(
+              key: const Key('receipt_capture_continue_same'),
+              onPressed: canAddMore
+                  ? () => Navigator.pop(
+                      context,
+                      _BatchSessionChoice.continueSame,
+                    )
+                  : null,
+              style: FilledButton.styleFrom(
+                minimumSize: const Size(48, 52),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
+              ),
+              icon: const Icon(Icons.add_a_photo_outlined),
+              label: Text(l10n.receiptContinueSame),
+            ),
+            const SizedBox(height: 10),
+            FilledButton.icon(
+              key: const Key('receipt_capture_done'),
+              onPressed: () =>
+                  Navigator.pop(context, _BatchSessionChoice.done),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size(48, 52),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
+              ),
+              icon: const Icon(Icons.check_circle_outline),
+              label: Text(l10n.receiptCaptureDone),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

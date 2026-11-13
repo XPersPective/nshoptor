@@ -1636,4 +1636,32 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Сланець';
+
+  @override
+  String get receiptContinueSame => 'Продовжити той самий чек';
+
+  @override
+  String get receiptCaptureDone => 'Готово';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count сторінок знято';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Чек у черзі — обробка в фоновому режимі.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'До $max сторінок можна додати на один чек.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Зчитування ціни…';
+
+  @override
+  String get shelfLabelContinueOther => 'Сканувати інший товар';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Ціна зчитується в фоновому режимі.';
 }

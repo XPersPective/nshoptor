@@ -1640,4 +1640,32 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Šiferis';
+
+  @override
+  String get receiptContinueSame => 'Tęsti tą patį čekį';
+
+  @override
+  String get receiptCaptureDone => 'Baigta';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'Nufotografuota $count puslapiai';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Checkis eilėje — ruošiamas fone.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Į vieną čekį galima įtraukti iki $max puslapių.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Skaitymas kainos etiketę…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skenuoti kitą prekę';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Kainos etiketė skaitoma fone.';
 }

@@ -1634,4 +1634,34 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Ardósia';
+
+  @override
+  String get receiptContinueSame => 'Continuar com o mesmo recibo';
+
+  @override
+  String get receiptCaptureDone => 'Concluído';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count páginas capturadas';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Recibo na fila — preparando em segundo plano.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Até $max páginas podem ser adicionadas por recibo.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lendo etiqueta de preço…';
+
+  @override
+  String get shelfLabelContinueOther => 'Escanear outro item';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Etiqueta de preço sendo lida em segundo plano.';
 }

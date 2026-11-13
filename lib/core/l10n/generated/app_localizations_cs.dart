@@ -1630,4 +1630,33 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Břidlice';
+
+  @override
+  String get receiptContinueSame => 'Pokračovat se stejným účtenkou';
+
+  @override
+  String get receiptCaptureDone => 'Hotovo';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count stran zachyceno';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Účtenka zařazena do fronty — připravuje se na pozadí.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Na jednu účtenku lze přidat až $max stran.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Čtení cenovky…';
+
+  @override
+  String get shelfLabelContinueOther => 'Naskenovat další položku';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Cenovka se čte na pozadí.';
 }

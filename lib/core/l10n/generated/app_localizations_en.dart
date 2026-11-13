@@ -1627,4 +1627,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Slate';
+
+  @override
+  String get receiptContinueSame => 'Continue same receipt';
+
+  @override
+  String get receiptCaptureDone => 'Done';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pages captured',
+      one: '1 page captured',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Receipt queued — preparing in the background.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Up to $max pages can be added per receipt.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Reading price label…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scan another item';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Price label is reading in the background.';
 }

@@ -1633,4 +1633,34 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Grife';
+
+  @override
+  String get receiptContinueSame => 'Endelea na risiti ileile';
+
+  @override
+  String get receiptCaptureDone => 'Imekamilika';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count kurasa zimechukuliwa';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Risiti imepangwa — inatayarishwa katika mazingira ya nyuma.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hadi $max kurasa zinaweza kuongezwa kwa kila risiti.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Inasoma lebo ya bei…';
+
+  @override
+  String get shelfLabelContinueOther => 'Changanua bidhaa nyingine';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Lebo ya bei inasomwa katika mazingira ya nyuma.';
 }

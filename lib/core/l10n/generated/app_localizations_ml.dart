@@ -1628,4 +1628,34 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get paletteSlate => 'സ്ലേറ്റ്';
+
+  @override
+  String get receiptContinueSame => 'അതേ റിസീറ്റ് തുടരുക';
+
+  @override
+  String get receiptCaptureDone => 'പൂർത്തിയായി';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count പേജുകൾ ക്യാപ്ചർ ചെയ്തു';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'റിസീറ്റ് ക്യൂയിൽ — ബാക്ക്‌ഗ്രൗണ്ടിൽ തയ്യാറാക്കുന്നു.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ഒരു റിസീറ്റിന് $max പേജുകൾ വരെ ചേർക്കാം.';
+  }
+
+  @override
+  String get shelfLabelReading => 'വില ലേബൽ വായിക്കുന്നു…';
+
+  @override
+  String get shelfLabelContinueOther => 'മറ്റൊരു സാധനം സ്കാൻ ചെയ്യുക';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'വില ലേബൽ ബാക്ക്‌ഗ്രൗണ്ടിൽ വായിക്കുന്നു.';
 }

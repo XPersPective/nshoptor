@@ -616,5 +616,27 @@
   "priceManualEntryAction": "Enter price manually",
   "priceRetakeAction": "Take another photo",
   "paletteSage": "Sage",
-  "paletteSlate": "Slate"
+  "paletteSlate": "Slate",
+  "receiptContinueSame": "Continue same receipt",
+  "receiptCaptureDone": "Done",
+  "receiptSessionPagesCount": "{count, plural, =1{1 page captured} other{{count} pages captured}}",
+  "@receiptSessionPagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "receiptQueuedNotice": "Receipt queued — preparing in the background.",
+  "receiptMaxPagesNote": "Up to {max} pages can be added per receipt.",
+  "@receiptMaxPagesNote": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "shelfLabelReading": "Reading price label…",
+  "shelfLabelContinueOther": "Scan another item",
+  "shelfLabelQueuedNotice": "Price label is reading in the background."
 }

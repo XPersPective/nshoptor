@@ -1628,4 +1628,33 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Kiltkivi';
+
+  @override
+  String get receiptContinueSame => 'Jätka sama arvega';
+
+  @override
+  String get receiptCaptureDone => 'Valmis';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count lehekülge pildistatud';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Arve on järjekorras — taustal ettevalmistamisel.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Iga arve kohta saab lisada kuni $max lehekülge.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Hindade sildi lugemine…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skaneeri teine toode';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Hindade silti loetakse taustal.';
 }

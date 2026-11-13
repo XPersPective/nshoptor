@@ -1619,4 +1619,32 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get paletteSlate => 'تخته ډبره';
+
+  @override
+  String get receiptContinueSame => 'همغه رسید ته دوام ورکړئ';
+
+  @override
+  String get receiptCaptureDone => 'شول';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count پاڼې اخیستل شوې';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'رسید په صف کې دی — شاته چمتو کیږي.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'په هر رسید کې تر $max پاڼو پورې اضافه کیدی شي.';
+  }
+
+  @override
+  String get shelfLabelReading => 'د بیه لیبل لوستل کیږي…';
+
+  @override
+  String get shelfLabelContinueOther => 'بل توکي سکین کړئ';
+
+  @override
+  String get shelfLabelQueuedNotice => 'د بیه لیبل شاته لوستل کیږي.';
 }

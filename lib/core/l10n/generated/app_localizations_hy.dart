@@ -1635,4 +1635,34 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Թերթաքար';
+
+  @override
+  String get receiptContinueSame => 'Շարունակել նույն չեկով';
+
+  @override
+  String get receiptCaptureDone => 'Պատրաստ է';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count էջ ներբեռնված է';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Չեկը հերթում է — նախապատրաստվում է ֆոնային ռեժիմում։';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Մեկ չեկի համար կարող եք ավելացնել մինչև $max էջ։';
+  }
+
+  @override
+  String get shelfLabelReading => 'Կարդում են գնի պիտակը…';
+
+  @override
+  String get shelfLabelContinueOther => 'Սկանավորել այլ ապրանք';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Գնի պիտակը կարդում են ֆոնային ռեժիմում։';
 }

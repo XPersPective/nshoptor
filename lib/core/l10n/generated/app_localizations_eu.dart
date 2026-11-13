@@ -1637,4 +1637,34 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Arbela';
+
+  @override
+  String get receiptContinueSame => 'Jarraitu errezeptu berarekin';
+
+  @override
+  String get receiptCaptureDone => 'Eginda';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count orri kapturatuta';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Errezeptua ilaran — atzeko planoan prestatzen.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Gehienez $max orri gehitu daitezke errezeptu bakoitzean.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Prezio-labela irakurtzen…';
+
+  @override
+  String get shelfLabelContinueOther => 'Eskaneatu beste produktu bat';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Prezio-labela atzeko planoan irakurtzen ari da.';
 }

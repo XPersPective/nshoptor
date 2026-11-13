@@ -1618,4 +1618,33 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get paletteSlate => 'أردواز';
+
+  @override
+  String get receiptContinueSame => 'استمر على نفس الإيصال';
+
+  @override
+  String get receiptCaptureDone => 'تم';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count صفحات تم التقاطها';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'الإيصال في الانتظار — جار التحضير في الخلفية.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'يمكن إضافة ما يصل إلى $max صفحة لكل إيصال.';
+  }
+
+  @override
+  String get shelfLabelReading => 'جارٍ قراءة ملصق السعر…';
+
+  @override
+  String get shelfLabelContinueOther => 'مسح عنصر آخر';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ملصق السعر يُقرأ في الخلفية.';
 }

@@ -802,7 +802,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         ..showSnackBar(
           SnackBar(content: Text(l10n.receiptCommitted), showCloseIcon: true),
         );
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(true);
     } on ReceiptAlreadyImported {
       if (mounted) setState(() => _failureMessage = l10n.receiptDuplicate);
     } catch (_) {

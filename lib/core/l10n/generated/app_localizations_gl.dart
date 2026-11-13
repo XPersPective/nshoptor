@@ -1635,4 +1635,34 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Lousa';
+
+  @override
+  String get receiptContinueSame => 'Continuar co mesmo recibo';
+
+  @override
+  String get receiptCaptureDone => 'Feito';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count páxinas capturadas';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Recibo en cola — preparando en segundo plano.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Pódense engadir ata $max páxinas por recibo.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lendo a etiqueta de prezo…';
+
+  @override
+  String get shelfLabelContinueOther => 'Escanear outro produto';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'A etiqueta de prezo está lendo en segundo plano.';
 }

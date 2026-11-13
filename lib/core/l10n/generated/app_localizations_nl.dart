@@ -1636,4 +1636,34 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Leisteen';
+
+  @override
+  String get receiptContinueSame => 'Doorgaan met dezelfde bon';
+
+  @override
+  String get receiptCaptureDone => 'Gereed';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pagina\'s vastgelegd';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Bon in wachtrij — wordt op de achtergrond verwerkt.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Er kunnen maximaal $max pagina\'s aan een bon worden toegevoegd.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Prijslabel uitlezen…';
+
+  @override
+  String get shelfLabelContinueOther => 'Een ander item scannen';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Prijslabel wordt op de achtergrond uitgelezen.';
 }

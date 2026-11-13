@@ -1641,4 +1641,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Ardoise';
+
+  @override
+  String get receiptContinueSame => 'Continuer avec le même reçu';
+
+  @override
+  String get receiptCaptureDone => 'Terminé';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pages capturées';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Reçu en file d\'attente — préparation en arrière-plan.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Jusqu\'à $max pages peuvent être ajoutées par reçu.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lecture de l\'étiquette…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scanner un autre article';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Lecture de l\'étiquette en arrière-plan.';
 }

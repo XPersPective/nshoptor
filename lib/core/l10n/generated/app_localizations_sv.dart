@@ -1628,4 +1628,32 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Skiffer';
+
+  @override
+  String get receiptContinueSame => 'Fortsätt med samma kvitto';
+
+  @override
+  String get receiptCaptureDone => 'Klar';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sidor har fångats';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Kittot köat — förbereds i bakgrunden.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Upp till $max sidor kan läggas till per kvitto.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Läser prisetikett…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skanna ett annat objekt';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Prisetiketten läses i bakgrunden.';
 }

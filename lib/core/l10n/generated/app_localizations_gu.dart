@@ -1625,4 +1625,34 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get paletteSlate => 'સ્લેટ';
+
+  @override
+  String get receiptContinueSame => 'સમાન રેસિટ પર ચાલુ રાખો';
+
+  @override
+  String get receiptCaptureDone => 'પૂર્ણ થયું';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count પેજ કેપ્ચર કર્યા';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'રેસિટ ક્યૂમાં છે — બેકગ્રાઉન્ડમાં તૈયાર કરવામાં આવી રહી છે.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'દરેક રેસિટ માટે $max સુધીના પેજ ઉમેરી શકાય છે.';
+  }
+
+  @override
+  String get shelfLabelReading => 'કિંમત લેબલ વાંચી રહ્યા છીએ…';
+
+  @override
+  String get shelfLabelContinueOther => 'અન્ય આઇટમ સ્કેન કરો';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'કિંમત લેબલ બેકગ્રાઉન્ડમાં વાંચવામાં આવી રહી છે.';
 }

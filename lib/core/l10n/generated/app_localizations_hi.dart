@@ -1631,4 +1631,34 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get paletteSlate => 'स्लेट';
+
+  @override
+  String get receiptContinueSame => 'वही रसीद जारी रखें';
+
+  @override
+  String get receiptCaptureDone => 'हो गया';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count पेज कैप्चर किए गए';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'रसीद कतार में है — बैकग्राउंड में तैयार हो रही है।';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'प्रति रसीद अधिकतम $max पेड़ जोड़े जा सकते हैं।';
+  }
+
+  @override
+  String get shelfLabelReading => 'कीमत लेबल पढ़ रहे हैं…';
+
+  @override
+  String get shelfLabelContinueOther => 'कोई और आइटम स्कैन करें';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'कीमत लेबल बैकग्राउंड में पढ़ा जा रहा है।';
 }

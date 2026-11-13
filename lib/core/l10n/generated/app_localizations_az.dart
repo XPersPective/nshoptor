@@ -1632,4 +1632,33 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Şifer boz';
+
+  @override
+  String get receiptContinueSame => 'Eyni çeki davam et';
+
+  @override
+  String get receiptCaptureDone => 'Hazırdır';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count səhifə tutuldu';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Çek növbəyə qoyuldu — arxa planda hazırlanır.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hər bir çək üçün ən çox $max səhifə əlavə edilə bilər.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Qiymət etiketi oxunur…';
+
+  @override
+  String get shelfLabelContinueOther => 'Başqa məhsulu skan et';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Qiymət etiketi arxa planda oxunur.';
 }

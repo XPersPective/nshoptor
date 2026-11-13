@@ -1627,4 +1627,34 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Тақтатас';
+
+  @override
+  String get receiptContinueSame => 'Сол чекпен жалғастыру';
+
+  @override
+  String get receiptCaptureDone => 'Дайын';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count бет түсірілді';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Чек кезекке тұрды — артқы фонда дайындалуда.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Бір чекке $max бетке дейін қосуға болады.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Баға жапсырмасы оқылып жатыр…';
+
+  @override
+  String get shelfLabelContinueOther => 'Басқа тауарды сканерлеу';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Баға жапсырмасы артқы фонда оқылып жатыр.';
 }

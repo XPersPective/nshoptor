@@ -1628,4 +1628,33 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Skifer';
+
+  @override
+  String get receiptContinueSame => 'Fortsæt med samme kvittering';
+
+  @override
+  String get receiptCaptureDone => 'Færdig';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sider optaget';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Kvittering i kø — forbereder i baggrunden.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Der kan tilføjes op til $max sider pr. kvittering.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Læser prislabel…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scan et andet produkt';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Prislabel læses i baggrunden.';
 }

@@ -1623,4 +1623,33 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get paletteSlate => 'স্লেট';
+
+  @override
+  String get receiptContinueSame => 'একই রসিদ চালিয়ে যান';
+
+  @override
+  String get receiptCaptureDone => 'সম্পন্ন';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count পৃষ্ঠা ক্যাপচার করা হয়েছে';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'রসিদটি সারিতে আছে — ব্যাকগ্রাউন্ডে প্রস্তুত হচ্ছে।';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'প্রতিটি রসিদের জন্য সর্বোচ্চ $max পৃষ্ঠা যোগ করা যাবে।';
+  }
+
+  @override
+  String get shelfLabelReading => 'দামের লেবেল পড়া হচ্ছে…';
+
+  @override
+  String get shelfLabelContinueOther => 'আরেকটি আইটেম স্ক্যান করুন';
+
+  @override
+  String get shelfLabelQueuedNotice => 'দামের লেবেল ব্যাকগ্রাউন্ডে পড়া হচ্ছে।';
 }

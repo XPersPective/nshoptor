@@ -1617,4 +1617,33 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get paletteSlate => 'ສີຫີນ';
+
+  @override
+  String get receiptContinueSame => 'ຕໍ່ໄປກັບໃບເກັບເງິນດຽວກັນ';
+
+  @override
+  String get receiptCaptureDone => 'ສຳເລັດແລ້ວ';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count ໜ້າທີ່ຖືກຈັບ';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ໃບເກັບເງິນຖືກວາງໃນລໍຖ້າ — ກຳລັງປະມວນຜົນຢູ່ພື້ນຫຼັງ.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ສາມາດເພີ່ມໄດ້ສູງສຸດ $max ໜ້າ ຕໍ່ໃບເກັບເງິນ.';
+  }
+
+  @override
+  String get shelfLabelReading => 'ກຳລັງອ່ານປ້າຍລາຄາ…';
+
+  @override
+  String get shelfLabelContinueOther => 'ສະແກນອື່ນອີກ 1 ລາຍການ';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ປ້າຍລາຄາກຳລັງອ່ານຢູ່ພື້ນຫຼັງ.';
 }

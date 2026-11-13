@@ -1635,4 +1635,34 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Ardesia';
+
+  @override
+  String get receiptContinueSame => 'Continua con lo stesso scontrino';
+
+  @override
+  String get receiptCaptureDone => 'Fatto';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pagine catturate';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Scontrino in coda — preparazione in background.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Possono essere aggiunte fino a $max pagine per scontrino.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lettura dell\'etichetta del prezzo…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scansiona un altro articolo';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Lettura dell\'etichetta del prezzo in background.';
 }

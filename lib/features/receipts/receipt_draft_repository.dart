@@ -69,6 +69,7 @@ class ReceiptDraftRepository {
         captureDataJson: Value(evidence),
         parserVersion: const Value('1'),
         processingStatus: const Value('pending'),
+        queueState: const Value('legacy'),
       );
       if (draftId == null) {
         return _db.into(_db.receipts).insert(values);
@@ -97,7 +98,7 @@ class ReceiptDraftRepository {
                     t.processingStatus.equals('pending') &
                     t.captureDataJson.isNotNull() &
                     (listId == null
-                        ? t.listId.isNull()
+                        ? (t.listId.isNull() & t.queueState.equals('legacy'))
                         : t.listId.equals(listId)),
               )
               ..orderBy([

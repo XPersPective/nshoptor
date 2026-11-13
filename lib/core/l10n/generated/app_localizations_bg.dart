@@ -1635,4 +1635,34 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Шисти';
+
+  @override
+  String get receiptContinueSame => 'Продължи със същия касов бон';
+
+  @override
+  String get receiptCaptureDone => 'Готово';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count страници са заснети';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Касовият бон е в опашка — подготвя се във фонов режим.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Може да добавите до $max страници за всеки касов бон.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Чете се цената на етикета…';
+
+  @override
+  String get shelfLabelContinueOther => 'Сканирай друг продукт';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Цената на етикета се чете във фонов режим.';
 }

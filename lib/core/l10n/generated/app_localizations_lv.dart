@@ -1634,4 +1634,32 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Slāneklis';
+
+  @override
+  String get receiptContinueSame => 'Turpināt ar to pašu čeku';
+
+  @override
+  String get receiptCaptureDone => 'Gatavs';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count lapas nofiksētas';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Čeks rindā — tiek apstrādāts fona režīmā.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Vienam čekam var pievienot līdz $max lapām.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lasu cenu etiķeti…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skenēt citu preci';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Cenas etiķete tiek lasīta fona režīmā.';
 }

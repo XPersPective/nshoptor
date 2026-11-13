@@ -1637,4 +1637,34 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Pissarra';
+
+  @override
+  String get receiptContinueSame => 'Continua amb el mateix rebuig';
+
+  @override
+  String get receiptCaptureDone => 'Fet';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pàgines capturades';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Rebuig en cua — preparant-se en segon pla.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Es poden afegir fins a $max pàgines per rebuig.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Llegint etiqueta de preu…';
+
+  @override
+  String get shelfLabelContinueOther => 'Escaneja un altre article';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'L\'etiqueta de preu es llegeix en segon pla.';
 }

@@ -1633,4 +1633,32 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Сланец';
+
+  @override
+  String get receiptContinueSame => 'Продолжить тот же чек';
+
+  @override
+  String get receiptCaptureDone => 'Готово';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'Захвачено $count стр.';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Чек в очереди — обработка в фоне.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'К одному чеку можно добавить до $max стр.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Сканирую ценник…';
+
+  @override
+  String get shelfLabelContinueOther => 'Отсканировать другой товар';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Ценник обрабатывается в фоне.';
 }

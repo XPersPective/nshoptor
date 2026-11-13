@@ -1624,4 +1624,33 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get paletteSlate => 'स्लेट';
+
+  @override
+  String get receiptContinueSame => 'त्याच रेसिप्टने पुढे जा';
+
+  @override
+  String get receiptCaptureDone => 'पूर्ण झाले';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count पृष्ठ कॅप्चर झाली';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'रेसिप्ट रांगेत आहे — बॅकग्राउंडमध्ये तयार होत आहे.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'एका रेसिप्टसाठी कमाल $max पृष्ठ जोडता येतील.';
+  }
+
+  @override
+  String get shelfLabelReading => 'किंमत लेबल वाचत आहे…';
+
+  @override
+  String get shelfLabelContinueOther => 'दुसरा आयटम स्कॅन करा';
+
+  @override
+  String get shelfLabelQueuedNotice => 'किंमत लेबल बॅकग्राउंडमध्ये वाचत आहे.';
 }

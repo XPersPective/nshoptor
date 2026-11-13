@@ -1631,4 +1631,34 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Batu tulis';
+
+  @override
+  String get receiptContinueSame => 'Teruskan resit yang sama';
+
+  @override
+  String get receiptCaptureDone => 'Selesai';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count halaman ditangkap';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Resit dalam barisan — sedang disediakan di latar belakang.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hingga $max halaman boleh ditambah bagi setiap resit.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Membaca label harga…';
+
+  @override
+  String get shelfLabelContinueOther => 'Imbas item lain';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Label harga sedang dibaca di latar belakang.';
 }

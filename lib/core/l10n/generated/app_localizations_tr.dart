@@ -1628,4 +1628,33 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Arduvaz';
+
+  @override
+  String get receiptContinueSame => 'Aynı fişe devam';
+
+  @override
+  String get receiptCaptureDone => 'Tamam';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sayfa çekildi';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Fiş sıraya alındı — arka planda hazırlanıyor.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Bir fiş için en fazla $max fotoğraf eklenebilir.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Fiyat etiketi okunuyor…';
+
+  @override
+  String get shelfLabelContinueOther => 'Başka ürüne geç';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Fiyat etiketi arka planda okunuyor.';
 }

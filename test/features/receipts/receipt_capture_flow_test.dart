@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/core/theme/app_theme.dart';
 import 'package:nshoptor/data/db/app_database.dart';
+import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/receipt_capture_flow.dart';
 import 'package:nshoptor/features/receipts/receipt_draft_repository.dart';
@@ -127,11 +128,13 @@ void main() {
   // Headed unfinished receipts are owned by the list created for them.
   Future<ReceiptDraft> ownedDraft() async {
     final lists = await db.select(db.shoppingLists).get();
-    // A header-less part has no list yet; it lives only for this session.
     return (await ReceiptDraftRepository(db)
             .pending(listId: lists.isEmpty ? null : lists.single.id))
         .single;
   }
+
+  Future<int> ensureFlowList() async => flowListId ??= await ListRepository(db)
+      .createList(title: 'A101 MARKET', currencyCode: 'TRY');
 
   Future<void> tap(WidgetTester tester, String key) async {
     final finder = find.byKey(Key(key));
@@ -161,10 +164,11 @@ void main() {
         _scan([..._header, 'ELMA 20,00', 'EKMEK 40,00']),
         _scan(['EKMEK 40,00', 'SÜT 30,00', 'TOPLAM 90,00 TL']),
       ]);
+      await ensureFlowList();
       await tester.pumpWidget(app(frames));
       await tap(tester, 'open_capture');
       expect(find.byKey(const Key('receipt_capture_camera')), findsOneWidget);
-      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      expect(await db.select(db.shoppingLists).get(), hasLength(1));
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
       await tap(tester, 'receipt_capture_later');
       // Store and date are known: the list now owns the unfinished receipt.
@@ -204,6 +208,7 @@ void main() {
           ]),
         ),
       );
+      await ensureFlowList();
       await tap(tester, 'open_capture');
 
       final quantityRow = tester
@@ -250,6 +255,7 @@ void main() {
           ]),
         ),
       );
+      await ensureFlowList();
       await tap(tester, 'open_capture');
       await tap(tester, 'receipt_capture_camera');
       expect(
@@ -278,6 +284,7 @@ void main() {
           ]),
         ),
       );
+      await ensureFlowList();
       await tap(tester, 'open_capture');
       await tap(tester, 'receipt_capture_gallery');
       final draft = await ownedDraft();
@@ -288,7 +295,9 @@ void main() {
         'SÜT',
       ]);
       await tap(tester, 'receipt_cancel');
-      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      expect(await db.select(db.shoppingLists).get(), hasLength(1));
+      expect(await db.select(db.receipts).get(), hasLength(1));
+      expect(await db.select(db.purchaseEntries).get(), isEmpty);
     },
   );
 
@@ -303,6 +312,7 @@ void main() {
           ]),
         ),
       );
+      await ensureFlowList();
       await tap(tester, 'open_capture');
       await tap(tester, 'receipt_capture_gallery');
       await tap(tester, 'receipt_capture_later');
@@ -328,6 +338,7 @@ void main() {
           ]),
         ),
       );
+      await ensureFlowList();
       await tap(tester, 'open_capture');
       await tap(tester, 'receipt_capture_restart');
       expect(images.removed, ['owned-image-0']);
@@ -350,11 +361,12 @@ void main() {
           ]),
         ),
       );
+      await ensureFlowList();
       await tap(tester, 'open_capture');
       expect(failure, isNotNull);
       expect(images.removed, images.copied);
       expect(await db.select(db.receipts).get(), isEmpty);
-      expect(await db.select(db.shoppingLists).get(), isEmpty);
+      expect(await db.select(db.shoppingLists).get(), hasLength(1));
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
     },
   );
@@ -383,6 +395,7 @@ void main() {
               scale: config.scale,
             ),
           );
+          await ensureFlowList();
           await tap(tester, 'open_capture');
           expect(tester.takeException(), isNull);
           final output = const String.fromEnvironment('CAPTURE_OUT');
@@ -421,6 +434,7 @@ void main() {
       final frames = _Frames([
         _scan(['ELMA 20,00', 'EKMEK 40,00', 'TOPLAM 60,00']),
       ]);
+      await ensureFlowList();
       await tester.pumpWidget(app(frames));
       await tap(tester, 'open_capture');
       // No timed auto-camera: the continuation sheet waits for the user.
@@ -447,6 +461,7 @@ void main() {
         _scan([..._header, 'ELMA 20,00']),
         _scan([]), // second photo reads nothing at all
       ]);
+      await ensureFlowList();
       await tester.pumpWidget(app(frames));
       await tap(tester, 'open_capture');
       await tap(tester, 'receipt_capture_camera');

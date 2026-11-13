@@ -1630,4 +1630,32 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get paletteSlate => 'Сланец';
+
+  @override
+  String get receiptContinueSame => 'Ушул чекти улантуу';
+
+  @override
+  String get receiptCaptureDone => 'Аяктады';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count барак тартылды';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Чек кезекке коюлду — фондо даярдалууда.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Бир чекке $max баракка чейин кошсоңуз болот.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Баа этикеткасын окуп жатат…';
+
+  @override
+  String get shelfLabelContinueOther => 'Дагы бир азыктарды сканерлөө';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Баа этикеткасы фондо окулууда.';
 }

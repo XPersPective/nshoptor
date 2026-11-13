@@ -1638,4 +1638,34 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get paletteSlate => 'சிலேட்';
+
+  @override
+  String get receiptContinueSame => 'அதே ரசீதை தொடர்';
+
+  @override
+  String get receiptCaptureDone => 'முடிந்தது';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count பக்கங்கள் பிடிக்கப்பட்டன';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ரசீது வரிசையில் வைக்கப்பட்டுள்ளது — பின்னணியில் தயாரிக்கப்படுகிறது.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ஒவ்வொரு ரசீதிற்கும் அதிகபட்சம் $max பக்கங்கள் சேர்க்கலாம்.';
+  }
+
+  @override
+  String get shelfLabelReading => 'விலை லேபிளைப் படிக்கிறது…';
+
+  @override
+  String get shelfLabelContinueOther => 'மற்ற பொருளை ஸ்கேன் செய்';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'விலை லேபிள் பின்னணியில் படிக்கப்படுகிறது.';
 }

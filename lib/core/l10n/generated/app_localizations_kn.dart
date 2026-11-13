@@ -1630,4 +1630,33 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get paletteSlate => 'ಸ್ಲೇಟ್';
+
+  @override
+  String get receiptContinueSame => 'ಅದೇ ರಿಸೀಟ್ ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get receiptCaptureDone => 'ಮುಗಿದಿದೆ';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count ಪುಟಗಳು ಕ್ಯಾಪ್ಚರ್ ಆಗಿವೆ';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ರಿಸೀಟ್ ಕ್ಯೂನಲ್ಲಿ ಇದೆ — ಹಿನ್ನೆಲೆಯಲ್ಲಿ ತಯಾರಾಗುತ್ತಿದೆ.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ಪ್ರತಿ ರಿಸೀಟ್‌ಗೆ ಗರಿಷ್ಠ $max ಪುಟಗಳನ್ನು ಸೇರಿಸಬಹುದು.';
+  }
+
+  @override
+  String get shelfLabelReading => 'ಬೆಲೆ ಲೇಬಲ್ ಓದಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get shelfLabelContinueOther => 'ಇನ್ನೊಂದು ವಸ್ತುವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ಬೆಲೆ ಲೇಬಲ್ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಓದಲಾಗುತ್ತಿದೆ.';
 }
