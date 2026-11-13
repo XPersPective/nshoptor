@@ -79,42 +79,50 @@ class PlanBadge extends StatelessWidget {
             height: 48,
             child: Center(
               widthFactor: 1,
-              child: DecoratedBox(
-                decoration: ShapeDecoration(
-                  shape: const StadiumBorder(),
-                  color: active
-                      ? scheme.primaryContainer.withValues(alpha: 0.7)
-                      : scheme.surfaceContainerHighest.withValues(alpha: 0.7),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: iconOnly ? 8 : 10,
-                    vertical: 5,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        trial ? Icons.hourglass_top : Icons.workspace_premium,
-                        size: 14,
-                        color: active
-                            ? scheme.primary
-                            : scheme.onSurfaceVariant,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 32),
+                child: DecoratedBox(
+                  decoration: ShapeDecoration(
+                    shape: StadiumBorder(
+                      side: BorderSide(
+                        color: scheme.outlineVariant.withValues(alpha: 0.55),
                       ),
-                      if (!iconOnly) ...[
-                        const SizedBox(width: 4),
-                        Flexible(
-                          child: Text(
-                            display,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.labelMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
+                    ),
+                    color: active
+                        ? scheme.primaryContainer.withValues(alpha: 0.72)
+                        : scheme.surfaceContainerHighest.withValues(alpha: 0.72),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: iconOnly ? 10 : 12,
+                      vertical: 5,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          trial ? Icons.hourglass_top : Icons.workspace_premium,
+                          size: 16,
+                          color: active
+                              ? scheme.primary
+                              : scheme.onSurfaceVariant,
+                        ),
+                        if (!iconOnly) ...[
+                          const SizedBox(width: 6),
+                          Flexible(
+                            child: Text(
+                              display,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.15,
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),

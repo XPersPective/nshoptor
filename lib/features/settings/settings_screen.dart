@@ -162,7 +162,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   String _paletteName(AppLocalizations l10n, AppPalette p) => switch (p) {
     AppPalette.forest => l10n.paletteForest,
+    AppPalette.sage => l10n.paletteSage,
     AppPalette.ocean => l10n.paletteOcean,
+    AppPalette.slate => l10n.paletteSlate,
     AppPalette.sunset => l10n.paletteSunset,
     AppPalette.lavender => l10n.paletteLavender,
   };
@@ -239,8 +241,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: AnimatedBuilder(
         animation: widget.languageController,
-        builder: (context, _) => ListView(
-          padding: const EdgeInsets.all(16),
+        builder: (context, _) {
+          final scheme = Theme.of(context).colorScheme;
+          return ListTileTheme.merge(
+            contentPadding: EdgeInsets.zero,
+            horizontalTitleGap: 14,
+            minLeadingWidth: 24,
+            iconColor: scheme.onSurfaceVariant,
+            titleTextStyle: text.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: scheme.onSurface,
+            ),
+            subtitleTextStyle: text.bodyMedium?.copyWith(
+              color: scheme.onSurfaceVariant,
+            ),
+            child: ListView(
+              padding: const EdgeInsets.all(16),
           children: [
             ListTile(
               key: const Key('settings_pro_row'),
@@ -282,6 +298,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               isExpanded: true,
               key: const Key('settings_language_dropdown'),
               initialValue: _repo.currentLanguage,
+              style: text.bodyLarge?.copyWith(color: scheme.onSurface),
               decoration: InputDecoration(
                 labelText: l10n.languageLabel,
                 prefixIcon: const Icon(Icons.language),
@@ -305,6 +322,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               key: const Key('settings_format_locale_dropdown'),
               itemHeight: null,
               initialValue: _repo.formatLocale,
+              style: text.bodyLarge?.copyWith(color: scheme.onSurface),
               decoration: InputDecoration(
                 labelText: l10n.formatLocaleLabel,
                 prefixIcon: const Icon(Icons.numbers),
@@ -329,6 +347,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               isExpanded: true,
               key: const Key('settings_theme_dropdown'),
               initialValue: _repo.themeMode,
+              style: text.bodyLarge?.copyWith(color: scheme.onSurface),
               decoration: InputDecoration(
                 labelText: l10n.themeLabel,
                 prefixIcon: const Icon(Icons.dark_mode_outlined),
@@ -343,18 +362,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ],
               onChanged: _setThemeMode,
             ),
-            const SizedBox(height: 12),
-            Text(l10n.paletteLabel, style: text.titleSmall),
+            const SizedBox(height: 14),
+            Text(
+              l10n.paletteLabel,
+              style: text.titleSmall?.copyWith(color: scheme.onSurface),
+            ),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
-              runSpacing: 8,
+              runSpacing: 6,
               children: [
                 for (final p in AppPalette.values)
                   ChoiceChip(
                     key: Key('settings_palette_${p.name}'),
-                    avatar: CircleAvatar(backgroundColor: p.seed, radius: 8),
-                    label: Text(_paletteName(l10n, p)),
+                    avatar: CircleAvatar(backgroundColor: p.seed, radius: 7),
+                    label: Text(_paletteName(l10n, p), style: text.labelLarge),
                     selected:
                         (widget.themeModeController?.palette ??
                             AppPalette.forest) ==
@@ -367,7 +389,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SwitchListTile(
               key: const Key('settings_dark_black'),
-              contentPadding: EdgeInsets.zero,
               secondary: const Icon(Icons.contrast),
               title: Text(l10n.darkBlackLabel),
               value: widget.themeModeController?.black ?? false,
@@ -383,7 +404,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               leading: const Icon(Icons.category_outlined),
               title: Text(l10n.defaultUnitLabel),
               subtitle: Text(unitDisplayNameFromName(_repo.defaultUnit, l10n)),
-              trailing: DropdownButton<String>(
+              trailing: _CompactSettingDropdown(
                 value: _repo.defaultUnit,
                 items: UnitCode.standard()
                     .map(
@@ -400,7 +421,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               leading: const Icon(Icons.attach_money),
               title: Text(l10n.defaultCurrencyLabel),
               subtitle: Text(_repo.defaultCurrency),
-              trailing: DropdownButton<String>(
+              trailing: _CompactSettingDropdown(
                 value: _repo.defaultCurrency,
                 items: Currency.all
                     .map(
@@ -430,8 +451,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   setState(() => AppDefaults.setCaptureTipsEnabled(v)),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(l10n.roundingNote, style: text.bodySmall),
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(
+                l10n.roundingNote,
+                style: text.bodySmall?.copyWith(color: scheme.onSurfaceVariant),
+              ),
             ),
 
             _SectionTitle(
@@ -648,9 +672,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ListTile(title: Text(l10n.aboutLicenses)),
 
             _SectionTitle(icon: Icons.mic_none, label: l10n.voiceSettingsLabel),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(l10n.permissionsBody, style: text.bodySmall),
+            Text(
+              l10n.permissionsBody,
+              style: text.bodySmall?.copyWith(color: scheme.onSurfaceVariant),
             ),
 
             // Destructive actions stay separate from optional assistance.
@@ -667,8 +691,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ],
         ),
-      ),
-    );
+      );
+      },
+    ),
+  );
   }
 
   void _setLanguage(String? value) {
@@ -974,6 +1000,45 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 }
 
+class _CompactSettingDropdown extends StatelessWidget {
+  const _CompactSettingDropdown({
+    required this.value,
+    required this.items,
+    required this.onChanged,
+  });
+
+  final String value;
+  final List<DropdownMenuItem<String>> items;
+  final ValueChanged<String?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+    return DecoratedBox(
+      decoration: ShapeDecoration(
+        color: scheme.surfaceContainerHigh,
+        shape: StadiumBorder(
+          side: BorderSide(color: scheme.outlineVariant.withValues(alpha: 0.55)),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<String>(
+            value: value,
+            borderRadius: BorderRadius.circular(14),
+            style: theme.textTheme.labelLarge?.copyWith(color: scheme.onSurface),
+            iconEnabledColor: scheme.onSurfaceVariant,
+            items: items,
+            onChanged: onChanged,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _SectionTitle extends StatelessWidget {
   const _SectionTitle({required this.icon, required this.label});
 
@@ -982,17 +1047,21 @@ class _SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 8),
+      padding: const EdgeInsets.only(top: 22, bottom: 8),
       child: Row(
         children: [
-          Icon(icon, size: 18),
-          const SizedBox(width: 8),
+          Icon(icon, size: 18, color: scheme.primary),
+          const SizedBox(width: 10),
           Expanded(
             child: Text(
               label,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Theme.of(context).colorScheme.primary,
+              style: theme.textTheme.titleSmall?.copyWith(
+                color: scheme.primary,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.2,
               ),
             ),
           ),

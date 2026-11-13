@@ -423,6 +423,12 @@ void main() {
         final glyph = tester.getRect(
           find.descendant(of: discover, matching: find.byType(Icon)),
         );
+        final pillBox = find.descendant(
+          of: find.byKey(const Key('home_plan_badge')),
+          matching: find.byType(DecoratedBox),
+        );
+        expect(glyph.width, 22);
+        expect(tester.getSize(pillBox).height, greaterThanOrEqualTo(32));
         if (rtl) {
           expect(badge.left, greaterThanOrEqualTo(16));
           expect(glyph.left - badge.right, inInclusiveRange(8, 16));

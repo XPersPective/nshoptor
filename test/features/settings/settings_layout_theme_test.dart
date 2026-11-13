@@ -123,6 +123,8 @@ void main() {
       // Keep-awake explains where it applies.
       final keepAwake = find.byKey(const Key('settings_keep_awake'));
       await tester.scrollUntilVisible(keepAwake, 200, scrollable: find.byType(Scrollable).first);
+      await tester.ensureVisible(keepAwake);
+      await tester.pumpAndSettle();
       expect(find.descendant(of: keepAwake, matching: find.text(l10n.keepScreenAwake)), findsOneWidget);
       expect(find.descendant(of: keepAwake, matching: find.text(l10n.shoppingTitle)), findsOneWidget);
       await tester.tap(keepAwake);
@@ -130,5 +132,85 @@ void main() {
       expect(settings.keepScreenAwake, isTrue);
       semantics.dispose();
     });
+
+    testWidgets('selecting calm palette variations updates controller and surface', (tester) async {
+      final controller = AppThemeModeController(store: SettingsStore())..load();
+      await tester.pumpWidget(MaterialApp(
+        locale: const Locale('en'),
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: SettingsScreen(
+          repository: settings,
+          languageController: LanguageController(store: SettingsStore())..load(),
+          themeModeController: controller,
+        ),
+      ));
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(find.byKey(const Key('settings_palette_sage')));
+      await tester.tap(find.byKey(const Key('settings_palette_sage')));
+      await tester.pumpAndSettle();
+      expect(controller.palette, AppPalette.sage);
+      expect(
+        AppTheme.dark(palette: controller.palette).colorScheme.surface,
+        isNot(AppTheme.brandDarkSurface),
+      );
+
+      await tester.ensureVisible(find.byKey(const Key('settings_palette_slate')));
+      await tester.tap(find.byKey(const Key('settings_palette_slate')));
+      await tester.pumpAndSettle();
+      expect(controller.palette, AppPalette.slate);
+      expect(tester.takeException(), isNull);
+    });
+
+    for (final dir in TextDirection.values) {
+      testWidgets(
+        'Settings rows align on uniform 16dp gutter with zero 320dp/2x overflow ($dir)',
+        (tester) async {
+          tester.view.physicalSize = const Size(320, 900);
+          tester.view.devicePixelRatio = 1;
+          addTearDown(tester.view.reset);
+          await tester.pumpWidget(
+            MaterialApp(
+              locale: dir == TextDirection.rtl ? const Locale('ar') : const Locale('tr'),
+              supportedLocales: AppLocalizations.supportedLocales,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              builder: (context, child) => Directionality(
+                textDirection: dir,
+                child: MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaler: const TextScaler.linear(2),
+                  ),
+                  child: child!,
+                ),
+              ),
+              home: SettingsScreen(
+                repository: settings,
+                languageController: LanguageController(store: SettingsStore())..load(),
+                themeModeController: AppThemeModeController(store: SettingsStore())..load(),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+          final proRect = tester.getRect(find.byKey(const Key('settings_pro_row')));
+          final langRect = tester.getRect(
+            find.byKey(const Key('settings_language_dropdown')),
+          );
+          expect(proRect.left, moreOrLessEquals(langRect.left, epsilon: 1));
+          expect(proRect.right, moreOrLessEquals(langRect.right, epsilon: 1));
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
   });
 }

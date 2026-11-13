@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "lib/features/lists/lists_screen.dart, lib/features/settings/settings_screen.dart, lib/features/subscription/plan_badge.dart, test/core/theme/theme_test.dart, test/features/home/home_navigation_test.dart, test/features/home/home_screen_test.dart, test/features/lists/list_scheduling_test.dart, test/features/lists/lists_screen_test.dart, test/features/settings/settings_layout_theme_test.dart",
+  "strategy": "check",
+  "attempt": "0e5e3383cdc275d6",
+  "repeats": 0,
+  "contract": "627601424df52a5f",
+  "usage": {
+    "checks": 1,
+    "seconds": 178.14
+  }
+}
