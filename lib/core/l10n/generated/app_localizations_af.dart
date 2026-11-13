@@ -1628,4 +1628,10 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Neem weer \'n foto';
+
+  @override
+  String get paletteSage => 'Salie';
+
+  @override
+  String get paletteSlate => 'Leiklip';
 }

@@ -1627,4 +1627,10 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Piga picha nyingine';
+
+  @override
+  String get paletteSage => 'Mruju';
+
+  @override
+  String get paletteSlate => 'Grife';
 }

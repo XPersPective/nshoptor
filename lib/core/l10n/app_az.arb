@@ -496,5 +496,7 @@
   "openSettingsAction": "Tənzimləmələri aç",
   "priceManualEntryAction": "Qiyməti əl ilə daxil et",
   "priceRetakeAction": "Yenidən çək",
-  "receiptDateTimeLabel": "Tarix və saat"
+  "receiptDateTimeLabel": "Tarix və saat",
+  "paletteSage": "Sürvə",
+  "paletteSlate": "Şifer boz"
 }

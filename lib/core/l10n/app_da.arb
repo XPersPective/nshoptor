@@ -496,5 +496,7 @@
   "openSettingsAction": "Åbn indstillingerne",
   "priceManualEntryAction": "Indtast prisen manuelt",
   "priceRetakeAction": "Tag et nyt billede",
-  "receiptDateTimeLabel": "Dato og klokkeslæt"
+  "receiptDateTimeLabel": "Dato og klokkeslæt",
+  "paletteSage": "Salvie",
+  "paletteSlate": "Skifer"
 }

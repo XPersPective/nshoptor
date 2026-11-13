@@ -1633,4 +1633,10 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Kumuha ng ibang larawan';
+
+  @override
+  String get paletteSage => 'Sabiya';
+
+  @override
+  String get paletteSlate => 'Slate';
 }

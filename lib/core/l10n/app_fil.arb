@@ -496,5 +496,7 @@
   "openSettingsAction": "Buksan ang Mga Setting",
   "priceManualEntryAction": "Ilagay ang presyo nang manu-mano",
   "priceRetakeAction": "Kumuha ng ibang larawan",
-  "receiptDateTimeLabel": "Petsa at oras"
+  "receiptDateTimeLabel": "Petsa at oras",
+  "paletteSage": "Sabiya",
+  "paletteSlate": "Slate"
 }

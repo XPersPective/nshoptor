@@ -1567,4 +1567,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get priceRetakeAction => '撮り直す';
+
+  @override
+  String get paletteSage => 'セージ';
+
+  @override
+  String get paletteSlate => 'スレート';
 }

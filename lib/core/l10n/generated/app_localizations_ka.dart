@@ -1619,4 +1619,10 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'სხვა ფოტო გადაიღეთ';
+
+  @override
+  String get paletteSage => 'სალბი';
+
+  @override
+  String get paletteSlate => 'ფიქალი';
 }

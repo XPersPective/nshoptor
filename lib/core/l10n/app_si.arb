@@ -496,5 +496,7 @@
   "openSettingsAction": "සැකසුම් විවෘත කරන්න",
   "priceManualEntryAction": "මිල අතින් ඇතුළත් කරන්න",
   "priceRetakeAction": "වෙනත් ඡායාරූපයක් ගන්න",
-  "receiptDateTimeLabel": "දිනය සහ වේලාව"
+  "receiptDateTimeLabel": "දිනය සහ වේලාව",
+  "paletteSage": "සේජ්",
+  "paletteSlate": "ස්ලේට්"
 }

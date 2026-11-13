@@ -496,5 +496,7 @@
   "openSettingsAction": "فتح الإعدادات",
   "priceManualEntryAction": "إدخال السعر يدويًا",
   "priceRetakeAction": "التقاط صورة أخرى",
-  "receiptDateTimeLabel": "التاريخ والوقت"
+  "receiptDateTimeLabel": "التاريخ والوقت",
+  "paletteSage": "مريمية",
+  "paletteSlate": "أردواز"
 }

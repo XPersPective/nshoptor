@@ -1610,4 +1610,10 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'צילום תמונה נוספת';
+
+  @override
+  String get paletteSage => 'מרווה';
+
+  @override
+  String get paletteSlate => 'צפחה';
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "Avaa asetukset",
   "priceManualEntryAction": "Syötä hinta manuaalisesti",
   "priceRetakeAction": "Ota uusi kuva",
-  "receiptDateTimeLabel": "Päivämäärä ja kellonaika"
+  "receiptDateTimeLabel": "Päivämäärä ja kellonaika",
+  "paletteSage": "Salvia",
+  "paletteSlate": "Liuske"
 }

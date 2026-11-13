@@ -1617,4 +1617,10 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'আবার ছবি তুলুন';
+
+  @override
+  String get paletteSage => 'সেজ সবুজ';
+
+  @override
+  String get paletteSlate => 'স্লেট';
 }

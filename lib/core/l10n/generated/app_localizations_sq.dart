@@ -1628,4 +1628,10 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Bëj një foto tjetër';
+
+  @override
+  String get paletteSage => 'Sherbele';
+
+  @override
+  String get paletteSlate => 'Rrasë';
 }

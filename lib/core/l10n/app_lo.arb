@@ -496,5 +496,7 @@
   "openSettingsAction": "ເປີດການຕັ້ງຄ່າ",
   "priceManualEntryAction": "ປ້ອນລາຄາເອງ",
   "priceRetakeAction": "ຖ່າຍຮູບໃໝ່",
-  "receiptDateTimeLabel": "ວັນທີ ແລະ ເວລາ"
+  "receiptDateTimeLabel": "ວັນທີ ແລະ ເວລາ",
+  "paletteSage": "ສີໃບໄມ້",
+  "paletteSlate": "ສີຫີນ"
 }

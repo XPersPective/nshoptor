@@ -496,5 +496,7 @@
   "openSettingsAction": "Ireki ezarpenak",
   "priceManualEntryAction": "Sartu prezioa eskuz",
   "priceRetakeAction": "Atera beste argazki bat",
-  "receiptDateTimeLabel": "Data eta ordua"
+  "receiptDateTimeLabel": "Data eta ordua",
+  "paletteSage": "Salbia",
+  "paletteSlate": "Arbela"
 }

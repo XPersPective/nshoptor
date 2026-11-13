@@ -1628,4 +1628,10 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Odfotiť znovu';
+
+  @override
+  String get paletteSage => 'Šalvia';
+
+  @override
+  String get paletteSlate => 'Bridlica';
 }

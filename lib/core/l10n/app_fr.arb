@@ -496,5 +496,7 @@
   "openSettingsAction": "Ouvrir les Réglages",
   "priceManualEntryAction": "Saisir le prix à la main",
   "priceRetakeAction": "Reprendre une photo",
-  "receiptDateTimeLabel": "Date et heure"
+  "receiptDateTimeLabel": "Date et heure",
+  "paletteSage": "Sauge",
+  "paletteSlate": "Ardoise"
 }

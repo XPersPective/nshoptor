@@ -1628,4 +1628,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Tirar outra foto';
+
+  @override
+  String get paletteSage => 'Sálvia';
+
+  @override
+  String get paletteSlate => 'Ardósia';
 }

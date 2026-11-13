@@ -496,5 +496,7 @@
   "openSettingsAction": "Баптауларды ашу",
   "priceManualEntryAction": "Бағаны қолмен енгізіңіз",
   "priceRetakeAction": "Басқа фотосурет түсіріңіз",
-  "receiptDateTimeLabel": "Күн және уақыт"
+  "receiptDateTimeLabel": "Күн және уақыт",
+  "paletteSage": "Шалфей",
+  "paletteSlate": "Тақтатас"
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "Einstellungen öffnen",
   "priceManualEntryAction": "Preis manuell eingeben",
   "priceRetakeAction": "Neues Foto aufnehmen",
-  "receiptDateTimeLabel": "Datum und Uhrzeit"
+  "receiptDateTimeLabel": "Datum und Uhrzeit",
+  "paletteSage": "Salbei",
+  "paletteSlate": "Schiefer"
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "Opna stillingar",
   "priceManualEntryAction": "Sláðu inn verð handvirkt",
   "priceRetakeAction": "Taka aðra mynd",
-  "receiptDateTimeLabel": "Dagsetning og tími"
+  "receiptDateTimeLabel": "Dagsetning og tími",
+  "paletteSage": "Salvía",
+  "paletteSlate": "Flöguberg"
 }

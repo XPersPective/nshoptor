@@ -1618,4 +1618,10 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'दुसरा फोटो काढा';
+
+  @override
+  String get paletteSage => 'सेज';
+
+  @override
+  String get paletteSlate => 'स्लेट';
 }

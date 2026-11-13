@@ -1626,4 +1626,10 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Fotografirajte ponovno';
+
+  @override
+  String get paletteSage => 'Kadulja';
+
+  @override
+  String get paletteSlate => 'Škriljavac';
 }

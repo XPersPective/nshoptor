@@ -1629,4 +1629,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Neues Foto aufnehmen';
+
+  @override
+  String get paletteSage => 'Salbei';
+
+  @override
+  String get paletteSlate => 'Schiefer';
 }

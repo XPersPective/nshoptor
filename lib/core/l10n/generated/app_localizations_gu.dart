@@ -1619,4 +1619,10 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'બીજો ફોટો લો';
+
+  @override
+  String get paletteSage => 'સેજ';
+
+  @override
+  String get paletteSlate => 'સ્લેટ';
 }

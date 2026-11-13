@@ -1624,4 +1624,10 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Башка сүрөт тартыңыз';
+
+  @override
+  String get paletteSage => 'Шалфей';
+
+  @override
+  String get paletteSlate => 'Сланец';
 }

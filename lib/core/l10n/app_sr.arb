@@ -496,5 +496,7 @@
   "openSettingsAction": "Отвори подешавања",
   "priceManualEntryAction": "Унесите цену ручно",
   "priceRetakeAction": "Фотографишите поново",
-  "receiptDateTimeLabel": "Датум и време"
+  "receiptDateTimeLabel": "Датум и време",
+  "paletteSage": "Жалфија",
+  "paletteSlate": "Шкриљац"
 }

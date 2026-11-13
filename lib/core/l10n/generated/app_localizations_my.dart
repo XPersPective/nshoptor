@@ -1627,4 +1627,10 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'ဓာတ်ပုံ အသစ် ရိုက်ပါ';
+
+  @override
+  String get paletteSage => 'ဆေ့ချ်';
+
+  @override
+  String get paletteSlate => 'ကျောက်သင်ပုန်း';
 }

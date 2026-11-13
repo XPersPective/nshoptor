@@ -1611,4 +1611,10 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'ຖ່າຍຮູບໃໝ່';
+
+  @override
+  String get paletteSage => 'ສີໃບໄມ້';
+
+  @override
+  String get paletteSlate => 'ສີຫີນ';
 }

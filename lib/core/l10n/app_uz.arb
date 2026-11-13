@@ -496,5 +496,7 @@
   "openSettingsAction": "Sozlamalarni ochish",
   "priceManualEntryAction": "Narxni qo'lda kiriting",
   "priceRetakeAction": "Boshqa suratga oling",
-  "receiptDateTimeLabel": "Sana va vaqt"
+  "receiptDateTimeLabel": "Sana va vaqt",
+  "paletteSage": "Marmarak",
+  "paletteSlate": "Slanets"
 }

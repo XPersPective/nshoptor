@@ -614,5 +614,7 @@
   "cameraAccessDenied": "Camera access is off. Turn it on in Settings to scan receipts and labels.",
   "openSettingsAction": "Open Settings",
   "priceManualEntryAction": "Enter price manually",
-  "priceRetakeAction": "Take another photo"
+  "priceRetakeAction": "Take another photo",
+  "paletteSage": "Sage",
+  "paletteSlate": "Slate"
 }

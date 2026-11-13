@@ -496,5 +496,7 @@
   "openSettingsAction": "פתיחת הגדרות",
   "priceManualEntryAction": "הזנת מחיר ידנית",
   "priceRetakeAction": "צילום תמונה נוספת",
-  "receiptDateTimeLabel": "תאריך ושעה"
+  "receiptDateTimeLabel": "תאריך ושעה",
+  "paletteSage": "מרווה",
+  "paletteSlate": "צפחה"
 }

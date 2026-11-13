@@ -496,5 +496,7 @@
   "openSettingsAction": "सेटिंग्ज उघडा",
   "priceManualEntryAction": "किंमत स्वतः टाका",
   "priceRetakeAction": "दुसरा फोटो काढा",
-  "receiptDateTimeLabel": "तारीख आणि वेळ"
+  "receiptDateTimeLabel": "तारीख आणि वेळ",
+  "paletteSage": "सेज",
+  "paletteSlate": "स्लेट"
 }

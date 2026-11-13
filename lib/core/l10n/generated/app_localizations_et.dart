@@ -1622,4 +1622,10 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Pildista uuesti';
+
+  @override
+  String get paletteSage => 'Salvei';
+
+  @override
+  String get paletteSlate => 'Kiltkivi';
 }

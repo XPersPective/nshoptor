@@ -496,5 +496,7 @@
   "openSettingsAction": "ဆက်တင်များ ဖွင့်ရန်",
   "priceManualEntryAction": "ဈေးနှုန်းကို လက်ဖြင့် ထည့်ပါ",
   "priceRetakeAction": "ဓာတ်ပုံ အသစ် ရိုက်ပါ",
-  "receiptDateTimeLabel": "ရက်စွဲနှင့် အချိန်"
+  "receiptDateTimeLabel": "ရက်စွဲနှင့် အချိန်",
+  "paletteSage": "ဆေ့ချ်",
+  "paletteSlate": "ကျောက်သင်ပုန်း"
 }

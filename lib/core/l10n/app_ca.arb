@@ -496,5 +496,7 @@
   "openSettingsAction": "Obre la configuració",
   "priceManualEntryAction": "Introdueix el preu manualment",
   "priceRetakeAction": "Fes una altra foto",
-  "receiptDateTimeLabel": "Data i hora"
+  "receiptDateTimeLabel": "Data i hora",
+  "paletteSage": "Sàlvia",
+  "paletteSlate": "Pissarra"
 }

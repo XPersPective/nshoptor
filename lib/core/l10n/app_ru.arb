@@ -496,5 +496,7 @@
   "openSettingsAction": "Открыть настройки",
   "priceManualEntryAction": "Ввести цену вручную",
   "priceRetakeAction": "Снять заново",
-  "receiptDateTimeLabel": "Дата и время"
+  "receiptDateTimeLabel": "Дата и время",
+  "paletteSage": "Шалфей",
+  "paletteSlate": "Сланец"
 }

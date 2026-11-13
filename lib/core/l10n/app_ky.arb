@@ -496,5 +496,7 @@
   "openSettingsAction": "Жөндөөлөрдү ачуу",
   "priceManualEntryAction": "Бааны кол менен киргизиңиз",
   "priceRetakeAction": "Башка сүрөт тартыңыз",
-  "receiptDateTimeLabel": "Күн жана убакыт"
+  "receiptDateTimeLabel": "Күн жана убакыт",
+  "paletteSage": "Шалфей",
+  "paletteSlate": "Сланец"
 }

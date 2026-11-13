@@ -1571,4 +1571,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get priceRetakeAction => '다시 촬영';
+
+  @override
+  String get paletteSage => '세이지';
+
+  @override
+  String get paletteSlate => '슬레이트';
 }

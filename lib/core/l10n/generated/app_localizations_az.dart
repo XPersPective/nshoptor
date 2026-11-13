@@ -1626,4 +1626,10 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Yenidən çək';
+
+  @override
+  String get paletteSage => 'Sürvə';
+
+  @override
+  String get paletteSlate => 'Şifer boz';
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "Vula izilungiselelo",
   "priceManualEntryAction": "Faka inani ngesandla",
   "priceRetakeAction": "Thatha esinye isithombe",
-  "receiptDateTimeLabel": "Usuku nesikhathi"
+  "receiptDateTimeLabel": "Usuku nesikhathi",
+  "paletteSage": "Impepho",
+  "paletteSlate": "Itshe elimpunga"
 }

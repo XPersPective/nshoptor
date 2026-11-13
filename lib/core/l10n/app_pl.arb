@@ -496,5 +496,7 @@
   "openSettingsAction": "Otwórz ustawienia",
   "priceManualEntryAction": "Wpisz cenę ręcznie",
   "priceRetakeAction": "Zrób kolejne zdjęcie",
-  "receiptDateTimeLabel": "Data i godzina"
+  "receiptDateTimeLabel": "Data i godzina",
+  "paletteSage": "Szałwia",
+  "paletteSlate": "Łupek"
 }

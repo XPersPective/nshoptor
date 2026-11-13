@@ -1629,4 +1629,10 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Նկարեք մեկ այլ լուսանկար';
+
+  @override
+  String get paletteSage => 'Եղեսպակ';
+
+  @override
+  String get paletteSlate => 'Թերթաքար';
 }

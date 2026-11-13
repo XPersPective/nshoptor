@@ -496,5 +496,7 @@
   "openSettingsAction": "პარამეტრების გახსნა",
   "priceManualEntryAction": "შეიყვანეთ ფასი ხელით",
   "priceRetakeAction": "სხვა ფოტო გადაიღეთ",
-  "receiptDateTimeLabel": "თარიღი და დრო"
+  "receiptDateTimeLabel": "თარიღი და დრო",
+  "paletteSage": "სალბი",
+  "paletteSlate": "ფიქალი"
 }

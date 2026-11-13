@@ -496,5 +496,7 @@
   "openSettingsAction": "打开设置",
   "priceManualEntryAction": "手动输入价格",
   "priceRetakeAction": "重新拍照",
-  "receiptDateTimeLabel": "日期和时间"
+  "receiptDateTimeLabel": "日期和时间",
+  "paletteSage": "鼠尾草",
+  "paletteSlate": "板岩"
 }

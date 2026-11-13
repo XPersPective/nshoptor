@@ -1622,4 +1622,10 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Ta ett nytt foto';
+
+  @override
+  String get paletteSage => 'Salvia';
+
+  @override
+  String get paletteSlate => 'Skiffer';
 }

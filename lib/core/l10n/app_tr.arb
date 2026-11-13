@@ -517,5 +517,7 @@
   "cameraAccessDenied": "Kamera izni kapalı. Fiş ve etiket okumak için Ayarlar'dan açın.",
   "openSettingsAction": "Ayarları aç",
   "priceManualEntryAction": "Fiyatı elle gir",
-  "priceRetakeAction": "Yeniden çek"
+  "priceRetakeAction": "Yeniden çek",
+  "paletteSage": "Adaçayı",
+  "paletteSlate": "Arduvaz"
 }

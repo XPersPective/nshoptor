@@ -1622,4 +1622,10 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Yeniden çek';
+
+  @override
+  String get paletteSage => 'Adaçayı';
+
+  @override
+  String get paletteSlate => 'Arduvaz';
 }

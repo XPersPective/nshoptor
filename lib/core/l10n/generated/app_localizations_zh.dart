@@ -1555,4 +1555,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get priceRetakeAction => '重新拍照';
+
+  @override
+  String get paletteSage => '鼠尾草';
+
+  @override
+  String get paletteSlate => '板岩';
 }

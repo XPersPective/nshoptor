@@ -496,5 +496,7 @@
   "openSettingsAction": "Բացել կարգավորումները",
   "priceManualEntryAction": "Գինը մուտքագրեք ձեռքով",
   "priceRetakeAction": "Նկարեք մեկ այլ լուսանկար",
-  "receiptDateTimeLabel": "Ամսաթիվ և ժամ"
+  "receiptDateTimeLabel": "Ամսաթիվ և ժամ",
+  "paletteSage": "Եղեսպակ",
+  "paletteSlate": "Թերթաքար"
 }

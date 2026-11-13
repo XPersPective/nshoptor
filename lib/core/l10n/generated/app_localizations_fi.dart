@@ -1626,4 +1626,10 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Ota uusi kuva';
+
+  @override
+  String get paletteSage => 'Salvia';
+
+  @override
+  String get paletteSlate => 'Liuske';
 }

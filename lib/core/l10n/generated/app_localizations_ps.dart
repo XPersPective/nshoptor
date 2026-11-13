@@ -1613,4 +1613,10 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'بله انځور واخلئ';
+
+  @override
+  String get paletteSage => 'شينبوی';
+
+  @override
+  String get paletteSlate => 'تخته ډبره';
 }

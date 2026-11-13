@@ -496,5 +496,7 @@
   "openSettingsAction": "Deschide Setările",
   "priceManualEntryAction": "Introdu prețul manual",
   "priceRetakeAction": "Fă altă fotografie",
-  "receiptDateTimeLabel": "Dată și oră"
+  "receiptDateTimeLabel": "Dată și oră",
+  "paletteSage": "Salvie",
+  "paletteSlate": "Ardezie"
 }

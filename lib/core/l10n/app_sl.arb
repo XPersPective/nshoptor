@@ -496,5 +496,7 @@
   "openSettingsAction": "Odpri nastavitve",
   "priceManualEntryAction": "Vnesi ceno ročno",
   "priceRetakeAction": "Posnemi novo fotografijo",
-  "receiptDateTimeLabel": "Datum in ura"
+  "receiptDateTimeLabel": "Datum in ura",
+  "paletteSage": "Žajbelj",
+  "paletteSlate": "Skrilavec"
 }

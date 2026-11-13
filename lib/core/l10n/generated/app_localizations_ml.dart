@@ -1622,4 +1622,10 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'മറ്റൊരു ഫോട്ടോ എടുക്കുക';
+
+  @override
+  String get paletteSage => 'സേജ്';
+
+  @override
+  String get paletteSlate => 'സ്ലേറ്റ്';
 }

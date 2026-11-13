@@ -1634,4 +1634,10 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Fă altă fotografie';
+
+  @override
+  String get paletteSage => 'Salvie';
+
+  @override
+  String get paletteSlate => 'Ardezie';
 }

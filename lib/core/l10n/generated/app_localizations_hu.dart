@@ -1626,4 +1626,10 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Új fénykép készítése';
+
+  @override
+  String get paletteSage => 'Zsálya';
+
+  @override
+  String get paletteSlate => 'Pala';
 }

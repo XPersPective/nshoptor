@@ -1622,4 +1622,10 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'دوسری تصویر لیں';
+
+  @override
+  String get paletteSage => 'سیج';
+
+  @override
+  String get paletteSlate => 'سلیٹ';
 }

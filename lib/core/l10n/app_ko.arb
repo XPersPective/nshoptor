@@ -496,5 +496,7 @@
   "openSettingsAction": "설정 열기",
   "priceManualEntryAction": "가격 직접 입력",
   "priceRetakeAction": "다시 촬영",
-  "receiptDateTimeLabel": "날짜와 시간"
+  "receiptDateTimeLabel": "날짜와 시간",
+  "paletteSage": "세이지",
+  "paletteSlate": "슬레이트"
 }

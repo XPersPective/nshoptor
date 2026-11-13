@@ -496,5 +496,7 @@
   "openSettingsAction": "Maak Instellings oop",
   "priceManualEntryAction": "Voer prys handmatig in",
   "priceRetakeAction": "Neem weer 'n foto",
-  "receiptDateTimeLabel": "Datum en tyd"
+  "receiptDateTimeLabel": "Datum en tyd",
+  "paletteSage": "Salie",
+  "paletteSlate": "Leiklip"
 }

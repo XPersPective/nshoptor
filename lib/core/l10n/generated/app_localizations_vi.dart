@@ -1618,4 +1618,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Chụp ảnh khác';
+
+  @override
+  String get paletteSage => 'Xô thơm';
+
+  @override
+  String get paletteSlate => 'Đá phiến';
 }

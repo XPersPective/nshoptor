@@ -1628,4 +1628,10 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Сликајте повторно';
+
+  @override
+  String get paletteSage => 'Жалфија';
+
+  @override
+  String get paletteSlate => 'Шкрилец';
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "Тохиргоог нээх",
   "priceManualEntryAction": "Үнийг гараар оруулна уу",
   "priceRetakeAction": "Өөр зураг авна уу",
-  "receiptDateTimeLabel": "Огноо, цаг"
+  "receiptDateTimeLabel": "Огноо, цаг",
+  "paletteSage": "Сэйж",
+  "paletteSlate": "Саарал"
 }

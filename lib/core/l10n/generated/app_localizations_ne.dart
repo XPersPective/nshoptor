@@ -1624,4 +1624,10 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'अर्को फोटो खिच्नुहोस्';
+
+  @override
+  String get paletteSage => 'सेज';
+
+  @override
+  String get paletteSlate => 'स्लेट';
 }

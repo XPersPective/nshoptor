@@ -1625,4 +1625,10 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'दूसरी फ़ोटो लें';
+
+  @override
+  String get paletteSage => 'सेज';
+
+  @override
+  String get paletteSlate => 'स्लेट';
 }

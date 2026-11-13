@@ -3217,6 +3217,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Take another photo'**
   String get priceRetakeAction;
+
+  /// No description provided for @paletteSage.
+  ///
+  /// In en, this message translates to:
+  /// **'Sage'**
+  String get paletteSage;
+
+  /// No description provided for @paletteSlate.
+  ///
+  /// In en, this message translates to:
+  /// **'Slate'**
+  String get paletteSlate;
 }
 
 class _AppLocalizationsDelegate

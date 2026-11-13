@@ -1631,4 +1631,10 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Atera beste argazki bat';
+
+  @override
+  String get paletteSage => 'Salbia';
+
+  @override
+  String get paletteSlate => 'Arbela';
 }

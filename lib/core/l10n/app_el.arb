@@ -496,5 +496,7 @@
   "openSettingsAction": "Άνοιγμα ρυθμίσεων",
   "priceManualEntryAction": "Εισαγωγή τιμής χειροκίνητα",
   "priceRetakeAction": "Βγάλτε άλλη φωτογραφία",
-  "receiptDateTimeLabel": "Ημερομηνία και ώρα"
+  "receiptDateTimeLabel": "Ημερομηνία και ώρα",
+  "paletteSage": "Φασκόμηλο",
+  "paletteSlate": "Σχιστόλιθος"
 }

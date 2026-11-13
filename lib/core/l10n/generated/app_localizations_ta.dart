@@ -1632,4 +1632,10 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'மற்றொரு படம் எடுக்கவும்';
+
+  @override
+  String get paletteSage => 'சேஜ்';
+
+  @override
+  String get paletteSlate => 'சிலேட்';
 }

@@ -1634,4 +1634,10 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Fotografuoti iš naujo';
+
+  @override
+  String get paletteSage => 'Šalavijas';
+
+  @override
+  String get paletteSlate => 'Šiferis';
 }

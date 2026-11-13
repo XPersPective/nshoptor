@@ -1622,4 +1622,10 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Tag et nyt billede';
+
+  @override
+  String get paletteSage => 'Salvie';
+
+  @override
+  String get paletteSlate => 'Skifer';
 }

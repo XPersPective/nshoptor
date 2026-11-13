@@ -496,5 +496,7 @@
   "openSettingsAction": "Fungua Mipangilio",
   "priceManualEntryAction": "Weka bei kwa mkono",
   "priceRetakeAction": "Piga picha nyingine",
-  "receiptDateTimeLabel": "Tarehe na saa"
+  "receiptDateTimeLabel": "Tarehe na saa",
+  "paletteSage": "Mruju",
+  "paletteSlate": "Grife"
 }

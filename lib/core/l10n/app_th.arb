@@ -496,5 +496,7 @@
   "openSettingsAction": "เปิดการตั้งค่า",
   "priceManualEntryAction": "กรอกราคาเอง",
   "priceRetakeAction": "ถ่ายรูปใหม่",
-  "receiptDateTimeLabel": "วันที่และเวลา"
+  "receiptDateTimeLabel": "วันที่และเวลา",
+  "paletteSage": "สีเซจ",
+  "paletteSlate": "สีหินชนวน"
 }

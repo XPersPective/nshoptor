@@ -1621,4 +1621,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Take another photo';
+
+  @override
+  String get paletteSage => 'Sage';
+
+  @override
+  String get paletteSlate => 'Slate';
 }

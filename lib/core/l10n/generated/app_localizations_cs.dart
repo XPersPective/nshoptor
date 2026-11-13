@@ -1624,4 +1624,10 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Vyfotit znovu';
+
+  @override
+  String get paletteSage => 'Šalvěj';
+
+  @override
+  String get paletteSlate => 'Břidlice';
 }

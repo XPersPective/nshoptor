@@ -52,27 +52,81 @@ void main() {
 
   group('WCAG kontrast', () {
     test(
-      'dark ocean actions are calmer with accessible text and boundaries',
+      'all dark and light palettes provide non-pitch surfaces and accessible calm buttons',
       () {
-        for (final black in [false, true]) {
-          final theme = AppTheme.dark(palette: AppPalette.ocean, black: black);
-          final scheme = theme.colorScheme;
-          final style = theme.filledButtonTheme.style!;
-          final background = style.backgroundColor!.resolve({})!;
-          final foreground = style.foregroundColor!.resolve({})!;
-          expect(luminance(background), lessThan(luminance(scheme.primary)));
+        for (final palette in AppPalette.values) {
+          final light = AppTheme.light(palette: palette);
+          final lScheme = light.colorScheme;
+          expect(luminance(lScheme.onSurface), lessThan(0.1));
           expect(
-            contrastRatio(foreground, background),
+            contrastRatio(lScheme.onPrimary, lScheme.primary),
             greaterThanOrEqualTo(4.5),
+            reason: '$palette light filled button contrast',
           );
           expect(
-            contrastRatio(background, scheme.surface),
+            contrastRatio(lScheme.primary, lScheme.surface),
             greaterThanOrEqualTo(3),
+            reason: '$palette light filled button vs surface',
           );
           expect(
-            contrastRatio(background, scheme.surfaceContainerLow),
-            greaterThanOrEqualTo(3),
+            contrastRatio(lScheme.onSecondaryContainer, lScheme.secondaryContainer),
+            greaterThanOrEqualTo(4.5),
+            reason: '$palette light tonal button contrast',
           );
+          expect(
+            lScheme.secondaryContainer,
+            isNot(equals(lScheme.primary)),
+            reason: '$palette light tonal action distinct from primary',
+          );
+
+          for (final black in [false, true]) {
+            final theme = AppTheme.dark(palette: palette, black: black);
+            final scheme = theme.colorScheme;
+            final rawSeedScheme = ColorScheme.fromSeed(
+              seedColor: palette.seed,
+              brightness: Brightness.dark,
+            );
+            if (!black) {
+              expect(
+                luminance(scheme.surface),
+                greaterThan(0.008),
+                reason: '$palette dark surface should not be pitch black',
+              );
+            }
+            expect(
+              luminance(scheme.primary),
+              lessThan(luminance(rawSeedScheme.primary)),
+              reason: '$palette dark black=$black calm primary luminance',
+            );
+            expect(
+              contrastRatio(scheme.onPrimary, scheme.primary),
+              greaterThanOrEqualTo(4.5),
+              reason: '$palette dark black=$black text contrast',
+            );
+            expect(
+              contrastRatio(scheme.primary, scheme.surface),
+              greaterThanOrEqualTo(3),
+              reason: '$palette dark black=$black boundary vs surface',
+            );
+            expect(
+              contrastRatio(scheme.primary, scheme.surfaceContainerLow),
+              greaterThanOrEqualTo(3),
+              reason: '$palette dark black=$black boundary vs surfaceLow',
+            );
+            expect(
+              contrastRatio(
+                scheme.onSecondaryContainer,
+                scheme.secondaryContainer,
+              ),
+              greaterThanOrEqualTo(4.5),
+              reason: '$palette dark black=$black tonal button contrast',
+            );
+            expect(
+              scheme.secondaryContainer,
+              isNot(equals(scheme.primary)),
+              reason: '$palette dark black=$black tonal distinct from primary',
+            );
+          }
         }
         expect(AppTheme.brandSeed, const Color(0xFF0B8457));
       },

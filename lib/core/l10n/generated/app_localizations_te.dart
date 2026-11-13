@@ -1632,4 +1632,10 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'మరో ఫోటో తీయండి';
+
+  @override
+  String get paletteSage => 'సేజ్';
+
+  @override
+  String get paletteSlate => 'స్లేట్';
 }

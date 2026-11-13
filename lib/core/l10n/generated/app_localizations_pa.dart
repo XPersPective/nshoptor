@@ -1621,4 +1621,10 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'ਹੋਰ ਫੋਟੋ ਖਿੱਚੋ';
+
+  @override
+  String get paletteSage => 'ਸੇਜ';
+
+  @override
+  String get paletteSlate => 'ਸਲੇਟ';
 }

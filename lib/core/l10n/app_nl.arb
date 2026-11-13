@@ -496,5 +496,7 @@
   "openSettingsAction": "Instellingen openen",
   "priceManualEntryAction": "Prijs handmatig invoeren",
   "priceRetakeAction": "Nieuwe foto maken",
-  "receiptDateTimeLabel": "Datum en tijd"
+  "receiptDateTimeLabel": "Datum en tijd",
+  "paletteSage": "Salie",
+  "paletteSlate": "Leisteen"
 }

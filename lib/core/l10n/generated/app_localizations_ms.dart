@@ -1625,4 +1625,10 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Ambil foto lain';
+
+  @override
+  String get paletteSage => 'Sage';
+
+  @override
+  String get paletteSlate => 'Batu tulis';
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "ترتیبات کھولیں",
   "priceManualEntryAction": "قیمت خود درج کریں",
   "priceRetakeAction": "دوسری تصویر لیں",
-  "receiptDateTimeLabel": "تاریخ اور وقت"
+  "receiptDateTimeLabel": "تاریخ اور وقت",
+  "paletteSage": "سیج",
+  "paletteSlate": "سلیٹ"
 }

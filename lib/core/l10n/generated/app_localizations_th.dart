@@ -1611,4 +1611,10 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'ถ่ายรูปใหม่';
+
+  @override
+  String get paletteSage => 'สีเซจ';
+
+  @override
+  String get paletteSlate => 'สีหินชนวน';
 }

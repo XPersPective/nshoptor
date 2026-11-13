@@ -1630,4 +1630,10 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Перезняти фото';
+
+  @override
+  String get paletteSage => 'Шавлія';
+
+  @override
+  String get paletteSlate => 'Сланець';
 }

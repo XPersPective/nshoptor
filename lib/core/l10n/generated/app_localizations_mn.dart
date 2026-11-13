@@ -1628,4 +1628,10 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Өөр зураг авна уу';
+
+  @override
+  String get paletteSage => 'Сэйж';
+
+  @override
+  String get paletteSlate => 'Саарал';
 }

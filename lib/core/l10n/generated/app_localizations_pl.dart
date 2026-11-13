@@ -1630,4 +1630,10 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Zrób kolejne zdjęcie';
+
+  @override
+  String get paletteSage => 'Szałwia';
+
+  @override
+  String get paletteSlate => 'Łupek';
 }

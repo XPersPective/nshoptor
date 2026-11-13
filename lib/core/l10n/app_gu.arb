@@ -496,5 +496,7 @@
   "openSettingsAction": "સેટિંગ્સ ખોલો",
   "priceManualEntryAction": "કિંમત જાતે દાખલ કરો",
   "priceRetakeAction": "બીજો ફોટો લો",
-  "receiptDateTimeLabel": "તારીખ અને સમય"
+  "receiptDateTimeLabel": "તારીખ અને સમય",
+  "paletteSage": "સેજ",
+  "paletteSlate": "સ્લેટ"
 }

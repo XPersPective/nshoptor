@@ -496,5 +496,7 @@
   "openSettingsAction": "Buka Pengaturan",
   "priceManualEntryAction": "Masukkan harga secara manual",
   "priceRetakeAction": "Ambil foto lagi",
-  "receiptDateTimeLabel": "Tanggal dan waktu"
+  "receiptDateTimeLabel": "Tanggal dan waktu",
+  "paletteSage": "Sage",
+  "paletteSlate": "Sabak"
 }

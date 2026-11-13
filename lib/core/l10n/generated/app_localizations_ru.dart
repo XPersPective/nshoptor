@@ -1627,4 +1627,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Снять заново';
+
+  @override
+  String get paletteSage => 'Шалфей';
+
+  @override
+  String get paletteSlate => 'Сланец';
 }

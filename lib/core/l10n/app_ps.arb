@@ -496,5 +496,7 @@
   "openSettingsAction": "تنظیمات پرانیستل",
   "priceManualEntryAction": "بیه په لاسي ډول داخل کړئ",
   "priceRetakeAction": "بله انځور واخلئ",
-  "receiptDateTimeLabel": "نېټه او وخت"
+  "receiptDateTimeLabel": "نېټه او وخت",
+  "paletteSage": "شينبوی",
+  "paletteSlate": "تخته ډبره"
 }

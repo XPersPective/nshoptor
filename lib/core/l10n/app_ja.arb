@@ -496,5 +496,7 @@
   "openSettingsAction": "設定を開く",
   "priceManualEntryAction": "価格を手動で入力",
   "priceRetakeAction": "撮り直す",
-  "receiptDateTimeLabel": "日付と時刻"
+  "receiptDateTimeLabel": "日付と時刻",
+  "paletteSage": "セージ",
+  "paletteSlate": "スレート"
 }

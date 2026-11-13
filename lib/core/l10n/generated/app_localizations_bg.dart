@@ -1629,4 +1629,10 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Направете нова снимка';
+
+  @override
+  String get paletteSage => 'Градински чай';
+
+  @override
+  String get paletteSlate => 'Шисти';
 }

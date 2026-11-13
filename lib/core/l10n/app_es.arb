@@ -496,5 +496,7 @@
   "openSettingsAction": "Abrir Ajustes",
   "priceManualEntryAction": "Introducir el precio a mano",
   "priceRetakeAction": "Hacer otra foto",
-  "receiptDateTimeLabel": "Fecha y hora"
+  "receiptDateTimeLabel": "Fecha y hora",
+  "paletteSage": "Salvia",
+  "paletteSlate": "Pizarra"
 }

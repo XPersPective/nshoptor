@@ -1616,4 +1616,10 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'عکس دیگری بگیرید';
+
+  @override
+  String get paletteSage => 'مریم‌گلی';
+
+  @override
+  String get paletteSlate => 'سنگ‌لوح';
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "Atidaryti nustatymus",
   "priceManualEntryAction": "Įvesti kainą rankiniu būdu",
   "priceRetakeAction": "Fotografuoti iš naujo",
-  "receiptDateTimeLabel": "Data ir laikas"
+  "receiptDateTimeLabel": "Data ir laikas",
+  "paletteSage": "Šalavijas",
+  "paletteSlate": "Šiferis"
 }

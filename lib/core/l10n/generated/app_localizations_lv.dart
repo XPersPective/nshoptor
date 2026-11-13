@@ -1628,4 +1628,10 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Uzņemt citu fotoattēlu';
+
+  @override
+  String get paletteSage => 'Salvija';
+
+  @override
+  String get paletteSlate => 'Slāneklis';
 }

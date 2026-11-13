@@ -1634,4 +1634,10 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Thatha esinye isithombe';
+
+  @override
+  String get paletteSage => 'Impepho';
+
+  @override
+  String get paletteSlate => 'Itshe elimpunga';
 }

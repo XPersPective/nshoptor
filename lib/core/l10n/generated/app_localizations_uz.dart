@@ -1631,4 +1631,10 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Boshqa suratga oling';
+
+  @override
+  String get paletteSage => 'Marmarak';
+
+  @override
+  String get paletteSlate => 'Slanets';
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "Ava seaded",
   "priceManualEntryAction": "Sisesta hind käsitsi",
   "priceRetakeAction": "Pildista uuesti",
-  "receiptDateTimeLabel": "Kuupäev ja kellaaeg"
+  "receiptDateTimeLabel": "Kuupäev ja kellaaeg",
+  "paletteSage": "Salvei",
+  "paletteSlate": "Kiltkivi"
 }

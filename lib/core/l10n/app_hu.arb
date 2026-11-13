@@ -496,5 +496,7 @@
   "openSettingsAction": "Beállítások megnyitása",
   "priceManualEntryAction": "Ár megadása kézzel",
   "priceRetakeAction": "Új fénykép készítése",
-  "receiptDateTimeLabel": "Dátum és idő"
+  "receiptDateTimeLabel": "Dátum és idő",
+  "paletteSage": "Zsálya",
+  "paletteSlate": "Pala"
 }

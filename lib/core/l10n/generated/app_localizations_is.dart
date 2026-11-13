@@ -1624,4 +1624,10 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Taka aðra mynd';
+
+  @override
+  String get paletteSage => 'Salvía';
+
+  @override
+  String get paletteSlate => 'Flöguberg';
 }

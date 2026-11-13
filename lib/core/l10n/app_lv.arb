@@ -496,5 +496,7 @@
   "openSettingsAction": "Atvērt iestatījumus",
   "priceManualEntryAction": "Ievadīt cenu manuāli",
   "priceRetakeAction": "Uzņemt citu fotoattēlu",
-  "receiptDateTimeLabel": "Datums un laiks"
+  "receiptDateTimeLabel": "Datums un laiks",
+  "paletteSage": "Salvija",
+  "paletteSlate": "Slāneklis"
 }

@@ -1621,4 +1621,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Ambil foto lagi';
+
+  @override
+  String get paletteSage => 'Sage';
+
+  @override
+  String get paletteSlate => 'Sabak';
 }

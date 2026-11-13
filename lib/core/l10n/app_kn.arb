@@ -496,5 +496,7 @@
   "openSettingsAction": "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ",
   "priceManualEntryAction": "ಬೆಲೆಯನ್ನು ಕೈಯಾರೆ ನಮೂದಿಸಿ",
   "priceRetakeAction": "ಇನ್ನೊಂದು ಫೋಟೋ ತೆಗೆಯಿರಿ",
-  "receiptDateTimeLabel": "ದಿನಾಂಕ ಮತ್ತು ಸಮಯ"
+  "receiptDateTimeLabel": "ದಿನಾಂಕ ಮತ್ತು ಸಮಯ",
+  "paletteSage": "ಸೇಜ್",
+  "paletteSlate": "ಸ್ಲೇಟ್"
 }

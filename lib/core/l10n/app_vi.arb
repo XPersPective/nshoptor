@@ -496,5 +496,7 @@
   "openSettingsAction": "Mở Cài đặt",
   "priceManualEntryAction": "Nhập giá thủ công",
   "priceRetakeAction": "Chụp ảnh khác",
-  "receiptDateTimeLabel": "Ngày và giờ"
+  "receiptDateTimeLabel": "Ngày và giờ",
+  "paletteSage": "Xô thơm",
+  "paletteSlate": "Đá phiến"
 }

@@ -1622,4 +1622,10 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'වෙනත් ඡායාරූපයක් ගන්න';
+
+  @override
+  String get paletteSage => 'සේජ්';
+
+  @override
+  String get paletteSlate => 'ස්ලේට්';
 }

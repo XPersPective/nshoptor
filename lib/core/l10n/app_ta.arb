@@ -496,5 +496,7 @@
   "openSettingsAction": "அமைப்புகளைத் திற",
   "priceManualEntryAction": "விலையை கைமுறையாக உள்ளிடு",
   "priceRetakeAction": "மற்றொரு படம் எடுக்கவும்",
-  "receiptDateTimeLabel": "தேதி மற்றும் நேரம்"
+  "receiptDateTimeLabel": "தேதி மற்றும் நேரம்",
+  "paletteSage": "சேஜ்",
+  "paletteSlate": "சிலேட்"
 }

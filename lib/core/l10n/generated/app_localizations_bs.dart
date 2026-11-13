@@ -1627,4 +1627,10 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Fotografišite ponovo';
+
+  @override
+  String get paletteSage => 'Kadulja';
+
+  @override
+  String get paletteSlate => 'Škriljac';
 }

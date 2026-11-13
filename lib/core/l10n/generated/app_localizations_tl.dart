@@ -1633,4 +1633,10 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Kumuha ng ibang larawan';
+
+  @override
+  String get paletteSage => 'Sambong';
+
+  @override
+  String get paletteSlate => 'Batong-pisara';
 }

@@ -496,5 +496,7 @@
   "openSettingsAction": "Відкрити налаштування",
   "priceManualEntryAction": "Ввести ціну вручну",
   "priceRetakeAction": "Перезняти фото",
-  "receiptDateTimeLabel": "Дата і час"
+  "receiptDateTimeLabel": "Дата і час",
+  "paletteSage": "Шавлія",
+  "paletteSlate": "Сланець"
 }

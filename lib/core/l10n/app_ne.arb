@@ -496,5 +496,7 @@
   "openSettingsAction": "सेटिङहरू खोल्नुहोस्",
   "priceManualEntryAction": "मूल्य म्यानुअली प्रविष्ट गर्नुहोस्",
   "priceRetakeAction": "अर्को फोटो खिच्नुहोस्",
-  "receiptDateTimeLabel": "मिति र समय"
+  "receiptDateTimeLabel": "मिति र समय",
+  "paletteSage": "सेज",
+  "paletteSlate": "स्लेट"
 }

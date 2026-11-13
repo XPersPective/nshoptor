@@ -1621,4 +1621,10 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Басқа фотосурет түсіріңіз';
+
+  @override
+  String get paletteSage => 'Шалфей';
+
+  @override
+  String get paletteSlate => 'Тақтатас';
 }

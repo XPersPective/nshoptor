@@ -1630,4 +1630,10 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Nieuwe foto maken';
+
+  @override
+  String get paletteSage => 'Salie';
+
+  @override
+  String get paletteSlate => 'Leisteen';
 }

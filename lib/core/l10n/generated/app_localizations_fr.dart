@@ -1635,4 +1635,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Reprendre une photo';
+
+  @override
+  String get paletteSage => 'Sauge';
+
+  @override
+  String get paletteSlate => 'Ardoise';
 }

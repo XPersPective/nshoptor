@@ -496,5 +496,7 @@
   "openSettingsAction": "सेटिंग्स खोलें",
   "priceManualEntryAction": "कीमत मैन्युअल रूप से दर्ज करें",
   "priceRetakeAction": "दूसरी फ़ोटो लें",
-  "receiptDateTimeLabel": "तारीख और समय"
+  "receiptDateTimeLabel": "तारीख और समय",
+  "paletteSage": "सेज",
+  "paletteSlate": "स्लेट"
 }

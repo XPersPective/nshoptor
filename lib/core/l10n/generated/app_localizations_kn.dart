@@ -1624,4 +1624,10 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'ಇನ್ನೊಂದು ಫೋಟೋ ತೆಗೆಯಿರಿ';
+
+  @override
+  String get paletteSage => 'ಸೇಜ್';
+
+  @override
+  String get paletteSlate => 'ಸ್ಲೇಟ್';
 }

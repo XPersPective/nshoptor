@@ -496,5 +496,7 @@
   "openSettingsAction": "Otvoriť nastavenia",
   "priceManualEntryAction": "Zadať cenu ručne",
   "priceRetakeAction": "Odfotiť znovu",
-  "receiptDateTimeLabel": "Dátum a čas"
+  "receiptDateTimeLabel": "Dátum a čas",
+  "paletteSage": "Šalvia",
+  "paletteSlate": "Bridlica"
 }

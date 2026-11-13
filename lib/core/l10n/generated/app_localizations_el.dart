@@ -1632,4 +1632,10 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Βγάλτε άλλη φωτογραφία';
+
+  @override
+  String get paletteSage => 'Φασκόμηλο';
+
+  @override
+  String get paletteSlate => 'Σχιστόλιθος';
 }

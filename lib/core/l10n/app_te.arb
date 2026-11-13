@@ -496,5 +496,7 @@
   "openSettingsAction": "సెట్టింగ్‌లను తెరవండి",
   "priceManualEntryAction": "ధరను మాన్యువల్‌గా నమోదు చేయండి",
   "priceRetakeAction": "మరో ఫోటో తీయండి",
-  "receiptDateTimeLabel": "తేదీ మరియు సమయం"
+  "receiptDateTimeLabel": "తేదీ మరియు సమయం",
+  "paletteSage": "సేజ్",
+  "paletteSlate": "స్లేట్"
 }

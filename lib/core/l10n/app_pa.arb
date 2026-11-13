@@ -496,5 +496,7 @@
   "openSettingsAction": "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ",
   "priceManualEntryAction": "ਕੀਮਤ ਮੈਨੁਅਲੀ ਦਰਜ ਕਰੋ",
   "priceRetakeAction": "ਹੋਰ ਫੋਟੋ ਖਿੱਚੋ",
-  "receiptDateTimeLabel": "ਤਾਰੀਖ ਅਤੇ ਸਮਾਂ"
+  "receiptDateTimeLabel": "ਤਾਰੀਖ ਅਤੇ ਸਮਾਂ",
+  "paletteSage": "ਸੇਜ",
+  "paletteSlate": "ਸਲੇਟ"
 }

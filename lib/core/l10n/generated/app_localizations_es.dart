@@ -1630,4 +1630,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Hacer otra foto';
+
+  @override
+  String get paletteSage => 'Salvia';
+
+  @override
+  String get paletteSlate => 'Pizarra';
 }

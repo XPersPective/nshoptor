@@ -496,5 +496,7 @@
   "openSettingsAction": "Hap Cilësimet",
   "priceManualEntryAction": "Fut çmimin manualisht",
   "priceRetakeAction": "Bëj një foto tjetër",
-  "receiptDateTimeLabel": "Data dhe ora"
+  "receiptDateTimeLabel": "Data dhe ora",
+  "paletteSage": "Sherbele",
+  "paletteSlate": "Rrasë"
 }

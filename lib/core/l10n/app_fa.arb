@@ -496,5 +496,7 @@
   "openSettingsAction": "باز کردن تنظیمات",
   "priceManualEntryAction": "وارد کردن دستی قیمت",
   "priceRetakeAction": "عکس دیگری بگیرید",
-  "receiptDateTimeLabel": "تاریخ و ساعت"
+  "receiptDateTimeLabel": "تاریخ و ساعت",
+  "paletteSage": "مریم‌گلی",
+  "paletteSlate": "سنگ‌لوح"
 }

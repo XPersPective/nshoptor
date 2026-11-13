@@ -496,5 +496,7 @@
   "openSettingsAction": "Отворете настройките",
   "priceManualEntryAction": "Въведете цената ръчно",
   "priceRetakeAction": "Направете нова снимка",
-  "receiptDateTimeLabel": "Дата и час"
+  "receiptDateTimeLabel": "Дата и час",
+  "paletteSage": "Градински чай",
+  "paletteSlate": "Шисти"
 }

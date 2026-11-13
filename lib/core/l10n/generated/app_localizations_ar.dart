@@ -1612,4 +1612,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'التقاط صورة أخرى';
+
+  @override
+  String get paletteSage => 'مريمية';
+
+  @override
+  String get paletteSlate => 'أردواز';
 }

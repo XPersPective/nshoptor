@@ -496,5 +496,7 @@
   "openSettingsAction": "সেটিংস খুলুন",
   "priceManualEntryAction": "মূল্য ম্যানুয়ালি লিখুন",
   "priceRetakeAction": "আবার ছবি তুলুন",
-  "receiptDateTimeLabel": "তারিখ ও সময়"
+  "receiptDateTimeLabel": "তারিখ ও সময়",
+  "paletteSage": "সেজ সবুজ",
+  "paletteSlate": "স্লেট"
 }

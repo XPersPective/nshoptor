@@ -496,5 +496,7 @@
   "openSettingsAction": "Öppna inställningarna",
   "priceManualEntryAction": "Ange priset manuellt",
   "priceRetakeAction": "Ta ett nytt foto",
-  "receiptDateTimeLabel": "Datum och tid"
+  "receiptDateTimeLabel": "Datum och tid",
+  "paletteSage": "Salvia",
+  "paletteSlate": "Skiffer"
 }

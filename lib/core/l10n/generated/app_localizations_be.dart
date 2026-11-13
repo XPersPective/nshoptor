@@ -1632,4 +1632,10 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get priceRetakeAction => 'Зрабіць іншае фота';
+
+  @override
+  String get paletteSage => 'Шалфей';
+
+  @override
+  String get paletteSlate => 'Грыфель';
 }
