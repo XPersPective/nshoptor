@@ -5,35 +5,42 @@ import 'dart:typed_data' show BytesBuilder, Uint8List;
 import 'package:flutter/foundation.dart';
 import 'package:image/image.dart' as img;
 
-/// Longest side and size budget of one photo sent to the image model. Receipt
-/// print stays legible at this size while a photo stays well below the
-/// server's per-image limit (≈750 KB).
-// Live measurement (2026-10-28): 1280px reads the same receipt as 1600px
-// about 25% faster; long narrow photos keep 1600px so small print survives.
+/// Longest side and compact size budget of one photo stored/sent to the
+/// image model so batch receipt scans upload quickly and cheaply without
+/// losing receipt print legibility.
 const aiImageMaxSide = 1280;
-const aiTallImageMaxSide = 1600;
-const aiImageMaxBytes = 700 * 1024;
+const aiTallImageMaxSide = 1280;
+const aiImageMaxBytes = 350 * 1024;
 
-/// Downscales and re-encodes a captured photo as base64 JPEG for the AI
-/// proxy. Returns null when the file cannot be decoded or stay in budget.
-Future<String?> encodeImageForAi(String path) async {
+/// Downscales, strips metadata, and compresses a captured photo as JPEG bytes
+/// within [aiImageMaxSide] and [aiImageMaxBytes]. Returns null if unreadable.
+Future<Uint8List?> compressImageForAi(String path) async {
   final file = File(path);
   if (!await file.exists()) return null;
   final bytes = await file.readAsBytes();
-  // Picker output is already a native-downscaled JPEG: send it untouched.
-  // Decoding and re-encoding in Dart took minutes on slow devices. Exception:
-  // Android picker files can carry EXIF rotation as a tag with unrotated
-  // pixels; a model that ignores the tag would read the receipt sideways
-  // (PB-207), so oriented files always go through the baking path.
+  // Fast path: when a native picker already produced an upright JPEG within
+  // both byte and dimension budgets, strip metadata without Dart decode/re-encode.
   if (bytes.length <= aiImageMaxBytes &&
       bytes.length > 3 &&
       bytes[0] == 0xFF &&
       bytes[1] == 0xD8 &&
       bytes[2] == 0xFF &&
       jpegExifOrientation(bytes) <= 1) {
-    return base64Encode(stripJpegMetadata(bytes));
+    final dims = jpegDimensions(bytes);
+    if (dims != null &&
+        dims.$1 <= aiImageMaxSide &&
+        dims.$2 <= aiImageMaxSide) {
+      return stripJpegMetadata(bytes);
+    }
   }
-  return compute(_encode, bytes);
+  return compute(_encodeBytes, bytes);
+}
+
+/// Downscales and re-encodes a captured photo as base64 JPEG for the AI
+/// proxy. Returns null when the file cannot be decoded or stay in budget.
+Future<String?> encodeImageForAi(String path) async {
+  final compressed = await compressImageForAi(path);
+  return compressed == null ? null : base64Encode(compressed);
 }
 
 /// Removes APP1 (Exif/GPS) and APP2 (color profiles) segments without
@@ -116,28 +123,65 @@ int _tiffOrientation(Uint8List b, int base) {
   return 0;
 }
 
-String? _encode(Uint8List bytes) {
+/// Reads `(width, height)` from a JPEG's SOF header without decoding pixels,
+/// or null if the marker cannot be located.
+(int, int)? jpegDimensions(Uint8List bytes) {
+  if (bytes.length < 4 || bytes[0] != 0xFF || bytes[1] != 0xD8) return null;
+  var i = 2;
+  while (i + 4 <= bytes.length) {
+    if (bytes[i] != 0xFF) return null;
+    while (i < bytes.length && bytes[i] == 0xFF) {
+      i++;
+    }
+    if (i >= bytes.length) return null;
+    final marker = bytes[i++];
+    if (marker == 0xD8 || marker == 0xD9 || marker == 0x00 ||
+        (marker >= 0xD0 && marker <= 0xD7)) {
+      continue;
+    }
+    if (marker == 0xDA) return null;
+    if (i + 2 > bytes.length) return null;
+    final size = (bytes[i] << 8) | bytes[i + 1];
+    if (size < 2 || i + size > bytes.length) return null;
+    // SOF0..SOF3, SOF5..SOF7, SOF9..SOF11, SOF13..SOF15 contain image size.
+    final isSof = (marker >= 0xC0 && marker <= 0xC3) ||
+        (marker >= 0xC5 && marker <= 0xC7) ||
+        (marker >= 0xC9 && marker <= 0xCB) ||
+        (marker >= 0xCD && marker <= 0xCF);
+    if (isSof && size >= 7 && i + 7 <= bytes.length) {
+      final height = (bytes[i + 3] << 8) | bytes[i + 4];
+      final width = (bytes[i + 5] << 8) | bytes[i + 6];
+      if (width > 0 && height > 0) return (width, height);
+      return null;
+    }
+    i += size;
+  }
+  return null;
+}
+
+Uint8List? _encodeBytes(Uint8List bytes) {
   final decoded = img.decodeImage(bytes);
   if (decoded == null) return null;
   final oriented = img.bakeOrientation(decoded);
-  final longest = oriented.width > oriented.height
-      ? oriented.width
-      : oriented.height;
-  final shortest = oriented.width > oriented.height
-      ? oriented.height
-      : oriented.width;
-  final maxSide = longest > shortest * 2 ? aiTallImageMaxSide : aiImageMaxSide;
-  final scaled = longest <= maxSide
-      ? oriented
-      : img.copyResize(
-          oriented,
-          width: oriented.width >= oriented.height ? maxSide : null,
-          height: oriented.height > oriented.width ? maxSide : null,
-          interpolation: img.Interpolation.average,
-        );
-  for (final quality in const [82, 70, 58]) {
-    final jpeg = img.encodeJpg(scaled, quality: quality);
-    if (jpeg.length <= aiImageMaxBytes) return base64Encode(jpeg);
+  for (final targetSide in const [aiImageMaxSide, 960]) {
+    final longest = oriented.width > oriented.height
+        ? oriented.width
+        : oriented.height;
+    final scaled = longest <= targetSide
+        ? oriented
+        : img.copyResize(
+            oriented,
+            width: oriented.width >= oriented.height ? targetSide : null,
+            height: oriented.height > oriented.width ? targetSide : null,
+            interpolation: img.Interpolation.average,
+          );
+    final qualities = targetSide == aiImageMaxSide
+        ? const [78, 66, 54, 44]
+        : const [66, 54, 44];
+    for (final quality in qualities) {
+      final jpeg = Uint8List.fromList(img.encodeJpg(scaled, quality: quality));
+      if (jpeg.length <= aiImageMaxBytes) return jpeg;
+    }
   }
   return null;
 }

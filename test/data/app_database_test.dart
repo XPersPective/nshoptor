@@ -78,9 +78,9 @@ void main() {
   });
 
   group('migration', () {
-    test('fresh database uses schema 5 and all tables exist', () async {
+    test('fresh database uses schema 6 and all tables exist', () async {
       final version = await db.customSelect('PRAGMA user_version').getSingle();
-      expect(version.data['user_version'], 5);
+      expect(version.data['user_version'], 6);
       final tables = await db
           .customSelect("SELECT name FROM sqlite_master WHERE type='table'")
           .get();
@@ -126,6 +126,7 @@ void main() {
               ),
             );
         // Reconstruct the actual v2 column shape, then reopen the same file.
+        await _removeReceiptQueueSchema(previous);
         await _removeReceiptIdentitySchema(previous);
         await previous.customStatement(
           'ALTER TABLE purchase_entries DROP COLUMN pricing_input_mode',
@@ -140,7 +141,7 @@ void main() {
         final version = await reopened
             .customSelect('PRAGMA user_version')
             .getSingle();
-        expect(version.data['user_version'], 5);
+        expect(version.data['user_version'], 6);
         final row =
             (await reopened.select(reopened.purchaseEntries).get()).single;
         expect(row.pricingInputMode, isNull);
@@ -215,12 +216,17 @@ void main() {
             (await previous.select(previous.receipts).get()).single.toJson()
               ..remove('documentNumber')
               ..remove('identityKey')
-              ..remove('captureDataJson');
+              ..remove('captureDataJson')
+              ..remove('queueState')
+              ..remove('queueError')
+              ..remove('convertedAt')
+              ..remove('duplicateOfListId');
         final oldCandidate =
             (await previous.select(previous.receiptCandidateLines).get())
                 .single;
         final oldPurchase =
             (await previous.select(previous.purchaseEntries).get()).single;
+        await _removeReceiptQueueSchema(previous);
         await _removeReceiptIdentitySchema(previous);
         await previous.customStatement('PRAGMA user_version = 3');
         await previous.close();
@@ -236,10 +242,18 @@ void main() {
         expect(migrated.documentNumber, isNull);
         expect(migrated.identityKey, isNull);
         expect(migrated.captureDataJson, isNull);
+        expect(migrated.queueState, 'converted');
+        expect(migrated.queueError, isNull);
+        expect(migrated.convertedAt, isNull);
+        expect(migrated.duplicateOfListId, isNull);
         final migratedJson = migrated.toJson()
           ..remove('documentNumber')
           ..remove('identityKey')
-          ..remove('captureDataJson');
+          ..remove('captureDataJson')
+          ..remove('queueState')
+          ..remove('queueError')
+          ..remove('convertedAt')
+          ..remove('duplicateOfListId');
         expect(migratedJson, oldReceipt);
         expect(
           (await reopened.select(reopened.receiptCandidateLines).get()).single,
@@ -254,7 +268,7 @@ void main() {
         final version = await reopened
             .customSelect('PRAGMA user_version')
             .getSingle();
-        expect(version.data['user_version'], 5);
+        expect(version.data['user_version'], 6);
         final foreignKeyErrors = await reopened
             .customSelect('PRAGMA foreign_key_check')
             .get();
@@ -275,6 +289,73 @@ void main() {
                 ),
               ),
           throwsException,
+        );
+      },
+    );
+
+    test(
+      'v5 to v6 migration sets converted/legacy states cleanly without false tray counts',
+      () async {
+        final dir = Directory.systemTemp.createTempSync('nshoptor_v5_v6_');
+        final file = File('${dir.path}/v5.sqlite');
+        final previous = AppDatabase(NativeDatabase(file));
+        final listId = await previous
+            .into(previous.shoppingLists)
+            .insert(listRow());
+        final linkedId = await previous
+            .into(previous.receipts)
+            .insert(
+              ReceiptsCompanion.insert(
+                listId: Value(listId),
+                processingStatus: const Value('parsed'),
+              ),
+            );
+        final reviewedId = await previous
+            .into(previous.receipts)
+            .insert(
+              ReceiptsCompanion.insert(
+                processingStatus: const Value('reviewed'),
+              ),
+            );
+        final abandonedDraftId = await previous
+            .into(previous.receipts)
+            .insert(
+              ReceiptsCompanion.insert(
+                processingStatus: const Value('pending'),
+              ),
+            );
+        await _removeReceiptQueueSchema(previous);
+        await previous.customStatement('PRAGMA user_version = 5');
+        await previous.close();
+
+        final reopened = AppDatabase(NativeDatabase(file));
+        addTearDown(() async {
+          await reopened.close();
+          dir.deleteSync(recursive: true);
+        });
+        final rows = {
+          for (final r in await reopened.select(reopened.receipts).get())
+            r.id: r,
+        };
+        expect(rows[linkedId]?.queueState, 'converted');
+        expect(rows[reviewedId]?.queueState, 'converted');
+        expect(rows[abandonedDraftId]?.queueState, 'legacy');
+        final version = await reopened
+            .customSelect('PRAGMA user_version')
+            .getSingle();
+        expect(version.data['user_version'], 6);
+        final indexes = await reopened
+            .customSelect(
+              "SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name = 'receipts'",
+            )
+            .get();
+        expect(
+          indexes.map((row) => row.data['name']),
+          contains('idx_receipts_queue_state_created'),
+        );
+        expect(
+          await reopened.customSelect('PRAGMA foreign_key_check').get(),
+          isEmpty,
         );
       },
     );
@@ -398,6 +479,18 @@ void main() {
       expect(lines, isEmpty);
     });
   });
+}
+
+Future<void> _removeReceiptQueueSchema(AppDatabase db) async {
+  await db.customStatement('DROP INDEX IF EXISTS idx_receipts_queue_state_created');
+  for (final column in [
+    'queue_state',
+    'queue_error',
+    'converted_at',
+    'duplicate_of_list_id',
+  ]) {
+    await db.customStatement('ALTER TABLE receipts DROP COLUMN $column');
+  }
 }
 
 Future<void> _removeReceiptIdentitySchema(AppDatabase db) async {

@@ -120,4 +120,170 @@ class ReceiptDraftRepository {
   Future<void> discard(int draftId) async {
     await ReceiptRepository(_db).delete(draftId, pendingOnly: true);
   }
+
+  /// Queue states shown as actionable or in-progress receipts in "Fişlerim (N)".
+  static const List<String> trayQueueStates = [
+    'queued',
+    'processing',
+    'ready',
+    'duplicate',
+    'failed',
+  ];
+
+  /// Reactive count of unconverted receipts sitting in the "Fişlerim (N)" tray.
+  Stream<int> watchTrayCount() => watchTrayReceipts().map((rows) => rows.length);
+
+  /// Reactive list of unconverted queued/ready/duplicate/failed receipts
+  /// ordered newest first for the "Fişlerim (N)" tab.
+  Stream<List<Receipt>> watchTrayReceipts() => (_db.select(_db.receipts)
+        ..where(
+          (t) => t.listId.isNull() & t.queueState.isIn(trayQueueStates),
+        )
+        ..orderBy([
+          (t) => OrderingTerm.desc(t.createdAt),
+          (t) => OrderingTerm.desc(t.id),
+        ]))
+      .watch();
+
+  /// Returns one receipt row by id, or null if deleted.
+  Future<Receipt?> getById(int receiptId) =>
+      (_db.select(_db.receipts)..where((t) => t.id.equals(receiptId)))
+          .getSingleOrNull();
+
+  /// Returns unconverted receipts waiting in the sequential background queue.
+  Future<List<Receipt>> pendingQueueItems() => (_db.select(_db.receipts)
+        ..where((t) => t.listId.isNull() & t.queueState.equals('queued'))
+        ..orderBy([
+          (t) => OrderingTerm.asc(t.createdAt),
+          (t) => OrderingTerm.asc(t.id),
+        ]))
+      .get();
+
+  /// Saves a freshly captured multi-page receipt session directly into the
+  /// background queue without blocking on AI parsing.
+  Future<int> enqueueCaptured({
+    required List<String> imagePaths,
+    String? currencyCode,
+    ReceiptDocument? document,
+  }) =>
+      _db.transaction(() async {
+        final evidence = document?.encode();
+        final candidateIdentity = document?.identity;
+        final identityTaken = candidateIdentity != null &&
+            (await (_db.select(_db.receipts)
+                      ..where((t) => t.identityKey.equals(candidateIdentity)))
+                    .getSingleOrNull()) !=
+                null;
+        return _db.into(_db.receipts).insert(
+              ReceiptsCompanion.insert(
+                imagePaths: Value(List.unmodifiable(imagePaths)),
+                detectedCurrency: Value(
+                  document?.metadata.currencyCode ?? currencyCode,
+                ),
+                detectedStore: Value(document?.metadata.store),
+                detectedAt: Value(document?.metadata.dateTime),
+                detectedTotalMinorUnits: Value(document?.metadata.totalMinor),
+                documentNumber: Value(document?.metadata.documentNumber),
+                identityKey: Value(identityTaken ? null : candidateIdentity),
+                captureDataJson: Value(evidence),
+                parserVersion: const Value('2'),
+                processingStatus: const Value('pending'),
+                queueState: const Value('queued'),
+              ),
+            );
+      });
+
+  /// Marks a queued receipt as currently uploading/parsing.
+  Future<void> markProcessing(int receiptId) =>
+      (_db.update(_db.receipts)..where((t) => t.id.equals(receiptId))).write(
+        const ReceiptsCompanion(
+          queueState: Value('processing'),
+          processingStatus: Value('parsing'),
+          queueError: Value(null),
+        ),
+      );
+
+  /// Persists parsed receipt data and candidate lines, transitioning the item
+  /// into `ready` (or `duplicate` when [duplicateOfListId] matched).
+  Future<void> markReady(
+    int receiptId, {
+    required ReceiptDocument document,
+    int? duplicateOfListId,
+    String? rawOcrText,
+    List<ReceiptCandidateLinesCompanion> candidateLines = const [],
+  }) =>
+      _db.transaction(() async {
+        final evidence = document.encode();
+        final candidateIdentity = document.identity;
+        var storeIdentity = candidateIdentity;
+        if (storeIdentity != null) {
+          final conflict = await (_db.select(_db.receipts)
+                ..where(
+                  (t) =>
+                      t.identityKey.equals(storeIdentity!) &
+                      t.id.equals(receiptId).not(),
+                ))
+              .getSingleOrNull();
+          if (conflict != null) storeIdentity = null;
+        }
+        await (_db.update(_db.receipts)..where((t) => t.id.equals(receiptId)))
+            .write(
+              ReceiptsCompanion(
+                detectedStore: Value(document.metadata.store),
+                detectedAt: Value(document.metadata.dateTime),
+                detectedCurrency: Value(document.metadata.currencyCode),
+                detectedTotalMinorUnits: Value(document.metadata.totalMinor),
+                documentNumber: Value(document.metadata.documentNumber),
+                identityKey: Value(storeIdentity),
+                captureDataJson: Value(evidence),
+                rawOcrText: Value(rawOcrText),
+                parserVersion: const Value('2'),
+                processingStatus: const Value('parsed'),
+                queueState: Value(
+                  duplicateOfListId != null ? 'duplicate' : 'ready',
+                ),
+                duplicateOfListId: Value(duplicateOfListId),
+                queueError: const Value(null),
+              ),
+            );
+        await (_db.delete(_db.receiptCandidateLines)
+              ..where((t) => t.receiptId.equals(receiptId)))
+            .go();
+        for (final line in candidateLines) {
+          await _db.into(_db.receiptCandidateLines).insert(line);
+        }
+      });
+
+  /// Marks a queued receipt as failed with a human-readable retry error.
+  Future<void> markFailed(int receiptId, String error) =>
+      (_db.update(_db.receipts)..where((t) => t.id.equals(receiptId))).write(
+        ReceiptsCompanion(
+          queueState: const Value('failed'),
+          processingStatus: const Value('failed'),
+          queueError: Value(error),
+        ),
+      );
+
+  /// Moves a failed or interrupted receipt back onto the background queue.
+  Future<void> requeue(int receiptId) =>
+      (_db.update(_db.receipts)..where((t) => t.id.equals(receiptId))).write(
+        const ReceiptsCompanion(
+          queueState: Value('queued'),
+          processingStatus: Value('pending'),
+          queueError: Value(null),
+          duplicateOfListId: Value(null),
+        ),
+      );
+
+  /// Links a tray receipt to its newly created/updated shopping list and sets
+  /// `queueState` to `converted`, removing it from unread tray badge counts.
+  Future<void> markConverted(int receiptId, {required int listId}) =>
+      (_db.update(_db.receipts)..where((t) => t.id.equals(receiptId))).write(
+        ReceiptsCompanion(
+          listId: Value(listId),
+          queueState: const Value('converted'),
+          processingStatus: const Value('reviewed'),
+          convertedAt: Value(DateTime.now()),
+        ),
+      );
 }

@@ -236,6 +236,15 @@ class Receipts extends Table {
   /// pending | ocrDone | reviewed | error
   TextColumn get processingStatus =>
       text().withDefault(const Constant('pending'))();
+  TextColumn get queueState =>
+      text().withDefault(const Constant('queued'))();
+  TextColumn get queueError => text().nullable()();
+  DateTimeColumn get convertedAt => dateTime().nullable()();
+  IntColumn get duplicateOfListId => integer().nullable().references(
+    ShoppingLists,
+    #id,
+    onDelete: KeyAction.setNull,
+  )();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 }
 
@@ -336,13 +345,14 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (m) async {
       await m.createAll();
       await _createReceiptIdentityIndex();
+      await _createReceiptQueueIndex();
       await customStatement('PRAGMA foreign_keys = ON');
     },
     onUpgrade: (m, from, to) async {
@@ -362,15 +372,36 @@ class AppDatabase extends _$AppDatabase {
         // Old ownership cannot be inferred safely from timestamps/links.
         await m.addColumn(plannedItems, plannedItems.createdByReceiptId);
       }
+      if (from < 6) {
+        await m.addColumn(receipts, receipts.queueState);
+        await m.addColumn(receipts, receipts.queueError);
+        await m.addColumn(receipts, receipts.convertedAt);
+        await m.addColumn(receipts, receipts.duplicateOfListId);
+        await customStatement(
+          "UPDATE receipts SET queue_state = 'converted' "
+          "WHERE list_id IS NOT NULL OR processing_status = 'reviewed'",
+        );
+        await customStatement(
+          "UPDATE receipts SET queue_state = 'legacy' "
+          "WHERE list_id IS NULL AND processing_status != 'reviewed'",
+        );
+        await _createReceiptQueueIndex();
+      }
       assert(from < to);
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
+      await _createReceiptQueueIndex();
     },
   );
 
   Future<void> _createReceiptIdentityIndex() => customStatement(
     'CREATE UNIQUE INDEX receipts_identity_unique ON receipts (identity_key) '
     'WHERE identity_key IS NOT NULL',
+  );
+
+  Future<void> _createReceiptQueueIndex() => customStatement(
+    'CREATE INDEX IF NOT EXISTS idx_receipts_queue_state_created '
+    'ON receipts (queue_state, created_at)',
   );
 }
