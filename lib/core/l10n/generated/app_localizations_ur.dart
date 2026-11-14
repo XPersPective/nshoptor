@@ -1319,10 +1319,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'پچھلا مہینہ';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'اگلا مہینہ';
 
   @override
   String get helpSection => 'مدد اور معاونت';

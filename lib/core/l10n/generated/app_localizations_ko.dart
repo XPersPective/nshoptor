@@ -1279,10 +1279,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => '이전 달';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => '다음 달';
 
   @override
   String get helpSection => '도움말 및 지원';

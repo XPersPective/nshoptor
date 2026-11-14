@@ -1321,10 +1321,10 @@ class AppLocalizationsKn extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'ಹಿಂದಿನ ತಿಂಗಳು';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'ಮುಂದಿನ ತಿಂಗಳು';
 
   @override
   String get helpSection => 'ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ';

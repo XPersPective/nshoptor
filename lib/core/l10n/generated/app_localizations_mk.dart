@@ -1323,10 +1323,10 @@ class AppLocalizationsMk extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Претходен месец';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Следен месец';
 
   @override
   String get helpSection => 'Помош и поддршка';

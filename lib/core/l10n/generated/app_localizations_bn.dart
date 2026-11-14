@@ -1317,10 +1317,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'আগের মাস';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'পরবর্তী মাস';
 
   @override
   String get helpSection => 'সাহায্য ও সহায়তা';

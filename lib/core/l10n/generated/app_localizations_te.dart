@@ -1327,10 +1327,10 @@ class AppLocalizationsTe extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'గత నెల';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'తర్వాతి నెల';
 
   @override
   String get helpSection => 'సహాయం మరియు మద్దతు';
@@ -1663,7 +1663,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get shelfLabelReading => 'ధర లేబుల్ చదివిస్తున్నాము…';
 
   @override
-  String get shelfLabelContinueOther => 'మరొక ఆइटెమ్ స్కాన్ చేయండి';
+  String get shelfLabelContinueOther => 'మరొక ఐటెమ్ స్కాన్ చేయండి';
 
   @override
   String get shelfLabelQueuedNotice =>

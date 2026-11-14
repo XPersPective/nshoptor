@@ -1324,10 +1324,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Предишен месец';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Следващ месец';
 
   @override
   String get helpSection => 'Помощ и поддръжка';

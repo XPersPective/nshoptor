@@ -1325,10 +1325,10 @@ class AppLocalizationsMn extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Өмнөх сар';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Дараагийн сар';
 
   @override
   String get helpSection => 'Тусламж ба дэмжлэг';

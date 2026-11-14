@@ -1320,10 +1320,10 @@ class AppLocalizationsSr extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Претходни месец';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Следећи месец';
 
   @override
   String get helpSection => 'Помоћ и подршка';

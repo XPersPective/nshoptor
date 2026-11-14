@@ -1321,10 +1321,10 @@ class AppLocalizationsNe extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'अघिल्लो महिना';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'अर्को महिना';
 
   @override
   String get helpSection => 'मद्दत र सहयोग';

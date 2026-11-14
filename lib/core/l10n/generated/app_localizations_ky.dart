@@ -1320,10 +1320,10 @@ class AppLocalizationsKy extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Мурунку ай';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Кийинки ай';
 
   @override
   String get helpSection => 'Жардам жана колдоо';

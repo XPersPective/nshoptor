@@ -1304,10 +1304,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'חודש קודם';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'חודש הבא';
 
   @override
   String get helpSection => 'עזרה ותמיכה';

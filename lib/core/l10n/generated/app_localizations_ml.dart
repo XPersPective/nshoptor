@@ -1318,10 +1318,10 @@ class AppLocalizationsMl extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'മുൻ മാസം';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'അടുത്ത മാസം';
 
   @override
   String get helpSection => 'സഹായവും പിന്തുണയും';
@@ -1686,7 +1686,7 @@ class AppLocalizationsMl extends AppLocalizations {
   String get receiptConvertToListAction => 'ലിസ്റ്റാക്കി മാറ്റുക';
 
   @override
-  String get receiptRetryReadAction => 'മళ్‌ലും ശ്രമിക്കുക';
+  String get receiptRetryReadAction => 'വീണ്ടും ശ്രമിക്കുക';
 
   @override
   String get receiptDeleteDraftAction => 'ഇല്ലാതാക്കുക';

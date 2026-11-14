@@ -515,7 +515,7 @@
   "receiptStatusDuplicate": "സാധ്യമായ ഡുപ്ലിക്കേറ്റ്",
   "receiptStatusFailed": "വായിക്കാൻ കഴിഞ്ഞില്ല",
   "receiptConvertToListAction": "ലിസ്റ്റാക്കി മാറ്റുക",
-  "receiptRetryReadAction": "മళ్‌ലും ശ്രമിക്കുക",
+  "receiptRetryReadAction": "വീണ്ടും ശ്രമിക്കുക",
   "receiptDeleteDraftAction": "ഇല്ലാതാക്കുക",
   "receiptReadyNotificationTitle": "റിസീറ്റ് തയ്യാറായി",
   "receiptReadyNotificationBody": "നിങ്ങളുടെ റിസീറ്റ് തയ്യാറാണ്. ഇത് ഒരു ലിസ്റ്റിലേക്ക് മാറ്റണോ?",

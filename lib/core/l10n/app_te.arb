@@ -505,7 +505,7 @@
   "receiptQueuedNotice": "రసీదు వరుసలో ఉంది — బ్యాక్‌గ్రౌండ్‌లో సిద్ధం చేయబడుతోంది.",
   "receiptMaxPagesNote": "ఒక రసీదుకు గరిష్ఠంగా {max} పేజీలను జోడించవచ్చు.",
   "shelfLabelReading": "ధర లేబుల్ చదివిస్తున్నాము…",
-  "shelfLabelContinueOther": "మరొక ఆइटెమ్ స్కాన్ చేయండి",
+  "shelfLabelContinueOther": "మరొక ఐటెమ్ స్కాన్ చేయండి",
   "shelfLabelQueuedNotice": "ధర లేబుల్ బ్యాక్‌గ్రౌండ్‌లో చదివిస్తున్నారు.",
   "listsTabReceipts": "నా రసీదులు",
   "listsTabReceiptsCount": "నా రసీదులు ({count})",

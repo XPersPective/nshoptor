@@ -1310,10 +1310,10 @@ class AppLocalizationsLo extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'ເດືອນກ່ອນໜ້າ';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'ເດືອນໜ້າ';
 
   @override
   String get helpSection => 'ຄວາມຊ່ວຍເຫຼືອແລະການສະໜັບສະໜູນ';

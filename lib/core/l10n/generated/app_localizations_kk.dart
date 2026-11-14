@@ -1317,10 +1317,10 @@ class AppLocalizationsKk extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Алдыңғы ай';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Келесі ай';
 
   @override
   String get helpSection => 'Көмек және қолдау';

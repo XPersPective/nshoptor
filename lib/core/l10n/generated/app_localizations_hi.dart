@@ -1322,10 +1322,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'पिछला महीना';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'अगला महीना';
 
   @override
   String get helpSection => 'मदद और सहायता';

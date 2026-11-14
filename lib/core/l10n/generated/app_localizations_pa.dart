@@ -1318,10 +1318,10 @@ class AppLocalizationsPa extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'ਪਿਛਲਾ ਮਹੀਨਾ';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'ਅਗਲਾ ਮਹੀਨਾ';
 
   @override
   String get helpSection => 'ਮਦਦ ਅਤੇ ਸਹਾਇਤਾ';

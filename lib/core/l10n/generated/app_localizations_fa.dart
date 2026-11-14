@@ -1313,10 +1313,10 @@ class AppLocalizationsFa extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'ماه قبل';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'ماه بعد';
 
   @override
   String get helpSection => 'راهنما و پشتیبانی';

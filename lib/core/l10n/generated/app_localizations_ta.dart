@@ -1329,10 +1329,10 @@ class AppLocalizationsTa extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'முந்தைய மாதம்';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'அடுத்த மாதம்';
 
   @override
   String get helpSection => 'உதவி மற்றும் ஆதரவு';

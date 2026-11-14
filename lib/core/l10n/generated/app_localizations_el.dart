@@ -1326,10 +1326,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Προηγούμενος μήνας';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Επόμενος μήνας';
 
   @override
   String get helpSection => 'Βοήθεια και υποστήριξη';

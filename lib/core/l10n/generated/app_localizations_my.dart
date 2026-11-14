@@ -1323,10 +1323,10 @@ class AppLocalizationsMy extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'ယခင်လ';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'နောက်လ';
 
   @override
   String get helpSection => 'အကူအညီနှင့် ပံ့ပိုးမှု';

@@ -1315,10 +1315,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'मागील महिना';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'पुढचा महिना';
 
   @override
   String get helpSection => 'मदत आणि सहाय्य';

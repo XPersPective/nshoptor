@@ -1323,10 +1323,10 @@ class AppLocalizationsBe extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Папярэдні месяц';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Наступны месяц';
 
   @override
   String get helpSection => 'Дапамога і падтрымка';

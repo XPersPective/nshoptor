@@ -1324,10 +1324,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Նախորդ ամիս';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Հաջորդ ամիս';
 
   @override
   String get helpSection => 'Օգնություն և աջակցություն';
