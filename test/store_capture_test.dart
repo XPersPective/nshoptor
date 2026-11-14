@@ -22,7 +22,22 @@ import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:nshoptor/features/settings/settings_repository.dart';
 
 const _locale = String.fromEnvironment('STORE_LOCALE');
+const _localesEnv = String.fromEnvironment('STORE_LOCALES');
 const _out = String.fromEnvironment('STORE_OUT');
+const _device = String.fromEnvironment('STORE_DEVICE', defaultValue: 'phone');
+const _devices = String.fromEnvironment('STORE_DEVICES');
+
+(Size, double) _deviceSpec(String dev) {
+  return switch (dev) {
+    'phone_land' => (const Size(1920, 1080), 2.5),
+    'tablet7' => (const Size(1920, 1200), 2.0),
+    'tablet10' => (const Size(2560, 1600), 2.0),
+    'ipad' => (const Size(2048, 2732), 2.0),
+    'ipad_land' => (const Size(2732, 2048), 2.0),
+    'iphone' => (const Size(1290, 2796), 3.0),
+    _ => (const Size(1080, 1920), 3.0),
+  };
+}
 
 /// Dil başına: liste adı, para birimi, bütçe, (ürün, tahmini), gerçek fiyatlar
 /// ve takvim/grafik için geçmiş alışveriş tutarları (minor).
@@ -226,13 +241,13 @@ const _fonts = <String, List<String>>{
 
 /// Test ortamı yazı tipi taşımaz; SDK'nın Roboto/MaterialIcons'unu yükler
 /// (aksi halde her glif dolu kutu çizilir). Arapça için Segoe UI.
-Future<void> _loadFonts() async {
+Future<void> _loadFonts([String locale = _locale]) async {
   final root = Platform.environment['FLUTTER_ROOT'] ?? 'C:/flutter';
   final dir = '$root/bin/cache/artifacts/material_fonts';
   Future<ByteData> bytes(String path) async =>
       ByteData.sublistView(Uint8List.fromList(await File(path).readAsBytes()));
   final roboto = FontLoader('Roboto');
-  final win = _fonts[_locale];
+  final win = _fonts[locale];
   final files = win != null
       ? [for (final f in win) 'C:/Windows/Fonts/$f']
       : [
@@ -257,14 +272,25 @@ String _past(DateTime now, int i) {
 }
 
 void main() {
-  if (_locale.isEmpty) return;
-  final data = _dataFor(_locale);
+  final locales = _localesEnv.isNotEmpty
+      ? _localesEnv
+            .split(',')
+            .map((s) => s.trim())
+            .where((s) => s.isNotEmpty)
+            .toList()
+      : (_locale.isEmpty ? const <String>[] : <String>[_locale]);
+  if (locales.isEmpty) {
+    test('STORE_LOCALE/STORE_LOCALES olmadan mağaza çekimi atlanır', () {
+      expect(locales, isEmpty);
+    });
+    return;
+  }
   late AppDatabase db;
   setUpAll(() async {
     // Test bağlayıcısı gölgeleri düz siyah çerçeve çizer; gerçek gölge istenir.
     debugDisableShadows = false;
     WidgetsApp.debugAllowBannerOverride = false;
-    await _loadFonts();
+    await _loadFonts(locales.first);
     // Alışveriş modu ekranı açık tutar; test ortamında eklenti yok.
     const pigeon =
         'dev.flutter.pigeon.wakelock_plus_platform_interface.WakelockPlusApi';
@@ -285,179 +311,238 @@ void main() {
     expect(tester.takeException(), isNull);
   }
 
-  Future<void> shot(WidgetTester tester, String name) async {
+  Future<void> snap(WidgetTester tester, String dir, String name) async {
     await tester.pumpAndSettle();
     await expectLater(
       find.byType(MaterialApp),
-      matchesGoldenFile('$_out/$name.png'),
+      matchesGoldenFile('$dir/$name.png'),
     );
   }
 
-  testWidgets('mağaza görüntüleri ($_locale)', (tester) async {
-    tester.view.physicalSize = const Size(1080, 1920);
-    tester.view.devicePixelRatio = 3;
-    addTearDown(tester.view.reset);
-    FocusManager.instance.highlightStrategy =
-        FocusHighlightStrategy.alwaysTouch;
+  final devices = _devices.isEmpty
+      ? <String>[_device]
+      : _devices
+            .split(',')
+            .map((s) => s.trim())
+            .where((s) => s.isNotEmpty)
+            .toList();
 
-    final store = SettingsStore()
-      ..setString(SettingsRepository.currencyKey, data.currency);
-    AppDefaults.attach(store);
-    AppDefaults.markGuideSeen(); // Capture product screens; onboarding has its own tests.
-    AppFormatLocale.attach(data.items.first.$2.contains(',') ? 'tr' : 'en');
-    addTearDown(AppFormatLocale.attachReset);
-    db = AppDatabase(NativeDatabase.memory());
+  for (final loc in locales) {
+    final data = _dataFor(loc);
+    for (final dev in devices) {
+      final outDir = _localesEnv.isNotEmpty
+          ? '$_out/$loc/current/$dev'
+          : (_devices.isEmpty ? _out : '$_out/$dev');
+      testWidgets('mağaza görüntüleri ($loc $dev)', (tester) async {
+        debugDisableShadows = false;
+        Future<void> shot(WidgetTester tester, String name) =>
+            snap(tester, outDir, name);
+        final (phys, dpr) = _deviceSpec(dev);
+        tester.view.physicalSize = phys;
+        tester.view.devicePixelRatio = dpr;
+        addTearDown(tester.view.reset);
+        FocusManager.instance.highlightStrategy =
+            FocusHighlightStrategy.alwaysTouch;
 
-    // Takvim ve grafikler dolu görünsün: geçmiş tamamlanmış alışverişler.
-    await tester.runAsync(() async {
-      final now = DateTime.now();
-      for (final (i, minor) in data.pastMinor.indexed) {
-        final id = await db
+        final store = SettingsStore()
+          ..setString(SettingsRepository.currencyKey, data.currency);
+        AppDefaults.attach(store);
+        AppDefaults.markGuideSeen(); // Capture product screens; onboarding has its own tests.
+        AppFormatLocale.attach(data.items.first.$2.contains(',') ? 'tr' : 'en');
+        addTearDown(AppFormatLocale.attachReset);
+        db = AppDatabase(NativeDatabase.memory());
+
+        // Takvim ve grafikler dolu görünsün: geçmiş tamamlanmış alışverişler.
+        await tester.runAsync(() async {
+          final now = DateTime.now();
+          for (final (i, minor) in data.pastMinor.indexed) {
+            final id = await db
+                .into(db.shoppingLists)
+                .insert(
+                  ShoppingListsCompanion.insert(
+                    currencyCode: data.currency,
+                    status: const Value('completed'),
+                    completedAt: Value(
+                      now.subtract(Duration(days: 3 + i * 7, hours: 2)),
+                    ),
+                    title: Value('${data.list} · ${_past(now, i)}'),
+                  ),
+                );
+            await db
+                .into(db.purchaseEntries)
+                .insert(
+                  PurchaseEntriesCompanion.insert(
+                    listId: id,
+                    name: '-',
+                    normalizedName: '-',
+                    actualQuantity: '1',
+                    actualUnitCode: 'piece',
+                    actualLineTotalMinorUnits: minor,
+                    userConfirmed: const Value(true),
+                  ),
+                );
+          }
+        });
+
+        await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: Locale(loc)));
+        await settle(tester);
+
+        // Görüntüler son üçlü ana akışı gösterir. Örnek veriler doğrudan Drift'e
+        // yazılır; geri kalan yolculuk gerçek widget etkileşimleriyle sürülür.
+        final activeId = await db
             .into(db.shoppingLists)
             .insert(
               ShoppingListsCompanion.insert(
                 currencyCode: data.currency,
-                status: const Value('completed'),
-                completedAt: Value(
-                  now.subtract(Duration(days: 3 + i * 7, hours: 2)),
+                title: Value(data.list),
+                budgetMinorUnits: Value(data.currency == 'TRY' ? 100000 : 4000),
+              ),
+            );
+        int minor(String value) {
+          final parts = value.replaceAll(',', '.').split('.');
+          final fraction = (parts.length > 1 ? parts[1] : '').padRight(2, '0');
+          return int.parse(parts.first) * 100 +
+              int.parse(fraction.substring(0, 2));
+        }
+
+        for (final (index, item) in data.items.indexed) {
+          await db
+              .into(db.plannedItems)
+              .insert(
+                PlannedItemsCompanion.insert(
+                  listId: activeId,
+                  name: item.$1,
+                  normalizedName: item.$1.toLowerCase(),
+                  plannedQuantity: '1',
+                  plannedUnitCode: 'piece',
+                  pricingInputMode: 'lineTotal',
+                  plannedUnitPrice: Value(item.$2.replaceAll(',', '.')),
+                  plannedLineTotalMinorUnits: Value(minor(item.$2)),
+                  sortOrder: Value(index),
                 ),
-                title: Value('${data.list} · ${_past(now, i)}'),
+              );
+        }
+        await db
+            .into(db.shoppingLists)
+            .insert(
+              ShoppingListsCompanion.insert(
+                currencyCode: data.currency,
+                title: Value('${data.list} · ${data.real.first}'),
+                status: const Value('completed'),
+                plannedAt: Value(
+                  DateTime.now().subtract(const Duration(days: 1)),
+                ),
+                completedAt: Value(
+                  DateTime.now().subtract(const Duration(days: 1)),
+                ),
               ),
             );
         await db
-            .into(db.purchaseEntries)
+            .into(db.shoppingLists)
             .insert(
-              PurchaseEntriesCompanion.insert(
-                listId: id,
-                name: '-',
-                normalizedName: '-',
-                actualQuantity: '1',
-                actualUnitCode: 'piece',
-                actualLineTotalMinorUnits: minor,
-                userConfirmed: const Value(true),
+              ShoppingListsCompanion.insert(
+                currencyCode: data.currency,
+                title: Value('${data.list} · ${data.real.last}'),
+                status: const Value('archived'),
+                archivedAt: Value(
+                  DateTime.now().subtract(const Duration(days: 2)),
+                ),
               ),
             );
-      }
-    });
 
-    await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: Locale(_locale)));
-    await settle(tester);
+        await tester.runAsync(() async {
+          for (final e in find.byType(Image).evaluate()) {
+            await precacheImage((e.widget as Image).image, e);
+          }
+        });
+        await shot(tester, '01'); // Liste
+        await tester.tap(find.text(data.list).first);
+        await settle(tester);
+        if (phys.height / dpr < 550) {
+          await tester.ensureVisible(find.text(data.items.first.$1).first);
+          await settle(tester);
+        }
+        await shot(tester, '02'); // Birleşik liste detayı
 
-    // Görüntüler son üçlü ana akışı gösterir. Örnek veriler doğrudan Drift'e
-    // yazılır; geri kalan yolculuk gerçek widget etkileşimleriyle sürülür.
-    final activeId = await db
-        .into(db.shoppingLists)
-        .insert(
-          ShoppingListsCompanion.insert(
-            currencyCode: data.currency,
-            title: Value(data.list),
-            budgetMinorUnits: Value(data.currency == 'TRY' ? 100000 : 4000),
-          ),
+        await tester.ensureVisible(find.text(data.items.first.$1).first);
+        await settle(tester);
+        await tester.tap(find.text(data.items.first.$1).first);
+        await settle(tester);
+        await shot(tester, '03'); // Satır düzenleme
+        await tester.ensureVisible(
+          find.byKey(const Key('item_actual_price_field')),
         );
-    int minor(String value) {
-      final parts = value.replaceAll(',', '.').split('.');
-      final fraction = (parts.length > 1 ? parts[1] : '').padRight(2, '0');
-      return int.parse(parts.first) * 100 + int.parse(fraction.substring(0, 2));
+        await settle(tester);
+        await tester.enterText(
+          find.byKey(const Key('item_actual_price_field')),
+          data.real.first,
+        );
+        await settle(tester);
+        await shot(tester, '04'); // Çarşı fiyatı
+        await tester.ensureVisible(find.byKey(const Key('item_save_button')));
+        await settle(tester);
+        await tester.tap(find.byKey(const Key('item_save_button')));
+        await settle(tester);
+
+        await tester.ensureVisible(find.text(data.items.first.$1).first);
+        await settle(tester);
+        await tester.tap(find.text(data.items.first.$1).first);
+        await settle(tester);
+        await tester.ensureVisible(
+          find.byKey(const Key('item_details_expand')),
+        );
+        await settle(tester);
+        await tester.tap(find.byKey(const Key('item_details_expand')));
+        await settle(tester);
+        await tester.ensureVisible(find.byKey(const Key('item_price_history')));
+        await tester.tap(find.byKey(const Key('item_price_history')));
+        await settle(tester);
+        await shot(tester, '05'); // Normalize birim fiyat geçmişi
+        await tester.tap(find.byType(BackButton).first);
+        await settle(tester);
+        Navigator.of(tester.element(find.byKey(const Key('item_name_field'))))
+            .pop();
+        await settle(tester);
+        await tester.tap(find.byType(BackButton).first);
+        await settle(tester);
+
+        await tester.ensureVisible(
+          find.byKey(const Key('lists_tab_completed')),
+        );
+        await settle(tester);
+        await tester.tap(find.byKey(const Key('lists_tab_completed')));
+        await settle(tester);
+        expect(find.text('${data.list} · ${data.real.first}'), findsOneWidget);
+        await shot(tester, '06'); // Tamamlananlar
+        await tester.ensureVisible(find.byKey(const Key('lists_tab_archived')));
+        await settle(tester);
+        await tester.tap(find.byKey(const Key('lists_tab_archived')));
+        await settle(tester);
+        expect(find.text('${data.list} · ${data.real.last}'), findsOneWidget);
+        await shot(tester, '07'); // Arşiv
+
+        await tester.ensureVisible(find.byKey(const Key('lists_tab_active')));
+        await settle(tester);
+        await tester.tap(find.byKey(const Key('lists_tab_active')));
+        await settle(tester);
+        await tester.ensureVisible(find.text(data.list).first);
+        await settle(tester);
+        await tester.tap(find.text(data.list).first);
+        await settle(tester);
+        // The quick entry is a read-only launcher. Follow the real tap flow.
+        await tester.ensureVisible(find.byKey(const Key('detail_quick_entry')));
+        await settle(tester);
+        await tester.tap(find.byKey(const Key('detail_quick_entry')));
+        await settle(tester);
+        expect(find.byKey(const Key('item_name_field')), findsOneWidget);
+        await shot(tester, '08'); // Ürün ekleme formu
+
+        await tester.pumpWidget(const SizedBox.shrink());
+        final closing = db.close();
+        await tester.pump(const Duration(milliseconds: 1));
+        await closing;
+        debugDisableShadows = true; // test bağlayıcısının değişmezi
+      });
     }
-
-    for (final (index, item) in data.items.indexed) {
-      await db
-          .into(db.plannedItems)
-          .insert(
-            PlannedItemsCompanion.insert(
-              listId: activeId,
-              name: item.$1,
-              normalizedName: item.$1.toLowerCase(),
-              plannedQuantity: '1',
-              plannedUnitCode: 'piece',
-              pricingInputMode: 'lineTotal',
-              plannedUnitPrice: Value(item.$2.replaceAll(',', '.')),
-              plannedLineTotalMinorUnits: Value(minor(item.$2)),
-              sortOrder: Value(index),
-            ),
-          );
-    }
-    await db
-        .into(db.shoppingLists)
-        .insert(
-          ShoppingListsCompanion.insert(
-            currencyCode: data.currency,
-            title: Value('${data.list} · ${data.real.first}'),
-            status: const Value('completed'),
-            plannedAt: Value(DateTime.now().subtract(const Duration(days: 1))),
-            completedAt: Value(
-              DateTime.now().subtract(const Duration(days: 1)),
-            ),
-          ),
-        );
-    await db
-        .into(db.shoppingLists)
-        .insert(
-          ShoppingListsCompanion.insert(
-            currencyCode: data.currency,
-            title: Value('${data.list} · ${data.real.last}'),
-            status: const Value('archived'),
-            archivedAt: Value(DateTime.now().subtract(const Duration(days: 2))),
-          ),
-        );
-
-    await shot(tester, '01'); // Liste
-    await tester.tap(find.text(data.list).first);
-    await settle(tester);
-    await shot(tester, '02'); // Birleşik liste detayı
-
-    await tester.tap(find.text(data.items.first.$1).first);
-    await settle(tester);
-    await shot(tester, '03'); // Satır düzenleme
-    await tester.enterText(
-      find.byKey(const Key('item_actual_price_field')),
-      data.real.first,
-    );
-    await settle(tester);
-    await shot(tester, '04'); // Çarşı fiyatı
-    await tester.tap(find.byKey(const Key('item_save_button')));
-    await settle(tester);
-
-    await tester.ensureVisible(find.text(data.items.first.$1).first);
-    await settle(tester);
-    await tester.tap(find.text(data.items.first.$1).first);
-    await settle(tester);
-    await tester.tap(find.byKey(const Key('item_details_expand')));
-    await settle(tester);
-    await tester.ensureVisible(find.byKey(const Key('item_price_history')));
-    await tester.tap(find.byKey(const Key('item_price_history')));
-    await settle(tester);
-    await shot(tester, '05'); // Normalize birim fiyat geçmişi
-    await tester.tap(find.byType(BackButton).first);
-    await settle(tester);
-    Navigator.of(tester.element(find.byKey(const Key('item_name_field')))).pop();
-    await settle(tester);
-    await tester.tap(find.byType(BackButton).first);
-    await settle(tester);
-
-    await tester.tap(find.byKey(const Key('lists_tab_completed')));
-    await settle(tester);
-    expect(find.text('${data.list} · ${data.real.first}'), findsOneWidget);
-    await shot(tester, '06'); // Tamamlananlar
-    await tester.tap(find.byKey(const Key('lists_tab_archived')));
-    await settle(tester);
-    expect(find.text('${data.list} · ${data.real.last}'), findsOneWidget);
-    await shot(tester, '07'); // Arşiv
-
-    await tester.tap(find.byKey(const Key('lists_tab_active')));
-    await settle(tester);
-    await tester.tap(find.text(data.list).first);
-    await settle(tester);
-    // The quick entry is a read-only launcher. Follow the real tap flow.
-    await tester.tap(find.byKey(const Key('detail_quick_entry')));
-    await settle(tester);
-    expect(find.byKey(const Key('item_name_field')), findsOneWidget);
-    await shot(tester, '08'); // Ürün ekleme formu
-
-    await tester.pumpWidget(const SizedBox.shrink());
-    final closing = db.close();
-    await tester.pump(const Duration(milliseconds: 1));
-    await closing;
-    debugDisableShadows = true; // test bağlayıcısının değişmezi
-  });
+  }
 }

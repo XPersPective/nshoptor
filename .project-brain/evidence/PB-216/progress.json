@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "test/store_capture_test.dart, test/store_feature_test.dart, tool/store/capture_all.py, tool/store/check_assets.py, tool/store/listing.py, tool/store/make_preview.py",
+  "strategy": "check",
+  "attempt": "c2b4ffe3681a9132",
+  "repeats": 0,
+  "contract": "85b9645ef0216d66",
+  "usage": {
+    "checks": 3,
+    "seconds": 414.407
+  }
+}

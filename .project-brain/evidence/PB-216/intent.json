@@ -1,0 +1,8 @@
+{
+  "contract": "85b9645ef0216d66",
+  "epoch": "c6bb75eb2912eb1e",
+  "independent": false,
+  "intent": "452a6f23a13f292e",
+  "note": "Include mandatory HIGH-risk full test command flutter test in Verify",
+  "protocol": 1
+}

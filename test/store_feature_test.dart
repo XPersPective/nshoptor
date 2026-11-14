@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const _locale = String.fromEnvironment('STORE_LOCALE');
+const _localesEnv = String.fromEnvironment('STORE_LOCALES');
 const _out = String.fromEnvironment('STORE_OUT');
 
 const _slogan = {
@@ -63,92 +64,116 @@ const _fonts = <String, List<String>>{
 const _rtl = {'ar', 'fa', 'he', 'ur', 'ps'};
 
 void main() {
-  if (_locale.isEmpty) return;
-  testWidgets('tanıtım görseli ($_locale)', (tester) async {
-    tester.view.physicalSize = const Size(1024, 500);
-    tester.view.devicePixelRatio = 1;
-    addTearDown(tester.view.reset);
-
-    final bg = File('assets/brand/feature_bg.png').readAsBytesSync();
-    await tester.runAsync(() async {
-      final font = FontLoader('Seg');
-      for (final f
-          in _fonts[_locale] ??
-              ['segoeui.ttf', 'seguisb.ttf', 'segoeuib.ttf']) {
-        font.addFont(
-          Future.value(
-            ByteData.sublistView(File('C:/Windows/Fonts/$f').readAsBytesSync()),
-          ),
-        );
-      }
-      await font.load();
+  final locales = _localesEnv.isNotEmpty
+      ? _localesEnv
+            .split(',')
+            .map((s) => s.trim())
+            .where((s) => s.isNotEmpty)
+            .toList()
+      : (_locale.isEmpty ? const <String>[] : <String>[_locale]);
+  if (locales.isEmpty) {
+    test('STORE_LOCALE/STORE_LOCALES olmadan tanıtım görseli atlanır', () {
+      expect(locales, isEmpty);
     });
+    return;
+  }
 
-    final extra = File('test/store_slogans.json').existsSync()
-        ? (jsonDecode(File('test/store_slogans.json').readAsStringSync())
-                  as Map)[_locale]
-              as Map?
-        : null;
-    final (a, b) =
-        _slogan[_locale] ?? (extra!['a'] as String, extra['b'] as String);
-    const white = Color(0xFFFFFFFF);
-    final rtl = _rtl.contains(_locale);
-    await tester.pumpWidget(
-      Directionality(
-        textDirection: TextDirection.ltr,
-        child: Stack(
-          children: [
-            Positioned.fill(child: Image.memory(bg, fit: BoxFit.fill)),
-            Positioned(
-              left: 425,
-              right: 44,
-              top: 168,
-              child: DefaultTextStyle(
-                style: const TextStyle(fontFamily: 'Seg', color: white),
-                child: Column(
-                  crossAxisAlignment: rtl
-                      ? CrossAxisAlignment.end
-                      : CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'NShoptor',
-                      style: TextStyle(
-                        fontSize: 76,
-                        fontWeight: FontWeight.w700,
-                        height: 1.1,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    for (final line in [a, b])
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          line,
-                          textDirection: rtl
-                              ? TextDirection.rtl
-                              : TextDirection.ltr,
-                          style: const TextStyle(
-                            fontSize: 32,
-                            height: 1.5,
-                            color: Color(0xF2FFFFFF),
-                          ),
-                        ),
-                      ),
-                  ],
+  final bg = File('assets/brand/feature_bg.png').readAsBytesSync();
+  var loadedFonts = false;
+
+  for (final loc in locales) {
+    final outDir = _localesEnv.isNotEmpty ? '$_out/$loc/current' : _out;
+    testWidgets('tanıtım görseli ($loc)', (tester) async {
+      tester.view.physicalSize = const Size(1024, 500);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+
+      if (!loadedFonts) {
+        loadedFonts = true;
+        await tester.runAsync(() async {
+          final font = FontLoader('Seg');
+          for (final f
+              in _fonts[loc] ??
+                  ['segoeui.ttf', 'seguisb.ttf', 'segoeuib.ttf']) {
+            font.addFont(
+              Future.value(
+                ByteData.sublistView(
+                  File('C:/Windows/Fonts/$f').readAsBytesSync(),
                 ),
               ),
-            ),
-          ],
+            );
+          }
+          await font.load();
+        });
+      }
+
+      final extra = File('test/store_slogans.json').existsSync()
+          ? (jsonDecode(File('test/store_slogans.json').readAsStringSync())
+                    as Map)[loc]
+                as Map?
+          : null;
+      final (a, b) =
+          _slogan[loc] ?? (extra!['a'] as String, extra['b'] as String);
+      const white = Color(0xFFFFFFFF);
+      final rtl = _rtl.contains(loc);
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Stack(
+            children: [
+              Positioned.fill(child: Image.memory(bg, fit: BoxFit.fill)),
+              Positioned(
+                left: 425,
+                right: 44,
+                top: 168,
+                child: DefaultTextStyle(
+                  style: const TextStyle(fontFamily: 'Seg', color: white),
+                  child: Column(
+                    crossAxisAlignment: rtl
+                        ? CrossAxisAlignment.end
+                        : CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'NShoptor',
+                        style: TextStyle(
+                          fontSize: 76,
+                          fontWeight: FontWeight.w700,
+                          height: 1.1,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      for (final line in [a, b])
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            line,
+                            textDirection: rtl
+                                ? TextDirection.rtl
+                                : TextDirection.ltr,
+                            style: const TextStyle(
+                              fontSize: 32,
+                              height: 1.5,
+                              color: Color(0xF2FFFFFF),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-    await tester.runAsync(
-      () => precacheImage(MemoryImage(bg), tester.element(find.byType(Stack))),
-    );
-    await tester.pump();
-    await expectLater(
-      find.byType(Stack),
-      matchesGoldenFile('$_out/featureGraphic.png'),
-    );
-  });
+      );
+      await tester.runAsync(
+        () =>
+            precacheImage(MemoryImage(bg), tester.element(find.byType(Stack))),
+      );
+      await tester.pump();
+      await expectLater(
+        find.byType(Stack),
+        matchesGoldenFile('$outDir/featureGraphic.png'),
+      );
+    });
+  }
 }
