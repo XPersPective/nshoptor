@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/core/theme/app_theme.dart';
@@ -24,6 +26,24 @@ double contrastRatio(Color a, Color b) {
 }
 
 void main() {
+  setUpAll(() async {
+    if (const String.fromEnvironment('CAPTURE_OUT').isEmpty) return;
+    final fonts = FontLoader('Roboto');
+    for (final name in ['segoeui.ttf', 'segoeuib.ttf']) {
+      fonts.addFont(
+        File('C:/Windows/Fonts/$name').readAsBytes().then(ByteData.sublistView),
+      );
+    }
+    await fonts.load();
+    final root = Platform.environment['FLUTTER_ROOT'] ?? 'C:/flutter';
+    await (FontLoader('MaterialIcons')..addFont(
+          File(
+            '$root/bin/cache/artifacts/material_fonts/materialicons-regular.otf',
+          ).readAsBytes().then(ByteData.sublistView),
+        ))
+        .load();
+  });
+
   group('tema üretimi', () {
     test('açık ve koyu tema oluşturulur; Material 3 etkin', () {
       final light = AppTheme.light();
@@ -165,5 +185,73 @@ void main() {
       expect(overDark.color,
           SemanticDelta.palette(SpendingDirection.overPlan).dark);
     });
+
+    test('cards, header hairline, navigation bar, and chips have crisp polish across all modes & palettes', () {
+      for (final palette in AppPalette.values) {
+        final themes = [
+          AppTheme.light(palette: palette),
+          AppTheme.dark(palette: palette, black: false),
+          AppTheme.dark(palette: palette, black: true),
+        ];
+        for (final theme in themes) {
+          final cardShape = theme.cardTheme.shape;
+          expect(cardShape, isA<RoundedRectangleBorder>());
+          expect((cardShape as RoundedRectangleBorder).side, isNot(BorderSide.none));
+          expect(theme.appBarTheme.surfaceTintColor, Colors.transparent);
+          expect(theme.appBarTheme.shape, isA<Border>());
+          expect(theme.navigationBarTheme.indicatorShape, isA<StadiumBorder>());
+          expect(theme.navigationBarTheme.surfaceTintColor, Colors.transparent);
+        }
+      }
+    });
+
+    for (final variant in [
+      (name: 'light', theme: AppTheme.light()),
+      (name: 'dark', theme: AppTheme.dark()),
+      (name: 'amoled', theme: AppTheme.dark(black: true)),
+    ]) {
+      testWidgets('themed AppBar, Card, and NavigationBar render cleanly at 320dp (${variant.name})', (tester) async {
+        tester.view.devicePixelRatio = 1;
+        tester.view.physicalSize = const Size(320, 640);
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: variant.theme,
+            home: Scaffold(
+              appBar: AppBar(title: const Text('NShoptor')),
+              body: ListView(
+                children: const [
+                  Card(
+                    child: ListTile(
+                      title: Text('Haftalık Market'),
+                      subtitle: Text('₺563,50 · 6 ürün'),
+                    ),
+                  ),
+                ],
+              ),
+              bottomNavigationBar: NavigationBar(
+                selectedIndex: 0,
+                destinations: const [
+                  NavigationDestination(icon: Icon(Icons.list), label: 'Listeler'),
+                  NavigationDestination(icon: Icon(Icons.history), label: 'Geçmiş'),
+                  NavigationDestination(icon: Icon(Icons.settings), label: 'Ayarlar'),
+                ],
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+        final captureOut = const String.fromEnvironment('CAPTURE_OUT');
+        if (captureOut.isNotEmpty) {
+          await expectLater(
+            find.byType(MaterialApp),
+            matchesGoldenFile('$captureOut/pb218_theme_${variant.name}.png'),
+          );
+        }
+      });
+    }
   });
 }

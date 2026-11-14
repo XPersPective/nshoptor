@@ -223,6 +223,12 @@ class AppTheme {
     final inputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(14),
     );
+    final hairlineColor = scheme.outlineVariant.withValues(
+      alpha: brightness == Brightness.dark ? (black ? 0.62 : 0.45) : 0.65,
+    );
+    final cardSurface = brightness == Brightness.light
+        ? scheme.surfaceContainerLowest
+        : scheme.surfaceContainerLow;
     // Harmonious, low-glare button geometry/typography while letting FilledButton
     // use calm scheme.primary and FilledButton.tonal preserve scheme.secondaryContainer.
     return base.copyWith(
@@ -237,16 +243,19 @@ class AppTheme {
         centerTitle: false,
         backgroundColor: scheme.surface,
         foregroundColor: scheme.onSurface,
+        surfaceTintColor: Colors.transparent,
         titleTextStyle: textTheme.titleLarge?.copyWith(
           color: scheme.onSurface,
         ),
-        scrolledUnderElevation: 1,
+        scrolledUnderElevation: 0,
+        shape: Border(bottom: BorderSide(color: hairlineColor)),
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: scheme.surfaceContainerLow,
         indicatorColor: scheme.secondaryContainer,
+        indicatorShape: const StadiumBorder(),
         elevation: 0,
-        surfaceTintColor: scheme.surfaceContainerLow,
+        surfaceTintColor: Colors.transparent,
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
@@ -262,14 +271,21 @@ class AppTheme {
           minimumSize: const Size(64, 48),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           shape: stadium,
+          side: BorderSide(color: hairlineColor),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(shape: stadium),
       ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: scheme.primary,
+        foregroundColor: scheme.onPrimary,
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: inputBorder,
-        enabledBorder: inputBorder.copyWith(borderSide: BorderSide(color: scheme.outlineVariant)),
+        enabledBorder: inputBorder.copyWith(borderSide: BorderSide(color: hairlineColor)),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: scheme.primary, width: 2),
@@ -278,19 +294,40 @@ class AppTheme {
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         filled: true,
-        fillColor: scheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        fillColor: brightness == Brightness.light
+            ? scheme.surfaceContainerLowest
+            : scheme.surfaceContainerHigh.withValues(alpha: 0.45),
       ),
       cardTheme: CardThemeData(
         elevation: 0,
-        color: scheme.surfaceContainerLow,
+        color: cardSurface,
         surfaceTintColor: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18),
+          side: BorderSide(color: hairlineColor),
+        ),
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      ),
+      chipTheme: base.chipTheme.copyWith(
+        shape: stadium,
+        side: BorderSide(color: hairlineColor),
+        backgroundColor: cardSurface,
+        selectedColor: scheme.secondaryContainer,
+      ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: scheme.surfaceContainerLow,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+          side: BorderSide(color: hairlineColor),
+        ),
       ),
       listTileTheme: ListTileThemeData(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: scheme.surfaceContainerLow,
+        surfaceTintColor: Colors.transparent,
         showDragHandle: true,
         dragHandleColor: scheme.onSurfaceVariant.withValues(alpha: 0.4),
         shape: const RoundedRectangleBorder(
@@ -300,9 +337,9 @@ class AppTheme {
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
-      dividerTheme: DividerThemeData(color: scheme.outlineVariant),
+      dividerTheme: DividerThemeData(color: hairlineColor, thickness: 1),
       // Liste ögesindeki tik alanı, ekleme alanıyla aynı çizgi dilinde:
       // yumuşak köşe, ince kontur, işaretliyken marka dolgusu.
       checkboxTheme: CheckboxThemeData(

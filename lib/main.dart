@@ -172,7 +172,7 @@ Future<void> main() async {
   runApp(
     NShoptorApp(
       db: db,
-      splash: Duration.zero,
+      splash: const Duration(milliseconds: 1400),
       settingsRepository: SettingsRepository(
         db,
         NappSettingsStoreOps(store),
