@@ -1,8 +1,8 @@
 {
-  "contract": "d8ea5a4208f6cdfa",
-  "epoch": "182d977bc2d41cfc",
+  "contract": "c41a1a5784774468",
+  "epoch": "ffe3fcc19017543e",
   "independent": false,
   "intent": "452a6f23a13f292e",
-  "note": "Updated lib/core/app_version.dart to 1.3.4 matching pubspec.yaml 1.3.4+31; ml/te script cleanup + AVD Medium_Phone_API_36.0 QA verified",
+  "note": "Regenerated tl.lproj/InfoPlist.strings and ticked CI acceptance after Android 43543051038 and iOS 43543053575 passed",
   "protocol": 1
 }

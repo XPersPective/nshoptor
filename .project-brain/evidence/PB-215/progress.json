@@ -2,13 +2,13 @@
   "protocol": 1,
   "next": "Tick proven criteria, verify remaining behavior, then review and accept",
   "failing": "",
-  "dirty": "lib/core/app_version.dart, lib/core/l10n/app_ml.arb, lib/core/l10n/app_te.arb, lib/core/l10n/generated/app_localizations_be.dart, lib/core/l10n/generated/app_localizations_bg.dart; inspect git status for the complete dirty set",
+  "dirty": "",
   "strategy": "check",
-  "attempt": "cae96c57b9bbe0c9",
+  "attempt": "2e9c9158e9ccae1c",
   "repeats": 0,
-  "contract": "d8ea5a4208f6cdfa",
+  "contract": "c41a1a5784774468",
   "usage": {
-    "checks": 2,
-    "seconds": 790.937
+    "checks": 3,
+    "seconds": 1093.64
   }
 }
