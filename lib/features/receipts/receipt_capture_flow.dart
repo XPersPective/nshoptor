@@ -1214,12 +1214,16 @@ Future<void> _runCaptureFirstBatchFlow(
       }
       if (capture is CapturedImage) {
         try {
-          final stored =
-              await images.keepCompressed(
+          final stored = await _withPhotoPreparingDialog(
+            context,
+            l10n,
+            () async =>
+                await images.keepCompressed(
+                  capture.path,
+                  compress: compressImage,
+                ) ??
                 capture.path,
-                compress: compressImage,
-              ) ??
-              capture.path;
+          );
           paths.add(stored);
         } catch (_) {
           if (paths.isEmpty) return;
@@ -1257,12 +1261,39 @@ Future<void> _runCaptureFirstBatchFlow(
         );
         onEnqueued?.call(receiptId);
         if (context.mounted) {
+          final theme = Theme.of(context);
           ScaffoldMessenger.of(context)
             ..clearSnackBars()
             ..showSnackBar(
               SnackBar(
-                content: Text(l10n.receiptQueuedNotice),
+                key: const Key('receipt_queued_snackbar'),
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                duration: const Duration(seconds: 4),
                 showCloseIcon: true,
+                content: Row(
+                  children: [
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.inversePrimary.withValues(
+                          alpha: 0.18,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.hourglass_top_rounded,
+                        size: 18,
+                        color: theme.colorScheme.inversePrimary,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(child: Text(l10n.receiptQueuedNotice)),
+                  ],
+                ),
               ),
             );
         }
@@ -1271,6 +1302,95 @@ Future<void> _runCaptureFirstBatchFlow(
         await cleanupUnqueued();
         return;
     }
+  }
+}
+
+Future<T> _withPhotoPreparingDialog<T>(
+  BuildContext context,
+  AppLocalizations l10n,
+  Future<T> Function() task,
+) async {
+  final navigator = Navigator.of(context, rootNavigator: true);
+  final route = DialogRoute<void>(
+    context: context,
+    barrierDismissible: false,
+    builder: (_) => PopScope(
+      canPop: false,
+      child: _ReceiptPhotoPreparingDialog(label: l10n.receiptPhotoPreparing),
+    ),
+  );
+  navigator.push(route);
+  try {
+    return await task();
+  } finally {
+    if (route.isActive) {
+      navigator.removeRoute(route);
+    }
+  }
+}
+
+class _ReceiptPhotoPreparingDialog extends StatelessWidget {
+  const _ReceiptPhotoPreparingDialog({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    return Dialog(
+      key: const Key('receipt_photo_preparing'),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 280),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 22),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 60,
+                height: 60,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned.fill(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3.5,
+                        color: colors.primary,
+                      ),
+                    ),
+                    Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: colors.primaryContainer,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.document_scanner_outlined,
+                        size: 22,
+                        color: colors.onPrimaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Semantics(
+                liveRegion: true,
+                child: Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.titleSmall,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 

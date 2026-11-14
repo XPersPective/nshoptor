@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "స్కాన్ చేసిన రసీదులు బ్యాక్‌గ్రౌండ్‌లో సిద్ధమవుతాయి, మీరు మార్చే వరకు లేదా తొలగించే వరకు ఇక్కడే ఉంటాయి.",
   "receiptTrayPagesLabel": "{count} పేజీలు",
   "receiptPhotosSectionTitle": "రసీదు ఫోటోలు",
-  "receiptOpenPhotoHint": "పూర్తి పరిమాణంలో చూడటానికి రసీదు ఫోటోను ట్యాప్ చేయండి"
+  "receiptOpenPhotoHint": "పూర్తి పరిమాణంలో చూడటానికి రసీదు ఫోటోను ట్యాప్ చేయండి",
+  "receiptPhotoPreparing": "రసీదు ఫోటో సిద్ధమవుతోంది…"
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Przeskanowane paragoni przetwarzane są w tle i pozostają tutaj, aż je przekształcisz lub usuniesz.",
   "receiptTrayPagesLabel": "{count} stron",
   "receiptPhotosSectionTitle": "Zdjęcia paragonów",
-  "receiptOpenPhotoHint": "Naciśnij zdjęcie paragonu, aby zobaczyć je w pełnym rozmiarze"
+  "receiptOpenPhotoHint": "Naciśnij zdjęcie paragonu, aby zobaczyć je w pełnym rozmiarze",
+  "receiptPhotoPreparing": "Przygotowywanie zdjęcia paragonu…"
 }

@@ -1741,4 +1741,7 @@ class AppLocalizationsTl extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Pindutin ang litrato ng resibo para makita sa buong laki';
+
+  @override
+  String get receiptPhotoPreparing => 'Inihahanda ang larawan ng resibo…';
 }

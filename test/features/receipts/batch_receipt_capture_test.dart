@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -82,6 +83,7 @@ void main() {
     bool dark = false,
     double scale = 1.0,
     void Function(int?)? onResult,
+    Future<Uint8List?> Function(String path)? compressImage,
   }) => MaterialApp(
     locale: Locale(locale),
     supportedLocales: AppLocalizations.supportedLocales,
@@ -111,6 +113,7 @@ void main() {
                 ocrSource: _ThrowingOcr(),
                 imageStore: images,
                 onEnqueued: queuedEvents.add,
+                compressImage: compressImage,
               );
               onResult?.call(result);
             },
@@ -323,4 +326,110 @@ void main() {
       },
     );
   }
+
+  testWidgets('photo compression displays animated loading dialog and Done shows styled SnackBar', (tester) async {
+    final photo = writeLargeJpeg(mediaDir, 'raw_receipt.jpg', width: 640, height: 640);
+    final photoBytes = photo.readAsBytesSync();
+    final compressionCompleter = Completer<Uint8List?>();
+    await tester.pumpWidget(
+      harness(
+        locale: 'tr',
+        pickImage: () async => photo.path,
+        compressImage: (_) => compressionCompleter.future,
+      ),
+    );
+    await tester.tap(find.byKey(const Key('start_batch_capture')));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+
+    expect(find.byKey(const Key('receipt_photo_preparing')), findsOneWidget);
+    expect(find.text('Fiş fotoğrafı hazırlanıyor…'), findsOneWidget);
+    expect(find.byIcon(Icons.document_scanner_outlined), findsOneWidget);
+
+    final captureOut = const String.fromEnvironment('CAPTURE_OUT');
+    if (captureOut.isNotEmpty) {
+      await expectLater(
+        find.byType(MaterialApp),
+        matchesGoldenFile('$captureOut/pb217_photo_preparing.png'),
+      );
+    }
+
+    compressionCompleter.complete(Uint8List.fromList(photoBytes));
+    for (var i = 0; i < 20; i++) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 10)),
+      );
+      await tester.pump(const Duration(milliseconds: 20));
+      if (find.byKey(const Key('receipt_batch_sheet')).evaluate().isNotEmpty) {
+        break;
+      }
+    }
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('receipt_photo_preparing')), findsNothing);
+    expect(find.byKey(const Key('receipt_batch_sheet')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('receipt_capture_done')));
+    for (var i = 0; i < 20; i++) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 10)),
+      );
+      await tester.pump(const Duration(milliseconds: 20));
+      if (find.byKey(const Key('receipt_queued_snackbar')).evaluate().isNotEmpty) {
+        break;
+      }
+    }
+
+    expect(find.byKey(const Key('receipt_queued_snackbar')), findsOneWidget);
+    expect(find.byIcon(Icons.hourglass_top_rounded), findsOneWidget);
+    expect(
+      find.text('Fiş sıraya alındı — arka planda hazırlanıyor.'),
+      findsOneWidget,
+    );
+    if (captureOut.isNotEmpty) {
+      await tester.pumpAndSettle();
+      await expectLater(
+        find.byType(MaterialApp),
+        matchesGoldenFile('$captureOut/pb217_done_snackbar.png'),
+      );
+    }
+  });
+
+  testWidgets('fast synchronous photo compression removes only dialog route and keeps batch sheet open', (tester) async {
+    final photo = writeLargeJpeg(mediaDir, 'fast_receipt.jpg', width: 640, height: 640);
+    final photoBytes = photo.readAsBytesSync();
+    await tester.pumpWidget(
+      harness(
+        locale: 'tr',
+        pickImage: () async => photo.path,
+        compressImage: (_) async => photoBytes,
+      ),
+    );
+    await tester.tap(find.byKey(const Key('start_batch_capture')));
+    for (var i = 0; i < 40; i++) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 10)),
+      );
+      await tester.pump(const Duration(milliseconds: 20));
+      if (find.byKey(const Key('receipt_batch_sheet')).evaluate().isNotEmpty) {
+        break;
+      }
+    }
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('receipt_photo_preparing')), findsNothing);
+    expect(find.byKey(const Key('receipt_batch_sheet')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('receipt_capture_done')));
+    for (var i = 0; i < 20; i++) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 10)),
+      );
+      await tester.pump(const Duration(milliseconds: 20));
+      if (find.byKey(const Key('receipt_queued_snackbar')).evaluate().isNotEmpty) {
+        break;
+      }
+    }
+    expect(find.byKey(const Key('receipt_queued_snackbar')), findsOneWidget);
+  });
 }

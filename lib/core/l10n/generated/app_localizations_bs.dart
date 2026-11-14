@@ -1734,4 +1734,7 @@ class AppLocalizationsBs extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Dodirnite fotografiju računa za prikaz u punoj veličini';
+
+  @override
+  String get receiptPhotoPreparing => 'Priprema fotografije računa…';
 }

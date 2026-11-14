@@ -1735,4 +1735,8 @@ class AppLocalizationsMk extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Допрете фотографија од сметка за да ја видите во полна големина';
+
+  @override
+  String get receiptPhotoPreparing =>
+      'Се подготвува фотографијата од сметката…';
 }

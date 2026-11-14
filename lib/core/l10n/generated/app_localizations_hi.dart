@@ -1733,4 +1733,7 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'पूर्ण आकार में देखने के लिए रसीद की फोटो पर टैप करें';
+
+  @override
+  String get receiptPhotoPreparing => 'रसीद की फ़ोटो तैयार की जा रही है…';
 }

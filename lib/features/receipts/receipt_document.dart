@@ -412,6 +412,13 @@ String _overlapText(ReceiptLineCandidate line) => _fold(line.rawText);
 
 bool _isDocumentMetadata(String text, String? store) {
   final folded = _fold(text);
+  if (RegExp(r'^ara\s+t[o0]plam\b').hasMatch(folded) ||
+      RegExp(
+        r'^(?:mal[./\s]*hizmet|topkdv|kdv\s+oran[ıi]|kdv\s+dahil|provizyon|ref\.?no|puan\s*:|ettn|yap[ıi]\s*kredi|nakit|kredi\s+kart[ıi]|banka\s+kart[ıi]|faturan[ıi]za|https?://)',
+      ).hasMatch(folded) ||
+      RegExp(r'^[*#•\s]*%\s*\d{1,2}(?:\s|$)').hasMatch(folded)) {
+    return true;
+  }
   return store != null && folded == _fold(store) ||
       _date.hasMatch(folded) &&
           (RegExp(r'^\d').hasMatch(folded) ||
@@ -473,6 +480,18 @@ String? _readDocumentNumber(List<String> lines) {
 }
 
 String? _readStore(List<String> lines) {
+  String? domainMerchant() {
+    for (final line in lines) {
+      final f = _fold(line);
+      if (f.contains('a101.com')) return 'A101';
+      if (f.contains('sokmarket')) return 'ŞOK MARKET';
+      if (f.contains('bim.com')) return 'BİM';
+      if (f.contains('migros')) return 'MİGROS';
+      if (f.contains('carrefour')) return 'CARREFOURSA';
+    }
+    return null;
+  }
+
   final headerAnchor = lines.indexWhere(
     (line) =>
         _documentNumber.hasMatch(_fold(line)) || _date.hasMatch(_fold(line)),
@@ -505,10 +524,14 @@ String? _readStore(List<String> lines) {
         headerAnchor > i &&
             line == line.toUpperCase() &&
             !_date.hasMatch(folded)) {
+      if (!namedMerchant && (line.contains('/') || RegExp(r'\d').hasMatch(line))) {
+        final hinted = domainMerchant();
+        if (hinted != null) return hinted;
+      }
       return line;
     }
   }
-  return null;
+  return domainMerchant();
 }
 
 final _date = RegExp(
@@ -561,10 +584,10 @@ final _currencyToken =
     '(?:${Currency.all.map((currency) => currency.code.toLowerCase()).join('|')}'
     r'|tl|[₺€£$])';
 final _totalLine = RegExp(
-  r'^[*#\s]*(?:genel\s+t[o0]plam|t[o0]plam(?:\s+tutar)?|fatura\s+tutar[ıi]|[o0]denecek(?:\s+tutar)?|grand\s+t[o0]tal|t[o0]tal|amount\s+due|total\s+due|summe|gesamt)'
+  r'^[*#\s]*(?:genel\s+t[o0]plam|t[o0]plam(?:\s+tutar)?|fatura\s+tutar[ıi]|[o0]denecek(?:\s+t[^\s\d]{0,6}(?:\s+[^\s\d]{1,6})?)?|grand\s+t[o0]tal|t[o0]tal|amount\s+due|total\s+due|summe|gesamt)'
   r'\s*[:=*]?\s*'
   '(?:$_currencyToken)?'
-  r'\s*(\d+(?:[.,\u066b]\d+)*)\s*'
+  r'\s*[*]*\s*(\d+(?:[.,\u066b]\d+)*)\s*'
   '(?:$_currencyToken)?'
   r'\s*$',
   caseSensitive: false,
@@ -574,9 +597,8 @@ int? _readTotal(List<String> lines, String currencyCode) {
   final totals = <int>{};
   final digits = Currency.fromCode(currencyCode).minorUnitDigits;
   for (final line in lines) {
-    final raw = _totalLine.firstMatch(
-      repairConfusableAmounts(_fold(line)),
-    )?.group(1);
+    final normalized = repairConfusableAmounts(_fold(line));
+    final raw = _totalLine.firstMatch(normalized)?.group(1);
     if (raw == null) continue;
     if (digits == 0) {
       final amount = wholeOcrAmount(raw);

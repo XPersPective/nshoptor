@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Skannatut kuitit käsitellään taustalla ja pysyvät tässä, kunnes muunnat tai poistat ne.",
   "receiptTrayPagesLabel": "{count} sivua",
   "receiptPhotosSectionTitle": "Kuitin kuvat",
-  "receiptOpenPhotoHint": "Paina kuitin kuvaa nähdäksesi sen koko koossa"
+  "receiptOpenPhotoHint": "Paina kuitin kuvaa nähdäksesi sen koko koossa",
+  "receiptPhotoPreparing": "Valmistellaan kuitin kuvaa…"
 }

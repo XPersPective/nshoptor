@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Eskenearritako errekiburuak atzealdean prestatzen dira eta hemen geratzen dira zurek bihurtu edo kentzen dituzun arte.",
   "receiptTrayPagesLabel": "{count} orrialde",
   "receiptPhotosSectionTitle": "Errekiburu argazkiak",
-  "receiptOpenPhotoHint": "Ukitu errekiburu baten argazkia tamaina osoan ikusteko"
+  "receiptOpenPhotoHint": "Ukitu errekiburu baten argazkia tamaina osoan ikusteko",
+  "receiptPhotoPreparing": "Ordainagiriaren argazkia prestatzen…"
 }

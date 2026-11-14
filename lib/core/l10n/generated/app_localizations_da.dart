@@ -1729,4 +1729,7 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Tryk på et kvitteringsfoto for at se det i fuld størrelse';
+
+  @override
+  String get receiptPhotoPreparing => 'Klargør kvitteringsbillede…';
 }

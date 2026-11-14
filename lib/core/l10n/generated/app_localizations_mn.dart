@@ -1735,4 +1735,7 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Бүтэн хэмжээгээр харахын тулд баримт барын зургийг товшино уу';
+
+  @override
+  String get receiptPhotoPreparing => 'Баримтын зургийг бэлдэж байна…';
 }

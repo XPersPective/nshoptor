@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "დასკანილი ჩეკები ფონურ რეჟიმში ამუშავდება და აქ დარჩება, სანამ სიაში გადაიტანთ ან წაშლით.",
   "receiptTrayPagesLabel": "{count} გვერდი",
   "receiptPhotosSectionTitle": "ჩეკების ფოტოები",
-  "receiptOpenPhotoHint": "სრულ ზომასთან გასახილად, შეეხეთ ჩეკის ფოტოს"
+  "receiptOpenPhotoHint": "სრულ ზომასთან გასახილად, შეეხეთ ჩეკის ფოტოს",
+  "receiptPhotoPreparing": "ქვითრის ფოტო მზადდება…"
 }

@@ -1730,4 +1730,7 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'പൂർണ്ണ വലിപ്പത്തിൽ കാണാൻ ഒരു റിസീറ്റ് ഫോട്ടോ ടാപ്പ് ചെയ്യുക';
+
+  @override
+  String get receiptPhotoPreparing => 'രസീത് ഫോട്ടോ തയ്യാറാക്കുന്നു…';
 }

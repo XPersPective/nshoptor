@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Skanerlangan cheklar fon tayyorlanadi va siz ularni ro'yxatga aylantirguncha yoki o'chirguncha shu yerda turadi.",
   "receiptTrayPagesLabel": "{count} sahifa",
   "receiptPhotosSectionTitle": "Chek rasmlari",
-  "receiptOpenPhotoHint": "To'liq hajmda ko'rish uchun chek rasmiga bosing"
+  "receiptOpenPhotoHint": "To'liq hajmda ko'rish uchun chek rasmiga bosing",
+  "receiptPhotoPreparing": "Chek rasmi tayyorlanmoqda…"
 }

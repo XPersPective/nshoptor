@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "اسکین شدہ رسیدیں بیک گراؤنڈ میں تیاری ہوتی ہیں اور آپ انہیں تبدیل یا ہٹانے تک یہاں رہتی ہیں۔",
   "receiptTrayPagesLabel": "{count} صفحات",
   "receiptPhotosSectionTitle": "رسید کی تصاویر",
-  "receiptOpenPhotoHint": "مکمل سائز دیکھنے کے لیے کسی رسید کی تصویر پر ٹیپ کریں"
+  "receiptOpenPhotoHint": "مکمل سائز دیکھنے کے لیے کسی رسید کی تصویر پر ٹیپ کریں",
+  "receiptPhotoPreparing": "رسید کی تصویر تیار کی جا رہی ہے…"
 }

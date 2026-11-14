@@ -1658,4 +1658,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => '点击收据照片可查看大图';
+
+  @override
+  String get receiptPhotoPreparing => '正在准备小票照片…';
 }

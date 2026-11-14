@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "スキャンしたレシートはバックグラウンドで処理され、変換または削除されるまでここに保持されます。",
   "receiptTrayPagesLabel": "{count}ページ",
   "receiptPhotosSectionTitle": "レシートの写真",
-  "receiptOpenPhotoHint": "レシートの写真をタップしてフルサイズで表示"
+  "receiptOpenPhotoHint": "レシートの写真をタップしてフルサイズで表示",
+  "receiptPhotoPreparing": "レシート写真を準備しています…"
 }

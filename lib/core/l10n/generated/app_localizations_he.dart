@@ -1715,4 +1715,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => 'לחץ על תמונת קבלה כדי לצפות בגודל מלא';
+
+  @override
+  String get receiptPhotoPreparing => 'מכין את תמונת הקבלה…';
 }

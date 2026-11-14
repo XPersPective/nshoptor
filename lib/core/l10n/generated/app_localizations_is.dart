@@ -1731,4 +1731,7 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Smelltu á ljósmynd af kvittningu til að sjá hana í fullri stærð';
+
+  @override
+  String get receiptPhotoPreparing => 'Undirbýr kvittunarmynd…';
 }

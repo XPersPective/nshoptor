@@ -1675,4 +1675,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => '전체 크기로 보려면 영수증 사진을 탭하세요';
+
+  @override
+  String get receiptPhotoPreparing => '영수증 사진을 준비하는 중…';
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Սքանավորված թղթերը նախապատրաստվում են ֆոնային ռեժիմով և մնում են այստեղ, մինչև դուք դրանք փոխարկեք կամ հեռացնեք:",
   "receiptTrayPagesLabel": "{count} էջ",
   "receiptPhotosSectionTitle": "Թղթերի լուսանկարներ",
-  "receiptOpenPhotoHint": "Սեղմեք թղթի լուսանկարը՝ լրիվ չափով դիտելու համար"
+  "receiptOpenPhotoHint": "Սեղմեք թղթի լուսանկարը՝ լրիվ չափով դիտելու համար",
+  "receiptPhotoPreparing": "Պատրաստվում է կտրոնի լուսանկարը…"
 }

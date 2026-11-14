@@ -1731,4 +1731,7 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'पूर्ण आकार हेर्न रसिद तस्बिर ट्याप गर्नुहोस्';
+
+  @override
+  String get receiptPhotoPreparing => 'रसिदको फोटो तयार हुँदैछ…';
 }

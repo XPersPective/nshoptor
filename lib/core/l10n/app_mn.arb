@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Уншсан баримт барууд арын горимд бэлэн болж, та хөрвүүлэх эсвэл устгах хүртэл энд хадгалагдана.",
   "receiptTrayPagesLabel": "{count} хуудас",
   "receiptPhotosSectionTitle": "Баримт барын зурагнууд",
-  "receiptOpenPhotoHint": "Бүтэн хэмжээгээр харахын тулд баримт барын зургийг товшино уу"
+  "receiptOpenPhotoHint": "Бүтэн хэмжээгээр харахын тулд баримт барын зургийг товшино уу",
+  "receiptPhotoPreparing": "Баримтын зургийг бэлдэж байна…"
 }

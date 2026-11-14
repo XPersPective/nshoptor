@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Sklenen çeklər arxa planda emal olunur və siz onları siyahıya çevirməyinizə və ya silməyinizə qədər burada saxlanılır.",
   "receiptTrayPagesLabel": "{count} səhifə",
   "receiptPhotosSectionTitle": "Çek fotoşəkilləri",
-  "receiptOpenPhotoHint": "Tam ölçüdə görmək üçün çek fotoşəkilinə toxunun"
+  "receiptOpenPhotoHint": "Tam ölçüdə görmək üçün çek fotoşəkilinə toxunun",
+  "receiptPhotoPreparing": "Çek şəkli hazırlanır…"
 }

@@ -384,7 +384,8 @@ final class ReceiptParseFailed extends ReceiptParseOutcome {
 
 /// Runs Server Vision AI (`read_receipt_image`) first whenever [ai] is
 /// enabled, invoking on-device ML Kit (`MlKitTextSource` or injected
-/// [ocrFallback]) **only** when AI is disabled, offline, or unavailable.
+/// [ocrFallback]) whenever AI is disabled, offline, unavailable, or returns an
+/// incomplete/unverified result that local OCR can recover.
 Future<ReceiptParseOutcome> parseReceiptImages({
   required List<String> photoPaths,
   required String currencyCode,
@@ -394,6 +395,7 @@ Future<ReceiptParseOutcome> parseReceiptImages({
   OcrTextSource? ocrFallback,
 }) async {
   AiResult? unavailableResult;
+  AiReceiptRead? aiRejectedRead;
   if (ai != null && ai.enabled) {
     final reader = AiReceiptReader(
       ai,
@@ -409,25 +411,31 @@ Future<ReceiptParseOutcome> parseReceiptImages({
         return ReceiptParsedDocument(document, usedAi: true);
       case AiReceiptNeedsMore():
       case AiReceiptRetake():
-        return ReceiptParseNeedsMoreOrRetake(aiOutcome);
+        aiRejectedRead = aiOutcome;
       case AiReceiptUnavailable(:final result):
         unavailableResult = result;
     }
   }
 
-  // Explicit offline / AI-disabled fallback: run on-device OCR only here.
+  // Fallback to on-device OCR when AI is disabled, unavailable, or rejected/partial.
   final doc = await scanReceiptOfflineFallback(
     photoPaths: photoPaths,
     currencyCode: currencyCode,
     ocrFallback: ocrFallback,
   );
 
-  if (doc != null) {
+  if (doc != null &&
+      (aiRejectedRead == null ||
+          doc.productLines.isNotEmpty ||
+          doc.metadata.totalMinor != null)) {
     return ReceiptParsedDocument(
       doc,
       usedAi: false,
       unavailableResult: unavailableResult,
     );
+  }
+  if (aiRejectedRead != null) {
+    return ReceiptParseNeedsMoreOrRetake(aiRejectedRead);
   }
   return ReceiptParseFailed(unavailableResult: unavailableResult);
 }

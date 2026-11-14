@@ -1739,4 +1739,7 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Ukitu errekiburu baten argazkia tamaina osoan ikusteko';
+
+  @override
+  String get receiptPhotoPreparing => 'Ordainagiriaren argazkia prestatzen…';
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Skirani računi pripremaju se u pozadini i ostaju ovdje dok ih ne pretvorite ili ne uklonite.",
   "receiptTrayPagesLabel": "{count} stranica",
   "receiptPhotosSectionTitle": "Fotografije računa",
-  "receiptOpenPhotoHint": "Dodirnite fotografiju računa za prikaz u punoj veličini"
+  "receiptOpenPhotoHint": "Dodirnite fotografiju računa za prikaz u punoj veličini",
+  "receiptPhotoPreparing": "Priprema fotografije računa…"
 }

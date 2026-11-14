@@ -1737,4 +1737,7 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Սեղմեք թղթի լուսանկարը՝ լրիվ չափով դիտելու համար';
+
+  @override
+  String get receiptPhotoPreparing => 'Պատրաստվում է կտրոնի լուսանկարը…';
 }

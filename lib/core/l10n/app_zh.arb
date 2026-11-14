@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "扫描的收据将在后台处理，并保留在此处，直到您转换或删除它们。",
   "receiptTrayPagesLabel": "{count}页",
   "receiptPhotosSectionTitle": "收据照片",
-  "receiptOpenPhotoHint": "点击收据照片可查看大图"
+  "receiptOpenPhotoHint": "点击收据照片可查看大图",
+  "receiptPhotoPreparing": "正在准备小票照片…"
 }

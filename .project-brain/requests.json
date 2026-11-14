@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "requests": [
+    {
+      "id": "RQ-001",
+      "items": [
+        "Kullanıcı 2026-11-09: Kamera fiş/etiket okuma düzgün çalışmıyor; akışı gözden geçir, kullanıcı dostu ve sorunsuz olsun. Diğer Uygulamalar Android/iOS'ta yayıncı hesabındaki uygulamaları ikonlarıyla otomatik çeksin, günde bir kez yenilensin (mağaza veya GitHub); bilgiler D:\\AppPublishing'de. Sormadan bitir; yerleşik alt ajanlar, kota korumalı 4 saatlik uyanma."
+      ],
+      "relation": "new-work",
+      "status": "linked",
+      "task": "PB-209",
+      "resume_task": "PB-167"
+    },
+    {
+      "id": "RQ-002",
+      "items": [
+        "Fişten Listeye yakalama-öncelikli çoklu oturum akışı: fotoğraf hemen sıkıştırılıp benzersiz fiş oturumuna kaydedilir (Aynı fişe devam / Tamam), bekletmeden kapanır; Fişlerim sekmesi dönüştürülmemiş sayı rozeti, Listeye Çevir, silme ve listede ekli fiş görüntüsü sunar.",
+        "Birincil ayrıştırma olarak düşük boyutlu okunaklı JPEG -> sunucu görüntü YZ (ML Kit yalnız çevrimdışı yedek); aynı yakala-geç kuyruk ilkesi raf etiketi okuma için de geçerlidir.",
+        "Kuyruktaki fişler uygulama kapansa/arka plana geçse bile Android ve iOS arka plan göreviyle işlenir; bitince bildirim atılır ve tıklanınca aktarım açılır. Market+tarih+saat eşleşmesiyle liste öncesi mükerrer fiş kontrolü yapılır.",
+        "Tam siyah koyu tema yerine göze hoş gelen birden fazla koyu/açık tema varyasyonu ve uyumlu yumuşak buton/yüzey renkleri tasarlanır.",
+        "Ana sayfa ikon/Pro-Ücretsiz rozet oranları, sekme sıralama kontrolleri/ikonları ve başta Ayarlar olmak üzere uygulama geneli tipografi, kalınlık ve hizalama standartlaştırılır.",
+        "Project Brain görevlerine işlenir, emülatör/cihaz/GitHub Actions ile doğrulanır; önce Google Play test kanalına yüklenir, büyük/yatay mağaza ekran görüntüleri ve ASO/SEO tamamlanır."
+      ],
+      "relation": "new-work",
+      "status": "linked",
+      "task": "PB-210",
+      "resume_task": ""
+    },
+    {
+      "id": "RQ-003",
+      "items": [
+        "Fix A101 and SOK real Turkish receipt reading failures ('okunamadi'): server AI fallback to offline ML Kit, trailing-minus campaign discounts (*149,00-), quantity lines (2 x20,00 TL/ad, 1,033Kg X 99,00), ARA TOPLAM / ODENECEK TUTAR, EXIF orientation, and WorkManager offline fallback",
+        "Add tasteful animated loading overlay with icon during receipt photo capture/compression/save AND crisp localized SnackBar confirmation after tapping Tamam + background indicator",
+        "Enable and redesign SplashGate: app icon beside stylized NShoptor wordmark (matching AppBar style) with selected/system-locale slogan underneath across all 71 languages",
+        "Beautify and polish Light/Dark/AMOLED themes: subtle card outline depth, AppBar/NavBar hairline separation, cleaner geometry and contrast across Forest/Sage/Ocean/Slate/Sunset/Lavender",
+        "Add attractive dismissible/tappable 7-Day Free Pro Trial promo banner on Home screen across 71 languages AND analyze + update store ASO description & promo graphic/screenshots for truthful 7-day free Pro trial conversion boost",
+        "Audit previously requested Brain tasks (PB-102..PB-216) honestly and track/complete all app/store items before website work"
+      ],
+      "relation": "new-work",
+      "status": "linked",
+      "task": "PB-217",
+      "resume_task": ""
+    }
+  ]
+}

@@ -1731,4 +1731,7 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'ಪೂರ್ಣ ಗಾತ್ರದಲ್ಲಿ ನೋಡಲು ರಸೀತಿ ಫೋಟೋವನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ';
+
+  @override
+  String get receiptPhotoPreparing => 'ರಸೀದಿ ಫೋಟೋ ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ…';
 }

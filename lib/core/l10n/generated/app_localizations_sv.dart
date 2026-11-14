@@ -1728,4 +1728,7 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Tryck på ett kvittofoto för att visa i full storlek';
+
+  @override
+  String get receiptPhotoPreparing => 'Förbereder kvittobild…';
 }

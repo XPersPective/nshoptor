@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "ໃບເກັບເງິນທີ່ສະແກນແລ້ວຈະກະກຽມຢູ່ພື້ນຫຼັງ ແລະ ຢູ່ນີ້ຈົນກະທັ່ງທ່ານປ່ຽນເປັນລາຍການ ຫຼື ລຶບອອກ.",
   "receiptTrayPagesLabel": "{count} ໜ້າ",
   "receiptPhotosSectionTitle": "ຮູບພາບໃບເກັບເງິນ",
-  "receiptOpenPhotoHint": "ກົດຮູບພາບໃບເກັບເງິນເພື່ອເບິ່ງຂະໜາດເຕັມ"
+  "receiptOpenPhotoHint": "ກົດຮູບພາບໃບເກັບເງິນເພື່ອເບິ່ງຂະໜາດເຕັມ",
+  "receiptPhotoPreparing": "ກຳລັງກະກຽມຮູບໃບຮັບເງິນ…"
 }

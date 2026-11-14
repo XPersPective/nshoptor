@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Naskenované účtenky se zpracovávají na pozadí a zůstanou zde, dokud je nepřevádíte nebo neodstraníte.",
   "receiptTrayPagesLabel": "{count} stran",
   "receiptPhotosSectionTitle": "Fotografie účtenek",
-  "receiptOpenPhotoHint": "Klepnutím na fotografii účtenky zobrazíte její plnou velikost"
+  "receiptOpenPhotoHint": "Klepnutím na fotografii účtenky zobrazíte její plnou velikost",
+  "receiptPhotoPreparing": "Připravuje se fotka účtenky…"
 }

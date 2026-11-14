@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Сканерленген чектер фон режимінде дайындалады және сіз оларды тізімге түрлендіргенше немесе жойғанша осында сақталады.",
   "receiptTrayPagesLabel": "{count} бет",
   "receiptPhotosSectionTitle": "Чек фотосуреттері",
-  "receiptOpenPhotoHint": "Толық өлшемде көру үшін чек фотосуретін басыңыз"
+  "receiptOpenPhotoHint": "Толық өлшемде көру үшін чек фотосуретін басыңыз",
+  "receiptPhotoPreparing": "Түбіртек суреті дайындалуда…"
 }

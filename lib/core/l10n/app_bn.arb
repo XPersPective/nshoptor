@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "স্ক্যান করা রসিদগুলো ব্যাকগ্রাউন্ডে প্রস্তুত হয় এবং আপনি এগুলোকে রূপান্তর বা সরানো না পর্যন্ত এখানে থাকবে।",
   "receiptTrayPagesLabel": "{count} পৃষ্ঠা",
   "receiptPhotosSectionTitle": "রসিদের ছবি",
-  "receiptOpenPhotoHint": "পূর্ণ আকারে দেখতে একটি রসিদের ছবিতে ট্যাপ করুন"
+  "receiptOpenPhotoHint": "পূর্ণ আকারে দেখতে একটি রসিদের ছবিতে ট্যাপ করুন",
+  "receiptPhotoPreparing": "রসিদের ছবি প্রস্তুত করা হচ্ছে…"
 }

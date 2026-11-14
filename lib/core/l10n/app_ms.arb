@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Resit yang dipindai diproses di latar belakang dan kekal di sini sehingga anda menukarnya atau mengeluarkannya.",
   "receiptTrayPagesLabel": "{count} halaman",
   "receiptPhotosSectionTitle": "Foto resit",
-  "receiptOpenPhotoHint": "Ketik foto resit untuk melihat saiz penuh"
+  "receiptOpenPhotoHint": "Ketik foto resit untuk melihat saiz penuh",
+  "receiptPhotoPreparing": "Menyediakan foto resit…"
 }

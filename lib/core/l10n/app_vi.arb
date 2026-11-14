@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Hóa đơn đã quét sẽ được xử lý ngầm và hiển thị ở đây cho đến khi bạn chuyển hoặc xóa chúng.",
   "receiptTrayPagesLabel": "{count} trang",
   "receiptPhotosSectionTitle": "Ảnh hóa đơn",
-  "receiptOpenPhotoHint": "Nhấn vào ảnh hóa đơn để xem toàn màn hình"
+  "receiptOpenPhotoHint": "Nhấn vào ảnh hóa đơn để xem toàn màn hình",
+  "receiptPhotoPreparing": "Đang chuẩn bị ảnh hóa đơn…"
 }

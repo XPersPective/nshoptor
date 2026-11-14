@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Risiti zilizochanganuliwa hazitayarishwa nyuma na zinaendelea hapa hadi uzie au uondoe.",
   "receiptTrayPagesLabel": "{count} kurasa",
   "receiptPhotosSectionTitle": "Picha za risiti",
-  "receiptOpenPhotoHint": "Gusa picha ya risiti ili kuona ukubwa kamili"
+  "receiptOpenPhotoHint": "Gusa picha ya risiti ili kuona ukubwa kamili",
+  "receiptPhotoPreparing": "Inaandaa picha ya risiti…"
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Amathikithi akhishelwe isithombe alungiswa ngemuva bese ehlala lapha kuze kufike usiguqule noma ususe.",
   "receiptTrayPagesLabel": "{count} amaphepha",
   "receiptPhotosSectionTitle": "Izithombe zamathikithi",
-  "receiptOpenPhotoHint": "Chofoza isithombe sethikithi ukuze ubuke ngobukhulu"
+  "receiptOpenPhotoHint": "Chofoza isithombe sethikithi ukuze ubuke ngobukhulu",
+  "receiptPhotoPreparing": "Ilungiselela isithombe serisidi…"
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "A beolvasott számlák háttérben készülnek, és itt maradnak, amíg átalakítod vagy eltávolítod őket.",
   "receiptTrayPagesLabel": "{count} oldal",
   "receiptPhotosSectionTitle": "Számlafotók",
-  "receiptOpenPhotoHint": "Koppints egy számlafotóra a teljes méretű megtekintéshez"
+  "receiptOpenPhotoHint": "Koppints egy számlafotóra a teljes méretű megtekintéshez",
+  "receiptPhotoPreparing": "Nyugtafotó előkészítése…"
 }

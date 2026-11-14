@@ -42,6 +42,7 @@ test('a complete receipt must reconcile exactly and keep each row arithmetic', (
     o => { o.schema = 1; },
     o => { o.status = 'done'; },
     o => { o.tax = '999.00'; },
+    o => { o.subtotal = '999.00'; },
   ];
   for (const mutate of bad) { const o = receipt(); mutate(o); assert.throws(() => R.clean(o)); }
 });
@@ -194,4 +195,60 @@ test('a wrong answer from one model waits for a valid one from the next', async 
   assert.equal(res.status, 200);
   assert.equal((await res.json()).result.total, '225.77');
   assert.deepEqual(seen, ['sloppy-model', 'careful-model']);
+});
+
+test('full ŞOK receipt with multiple campaign discounts & A101 URL-identified receipt reconcile cleanly', () => {
+  const fullSok = R.clean({
+    schema: 2,
+    status: 'complete',
+    store: 'ŞOK MARKETLER TİC.A.Ş',
+    date: '2024-02-01',
+    time: '20:51:41',
+    documentNumber: '0259',
+    currency: 'TRY',
+    items: [
+      { name: 'OZMO FUN FİGÜRLÜ 23G', quantity: null, unit: null, unitPrice: null, lineTotal: '13.50' },
+      { name: '7-24 NAMET DANA MACA', quantity: null, unit: null, unitPrice: null, lineTotal: '27.90' },
+      { name: 'OZMO FUN FİGÜRLÜ 23G', quantity: null, unit: null, unitPrice: null, lineTotal: '13.50' },
+      { name: 'TADPİ PİLİÇ BAGET KG', quantity: '1.033', unit: 'kilogram', unitPrice: '99.00', lineTotal: '102.27' },
+      { name: 'FINISH QUANTUM ÖZEL', quantity: null, unit: null, unitPrice: null, lineTotal: '259.00' },
+      { name: 'FINISH QUANTUM ÖZEL', quantity: null, unit: null, unitPrice: null, lineTotal: '259.00' },
+      { name: 'ARKO DEĞERLİ YAĞLAR', quantity: null, unit: null, unitPrice: null, lineTotal: '104.50' },
+      { name: 'ALIŞVERİŞ POŞETİ 43', quantity: null, unit: null, unitPrice: null, lineTotal: '0.25' },
+    ],
+    discounts: [
+      { label: '25TLFINISH110TL', amount: '149.00' },
+      { label: '25TLFINISH110TL', amount: '149.00' },
+      { label: '25TLARKO50TL', amount: '54.50' },
+    ],
+    tax: '46.60',
+    subtotal: null,
+    total: '427.42',
+  });
+  assert.equal(fullSok.status, 'complete');
+  assert.equal(fullSok.reconciles, true);
+
+  const fullA101 = R.clean({
+    schema: 2,
+    status: 'complete',
+    store: 'A101',
+    date: '2026-10-18',
+    time: '16:56:00',
+    documentNumber: '20543020261018165746',
+    currency: 'TRY',
+    items: [
+      { name: 'EKMEK', quantity: '2', unit: 'piece', unitPrice: '20.00', lineTotal: '40.00' },
+      { name: 'WINSTON SLIMS GRI', quantity: null, unit: null, unitPrice: null, lineTotal: '130.00' },
+      { name: 'WINSTON SLIMS GRI', quantity: null, unit: null, unitPrice: null, lineTotal: '130.00' },
+      { name: 'SIVI DET. ALOE VERA 1,5 L', quantity: null, unit: null, unitPrice: null, lineTotal: '89.50' },
+      { name: 'KOFTE PILIC PARMAK 260 G', quantity: null, unit: null, unitPrice: null, lineTotal: '89.00' },
+      { name: 'GAZLI ICECEK KOLA 1.75 L', quantity: null, unit: null, unitPrice: null, lineTotal: '85.00' },
+    ],
+    discounts: [],
+    tax: '23.93',
+    subtotal: '563.50',
+    total: '563.50',
+  });
+  assert.equal(fullA101.status, 'complete');
+  assert.equal(fullA101.reconciles, true);
 });

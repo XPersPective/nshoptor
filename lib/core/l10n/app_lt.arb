@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Nuskenuoti kvitai apdorojami fone ir čia išlieka, kol juos konvertuosite arba pašalinsite.",
   "receiptTrayPagesLabel": "{count} puslapiai",
   "receiptPhotosSectionTitle": "Kvitų nuotraukos",
-  "receiptOpenPhotoHint": "Spustelėkite kvito nuotrauką, kad pamatytumėte pilno dydžio"
+  "receiptOpenPhotoHint": "Spustelėkite kvito nuotrauką, kad pamatytumėte pilno dydžio",
+  "receiptPhotoPreparing": "Ruošiama kvito nuotrauka…"
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Skannade kvitton bearbetas i bakgrunden och stannar här tills du konverterar eller tar bort dem.",
   "receiptTrayPagesLabel": "{count} sidor",
   "receiptPhotosSectionTitle": "Kvittofoton",
-  "receiptOpenPhotoHint": "Tryck på ett kvittofoto för att visa i full storlek"
+  "receiptOpenPhotoHint": "Tryck på ett kvittofoto för att visa i full storlek",
+  "receiptPhotoPreparing": "Förbereder kvittobild…"
 }

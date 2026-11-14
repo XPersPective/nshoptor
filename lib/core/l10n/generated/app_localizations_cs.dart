@@ -1731,4 +1731,7 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Klepnutím na fotografii účtenky zobrazíte její plnou velikost';
+
+  @override
+  String get receiptPhotoPreparing => 'Připravuje se fotka účtenky…';
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Geskandeerde ontvangs word op die agtergrond voorberei en bly hier totdat jy hulle omskakel of verwyder.",
   "receiptTrayPagesLabel": "{count} bladsye",
   "receiptPhotosSectionTitle": "Ontvangfoto's",
-  "receiptOpenPhotoHint": "Tik op 'n ontvangfoto om dit in volle grootte te sien"
+  "receiptOpenPhotoHint": "Tik op 'n ontvangfoto om dit in volle grootte te sien",
+  "receiptPhotoPreparing": "Kwitansiefoto word voorberei…"
 }

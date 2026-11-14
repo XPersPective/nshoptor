@@ -680,5 +680,6 @@
     }
   },
   "receiptPhotosSectionTitle": "Receipt photos",
-  "receiptOpenPhotoHint": "Tap a receipt photo to view full size"
+  "receiptOpenPhotoHint": "Tap a receipt photo to view full size",
+  "receiptPhotoPreparing": "Preparing receipt photo…"
 }

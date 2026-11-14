@@ -1734,4 +1734,7 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Pieskarieties čeka fotogrāfijai, lai skatītu pilnizmēra attēlu';
+
+  @override
+  String get receiptPhotoPreparing => 'Tiek sagatavots čeka fotoattēls…';
 }

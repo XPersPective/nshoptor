@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "رسیدهای اسکن‌شده در پس‌زمینه پردازش می‌شوند و تا تبدیل یا حذف، اینجا باقی می‌مانند.",
   "receiptTrayPagesLabel": "{count} صفحه",
   "receiptPhotosSectionTitle": "عکس‌های رسید",
-  "receiptOpenPhotoHint": "برای مشاهده در اندازه بزرگ، روی عکس رسید ضربه بزنید"
+  "receiptOpenPhotoHint": "برای مشاهده در اندازه بزرگ، روی عکس رسید ضربه بزنید",
+  "receiptPhotoPreparing": "در حال آماده‌سازی تصویر رسید…"
 }

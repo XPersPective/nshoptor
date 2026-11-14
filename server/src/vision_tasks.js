@@ -59,14 +59,14 @@ export const VISION_TASKS = {
       '"items":[{"name":string,"quantity":string|null,"unit":' + JSON.stringify(UNITS) + '|null,"unitPrice":string|null,"lineTotal":string}],' +
       '"discounts":[{"label":string,"amount":string}],"tax":string|null,"subtotal":string|null,"total":string|null}\n' +
       'status is exactly one of these strings: ' + RECEIPT_STATUSES.map(v => `"${v}"`).join(', ') + ' (a single string, never a list or object). ' +
-      '"complete" only when the merchant header, every product row and the final payable total are all visible. ' +
-      '"top_missing" when the header or first rows are cut off; "bottom_missing" when the payable total is not visible; ' +
+      '"complete" when merchant identity (header logo/name OR an unambiguous chain URL/branch header such as fatura.a101.com.tr -> A101 or market footer), every product row and the final payable total are all visible. ' +
+      '"top_missing" when the merchant identity cannot be seen anywhere OR first item rows are cut off; "bottom_missing" when the payable total is not visible; ' +
       '"middle_gap" when consecutive photos do not overlap so rows may be missing; "not_receipt" for any other picture; ' +
       '"unreadable" when glare, blur, folds or darkness hide amounts. When status is not "complete", items may be empty.\n' +
-      'items: one entry per purchased product row, never counting a row twice when photos overlap. lineTotal is the amount paid for that row. ' +
-      'A quantity/unit-price row printed above or below its product belongs to it (e.g. "1,033 kg x 99,00" with "CHICKEN 102,27" -> quantity "1.033", unit "kilogram", unitPrice "99.00", lineTotal "102.27"). ' +
+      'items: one entry per purchased product row, never counting a row twice when photos overlap. lineTotal is the gross amount printed on that row (e.g. "259,00" before any separate campaign discount row below it). ' +
+      'A quantity/unit-price row printed above or below its product belongs to it (e.g. "1,033 kg x 99,00" with "CHICKEN 102,27" or "2 x20,00 TL/ad" above "EKMEK *40,00" -> quantity "2", unitPrice "20.00", lineTotal "40.00"). ' +
       'name excludes prices, tax-rate columns (%8, %20, *A, 8%), barcodes, item codes and quantity text.\n' +
-      'discounts: every discount, coupon, campaign or promotion row (minus sign, trailing "-", words such as discount, indirim, remise, rabatt, sconto, 割引, 値引, خصم, تخفيض) as a positive amount; never put them in items.\n' +
+      'discounts: every discount, coupon, campaign or promotion row (minus sign, trailing "-", words such as discount, indirim, remise, rabatt, sconto, or Turkish POS campaign codes like "25TLFINISH110TL *149,00-", "25TLARKO50TL *54,50-") as a positive amount; never put them in items.\n' +
       'tax: the total tax/VAT/GST/KDV/TVA/MwSt/消費税/ضريبة line if printed. subtotal: the printed subtotal. total: the final amount payable after discounts, not cash tendered or change.\n' +
       'Ignore payment, tendered cash, change, card, loyalty points, phone, tax office/registration numbers, terminal ids, barcodes and footers.\n' +
       'date: convert any calendar (e.g. Japanese era 令和6年, Hijri, Buddhist era) to Gregorian YYYY-MM-DD. time: 24-hour. documentNumber: the receipt/invoice/transaction number. ' +
@@ -145,8 +145,10 @@ export const VISION_TASKS = {
       if (!net && itemSum - discountSum !== milli(total)) throw new Error('not_reconciled');
       const tax = amount(out.tax);
       if (tax !== null && milli(tax) > milli(total)) throw new Error('invalid_tax');
+      const subtotal = amount(out.subtotal);
+      if (subtotal !== null && milli(subtotal) > itemSum) throw new Error('invalid_subtotal');
       return {
-        ...header, items, discounts: net ? [] : discounts, tax, subtotal: amount(out.subtotal), total, reconciles: true,
+        ...header, items, discounts: net ? [] : discounts, tax, subtotal, total, reconciles: true,
       };
     },
   },

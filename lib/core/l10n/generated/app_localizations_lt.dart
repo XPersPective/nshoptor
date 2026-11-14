@@ -1740,4 +1740,7 @@ class AppLocalizationsLt extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Spustelėkite kvito nuotrauką, kad pamatytumėte pilno dydžio';
+
+  @override
+  String get receiptPhotoPreparing => 'Ruošiama kvito nuotrauka…';
 }

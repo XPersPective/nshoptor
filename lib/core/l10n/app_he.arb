@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "קבלות סרוקות מעובדות ברקע ונשארות כאן עד שתמיר או תסיר אותן.",
   "receiptTrayPagesLabel": "{count} עמודים",
   "receiptPhotosSectionTitle": "תמונות קבלה",
-  "receiptOpenPhotoHint": "לחץ על תמונת קבלה כדי לצפות בגודל מלא"
+  "receiptOpenPhotoHint": "לחץ על תמונת קבלה כדי לצפות בגודל מלא",
+  "receiptPhotoPreparing": "מכין את תמונת הקבלה…"
 }

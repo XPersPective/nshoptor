@@ -1734,4 +1734,7 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Koppints egy számlafotóra a teljes méretű megtekintéshez';
+
+  @override
+  String get receiptPhotoPreparing => 'Nyugtafotó előkészítése…';
 }

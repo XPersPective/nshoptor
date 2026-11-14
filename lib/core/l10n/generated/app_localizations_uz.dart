@@ -1739,4 +1739,7 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'To\'liq hajmda ko\'rish uchun chek rasmiga bosing';
+
+  @override
+  String get receiptPhotoPreparing => 'Chek rasmi tayyorlanmoqda…';
 }

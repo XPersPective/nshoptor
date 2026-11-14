@@ -1740,4 +1740,7 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'முழு அளவில் பார்க்க ஒரு ரசீது படத்தைத் தட்டவும்';
+
+  @override
+  String get receiptPhotoPreparing => 'ரசீது புகைப்படம் தயாராகிறது…';
 }

@@ -1732,4 +1732,7 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Paina kuitin kuvaa nähdäksesi sen koko koossa';
+
+  @override
+  String get receiptPhotoPreparing => 'Valmistellaan kuitin kuvaa…';
 }

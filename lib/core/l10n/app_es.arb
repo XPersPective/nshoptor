@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Los recibos escaneados se procesan en segundo plano y permanecen aquí hasta que los conviertas o elimines.",
   "receiptTrayPagesLabel": "{count} páginas",
   "receiptPhotosSectionTitle": "Fotos del recibo",
-  "receiptOpenPhotoHint": "Toca una foto del recibo para verla en tamaño completo"
+  "receiptOpenPhotoHint": "Toca una foto del recibo para verla en tamaño completo",
+  "receiptPhotoPreparing": "Preparando foto del recibo…"
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Gescande bonnen worden op de achtergrond verwerkt en blijven hier staan tot je ze omzet of verwijdert.",
   "receiptTrayPagesLabel": "{count} pagina's",
   "receiptPhotosSectionTitle": "Bonfoto's",
-  "receiptOpenPhotoHint": "Tik op een bonfoto om hem in volledige grootte te bekijken"
+  "receiptOpenPhotoHint": "Tik op een bonfoto om hem in volledige grootte te bekijken",
+  "receiptPhotoPreparing": "Bonfoto voorbereiden…"
 }

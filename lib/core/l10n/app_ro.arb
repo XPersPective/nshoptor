@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Chitanțele scanate se procesează în fundal și rămân aici până le convertești sau le ștergi.",
   "receiptTrayPagesLabel": "{count} pagini",
   "receiptPhotosSectionTitle": "Fotografii cu chitanțe",
-  "receiptOpenPhotoHint": "Atinge o fotografie cu chitanța pentru a o vedea pe tot ecranul"
+  "receiptOpenPhotoHint": "Atinge o fotografie cu chitanța pentru a o vedea pe tot ecranul",
+  "receiptPhotoPreparing": "Se pregătește fotografia bonului…"
 }

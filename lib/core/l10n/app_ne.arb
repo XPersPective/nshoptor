@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "स्क्यान गरिएका रसिदहरू पृष्ठभूमिमा तयार हुन्छन् र तिनीहरू रूपान्तरण वा हटाउन नभएसम्म यहाँ रहन्छन्।",
   "receiptTrayPagesLabel": "{count} पृष्ठहरू",
   "receiptPhotosSectionTitle": "रसिद तस्बिरहरू",
-  "receiptOpenPhotoHint": "पूर्ण आकार हेर्न रसिद तस्बिर ट्याप गर्नुहोस्"
+  "receiptOpenPhotoHint": "पूर्ण आकार हेर्न रसिद तस्बिर ट्याप गर्नुहोस्",
+  "receiptPhotoPreparing": "रसिदको फोटो तयार हुँदैछ…"
 }

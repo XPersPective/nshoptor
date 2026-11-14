@@ -1733,4 +1733,7 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Tam ölçüdə görmək üçün çek fotoşəkilinə toxunun';
+
+  @override
+  String get receiptPhotoPreparing => 'Çek şəkli hazırlanır…';
 }

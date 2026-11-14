@@ -1734,4 +1734,7 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Tapnite fotografijo računa za ogled v polni velikosti';
+
+  @override
+  String get receiptPhotoPreparing => 'Pripravljanje fotografije računa…';
 }

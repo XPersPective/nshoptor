@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Скенирани рачуни се припремају у позадини и остају овде док их не претворите или не уклоните.",
   "receiptTrayPagesLabel": "{count} страница",
   "receiptPhotosSectionTitle": "Фотографије рачуна",
-  "receiptOpenPhotoHint": "Додирните фотографију рачуна да бисте је видели у пуној величини"
+  "receiptOpenPhotoHint": "Додирните фотографију рачуна да бисте је видели у пуној величини",
+  "receiptPhotoPreparing": "Припрема фотографије рачуна…"
 }

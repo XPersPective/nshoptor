@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Сканерленген чектер фондо даярдалат жана сиз аларды тизмеге айландырмасыңыз же өчүрмөйүнчө ушул жерде турат.",
   "receiptTrayPagesLabel": "{count} барак",
   "receiptPhotosSectionTitle": "Чектин сүрөттөрү",
-  "receiptOpenPhotoHint": "Толук өлчөмдө көрүү үчүн чектин сүрөтүн басыңыз"
+  "receiptOpenPhotoHint": "Толук өлчөмдө көрүү үчүн чектин сүрөтүн басыңыз",
+  "receiptPhotoPreparing": "Чек сүрөтү даярдалууда…"
 }

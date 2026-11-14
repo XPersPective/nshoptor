@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Naskenované účtenky sa spracúvajú na pozadí a zostanú tu, kým ich nepresuniete alebo neodstránite.",
   "receiptTrayPagesLabel": "{count} strán",
   "receiptPhotosSectionTitle": "Fotky účteniek",
-  "receiptOpenPhotoHint": "Klepnutím na fotku účtenky si ju zobrazíte v plnej veľkosti"
+  "receiptOpenPhotoHint": "Klepnutím na fotku účtenky si ju zobrazíte v plnej veľkosti",
+  "receiptPhotoPreparing": "Pripravuje sa fotografia bločka…"
 }

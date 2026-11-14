@@ -1743,4 +1743,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Appuyez sur une photo de reçu pour l\'afficher en taille réelle';
+
+  @override
+  String get receiptPhotoPreparing => 'Préparation de la photo du reçu…';
 }

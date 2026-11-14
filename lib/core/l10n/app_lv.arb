@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Naskenētie čeki tiek apstrādāti fonā un paliek šeit, līdz tos pārvērsiet vai noņemsiet.",
   "receiptTrayPagesLabel": "{count} lapas",
   "receiptPhotosSectionTitle": "Čeku fotogrāfijas",
-  "receiptOpenPhotoHint": "Pieskarieties čeka fotogrāfijai, lai skatītu pilnizmēra attēlu"
+  "receiptOpenPhotoHint": "Pieskarieties čeka fotogrāfijai, lai skatītu pilnizmēra attēlu",
+  "receiptPhotoPreparing": "Tiek sagatavots čeka fotoattēls…"
 }

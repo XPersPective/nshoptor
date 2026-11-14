@@ -3403,6 +3403,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap a receipt photo to view full size'**
   String get receiptOpenPhotoHint;
+
+  /// No description provided for @receiptPhotoPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing receipt photo…'**
+  String get receiptPhotoPreparing;
 }
 
 class _AppLocalizationsDelegate

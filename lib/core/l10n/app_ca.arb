@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Els rebuts escanejats es processen en segon pla i romanen aquí fins que els converteixis o els suprimeixis.",
   "receiptTrayPagesLabel": "{count} pàgines",
   "receiptPhotosSectionTitle": "Fotos dels rebuts",
-  "receiptOpenPhotoHint": "Toca una foto del rebut per veure-la a mida completa"
+  "receiptOpenPhotoHint": "Toca una foto del rebut per veure-la a mida completa",
+  "receiptPhotoPreparing": "Preparant la foto del rebut…"
 }

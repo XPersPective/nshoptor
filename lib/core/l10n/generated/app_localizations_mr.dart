@@ -1725,4 +1725,7 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'पूर्ण आकार पाहण्यासाठी बिलाच्या फोटोवर टॅप करा';
+
+  @override
+  String get receiptPhotoPreparing => 'पावतीचा फोटो तयार होत आहे…';
 }

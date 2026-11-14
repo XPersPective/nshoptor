@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "ਸਕੈਨ ਕੀਤੀਆਂ ਰਸੀਦਾਂ ਬੈਕਗ੍ਰਾਉਂਡ ਵਿੱਚ ਤਿਆਰ ਹੁੰਦੀਆਂ ਹਨ ਅਤੇ ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ ਬਦਲਣ ਜਾਂ ਹਟਾਉਣ ਤੱਕ ਇੱਥੇ ਰਹਿੰਦੀਆਂ ਹਨ।",
   "receiptTrayPagesLabel": "{count} ਪੰਨੇ",
   "receiptPhotosSectionTitle": "ਰਸੀਦ ਦੀਆਂ ਤਸਵੀਰਾਂ",
-  "receiptOpenPhotoHint": "ਪੂਰਾ ਆਕਾਰ ਦੇਖਣ ਲਈ ਰਸੀਦ ਦੀ ਤਸਵੀਰ 'ਤੇ ਟੈਪ ਕਰੋ"
+  "receiptOpenPhotoHint": "ਪੂਰਾ ਆਕਾਰ ਦੇਖਣ ਲਈ ਰਸੀਦ ਦੀ ਤਸਵੀਰ 'ਤੇ ਟੈਪ ਕਰੋ",
+  "receiptPhotoPreparing": "ਰਸੀਦ ਦੀ ਫ਼ੋਟੋ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…"
 }

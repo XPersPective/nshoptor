@@ -1730,4 +1730,7 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'مکمل سائز دیکھنے کے لیے کسی رسید کی تصویر پر ٹیپ کریں';
+
+  @override
+  String get receiptPhotoPreparing => 'رسید کی تصویر تیار کی جا رہی ہے…';
 }

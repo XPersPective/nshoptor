@@ -1735,4 +1735,7 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'ခြေရာခံ ဓာတ်ပုံကို နှိပ်၍ အရွယ်အစားကြီးဖြင့် ကြည့်ရှုပါ';
+
+  @override
+  String get receiptPhotoPreparing => 'ပြေစာဓာတ်ပုံကို ပြင်ဆင်နေသည်…';
 }

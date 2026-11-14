@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "ใบเสร็จที่สแกนจะประมวลผลในพื้นหลังและคงอยู่ในนี้จนกว่าคุณแปลงหรือลบออก",
   "receiptTrayPagesLabel": "{count} หน้า",
   "receiptPhotosSectionTitle": "รูปภาพใบเสร็จ",
-  "receiptOpenPhotoHint": "แตะรูปภาพใบเสร็จเพื่อดูขนาดเต็ม"
+  "receiptOpenPhotoHint": "แตะรูปภาพใบเสร็จเพื่อดูขนาดเต็ม",
+  "receiptPhotoPreparing": "กำลังเตรียมรูปใบเสร็จ…"
 }

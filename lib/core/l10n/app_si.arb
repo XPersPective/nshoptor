@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "ස්කෑන් කරන ලද බිල්පත් පසුබිමේ සකස් වන අතර, ඔබ ඒවා පරිවර්තනය හෝ ඉවත් කරන තෙක් මෙහි රඳවා ගනී.",
   "receiptTrayPagesLabel": "{count} පිටු",
   "receiptPhotosSectionTitle": "බිල්පත් ඡායාරූප",
-  "receiptOpenPhotoHint": "සම්පූර්ණ ප්‍රමාණයෙන් බැලීමට බිල්පත් ඡායාරූපයක් තට්ටු කරන්න"
+  "receiptOpenPhotoHint": "සම්පූර්ණ ප්‍රමාණයෙන් බැලීමට බිල්පත් ඡායාරූපයක් තට්ටු කරන්න",
+  "receiptPhotoPreparing": "රිසිට්පත් ඡායාරූපය සූදානම් කරමින්…"
 }

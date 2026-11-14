@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Indscannede kvitteringer behandles i baggrunden og bliver her, indtil du konverterer eller fjerner dem.",
   "receiptTrayPagesLabel": "{count} sider",
   "receiptPhotosSectionTitle": "Kvitteringsfotos",
-  "receiptOpenPhotoHint": "Tryk på et kvitteringsfoto for at se det i fuld størrelse"
+  "receiptOpenPhotoHint": "Tryk på et kvitteringsfoto for at se det i fuld størrelse",
+  "receiptPhotoPreparing": "Klargør kvitteringsbillede…"
 }

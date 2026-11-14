@@ -1729,4 +1729,7 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'ਪੂਰਾ ਆਕਾਰ ਦੇਖਣ ਲਈ ਰਸੀਦ ਦੀ ਤਸਵੀਰ \'ਤੇ ਟੈਪ ਕਰੋ';
+
+  @override
+  String get receiptPhotoPreparing => 'ਰਸੀਦ ਦੀ ਫ਼ੋਟੋ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…';
 }

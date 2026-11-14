@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Gescannte Quittungen werden im Hintergrund verarbeitet und bleiben hier, bis du sie in eine Liste überträgst oder löschst.",
   "receiptTrayPagesLabel": "{count} Seiten",
   "receiptPhotosSectionTitle": "Quittungsfotos",
-  "receiptOpenPhotoHint": "Tippe auf ein Quittungsfoto, um es in voller Größe anzusehen"
+  "receiptOpenPhotoHint": "Tippe auf ein Quittungsfoto, um es in voller Größe anzusehen",
+  "receiptPhotoPreparing": "Belegfoto wird vorbereitet…"
 }

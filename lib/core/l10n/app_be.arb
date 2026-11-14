@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Адсканаваныя чэкі апрацоўваюцца ў фоне і застаюцца тут, пакуль вы не пераўтварыце або не выдаліце іх.",
   "receiptTrayPagesLabel": "{count} старонак",
   "receiptPhotosSectionTitle": "Фота чекаў",
-  "receiptOpenPhotoHint": "Націсніце на фота чека, каб праглядзець яго ў поўным памеры"
+  "receiptOpenPhotoHint": "Націсніце на фота чека, каб праглядзець яго ў поўным памеры",
+  "receiptPhotoPreparing": "Падрыхтоўка фота чэка…"
 }

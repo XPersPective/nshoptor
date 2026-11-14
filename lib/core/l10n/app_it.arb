@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Le ricevute scansionate vengono elaborate in background e rimangono qui finché non le converti o le elimini.",
   "receiptTrayPagesLabel": "{count} pagine",
   "receiptPhotosSectionTitle": "Foto delle ricevute",
-  "receiptOpenPhotoHint": "Tocca una foto della ricevuta per visualizzarla a grandezza intera"
+  "receiptOpenPhotoHint": "Tocca una foto della ricevuta per visualizzarla a grandezza intera",
+  "receiptPhotoPreparing": "Preparazione foto scontrino…"
 }

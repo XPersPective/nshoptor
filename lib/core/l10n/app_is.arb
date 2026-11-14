@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Skannað skjöl undirbúa sig í bakgrunninu og verða hér þar til þú breytir eða fjarlægir þau.",
   "receiptTrayPagesLabel": "{count} síður",
   "receiptPhotosSectionTitle": "Ljósmyndir af kvittningum",
-  "receiptOpenPhotoHint": "Smelltu á ljósmynd af kvittningu til að sjá hana í fullri stærð"
+  "receiptOpenPhotoHint": "Smelltu á ljósmynd af kvittningu til að sjá hana í fullri stærð",
+  "receiptPhotoPreparing": "Undirbýr kvittunarmynd…"
 }

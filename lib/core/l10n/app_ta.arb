@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "ஸ்கேன் செய்யப்பட்ட ரசீதுகள் பின்னணியில் தயாராகி, நீங்கள் அவற்றை மாற்றவோ அல்லது அழிக்கவோ செய்வது வரை இங்கே இருக்கும்.",
   "receiptTrayPagesLabel": "{count} பக்கங்கள்",
   "receiptPhotosSectionTitle": "ரசீது படங்கள்",
-  "receiptOpenPhotoHint": "முழு அளவில் பார்க்க ஒரு ரசீது படத்தைத் தட்டவும்"
+  "receiptOpenPhotoHint": "முழு அளவில் பார்க்க ஒரு ரசீது படத்தைத் தட்டவும்",
+  "receiptPhotoPreparing": "ரசீது புகைப்படம் தயாராகிறது…"
 }

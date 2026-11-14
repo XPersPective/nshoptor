@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Ang mga na-scan na resibo ay inihahanda sa background at nananatili dito hanggang ma-convert o matanggal.",
   "receiptTrayPagesLabel": "{count} na pahina",
   "receiptPhotosSectionTitle": "Mga litrato ng resibo",
-  "receiptOpenPhotoHint": "Pindutin ang litrato ng resibo para makita sa buong laki"
+  "receiptOpenPhotoHint": "Pindutin ang litrato ng resibo para makita sa buong laki",
+  "receiptPhotoPreparing": "Inihahanda ang larawan ng resibo…"
 }

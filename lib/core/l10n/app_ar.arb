@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "تجهز الإيصالات الممسوحة ضوئياً في الخلفية وتبقى هنا حتى تقوم بتحويلها أو إزالتها.",
   "receiptTrayPagesLabel": "{count} صفحات",
   "receiptPhotosSectionTitle": "صور الإيصالات",
-  "receiptOpenPhotoHint": "انقر على صورة إيصال لعرضها بالحجم الكامل"
+  "receiptOpenPhotoHint": "انقر على صورة إيصال لعرضها بالحجم الكامل",
+  "receiptPhotoPreparing": "جارٍ تجهيز صورة الإيصال…"
 }

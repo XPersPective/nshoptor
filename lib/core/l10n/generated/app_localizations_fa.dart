@@ -1724,4 +1724,7 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'برای مشاهده در اندازه بزرگ، روی عکس رسید ضربه بزنید';
+
+  @override
+  String get receiptPhotoPreparing => 'در حال آماده‌سازی تصویر رسید…';
 }

@@ -548,5 +548,6 @@
   "receiptEmptyTrayBody": "Okuttuğunuz fişler arka planda hazırlanır; listeye çevirip silene kadar burada bekler.",
   "receiptTrayPagesLabel": "{count} sayfa",
   "receiptPhotosSectionTitle": "Fiş görselleri",
-  "receiptOpenPhotoHint": "Büyütmek için fiş görseline dokunun"
+  "receiptOpenPhotoHint": "Büyütmek için fiş görseline dokunun",
+  "receiptPhotoPreparing": "Fiş fotoğrafı hazırlanıyor…"
 }

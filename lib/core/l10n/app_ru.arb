@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Отсканированные чеки обрабатываются в фоне и остаются здесь, пока вы не создадите из них список или не удалите их.",
   "receiptTrayPagesLabel": "{count} стр.",
   "receiptPhotosSectionTitle": "Фото чеков",
-  "receiptOpenPhotoHint": "Нажмите на фото чека, чтобы открыть его на весь экран"
+  "receiptOpenPhotoHint": "Нажмите на фото чека, чтобы открыть его на весь экран",
+  "receiptPhotoPreparing": "Подготовка фото чека…"
 }

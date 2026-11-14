@@ -1738,4 +1738,7 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Націсніце на фота чека, каб праглядзець яго ў поўным памеры';
+
+  @override
+  String get receiptPhotoPreparing => 'Падрыхтоўка фота чэка…';
 }

@@ -1671,4 +1671,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => 'レシートの写真をタップしてフルサイズで表示';
+
+  @override
+  String get receiptPhotoPreparing => 'レシート写真を準備しています…';
 }

@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Faturat e skanuara përgatiten në sfond dhe mbeten këtu derisa t'i shndërrosh ose t'i heqësh.",
   "receiptTrayPagesLabel": "{count} faqe",
   "receiptPhotosSectionTitle": "Fotografitë e faturave",
-  "receiptOpenPhotoHint": "Prek një foto fature për ta parë në madhësi të plotë"
+  "receiptOpenPhotoHint": "Prek një foto fature për ta parë në madhësi të plotë",
+  "receiptPhotoPreparing": "Po përgatitet fotoja e faturës…"
 }

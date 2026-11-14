@@ -1729,4 +1729,7 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'සම්පූර්ණ ප්‍රමාණයෙන් බැලීමට බිල්පත් ඡායාරූපයක් තට්ටු කරන්න';
+
+  @override
+  String get receiptPhotoPreparing => 'රිසිට්පත් ඡායාරූපය සූදානම් කරමින්…';
 }

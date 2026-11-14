@@ -1730,4 +1730,7 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Толук өлчөмдө көрүү үчүн чектин сүрөтүн басыңыз';
+
+  @override
+  String get receiptPhotoPreparing => 'Чек сүрөтү даярдалууда…';
 }

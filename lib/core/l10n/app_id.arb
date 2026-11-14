@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Struk yang dipindai diproses di latar belakang dan tetap di sini sampai Anda mengubah atau menghapusnya.",
   "receiptTrayPagesLabel": "{count} halaman",
   "receiptPhotosSectionTitle": "Foto struk",
-  "receiptOpenPhotoHint": "Ketuk foto struk untuk melihat ukuran penuh"
+  "receiptOpenPhotoHint": "Ketuk foto struk untuk melihat ukuran penuh",
+  "receiptPhotoPreparing": "Menyiapkan foto struk…"
 }

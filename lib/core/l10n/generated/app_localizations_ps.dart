@@ -1719,4 +1719,7 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'د بشپړ اندازه لیدلو لپاره د رسید عکس کلیک وکړئ';
+
+  @override
+  String get receiptPhotoPreparing => 'د رسید عکس چمتو کېږي…';
 }

@@ -1737,4 +1737,7 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Naciśnij zdjęcie paragonu, aby zobaczyć je w pełnym rozmiarze';
+
+  @override
+  String get receiptPhotoPreparing => 'Przygotowywanie zdjęcia paragonu…';
 }

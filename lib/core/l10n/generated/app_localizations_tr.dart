@@ -1728,4 +1728,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => 'Büyütmek için fiş görseline dokunun';
+
+  @override
+  String get receiptPhotoPreparing => 'Fiş fotoğrafı hazırlanıyor…';
 }

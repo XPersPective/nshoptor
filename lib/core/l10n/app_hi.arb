@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "स्कैन की गई रसीदें बैकग्राउंड में तैयार होती हैं और जब तक आप उन्हें कन्वर्ट या हटा नहीं देते, ये यहीं रहती हैं।",
   "receiptTrayPagesLabel": "{count} पेज",
   "receiptPhotosSectionTitle": "रसीद फोटो",
-  "receiptOpenPhotoHint": "पूर्ण आकार में देखने के लिए रसीद की फोटो पर टैप करें"
+  "receiptOpenPhotoHint": "पूर्ण आकार में देखने के लिए रसीद की फोटो पर टैप करें",
+  "receiptPhotoPreparing": "रसीद की फ़ोटो तैयार की जा रही है…"
 }

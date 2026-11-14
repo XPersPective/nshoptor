@@ -1733,4 +1733,7 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Ketik foto resit untuk melihat saiz penuh';
+
+  @override
+  String get receiptPhotoPreparing => 'Menyediakan foto resit…';
 }

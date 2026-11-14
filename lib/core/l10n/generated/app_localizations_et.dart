@@ -1729,4 +1729,7 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Täissuuruses kuvamiseks puuduta kvidi pilti';
+
+  @override
+  String get receiptPhotoPreparing => 'Tšeki foto ettevalmistamine…';
 }

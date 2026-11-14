@@ -1740,4 +1740,7 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Πατήστε μια φωτογραφία παραστατικού για προβολή σε πλήρες μέγεθος';
+
+  @override
+  String get receiptPhotoPreparing => 'Προετοιμασία φωτογραφίας απόδειξης…';
 }

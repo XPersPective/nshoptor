@@ -1737,4 +1737,7 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Докоснете снимка на разписка, за да я видите на цял екран';
+
+  @override
+  String get receiptPhotoPreparing => 'Подготвяне на снимката на бона…';
 }

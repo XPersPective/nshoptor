@@ -1742,4 +1742,7 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Atinge o fotografie cu chitanța pentru a o vedea pe tot ecranul';
+
+  @override
+  String get receiptPhotoPreparing => 'Se pregătește fotografia bonului…';
 }

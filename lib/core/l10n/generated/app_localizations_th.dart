@@ -1716,4 +1716,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => 'แตะรูปภาพใบเสร็จเพื่อดูขนาดเต็ม';
+
+  @override
+  String get receiptPhotoPreparing => 'กำลังเตรียมรูปใบเสร็จ…';
 }

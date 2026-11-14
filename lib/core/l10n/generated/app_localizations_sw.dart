@@ -1735,4 +1735,7 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Gusa picha ya risiti ili kuona ukubwa kamili';
+
+  @override
+  String get receiptPhotoPreparing => 'Inaandaa picha ya risiti…';
 }

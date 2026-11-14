@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "સ્કેન કરેલી રસીદો બેકગ્રાઉન્ડમાં તૈયાર થાય છે અને તમે તેને કન્વર્ટ અથવા રિમૂવ કર્યા વિના અહીં જ રહે છે.",
   "receiptTrayPagesLabel": "{count} પેજ",
   "receiptPhotosSectionTitle": "રસીદની ફોટાઓ",
-  "receiptOpenPhotoHint": "પૂર્ણ કદમાં જોવા માટે રસીદની ફોટા પર ટેપ કરો"
+  "receiptOpenPhotoHint": "પૂર્ણ કદમાં જોવા માટે રસીદની ફોટા પર ટેપ કરો",
+  "receiptPhotoPreparing": "રસીદનો ફોટો તૈયાર થઈ રહ્યો છે…"
 }

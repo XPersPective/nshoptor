@@ -1725,4 +1725,7 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'სრულ ზომასთან გასახილად, შეეხეთ ჩეკის ფოტოს';
+
+  @override
+  String get receiptPhotoPreparing => 'ქვითრის ფოტო მზადდება…';
 }

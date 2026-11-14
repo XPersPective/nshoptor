@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Les reçus scannés se préparent en arrière-plan et restent ici jusqu'à ce que vous les convertissiez ou les supprimiez.",
   "receiptTrayPagesLabel": "{count} pages",
   "receiptPhotosSectionTitle": "Photos des reçus",
-  "receiptOpenPhotoHint": "Appuyez sur une photo de reçu pour l'afficher en taille réelle"
+  "receiptOpenPhotoHint": "Appuyez sur une photo de reçu pour l'afficher en taille réelle",
+  "receiptPhotoPreparing": "Préparation de la photo du reçu…"
 }

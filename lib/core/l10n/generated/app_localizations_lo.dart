@@ -1717,4 +1717,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => 'ກົດຮູບພາບໃບເກັບເງິນເພື່ອເບິ່ງຂະໜາດເຕັມ';
+
+  @override
+  String get receiptPhotoPreparing => 'ກຳລັງກະກຽມຮູບໃບຮັບເງິນ…';
 }

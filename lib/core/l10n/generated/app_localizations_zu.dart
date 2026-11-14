@@ -1741,4 +1741,7 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Chofoza isithombe sethikithi ukuze ubuke ngobukhulu';
+
+  @override
+  String get receiptPhotoPreparing => 'Ilungiselela isithombe serisidi…';
 }

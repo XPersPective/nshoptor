@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Prebrane račune pripravimo v ozadju in jih obdržimo tukaj, dokler jih ne pretvorite ali odstranite.",
   "receiptTrayPagesLabel": "{count} strani",
   "receiptPhotosSectionTitle": "Fotografije računov",
-  "receiptOpenPhotoHint": "Tapnite fotografijo računa za ogled v polni velikosti"
+  "receiptOpenPhotoHint": "Tapnite fotografijo računa za ogled v polni velikosti",
+  "receiptPhotoPreparing": "Pripravljanje fotografije računa…"
 }

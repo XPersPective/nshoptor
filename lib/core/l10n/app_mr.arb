@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "स्कॅन केलेली बिले पार्श्वभूमीवर तयार होतात आणि तुम्ही ते रूपांतरित किंवा काढून टाकपर्यंत इथे राहतात.",
   "receiptTrayPagesLabel": "{count} पृष्ठे",
   "receiptPhotosSectionTitle": "बिलांची फोटो",
-  "receiptOpenPhotoHint": "पूर्ण आकार पाहण्यासाठी बिलाच्या फोटोवर टॅप करा"
+  "receiptOpenPhotoHint": "पूर्ण आकार पाहण्यासाठी बिलाच्या फोटोवर टॅप करा",
+  "receiptPhotoPreparing": "पावतीचा फोटो तयार होत आहे…"
 }

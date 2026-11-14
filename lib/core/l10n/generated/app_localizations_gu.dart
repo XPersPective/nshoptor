@@ -1727,4 +1727,7 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'પૂર્ણ કદમાં જોવા માટે રસીદની ફોટા પર ટેપ કરો';
+
+  @override
+  String get receiptPhotoPreparing => 'રસીદનો ફોટો તૈયાર થઈ રહ્યો છે…';
 }

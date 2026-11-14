@@ -1733,4 +1733,7 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Нажмите на фото чека, чтобы открыть его на весь экран';
+
+  @override
+  String get receiptPhotoPreparing => 'Подготовка фото чека…';
 }

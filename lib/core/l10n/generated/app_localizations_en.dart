@@ -1734,4 +1734,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => 'Tap a receipt photo to view full size';
+
+  @override
+  String get receiptPhotoPreparing => 'Preparing receipt photo…';
 }

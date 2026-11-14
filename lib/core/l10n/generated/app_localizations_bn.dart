@@ -1724,4 +1724,7 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'পূর্ণ আকারে দেখতে একটি রসিদের ছবিতে ট্যাপ করুন';
+
+  @override
+  String get receiptPhotoPreparing => 'রসিদের ছবি প্রস্তুত করা হচ্ছে…';
 }

@@ -1740,4 +1740,7 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'పూర్తి పరిమాణంలో చూడటానికి రసీదు ఫోటోను ట్యాప్ చేయండి';
+
+  @override
+  String get receiptPhotoPreparing => 'రసీదు ఫోటో సిద్ధమవుతోంది…';
 }

@@ -1734,4 +1734,7 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Prek një foto fature për ta parë në madhësi të plotë';
+
+  @override
+  String get receiptPhotoPreparing => 'Po përgatitet fotoja e faturës…';
 }

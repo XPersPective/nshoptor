@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "스캔한 영수증은 백그라운드에서 처리되며, 변환하거나 제거할 때까지 여기에 보관됩니다.",
   "receiptTrayPagesLabel": "{count}페이지",
   "receiptPhotosSectionTitle": "영수증 사진",
-  "receiptOpenPhotoHint": "전체 크기로 보려면 영수증 사진을 탭하세요"
+  "receiptOpenPhotoHint": "전체 크기로 보려면 영수증 사진을 탭하세요",
+  "receiptPhotoPreparing": "영수증 사진을 준비하는 중…"
 }

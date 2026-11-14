@@ -1738,4 +1738,7 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Tik op een bonfoto om hem in volledige grootte te bekijken';
+
+  @override
+  String get receiptPhotoPreparing => 'Bonfoto voorbereiden…';
 }

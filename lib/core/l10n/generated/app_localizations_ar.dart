@@ -1718,4 +1718,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get receiptOpenPhotoHint => 'انقر على صورة إيصال لعرضها بالحجم الكامل';
+
+  @override
+  String get receiptPhotoPreparing => 'جارٍ تجهيز صورة الإيصال…';
 }

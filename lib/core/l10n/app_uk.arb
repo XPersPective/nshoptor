@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Зскановані чеки обробляються у фоновому режимі й залишаються тут, поки ви не перетворите їх на список або не видалите.",
   "receiptTrayPagesLabel": "{count} стор.",
   "receiptPhotosSectionTitle": "Фото чеків",
-  "receiptOpenPhotoHint": "Натисніть на фото чека, щоб переглянути у повному розмірі"
+  "receiptOpenPhotoHint": "Натисніть на фото чека, щоб переглянути у повному розмірі",
+  "receiptPhotoPreparing": "Підготовка фото чека…"
 }

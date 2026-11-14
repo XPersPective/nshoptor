@@ -1729,4 +1729,7 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Толық өлшемде көру үшін чек фотосуретін басыңыз';
+
+  @override
+  String get receiptPhotoPreparing => 'Түбіртек суреті дайындалуда…';
 }

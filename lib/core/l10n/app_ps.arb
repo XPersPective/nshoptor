@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "سکان شوي رسیدونه شاته فعالیت کوي او تر هغه چې تاسو یې تبدیل یا لرې نه کړئ، دلته پاتې کیږي.",
   "receiptTrayPagesLabel": "{count} پاڼې",
   "receiptPhotosSectionTitle": "د رسید عکسونه",
-  "receiptOpenPhotoHint": "د بشپړ اندازه لیدلو لپاره د رسید عکس کلیک وکړئ"
+  "receiptOpenPhotoHint": "د بشپړ اندازه لیدلو لپاره د رسید عکس کلیک وکړئ",
+  "receiptPhotoPreparing": "د رسید عکس چمتو کېږي…"
 }

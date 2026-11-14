@@ -527,5 +527,6 @@
   "receiptEmptyTrayBody": "Skaneeritud kviidid töötlevad taustal ja jäävad siia, kuni teisendad või eemaldad need.",
   "receiptTrayPagesLabel": "{count} lehekülge",
   "receiptPhotosSectionTitle": "Kviidi pildid",
-  "receiptOpenPhotoHint": "Täissuuruses kuvamiseks puuduta kvidi pilti"
+  "receiptOpenPhotoHint": "Täissuuruses kuvamiseks puuduta kvidi pilti",
+  "receiptPhotoPreparing": "Tšeki foto ettevalmistamine…"
 }

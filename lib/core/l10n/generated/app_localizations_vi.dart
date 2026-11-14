@@ -1725,4 +1725,7 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Nhấn vào ảnh hóa đơn để xem toàn màn hình';
+
+  @override
+  String get receiptPhotoPreparing => 'Đang chuẩn bị ảnh hóa đơn…';
 }

@@ -1729,4 +1729,7 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Ketuk foto struk untuk melihat ukuran penuh';
+
+  @override
+  String get receiptPhotoPreparing => 'Menyiapkan foto struk…';
 }

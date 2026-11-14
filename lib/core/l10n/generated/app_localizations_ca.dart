@@ -1739,4 +1739,7 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get receiptOpenPhotoHint =>
       'Toca una foto del rebut per veure-la a mida completa';
+
+  @override
+  String get receiptPhotoPreparing => 'Preparant la foto del rebut…';
 }
