@@ -61,3 +61,13 @@ Sources: `lib/data/db/**`, `lib/features/receipts/**`, `lib/features/lists/item_
 - PB18540558135204 failed initial READY visibility in both flows; private screenshots/hierarchy show READY/Failure:none. Native initialization exception absent; permission/delivery assertions not reached. Native Luna improving exact readiness wait only; old signed20 remains superseded.
 - ComputerUse stopped thisturn by URL-confidence guard on Windows; no bypass/permission expansion. DataSafetyAPI400 confirmed unchanged remoteCSV; Consoleimportvalidation stillopen. FinancialOther+factualbudgetscope savedpendingGoogle review, screenshotprivate; app publicrelease notdone.
 - PB184 mediaAPK installed/launched separately; existingdebug18preserved. Actual native screenshot device/launcher.png shows background Messages ANR, not NShoptor error. ChooseWait only when safelyresuming; do not killotherapps/wipeuserDB. No actualstoreasset set/video yet.
+
+
+## Current State Update — 2026-11-14 (`1.3.4+32` Internal Track Completed)
+- **Shipped Baseline (`1.3.3+30`):** Live on Google Play `production` (`versionCode: 30`, SHA-256 `bf80e9d3...`, untouched) and submitted to App Store Review (`WAITING_FOR_REVIEW`, build `1.3.3`, 50 ASO locales, untouched).
+- **Google Play Internal (`1.3.4+32` — `RQ-003`, `PB-217..PB-220` DONE):**
+  - `PB-217`: Real A101/ŞOK OCR + Gemini Vision parsing fixes, `1,250.00` vs `427,42` number rules, loading spinner dialog during capture, styled floating Done SnackBar (`71` locales).
+  - `PB-218`: Side-by-side branded `SplashGate` with localized slogan (`71` locales) and calm Light/Dark/AMOLED card, AppBar, NavBar polish.
+  - `PB-219`: Dismissible `FreeProPromoCard` ("Try Pro free for 7 days" in `71` locales) + updated `73`-locale Play ASO copy, `featureGraphic`, and phone/tablet screenshots.
+  - `PB-220`: Signed `1.3.4+32` AAB (`d6efc2b9...`), `1114` Flutter + `84` server tests + `flutter analyze` (0 issues), `Medium_Phone_API_36.0` live emulator QA, and Play `internal` (`version_codes: ["32"]`, `73` locales, `0` mismatches).
+  - Backlog: `PB-128` website/SEO deferred; historical `PB-102..PB-206` files remain in `.project-brain/tasks/` (`PLANNED`/`READY`/`BLOCKED`).

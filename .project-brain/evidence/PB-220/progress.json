@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "pubspec.yaml, tool/store/make_preview.py",
+  "strategy": "check",
+  "attempt": "94d397c2e5aad10d",
+  "repeats": 0,
+  "contract": "f2eb468a7d998d67",
+  "usage": {
+    "checks": 1,
+    "seconds": 741.065
+  }
+}

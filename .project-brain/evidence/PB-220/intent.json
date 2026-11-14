@@ -1,0 +1,8 @@
+{
+  "contract": "f2eb468a7d998d67",
+  "epoch": "cff443c2e64721be",
+  "independent": false,
+  "intent": "452a6f23a13f292e",
+  "note": "Fix Areas excluding .project-brain/** for clean contract hash",
+  "protocol": 1
+}
