@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} барак",
   "receiptPhotosSectionTitle": "Чектин сүрөттөрү",
   "receiptOpenPhotoHint": "Толук өлчөмдө көрүү үчүн чектин сүрөтүн басыңыз",
-  "receiptPhotoPreparing": "Чек сүрөтү даярдалууда…"
+  "receiptPhotoPreparing": "Чек сүрөтү даярдалууда…",
+  "homeProPromoTitle": "Pro версиясын 7 күн бекер сынап көрүңүз",
+  "homeProPromoSubtitle": "100 ЖИ дүмүрчөк сканерлөө жана жарнамасыз · Карта талап кылынбайт"
 }

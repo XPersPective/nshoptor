@@ -1718,4 +1718,11 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'מכין את תמונת הקבלה…';
+
+  @override
+  String get homeProPromoTitle => 'נסו את Pro חינם ל-7 ימים';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 סריקות קבלות ב-AI וללא פרסומות פתוח · ללא צורך בכרטיס';
 }

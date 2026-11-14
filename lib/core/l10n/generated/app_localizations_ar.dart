@@ -1721,4 +1721,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'جارٍ تجهيز صورة الإيصال…';
+
+  @override
+  String get homeProPromoTitle => 'جرّب Pro مجاناً لـ 7 أيام';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 مسح إيصال بالذكاء الاصطناعي وتجربة بلا إعلانات · دون بطاقة';
 }

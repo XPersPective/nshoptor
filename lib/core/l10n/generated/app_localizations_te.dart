@@ -1743,4 +1743,11 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'రసీదు ఫోటో సిద్ధమవుతోంది…';
+
+  @override
+  String get homeProPromoTitle => '7 రోజులు Pro ఉచితంగా ప్రయత్నించండి';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI రసీదు స్కాన్లు మరియు ప్రకటనలు లేని ఉపయోగం · కార్డు అవసరం లేదు';
 }

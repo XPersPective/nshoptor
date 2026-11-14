@@ -1743,4 +1743,11 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Προετοιμασία φωτογραφίας απόδειξης…';
+
+  @override
+  String get homeProPromoTitle => 'Δοκιμάστε το Pro δωρεάν για 7 ημέρες';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 σαρώσεις αποδείξεων με ΤΝ & χωρίς διαφημίσεις · Χωρίς κάρτα';
 }

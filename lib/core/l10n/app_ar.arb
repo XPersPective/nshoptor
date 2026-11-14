@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} صفحات",
   "receiptPhotosSectionTitle": "صور الإيصالات",
   "receiptOpenPhotoHint": "انقر على صورة إيصال لعرضها بالحجم الكامل",
-  "receiptPhotoPreparing": "جارٍ تجهيز صورة الإيصال…"
+  "receiptPhotoPreparing": "جارٍ تجهيز صورة الإيصال…",
+  "homeProPromoTitle": "جرّب Pro مجاناً لـ 7 أيام",
+  "homeProPromoSubtitle": "100 مسح إيصال بالذكاء الاصطناعي وتجربة بلا إعلانات · دون بطاقة"
 }

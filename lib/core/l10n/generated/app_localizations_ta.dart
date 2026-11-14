@@ -1743,4 +1743,11 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'ரசீது புகைப்படம் தயாராகிறது…';
+
+  @override
+  String get homeProPromoTitle => '7 நாட்கள் Pro இலவசமாக முயலுங்கள்';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI ரசீது ஸ்கேன் & விளம்பரமில்லா அனுபவம் · கார்டு தேவையில்லை';
 }

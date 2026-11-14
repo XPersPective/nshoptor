@@ -1738,4 +1738,11 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Kwitansiefoto word voorberei…';
+
+  @override
+  String get homeProPromoTitle => 'Probeer Pro 7 dae gratis';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 KI-strokie-skanderings & advertensievry oop · Geen kaart nodig';
 }

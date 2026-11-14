@@ -20,6 +20,7 @@ import '../discover/discover_screen.dart';
 import '../discover/embedded_apps.dart';
 import '../onboarding/coach_tour.dart';
 import '../onboarding/first_run_guide.dart';
+import '../subscription/free_pro_promo_card.dart';
 import '../subscription/plan_badge.dart';
 import '../subscription/subscription_paywall.dart';
 import '../subscription/subscription_service.dart';
@@ -129,10 +130,14 @@ class _HomeShellState extends State<HomeShell> {
   final _openedReminders = <int>{};
   Future<void> _reminderNavigation = Future<void>.value();
   bool _trialNoticeShowing = false;
+  static const _promoDismissedKey = 'home_pro_promo_dismissed_v1';
+  bool _promoDismissed = false;
 
   @override
   void initState() {
     super.initState();
+    _promoDismissed =
+        widget.appsCacheStore?.getBool(_promoDismissedKey) == true;
     widget.subscriptions?.addListener(_trialChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) {
@@ -296,6 +301,28 @@ class _HomeShellState extends State<HomeShell> {
   int _settingsVisit = 0;
   int _budgetVisit = 0;
 
+  Widget _promoCardLive(BuildContext context) {
+    final subs = widget.subscriptions;
+    if (subs == null || _promoDismissed) return const SizedBox.shrink();
+    return ListenableBuilder(
+      listenable: subs,
+      builder: (context, _) {
+        if (_promoDismissed || !subs.promotionalTrial) {
+          return const SizedBox.shrink();
+        }
+        final l10n = AppLocalizations.of(context);
+        return FreeProPromoCard(
+          remainingLabel: trialRemainingLabel(l10n, subs),
+          onTap: () => _openPlanPage(context),
+          onDismiss: () {
+            widget.appsCacheStore?.setBool(_promoDismissedKey, true);
+            setState(() => _promoDismissed = true);
+          },
+        );
+      },
+    );
+  }
+
   /// Plan simgesi, abonelik değişince kendini günceller (satın alma, iptal).
   Widget _planBadgeLive(BuildContext context) {
     final subs = widget.subscriptions;
@@ -351,6 +378,7 @@ class _HomeShellState extends State<HomeShell> {
         reminderScheduler: widget.reminderScheduler,
         bannerController: widget.bannerController,
         planBadge: _planBadgeLive(context),
+        promoCard: _promoCardLive(context),
         onScanReceipt: () => _createFromReceipt(context),
         receiptBusy: _inputBusy,
         onDiscover: () => _openDiscover(context),

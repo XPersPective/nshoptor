@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} na pahina",
   "receiptPhotosSectionTitle": "Mga litrato ng resibo",
   "receiptOpenPhotoHint": "Pindutin ang litrato ng resibo para makita sa buong laki",
-  "receiptPhotoPreparing": "Inihahanda ang larawan ng resibo…"
+  "receiptPhotoPreparing": "Inihahanda ang larawan ng resibo…",
+  "homeProPromoTitle": "Subukan ang Pro nang libre sa 7 araw",
+  "homeProPromoSubtitle": "100 AI scan ng resibo at walang ad na bukas · Walang kailangang card"
 }

@@ -1732,4 +1732,11 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Klargør kvitteringsbillede…';
+
+  @override
+  String get homeProPromoTitle => 'Prøv Pro gratis i 7 dage';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI-kvitteringsscan & reklamefri låst op · Intet kort kræves';
 }

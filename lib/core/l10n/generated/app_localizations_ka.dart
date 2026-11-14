@@ -1728,4 +1728,11 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'ქვითრის ფოტო მზადდება…';
+
+  @override
+  String get homeProPromoTitle => 'სცადეთ Pro 7 დღე უფასოდ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI ქვითრის სკანირება და რეკლამის გარეშე · ბარათი არ სჭირდება';
 }

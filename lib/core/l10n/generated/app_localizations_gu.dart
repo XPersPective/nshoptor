@@ -1730,4 +1730,11 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'રસીદનો ફોટો તૈયાર થઈ રહ્યો છે…';
+
+  @override
+  String get homeProPromoTitle => '7 દિવસ માટે Pro મફત અજમાવો';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI રસીદ સ્કેન અને જાહેરાਤ-મુક્ત અનલૉક · કાર્ડની જરૂર નથી';
 }

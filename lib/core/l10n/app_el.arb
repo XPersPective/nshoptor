@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} σελίδες",
   "receiptPhotosSectionTitle": "Φωτογραφίες παραστατικών",
   "receiptOpenPhotoHint": "Πατήστε μια φωτογραφία παραστατικού για προβολή σε πλήρες μέγεθος",
-  "receiptPhotoPreparing": "Προετοιμασία φωτογραφίας απόδειξης…"
+  "receiptPhotoPreparing": "Προετοιμασία φωτογραφίας απόδειξης…",
+  "homeProPromoTitle": "Δοκιμάστε το Pro δωρεάν για 7 ημέρες",
+  "homeProPromoSubtitle": "100 σαρώσεις αποδείξεων με ΤΝ & χωρίς διαφημίσεις · Χωρίς κάρτα"
 }

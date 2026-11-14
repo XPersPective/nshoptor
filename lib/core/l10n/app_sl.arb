@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} strani",
   "receiptPhotosSectionTitle": "Fotografije računov",
   "receiptOpenPhotoHint": "Tapnite fotografijo računa za ogled v polni velikosti",
-  "receiptPhotoPreparing": "Pripravljanje fotografije računa…"
+  "receiptPhotoPreparing": "Pripravljanje fotografije računa…",
+  "homeProPromoTitle": "Preizkusite Pro 7 dni brezplačno",
+  "homeProPromoSubtitle": "100 AI skeniranj računov in brez oglasov odklenjeno · Kartica ni potrebna"
 }

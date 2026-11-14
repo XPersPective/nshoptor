@@ -1722,4 +1722,11 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'د رسید عکس چمتو کېږي…';
+
+  @override
+  String get homeProPromoTitle => 'Pro د 7 ورځو لپاره وړیا وازموئ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 د AI رسيد سکینونه او بې اعلانه کارونه خلاصه ده · کارت ته اړتیا نشته';
 }

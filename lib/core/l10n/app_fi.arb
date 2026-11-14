@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} sivua",
   "receiptPhotosSectionTitle": "Kuitin kuvat",
   "receiptOpenPhotoHint": "Paina kuitin kuvaa nähdäksesi sen koko koossa",
-  "receiptPhotoPreparing": "Valmistellaan kuitin kuvaa…"
+  "receiptPhotoPreparing": "Valmistellaan kuitin kuvaa…",
+  "homeProPromoTitle": "Kokeile Prota 7 päivää ilmaiseksi",
+  "homeProPromoSubtitle": "100 tekoälykuittiskannausta ja mainokseton käyttö · Ei korttia"
 }

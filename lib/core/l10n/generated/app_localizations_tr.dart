@@ -1731,4 +1731,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Fiş fotoğrafı hazırlanıyor…';
+
+  @override
+  String get homeProPromoTitle => '7 gün ücretsiz Pro deneyin';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 yapay zekâ fiş taraması ve reklamsız kullanım açık · Kart gerekmez';
 }

@@ -1719,4 +1719,11 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'กำลังเตรียมรูปใบเสร็จ…';
+
+  @override
+  String get homeProPromoTitle => 'ทดลองใช้ Pro ฟรี 7 วัน';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'สแกนใบเสร็จ AI 100 ครั้งและไร้โฆษณาเปิดใช้งานแล้ว · ไม่ต้องใช้บัตร';
 }

@@ -1737,4 +1737,11 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Tiek sagatavots čeka fotoattēls…';
+
+  @override
+  String get homeProPromoTitle => 'Izmēģiniet Pro 7 dienas bez maksas';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 MI čeku skenēšanas un bez reklāmām atbloķēts · Karte nav vajadzīga';
 }

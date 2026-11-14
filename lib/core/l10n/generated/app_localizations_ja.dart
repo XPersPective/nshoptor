@@ -1674,4 +1674,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'レシート写真を準備しています…';
+
+  @override
+  String get homeProPromoTitle => 'Proを7日間無料で試す';
+
+  @override
+  String get homeProPromoSubtitle => 'AIレシート読取100回と広告非表示が利用可能 · カード不要';
 }

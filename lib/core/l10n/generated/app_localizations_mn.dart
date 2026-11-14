@@ -1738,4 +1738,11 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Баримтын зургийг бэлдэж байна…';
+
+  @override
+  String get homeProPromoTitle => 'Pro-г 7 хоног үнэгүй туршаарай';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 хиймэл оюуны баримт уншуулах ба зар сурталчилгаагүй · Карт шаардахгүй';
 }

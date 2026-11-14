@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} sidor",
   "receiptPhotosSectionTitle": "Kvittofoton",
   "receiptOpenPhotoHint": "Tryck på ett kvittofoto för att visa i full storlek",
-  "receiptPhotoPreparing": "Förbereder kvittobild…"
+  "receiptPhotoPreparing": "Förbereder kvittobild…",
+  "homeProPromoTitle": "Prova Pro gratis i 7 dagar",
+  "homeProPromoSubtitle": "100 AI-kvittoskanningar & reklamfritt upplåst · Inget kort behövs"
 }

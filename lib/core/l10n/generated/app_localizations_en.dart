@@ -1737,4 +1737,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Preparing receipt photo…';
+
+  @override
+  String get homeProPromoTitle => 'Try Pro free for 7 days';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI receipt scans & ad-free unlocked · No card needed';
 }

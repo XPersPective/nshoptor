@@ -1740,4 +1740,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Przygotowywanie zdjęcia paragonu…';
+
+  @override
+  String get homeProPromoTitle => 'Wypróbuj Pro za darmo przez 7 dni';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 skanów paragonów AI i brak reklam aktywne · Karta niepotrzebna';
 }

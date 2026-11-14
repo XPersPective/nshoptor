@@ -1738,4 +1738,11 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Inaandaa picha ya risiti…';
+
+  @override
+  String get homeProPromoTitle => 'Jaribu Pro bure kwa siku 7';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'Skani 100 za risiti za AI na bila matangazo zimefunguliwa · Hakuna kadi';
 }

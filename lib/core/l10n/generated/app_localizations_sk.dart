@@ -1738,4 +1738,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Pripravuje sa fotografia bločka…';
+
+  @override
+  String get homeProPromoTitle => 'Vyskúšajte Pro na 7 dní zadarmo';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI skenov účteniek a bez reklám odomknuté · Karta nie je potrebná';
 }

@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} பக்கங்கள்",
   "receiptPhotosSectionTitle": "ரசீது படங்கள்",
   "receiptOpenPhotoHint": "முழு அளவில் பார்க்க ஒரு ரசீது படத்தைத் தட்டவும்",
-  "receiptPhotoPreparing": "ரசீது புகைப்படம் தயாராகிறது…"
+  "receiptPhotoPreparing": "ரசீது புகைப்படம் தயாராகிறது…",
+  "homeProPromoTitle": "7 நாட்கள் Pro இலவசமாக முயலுங்கள்",
+  "homeProPromoSubtitle": "100 AI ரசீது ஸ்கேன் & விளம்பரமில்லா அனுபவம் · கார்டு தேவையில்லை"
 }

@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} stron",
   "receiptPhotosSectionTitle": "Zdjęcia paragonów",
   "receiptOpenPhotoHint": "Naciśnij zdjęcie paragonu, aby zobaczyć je w pełnym rozmiarze",
-  "receiptPhotoPreparing": "Przygotowywanie zdjęcia paragonu…"
+  "receiptPhotoPreparing": "Przygotowywanie zdjęcia paragonu…",
+  "homeProPromoTitle": "Wypróbuj Pro za darmo przez 7 dni",
+  "homeProPromoSubtitle": "100 skanów paragonów AI i brak reklam aktywne · Karta niepotrzebna"
 }

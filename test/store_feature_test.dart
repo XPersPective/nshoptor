@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 
 const _locale = String.fromEnvironment('STORE_LOCALE');
 const _localesEnv = String.fromEnvironment('STORE_LOCALES');
@@ -125,7 +126,7 @@ void main() {
               Positioned(
                 left: 425,
                 right: 44,
-                top: 168,
+                top: 136,
                 child: DefaultTextStyle(
                   style: const TextStyle(fontFamily: 'Seg', color: white),
                   child: Column(
@@ -157,6 +158,36 @@ void main() {
                             ),
                           ),
                         ),
+                      const SizedBox(height: 16),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0x3310B981),
+                            borderRadius: BorderRadius.circular(999),
+                            border: Border.all(
+                              color: const Color(0xA6A7F3D0),
+                              width: 1.5,
+                            ),
+                          ),
+                          child: Text(
+                            _promoLabel(loc),
+                            textDirection: rtl
+                                ? TextDirection.rtl
+                                : TextDirection.ltr,
+                            style: const TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.w700,
+                              height: 1.2,
+                              color: Color(0xFFF0FDF4),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -176,4 +207,37 @@ void main() {
       );
     });
   }
+}
+
+String _promoLabel(String loc) {
+  final parts = loc.split(RegExp('[-_]'));
+  final lang = switch (parts.first) {
+    'iw' => 'he',
+    'in' => 'id',
+    'no' => 'nb',
+    final code => code,
+  };
+  final second = parts.length > 1 ? parts[1] : null;
+  final script = second != null && second.length == 4 ? second : null;
+  final country = switch ((parts.length > 1 ? parts.last : null)) {
+    final s? when s.length == 2 || s.length == 3 => s,
+    'CN' => 'CN',
+    'TW' => 'TW',
+    _ => null,
+  };
+  final desired = Locale.fromSubtags(
+    languageCode: lang,
+    scriptCode: script ??
+        switch ((lang, country)) {
+          ('zh', 'TW' || 'HK') => 'Hant',
+          ('zh', 'CN') => 'Hans',
+          _ => null,
+        },
+    countryCode: country,
+  );
+  final resolved = basicLocaleListResolution(
+    [desired],
+    AppLocalizations.supportedLocales,
+  );
+  return lookupAppLocalizations(resolved).homeProPromoTitle;
 }

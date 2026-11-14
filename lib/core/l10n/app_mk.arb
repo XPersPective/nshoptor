@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} страници",
   "receiptPhotosSectionTitle": "Фотографии од сметки",
   "receiptOpenPhotoHint": "Допрете фотографија од сметка за да ја видите во полна големина",
-  "receiptPhotoPreparing": "Се подготвува фотографијата од сметката…"
+  "receiptPhotoPreparing": "Се подготвува фотографијата од сметката…",
+  "homeProPromoTitle": "Пробајте го Pro 7 дена бесплатно",
+  "homeProPromoSubtitle": "100 ВИ скенирања сметки и без реклами отклучено · Без картичка"
 }

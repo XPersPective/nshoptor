@@ -54,6 +54,7 @@ class ListsScreen extends StatefulWidget {
     this.receiptBusy = false,
     this.onDiscover,
     this.planBadge,
+    this.promoCard,
     this.budgetCard,
     this.receiptQueueService,
     this.requestedTab,
@@ -75,6 +76,9 @@ class ListsScreen extends StatefulWidget {
 
   /// Plan simgesi (ana sayfanın üstünde); verilmezse gösterilmez.
   final Widget? planBadge;
+
+  /// Promotional welcome banner (7-day Free Pro) shown while active.
+  final Widget? promoCard;
 
   /// Weekly/monthly budget progress shown above the lists when limits exist.
   final Widget? budgetCard;
@@ -335,46 +339,65 @@ class _ListsScreenState extends State<ListsScreen>
                 ),
               ),
             ),
-            body: Column(
-              children: [
-                ?widget.budgetCard,
-                if (wideToolbar)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
-                    child: Row(
-                      children: [
-                        Expanded(child: searchField),
-                        const SizedBox(width: 8),
-                        ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxWidth: viewportWidth * 0.45,
+            body: LayoutBuilder(
+              builder: (context, bodyBox) {
+                final headerChildren = [
+                  ?widget.promoCard,
+                  ?widget.budgetCard,
+                  if (wideToolbar)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+                      child: Row(
+                        children: [
+                          Expanded(child: searchField),
+                          const SizedBox(width: 8),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxWidth: viewportWidth * 0.45,
+                            ),
+                            child: sortButton,
                           ),
-                          child: sortButton,
-                        ),
-                      ],
-                    ),
-                  )
-                else ...[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                    child: searchField,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 2, 12, 2),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Flexible(child: sortButton),
-                        if (!helpInAppBar) ...[
-                          const SizedBox(width: 4),
-                          helpButton,
                         ],
-                      ],
+                      ),
+                    )
+                  else ...[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      child: searchField,
                     ),
-                  ),
-                ],
-                Expanded(
-                  child: TabBarView(
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 2, 12, 2),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Flexible(child: sortButton),
+                          if (!helpInAppBar) ...[
+                            const SizedBox(width: 4),
+                            helpButton,
+                          ],
+                        ],
+                      ),
+                    ),
+                  ],
+                ];
+                final maxHeaderHeight = (bodyBox.maxHeight - 80).clamp(
+                  0.0,
+                  bodyBox.maxHeight,
+                );
+                return Column(
+                  children: [
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxHeight: maxHeaderHeight),
+                      child: SingleChildScrollView(
+                        primary: false,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: headerChildren,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: TabBarView(
                     controller: _tabController,
                     children: [
                       _ListsTab(
@@ -449,7 +472,9 @@ class _ListsScreenState extends State<ListsScreen>
                     ],
                   ),
                 ),
-              ],
+                  ],
+                );
+              },
             ),
             bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
                 ? null

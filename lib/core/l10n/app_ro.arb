@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} pagini",
   "receiptPhotosSectionTitle": "Fotografii cu chitanțe",
   "receiptOpenPhotoHint": "Atinge o fotografie cu chitanța pentru a o vedea pe tot ecranul",
-  "receiptPhotoPreparing": "Se pregătește fotografia bonului…"
+  "receiptPhotoPreparing": "Se pregătește fotografia bonului…",
+  "homeProPromoTitle": "Încearcă Pro gratuit 7 zile",
+  "homeProPromoSubtitle": "100 scanări AI de bonuri și fără reclame active · Nu necesită card"
 }

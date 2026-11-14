@@ -1740,4 +1740,11 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Подготвяне на снимката на бона…';
+
+  @override
+  String get homeProPromoTitle => 'Изпробвайте Pro безплатно за 7 дни';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ИИ сканирания на бележки и без реклами отключено · Без карта';
 }

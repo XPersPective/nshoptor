@@ -1734,4 +1734,11 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'ರಸೀದಿ ಫೋಟೋ ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get homeProPromoTitle => '7 ದಿನಗಳು Pro ಉಚಿತವಾಗಿ ಪ್ರಯತ್ನಿಸಿ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI ರಸೀದಿ ಸ್ಕ್ಯಾನ್ ಮತ್ತು ಜಾಹೀರಾತು-ರಹಿತ ಲಭ್ಯ · ಕಾರ್ಡ್ ಬೇಡ';
 }

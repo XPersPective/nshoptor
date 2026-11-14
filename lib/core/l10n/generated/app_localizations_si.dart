@@ -1732,4 +1732,11 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'රිසිට්පත් ඡායාරූපය සූදානම් කරමින්…';
+
+  @override
+  String get homeProPromoTitle => 'දින 7ක් Pro නොමිලේ අත්හදා බලන්න';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'AI රිසිට්පත් ස්කෑන් 100ක් හා දැන්වීම් රහිතව විවෘතයි · කාඩ් අවශ්‍ය නැත';
 }

@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} orrialde",
   "receiptPhotosSectionTitle": "Errekiburu argazkiak",
   "receiptOpenPhotoHint": "Ukitu errekiburu baten argazkia tamaina osoan ikusteko",
-  "receiptPhotoPreparing": "Ordainagiriaren argazkia prestatzen…"
+  "receiptPhotoPreparing": "Ordainagiriaren argazkia prestatzen…",
+  "homeProPromoTitle": "Probatu Pro doan 7 egunez",
+  "homeProPromoSubtitle": "100 AA ordainagiri-eskaneatze eta iragarkirik gabe · Txartelik gabe"
 }

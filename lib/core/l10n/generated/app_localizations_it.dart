@@ -1740,4 +1740,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Preparazione foto scontrino…';
+
+  @override
+  String get homeProPromoTitle => 'Prova Pro gratis per 7 giorni';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 scansioni scontrini IA e zero pubblicità attive · Nessuna carta';
 }

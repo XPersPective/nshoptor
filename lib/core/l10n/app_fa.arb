@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} صفحه",
   "receiptPhotosSectionTitle": "عکس‌های رسید",
   "receiptOpenPhotoHint": "برای مشاهده در اندازه بزرگ، روی عکس رسید ضربه بزنید",
-  "receiptPhotoPreparing": "در حال آماده‌سازی تصویر رسید…"
+  "receiptPhotoPreparing": "در حال آماده‌سازی تصویر رسید…",
+  "homeProPromoTitle": "۷ روز Pro را رایگان امتحان کنید",
+  "homeProPromoSubtitle": "۱۰۰ اسکن رسید هوش مصنوعی و بدون تبلیغات فعال شد · بدون نیاز به کارت"
 }

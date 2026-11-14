@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} pages",
   "receiptPhotosSectionTitle": "Photos des reçus",
   "receiptOpenPhotoHint": "Appuyez sur une photo de reçu pour l'afficher en taille réelle",
-  "receiptPhotoPreparing": "Préparation de la photo du reçu…"
+  "receiptPhotoPreparing": "Préparation de la photo du reçu…",
+  "homeProPromoTitle": "Essayez Pro gratuitement 7 jours",
+  "homeProPromoSubtitle": "100 scans de tickets par IA et sans pub débloqués · Sans carte"
 }

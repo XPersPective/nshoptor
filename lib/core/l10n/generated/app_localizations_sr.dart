@@ -1737,4 +1737,11 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Припрема фотографије рачуна…';
+
+  @override
+  String get homeProPromoTitle => 'Испробајте Pro бесплатно 7 дана';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 АИ скенирања рачуна и без реклама откључано · Картица није потребна';
 }

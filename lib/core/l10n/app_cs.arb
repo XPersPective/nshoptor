@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} stran",
   "receiptPhotosSectionTitle": "Fotografie účtenek",
   "receiptOpenPhotoHint": "Klepnutím na fotografii účtenky zobrazíte její plnou velikost",
-  "receiptPhotoPreparing": "Připravuje se fotka účtenky…"
+  "receiptPhotoPreparing": "Připravuje se fotka účtenky…",
+  "homeProPromoTitle": "Vyzkoušejte Pro na 7 dní zdarma",
+  "homeProPromoSubtitle": "100 AI skenů účtenek a bez reklam odemčeno · Karta není potřeba"
 }

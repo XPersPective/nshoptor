@@ -1727,4 +1727,11 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'در حال آماده‌سازی تصویر رسید…';
+
+  @override
+  String get homeProPromoTitle => '۷ روز Pro را رایگان امتحان کنید';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '۱۰۰ اسکن رسید هوش مصنوعی و بدون تبلیغات فعال شد · بدون نیاز به کارت';
 }

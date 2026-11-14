@@ -1728,4 +1728,11 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'पावतीचा फोटो तयार होत आहे…';
+
+  @override
+  String get homeProPromoTitle => '7 दिवस Pro मोफत वापरून पहा';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI पावती स्कॅन आणि जाहिरातमुक्त अनुभव सुरू · कार्डची गरज नाही';
 }

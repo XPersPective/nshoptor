@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} ໜ້າ",
   "receiptPhotosSectionTitle": "ຮູບພາບໃບເກັບເງິນ",
   "receiptOpenPhotoHint": "ກົດຮູບພາບໃບເກັບເງິນເພື່ອເບິ່ງຂະໜາດເຕັມ",
-  "receiptPhotoPreparing": "ກຳລັງກະກຽມຮູບໃບຮັບເງິນ…"
+  "receiptPhotoPreparing": "ກຳລັງກະກຽມຮູບໃບຮັບເງິນ…",
+  "homeProPromoTitle": "ທົດລອງໃຊ້ Pro ຟຣີ 7 ມື້",
+  "homeProPromoSubtitle": "ສະແກນໃບບິນ AI 100 ຄັ້ງ ແລະ ບໍ່ມີໂຄສະນາ · ບໍ່ຕ້ອງໃສ່ບັດ"
 }

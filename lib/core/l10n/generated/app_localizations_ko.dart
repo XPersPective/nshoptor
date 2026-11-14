@@ -1678,4 +1678,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => '영수증 사진을 준비하는 중…';
+
+  @override
+  String get homeProPromoTitle => 'Pro 7일 무료 체험하기';
+
+  @override
+  String get homeProPromoSubtitle => 'AI 영수증 스캔 100회 및 광고 제거 사용 가능 · 카드 등록 불필요';
 }

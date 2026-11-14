@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} хуудас",
   "receiptPhotosSectionTitle": "Баримт барын зурагнууд",
   "receiptOpenPhotoHint": "Бүтэн хэмжээгээр харахын тулд баримт барын зургийг товшино уу",
-  "receiptPhotoPreparing": "Баримтын зургийг бэлдэж байна…"
+  "receiptPhotoPreparing": "Баримтын зургийг бэлдэж байна…",
+  "homeProPromoTitle": "Pro-г 7 хоног үнэгүй туршаарай",
+  "homeProPromoSubtitle": "100 хиймэл оюуны баримт уншуулах ба зар сурталчилгаагүй · Карт шаардахгүй"
 }

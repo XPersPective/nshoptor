@@ -1746,4 +1746,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Préparation de la photo du reçu…';
+
+  @override
+  String get homeProPromoTitle => 'Essayez Pro gratuitement 7 jours';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 scans de tickets par IA et sans pub débloqués · Sans carte';
 }

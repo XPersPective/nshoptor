@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} lehekülge",
   "receiptPhotosSectionTitle": "Kviidi pildid",
   "receiptOpenPhotoHint": "Täissuuruses kuvamiseks puuduta kvidi pilti",
-  "receiptPhotoPreparing": "Tšeki foto ettevalmistamine…"
+  "receiptPhotoPreparing": "Tšeki foto ettevalmistamine…",
+  "homeProPromoTitle": "Proovi Pro-d 7 päeva tasuta",
+  "homeProPromoSubtitle": "100 tehisaru tšekiskannimist ja reklaamivaba kasutus · Kaarti pole vaja"
 }

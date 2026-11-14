@@ -1736,4 +1736,11 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Menyediakan foto resit…';
+
+  @override
+  String get homeProPromoTitle => 'Cuba Pro percuma selama 7 hari';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 imbasan resit AI & bebas iklan dibuka · Tiada kad diperlukan';
 }

@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} páginas",
   "receiptPhotosSectionTitle": "Fotos del recibo",
   "receiptOpenPhotoHint": "Toca una foto del recibo para verla en tamaño completo",
-  "receiptPhotoPreparing": "Preparando foto del recibo…"
+  "receiptPhotoPreparing": "Preparando foto del recibo…",
+  "homeProPromoTitle": "Prueba Pro gratis 7 días",
+  "homeProPromoSubtitle": "100 escaneos de tickets con IA y sin anuncios activos · Sin tarjeta"
 }

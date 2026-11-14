@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} עמודים",
   "receiptPhotosSectionTitle": "תמונות קבלה",
   "receiptOpenPhotoHint": "לחץ על תמונת קבלה כדי לצפות בגודל מלא",
-  "receiptPhotoPreparing": "מכין את תמונת הקבלה…"
+  "receiptPhotoPreparing": "מכין את תמונת הקבלה…",
+  "homeProPromoTitle": "נסו את Pro חינם ל-7 ימים",
+  "homeProPromoSubtitle": "100 סריקות קבלות ב-AI וללא פרסומות פתוח · ללא צורך בכרטיס"
 }

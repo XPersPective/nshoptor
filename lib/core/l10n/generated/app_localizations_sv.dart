@@ -1731,4 +1731,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Förbereder kvittobild…';
+
+  @override
+  String get homeProPromoTitle => 'Prova Pro gratis i 7 dagar';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI-kvittoskanningar & reklamfritt upplåst · Inget kort behövs';
 }

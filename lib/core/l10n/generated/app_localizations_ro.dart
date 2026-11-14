@@ -1745,4 +1745,11 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Se pregătește fotografia bonului…';
+
+  @override
+  String get homeProPromoTitle => 'Încearcă Pro gratuit 7 zile';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 scanări AI de bonuri și fără reclame active · Nu necesită card';
 }

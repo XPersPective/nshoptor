@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} бет",
   "receiptPhotosSectionTitle": "Чек фотосуреттері",
   "receiptOpenPhotoHint": "Толық өлшемде көру үшін чек фотосуретін басыңыз",
-  "receiptPhotoPreparing": "Түбіртек суреті дайындалуда…"
+  "receiptPhotoPreparing": "Түбіртек суреті дайындалуда…",
+  "homeProPromoTitle": "Pro нұсқасын 7 күн тегін көріңіз",
+  "homeProPromoSubtitle": "100 ЖИ түбіртек сканерлеу және жарнамасыз қолдану · Карта қажет емес"
 }

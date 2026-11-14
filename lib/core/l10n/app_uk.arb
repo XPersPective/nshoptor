@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} стор.",
   "receiptPhotosSectionTitle": "Фото чеків",
   "receiptOpenPhotoHint": "Натисніть на фото чека, щоб переглянути у повному розмірі",
-  "receiptPhotoPreparing": "Підготовка фото чека…"
+  "receiptPhotoPreparing": "Підготовка фото чека…",
+  "homeProPromoTitle": "Спробуйте Pro 7 днів безкоштовно",
+  "homeProPromoSubtitle": "100 ШІ-сканів чеків і без реклами відкрито · Картка не потрібна"
 }

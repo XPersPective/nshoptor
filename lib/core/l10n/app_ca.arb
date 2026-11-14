@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} pàgines",
   "receiptPhotosSectionTitle": "Fotos dels rebuts",
   "receiptOpenPhotoHint": "Toca una foto del rebut per veure-la a mida completa",
-  "receiptPhotoPreparing": "Preparant la foto del rebut…"
+  "receiptPhotoPreparing": "Preparant la foto del rebut…",
+  "homeProPromoTitle": "Prova Pro gratis durant 7 dies",
+  "homeProPromoSubtitle": "100 escaneigs de tiquets amb IA i sense anuncis activats · Sense targeta"
 }

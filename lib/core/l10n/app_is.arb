@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} síður",
   "receiptPhotosSectionTitle": "Ljósmyndir af kvittningum",
   "receiptOpenPhotoHint": "Smelltu á ljósmynd af kvittningu til að sjá hana í fullri stærð",
-  "receiptPhotoPreparing": "Undirbýr kvittunarmynd…"
+  "receiptPhotoPreparing": "Undirbýr kvittunarmynd…",
+  "homeProPromoTitle": "Prófaðu Pro ókeypis í 7 daga",
+  "homeProPromoSubtitle": "100 gervigreindarskannanir & auglýsingalaust opið · Ekkert kort þarf"
 }

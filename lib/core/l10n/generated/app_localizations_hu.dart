@@ -1737,4 +1737,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Nyugtafotó előkészítése…';
+
+  @override
+  String get homeProPromoTitle => 'Próbálja ki a Pro-t 7 napig ingyen';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI blokkszkennelés és reklámmentesség feloldva · Kártya nem kell';
 }

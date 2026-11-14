@@ -1740,4 +1740,11 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Պատրաստվում է կտրոնի լուսանկարը…';
+
+  @override
+  String get homeProPromoTitle => 'Փորձեք Pro-ն 7 օր անվճար';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'ԱԲ-ով 100 կտրոնի սկան և առանց գովազդի ռեժիմ · Քարտ պետք չէ';
 }

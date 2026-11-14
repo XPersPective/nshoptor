@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} หน้า",
   "receiptPhotosSectionTitle": "รูปภาพใบเสร็จ",
   "receiptOpenPhotoHint": "แตะรูปภาพใบเสร็จเพื่อดูขนาดเต็ม",
-  "receiptPhotoPreparing": "กำลังเตรียมรูปใบเสร็จ…"
+  "receiptPhotoPreparing": "กำลังเตรียมรูปใบเสร็จ…",
+  "homeProPromoTitle": "ทดลองใช้ Pro ฟรี 7 วัน",
+  "homeProPromoSubtitle": "สแกนใบเสร็จ AI 100 ครั้งและไร้โฆษณาเปิดใช้งานแล้ว · ไม่ต้องใช้บัตร"
 }

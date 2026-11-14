@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} စာမျက်နှာ",
   "receiptPhotosSectionTitle": "ခြေရာခံ ဓာတ်ပုံများ",
   "receiptOpenPhotoHint": "ခြေရာခံ ဓာတ်ပုံကို နှိပ်၍ အရွယ်အစားကြီးဖြင့် ကြည့်ရှုပါ",
-  "receiptPhotoPreparing": "ပြေစာဓာတ်ပုံကို ပြင်ဆင်နေသည်…"
+  "receiptPhotoPreparing": "ပြေစာဓာတ်ပုံကို ပြင်ဆင်နေသည်…",
+  "homeProPromoTitle": "Pro ကို ၇ ရက် အခမဲ့ စမ်းသုံးကြည့်ပါ",
+  "homeProPromoSubtitle": "AI ဘောက်ချာစကင် ၁၀၀ ကြိမ်နှင့် ကြော်ငြာမဲ့အသုံးပြုမှု · ကတ်မလိုပါ"
 }

@@ -1735,4 +1735,11 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Valmistellaan kuitin kuvaa…';
+
+  @override
+  String get homeProPromoTitle => 'Kokeile Prota 7 päivää ilmaiseksi';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 tekoälykuittiskannausta ja mainokseton käyttö · Ei korttia';
 }

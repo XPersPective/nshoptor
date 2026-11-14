@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} trang",
   "receiptPhotosSectionTitle": "Ảnh hóa đơn",
   "receiptOpenPhotoHint": "Nhấn vào ảnh hóa đơn để xem toàn màn hình",
-  "receiptPhotoPreparing": "Đang chuẩn bị ảnh hóa đơn…"
+  "receiptPhotoPreparing": "Đang chuẩn bị ảnh hóa đơn…",
+  "homeProPromoTitle": "Dùng thử Pro miễn phí 7 ngày",
+  "homeProPromoSubtitle": "Mở khóa 100 lượt quét hóa đơn AI & không quảng cáo · Không cần thẻ"
 }

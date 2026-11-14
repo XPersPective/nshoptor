@@ -1732,4 +1732,11 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Түбіртек суреті дайындалуда…';
+
+  @override
+  String get homeProPromoTitle => 'Pro нұсқасын 7 күн тегін көріңіз';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ЖИ түбіртек сканерлеу және жарнамасыз қолдану · Карта қажет емес';
 }

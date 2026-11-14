@@ -1739,4 +1739,11 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Підготовка фото чека…';
+
+  @override
+  String get homeProPromoTitle => 'Спробуйте Pro 7 днів безкоштовно';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ШІ-сканів чеків і без реклами відкрито · Картка не потрібна';
 }

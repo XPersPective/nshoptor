@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} पृष्ठहरू",
   "receiptPhotosSectionTitle": "रसिद तस्बिरहरू",
   "receiptOpenPhotoHint": "पूर्ण आकार हेर्न रसिद तस्बिर ट्याप गर्नुहोस्",
-  "receiptPhotoPreparing": "रसिदको फोटो तयार हुँदैछ…"
+  "receiptPhotoPreparing": "रसिदको फोटो तयार हुँदैछ…",
+  "homeProPromoTitle": "७ दिन Pro निःशुल्क चलाएर हेर्नुहोस्",
+  "homeProPromoSubtitle": "१०० AI रसिद स्क्यान र विज्ञापनरहित सुविधा खुल्यो · कार्ड चाहिँदैन"
 }

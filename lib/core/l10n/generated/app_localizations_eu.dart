@@ -1742,4 +1742,11 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Ordainagiriaren argazkia prestatzen…';
+
+  @override
+  String get homeProPromoTitle => 'Probatu Pro doan 7 egunez';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AA ordainagiri-eskaneatze eta iragarkirik gabe · Txartelik gabe';
 }

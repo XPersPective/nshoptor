@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} páginas",
   "receiptPhotosSectionTitle": "Fotos dos recibos",
   "receiptOpenPhotoHint": "Toque na foto do recibo para ver em tamanho completo",
-  "receiptPhotoPreparing": "A preparar a foto do recibo…"
+  "receiptPhotoPreparing": "A preparar a foto do recibo…",
+  "homeProPromoTitle": "Experimente o Pro grátis por 7 dias",
+  "homeProPromoSubtitle": "100 leituras de recibos com IA e sem anúncios ativos · Sem cartão"
 }

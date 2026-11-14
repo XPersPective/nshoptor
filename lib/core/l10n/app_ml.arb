@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} പേജുകൾ",
   "receiptPhotosSectionTitle": "റിസീറ്റ് ഫോട്ടോകൾ",
   "receiptOpenPhotoHint": "പൂർണ്ണ വലിപ്പത്തിൽ കാണാൻ ഒരു റിസീറ്റ് ഫോട്ടോ ടാപ്പ് ചെയ്യുക",
-  "receiptPhotoPreparing": "രസീത് ഫോട്ടോ തയ്യാറാക്കുന്നു…"
+  "receiptPhotoPreparing": "രസീത് ഫോട്ടോ തയ്യാറാക്കുന്നു…",
+  "homeProPromoTitle": "7 ദിവസം Pro സൗജന്യമായി പരീക്ഷിക്കൂ",
+  "homeProPromoSubtitle": "100 AI രസീത് സ്കാനും പരസ്യരഹിത ഉപയോഗവും തുറന്നു · കാർഡ് വേണ്ട"
 }

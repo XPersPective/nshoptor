@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count}페이지",
   "receiptPhotosSectionTitle": "영수증 사진",
   "receiptOpenPhotoHint": "전체 크기로 보려면 영수증 사진을 탭하세요",
-  "receiptPhotoPreparing": "영수증 사진을 준비하는 중…"
+  "receiptPhotoPreparing": "영수증 사진을 준비하는 중…",
+  "homeProPromoTitle": "Pro 7일 무료 체험하기",
+  "homeProPromoSubtitle": "AI 영수증 스캔 100회 및 광고 제거 사용 가능 · 카드 등록 불필요"
 }

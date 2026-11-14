@@ -1734,4 +1734,11 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Připravuje se fotka účtenky…';
+
+  @override
+  String get homeProPromoTitle => 'Vyzkoušejte Pro na 7 dní zdarma';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI skenů účtenek a bez reklam odemčeno · Karta není potřeba';
 }

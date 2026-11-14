@@ -1728,4 +1728,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Đang chuẩn bị ảnh hóa đơn…';
+
+  @override
+  String get homeProPromoTitle => 'Dùng thử Pro miễn phí 7 ngày';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'Mở khóa 100 lượt quét hóa đơn AI & không quảng cáo · Không cần thẻ';
 }

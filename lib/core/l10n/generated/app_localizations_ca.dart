@@ -1742,4 +1742,11 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Preparant la foto del rebut…';
+
+  @override
+  String get homeProPromoTitle => 'Prova Pro gratis durant 7 dies';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 escaneigs de tiquets amb IA i sense anuncis activats · Sense targeta';
 }

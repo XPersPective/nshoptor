@@ -1736,4 +1736,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'रसीद की फ़ोटो तैयार की जा रही है…';
+
+  @override
+  String get homeProPromoTitle => '7 दिन Pro मुफ़्त आज़माएँ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI रसीद स्कैन और विज्ञापन-मुक्त अनुभव चालू · कार्ड की ज़रूरत नहीं';
 }

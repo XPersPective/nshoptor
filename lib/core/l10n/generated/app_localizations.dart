@@ -3409,6 +3409,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Preparing receipt photo…'**
   String get receiptPhotoPreparing;
+
+  /// No description provided for @homeProPromoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Pro free for 7 days'**
+  String get homeProPromoTitle;
+
+  /// No description provided for @homeProPromoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'100 AI receipt scans & ad-free unlocked · No card needed'**
+  String get homeProPromoSubtitle;
 }
 
 class _AppLocalizationsDelegate

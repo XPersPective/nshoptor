@@ -1736,4 +1736,11 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Çek şəkli hazırlanır…';
+
+  @override
+  String get homeProPromoTitle => 'Pro-nu 7 gün pulsuz sınayın';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 süni intellekt çek oxuması və reklamsız istifadə açıq · Kart lazım deyil';
 }

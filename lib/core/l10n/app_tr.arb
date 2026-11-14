@@ -549,5 +549,7 @@
   "receiptTrayPagesLabel": "{count} sayfa",
   "receiptPhotosSectionTitle": "Fiş görselleri",
   "receiptOpenPhotoHint": "Büyütmek için fiş görseline dokunun",
-  "receiptPhotoPreparing": "Fiş fotoğrafı hazırlanıyor…"
+  "receiptPhotoPreparing": "Fiş fotoğrafı hazırlanıyor…",
+  "homeProPromoTitle": "7 gün ücretsiz Pro deneyin",
+  "homeProPromoSubtitle": "100 yapay zekâ fiş taraması ve reklamsız kullanım açık · Kart gerekmez"
 }

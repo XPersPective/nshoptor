@@ -1741,4 +1741,11 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Падрыхтоўка фота чэка…';
+
+  @override
+  String get homeProPromoTitle => 'Паспрабуйце Pro 7 дзён бясплатна';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ШІ-сканаванняў чэкаў і без рэкламы адкрыта · Картка не патрэбна';
 }

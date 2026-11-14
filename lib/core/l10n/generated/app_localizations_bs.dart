@@ -1737,4 +1737,11 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Priprema fotografije računa…';
+
+  @override
+  String get homeProPromoTitle => 'Isprobajte Pro besplatno 7 dana';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI skeniranja računa i bez reklama otključano · Kartica nije potrebna';
 }

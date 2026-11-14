@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} sider",
   "receiptPhotosSectionTitle": "Kvitteringsfotos",
   "receiptOpenPhotoHint": "Tryk på et kvitteringsfoto for at se det i fuld størrelse",
-  "receiptPhotoPreparing": "Klargør kvitteringsbillede…"
+  "receiptPhotoPreparing": "Klargør kvitteringsbillede…",
+  "homeProPromoTitle": "Prøv Pro gratis i 7 dage",
+  "homeProPromoSubtitle": "100 AI-kvitteringsscan & reklamefri låst op · Intet kort kræves"
 }

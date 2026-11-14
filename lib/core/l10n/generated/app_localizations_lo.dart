@@ -1720,4 +1720,11 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'ກຳລັງກະກຽມຮູບໃບຮັບເງິນ…';
+
+  @override
+  String get homeProPromoTitle => 'ທົດລອງໃຊ້ Pro ຟຣີ 7 ມື້';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'ສະແກນໃບບິນ AI 100 ຄັ້ງ ແລະ ບໍ່ມີໂຄສະນາ · ບໍ່ຕ້ອງໃສ່ບັດ';
 }

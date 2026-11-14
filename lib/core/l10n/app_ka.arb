@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} გვერდი",
   "receiptPhotosSectionTitle": "ჩეკების ფოტოები",
   "receiptOpenPhotoHint": "სრულ ზომასთან გასახილად, შეეხეთ ჩეკის ფოტოს",
-  "receiptPhotoPreparing": "ქვითრის ფოტო მზადდება…"
+  "receiptPhotoPreparing": "ქვითრის ფოტო მზადდება…",
+  "homeProPromoTitle": "სცადეთ Pro 7 დღე უფასოდ",
+  "homeProPromoSubtitle": "100 AI ქვითრის სკანირება და რეკლამის გარეშე · ბარათი არ სჭირდება"
 }

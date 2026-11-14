@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count}ページ",
   "receiptPhotosSectionTitle": "レシートの写真",
   "receiptOpenPhotoHint": "レシートの写真をタップしてフルサイズで表示",
-  "receiptPhotoPreparing": "レシート写真を準備しています…"
+  "receiptPhotoPreparing": "レシート写真を準備しています…",
+  "homeProPromoTitle": "Proを7日間無料で試す",
+  "homeProPromoSubtitle": "AIレシート読取100回と広告非表示が利用可能 · カード不要"
 }

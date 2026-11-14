@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} faqe",
   "receiptPhotosSectionTitle": "Fotografitë e faturave",
   "receiptOpenPhotoHint": "Prek një foto fature për ta parë në madhësi të plotë",
-  "receiptPhotoPreparing": "Po përgatitet fotoja e faturës…"
+  "receiptPhotoPreparing": "Po përgatitet fotoja e faturës…",
+  "homeProPromoTitle": "Provo Pro falas për 7 ditë",
+  "homeProPromoSubtitle": "100 skanime fature me IA dhe pa reklama të hapura · Pa kartë"
 }

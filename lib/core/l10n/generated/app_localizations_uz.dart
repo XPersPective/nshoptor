@@ -1742,4 +1742,11 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Chek rasmi tayyorlanmoqda…';
+
+  @override
+  String get homeProPromoTitle => 'Pro’ni 7 kun bepul sinab ko‘ring';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ta SI chek skanerlash va reklamasiz rejim ochiq · Karta kerak emas';
 }

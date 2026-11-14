@@ -1733,4 +1733,11 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'രസീത് ഫോട്ടോ തയ്യാറാക്കുന്നു…';
+
+  @override
+  String get homeProPromoTitle => '7 ദിവസം Pro സൗജന്യമായി പരീക്ഷിക്കൂ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI രസീത് സ്കാനും പരസ്യരഹിത ഉപയോഗവും തുറന്നു · കാർഡ് വേണ്ട';
 }

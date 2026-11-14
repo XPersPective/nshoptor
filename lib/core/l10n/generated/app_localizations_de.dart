@@ -1740,4 +1740,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Belegfoto wird vorbereitet…';
+
+  @override
+  String get homeProPromoTitle => 'Pro 7 Tage kostenlos testen';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 KI-Bon-Scans & werbefrei freigeschaltet · Keine Karte nötig';
 }

@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} էջ",
   "receiptPhotosSectionTitle": "Թղթերի լուսանկարներ",
   "receiptOpenPhotoHint": "Սեղմեք թղթի լուսանկարը՝ լրիվ չափով դիտելու համար",
-  "receiptPhotoPreparing": "Պատրաստվում է կտրոնի լուսանկարը…"
+  "receiptPhotoPreparing": "Պատրաստվում է կտրոնի լուսանկարը…",
+  "homeProPromoTitle": "Փորձեք Pro-ն 7 օր անվճար",
+  "homeProPromoSubtitle": "ԱԲ-ով 100 կտրոնի սկան և առանց գովազդի ռեժիմ · Քարտ պետք չէ"
 }

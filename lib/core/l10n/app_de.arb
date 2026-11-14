@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} Seiten",
   "receiptPhotosSectionTitle": "Quittungsfotos",
   "receiptOpenPhotoHint": "Tippe auf ein Quittungsfoto, um es in voller Größe anzusehen",
-  "receiptPhotoPreparing": "Belegfoto wird vorbereitet…"
+  "receiptPhotoPreparing": "Belegfoto wird vorbereitet…",
+  "homeProPromoTitle": "Pro 7 Tage kostenlos testen",
+  "homeProPromoSubtitle": "100 KI-Bon-Scans & werbefrei freigeschaltet · Keine Karte nötig"
 }

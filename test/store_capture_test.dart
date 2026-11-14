@@ -20,6 +20,7 @@ import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/core/money/locale_conventions.dart';
 import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:nshoptor/features/settings/settings_repository.dart';
+import 'package:nshoptor/features/subscription/subscription_service.dart';
 
 const _locale = String.fromEnvironment('STORE_LOCALE');
 const _localesEnv = String.fromEnvironment('STORE_LOCALES');
@@ -384,7 +385,15 @@ void main() {
           }
         });
 
-        await tester.pumpWidget(NShoptorApp(db: db, fixedLocale: Locale(loc)));
+        final subs = SubscriptionService(store: store)..initializeTrial();
+        await tester.pumpWidget(
+          NShoptorApp(
+            db: db,
+            fixedLocale: Locale(loc),
+            appsCacheStore: store,
+            subscriptions: subs,
+          ),
+        );
         await settle(tester);
 
         // Görüntüler son üçlü ana akışı gösterir. Örnek veriler doğrudan Drift'e
@@ -538,6 +547,7 @@ void main() {
         await shot(tester, '08'); // Ürün ekleme formu
 
         await tester.pumpWidget(const SizedBox.shrink());
+        subs.dispose();
         final closing = db.close();
         await tester.pump(const Duration(milliseconds: 1));
         await closing;

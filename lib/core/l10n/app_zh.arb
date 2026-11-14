@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count}页",
   "receiptPhotosSectionTitle": "收据照片",
   "receiptOpenPhotoHint": "点击收据照片可查看大图",
-  "receiptPhotoPreparing": "正在准备小票照片…"
+  "receiptPhotoPreparing": "正在准备小票照片…",
+  "homeProPromoTitle": "免费试用 Pro 7 天",
+  "homeProPromoSubtitle": "已解锁 100 次 AI 小票识别与无广告体验 · 无需绑卡"
 }

@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} oldal",
   "receiptPhotosSectionTitle": "Számlafotók",
   "receiptOpenPhotoHint": "Koppints egy számlafotóra a teljes méretű megtekintéshez",
-  "receiptPhotoPreparing": "Nyugtafotó előkészítése…"
+  "receiptPhotoPreparing": "Nyugtafotó előkészítése…",
+  "homeProPromoTitle": "Próbálja ki a Pro-t 7 napig ingyen",
+  "homeProPromoSubtitle": "100 AI blokkszkennelés és reklámmentesség feloldva · Kártya nem kell"
 }

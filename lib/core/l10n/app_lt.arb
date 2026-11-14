@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} puslapiai",
   "receiptPhotosSectionTitle": "Kvitų nuotraukos",
   "receiptOpenPhotoHint": "Spustelėkite kvito nuotrauką, kad pamatytumėte pilno dydžio",
-  "receiptPhotoPreparing": "Ruošiama kvito nuotrauka…"
+  "receiptPhotoPreparing": "Ruošiama kvito nuotrauka…",
+  "homeProPromoTitle": "Išbandykite „Pro“ 7 dienas nemokamai",
+  "homeProPromoSubtitle": "100 DI kvitų nuskaitymų ir be reklamų atrakinta · Kortelės nereikia"
 }

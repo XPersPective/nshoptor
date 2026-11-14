@@ -1744,4 +1744,11 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Inihahanda ang larawan ng resibo…';
+
+  @override
+  String get homeProPromoTitle => 'Subukan ang Pro nang libre sa 7 araw';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI scan ng resibo at walang ad na bukas · Walang kailangang card';
 }

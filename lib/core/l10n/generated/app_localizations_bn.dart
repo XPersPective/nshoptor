@@ -1727,4 +1727,11 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'রসিদের ছবি প্রস্তুত করা হচ্ছে…';
+
+  @override
+  String get homeProPromoTitle => '৭ দিন বিনামূল্যে Pro ব্যবহার করুন';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '১০০টি AI রসিদ স্ক্যান ও বিজ্ঞাপনমুক্ত সুবিধা চালু · কার্ড লাগবে না';
 }

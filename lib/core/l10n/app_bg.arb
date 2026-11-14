@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} страници",
   "receiptPhotosSectionTitle": "Снимки на разписки",
   "receiptOpenPhotoHint": "Докоснете снимка на разписка, за да я видите на цял екран",
-  "receiptPhotoPreparing": "Подготвяне на снимката на бона…"
+  "receiptPhotoPreparing": "Подготвяне на снимката на бона…",
+  "homeProPromoTitle": "Изпробвайте Pro безплатно за 7 дни",
+  "homeProPromoSubtitle": "100 ИИ сканирания на бележки и без реклами отключено · Без карта"
 }

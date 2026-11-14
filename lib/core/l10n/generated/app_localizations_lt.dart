@@ -1743,4 +1743,11 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Ruošiama kvito nuotrauka…';
+
+  @override
+  String get homeProPromoTitle => 'Išbandykite „Pro“ 7 dienas nemokamai';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 DI kvitų nuskaitymų ir be reklamų atrakinta · Kortelės nereikia';
 }

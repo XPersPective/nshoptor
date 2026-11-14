@@ -1732,4 +1732,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Menyiapkan foto struk…';
+
+  @override
+  String get homeProPromoTitle => 'Coba Pro gratis 7 hari';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 pindai struk AI & bebas iklan terbuka · Tanpa kartu kredit';
 }

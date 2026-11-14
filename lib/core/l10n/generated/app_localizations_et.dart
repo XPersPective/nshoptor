@@ -1732,4 +1732,11 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Tšeki foto ettevalmistamine…';
+
+  @override
+  String get homeProPromoTitle => 'Proovi Pro-d 7 päeva tasuta';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 tehisaru tšekiskannimist ja reklaamivaba kasutus · Kaarti pole vaja';
 }

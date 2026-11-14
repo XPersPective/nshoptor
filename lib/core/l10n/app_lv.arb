@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} lapas",
   "receiptPhotosSectionTitle": "Čeku fotogrāfijas",
   "receiptOpenPhotoHint": "Pieskarieties čeka fotogrāfijai, lai skatītu pilnizmēra attēlu",
-  "receiptPhotoPreparing": "Tiek sagatavots čeka fotoattēls…"
+  "receiptPhotoPreparing": "Tiek sagatavots čeka fotoattēls…",
+  "homeProPromoTitle": "Izmēģiniet Pro 7 dienas bez maksas",
+  "homeProPromoSubtitle": "100 MI čeku skenēšanas un bez reklāmām atbloķēts · Karte nav vajadzīga"
 }

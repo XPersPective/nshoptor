@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} పేజీలు",
   "receiptPhotosSectionTitle": "రసీదు ఫోటోలు",
   "receiptOpenPhotoHint": "పూర్తి పరిమాణంలో చూడటానికి రసీదు ఫోటోను ట్యాప్ చేయండి",
-  "receiptPhotoPreparing": "రసీదు ఫోటో సిద్ధమవుతోంది…"
+  "receiptPhotoPreparing": "రసీదు ఫోటో సిద్ధమవుతోంది…",
+  "homeProPromoTitle": "7 రోజులు Pro ఉచితంగా ప్రయత్నించండి",
+  "homeProPromoSubtitle": "100 AI రసీదు స్కాన్లు మరియు ప్రకటనలు లేని ఉపయోగం · కార్డు అవసరం లేదు"
 }

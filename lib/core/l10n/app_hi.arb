@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} पेज",
   "receiptPhotosSectionTitle": "रसीद फोटो",
   "receiptOpenPhotoHint": "पूर्ण आकार में देखने के लिए रसीद की फोटो पर टैप करें",
-  "receiptPhotoPreparing": "रसीद की फ़ोटो तैयार की जा रही है…"
+  "receiptPhotoPreparing": "रसीद की फ़ोटो तैयार की जा रही है…",
+  "homeProPromoTitle": "7 दिन Pro मुफ़्त आज़माएँ",
+  "homeProPromoSubtitle": "100 AI रसीद स्कैन और विज्ञापन-मुक्त अनुभव चालू · कार्ड की ज़रूरत नहीं"
 }

@@ -1734,4 +1734,11 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'रसिदको फोटो तयार हुँदैछ…';
+
+  @override
+  String get homeProPromoTitle => '७ दिन Pro निःशुल्क चलाएर हेर्नुहोस्';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '१०० AI रसिद स्क्यान र विज्ञापनरहित सुविधा खुल्यो · कार्ड चाहिँदैन';
 }

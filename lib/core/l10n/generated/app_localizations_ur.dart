@@ -1733,4 +1733,11 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'رسید کی تصویر تیار کی جا رہی ہے…';
+
+  @override
+  String get homeProPromoTitle => '7 دن کے لیے Pro مفت آزمائیں';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI رسید اسکین اور اشتہارات کے بغیر تجربہ فعال · کارڈ درکار نہیں';
 }

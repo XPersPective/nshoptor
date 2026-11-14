@@ -1739,4 +1739,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'A preparar a foto do recibo…';
+
+  @override
+  String get homeProPromoTitle => 'Experimente o Pro grátis por 7 dias';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 leituras de recibos com IA e sem anúncios ativos · Sem cartão';
 }

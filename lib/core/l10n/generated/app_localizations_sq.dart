@@ -1737,4 +1737,11 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Po përgatitet fotoja e faturës…';
+
+  @override
+  String get homeProPromoTitle => 'Provo Pro falas për 7 ditë';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 skanime fature me IA dhe pa reklama të hapura · Pa kartë';
 }

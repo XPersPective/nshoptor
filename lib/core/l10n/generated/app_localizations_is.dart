@@ -1734,4 +1734,11 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Undirbýr kvittunarmynd…';
+
+  @override
+  String get homeProPromoTitle => 'Prófaðu Pro ókeypis í 7 daga';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 gervigreindarskannanir & auglýsingalaust opið · Ekkert kort þarf';
 }

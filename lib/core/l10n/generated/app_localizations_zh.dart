@@ -1661,4 +1661,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => '正在准备小票照片…';
+
+  @override
+  String get homeProPromoTitle => '免费试用 Pro 7 天';
+
+  @override
+  String get homeProPromoSubtitle => '已解锁 100 次 AI 小票识别与无广告体验 · 无需绑卡';
 }

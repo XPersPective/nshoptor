@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} sahifa",
   "receiptPhotosSectionTitle": "Chek rasmlari",
   "receiptOpenPhotoHint": "To'liq hajmda ko'rish uchun chek rasmiga bosing",
-  "receiptPhotoPreparing": "Chek rasmi tayyorlanmoqda…"
+  "receiptPhotoPreparing": "Chek rasmi tayyorlanmoqda…",
+  "homeProPromoTitle": "Pro’ni 7 kun bepul sinab ko‘ring",
+  "homeProPromoSubtitle": "100 ta SI chek skanerlash va reklamasiz rejim ochiq · Karta kerak emas"
 }

@@ -1738,4 +1738,11 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'ပြေစာဓာတ်ပုံကို ပြင်ဆင်နေသည်…';
+
+  @override
+  String get homeProPromoTitle => 'Pro ကို ၇ ရက် အခမဲ့ စမ်းသုံးကြည့်ပါ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'AI ဘောက်ချာစကင် ၁၀၀ ကြိမ်နှင့် ကြော်ငြာမဲ့အသုံးပြုမှု · ကတ်မလိုပါ';
 }

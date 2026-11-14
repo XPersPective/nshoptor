@@ -1733,4 +1733,11 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Чек сүрөтү даярдалууда…';
+
+  @override
+  String get homeProPromoTitle => 'Pro версиясын 7 күн бекер сынап көрүңүз';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ЖИ дүмүрчөк сканерлөө жана жарнамасыз · Карта талап кылынбайт';
 }

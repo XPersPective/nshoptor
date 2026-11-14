@@ -1744,4 +1744,11 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Ilungiselela isithombe serisidi…';
+
+  @override
+  String get homeProPromoTitle => 'Zama i-Pro mahhala izinsuku ezi-7';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'Ukuskena okungu-100 kwe-AI okungenazikhangiso kuvuliwe · Alikho ikhadi elidingekayo';
 }

@@ -1732,4 +1732,11 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'ਰਸੀਦ ਦੀ ਫ਼ੋਟੋ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…';
+
+  @override
+  String get homeProPromoTitle => '7 ਦਿਨ Pro ਮੁਫ਼ਤ ਵਰਤ ਕੇ ਦੇਖੋ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI ਰਸੀਦ ਸਕੈਨ ਤੇ ਇਸ਼ਤਿਹਾਰ-ਮੁਕਤ ਵਰਤੋਂ ਚਾਲੂ · ਕਾਰਡ ਦੀ ਲੋੜ ਨਹੀਂ';
 }

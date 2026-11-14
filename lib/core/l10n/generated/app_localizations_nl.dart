@@ -1741,4 +1741,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get receiptPhotoPreparing => 'Bonfoto voorbereiden…';
+
+  @override
+  String get homeProPromoTitle => 'Probeer Pro 7 dagen gratis';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI-bonscans & advertentievrij ontgrendeld · Geen kaart nodig';
 }

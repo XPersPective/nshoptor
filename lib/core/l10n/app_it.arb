@@ -528,5 +528,7 @@
   "receiptTrayPagesLabel": "{count} pagine",
   "receiptPhotosSectionTitle": "Foto delle ricevute",
   "receiptOpenPhotoHint": "Tocca una foto della ricevuta per visualizzarla a grandezza intera",
-  "receiptPhotoPreparing": "Preparazione foto scontrino…"
+  "receiptPhotoPreparing": "Preparazione foto scontrino…",
+  "homeProPromoTitle": "Prova Pro gratis per 7 giorni",
+  "homeProPromoSubtitle": "100 scansioni scontrini IA e zero pubblicità attive · Nessuna carta"
 }
