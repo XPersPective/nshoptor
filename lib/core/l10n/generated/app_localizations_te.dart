@@ -1668,4 +1668,76 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'ధర లేబుల్ బ్యాక్‌గ్రౌండ్‌లో చదివిస్తున్నారు.';
+
+  @override
+  String get listsTabReceipts => 'నా రసీదులు';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'నా రసీదులు ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'క్యూలో ఉంది';
+
+  @override
+  String get receiptStatusProcessing => 'రసీదు చదువుతోంది…';
+
+  @override
+  String get receiptStatusReady => 'తయారైంది';
+
+  @override
+  String get receiptStatusDuplicate => 'డూప్లికేట్ అయి ఉండవచ్చు';
+
+  @override
+  String get receiptStatusFailed => 'చదవలేకపోయింది';
+
+  @override
+  String get receiptConvertToListAction => 'లస్ట్‌గా మార్చు';
+
+  @override
+  String get receiptRetryReadAction => 'మళ్ళీ ప్రయత్నించు';
+
+  @override
+  String get receiptDeleteDraftAction => 'తొలగించు';
+
+  @override
+  String get receiptReadyNotificationTitle => 'రసీదు తయారైంది';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'మీ రసీదు తయారైంది. దీన్ని లస్ట్‌కు బదిలీ చేయాలా?';
+
+  @override
+  String get receiptDuplicateTitle => 'రసీదు ఇప్పటికే జోడించబడిందా?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ఈ దుకాణం మరియు సమయానికి సరిపోయే లస్ట్ ఇప్పటికే ఉంది ($listTitle). అయినా జోడించాలా?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'అయినా జోడించు';
+
+  @override
+  String get receiptDuplicateDelete => 'రసీదును తొలగించు';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ఎటువంటి వేచి ఉన్న రసీదులు లేవు';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'స్కాన్ చేసిన రసీదులు బ్యాక్‌గ్రౌండ్‌లో సిద్ధమవుతాయి, మీరు మార్చే వరకు లేదా తొలగించే వరకు ఇక్కడే ఉంటాయి.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count పేజీలు';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'రసీదు ఫోటోలు';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'పూర్తి పరిమాణంలో చూడటానికి రసీదు ఫోటోను ట్యాప్ చేయండి';
 }

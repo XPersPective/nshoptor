@@ -1659,4 +1659,76 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'ಬೆಲೆ ಲೇಬಲ್ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಓದಲಾಗುತ್ತಿದೆ.';
+
+  @override
+  String get listsTabReceipts => 'ನನ್ನ ರಸೀತಿಗಳು';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ನನ್ನ ರಸೀತಿಗಳು ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'ಕ್ಯೂ‌ನಲ್ಲಿದೆ';
+
+  @override
+  String get receiptStatusProcessing => 'ರಸೀತಿಯನ್ನು pad್ಧಿ ಮಾಡುತ್ತಿದ್ದೇವೆ…';
+
+  @override
+  String get receiptStatusReady => 'ತಯಾರಾಗಿದೆ';
+
+  @override
+  String get receiptStatusDuplicate => 'ಸಾಧ್ಯವಾದ ನಕಲು';
+
+  @override
+  String get receiptStatusFailed => 'ಪಢಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
+
+  @override
+  String get receiptConvertToListAction => 'ಪಟ್ಟಿಗೆಗೆ ಪರಿವರ್ತಿಸಿ';
+
+  @override
+  String get receiptRetryReadAction => 'ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ';
+
+  @override
+  String get receiptDeleteDraftAction => 'ಅಳಿಸಿ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ರಸೀತಿ ತಯಾರಾಗಿದೆ';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ನಿಮ್ಮ ರಸೀತಿ ತಯಾರಾಗಿದೆ. ಇದನ್ನು ಪಟ್ಟಿಗೆಗೆ ವರ್ಗಾಯಿಸುವುದೇ?';
+
+  @override
+  String get receiptDuplicateTitle => 'ರಸೀತಿ ಈಗಾಗಲೇ ಸೇರಿದೆಯೇ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ಈ ಅಂಗಡಿ ಮತ್ತು ಸಮಯಕ್ಕೆ ಹೊಂದಿಕೆಯಾಗುವ ಪಟ್ಟಿಯೊಂದು ಈಗಾಗಲೇ ಇದೆ ($listTitle). ಮತ್ತೆ ಸೇರಿಸುವುದೇ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'ಮತ್ತೆ ಸೇರಿಸಿ';
+
+  @override
+  String get receiptDuplicateDelete => 'ರಸೀತಿಯನ್ನು ಅಳಿಸಿ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ಬಾಕಿ ರಸೀತಿಗಳಿಲ್ಲ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ಸ್ಕ್ಯಾನ್ ಮಾಡಿದ ರಸೀತಿಗಳು ಹಿನ್ನೆಲೆಯಲ್ಲಿ ತಯಾರಾಗುತ್ತವೆ ಮತ್ತು ನೀವು ಪರಿವರ್ತಿಸುವವರೆಗೆ ಅಥವಾ ತೆಗೆದುಹಾಕುವವರೆಗೆ ಇಲ್ಲಿ ಉಳಿಯುತ್ತವೆ.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count ಪುಟಗಳು';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ರಸೀತಿ ಫೋಟೋಗಳು';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'ಪೂರ್ಣ ಗಾತ್ರದಲ್ಲಿ ನೋಡಲು ರಸೀತಿ ಫೋಟೋವನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ';
 }

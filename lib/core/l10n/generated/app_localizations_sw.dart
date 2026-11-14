@@ -1663,4 +1663,76 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Lebo ya bei inasomwa katika mazingira ya nyuma.';
+
+  @override
+  String get listsTabReceipts => 'Risiti zangu';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Risiti zangu ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Inasubiri';
+
+  @override
+  String get receiptStatusProcessing => 'Inasoma risiti…';
+
+  @override
+  String get receiptStatusReady => 'Imekamilika';
+
+  @override
+  String get receiptStatusDuplicate => 'Inawezekana kuwa nakala';
+
+  @override
+  String get receiptStatusFailed => 'Haikuweza kusomwa';
+
+  @override
+  String get receiptConvertToListAction => 'Badilisha kuwa orodha';
+
+  @override
+  String get receiptRetryReadAction => 'Jaribu tena';
+
+  @override
+  String get receiptDeleteDraftAction => 'Futa';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Risiti imekamilika';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Risiti yako imekamilika. Uhamishe kwenye orodha?';
+
+  @override
+  String get receiptDuplicateTitle => 'Risiti tayari imeongezwa?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Orodha inayolingana na duka na wakati huu tayari ipo ($listTitle). Uiongeze tena?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Ongeza ingawa hivyo';
+
+  @override
+  String get receiptDuplicateDelete => 'Futa risiti';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Hakuna risiti zinazosubiri';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Risiti zilizochanganuliwa hazitayarishwa nyuma na zinaendelea hapa hadi uzie au uondoe.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count kurasa';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Picha za risiti';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Gusa picha ya risiti ili kuona ukubwa kamili';
 }

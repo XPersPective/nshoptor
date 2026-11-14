@@ -1662,4 +1662,76 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Cenovna nalepka se bere v ozadju.';
+
+  @override
+  String get listsTabReceipts => 'Moji računi';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Moji računi ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'V čakalni vrsti';
+
+  @override
+  String get receiptStatusProcessing => 'Branje računa…';
+
+  @override
+  String get receiptStatusReady => 'Pripravljeno';
+
+  @override
+  String get receiptStatusDuplicate => 'Morda podvojeno';
+
+  @override
+  String get receiptStatusFailed => 'Ni bilo mogoče prebrati';
+
+  @override
+  String get receiptConvertToListAction => 'Pretvori v seznam';
+
+  @override
+  String get receiptRetryReadAction => 'Poskusi znova';
+
+  @override
+  String get receiptDeleteDraftAction => 'Izbriši';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Račun je pripravljen';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Vaš račun je pripravljen. Ga želite prenesti na seznam?';
+
+  @override
+  String get receiptDuplicateTitle => 'Račun že dodan?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Seznam za to trgovino in čas že obstaja ($listTitle). Ga želite vseeno dodati?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Vseeno dodaj';
+
+  @override
+  String get receiptDuplicateDelete => 'Izbriši račun';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ni neprebranih računov';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Prebrane račune pripravimo v ozadju in jih obdržimo tukaj, dokler jih ne pretvorite ali odstranite.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count strani';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotografije računov';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tapnite fotografijo računa za ogled v polni velikosti';
 }

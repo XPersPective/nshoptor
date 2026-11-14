@@ -1665,4 +1665,76 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Цената на етикета се чете във фонов режим.';
+
+  @override
+  String get listsTabReceipts => 'Моите разписки';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Моите разписки ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'На опашка';
+
+  @override
+  String get receiptStatusProcessing => 'Чета разписка…';
+
+  @override
+  String get receiptStatusReady => 'Готова';
+
+  @override
+  String get receiptStatusDuplicate => 'Възможно дублиране';
+
+  @override
+  String get receiptStatusFailed => 'Неуспешно четене';
+
+  @override
+  String get receiptConvertToListAction => 'Преобразувай в списък';
+
+  @override
+  String get receiptRetryReadAction => 'Опитай отново';
+
+  @override
+  String get receiptDeleteDraftAction => 'Изтрий';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Разписката е готова';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Разписката ви е готова. Да я прехвърлим в списък?';
+
+  @override
+  String get receiptDuplicateTitle => 'Разписката вече е добавена?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Вече има списък за тази магазин и време ($listTitle). Да я добавим пак?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Добави все пак';
+
+  @override
+  String get receiptDuplicateDelete => 'Изтрий разписката';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Няма чакащи разписки';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Сканираните разписки се обработват на заден план и остават тук, докато ги преобразувате или изтриете.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count страници';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Снимки на разписки';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Докоснете снимка на разписка, за да я видите на цял екран';
 }

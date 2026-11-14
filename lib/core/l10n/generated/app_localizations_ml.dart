@@ -1658,4 +1658,76 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'വില ലേബൽ ബാക്ക്‌ഗ്രൗണ്ടിൽ വായിക്കുന്നു.';
+
+  @override
+  String get listsTabReceipts => 'എന്റെ റിസീറ്റുകൾ';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'എന്റെ റിസീറ്റുകൾ ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'ക്യൂയിൽ';
+
+  @override
+  String get receiptStatusProcessing => 'റിസീറ്റ് വായിക്കുന്നു…';
+
+  @override
+  String get receiptStatusReady => 'തയ്യാർ';
+
+  @override
+  String get receiptStatusDuplicate => 'സാധ്യമായ ഡുപ്ലിക്കേറ്റ്';
+
+  @override
+  String get receiptStatusFailed => 'വായിക്കാൻ കഴിഞ്ഞില്ല';
+
+  @override
+  String get receiptConvertToListAction => 'ലിസ്റ്റാക്കി മാറ്റുക';
+
+  @override
+  String get receiptRetryReadAction => 'മళ్‌ലും ശ്രമിക്കുക';
+
+  @override
+  String get receiptDeleteDraftAction => 'ഇല്ലാതാക്കുക';
+
+  @override
+  String get receiptReadyNotificationTitle => 'റിസീറ്റ് തയ്യാറായി';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'നിങ്ങളുടെ റിസീറ്റ് തയ്യാറാണ്. ഇത് ഒരു ലിസ്റ്റിലേക്ക് മാറ്റണോ?';
+
+  @override
+  String get receiptDuplicateTitle => 'റിസീറ്റ് ഇതിനകം ചേർത്തുവോ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ഈ സ്റ്റോറും സമയവും യോജിക്കുന്ന ഒരു ലിസ്റ്റ് നിലവിൽ ഉണ്ട് ($listTitle). എങ്കിലും ചേർക്കണോ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'എങ്കിലും ചേർക്കുക';
+
+  @override
+  String get receiptDuplicateDelete => 'റിസീറ്റ് ഇല്ലാതാക്കുക';
+
+  @override
+  String get receiptEmptyTrayTitle => 'അടങ്ങിയ റിസീറ്റുകളൊന്നുമില്ല';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'സ്കാൻ ചെയ്ത റിസീറ്റുകൾ ബാക്ക്ഗ്രൗണ്ടിൽ തയ്യാറാകുകയും, നിങ്ങൾ അവ മാറ്റുകയോ നീക്കം ചെയ്യുകയോ ചെയ്യുന്നത് വരെ ഇവിടെ തങ്ങുകയും ചെയ്യും.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count പേജുകൾ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'റിസീറ്റ് ഫോട്ടോകൾ';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'പൂർണ്ണ വലിപ്പത്തിൽ കാണാൻ ഒരു റിസീറ്റ് ഫോട്ടോ ടാപ്പ് ചെയ്യുക';
 }

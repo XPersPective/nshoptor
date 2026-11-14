@@ -1666,4 +1666,76 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Prijslabel wordt op de achtergrond uitgelezen.';
+
+  @override
+  String get listsTabReceipts => 'Mijn bonnen';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mijn bonnen ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'In wachtrij';
+
+  @override
+  String get receiptStatusProcessing => 'Bon lezen…';
+
+  @override
+  String get receiptStatusReady => 'Klaar';
+
+  @override
+  String get receiptStatusDuplicate => 'Mogelijke dubbele';
+
+  @override
+  String get receiptStatusFailed => 'Kon niet lezen';
+
+  @override
+  String get receiptConvertToListAction => 'Omzetten naar lijst';
+
+  @override
+  String get receiptRetryReadAction => 'Opnieuw proberen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Verwijderen';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Bon klaar';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Je bon is klaar. Naar een lijst overzetten?';
+
+  @override
+  String get receiptDuplicateTitle => 'Bon al toegevoegd?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Er bestaat al een lijst voor deze winkel en tijd ($listTitle). Toch nogmaals toevoegen?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Toch toevoegen';
+
+  @override
+  String get receiptDuplicateDelete => 'Bon verwijderen';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Geen wachtende bonnen';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Gescande bonnen worden op de achtergrond verwerkt en blijven hier staan tot je ze omzet of verwijdert.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pagina\'s';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Bonfoto\'s';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tik op een bonfoto om hem in volledige grootte te bekijken';
 }

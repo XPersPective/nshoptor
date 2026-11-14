@@ -1652,4 +1652,76 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'برچسب قیمت در پس‌زمینه در حال خواندن است.';
+
+  @override
+  String get listsTabReceipts => 'رسیدهای من';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'رسیدهای من ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'در صف';
+
+  @override
+  String get receiptStatusProcessing => 'در حال خواندن رسید…';
+
+  @override
+  String get receiptStatusReady => 'آماده';
+
+  @override
+  String get receiptStatusDuplicate => 'احتمالاً تکراری است';
+
+  @override
+  String get receiptStatusFailed => 'خوانده نشد';
+
+  @override
+  String get receiptConvertToListAction => 'تبدیل به لیست';
+
+  @override
+  String get receiptRetryReadAction => 'تلاش مجدد';
+
+  @override
+  String get receiptDeleteDraftAction => 'حذف';
+
+  @override
+  String get receiptReadyNotificationTitle => 'رسید آماده شد';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'رسید شما آماده است. به لیست منتقل شود؟';
+
+  @override
+  String get receiptDuplicateTitle => 'آیا رسید قبلاً اضافه شده؟';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'لیستی برای این فروشگاه و زمان وجود دارد ($listTitle). باز هم اضافه شود؟';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'اضافه شود';
+
+  @override
+  String get receiptDuplicateDelete => 'حذف رسید';
+
+  @override
+  String get receiptEmptyTrayTitle => 'رسید در انتظار وجود ندارد';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'رسیدهای اسکن‌شده در پس‌زمینه پردازش می‌شوند و تا تبدیل یا حذف، اینجا باقی می‌مانند.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count صفحه';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'عکس‌های رسید';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'برای مشاهده در اندازه بزرگ، روی عکس رسید ضربه بزنید';
 }

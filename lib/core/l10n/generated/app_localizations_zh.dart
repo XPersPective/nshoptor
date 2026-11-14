@@ -1589,4 +1589,73 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => '价格标签正在后台读取。';
+
+  @override
+  String get listsTabReceipts => '我的收据';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return '我的收据（$count）';
+  }
+
+  @override
+  String get receiptStatusQueued => '排队中';
+
+  @override
+  String get receiptStatusProcessing => '正在读取收据…';
+
+  @override
+  String get receiptStatusReady => '已完成';
+
+  @override
+  String get receiptStatusDuplicate => '可能重复';
+
+  @override
+  String get receiptStatusFailed => '读取失败';
+
+  @override
+  String get receiptConvertToListAction => '转为清单';
+
+  @override
+  String get receiptRetryReadAction => '重试';
+
+  @override
+  String get receiptDeleteDraftAction => '删除';
+
+  @override
+  String get receiptReadyNotificationTitle => '收据已就绪';
+
+  @override
+  String get receiptReadyNotificationBody => '您的收据已准备好，是否将其添加到清单？';
+
+  @override
+  String get receiptDuplicateTitle => '收据已添加？';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return '已存在匹配该商店和时间的清单（$listTitle）。仍要再次添加吗？';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => '仍要添加';
+
+  @override
+  String get receiptDuplicateDelete => '删除收据';
+
+  @override
+  String get receiptEmptyTrayTitle => '暂无待处理收据';
+
+  @override
+  String get receiptEmptyTrayBody => '扫描的收据将在后台处理，并保留在此处，直到您转换或删除它们。';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count页';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => '收据照片';
+
+  @override
+  String get receiptOpenPhotoHint => '点击收据照片可查看大图';
 }

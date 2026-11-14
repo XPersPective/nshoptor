@@ -1657,4 +1657,76 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'මිල ලේබලය පසුබිමේ කියවමින් පවතී.';
+
+  @override
+  String get listsTabReceipts => 'මගේ බිල්පත්';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'මගේ බිල්පත් ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'අනුරූපණය වෙමින්';
+
+  @override
+  String get receiptStatusProcessing => 'බිල්පත කියවමින්…';
+
+  @override
+  String get receiptStatusReady => 'සූදානම්';
+
+  @override
+  String get receiptStatusDuplicate => 'සමාන බිල්පතක් තිබිය හැක';
+
+  @override
+  String get receiptStatusFailed => 'කියවා ගත නොහැක';
+
+  @override
+  String get receiptConvertToListAction => 'ලැයිස්තුවක් බවට පරිවර්තනය කරන්න';
+
+  @override
+  String get receiptRetryReadAction => 'නැවත උත්සාහ කරන්න';
+
+  @override
+  String get receiptDeleteDraftAction => 'මකන්න';
+
+  @override
+  String get receiptReadyNotificationTitle => 'බිල්පත සූදානම්';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ඔබේ බිල්පත සූදානම්. එය ලැයිස්තුවකට මාරු කරන්නද?';
+
+  @override
+  String get receiptDuplicateTitle => 'බිල්පත දැනටමත් එකතු කර ඇති බවක්?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'මෙම වෙළඳසැල සහ කාලයට ගැලපෙන ලැයිස්තුවක් දැනටමත් පවතී ($listTitle). නැවත එකතු කරන්නද?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'එසේම එකතු කරන්න';
+
+  @override
+  String get receiptDuplicateDelete => 'බිල්පත මකන්න';
+
+  @override
+  String get receiptEmptyTrayTitle => 'අනුරූපණය වෙමින් පවතින බිල්පත් නැත';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ස්කෑන් කරන ලද බිල්පත් පසුබිමේ සකස් වන අතර, ඔබ ඒවා පරිවර්තනය හෝ ඉවත් කරන තෙක් මෙහි රඳවා ගනී.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count පිටු';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'බිල්පත් ඡායාරූප';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'සම්පූර්ණ ප්‍රමාණයෙන් බැලීමට බිල්පත් ඡායාරූපයක් තට්ටු කරන්න';
 }

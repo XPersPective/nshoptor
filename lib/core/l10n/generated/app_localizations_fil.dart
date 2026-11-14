@@ -1669,4 +1669,76 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Binabasa ang label ng presyo sa background.';
+
+  @override
+  String get listsTabReceipts => 'Aking mga resibo';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Aking mga resibo ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Naka-queue';
+
+  @override
+  String get receiptStatusProcessing => 'Binabasa ang resibo…';
+
+  @override
+  String get receiptStatusReady => 'Handa na';
+
+  @override
+  String get receiptStatusDuplicate => 'Maaaring duplicate';
+
+  @override
+  String get receiptStatusFailed => 'Hindi nabasa';
+
+  @override
+  String get receiptConvertToListAction => 'I-convert sa listahan';
+
+  @override
+  String get receiptRetryReadAction => 'Subukan ulit';
+
+  @override
+  String get receiptDeleteDraftAction => 'Burahin';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Handa na ang resibo';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Handa na ang iyong resibo. Ilipat ito sa isang listahan?';
+
+  @override
+  String get receiptDuplicateTitle => 'Naidagdag na ba ang resibo?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'May listahan na naaayon sa tindahan at oras na ito ($listTitle). Idagdag pa rin?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Idagdag pa rin';
+
+  @override
+  String get receiptDuplicateDelete => 'Burahin ang resibo';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Walang naka-pending na resibo';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Ang mga na-scan na resibo ay inihahanda sa background at nananatili dito hanggang ma-convert o matanggal.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count na pahina';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Mga litrato ng resibo';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Pindutin ang litrato ng resibo para makita sa buong laki';
 }

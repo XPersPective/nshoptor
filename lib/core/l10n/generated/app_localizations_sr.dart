@@ -1662,4 +1662,76 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Ознака цене се чита у позадини.';
+
+  @override
+  String get listsTabReceipts => 'Моји рачуни';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Моји рачуни ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'На чекању';
+
+  @override
+  String get receiptStatusProcessing => 'Читање рачуна…';
+
+  @override
+  String get receiptStatusReady => 'Готово';
+
+  @override
+  String get receiptStatusDuplicate => 'Могући дупликат';
+
+  @override
+  String get receiptStatusFailed => 'Није могуће прочитати';
+
+  @override
+  String get receiptConvertToListAction => 'Претвори у листу';
+
+  @override
+  String get receiptRetryReadAction => 'Покушај поново';
+
+  @override
+  String get receiptDeleteDraftAction => 'Обриши';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Рачун је спреман';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ваш рачун је спреман. Пренети га на листу?';
+
+  @override
+  String get receiptDuplicateTitle => 'Рачун већ додат?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Листа која одговара овој продавници и времену већ постоји ($listTitle). Додати ипак?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Додај ипак';
+
+  @override
+  String get receiptDuplicateDelete => 'Обриши рачун';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Нема рачуна на чекању';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Скенирани рачуни се припремају у позадини и остају овде док их не претворите или не уклоните.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count страница';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Фотографије рачуна';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Додирните фотографију рачуна да бисте је видели у пуној величини';
 }

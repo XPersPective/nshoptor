@@ -1667,4 +1667,76 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Narx yorlig\'i fon rejimida o\'qilmoqda.';
+
+  @override
+  String get listsTabReceipts => 'Mening cheklari';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mening cheklari ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Navbatda';
+
+  @override
+  String get receiptStatusProcessing => 'Chek o\'qilmoqda…';
+
+  @override
+  String get receiptStatusReady => 'Tayyor';
+
+  @override
+  String get receiptStatusDuplicate => 'Ehtimol, dublikat';
+
+  @override
+  String get receiptStatusFailed => 'O\'qib bo\'lmadi';
+
+  @override
+  String get receiptConvertToListAction => 'Ro\'yxatga aylantirish';
+
+  @override
+  String get receiptRetryReadAction => 'Qayta urinish';
+
+  @override
+  String get receiptDeleteDraftAction => 'O\'chirish';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Chek tayyor';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Chekingiz tayyor. Uni ro\'yxatga ko\'chirish kerakmi?';
+
+  @override
+  String get receiptDuplicateTitle => 'Chek allaqachon qo\'shilganmi?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Bu do\'kon va vaqtga mos keladigan ro\'yxat allaqachon mavjud ($listTitle). Yana qo\'shilsinmi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Yana qo\'shish';
+
+  @override
+  String get receiptDuplicateDelete => 'Chetni o\'chirish';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Kutilayotgan cheklar yo\'q';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skanerlangan cheklar fon tayyorlanadi va siz ularni ro\'yxatga aylantirguncha yoki o\'chirguncha shu yerda turadi.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sahifa';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Chek rasmlari';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'To\'liq hajmda ko\'rish uchun chek rasmiga bosing';
 }

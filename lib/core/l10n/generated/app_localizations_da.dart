@@ -1657,4 +1657,76 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Prislabel læses i baggrunden.';
+
+  @override
+  String get listsTabReceipts => 'Mine kvitteringer';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mine kvitteringer ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'I kø';
+
+  @override
+  String get receiptStatusProcessing => 'Læser kvittering…';
+
+  @override
+  String get receiptStatusReady => 'Klar';
+
+  @override
+  String get receiptStatusDuplicate => 'Mulig dobbeltindtastning';
+
+  @override
+  String get receiptStatusFailed => 'Kunne ikke læse';
+
+  @override
+  String get receiptConvertToListAction => 'Konverter til liste';
+
+  @override
+  String get receiptRetryReadAction => 'Prøv igen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Slet';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kvittering klar';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Din kvittering er klar. Vil du overføre den til en liste?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kvittering allerede tilføjet?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'En liste med samme butik og tidspunkt findes allerede ($listTitle). Tilføj alligevel?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Tilføj alligevel';
+
+  @override
+  String get receiptDuplicateDelete => 'Slet kvittering';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ingen ventende kvitteringer';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Indscannede kvitteringer behandles i baggrunden og bliver her, indtil du konverterer eller fjerner dem.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sider';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kvitteringsfotos';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tryk på et kvitteringsfoto for at se det i fuld størrelse';
 }

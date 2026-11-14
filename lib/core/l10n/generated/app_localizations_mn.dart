@@ -1663,4 +1663,76 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Үнийн шошгыг арын горимд уншиж байна.';
+
+  @override
+  String get listsTabReceipts => 'Миний баримт барууд';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Миний баримт барууд ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Дуусгах дараалалд';
+
+  @override
+  String get receiptStatusProcessing => 'Баримт барыг уншиж байна…';
+
+  @override
+  String get receiptStatusReady => 'Бэлэн';
+
+  @override
+  String get receiptStatusDuplicate => 'Хуулбар байж магадгүй';
+
+  @override
+  String get receiptStatusFailed => 'Унших боломжгүй';
+
+  @override
+  String get receiptConvertToListAction => 'Жагсаалтад хөрвүүлэх';
+
+  @override
+  String get receiptRetryReadAction => 'Дахин оролдох';
+
+  @override
+  String get receiptDeleteDraftAction => 'Устгах';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Баримт бэлэн боллоо';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Таны баримт бэлэн болсон. Жагсаалтад шилжүүлэх үү?';
+
+  @override
+  String get receiptDuplicateTitle => 'Баримт аль хэдийн нэмсэн үү?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Энэ дэлгүүр, цаг хугацаатай ижил жагсаалт аль хэдийн байна ($listTitle). Дахин нэмэх үү?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Яаж ч нэмэх';
+
+  @override
+  String get receiptDuplicateDelete => 'Баримт барыг устгах';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Хүлээж буй баримт барууд байхгүй';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Уншсан баримт барууд арын горимд бэлэн болж, та хөрвүүлэх эсвэл устгах хүртэл энд хадгалагдана.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count хуудас';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Баримт барын зурагнууд';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Бүтэн хэмжээгээр харахын тулд баримт барын зургийг товшино уу';
 }

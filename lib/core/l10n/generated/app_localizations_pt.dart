@@ -1664,4 +1664,76 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Etiqueta de preço sendo lida em segundo plano.';
+
+  @override
+  String get listsTabReceipts => 'Meus recibos';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Meus recibos ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Na fila';
+
+  @override
+  String get receiptStatusProcessing => 'Lendo recibo…';
+
+  @override
+  String get receiptStatusReady => 'Pronto';
+
+  @override
+  String get receiptStatusDuplicate => 'Possível duplicata';
+
+  @override
+  String get receiptStatusFailed => 'Não foi possível ler';
+
+  @override
+  String get receiptConvertToListAction => 'Converter em lista';
+
+  @override
+  String get receiptRetryReadAction => 'Tentar novamente';
+
+  @override
+  String get receiptDeleteDraftAction => 'Excluir';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Recibo pronto';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Seu recibo está pronto. Transferir para uma lista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Recibo já adicionado?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Já existe uma lista correspondente a esta loja e horário ($listTitle). Adicionar mesmo assim?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Adicionar mesmo assim';
+
+  @override
+  String get receiptDuplicateDelete => 'Excluir recibo';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nenhum recibo pendente';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Os recibos escaneados são processados em segundo plano e ficam aqui até você convertê-los ou removê-los.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count páginas';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotos dos recibos';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Toque na foto do recibo para ver em tamanho completo';
 }

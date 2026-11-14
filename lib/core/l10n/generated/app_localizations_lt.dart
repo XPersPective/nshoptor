@@ -1668,4 +1668,76 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Kainos etiketė skaitoma fone.';
+
+  @override
+  String get listsTabReceipts => 'Mano kvitai';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mano kvitai ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Eilėje';
+
+  @override
+  String get receiptStatusProcessing => 'Kvitą skaitome…';
+
+  @override
+  String get receiptStatusReady => 'Paruoštas';
+
+  @override
+  String get receiptStatusDuplicate => 'Gali būti dublikatas';
+
+  @override
+  String get receiptStatusFailed => 'Nepavyko perskaityti';
+
+  @override
+  String get receiptConvertToListAction => 'Konvertuoti į sąrašą';
+
+  @override
+  String get receiptRetryReadAction => 'Bandyti dar kartą';
+
+  @override
+  String get receiptDeleteDraftAction => 'Pašalinti';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kvitas paruoštas';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Jūsų kvitas paruoštas. Perkeliant jį į sąrašą?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kvitas jau pridėtas?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Sąrašas, atitinkantis šią parduotuvę ir laiką, jau egzistuoja ($listTitle). Vis tiek pridėti?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Vis tiek pridėti';
+
+  @override
+  String get receiptDuplicateDelete => 'Pašalinti kvitą';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nėra laukiančių kvitų';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Nuskenuoti kvitai apdorojami fone ir čia išlieka, kol juos konvertuosite arba pašalinsite.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count puslapiai';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kvitų nuotraukos';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Spustelėkite kvito nuotrauką, kad pamatytumėte pilno dydžio';
 }

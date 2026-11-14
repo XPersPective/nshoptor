@@ -638,5 +638,47 @@
   },
   "shelfLabelReading": "Reading price label…",
   "shelfLabelContinueOther": "Scan another item",
-  "shelfLabelQueuedNotice": "Price label is reading in the background."
+  "shelfLabelQueuedNotice": "Price label is reading in the background.",
+  "listsTabReceipts": "My receipts",
+  "listsTabReceiptsCount": "My receipts ({count})",
+  "@listsTabReceiptsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "receiptStatusQueued": "Queued",
+  "receiptStatusProcessing": "Reading receipt…",
+  "receiptStatusReady": "Ready",
+  "receiptStatusDuplicate": "Possible duplicate",
+  "receiptStatusFailed": "Could not read",
+  "receiptConvertToListAction": "Convert to list",
+  "receiptRetryReadAction": "Retry",
+  "receiptDeleteDraftAction": "Delete",
+  "receiptReadyNotificationTitle": "Receipt ready",
+  "receiptReadyNotificationBody": "Your receipt is ready. Transfer it to a list?",
+  "receiptDuplicateTitle": "Receipt already added?",
+  "receiptDuplicateBody": "A list matching this store and time already exists ({listTitle}). Add again anyway?",
+  "@receiptDuplicateBody": {
+    "placeholders": {
+      "listTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptDuplicateAddAnyway": "Add anyway",
+  "receiptDuplicateDelete": "Delete receipt",
+  "receiptEmptyTrayTitle": "No pending receipts",
+  "receiptEmptyTrayBody": "Scanned receipts prepare in the background and stay here until you convert or remove them.",
+  "receiptTrayPagesLabel": "{count} pages",
+  "@receiptTrayPagesLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "receiptPhotosSectionTitle": "Receipt photos",
+  "receiptOpenPhotoHint": "Tap a receipt photo to view full size"
 }

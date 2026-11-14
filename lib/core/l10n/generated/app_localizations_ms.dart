@@ -1661,4 +1661,76 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Label harga sedang dibaca di latar belakang.';
+
+  @override
+  String get listsTabReceipts => 'Resit saya';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Resit saya ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Dalam barisan';
+
+  @override
+  String get receiptStatusProcessing => 'Membaca resit…';
+
+  @override
+  String get receiptStatusReady => 'Sedia';
+
+  @override
+  String get receiptStatusDuplicate => 'Kemungkinan salinan';
+
+  @override
+  String get receiptStatusFailed => 'Gagal dibaca';
+
+  @override
+  String get receiptConvertToListAction => 'Tukar ke senarai';
+
+  @override
+  String get receiptRetryReadAction => 'Cuba lagi';
+
+  @override
+  String get receiptDeleteDraftAction => 'Padam';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Resit sedia';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Resit anda sudah sedia. Pindahkan ke senarai?';
+
+  @override
+  String get receiptDuplicateTitle => 'Resit sudah ditambah?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Senarai yang sepadan dengan kedai dan masa ini sudah wujud ($listTitle). Tambah sekali lagi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Tambah juga';
+
+  @override
+  String get receiptDuplicateDelete => 'Padam resit';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Tiada resit menunggu';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Resit yang dipindai diproses di latar belakang dan kekal di sini sehingga anda menukarnya atau mengeluarkannya.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count halaman';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Foto resit';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Ketik foto resit untuk melihat saiz penuh';
 }

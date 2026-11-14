@@ -1653,4 +1653,76 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Nhãn giá đang được đọc trong nền.';
+
+  @override
+  String get listsTabReceipts => 'Hóa đơn của tôi';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Hóa đơn của tôi ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Đang chờ xử lý';
+
+  @override
+  String get receiptStatusProcessing => 'Đang đọc hóa đơn…';
+
+  @override
+  String get receiptStatusReady => 'Sẵn sàng';
+
+  @override
+  String get receiptStatusDuplicate => 'Có thể trùng lặp';
+
+  @override
+  String get receiptStatusFailed => 'Không thể đọc';
+
+  @override
+  String get receiptConvertToListAction => 'Chuyển thành danh sách';
+
+  @override
+  String get receiptRetryReadAction => 'Thử lại';
+
+  @override
+  String get receiptDeleteDraftAction => 'Xóa';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Hóa đơn đã sẵn sàng';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Hóa đơn của bạn đã sẵn sàng. Chuyển sang danh sách không?';
+
+  @override
+  String get receiptDuplicateTitle => 'Hóa đơn đã được thêm?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Danh sách cho cửa hàng và thời gian này đã tồn tại ($listTitle). Vẫn muốn thêm?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Vẫn thêm';
+
+  @override
+  String get receiptDuplicateDelete => 'Xóa hóa đơn';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Không có hóa đơn đang chờ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Hóa đơn đã quét sẽ được xử lý ngầm và hiển thị ở đây cho đến khi bạn chuyển hoặc xóa chúng.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count trang';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Ảnh hóa đơn';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Nhấn vào ảnh hóa đơn để xem toàn màn hình';
 }

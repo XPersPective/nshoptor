@@ -1657,4 +1657,76 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Баға жапсырмасы артқы фонда оқылып жатыр.';
+
+  @override
+  String get listsTabReceipts => 'Менің чектерім';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Менің чектерім ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Кезекте тұр';
+
+  @override
+  String get receiptStatusProcessing => 'Чекті оқу…';
+
+  @override
+  String get receiptStatusReady => 'Дайын';
+
+  @override
+  String get receiptStatusDuplicate => 'Қайталануы мүмкін';
+
+  @override
+  String get receiptStatusFailed => 'Оқу сәтсіз аяқталды';
+
+  @override
+  String get receiptConvertToListAction => 'Тізімге түрлендіру';
+
+  @override
+  String get receiptRetryReadAction => 'Қайта оқу';
+
+  @override
+  String get receiptDeleteDraftAction => 'Жою';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Чек дайын';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Чек дайын. Оны тізімге көшіре ме?';
+
+  @override
+  String get receiptDuplicateTitle => 'Чек бұрын қосылған ба?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Бұл дүкен мен уақытқа сәйкес келетін тізім бар ($listTitle). Қайтадан қосасыз ба?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Қайтадан қосу';
+
+  @override
+  String get receiptDuplicateDelete => 'Чекті жою';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Кезектегі чектер жоқ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Сканерленген чектер фон режимінде дайындалады және сіз оларды тізімге түрлендіргенше немесе жойғанша осында сақталады.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count бет';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Чек фотосуреттері';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Толық өлшемде көру үшін чек фотосуретін басыңыз';
 }

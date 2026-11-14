@@ -118,9 +118,8 @@ class ReceiptDraftRepository {
     ];
   }
 
-  Future<void> discard(int draftId) async {
-    await ReceiptRepository(_db).delete(draftId, pendingOnly: true);
-  }
+  Future<bool> discard(int draftId) =>
+      ReceiptRepository(_db).delete(draftId, pendingOnly: true);
 
   /// Queue states shown as actionable or in-progress receipts in "Fişlerim (N)".
   static const List<String> trayQueueStates = [
@@ -266,6 +265,19 @@ class ReceiptDraftRepository {
       );
 
   /// Moves a failed or interrupted receipt back onto the background queue.
+  /// Resets standalone rows stranded in `processing` (for example after an OS
+  /// termination mid-parse) back to `queued` so the next drain picks them up.
+  Future<int> resetInterruptedProcessing() =>
+      (_db.update(_db.receipts)..where(
+            (t) => t.listId.isNull() & t.queueState.equals('processing'),
+          ))
+          .write(
+            const ReceiptsCompanion(
+              queueState: Value('queued'),
+              processingStatus: Value('pending'),
+            ),
+          );
+
   Future<void> requeue(int receiptId) =>
       (_db.update(_db.receipts)..where((t) => t.id.equals(receiptId))).write(
         const ReceiptsCompanion(

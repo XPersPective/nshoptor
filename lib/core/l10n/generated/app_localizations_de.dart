@@ -1665,4 +1665,76 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Preisetikett wird im Hintergrund gelesen.';
+
+  @override
+  String get listsTabReceipts => 'Meine Quittungen';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Meine Quittungen ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'In der Warteschlange';
+
+  @override
+  String get receiptStatusProcessing => 'Quittung wird gelesen…';
+
+  @override
+  String get receiptStatusReady => 'Bereit';
+
+  @override
+  String get receiptStatusDuplicate => 'Möglicher Doppelgänger';
+
+  @override
+  String get receiptStatusFailed => 'Konnte nicht gelesen werden';
+
+  @override
+  String get receiptConvertToListAction => 'In Liste umwandeln';
+
+  @override
+  String get receiptRetryReadAction => 'Erneut versuchen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Löschen';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Quittung bereit';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Deine Quittung ist fertig. Soll sie in eine Liste übernommen werden?';
+
+  @override
+  String get receiptDuplicateTitle => 'Quittung bereits hinzugefügt?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Es gibt bereits eine Liste für diesen Laden und Zeitpunkt ($listTitle). Trotzdem erneut hinzufügen?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Trotzdem hinzufügen';
+
+  @override
+  String get receiptDuplicateDelete => 'Quittung löschen';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Keine ausstehenden Quittungen';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Gescannte Quittungen werden im Hintergrund verarbeitet und bleiben hier, bis du sie in eine Liste überträgst oder löschst.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count Seiten';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Quittungsfotos';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tippe auf ein Quittungsfoto, um es in voller Größe anzusehen';
 }

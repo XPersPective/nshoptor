@@ -1659,4 +1659,76 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Cenovka se čte na pozadí.';
+
+  @override
+  String get listsTabReceipts => 'Moje účtenky';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Moje účtenky ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Ve frontě';
+
+  @override
+  String get receiptStatusProcessing => 'Čtu účtenku…';
+
+  @override
+  String get receiptStatusReady => 'Připraveno';
+
+  @override
+  String get receiptStatusDuplicate => 'Možná duplikát';
+
+  @override
+  String get receiptStatusFailed => 'Nepodařilo se přečíst';
+
+  @override
+  String get receiptConvertToListAction => 'Převést na seznam';
+
+  @override
+  String get receiptRetryReadAction => 'Zkusit znovu';
+
+  @override
+  String get receiptDeleteDraftAction => 'Smazat';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Účtenka je připravena';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Vaše účtenka je připravena. Přenést ji do seznamu?';
+
+  @override
+  String get receiptDuplicateTitle => 'Účtenka již přidána?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Seznam pro tento obchod a čas již existuje ($listTitle). Přidat i přesto?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Přidat i přesto';
+
+  @override
+  String get receiptDuplicateDelete => 'Smazat účtenku';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Žádné čekající účtenky';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Naskenované účtenky se zpracovávají na pozadí a zůstanou zde, dokud je nepřevádíte nebo neodstraníte.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count stran';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotografie účtenek';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Klepnutím na fotografii účtenky zobrazíte její plnou velikost';
 }

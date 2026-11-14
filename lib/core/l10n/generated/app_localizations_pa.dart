@@ -1657,4 +1657,76 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'ਮੁੱਲ ਲੇਬਲ ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਪੜ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ।';
+
+  @override
+  String get listsTabReceipts => 'ਮੇਰੀਆਂ ਰਸੀਦਾਂ';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ਮੇਰੀਆਂ ਰਸੀਦਾਂ ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'ਕਤਾਰ ਵਿੱਚ';
+
+  @override
+  String get receiptStatusProcessing => 'ਰਸੀਦ ਪੜ੍ਹੀ ਜਾ ਰਹੀ ਹੈ…';
+
+  @override
+  String get receiptStatusReady => 'ਤਿਆਰ';
+
+  @override
+  String get receiptStatusDuplicate => 'ਸੰਭਵ ਨਕਲ';
+
+  @override
+  String get receiptStatusFailed => 'ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ';
+
+  @override
+  String get receiptConvertToListAction => 'ਲਿਸਟ ਵਿੱਚ ਬਦਲੋ';
+
+  @override
+  String get receiptRetryReadAction => 'ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ';
+
+  @override
+  String get receiptDeleteDraftAction => 'ਹਟਾਓ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ਰਸੀਦ ਤਿਆਰ ਹੈ';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ਤੁਹਾਡੀ ਰਸੀਦ ਤਿਆਰ ਹੈ। ਇਸਨੂੰ ਲਿਸਟ ਵਿੱਚ ਟ੍ਰਾਂਸਫਰ ਕਰੀਏ?';
+
+  @override
+  String get receiptDuplicateTitle => 'ਰਸੀਦ ਪਹਿਲਾਂ ਹੀ ਜੋੜੀ ਗਈ ਹੈ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ਇਸ ਦੁਕਾਨ ਅਤੇ ਸਮੇਂ ਨਾਲ ਮੇਲ ਖਾਂਦੀ ਇੱਕ ਲਿਸਟ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ ($listTitle)। ਫਿਰ ਵੀ ਜੋੜੀਏ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'ਫਿਰ ਵੀ ਜੋੜੋ';
+
+  @override
+  String get receiptDuplicateDelete => 'ਰਸੀਦ ਹਟਾਓ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ਕੋਈ ਲੰਬਿਤ ਰਸੀਦਾਂ ਨਹੀਂ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ਸਕੈਨ ਕੀਤੀਆਂ ਰਸੀਦਾਂ ਬੈਕਗ੍ਰਾਉਂਡ ਵਿੱਚ ਤਿਆਰ ਹੁੰਦੀਆਂ ਹਨ ਅਤੇ ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ ਬਦਲਣ ਜਾਂ ਹਟਾਉਣ ਤੱਕ ਇੱਥੇ ਰਹਿੰਦੀਆਂ ਹਨ।';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count ਪੰਨੇ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ਰਸੀਦ ਦੀਆਂ ਤਸਵੀਰਾਂ';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'ਪੂਰਾ ਆਕਾਰ ਦੇਖਣ ਲਈ ਰਸੀਦ ਦੀ ਤਸਵੀਰ \'ਤੇ ਟੈਪ ਕਰੋ';
 }

@@ -1652,4 +1652,76 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'দামের লেবেল ব্যাকগ্রাউন্ডে পড়া হচ্ছে।';
+
+  @override
+  String get listsTabReceipts => 'আমার রসিদ';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'আমার রসিদ ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'কিউতে আছে';
+
+  @override
+  String get receiptStatusProcessing => 'রসিদ পড়া হচ্ছে…';
+
+  @override
+  String get receiptStatusReady => 'প্রস্তুত';
+
+  @override
+  String get receiptStatusDuplicate => 'সম্ভাব্য ডুপ্লিকেট';
+
+  @override
+  String get receiptStatusFailed => 'পড়া যায়নি';
+
+  @override
+  String get receiptConvertToListAction => 'লিস্টে রূপান্তর করুন';
+
+  @override
+  String get receiptRetryReadAction => 'আবার চেষ্টা করুন';
+
+  @override
+  String get receiptDeleteDraftAction => 'মুছে ফেলুন';
+
+  @override
+  String get receiptReadyNotificationTitle => 'রসিদ প্রস্তুত';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'আপনার রসিদ প্রস্তুত। এটি কি একটি লিস্টে স্থানান্তর করা হবে?';
+
+  @override
+  String get receiptDuplicateTitle => 'রসিদ আগেই যুক্ত হয়েছে?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'এই দোকান এবং সময়ের সাথে মিলে যাওয়া একটি লিস্ট ইতিমধ্যে বিদ্যমান ($listTitle)। তবুও কি আবার যুক্ত করবেন?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'তবুও যুক্ত করুন';
+
+  @override
+  String get receiptDuplicateDelete => 'রসিদ মুছে ফেলুন';
+
+  @override
+  String get receiptEmptyTrayTitle => 'কোনো অপেক্ষমাণ রসিদ নেই';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'স্ক্যান করা রসিদগুলো ব্যাকগ্রাউন্ডে প্রস্তুত হয় এবং আপনি এগুলোকে রূপান্তর বা সরানো না পর্যন্ত এখানে থাকবে।';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count পৃষ্ঠা';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'রসিদের ছবি';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'পূর্ণ আকারে দেখতে একটি রসিদের ছবিতে ট্যাপ করুন';
 }

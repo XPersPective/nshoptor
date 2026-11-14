@@ -1662,4 +1662,76 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Etiketa e çmimit po lexohet në sfond.';
+
+  @override
+  String get listsTabReceipts => 'Faturat e mia';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Faturat e mia ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Në pritje';
+
+  @override
+  String get receiptStatusProcessing => 'Duke lexuar faturën…';
+
+  @override
+  String get receiptStatusReady => 'Gati';
+
+  @override
+  String get receiptStatusDuplicate => 'E mundshme kopje';
+
+  @override
+  String get receiptStatusFailed => 'S’u lexua dot';
+
+  @override
+  String get receiptConvertToListAction => 'Shndërro në listë';
+
+  @override
+  String get receiptRetryReadAction => 'Provo përsëri';
+
+  @override
+  String get receiptDeleteDraftAction => 'Fshi';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Fatura gati';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Fatura jote është gati. Ta transferosh në një listë?';
+
+  @override
+  String get receiptDuplicateTitle => 'A u shtua tashmë fatura?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Ekziston një listë që përputhet me këtë dyqan dhe kohë ($listTitle). Ta shtosh përsëri?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Shto përsëri';
+
+  @override
+  String get receiptDuplicateDelete => 'Fshi faturën';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Pa fatura në pritje';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Faturat e skanuara përgatiten në sfond dhe mbeten këtu derisa t\'i shndërrosh ose t\'i heqësh.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count faqe';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotografitë e faturave';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Prek një foto fature për ta parë në madhësi të plotë';
 }

@@ -1663,4 +1663,76 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Prysetiket word agtertoets gelees.';
+
+  @override
+  String get listsTabReceipts => 'My ontvangs';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'My ontvangs ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'In waglys';
+
+  @override
+  String get receiptStatusProcessing => 'Lees ontvang…';
+
+  @override
+  String get receiptStatusReady => 'Gereed';
+
+  @override
+  String get receiptStatusDuplicate => 'Moontlike duplikaat';
+
+  @override
+  String get receiptStatusFailed => 'Kon nie lees nie';
+
+  @override
+  String get receiptConvertToListAction => 'Skakel om na lys';
+
+  @override
+  String get receiptRetryReadAction => 'Probeer weer';
+
+  @override
+  String get receiptDeleteDraftAction => 'Vee uit';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Ontvang gereed';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Jou ontvang is gereed. Oordra dit na \'n lys?';
+
+  @override
+  String get receiptDuplicateTitle => 'Ontvang reeds bygevoeg?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return '\'n Lys wat ooreenstem met hierdie winkel en tyd bestaan reeds ($listTitle). Tog byvoeg?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Tog byvoeg';
+
+  @override
+  String get receiptDuplicateDelete => 'Vee ontvang uit';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Geen hangende ontvangs nie';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Geskandeerde ontvangs word op die agtergrond voorberei en bly hier totdat jy hulle omskakel of verwyder.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count bladsye';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Ontvangfoto\'s';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tik op \'n ontvangfoto om dit in volle grootte te sien';
 }

@@ -1663,4 +1663,76 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Цената се чита во позадина.';
+
+  @override
+  String get listsTabReceipts => 'Моите сметки';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Моите сметки ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Во ред за обработка';
+
+  @override
+  String get receiptStatusProcessing => 'Читање на сметка…';
+
+  @override
+  String get receiptStatusReady => 'Подготвена';
+
+  @override
+  String get receiptStatusDuplicate => 'Можна дупликација';
+
+  @override
+  String get receiptStatusFailed => 'Не може да се прочита';
+
+  @override
+  String get receiptConvertToListAction => 'Претвори во листа';
+
+  @override
+  String get receiptRetryReadAction => 'Обиди се повторно';
+
+  @override
+  String get receiptDeleteDraftAction => 'Избриши';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Сметката е подготвена';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Вашата сметка е подготвена. Да ја пренесеме во листа?';
+
+  @override
+  String get receiptDuplicateTitle => 'Дали сметката веќе е додадена?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Веќе постои листа за овој магазин и време ($listTitle). Дали сакате да ја додадете повторно?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Додај сепак';
+
+  @override
+  String get receiptDuplicateDelete => 'Избриши ја сметката';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Нема чекања';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Скенираните сметки се обработуваат во позадина и остануваат овде додека не ги претворите или отстраните.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count страници';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Фотографии од сметки';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Допрете фотографија од сметка за да ја видите во полна големина';
 }

@@ -1,9 +1,6 @@
 // Gizli degerler KODA YAZILMAZ; derlemede --dart-define ile verilir (1.2).
 import 'dart:async';
 
-import 'package:drift/drift.dart' show QueryExecutor;
-import 'package:drift_flutter/drift_flutter.dart';
-
 import 'dart:ui' show PlatformDispatcher;
 
 import 'package:flutter/material.dart';
@@ -25,17 +22,22 @@ import 'core/config/env_config.dart';
 import 'core/money/country_currency.dart';
 import 'core/money/format_locale.dart';
 import 'data/db/app_database.dart';
+import 'data/db/app_database_opener.dart';
 import 'features/ads/ad_gate.dart';
+import 'features/ai/ai_client.dart';
 import 'features/engagement/review_moments.dart';
 import 'features/assistant/assistant_bubble.dart';
-import 'features/ai/ai_client.dart';
+import 'features/lists/reminders/local_notifications_scheduler.dart';
 import 'features/subscription/subscription_purchase_adapter.dart';
 import 'features/subscription/subscription_service.dart';
 import 'features/settings/settings_repository.dart';
+import 'features/receipts/receipt_capture_flow.dart';
 import 'features/receipts/receipt_image_store.dart';
+import 'features/receipts/receipt_queue_service.dart';
 
-/// Uygulama veritabanı: tüm platformlarda app dizininde tek dosya.
-QueryExecutor openAppDatabase() => driftDatabase(name: 'nshoptor');
+export 'data/db/app_database_opener.dart' show openAppDatabase;
+export 'features/receipts/receipt_queue_service.dart'
+    show receiptQueueBackgroundMain;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -83,16 +85,9 @@ Future<void> main() async {
     ..load()
     ..initializeTrial();
   SubscriptionService.instance = subscriptions;
-  AiService.client = AiClient(
+  AiService.client = buildAppAiClient(
     store: store,
-    baseUrl: EnvConfig.aiBaseUrl,
-    credential: () => subscriptions.credential,
-    appleTransaction: () => subscriptions.appleTransaction,
-    trialFirstOpenedAt: () => subscriptions.trialFirstOpenedAt,
-    onTrialWindow: (window) => subscriptions.observeTrialServer(
-      endsAt: window.endsAt,
-      serverNow: window.serverNow,
-    ),
+    subscriptions: subscriptions,
   );
   // İlk 7 gün tam Pro, abonelik ya da o günün ödüllü reklamsız hakkı (N055/N056).
   bool adFree() =>
@@ -144,14 +139,35 @@ Future<void> main() async {
     if (firstFrameReady) unawaited(adStartup.ensureReady());
   }
 
+  WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
+  final db = AppDatabase(openAppDatabase());
+  final queueNotifications = LocalNotificationsScheduler();
+  String currentQueueLocale() =>
+      languageController.locale?.languageCode ??
+      PlatformDispatcher.instance.locale.languageCode;
+  final receiptQueue = ReceiptQueueService(
+    db: db,
+    ai: AiService.client,
+    localeCode: currentQueueLocale(),
+    notifications: queueNotifications,
+  );
+  ReceiptQueueService.activeInstance = receiptQueue;
+  onReceiptEnqueued = (_) => unawaited(receiptQueue.onEnqueued());
+  receiptQueue.attachNativeWakeupHandler();
+  languageController.addListener(() {
+    receiptQueue.localeCode = currentQueueLocale();
+  });
+
   proController.addListener(syncAds);
   subscriptions.addListener(syncAds);
   // N054: no automatic app-open or interstitial advertisement.
   AdGate.showInterstitial = null;
-  AppLifecycleListener(onResume: syncAds);
-
-  WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
-  final db = AppDatabase(openAppDatabase());
+  AppLifecycleListener(
+    onResume: () {
+      syncAds();
+      unawaited(receiptQueue.reconcileAndDrain());
+    },
+  );
   final receiptMedia = await ReceiptImageStore.directory();
   runApp(
     NShoptorApp(
@@ -192,6 +208,7 @@ Future<void> main() async {
         SubscriptionResumeObserver(subscriptions),
       );
       syncAds();
+      unawaited(receiptQueue.reconcileAndDrain());
     }),
   );
 }

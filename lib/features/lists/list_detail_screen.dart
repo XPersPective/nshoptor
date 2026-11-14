@@ -11,6 +11,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../app/app_defaults.dart';
 import '../../app/navigation.dart';
+import '../receipts/receipt_photo_viewer.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
@@ -1012,6 +1013,8 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                     ),
                                   ),
                                 ),
+                              if (receipts.any((r) => r.imagePaths.isNotEmpty))
+                                _ReceiptPhotosSection(receipts: receipts),
                             ],
                           );
                         },
@@ -1835,6 +1838,91 @@ String _formatPrinted(BuildContext context, DateTime at) {
         MediaQuery.maybeAlwaysUse24HourFormatOf(context) ?? false,
   );
   return '$date $time';
+}
+
+/// Attached compressed receipt photos at the bottom of the list (`PB-214`).
+class _ReceiptPhotosSection extends StatelessWidget {
+  const _ReceiptPhotosSection({required this.receipts});
+
+  final List<ListReceipt> receipts;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final attached = [
+      for (final r in receipts)
+        if (r.imagePaths.isNotEmpty) r,
+    ];
+    if (attached.isEmpty) return const SizedBox.shrink();
+    return Card(
+      key: const Key('list_receipt_photos_section'),
+      margin: const EdgeInsets.only(top: 12, bottom: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.photo_library_outlined,
+                  size: 18,
+                  color: theme.colorScheme.primary,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    l10n.receiptPhotosSectionTitle,
+                    style: theme.textTheme.titleSmall,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              l10n.receiptOpenPhotoHint,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 10),
+            for (final receipt in attached) ...[
+              if (attached.length > 1 && receipt.store != null) ...[
+                Text(
+                  cleanStoreName(receipt.store!),
+                  style: theme.textTheme.labelMedium,
+                ),
+                const SizedBox(height: 6),
+              ],
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (var i = 0; i < receipt.imagePaths.length; i++)
+                    ReceiptPhotoThumbnail(
+                      key: Key('receipt_photo_thumb_${receipt.id}_$i'),
+                      imagePath: receipt.imagePaths[i],
+                      size: const Size(64, 84),
+                      semanticLabel: l10n.receiptOpenPhotoHint,
+                      onTap: () => showReceiptPhotoViewer(
+                        context,
+                        imagePath: receipt.imagePaths[i],
+                        receiptId: receipt.id,
+                        title: receipt.store == null
+                            ? null
+                            : cleanStoreName(receipt.store!),
+                      ),
+                    ),
+                ],
+              ),
+              if (receipt != attached.last) const SizedBox(height: 10),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 /// F13: every receipt of the list with its state; long lists stay short.

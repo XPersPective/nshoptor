@@ -1670,4 +1670,76 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Eticheta de preț este în curs de citire în fundal.';
+
+  @override
+  String get listsTabReceipts => 'Chitanțele mele';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Chitanțele mele ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'În așteptare';
+
+  @override
+  String get receiptStatusProcessing => 'Se citește chitanța…';
+
+  @override
+  String get receiptStatusReady => 'Gata';
+
+  @override
+  String get receiptStatusDuplicate => 'Posibil duplicat';
+
+  @override
+  String get receiptStatusFailed => 'Nu s-a putut citi';
+
+  @override
+  String get receiptConvertToListAction => 'Convertește în listă';
+
+  @override
+  String get receiptRetryReadAction => 'Încearcă din nou';
+
+  @override
+  String get receiptDeleteDraftAction => 'Șterge';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Chitanță pregătită';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Chitanța ta este gata. O transferăm într-o listă?';
+
+  @override
+  String get receiptDuplicateTitle => 'Chitanța a fost deja adăugată?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'O listă pentru același magazin și oră există deja ($listTitle). Vrei să o adaugi din nou?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Adaugă oricum';
+
+  @override
+  String get receiptDuplicateDelete => 'Șterge chitanța';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nicio chitanță în așteptare';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Chitanțele scanate se procesează în fundal și rămân aici până le convertești sau le ștergi.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pagini';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotografii cu chitanțe';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Atinge o fotografie cu chitanța pentru a o vedea pe tot ecranul';
 }

@@ -1647,4 +1647,75 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'ملصق السعر يُقرأ في الخلفية.';
+
+  @override
+  String get listsTabReceipts => 'إيصالاتِي';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'إيصالاتِي ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'في الانتظار';
+
+  @override
+  String get receiptStatusProcessing => 'جاري قراءة الإيصال…';
+
+  @override
+  String get receiptStatusReady => 'جاهز';
+
+  @override
+  String get receiptStatusDuplicate => 'إيصال مكرر محتمل';
+
+  @override
+  String get receiptStatusFailed => 'تعذرت القراءة';
+
+  @override
+  String get receiptConvertToListAction => 'تحويل إلى قائمة';
+
+  @override
+  String get receiptRetryReadAction => 'إعادة المحاولة';
+
+  @override
+  String get receiptDeleteDraftAction => 'حذف';
+
+  @override
+  String get receiptReadyNotificationTitle => 'الإيصال جاهز';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'إيصالك جاهز. هل تريد نقله إلى قائمة؟';
+
+  @override
+  String get receiptDuplicateTitle => 'هل تمت إضافة الإيصال مسبقاً؟';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'توجد قائمة مطابقة لهذا المتجر والوقت بالفعل ($listTitle). هل تضيفه مرة أخرى على أي حال؟';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'أضف على أي حال';
+
+  @override
+  String get receiptDuplicateDelete => 'حذف الإيصال';
+
+  @override
+  String get receiptEmptyTrayTitle => 'لا توجد إيصالات قيد الانتظار';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'تجهز الإيصالات الممسوحة ضوئياً في الخلفية وتبقى هنا حتى تقوم بتحويلها أو إزالتها.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count صفحات';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'صور الإيصالات';
+
+  @override
+  String get receiptOpenPhotoHint => 'انقر على صورة إيصال لعرضها بالحجم الكامل';
 }

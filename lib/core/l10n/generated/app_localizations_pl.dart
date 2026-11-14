@@ -1665,4 +1665,76 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Etykieta cenowa jest odczytywana w tle.';
+
+  @override
+  String get listsTabReceipts => 'Moje paragoni';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Moje paragoni ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'W kolejce';
+
+  @override
+  String get receiptStatusProcessing => 'Odczytuję paragon…';
+
+  @override
+  String get receiptStatusReady => 'Gotowy';
+
+  @override
+  String get receiptStatusDuplicate => 'Możliwa duplikacja';
+
+  @override
+  String get receiptStatusFailed => 'Nie udało się odczytać';
+
+  @override
+  String get receiptConvertToListAction => 'Przekształć na listę';
+
+  @override
+  String get receiptRetryReadAction => 'Ponów próbę';
+
+  @override
+  String get receiptDeleteDraftAction => 'Usuń';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Paragon gotowy';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Twój paragon jest gotowy. Przenieść go na listę?';
+
+  @override
+  String get receiptDuplicateTitle => 'Paragon już dodany?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Lista dla tego sklepu i czasu już istnieje ($listTitle). Czy dodać ponownie?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Dodaj mimo to';
+
+  @override
+  String get receiptDuplicateDelete => 'Usuń paragon';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Brak oczekujących paragonów';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Przeskanowane paragoni przetwarzane są w tle i pozostają tutaj, aż je przekształcisz lub usuniesz.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count stron';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Zdjęcia paragonów';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Naciśnij zdjęcie paragonu, aby zobaczyć je w pełnym rozmiarze';
 }

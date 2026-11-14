@@ -1659,4 +1659,76 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'मूल्य लेबल पृष्ठभूमिमा पढ्दै छ।';
+
+  @override
+  String get listsTabReceipts => 'मेरा रसिदहरू';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'मेरा रसिदहरू ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'पङ्क्तिमा छ';
+
+  @override
+  String get receiptStatusProcessing => 'रसिद पढ्दै…';
+
+  @override
+  String get receiptStatusReady => 'तयार';
+
+  @override
+  String get receiptStatusDuplicate => 'सम्भावित दोहोरो';
+
+  @override
+  String get receiptStatusFailed => 'पढ्न सकिएन';
+
+  @override
+  String get receiptConvertToListAction => 'सूचीमा रूपान्तरण गर्नुहोस्';
+
+  @override
+  String get receiptRetryReadAction => 'फेरि प्रयास गर्नुहोस्';
+
+  @override
+  String get receiptDeleteDraftAction => 'मेट्नुहोस्';
+
+  @override
+  String get receiptReadyNotificationTitle => 'रसिद तयार भयो';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'तपाईंको रसिद तयार छ। यसलाई सूचीमा सार्ने?';
+
+  @override
+  String get receiptDuplicateTitle => 'रसिद पहिले नै थपिएको?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'यही पसल र समयको लागि एउटा सूची पहिले नै छ ($listTitle)। फेरि पनि थप्ने?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'फेरि पनि थप्नुहोस्';
+
+  @override
+  String get receiptDuplicateDelete => 'रसिद मेट्नुहोस्';
+
+  @override
+  String get receiptEmptyTrayTitle => 'कुनै बाँकी रसिद छैन';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'स्क्यान गरिएका रसिदहरू पृष्ठभूमिमा तयार हुन्छन् र तिनीहरू रूपान्तरण वा हटाउन नभएसम्म यहाँ रहन्छन्।';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count पृष्ठहरू';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'रसिद तस्बिरहरू';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'पूर्ण आकार हेर्न रसिद तस्बिर ट्याप गर्नुहोस्';
 }

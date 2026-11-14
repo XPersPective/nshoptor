@@ -1665,4 +1665,76 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Lettura dell\'etichetta del prezzo in background.';
+
+  @override
+  String get listsTabReceipts => 'Le mie ricevute';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Le mie ricevute ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'In coda';
+
+  @override
+  String get receiptStatusProcessing => 'Lettura della ricevuta…';
+
+  @override
+  String get receiptStatusReady => 'Pronta';
+
+  @override
+  String get receiptStatusDuplicate => 'Possibile duplicato';
+
+  @override
+  String get receiptStatusFailed => 'Impossibile leggere';
+
+  @override
+  String get receiptConvertToListAction => 'Converti in lista';
+
+  @override
+  String get receiptRetryReadAction => 'Riprova';
+
+  @override
+  String get receiptDeleteDraftAction => 'Elimina';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Ricevuta pronta';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'La tua ricevuta è pronta. Vuoi trasferirla in una lista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Ricevuta già aggiunta?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Esiste già una lista corrispondente a questo negozio e orario ($listTitle). Vuoi aggiungerla comunque?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Aggiungi comunque';
+
+  @override
+  String get receiptDuplicateDelete => 'Elimina ricevuta';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nessuna ricevuta in attesa';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Le ricevute scansionate vengono elaborate in background e rimangono qui finché non le converti o le elimini.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pagine';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Foto delle ricevute';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tocca una foto della ricevuta per visualizzarla a grandezza intera';
 }

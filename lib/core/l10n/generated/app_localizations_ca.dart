@@ -1667,4 +1667,76 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'L\'etiqueta de preu es llegeix en segon pla.';
+
+  @override
+  String get listsTabReceipts => 'Els meus rebuts';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Els meus rebuts ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'En cua';
+
+  @override
+  String get receiptStatusProcessing => 'Llegint el rebut…';
+
+  @override
+  String get receiptStatusReady => 'Preparat';
+
+  @override
+  String get receiptStatusDuplicate => 'Possible duplicat';
+
+  @override
+  String get receiptStatusFailed => 'No s\'ha pogut llegir';
+
+  @override
+  String get receiptConvertToListAction => 'Converteix a llista';
+
+  @override
+  String get receiptRetryReadAction => 'Torna-ho a provar';
+
+  @override
+  String get receiptDeleteDraftAction => 'Suprimeix';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Rebut preparat';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'El teu rebut està llest. Vols transferir-lo a una llista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Rebut ja afegit?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Ja existeix una llista que coincideix amb aquesta botiga i hora ($listTitle). Vols tornar-lo a afegir?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Afegeix-lo igualment';
+
+  @override
+  String get receiptDuplicateDelete => 'Suprimeix el rebut';
+
+  @override
+  String get receiptEmptyTrayTitle => 'No hi ha rebuts pendents';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Els rebuts escanejats es processen en segon pla i romanen aquí fins que els converteixis o els suprimeixis.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pàgines';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotos dels rebuts';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Toca una foto del rebut per veure-la a mida completa';
 }

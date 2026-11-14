@@ -31,8 +31,11 @@ import '../lists/templates/template_repository.dart';
 import '../lists/list_detail_screen.dart';
 
 import '../receipts/receipt_capture_flow.dart';
+import '../receipts/receipt_draft_repository.dart';
 import '../receipts/receipt_image_store.dart';
+import '../receipts/receipt_queue_service.dart';
 import '../receipts/ocr_text_source.dart';
+import '../ai/ai_client.dart';
 
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
@@ -64,6 +67,9 @@ class HomeShell extends StatefulWidget {
     this.pickImage,
     this.receiptImageStore,
     this.ocrSource,
+    this.receiptDraftTaps,
+    this.initialReceiptDraftId,
+    this.receiptQueueService,
     this.firstRunGuide = false,
   });
 
@@ -101,6 +107,9 @@ class HomeShell extends StatefulWidget {
   final Future<String?> Function()? pickImage;
   final ReceiptImageStore? receiptImageStore;
   final OcrTextSource? ocrSource;
+  final Stream<int>? receiptDraftTaps;
+  final Future<int?> Function()? initialReceiptDraftId;
+  final ReceiptQueueService? receiptQueueService;
 
   /// Uygulama açılışında ilk kullanım rehberini bir kez gösterir (app.dart).
   final bool firstRunGuide;
@@ -111,9 +120,12 @@ class HomeShell extends StatefulWidget {
 
 class _HomeShellState extends State<HomeShell> {
   int _tab = 0;
+  int? _requestedListsTab;
+  int _requestedListsTabNonce = 0;
   final _nativeReminders = LocalNotificationsScheduler();
   StreamSubscription<int>? _notificationSubscription;
   StreamSubscription<int>? _receiptSubscription;
+  StreamSubscription<int>? _receiptDraftSubscription;
   final _openedReminders = <int>{};
   Future<void> _reminderNavigation = Future<void>.value();
   bool _trialNoticeShowing = false;
@@ -127,6 +139,25 @@ class _HomeShellState extends State<HomeShell> {
         await runHomeTour(context);
       }
       if (mounted) await _maybeTrialNotice();
+      if (!mounted) return;
+      final draftStream =
+          widget.receiptDraftTaps ??
+          (widget.reminderScheduler == null
+              ? LocalNotificationsScheduler.selectedReceiptDrafts
+              : null);
+      if (draftStream != null) {
+        _receiptDraftSubscription = draftStream.listen(
+          (draftId) => unawaited(_openReceiptDraft(draftId)),
+        );
+      }
+      if (widget.initialReceiptDraftId != null) {
+        try {
+          final launchDraft = await widget.initialReceiptDraftId!();
+          if (launchDraft != null && mounted) {
+            await _openReceiptDraft(launchDraft);
+          }
+        } catch (_) {}
+      }
       if (!mounted || widget.reminderScheduler != null) return;
       _notificationSubscription = LocalNotificationsScheduler.selectedReminders
           .listen((id) => unawaited(_openReminder(id)));
@@ -140,6 +171,12 @@ class _HomeShellState extends State<HomeShell> {
         if (id != null && mounted) await _openReminder(id);
         final list = await _nativeReminders.initialReceiptListId();
         if (list != null && mounted) await _openShopping(context, list);
+        if (widget.initialReceiptDraftId == null) {
+          final launchDraft = await _nativeReminders.initialReceiptDraftId();
+          if (launchDraft != null && mounted) {
+            await _openReceiptDraft(launchDraft);
+          }
+        }
       } catch (_) {
         // Unsupported native notification services leave manual lists usable.
       }
@@ -151,6 +188,7 @@ class _HomeShellState extends State<HomeShell> {
     widget.subscriptions?.removeListener(_trialChanged);
     unawaited(_notificationSubscription?.cancel());
     unawaited(_receiptSubscription?.cancel());
+    unawaited(_receiptDraftSubscription?.cancel());
     super.dispose();
   }
 
@@ -316,6 +354,9 @@ class _HomeShellState extends State<HomeShell> {
         onScanReceipt: () => _createFromReceipt(context),
         receiptBusy: _inputBusy,
         onDiscover: () => _openDiscover(context),
+        receiptQueueService: widget.receiptQueueService,
+        requestedTab: _requestedListsTab,
+        requestedTabNonce: _requestedListsTabNonce,
         budgetCard: HistoryBudgetCard(
           // Rebuilt on every return to the Lists tab so spending is current.
           key: ValueKey('home_budget_$_budgetVisit'),
@@ -451,6 +492,31 @@ class _HomeShellState extends State<HomeShell> {
           ..showSnackBar(
             SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
           );
+      }
+    }
+  }
+
+  Future<void> _openReceiptDraft(int draftId) async {
+    if (!mounted) return;
+    setState(() {
+      _tab = 0;
+      _requestedListsTab = 3;
+      _requestedListsTabNonce++;
+    });
+    final draft = await ReceiptDraftRepository(widget.db).getById(draftId);
+    if (!mounted || draft == null || draft.listId != null) return;
+    if (draft.queueState == 'ready' || draft.queueState == 'duplicate') {
+      final queueService =
+          widget.receiptQueueService ?? ReceiptQueueService.activeInstance;
+      final listId = await openQueuedReceiptForReview(
+        context,
+        db: widget.db,
+        draft: draft,
+        ai: AiService.client,
+        deleteDraft: queueService?.deleteTrayReceipt,
+      );
+      if (listId != null && mounted) {
+        await _openShopping(context, listId);
       }
     }
   }

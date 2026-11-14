@@ -1658,4 +1658,76 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Баа этикеткасы фондо окулууда.';
+
+  @override
+  String get listsTabReceipts => 'Менин чектерим';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Менин чектерим ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Кезекте';
+
+  @override
+  String get receiptStatusProcessing => 'Чек окулууда…';
+
+  @override
+  String get receiptStatusReady => 'Даяр';
+
+  @override
+  String get receiptStatusDuplicate => 'Окшош чек табылды';
+
+  @override
+  String get receiptStatusFailed => 'Окуу ишке ашкан жок';
+
+  @override
+  String get receiptConvertToListAction => 'Тизмеге айландыруу';
+
+  @override
+  String get receiptRetryReadAction => 'Кайра аракет кылуу';
+
+  @override
+  String get receiptDeleteDraftAction => 'Өчүрүү';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Чек даяр';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Чек даяр. Аны тизмеге өткөрөсүзбү?';
+
+  @override
+  String get receiptDuplicateTitle => 'Чек мурунтан кошулганбы?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Бул дүкөн жана убакытка дал келген тизме бар ($listTitle). Бардыгы бирдей эле кошосузбу?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Бардыгы бирдей кошуу';
+
+  @override
+  String get receiptDuplicateDelete => 'Чекти өчүрүү';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Кезектеги чектер жок';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Сканерленген чектер фондо даярдалат жана сиз аларды тизмеге айландырмасыңыз же өчүрмөйүнчө ушул жерде турат.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count барак';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Чектин сүрөттөрү';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Толук өлчөмдө көрүү үчүн чектин сүрөтүн басыңыз';
 }

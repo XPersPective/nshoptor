@@ -1661,4 +1661,76 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Qiymət etiketi arxa planda oxunur.';
+
+  @override
+  String get listsTabReceipts => 'Mənim çeklerim';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mənim çeklerim ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Gözləmə siyahısında';
+
+  @override
+  String get receiptStatusProcessing => 'Çek oxunur…';
+
+  @override
+  String get receiptStatusReady => 'Hazırdır';
+
+  @override
+  String get receiptStatusDuplicate => 'Ola bilsin ki, dublikatdır';
+
+  @override
+  String get receiptStatusFailed => 'Oxuna bilmədi';
+
+  @override
+  String get receiptConvertToListAction => 'Siyahıya çevir';
+
+  @override
+  String get receiptRetryReadAction => 'Yenidən cəhd et';
+
+  @override
+  String get receiptDeleteDraftAction => 'Sil';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Çek hazırdır';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Çekiniz hazırdır. Onu siyahıya köçürmək istəyirsiniz?';
+
+  @override
+  String get receiptDuplicateTitle => 'Çek artıq əlavə edilib?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Bu mağaza və vaxta uyğun siyahı artıq mövcuddur ($listTitle). Yenidən əlavə etmək istəyirsiniz?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Yenidən əlavə et';
+
+  @override
+  String get receiptDuplicateDelete => 'Çeki sil';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Gözləyən çek yoxdur';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Sklenen çeklər arxa planda emal olunur və siz onları siyahıya çevirməyinizə və ya silməyinizə qədər burada saxlanılır.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count səhifə';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Çek fotoşəkilləri';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tam ölçüdə görmək üçün çek fotoşəkilinə toxunun';
 }

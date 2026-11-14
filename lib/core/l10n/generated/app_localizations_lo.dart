@@ -1646,4 +1646,75 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'ປ້າຍລາຄາກຳລັງອ່ານຢູ່ພື້ນຫຼັງ.';
+
+  @override
+  String get listsTabReceipts => 'ໃບເກັບເງິນຂ້ອຍ';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ໃບເກັບເງິນຂ້ອຍ ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'ລໍຖ້າ';
+
+  @override
+  String get receiptStatusProcessing => 'ກຳລັງອ່ານໃບເກັບເງິນ…';
+
+  @override
+  String get receiptStatusReady => 'ພ້ອມແລ້ວ';
+
+  @override
+  String get receiptStatusDuplicate => 'ອາດຈະຊ້ຳກັນ';
+
+  @override
+  String get receiptStatusFailed => 'ບໍ່ສາມາດອ່ານໄດ້';
+
+  @override
+  String get receiptConvertToListAction => 'ປ່ຽນເປັນລາຍການ';
+
+  @override
+  String get receiptRetryReadAction => 'ລອງໃໝ່';
+
+  @override
+  String get receiptDeleteDraftAction => 'ລຶບ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ໃບເກັບເງິນພ້ອມແລ້ວ';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ໃບເກັບເງິນຂອງທ່ານພ້ອມແລ້ວ. ຍ້າຍໄປໃສ່ລາຍການບໍ?';
+
+  @override
+  String get receiptDuplicateTitle => 'ເກັບໃບເກັບເງິນໄປແລ້ວບໍ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ມີລາຍການທີ່ກົງກັບໂຮງງານ ແລະ ເວລານີ້ແລ້ວ ($listTitle). ບັນທຶກອີກຄັ້ງຫຼືບໍ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'ບັນທຶກແທ້ໆ';
+
+  @override
+  String get receiptDuplicateDelete => 'ລຶບໃບເກັບເງິນ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ບໍ່ມີໃບເກັບເງິນທີ່ລໍຖ້າ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ໃບເກັບເງິນທີ່ສະແກນແລ້ວຈະກະກຽມຢູ່ພື້ນຫຼັງ ແລະ ຢູ່ນີ້ຈົນກະທັ່ງທ່ານປ່ຽນເປັນລາຍການ ຫຼື ລຶບອອກ.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count ໜ້າ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ຮູບພາບໃບເກັບເງິນ';
+
+  @override
+  String get receiptOpenPhotoHint => 'ກົດຮູບພາບໃບເກັບເງິນເພື່ອເບິ່ງຂະໜາດເຕັມ';
 }

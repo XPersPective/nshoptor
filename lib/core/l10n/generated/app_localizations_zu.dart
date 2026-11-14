@@ -1669,4 +1669,76 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Isikhwama sesitolo siyafundwa emva.';
+
+  @override
+  String get listsTabReceipts => 'Amathikithi ami';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Amathikithi ami ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Kulindile';
+
+  @override
+  String get receiptStatusProcessing => 'Sifunda ithikithi…';
+
+  @override
+  String get receiptStatusReady => 'Kulungile';
+
+  @override
+  String get receiptStatusDuplicate => 'Kungenzeka ukuthi kuphindwe kabili';
+
+  @override
+  String get receiptStatusFailed => 'Awukwazanga ukufunda';
+
+  @override
+  String get receiptConvertToListAction => 'Guqula ibe yilisti';
+
+  @override
+  String get receiptRetryReadAction => 'Zama futhi';
+
+  @override
+  String get receiptDeleteDraftAction => 'Susa';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Ithikithi lilungile';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ithikithi lakho selilungile. Uyafuna ukusihudulela kwilisti?';
+
+  @override
+  String get receiptDuplicateTitle => 'Ithikithi sele engeziwe?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Ilisiti ehambisanayo nalesi sikhathi nesitolo sele ikhona ($listTitle). Uyafuna ukuyengeza futhi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Yengeza nakuba kunjalo';
+
+  @override
+  String get receiptDuplicateDelete => 'Susa ithikithi';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ayikho imisebenzi elindele';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Amathikithi akhishelwe isithombe alungiswa ngemuva bese ehlala lapha kuze kufike usiguqule noma ususe.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count amaphepha';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Izithombe zamathikithi';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Chofoza isithombe sethikithi ukuze ubuke ngobukhulu';
 }

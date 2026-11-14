@@ -1665,4 +1665,76 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'A etiqueta de prezo está lendo en segundo plano.';
+
+  @override
+  String get listsTabReceipts => 'Os meus recibos';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Os meus recibos ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'En cola';
+
+  @override
+  String get receiptStatusProcessing => 'Lendo o recibo…';
+
+  @override
+  String get receiptStatusReady => 'Listo';
+
+  @override
+  String get receiptStatusDuplicate => 'Posible duplicado';
+
+  @override
+  String get receiptStatusFailed => 'Non se puido ler';
+
+  @override
+  String get receiptConvertToListAction => 'Converter en lista';
+
+  @override
+  String get receiptRetryReadAction => 'Tentar de novo';
+
+  @override
+  String get receiptDeleteDraftAction => 'Eliminar';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Recibo listo';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'O teu recibo está listo. Queres transferilo a unha lista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Xa engadiches este recibo?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Xa existe unha lista que coincide con esta tenda e data ($listTitle). Engadir de novo?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Engadir de todos modos';
+
+  @override
+  String get receiptDuplicateDelete => 'Eliminar recibo';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Non hai recibos pendentes';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Os recibos escaneados procesan en segundo plano e permanecen aquí ata que os convertas ou elimines.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count páxinas';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotos dos recibos';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Preme nunha foto do recibo para verla a tamaño completo';
 }

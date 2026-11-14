@@ -1671,4 +1671,76 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Lecture de l\'étiquette en arrière-plan.';
+
+  @override
+  String get listsTabReceipts => 'Mes reçus';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mes reçus ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'En file d\'attente';
+
+  @override
+  String get receiptStatusProcessing => 'Lecture du reçu…';
+
+  @override
+  String get receiptStatusReady => 'Prêt';
+
+  @override
+  String get receiptStatusDuplicate => 'Double possible';
+
+  @override
+  String get receiptStatusFailed => 'Impossible de lire';
+
+  @override
+  String get receiptConvertToListAction => 'Convertir en liste';
+
+  @override
+  String get receiptRetryReadAction => 'Réessayer';
+
+  @override
+  String get receiptDeleteDraftAction => 'Supprimer';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Reçu prêt';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Votre reçu est prêt. Le transférer dans une liste ?';
+
+  @override
+  String get receiptDuplicateTitle => 'Reçu déjà ajouté ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Une liste correspondant à ce magasin et à cette date existe déjà ($listTitle). Ajouter quand même ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Ajouter quand même';
+
+  @override
+  String get receiptDuplicateDelete => 'Supprimer le reçu';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Aucun reçu en attente';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Les reçus scannés se préparent en arrière-plan et restent ici jusqu\'à ce que vous les convertissiez ou les supprimiez.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pages';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Photos des reçus';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Appuyez sur une photo de reçu pour l\'afficher en taille réelle';
 }

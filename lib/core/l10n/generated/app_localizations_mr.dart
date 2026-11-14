@@ -1653,4 +1653,76 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'किंमत लेबल बॅकग्राउंडमध्ये वाचत आहे.';
+
+  @override
+  String get listsTabReceipts => 'माझ्या बिलांची यादी';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'माझी बिले ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'रांगेत';
+
+  @override
+  String get receiptStatusProcessing => 'बिल वाचत आहे…';
+
+  @override
+  String get receiptStatusReady => 'तयार';
+
+  @override
+  String get receiptStatusDuplicate => 'शक्यता दुप्पट';
+
+  @override
+  String get receiptStatusFailed => 'वाचू शकले नाही';
+
+  @override
+  String get receiptConvertToListAction => 'यादीमध्ये रूपांतरित करा';
+
+  @override
+  String get receiptRetryReadAction => 'पुन्हा वाचा';
+
+  @override
+  String get receiptDeleteDraftAction => 'हटवा';
+
+  @override
+  String get receiptReadyNotificationTitle => 'बिल तयार आहे';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'तुमचे बिल तयार आहे. ते यादीमध्ये हलवायचे का?';
+
+  @override
+  String get receiptDuplicateTitle => 'बिल आधीच जोडले आहे का?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'या दुकान आणि वेळेसह एक यादी आधीच अस्तित्वात आहे ($listTitle). तरीही पुन्हा जोडावे का?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'तरीही जोडा';
+
+  @override
+  String get receiptDuplicateDelete => 'बिल हटवा';
+
+  @override
+  String get receiptEmptyTrayTitle => 'कोणतेही प्रलंबित बिले नाहीत';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'स्कॅन केलेली बिले पार्श्वभूमीवर तयार होतात आणि तुम्ही ते रूपांतरित किंवा काढून टाकपर्यंत इथे राहतात.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count पृष्ठे';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'बिलांची फोटो';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'पूर्ण आकार पाहण्यासाठी बिलाच्या फोटोवर टॅप करा';
 }

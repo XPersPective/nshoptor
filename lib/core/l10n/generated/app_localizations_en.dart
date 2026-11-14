@@ -1663,4 +1663,75 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Price label is reading in the background.';
+
+  @override
+  String get listsTabReceipts => 'My receipts';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'My receipts ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Queued';
+
+  @override
+  String get receiptStatusProcessing => 'Reading receipt…';
+
+  @override
+  String get receiptStatusReady => 'Ready';
+
+  @override
+  String get receiptStatusDuplicate => 'Possible duplicate';
+
+  @override
+  String get receiptStatusFailed => 'Could not read';
+
+  @override
+  String get receiptConvertToListAction => 'Convert to list';
+
+  @override
+  String get receiptRetryReadAction => 'Retry';
+
+  @override
+  String get receiptDeleteDraftAction => 'Delete';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Receipt ready';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Your receipt is ready. Transfer it to a list?';
+
+  @override
+  String get receiptDuplicateTitle => 'Receipt already added?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'A list matching this store and time already exists ($listTitle). Add again anyway?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Add anyway';
+
+  @override
+  String get receiptDuplicateDelete => 'Delete receipt';
+
+  @override
+  String get receiptEmptyTrayTitle => 'No pending receipts';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Scanned receipts prepare in the background and stay here until you convert or remove them.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pages';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Receipt photos';
+
+  @override
+  String get receiptOpenPhotoHint => 'Tap a receipt photo to view full size';
 }

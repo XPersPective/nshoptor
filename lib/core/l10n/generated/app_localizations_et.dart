@@ -1657,4 +1657,76 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Hindade silti loetakse taustal.';
+
+  @override
+  String get listsTabReceipts => 'Minu kvitid';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Minu kvitid ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Järjekorras';
+
+  @override
+  String get receiptStatusProcessing => 'Kviti lugemine…';
+
+  @override
+  String get receiptStatusReady => 'Valmis';
+
+  @override
+  String get receiptStatusDuplicate => 'Võimalik dubleerimine';
+
+  @override
+  String get receiptStatusFailed => 'Ei õnnestunud lugeda';
+
+  @override
+  String get receiptConvertToListAction => 'Teisenda nimekirjaks';
+
+  @override
+  String get receiptRetryReadAction => 'Proovi uuesti';
+
+  @override
+  String get receiptDeleteDraftAction => 'Kustuta';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kviit valmis';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Sinu kviit on valmis. Kas teisendada see nimekirja?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kviit on juba lisatud?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Selle poe ja aja jaoks on juba olemas vastav nimi ($listTitle). Kas lisada siiski?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Lisa siiski';
+
+  @override
+  String get receiptDuplicateDelete => 'Kustuta kviit';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Pole ootel kvite';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skaneeritud kviidid töötlevad taustal ja jäävad siia, kuni teisendad või eemaldad need.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count lehekülge';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kviidi pildid';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Täissuuruses kuvamiseks puuduta kvidi pilti';
 }

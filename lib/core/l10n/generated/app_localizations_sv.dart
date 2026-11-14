@@ -1656,4 +1656,76 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Prisetiketten läses i bakgrunden.';
+
+  @override
+  String get listsTabReceipts => 'Mina kvitton';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mina kvitton ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Köad';
+
+  @override
+  String get receiptStatusProcessing => 'Läser av kvitto…';
+
+  @override
+  String get receiptStatusReady => 'Klar';
+
+  @override
+  String get receiptStatusDuplicate => 'Trolig dublett';
+
+  @override
+  String get receiptStatusFailed => 'Kunde inte läsa av';
+
+  @override
+  String get receiptConvertToListAction => 'Konvertera till lista';
+
+  @override
+  String get receiptRetryReadAction => 'Försök igen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Ta bort';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kvitto klart';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ditt kvitto är klart. Vill du överföra det till en lista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kvitto redan tillagt?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'En lista som matchar denna butik och tidpunkt finns redan ($listTitle). Lägg till ändå?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Lägg till ändå';
+
+  @override
+  String get receiptDuplicateDelete => 'Ta bort kvitto';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Inga väntande kvitton';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skannade kvitton bearbetas i bakgrunden och stannar här tills du konverterar eller tar bort dem.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sidor';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kvittofoton';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tryck på ett kvittofoto för att visa i full storlek';
 }

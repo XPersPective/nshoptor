@@ -1662,4 +1662,76 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Cenas etiķete tiek lasīta fona režīmā.';
+
+  @override
+  String get listsTabReceipts => 'Mani čeki';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mani čeki ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Gaida';
+
+  @override
+  String get receiptStatusProcessing => 'Čeka lasīšana…';
+
+  @override
+  String get receiptStatusReady => 'Gatavs';
+
+  @override
+  String get receiptStatusDuplicate => 'Iespējams dublikāts';
+
+  @override
+  String get receiptStatusFailed => 'Neizdevās nolasīt';
+
+  @override
+  String get receiptConvertToListAction => 'Pārvērst sarakstā';
+
+  @override
+  String get receiptRetryReadAction => 'Mēģināt vēlreiz';
+
+  @override
+  String get receiptDeleteDraftAction => 'Dzēst';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Čeks gatavs';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Jūsu čeks ir gatavs. Pārnest to sarakstā?';
+
+  @override
+  String get receiptDuplicateTitle => 'Čeks jau pievienots?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Saraksts ar šo veikalu un laiku jau pastāv ($listTitle). Pievienot atkārtoti?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Pieņemt tomēr';
+
+  @override
+  String get receiptDuplicateDelete => 'Dzēst čeku';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nav gaidošo čekų';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Naskenētie čeki tiek apstrādāti fonā un paliek šeit, līdz tos pārvērsiet vai noņemsiet.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count lapas';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Čeku fotogrāfijas';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Pieskarieties čeka fotogrāfijai, lai skatītu pilnizmēra attēlu';
 }

@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "android/app/build.gradle.kts, android/app/src/main/kotlin/com/crazypenguin/nshoptor/MainActivity.kt, android/app/src/main/kotlin/com/crazypenguin/nshoptor/ReceiptQueueWorker.kt, ios/Runner/AppDelegate.swift, ios/Runner/Info.plist; inspect git status for the complete dirty set",
+  "strategy": "check",
+  "attempt": "7afd483b223f168e",
+  "repeats": 0,
+  "contract": "9392c90699acb717",
+  "usage": {
+    "checks": 1,
+    "seconds": 220.516
+  }
+}

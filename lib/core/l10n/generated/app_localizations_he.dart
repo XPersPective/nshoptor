@@ -1644,4 +1644,75 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'מדבקת המחיר נקראת ברקע.';
+
+  @override
+  String get listsTabReceipts => 'הקבלות שלי';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'הקבלות שלי ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'בתור';
+
+  @override
+  String get receiptStatusProcessing => 'קורא קבלה…';
+
+  @override
+  String get receiptStatusReady => 'מוכן';
+
+  @override
+  String get receiptStatusDuplicate => 'ייתכן שכפול';
+
+  @override
+  String get receiptStatusFailed => 'לא ניתן לקרוא';
+
+  @override
+  String get receiptConvertToListAction => 'המרה לרשימה';
+
+  @override
+  String get receiptRetryReadAction => 'נסה שוב';
+
+  @override
+  String get receiptDeleteDraftAction => 'מחק';
+
+  @override
+  String get receiptReadyNotificationTitle => 'הקבלה מוכנה';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'הקבלה שלך מוכנה. להעביר אותה לרשימה?';
+
+  @override
+  String get receiptDuplicateTitle => 'הקבלה כבר נוספה?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'כבר קיימת רשימה התואמת את החנות והזמן האלה ($listTitle). להוסיף בכל זאת?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'הוסף בכל זאת';
+
+  @override
+  String get receiptDuplicateDelete => 'מחק קבלה';
+
+  @override
+  String get receiptEmptyTrayTitle => 'אין קבלות בהמתנה';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'קבלות סרוקות מעובדות ברקע ונשארות כאן עד שתמיר או תסיר אותן.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count עמודים';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'תמונות קבלה';
+
+  @override
+  String get receiptOpenPhotoHint => 'לחץ על תמונת קבלה כדי לצפות בגודל מלא';
 }

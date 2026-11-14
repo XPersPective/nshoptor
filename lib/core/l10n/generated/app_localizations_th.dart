@@ -1645,4 +1645,75 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'ป้ายราคากำลังอ่านอยู่เบื้องหลัง';
+
+  @override
+  String get listsTabReceipts => 'ใบเสร็จของฉัน';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ใบเสร็จของฉัน ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'รอคิว';
+
+  @override
+  String get receiptStatusProcessing => 'กำลังอ่านใบเสร็จ…';
+
+  @override
+  String get receiptStatusReady => 'พร้อมใช้งาน';
+
+  @override
+  String get receiptStatusDuplicate => 'อาจเป็นสำเนาซ้ำ';
+
+  @override
+  String get receiptStatusFailed => 'ไม่สามารถอ่านได้';
+
+  @override
+  String get receiptConvertToListAction => 'แปลงเป็นรายการ';
+
+  @override
+  String get receiptRetryReadAction => 'ลองอีกครั้ง';
+
+  @override
+  String get receiptDeleteDraftAction => 'ลบ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ใบเสร็จพร้อมแล้ว';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ใบเสร็จของคุณพร้อมแล้ว ต้องการโอนไปยังรายการหรือไม่?';
+
+  @override
+  String get receiptDuplicateTitle => 'เพิ่มใบเสร็จนี้ไปแล้วหรือยัง?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'มีรายการที่ตรงกับร้านและเวลานี้อยู่แล้ว ($listTitle) ต้องการเพิ่มอีกครั้งไหม?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'เพิ่ม anyway';
+
+  @override
+  String get receiptDuplicateDelete => 'ลบใบเสร็จ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ไม่มีใบเสร็จในคิว';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ใบเสร็จที่สแกนจะประมวลผลในพื้นหลังและคงอยู่ในนี้จนกว่าคุณแปลงหรือลบออก';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count หน้า';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'รูปภาพใบเสร็จ';
+
+  @override
+  String get receiptOpenPhotoHint => 'แตะรูปภาพใบเสร็จเพื่อดูขนาดเต็ม';
 }

@@ -1667,4 +1667,76 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Prezio-labela atzeko planoan irakurtzen ari da.';
+
+  @override
+  String get listsTabReceipts => 'Nire errekiburuak';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Nire errekiburuak ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Emanean';
+
+  @override
+  String get receiptStatusProcessing => 'Errekiburua irakurtzen…';
+
+  @override
+  String get receiptStatusReady => 'Prest';
+
+  @override
+  String get receiptStatusDuplicate => 'Bikoiztu bat izan daiteke';
+
+  @override
+  String get receiptStatusFailed => 'Ezin izan da irakurri';
+
+  @override
+  String get receiptConvertToListAction => 'Zerrenda bihurtu';
+
+  @override
+  String get receiptRetryReadAction => 'Saiatu berriro';
+
+  @override
+  String get receiptDeleteDraftAction => 'Ezabatu';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Errekiburua prest';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Zure errekiburua prest dago. Zerrendara transferitu?';
+
+  @override
+  String get receiptDuplicateTitle => 'Errekiburua jada gehituta?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Dendarekin eta denborarekin bat datorren zerrenda bat existitzen da jada ($listTitle). Berriro gehitu al duzu?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Gehitu hala ere';
+
+  @override
+  String get receiptDuplicateDelete => 'Ezabatu errekiburua';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ez dago errekiburu pendingik';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Eskenearritako errekiburuak atzealdean prestatzen dira eta hemen geratzen dira zurek bihurtu edo kentzen dituzun arte.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count orrialde';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Errekiburu argazkiak';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Ukitu errekiburu baten argazkia tamaina osoan ikusteko';
 }

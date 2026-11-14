@@ -1647,4 +1647,76 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'د بیه لیبل شاته لوستل کیږي.';
+
+  @override
+  String get listsTabReceipts => 'زما رسیدونه';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'زما رسیدونه ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'د انتظار په صف کې';
+
+  @override
+  String get receiptStatusProcessing => 'رسید لوستل کیږي…';
+
+  @override
+  String get receiptStatusReady => 'چمتو دی';
+
+  @override
+  String get receiptStatusDuplicate => 'ممکنه تکراري وي';
+
+  @override
+  String get receiptStatusFailed => 'نشی کولی ولوستل شي';
+
+  @override
+  String get receiptConvertToListAction => 'لیست ته واړوه';
+
+  @override
+  String get receiptRetryReadAction => 'بیا هڅه وکړئ';
+
+  @override
+  String get receiptDeleteDraftAction => 'حذف کړئ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'رسید چمتو دی';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ستاسو رسید چمتو دی. آیا یې لیست ته انتقال کړم؟';
+
+  @override
+  String get receiptDuplicateTitle => 'رسید مخکې اضافه شوی؟';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'د دې پلورنځي او وخت سره سم یو لیست دمخه شتون لري ($listTitle). بیا هم اضافه کړم؟';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'بیا هم اضافه کړئ';
+
+  @override
+  String get receiptDuplicateDelete => 'رسید حذف کړئ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'هیڅ انتظار وروسته رسید نشته';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'سکان شوي رسیدونه شاته فعالیت کوي او تر هغه چې تاسو یې تبدیل یا لرې نه کړئ، دلته پاتې کیږي.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count پاڼې';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'د رسید عکسونه';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'د بشپړ اندازه لیدلو لپاره د رسید عکس کلیک وکړئ';
 }

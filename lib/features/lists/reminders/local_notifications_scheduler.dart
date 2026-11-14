@@ -26,8 +26,18 @@ class LocalNotificationsScheduler implements ReminderScheduler {
   static final _receiptLists = StreamController<int>.broadcast();
   static Stream<int> get selectedReceiptLists => _receiptLists.stream;
 
+  /// Taps on background queue "receipt ready" notifications, as draft receipt id.
+  static final _receiptDrafts = StreamController<int>.broadcast();
+  static Stream<int> get selectedReceiptDrafts => _receiptDrafts.stream;
+
   static int? receiptListFromPayload(String? payload) {
     final match = RegExp(r'^receipt-list:([1-9]\d{0,9})$').firstMatch(payload ?? '');
+    final id = match == null ? null : int.tryParse(match.group(1)!);
+    return id != null && id <= 2147483647 ? id : null;
+  }
+
+  static int? receiptDraftFromPayload(String? payload) {
+    final match = RegExp(r'^receipt-draft:([1-9]\d{0,9})$').firstMatch(payload ?? '');
     final id = match == null ? null : int.tryParse(match.group(1)!);
     return id != null && id <= 2147483647 ? id : null;
   }
@@ -38,6 +48,41 @@ class LocalNotificationsScheduler implements ReminderScheduler {
     return launch?.didNotificationLaunchApp == true
         ? receiptListFromPayload(launch?.notificationResponse?.payload)
         : null;
+  }
+
+  Future<int?> initialReceiptDraftId() async {
+    await _ensureInit();
+    final launch = await _plugin.getNotificationAppLaunchDetails();
+    return launch?.didNotificationLaunchApp == true
+        ? receiptDraftFromPayload(launch?.notificationResponse?.payload)
+        : null;
+  }
+
+  /// Notifies the user when a queued receipt finishes parsing so tapping
+  /// routes straight into `Fişlerim` / review conversion (`PB-214`).
+  Future<void> showReceiptDraftReady({
+    required int draftId,
+    required String title,
+    required String body,
+  }) async {
+    await _ensureInit();
+    final notificationId = 0x40000000 | (draftId & 0x3fffffff);
+    await _plugin.show(
+      id: notificationId,
+      title: title,
+      body: body,
+      notificationDetails: NotificationDetails(
+        android: AndroidNotificationDetails(
+          _channelId,
+          'NShoptor',
+          channelDescription: 'Shopping reminders',
+          importance: Importance.high,
+          priority: Priority.high,
+        ),
+        iOS: const DarwinNotificationDetails(),
+      ),
+      payload: 'receipt-draft:$draftId',
+    );
   }
 
   /// Immediate notification when a receipt finishes reading in the
@@ -113,6 +158,8 @@ class LocalNotificationsScheduler implements ReminderScheduler {
         if (id != null) _selected.add(id);
         final list = receiptListFromPayload(response.payload);
         if (list != null) _receiptLists.add(list);
+        final draft = receiptDraftFromPayload(response.payload);
+        if (draft != null) _receiptDrafts.add(draft);
       },
     );
     final ios = _plugin.resolvePlatformSpecificImplementation<

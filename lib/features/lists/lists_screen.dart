@@ -15,8 +15,11 @@ import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/money/money_parser.dart';
 import '../../data/db/app_database.dart';
+import '../receipts/receipt_draft_repository.dart';
+import '../receipts/receipt_queue_service.dart';
 import 'list_detail_screen.dart';
 import 'list_repository.dart';
+import 'receipts_tray_tab.dart';
 import 'list_scheduling.dart';
 import 'reminders/reminder_scheduler.dart';
 import 'reminders/reminders_repository.dart';
@@ -52,6 +55,9 @@ class ListsScreen extends StatefulWidget {
     this.onDiscover,
     this.planBadge,
     this.budgetCard,
+    this.receiptQueueService,
+    this.requestedTab,
+    this.requestedTabNonce = 0,
   });
 
   final ListRepository repository;
@@ -72,12 +78,18 @@ class ListsScreen extends StatefulWidget {
 
   /// Weekly/monthly budget progress shown above the lists when limits exist.
   final Widget? budgetCard;
+  final ReceiptQueueService? receiptQueueService;
+  final int? requestedTab;
+  final int requestedTabNonce;
 
   @override
   State<ListsScreen> createState() => _ListsScreenState();
 }
 
-class _ListsScreenState extends State<ListsScreen> {
+class _ListsScreenState extends State<ListsScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+  late final Stream<List<Receipt>> _trayStream;
   String _query = '';
   final _searchController = TextEditingController();
   bool _editorOpen = false;
@@ -85,7 +97,31 @@ class _ListsScreenState extends State<ListsScreen> {
   final _orders = <ListStatus, List<int>>{};
 
   @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 4,
+      vsync: this,
+      initialIndex: (widget.requestedTab ?? 0).clamp(0, 3),
+    );
+    _trayStream = ReceiptDraftRepository(widget.repository.db).watchTrayReceipts();
+  }
+
+  @override
+  void didUpdateWidget(covariant ListsScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.requestedTabNonce != oldWidget.requestedTabNonce &&
+        widget.requestedTab != null) {
+      final target = widget.requestedTab!.clamp(0, 3);
+      if (_tabController.index != target) {
+        _tabController.animateTo(target);
+      }
+    }
+  }
+
+  @override
   void dispose() {
+    _tabController.dispose();
     _searchController.dispose();
     super.dispose();
   }
@@ -232,9 +268,12 @@ class _ListsScreenState extends State<ListsScreen> {
           ),
           onChanged: (v) => setState(() => _query = v.trim()),
         );
-        return DefaultTabController(
-          length: 3,
-          child: Scaffold(
+        return StreamBuilder<List<Receipt>>(
+          stream: _trayStream,
+          builder: (context, traySnap) {
+            final trayReceipts = traySnap.data ?? const <Receipt>[];
+            final trayCount = trayReceipts.length;
+            return Scaffold(
             appBar: AppBar(
               title: const BrandTitle(),
               // Balance 22dp AppBar icons (inside 48dp hit boxes) with 32dp PlanBadge pill.
@@ -269,6 +308,7 @@ class _ListsScreenState extends State<ListsScreen> {
                 child: TourAnchor(
                   id: TourTargets.listsTabs,
                   child: TabBar(
+                    controller: _tabController,
                     isScrollable: true,
                     tabAlignment: TabAlignment.start,
                     tabs: [
@@ -283,6 +323,12 @@ class _ListsScreenState extends State<ListsScreen> {
                       Tab(
                         key: const Key('lists_tab_archived'),
                         text: l10n.listsTabArchived,
+                      ),
+                      Tab(
+                        key: const Key('lists_tab_receipts'),
+                        text: trayCount > 0
+                            ? l10n.listsTabReceiptsCount(trayCount)
+                            : l10n.listsTabReceipts,
                       ),
                     ],
                   ),
@@ -329,6 +375,7 @@ class _ListsScreenState extends State<ListsScreen> {
                 ],
                 Expanded(
                   child: TabBarView(
+                    controller: _tabController,
                     children: [
                       _ListsTab(
                         repository: widget.repository,
@@ -384,6 +431,17 @@ class _ListsScreenState extends State<ListsScreen> {
                           newIndex,
                         ),
                         emptyText: l10n.listsEmpty,
+                        onOpenListDetail: widget.onOpenListDetail,
+                        reminderScheduler: widget.reminderScheduler,
+                        bannerController: widget.bannerController,
+                      ),
+                      ReceiptsTrayTab(
+                        repository: widget.repository,
+                        receipts: trayReceipts,
+                        loading:
+                            traySnap.connectionState == ConnectionState.waiting &&
+                            !traySnap.hasData,
+                        queueService: widget.receiptQueueService,
                         onOpenListDetail: widget.onOpenListDetail,
                         reminderScheduler: widget.reminderScheduler,
                         bannerController: widget.bannerController,
@@ -473,7 +531,8 @@ class _ListsScreenState extends State<ListsScreen> {
                       ),
                     ),
                   ),
-          ),
+            );
+          },
         );
       },
     );

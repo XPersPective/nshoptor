@@ -22,6 +22,7 @@ import 'ai_receipt_reader.dart';
 import 'image_capture_service.dart';
 import 'image_capture_sheet.dart';
 import 'ocr_text_source.dart';
+import 'receipt_dedup.dart';
 import 'receipt_document.dart'
     show
         ReceiptAppended,
@@ -30,6 +31,7 @@ import 'receipt_document.dart'
         ReceiptHeaderField;
 import 'receipt_draft_repository.dart';
 import 'receipt_image_store.dart';
+import 'receipt_queue_service.dart';
 import 'review/receipt_review_controller.dart';
 import 'review/receipt_review_screen.dart';
 
@@ -195,44 +197,22 @@ Future<int?> openReceiptCaptureFlow(
   var rejected = false;
   // The review screen is reachable both by a perfect reading and by the
   // user's explicit "review and fix" choice on an imperfect one (PB-207).
-  Future<int?> openReview(ReceiptDocument doc) async {
-    if (!context.mounted) return null;
-    final reviewCurrency = activeListId == null || ownedByFlow
+  Future<int?> openReview(ReceiptDocument doc) => _presentReceiptReviewScreen(
+    context,
+    db: db,
+    listId: activeListId,
+    title:
+        title ??
+        (doc.metadata.store == null
+            ? null
+            : cleanStoreName(doc.metadata.store!)),
+    currencyCode: activeListId == null || ownedByFlow
         ? doc.metadata.currencyCode ?? currencyCode
-        : currencyCode;
-    final controller = ReceiptReviewController(
-      db: db,
-      listId: activeListId,
-      title:
-          title ??
-          (doc.metadata.store == null
-              ? null
-              : cleanStoreName(doc.metadata.store!)),
-      currencyCode: reviewCurrency,
-      document: doc,
-      draftId: draftId,
-      parseResult: doc.toParseResult(),
-      ai: ai,
-      localeCode: Localizations.localeOf(context).languageCode,
-    );
-    var committed = false;
-    try {
-      committed = (await Navigator.of(context).push<bool>(
-        MaterialPageRoute<bool>(
-          builder: (_) => ReceiptReviewScreen(
-            controller: controller,
-            currency: reviewCurrency,
-            plannedItems: activeListId == null
-                ? Future.value(const [])
-                : ItemRepository(db).getItems(activeListId),
-          ),
-        ),
-      )) ?? false;
-    } finally {
-      controller.dispose();
-    }
-    return committed ? controller.listId : null;
-  }
+        : currencyCode,
+    document: doc,
+    draftId: draftId,
+    ai: ai,
+  );
 
   while (context.mounted) {
     if (pendingReview) {
@@ -1386,4 +1366,133 @@ class ReceiptBatchSessionSheet extends StatelessWidget {
       ),
     );
   }
+}
+
+enum _DuplicateReviewAction { cancel, deleteDraft, addAnyway }
+
+Future<int?> _presentReceiptReviewScreen(
+  BuildContext context, {
+  required AppDatabase db,
+  required int? listId,
+  required String? title,
+  required String currencyCode,
+  required ReceiptDocument document,
+  required int? draftId,
+  AiClient? ai,
+}) async {
+  if (!context.mounted) return null;
+  final controller = ReceiptReviewController(
+    db: db,
+    listId: listId,
+    title: title,
+    currencyCode: currencyCode,
+    document: document,
+    draftId: draftId,
+    parseResult: document.toParseResult(),
+    ai: ai,
+    localeCode: Localizations.localeOf(context).languageCode,
+  );
+  var committed = false;
+  try {
+    committed = (await Navigator.of(context).push<bool>(
+      MaterialPageRoute<bool>(
+        builder: (_) => ReceiptReviewScreen(
+          controller: controller,
+          currency: currencyCode,
+          plannedItems: listId == null
+              ? Future.value(const [])
+              : ItemRepository(db).getItems(listId),
+        ),
+      ),
+    )) ?? false;
+  } finally {
+    controller.dispose();
+  }
+  return committed ? controller.listId : null;
+}
+
+/// Opens [ReceiptReviewScreen] for a background-prepared receipt [draft] from
+/// `Fişlerim (N)` or a notification tap, showing a duplicate confirmation
+/// dialog (*"Bu fiş zaten girilmiş olabilir"*) when an existing shopping list
+/// matches the store and timestamp (`C-004`, `PB-214`).
+Future<int?> openQueuedReceiptForReview(
+  BuildContext context, {
+  required AppDatabase db,
+  required Receipt draft,
+  AiClient? ai,
+  Future<void> Function(int draftId)? deleteDraft,
+}) async {
+  final encoded = draft.captureDataJson;
+  if (encoded == null || !context.mounted) return null;
+  final ReceiptDocument doc;
+  try {
+    doc = ReceiptDocument.decode(encoded);
+  } catch (_) {
+    return null;
+  }
+  final duplicate = await findDuplicateReceipt(
+    db: db,
+    storeName: doc.metadata.store ?? draft.detectedStore,
+    purchaseAt: doc.metadata.dateTime ?? draft.detectedAt,
+    identityKey: doc.metadata.identity,
+    excludeReceiptId: draft.id,
+  );
+  if (!context.mounted) return null;
+  if (duplicate != null) {
+    final l10n = AppLocalizations.of(context);
+    final action = await showDialog<_DuplicateReviewAction>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        key: const Key('receipt_duplicate_warning_dialog'),
+        title: Text(l10n.receiptDuplicateTitle),
+        content: Text(l10n.receiptDuplicateBody(duplicate.listTitle)),
+        actions: [
+          TextButton(
+            key: const Key('receipt_duplicate_cancel'),
+            onPressed: () =>
+                Navigator.pop(dialogContext, _DuplicateReviewAction.cancel),
+            child: Text(l10n.cancelButton),
+          ),
+          OutlinedButton(
+            key: const Key('receipt_duplicate_delete'),
+            onPressed: () =>
+                Navigator.pop(dialogContext, _DuplicateReviewAction.deleteDraft),
+            child: Text(l10n.receiptDuplicateDelete),
+          ),
+          FilledButton(
+            key: const Key('receipt_duplicate_proceed'),
+            onPressed: () =>
+                Navigator.pop(dialogContext, _DuplicateReviewAction.addAnyway),
+            child: Text(l10n.receiptDuplicateAddAnyway),
+          ),
+        ],
+      ),
+    );
+    if (!context.mounted) return null;
+    switch (action) {
+      case _DuplicateReviewAction.deleteDraft:
+        final remove =
+            deleteDraft ?? (id) => ReceiptQueueService(db: db).deleteTrayReceipt(id);
+        await remove(draft.id);
+        return null;
+      case _DuplicateReviewAction.addAnyway:
+        break;
+      case _DuplicateReviewAction.cancel:
+      case null:
+        return null;
+    }
+  }
+  if (!context.mounted) return null;
+  final store = doc.metadata.store ?? draft.detectedStore;
+  final currency = doc.metadata.currencyCode ?? draft.detectedCurrency ?? 'TRY';
+  return _presentReceiptReviewScreen(
+    context,
+    db: db,
+    listId: null,
+    title: store == null ? null : cleanStoreName(store),
+    currencyCode: currency,
+    document: doc,
+    draftId: draft.id,
+    ai: ai,
+  );
 }

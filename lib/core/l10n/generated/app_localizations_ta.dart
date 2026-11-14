@@ -1668,4 +1668,76 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'விலை லேபிள் பின்னணியில் படிக்கப்படுகிறது.';
+
+  @override
+  String get listsTabReceipts => 'என் ரசீதுகள்';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'என் ரசீதுகள் ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'வரிசையில் உள்ளது';
+
+  @override
+  String get receiptStatusProcessing => 'ரசீதைப் படிக்கிறது…';
+
+  @override
+  String get receiptStatusReady => 'தயார்';
+
+  @override
+  String get receiptStatusDuplicate => 'இரட்டைப்படுத்தல் சாத்தியம்';
+
+  @override
+  String get receiptStatusFailed => 'படிக்க முடியவில்லை';
+
+  @override
+  String get receiptConvertToListAction => 'பட்டியலாக மாற்று';
+
+  @override
+  String get receiptRetryReadAction => 'மீண்டும் முயற்சி';
+
+  @override
+  String get receiptDeleteDraftAction => 'நீக்கு';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ரசீது தயார்';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'உங்கள் ரசீது தயாராக உள்ளது. இதை ஒரு பட்டியலுக்கு மாற்றுவீர்களா?';
+
+  @override
+  String get receiptDuplicateTitle => 'ரசீது ஏற்கனவே சேர்க்கப்பட்டதா?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'இந்த கடை மற்றும் நேரத்துடன் பொருந்தும் பட்டியல் ஏற்கனவே உள்ளது ($listTitle). இருப்பினும் மீண்டும் சேர்க்கவா?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'இருப்பினும் சேர்';
+
+  @override
+  String get receiptDuplicateDelete => 'ரசீதை நீக்கு';
+
+  @override
+  String get receiptEmptyTrayTitle => 'காத்திருக்கும் ரசீதுகள் இல்லை';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ஸ்கேன் செய்யப்பட்ட ரசீதுகள் பின்னணியில் தயாராகி, நீங்கள் அவற்றை மாற்றவோ அல்லது அழிக்கவோ செய்வது வரை இங்கே இருக்கும்.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count பக்கங்கள்';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ரசீது படங்கள்';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'முழு அளவில் பார்க்க ஒரு ரசீது படத்தைத் தட்டவும்';
 }

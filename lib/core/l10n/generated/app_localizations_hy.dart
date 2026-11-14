@@ -1665,4 +1665,76 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Գնի պիտակը կարդում են ֆոնային ռեժիմում։';
+
+  @override
+  String get listsTabReceipts => 'Իմ թղթեր';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Իմ թղթեր ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Հերթում է';
+
+  @override
+  String get receiptStatusProcessing => 'Կարդում եմ թուղթը…';
+
+  @override
+  String get receiptStatusReady => 'Պատրաստ է';
+
+  @override
+  String get receiptStatusDuplicate => 'Հնարավոր կրկնօրինակ';
+
+  @override
+  String get receiptStatusFailed => 'Չհաջողվեց կարդալ';
+
+  @override
+  String get receiptConvertToListAction => 'Փոխարկել ցանկի';
+
+  @override
+  String get receiptRetryReadAction => 'Կրկին փորձել';
+
+  @override
+  String get receiptDeleteDraftAction => 'Ջնջել';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Թուղթը պատրաստ է';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ձեր թուղթը պատրաստ է։ Փոխադրե՞լ այն ցանկի:';
+
+  @override
+  String get receiptDuplicateTitle => 'Թուղթն արդեն ավելացված է՞';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Այս խանութի և ժամանակի համար արդեն գոյություն ունի ցանկ ($listTitle)։ Ավելացնե՞լ նորից:';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Ավելացնել';
+
+  @override
+  String get receiptDuplicateDelete => 'Ջնջել թուղթը';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ոչ մի սպասող թուղթ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Սքանավորված թղթերը նախապատրաստվում են ֆոնային ռեժիմով և մնում են այստեղ, մինչև դուք դրանք փոխարկեք կամ հեռացնեք:';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count էջ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Թղթերի լուսանկարներ';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Սեղմեք թղթի լուսանկարը՝ լրիվ չափով դիտելու համար';
 }

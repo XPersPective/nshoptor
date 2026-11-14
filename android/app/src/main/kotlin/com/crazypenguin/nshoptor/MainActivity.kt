@@ -75,6 +75,18 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        ReceiptQueueWorker.foregroundMessenger = flutterEngine.dartExecutor.binaryMessenger
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, ReceiptQueueWorker.CHANNEL)
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "scheduleQueue" -> {
+                        ReceiptQueueWorker.enqueue(applicationContext)
+                        result.success(null)
+                    }
+                    "backgroundDrainFinished" -> result.success(null)
+                    else -> result.notImplemented()
+                }
+            }
         speechChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "nshoptor/speech")
         speechChannel?.setMethodCallHandler { call, result ->
             val owner = call.argument<Number>("sessionId")?.toLong()
@@ -381,7 +393,15 @@ class MainActivity : FlutterActivity() {
         super.onPause()
     }
     override fun onStop() { cancelSpeech(); super.onStop() }
+    override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
+        if (ReceiptQueueWorker.foregroundMessenger === flutterEngine.dartExecutor.binaryMessenger) {
+            ReceiptQueueWorker.foregroundMessenger = null
+        }
+        super.cleanUpFlutterEngine(flutterEngine)
+    }
+
     override fun onDestroy() {
+        ReceiptQueueWorker.foregroundMessenger = null
         cancelSpeech()
         pdfRenderer?.dispose()
         pdfRenderer = null

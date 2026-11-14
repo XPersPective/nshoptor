@@ -1661,4 +1661,77 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Az árcímke háttérben olvasható.';
+
+  @override
+  String get listsTabReceipts => 'Számláim';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Számláim ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Várakozik';
+
+  @override
+  String get receiptStatusProcessing => 'Számla olvasása…';
+
+  @override
+  String get receiptStatusReady => 'Kész';
+
+  @override
+  String get receiptStatusDuplicate => 'Lehetséges másolat';
+
+  @override
+  String get receiptStatusFailed => 'Nem sikerült olvasni';
+
+  @override
+  String get receiptConvertToListAction => 'Átalakítás listává';
+
+  @override
+  String get receiptRetryReadAction => 'Újrapróbálkozás';
+
+  @override
+  String get receiptDeleteDraftAction => 'Törlés';
+
+  @override
+  String get receiptReadyNotificationTitle => 'A számla kész';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'A számlád készen áll. Áthelyezed egy listára?';
+
+  @override
+  String get receiptDuplicateTitle => 'Már hozzáadva a számla?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Már létezik ilyen üzletre és időpontra vonatkozó lista ($listTitle). Mindenképp hozzáadod?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Hozzáadás mindenképp';
+
+  @override
+  String get receiptDuplicateDelete => 'Számla törlése';
+
+  @override
+  String get receiptEmptyTrayTitle =>
+      'Nincsenek feldolgozás alatt lévő számlák';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'A beolvasott számlák háttérben készülnek, és itt maradnak, amíg átalakítod vagy eltávolítod őket.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count oldal';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Számlafotók';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Koppints egy számlafotóra a teljes méretű megtekintéshez';
 }

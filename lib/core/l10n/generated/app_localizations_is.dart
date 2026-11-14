@@ -1659,4 +1659,76 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Verðmiði er lesinn í bakgrunni.';
+
+  @override
+  String get listsTabReceipts => 'Quittningar mínar';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Quittningar mínar ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Í bið';
+
+  @override
+  String get receiptStatusProcessing => 'Les skjal…';
+
+  @override
+  String get receiptStatusReady => 'Tilbúið';
+
+  @override
+  String get receiptStatusDuplicate => 'Möguleg afrit';
+
+  @override
+  String get receiptStatusFailed => 'Gat ekki lesið';
+
+  @override
+  String get receiptConvertToListAction => 'Breyta í lista';
+
+  @override
+  String get receiptRetryReadAction => 'Reyna aftur';
+
+  @override
+  String get receiptDeleteDraftAction => 'Eyða';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Skjal tilbúið';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Skjalið þitt er tilbúið. Flytja yfir í lista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Skjal þegar bætt við?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Listi sem passar við verslun og tíma er þegar til ($listTitle). Bæta við samt?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Bæta við samt';
+
+  @override
+  String get receiptDuplicateDelete => 'Eyða skjali';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Engin bíðandi skjöl';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skannað skjöl undirbúa sig í bakgrunninu og verða hér þar til þú breytir eða fjarlægir þau.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count síður';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Ljósmyndir af kvittningum';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Smelltu á ljósmynd af kvittningu til að sjá hana í fullri stærð';
 }

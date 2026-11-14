@@ -1605,4 +1605,74 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => '가격 라벨이 백그라운드에서 읽히는 중입니다.';
+
+  @override
+  String get listsTabReceipts => '내 영수증';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return '내 영수증 ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => '대기 중';
+
+  @override
+  String get receiptStatusProcessing => '영수증 읽는 중…';
+
+  @override
+  String get receiptStatusReady => '준비 완료';
+
+  @override
+  String get receiptStatusDuplicate => '중복 가능성 있음';
+
+  @override
+  String get receiptStatusFailed => '읽기 실패';
+
+  @override
+  String get receiptConvertToListAction => '리스트로 변환';
+
+  @override
+  String get receiptRetryReadAction => '다시 시도';
+
+  @override
+  String get receiptDeleteDraftAction => '삭제';
+
+  @override
+  String get receiptReadyNotificationTitle => '영수증 준비 완료';
+
+  @override
+  String get receiptReadyNotificationBody => '영수증이 준비되었습니다. 리스트에 추가하시겠습니까?';
+
+  @override
+  String get receiptDuplicateTitle => '이미 추가된 영수증인가요?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return '같은 매장 및 시간의 리스트가 이미 존재합니다 ($listTitle). 그래도 다시 추가하시겠습니까?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => '그래도 추가';
+
+  @override
+  String get receiptDuplicateDelete => '영수증 삭제';
+
+  @override
+  String get receiptEmptyTrayTitle => '대기 중인 영수증이 없습니다';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      '스캔한 영수증은 백그라운드에서 처리되며, 변환하거나 제거할 때까지 여기에 보관됩니다.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count페이지';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => '영수증 사진';
+
+  @override
+  String get receiptOpenPhotoHint => '전체 크기로 보려면 영수증 사진을 탭하세요';
 }

@@ -1661,4 +1661,76 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'कीमत लेबल बैकग्राउंड में पढ़ा जा रहा है।';
+
+  @override
+  String get listsTabReceipts => 'मेरे रसीदें';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'मेरी रसीदें ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'कतार में';
+
+  @override
+  String get receiptStatusProcessing => 'रसीद पढ़ रहे हैं…';
+
+  @override
+  String get receiptStatusReady => 'तैयार';
+
+  @override
+  String get receiptStatusDuplicate => 'संभावित डुप्लिकेट';
+
+  @override
+  String get receiptStatusFailed => 'पढ़ नहीं सका';
+
+  @override
+  String get receiptConvertToListAction => 'लिस्ट में बदलें';
+
+  @override
+  String get receiptRetryReadAction => 'फिर से कोशिश करें';
+
+  @override
+  String get receiptDeleteDraftAction => 'हटाएं';
+
+  @override
+  String get receiptReadyNotificationTitle => 'रसीद तैयार है';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'आपकी रसीद तैयार है। इसे लिस्ट में ट्रांसफर करें?';
+
+  @override
+  String get receiptDuplicateTitle => 'रसीद पहले ही जोड़ी गई?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'इस स्टोर और समय के साथ मिलती-जुलती एक लिस्ट पहले से मौजूद है ($listTitle)। फिर भी जोड़ें?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'फिर भी जोड़ें';
+
+  @override
+  String get receiptDuplicateDelete => 'रसीद हटाएं';
+
+  @override
+  String get receiptEmptyTrayTitle => 'कोई लंबित रसीदें नहीं';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'स्कैन की गई रसीदें बैकग्राउंड में तैयार होती हैं और जब तक आप उन्हें कन्वर्ट या हटा नहीं देते, ये यहीं रहती हैं।';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count पेज';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'रसीद फोटो';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'पूर्ण आकार में देखने के लिए रसीद की फोटो पर टैप करें';
 }

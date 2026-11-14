@@ -1657,4 +1657,75 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Fiyat etiketi arka planda okunuyor.';
+
+  @override
+  String get listsTabReceipts => 'Fişlerim';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Fişlerim ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Sırada';
+
+  @override
+  String get receiptStatusProcessing => 'Okunuyor…';
+
+  @override
+  String get receiptStatusReady => 'Hazır';
+
+  @override
+  String get receiptStatusDuplicate => 'Zaten girilmiş olabilir';
+
+  @override
+  String get receiptStatusFailed => 'Okunamadı';
+
+  @override
+  String get receiptConvertToListAction => 'Listeye çevir';
+
+  @override
+  String get receiptRetryReadAction => 'Tekrar dene';
+
+  @override
+  String get receiptDeleteDraftAction => 'Sil';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Fiş hazır';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Fiş hazır, listeye aktarmak ister misin?';
+
+  @override
+  String get receiptDuplicateTitle => 'Bu fiş zaten girilmiş olabilir';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Bu market ve saatle eşleşen bir liste zaten var ($listTitle). Yine de eklensin mi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Yine de ekle';
+
+  @override
+  String get receiptDuplicateDelete => 'Fişi sil';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Bekleyen fiş yok';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Okuttuğunuz fişler arka planda hazırlanır; listeye çevirip silene kadar burada bekler.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sayfa';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fiş görselleri';
+
+  @override
+  String get receiptOpenPhotoHint => 'Büyütmek için fiş görseline dokunun';
 }

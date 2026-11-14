@@ -18,6 +18,7 @@ final class ListReceipt {
     this.printedAt,
     this.totalMinor,
     this.currencyCode,
+    this.imagePaths = const [],
   });
 
   final int id;
@@ -28,6 +29,7 @@ final class ListReceipt {
   final DateTime? printedAt;
   final int? totalMinor;
   final String? currencyCode;
+  final List<String> imagePaths;
 }
 
 /// Receipts attached to shopping lists: listing and deletion (F13-F15).
@@ -62,6 +64,7 @@ class ReceiptRepository {
     printedAt: r.confirmedAt ?? r.detectedAt,
     totalMinor: r.confirmedTotalMinorUnits ?? r.detectedTotalMinorUnits,
     currencyCode: r.confirmedCurrency ?? r.detectedCurrency,
+    imagePaths: List.unmodifiable(r.imagePaths),
   );
 
   SimpleSelectStatement<$ReceiptsTable, Receipt> _forList(int listId) =>
@@ -95,10 +98,13 @@ class ReceiptRepository {
       final receipt = await (_db.select(
         _db.receipts,
       )..where((t) => t.id.equals(receiptId))).getSingleOrNull();
-      if (receipt == null ||
-          pendingOnly &&
-              (receipt.processingStatus != 'pending' ||
-                  receipt.identityKey != null)) {
+      if (receipt == null) return null;
+      final isTrayDraft = receipt.listId == null &&
+          receipt.queueState != 'converted' &&
+          receipt.processingStatus != 'reviewed';
+      final isLegacyPending =
+          receipt.processingStatus == 'pending' && receipt.identityKey == null;
+      if (pendingOnly && !isTrayDraft && !isLegacyPending) {
         return null;
       }
       final entries = await (_db.select(

@@ -3277,6 +3277,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Price label is reading in the background.'**
   String get shelfLabelQueuedNotice;
+
+  /// No description provided for @listsTabReceipts.
+  ///
+  /// In en, this message translates to:
+  /// **'My receipts'**
+  String get listsTabReceipts;
+
+  /// No description provided for @listsTabReceiptsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'My receipts ({count})'**
+  String listsTabReceiptsCount(int count);
+
+  /// No description provided for @receiptStatusQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get receiptStatusQueued;
+
+  /// No description provided for @receiptStatusProcessing.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading receipt…'**
+  String get receiptStatusProcessing;
+
+  /// No description provided for @receiptStatusReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get receiptStatusReady;
+
+  /// No description provided for @receiptStatusDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Possible duplicate'**
+  String get receiptStatusDuplicate;
+
+  /// No description provided for @receiptStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read'**
+  String get receiptStatusFailed;
+
+  /// No description provided for @receiptConvertToListAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Convert to list'**
+  String get receiptConvertToListAction;
+
+  /// No description provided for @receiptRetryReadAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get receiptRetryReadAction;
+
+  /// No description provided for @receiptDeleteDraftAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get receiptDeleteDraftAction;
+
+  /// No description provided for @receiptReadyNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt ready'**
+  String get receiptReadyNotificationTitle;
+
+  /// No description provided for @receiptReadyNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your receipt is ready. Transfer it to a list?'**
+  String get receiptReadyNotificationBody;
+
+  /// No description provided for @receiptDuplicateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt already added?'**
+  String get receiptDuplicateTitle;
+
+  /// No description provided for @receiptDuplicateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A list matching this store and time already exists ({listTitle}). Add again anyway?'**
+  String receiptDuplicateBody(String listTitle);
+
+  /// No description provided for @receiptDuplicateAddAnyway.
+  ///
+  /// In en, this message translates to:
+  /// **'Add anyway'**
+  String get receiptDuplicateAddAnyway;
+
+  /// No description provided for @receiptDuplicateDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete receipt'**
+  String get receiptDuplicateDelete;
+
+  /// No description provided for @receiptEmptyTrayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No pending receipts'**
+  String get receiptEmptyTrayTitle;
+
+  /// No description provided for @receiptEmptyTrayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned receipts prepare in the background and stay here until you convert or remove them.'**
+  String get receiptEmptyTrayBody;
+
+  /// No description provided for @receiptTrayPagesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pages'**
+  String receiptTrayPagesLabel(int count);
+
+  /// No description provided for @receiptPhotosSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt photos'**
+  String get receiptPhotosSectionTitle;
+
+  /// No description provided for @receiptOpenPhotoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a receipt photo to view full size'**
+  String get receiptOpenPhotoHint;
 }
 
 class _AppLocalizationsDelegate

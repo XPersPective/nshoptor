@@ -1668,4 +1668,76 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Η ετικέτα τιμής αναγιγνώσκεται στο παρασκήνιο.';
+
+  @override
+  String get listsTabReceipts => 'Τα παραστατικά μου';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Τα παραστατικά μου ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Σε αναμονή';
+
+  @override
+  String get receiptStatusProcessing => 'Ανάγνωση παραστατικού…';
+
+  @override
+  String get receiptStatusReady => 'Έτοιμο';
+
+  @override
+  String get receiptStatusDuplicate => 'Πιθανό διπλότυπο';
+
+  @override
+  String get receiptStatusFailed => 'Δεν έγινε ανάγνωση';
+
+  @override
+  String get receiptConvertToListAction => 'Μετατροπή σε λίστα';
+
+  @override
+  String get receiptRetryReadAction => 'Επανάληψη';
+
+  @override
+  String get receiptDeleteDraftAction => 'Διαγραφή';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Το παραστατικό είναι έτοιμο';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Το παραστατικό σας είναι έτοιμο. Να το μεταφέρω σε λίστα;';
+
+  @override
+  String get receiptDuplicateTitle => 'Ήδη προστέθηκε παραστατικό;';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Υπάρχει ήδη λίστα για αυτό το κατάστημα και την ώρα ($listTitle). Να το προσθέσω ξανά;';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Ναι, πρόσθεσέ το';
+
+  @override
+  String get receiptDuplicateDelete => 'Διαγραφή παραστατικού';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Δεν υπάρχουν εκκρεμή παραστατικά';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Τα σαρωμένα παραστατικά επεξεργάζονται στο παρασκήνιο και μένουν εδώ μέχρι να τα μετατρέψετε ή να τα αφαιρέσετε.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count σελίδες';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Φωτογραφίες παραστατικών';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Πατήστε μια φωτογραφία παραστατικού για προβολή σε πλήρες μέγεθος';
 }

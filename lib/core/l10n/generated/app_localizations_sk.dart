@@ -1663,4 +1663,76 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Cenovka sa číta na pozadí.';
+
+  @override
+  String get listsTabReceipts => 'Moje účtenky';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Moje účtenky ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'V poradí';
+
+  @override
+  String get receiptStatusProcessing => 'Čítam účtenku…';
+
+  @override
+  String get receiptStatusReady => 'Pripravené';
+
+  @override
+  String get receiptStatusDuplicate => 'Možná duplikácia';
+
+  @override
+  String get receiptStatusFailed => 'Nepodarilo sa prečítať';
+
+  @override
+  String get receiptConvertToListAction => 'Previesť na zoznam';
+
+  @override
+  String get receiptRetryReadAction => 'Skúsiť znova';
+
+  @override
+  String get receiptDeleteDraftAction => 'Odstrániť';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Účtenka je pripravená';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Vaša účtenka je pripravená. Presunúť ju do zoznamu?';
+
+  @override
+  String get receiptDuplicateTitle => 'Účtenka už pridaná?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Zoznam zhodujúci sa s týmto obchodom a časom už existuje ($listTitle). Pridať ho aj tak?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Pridať aj tak';
+
+  @override
+  String get receiptDuplicateDelete => 'Odstrániť účtenku';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Žiadne čakajúce účtenky';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Naskenované účtenky sa spracúvajú na pozadí a zostanú tu, kým ich nepresuniete alebo neodstránite.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count strán';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotky účteniek';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Klepnutím na fotku účtenky si ju zobrazíte v plnej veľkosti';
 }

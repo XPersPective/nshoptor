@@ -1666,4 +1666,76 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'La etiqueta de precio se está leyendo en segundo plano.';
+
+  @override
+  String get listsTabReceipts => 'Mis recibos';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mis recibos ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'En cola';
+
+  @override
+  String get receiptStatusProcessing => 'Leyendo recibo…';
+
+  @override
+  String get receiptStatusReady => 'Listo';
+
+  @override
+  String get receiptStatusDuplicate => 'Posible duplicado';
+
+  @override
+  String get receiptStatusFailed => 'No se pudo leer';
+
+  @override
+  String get receiptConvertToListAction => 'Convertir a lista';
+
+  @override
+  String get receiptRetryReadAction => 'Reintentar';
+
+  @override
+  String get receiptDeleteDraftAction => 'Eliminar';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Recibo listo';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Tu recibo está listo. ¿Transferirlo a una lista?';
+
+  @override
+  String get receiptDuplicateTitle => '¿Recibo ya añadido?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Ya existe una lista que coincide con esta tienda y hora ($listTitle). ¿Añadir de nuevo de todos modos?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Añadir de todos modos';
+
+  @override
+  String get receiptDuplicateDelete => 'Eliminar recibo';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Sin recibos pendientes';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Los recibos escaneados se procesan en segundo plano y permanecen aquí hasta que los conviertas o elimines.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count páginas';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotos del recibo';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Toca una foto del recibo para verla en tamaño completo';
 }

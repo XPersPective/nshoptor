@@ -613,9 +613,13 @@ class ReceiptReviewController extends ChangeNotifier {
                 _db.receipts.documentNumber.equals(printedNumber);
           }
           final previous =
-              await (_db.select(
-                _db.receipts,
-              )..where((t) => t.identityKey.isNotNull() & sameIdentity)).get();
+              await (_db.select(_db.receipts)..where(
+                (t) => draftId == null
+                    ? t.identityKey.isNotNull() & sameIdentity
+                    : t.identityKey.isNotNull() &
+                        sameIdentity &
+                        t.id.equals(draftId!).not(),
+              )).get();
           for (final receipt in previous) {
             // Version1 keys used exact seconds. Recompute from retained OCR
             // (or its stored metadata) to protect already-approved documents.
@@ -686,14 +690,20 @@ class ReceiptReviewController extends ChangeNotifier {
               confirmedTotalMinor ?? reportedTotalMinor,
             ),
             processingStatus: const Value('reviewed'),
+            queueState: const Value('converted'),
+            convertedAt: Value(DateTime.now()),
+            duplicateOfListId: const Value(null),
             parserVersion: Value('${ReceiptParseResult.parserVersion}'),
           );
           if (draftId != null) {
             final draft = await (_db.select(
               _db.receipts,
             )..where((t) => t.id.equals(draftId!))).getSingleOrNull();
-            if (draft == null ||
-                draft.processingStatus != 'pending' ||
+            final editableStatus =
+                draft != null &&
+                (draft.processingStatus == 'pending' ||
+                    draft.processingStatus == 'parsed');
+            if (!editableStatus ||
                 draft.listId != listId ||
                 draft.captureDataJson != doc.encode()) {
               throw StateError('Receipt draft changed before approval');
@@ -702,6 +712,9 @@ class ReceiptReviewController extends ChangeNotifier {
               _db.receipts,
             )..where((t) => t.id.equals(draftId!))).write(values);
             receiptId = draftId;
+            await (_db.delete(
+              _db.receiptCandidateLines,
+            )..where((t) => t.receiptId.equals(receiptId!))).go();
           } else {
             receiptId = await _db.into(_db.receipts).insert(values);
           }

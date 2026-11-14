@@ -1653,4 +1653,76 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'ღირებულების ეტიკეტი ფონურად კითხვას.';
+
+  @override
+  String get listsTabReceipts => 'ჩემი ჩეკები';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ჩემი ჩეკები ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'რიგშია';
+
+  @override
+  String get receiptStatusProcessing => 'ჩეკის წაკითხვა…';
+
+  @override
+  String get receiptStatusReady => 'მზადაა';
+
+  @override
+  String get receiptStatusDuplicate => 'შესაძლოა, დუბლირებულია';
+
+  @override
+  String get receiptStatusFailed => 'წაკითხვა ვერ მოხერხდა';
+
+  @override
+  String get receiptConvertToListAction => 'სიაში გადაყვანა';
+
+  @override
+  String get receiptRetryReadAction => 'თავიდან სცადე';
+
+  @override
+  String get receiptDeleteDraftAction => 'წაშლა';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ჩეკი მზადაა';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'თქვენი ჩეკი მზადაა. გადავიტანოთ სიაში?';
+
+  @override
+  String get receiptDuplicateTitle => 'ჩეკი უკვე დაემატა?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ამ მაღაზიასა და დროს ემთხვევა არსებული სია ($listTitle). მაინც დავამატოთ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'დამატება';
+
+  @override
+  String get receiptDuplicateDelete => 'ჩეკის წაშლა';
+
+  @override
+  String get receiptEmptyTrayTitle => 'მიმდინარე ჩეკები არ არის';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'დასკანილი ჩეკები ფონურ რეჟიმში ამუშავდება და აქ დარჩება, სანამ სიაში გადაიტანთ ან წაშლით.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count გვერდი';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ჩეკების ფოტოები';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'სრულ ზომასთან გასახილად, შეეხეთ ჩეკის ფოტოს';
 }

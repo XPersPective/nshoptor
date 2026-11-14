@@ -1663,4 +1663,76 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'ဈေးနှုန်းပစ္စည်းအမှတ်အသားကို နောက်ခံတွင် ဖတ်နေသည်။';
+
+  @override
+  String get listsTabReceipts => 'ကျွန်ုပ်၏ ခြေရာခံများ';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ကျွန်ုပ်၏ ခြေရာခံများ ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'စောင့်ဆိုင်းနေသည်';
+
+  @override
+  String get receiptStatusProcessing => 'ခြေရာခံကို ဖတ်နေသည်…';
+
+  @override
+  String get receiptStatusReady => 'အဆင်သင့်ဖြစ်သည်';
+
+  @override
+  String get receiptStatusDuplicate => 'တူညီနိုင်သော ခြေရာခံ';
+
+  @override
+  String get receiptStatusFailed => 'ဖတ်၍ မရပါ';
+
+  @override
+  String get receiptConvertToListAction => 'စာရင်းသို့ ပြောင်းပါ';
+
+  @override
+  String get receiptRetryReadAction => 'ပြန်လည်ကြိုးစားပါ';
+
+  @override
+  String get receiptDeleteDraftAction => 'ဖျက်ပါ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ခြေရာခံ အဆင်သင့်ဖြစ်ပြီ';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ခြေရာခံ အဆင်သင့်ဖြစ်ပြီ။ စာရင်းထဲသို့ ပို့မလား?';
+
+  @override
+  String get receiptDuplicateTitle => 'ခြေရာခံ ထည့်ပြီးသားလား?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ဆိုင်နှင့် အချိန် တူညီသော စာရင်း ရှိနေပြီ ($listTitle)။ ဆက်လက်ထည့်မလား?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'ဆက်လက်ထည့်ပါ';
+
+  @override
+  String get receiptDuplicateDelete => 'ခြေရာခံ ဖျက်ပါ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'စောင့်ဆိုင်းနေသော ခြေရာခံ မရှိပါ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ဖတ်ထားသော ခြေရာခံများသည် နောက်ခံတွင် ပြင်ဆင်ပြီး သင် ပြောင်းလဲခြင်း သို့မဟုတ် ဖျက်ပစ်သည်အထိ ဤနေရာတွင် ကျန်ရှိနေမည်။';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count စာမျက်နှာ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ခြေရာခံ ဓာတ်ပုံများ';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'ခြေရာခံ ဓာတ်ပုံကို နှိပ်၍ အရွယ်အစားကြီးဖြင့် ကြည့်ရှုပါ';
 }

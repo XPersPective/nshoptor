@@ -1601,4 +1601,74 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => '価格ラベルは背景で読み取り中です。';
+
+  @override
+  String get listsTabReceipts => 'レシート一覧';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'レシート一覧 ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'キューに追加済み';
+
+  @override
+  String get receiptStatusProcessing => 'レシートを読み取り中…';
+
+  @override
+  String get receiptStatusReady => '準備完了';
+
+  @override
+  String get receiptStatusDuplicate => '重複の可能性あり';
+
+  @override
+  String get receiptStatusFailed => '読み取れませんでした';
+
+  @override
+  String get receiptConvertToListAction => 'リストに変換';
+
+  @override
+  String get receiptRetryReadAction => '再読み込み';
+
+  @override
+  String get receiptDeleteDraftAction => '削除';
+
+  @override
+  String get receiptReadyNotificationTitle => 'レシートの準備ができました';
+
+  @override
+  String get receiptReadyNotificationBody => 'レシートが準備完了しました。リストに追加しますか？';
+
+  @override
+  String get receiptDuplicateTitle => 'すでに追加されていますか？';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'この店舗と時刻のリストは既に存在しています ($listTitle)。それでも追加しますか？';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => '追加する';
+
+  @override
+  String get receiptDuplicateDelete => 'レシートを削除';
+
+  @override
+  String get receiptEmptyTrayTitle => '保留中のレシートはありません';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'スキャンしたレシートはバックグラウンドで処理され、変換または削除されるまでここに保持されます。';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$countページ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'レシートの写真';
+
+  @override
+  String get receiptOpenPhotoHint => 'レシートの写真をタップしてフルサイズで表示';
 }

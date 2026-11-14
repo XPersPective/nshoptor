@@ -1655,4 +1655,76 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'કિંમત લેબલ બેકગ્રાઉન્ડમાં વાંચવામાં આવી રહી છે.';
+
+  @override
+  String get listsTabReceipts => 'મારા રસીદો';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'મારા રસીદો ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'કતારમાં';
+
+  @override
+  String get receiptStatusProcessing => 'રસીદ વાંચી રહ્યા છીએ…';
+
+  @override
+  String get receiptStatusReady => 'તૈયાર';
+
+  @override
+  String get receiptStatusDuplicate => 'શક્ય ડુપ્લિકેટ';
+
+  @override
+  String get receiptStatusFailed => 'વાંચી શકાયું નથી';
+
+  @override
+  String get receiptConvertToListAction => 'લિસ્ટમાં ફેરવો';
+
+  @override
+  String get receiptRetryReadAction => 'ફરી પ્રયાસ કરો';
+
+  @override
+  String get receiptDeleteDraftAction => 'ડિલીટ કરો';
+
+  @override
+  String get receiptReadyNotificationTitle => 'રસીદ તૈયાર છે';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'તમારી રસીદ તૈયાર છે. તેને લિસ્ટમાં ટ્રાન્સફર કરવી?';
+
+  @override
+  String get receiptDuplicateTitle => 'રસીદ પહેલાંથી ઉમેરાઈ ગઈ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'આ સ્ટોર અને સમય સાથે એક લિસ્ટ પહેલાંથી અસ્તિત્વમાં છે ($listTitle). હજુ પણ ઉમેરવું?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'હજુ પણ ઉમેરો';
+
+  @override
+  String get receiptDuplicateDelete => 'રસીદ ડિલીટ કરો';
+
+  @override
+  String get receiptEmptyTrayTitle => 'કોઈ રસીદ બાકી નથી';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'સ્કેન કરેલી રસીદો બેકગ્રાઉન્ડમાં તૈયાર થાય છે અને તમે તેને કન્વર્ટ અથવા રિમૂવ કર્યા વિના અહીં જ રહે છે.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count પેજ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'રસીદની ફોટાઓ';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'પૂર્ણ કદમાં જોવા માટે રસીદની ફોટા પર ટેપ કરો';
 }

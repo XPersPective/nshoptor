@@ -1657,4 +1657,76 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get shelfLabelQueuedNotice =>
       'Label harga sedang dibaca di latar belakang.';
+
+  @override
+  String get listsTabReceipts => 'Struk saya';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Struk saya ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Antrian';
+
+  @override
+  String get receiptStatusProcessing => 'Membaca struk…';
+
+  @override
+  String get receiptStatusReady => 'Siap';
+
+  @override
+  String get receiptStatusDuplicate => 'Kemungkinan duplikat';
+
+  @override
+  String get receiptStatusFailed => 'Gagal dibaca';
+
+  @override
+  String get receiptConvertToListAction => 'Ubah ke daftar';
+
+  @override
+  String get receiptRetryReadAction => 'Coba lagi';
+
+  @override
+  String get receiptDeleteDraftAction => 'Hapus';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Struk siap';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Struk Anda sudah siap. Pindahkan ke daftar?';
+
+  @override
+  String get receiptDuplicateTitle => 'Struk sudah ditambahkan?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Daftar untuk toko dan waktu ini sudah ada ($listTitle). Tambahkan lagi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Tambahkan saja';
+
+  @override
+  String get receiptDuplicateDelete => 'Hapus struk';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Tidak ada struk antrian';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Struk yang dipindai diproses di latar belakang dan tetap di sini sampai Anda mengubah atau menghapusnya.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count halaman';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Foto struk';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Ketuk foto struk untuk melihat ukuran penuh';
 }

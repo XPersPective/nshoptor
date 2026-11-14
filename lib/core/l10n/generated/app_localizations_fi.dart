@@ -1660,4 +1660,76 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Hyllynsiltaa luetaan taustalla.';
+
+  @override
+  String get listsTabReceipts => 'Omat kuitit';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Omat kuitit ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Jonossa';
+
+  @override
+  String get receiptStatusProcessing => 'Luetaan kuitia…';
+
+  @override
+  String get receiptStatusReady => 'Valmis';
+
+  @override
+  String get receiptStatusDuplicate => 'Mahdollinen kaksoiskappale';
+
+  @override
+  String get receiptStatusFailed => 'Ei voitu lukea';
+
+  @override
+  String get receiptConvertToListAction => 'Muunna listaksi';
+
+  @override
+  String get receiptRetryReadAction => 'Yritä uudelleen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Poista';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kuiti valmis';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Kuittisi on valmis. Haluatko siirtää sen listaan?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kuiti jo lisätty?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Lista, joka vastaa tätä kauppaa ja ajankohtaa, on jo olemassa ($listTitle). Lisätäänkö silti?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Lisää silti';
+
+  @override
+  String get receiptDuplicateDelete => 'Poista kuiti';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ei odottavia kuitteja';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skannatut kuitit käsitellään taustalla ja pysyvät tässä, kunnes muunnat tai poistat ne.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sivua';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kuitin kuvat';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Paina kuitin kuvaa nähdäksesi sen koko koossa';
 }

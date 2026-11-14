@@ -1661,4 +1661,76 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get shelfLabelQueuedNotice => 'Ценник обрабатывается в фоне.';
+
+  @override
+  String get listsTabReceipts => 'Мои чеки';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Мои чеки ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'В очереди';
+
+  @override
+  String get receiptStatusProcessing => 'Читаем чек…';
+
+  @override
+  String get receiptStatusReady => 'Готово';
+
+  @override
+  String get receiptStatusDuplicate => 'Возможно, дубликат';
+
+  @override
+  String get receiptStatusFailed => 'Не удалось прочитать';
+
+  @override
+  String get receiptConvertToListAction => 'Создать список';
+
+  @override
+  String get receiptRetryReadAction => 'Повторить';
+
+  @override
+  String get receiptDeleteDraftAction => 'Удалить';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Чек готов';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Чек готов. Перенести его в список?';
+
+  @override
+  String get receiptDuplicateTitle => 'Чек уже добавлен?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Список для этого магазина и времени уже есть ($listTitle). Добавить ещё раз?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Добавить всё равно';
+
+  @override
+  String get receiptDuplicateDelete => 'Удалить чек';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Нет ожидающих чеков';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Отсканированные чеки обрабатываются в фоне и остаются здесь, пока вы не создадите из них список или не удалите их.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count стр.';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Фото чеков';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Нажмите на фото чека, чтобы открыть его на весь экран';
 }
