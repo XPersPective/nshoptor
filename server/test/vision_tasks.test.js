@@ -251,4 +251,12 @@ test('full ŞOK receipt with multiple campaign discounts & A101 URL-identified r
   });
   assert.equal(fullA101.status, 'complete');
   assert.equal(fullA101.reconciles, true);
+
+  const nonOverlappingTwoPage = R.clean({
+    ...receipt(),
+    status: 'middle_gap',
+  });
+  assert.equal(nonOverlappingTwoPage.status, 'complete');
+  assert.equal(nonOverlappingTwoPage.reconciles, true);
+  assert.equal(nonOverlappingTwoPage.total, '225.77');
 });

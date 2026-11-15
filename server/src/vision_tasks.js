@@ -112,44 +112,56 @@ export const VISION_TASKS = {
       const partial = status => ({ ...header, status,
         items: status === 'bottom_missing' || status === 'middle_gap' ? visibleRows() : [],
         discounts: [], tax: null, subtotal: null, total: null });
-      if (out.status !== 'complete') return partial(out.status);
+      const verifyComplete = () => {
+        if (!Array.isArray(out.items) || out.items.length === 0 || out.items.length > 150) throw new Error('invalid_items');
+        const items = out.items.map(i => {
+          const name = text(i?.name, 80);
+          const lineTotal = amount(i?.lineTotal);
+          if (!name || lineTotal === null) throw new Error('invalid_items');
+          const quantity = amount(i?.quantity);
+          const unitPrice = amount(i?.unitPrice);
+          if (quantity !== null && unitPrice !== null && Number(quantity) > 0 &&
+              Math.abs(Math.round(Number(quantity) * Number(unitPrice) * 1000) - milli(lineTotal)) > 10) {
+            throw new Error('line_math');
+          }
+          return { name, quantity, unit: UNITS.includes(i?.unit) ? i.unit : null, unitPrice, lineTotal };
+        });
+        if (out.discounts !== undefined && !Array.isArray(out.discounts)) throw new Error('invalid_discounts');
+        const discounts = (out.discounts || []).slice(0, 60).map(d => {
+          const value = amount(d?.amount);
+          if (value === null) throw new Error('invalid_discounts');
+          return { label: text(d?.label, 80), amount: value };
+        });
+        const total = amount(out.total);
+        if (total === null) throw new Error('missing_total');
+        const itemSum = items.reduce((s, i) => s + milli(i.lineTotal), 0);
+        const discountSum = discounts.reduce((s, d) => s + milli(d.amount), 0);
+        const net = itemSum === milli(total);
+        if (!net && itemSum - discountSum !== milli(total)) throw new Error('not_reconciled');
+        const tax = amount(out.tax);
+        if (tax !== null && milli(tax) > milli(total)) throw new Error('invalid_tax');
+        const subtotal = amount(out.subtotal);
+        if (subtotal !== null && milli(subtotal) > itemSum) throw new Error('invalid_subtotal');
+        return {
+          ...header, status: 'complete', items, discounts: net ? [] : discounts, tax, subtotal, total, reconciles: true,
+        };
+      };
+      if (out.status !== 'complete') {
+        if (out.status === 'middle_gap' &&
+            header.store && header.date && amount(out.total) !== null && Array.isArray(out.items) && out.items.length > 0) {
+          try {
+            return verifyComplete();
+          } catch (_) {
+            // Fall through to partial when arithmetic does not reconcile.
+          }
+        }
+        return partial(out.status);
+      }
       // A "complete" claim is checked against what makes a receipt complete:
       // without store and date the top is missing; without a total the bottom.
       if (!header.store || !header.date) return partial('top_missing');
       if (amount(out.total) === null) return partial('bottom_missing');
-
-      if (!Array.isArray(out.items) || out.items.length === 0 || out.items.length > 150) throw new Error('invalid_items');
-      const items = out.items.map(i => {
-        const name = text(i?.name, 80);
-        const lineTotal = amount(i?.lineTotal);
-        if (!name || lineTotal === null) throw new Error('invalid_items');
-        const quantity = amount(i?.quantity);
-        const unitPrice = amount(i?.unitPrice);
-        if (quantity !== null && unitPrice !== null && Number(quantity) > 0 &&
-            Math.abs(Math.round(Number(quantity) * Number(unitPrice) * 1000) - milli(lineTotal)) > 10) {
-          throw new Error('line_math');
-        }
-        return { name, quantity, unit: UNITS.includes(i?.unit) ? i.unit : null, unitPrice, lineTotal };
-      });
-      if (out.discounts !== undefined && !Array.isArray(out.discounts)) throw new Error('invalid_discounts');
-      const discounts = (out.discounts || []).slice(0, 60).map(d => {
-        const value = amount(d?.amount);
-        if (value === null) throw new Error('invalid_discounts');
-        return { label: text(d?.label, 80), amount: value };
-      });
-      const total = amount(out.total);
-      if (total === null) throw new Error('missing_total');
-      const itemSum = items.reduce((s, i) => s + milli(i.lineTotal), 0);
-      const discountSum = discounts.reduce((s, d) => s + milli(d.amount), 0);
-      const net = itemSum === milli(total);
-      if (!net && itemSum - discountSum !== milli(total)) throw new Error('not_reconciled');
-      const tax = amount(out.tax);
-      if (tax !== null && milli(tax) > milli(total)) throw new Error('invalid_tax');
-      const subtotal = amount(out.subtotal);
-      if (subtotal !== null && milli(subtotal) > itemSum) throw new Error('invalid_subtotal');
-      return {
-        ...header, items, discounts: net ? [] : discounts, tax, subtotal, total, reconciles: true,
-      };
+      return verifyComplete();
     },
   },
 

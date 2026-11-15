@@ -258,4 +258,68 @@ void main() {
     expect(converted.processingStatus, 'reviewed');
     expect(await drafts.watchTrayCount().first, 0);
   });
+
+  test('2-page receipt session recovers to ready via sequential OCR when multi-image AI is partial', () async {
+    final p1 = await images.keepBytes(Uint8List.fromList([10, 20, 30]));
+    final p2 = await images.keepBytes(Uint8List.fromList([40, 50, 60]));
+    final qId = await drafts.enqueueCaptured(
+      imagePaths: [p1, p2],
+      currencyCode: 'TRY',
+    );
+
+    final ocrFrames = <String, OcrScanResult>{
+      p1: const OcrScanResult(
+        lines: [
+          OcrLine(text: 'USKUDAR/94804'),
+          OcrLine(text: 'TARIH :18.10.2026 16:56'),
+          OcrLine(text: 'BELGE NO :20543020261018165746'),
+          OcrLine(text: '2 x20,00 TL/ad'),
+          OcrLine(text: 'EKMEK %01 *40,00'),
+          OcrLine(text: 'WINSTON SLIMS GRi %00 *130,00'),
+          OcrLine(text: 'WINSTON SLIMS GRi %00 *130,00'),
+        ],
+      ),
+      p2: const OcrScanResult(
+        lines: [
+          OcrLine(text: 'SIVI DET. ALOE VERA 1,5 L RINS%20 *89,50'),
+          OcrLine(text: 'KOFTE PiLiC PARMAK 260 G ERPiL%01 *89,00'),
+          OcrLine(text: 'GAZLI iCECEK KOLA 1.75 L COCA %10 *85,00'),
+          OcrLine(text: 'ODENECEK TUTAR *563,50'),
+          OcrLine(text: 'https://fatura.a101.com.tr'),
+        ],
+      ),
+    };
+
+    final service = ReceiptQueueService(
+      db: db,
+      imageStore: images,
+      ocrFallback: _MapOcrSource(ocrFrames),
+      sendReadyNotification: ({
+        required receiptId,
+        storeName,
+        totalMinorUnits,
+        currencyCode,
+        bool isDuplicate = false,
+      }) async {},
+    );
+
+    await service.drain();
+
+    final row = (await drafts.getById(qId))!;
+    expect(row.queueState, 'ready');
+    expect(row.detectedStore, 'A101');
+    expect(row.detectedTotalMinorUnits, 56350);
+    final decoded = ReceiptDocument.decode(row.captureDataJson!);
+    expect(decoded.productLines, hasLength(6));
+    expect(decoded.toParseResult().withinReconciliationTolerance, isTrue);
+  });
+}
+
+class _MapOcrSource implements OcrTextSource {
+  const _MapOcrSource(this.frames);
+  final Map<String, OcrScanResult> frames;
+
+  @override
+  Future<OcrScanResult> scan(String imagePath) async =>
+      frames[imagePath] ?? const OcrScanResult(lines: []);
 }

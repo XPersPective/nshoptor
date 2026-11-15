@@ -226,12 +226,11 @@ final class ReceiptDocument {
       );
       for (final fragment in fragments.skip(1)) {
         final result = document.append(fragment);
-        if (result is! ReceiptAppended) {
-          throw const FormatException(
-            'Receipt continuation cannot be replayed',
-          );
+        if (result is ReceiptAppended) {
+          document = result.document;
+        } else {
+          document = document.appendSequential(fragment);
         }
-        document = result.document;
       }
       return document;
     } on FormatException {
@@ -286,11 +285,171 @@ final class ReceiptDocument {
     return _appendDocument(next);
   }
 
+  /// Joins consecutive pages captured in a single multi-page receipt session
+  /// (`Aynı fişe devam`), supporting exact overlap, longest/fuzzy overlap,
+  /// duplicate page suppression, and non-overlapping sequential continuation
+  /// (e.g. top half + bottom half or items + totals/footer).
+  ReceiptDocument appendSequential(OcrScanResult fragment) {
+    final strict = append(fragment);
+    if (strict is ReceiptAppended) {
+      final preferredStore = _chooseStore(
+        strict.document.metadata.store,
+        ReceiptDocument.fromScan(
+          fragment,
+          currencyCode: metadata.currencyCode ?? _currencyContext,
+        ).metadata.store,
+      );
+      if (preferredStore == strict.document.metadata.store) {
+        return strict.document;
+      }
+      return ReceiptDocument._(
+        metadata: ReceiptMetadata(
+          store: preferredStore,
+          documentNumber: strict.document.metadata.documentNumber,
+          dateTime: strict.document.metadata.dateTime,
+          totalMinor: strict.document.metadata.totalMinor,
+          currencyCode: strict.document.metadata.currencyCode,
+        ),
+        currencyContext: strict.document._currencyContext,
+        fragments: strict.document.fragments,
+        productLines: strict.document.productLines,
+        financialRows: strict.document._financialRows,
+      );
+    }
+    final next = ReceiptDocument.fromScan(
+      fragment,
+      currencyCode: metadata.currencyCode ?? _currencyContext,
+    );
+    return _appendSequentialDocument(next);
+  }
+
   ReceiptAppendResult prepend(OcrScanResult fragment) =>
       ReceiptDocument.fromScan(
         fragment,
         currencyCode: metadata.currencyCode ?? _currencyContext,
       )._appendDocument(this);
+
+  ReceiptDocument _appendSequentialDocument(ReceiptDocument next) {
+    final nextCode = next.metadata.currencyCode;
+    if (nextCode != null &&
+        metadata.currencyCode != nextCode &&
+        !_observedCurrency &&
+        next._observedCurrency) {
+      var replay = ReceiptDocument.fromScan(
+        fragments.first,
+        currencyCode: nextCode,
+      );
+      for (final frame in fragments.skip(1)) {
+        replay = replay.appendSequential(frame);
+      }
+      return replay._appendSequentialDocument(next);
+    }
+
+    // 1. If `next` is already a contiguous sub-slice of `productLines` (e.g.,
+    //    the user added the same receipt photo twice or re-captured a section
+    //    already covered), keep existing product/financial rows without double
+    //    counting while merging metadata and retaining the fragment.
+    final bool fullyContained;
+    if (next.productLines.isNotEmpty &&
+        next.productLines.length <= productLines.length) {
+      var foundSlice = false;
+      final maxStart = productLines.length - next.productLines.length;
+      for (var start = 0; start <= maxStart; start++) {
+        var allMatch = true;
+        for (var i = 0; i < next.productLines.length; i++) {
+          if (!_sameProductLine(
+            productLines[start + i],
+            next.productLines[i],
+          )) {
+            allMatch = false;
+            break;
+          }
+        }
+        if (allMatch) {
+          foundSlice = true;
+          break;
+        }
+      }
+      fullyContained = foundSlice;
+    } else {
+      fullyContained = false;
+    }
+
+    List<ReceiptLineCandidate> combinedProducts;
+    List<OcrLine> combinedFinancial;
+
+    if (fullyContained) {
+      combinedProducts = productLines;
+      combinedFinancial = _financialRows;
+    } else {
+      // 2. Find longest suffix-prefix overlap using fuzzy product-line equality.
+      var overlap = 0;
+      final limit = productLines.length < next.productLines.length
+          ? productLines.length
+          : next.productLines.length;
+      for (var length = 1; length <= limit; length++) {
+        var matches = true;
+        for (var i = 0; i < length; i++) {
+          if (!_sameProductLine(
+            productLines[productLines.length - length + i],
+            next.productLines[i],
+          )) {
+            matches = false;
+            break;
+          }
+        }
+        if (matches) overlap = length;
+      }
+
+      final oldPositions = _productPositions(_financialRows, productLines);
+      final newPositions = _productPositions(
+        next._financialRows,
+        next.productLines,
+      );
+
+      if (overlap > 0) {
+        combinedProducts = [
+          ...productLines,
+          ...next.productLines.skip(overlap),
+        ];
+        if (oldPositions != null && newPositions != null) {
+          combinedFinancial = [
+            ..._financialRows.take(oldPositions[productLines.length - overlap]),
+            ...next._financialRows.skip(newPositions.first),
+          ];
+        } else {
+          combinedFinancial = [..._financialRows, ...next._financialRows];
+        }
+      } else {
+        // 3. No overlapping product line: concatenate sequentially.
+        combinedProducts = [...productLines, ...next.productLines];
+        combinedFinancial = [..._financialRows, ...next._financialRows];
+      }
+    }
+
+    final mergedCurrency = metadata.currencyCode ?? next.metadata.currencyCode;
+    final chosenTotal = _chooseTotalMinor(
+      firstTotal: metadata.totalMinor,
+      nextTotal: next.metadata.totalMinor,
+      products: combinedProducts,
+      financialRows: combinedFinancial,
+      currencyCode: mergedCurrency ?? _currencyContext,
+    );
+
+    return ReceiptDocument._(
+      metadata: ReceiptMetadata(
+        store: _chooseStore(metadata.store, next.metadata.store),
+        documentNumber: metadata.documentNumber ?? next.metadata.documentNumber,
+        dateTime: _printedTime(metadata.dateTime, next.metadata.dateTime),
+        totalMinor: chosenTotal,
+        currencyCode: mergedCurrency,
+      ),
+      currencyContext: _currencyContext,
+      fragments: [...fragments, ...next.fragments],
+      productLines: combinedProducts,
+      financialRows: combinedFinancial,
+    );
+  }
 
   ReceiptAppendResult _appendDocument(ReceiptDocument next) {
     final nextCode = next.metadata.currencyCode;
@@ -410,6 +569,62 @@ String _fold(String text) {
 
 String _overlapText(ReceiptLineCandidate line) => _fold(line.rawText);
 
+bool _sameProductLine(ReceiptLineCandidate a, ReceiptLineCandidate b) {
+  if (_overlapText(a) == _overlapText(b)) return true;
+  final nameA = _fold(a.name);
+  final nameB = _fold(b.name);
+  if (nameA.isNotEmpty &&
+      nameA == nameB &&
+      a.lineTotalMinor == b.lineTotalMinor) {
+    return true;
+  }
+  return false;
+}
+
+String? _chooseStore(String? first, String? next) {
+  if (first == null || first.trim().isEmpty) return next;
+  if (next == null || next.trim().isEmpty) return first;
+  bool isKnownChain(String s) => RegExp(
+    r'\b(?:market|magaza|migros|carrefour|bim|sok|a101)\b',
+  ).hasMatch(_fold(s));
+  final firstChain = isKnownChain(first);
+  final nextChain = isKnownChain(next);
+  if (nextChain && !firstChain) return next;
+  return first;
+}
+
+int? _chooseTotalMinor({
+  required int? firstTotal,
+  required int? nextTotal,
+  required List<ReceiptLineCandidate> products,
+  required List<OcrLine> financialRows,
+  required String currencyCode,
+}) {
+  if (firstTotal == null) return nextTotal;
+  if (nextTotal == null || firstTotal == nextTotal) return firstTotal;
+  if (products.isEmpty) return nextTotal;
+  final parsed = ReceiptParser(
+    currency: currencyCode,
+  ).parse(OcrScanResult(lines: financialRows));
+  final discount = parsed.discountMinor;
+  final productSum = products.fold<int>(0, (n, l) => n + l.lineTotalMinor);
+  int diffFor(int total) {
+    final computed =
+        productSum -
+        receiptDiscountToApplyMinor(
+          productSumMinor: productSum,
+          observedDiscountMinor: discount,
+          reportedTotalMinor: total,
+        );
+    return (computed - total).abs();
+  }
+
+  final dFirst = diffFor(firstTotal);
+  final dNext = diffFor(nextTotal);
+  if (dNext <= dFirst) return nextTotal;
+  return firstTotal;
+}
+
 bool _isDocumentMetadata(String text, String? store) {
   final folded = _fold(text);
   if (RegExp(r'^ara\s+t[o0]plam\b').hasMatch(folded) ||
@@ -507,9 +722,11 @@ String? _readStore(List<String> lines) {
       return view.originalSlice(view.text.indexOf(':') + 1).trim();
     }
     if (!RegExp(r'[A-Za-zÇĞİÖŞÜçğıöşü]{2}').hasMatch(line) ||
+        folded.startsWith('http://') ||
+        folded.startsWith('https://') ||
         RegExp(r'\d+[.,\u066b]\d+|\d{1,2}:\d{2}').hasMatch(folded) ||
         RegExp(
-          r'^(?:tarih|saat|fis|fatura|belge|kdv|vergi|vkn|tel|kasa|kasiyer|satis|sube|adres|satici|magaza|store|toplam|ara toplam|nakit|kart|kredi|banka|e[ -]?arsiv)\b',
+          r'^(?:tarih|saat|fis|fatura|faturan[ıi]za|belge|kdv|vergi|vkn|tel|kasa|kasiyer|satis|sube|adres|satici|magaza|store|toplam|ara toplam|nakit|kart|kredi|banka|e[ -]?arsiv)\b',
         ).hasMatch(folded)) {
       continue;
     }

@@ -425,6 +425,47 @@ Future<ReceiptParseOutcome> parseReceiptImages({
   );
 
   if (doc != null &&
+      doc.state == ReceiptDocumentState.complete &&
+      doc.toParseResult().withinReconciliationTolerance) {
+    return ReceiptParsedDocument(
+      doc,
+      usedAi: false,
+      unavailableResult: unavailableResult,
+    );
+  }
+
+  // When a multi-page batch call (`images.length > 1`) was rejected or marked
+  // partial by the vision model (some providers struggle with multi-image
+  // arrays) and on-device OCR did not already produce a reconciled document,
+  // try single-page AI reads and combine them sequentially.
+  if (ai != null &&
+      ai.enabled &&
+      unavailableResult == null &&
+      photoPaths.length > 1) {
+    final reader = AiReceiptReader(
+      ai,
+      localeCode: localeCode,
+      encode: encode,
+    );
+    ReceiptDocument? aiCombined;
+    for (final path in photoPaths) {
+      final single = await reader.read([path], currencyCode: currencyCode);
+      if (single case AiReceiptVerified(document: final pageDoc)) {
+        if (aiCombined == null) {
+          aiCombined = pageDoc;
+        } else {
+          for (final fragment in pageDoc.fragments) {
+            aiCombined = aiCombined!.appendSequential(fragment);
+          }
+        }
+      }
+    }
+    if (aiCombined != null && aiCombined.productLines.isNotEmpty) {
+      return ReceiptParsedDocument(aiCombined, usedAi: true);
+    }
+  }
+
+  if (doc != null &&
       (aiRejectedRead == null ||
           doc.productLines.isNotEmpty ||
           doc.metadata.totalMinor != null)) {
@@ -464,8 +505,7 @@ Future<ReceiptDocument?> scanReceiptOfflineFallback({
       if (doc == null) {
         doc = ReceiptDocument.fromScan(scan, currencyCode: currencyCode);
       } else {
-        final joined = doc.append(scan);
-        if (joined is ReceiptAppended) doc = joined.document;
+        doc = doc.appendSequential(scan);
       }
     }
   } finally {

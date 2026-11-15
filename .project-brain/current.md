@@ -70,4 +70,5 @@ Sources: `lib/data/db/**`, `lib/features/receipts/**`, `lib/features/lists/item_
   - `PB-218`: Side-by-side branded `SplashGate` with localized slogan (`71` locales) and calm Light/Dark/AMOLED card, AppBar, NavBar polish.
   - `PB-219`: Dismissible `FreeProPromoCard` ("Try Pro free for 7 days" in `71` locales) + updated `73`-locale Play ASO copy, `featureGraphic`, and phone/tablet screenshots.
   - `PB-220`: Signed `1.3.4+32` AAB (`d6efc2b9...`), `1114` Flutter + `84` server tests + `flutter analyze` (0 issues), `Medium_Phone_API_36.0` live emulator QA, and Play `internal` (`version_codes: ["32"]`, `73` locales, `0` mismatches).
+  - `PB-221`: Multi-page receipt stitching (`appendSequential`, `ReceiptDocument.decode`, `scanReceiptOfflineFallback`, per-page AI fallback, and server `middle_gap` reconciliation) + signed `1.3.4+33` AAB (`5f204563ef0c57d0ec6896730e0dea4bea73d09f35b5578add4d0be468efb938`) uploaded to Google Play `internal` (`versionCode: 33`).
   - Backlog: `PB-128` website/SEO deferred; historical `PB-102..PB-206` files remain in `.project-brain/tasks/` (`PLANNED`/`READY`/`BLOCKED`).

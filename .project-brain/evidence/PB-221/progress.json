@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "lib/features/receipts/ai_receipt_reader.dart, lib/features/receipts/receipt_document.dart, pubspec.yaml, server/src/vision_tasks.js, server/test/vision_tasks.test.js, test/features/receipts/receipt_document_test.dart, test/features/receipts/receipt_queue_service_test.dart",
+  "strategy": "check",
+  "attempt": "f9d146a51d67e79b",
+  "repeats": 0,
+  "contract": "7ea47ea6f56ec3ab",
+  "usage": {
+    "checks": 1,
+    "seconds": 223.265
+  }
+}
