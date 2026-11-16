@@ -1748,4 +1748,40 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 escaneos de tickets con IA y sin anuncios activos · Sin tarjeta';
+
+  @override
+  String get receiptFailureSheetTitle => 'Por qué no se leyó';
+
+  @override
+  String get receiptFailureMissingTop => 'Falta la parte superior';
+
+  @override
+  String get receiptFailureMissingBottom => 'Falta la parte inferior';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Falta la parte central';
+
+  @override
+  String get receiptFailureNotReceipt => 'No es un recibo';
+
+  @override
+  String get receiptFailureUnreadable => 'No legible';
+
+  @override
+  String get receiptFailureMismatch => 'El total no coincide';
+
+  @override
+  String get receiptFailureRejected => 'No se pudo leer';
+
+  @override
+  String get receiptFailureService => 'Servicio no disponible';
+
+  @override
+  String get receiptFailureUnknown => 'Error de lectura';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografiar el resto';
+
+  @override
+  String get receiptFailureRetakeAction => 'Repetir';
 }

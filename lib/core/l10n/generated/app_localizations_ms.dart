@@ -1743,4 +1743,40 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 imbasan resit AI & bebas iklan dibuka · Tiada kad diperlukan';
+
+  @override
+  String get receiptFailureSheetTitle => 'Mengapa tidak dapat dibaca';
+
+  @override
+  String get receiptFailureMissingTop => 'Bahagian atas hilang';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bahagian bawah hilang';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Bahagian tengah hilang';
+
+  @override
+  String get receiptFailureNotReceipt => 'Bukan resit';
+
+  @override
+  String get receiptFailureUnreadable => 'Tidak jelas';
+
+  @override
+  String get receiptFailureMismatch => 'Jumlah tidak sepadan';
+
+  @override
+  String get receiptFailureRejected => 'Tidak dapat dibaca';
+
+  @override
+  String get receiptFailureService => 'Perkhidmatan tidak tersedia';
+
+  @override
+  String get receiptFailureUnknown => 'Pembacaan gagal';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Ambil baki resit';
+
+  @override
+  String get receiptFailureRetakeAction => 'Ambil semula';
 }

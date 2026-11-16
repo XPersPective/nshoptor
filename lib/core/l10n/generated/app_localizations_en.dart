@@ -1744,4 +1744,40 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI receipt scans & ad-free unlocked · No card needed';
+
+  @override
+  String get receiptFailureSheetTitle => 'Why it could not be read';
+
+  @override
+  String get receiptFailureMissingTop => 'Top is missing';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bottom is missing';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Middle is missing';
+
+  @override
+  String get receiptFailureNotReceipt => 'Not a receipt';
+
+  @override
+  String get receiptFailureUnreadable => 'Not legible';
+
+  @override
+  String get receiptFailureMismatch => 'Total does not match';
+
+  @override
+  String get receiptFailureRejected => 'Could not be read';
+
+  @override
+  String get receiptFailureService => 'Service unavailable';
+
+  @override
+  String get receiptFailureUnknown => 'Reading failed';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Shoot the rest';
+
+  @override
+  String get receiptFailureRetakeAction => 'Retake';
 }

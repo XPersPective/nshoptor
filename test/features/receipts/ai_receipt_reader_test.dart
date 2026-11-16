@@ -283,4 +283,53 @@ void main() {
     expect((offlineOutcome as ReceiptParsedDocument).usedAi, isFalse);
     expect(ocrOffline.calls, 1);
   });
+
+  test('verified AI items with OCR keyword names and numeric store prefix survive replay', () {
+    final result = AiReceiptReader.interpret({
+      'schema': 2,
+      'status': 'complete',
+      'store': '7/24 MARKET',
+      'date': '2026-10-20',
+      'time': '12:30',
+      'documentNumber': '0042',
+      'currency': 'TRY',
+      'items': [
+        {'name': 'TOPLAM TEMIZLIK SETI %10', 'lineTotal': '50.00'},
+        {'name': 'KDV AVANTAJ PAKETI', 'lineTotal': '25.00'},
+      ],
+      'discounts': [],
+      'total': '75.00',
+    }, currencyCode: 'TRY');
+    final doc = (result as AiReceiptVerified).document;
+    expect(doc.metadata.store, '7/24 MARKET');
+    expect(doc.productLines.map((l) => l.name), [
+      'TOPLAM TEMIZLIK SETI %10',
+      'KDV AVANTAJ PAKETI',
+    ]);
+    final replay = ReceiptDocument.decode(doc.encode());
+    expect(replay.state, ReceiptDocumentState.complete);
+    expect(replay.productLines.map((l) => l.lineTotalMinor), [5000, 2500]);
+    expect(replay.toParseResult().withinReconciliationTolerance, isTrue);
+  });
+
+  test('parseReceiptImages preserves AI bottom_missing instead of returning partial OCR draft', () async {
+    final ocrPartial = _CountingOcr(
+      const OcrScanResult(
+        lines: [
+          OcrLine(text: 'MIGROS'),
+          OcrLine(text: 'SUT 20,00'),
+        ],
+      ),
+    );
+    final outcome = await parseReceiptImages(
+      photoPaths: const ['half.jpg'],
+      currencyCode: 'TRY',
+      ai: _ai({'schema': 2, 'status': 'bottom_missing'}),
+      encode: (p) async => '/9j/$p',
+      ocrFallback: ocrPartial,
+    );
+    expect(outcome, isA<ReceiptParseNeedsMoreOrRetake>());
+    final read = (outcome as ReceiptParseNeedsMoreOrRetake).read;
+    expect((read as AiReceiptNeedsMore).gap, AiReceiptGap.bottom);
+  });
 }

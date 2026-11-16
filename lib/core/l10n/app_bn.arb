@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "পূর্ণ আকারে দেখতে একটি রসিদের ছবিতে ট্যাপ করুন",
   "receiptPhotoPreparing": "রসিদের ছবি প্রস্তুত করা হচ্ছে…",
   "homeProPromoTitle": "৭ দিন বিনামূল্যে Pro ব্যবহার করুন",
-  "homeProPromoSubtitle": "১০০টি AI রসিদ স্ক্যান ও বিজ্ঞাপনমুক্ত সুবিধা চালু · কার্ড লাগবে না"
+  "homeProPromoSubtitle": "১০০টি AI রসিদ স্ক্যান ও বিজ্ঞাপনমুক্ত সুবিধা চালু · কার্ড লাগবে না",
+  "receiptFailureSheetTitle": "কেন পড়া যায়নি",
+  "receiptFailureMissingTop": "উপরের অংশ নেই",
+  "receiptFailureMissingBottom": "নিচের অংশ নেই",
+  "receiptFailureMissingMiddle": "মাঝের অংশ নেই",
+  "receiptFailureNotReceipt": "রসিদ নয়",
+  "receiptFailureUnreadable": "অস্পষ্ট",
+  "receiptFailureMismatch": "মোট অংক মিলছে না",
+  "receiptFailureRejected": "পড়া যায়নি",
+  "receiptFailureService": "সেবা অনুপলব্ধ",
+  "receiptFailureUnknown": "পড়া ব্যর্থ হয়েছে",
+  "receiptFailureAddMoreAction": "বাকি অংশের ছবি তুলুন",
+  "receiptFailureRetakeAction": "আবার ছবি তুলুন"
 }

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Tam ölçüdə görmək üçün çek fotoşəkilinə toxunun",
   "receiptPhotoPreparing": "Çek şəkli hazırlanır…",
   "homeProPromoTitle": "Pro-nu 7 gün pulsuz sınayın",
-  "homeProPromoSubtitle": "100 süni intellekt çek oxuması və reklamsız istifadə açıq · Kart lazım deyil"
+  "homeProPromoSubtitle": "100 süni intellekt çek oxuması və reklamsız istifadə açıq · Kart lazım deyil",
+  "receiptFailureSheetTitle": "Niyə oxunmadı",
+  "receiptFailureMissingTop": "Yuxarı hissə yoxdur",
+  "receiptFailureMissingBottom": "Aşağı hissə yoxdur",
+  "receiptFailureMissingMiddle": "Orta hissə yoxdur",
+  "receiptFailureNotReceipt": "Çek deyil",
+  "receiptFailureUnreadable": "Oxunmur",
+  "receiptFailureMismatch": "Yekun məbləğ uyğun gəlmir",
+  "receiptFailureRejected": "Oxuna bilmədi",
+  "receiptFailureService": "Xidmət mövcud deyil",
+  "receiptFailureUnknown": "Oxunma uğursuz oldu",
+  "receiptFailureAddMoreAction": "Qalanını çəkin",
+  "receiptFailureRetakeAction": "Yenidən çəkin"
 }

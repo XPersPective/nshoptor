@@ -86,6 +86,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final current = widget.service.tier;
+    final storePaid = widget.service.storeTier != Tier.free;
     final status = planStatusText(
       l10n,
       label: planLabel(l10n, tier: current, proUnlocked: current != Tier.free),
@@ -164,11 +165,11 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 price: proOffer?.price,
                 period: l10n.plansPerYear,
                 benefits: [l10n.planProAi, l10n.planNoAds, l10n.planBackup],
-                current: false,
+                current: storePaid,
                 highlight: true,
                 loading: snap.connectionState != ConnectionState.done,
                 unavailableText: l10n.planUnavailable,
-                onBuy: busy || proOffer == null
+                onBuy: busy || storePaid || proOffer == null
                     ? null
                     : () => widget.service.buy(proOffer),
               ),

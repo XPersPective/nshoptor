@@ -1,12 +1,19 @@
 import 'dart:convert';
 
 import '../../core/money/currency.dart';
+import '../../core/money/decimal_fixed.dart';
+import '../../core/quantity/unit_code.dart';
 import '../../core/text/store_name.dart';
+import '../../core/util/normalize_name.dart';
 import '../ai/ai_client.dart';
 import 'ai_image.dart';
 import 'ocr_text_source.dart';
+import 'parser/receipt_parse_result.dart';
 import 'receipt_document.dart';
+import 'receipt_read_failure.dart';
 import 'shelf_label/mlkit_text_source.dart';
+
+export 'receipt_read_failure.dart' show AiReceiptGap;
 
 /// Where a receipt reading stands after one AI request.
 sealed class AiReceiptRead {
@@ -18,8 +25,6 @@ final class AiReceiptVerified extends AiReceiptRead {
   const AiReceiptVerified(this.document);
   final ReceiptDocument document;
 }
-
-enum AiReceiptGap { top, bottom, middle }
 
 /// The model saw only part of the receipt: guide the user to the missing part.
 final class AiReceiptNeedsMore extends AiReceiptRead {
@@ -48,9 +53,15 @@ final class AiReceiptNeedsMore extends AiReceiptRead {
 }
 
 /// Not a receipt, unreadable, or rejected twice by validation: retake.
+///
+/// [reason] is always a [ReceiptReadFailure] code, never free text: the
+/// model cannot answer with an arbitrary sentence the user has to interpret.
 final class AiReceiptRetake extends AiReceiptRead {
   const AiReceiptRetake(this.reason);
   final String reason;
+
+  /// The canonical failure this retake stands for.
+  ReceiptReadFailure get failure => ReceiptReadFailure.fromCode(reason);
 }
 
 /// Offline, over quota, disabled or provider down: use the on-device path.
@@ -77,7 +88,7 @@ class AiReceiptReader {
   final String localeCode;
   final Future<String?> Function(String path) encode;
 
-  static const maxPhotos = 4;
+  static const maxPhotos = kMaxReceiptPhotos;
 
   static const _unitSuffix = {
     'kilogram': 'KG',
@@ -107,7 +118,7 @@ class AiReceiptReader {
         'read_receipt_image',
         {'images': images, 'currency': currencyCode},
         locale: localeCode,
-        timeout: const Duration(seconds: 150),
+        timeout: const Duration(seconds: 220),
       );
     } catch (_) {
       return const AiReceiptUnavailable(AiFailed('request'));
@@ -189,40 +200,72 @@ class AiReceiptReader {
           visibleItems: visible,
         );
       default:
-        return AiReceiptRetake('${data['status']}');
+        // The protocol names six statuses. Anything else becomes a canonical
+        // code, never a free-text reason the user would have to interpret.
+        return AiReceiptRetake(
+          ReceiptReadFailure.fromAiStatus(data['status'] as String?).code,
+        );
     }
     final code = data['currency'] is String
-        ? data['currency'] as String
+        ? (data['currency'] as String).toUpperCase()
         : currencyCode;
     if (!Currency.isKnownCode(code)) return const AiReceiptRetake('currency');
     final digits = Currency.fromCode(code).minorUnitDigits;
     final built = _canonical(data, code, digits);
     if (built == null) return const AiReceiptRetake('mismatch');
-    final document = ReceiptDocument.fromScan(
-      OcrScanResult(lines: [for (final row in built.rows) OcrLine(text: row)]),
-      currencyCode: code,
-    );
     // A complete reading without a readable store/date cannot be identified.
-    if (document.metadata.store == null || document.metadata.dateTime == null) {
+    if (built.store == null || built.dateTime == null) {
       return const AiReceiptNeedsMore(AiReceiptGap.top);
     }
+    final document = ReceiptDocument.fromAiVerified(
+      metadata: ReceiptMetadata(
+        store: built.store,
+        documentNumber: built.documentNumber,
+        dateTime: built.dateTime,
+        totalMinor: built.total,
+        currencyCode: code,
+      ),
+      currencyContext: code,
+      fragments: [
+        OcrScanResult(lines: [for (final row in built.rows) OcrLine(text: row)]),
+      ],
+      productLines: built.lines,
+      financialRows: const [],
+      discountMinor: built.discount,
+      taxMinor: built.tax,
+      subtotalMinor: built.subtotal,
+    );
     final parsed = document.toParseResult();
     final same =
         document.state == ReceiptDocumentState.complete &&
         parsed.withinReconciliationTolerance &&
         parsed.totalMinor == built.total &&
         (parsed.discountMinor ?? 0) == built.discount &&
-        parsed.lines.length == built.lineTotals.length &&
-        [
-          for (var i = 0; i < built.lineTotals.length; i++)
-            parsed.lines[i].lineTotalMinor == built.lineTotals[i],
-        ].every((ok) => ok);
+        parsed.lines.length == built.lines.length;
     return same
         ? AiReceiptVerified(document)
         : const AiReceiptRetake('mismatch');
   }
 
-  static ({List<String> rows, List<int> lineTotals, int discount, int total})?
+  static UnitCode? _parseUnit(Object? unit) {
+    if (unit is! String) return null;
+    for (final value in UnitCode.values) {
+      if (value.dbCode == unit) return value;
+    }
+    return null;
+  }
+
+  static ({
+    List<String> rows,
+    List<ReceiptLineCandidate> lines,
+    String? store,
+    String documentNumber,
+    DateTime? dateTime,
+    int discount,
+    int? tax,
+    int? subtotal,
+    int total,
+  })?
   _canonical(Map<String, dynamic> data, String currency, int digits) {
     final items = data['items'];
     final discounts = data['discounts'];
@@ -235,21 +278,39 @@ class AiReceiptReader {
 
     final rows = <String>[];
     final store = one(data['store'], 80);
-    if (store != null) rows.add('STORE : ${cleanStoreName(store)}');
+    final cleanedStore = store != null ? cleanStoreName(store) : null;
+    if (cleanedStore != null) rows.add('STORE : $cleanedStore');
     final date = data['date'] is String
         ? RegExp(r'^(\d{4})-(\d{2})-(\d{2})$')
               .firstMatch(data['date'] as String)
         : null;
-    if (date != null) rows.add('TARİH : ${date[3]}.${date[2]}.${date[1]}');
+    DateTime? dateTime;
+    if (date != null) {
+      rows.add('TARİH : ${date[3]}.${date[2]}.${date[1]}');
+    }
     final time = data['time'];
+    final timeMatch = time is String
+        ? RegExp(r'^(\d{2}):(\d{2})(?::(\d{2}))?$').firstMatch(time)
+        : null;
+    if (date != null) {
+      dateTime = DateTime(
+        int.parse(date[1]!),
+        int.parse(date[2]!),
+        int.parse(date[3]!),
+        timeMatch != null ? int.parse(timeMatch[1]!) : 0,
+        timeMatch != null ? int.parse(timeMatch[2]!) : 0,
+        timeMatch?[3] != null ? int.parse(timeMatch![3]!) : 0,
+      );
+    }
     // A receipt that prints no time is keyed at midnight; never a dead end.
     rows.add(
-      time is String && RegExp(r'^\d{2}:\d{2}(?::\d{2})?$').hasMatch(time)
+      timeMatch != null
           ? 'SAAT : $time'
           : 'SAAT : 00:00',
     );
 
     final lineTotals = <int>[];
+    final lines = <ReceiptLineCandidate>[];
     final productRows = <String>[];
     for (final item in items) {
       if (item is! Map) return null;
@@ -260,31 +321,91 @@ class AiReceiptReader {
       final quantity = item['quantity'];
       final unitPrice = _minor(item['unitPrice'], digits);
       final suffix = _unitSuffix[item['unit']] ?? '';
+      DecimalFixed? parsedQty;
       if (quantity is String &&
           RegExp(r'^\d{1,9}(\.\d{1,3})?$').hasMatch(quantity) &&
-          quantity != '1' &&
-          unitPrice != null) {
-        productRows.add(
-          '$name ${quantity.replaceAll('.', ',')}$suffix '
-          'X${_format(unitPrice, digits)} ${_format(total, digits)}',
-        );
-      } else {
-        productRows.add('$name ${_format(total, digits)}');
+          quantity != '1') {
+        parsedQty = DecimalFixed.parse(quantity);
       }
+      final rawRow =
+          (parsedQty != null && unitPrice != null)
+          ? '$name ${quantity.toString().replaceAll('.', ',')}$suffix '
+                'X${_format(unitPrice, digits)} ${_format(total, digits)}'
+          : '$name ${_format(total, digits)}';
+      productRows.add(rawRow);
+      lines.add(
+        ReceiptLineCandidate(
+          rawText: rawRow,
+          name: name,
+          normalizedName: normalizeName(name),
+          quantity: parsedQty,
+          unitCode: _parseUnit(item['unit']),
+          unitPriceMinor: unitPrice,
+          lineTotalMinor: total,
+          confidence: 'high',
+        ),
+      );
     }
     var discount = 0;
     final discountRows = <String>[];
+    final itemDiscounts = List<int>.filled(lines.length, 0);
+    final itemDiscountLabels = List<List<String>>.generate(
+      lines.length,
+      (_) => <String>[],
+    );
+    final remainingBudget = List<int>.from(lineTotals);
     for (final d in discounts) {
       if (d is! Map) return null;
       final amount = _minor(d['amount'], digits);
-      if (amount == null || amount <= 0) return null;
+      if (amount == null || amount < 0) return null;
+      if (amount == 0) continue;
       discount += amount;
+      final label = one(d['label'], 80);
       discountRows.add('İNDİRİM -${_format(amount, digits)}');
+      final rawIdx = d['itemIndex'];
+      var targetIdx =
+          rawIdx is int &&
+              rawIdx >= 0 &&
+              rawIdx < lines.length &&
+              remainingBudget[rawIdx] >= amount
+          ? rawIdx
+          : null;
+      targetIdx ??= label == null
+          ? null
+          : _findDiscountTargetIndex(label, amount, lines, remainingBudget);
+      if (targetIdx != null) {
+        itemDiscounts[targetIdx] += amount;
+        remainingBudget[targetIdx] -= amount;
+        if (label != null && !itemDiscountLabels[targetIdx].contains(label)) {
+          itemDiscountLabels[targetIdx].add(label);
+        }
+      }
     }
     final total = _minor(data['total'], digits);
     if (total == null) return null;
     final itemSum = lineTotals.fold<int>(0, (s, v) => s + v);
     if (itemSum != total && itemSum - discount != total) return null;
+    final applyDiscount = itemSum != total;
+    final attributedLines = [
+      for (var i = 0; i < lines.length; i++)
+        if (applyDiscount && itemDiscounts[i] > 0)
+          ReceiptLineCandidate(
+            rawText: lines[i].rawText,
+            name: lines[i].name,
+            normalizedName: lines[i].normalizedName,
+            quantity: lines[i].quantity,
+            unitCode: lines[i].unitCode,
+            unitPriceMinor: lines[i].unitPriceMinor,
+            lineTotalMinor: lines[i].lineTotalMinor,
+            discountMinor: itemDiscounts[i],
+            discountLabel: itemDiscountLabels[i].isEmpty
+                ? null
+                : itemDiscountLabels[i].join(', '),
+            confidence: lines[i].confidence,
+          )
+        else
+          lines[i],
+    ];
 
     // A receipt without a printed number gets a stable content key so it can
     // still be saved once and recognised if scanned again.
@@ -295,21 +416,75 @@ class AiReceiptReader {
         )?.replaceAll(RegExp(r'[^\p{L}\p{N}/-]', unicode: true), '') ??
         '';
     final ascii = RegExp(r'^[A-Za-z0-9][A-Za-z0-9/-]{0,63}$');
-    rows.add(
-      'FİŞ NO : ${number.isNotEmpty && ascii.hasMatch(number) && RegExp(r'\d').hasMatch(number) ? number : _contentKey(store, data['date'], time, total, lineTotals)}',
-    );
+    final documentNumber =
+        number.isNotEmpty && ascii.hasMatch(number) && RegExp(r'\d').hasMatch(number)
+        ? number.toUpperCase()
+        : _contentKey(store, data['date'], time, total, lineTotals);
+    rows.add('FİŞ NO : $documentNumber');
     rows
       ..addAll(productRows)
       ..addAll(discountRows);
     final tax = _minor(data['tax'], digits);
+    final subtotal = _minor(data['subtotal'], digits);
     if (tax != null) rows.add('KDV ${_format(tax, digits)}');
     rows.add('TOPLAM ${_format(total, digits)} $currency');
     return (
       rows: rows,
-      lineTotals: lineTotals,
+      lines: attributedLines,
+      store: cleanedStore,
+      documentNumber: documentNumber,
+      dateTime: dateTime,
       discount: itemSum == total ? 0 : discount,
+      tax: tax,
+      subtotal: subtotal,
       total: total,
     );
+  }
+
+  static const _genericDiscountTokens = {
+    'indirim',
+    'discount',
+    'kampanya',
+    'promosyon',
+    'promo',
+    'coupon',
+    'kupon',
+    'remise',
+    'rabatt',
+    'sconto',
+    'kart',
+    'puan',
+  };
+
+  static int? _findDiscountTargetIndex(
+    String label,
+    int amount,
+    List<ReceiptLineCandidate> lines,
+    List<int> remainingBudget,
+  ) {
+    final cleaned = label
+        .replaceAll(
+          RegExp(r'\d+(?:[.,]\d+)?\s*(?:TL|TRY|KR)?', caseSensitive: false),
+          ' ',
+        )
+        .replaceAll(RegExp(r'[^A-Za-zÇĞİÖŞÜçğıöşü]+'), ' ');
+    final tokens = normalizeName(cleaned)
+        .split(' ')
+        .where((t) => t.length >= 4 && !_genericDiscountTokens.contains(t))
+        .toList();
+    if (tokens.isEmpty) return null;
+    final matchedIndices = <int>[];
+    final matchedNames = <String>{};
+    for (var i = 0; i < lines.length; i++) {
+      if (remainingBudget[i] < amount) continue;
+      final norm = lines[i].normalizedName;
+      if (tokens.any((token) => norm.contains(token))) {
+        matchedIndices.add(i);
+        matchedNames.add(norm);
+      }
+    }
+    if (matchedIndices.isEmpty || matchedNames.length != 1) return null;
+    return matchedIndices.first;
   }
 
   static String _contentKey(
@@ -466,9 +641,8 @@ Future<ReceiptParseOutcome> parseReceiptImages({
   }
 
   if (doc != null &&
-      (aiRejectedRead == null ||
-          doc.productLines.isNotEmpty ||
-          doc.metadata.totalMinor != null)) {
+      aiRejectedRead == null &&
+      (doc.productLines.isNotEmpty || doc.metadata.totalMinor != null)) {
     return ReceiptParsedDocument(
       doc,
       usedAi: false,

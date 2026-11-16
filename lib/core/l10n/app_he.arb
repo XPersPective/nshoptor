@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "לחץ על תמונת קבלה כדי לצפות בגודל מלא",
   "receiptPhotoPreparing": "מכין את תמונת הקבלה…",
   "homeProPromoTitle": "נסו את Pro חינם ל-7 ימים",
-  "homeProPromoSubtitle": "100 סריקות קבלות ב-AI וללא פרסומות פתוח · ללא צורך בכרטיס"
+  "homeProPromoSubtitle": "100 סריקות קבלות ב-AI וללא פרסומות פתוח · ללא צורך בכרטיס",
+  "receiptFailureSheetTitle": "למה לא ניתן לקרוא",
+  "receiptFailureMissingTop": "החלק העליון חסר",
+  "receiptFailureMissingBottom": "החלק התחתון חסר",
+  "receiptFailureMissingMiddle": "החלק האמצעי חסר",
+  "receiptFailureNotReceipt": "לא קבלה",
+  "receiptFailureUnreadable": "לא קריא",
+  "receiptFailureMismatch": "הסכום אינו תואם",
+  "receiptFailureRejected": "לא ניתן לקרוא",
+  "receiptFailureService": "השירות אינו זמין",
+  "receiptFailureUnknown": "הקריאה נכשלה",
+  "receiptFailureAddMoreAction": "צלמו את השאר",
+  "receiptFailureRetakeAction": "צלמו שוב"
 }

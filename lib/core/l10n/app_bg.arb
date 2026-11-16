@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Докоснете снимка на разписка, за да я видите на цял екран",
   "receiptPhotoPreparing": "Подготвяне на снимката на бона…",
   "homeProPromoTitle": "Изпробвайте Pro безплатно за 7 дни",
-  "homeProPromoSubtitle": "100 ИИ сканирания на бележки и без реклами отключено · Без карта"
+  "homeProPromoSubtitle": "100 ИИ сканирания на бележки и без реклами отключено · Без карта",
+  "receiptFailureSheetTitle": "Защо не се прочете",
+  "receiptFailureMissingTop": "Горната част липсва",
+  "receiptFailureMissingBottom": "Долната част липсва",
+  "receiptFailureMissingMiddle": "Средната част липсва",
+  "receiptFailureNotReceipt": "Не е касова бележка",
+  "receiptFailureUnreadable": "Нечетливо",
+  "receiptFailureMismatch": "Общата сума не съвпада",
+  "receiptFailureRejected": "Неуспешно четене",
+  "receiptFailureService": "Услугата не е достъпна",
+  "receiptFailureUnknown": "Четенето е неуспешно",
+  "receiptFailureAddMoreAction": "Снимайте остатъка",
+  "receiptFailureRetakeAction": "Снимайте отново"
 }

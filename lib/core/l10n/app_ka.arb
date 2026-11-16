@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "სრულ ზომასთან გასახილად, შეეხეთ ჩეკის ფოტოს",
   "receiptPhotoPreparing": "ქვითრის ფოტო მზადდება…",
   "homeProPromoTitle": "სცადეთ Pro 7 დღე უფასოდ",
-  "homeProPromoSubtitle": "100 AI ქვითრის სკანირება და რეკლამის გარეშე · ბარათი არ სჭირდება"
+  "homeProPromoSubtitle": "100 AI ქვითრის სკანირება და რეკლამის გარეშე · ბარათი არ სჭირდება",
+  "receiptFailureSheetTitle": "რატომ ვერ წაიკითხა",
+  "receiptFailureMissingTop": "ზედა ნაწილი აკლია",
+  "receiptFailureMissingBottom": "ქვედა ნაწილი აკლია",
+  "receiptFailureMissingMiddle": "შუა ნაწილი აკლია",
+  "receiptFailureNotReceipt": "ჩიზი არ არის",
+  "receiptFailureUnreadable": "წაკითხვა შეუძლებელია",
+  "receiptFailureMismatch": "ჯამი არ ემთხვევა",
+  "receiptFailureRejected": "უარისკვეცა",
+  "receiptFailureService": "სერვისი მიუწვდომელია",
+  "receiptFailureUnknown": "წაკითხვა ვერ მოხერხდა",
+  "receiptFailureAddMoreAction": "დანარჩენი გადაიღე",
+  "receiptFailureRetakeAction": "თავიდან გადაიღე"
 }

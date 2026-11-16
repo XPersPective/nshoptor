@@ -4,6 +4,7 @@ import 'package:drift/drift.dart';
 
 import '../../data/db/app_database.dart';
 import 'receipt_document.dart';
+import 'receipt_read_failure.dart';
 import 'receipt_repository.dart';
 
 final class ReceiptDraft {
@@ -255,6 +256,10 @@ class ReceiptDraftRepository {
       });
 
   /// Marks a queued receipt as failed with a human-readable retry error.
+  ///
+  /// [error] is always a [ReceiptReadFailure] code: the tray turns it into a
+  /// short label and one concrete next step, so no free text ever reaches
+  /// the user.
   Future<void> markFailed(int receiptId, String error) =>
       (_db.update(_db.receipts)..where((t) => t.id.equals(receiptId))).write(
         ReceiptsCompanion(
@@ -263,6 +268,86 @@ class ReceiptDraftRepository {
           queueError: Value(error),
         ),
       );
+
+  /// Marks a queued receipt as failed, storing the canonical reason code.
+  Future<void> markFailedWith(int receiptId, ReceiptReadFailure failure) =>
+      markFailed(receiptId, failure.code);
+
+  /// Adds one more photo to a receipt and puts it back on the background
+  /// queue.
+  ///
+  /// Used when the model says the receipt is incomplete (missing top,
+  /// missing bottom, or a gap between pages): the new photo belongs to the
+  /// same receipt, so the row keeps its identity and the next attempt reads
+  /// the whole receipt again instead of starting a new one.
+  ///
+  /// Returns false when the receipt is gone or already holds the maximum
+  /// number of photos, so the caller can tell the user instead of silently
+  /// dropping the photo.
+  Future<bool> appendPhotoAndRequeue(int receiptId, String imagePath) async {
+    final row = await getById(receiptId);
+    if (row == null) return false;
+    final paths = List<String>.of(row.imagePaths);
+    if (paths.length >= kMaxReceiptPhotos) return false;
+    paths.add(imagePath);
+    return _writePhotoPaths(receiptId, paths);
+  }
+
+  /// Replaces the photos of a receipt and puts it back on the background
+  /// queue.
+  ///
+  /// Used when the receipt as a whole could not be read (blur, glare, wrong
+  /// subject): the old photos are not usable evidence, so they are dropped.
+  /// The caller removes their files.
+  Future<bool> replacePhotosAndRequeue(
+    int receiptId,
+    List<String> imagePaths,
+  ) async {
+    if (imagePaths.isEmpty) return false;
+    if (await getById(receiptId) == null) return false;
+    return _writePhotoPaths(receiptId, imagePaths);
+  }
+
+  /// Removes one photo at [index] from a receipt session and resets the session
+  /// back onto the queue if other photos remain. Returns the removed file path
+  /// and whether that was the last photo (`emptied: true`), or `null` when
+  /// [receiptId] / [index] is invalid.
+  Future<({String removedPath, bool emptied})?> removePhotoAtAndRequeue(
+    int receiptId,
+    int index,
+  ) async {
+    final row = await getById(receiptId);
+    if (row == null || index < 0 || index >= row.imagePaths.length) {
+      return null;
+    }
+    final paths = List<String>.of(row.imagePaths);
+    final removed = paths.removeAt(index);
+    if (paths.isEmpty) {
+      return (removedPath: removed, emptied: true);
+    }
+    await _writePhotoPaths(receiptId, paths);
+    return (removedPath: removed, emptied: false);
+  }
+
+  Future<bool> _writePhotoPaths(int receiptId, List<String> paths) async {
+    await (_db.update(_db.receipts)..where((t) => t.id.equals(receiptId))).write(
+      ReceiptsCompanion(
+        imagePaths: Value(List.unmodifiable(paths)),
+        detectedStore: const Value(null),
+        detectedAt: const Value(null),
+        detectedTotalMinorUnits: const Value(null),
+        documentNumber: const Value(null),
+        identityKey: const Value(null),
+        captureDataJson: const Value(null),
+        rawOcrText: const Value(null),
+        queueState: const Value('queued'),
+        processingStatus: const Value('pending'),
+        queueError: const Value(null),
+        duplicateOfListId: const Value(null),
+      ),
+    );
+    return true;
+  }
 
   /// Moves a failed or interrupted receipt back onto the background queue.
   /// Resets standalone rows stranded in `processing` (for example after an OS

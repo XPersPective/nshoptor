@@ -340,14 +340,21 @@ void main() {
       final badge = tester.widget<Tooltip>(
         find.byKey(const Key('home_plan_badge')),
       );
-      expect(badge.message, 'Ücretsiz · Planını gör; abone ol ya da yükselt');
+      expect(badge.message, 'Free · Planını gör; abone ol ya da yükselt');
+      expect(
+        find.descendant(
+          of: find.byKey(const Key('home_plan_badge')),
+          matching: find.text('Free'),
+        ),
+        findsOneWidget,
+      );
       await tester.tap(find.byKey(const Key('home_plan_badge')));
       // Plan store offers load in the background; pumping avoids waiting on them.
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
       expect(find.byType(SubscriptionPaywall), findsOneWidget);
       expect(find.byKey(const Key('plans_current_status')), findsOneWidget);
-      expect(find.text('Mevcut: Ücretsiz'), findsOneWidget);
+      expect(find.text('Mevcut: Free'), findsOneWidget);
       // Store offers time out after 15 s in tests (no Play); let the timer finish.
       await tester.pump(const Duration(seconds: 16));
       await disposeApp(tester);

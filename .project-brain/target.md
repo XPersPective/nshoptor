@@ -88,3 +88,15 @@ Kullanıcı: "ürün sıralama ve daha birçok ek özellik; yapılacakların hep
 ## Latest user direction 2026-10-29
 - User: "bu bütün diller için geçerli ve onların kendi rakamlarıyla"; native country/receipt number conventions must work throughout entry, calculation and display, using existing supported packages where safe. Latin-only restriction is a fallback to report explicitly, not an assumed audience limit (PB-204/206, ADR-010).
 - User: "bütün işleri bitir ve yayınla artık"; finish actual Android/iOS correctness, use the public repository's GitHub macOS runners for iOS verification, make all site/store descriptions and real media current and publish. This explicitly continues existing publishing authority; app checks precede site work (PB-205, existing PB-163/176).
+
+
+## Milestone 1.3.4+31 Target (`RQ-002` — 2026-11-13)
+- **Capture-First Batch Receipt & Label Flows (`PB-212..PB-214`, ADR-011):**
+  - Replace blocking OCR capture with capture-first batch sessions (`Aynı fişe devam` / `Tamam`): compressed legible JPEG saved into unique Drift v6 receipt sessions, zero wait before next capture.
+  - Primary parsing by Server Vision AI (`read_receipt_image` / `read_label_image`); client ML Kit retained strictly as explicit offline/AI-off fallback.
+  - Cross-platform OS background execution (Android `WorkManager` single-engine worker + iOS `UIApplication.beginBackgroundTask` & `BGProcessingTask` + app-resume reconcile) firing clickable completion notifications.
+  - Dedicated `Fişlerim (N)` tab with reactive unconverted count badge, `(store + date + time)` duplicate warning (*"zaten bu fiş girildi"*), explicit `Listeye Çevir` review approval (`C-004`), always-available delete, and attached receipt photo(s) viewable at the bottom of the converted list.
+- **Calm Theme Variations & UI Hierarchy (`PB-210`, `PB-211`):**
+  - Eliminate pitch-black dark defaults (`#07140E`/`#040D09`), offer 6 calm non-pitch-black dark & light theme variations (while keeping AMOLED pure black opt-in and `#0B8457` brand identity `C-007`), soften glaring saturated CTAs, balance Home `AppBar` icon/`Free`/`Pro` pill proportions, redesign compact sort controls, and unify `SettingsScreen` & app-wide typography/padding.
+- **Verification & Play Test Release (`PB-215`, `PB-216`):**
+  - Full 71-locale ARB keys, `flutter analyze`, `flutter test`, shared emulator `Medium_Phone_API_36.0` APK walkthrough, independent `PB review`, green GitHub Actions CI, Google Play `internal` test release FIRST, plus large tablet & landscape screenshots and ASO/SEO polish.

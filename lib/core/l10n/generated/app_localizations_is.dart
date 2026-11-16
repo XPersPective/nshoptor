@@ -1741,4 +1741,40 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 gervigreindarskannanir & auglýsingalaust opið · Ekkert kort þarf';
+
+  @override
+  String get receiptFailureSheetTitle => 'Af hverju ekki hægt að lesa?';
+
+  @override
+  String get receiptFailureMissingTop => 'Efri hluti vantar';
+
+  @override
+  String get receiptFailureMissingBottom => 'Neðri hluti vantar';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Miðji hluti vantar';
+
+  @override
+  String get receiptFailureNotReceipt => 'Ekki kvitt';
+
+  @override
+  String get receiptFailureUnreadable => 'Ólæsilegt';
+
+  @override
+  String get receiptFailureMismatch => 'Heildin passar ekki';
+
+  @override
+  String get receiptFailureRejected => 'Ekki hægt að lesa';
+
+  @override
+  String get receiptFailureService => 'Þjónusta ekki í boði';
+
+  @override
+  String get receiptFailureUnknown => 'Lesing mistókst';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Taka mynd af afgangnum';
+
+  @override
+  String get receiptFailureRetakeAction => 'Taka aftur';
 }

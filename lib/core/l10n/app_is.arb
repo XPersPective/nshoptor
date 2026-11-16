@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Smelltu á ljósmynd af kvittningu til að sjá hana í fullri stærð",
   "receiptPhotoPreparing": "Undirbýr kvittunarmynd…",
   "homeProPromoTitle": "Prófaðu Pro ókeypis í 7 daga",
-  "homeProPromoSubtitle": "100 gervigreindarskannanir & auglýsingalaust opið · Ekkert kort þarf"
+  "homeProPromoSubtitle": "100 gervigreindarskannanir & auglýsingalaust opið · Ekkert kort þarf",
+  "receiptFailureSheetTitle": "Af hverju ekki hægt að lesa?",
+  "receiptFailureMissingTop": "Efri hluti vantar",
+  "receiptFailureMissingBottom": "Neðri hluti vantar",
+  "receiptFailureMissingMiddle": "Miðji hluti vantar",
+  "receiptFailureNotReceipt": "Ekki kvitt",
+  "receiptFailureUnreadable": "Ólæsilegt",
+  "receiptFailureMismatch": "Heildin passar ekki",
+  "receiptFailureRejected": "Ekki hægt að lesa",
+  "receiptFailureService": "Þjónusta ekki í boði",
+  "receiptFailureUnknown": "Lesing mistókst",
+  "receiptFailureAddMoreAction": "Taka mynd af afgangnum",
+  "receiptFailureRetakeAction": "Taka aftur"
 }

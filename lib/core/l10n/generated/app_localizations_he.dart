@@ -1725,4 +1725,40 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 סריקות קבלות ב-AI וללא פרסומות פתוח · ללא צורך בכרטיס';
+
+  @override
+  String get receiptFailureSheetTitle => 'למה לא ניתן לקרוא';
+
+  @override
+  String get receiptFailureMissingTop => 'החלק העליון חסר';
+
+  @override
+  String get receiptFailureMissingBottom => 'החלק התחתון חסר';
+
+  @override
+  String get receiptFailureMissingMiddle => 'החלק האמצעי חסר';
+
+  @override
+  String get receiptFailureNotReceipt => 'לא קבלה';
+
+  @override
+  String get receiptFailureUnreadable => 'לא קריא';
+
+  @override
+  String get receiptFailureMismatch => 'הסכום אינו תואם';
+
+  @override
+  String get receiptFailureRejected => 'לא ניתן לקרוא';
+
+  @override
+  String get receiptFailureService => 'השירות אינו זמין';
+
+  @override
+  String get receiptFailureUnknown => 'הקריאה נכשלה';
+
+  @override
+  String get receiptFailureAddMoreAction => 'צלמו את השאר';
+
+  @override
+  String get receiptFailureRetakeAction => 'צלמו שוב';
 }

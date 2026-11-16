@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Koppints egy számlafotóra a teljes méretű megtekintéshez",
   "receiptPhotoPreparing": "Nyugtafotó előkészítése…",
   "homeProPromoTitle": "Próbálja ki a Pro-t 7 napig ingyen",
-  "homeProPromoSubtitle": "100 AI blokkszkennelés és reklámmentesség feloldva · Kártya nem kell"
+  "homeProPromoSubtitle": "100 AI blokkszkennelés és reklámmentesség feloldva · Kártya nem kell",
+  "receiptFailureSheetTitle": "Miért nem sikerült olvasni?",
+  "receiptFailureMissingTop": "Felső rész hiányzik",
+  "receiptFailureMissingBottom": "Alsó rész hiányzik",
+  "receiptFailureMissingMiddle": "Középső rész hiányzik",
+  "receiptFailureNotReceipt": "Nem számla",
+  "receiptFailureUnreadable": "Nem olvasható",
+  "receiptFailureMismatch": "Az összeg nem egyezik",
+  "receiptFailureRejected": "Nem sikerült olvasni",
+  "receiptFailureService": "Szolgáltatás nem elérhető",
+  "receiptFailureUnknown": "Olvasás sikertelen",
+  "receiptFailureAddMoreAction": "A többi rész fotózása",
+  "receiptFailureRetakeAction": "Újrafényképezés"
 }

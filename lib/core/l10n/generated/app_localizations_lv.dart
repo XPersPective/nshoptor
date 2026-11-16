@@ -1744,4 +1744,40 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 MI čeku skenēšanas un bez reklāmām atbloķēts · Karte nav vajadzīga';
+
+  @override
+  String get receiptFailureSheetTitle => 'Kāpēc neizdevās nolasīt';
+
+  @override
+  String get receiptFailureMissingTop => 'Trūkst augšdaļas';
+
+  @override
+  String get receiptFailureMissingBottom => 'Trūkst apakšdaļas';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Trūkst vidusdaļas';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nav čeks';
+
+  @override
+  String get receiptFailureUnreadable => 'Nav nolasāms';
+
+  @override
+  String get receiptFailureMismatch => 'Kopsumma neatbilst';
+
+  @override
+  String get receiptFailureRejected => 'Atteigts';
+
+  @override
+  String get receiptFailureService => 'Pakalpojums nav pieejams';
+
+  @override
+  String get receiptFailureUnknown => 'Nolasīšana neizdevās';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Nofotografējiet atlikumu';
+
+  @override
+  String get receiptFailureRetakeAction => 'Uzņemt vēlreiz';
 }

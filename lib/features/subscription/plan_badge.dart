@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import 'subscription_service.dart';
 
-/// Plan adı: Ücretsiz, Pro ya da Max. Geçici Pro (ödüllü hediye) ücretsiz
+/// Plan adı: Free, Pro ya da Max. Geçici Pro (ödüllü hediye) ücretsiz
 /// katmanda "Pro" gösterir (Ayarlar ile aynı kural).
 String planLabel(
   AppLocalizations l10n, {
@@ -12,7 +12,7 @@ String planLabel(
 }) => switch (tier) {
   Tier.max => 'Max',
   Tier.pro => 'Pro',
-  Tier.free => proUnlocked ? 'Pro' : l10n.planFree,
+  Tier.free => proUnlocked ? 'Pro' : 'Free',
 };
 
 /// Paywall başlığındaki açık durum: "Mevcut: Pro · 7 gün ücretsiz".
@@ -85,12 +85,14 @@ class PlanBadge extends StatelessWidget {
                   decoration: ShapeDecoration(
                     shape: StadiumBorder(
                       side: BorderSide(
-                        color: scheme.outlineVariant.withValues(alpha: 0.55),
+                        color: active
+                            ? scheme.outlineVariant.withValues(alpha: 0.55)
+                            : scheme.primary.withValues(alpha: 0.45),
                       ),
                     ),
                     color: active
                         ? scheme.primaryContainer.withValues(alpha: 0.72)
-                        : scheme.surfaceContainerHighest.withValues(alpha: 0.72),
+                        : scheme.primaryContainer.withValues(alpha: 0.28),
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
@@ -103,9 +105,7 @@ class PlanBadge extends StatelessWidget {
                         Icon(
                           trial ? Icons.hourglass_top : Icons.workspace_premium,
                           size: 16,
-                          color: active
-                              ? scheme.primary
-                              : scheme.onSurfaceVariant,
+                          color: scheme.primary,
                         ),
                         if (!iconOnly) ...[
                           const SizedBox(width: 6),

@@ -1738,4 +1738,40 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 yapay zekâ fiş taraması ve reklamsız kullanım açık · Kart gerekmez';
+
+  @override
+  String get receiptFailureSheetTitle => 'Neden okunamadı?';
+
+  @override
+  String get receiptFailureMissingTop => 'Üst kısım eksik';
+
+  @override
+  String get receiptFailureMissingBottom => 'Alt kısım eksik';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Orta kısım eksik';
+
+  @override
+  String get receiptFailureNotReceipt => 'Fiş değil';
+
+  @override
+  String get receiptFailureUnreadable => 'Okunaklı değil';
+
+  @override
+  String get receiptFailureMismatch => 'Toplam uyuşmuyor';
+
+  @override
+  String get receiptFailureRejected => 'Okunamadı';
+
+  @override
+  String get receiptFailureService => 'Servis kullanılamıyor';
+
+  @override
+  String get receiptFailureUnknown => 'Okuma başarısız';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Devamını çek';
+
+  @override
+  String get receiptFailureRetakeAction => 'Yeniden çek';
 }

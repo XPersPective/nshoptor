@@ -1735,4 +1735,40 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI पावती स्कॅन आणि जाहिरातमुक्त अनुभव सुरू · कार्डची गरज नाही';
+
+  @override
+  String get receiptFailureSheetTitle => 'वाचता आले नाही का';
+
+  @override
+  String get receiptFailureMissingTop => 'वरचा भाग गायब';
+
+  @override
+  String get receiptFailureMissingBottom => 'खालचा भाग गायब';
+
+  @override
+  String get receiptFailureMissingMiddle => 'मध्य भाग गायब';
+
+  @override
+  String get receiptFailureNotReceipt => 'पावत नाही';
+
+  @override
+  String get receiptFailureUnreadable => 'अस्पष्ट';
+
+  @override
+  String get receiptFailureMismatch => 'एकूण रक्कम जुळत नाही';
+
+  @override
+  String get receiptFailureRejected => 'वाचता आले नाही';
+
+  @override
+  String get receiptFailureService => 'सेवा उपलब्ध नाही';
+
+  @override
+  String get receiptFailureUnknown => 'वाचणे अयशस्वी';
+
+  @override
+  String get receiptFailureAddMoreAction => 'उर्वरित भागाचा फोटो घ्या';
+
+  @override
+  String get receiptFailureRetakeAction => 'पुन्हा फोटो घ्या';
 }

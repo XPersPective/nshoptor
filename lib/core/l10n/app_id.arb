@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Ketuk foto struk untuk melihat ukuran penuh",
   "receiptPhotoPreparing": "Menyiapkan foto struk…",
   "homeProPromoTitle": "Coba Pro gratis 7 hari",
-  "homeProPromoSubtitle": "100 pindai struk AI & bebas iklan terbuka · Tanpa kartu kredit"
+  "homeProPromoSubtitle": "100 pindai struk AI & bebas iklan terbuka · Tanpa kartu kredit",
+  "receiptFailureSheetTitle": "Mengapa tidak dapat dibaca",
+  "receiptFailureMissingTop": "Bagian atas hilang",
+  "receiptFailureMissingBottom": "Bagian bawah hilang",
+  "receiptFailureMissingMiddle": "Bagian tengah hilang",
+  "receiptFailureNotReceipt": "Bukan struk",
+  "receiptFailureUnreadable": "Tidak terbaca",
+  "receiptFailureMismatch": "Total tidak cocok",
+  "receiptFailureRejected": "Tidak dapat dibaca",
+  "receiptFailureService": "Layanan tidak tersedia",
+  "receiptFailureUnknown": "Pembacaan gagal",
+  "receiptFailureAddMoreAction": "Foto sisa struk",
+  "receiptFailureRetakeAction": "Ambil ulang"
 }

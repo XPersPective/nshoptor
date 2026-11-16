@@ -1747,4 +1747,40 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 dixitalizacións de recibos con IA e sen anuncios · Sen tarxeta';
+
+  @override
+  String get receiptFailureSheetTitle => 'Por que non se leu';
+
+  @override
+  String get receiptFailureMissingTop => 'Falta a parte superior';
+
+  @override
+  String get receiptFailureMissingBottom => 'Falta a parte inferior';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Falta a parte central';
+
+  @override
+  String get receiptFailureNotReceipt => 'Non é un recibo';
+
+  @override
+  String get receiptFailureUnreadable => 'Non legible';
+
+  @override
+  String get receiptFailureMismatch => 'O total non coincide';
+
+  @override
+  String get receiptFailureRejected => 'Non se puido ler';
+
+  @override
+  String get receiptFailureService => 'Servizo non dispoñible';
+
+  @override
+  String get receiptFailureUnknown => 'Fallou a lectura';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografar o resto';
+
+  @override
+  String get receiptFailureRetakeAction => 'Facer outra foto';
 }

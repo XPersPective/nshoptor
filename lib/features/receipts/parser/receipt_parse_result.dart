@@ -27,6 +27,8 @@ class ReceiptLineCandidate {
     this.unitCode,
     this.unitPriceMinor,
     required this.lineTotalMinor,
+    this.discountMinor = 0,
+    this.discountLabel,
     required this.confidence,
   });
 
@@ -37,6 +39,11 @@ class ReceiptLineCandidate {
   final UnitCode? unitCode;
   final int? unitPriceMinor;
   final int lineTotalMinor;
+
+  /// Product-level campaign/coupon discount (minor units, >= 0) attributed
+  /// from receipt discount rows; subtracted at purchase commit time.
+  final int discountMinor;
+  final String? discountLabel;
 
   /// high: net ürün+fiyat satırı; medium: kısmi; low: belirsiz.
   /// Düşük ve orta güven OTOMATİK kesinleştirilmez (spec §6.9).
@@ -77,6 +84,12 @@ class ReceiptParseResult {
     observedDiscountMinor: discountMinor,
     reportedTotalMinor: totalMinor,
   );
+
+  /// Cart-wide discount not yet attributed to specific product lines.
+  int get unattributedDiscountMinor =>
+      (appliedDiscountMinor -
+              lines.fold<int>(0, (sum, line) => sum + line.discountMinor))
+          .clamp(0, appliedDiscountMinor);
   final int? taxMinor;
   final int? totalMinor;
   final List<ReceiptLineCandidate> lines;

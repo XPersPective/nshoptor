@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Prek një foto fature për ta parë në madhësi të plotë",
   "receiptPhotoPreparing": "Po përgatitet fotoja e faturës…",
   "homeProPromoTitle": "Provo Pro falas për 7 ditë",
-  "homeProPromoSubtitle": "100 skanime fature me IA dhe pa reklama të hapura · Pa kartë"
+  "homeProPromoSubtitle": "100 skanime fature me IA dhe pa reklama të hapura · Pa kartë",
+  "receiptFailureSheetTitle": "Pse nuk u lexua",
+  "receiptFailureMissingTop": "Mungon pjesa e sipërme",
+  "receiptFailureMissingBottom": "Mungon pjesa e poshtme",
+  "receiptFailureMissingMiddle": "Mungon pjesa e mesme",
+  "receiptFailureNotReceipt": "Nuk është faturë",
+  "receiptFailureUnreadable": "Nuk është e lexueshme",
+  "receiptFailureMismatch": "Totali nuk përputhet",
+  "receiptFailureRejected": "S’u lexua dot",
+  "receiptFailureService": "Shërbimi nuk disponohet",
+  "receiptFailureUnknown": "Leximi dështoi",
+  "receiptFailureAddMoreAction": "Fotografo pjesën që mbetet",
+  "receiptFailureRetakeAction": "Bëj një foto tjetër"
 }

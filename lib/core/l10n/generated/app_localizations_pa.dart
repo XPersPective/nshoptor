@@ -1739,4 +1739,40 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI ਰਸੀਦ ਸਕੈਨ ਤੇ ਇਸ਼ਤਿਹਾਰ-ਮੁਕਤ ਵਰਤੋਂ ਚਾਲੂ · ਕਾਰਡ ਦੀ ਲੋੜ ਨਹੀਂ';
+
+  @override
+  String get receiptFailureSheetTitle => 'ਕਿਉਂ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ';
+
+  @override
+  String get receiptFailureMissingTop => 'ਉੱਪਰਲਾ ਭਾਗ ਗੁਮ';
+
+  @override
+  String get receiptFailureMissingBottom => 'ਹੇਠਲਾ ਭਾਗ ਗੁਮ';
+
+  @override
+  String get receiptFailureMissingMiddle => 'ਵਿਚਲਾ ਭਾਗ ਗੁਮ';
+
+  @override
+  String get receiptFailureNotReceipt => 'ਰਸੀਦ ਨਹੀਂ';
+
+  @override
+  String get receiptFailureUnreadable => 'ਅਸਪਸ਼ਟ';
+
+  @override
+  String get receiptFailureMismatch => 'ਕੁੱਲ ਰਕਮ ਮੇਲ ਨਹੀਂ ਖਾਂਦੀ';
+
+  @override
+  String get receiptFailureRejected => 'ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ';
+
+  @override
+  String get receiptFailureService => 'ਸੇਵਾ ਉਪਲਬਧ ਨਹੀਂ';
+
+  @override
+  String get receiptFailureUnknown => 'ਪੜ੍ਹਾਈ ਅਸਫਲ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ਬਾਕੀ ਹਿੱਸਾ ਦੀ ਫ਼ੋਟੋ ਲਓ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ਮੁੜ ਫ਼ੋਟੋ ਲਓ';
 }

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Tocca una foto della ricevuta per visualizzarla a grandezza intera",
   "receiptPhotoPreparing": "Preparazione foto scontrino…",
   "homeProPromoTitle": "Prova Pro gratis per 7 giorni",
-  "homeProPromoSubtitle": "100 scansioni scontrini IA e zero pubblicità attive · Nessuna carta"
+  "homeProPromoSubtitle": "100 scansioni scontrini IA e zero pubblicità attive · Nessuna carta",
+  "receiptFailureSheetTitle": "Perché non si legge?",
+  "receiptFailureMissingTop": "Parte superiore mancante",
+  "receiptFailureMissingBottom": "Parte inferiore mancante",
+  "receiptFailureMissingMiddle": "Parte centrale mancante",
+  "receiptFailureNotReceipt": "Non è uno scontrino",
+  "receiptFailureUnreadable": "Illeggibile",
+  "receiptFailureMismatch": "Totale non corrisponde",
+  "receiptFailureRejected": "Impossibile leggere",
+  "receiptFailureService": "Servizio non disponibile",
+  "receiptFailureUnknown": "Lettura non riuscita",
+  "receiptFailureAddMoreAction": "Fotografa il resto",
+  "receiptFailureRetakeAction": "Rifai la foto"
 }

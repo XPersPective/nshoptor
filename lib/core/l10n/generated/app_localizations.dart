@@ -3421,6 +3421,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'100 AI receipt scans & ad-free unlocked · No card needed'**
   String get homeProPromoSubtitle;
+
+  /// No description provided for @receiptFailureSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why it could not be read'**
+  String get receiptFailureSheetTitle;
+
+  /// No description provided for @receiptFailureMissingTop.
+  ///
+  /// In en, this message translates to:
+  /// **'Top is missing'**
+  String get receiptFailureMissingTop;
+
+  /// No description provided for @receiptFailureMissingBottom.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom is missing'**
+  String get receiptFailureMissingBottom;
+
+  /// No description provided for @receiptFailureMissingMiddle.
+  ///
+  /// In en, this message translates to:
+  /// **'Middle is missing'**
+  String get receiptFailureMissingMiddle;
+
+  /// No description provided for @receiptFailureNotReceipt.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a receipt'**
+  String get receiptFailureNotReceipt;
+
+  /// No description provided for @receiptFailureUnreadable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not legible'**
+  String get receiptFailureUnreadable;
+
+  /// No description provided for @receiptFailureMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Total does not match'**
+  String get receiptFailureMismatch;
+
+  /// No description provided for @receiptFailureRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not be read'**
+  String get receiptFailureRejected;
+
+  /// No description provided for @receiptFailureService.
+  ///
+  /// In en, this message translates to:
+  /// **'Service unavailable'**
+  String get receiptFailureService;
+
+  /// No description provided for @receiptFailureUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading failed'**
+  String get receiptFailureUnknown;
+
+  /// No description provided for @receiptFailureAddMoreAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoot the rest'**
+  String get receiptFailureAddMoreAction;
+
+  /// No description provided for @receiptFailureRetakeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retake'**
+  String get receiptFailureRetakeAction;
 }
 
 class _AppLocalizationsDelegate

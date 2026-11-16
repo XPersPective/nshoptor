@@ -139,11 +139,9 @@ class _ListsScreenState extends State<ListsScreen>
 
   Widget _buildSortMenu(
     BuildContext context,
-    AppLocalizations l10n, {
-    required bool narrow,
-  }) {
-    final theme = Theme.of(context);
-    final scheme = theme.colorScheme;
+    AppLocalizations l10n,
+  ) {
+    final scheme = Theme.of(context).colorScheme;
     final sortLabel = _sortModeLabel(l10n, _sort);
     return Semantics(
       button: true,
@@ -168,53 +166,68 @@ class _ListsScreenState extends State<ListsScreen>
               child: Text(_sortModeLabel(l10n, mode)),
             ),
         ],
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+        child: SizedBox(
+          width: 48,
+          height: 48,
           child: Center(
-            widthFactor: 1,
             child: DecoratedBox(
               decoration: ShapeDecoration(
-                shape: StadiumBorder(
+                shape: CircleBorder(
                   side: BorderSide(
                     color: scheme.outlineVariant.withValues(alpha: 0.55),
                   ),
                 ),
                 color: scheme.surfaceContainerHigh,
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: narrow ? 10 : 12,
-                  vertical: 6,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.sort, size: 18, color: scheme.onSurfaceVariant),
-                    const SizedBox(width: 6),
-                    Flexible(
-                      child: Text(
-                        sortLabel,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.labelMedium?.copyWith(
-                          color: scheme.onSurface,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 2),
-                    Icon(
-                      Icons.arrow_drop_down,
-                      size: 18,
-                      color: scheme.onSurfaceVariant,
-                    ),
-                  ],
+              child: SizedBox(
+                width: 36,
+                height: 36,
+                child: Icon(
+                  Icons.sort,
+                  size: 20,
+                  color: scheme.onSurfaceVariant,
                 ),
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _toolbarIconButton({
+    Key? buttonKey,
+    required String tooltip,
+    required IconData icon,
+    required VoidCallback? onPressed,
+  }) {
+    return Builder(
+      builder: (context) {
+        final scheme = Theme.of(context).colorScheme;
+        return IconButton(
+          key: buttonKey,
+          tooltip: tooltip,
+          iconSize: 22,
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+          onPressed: onPressed,
+          icon: DecoratedBox(
+            decoration: ShapeDecoration(
+              shape: CircleBorder(
+                side: BorderSide(
+                  color: scheme.outlineVariant.withValues(alpha: 0.45),
+                ),
+              ),
+              color: scheme.surfaceContainerHigh.withValues(alpha: 0.55),
+            ),
+            child: SizedBox(
+              width: 34,
+              height: 34,
+              child: Center(child: Icon(icon, size: 22)),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -227,50 +240,55 @@ class _ListsScreenState extends State<ListsScreen>
             ? constraints.maxWidth
             : MediaQuery.sizeOf(context).width;
         final helpInAppBar = viewportWidth >= 380;
-        final wideToolbar = viewportWidth >= 520;
-        final sortButton = _buildSortMenu(
-          context,
-          l10n,
-          narrow: viewportWidth < 380,
-        );
+        final sortButton = _buildSortMenu(context, l10n);
         final helpButton = TourAnchor(
           id: TourTargets.listsHelp,
-          child: IconButton(
-            key: const Key('lists_help_button'),
+          child: _toolbarIconButton(
+            buttonKey: const Key('lists_help_button'),
             tooltip: l10n.howToUseLabel,
-            iconSize: 22,
-            constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
-            icon: const Icon(Icons.help_outline),
+            icon: Icons.help_outline,
             onPressed: () => showFirstRunGuide(context),
           ),
         );
-        final searchField = TextField(
-          key: const Key('lists_search_field'),
-          controller: _searchController,
-          textInputAction: TextInputAction.search,
-          onSubmitted: (_) => FocusScope.of(context).unfocus(),
-          decoration: InputDecoration(
-            isDense: true,
-            labelText: l10n.searchListHint,
-            prefixIcon: const Icon(Icons.search),
-            suffixIcon: _query.isEmpty
-                ? null
-                : IconButton(
-                    key: const Key('lists_search_clear'),
-                    constraints: const BoxConstraints(
-                      minWidth: 48,
-                      minHeight: 48,
+        final searchField = Semantics(
+          label: l10n.searchListHint,
+          child: TextField(
+            key: const Key('lists_search_field'),
+            controller: _searchController,
+            textInputAction: TextInputAction.search,
+            onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+            onSubmitted: (_) => FocusScope.of(context).unfocus(),
+            decoration: InputDecoration(
+              isDense: true,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
+              hintText: l10n.searchListHint,
+              prefixIcon: const Icon(Icons.search, size: 20),
+              prefixIconConstraints: const BoxConstraints(
+                minWidth: 40,
+                minHeight: 40,
+              ),
+              suffixIcon: _query.isEmpty
+                  ? null
+                  : IconButton(
+                      key: const Key('lists_search_clear'),
+                      constraints: const BoxConstraints(
+                        minWidth: 48,
+                        minHeight: 48,
+                      ),
+                      tooltip: MaterialLocalizations.of(context)
+                          .clearButtonTooltip,
+                      icon: const Icon(Icons.close),
+                      onPressed: () {
+                        _searchController.clear();
+                        setState(() => _query = '');
+                      },
                     ),
-                    tooltip: MaterialLocalizations.of(context)
-                        .clearButtonTooltip,
-                    icon: const Icon(Icons.close),
-                    onPressed: () {
-                      _searchController.clear();
-                      setState(() => _query = '');
-                    },
-                  ),
+            ),
+            onChanged: (v) => setState(() => _query = v.trim()),
           ),
-          onChanged: (v) => setState(() => _query = v.trim()),
         );
         return StreamBuilder<List<Receipt>>(
           stream: _trayStream,
@@ -280,25 +298,21 @@ class _ListsScreenState extends State<ListsScreen>
             return Scaffold(
             appBar: AppBar(
               title: const BrandTitle(),
-              // Balance 22dp AppBar icons (inside 48dp hit boxes) with 32dp PlanBadge pill.
+              // Balance 34dp AppBar action circles and 32dp PlanBadge pill.
               actions: [
                 if (helpInAppBar) helpButton,
                 if (widget.onDiscover != null)
                   TourAnchor(
                     id: TourTargets.listsDiscover,
-                    child: IconButton(
-                      key: const Key('home_nav_discover'),
+                    child: _toolbarIconButton(
+                      buttonKey: const Key('home_nav_discover'),
                       tooltip: l10n.navDiscover,
-                      iconSize: 22,
-                      constraints: const BoxConstraints(
-                        minWidth: 48,
-                        minHeight: 48,
-                      ),
-                      icon: const Icon(Icons.explore_outlined),
+                      icon: Icons.explore_outlined,
                       onPressed: widget.onDiscover,
                     ),
                   ),
                 if (widget.planBadge != null) ...[
+                  const SizedBox(width: 2),
                   TourAnchor(
                     id: TourTargets.listsPlan,
                     child: widget.planBadge!,
@@ -339,52 +353,31 @@ class _ListsScreenState extends State<ListsScreen>
                 ),
               ),
             ),
-            body: LayoutBuilder(
-              builder: (context, bodyBox) {
-                final headerChildren = [
-                  ?widget.promoCard,
-                  ?widget.budgetCard,
-                  if (wideToolbar)
+            body: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: LayoutBuilder(
+                builder: (context, bodyBox) {
+                  final headerChildren = [
+                    ?widget.promoCard,
+                    ?widget.budgetCard,
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+                      padding: const EdgeInsets.fromLTRB(12, 8, 8, 4),
                       child: Row(
                         children: [
                           Expanded(child: searchField),
-                          const SizedBox(width: 8),
-                          ConstrainedBox(
-                            constraints: BoxConstraints(
-                              maxWidth: viewportWidth * 0.45,
-                            ),
-                            child: sortButton,
-                          ),
-                        ],
-                      ),
-                    )
-                  else ...[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                      child: searchField,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 2, 12, 2),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Flexible(child: sortButton),
-                          if (!helpInAppBar) ...[
-                            const SizedBox(width: 4),
-                            helpButton,
-                          ],
+                          const SizedBox(width: 4),
+                          sortButton,
+                          if (!helpInAppBar) helpButton,
                         ],
                       ),
                     ),
-                  ],
-                ];
-                final maxHeaderHeight = (bodyBox.maxHeight - 80).clamp(
-                  0.0,
-                  bodyBox.maxHeight,
-                );
-                return Column(
+                  ];
+                  final maxHeaderHeight = (bodyBox.maxHeight - 80).clamp(
+                    0.0,
+                    bodyBox.maxHeight,
+                  );
+                  return Column(
                   children: [
                     ConstrainedBox(
                       constraints: BoxConstraints(maxHeight: maxHeaderHeight),
@@ -475,6 +468,7 @@ class _ListsScreenState extends State<ListsScreen>
                   ],
                 );
               },
+            ),
             ),
             bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
                 ? null

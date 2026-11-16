@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Tryk på et kvitteringsfoto for at se det i fuld størrelse",
   "receiptPhotoPreparing": "Klargør kvitteringsbillede…",
   "homeProPromoTitle": "Prøv Pro gratis i 7 dage",
-  "homeProPromoSubtitle": "100 AI-kvitteringsscan & reklamefri låst op · Intet kort kræves"
+  "homeProPromoSubtitle": "100 AI-kvitteringsscan & reklamefri låst op · Intet kort kræves",
+  "receiptFailureSheetTitle": "Hvorfor den ikke kunne læses",
+  "receiptFailureMissingTop": "Top mangler",
+  "receiptFailureMissingBottom": "Bund mangler",
+  "receiptFailureMissingMiddle": "Midten mangler",
+  "receiptFailureNotReceipt": "Ikke en kvittering",
+  "receiptFailureUnreadable": "Ulæselig",
+  "receiptFailureMismatch": "Totalen stemmer ikke",
+  "receiptFailureRejected": "Kunne ikke læse",
+  "receiptFailureService": "Service utilgængelig",
+  "receiptFailureUnknown": "Læsning mislykkedes",
+  "receiptFailureAddMoreAction": "Fotografér resten",
+  "receiptFailureRetakeAction": "Tag igen"
 }

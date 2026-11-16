@@ -41,10 +41,11 @@ class ReceiptImageStore {
     }
   }
 
-  /// Compresses [sourcePath] into a compact JPEG (`<= 1280px`, `<= 350 KB`,
-  /// EXIF-stripped) before persisting it to app-owned media storage. Falls
-  /// back to [keep] when [compress] returns null (e.g. test doubles or
-  /// non-image synthetic test paths).
+  /// Compresses [sourcePath] once into a legible JPEG (`<= 1600px`, tall
+  /// receipts `<= 2400px`, `<= 700 KB`, EXIF-stripped) and persists it to
+  /// app-owned media storage. The stored photo is already within budget, so
+  /// it is never compressed again when it is read. Falls back to [keep] when
+  /// [compress] returns null (e.g. test doubles or synthetic test paths).
   Future<String?> keepCompressed(
     String sourcePath, {
     Future<Uint8List?> Function(String path)? compress,

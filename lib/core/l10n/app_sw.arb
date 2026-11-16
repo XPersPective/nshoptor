@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Gusa picha ya risiti ili kuona ukubwa kamili",
   "receiptPhotoPreparing": "Inaandaa picha ya risiti…",
   "homeProPromoTitle": "Jaribu Pro bure kwa siku 7",
-  "homeProPromoSubtitle": "Skani 100 za risiti za AI na bila matangazo zimefunguliwa · Hakuna kadi"
+  "homeProPromoSubtitle": "Skani 100 za risiti za AI na bila matangazo zimefunguliwa · Hakuna kadi",
+  "receiptFailureSheetTitle": "Kwa nini haikuweza kusomwa",
+  "receiptFailureMissingTop": "Sehemu ya juu haipo",
+  "receiptFailureMissingBottom": "Sehemu ya chini haipo",
+  "receiptFailureMissingMiddle": "Sehemu ya kati haipo",
+  "receiptFailureNotReceipt": "Si risiti",
+  "receiptFailureUnreadable": "Haipasikiwi",
+  "receiptFailureMismatch": "Jumla halilingani",
+  "receiptFailureRejected": "Haikuweza kusomwa",
+  "receiptFailureService": "Huduma haipatikani",
+  "receiptFailureUnknown": "Kusoma kushindwa",
+  "receiptFailureAddMoreAction": "Piga sehemu iliyobaki",
+  "receiptFailureRetakeAction": "Piga picha nyingine"
 }

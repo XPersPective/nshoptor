@@ -1726,4 +1726,40 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       'สแกนใบเสร็จ AI 100 ครั้งและไร้โฆษณาเปิดใช้งานแล้ว · ไม่ต้องใช้บัตร';
+
+  @override
+  String get receiptFailureSheetTitle => 'ทำไมอ่านไม่ได้';
+
+  @override
+  String get receiptFailureMissingTop => 'ขาดส่วนบน';
+
+  @override
+  String get receiptFailureMissingBottom => 'ขาดส่วนล่าง';
+
+  @override
+  String get receiptFailureMissingMiddle => 'ขาดส่วนกลาง';
+
+  @override
+  String get receiptFailureNotReceipt => 'ไม่ใช่ใบเสร็จ';
+
+  @override
+  String get receiptFailureUnreadable => 'อ่านไม่ชัด';
+
+  @override
+  String get receiptFailureMismatch => 'ยอดรวมไม่ตรง';
+
+  @override
+  String get receiptFailureRejected => 'อ่านไม่ได้';
+
+  @override
+  String get receiptFailureService => 'ใช้บริการไม่ได้';
+
+  @override
+  String get receiptFailureUnknown => 'อ่านไม่สำเร็จ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ถ่ายส่วนที่เหลือ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ถ่ายใหม่';
 }

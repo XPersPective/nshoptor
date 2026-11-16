@@ -1740,4 +1740,40 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI رسید اسکین اور اشتہارات کے بغیر تجربہ فعال · کارڈ درکار نہیں';
+
+  @override
+  String get receiptFailureSheetTitle => 'کیوں نہیں پڑھ سکے';
+
+  @override
+  String get receiptFailureMissingTop => 'اوپر کا حصہ غائب';
+
+  @override
+  String get receiptFailureMissingBottom => 'نیچے کا حصہ غائب';
+
+  @override
+  String get receiptFailureMissingMiddle => 'درمیان کا حصہ غائب';
+
+  @override
+  String get receiptFailureNotReceipt => 'یہ رسید نہیں';
+
+  @override
+  String get receiptFailureUnreadable => 'واضح نہیں';
+
+  @override
+  String get receiptFailureMismatch => 'کل رقم نہیں ملتی';
+
+  @override
+  String get receiptFailureRejected => 'پڑھی نہیں جا سکی';
+
+  @override
+  String get receiptFailureService => 'سروس دستیاب نہیں';
+
+  @override
+  String get receiptFailureUnknown => 'پڑھنا ناکام';
+
+  @override
+  String get receiptFailureAddMoreAction => 'باقی حصہ تصویر لیں';
+
+  @override
+  String get receiptFailureRetakeAction => 'دوبارہ تصویر لیں';
 }

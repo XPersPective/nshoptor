@@ -1745,4 +1745,40 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       'Skani 100 za risiti za AI na bila matangazo zimefunguliwa · Hakuna kadi';
+
+  @override
+  String get receiptFailureSheetTitle => 'Kwa nini haikuweza kusomwa';
+
+  @override
+  String get receiptFailureMissingTop => 'Sehemu ya juu haipo';
+
+  @override
+  String get receiptFailureMissingBottom => 'Sehemu ya chini haipo';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Sehemu ya kati haipo';
+
+  @override
+  String get receiptFailureNotReceipt => 'Si risiti';
+
+  @override
+  String get receiptFailureUnreadable => 'Haipasikiwi';
+
+  @override
+  String get receiptFailureMismatch => 'Jumla halilingani';
+
+  @override
+  String get receiptFailureRejected => 'Haikuweza kusomwa';
+
+  @override
+  String get receiptFailureService => 'Huduma haipatikani';
+
+  @override
+  String get receiptFailureUnknown => 'Kusoma kushindwa';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Piga sehemu iliyobaki';
+
+  @override
+  String get receiptFailureRetakeAction => 'Piga picha nyingine';
 }

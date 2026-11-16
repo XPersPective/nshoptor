@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "पूर्ण आकार हेर्न रसिद तस्बिर ट्याप गर्नुहोस्",
   "receiptPhotoPreparing": "रसिदको फोटो तयार हुँदैछ…",
   "homeProPromoTitle": "७ दिन Pro निःशुल्क चलाएर हेर्नुहोस्",
-  "homeProPromoSubtitle": "१०० AI रसिद स्क्यान र विज्ञापनरहित सुविधा खुल्यो · कार्ड चाहिँदैन"
+  "homeProPromoSubtitle": "१०० AI रसिद स्क्यान र विज्ञापनरहित सुविधा खुल्यो · कार्ड चाहिँदैन",
+  "receiptFailureSheetTitle": "किन पढ्न सकिएन",
+  "receiptFailureMissingTop": "माथिल्लो भाग छैन",
+  "receiptFailureMissingBottom": "तल्लो भाग छैन",
+  "receiptFailureMissingMiddle": "बीचको भाग छैन",
+  "receiptFailureNotReceipt": "रसिद होइन",
+  "receiptFailureUnreadable": "अस्पष्ट",
+  "receiptFailureMismatch": "कुल रकम मिलेन",
+  "receiptFailureRejected": "पढ्न सकिएन",
+  "receiptFailureService": "सेवा उपलब्ध छैन",
+  "receiptFailureUnknown": "पढाइ असफल",
+  "receiptFailureAddMoreAction": "बाँकी भागको फोटो खिच्नुहोस्",
+  "receiptFailureRetakeAction": "फेरि खिच्नुहोस्"
 }

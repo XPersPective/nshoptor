@@ -362,12 +362,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ],
               onChanged: _setThemeMode,
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: 16),
             Text(
               l10n.paletteLabel,
-              style: text.titleSmall?.copyWith(color: scheme.onSurface),
+              style: text.titleMedium?.copyWith(
+                fontSize: (text.titleMedium?.fontSize ?? 16) + 2,
+                color: scheme.primary,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.15,
+              ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             Wrap(
               spacing: 8,
               runSpacing: 6,
@@ -1053,15 +1058,16 @@ class _SectionTitle extends StatelessWidget {
       padding: const EdgeInsets.only(top: 22, bottom: 8),
       child: Row(
         children: [
-          Icon(icon, size: 18, color: scheme.primary),
+          Icon(icon, size: 20, color: scheme.primary),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
               label,
-              style: theme.textTheme.titleSmall?.copyWith(
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontSize: (theme.textTheme.titleMedium?.fontSize ?? 16) + 2,
                 color: scheme.primary,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.2,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.15,
               ),
             ),
           ),

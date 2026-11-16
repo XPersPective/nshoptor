@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Бүтэн хэмжээгээр харахын тулд баримт барын зургийг товшино уу",
   "receiptPhotoPreparing": "Баримтын зургийг бэлдэж байна…",
   "homeProPromoTitle": "Pro-г 7 хоног үнэгүй туршаарай",
-  "homeProPromoSubtitle": "100 хиймэл оюуны баримт уншуулах ба зар сурталчилгаагүй · Карт шаардахгүй"
+  "homeProPromoSubtitle": "100 хиймэл оюуны баримт уншуулах ба зар сурталчилгаагүй · Карт шаардахгүй",
+  "receiptFailureSheetTitle": "Яагаад уншиж чадсангүй",
+  "receiptFailureMissingTop": "Дээд хэсэг дутуу",
+  "receiptFailureMissingBottom": "Доод хэсэг дутуу",
+  "receiptFailureMissingMiddle": "Дунд хэсэг дутуу",
+  "receiptFailureNotReceipt": "Баримт биш",
+  "receiptFailureUnreadable": "Уншигдахгүй",
+  "receiptFailureMismatch": "Нийт дүн таарахгүй",
+  "receiptFailureRejected": "Уншиж чадсангүй",
+  "receiptFailureService": "Үйлчилгээ боломжгүй",
+  "receiptFailureUnknown": "Уншилт амжилтгүй",
+  "receiptFailureAddMoreAction": "Үлдсэн хэсгийг зурна уу",
+  "receiptFailureRetakeAction": "Дахин зурна уу"
 }

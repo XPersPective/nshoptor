@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Toca una foto del rebut per veure-la a mida completa",
   "receiptPhotoPreparing": "Preparant la foto del rebut…",
   "homeProPromoTitle": "Prova Pro gratis durant 7 dies",
-  "homeProPromoSubtitle": "100 escaneigs de tiquets amb IA i sense anuncis activats · Sense targeta"
+  "homeProPromoSubtitle": "100 escaneigs de tiquets amb IA i sense anuncis activats · Sense targeta",
+  "receiptFailureSheetTitle": "Per què no s'ha llegit",
+  "receiptFailureMissingTop": "Falta la part superior",
+  "receiptFailureMissingBottom": "Falta la part inferior",
+  "receiptFailureMissingMiddle": "Falta la part central",
+  "receiptFailureNotReceipt": "No és un rebut",
+  "receiptFailureUnreadable": "No és llegible",
+  "receiptFailureMismatch": "El total no coincideix",
+  "receiptFailureRejected": "No s'ha pogut llegir",
+  "receiptFailureService": "Servei no disponible",
+  "receiptFailureUnknown": "La lectura ha fallat",
+  "receiptFailureAddMoreAction": "Fotografia la resta",
+  "receiptFailureRetakeAction": "Torna-ho a fer"
 }

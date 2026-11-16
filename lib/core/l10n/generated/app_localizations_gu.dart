@@ -1736,5 +1736,41 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get homeProPromoSubtitle =>
-      '100 AI રસીદ સ્કેન અને જાહેરાਤ-મુક્ત અનલૉક · કાર્ડની જરૂર નથી';
+      '100 AI રસીદ સ્કેન અને જાહેરાત-મુક્ત અનલૉક · કાર્ડની જરૂર નથી';
+
+  @override
+  String get receiptFailureSheetTitle => 'વાંચી શકાયું નથી કેમ?';
+
+  @override
+  String get receiptFailureMissingTop => 'ઉપરનો ભાગ ખૂટે છે';
+
+  @override
+  String get receiptFailureMissingBottom => 'નીચેનો ભાગ ખૂટે છે';
+
+  @override
+  String get receiptFailureMissingMiddle => 'વચ્ચેનો ભાગ ખૂટે છે';
+
+  @override
+  String get receiptFailureNotReceipt => 'રેસિટ નથી';
+
+  @override
+  String get receiptFailureUnreadable => 'સ્પષ્ટ નથી';
+
+  @override
+  String get receiptFailureMismatch => 'કુલ મેળ ખાતું નથી';
+
+  @override
+  String get receiptFailureRejected => 'વાંચી શકાયું નથી';
+
+  @override
+  String get receiptFailureService => 'સેવા ઉપલબ્ધ નથી';
+
+  @override
+  String get receiptFailureUnknown => 'વાંચવામાં નિષ્ફળ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'બાકીનો ભાગ ફોટો પાડો';
+
+  @override
+  String get receiptFailureRetakeAction => 'ફરી ફોટો પાડો';
 }

@@ -1750,4 +1750,40 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 σαρώσεις αποδείξεων με ΤΝ & χωρίς διαφημίσεις · Χωρίς κάρτα';
+
+  @override
+  String get receiptFailureSheetTitle => 'Γιατί δεν διαβάστηκε';
+
+  @override
+  String get receiptFailureMissingTop => 'Λείπει το πάνω μέρος';
+
+  @override
+  String get receiptFailureMissingBottom => 'Λείπει το κάτω μέρος';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Λείπει το μεσαίο μέρος';
+
+  @override
+  String get receiptFailureNotReceipt => 'Δεν είναι απόδειξη';
+
+  @override
+  String get receiptFailureUnreadable => 'Δεν είναι ευανάγνωστο';
+
+  @override
+  String get receiptFailureMismatch => 'Το σύνολο δεν ταιριάζει';
+
+  @override
+  String get receiptFailureRejected => 'Δεν διαβάστηκε';
+
+  @override
+  String get receiptFailureService => 'Υπηρεσία μη διαθέσιμη';
+
+  @override
+  String get receiptFailureUnknown => 'Η ανάγνωση απέτυχε';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Φωτογραφήστε το υπόλοιπο';
+
+  @override
+  String get receiptFailureRetakeAction => 'Βγάλτε άλλη φωτογραφία';
 }

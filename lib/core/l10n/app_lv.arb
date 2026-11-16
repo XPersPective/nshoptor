@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Pieskarieties čeka fotogrāfijai, lai skatītu pilnizmēra attēlu",
   "receiptPhotoPreparing": "Tiek sagatavots čeka fotoattēls…",
   "homeProPromoTitle": "Izmēģiniet Pro 7 dienas bez maksas",
-  "homeProPromoSubtitle": "100 MI čeku skenēšanas un bez reklāmām atbloķēts · Karte nav vajadzīga"
+  "homeProPromoSubtitle": "100 MI čeku skenēšanas un bez reklāmām atbloķēts · Karte nav vajadzīga",
+  "receiptFailureSheetTitle": "Kāpēc neizdevās nolasīt",
+  "receiptFailureMissingTop": "Trūkst augšdaļas",
+  "receiptFailureMissingBottom": "Trūkst apakšdaļas",
+  "receiptFailureMissingMiddle": "Trūkst vidusdaļas",
+  "receiptFailureNotReceipt": "Nav čeks",
+  "receiptFailureUnreadable": "Nav nolasāms",
+  "receiptFailureMismatch": "Kopsumma neatbilst",
+  "receiptFailureRejected": "Atteigts",
+  "receiptFailureService": "Pakalpojums nav pieejams",
+  "receiptFailureUnknown": "Nolasīšana neizdevās",
+  "receiptFailureAddMoreAction": "Nofotografējiet atlikumu",
+  "receiptFailureRetakeAction": "Uzņemt vēlreiz"
 }

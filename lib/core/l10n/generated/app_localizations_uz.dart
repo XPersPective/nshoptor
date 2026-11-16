@@ -1749,4 +1749,40 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 ta SI chek skanerlash va reklamasiz rejim ochiq · Karta kerak emas';
+
+  @override
+  String get receiptFailureSheetTitle => 'Nima uchun o‘qilmadi';
+
+  @override
+  String get receiptFailureMissingTop => 'Yuqori qismi yo‘q';
+
+  @override
+  String get receiptFailureMissingBottom => 'Pastki qismi yo‘q';
+
+  @override
+  String get receiptFailureMissingMiddle => 'O‘rta qismi yo‘q';
+
+  @override
+  String get receiptFailureNotReceipt => 'Bu chek emas';
+
+  @override
+  String get receiptFailureUnreadable => 'Aniq emas';
+
+  @override
+  String get receiptFailureMismatch => 'Summa mos kelmadi';
+
+  @override
+  String get receiptFailureRejected => 'O‘qib bo‘lmadi';
+
+  @override
+  String get receiptFailureService => 'Xizmat mavjud emas';
+
+  @override
+  String get receiptFailureUnknown => 'O‘qish muvaffaqiyatsiz';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Qolganini suratga oling';
+
+  @override
+  String get receiptFailureRetakeAction => 'Qayta oling';
 }

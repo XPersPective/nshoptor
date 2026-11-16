@@ -1,8 +1,0 @@
-{
-  "contract": "c41a1a5784774468",
-  "epoch": "ffe3fcc19017543e",
-  "independent": false,
-  "intent": "452a6f23a13f292e",
-  "note": "Regenerated tl.lproj/InfoPlist.strings and ticked CI acceptance after Android 43543051038 and iOS 43543053575 passed",
-  "protocol": 1
-}

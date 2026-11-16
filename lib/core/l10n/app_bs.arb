@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Dodirnite fotografiju računa za prikaz u punoj veličini",
   "receiptPhotoPreparing": "Priprema fotografije računa…",
   "homeProPromoTitle": "Isprobajte Pro besplatno 7 dana",
-  "homeProPromoSubtitle": "100 AI skeniranja računa i bez reklama otključano · Kartica nije potrebna"
+  "homeProPromoSubtitle": "100 AI skeniranja računa i bez reklama otključano · Kartica nije potrebna",
+  "receiptFailureSheetTitle": "Zašto se nije mogao pročitati",
+  "receiptFailureMissingTop": "Gornji dio nedostaje",
+  "receiptFailureMissingBottom": "Donji dio nedostaje",
+  "receiptFailureMissingMiddle": "Srednji dio nedostaje",
+  "receiptFailureNotReceipt": "Nije račun",
+  "receiptFailureUnreadable": "Nije čitljivo",
+  "receiptFailureMismatch": "Iznos se ne podudara",
+  "receiptFailureRejected": "Nije moguće pročitati",
+  "receiptFailureService": "Servis nije dostupan",
+  "receiptFailureUnknown": "Čitanje nije uspjelo",
+  "receiptFailureAddMoreAction": "Fotografirajte ostatak",
+  "receiptFailureRetakeAction": "Fotografirajte ponovo"
 }

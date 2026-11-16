@@ -1747,4 +1747,40 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       'ԱԲ-ով 100 կտրոնի սկան և առանց գովազդի ռեժիմ · Քարտ պետք չէ';
+
+  @override
+  String get receiptFailureSheetTitle => 'Ինչու չհաջողվեց կարդալ';
+
+  @override
+  String get receiptFailureMissingTop => 'Վերին մասը բացակայում է';
+
+  @override
+  String get receiptFailureMissingBottom => 'Ներրևին մասը բացակայում է';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Միջին մասը բացակայում է';
+
+  @override
+  String get receiptFailureNotReceipt => 'Չեկ չէ';
+
+  @override
+  String get receiptFailureUnreadable => 'Ոչ ընթեռնելի';
+
+  @override
+  String get receiptFailureMismatch => 'Ընդհանուրը չի համապատասխանում';
+
+  @override
+  String get receiptFailureRejected => 'Չհաջողվեց կարդալ';
+
+  @override
+  String get receiptFailureService => 'Ծառայությունն անհասնելի է';
+
+  @override
+  String get receiptFailureUnknown => 'Կարդալը ձախողվեց';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Նկարահանել մնացած մասը';
+
+  @override
+  String get receiptFailureRetakeAction => 'Նկարահանել նորից';
 }

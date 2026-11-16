@@ -1740,4 +1740,40 @@ class AppLocalizationsKy extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 ЖИ дүмүрчөк сканерлөө жана жарнамасыз · Карта талап кылынбайт';
+
+  @override
+  String get receiptFailureSheetTitle => 'Эмне үчүн окулбады';
+
+  @override
+  String get receiptFailureMissingTop => 'Жогорку бөлүк жок';
+
+  @override
+  String get receiptFailureMissingBottom => 'Төмөнкү бөлүк жок';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Орто бөлүк жок';
+
+  @override
+  String get receiptFailureNotReceipt => 'Чек эмес';
+
+  @override
+  String get receiptFailureUnreadable => 'Окууга болбос';
+
+  @override
+  String get receiptFailureMismatch => 'Жалпы сумма дал келбейт';
+
+  @override
+  String get receiptFailureRejected => 'Кабылданбады';
+
+  @override
+  String get receiptFailureService => 'Сервис жеткиликсиз';
+
+  @override
+  String get receiptFailureUnknown => 'Окуу ишке ашкан жок';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Калганын тартыңыз';
+
+  @override
+  String get receiptFailureRetakeAction => 'Кайра тартыңыз';
 }

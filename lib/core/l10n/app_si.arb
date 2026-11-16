@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "සම්පූර්ණ ප්‍රමාණයෙන් බැලීමට බිල්පත් ඡායාරූපයක් තට්ටු කරන්න",
   "receiptPhotoPreparing": "රිසිට්පත් ඡායාරූපය සූදානම් කරමින්…",
   "homeProPromoTitle": "දින 7ක් Pro නොමිලේ අත්හදා බලන්න",
-  "homeProPromoSubtitle": "AI රිසිට්පත් ස්කෑන් 100ක් හා දැන්වීම් රහිතව විවෘතයි · කාඩ් අවශ්‍ය නැත"
+  "homeProPromoSubtitle": "AI රිසිට්පත් ස්කෑන් 100ක් හා දැන්වීම් රහිතව විවෘතයි · කාඩ් අවශ්‍ය නැත",
+  "receiptFailureSheetTitle": "කියවිය නොහැක්කේ ඇයි",
+  "receiptFailureMissingTop": "ඉහළ කොටස නැත",
+  "receiptFailureMissingBottom": "පහළ කොටස නැත",
+  "receiptFailureMissingMiddle": "මැද කොටස නැත",
+  "receiptFailureNotReceipt": "රිසිට්පතක් නොවේ",
+  "receiptFailureUnreadable": "අලෙක් නොවේ",
+  "receiptFailureMismatch": "මුළු මුදල නොගැළපේ",
+  "receiptFailureRejected": "කියවා ගත නොහැක",
+  "receiptFailureService": "සේවාවය නොලබා දිය නොහැක",
+  "receiptFailureUnknown": "කියවීම අසාර්ථකයි",
+  "receiptFailureAddMoreAction": "ඉතිරිය ඡායාරූපයක් ගන්න",
+  "receiptFailureRetakeAction": "නැවත ඡායාරූපයක් ගන්න"
 }

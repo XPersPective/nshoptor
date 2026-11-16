@@ -1739,4 +1739,40 @@ class AppLocalizationsSi extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       'AI රිසිට්පත් ස්කෑන් 100ක් හා දැන්වීම් රහිතව විවෘතයි · කාඩ් අවශ්‍ය නැත';
+
+  @override
+  String get receiptFailureSheetTitle => 'කියවිය නොහැක්කේ ඇයි';
+
+  @override
+  String get receiptFailureMissingTop => 'ඉහළ කොටස නැත';
+
+  @override
+  String get receiptFailureMissingBottom => 'පහළ කොටස නැත';
+
+  @override
+  String get receiptFailureMissingMiddle => 'මැද කොටස නැත';
+
+  @override
+  String get receiptFailureNotReceipt => 'රිසිට්පතක් නොවේ';
+
+  @override
+  String get receiptFailureUnreadable => 'අලෙක් නොවේ';
+
+  @override
+  String get receiptFailureMismatch => 'මුළු මුදල නොගැළපේ';
+
+  @override
+  String get receiptFailureRejected => 'කියවා ගත නොහැක';
+
+  @override
+  String get receiptFailureService => 'සේවාවය නොලබා දිය නොහැක';
+
+  @override
+  String get receiptFailureUnknown => 'කියවීම අසාර්ථකයි';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ඉතිරිය ඡායාරූපයක් ගන්න';
+
+  @override
+  String get receiptFailureRetakeAction => 'නැවත ඡායාරූපයක් ගන්න';
 }

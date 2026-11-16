@@ -1739,4 +1739,40 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI-kvitteringsscan & reklamefri låst op · Intet kort kræves';
+
+  @override
+  String get receiptFailureSheetTitle => 'Hvorfor den ikke kunne læses';
+
+  @override
+  String get receiptFailureMissingTop => 'Top mangler';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bund mangler';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Midten mangler';
+
+  @override
+  String get receiptFailureNotReceipt => 'Ikke en kvittering';
+
+  @override
+  String get receiptFailureUnreadable => 'Ulæselig';
+
+  @override
+  String get receiptFailureMismatch => 'Totalen stemmer ikke';
+
+  @override
+  String get receiptFailureRejected => 'Kunne ikke læse';
+
+  @override
+  String get receiptFailureService => 'Service utilgængelig';
+
+  @override
+  String get receiptFailureUnknown => 'Læsning mislykkedes';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografér resten';
+
+  @override
+  String get receiptFailureRetakeAction => 'Tag igen';
 }

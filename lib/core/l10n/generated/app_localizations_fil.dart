@@ -1751,4 +1751,40 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI scan ng resibo at walang ad na bukas · Walang kailangang card';
+
+  @override
+  String get receiptFailureSheetTitle => 'Bakit hindi nabasa';
+
+  @override
+  String get receiptFailureMissingTop => 'Nawala ang itaas';
+
+  @override
+  String get receiptFailureMissingBottom => 'Nawala ang ibaba';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Nawala ang gitna';
+
+  @override
+  String get receiptFailureNotReceipt => 'Hindi resibo';
+
+  @override
+  String get receiptFailureUnreadable => 'Hindi nababasa';
+
+  @override
+  String get receiptFailureMismatch => 'Hindi tugma ang kabuuan';
+
+  @override
+  String get receiptFailureRejected => 'Hindi nabasa';
+
+  @override
+  String get receiptFailureService => 'Hindi available ang serbisyo';
+
+  @override
+  String get receiptFailureUnknown => 'Nabigti ang pagbabasa';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Kumuha ang natitira';
+
+  @override
+  String get receiptFailureRetakeAction => 'Kumuha ng ibang larawan';
 }

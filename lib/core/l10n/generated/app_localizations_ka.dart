@@ -1735,4 +1735,40 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI ქვითრის სკანირება და რეკლამის გარეშე · ბარათი არ სჭირდება';
+
+  @override
+  String get receiptFailureSheetTitle => 'რატომ ვერ წაიკითხა';
+
+  @override
+  String get receiptFailureMissingTop => 'ზედა ნაწილი აკლია';
+
+  @override
+  String get receiptFailureMissingBottom => 'ქვედა ნაწილი აკლია';
+
+  @override
+  String get receiptFailureMissingMiddle => 'შუა ნაწილი აკლია';
+
+  @override
+  String get receiptFailureNotReceipt => 'ჩიზი არ არის';
+
+  @override
+  String get receiptFailureUnreadable => 'წაკითხვა შეუძლებელია';
+
+  @override
+  String get receiptFailureMismatch => 'ჯამი არ ემთხვევა';
+
+  @override
+  String get receiptFailureRejected => 'უარისკვეცა';
+
+  @override
+  String get receiptFailureService => 'სერვისი მიუწვდომელია';
+
+  @override
+  String get receiptFailureUnknown => 'წაკითხვა ვერ მოხერხდა';
+
+  @override
+  String get receiptFailureAddMoreAction => 'დანარჩენი გადაიღე';
+
+  @override
+  String get receiptFailureRetakeAction => 'თავიდან გადაიღე';
 }

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "点击收据照片可查看大图",
   "receiptPhotoPreparing": "正在准备小票照片…",
   "homeProPromoTitle": "免费试用 Pro 7 天",
-  "homeProPromoSubtitle": "已解锁 100 次 AI 小票识别与无广告体验 · 无需绑卡"
+  "homeProPromoSubtitle": "已解锁 100 次 AI 小票识别与无广告体验 · 无需绑卡",
+  "receiptFailureSheetTitle": "无法读取的原因",
+  "receiptFailureMissingTop": "缺少顶部",
+  "receiptFailureMissingBottom": "缺少底部",
+  "receiptFailureMissingMiddle": "缺少中部",
+  "receiptFailureNotReceipt": "不是收据",
+  "receiptFailureUnreadable": "无法辨认",
+  "receiptFailureMismatch": "总额不符",
+  "receiptFailureRejected": "无法读取",
+  "receiptFailureService": "服务不可用",
+  "receiptFailureUnknown": "读取失败",
+  "receiptFailureAddMoreAction": "拍摄剩余部分",
+  "receiptFailureRetakeAction": "重新拍摄"
 }

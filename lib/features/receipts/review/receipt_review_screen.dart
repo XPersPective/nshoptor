@@ -241,9 +241,22 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                           Text(
                             [
                               if (_lineQty(line).isNotEmpty) _lineQty(line),
-                              money(line.lineTotalMinor),
+                              if (line.discountMinor > 0)
+                                '${money(line.lineTotalMinor)} − ${money(line.discountMinor)} = ${money(line.lineTotalMinor - line.discountMinor)}'
+                              else
+                                money(line.lineTotalMinor),
                             ].join(' · '),
                           ),
+                          if (line.discountMinor > 0)
+                            Text(
+                              key: Key('receipt_line_discount_$i'),
+                              line.discountLabel?.isNotEmpty == true
+                                  ? '${l10n.receiptDiscountLine}: −${money(line.discountMinor)} (${line.discountLabel})'
+                                  : '${l10n.receiptDiscountLine}: −${money(line.discountMinor)}',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
                           if (line.linkedPlannedItemId != null &&
                               _plannedNames[line.linkedPlannedItemId] != null)
                             Text(

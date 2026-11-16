@@ -197,4 +197,74 @@ class ReceiptRepository {
     }
     return true;
   }
+
+  /// Unlinks and deletes [receiptId] (and any unshared owned image files)
+  /// without deleting the list's planned items or recorded purchases.
+  Future<bool> detachAndDelete(int receiptId) async {
+    final orphanImages = await _db.transaction(() async {
+      final receipt = await (_db.select(
+        _db.receipts,
+      )..where((t) => t.id.equals(receiptId))).getSingleOrNull();
+      if (receipt == null) return null;
+      await (_db.update(_db.purchaseEntries)
+            ..where((t) => t.receiptId.equals(receiptId)))
+          .write(const PurchaseEntriesCompanion(receiptId: Value(null)));
+      await (_db.update(_db.plannedItems)
+            ..where((t) => t.createdByReceiptId.equals(receiptId)))
+          .write(const PlannedItemsCompanion(createdByReceiptId: Value(null)));
+      await (_db.delete(
+        _db.receiptCandidateLines,
+      )..where((t) => t.receiptId.equals(receiptId))).go();
+      await (_db.delete(
+        _db.receipts,
+      )..where((t) => t.id.equals(receiptId))).go();
+
+      final stillUsed = <String>{
+        for (final other in await _db.select(_db.receipts).get())
+          ...other.imagePaths,
+      };
+      return [
+        for (final path in receipt.imagePaths)
+          if (!stillUsed.contains(path)) path,
+      ];
+    });
+    if (orphanImages == null) return false;
+    for (final path in orphanImages) {
+      try {
+        await _images.removeOwned(path);
+      } catch (_) {
+        // A leftover file is harmless; the receipt itself is gone.
+      }
+    }
+    return true;
+  }
+
+  /// Removes a single photo [imagePath] from [receiptId] and deletes its
+  /// unshared local media file while keeping the receipt and list intact.
+  Future<bool> removePhoto(int receiptId, String imagePath) async {
+    final orphan = await _db.transaction(() async {
+      final receipt = await (_db.select(
+        _db.receipts,
+      )..where((t) => t.id.equals(receiptId))).getSingleOrNull();
+      if (receipt == null) return false;
+      final remaining = [...receipt.imagePaths];
+      if (!remaining.remove(imagePath)) return false;
+      await (_db.update(
+        _db.receipts,
+      )..where((t) => t.id.equals(receiptId))).write(
+        ReceiptsCompanion(imagePaths: Value(remaining)),
+      );
+      final stillUsed = {
+        for (final other in await _db.select(_db.receipts).get())
+          ...other.imagePaths,
+      };
+      return !stillUsed.contains(imagePath);
+    });
+    if (orphan) {
+      try {
+        await _images.removeOwned(imagePath);
+      } catch (_) {}
+    }
+    return true;
+  }
 }

@@ -1740,4 +1740,40 @@ class AppLocalizationsMl extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI രസീത് സ്കാനും പരസ്യരഹിത ഉപയോഗവും തുറന്നു · കാർഡ് വേണ്ട';
+
+  @override
+  String get receiptFailureSheetTitle => 'വായിക്കാത്ത കാരണം';
+
+  @override
+  String get receiptFailureMissingTop => 'മുകളിൽ ഭാഗം ഇല്ല';
+
+  @override
+  String get receiptFailureMissingBottom => 'താഴെ ഭാഗം ഇല്ല';
+
+  @override
+  String get receiptFailureMissingMiddle => 'ഇടത്ത് ഭാഗം ഇല്ല';
+
+  @override
+  String get receiptFailureNotReceipt => 'റിസീറ്റല്ല';
+
+  @override
+  String get receiptFailureUnreadable => 'വായിക്കാത്തത്';
+
+  @override
+  String get receiptFailureMismatch => 'ആകെത്തുക ചേരുന്നില്ല';
+
+  @override
+  String get receiptFailureRejected => 'പ്രതിക്ഷേധിക്കപ്പെട്ടു';
+
+  @override
+  String get receiptFailureService => 'സേവനം ലഭ്യമല്ല';
+
+  @override
+  String get receiptFailureUnknown => 'വായിക്കുന്നതിൽ പരാജയം';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ശേഷം ഫോട്ടോ എടുക്കുക';
+
+  @override
+  String get receiptFailureRetakeAction => 'വീണ്ടും ഫോട്ടോ എടുക്കുക';
 }

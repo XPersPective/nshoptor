@@ -1667,4 +1667,40 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get homeProPromoSubtitle => '已解锁 100 次 AI 小票识别与无广告体验 · 无需绑卡';
+
+  @override
+  String get receiptFailureSheetTitle => '无法读取的原因';
+
+  @override
+  String get receiptFailureMissingTop => '缺少顶部';
+
+  @override
+  String get receiptFailureMissingBottom => '缺少底部';
+
+  @override
+  String get receiptFailureMissingMiddle => '缺少中部';
+
+  @override
+  String get receiptFailureNotReceipt => '不是收据';
+
+  @override
+  String get receiptFailureUnreadable => '无法辨认';
+
+  @override
+  String get receiptFailureMismatch => '总额不符';
+
+  @override
+  String get receiptFailureRejected => '无法读取';
+
+  @override
+  String get receiptFailureService => '服务不可用';
+
+  @override
+  String get receiptFailureUnknown => '读取失败';
+
+  @override
+  String get receiptFailureAddMoreAction => '拍摄剩余部分';
+
+  @override
+  String get receiptFailureRetakeAction => '重新拍摄';
 }

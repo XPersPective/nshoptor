@@ -59,6 +59,8 @@ class ReviewLine {
     this.unitCode,
     this.unitPriceMinor,
     required this.lineTotalMinor,
+    this.discountMinor = 0,
+    this.discountLabel,
     this.status = ReviewStatus.pending,
     this.linkedPlannedItemId,
     this.isUnplanned = false,
@@ -71,6 +73,9 @@ class ReviewLine {
   UnitCode? unitCode;
   int? unitPriceMinor;
   int lineTotalMinor;
+  int discountMinor;
+  String? discountLabel;
+  int get netLineTotalMinor => lineTotalMinor - discountMinor;
   ReviewStatus status;
   int? linkedPlannedItemId;
 
@@ -119,9 +124,11 @@ class ReceiptReviewController extends ChangeNotifier {
           unitCode: line.unitCode,
           unitPriceMinor: line.unitPriceMinor,
           lineTotalMinor: line.lineTotalMinor,
+          discountMinor: line.discountMinor,
+          discountLabel: line.discountLabel,
         ),
     ];
-    final discountToApply = parseResult.appliedDiscountMinor;
+    final discountToApply = parseResult.unattributedDiscountMinor;
     if (discountToApply > 0) {
       lines.add(
         ReviewLine(
@@ -236,7 +243,7 @@ class ReceiptReviewController extends ChangeNotifier {
   /// Every line not removed counts (F17: saving keeps undecided lines).
   int get acceptedTotalMinor => lines
       .where((l) => l.status != ReviewStatus.ignored)
-      .fold<int>(0, (s, l) => s + l.lineTotalMinor);
+      .fold<int>(0, (s, l) => s + l.netLineTotalMinor);
 
   /// Kullanıcının toplamı düzgünleştirmesi (spec §6.9: toplam düzenlenebilir).
   void setReportedTotal(int minor) {
@@ -455,9 +462,15 @@ class ReceiptReviewController extends ChangeNotifier {
         secondQuantity = null;
       }
     }
+    final mergedLabels = {
+      if (first.discountLabel?.isNotEmpty == true) first.discountLabel!,
+      if (second.discountLabel?.isNotEmpty == true) second.discountLabel!,
+    }.join(', ');
     first
       ..name = '${first.name} ${second.name}'.trim()
       ..lineTotalMinor = first.lineTotalMinor + second.lineTotalMinor
+      ..discountMinor = first.discountMinor + second.discountMinor
+      ..discountLabel = mergedLabels.isEmpty ? null : mergedLabels
       ..quantity = _sumQty(first.quantity, secondQuantity)
       ..status = ReviewStatus.pending;
     lines.removeAt(b);
@@ -482,6 +495,9 @@ class ReceiptReviewController extends ChangeNotifier {
             DecimalFixed.fromInt(original.lineTotalMinor),
             scale: DecimalFixed.maxFractionDigits,
           );
+    final firstDiscount = original.discountMinor == 0
+        ? 0
+        : (original.discountMinor * firstMinor) ~/ original.lineTotalMinor;
     final copy = ReviewLine(
       rawText: original.rawText,
       name: original.name,
@@ -492,11 +508,15 @@ class ReceiptReviewController extends ChangeNotifier {
           : original.quantity! - firstQuantity,
       unitPriceMinor: original.unitPriceMinor,
       lineTotalMinor: remaining,
+      discountMinor: original.discountMinor - firstDiscount,
+      discountLabel: original.discountLabel,
       status: ReviewStatus.pending,
       linkedPlannedItemId: original.linkedPlannedItemId,
     )..isDiscount = original.isDiscount;
-    original.lineTotalMinor = firstMinor;
-    original.quantity = firstQuantity;
+    original
+      ..lineTotalMinor = firstMinor
+      ..discountMinor = firstDiscount
+      ..quantity = firstQuantity;
     lines.insert(index + 1, copy);
     notifyListeners();
   }
@@ -595,6 +615,8 @@ class ReceiptReviewController extends ChangeNotifier {
           unitCode: line.unitCode,
           unitPriceMinor: line.unitPriceMinor,
           lineTotalMinor: line.lineTotalMinor,
+          discountMinor: line.discountMinor,
+          discountLabel: line.discountLabel,
           status: line.status,
           linkedPlannedItemId: line.linkedPlannedItemId,
           isUnplanned: line.isUnplanned,
@@ -851,6 +873,8 @@ class ReceiptReviewController extends ChangeNotifier {
             quantity: quantity,
             unitCode: purchaseUnit.dbCode,
             lineTotalMinor: line.lineTotalMinor,
+            discountMinor: line.isDiscount ? 0 : line.discountMinor,
+            note: line.discountLabel,
             source: 'receiptOcr',
             replaceExisting: false,
           );

@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "lib/core/l10n/app_af.arb, lib/core/l10n/app_ar.arb, lib/core/l10n/app_az.arb, lib/core/l10n/app_be.arb, lib/core/l10n/app_bg.arb; inspect git status for the complete dirty set",
+  "strategy": "check",
+  "attempt": "d4a821aa752175fe",
+  "repeats": 0,
+  "contract": "fb33a9b80e330005",
+  "usage": {
+    "checks": 3,
+    "seconds": 596.361
+  }
+}

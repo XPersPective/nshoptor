@@ -1746,4 +1746,40 @@ class AppLocalizationsMk extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 ВИ скенирања сметки и без реклами отклучено · Без картичка';
+
+  @override
+  String get receiptFailureSheetTitle => 'Зошто не се прочита';
+
+  @override
+  String get receiptFailureMissingTop => 'Недостасува горниот дел';
+
+  @override
+  String get receiptFailureMissingBottom => 'Недостасува долниот дел';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Недостасува средниот дел';
+
+  @override
+  String get receiptFailureNotReceipt => 'Не е сметка';
+
+  @override
+  String get receiptFailureUnreadable => 'Нечитливо';
+
+  @override
+  String get receiptFailureMismatch => 'Збирот не се совпаѓа';
+
+  @override
+  String get receiptFailureRejected => 'Одбиено';
+
+  @override
+  String get receiptFailureService => 'Сервисот не е достапен';
+
+  @override
+  String get receiptFailureUnknown => 'Читањето не успеа';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Фотографирајте го остатокот';
+
+  @override
+  String get receiptFailureRetakeAction => 'Сликајте повторно';
 }

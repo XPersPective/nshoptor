@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "ခြေရာခံ ဓာတ်ပုံကို နှိပ်၍ အရွယ်အစားကြီးဖြင့် ကြည့်ရှုပါ",
   "receiptPhotoPreparing": "ပြေစာဓာတ်ပုံကို ပြင်ဆင်နေသည်…",
   "homeProPromoTitle": "Pro ကို ၇ ရက် အခမဲ့ စမ်းသုံးကြည့်ပါ",
-  "homeProPromoSubtitle": "AI ဘောက်ချာစကင် ၁၀၀ ကြိမ်နှင့် ကြော်ငြာမဲ့အသုံးပြုမှု · ကတ်မလိုပါ"
+  "homeProPromoSubtitle": "AI ဘောက်ချာစကင် ၁၀၀ ကြိမ်နှင့် ကြော်ငြာမဲ့အသုံးပြုမှု · ကတ်မလိုပါ",
+  "receiptFailureSheetTitle": "ဘာကြောင့် ဖတ်၍ မရပါ",
+  "receiptFailureMissingTop": "အပေါ်ပိုင်း မရှိပါ",
+  "receiptFailureMissingBottom": "အောက်ပိုင်း မရှိပါ",
+  "receiptFailureMissingMiddle": "အလယ်ပိုင်း မရှိပါ",
+  "receiptFailureNotReceipt": "ပြေစာ မဟုတ်ပါ",
+  "receiptFailureUnreadable": "မရှင်းလင်းပါ",
+  "receiptFailureMismatch": "စုစုပေါင်း မကိုက်ညီပါ",
+  "receiptFailureRejected": "ဖတ်၍ မရပါ",
+  "receiptFailureService": "ဝန်ဆောင်မှု မရှိပါ",
+  "receiptFailureUnknown": "ဖတ်မှု မအောင်မြင်ပါ",
+  "receiptFailureAddMoreAction": "ကျန်အပိုင်း ဓာတ်ပုံရိုက်ပါ",
+  "receiptFailureRetakeAction": "ပြန်ရိုက်ပါ"
 }

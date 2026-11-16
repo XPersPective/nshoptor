@@ -1680,4 +1680,40 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get homeProPromoSubtitle => 'AIレシート読取100回と広告非表示が利用可能 · カード不要';
+
+  @override
+  String get receiptFailureSheetTitle => '読み取れなかった理由';
+
+  @override
+  String get receiptFailureMissingTop => '上部が欠けています';
+
+  @override
+  String get receiptFailureMissingBottom => '下部が欠けています';
+
+  @override
+  String get receiptFailureMissingMiddle => '中部が欠けています';
+
+  @override
+  String get receiptFailureNotReceipt => 'レシートではありません';
+
+  @override
+  String get receiptFailureUnreadable => '判読できません';
+
+  @override
+  String get receiptFailureMismatch => '合計が一致しません';
+
+  @override
+  String get receiptFailureRejected => '読み取れませんでした';
+
+  @override
+  String get receiptFailureService => 'サービスを利用できません';
+
+  @override
+  String get receiptFailureUnknown => '読み取りに失敗しました';
+
+  @override
+  String get receiptFailureAddMoreAction => '残りを撮影';
+
+  @override
+  String get receiptFailureRetakeAction => '撮り直す';
 }

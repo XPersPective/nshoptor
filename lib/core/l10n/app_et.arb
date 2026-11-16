@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Täissuuruses kuvamiseks puuduta kvidi pilti",
   "receiptPhotoPreparing": "Tšeki foto ettevalmistamine…",
   "homeProPromoTitle": "Proovi Pro-d 7 päeva tasuta",
-  "homeProPromoSubtitle": "100 tehisaru tšekiskannimist ja reklaamivaba kasutus · Kaarti pole vaja"
+  "homeProPromoSubtitle": "100 tehisaru tšekiskannimist ja reklaamivaba kasutus · Kaarti pole vaja",
+  "receiptFailureSheetTitle": "Miks lugeda ei õnnestunud",
+  "receiptFailureMissingTop": "Ülemine osa puudub",
+  "receiptFailureMissingBottom": "Alumine osa puudub",
+  "receiptFailureMissingMiddle": "Keskmine osa puudub",
+  "receiptFailureNotReceipt": "See pole arve",
+  "receiptFailureUnreadable": "Ei loetav",
+  "receiptFailureMismatch": "Kogusumma ei klapi",
+  "receiptFailureRejected": "Ei õnnestunud lugeda",
+  "receiptFailureService": "Teenus pole saadaval",
+  "receiptFailureUnknown": "Lugemine ebaõnnestus",
+  "receiptFailureAddMoreAction": "Pildista ülejäänud",
+  "receiptFailureRetakeAction": "Pildista uuesti"
 }

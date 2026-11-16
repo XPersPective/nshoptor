@@ -1744,4 +1744,40 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI blokkszkennelés és reklámmentesség feloldva · Kártya nem kell';
+
+  @override
+  String get receiptFailureSheetTitle => 'Miért nem sikerült olvasni?';
+
+  @override
+  String get receiptFailureMissingTop => 'Felső rész hiányzik';
+
+  @override
+  String get receiptFailureMissingBottom => 'Alsó rész hiányzik';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Középső rész hiányzik';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nem számla';
+
+  @override
+  String get receiptFailureUnreadable => 'Nem olvasható';
+
+  @override
+  String get receiptFailureMismatch => 'Az összeg nem egyezik';
+
+  @override
+  String get receiptFailureRejected => 'Nem sikerült olvasni';
+
+  @override
+  String get receiptFailureService => 'Szolgáltatás nem elérhető';
+
+  @override
+  String get receiptFailureUnknown => 'Olvasás sikertelen';
+
+  @override
+  String get receiptFailureAddMoreAction => 'A többi rész fotózása';
+
+  @override
+  String get receiptFailureRetakeAction => 'Újrafényképezés';
 }

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Tik op een bonfoto om hem in volledige grootte te bekijken",
   "receiptPhotoPreparing": "Bonfoto voorbereiden…",
   "homeProPromoTitle": "Probeer Pro 7 dagen gratis",
-  "homeProPromoSubtitle": "100 AI-bonscans & advertentievrij ontgrendeld · Geen kaart nodig"
+  "homeProPromoSubtitle": "100 AI-bonscans & advertentievrij ontgrendeld · Geen kaart nodig",
+  "receiptFailureSheetTitle": "Waarom niet gelezen",
+  "receiptFailureMissingTop": "Bovenkant ontbreekt",
+  "receiptFailureMissingBottom": "Onderkant ontbreekt",
+  "receiptFailureMissingMiddle": "Midden ontbreekt",
+  "receiptFailureNotReceipt": "Geen bon",
+  "receiptFailureUnreadable": "Niet leesbaar",
+  "receiptFailureMismatch": "Totaal komt niet overeen",
+  "receiptFailureRejected": "Kon niet worden gelezen",
+  "receiptFailureService": "Dienst niet beschikbaar",
+  "receiptFailureUnknown": "Lezen mislukt",
+  "receiptFailureAddMoreAction": "Rest fotograferen",
+  "receiptFailureRetakeAction": "Opnieuw maken"
 }

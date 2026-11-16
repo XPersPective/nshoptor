@@ -1727,4 +1727,40 @@ class AppLocalizationsLo extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       'ສະແກນໃບບິນ AI 100 ຄັ້ງ ແລະ ບໍ່ມີໂຄສະນາ · ບໍ່ຕ້ອງໃສ່ບັດ';
+
+  @override
+  String get receiptFailureSheetTitle => 'ເປັນຫຍັງອ່ານບໍ່ໄດ້';
+
+  @override
+  String get receiptFailureMissingTop => 'ສ່ວນເທິງຂາດ';
+
+  @override
+  String get receiptFailureMissingBottom => 'ສ່ວນລຸ່ມຂາດ';
+
+  @override
+  String get receiptFailureMissingMiddle => 'ສ່ວນກາງຂາດ';
+
+  @override
+  String get receiptFailureNotReceipt => 'ບໍ່ແມ່ນໃບເກັບເງິນ';
+
+  @override
+  String get receiptFailureUnreadable => 'ອ່ານບໍ່ຊັດເຈນ';
+
+  @override
+  String get receiptFailureMismatch => 'ຍອດລວມບໍ່ກົງ';
+
+  @override
+  String get receiptFailureRejected => 'ຖືກປະເສັດ';
+
+  @override
+  String get receiptFailureService => 'ບໍລິການບໍ່ພ້ອມ';
+
+  @override
+  String get receiptFailureUnknown => 'ການອ່ານລ້ມເຫລວ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ຖ່າຍທີ່ເຫຼືອງ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ຖ່າຍໃໝ່';
 }

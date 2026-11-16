@@ -1752,4 +1752,40 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 scanări AI de bonuri și fără reclame active · Nu necesită card';
+
+  @override
+  String get receiptFailureSheetTitle => 'De ce nu s-a citit';
+
+  @override
+  String get receiptFailureMissingTop => 'Partea de sus lipsește';
+
+  @override
+  String get receiptFailureMissingBottom => 'Partea de jos lipsește';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Partea din mijloc lipsește';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nu e chitanță';
+
+  @override
+  String get receiptFailureUnreadable => 'Nu e lizibil';
+
+  @override
+  String get receiptFailureMismatch => 'Totalul nu corespunde';
+
+  @override
+  String get receiptFailureRejected => 'Nu s-a putut citi';
+
+  @override
+  String get receiptFailureService => 'Serviciu indisponibil';
+
+  @override
+  String get receiptFailureUnknown => 'Citirea a eșuat';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografiază restul';
+
+  @override
+  String get receiptFailureRetakeAction => 'Fotografiază din nou';
 }

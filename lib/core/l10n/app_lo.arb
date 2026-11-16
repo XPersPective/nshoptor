@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "ກົດຮູບພາບໃບເກັບເງິນເພື່ອເບິ່ງຂະໜາດເຕັມ",
   "receiptPhotoPreparing": "ກຳລັງກະກຽມຮູບໃບຮັບເງິນ…",
   "homeProPromoTitle": "ທົດລອງໃຊ້ Pro ຟຣີ 7 ມື້",
-  "homeProPromoSubtitle": "ສະແກນໃບບິນ AI 100 ຄັ້ງ ແລະ ບໍ່ມີໂຄສະນາ · ບໍ່ຕ້ອງໃສ່ບັດ"
+  "homeProPromoSubtitle": "ສະແກນໃບບິນ AI 100 ຄັ້ງ ແລະ ບໍ່ມີໂຄສະນາ · ບໍ່ຕ້ອງໃສ່ບັດ",
+  "receiptFailureSheetTitle": "ເປັນຫຍັງອ່ານບໍ່ໄດ້",
+  "receiptFailureMissingTop": "ສ່ວນເທິງຂາດ",
+  "receiptFailureMissingBottom": "ສ່ວນລຸ່ມຂາດ",
+  "receiptFailureMissingMiddle": "ສ່ວນກາງຂາດ",
+  "receiptFailureNotReceipt": "ບໍ່ແມ່ນໃບເກັບເງິນ",
+  "receiptFailureUnreadable": "ອ່ານບໍ່ຊັດເຈນ",
+  "receiptFailureMismatch": "ຍອດລວມບໍ່ກົງ",
+  "receiptFailureRejected": "ຖືກປະເສັດ",
+  "receiptFailureService": "ບໍລິການບໍ່ພ້ອມ",
+  "receiptFailureUnknown": "ການອ່ານລ້ມເຫລວ",
+  "receiptFailureAddMoreAction": "ຖ່າຍທີ່ເຫຼືອງ",
+  "receiptFailureRetakeAction": "ຖ່າຍໃໝ່"
 }

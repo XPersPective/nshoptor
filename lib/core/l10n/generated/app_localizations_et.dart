@@ -1739,4 +1739,40 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 tehisaru tšekiskannimist ja reklaamivaba kasutus · Kaarti pole vaja';
+
+  @override
+  String get receiptFailureSheetTitle => 'Miks lugeda ei õnnestunud';
+
+  @override
+  String get receiptFailureMissingTop => 'Ülemine osa puudub';
+
+  @override
+  String get receiptFailureMissingBottom => 'Alumine osa puudub';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Keskmine osa puudub';
+
+  @override
+  String get receiptFailureNotReceipt => 'See pole arve';
+
+  @override
+  String get receiptFailureUnreadable => 'Ei loetav';
+
+  @override
+  String get receiptFailureMismatch => 'Kogusumma ei klapi';
+
+  @override
+  String get receiptFailureRejected => 'Ei õnnestunud lugeda';
+
+  @override
+  String get receiptFailureService => 'Teenus pole saadaval';
+
+  @override
+  String get receiptFailureUnknown => 'Lugemine ebaõnnestus';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Pildista ülejäänud';
+
+  @override
+  String get receiptFailureRetakeAction => 'Pildista uuesti';
 }

@@ -32,6 +32,8 @@ import 'receipt_document.dart'
 import 'receipt_draft_repository.dart';
 import 'receipt_image_store.dart';
 import 'receipt_queue_service.dart';
+import 'receipt_read_failure.dart';
+import 'receipt_read_failure_text.dart';
 import 'review/receipt_review_controller.dart';
 import 'review/receipt_review_screen.dart';
 
@@ -615,7 +617,7 @@ Future<_AiOutcome> _readWithAi(
         pickImage: pickImage,
         // The image model reads the photo; device OCR runs only if the model
         // is unreachable (it took minutes on slow devices before the request).
-        ocrSource: const _NoOcr(),
+        ocrSource: const NoOcrTextSource(),
         preferredSource: source,
         requireText: false,
       );
@@ -1082,11 +1084,32 @@ Future<void> _finishInBackground(
           body: l10n.receiptIncompleteTail,
           listId: list,
         );
-      default:
+      case AiReceiptNeedsMore(:final gap):
+        await notifier.showReceiptResult(
+          id: notificationId,
+          title: l10n.receiptReadMoreTitle,
+          body: switch (gap) {
+            AiReceiptGap.top => l10n.receiptIncompleteHeader,
+            AiReceiptGap.bottom => l10n.receiptIncompleteTail,
+            AiReceiptGap.middle => l10n.receiptContinuationRejected,
+          },
+          listId: owner,
+        );
+      case AiReceiptRetake(:final reason):
+        // The notification carries the same canonical reason the tray card
+        // shows, so the user sees the cause and not a bare "could not read".
+        final failure = ReceiptReadFailure.fromCode(reason);
+        await notifier.showReceiptResult(
+          id: notificationId,
+          title: failure.label(l10n),
+          body: failure.guidance(l10n),
+          listId: owner,
+        );
+      case AiReceiptUnavailable():
         await notifier.showReceiptResult(
           id: notificationId,
           title: l10n.receiptReadFailedTitle,
-          body: l10n.receiptIncompleteHeader,
+          body: l10n.aiFailed,
           listId: owner,
         );
     }
@@ -1121,14 +1144,6 @@ Future<void> _captureTip(BuildContext context, {required bool first}) async {
     ),
   );
   if (never == true) AppDefaults.setCaptureTipsEnabled(false);
-}
-
-/// Placeholder text source for image-model captures: no device OCR.
-final class _NoOcr implements OcrTextSource {
-  const _NoOcr();
-  @override
-  Future<OcrScanResult> scan(String imagePath) async =>
-      const OcrScanResult(lines: []);
 }
 
 /// Adds the product rows readable on a cut-off receipt to its list right
@@ -1205,7 +1220,7 @@ Future<void> _runCaptureFirstBatchFlow(
         title: l10n.scanReceiptAction,
         pickImage: pickImage,
         // Capture-first: never run device ML Kit while snapping photos.
-        ocrSource: const _NoOcr(),
+        ocrSource: const NoOcrTextSource(),
         requireText: false,
       );
       if (!context.mounted) {
@@ -1214,7 +1229,7 @@ Future<void> _runCaptureFirstBatchFlow(
       }
       if (capture is CapturedImage) {
         try {
-          final stored = await _withPhotoPreparingDialog(
+          final stored = await withPhotoPreparingDialog(
             context,
             l10n,
             () async =>
@@ -1305,7 +1320,7 @@ Future<void> _runCaptureFirstBatchFlow(
   }
 }
 
-Future<T> _withPhotoPreparingDialog<T>(
+Future<T> withPhotoPreparingDialog<T>(
   BuildContext context,
   AppLocalizations l10n,
   Future<T> Function() task,
@@ -1316,7 +1331,7 @@ Future<T> _withPhotoPreparingDialog<T>(
     barrierDismissible: false,
     builder: (_) => PopScope(
       canPop: false,
-      child: _ReceiptPhotoPreparingDialog(label: l10n.receiptPhotoPreparing),
+      child: ReceiptPhotoPreparingDialog(label: l10n.receiptPhotoPreparing),
     ),
   );
   navigator.push(route);
@@ -1329,8 +1344,8 @@ Future<T> _withPhotoPreparingDialog<T>(
   }
 }
 
-class _ReceiptPhotoPreparingDialog extends StatelessWidget {
-  const _ReceiptPhotoPreparingDialog({required this.label});
+class ReceiptPhotoPreparingDialog extends StatelessWidget {
+  const ReceiptPhotoPreparingDialog({super.key, required this.label});
 
   final String label;
 

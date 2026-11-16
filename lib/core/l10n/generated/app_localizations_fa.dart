@@ -1734,4 +1734,40 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '۱۰۰ اسکن رسید هوش مصنوعی و بدون تبلیغات فعال شد · بدون نیاز به کارت';
+
+  @override
+  String get receiptFailureSheetTitle => 'چرا خوانده نشد';
+
+  @override
+  String get receiptFailureMissingTop => 'بخش بالا موجود نیست';
+
+  @override
+  String get receiptFailureMissingBottom => 'بخش پایین موجود نیست';
+
+  @override
+  String get receiptFailureMissingMiddle => 'بخش میانی موجود نیست';
+
+  @override
+  String get receiptFailureNotReceipt => 'رسید نیست';
+
+  @override
+  String get receiptFailureUnreadable => 'خوانا نیست';
+
+  @override
+  String get receiptFailureMismatch => 'جمع کل مطابقت ندارد';
+
+  @override
+  String get receiptFailureRejected => 'خوانده نشد';
+
+  @override
+  String get receiptFailureService => 'سرویس در دسترس نیست';
+
+  @override
+  String get receiptFailureUnknown => 'خواندن ناموفق بود';
+
+  @override
+  String get receiptFailureAddMoreAction => 'بقیه را عکس بگیرید';
+
+  @override
+  String get receiptFailureRetakeAction => 'عکس دیگری بگیرید';
 }

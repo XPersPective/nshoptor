@@ -1747,4 +1747,40 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 skanów paragonów AI i brak reklam aktywne · Karta niepotrzebna';
+
+  @override
+  String get receiptFailureSheetTitle => 'Dlaczego nie udało się odczytać';
+
+  @override
+  String get receiptFailureMissingTop => 'Brak górnej części';
+
+  @override
+  String get receiptFailureMissingBottom => 'Brak dolnej części';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Brak środkowej części';
+
+  @override
+  String get receiptFailureNotReceipt => 'To nie paragon';
+
+  @override
+  String get receiptFailureUnreadable => 'Nieczytelne';
+
+  @override
+  String get receiptFailureMismatch => 'Suma się nie zgadza';
+
+  @override
+  String get receiptFailureRejected => 'Nie udało się odczytać';
+
+  @override
+  String get receiptFailureService => 'Usługa niedostępna';
+
+  @override
+  String get receiptFailureUnknown => 'Odczyt nie powiódł się';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Zrób resztę paragonu';
+
+  @override
+  String get receiptFailureRetakeAction => 'Zrób ponownie';
 }

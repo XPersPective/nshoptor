@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import '../../core/money/currency.dart';
+import '../../core/money/decimal_fixed.dart';
 import '../../core/money/money_parser.dart';
+import '../../core/quantity/unit_code.dart';
 import '../../core/util/normalize_name.dart';
 import 'ocr_number_view.dart';
 import 'ocr_currency.dart';
@@ -12,6 +14,13 @@ import 'parser/receipt_parser.dart';
 enum ReceiptDocumentState { incompleteHeader, incompleteTail, complete }
 
 enum ReceiptHeaderField { store, documentNumber, dateTime, currency }
+
+/// How many photos one receipt session may hold.
+///
+/// Shared by the reader (which refuses more), the capture flow (which stops
+/// offering more) and the tray (which appends the photo that completes an
+/// incomplete receipt), so the cap can never disagree between them.
+const int kMaxReceiptPhotos = 4;
 
 /// OCR evidence only: absent document numbers and times are never invented.
 final class ReceiptMetadata {
@@ -85,9 +94,37 @@ final class ReceiptDocument {
     required List<OcrScanResult> fragments,
     required List<ReceiptLineCandidate> productLines,
     required List<OcrLine> financialRows,
+    this._verifiedDiscountMinor,
+    this._verifiedTaxMinor,
+    this._verifiedSubtotalMinor,
+    this._isVerifiedAi = false,
   }) : fragments = List.unmodifiable(fragments),
        productLines = List.unmodifiable(productLines),
        _financialRows = List.unmodifiable(financialRows);
+
+  /// Builds a document verified by the AI receipt protocol while retaining the
+  /// canonical textual rows as [fragments] so persistence and replay never lose
+  /// verified product lines or trigger false OCR keyword skips.
+  factory ReceiptDocument.fromAiVerified({
+    required ReceiptMetadata metadata,
+    required String currencyContext,
+    required List<OcrScanResult> fragments,
+    required List<ReceiptLineCandidate> productLines,
+    required List<OcrLine> financialRows,
+    required int discountMinor,
+    int? taxMinor,
+    int? subtotalMinor,
+  }) => ReceiptDocument._(
+    metadata: metadata,
+    currencyContext: Currency.fromCode(currencyContext).code,
+    fragments: fragments,
+    productLines: productLines,
+    financialRows: financialRows,
+    verifiedDiscountMinor: discountMinor,
+    verifiedTaxMinor: taxMinor,
+    verifiedSubtotalMinor: subtotalMinor,
+    isVerifiedAi: true,
+  );
 
   factory ReceiptDocument.fromScan(
     OcrScanResult scan, {
@@ -135,6 +172,10 @@ final class ReceiptDocument {
   final List<OcrScanResult> fragments;
   final List<ReceiptLineCandidate> productLines;
   final List<OcrLine> _financialRows;
+  final int? _verifiedDiscountMinor;
+  final int? _verifiedTaxMinor;
+  final int? _verifiedSubtotalMinor;
+  final bool _isVerifiedAi;
 
   ReceiptDocumentState get state => metadata.missingHeaderFields.isNotEmpty
       ? ReceiptDocumentState.incompleteHeader
@@ -166,6 +207,35 @@ final class ReceiptDocument {
               },
           ],
       ],
+      if (_isVerifiedAi)
+        'verified': {
+          'store': metadata.store,
+          'documentNumber': metadata.documentNumber,
+          'dateTime': metadata.dateTime?.toIso8601String(),
+          'totalMinor': metadata.totalMinor,
+          'currencyCode': metadata.currencyCode,
+          'discountMinor': _verifiedDiscountMinor ?? 0,
+          'taxMinor': _verifiedTaxMinor,
+          'subtotalMinor': _verifiedSubtotalMinor,
+          'lines': [
+            for (final line in productLines)
+              {
+                'rawText': line.rawText,
+                'name': line.name,
+                'normalizedName': line.normalizedName,
+                if (line.quantity != null)
+                  'quantity': line.quantity!.toDbString(),
+                if (line.unitCode != null) 'unitCode': line.unitCode!.dbCode,
+                if (line.unitPriceMinor != null)
+                  'unitPriceMinor': line.unitPriceMinor,
+                'lineTotalMinor': line.lineTotalMinor,
+                if (line.discountMinor > 0) 'discountMinor': line.discountMinor,
+                if (line.discountLabel != null)
+                  'discountLabel': line.discountLabel,
+                'confidence': line.confidence,
+              },
+          ],
+        },
     });
     if (encoded.length > 2000000 ||
         fragments.length > 25 ||
@@ -220,6 +290,53 @@ final class ReceiptDocument {
           ),
         );
       }
+      final verified = json['verified'];
+      if (verified is Map<String, dynamic>) {
+        final rawLines = verified['lines'];
+        if (rawLines is! List || rawLines.isEmpty) {
+          throw const FormatException('Invalid verified receipt lines');
+        }
+        final lines = <ReceiptLineCandidate>[
+          for (final entry in rawLines)
+            if (entry is Map<String, dynamic>)
+              ReceiptLineCandidate(
+                rawText: entry['rawText'] as String,
+                name: entry['name'] as String,
+                normalizedName: entry['normalizedName'] as String,
+                quantity: entry['quantity'] is String
+                    ? DecimalFixed.parse(entry['quantity'] as String)
+                    : null,
+                unitCode: entry['unitCode'] is String
+                    ? UnitCode.fromDbCode(entry['unitCode'] as String)
+                    : null,
+                unitPriceMinor: entry['unitPriceMinor'] as int?,
+                lineTotalMinor: entry['lineTotalMinor'] as int,
+                discountMinor: (entry['discountMinor'] as int?) ?? 0,
+                discountLabel: entry['discountLabel'] as String?,
+                confidence: entry['confidence'] as String,
+              )
+            else
+              throw const FormatException('Invalid verified line'),
+        ];
+        return ReceiptDocument.fromAiVerified(
+          metadata: ReceiptMetadata(
+            store: verified['store'] as String?,
+            documentNumber: verified['documentNumber'] as String?,
+            dateTime: verified['dateTime'] is String
+                ? DateTime.parse(verified['dateTime'] as String)
+                : null,
+            totalMinor: verified['totalMinor'] as int?,
+            currencyCode: verified['currencyCode'] as String?,
+          ),
+          currencyContext: currency,
+          fragments: fragments,
+          productLines: lines,
+          financialRows: const [],
+          discountMinor: (verified['discountMinor'] as int?) ?? 0,
+          taxMinor: verified['taxMinor'] as int?,
+          subtotalMinor: verified['subtotalMinor'] as int?,
+        );
+      }
       var document = ReceiptDocument.fromScan(
         fragments.first,
         currencyCode: currency,
@@ -241,10 +358,21 @@ final class ReceiptDocument {
   }
 
   ReceiptParseResult toParseResult() {
-    final parsed = ReceiptParser(
-      currency: metadata.currencyCode ?? _currencyContext,
-    ).parse(OcrScanResult(lines: _financialRows));
-    final discount = parsed.discountMinor;
+    final int? discount;
+    final int? subtotalMinor;
+    final int? taxMinor;
+    if (_isVerifiedAi) {
+      discount = _verifiedDiscountMinor ?? 0;
+      subtotalMinor = _verifiedSubtotalMinor;
+      taxMinor = _verifiedTaxMinor;
+    } else {
+      final parsed = ReceiptParser(
+        currency: metadata.currencyCode ?? _currencyContext,
+      ).parse(OcrScanResult(lines: _financialRows));
+      discount = parsed.discountMinor;
+      subtotalMinor = parsed.subtotalMinor;
+      taxMinor = parsed.taxMinor;
+    }
     final productSum = productLines.fold<int>(
       0,
       (n, l) => n + l.lineTotalMinor,
@@ -262,9 +390,9 @@ final class ReceiptDocument {
       dateCandidate: metadata.dateTime,
       currencyCandidate: metadata.currencyCode,
       currencyNeedsConfirmation: metadata.currencyCode == null,
-      subtotalMinor: parsed.subtotalMinor,
+      subtotalMinor: subtotalMinor,
       discountMinor: discount,
-      taxMinor: parsed.taxMinor,
+      taxMinor: taxMinor,
       totalMinor: metadata.totalMinor,
       lines: productLines,
       computedTotalMinor: computed,

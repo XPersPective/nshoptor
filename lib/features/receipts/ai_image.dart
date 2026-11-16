@@ -5,42 +5,76 @@ import 'dart:typed_data' show BytesBuilder, Uint8List;
 import 'package:flutter/foundation.dart';
 import 'package:image/image.dart' as img;
 
-/// Longest side and compact size budget of one photo stored/sent to the
-/// image model so batch receipt scans upload quickly and cheaply without
-/// losing receipt print legibility.
-const aiImageMaxSide = 1280;
-const aiTallImageMaxSide = 1280;
-const aiImageMaxBytes = 350 * 1024;
+/// Longest side and size budget of one photo stored on the phone and sent to
+/// the image model. Thermal receipt print is small: a tall full receipt keeps
+/// up to 2400px on its long side so each character stays legible, while the
+/// byte budget keeps four photos inside the proxy's request limit.
+const aiImageMaxSide = 1600;
+const aiTallImageMaxSide = 2400;
+const aiImageMaxBytes = 700 * 1024;
+
+/// A photo whose height exceeds its width by this ratio is a tall receipt.
+const _tallRatio = 1.35;
+
+int _maxSideFor(int width, int height) =>
+    height > width * _tallRatio || width > height * _tallRatio
+    ? aiTallImageMaxSide
+    : aiImageMaxSide;
+
+/// Whether [bytes] are already an upright JPEG inside the size and byte
+/// budget, i.e. a photo this app compressed before. Such a photo is never
+/// decoded and re-encoded again.
+bool isCompressedForAi(Uint8List bytes) {
+  if (bytes.length > aiImageMaxBytes ||
+      bytes.length <= 3 ||
+      bytes[0] != 0xFF ||
+      bytes[1] != 0xD8 ||
+      bytes[2] != 0xFF ||
+      jpegExifOrientation(bytes) > 1) {
+    return false;
+  }
+  final dims = jpegDimensions(bytes);
+  if (dims == null) return false;
+  final limit = _maxSideFor(dims.$1, dims.$2);
+  return dims.$1 <= limit && dims.$2 <= limit;
+}
 
 /// Downscales, strips metadata, and compresses a captured photo as JPEG bytes
-/// within [aiImageMaxSide] and [aiImageMaxBytes]. Returns null if unreadable.
+/// within the size and byte budget. Returns null if unreadable.
 Future<Uint8List?> compressImageForAi(String path) async {
   final file = File(path);
   if (!await file.exists()) return null;
   final bytes = await file.readAsBytes();
-  // Fast path: when a native picker already produced an upright JPEG within
-  // both byte and dimension budgets, strip metadata without Dart decode/re-encode.
-  if (bytes.length <= aiImageMaxBytes &&
-      bytes.length > 3 &&
-      bytes[0] == 0xFF &&
-      bytes[1] == 0xD8 &&
-      bytes[2] == 0xFF &&
-      jpegExifOrientation(bytes) <= 1) {
-    final dims = jpegDimensions(bytes);
-    if (dims != null &&
-        dims.$1 <= aiImageMaxSide &&
-        dims.$2 <= aiImageMaxSide) {
-      return stripJpegMetadata(bytes);
-    }
-  }
+  // Fast path: a photo that is already within budget (for example one this
+  // app compressed when it was taken) is only stripped, never re-encoded.
+  if (isCompressedForAi(bytes)) return stripJpegMetadata(bytes);
   return compute(_encodeBytes, bytes);
 }
 
-/// Downscales and re-encodes a captured photo as base64 JPEG for the AI
-/// proxy. Returns null when the file cannot be decoded or stay in budget.
+/// Base64 JPEG for the AI proxy. Returns null when the file cannot be decoded
+/// or stay in budget.
+///
+/// A receipt photo in app-owned storage that was not compressed yet (older
+/// captures) is compressed once and written back, so retries and later
+/// continuations never compress the same photo a second time.
 Future<String?> encodeImageForAi(String path) async {
-  final compressed = await compressImageForAi(path);
-  return compressed == null ? null : base64Encode(compressed);
+  final file = File(path);
+  if (!await file.exists()) return null;
+  final original = await file.readAsBytes();
+  final compressed = isCompressedForAi(original)
+      ? stripJpegMetadata(original)
+      : await compute(_encodeBytes, original);
+  if (compressed == null) return null;
+  if (!identical(compressed, original) &&
+      compressed.length < original.length &&
+      RegExp(r'[\\/]receipt_media[\\/]\d{13,20}-\d+\.img$').hasMatch(path)) {
+    try {
+      await file.writeAsBytes(compressed, flush: true);
+    } catch (_) {
+      // The upload still uses the compressed bytes; write-back is best effort.
+    }
+  }
+  return base64Encode(compressed);
 }
 
 /// Removes APP1 (Exif/GPS) and APP2 (color profiles) segments without
@@ -163,7 +197,13 @@ Uint8List? _encodeBytes(Uint8List bytes) {
   final decoded = img.decodeImage(bytes);
   if (decoded == null) return null;
   final oriented = img.bakeOrientation(decoded);
-  for (final targetSide in const [aiImageMaxSide, 960]) {
+  final first = _maxSideFor(oriented.width, oriented.height);
+  // Legibility first: high quality at full budget size, then a smaller side
+  // before quality ever drops low enough to blur small receipt print.
+  for (final (targetSide, qualities) in [
+    (first, const [88, 82, 76, 70]),
+    ((first * 3) ~/ 4, const [82, 74, 66]),
+  ]) {
     final longest = oriented.width > oriented.height
         ? oriented.width
         : oriented.height;
@@ -175,9 +215,6 @@ Uint8List? _encodeBytes(Uint8List bytes) {
             height: oriented.height > oriented.width ? targetSide : null,
             interpolation: img.Interpolation.average,
           );
-    final qualities = targetSide == aiImageMaxSide
-        ? const [78, 66, 54, 44]
-        : const [66, 54, 44];
     for (final quality in qualities) {
       final jpeg = Uint8List.fromList(img.encodeJpg(scaled, quality: quality));
       if (jpeg.length <= aiImageMaxBytes) return jpeg;

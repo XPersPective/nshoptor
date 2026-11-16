@@ -1743,4 +1743,40 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI रसीद स्कैन और विज्ञापन-मुक्त अनुभव चालू · कार्ड की ज़रूरत नहीं';
+
+  @override
+  String get receiptFailureSheetTitle => 'क्यों नहीं पढ़ा जा सका?';
+
+  @override
+  String get receiptFailureMissingTop => 'ऊपरी भाग गायब है';
+
+  @override
+  String get receiptFailureMissingBottom => 'निचला भाग गायब है';
+
+  @override
+  String get receiptFailureMissingMiddle => 'बीच का भाग गायब है';
+
+  @override
+  String get receiptFailureNotReceipt => 'यह रसीद नहीं है';
+
+  @override
+  String get receiptFailureUnreadable => 'स्पष्ट नहीं';
+
+  @override
+  String get receiptFailureMismatch => 'कुल मेल नहीं खाता';
+
+  @override
+  String get receiptFailureRejected => 'पढ़ा नहीं जा सका';
+
+  @override
+  String get receiptFailureService => 'सेवा उपलब्ध नहीं';
+
+  @override
+  String get receiptFailureUnknown => 'पढ़ना विफल रहा';
+
+  @override
+  String get receiptFailureAddMoreAction => 'बाकी हिस्सा फोटो करें';
+
+  @override
+  String get receiptFailureRetakeAction => 'फिर से फोटो लें';
 }

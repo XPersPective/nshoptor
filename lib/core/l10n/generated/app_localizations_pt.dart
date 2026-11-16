@@ -1746,4 +1746,40 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 leituras de recibos com IA e sem anúncios ativos · Sem cartão';
+
+  @override
+  String get receiptFailureSheetTitle => 'Por que não foi possível ler';
+
+  @override
+  String get receiptFailureMissingTop => 'Falta o topo';
+
+  @override
+  String get receiptFailureMissingBottom => 'Falta a base';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Falta o meio';
+
+  @override
+  String get receiptFailureNotReceipt => 'Não é um recibo';
+
+  @override
+  String get receiptFailureUnreadable => 'Ilegível';
+
+  @override
+  String get receiptFailureMismatch => 'O total não confere';
+
+  @override
+  String get receiptFailureRejected => 'Não foi possível ler';
+
+  @override
+  String get receiptFailureService => 'Serviço indisponível';
+
+  @override
+  String get receiptFailureUnknown => 'Falha na leitura';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografe o resto';
+
+  @override
+  String get receiptFailureRetakeAction => 'Fotografe de novo';
 }

@@ -1729,4 +1729,40 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 د AI رسيد سکینونه او بې اعلانه کارونه خلاصه ده · کارت ته اړتیا نشته';
+
+  @override
+  String get receiptFailureSheetTitle => 'ولاستل نشو ولې';
+
+  @override
+  String get receiptFailureMissingTop => 'پورته برخه نه ده';
+
+  @override
+  String get receiptFailureMissingBottom => 'لږ ترلږه برخه نه ده';
+
+  @override
+  String get receiptFailureMissingMiddle => 'منځنی برخه نه ده';
+
+  @override
+  String get receiptFailureNotReceipt => 'رسید نه دی';
+
+  @override
+  String get receiptFailureUnreadable => 'نالړونکی';
+
+  @override
+  String get receiptFailureMismatch => 'ټولټال سمون نه خوري';
+
+  @override
+  String get receiptFailureRejected => 'ونه لوستل شو';
+
+  @override
+  String get receiptFailureService => 'خدمت شتون نه لري';
+
+  @override
+  String get receiptFailureUnknown => 'لوستل ناکام';
+
+  @override
+  String get receiptFailureAddMoreAction => 'د پاتې برخې انځور کړئ';
+
+  @override
+  String get receiptFailureRetakeAction => 'بیا انځور کړئ';
 }

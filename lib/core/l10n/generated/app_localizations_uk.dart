@@ -1746,4 +1746,40 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 ШІ-сканів чеків і без реклами відкрито · Картка не потрібна';
+
+  @override
+  String get receiptFailureSheetTitle => 'Чому не вдалося зчитати';
+
+  @override
+  String get receiptFailureMissingTop => 'Верхня частина відсутня';
+
+  @override
+  String get receiptFailureMissingBottom => 'Нижня частина відсутня';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Середня частина відсутня';
+
+  @override
+  String get receiptFailureNotReceipt => 'Це не чек';
+
+  @override
+  String get receiptFailureUnreadable => 'Нерозбірливо';
+
+  @override
+  String get receiptFailureMismatch => 'Сума не збігається';
+
+  @override
+  String get receiptFailureRejected => 'Не вдалося зчитати';
+
+  @override
+  String get receiptFailureService => 'Сервіс недоступний';
+
+  @override
+  String get receiptFailureUnknown => 'Читання не вдалося';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Сфотографуйте решту';
+
+  @override
+  String get receiptFailureRetakeAction => 'Перезняти';
 }

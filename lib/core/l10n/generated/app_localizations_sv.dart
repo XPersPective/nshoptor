@@ -1738,4 +1738,40 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI-kvittoskanningar & reklamfritt upplåst · Inget kort behövs';
+
+  @override
+  String get receiptFailureSheetTitle => 'Varför kunde inte läsas';
+
+  @override
+  String get receiptFailureMissingTop => 'Toppen saknas';
+
+  @override
+  String get receiptFailureMissingBottom => 'Botten saknas';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Mitten saknas';
+
+  @override
+  String get receiptFailureNotReceipt => 'Inte ett kvitto';
+
+  @override
+  String get receiptFailureUnreadable => 'Oläsligt';
+
+  @override
+  String get receiptFailureMismatch => 'Totalen stämmer inte';
+
+  @override
+  String get receiptFailureRejected => 'Kunde inte läsa av';
+
+  @override
+  String get receiptFailureService => 'Tjänsten är otillgänglig';
+
+  @override
+  String get receiptFailureUnknown => 'Läsningen misslyckades';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fota resten';
+
+  @override
+  String get receiptFailureRetakeAction => 'Ta om';
 }

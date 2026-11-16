@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Spustelėkite kvito nuotrauką, kad pamatytumėte pilno dydžio",
   "receiptPhotoPreparing": "Ruošiama kvito nuotrauka…",
   "homeProPromoTitle": "Išbandykite „Pro“ 7 dienas nemokamai",
-  "homeProPromoSubtitle": "100 DI kvitų nuskaitymų ir be reklamų atrakinta · Kortelės nereikia"
+  "homeProPromoSubtitle": "100 DI kvitų nuskaitymų ir be reklamų atrakinta · Kortelės nereikia",
+  "receiptFailureSheetTitle": "Kodėl nepavyko perskaityti",
+  "receiptFailureMissingTop": "Trūksta viršaus",
+  "receiptFailureMissingBottom": "Trūksta apačios",
+  "receiptFailureMissingMiddle": "Trūksta vidurio",
+  "receiptFailureNotReceipt": "Tai ne kvitas",
+  "receiptFailureUnreadable": "Neįskaitoma",
+  "receiptFailureMismatch": "Suma nesutampa",
+  "receiptFailureRejected": "Atmesta",
+  "receiptFailureService": "Paslauga nepasiekiama",
+  "receiptFailureUnknown": "Nepavyko perskaityti",
+  "receiptFailureAddMoreAction": "Nufotografuokite likusį dalį",
+  "receiptFailureRetakeAction": "Fotografuoti iš naujo"
 }

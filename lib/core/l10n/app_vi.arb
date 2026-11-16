@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Nhấn vào ảnh hóa đơn để xem toàn màn hình",
   "receiptPhotoPreparing": "Đang chuẩn bị ảnh hóa đơn…",
   "homeProPromoTitle": "Dùng thử Pro miễn phí 7 ngày",
-  "homeProPromoSubtitle": "Mở khóa 100 lượt quét hóa đơn AI & không quảng cáo · Không cần thẻ"
+  "homeProPromoSubtitle": "Mở khóa 100 lượt quét hóa đơn AI & không quảng cáo · Không cần thẻ",
+  "receiptFailureSheetTitle": "Sao không đọc được",
+  "receiptFailureMissingTop": "Thiếu phần trên",
+  "receiptFailureMissingBottom": "Thiếu phần dưới",
+  "receiptFailureMissingMiddle": "Thiếu phần giữa",
+  "receiptFailureNotReceipt": "Không phải hóa đơn",
+  "receiptFailureUnreadable": "Chữ không rõ",
+  "receiptFailureMismatch": "Tổng không khớp",
+  "receiptFailureRejected": "Không đọc được",
+  "receiptFailureService": "Dịch vụ không khả dụng",
+  "receiptFailureUnknown": "Đọc thất bại",
+  "receiptFailureAddMoreAction": "Chụp phần còn lại",
+  "receiptFailureRetakeAction": "Chụp lại"
 }

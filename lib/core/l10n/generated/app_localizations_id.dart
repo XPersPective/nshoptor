@@ -1739,4 +1739,40 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 pindai struk AI & bebas iklan terbuka · Tanpa kartu kredit';
+
+  @override
+  String get receiptFailureSheetTitle => 'Mengapa tidak dapat dibaca';
+
+  @override
+  String get receiptFailureMissingTop => 'Bagian atas hilang';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bagian bawah hilang';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Bagian tengah hilang';
+
+  @override
+  String get receiptFailureNotReceipt => 'Bukan struk';
+
+  @override
+  String get receiptFailureUnreadable => 'Tidak terbaca';
+
+  @override
+  String get receiptFailureMismatch => 'Total tidak cocok';
+
+  @override
+  String get receiptFailureRejected => 'Tidak dapat dibaca';
+
+  @override
+  String get receiptFailureService => 'Layanan tidak tersedia';
+
+  @override
+  String get receiptFailureUnknown => 'Pembacaan gagal';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Foto sisa struk';
+
+  @override
+  String get receiptFailureRetakeAction => 'Ambil ulang';
 }

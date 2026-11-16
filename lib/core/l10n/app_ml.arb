@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "പൂർണ്ണ വലിപ്പത്തിൽ കാണാൻ ഒരു റിസീറ്റ് ഫോട്ടോ ടാപ്പ് ചെയ്യുക",
   "receiptPhotoPreparing": "രസീത് ഫോട്ടോ തയ്യാറാക്കുന്നു…",
   "homeProPromoTitle": "7 ദിവസം Pro സൗജന്യമായി പരീക്ഷിക്കൂ",
-  "homeProPromoSubtitle": "100 AI രസീത് സ്കാനും പരസ്യരഹിത ഉപയോഗവും തുറന്നു · കാർഡ് വേണ്ട"
+  "homeProPromoSubtitle": "100 AI രസീത് സ്കാനും പരസ്യരഹിത ഉപയോഗവും തുറന്നു · കാർഡ് വേണ്ട",
+  "receiptFailureSheetTitle": "വായിക്കാത്ത കാരണം",
+  "receiptFailureMissingTop": "മുകളിൽ ഭാഗം ഇല്ല",
+  "receiptFailureMissingBottom": "താഴെ ഭാഗം ഇല്ല",
+  "receiptFailureMissingMiddle": "ഇടത്ത് ഭാഗം ഇല്ല",
+  "receiptFailureNotReceipt": "റിസീറ്റല്ല",
+  "receiptFailureUnreadable": "വായിക്കാത്തത്",
+  "receiptFailureMismatch": "ആകെത്തുക ചേരുന്നില്ല",
+  "receiptFailureRejected": "പ്രതിക്ഷേധിക്കപ്പെട്ടു",
+  "receiptFailureService": "സേവനം ലഭ്യമല്ല",
+  "receiptFailureUnknown": "വായിക്കുന്നതിൽ പരാജയം",
+  "receiptFailureAddMoreAction": "ശേഷം ഫോട്ടോ എടുക്കുക",
+  "receiptFailureRetakeAction": "വീണ്ടും ഫോട്ടോ എടുക്കുക"
 }

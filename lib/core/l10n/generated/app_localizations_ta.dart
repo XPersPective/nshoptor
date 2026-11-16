@@ -1750,4 +1750,41 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI ரசீது ஸ்கேன் & விளம்பரமில்லா அனுபவம் · கார்டு தேவையில்லை';
+
+  @override
+  String get receiptFailureSheetTitle => 'ஏன் படிக்க முடியவில்லை';
+
+  @override
+  String get receiptFailureMissingTop => 'மேல் பகுதி இல்லை';
+
+  @override
+  String get receiptFailureMissingBottom => 'கீழ் பகுதி இல்லை';
+
+  @override
+  String get receiptFailureMissingMiddle => 'நடு பகுதி இல்லை';
+
+  @override
+  String get receiptFailureNotReceipt => 'இது ரசீது அல்ல';
+
+  @override
+  String get receiptFailureUnreadable => 'தெளிவாக இல்லை';
+
+  @override
+  String get receiptFailureMismatch => 'மொத்தம் பொருந்தவில்லை';
+
+  @override
+  String get receiptFailureRejected => 'படிக்க முடியவில்லை';
+
+  @override
+  String get receiptFailureService => 'சேவை கிடைக்கவில்லை';
+
+  @override
+  String get receiptFailureUnknown => 'வாசிப்பு தோல்வி';
+
+  @override
+  String get receiptFailureAddMoreAction =>
+      'மீதமுள்ள பகுதியைப் படம் எடுக்கவும்';
+
+  @override
+  String get receiptFailureRetakeAction => 'மற்றொரு படம் எடுக்கவும்';
 }

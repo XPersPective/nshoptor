@@ -365,7 +365,17 @@ void main() {
       final l10n = AppLocalizations.of(
         tester.element(find.byType(ListDetailScreen)),
       );
-      expect(find.text(l10n.listSortManual), findsOneWidget);
+      final initialSort = tester.widget<PopupMenuButton<ItemSortMode>>(
+        find.byKey(const Key('detail_item_sort')),
+      );
+      expect(initialSort.tooltip, contains(l10n.listSortManual));
+      expect(
+        find.descendant(
+          of: find.byKey(const Key('detail_item_sort')),
+          matching: find.byType(Text),
+        ),
+        findsNothing,
+      );
       expect(
         find.byType(ReorderableDelayedDragStartListener),
         findsNWidgets(3),
@@ -395,7 +405,10 @@ void main() {
       expect(y(1), lessThan(y(0)));
       await tester.pumpWidget(const SizedBox.shrink());
       await open();
-      expect(find.text(l10n.listSortAz), findsOneWidget);
+      final persistedSort = tester.widget<PopupMenuButton<ItemSortMode>>(
+        find.byKey(const Key('detail_item_sort')),
+      );
+      expect(persistedSort.tooltip, contains(l10n.listSortAz));
       expect(find.byType(ReorderableDelayedDragStartListener), findsNothing);
       await tester.tap(find.byKey(const Key('detail_item_sort')));
       await tester.pumpAndSettle();

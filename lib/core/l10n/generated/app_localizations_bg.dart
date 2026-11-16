@@ -1747,4 +1747,40 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 ИИ сканирания на бележки и без реклами отключено · Без карта';
+
+  @override
+  String get receiptFailureSheetTitle => 'Защо не се прочете';
+
+  @override
+  String get receiptFailureMissingTop => 'Горната част липсва';
+
+  @override
+  String get receiptFailureMissingBottom => 'Долната част липсва';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Средната част липсва';
+
+  @override
+  String get receiptFailureNotReceipt => 'Не е касова бележка';
+
+  @override
+  String get receiptFailureUnreadable => 'Нечетливо';
+
+  @override
+  String get receiptFailureMismatch => 'Общата сума не съвпада';
+
+  @override
+  String get receiptFailureRejected => 'Неуспешно четене';
+
+  @override
+  String get receiptFailureService => 'Услугата не е достъпна';
+
+  @override
+  String get receiptFailureUnknown => 'Четенето е неуспешно';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Снимайте остатъка';
+
+  @override
+  String get receiptFailureRetakeAction => 'Снимайте отново';
 }

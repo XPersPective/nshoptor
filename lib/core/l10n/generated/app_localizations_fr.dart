@@ -1753,4 +1753,40 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 scans de tickets par IA et sans pub débloqués · Sans carte';
+
+  @override
+  String get receiptFailureSheetTitle => 'Raison de l\'échec';
+
+  @override
+  String get receiptFailureMissingTop => 'Haut manquant';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bas manquant';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Milieu manquant';
+
+  @override
+  String get receiptFailureNotReceipt => 'Pas un reçu';
+
+  @override
+  String get receiptFailureUnreadable => 'Illisible';
+
+  @override
+  String get receiptFailureMismatch => 'Le total ne correspond pas';
+
+  @override
+  String get receiptFailureRejected => 'Impossible de lire';
+
+  @override
+  String get receiptFailureService => 'Service indisponible';
+
+  @override
+  String get receiptFailureUnknown => 'Échec de la lecture';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Photographier le reste';
+
+  @override
+  String get receiptFailureRetakeAction => 'Reprendre une photo';
 }

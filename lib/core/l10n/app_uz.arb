@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "To'liq hajmda ko'rish uchun chek rasmiga bosing",
   "receiptPhotoPreparing": "Chek rasmi tayyorlanmoqda…",
   "homeProPromoTitle": "Pro’ni 7 kun bepul sinab ko‘ring",
-  "homeProPromoSubtitle": "100 ta SI chek skanerlash va reklamasiz rejim ochiq · Karta kerak emas"
+  "homeProPromoSubtitle": "100 ta SI chek skanerlash va reklamasiz rejim ochiq · Karta kerak emas",
+  "receiptFailureSheetTitle": "Nima uchun o‘qilmadi",
+  "receiptFailureMissingTop": "Yuqori qismi yo‘q",
+  "receiptFailureMissingBottom": "Pastki qismi yo‘q",
+  "receiptFailureMissingMiddle": "O‘rta qismi yo‘q",
+  "receiptFailureNotReceipt": "Bu chek emas",
+  "receiptFailureUnreadable": "Aniq emas",
+  "receiptFailureMismatch": "Summa mos kelmadi",
+  "receiptFailureRejected": "O‘qib bo‘lmadi",
+  "receiptFailureService": "Xizmat mavjud emas",
+  "receiptFailureUnknown": "O‘qish muvaffaqiyatsiz",
+  "receiptFailureAddMoreAction": "Qolganini suratga oling",
+  "receiptFailureRetakeAction": "Qayta oling"
 }

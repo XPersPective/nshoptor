@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "برای مشاهده در اندازه بزرگ، روی عکس رسید ضربه بزنید",
   "receiptPhotoPreparing": "در حال آماده‌سازی تصویر رسید…",
   "homeProPromoTitle": "۷ روز Pro را رایگان امتحان کنید",
-  "homeProPromoSubtitle": "۱۰۰ اسکن رسید هوش مصنوعی و بدون تبلیغات فعال شد · بدون نیاز به کارت"
+  "homeProPromoSubtitle": "۱۰۰ اسکن رسید هوش مصنوعی و بدون تبلیغات فعال شد · بدون نیاز به کارت",
+  "receiptFailureSheetTitle": "چرا خوانده نشد",
+  "receiptFailureMissingTop": "بخش بالا موجود نیست",
+  "receiptFailureMissingBottom": "بخش پایین موجود نیست",
+  "receiptFailureMissingMiddle": "بخش میانی موجود نیست",
+  "receiptFailureNotReceipt": "رسید نیست",
+  "receiptFailureUnreadable": "خوانا نیست",
+  "receiptFailureMismatch": "جمع کل مطابقت ندارد",
+  "receiptFailureRejected": "خوانده نشد",
+  "receiptFailureService": "سرویس در دسترس نیست",
+  "receiptFailureUnknown": "خواندن ناموفق بود",
+  "receiptFailureAddMoreAction": "بقیه را عکس بگیرید",
+  "receiptFailureRetakeAction": "عکس دیگری بگیرید"
 }

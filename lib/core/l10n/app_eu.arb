@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Ukitu errekiburu baten argazkia tamaina osoan ikusteko",
   "receiptPhotoPreparing": "Ordainagiriaren argazkia prestatzen…",
   "homeProPromoTitle": "Probatu Pro doan 7 egunez",
-  "homeProPromoSubtitle": "100 AA ordainagiri-eskaneatze eta iragarkirik gabe · Txartelik gabe"
+  "homeProPromoSubtitle": "100 AA ordainagiri-eskaneatze eta iragarkirik gabe · Txartelik gabe",
+  "receiptFailureSheetTitle": "Zergatik ez da irakurri",
+  "receiptFailureMissingTop": "Goialdea falta",
+  "receiptFailureMissingBottom": "Behekoa falta",
+  "receiptFailureMissingMiddle": "Ertaina falta",
+  "receiptFailureNotReceipt": "Ez da ordainagiria",
+  "receiptFailureUnreadable": "Irakurgaitza",
+  "receiptFailureMismatch": "Guztizkoa ez dator bat",
+  "receiptFailureRejected": "Ezin izan da irakurri",
+  "receiptFailureService": "Zerbitzua ez dago",
+  "receiptFailureUnknown": "Irakurtzean huts egin du",
+  "receiptFailureAddMoreAction": "Atera gainera",
+  "receiptFailureRetakeAction": "Atera beste argazki bat"
 }

@@ -120,7 +120,7 @@ async function chatOnce(env, system, user, { fetchImpl = fetch, maxTokens = 1200
   }
   if (!res.ok) throw new AiError('ai_http_' + res.status);
   let data;
-  try { data = JSON.parse(await readBoundedText(res, 64 * 1024)); } catch { throw new AiError('ai_schema'); }
+  try { data = JSON.parse(await readBoundedText(res, 128 * 1024)); } catch { throw new AiError('ai_schema'); }
   if (['length', 'content_filter'].includes(data?.choices?.[0]?.finish_reason)) throw new AiError('ai_truncated');
   const text = data?.choices?.[0]?.message?.content;
   if (typeof text !== 'string') throw new AiError('ai_schema');

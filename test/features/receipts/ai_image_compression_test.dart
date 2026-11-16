@@ -33,7 +33,7 @@ void main() {
     }
   });
 
-  test('large noisy receipt image compresses to <= 1280px and <= 350 KB', () async {
+  test('large noisy receipt image compresses to <= aiImageMaxSide and <= aiImageMaxBytes', () async {
     final raw = _noisyTexturedReceipt(2400, 1800);
     final file = File('${tempDir.path}/large_receipt.png');
     await file.writeAsBytes(img.encodePng(raw));
@@ -41,32 +41,33 @@ void main() {
     final encoded = await encodeImageForAi(file.path);
     expect(encoded, isNotNull);
     final outBytes = base64Decode(encoded!);
-    expect(outBytes.length, lessThanOrEqualTo(350 * 1024));
+    expect(outBytes.length, lessThanOrEqualTo(aiImageMaxBytes));
 
     final decoded = img.decodeJpg(outBytes);
     expect(decoded, isNotNull);
     final longest =
         decoded!.width > decoded.height ? decoded.width : decoded.height;
-    expect(longest, lessThanOrEqualTo(1280));
+    expect(longest, lessThanOrEqualTo(aiImageMaxSide));
   });
 
-  test('tall receipt image caps longest edge at 1280px and <= 350 KB', () async {
+  test('tall receipt image preserves higher detail up to aiTallImageMaxSide and <= aiImageMaxBytes', () async {
     final raw = _noisyTexturedReceipt(900, 3200);
     final file = File('${tempDir.path}/tall_receipt.jpg');
     await file.writeAsBytes(img.encodeJpg(raw, quality: 92));
 
     final outBytes = await compressImageForAi(file.path);
     expect(outBytes, isNotNull);
-    expect(outBytes!.length, lessThanOrEqualTo(350 * 1024));
+    expect(outBytes!.length, lessThanOrEqualTo(aiImageMaxBytes));
 
     final decoded = img.decodeJpg(outBytes)!;
-    expect(decoded.height, lessThanOrEqualTo(1280));
-    expect(decoded.width, lessThanOrEqualTo(1280));
+    expect(decoded.height, lessThanOrEqualTo(aiTallImageMaxSide));
+    expect(decoded.height, greaterThan(aiImageMaxSide));
+    expect(decoded.width, lessThanOrEqualTo(aiImageMaxSide));
   });
 
-  test('oversized dimension JPEG (> 1280px) even under 350 KB still downscales', () async {
-    // Solid light image compresses tiny in bytes while keeping >1280px size.
-    final raw = img.Image(width: 1920, height: 1440);
+  test('oversized dimension JPEG (> aiImageMaxSide) even under budget still downscales', () async {
+    // Solid light image compresses tiny in bytes while keeping >1600px size.
+    final raw = img.Image(width: 2240, height: 1680);
     img.fill(raw, color: img.ColorRgb8(245, 245, 245));
     final jpgBytes = img.encodeJpg(raw, quality: 75);
     expect(jpgBytes.length, lessThan(aiImageMaxBytes));
@@ -77,8 +78,25 @@ void main() {
     final outBytes = await compressImageForAi(file.path);
     expect(outBytes, isNotNull);
     final decoded = img.decodeJpg(outBytes!)!;
-    expect(decoded.width, 1280);
-    expect(decoded.height, 960);
+    expect(decoded.width, aiImageMaxSide);
+    expect(decoded.height, 1200);
+  });
+
+  test('already-compressed receipt_media photo skips re-encoding on repeated encodeImageForAi calls', () async {
+    final mediaDir = Directory('${tempDir.path}/receipt_media');
+    await mediaDir.create(recursive: true);
+    final raw = _noisyTexturedReceipt(1200, 2400);
+    final file = File('${mediaDir.path}/1794660154049-1.img');
+    await file.writeAsBytes(img.encodeJpg(raw, quality: 92));
+
+    final firstEncoded = await encodeImageForAi(file.path);
+    expect(firstEncoded, isNotNull);
+    final afterFirstBytes = await file.readAsBytes();
+    expect(isCompressedForAi(afterFirstBytes), isTrue);
+
+    final secondEncoded = await encodeImageForAi(file.path);
+    expect(secondEncoded, firstEncoded);
+    expect(await file.readAsBytes(), afterFirstBytes);
   });
 
   test('small upright JPEG skips decode and strips EXIF metadata cleanly', () async {

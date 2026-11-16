@@ -1744,4 +1744,40 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI skeniranj računov in brez oglasov odklenjeno · Kartica ni potrebna';
+
+  @override
+  String get receiptFailureSheetTitle => 'Zakaj ni mogoče prebrati';
+
+  @override
+  String get receiptFailureMissingTop => 'Manjka zgornji del';
+
+  @override
+  String get receiptFailureMissingBottom => 'Manjka spodnji del';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Manjka srednji del';
+
+  @override
+  String get receiptFailureNotReceipt => 'To ni račun';
+
+  @override
+  String get receiptFailureUnreadable => 'Ni čitljivo';
+
+  @override
+  String get receiptFailureMismatch => 'Znesek se ne ujema';
+
+  @override
+  String get receiptFailureRejected => 'Ni bilo mogoče prebrati';
+
+  @override
+  String get receiptFailureService => 'Storitev ni na voljo';
+
+  @override
+  String get receiptFailureUnknown => 'Branje ni uspelo';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Posnemi preostanek';
+
+  @override
+  String get receiptFailureRetakeAction => 'Posnemi znova';
 }

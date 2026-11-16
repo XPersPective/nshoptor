@@ -1745,4 +1745,40 @@ class AppLocalizationsMn extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 хиймэл оюуны баримт уншуулах ба зар сурталчилгаагүй · Карт шаардахгүй';
+
+  @override
+  String get receiptFailureSheetTitle => 'Яагаад уншиж чадсангүй';
+
+  @override
+  String get receiptFailureMissingTop => 'Дээд хэсэг дутуу';
+
+  @override
+  String get receiptFailureMissingBottom => 'Доод хэсэг дутуу';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Дунд хэсэг дутуу';
+
+  @override
+  String get receiptFailureNotReceipt => 'Баримт биш';
+
+  @override
+  String get receiptFailureUnreadable => 'Уншигдахгүй';
+
+  @override
+  String get receiptFailureMismatch => 'Нийт дүн таарахгүй';
+
+  @override
+  String get receiptFailureRejected => 'Уншиж чадсангүй';
+
+  @override
+  String get receiptFailureService => 'Үйлчилгээ боломжгүй';
+
+  @override
+  String get receiptFailureUnknown => 'Уншилт амжилтгүй';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Үлдсэн хэсгийг зурна уу';
+
+  @override
+  String get receiptFailureRetakeAction => 'Дахин зурна уу';
 }

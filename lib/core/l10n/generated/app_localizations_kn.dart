@@ -1741,4 +1741,40 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI ರಸೀದಿ ಸ್ಕ್ಯಾನ್ ಮತ್ತು ಜಾಹೀರಾತು-ರಹಿತ ಲಭ್ಯ · ಕಾರ್ಡ್ ಬೇಡ';
+
+  @override
+  String get receiptFailureSheetTitle => 'ಏಕೆ ಓದಲಾಗಲಿಲ್ಲ';
+
+  @override
+  String get receiptFailureMissingTop => 'ಮೇಲಿನ ಭಾಗ ಇಲ್ಲ';
+
+  @override
+  String get receiptFailureMissingBottom => 'ಕೆಳಗಿನ ಭಾಗ ಇಲ್ಲ';
+
+  @override
+  String get receiptFailureMissingMiddle => 'ಮಧ್ಯಭಾಗ ಇಲ್ಲ';
+
+  @override
+  String get receiptFailureNotReceipt => 'ರಸೀದಿ ಅಲ್ಲ';
+
+  @override
+  String get receiptFailureUnreadable => 'ಓದಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ';
+
+  @override
+  String get receiptFailureMismatch => 'ಒಟ್ಟು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ';
+
+  @override
+  String get receiptFailureRejected => 'ತಡೆಹಿಡಿಯಲಾಗಿಲ್ಲ';
+
+  @override
+  String get receiptFailureService => 'ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ';
+
+  @override
+  String get receiptFailureUnknown => 'ಓದುವಿಕೆ ವಿಫಲವಾಗಿದೆ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ಉಳಿದದ್ದನ್ನು ಫೋಟೋ ತೆಗೆಯಿರಿ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ಮತ್ತೆ ಫೋಟೋ ತೆಗೆಯಿರಿ';
 }

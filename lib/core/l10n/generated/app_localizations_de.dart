@@ -1747,4 +1747,40 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 KI-Bon-Scans & werbefrei freigeschaltet · Keine Karte nötig';
+
+  @override
+  String get receiptFailureSheetTitle => 'Warum nicht lesbar';
+
+  @override
+  String get receiptFailureMissingTop => 'Oberteil fehlt';
+
+  @override
+  String get receiptFailureMissingBottom => 'Unterteil fehlt';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Mittelteil fehlt';
+
+  @override
+  String get receiptFailureNotReceipt => 'Kein Beleg';
+
+  @override
+  String get receiptFailureUnreadable => 'Nicht lesbar';
+
+  @override
+  String get receiptFailureMismatch => 'Summe stimmt nicht';
+
+  @override
+  String get receiptFailureRejected => 'Konnte nicht gelesen werden';
+
+  @override
+  String get receiptFailureService => 'Dienst nicht verfügbar';
+
+  @override
+  String get receiptFailureUnknown => 'Lesen fehlgeschlagen';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Rest fotografieren';
+
+  @override
+  String get receiptFailureRetakeAction => 'Neu aufnehmen';
 }

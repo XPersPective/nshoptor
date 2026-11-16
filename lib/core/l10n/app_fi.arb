@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Paina kuitin kuvaa nähdäksesi sen koko koossa",
   "receiptPhotoPreparing": "Valmistellaan kuitin kuvaa…",
   "homeProPromoTitle": "Kokeile Prota 7 päivää ilmaiseksi",
-  "homeProPromoSubtitle": "100 tekoälykuittiskannausta ja mainokseton käyttö · Ei korttia"
+  "homeProPromoSubtitle": "100 tekoälykuittiskannausta ja mainokseton käyttö · Ei korttia",
+  "receiptFailureSheetTitle": "Miksi ei voitu lukea",
+  "receiptFailureMissingTop": "Yläosa puuttuu",
+  "receiptFailureMissingBottom": "Alaosa puuttuu",
+  "receiptFailureMissingMiddle": "Keskiosa puuttuu",
+  "receiptFailureNotReceipt": "Ei ole kuitti",
+  "receiptFailureUnreadable": "Ei luettava",
+  "receiptFailureMismatch": "Loppusumma ei täsmää",
+  "receiptFailureRejected": "Ei voitu lukea",
+  "receiptFailureService": "Palvelu ei ole käytettävissä",
+  "receiptFailureUnknown": "Luku epäonnistui",
+  "receiptFailureAddMoreAction": "Kuvaa loppu",
+  "receiptFailureRetakeAction": "Ota uusi kuva"
 }

@@ -1728,4 +1728,40 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 مسح إيصال بالذكاء الاصطناعي وتجربة بلا إعلانات · دون بطاقة';
+
+  @override
+  String get receiptFailureSheetTitle => 'لماذا تعذرت قراءته';
+
+  @override
+  String get receiptFailureMissingTop => 'الجزء العلوي مفقود';
+
+  @override
+  String get receiptFailureMissingBottom => 'الجزء السفلي مفقود';
+
+  @override
+  String get receiptFailureMissingMiddle => 'الجزء الأوسط مفقود';
+
+  @override
+  String get receiptFailureNotReceipt => 'ليس إيصالاً';
+
+  @override
+  String get receiptFailureUnreadable => 'غير مقروء';
+
+  @override
+  String get receiptFailureMismatch => 'الإجمالي غير مطابق';
+
+  @override
+  String get receiptFailureRejected => 'تعذرت القراءة';
+
+  @override
+  String get receiptFailureService => 'الخدمة غير متاحة';
+
+  @override
+  String get receiptFailureUnknown => 'فشلت القراءة';
+
+  @override
+  String get receiptFailureAddMoreAction => 'صوّر الباقي';
+
+  @override
+  String get receiptFailureRetakeAction => 'أعد الالتقاط';
 }

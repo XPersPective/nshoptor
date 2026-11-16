@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Ketik foto resit untuk melihat saiz penuh",
   "receiptPhotoPreparing": "Menyediakan foto resit…",
   "homeProPromoTitle": "Cuba Pro percuma selama 7 hari",
-  "homeProPromoSubtitle": "100 imbasan resit AI & bebas iklan dibuka · Tiada kad diperlukan"
+  "homeProPromoSubtitle": "100 imbasan resit AI & bebas iklan dibuka · Tiada kad diperlukan",
+  "receiptFailureSheetTitle": "Mengapa tidak dapat dibaca",
+  "receiptFailureMissingTop": "Bahagian atas hilang",
+  "receiptFailureMissingBottom": "Bahagian bawah hilang",
+  "receiptFailureMissingMiddle": "Bahagian tengah hilang",
+  "receiptFailureNotReceipt": "Bukan resit",
+  "receiptFailureUnreadable": "Tidak jelas",
+  "receiptFailureMismatch": "Jumlah tidak sepadan",
+  "receiptFailureRejected": "Tidak dapat dibaca",
+  "receiptFailureService": "Perkhidmatan tidak tersedia",
+  "receiptFailureUnknown": "Pembacaan gagal",
+  "receiptFailureAddMoreAction": "Ambil baki resit",
+  "receiptFailureRetakeAction": "Ambil semula"
 }

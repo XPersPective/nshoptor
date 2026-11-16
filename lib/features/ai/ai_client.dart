@@ -66,7 +66,7 @@ class AiClient {
 
   static const enabledKey = 'ai_enabled';
   static const installIdKey = 'ai_install_id';
-  static const maxResponseBytes = 64 * 1024;
+  static const maxResponseBytes = 128 * 1024;
 
   final SettingsStore store;
   final String baseUrl;

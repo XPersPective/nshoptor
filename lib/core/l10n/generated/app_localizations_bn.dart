@@ -1734,4 +1734,40 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '১০০টি AI রসিদ স্ক্যান ও বিজ্ঞাপনমুক্ত সুবিধা চালু · কার্ড লাগবে না';
+
+  @override
+  String get receiptFailureSheetTitle => 'কেন পড়া যায়নি';
+
+  @override
+  String get receiptFailureMissingTop => 'উপরের অংশ নেই';
+
+  @override
+  String get receiptFailureMissingBottom => 'নিচের অংশ নেই';
+
+  @override
+  String get receiptFailureMissingMiddle => 'মাঝের অংশ নেই';
+
+  @override
+  String get receiptFailureNotReceipt => 'রসিদ নয়';
+
+  @override
+  String get receiptFailureUnreadable => 'অস্পষ্ট';
+
+  @override
+  String get receiptFailureMismatch => 'মোট অংক মিলছে না';
+
+  @override
+  String get receiptFailureRejected => 'পড়া যায়নি';
+
+  @override
+  String get receiptFailureService => 'সেবা অনুপলব্ধ';
+
+  @override
+  String get receiptFailureUnknown => 'পড়া ব্যর্থ হয়েছে';
+
+  @override
+  String get receiptFailureAddMoreAction => 'বাকি অংশের ছবি তুলুন';
+
+  @override
+  String get receiptFailureRetakeAction => 'আবার ছবি তুলুন';
 }

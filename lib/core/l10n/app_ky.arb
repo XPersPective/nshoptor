@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Толук өлчөмдө көрүү үчүн чектин сүрөтүн басыңыз",
   "receiptPhotoPreparing": "Чек сүрөтү даярдалууда…",
   "homeProPromoTitle": "Pro версиясын 7 күн бекер сынап көрүңүз",
-  "homeProPromoSubtitle": "100 ЖИ дүмүрчөк сканерлөө жана жарнамасыз · Карта талап кылынбайт"
+  "homeProPromoSubtitle": "100 ЖИ дүмүрчөк сканерлөө жана жарнамасыз · Карта талап кылынбайт",
+  "receiptFailureSheetTitle": "Эмне үчүн окулбады",
+  "receiptFailureMissingTop": "Жогорку бөлүк жок",
+  "receiptFailureMissingBottom": "Төмөнкү бөлүк жок",
+  "receiptFailureMissingMiddle": "Орто бөлүк жок",
+  "receiptFailureNotReceipt": "Чек эмес",
+  "receiptFailureUnreadable": "Окууга болбос",
+  "receiptFailureMismatch": "Жалпы сумма дал келбейт",
+  "receiptFailureRejected": "Кабылданбады",
+  "receiptFailureService": "Сервис жеткиликсиз",
+  "receiptFailureUnknown": "Окуу ишке ашкан жок",
+  "receiptFailureAddMoreAction": "Калганын тартыңыз",
+  "receiptFailureRetakeAction": "Кайра тартыңыз"
 }

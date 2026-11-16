@@ -1684,4 +1684,40 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get homeProPromoSubtitle => 'AI 영수증 스캔 100회 및 광고 제거 사용 가능 · 카드 등록 불필요';
+
+  @override
+  String get receiptFailureSheetTitle => '읽히지 않은 이유';
+
+  @override
+  String get receiptFailureMissingTop => '상단 누락';
+
+  @override
+  String get receiptFailureMissingBottom => '하단 누락';
+
+  @override
+  String get receiptFailureMissingMiddle => '중간 누락';
+
+  @override
+  String get receiptFailureNotReceipt => '영수증 아님';
+
+  @override
+  String get receiptFailureUnreadable => '판독 불가';
+
+  @override
+  String get receiptFailureMismatch => '합계 불일치';
+
+  @override
+  String get receiptFailureRejected => '거부됨';
+
+  @override
+  String get receiptFailureService => '서비스 불가';
+
+  @override
+  String get receiptFailureUnknown => '읽기 실패';
+
+  @override
+  String get receiptFailureAddMoreAction => '나머지 촬영';
+
+  @override
+  String get receiptFailureRetakeAction => '다시 촬영';
 }

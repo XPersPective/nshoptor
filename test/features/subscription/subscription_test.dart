@@ -637,7 +637,7 @@ void main() {
   );
 
   testWidgets(
-    'existing paid tiers retain their allowance and can choose annual Pro',
+    'existing paid tiers retain their allowance and do not re-offer annual Pro',
     (tester) async {
       for (final owned in [
         (id: SubscriptionService.proId, label: 'Pro', allowance: 100),
@@ -671,14 +671,18 @@ void main() {
           find.textContaining('${owned.label}: ${owned.allowance}'),
           findsOneWidget,
         );
-        await tester.scrollUntilVisible(find.text('Choose'), 100);
         expect(find.byKey(const Key('plan_max')), findsNothing);
+        expect(find.text('Choose'), findsNothing);
+        await tester.scrollUntilVisible(
+          find.byKey(const Key('plan_pro')),
+          -100,
+        );
         expect(
           find.descendant(
             of: find.byKey(const Key('plan_pro')),
             matching: find.byKey(const Key('plan_current_badge')),
           ),
-          findsNothing,
+          findsOneWidget,
         );
         expect(service.monthlyAllowance, owned.allowance);
         await tester.pumpWidget(const SizedBox.shrink());

@@ -16,6 +16,7 @@ import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/home/home_screen.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
+import 'package:nshoptor/features/lists/list_status.dart';
 import 'package:nshoptor/features/lists/lists_screen.dart';
 import 'package:nshoptor/features/receipts/ai_receipt_reader.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
@@ -614,12 +615,39 @@ void main() {
       }
       await tester.pumpAndSettle();
 
-      // ListDetailScreen opens with both compressed receipt photos at bottom of the list.
+      // Active incomplete ListDetailScreen hides receipts and photos.
       expect(find.byType(ListDetailScreen), findsOneWidget);
       final convertedRow = (await drafts.getById(draftId))!;
       expect(convertedRow.queueState, 'converted');
       expect(convertedRow.convertedAt, isNotNull);
       expect(convertedRow.listId, isNotNull);
+      expect(find.byKey(const Key('detail_receipts_section')), findsNothing);
+      expect(find.byKey(const Key('list_receipt_photos_section')), findsNothing);
+
+      // Once completed, ListDetailScreen shows the unified bottom frame with both photos.
+      final cid = convertedRow.listId!;
+      var status = ListStatus.fromDb((await listRepository.getById(cid)).status);
+      if (status == ListStatus.draft) {
+        await listRepository.changeStatus(cid, ListStatus.planned);
+        status = ListStatus.planned;
+      }
+      if (status == ListStatus.planned) {
+        await listRepository.changeStatus(cid, ListStatus.shopping);
+      }
+      await listRepository.changeStatus(cid, ListStatus.completed);
+      unawaited(
+        Navigator.of(tester.element(find.byType(ListDetailScreen)))
+            .pushReplacement(
+          MaterialPageRoute<void>(
+            builder: (_) => ListDetailScreen(
+              db: db,
+              listRepository: listRepository,
+              listId: cid,
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
 
       final photosSection = find.byKey(const Key('list_receipt_photos_section'));
       await tester.scrollUntilVisible(

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "انقر على صورة إيصال لعرضها بالحجم الكامل",
   "receiptPhotoPreparing": "جارٍ تجهيز صورة الإيصال…",
   "homeProPromoTitle": "جرّب Pro مجاناً لـ 7 أيام",
-  "homeProPromoSubtitle": "100 مسح إيصال بالذكاء الاصطناعي وتجربة بلا إعلانات · دون بطاقة"
+  "homeProPromoSubtitle": "100 مسح إيصال بالذكاء الاصطناعي وتجربة بلا إعلانات · دون بطاقة",
+  "receiptFailureSheetTitle": "لماذا تعذرت قراءته",
+  "receiptFailureMissingTop": "الجزء العلوي مفقود",
+  "receiptFailureMissingBottom": "الجزء السفلي مفقود",
+  "receiptFailureMissingMiddle": "الجزء الأوسط مفقود",
+  "receiptFailureNotReceipt": "ليس إيصالاً",
+  "receiptFailureUnreadable": "غير مقروء",
+  "receiptFailureMismatch": "الإجمالي غير مطابق",
+  "receiptFailureRejected": "تعذرت القراءة",
+  "receiptFailureService": "الخدمة غير متاحة",
+  "receiptFailureUnknown": "فشلت القراءة",
+  "receiptFailureAddMoreAction": "صوّر الباقي",
+  "receiptFailureRetakeAction": "أعد الالتقاط"
 }

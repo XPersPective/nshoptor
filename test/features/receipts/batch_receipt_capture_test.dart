@@ -15,6 +15,7 @@ import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/core/theme/app_theme.dart';
 import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/ai/ai_client.dart';
+import 'package:nshoptor/features/receipts/ai_image.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/receipt_capture_flow.dart';
 import 'package:nshoptor/features/receipts/receipt_draft_repository.dart';
@@ -200,9 +201,13 @@ void main() {
       for (final storedPath in afterFirst.single.imagePaths) {
         final storedFile = File(storedPath);
         expect(storedFile.existsSync(), isTrue);
-        expect(storedFile.lengthSync(), lessThanOrEqualTo(350 * 1024));
+        expect(storedFile.lengthSync(), lessThanOrEqualTo(aiImageMaxBytes));
         final decoded = img.decodeJpg(storedFile.readAsBytesSync())!;
-        expect(decoded.width <= 1280 && decoded.height <= 1280, isTrue);
+        expect(
+          decoded.width <= aiTallImageMaxSide &&
+              decoded.height <= aiTallImageMaxSide,
+          isTrue,
+        );
       }
       expect(queuedEvents, [afterFirst.single.id]);
       await tester.pump();

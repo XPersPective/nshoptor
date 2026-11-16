@@ -10,6 +10,7 @@ Future<void> showReceiptPhotoViewer(
   required String imagePath,
   required int receiptId,
   String? title,
+  VoidCallback? onDeletePhoto,
 }) => showDialog<void>(
   context: context,
   builder: (dialogContext) {
@@ -31,6 +32,18 @@ Future<void> showReceiptPhotoViewer(
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
+          actions: [
+            if (onDeletePhoto != null)
+              IconButton(
+                key: const Key('receipt_photo_viewer_delete'),
+                icon: const Icon(Icons.delete_outline),
+                tooltip: l10n.receiptDeleteDraftAction,
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                  onDeletePhoto();
+                },
+              ),
+          ],
         ),
         body: Center(
           child: file.existsSync()

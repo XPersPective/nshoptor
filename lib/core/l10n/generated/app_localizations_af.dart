@@ -1745,4 +1745,40 @@ class AppLocalizationsAf extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 KI-strokie-skanderings & advertensievry oop · Geen kaart nodig';
+
+  @override
+  String get receiptFailureSheetTitle => 'Waarom is dit nie gelees nie';
+
+  @override
+  String get receiptFailureMissingTop => 'Boonste gedeelte ontbreek';
+
+  @override
+  String get receiptFailureMissingBottom => 'Onderste gedeelte ontbreek';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Middelste gedeelte ontbreek';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nie \'n kwitansie nie';
+
+  @override
+  String get receiptFailureUnreadable => 'Nie leesbaar nie';
+
+  @override
+  String get receiptFailureMismatch => 'Totaal stem nie ooreen nie';
+
+  @override
+  String get receiptFailureRejected => 'Kon nie lees nie';
+
+  @override
+  String get receiptFailureService => 'Diens nie beskikbaar nie';
+
+  @override
+  String get receiptFailureUnknown => 'Lees het misluk';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Foto die res';
+
+  @override
+  String get receiptFailureRetakeAction => 'Neem weer';
 }

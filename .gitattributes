@@ -11,6 +11,6 @@
 *.keystore binary
 
 # Verbatim planning sources retain their recorded SHA256 across checkouts.
-/.project-brain/history/** -text
-/.project-brain/sources/** -text
-/.project-brain/references/production-master-prompt-tr.md -text
+/.project-brain/history/** -text -whitespace
+/.project-brain/sources/** -text -whitespace
+/.project-brain/references/production-master-prompt-tr.md -text -whitespace

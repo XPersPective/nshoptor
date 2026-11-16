@@ -1742,4 +1742,40 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 tekoälykuittiskannausta ja mainokseton käyttö · Ei korttia';
+
+  @override
+  String get receiptFailureSheetTitle => 'Miksi ei voitu lukea';
+
+  @override
+  String get receiptFailureMissingTop => 'Yläosa puuttuu';
+
+  @override
+  String get receiptFailureMissingBottom => 'Alaosa puuttuu';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Keskiosa puuttuu';
+
+  @override
+  String get receiptFailureNotReceipt => 'Ei ole kuitti';
+
+  @override
+  String get receiptFailureUnreadable => 'Ei luettava';
+
+  @override
+  String get receiptFailureMismatch => 'Loppusumma ei täsmää';
+
+  @override
+  String get receiptFailureRejected => 'Ei voitu lukea';
+
+  @override
+  String get receiptFailureService => 'Palvelu ei ole käytettävissä';
+
+  @override
+  String get receiptFailureUnknown => 'Luku epäonnistui';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Kuvaa loppu';
+
+  @override
+  String get receiptFailureRetakeAction => 'Ota uusi kuva';
 }

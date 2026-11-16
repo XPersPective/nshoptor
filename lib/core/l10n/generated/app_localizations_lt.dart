@@ -1750,4 +1750,40 @@ class AppLocalizationsLt extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 DI kvitų nuskaitymų ir be reklamų atrakinta · Kortelės nereikia';
+
+  @override
+  String get receiptFailureSheetTitle => 'Kodėl nepavyko perskaityti';
+
+  @override
+  String get receiptFailureMissingTop => 'Trūksta viršaus';
+
+  @override
+  String get receiptFailureMissingBottom => 'Trūksta apačios';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Trūksta vidurio';
+
+  @override
+  String get receiptFailureNotReceipt => 'Tai ne kvitas';
+
+  @override
+  String get receiptFailureUnreadable => 'Neįskaitoma';
+
+  @override
+  String get receiptFailureMismatch => 'Suma nesutampa';
+
+  @override
+  String get receiptFailureRejected => 'Atmesta';
+
+  @override
+  String get receiptFailureService => 'Paslauga nepasiekiama';
+
+  @override
+  String get receiptFailureUnknown => 'Nepavyko perskaityti';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Nufotografuokite likusį dalį';
+
+  @override
+  String get receiptFailureRetakeAction => 'Fotografuoti iš naujo';
 }

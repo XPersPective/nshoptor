@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Klepnutím na fotku účtenky si ju zobrazíte v plnej veľkosti",
   "receiptPhotoPreparing": "Pripravuje sa fotografia bločka…",
   "homeProPromoTitle": "Vyskúšajte Pro na 7 dní zadarmo",
-  "homeProPromoSubtitle": "100 AI skenov účteniek a bez reklám odomknuté · Karta nie je potrebná"
+  "homeProPromoSubtitle": "100 AI skenov účteniek a bez reklám odomknuté · Karta nie je potrebná",
+  "receiptFailureSheetTitle": "Prečo sa neprečítalo",
+  "receiptFailureMissingTop": "Chýba horná časť",
+  "receiptFailureMissingBottom": "Chýba dolná časť",
+  "receiptFailureMissingMiddle": "Chýba stredná časť",
+  "receiptFailureNotReceipt": "Nie je to účtenka",
+  "receiptFailureUnreadable": "Nie je čitateľné",
+  "receiptFailureMismatch": "Súčet sa nezhoduje",
+  "receiptFailureRejected": "Nepodarilo sa prečítať",
+  "receiptFailureService": "Služba je nedostupná",
+  "receiptFailureUnknown": "Prečítanie zlyhalo",
+  "receiptFailureAddMoreAction": "Odfotiť zvyšok",
+  "receiptFailureRetakeAction": "Odfotiť znovu"
 }

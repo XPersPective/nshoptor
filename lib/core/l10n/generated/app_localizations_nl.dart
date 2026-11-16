@@ -1748,4 +1748,40 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI-bonscans & advertentievrij ontgrendeld · Geen kaart nodig';
+
+  @override
+  String get receiptFailureSheetTitle => 'Waarom niet gelezen';
+
+  @override
+  String get receiptFailureMissingTop => 'Bovenkant ontbreekt';
+
+  @override
+  String get receiptFailureMissingBottom => 'Onderkant ontbreekt';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Midden ontbreekt';
+
+  @override
+  String get receiptFailureNotReceipt => 'Geen bon';
+
+  @override
+  String get receiptFailureUnreadable => 'Niet leesbaar';
+
+  @override
+  String get receiptFailureMismatch => 'Totaal komt niet overeen';
+
+  @override
+  String get receiptFailureRejected => 'Kon niet worden gelezen';
+
+  @override
+  String get receiptFailureService => 'Dienst niet beschikbaar';
+
+  @override
+  String get receiptFailureUnknown => 'Lezen mislukt';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Rest fotograferen';
+
+  @override
+  String get receiptFailureRetakeAction => 'Opnieuw maken';
 }

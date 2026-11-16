@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Натисніть на фото чека, щоб переглянути у повному розмірі",
   "receiptPhotoPreparing": "Підготовка фото чека…",
   "homeProPromoTitle": "Спробуйте Pro 7 днів безкоштовно",
-  "homeProPromoSubtitle": "100 ШІ-сканів чеків і без реклами відкрито · Картка не потрібна"
+  "homeProPromoSubtitle": "100 ШІ-сканів чеків і без реклами відкрито · Картка не потрібна",
+  "receiptFailureSheetTitle": "Чому не вдалося зчитати",
+  "receiptFailureMissingTop": "Верхня частина відсутня",
+  "receiptFailureMissingBottom": "Нижня частина відсутня",
+  "receiptFailureMissingMiddle": "Середня частина відсутня",
+  "receiptFailureNotReceipt": "Це не чек",
+  "receiptFailureUnreadable": "Нерозбірливо",
+  "receiptFailureMismatch": "Сума не збігається",
+  "receiptFailureRejected": "Не вдалося зчитати",
+  "receiptFailureService": "Сервіс недоступний",
+  "receiptFailureUnknown": "Читання не вдалося",
+  "receiptFailureAddMoreAction": "Сфотографуйте решту",
+  "receiptFailureRetakeAction": "Перезняти"
 }

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "పూర్తి పరిమాణంలో చూడటానికి రసీదు ఫోటోను ట్యాప్ చేయండి",
   "receiptPhotoPreparing": "రసీదు ఫోటో సిద్ధమవుతోంది…",
   "homeProPromoTitle": "7 రోజులు Pro ఉచితంగా ప్రయత్నించండి",
-  "homeProPromoSubtitle": "100 AI రసీదు స్కాన్లు మరియు ప్రకటనలు లేని ఉపయోగం · కార్డు అవసరం లేదు"
+  "homeProPromoSubtitle": "100 AI రసీదు స్కాన్లు మరియు ప్రకటనలు లేని ఉపయోగం · కార్డు అవసరం లేదు",
+  "receiptFailureSheetTitle": "ఎందుకు చదవలేకపోయాం",
+  "receiptFailureMissingTop": "పై భాగం లేదు",
+  "receiptFailureMissingBottom": "కింది భాగం లేదు",
+  "receiptFailureMissingMiddle": "మధ్య భాగం లేదు",
+  "receiptFailureNotReceipt": "రసీదు కాదు",
+  "receiptFailureUnreadable": "స్పష్టంగా లేదు",
+  "receiptFailureMismatch": "మొత్తం సరిపోలడం లేదు",
+  "receiptFailureRejected": "చదవలేకపోయాం",
+  "receiptFailureService": "సేవ అందుబాటులో లేదు",
+  "receiptFailureUnknown": "చదవడం విఫలమైంది",
+  "receiptFailureAddMoreAction": "మిగతా భాగం తీయండి",
+  "receiptFailureRetakeAction": "మళ్ళీ తీయండి"
 }

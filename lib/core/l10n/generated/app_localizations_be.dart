@@ -1748,4 +1748,40 @@ class AppLocalizationsBe extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 ШІ-сканаванняў чэкаў і без рэкламы адкрыта · Картка не патрэбна';
+
+  @override
+  String get receiptFailureSheetTitle => 'Чаму не ўдалося прачытаць';
+
+  @override
+  String get receiptFailureMissingTop => 'Верхняя частка адсутнічае';
+
+  @override
+  String get receiptFailureMissingBottom => 'Ніжняя частка адсутнічае';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Сярэдняя частка адсутнічае';
+
+  @override
+  String get receiptFailureNotReceipt => 'Не чэк';
+
+  @override
+  String get receiptFailureUnreadable => 'Нечытліва';
+
+  @override
+  String get receiptFailureMismatch => 'Сума не супадае';
+
+  @override
+  String get receiptFailureRejected => 'Не ўдалося прачытаць';
+
+  @override
+  String get receiptFailureService => 'Сервіс недаступны';
+
+  @override
+  String get receiptFailureUnknown => 'Чытанне не ўдалося';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Сфатаграфуйце астатак';
+
+  @override
+  String get receiptFailureRetakeAction => 'Зрабіце зноў';
 }

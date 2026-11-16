@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Толық өлшемде көру үшін чек фотосуретін басыңыз",
   "receiptPhotoPreparing": "Түбіртек суреті дайындалуда…",
   "homeProPromoTitle": "Pro нұсқасын 7 күн тегін көріңіз",
-  "homeProPromoSubtitle": "100 ЖИ түбіртек сканерлеу және жарнамасыз қолдану · Карта қажет емес"
+  "homeProPromoSubtitle": "100 ЖИ түбіртек сканерлеу және жарнамасыз қолдану · Карта қажет емес",
+  "receiptFailureSheetTitle": "Неге оқылмады",
+  "receiptFailureMissingTop": "Жоғарғы бөлік жоқ",
+  "receiptFailureMissingBottom": "Төменгі бөлік жоқ",
+  "receiptFailureMissingMiddle": "Ортаңғы бөлік жоқ",
+  "receiptFailureNotReceipt": "Чек емес",
+  "receiptFailureUnreadable": "Оқуға болмайды",
+  "receiptFailureMismatch": "Жалпы сома сәйкес емес",
+  "receiptFailureRejected": "Қабылданбады",
+  "receiptFailureService": "Сервис қолжетімсіз",
+  "receiptFailureUnknown": "Оқу сәтсіз аяқталды",
+  "receiptFailureAddMoreAction": "Қалғанын түсіріңіз",
+  "receiptFailureRetakeAction": "Қайта түсіріңіз"
 }

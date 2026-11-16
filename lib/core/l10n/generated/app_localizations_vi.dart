@@ -1735,4 +1735,40 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       'Mở khóa 100 lượt quét hóa đơn AI & không quảng cáo · Không cần thẻ';
+
+  @override
+  String get receiptFailureSheetTitle => 'Sao không đọc được';
+
+  @override
+  String get receiptFailureMissingTop => 'Thiếu phần trên';
+
+  @override
+  String get receiptFailureMissingBottom => 'Thiếu phần dưới';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Thiếu phần giữa';
+
+  @override
+  String get receiptFailureNotReceipt => 'Không phải hóa đơn';
+
+  @override
+  String get receiptFailureUnreadable => 'Chữ không rõ';
+
+  @override
+  String get receiptFailureMismatch => 'Tổng không khớp';
+
+  @override
+  String get receiptFailureRejected => 'Không đọc được';
+
+  @override
+  String get receiptFailureService => 'Dịch vụ không khả dụng';
+
+  @override
+  String get receiptFailureUnknown => 'Đọc thất bại';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Chụp phần còn lại';
+
+  @override
+  String get receiptFailureRetakeAction => 'Chụp lại';
 }

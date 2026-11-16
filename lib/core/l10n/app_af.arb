@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Tik op 'n ontvangfoto om dit in volle grootte te sien",
   "receiptPhotoPreparing": "Kwitansiefoto word voorberei…",
   "homeProPromoTitle": "Probeer Pro 7 dae gratis",
-  "homeProPromoSubtitle": "100 KI-strokie-skanderings & advertensievry oop · Geen kaart nodig"
+  "homeProPromoSubtitle": "100 KI-strokie-skanderings & advertensievry oop · Geen kaart nodig",
+  "receiptFailureSheetTitle": "Waarom is dit nie gelees nie",
+  "receiptFailureMissingTop": "Boonste gedeelte ontbreek",
+  "receiptFailureMissingBottom": "Onderste gedeelte ontbreek",
+  "receiptFailureMissingMiddle": "Middelste gedeelte ontbreek",
+  "receiptFailureNotReceipt": "Nie 'n kwitansie nie",
+  "receiptFailureUnreadable": "Nie leesbaar nie",
+  "receiptFailureMismatch": "Totaal stem nie ooreen nie",
+  "receiptFailureRejected": "Kon nie lees nie",
+  "receiptFailureService": "Diens nie beskikbaar nie",
+  "receiptFailureUnknown": "Lees het misluk",
+  "receiptFailureAddMoreAction": "Foto die res",
+  "receiptFailureRetakeAction": "Neem weer"
 }

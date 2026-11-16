@@ -1747,4 +1747,40 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 scansioni scontrini IA e zero pubblicità attive · Nessuna carta';
+
+  @override
+  String get receiptFailureSheetTitle => 'Perché non si legge?';
+
+  @override
+  String get receiptFailureMissingTop => 'Parte superiore mancante';
+
+  @override
+  String get receiptFailureMissingBottom => 'Parte inferiore mancante';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Parte centrale mancante';
+
+  @override
+  String get receiptFailureNotReceipt => 'Non è uno scontrino';
+
+  @override
+  String get receiptFailureUnreadable => 'Illeggibile';
+
+  @override
+  String get receiptFailureMismatch => 'Totale non corrisponde';
+
+  @override
+  String get receiptFailureRejected => 'Impossibile leggere';
+
+  @override
+  String get receiptFailureService => 'Servizio non disponibile';
+
+  @override
+  String get receiptFailureUnknown => 'Lettura non riuscita';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografa il resto';
+
+  @override
+  String get receiptFailureRetakeAction => 'Rifai la foto';
 }

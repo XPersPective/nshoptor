@@ -1744,4 +1744,40 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 skanime fature me IA dhe pa reklama të hapura · Pa kartë';
+
+  @override
+  String get receiptFailureSheetTitle => 'Pse nuk u lexua';
+
+  @override
+  String get receiptFailureMissingTop => 'Mungon pjesa e sipërme';
+
+  @override
+  String get receiptFailureMissingBottom => 'Mungon pjesa e poshtme';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Mungon pjesa e mesme';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nuk është faturë';
+
+  @override
+  String get receiptFailureUnreadable => 'Nuk është e lexueshme';
+
+  @override
+  String get receiptFailureMismatch => 'Totali nuk përputhet';
+
+  @override
+  String get receiptFailureRejected => 'S’u lexua dot';
+
+  @override
+  String get receiptFailureService => 'Shërbimi nuk disponohet';
+
+  @override
+  String get receiptFailureUnknown => 'Leximi dështoi';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografo pjesën që mbetet';
+
+  @override
+  String get receiptFailureRetakeAction => 'Bëj një foto tjetër';
 }

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Pindutin ang litrato ng resibo para makita sa buong laki",
   "receiptPhotoPreparing": "Inihahanda ang larawan ng resibo…",
   "homeProPromoTitle": "Subukan ang Pro nang libre sa 7 araw",
-  "homeProPromoSubtitle": "100 AI scan ng resibo at walang ad na bukas · Walang kailangang card"
+  "homeProPromoSubtitle": "100 AI scan ng resibo at walang ad na bukas · Walang kailangang card",
+  "receiptFailureSheetTitle": "Bakit hindi nabasa",
+  "receiptFailureMissingTop": "Nawawalang itaas",
+  "receiptFailureMissingBottom": "Nawawalang ibaba",
+  "receiptFailureMissingMiddle": "Nawawalang gitna",
+  "receiptFailureNotReceipt": "Hindi resibo",
+  "receiptFailureUnreadable": "Hindi malinaw",
+  "receiptFailureMismatch": "Hindi tugma ang kabuuan",
+  "receiptFailureRejected": "Hindi nabasa",
+  "receiptFailureService": "Hindi available ang serbisyo",
+  "receiptFailureUnknown": "Nabigo ang pagbasa",
+  "receiptFailureAddMoreAction": "Kunan ang natitira",
+  "receiptFailureRetakeAction": "Kunan muli"
 }

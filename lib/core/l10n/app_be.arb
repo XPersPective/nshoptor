@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Націсніце на фота чека, каб праглядзець яго ў поўным памеры",
   "receiptPhotoPreparing": "Падрыхтоўка фота чэка…",
   "homeProPromoTitle": "Паспрабуйце Pro 7 дзён бясплатна",
-  "homeProPromoSubtitle": "100 ШІ-сканаванняў чэкаў і без рэкламы адкрыта · Картка не патрэбна"
+  "homeProPromoSubtitle": "100 ШІ-сканаванняў чэкаў і без рэкламы адкрыта · Картка не патрэбна",
+  "receiptFailureSheetTitle": "Чаму не ўдалося прачытаць",
+  "receiptFailureMissingTop": "Верхняя частка адсутнічае",
+  "receiptFailureMissingBottom": "Ніжняя частка адсутнічае",
+  "receiptFailureMissingMiddle": "Сярэдняя частка адсутнічае",
+  "receiptFailureNotReceipt": "Не чэк",
+  "receiptFailureUnreadable": "Нечытліва",
+  "receiptFailureMismatch": "Сума не супадае",
+  "receiptFailureRejected": "Не ўдалося прачытаць",
+  "receiptFailureService": "Сервіс недаступны",
+  "receiptFailureUnknown": "Чытанне не ўдалося",
+  "receiptFailureAddMoreAction": "Сфатаграфуйце астатак",
+  "receiptFailureRetakeAction": "Зрабіце зноў"
 }

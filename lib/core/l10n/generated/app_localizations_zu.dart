@@ -1751,4 +1751,40 @@ class AppLocalizationsZu extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       'Ukuskena okungu-100 kwe-AI okungenazikhangiso kuvuliwe · Alikho ikhadi elidingekayo';
+
+  @override
+  String get receiptFailureSheetTitle => 'Kungani akwazi ukufunda';
+
+  @override
+  String get receiptFailureMissingTop => 'Phezulu alukho';
+
+  @override
+  String get receiptFailureMissingBottom => 'Phansi alukho';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Maphakathi alukho';
+
+  @override
+  String get receiptFailureNotReceipt => 'Akusona irisidi';
+
+  @override
+  String get receiptFailureUnreadable => 'Abukeli';
+
+  @override
+  String get receiptFailureMismatch => 'Isamba asihambisani';
+
+  @override
+  String get receiptFailureRejected => 'Akufundwa';
+
+  @override
+  String get receiptFailureService => 'Isevisi ayisebenzi';
+
+  @override
+  String get receiptFailureUnknown => 'Ukufunda akuphumele';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Thatha okusele';
+
+  @override
+  String get receiptFailureRetakeAction => 'Thatha esinye';
 }

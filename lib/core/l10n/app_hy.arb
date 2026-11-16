@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Սեղմեք թղթի լուսանկարը՝ լրիվ չափով դիտելու համար",
   "receiptPhotoPreparing": "Պատրաստվում է կտրոնի լուսանկարը…",
   "homeProPromoTitle": "Փորձեք Pro-ն 7 օր անվճար",
-  "homeProPromoSubtitle": "ԱԲ-ով 100 կտրոնի սկան և առանց գովազդի ռեժիմ · Քարտ պետք չէ"
+  "homeProPromoSubtitle": "ԱԲ-ով 100 կտրոնի սկան և առանց գովազդի ռեժիմ · Քարտ պետք չէ",
+  "receiptFailureSheetTitle": "Ինչու չհաջողվեց կարդալ",
+  "receiptFailureMissingTop": "Վերին մասը բացակայում է",
+  "receiptFailureMissingBottom": "Ներրևին մասը բացակայում է",
+  "receiptFailureMissingMiddle": "Միջին մասը բացակայում է",
+  "receiptFailureNotReceipt": "Չեկ չէ",
+  "receiptFailureUnreadable": "Ոչ ընթեռնելի",
+  "receiptFailureMismatch": "Ընդհանուրը չի համապատասխանում",
+  "receiptFailureRejected": "Չհաջողվեց կարդալ",
+  "receiptFailureService": "Ծառայությունն անհասնելի է",
+  "receiptFailureUnknown": "Կարդալը ձախողվեց",
+  "receiptFailureAddMoreAction": "Նկարահանել մնացած մասը",
+  "receiptFailureRetakeAction": "Նկարահանել նորից"
 }

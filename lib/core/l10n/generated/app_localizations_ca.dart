@@ -1749,4 +1749,40 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 escaneigs de tiquets amb IA i sense anuncis activats · Sense targeta';
+
+  @override
+  String get receiptFailureSheetTitle => 'Per què no s\'ha llegit';
+
+  @override
+  String get receiptFailureMissingTop => 'Falta la part superior';
+
+  @override
+  String get receiptFailureMissingBottom => 'Falta la part inferior';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Falta la part central';
+
+  @override
+  String get receiptFailureNotReceipt => 'No és un rebut';
+
+  @override
+  String get receiptFailureUnreadable => 'No és llegible';
+
+  @override
+  String get receiptFailureMismatch => 'El total no coincideix';
+
+  @override
+  String get receiptFailureRejected => 'No s\'ha pogut llegir';
+
+  @override
+  String get receiptFailureService => 'Servei no disponible';
+
+  @override
+  String get receiptFailureUnknown => 'La lectura ha fallat';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografia la resta';
+
+  @override
+  String get receiptFailureRetakeAction => 'Torna-ho a fer';
 }

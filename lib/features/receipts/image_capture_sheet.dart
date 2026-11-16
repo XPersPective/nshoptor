@@ -30,15 +30,15 @@ Future<CaptureOutcome> captureImageText(
     // Gallery originals can be HEIC/HEIF or tens of megapixels, which the
     // native recognizer rejects. Re-encoding to a bounded JPEG keeps fine
     // receipt print legible while making recognition reliable.
-    // On-device OCR needs ~13px per character on 48-column receipts:
-    // 2560px keeps small print readable; the image model keeps the measured
-    // 1600px so its upload still needs no slow re-encode (PB-207).
-    final longSide = requireText ? 2560.0 : 1600.0;
+    // On-device OCR needs ~13px per character on 48-column receipts. The
+    // image model gets the same headroom: a tall full receipt must not be
+    // crushed before the app's own single, legibility-first compression.
+    const longSide = 2560.0;
     picker = () async => (await ImagePicker().pickImage(
       source: source,
       maxWidth: longSide,
       maxHeight: longSide,
-      imageQuality: requireText ? 88 : 85,
+      imageQuality: requireText ? 88 : 92,
     ))?.path;
   }
   final ownedSource = ocrSource == null ? _OwnedTextSource() : null;

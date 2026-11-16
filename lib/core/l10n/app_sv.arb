@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Tryck på ett kvittofoto för att visa i full storlek",
   "receiptPhotoPreparing": "Förbereder kvittobild…",
   "homeProPromoTitle": "Prova Pro gratis i 7 dagar",
-  "homeProPromoSubtitle": "100 AI-kvittoskanningar & reklamfritt upplåst · Inget kort behövs"
+  "homeProPromoSubtitle": "100 AI-kvittoskanningar & reklamfritt upplåst · Inget kort behövs",
+  "receiptFailureSheetTitle": "Varför kunde inte läsas",
+  "receiptFailureMissingTop": "Toppen saknas",
+  "receiptFailureMissingBottom": "Botten saknas",
+  "receiptFailureMissingMiddle": "Mitten saknas",
+  "receiptFailureNotReceipt": "Inte ett kvitto",
+  "receiptFailureUnreadable": "Oläsligt",
+  "receiptFailureMismatch": "Totalen stämmer inte",
+  "receiptFailureRejected": "Kunde inte läsa av",
+  "receiptFailureService": "Tjänsten är otillgänglig",
+  "receiptFailureUnknown": "Läsningen misslyckades",
+  "receiptFailureAddMoreAction": "Fota resten",
+  "receiptFailureRetakeAction": "Ta om"
 }

@@ -1743,4 +1743,40 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 süni intellekt çek oxuması və reklamsız istifadə açıq · Kart lazım deyil';
+
+  @override
+  String get receiptFailureSheetTitle => 'Niyə oxunmadı';
+
+  @override
+  String get receiptFailureMissingTop => 'Yuxarı hissə yoxdur';
+
+  @override
+  String get receiptFailureMissingBottom => 'Aşağı hissə yoxdur';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Orta hissə yoxdur';
+
+  @override
+  String get receiptFailureNotReceipt => 'Çek deyil';
+
+  @override
+  String get receiptFailureUnreadable => 'Oxunmur';
+
+  @override
+  String get receiptFailureMismatch => 'Yekun məbləğ uyğun gəlmir';
+
+  @override
+  String get receiptFailureRejected => 'Oxuna bilmədi';
+
+  @override
+  String get receiptFailureService => 'Xidmət mövcud deyil';
+
+  @override
+  String get receiptFailureUnknown => 'Oxunma uğursuz oldu';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Qalanını çəkin';
+
+  @override
+  String get receiptFailureRetakeAction => 'Yenidən çəkin';
 }

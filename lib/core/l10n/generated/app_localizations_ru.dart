@@ -1743,4 +1743,40 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI-сканов чеков и работа без рекламы открыты · Карта не нужна';
+
+  @override
+  String get receiptFailureSheetTitle => 'Почему не удалось прочитать';
+
+  @override
+  String get receiptFailureMissingTop => 'Верхняя часть отсутствует';
+
+  @override
+  String get receiptFailureMissingBottom => 'Нижняя часть отсутствует';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Средняя часть отсутствует';
+
+  @override
+  String get receiptFailureNotReceipt => 'Это не чек';
+
+  @override
+  String get receiptFailureUnreadable => 'Неразборчиво';
+
+  @override
+  String get receiptFailureMismatch => 'Сумма не совпадает';
+
+  @override
+  String get receiptFailureRejected => 'Не удалось прочитать';
+
+  @override
+  String get receiptFailureService => 'Сервис недоступен';
+
+  @override
+  String get receiptFailureUnknown => 'Ошибка чтения';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Сфотографируйте остальное';
+
+  @override
+  String get receiptFailureRetakeAction => 'Снять заново';
 }

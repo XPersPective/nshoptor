@@ -1745,4 +1745,40 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI skenov účteniek a bez reklám odomknuté · Karta nie je potrebná';
+
+  @override
+  String get receiptFailureSheetTitle => 'Prečo sa neprečítalo';
+
+  @override
+  String get receiptFailureMissingTop => 'Chýba horná časť';
+
+  @override
+  String get receiptFailureMissingBottom => 'Chýba dolná časť';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Chýba stredná časť';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nie je to účtenka';
+
+  @override
+  String get receiptFailureUnreadable => 'Nie je čitateľné';
+
+  @override
+  String get receiptFailureMismatch => 'Súčet sa nezhoduje';
+
+  @override
+  String get receiptFailureRejected => 'Nepodarilo sa prečítať';
+
+  @override
+  String get receiptFailureService => 'Služba je nedostupná';
+
+  @override
+  String get receiptFailureUnknown => 'Prečítanie zlyhalo';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Odfotiť zvyšok';
+
+  @override
+  String get receiptFailureRetakeAction => 'Odfotiť znovu';
 }

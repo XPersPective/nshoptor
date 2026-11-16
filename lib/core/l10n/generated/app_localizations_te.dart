@@ -1750,4 +1750,40 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AI రసీదు స్కాన్లు మరియు ప్రకటనలు లేని ఉపయోగం · కార్డు అవసరం లేదు';
+
+  @override
+  String get receiptFailureSheetTitle => 'ఎందుకు చదవలేకపోయాం';
+
+  @override
+  String get receiptFailureMissingTop => 'పై భాగం లేదు';
+
+  @override
+  String get receiptFailureMissingBottom => 'కింది భాగం లేదు';
+
+  @override
+  String get receiptFailureMissingMiddle => 'మధ్య భాగం లేదు';
+
+  @override
+  String get receiptFailureNotReceipt => 'రసీదు కాదు';
+
+  @override
+  String get receiptFailureUnreadable => 'స్పష్టంగా లేదు';
+
+  @override
+  String get receiptFailureMismatch => 'మొత్తం సరిపోలడం లేదు';
+
+  @override
+  String get receiptFailureRejected => 'చదవలేకపోయాం';
+
+  @override
+  String get receiptFailureService => 'సేవ అందుబాటులో లేదు';
+
+  @override
+  String get receiptFailureUnknown => 'చదవడం విఫలమైంది';
+
+  @override
+  String get receiptFailureAddMoreAction => 'మిగతా భాగం తీయండి';
+
+  @override
+  String get receiptFailureRetakeAction => 'మళ్ళీ తీయండి';
 }

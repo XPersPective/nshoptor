@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Tippe auf ein Quittungsfoto, um es in voller Größe anzusehen",
   "receiptPhotoPreparing": "Belegfoto wird vorbereitet…",
   "homeProPromoTitle": "Pro 7 Tage kostenlos testen",
-  "homeProPromoSubtitle": "100 KI-Bon-Scans & werbefrei freigeschaltet · Keine Karte nötig"
+  "homeProPromoSubtitle": "100 KI-Bon-Scans & werbefrei freigeschaltet · Keine Karte nötig",
+  "receiptFailureSheetTitle": "Warum nicht lesbar",
+  "receiptFailureMissingTop": "Oberteil fehlt",
+  "receiptFailureMissingBottom": "Unterteil fehlt",
+  "receiptFailureMissingMiddle": "Mittelteil fehlt",
+  "receiptFailureNotReceipt": "Kein Beleg",
+  "receiptFailureUnreadable": "Nicht lesbar",
+  "receiptFailureMismatch": "Summe stimmt nicht",
+  "receiptFailureRejected": "Konnte nicht gelesen werden",
+  "receiptFailureService": "Dienst nicht verfügbar",
+  "receiptFailureUnknown": "Lesen fehlgeschlagen",
+  "receiptFailureAddMoreAction": "Rest fotografieren",
+  "receiptFailureRetakeAction": "Neu aufnehmen"
 }

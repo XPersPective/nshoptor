@@ -12,6 +12,7 @@ import 'package:nshoptor/data/db/app_database.dart';
 import 'package:nshoptor/features/history/reports/report_export_service.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
 import 'package:nshoptor/features/lists/list_repository.dart';
+import 'package:nshoptor/features/lists/list_status.dart';
 import 'package:nshoptor/features/receipts/ocr_text_source.dart';
 import 'package:nshoptor/features/receipts/parser/receipt_parser.dart';
 import 'package:nshoptor/features/receipts/receipt_document.dart';
@@ -127,72 +128,100 @@ void main() {
     await tester.binding.setSurfaceSize(null);
   }
 
+  Future<void> complete() async {
+    final list = await lists.getById(listId);
+    var status = ListStatus.fromDb(list.status);
+    if (status == ListStatus.draft) {
+      await lists.changeStatus(listId, ListStatus.planned);
+      status = ListStatus.planned;
+    }
+    if (status == ListStatus.planned) {
+      await lists.changeStatus(listId, ListStatus.shopping);
+    }
+    await lists.changeStatus(listId, ListStatus.completed);
+  }
+
   Finder tile(int id) => find.byKey(ValueKey('detail_receipt_$id'));
 
-  testWidgets('receipts section shows store, date, total and state '
-      '(text + icon, not colour alone) and the receipt date (F19)', (
-    tester,
-  ) async {
-    await tester.binding.setSurfaceSize(const Size(412, 1400));
-    final semantics = tester.ensureSemantics();
-    await open(tester);
-    expect(find.byKey(const Key('detail_receipts_section')), findsOneWidget);
-    expect(find.text('Receipts (2)'), findsOneWidget);
-    expect(
-      find.descendant(
-        of: tile(completeId),
-        matching: find.text('ŞOK MARKETLER'),
-      ),
-      findsOneWidget,
-    );
-    expect(
-      find.descendant(
-        of: tile(completeId),
-        matching: find.textContaining('Complete'),
-      ),
-      findsOneWidget,
-    );
-    expect(
-      find.descendant(
-        of: tile(completeId),
-        matching: find.byIcon(Icons.check_circle_outline),
-      ),
-      findsOneWidget,
-    );
-    expect(
-      find.descendant(
-        of: tile(completeId),
-        matching: find.textContaining('Oct 24, 2026'),
-      ),
-      findsOneWidget,
-    );
-    expect(
-      find.byKey(ValueKey('detail_receipt_total_$completeId')),
-      findsOneWidget,
-    );
-    expect(
-      find.descendant(
-        of: tile(draftId),
-        matching: find.textContaining('Incomplete'),
-      ),
-      findsOneWidget,
-    );
-    expect(
-      find.descendant(
-        of: tile(draftId),
-        matching: find.byIcon(Icons.pending_outlined),
-      ),
-      findsOneWidget,
-    );
-    expect(find.byKey(const Key('detail_receipt_date')), findsOneWidget);
-    expect(find.textContaining('Receipt date: Oct 24, 2026'), findsOneWidget);
-    expect(tester.getSize(tile(draftId)).height, greaterThanOrEqualTo(48));
-    final menu = find.byKey(ValueKey('detail_receipt_menu_$draftId'));
-    expect(tester.getSize(menu).height, greaterThanOrEqualTo(48));
-    expect(tester.getSize(menu).width, greaterThanOrEqualTo(48));
-    semantics.dispose();
-    await close(tester);
-  });
+  testWidgets(
+    'active incomplete list hides receipts; completed list shows receipts and '
+    'photos in one bottom card with store, date, total and state (F19)',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(412, 1400));
+      final semantics = tester.ensureSemantics();
+      await open(tester);
+      expect(find.byKey(const Key('detail_receipts_section')), findsNothing);
+      expect(find.byKey(const Key('list_receipt_photos_section')), findsNothing);
+      expect(find.text('ELMA'), findsOneWidget);
+
+      await complete();
+      await tester.pumpWidget(const SizedBox.shrink());
+      await open(tester);
+
+      expect(find.byKey(const Key('detail_receipts_section')), findsOneWidget);
+      expect(find.text('Receipts (2)'), findsOneWidget);
+      expect(
+        tester
+            .getTopLeft(find.byKey(const Key('detail_receipts_section')))
+            .dy,
+        greaterThan(tester.getTopLeft(find.text('ELMA')).dy),
+      );
+      expect(
+        find.descendant(
+          of: tile(completeId),
+          matching: find.text('ŞOK MARKETLER'),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: tile(completeId),
+          matching: find.textContaining('Complete'),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: tile(completeId),
+          matching: find.byIcon(Icons.check_circle_outline),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: tile(completeId),
+          matching: find.textContaining('Oct 24, 2026'),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(ValueKey('detail_receipt_total_$completeId')),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: tile(draftId),
+          matching: find.textContaining('Incomplete'),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.descendant(
+          of: tile(draftId),
+          matching: find.byIcon(Icons.pending_outlined),
+        ),
+        findsOneWidget,
+      );
+      expect(find.byKey(const Key('detail_receipt_date')), findsOneWidget);
+      expect(find.textContaining('Receipt date: Oct 24, 2026'), findsOneWidget);
+      expect(tester.getSize(tile(draftId)).height, greaterThanOrEqualTo(48));
+      final menu = find.byKey(ValueKey('detail_receipt_menu_$draftId'));
+      expect(tester.getSize(menu).height, greaterThanOrEqualTo(48));
+      expect(tester.getSize(menu).width, greaterThanOrEqualTo(48));
+      semantics.dispose();
+      await close(tester);
+    },
+  );
 
   testWidgets('many receipts stay collapsed until "Show all"', (tester) async {
     for (var i = 0; i < 4; i++) {
@@ -206,6 +235,7 @@ void main() {
             ),
           );
     }
+    await complete();
     await tester.binding.setSurfaceSize(const Size(412, 1600));
     await open(tester);
     expect(find.text('Receipts (6)'), findsOneWidget);
@@ -226,62 +256,87 @@ void main() {
     await close(tester);
   });
 
-  testWidgets('tapping an incomplete receipt continues that draft directly', (
+  testWidgets('receipts on a completed list stay read-only when tapped', (
     tester,
   ) async {
+    await complete();
     await tester.binding.setSurfaceSize(const Size(412, 1400));
     await open(tester);
     await tester.tap(tile(draftId));
     await tester.pumpAndSettle();
-    // No picker: the continuation sheet of this draft opens at once.
-    expect(find.byKey(const Key('receipt_new_capture')), findsNothing);
-    expect(find.byKey(Key('receipt_resume_$draftId')), findsNothing);
-    expect(find.byKey(const Key('receipt_capture_later')), findsOneWidget);
-    await tester.tap(find.byKey(const Key('receipt_capture_later')));
-    await tester.pumpAndSettle();
-    expect(tile(draftId), findsOneWidget);
-    await close(tester);
-  });
-
-  testWidgets('complete receipts are not resumed by tap', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(412, 1400));
-    await open(tester);
+    expect(find.byKey(const Key('receipt_capture_later')), findsNothing);
     await tester.tap(tile(completeId));
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('receipt_capture_later')), findsNothing);
     await close(tester);
   });
 
-  testWidgets('deleting a receipt asks first, then removes it and its items', (
-    tester,
-  ) async {
-    await tester.binding.setSurfaceSize(const Size(412, 1400));
-    await open(tester);
-    expect(find.text('ELMA'), findsOneWidget);
-    await tester.tap(find.byKey(ValueKey('detail_receipt_menu_$completeId')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(ValueKey('detail_receipt_delete_$completeId')));
-    await tester.pumpAndSettle();
-    expect(
-      find.text(
-        'Delete this receipt and the items it added? '
-        'You can import it again later.',
-      ),
-      findsOneWidget,
-    );
-    await tester.tap(find.text('Cancel'));
-    await tester.pumpAndSettle();
-    expect(tile(completeId), findsOneWidget);
-    await tester.longPress(tile(completeId));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('receipt_delete_confirm')));
-    await tester.pumpAndSettle();
-    expect(tile(completeId), findsNothing);
-    expect(find.text('Receipt deleted.'), findsOneWidget);
-    expect(find.text('ELMA'), findsNothing);
-    expect(await db.select(db.purchaseEntries).get(), isEmpty);
-    await close(tester);
-  });
+  testWidgets(
+    'deleting a receipt asks first, then deletes only the receipt while preserving list items',
+    (tester) async {
+      await complete();
+      await tester.binding.setSurfaceSize(const Size(412, 1400));
+      await open(tester);
+      expect(find.text('ELMA'), findsOneWidget);
+      await tester.tap(find.byKey(ValueKey('detail_receipt_menu_$completeId')));
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(ValueKey('detail_receipt_delete_$completeId')),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Delete receipt'), findsOneWidget);
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(tile(completeId), findsOneWidget);
+      await tester.longPress(tile(completeId));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('receipt_delete_confirm')));
+      await tester.pumpAndSettle();
+      expect(tile(completeId), findsNothing);
+      expect(find.text('Receipt deleted.'), findsOneWidget);
+      expect(find.text('ELMA'), findsOneWidget);
+      expect(await db.select(db.purchaseEntries).get(), isNotEmpty);
+      await close(tester);
+    },
+  );
+
+  testWidgets(
+    'deleting a receipt photo removes only that photo and keeps receipt and list',
+    (tester) async {
+      final imgFile = File('${dir.path}/receipt_page_0.jpg')
+        ..writeAsBytesSync([0xFF, 0xD8, 0xFF, 0xD9]);
+      await (db.update(
+        db.receipts,
+      )..where((t) => t.id.equals(completeId))).write(
+        ReceiptsCompanion(imagePaths: Value([imgFile.path])),
+      );
+      await complete();
+      await tester.binding.setSurfaceSize(const Size(412, 1400));
+      await open(tester);
+      expect(
+        find.descendant(
+          of: find.byKey(const Key('detail_receipts_section')),
+          matching: find.byKey(const Key('list_receipt_photos_section')),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(Key('receipt_photo_thumb_${completeId}_0')),
+        findsOneWidget,
+      );
+      await tester.tap(find.byKey(Key('receipt_photo_delete_${completeId}_0')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('receipt_photo_delete_confirm')));
+      await tester.pumpAndSettle();
+      expect(
+        find.byKey(Key('receipt_photo_thumb_${completeId}_0')),
+        findsNothing,
+      );
+      expect(tile(completeId), findsOneWidget);
+      expect(find.text('ELMA'), findsOneWidget);
+      await close(tester);
+    },
+  );
 
   testWidgets('list overflow opens the shared PDF/CSV/Print menu', (
     tester,
@@ -315,6 +370,7 @@ void main() {
     testWidgets(
       'receipts section layout ${config.$1}/${config.$2}/${config.$3}',
       (tester) async {
+        await complete();
         await tester.binding.setSurfaceSize(Size(config.$3, 1800));
         await open(
           tester,

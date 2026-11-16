@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Додирните фотографију рачуна да бисте је видели у пуној величини",
   "receiptPhotoPreparing": "Припрема фотографије рачуна…",
   "homeProPromoTitle": "Испробајте Pro бесплатно 7 дана",
-  "homeProPromoSubtitle": "100 АИ скенирања рачуна и без реклама откључано · Картица није потребна"
+  "homeProPromoSubtitle": "100 АИ скенирања рачуна и без реклама откључано · Картица није потребна",
+  "receiptFailureSheetTitle": "Зашто није могуће прочитати",
+  "receiptFailureMissingTop": "Недостаје горњи део",
+  "receiptFailureMissingBottom": "Недостаје доњи део",
+  "receiptFailureMissingMiddle": "Недостаје средњи део",
+  "receiptFailureNotReceipt": "Ово није рачун",
+  "receiptFailureUnreadable": "Није читљиво",
+  "receiptFailureMismatch": "Укупан износ не одговара",
+  "receiptFailureRejected": "Није могуће прочитати",
+  "receiptFailureService": "Услуга није доступна",
+  "receiptFailureUnknown": "Читање није успело",
+  "receiptFailureAddMoreAction": "Сними остатак рачуна",
+  "receiptFailureRetakeAction": "Фотографиши поново"
 }

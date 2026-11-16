@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "execution": {
+    "source": "native"
+  },
+  "review": {
+    "source": "native"
+  },
+  "scheduling": {
+    "mode": "parallel",
+    "max_parallel": 32,
+    "auto": true
+  },
+  "speed": "balanced",
+  "origin": "defaults",
+  "quota_recovery": {
+    "enabled": true,
+    "threshold_percent": 10
+  },
+  "relay": {
+    "enabled": true,
+    "threshold_percent": 10,
+    "candidates": [],
+    "director_category": "same",
+    "max_handoffs": 50
+  },
+  "note": "Session 2026-11-15 receipt read-failure protocol work: execution=native, review=native, scheduling=parallel, quota recovery enabled, relay enabled. No CLI Agent Pool. Standing user authorization preserved; no new approval requested."
+}

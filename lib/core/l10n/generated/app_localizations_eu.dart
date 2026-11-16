@@ -1749,4 +1749,40 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       '100 AA ordainagiri-eskaneatze eta iragarkirik gabe · Txartelik gabe';
+
+  @override
+  String get receiptFailureSheetTitle => 'Zergatik ez da irakurri';
+
+  @override
+  String get receiptFailureMissingTop => 'Goialdea falta';
+
+  @override
+  String get receiptFailureMissingBottom => 'Behekoa falta';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Ertaina falta';
+
+  @override
+  String get receiptFailureNotReceipt => 'Ez da ordainagiria';
+
+  @override
+  String get receiptFailureUnreadable => 'Irakurgaitza';
+
+  @override
+  String get receiptFailureMismatch => 'Guztizkoa ez dator bat';
+
+  @override
+  String get receiptFailureRejected => 'Ezin izan da irakurri';
+
+  @override
+  String get receiptFailureService => 'Zerbitzua ez dago';
+
+  @override
+  String get receiptFailureUnknown => 'Irakurtzean huts egin du';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Atera gainera';
+
+  @override
+  String get receiptFailureRetakeAction => 'Atera beste argazki bat';
 }

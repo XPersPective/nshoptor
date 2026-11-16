@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Chofoza isithombe sethikithi ukuze ubuke ngobukhulu",
   "receiptPhotoPreparing": "Ilungiselela isithombe serisidi…",
   "homeProPromoTitle": "Zama i-Pro mahhala izinsuku ezi-7",
-  "homeProPromoSubtitle": "Ukuskena okungu-100 kwe-AI okungenazikhangiso kuvuliwe · Alikho ikhadi elidingekayo"
+  "homeProPromoSubtitle": "Ukuskena okungu-100 kwe-AI okungenazikhangiso kuvuliwe · Alikho ikhadi elidingekayo",
+  "receiptFailureSheetTitle": "Kungani akwazi ukufunda",
+  "receiptFailureMissingTop": "Phezulu alukho",
+  "receiptFailureMissingBottom": "Phansi alukho",
+  "receiptFailureMissingMiddle": "Maphakathi alukho",
+  "receiptFailureNotReceipt": "Akusona irisidi",
+  "receiptFailureUnreadable": "Abukeli",
+  "receiptFailureMismatch": "Isamba asihambisani",
+  "receiptFailureRejected": "Akufundwa",
+  "receiptFailureService": "Isevisi ayisebenzi",
+  "receiptFailureUnknown": "Ukufunda akuphumele",
+  "receiptFailureAddMoreAction": "Thatha okusele",
+  "receiptFailureRetakeAction": "Thatha esinye"
 }

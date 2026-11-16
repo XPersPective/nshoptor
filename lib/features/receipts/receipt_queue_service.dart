@@ -20,6 +20,7 @@ import 'receipt_dedup.dart';
 import 'receipt_document.dart';
 import 'receipt_draft_repository.dart';
 import 'receipt_image_store.dart';
+import 'receipt_read_failure.dart';
 import 'receipt_repository.dart';
 
 /// Builds the application's [AiClient] identically for foreground UI and
@@ -150,6 +151,86 @@ class ReceiptQueueService {
     unawaited(drain());
   }
 
+  /// The canonical failure stored on a tray receipt, or null when the receipt
+  /// did not fail.
+  Future<ReceiptReadFailure?> failureOf(int receiptId) async {
+    final row = await _drafts.getById(receiptId);
+    if (row == null) return null;
+    if (row.queueState != 'failed') return null;
+    return ReceiptReadFailure.fromCode(row.queueError);
+  }
+
+  /// Adds one more photo to an incomplete receipt and reads it again.
+  ///
+  /// The photo joins the receipt's own session, so the receipt keeps its
+  /// identity and the next attempt sees the whole receipt. Returns false
+  /// when the receipt is gone or already holds the maximum number of photos.
+  Future<bool> addPhotoAndRequeue(int receiptId, String imagePath) async {
+    final added = await _drafts.appendPhotoAndRequeue(receiptId, imagePath);
+    if (!added) return false;
+    await scheduleBackgroundDrain();
+    unawaited(drain());
+    return true;
+  }
+
+  /// Removes one photo at [index] from a receipt session.
+  ///
+  /// When other photos remain in the session, the removed file is cleaned up
+  /// and the remaining photos are re-queued; when the last photo is removed,
+  /// the entire receipt draft is deleted cleanly. Returns false if missing or
+  /// out of range.
+  Future<bool> removePhotoAndRequeue(int receiptId, int index) async {
+    final removed = await _drafts.removePhotoAtAndRequeue(receiptId, index);
+    if (removed == null) return false;
+    if (removed.emptied) {
+      await deleteTrayReceipt(receiptId);
+      return true;
+    }
+    try {
+      await _removeImage(removed.removedPath);
+    } catch (_) {}
+    await scheduleBackgroundDrain();
+    unawaited(drain());
+    return true;
+  }
+
+  /// Replaces the photos of a failed receipt with freshly captured ones and
+  /// reads the receipt again.
+  ///
+  /// Used when the receipt as a whole could not be read (blur, glare, wrong
+  /// subject): the old photos are not usable evidence, so they are dropped
+  /// and their files removed. Returns false when the receipt is gone.
+  Future<bool> replacePhotosAndRequeue(
+    int receiptId,
+    List<String> imagePaths,
+  ) async {
+    if (imagePaths.isEmpty) return false;
+    final row = await _drafts.getById(receiptId);
+    if (row == null) return false;
+    final kept = imagePaths.toSet();
+    final replaced = await _drafts.replacePhotosAndRequeue(
+      receiptId,
+      imagePaths,
+    );
+    if (!replaced) return false;
+    for (final path in row.imagePaths) {
+      if (kept.contains(path)) continue;
+      try {
+        await _removeImage(path);
+      } catch (_) {}
+    }
+    await scheduleBackgroundDrain();
+    unawaited(drain());
+    return true;
+  }
+
+  /// Removes an app-owned image, honouring the test hook when one is set.
+  Future<bool> _removeImage(String path) async {
+    final hook = removeOwnedImage;
+    if (hook != null) return hook(path);
+    return _images.removeOwned(path);
+  }
+
   /// Deletes a receipt row from `Fişlerim (N)` and cleans up app-owned JPEG files
   /// (delegating physical removal to [removeOwnedImage] when overridden in tests).
   Future<void> deleteTrayReceipt(int receiptId) async {
@@ -201,7 +282,7 @@ class ReceiptQueueService {
 
   Future<void> _processOne(Receipt item) async {
     if (item.imagePaths.isEmpty) {
-      await _drafts.markFailed(item.id, 'no_images');
+      await _drafts.markFailed(item.id, ReceiptReadFailure.noImages.code);
       return;
     }
     try {
@@ -225,17 +306,38 @@ class ReceiptQueueService {
         case ReceiptParsedDocument(:final document):
           await _completeParsed(item, document);
         case ReceiptParseNeedsMoreOrRetake(:final read):
-          final reason = read is AiReceiptRetake ? read.reason : 'needs_more';
-          await _drafts.markFailed(item.id, reason);
-        case ReceiptParseFailed():
-          await _drafts.markFailed(item.id, 'unreadable');
+          await _drafts.markFailed(item.id, _failureOf(read).code);
+        case ReceiptParseFailed(:final unavailableResult):
+          // A service that is offline or over quota is not the receipt's
+          // fault: retrying the same photos later is the right next step.
+          final failure = switch (unavailableResult) {
+            null => ReceiptReadFailure.unreadable,
+            AiQuota() => ReceiptReadFailure.quotaExceeded,
+            _ => ReceiptReadFailure.serviceUnavailable,
+          };
+          await _drafts.markFailed(item.id, failure.code);
       }
     } catch (_) {
       try {
-        await _drafts.markFailed(item.id, 'error');
+        await _drafts.markFailed(item.id, ReceiptReadFailure.unknown.code);
       } catch (_) {}
     }
   }
+
+  /// Maps one reading outcome onto the canonical failure taxonomy.
+  ///
+  /// The model names the missing part of the receipt, and that direction is
+  /// kept: the tray tells the user whether to shoot the top, the bottom or
+  /// the gap instead of a bare "could not read".
+  ReceiptReadFailure _failureOf(AiReceiptRead read) => switch (read) {
+    AiReceiptNeedsMore(:final gap) => ReceiptReadFailure.fromGap(gap),
+    AiReceiptRetake(:final reason) => ReceiptReadFailure.fromCode(reason),
+    AiReceiptUnavailable(:final result) => switch (result) {
+      AiQuota() => ReceiptReadFailure.quotaExceeded,
+      _ => ReceiptReadFailure.serviceUnavailable,
+    },
+    AiReceiptVerified() => ReceiptReadFailure.unknown,
+  };
 
   Future<void> _completeParsed(Receipt item, ReceiptDocument document) async {
     final dup = await findDuplicateReceipt(

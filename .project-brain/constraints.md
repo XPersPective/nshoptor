@@ -3,6 +3,7 @@
 - 2026-10-26: Keep active project context compact. Source/tests and nonsecret versioned automation belong in the app repository; credentials, store media, publishing readbacks and archived artifacts belong under the existing D:/AppPublishing app registry. No AI Co-Authored-By contributor trailers. Preserve current implementation while processing new user requests; app first, publishing preparation next, website last. Hash-verify valuable material before removing obsolete copies.
 
 - C-023: Kullanıcı 2026-10-26: Store Automation kaldırılmıştır; önbellek/yedek kopyası kullanılmaz, geçiş yapılmaz. Geliştirme Project Brain; mağaza yayını Release Harbor. Project Forge yalnız yeni proje başlangıcı içindir. Mevcut yayın yetkisi tekrar sorulmaz; hesap oturumu yoksa somut eksik olarak kaydedilir.
+- C-025: Kullanıcı 2026-11-15: Sonraki release derleme/yayın işlemleri açık kaynak repo için ücretsiz olan GitHub Actions üzerinden yürütülsün (`.github/workflows/android-release.yml` ve `ios-release.yml` sürüm ve yayın adımları buna göre kullanılır/güncellenir).
 - C-024: Kullanıcının güncel AGENTS.md yönergesi tek ortak Medium_Phone_API_36.0 AVD'sini zorunlu kılar; eski geçici AVD istisnaları kullanılmaz. Başka oturum kullanıyorsa dokunulmaz.
 
 - C-022: Superseded by C-024: only shared Medium_Phone_API_36.0; no temporary AVD exceptions remain authorized.

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "แตะรูปภาพใบเสร็จเพื่อดูขนาดเต็ม",
   "receiptPhotoPreparing": "กำลังเตรียมรูปใบเสร็จ…",
   "homeProPromoTitle": "ทดลองใช้ Pro ฟรี 7 วัน",
-  "homeProPromoSubtitle": "สแกนใบเสร็จ AI 100 ครั้งและไร้โฆษณาเปิดใช้งานแล้ว · ไม่ต้องใช้บัตร"
+  "homeProPromoSubtitle": "สแกนใบเสร็จ AI 100 ครั้งและไร้โฆษณาเปิดใช้งานแล้ว · ไม่ต้องใช้บัตร",
+  "receiptFailureSheetTitle": "ทำไมอ่านไม่ได้",
+  "receiptFailureMissingTop": "ขาดส่วนบน",
+  "receiptFailureMissingBottom": "ขาดส่วนล่าง",
+  "receiptFailureMissingMiddle": "ขาดส่วนกลาง",
+  "receiptFailureNotReceipt": "ไม่ใช่ใบเสร็จ",
+  "receiptFailureUnreadable": "อ่านไม่ชัด",
+  "receiptFailureMismatch": "ยอดรวมไม่ตรง",
+  "receiptFailureRejected": "อ่านไม่ได้",
+  "receiptFailureService": "ใช้บริการไม่ได้",
+  "receiptFailureUnknown": "อ่านไม่สำเร็จ",
+  "receiptFailureAddMoreAction": "ถ่ายส่วนที่เหลือ",
+  "receiptFailureRetakeAction": "ถ่ายใหม่"
 }

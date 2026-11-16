@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Atinge o fotografie cu chitanța pentru a o vedea pe tot ecranul",
   "receiptPhotoPreparing": "Se pregătește fotografia bonului…",
   "homeProPromoTitle": "Încearcă Pro gratuit 7 zile",
-  "homeProPromoSubtitle": "100 scanări AI de bonuri și fără reclame active · Nu necesită card"
+  "homeProPromoSubtitle": "100 scanări AI de bonuri și fără reclame active · Nu necesită card",
+  "receiptFailureSheetTitle": "De ce nu s-a citit",
+  "receiptFailureMissingTop": "Partea de sus lipsește",
+  "receiptFailureMissingBottom": "Partea de jos lipsește",
+  "receiptFailureMissingMiddle": "Partea din mijloc lipsește",
+  "receiptFailureNotReceipt": "Nu e chitanță",
+  "receiptFailureUnreadable": "Nu e lizibil",
+  "receiptFailureMismatch": "Totalul nu corespunde",
+  "receiptFailureRejected": "Nu s-a putut citi",
+  "receiptFailureService": "Serviciu indisponibil",
+  "receiptFailureUnknown": "Citirea a eșuat",
+  "receiptFailureAddMoreAction": "Fotografiază restul",
+  "receiptFailureRetakeAction": "Fotografiază din nou"
 }

@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "レシートの写真をタップしてフルサイズで表示",
   "receiptPhotoPreparing": "レシート写真を準備しています…",
   "homeProPromoTitle": "Proを7日間無料で試す",
-  "homeProPromoSubtitle": "AIレシート読取100回と広告非表示が利用可能 · カード不要"
+  "homeProPromoSubtitle": "AIレシート読取100回と広告非表示が利用可能 · カード不要",
+  "receiptFailureSheetTitle": "読み取れなかった理由",
+  "receiptFailureMissingTop": "上部が欠けています",
+  "receiptFailureMissingBottom": "下部が欠けています",
+  "receiptFailureMissingMiddle": "中部が欠けています",
+  "receiptFailureNotReceipt": "レシートではありません",
+  "receiptFailureUnreadable": "判読できません",
+  "receiptFailureMismatch": "合計が一致しません",
+  "receiptFailureRejected": "読み取れませんでした",
+  "receiptFailureService": "サービスを利用できません",
+  "receiptFailureUnknown": "読み取りに失敗しました",
+  "receiptFailureAddMoreAction": "残りを撮影",
+  "receiptFailureRetakeAction": "撮り直す"
 }

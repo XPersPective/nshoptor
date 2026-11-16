@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Naciśnij zdjęcie paragonu, aby zobaczyć je w pełnym rozmiarze",
   "receiptPhotoPreparing": "Przygotowywanie zdjęcia paragonu…",
   "homeProPromoTitle": "Wypróbuj Pro za darmo przez 7 dni",
-  "homeProPromoSubtitle": "100 skanów paragonów AI i brak reklam aktywne · Karta niepotrzebna"
+  "homeProPromoSubtitle": "100 skanów paragonów AI i brak reklam aktywne · Karta niepotrzebna",
+  "receiptFailureSheetTitle": "Dlaczego nie udało się odczytać",
+  "receiptFailureMissingTop": "Brak górnej części",
+  "receiptFailureMissingBottom": "Brak dolnej części",
+  "receiptFailureMissingMiddle": "Brak środkowej części",
+  "receiptFailureNotReceipt": "To nie paragon",
+  "receiptFailureUnreadable": "Nieczytelne",
+  "receiptFailureMismatch": "Suma się nie zgadza",
+  "receiptFailureRejected": "Nie udało się odczytać",
+  "receiptFailureService": "Usługa niedostępna",
+  "receiptFailureUnknown": "Odczyt nie powiódł się",
+  "receiptFailureAddMoreAction": "Zrób resztę paragonu",
+  "receiptFailureRetakeAction": "Zrób ponownie"
 }

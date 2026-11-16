@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Toca una foto del recibo para verla en tamaño completo",
   "receiptPhotoPreparing": "Preparando foto del recibo…",
   "homeProPromoTitle": "Prueba Pro gratis 7 días",
-  "homeProPromoSubtitle": "100 escaneos de tickets con IA y sin anuncios activos · Sin tarjeta"
+  "homeProPromoSubtitle": "100 escaneos de tickets con IA y sin anuncios activos · Sin tarjeta",
+  "receiptFailureSheetTitle": "Por qué no se leyó",
+  "receiptFailureMissingTop": "Falta la parte superior",
+  "receiptFailureMissingBottom": "Falta la parte inferior",
+  "receiptFailureMissingMiddle": "Falta la parte central",
+  "receiptFailureNotReceipt": "No es un recibo",
+  "receiptFailureUnreadable": "No legible",
+  "receiptFailureMismatch": "El total no coincide",
+  "receiptFailureRejected": "No se pudo leer",
+  "receiptFailureService": "Servicio no disponible",
+  "receiptFailureUnknown": "Error de lectura",
+  "receiptFailureAddMoreAction": "Fotografiar el resto",
+  "receiptFailureRetakeAction": "Repetir"
 }

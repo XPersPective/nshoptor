@@ -1745,4 +1745,40 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get homeProPromoSubtitle =>
       'AI ဘောက်ချာစကင် ၁၀၀ ကြိမ်နှင့် ကြော်ငြာမဲ့အသုံးပြုမှု · ကတ်မလိုပါ';
+
+  @override
+  String get receiptFailureSheetTitle => 'ဘာကြောင့် ဖတ်၍ မရပါ';
+
+  @override
+  String get receiptFailureMissingTop => 'အပေါ်ပိုင်း မရှိပါ';
+
+  @override
+  String get receiptFailureMissingBottom => 'အောက်ပိုင်း မရှိပါ';
+
+  @override
+  String get receiptFailureMissingMiddle => 'အလယ်ပိုင်း မရှိပါ';
+
+  @override
+  String get receiptFailureNotReceipt => 'ပြေစာ မဟုတ်ပါ';
+
+  @override
+  String get receiptFailureUnreadable => 'မရှင်းလင်းပါ';
+
+  @override
+  String get receiptFailureMismatch => 'စုစုပေါင်း မကိုက်ညီပါ';
+
+  @override
+  String get receiptFailureRejected => 'ဖတ်၍ မရပါ';
+
+  @override
+  String get receiptFailureService => 'ဝန်ဆောင်မှု မရှိပါ';
+
+  @override
+  String get receiptFailureUnknown => 'ဖတ်မှု မအောင်မြင်ပါ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ကျန်အပိုင်း ဓာတ်ပုံရိုက်ပါ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ပြန်ရိုက်ပါ';
 }

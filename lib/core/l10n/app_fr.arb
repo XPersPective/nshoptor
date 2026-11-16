@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "Appuyez sur une photo de reçu pour l'afficher en taille réelle",
   "receiptPhotoPreparing": "Préparation de la photo du reçu…",
   "homeProPromoTitle": "Essayez Pro gratuitement 7 jours",
-  "homeProPromoSubtitle": "100 scans de tickets par IA et sans pub débloqués · Sans carte"
+  "homeProPromoSubtitle": "100 scans de tickets par IA et sans pub débloqués · Sans carte",
+  "receiptFailureSheetTitle": "Raison de l'échec",
+  "receiptFailureMissingTop": "Haut manquant",
+  "receiptFailureMissingBottom": "Bas manquant",
+  "receiptFailureMissingMiddle": "Milieu manquant",
+  "receiptFailureNotReceipt": "Pas un reçu",
+  "receiptFailureUnreadable": "Illisible",
+  "receiptFailureMismatch": "Le total ne correspond pas",
+  "receiptFailureRejected": "Impossible de lire",
+  "receiptFailureService": "Service indisponible",
+  "receiptFailureUnknown": "Échec de la lecture",
+  "receiptFailureAddMoreAction": "Photographier le reste",
+  "receiptFailureRetakeAction": "Reprendre une photo"
 }

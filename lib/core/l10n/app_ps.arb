@@ -530,5 +530,17 @@
   "receiptOpenPhotoHint": "د بشپړ اندازه لیدلو لپاره د رسید عکس کلیک وکړئ",
   "receiptPhotoPreparing": "د رسید عکس چمتو کېږي…",
   "homeProPromoTitle": "Pro د 7 ورځو لپاره وړیا وازموئ",
-  "homeProPromoSubtitle": "100 د AI رسيد سکینونه او بې اعلانه کارونه خلاصه ده · کارت ته اړتیا نشته"
+  "homeProPromoSubtitle": "100 د AI رسيد سکینونه او بې اعلانه کارونه خلاصه ده · کارت ته اړتیا نشته",
+  "receiptFailureSheetTitle": "ولاستل نشو ولې",
+  "receiptFailureMissingTop": "پورته برخه نه ده",
+  "receiptFailureMissingBottom": "لږ ترلږه برخه نه ده",
+  "receiptFailureMissingMiddle": "منځنی برخه نه ده",
+  "receiptFailureNotReceipt": "رسید نه دی",
+  "receiptFailureUnreadable": "نالړونکی",
+  "receiptFailureMismatch": "ټولټال سمون نه خوري",
+  "receiptFailureRejected": "ونه لوستل شو",
+  "receiptFailureService": "خدمت شتون نه لري",
+  "receiptFailureUnknown": "لوستل ناکام",
+  "receiptFailureAddMoreAction": "د پاتې برخې انځور کړئ",
+  "receiptFailureRetakeAction": "بیا انځور کړئ"
 }
