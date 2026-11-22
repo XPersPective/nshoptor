@@ -591,7 +591,7 @@ void main() {
   });
 
   testWidgets(
-    'paywall offers only annual Pro using the unmodified localized store price',
+    'paywall shows both Pro periods with their localized prices and buys monthly',
     (tester) async {
       final native = _NativeStore()
         ..products = [
@@ -624,17 +624,25 @@ void main() {
         ),
         findsOneWidget,
       );
-      expect(find.textContaining('57,99'), findsNothing);
+      final monthly = find.byKey(const Key('plan_pro_monthly'));
+      await tester.scrollUntilVisible(
+        find.descendant(of: monthly, matching: find.text('57,99 ₺ / month')),
+        100,
+      );
+      expect(find.text('Monthly'), findsOneWidget);
       expect(find.byKey(const Key('plan_max')), findsNothing);
       expect(find.text('Free trial'), findsNothing);
       expect(find.text('Start free trial'), findsNothing);
-      expect(find.text('100 AI requests a month'), findsOneWidget);
-      await tester.scrollUntilVisible(find.text('Choose'), 100);
-      await tester.tap(find.text('Choose'));
+      final chooseMonthly = find.descendant(
+        of: monthly,
+        matching: find.text('Choose'),
+      );
+      await tester.scrollUntilVisible(chooseMonthly, 100);
+      await tester.tap(chooseMonthly);
       await tester.pumpAndSettle();
       expect(native.buys, hasLength(1));
       expect(native.buys.single.productDetails.id, SubscriptionService.proId);
-      expect(native.buys.single.offerToken, 'yearly-token');
+      expect(native.buys.single.offerToken, 'monthly-token');
       await tester.pumpWidget(const SizedBox.shrink());
       service.dispose();
       await native.events.close();
@@ -642,7 +650,7 @@ void main() {
   );
 
   testWidgets(
-    'existing paid tiers retain their allowance and do not re-offer annual Pro',
+    'existing paid tiers retain their allowance without showing new checkout buttons',
     (tester) async {
       for (final owned in [
         (id: SubscriptionService.proId, label: 'Pro', allowance: 100),
@@ -682,13 +690,12 @@ void main() {
           find.byKey(const Key('plan_pro')),
           -100,
         );
-        expect(
-          find.descendant(
-            of: find.byKey(const Key('plan_pro')),
-            matching: find.byKey(const Key('plan_current_badge')),
-          ),
-          findsOneWidget,
+        expect(find.byKey(const Key('plan_current_badge')), findsNothing);
+        await tester.scrollUntilVisible(
+          find.byKey(const Key('plan_pro_monthly')),
+          100,
         );
+        expect(find.text('Choose'), findsNothing);
         expect(service.monthlyAllowance, owned.allowance);
         await tester.pumpWidget(const SizedBox.shrink());
         service.dispose();

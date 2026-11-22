@@ -184,6 +184,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 _PlanCard(
                   key: const Key('plan_pro_monthly'),
                   title: 'Pro',
+                  current: false,
                   price: monthlyOffer.price,
                   period: l10n.plansPerMonth,
                   benefits: [l10n.planProAi, l10n.planNoAds, l10n.planBackup],
