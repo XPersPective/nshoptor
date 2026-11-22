@@ -39,6 +39,7 @@ footer a{color:#17659c}
 <li>AI kullanırken küçültülmüş fiş/etiket fotoğrafları (JPEG), görev metni, dil, kurulum kimliği ve varsa mağaza satın alma kanıtı (Google Play jetonu veya desteklenen iOS sürümünde Apple imzalı işlem) HTTPS üzerinden Cloudflare vekilimize gider. Qwen görüntü/metin sağlayıcısına yalnız görev girdisi (küçültülmüş fotoğraf veya metin) ve dil iletilir; kurulum kimliği ve satın alma kanıtı iletilmez.</li>
 <li>Worker gönderilen fotoğrafları ve giriş metnini kalıcı kaydetmez; anında işleyip sonucu döner. Sağlayıcının saklama/eğitim uygulamaları için doğrulanmamış garanti vermiyoruz.</li>
 <li>Sunucu kurulum veya doğrulanmış satın alma özetiyle aylık kota, günlük toplam ve plan/sahiplik kayıtları tutar; bunları anonim veri diye nitelemiyoruz.</li>
+<li>Yedi günlük promosyon süresini aynı cihazdaki yeniden yüklemelerde korumak için uygulamaya özgü özet cihaz tanımlayıcısı ve deneme tarihleri Cloudflare'da saklanır. iOS'ta özet, cihazla sınırlı Anahtar Zinciri'nde tutulan rastgele bir değerden türetilir. Android 8 ve sonrasında özet, imzaya ve Android kullanıcısına özgü cihaz tanımlayıcısından türetilir. Özet yalnızca bu promosyon için kullanılır ve reklam veya AI sağlayıcılarına gönderilmez.</li>
 </ul>
 <h2>Abonelik ve satın almalar</h2>
 <p>Yeni yıllık Pro aboneliği (`nshoptor_pro_v2`, geçerli vergiler öncesi baz fiyat yılda 1 ABD doları, ayda 100 yapay zeka isteği) cihazın desteklenen mağazası üzerinden yapılır. Mevcut Pro/Max ve</p>
@@ -72,7 +73,7 @@ footer a{color:#17659c}
 </ul>
 <p>dışa aktarabilirsiniz (ücretli planlar).</p>
 <ul>
-<li><strong>Silme:</strong> Ayarlar → Tüm verileri sil alışveriş veritabanını temizler; paylaşılan tercihler silinmez. Kaldırma uygulama özel deposunu kaldırır. Dışa aktarılan dosyalar ve sunucu kota/sahiplik kayıtları bu işlemlerle silinmez. Sunucu verileriyle ilgili talepler için aşağıdaki e-postaya yazabilirsiniz.</li>
+<li><strong>Silme:</strong> Ayarlar → Tüm verileri sil alışveriş veritabanını temizler. Paylaşılan tercihler kalır. Uygulama kaldırıldığında yerel dosyaları silinir. iOS Anahtar Zinciri kaydı, dışa aktarılan dosyalar ve sunucudaki deneme, kota ve sahiplik kayıtları kalabilir. Sunucu verileriyle ilgili talepler için aşağıdaki e-postaya yazabilirsiniz.</li>
 <li>Reklam kimliğini cihaz ayarlarından sıfırlayabilir/kapatabilirsiniz.</li>
 </ul>
 <h2>Çocuklar</h2>
@@ -99,6 +100,7 @@ footer a{color:#17659c}
 <li>When AI help is used, reduced-size receipt/label photos (JPEG), task text, locale, install ID and optional store purchase proof (a Google Play token or, in supported iOS builds, an Apple-signed transaction) are sent over HTTPS to our Cloudflare proxy. Qwen receives only the task input (reduced-size photo or text) and locale, not the install ID or purchase proof.</li>
 <li>The Worker processes photos and input text transiently and never stores them. We make no unverified guarantee about the provider's retention or training practices.</li>
 <li>The backend retains monthly installation/purchase-hash quota, daily totals and entitlement/ownership metadata; we do not describe these records as anonymous.</li>
+<li>To preserve the seven-day promotional deadline across reinstalls on the same device, Cloudflare stores an app-specific hashed device identifier and trial dates. On iOS, the hash is derived from a random value stored in the device-only Keychain. On Android 8 and newer, the hash is derived from an identifier scoped to the signing key and Android user. The hash is used solely for this promotion and is never sent to advertising or AI providers.</li>
 </ul>
 <h2>Subscriptions and purchases</h2>
 <p>New annual Pro subscriptions (`nshoptor_pro_v2`, USD 1/year base price before applicable taxes, 100 AI requests/month) are handled</p>
@@ -131,7 +133,7 @@ footer a{color:#17659c}
 </ul>
 <p>(paid plans).</p>
 <ul>
-<li><strong>Deletion:</strong> Settings → Delete all data clears the shopping database, not shared preferences. Uninstalling removes app-private storage. Neither removes exported files or backend quota/ownership records. Contact the email below about backend data requests.</li>
+<li><strong>Deletion:</strong> Settings → Delete all data clears the shopping database. Shared preferences remain. Uninstalling removes the app's local files. The iOS Keychain item, exported files and backend trial, quota and ownership records may remain. Contact the email below about backend data requests.</li>
 <li>You can reset or turn off your advertising ID in your device settings.</li>
 </ul>
 <h2>Children</h2>
