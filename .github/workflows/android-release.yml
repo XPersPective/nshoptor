@@ -91,6 +91,9 @@ jobs:
       - name: Fetch dependencies
         run: flutter pub get
 
+      - name: Check the version displayed in the app
+        run: flutter test --no-pub test/core/app_version_test.dart
+
       - name: Prepare private signing and ad inputs
         env:
           NSHOPTOR_ANDROID_KEYSTORE_BASE64: ${{ secrets.NSHOPTOR_ANDROID_KEYSTORE_BASE64 }}

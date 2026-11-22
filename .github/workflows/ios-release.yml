@@ -113,6 +113,9 @@ jobs:
           flutter pub get
           python3 tool/ios/localize_usage.py --check
 
+      - name: Check the version displayed in the app
+        run: flutter test --no-pub test/core/app_version_test.dart
+
       - name: Resolve CocoaPods dependencies
         run: pod install --project-directory=ios
 
