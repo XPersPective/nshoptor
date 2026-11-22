@@ -86,12 +86,10 @@ Future<void> main() async {
   // Pro/Max abonelikleri (ADR-004 §6); AI kotası sunucuda doğrulanır.
   final subscriptions = SubscriptionService(store: store)
     ..load()
-    ..initializeTrial();
+    ..initializeTrial(requireDeviceConfirmation: true);
   SubscriptionService.instance = subscriptions;
-  AiService.client = buildAppAiClient(
-    store: store,
-    subscriptions: subscriptions,
-  );
+  final ai = buildAppAiClient(store: store, subscriptions: subscriptions);
+  AiService.client = ai;
   // İlk 7 gün tam Pro, abonelik ya da o günün ödüllü reklamsız hakkı (N055/N056).
   bool adFree() =>
       SubscriptionService.adFree(
@@ -186,6 +184,7 @@ Future<void> main() async {
   AdGate.showInterstitial = null;
   AppLifecycleListener(
     onResume: () {
+      unawaited(ai.syncTrialAccess());
       syncAds();
       unawaited(receiptQueue.reconcileAndDrain());
     },
@@ -222,13 +221,14 @@ Future<void> main() async {
     ),
   );
   unawaited(
-    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) {
-      firstFrameReady = true;
+    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
       proController.startListening();
       subscriptions.start();
       WidgetsBinding.instance.addObserver(
         SubscriptionResumeObserver(subscriptions),
       );
+      await ai.syncTrialAccess();
+      firstFrameReady = true;
       syncAds();
       unawaited(receiptQueue.reconcileAndDrain());
     }),

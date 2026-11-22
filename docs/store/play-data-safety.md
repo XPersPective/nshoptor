@@ -16,6 +16,7 @@ isim içermediği için anonim veya kişisel veri dışı saymayın.
 |---|---|---|
 | AI metni (ürün/fiş/cümle) | Cloudflare vekil ve Qwen; Worker metni kalıcı tutmaz, sağlayıcı saklaması doğrulanmadı | İşlevsellik; AI kapatılabilir |
 | Kurulum kimliği / satın alma SHA-256 özeti / plan / bağlı kota sahipliği | Worker/D1; yetki önbelleği süreli, sahiplik süresiz tutulur; kimlikler Qwen'e iletilmez | Kota, işlevsellik ve kötüye kullanım önleme; AI kullanılırken |
+| Denemeye özgü özet cihaz tanımlayıcısı ve deneme tarihleri (1.3.5+) | Cloudflare Worker/D1; hizmet sağlayıcı sıfatıyla işlenir ve AI veya reklam sağlayıcılarına gönderilmez | Uygulama işlevselliği ve promosyon tekrarı önleme; uygun cihazlarda açılışta doğrulanır |
 | Satın alma geçmişi / Play jetonu | Google Play doğrulaması; ham jeton kalıcı kaydedilmez | İsteğe bağlı ücretli özellik |
 | IP kaynaklı yaklaşık konum, cihaz/reklam kimlikleri, ürün etkileşimleri, tanılama | AdMob/Google SDK işleme ve paylaşımı; reklamsız hak SDK hiç başlamaz garantisi değildir | Reklam, analitik, dolandırıcılık önleme |
 | Fotoğraf/ses | Fiş/etiket fotoğrafı: cihaz OCR'u yereldir; AI okuma AÇIKken küçültülmüş geçici kopya HTTPS ile vekile gider ve kalıcı tutulmaz. Ses yereldir | Yerel giriş + isteğe bağlı AI (kapatılabilir) |

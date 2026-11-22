@@ -66,6 +66,7 @@ class ReceiptQueueWorker(
                     loader.ensureInitializationComplete(applicationContext, null)
                     val engine = FlutterEngine(applicationContext)
                     headlessEngine = engine
+                    TrialDeviceChannel.register(applicationContext, engine.dartExecutor.binaryMessenger)
                     val channel = MethodChannel(engine.dartExecutor.binaryMessenger, CHANNEL)
                     channel.setMethodCallHandler { call, res ->
                         when (call.method) {

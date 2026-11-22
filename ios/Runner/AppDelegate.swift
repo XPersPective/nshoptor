@@ -1,5 +1,7 @@
 import BackgroundTasks
+import CryptoKit
 import Flutter
+import Security
 import UIKit
 import UserNotifications
 
@@ -51,6 +53,7 @@ import UserNotifications
     speechBridge = OnDeviceSpeechBridge(messenger: registrar.messenger())
     printBridge = HtmlPrintBridge(messenger: registrar.messenger())
     appleSubscriptionBridge = AppleSubscriptionBridge(messenger: registrar.messenger())
+    Self.registerTrialDeviceChannel(messenger: registrar.messenger())
     let queueChannel = FlutterMethodChannel(
       name: "nshoptor/background_queue",
       binaryMessenger: registrar.messenger()
@@ -131,6 +134,7 @@ import UserNotifications
 
       let engine = FlutterEngine(name: "ReceiptQueueWorker")
       headlessEngine = engine
+      Self.registerTrialDeviceChannel(messenger: engine.binaryMessenger)
       let channel = FlutterMethodChannel(
         name: "nshoptor/background_queue",
         binaryMessenger: engine.binaryMessenger
@@ -151,5 +155,42 @@ import UserNotifications
         finishOnMain(false)
       }
     }
+  }
+
+  private static func registerTrialDeviceChannel(messenger: FlutterBinaryMessenger) {
+    let channel = FlutterMethodChannel(name: "nshoptor/device_trial", binaryMessenger: messenger)
+    channel.setMethodCallHandler { call, result in
+      if call.method == "getDeviceTrialId" {
+        result(Self.deviceTrialId())
+      } else {
+        result(FlutterMethodNotImplemented)
+      }
+    }
+  }
+
+  private static func deviceTrialId() -> String? {
+    let identity: [String: Any] = [
+      kSecClass as String: kSecClassGenericPassword,
+      kSecAttrService as String: "com.crazypenguin.nshoptor.device-trial",
+      kSecAttrAccount as String: "v1",
+      kSecAttrSynchronizable as String: false,
+    ]
+    var query = identity
+    query[kSecReturnData as String] = true
+    var item: CFTypeRef?
+    let status = SecItemCopyMatching(query as CFDictionary, &item)
+    let value: Data
+    if status == errSecSuccess, let stored = item as? Data {
+      value = stored
+    } else if status == errSecItemNotFound {
+      value = Data(UUID().uuidString.utf8)
+      var newItem = identity
+      newItem[kSecValueData as String] = value
+      newItem[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+      guard SecItemAdd(newItem as CFDictionary, nil) == errSecSuccess else { return nil }
+    } else {
+      return nil
+    }
+    return SHA256.hash(data: value).map { String(format: "%02x", $0) }.joined()
   }
 }

@@ -140,8 +140,15 @@ class SubscriptionService extends ChangeNotifier {
 
   /// Called explicitly by app boot; tests/legacy purchase consumers retain
   /// store-only behavior unless they opt into promotional access.
-  void initializeTrial({DateTime Function()? now}) {
-    _installationTrial ??= InstallationTrial(store, now: now);
+  void initializeTrial({
+    DateTime Function()? now,
+    bool requireDeviceConfirmation = false,
+  }) {
+    _installationTrial ??= InstallationTrial(
+      store,
+      now: now,
+      requireDeviceConfirmation: requireDeviceConfirmation,
+    );
     refreshTrial();
     _trialTimer ??= Timer.periodic(
       const Duration(minutes: 1),
@@ -160,8 +167,16 @@ class SubscriptionService extends ChangeNotifier {
     notifyListeners();
   }
 
-  void observeTrialServer({required int endsAt, required int serverNow}) {
-    _installationTrial?.observeServer(endsAt: endsAt, serverNow: serverNow);
+  void observeTrialServer({
+    required int endsAt,
+    required int serverNow,
+    bool deviceConfirmed = false,
+  }) {
+    _installationTrial?.observeServer(
+      endsAt: endsAt,
+      serverNow: serverNow,
+      deviceConfirmed: deviceConfirmed,
+    );
     refreshTrial();
   }
 

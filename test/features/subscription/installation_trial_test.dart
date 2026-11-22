@@ -3,6 +3,51 @@ import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/features/subscription/subscription_service.dart';
 
 void main() {
+  test('fresh offline installation waits for confirmed device trial', () {
+    final store = SettingsStore();
+    final now = DateTime.utc(2026, 10, 25, 12);
+    SubscriptionService(store: store)
+      ..initializeTrial(now: () => now, requireDeviceConfirmation: true)
+      ..dispose();
+    final service = SubscriptionService(store: store)
+      ..initializeTrial(now: () => now, requireDeviceConfirmation: true);
+    addTearDown(service.dispose);
+    final end = now.add(const Duration(days: 2)).millisecondsSinceEpoch;
+
+    expect(service.tier, Tier.free);
+    expect(service.needsTrialExpiryNotice, isFalse);
+    service.observeTrialServer(
+      endsAt: end,
+      serverNow: now.millisecondsSinceEpoch,
+    );
+    expect(service.tier, Tier.free);
+    service.observeTrialServer(
+      endsAt: end,
+      serverNow: now.millisecondsSinceEpoch,
+      deviceConfirmed: true,
+    );
+    expect(service.storeTier, Tier.free);
+    expect(service.trialRemaining, const Duration(days: 2));
+    expect(service.credential, isNull);
+  });
+
+  test(
+    'confirmed expired device keeps no promotional access after reinstall',
+    () {
+      final now = DateTime.utc(2026, 10, 25, 12);
+      final service = SubscriptionService(store: SettingsStore())
+        ..initializeTrial(now: () => now, requireDeviceConfirmation: true);
+      addTearDown(service.dispose);
+      service.observeTrialServer(
+        endsAt: now.subtract(const Duration(days: 2)).millisecondsSinceEpoch,
+        serverNow: now.millisecondsSinceEpoch,
+        deviceConfirmed: true,
+      );
+      expect(service.promotionalTrial, isFalse);
+      expect(service.needsTrialExpiryNotice, isTrue);
+    },
+  );
+
   test('a fresh install receives seven days of local Pro access without a purchase', () {
     final store = SettingsStore();
     final now = DateTime.utc(2026, 10, 25, 12);
@@ -24,7 +69,7 @@ void main() {
     store.setInt('first_open_at', opened.millisecondsSinceEpoch);
     final now = opened.add(const Duration(days: 8));
     final service = SubscriptionService(store: store)
-      ..initializeTrial(now: () => now);
+      ..initializeTrial(now: () => now, requireDeviceConfirmation: true);
     addTearDown(service.dispose);
 
     expect(service.storeTier, Tier.free);

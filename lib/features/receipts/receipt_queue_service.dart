@@ -14,6 +14,7 @@ import '../../data/db/app_database_opener.dart';
 import '../ai/ai_client.dart';
 import '../lists/reminders/local_notifications_scheduler.dart';
 import '../subscription/subscription_service.dart';
+import '../subscription/trial_device.dart';
 import 'ai_receipt_reader.dart';
 import 'ocr_text_source.dart';
 import 'receipt_dedup.dart';
@@ -34,27 +35,27 @@ AiClient buildAppAiClient({
   credential: () => subscriptions.credential,
   appleTransaction: () => subscriptions.appleTransaction,
   trialFirstOpenedAt: () => subscriptions.trialFirstOpenedAt,
+  trialDeviceId: readTrialDeviceId,
   onTrialWindow: (window) => subscriptions.observeTrialServer(
     endsAt: window.endsAt,
     serverNow: window.serverNow,
+    deviceConfirmed: window.deviceConfirmed,
   ),
 );
 
-typedef QueueImageParser =
-    Future<ReceiptParseOutcome> Function(
-      List<String> photoPaths, {
-      required String currencyCode,
-      required String localeCode,
-    });
+typedef QueueImageParser = Future<ReceiptParseOutcome> Function(
+  List<String> photoPaths, {
+  required String currencyCode,
+  required String localeCode,
+});
 
-typedef ReadyNotificationSender =
-    Future<void> Function({
-      required int receiptId,
-      String? storeName,
-      int? totalMinorUnits,
-      String? currencyCode,
-      bool isDuplicate,
-    });
+typedef ReadyNotificationSender = Future<void> Function({
+  required int receiptId,
+  String? storeName,
+  int? totalMinorUnits,
+  String? currencyCode,
+  bool isDuplicate,
+});
 
 /// Sequential background receipt-queue drainer shared by foreground app launch,
 /// resume lifecycle, and native OS WorkManager / BGTaskScheduler wakeups.
@@ -412,7 +413,7 @@ Future<void> receiptQueueBackgroundMain() async {
   final store = await SettingsStore.load();
   final subscriptions = SubscriptionService(store: store)
     ..load()
-    ..initializeTrial();
+    ..initializeTrial(requireDeviceConfirmation: true);
   final ai = buildAppAiClient(store: store, subscriptions: subscriptions);
   final language = LanguageController(store: store)..load();
   final localeTag =

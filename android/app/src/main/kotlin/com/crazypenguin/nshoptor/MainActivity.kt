@@ -75,6 +75,7 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        TrialDeviceChannel.register(applicationContext, flutterEngine.dartExecutor.binaryMessenger)
         ReceiptQueueWorker.foregroundMessenger = flutterEngine.dartExecutor.binaryMessenger
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, ReceiptQueueWorker.CHANNEL)
             .setMethodCallHandler { call, result ->

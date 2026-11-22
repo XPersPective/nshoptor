@@ -47,9 +47,14 @@ class AiFailed extends AiResult {
 typedef PurchaseCredential = ({String token, String productId});
 
 class AiTrialWindow {
-  const AiTrialWindow({required this.endsAt, required this.serverNow});
+  const AiTrialWindow({
+    required this.endsAt,
+    required this.serverNow,
+    this.deviceConfirmed = false,
+  });
   final int endsAt;
   final int serverNow;
+  final bool deviceConfirmed;
 }
 
 class AiClient {
@@ -60,6 +65,7 @@ class AiClient {
     this.credential,
     this.appleTransaction,
     this.trialFirstOpenedAt,
+    this.trialDeviceId,
     this.onTrialWindow,
     this.timeout = const Duration(seconds: 25),
   }) : _http = httpClient ?? http.Client();
@@ -77,6 +83,7 @@ class AiClient {
   /// the server verifies it with the correct store and trust roots.
   final String? Function()? appleTransaction;
   final int? Function()? trialFirstOpenedAt;
+  final Future<String?> Function()? trialDeviceId;
   final void Function(AiTrialWindow)? onTrialWindow;
   final Duration timeout;
   Future<AiResult?>? _registration;
@@ -114,16 +121,16 @@ class AiClient {
     var apple = appleTransaction?.call();
     // Register before spending a request under the Free fallback. Real paid
     // credentials stay independently usable when promotional registration fails.
-    if (trialFirstOpenedAt != null &&
-        cred == null &&
-        apple == null &&
-        !_registered) {
-      final pending = _registration ??= _registerAccess();
-      final access = await pending;
-      if (identical(_registration, pending)) _registration = null;
+    if (cred == null && apple == null) {
+      final access = await syncTrialAccess();
       cred = credential?.call();
       apple = appleTransaction?.call();
-      if (access != null && cred == null && apple == null) return access;
+      if (access != null &&
+          cred == null &&
+          apple == null &&
+          trialDeviceId == null) {
+        return access;
+      }
     }
     final body = jsonEncode({
       'installId': installId,
@@ -178,13 +185,31 @@ class AiClient {
     }
   }
 
+  Future<AiResult?> syncTrialAccess() async {
+    if (baseUrl.isEmpty || trialFirstOpenedAt == null || _registered)
+      return null;
+    final pending = _registration ??= _registerAccess().timeout(
+      trialDeviceId == null ? timeout : const Duration(seconds: 5),
+      onTimeout: () => const AiFailed('timeout'),
+    );
+    try {
+      return await pending;
+    } finally {
+      if (identical(_registration, pending)) _registration = null;
+    }
+  }
+
   Future<AiResult?> _registerAccess() async {
     try {
+      final deviceId = await trialDeviceId?.call();
+      if (trialDeviceId != null && deviceId == null) return null;
+      final firstOpenedAt = trialFirstOpenedAt?.call();
       final req = http.Request('POST', Uri.parse('$baseUrl/v1/access'))
         ..headers['content-type'] = 'application/json'
         ..body = jsonEncode({
           'installId': installId,
-          'firstOpenedAt': trialFirstOpenedAt!.call(),
+          'firstOpenedAt': ?firstOpenedAt,
+          'deviceTrialId': ?deviceId,
         });
       final response = await _http.send(req).timeout(timeout);
       final bytes = <int>[];
@@ -194,12 +219,17 @@ class AiClient {
       }
       // Older workers retain their existing allowance during phased rollout.
       if (response.statusCode == 404) {
-        _registered = true;
+        _registered = trialDeviceId == null;
         return null;
       }
       if (response.statusCode != 200) return const AiFailed('busy');
       final decoded = jsonDecode(utf8.decode(bytes));
       final trial = decoded is Map<String, dynamic> ? decoded['trial'] : null;
+      final deviceConfirmed =
+          decoded is Map<String, dynamic> && decoded['deviceConfirmed'] == true;
+      if (deviceId != null && !deviceConfirmed) {
+        return const AiFailed('bad_response');
+      }
       if (trial is! Map<String, dynamic>) return const AiFailed('bad_response');
       final end = trial['endsAt'], now = trial['serverNow'];
       if (end is! int ||
@@ -210,7 +240,13 @@ class AiClient {
           now > 8640000000000000) {
         return const AiFailed('bad_response');
       }
-      onTrialWindow?.call(AiTrialWindow(endsAt: end, serverNow: now));
+      onTrialWindow?.call(
+        AiTrialWindow(
+          endsAt: end,
+          serverNow: now,
+          deviceConfirmed: deviceConfirmed,
+        ),
+      );
       _registered = true;
       return null;
     } on SocketException {

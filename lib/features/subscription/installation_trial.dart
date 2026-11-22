@@ -5,11 +5,21 @@ import '../ads/ad_gate.dart';
 /// Promotional access has no product ID and never manufactures a purchase.
 /// The original ad grace anchor also protects upgrades from a fresh trial.
 class InstallationTrial {
-  InstallationTrial(this.store, {DateTime Function()? now})
-    : _now = now ?? DateTime.now {
+  InstallationTrial(
+    this.store, {
+    DateTime Function()? now,
+    bool requireDeviceConfirmation = false,
+  }) : _now = now ?? DateTime.now {
+    if (requireDeviceConfirmation &&
+        store.getBool(_devicePendingKey) == null &&
+        store.getInt(AdGate.firstOpenKey) == null &&
+        store.getString(AdGate.graceStateKey) == null) {
+      store.setBool(_devicePendingKey, true);
+    }
     AdGate.firstOpen(store, _now());
   }
 
+  static const _devicePendingKey = 'install_trial_device_pending';
   static const _endKey = 'install_trial_server_end';
   static const _localEndKey = 'install_trial_local_end';
   static const _expiredKey = 'install_trial_expired';
@@ -20,8 +30,10 @@ class InstallationTrial {
   int get firstOpenedAt =>
       AdGate.firstOpen(store, _now()).millisecondsSinceEpoch;
 
+  bool get pending => store.getBool(_devicePendingKey) == true;
+
   Duration get remaining {
-    if (store.getBool(_expiredKey) == true) return Duration.zero;
+    if (pending || store.getBool(_expiredKey) == true) return Duration.zero;
     final now = _now();
     var left = AdGate.graceRemaining(store, now);
     // Compare deadlines in the same clock domain. The raw server timestamp is
@@ -48,7 +60,12 @@ class InstallationTrial {
 
   bool get active => remaining > Duration.zero;
 
-  void observeServer({required int endsAt, required int serverNow}) {
+  void observeServer({
+    required int endsAt,
+    required int serverNow,
+    bool deviceConfirmed = false,
+  }) {
+    if (pending && !deviceConfirmed) return;
     final old = store.getInt(_endKey);
     if (old == null || endsAt < old) store.setInt(_endKey, endsAt);
     // Translate authoritative remaining duration onto the local clock. Keeping
@@ -68,8 +85,10 @@ class InstallationTrial {
       store.setInt(_localEndKey, anchoredEnd);
     }
     if (serverNow >= endsAt) store.setBool(_expiredKey, true);
+    if (deviceConfirmed) store.setBool(_devicePendingKey, false);
   }
 
-  bool get needsExpiryNotice => !active && store.getBool(noticeKey) != true;
+  bool get needsExpiryNotice =>
+      !pending && !active && store.getBool(noticeKey) != true;
   void acknowledgeExpiry() => store.setBool(noticeKey, true);
 }
