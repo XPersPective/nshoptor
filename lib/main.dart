@@ -4,10 +4,12 @@ import 'dart:async';
 import 'dart:ui' show PlatformDispatcher;
 
 import 'package:flutter/material.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/foundation.dart'
-    show kReleaseMode, defaultTargetPlatform;
+    show kReleaseMode, defaultTargetPlatform, TargetPlatform;
 
 import 'features/ads/ad_startup.dart';
+import 'features/ads/ios_tracking_permission.dart';
 
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
@@ -121,9 +123,23 @@ Future<void> main() async {
     androidUnit: const String.fromEnvironment('ADMOB_REWARDED_ANDROID'),
     iosUnit: const String.fromEnvironment('ADMOB_REWARDED_IOS'),
   );
+  final trackingPermission = defaultTargetPlatform == TargetPlatform.iOS
+      ? IosTrackingPermission(
+          isActive: () =>
+              WidgetsBinding.instance.lifecycleState ==
+              AppLifecycleState.resumed,
+          readStatus: () => AppTrackingTransparency.trackingAuthorizationStatus,
+          request: AppTrackingTransparency.requestTrackingAuthorization,
+        )
+      : null;
   final adStartup = AdStartup(
     isAdFree: adFree,
-    initialize: ConsentManager.initialize,
+    initialize: () async {
+      if (trackingPermission != null && !await trackingPermission.resolve()) {
+        return false;
+      }
+      return ConsentManager.initialize();
+    },
     onReady: () => policy.setSdkReady(true),
     load: () async {
       policy.setPro(adFree());
@@ -136,7 +152,10 @@ Future<void> main() async {
     policy.setPro(adFree());
     bannerController.onProChanged();
     AdPolicyPersistence.save(adsAdapter, policy);
-    if (firstFrameReady) unawaited(adStartup.ensureReady());
+    if (!firstFrameReady) return;
+    // The iOS prompt must also be reachable on a fresh, ad-free trial.
+    if (trackingPermission != null) unawaited(trackingPermission.resolve());
+    unawaited(adStartup.ensureReady());
   }
 
   WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));

@@ -4,6 +4,8 @@
 <dict>
 	<key>GADApplicationIdentifier</key>
 	<string>$(ADMOB_APP_ID_IOS)</string>
+	<key>GADDelayAppMeasurementInit</key>
+	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Take photos of receipts and shelf labels so their prices can be read for you.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
