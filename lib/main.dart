@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart'
 
 import 'features/ads/ad_startup.dart';
 import 'features/ads/ios_tracking_permission.dart';
+import 'features/ads/recovering_banner_controller.dart';
 
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
@@ -109,7 +110,12 @@ Future<void> main() async {
   policy.setPro(adFree());
   policy.startSession(DateTime.now());
   AdPolicyPersistence.save(adsAdapter, policy);
-  final bannerController = BannerAdController(policy: policy);
+  bool foreground() =>
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
+  final bannerController = RecoveringBannerController(
+    policy: policy,
+    isForeground: foreground,
+  );
   final hasBannerUnit = adUnitEnabled(
     platform: defaultTargetPlatform,
     releaseMode: kReleaseMode,
@@ -125,9 +131,7 @@ Future<void> main() async {
   );
   final trackingPermission = defaultTargetPlatform == TargetPlatform.iOS
       ? IosTrackingPermission(
-          isActive: () =>
-              WidgetsBinding.instance.lifecycleState ==
-              AppLifecycleState.resumed,
+          isActive: foreground,
           readStatus: () => AppTrackingTransparency.trackingAuthorizationStatus,
           request: AppTrackingTransparency.requestTrackingAuthorization,
         )
