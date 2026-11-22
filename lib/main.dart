@@ -112,16 +112,15 @@ Future<void> main() async {
   AdPolicyPersistence.save(adsAdapter, policy);
   bool foreground() =>
       WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
-  final bannerController = RecoveringBannerController(
-    policy: policy,
-    isForeground: foreground,
-  );
   final hasBannerUnit = adUnitEnabled(
     platform: defaultTargetPlatform,
     releaseMode: kReleaseMode,
     androidUnit: const String.fromEnvironment('ADMOB_BANNER_ANDROID'),
     iosUnit: const String.fromEnvironment('ADMOB_BANNER_IOS'),
   );
+  final bannerController = hasBannerUnit
+      ? RecoveringBannerController(policy: policy, isForeground: foreground)
+      : null;
   final rewardedManager = RewardedAdManager(policy: policy);
   final hasRewardedUnit = adUnitEnabled(
     platform: defaultTargetPlatform,
@@ -147,14 +146,14 @@ Future<void> main() async {
     onReady: () => policy.setSdkReady(true),
     load: () async {
       policy.setPro(adFree());
-      if (hasBannerUnit) bannerController.load();
+      bannerController?.load();
       if (hasRewardedUnit) await rewardedManager.load();
     },
   );
   var firstFrameReady = false;
   void syncAds() {
     policy.setPro(adFree());
-    bannerController.onProChanged();
+    bannerController?.onProChanged();
     AdPolicyPersistence.save(adsAdapter, policy);
     if (!firstFrameReady) return;
     // The iOS prompt must also be reachable on a fresh, ad-free trial.
