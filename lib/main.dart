@@ -90,7 +90,7 @@ Future<void> main() async {
   SubscriptionService.instance = subscriptions;
   final ai = buildAppAiClient(store: store, subscriptions: subscriptions);
   AiService.client = ai;
-  // İlk 7 gün tam Pro, abonelik ya da o günün ödüllü reklamsız hakkı (N055/N056).
+  // İlk 24 saat tam Pro, abonelik ya da o günün ödüllü reklamsız hakkı (N055/N056).
   bool adFree() =>
       SubscriptionService.adFree(
         temporaryPro: proController.isPro,

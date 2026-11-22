@@ -1997,7 +1997,7 @@ abstract class AppLocalizations {
   /// No description provided for @planFreeAds.
   ///
   /// In en, this message translates to:
-  /// **'Small banner ads (none in your first 7 days)'**
+  /// **'Small banner ads after the first 24 hours'**
   String get planFreeAds;
 
   /// No description provided for @planCoreFeatures.
@@ -3413,7 +3413,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeProPromoTitle.
   ///
   /// In en, this message translates to:
-  /// **'Try Pro free for 7 days'**
+  /// **'Try Pro free for 24 hours'**
   String get homeProPromoTitle;
 
   /// No description provided for @homeProPromoSubtitle.

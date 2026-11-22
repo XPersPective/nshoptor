@@ -936,7 +936,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get planFreeAi => '10 cereri AI pe lună';
 
   @override
-  String get planFreeAds => 'Banner-uri mici (fără primele 7 zile)';
+  String get planFreeAds => 'Banner-uri mici';
 
   @override
   String get planCoreFeatures =>
@@ -1747,7 +1747,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get receiptPhotoPreparing => 'Se pregătește fotografia bonului…';
 
   @override
-  String get homeProPromoTitle => 'Încearcă Pro gratuit 7 zile';
+  String get homeProPromoTitle => 'Încearcă Pro gratuit 24 de ore';
 
   @override
   String get homeProPromoSubtitle =>

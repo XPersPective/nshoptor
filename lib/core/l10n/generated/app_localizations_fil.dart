@@ -938,7 +938,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get planFreeAi => '10 AI requests kada buwan';
 
   @override
-  String get planFreeAds => 'Maliit na banner ads (walang sa unang 7 araw)';
+  String get planFreeAds => 'Maliit na banner ads';
 
   @override
   String get planCoreFeatures =>
@@ -1746,7 +1746,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get receiptPhotoPreparing => 'Inihahanda ang larawan ng resibo…';
 
   @override
-  String get homeProPromoTitle => 'Subukan ang Pro nang libre sa 7 araw';
+  String get homeProPromoTitle => 'Subukan ang Pro nang libre sa 24 oras';
 
   @override
   String get homeProPromoSubtitle =>

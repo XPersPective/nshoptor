@@ -932,7 +932,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get planFreeAi => 'پر میاشت 10 AI غوښتنې';
 
   @override
-  String get planFreeAds => 'کوچني بانر اعلانات (لومړی ۷ ورځې هیڅ)';
+  String get planFreeAds => 'کوچني بانر اعلانات';
 
   @override
   String get planCoreFeatures => 'لیستونه، قیمتونه، ریسیټونه، د لګښت چارتونه';
@@ -1724,7 +1724,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get receiptPhotoPreparing => 'د رسید عکس چمتو کېږي…';
 
   @override
-  String get homeProPromoTitle => 'Pro د 7 ورځو لپاره وړیا وازموئ';
+  String get homeProPromoTitle => 'Pro د ۲۴ ساعتونو لپاره وړیا وازموئ';
 
   @override
   String get homeProPromoSubtitle =>

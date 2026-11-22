@@ -935,8 +935,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get planFreeAi => '10 AI eskari hilabetero';
 
   @override
-  String get planFreeAds =>
-      'Irrati-iragarki txikiak (ez dago lehenengo 7 egunetan)';
+  String get planFreeAds => 'Irrati-iragarki txikiak';
 
   @override
   String get planCoreFeatures =>
@@ -1744,7 +1743,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get receiptPhotoPreparing => 'Ordainagiriaren argazkia prestatzen…';
 
   @override
-  String get homeProPromoTitle => 'Probatu Pro doan 7 egunez';
+  String get homeProPromoTitle => 'Probatu Pro doan 24 orduz';
 
   @override
   String get homeProPromoSubtitle =>

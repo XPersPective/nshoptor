@@ -936,7 +936,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get planFreeAi => '10 AI заявки на месец';
 
   @override
-  String get planFreeAds => 'Малки банерни реклами (няма през първите 7 дни)';
+  String get planFreeAds => 'Малки банерни реклами';
 
   @override
   String get planCoreFeatures =>
@@ -1742,7 +1742,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get receiptPhotoPreparing => 'Подготвяне на снимката на бона…';
 
   @override
-  String get homeProPromoTitle => 'Изпробвайте Pro безплатно за 7 дни';
+  String get homeProPromoTitle => 'Изпробвайте Pro безплатно за 24 часа';
 
   @override
   String get homeProPromoSubtitle =>

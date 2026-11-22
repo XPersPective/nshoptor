@@ -937,7 +937,7 @@ class AppLocalizationsNe extends AppLocalizations {
   String get planFreeAi => 'प्रति महिना 10 AI अनुरोध';
 
   @override
-  String get planFreeAds => 'साना ब्यानर विज्ञापन (पहिलो ७ दिनमा कुनै छैन)';
+  String get planFreeAds => 'साना ब्यानर विज्ञापन';
 
   @override
   String get planCoreFeatures => 'सूची, मूल्य, रेसेट, खर्च चार्ट';
@@ -1736,7 +1736,7 @@ class AppLocalizationsNe extends AppLocalizations {
   String get receiptPhotoPreparing => 'रसिदको फोटो तयार हुँदैछ…';
 
   @override
-  String get homeProPromoTitle => '७ दिन Pro निःशुल्क चलाएर हेर्नुहोस्';
+  String get homeProPromoTitle => '२४ घण्टा Pro निःशुल्क चलाएर हेर्नुहोस्';
 
   @override
   String get homeProPromoSubtitle =>

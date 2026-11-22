@@ -77,7 +77,7 @@ class ListsScreen extends StatefulWidget {
   /// Plan simgesi (ana sayfanın üstünde); verilmezse gösterilmez.
   final Widget? planBadge;
 
-  /// Promotional welcome banner (7-day Free Pro) shown while active.
+  /// Promotional welcome banner (24-hour Free Pro) shown while active.
   final Widget? promoCard;
 
   /// Weekly/monthly budget progress shown above the lists when limits exist.

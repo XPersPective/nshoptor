@@ -933,7 +933,7 @@ class AppLocalizationsKy extends AppLocalizations {
   String get planFreeAi => 'Айына 10 AI сурамы';
 
   @override
-  String get planFreeAds => 'Кичине баннердик жарнамалар (биринчи 7 күндө жок)';
+  String get planFreeAds => 'Кичине баннердик жарнамалар';
 
   @override
   String get planCoreFeatures =>
@@ -1735,7 +1735,7 @@ class AppLocalizationsKy extends AppLocalizations {
   String get receiptPhotoPreparing => 'Чек сүрөтү даярдалууда…';
 
   @override
-  String get homeProPromoTitle => 'Pro версиясын 7 күн бекер сынап көрүңүз';
+  String get homeProPromoTitle => 'Pro версиясын 24 саат бекер сынап көрүңүз';
 
   @override
   String get homeProPromoSubtitle =>

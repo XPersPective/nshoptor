@@ -939,8 +939,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get planFreeAi => 'Imicelo ye-AI engu-10 ngenyanga';
 
   @override
-  String get planFreeAds =>
-      'Izikhangiso ezincane (azikho ezinsukwini zakho zokuqala ezi-7)';
+  String get planFreeAds => 'Izikhangiso ezincane';
 
   @override
   String get planCoreFeatures =>
@@ -1746,7 +1745,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get receiptPhotoPreparing => 'Ilungiselela isithombe serisidi…';
 
   @override
-  String get homeProPromoTitle => 'Zama i-Pro mahhala izinsuku ezi-7';
+  String get homeProPromoTitle => 'Zama i-Pro mahhala amahora angu-24';
 
   @override
   String get homeProPromoSubtitle =>

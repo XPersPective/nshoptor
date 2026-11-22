@@ -935,8 +935,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get planFreeAi => '10 αιτήσεις AI τον μήνα';
 
   @override
-  String get planFreeAds =>
-      'Μικρές διαφημίσεις μπάνερ (καμία στις πρώτες 7 ημέρες)';
+  String get planFreeAds => 'Μικρές διαφημίσεις μπάνερ';
 
   @override
   String get planCoreFeatures => 'Λίστες, τιμές, αποδείξεις, γραφήματα δαπανών';
@@ -1745,7 +1744,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get receiptPhotoPreparing => 'Προετοιμασία φωτογραφίας απόδειξης…';
 
   @override
-  String get homeProPromoTitle => 'Δοκιμάστε το Pro δωρεάν για 7 ημέρες';
+  String get homeProPromoTitle => 'Δοκιμάστε το Pro δωρεάν για 24 ώρες';
 
   @override
   String get homeProPromoSubtitle =>

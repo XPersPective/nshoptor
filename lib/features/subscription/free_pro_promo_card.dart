@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 
-/// Home screen welcome card highlighting the genuine 7-day no-card Free Pro trial.
+/// Home screen welcome card highlighting the genuine 24-hour no-card Free Pro trial.
 class FreeProPromoCard extends StatelessWidget {
   const FreeProPromoCard({
     super.key,

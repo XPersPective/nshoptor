@@ -938,7 +938,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get planFreeAi => 'တစ်လလျှင် AI တောင်းဆိုမှု 10 ခု';
 
   @override
-  String get planFreeAds => 'Banner ads (ပထမ ၇ ရက်တွင် မရှိပါ)';
+  String get planFreeAds => 'Banner ads';
 
   @override
   String get planCoreFeatures =>
@@ -1740,7 +1740,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get receiptPhotoPreparing => 'ပြေစာဓာတ်ပုံကို ပြင်ဆင်နေသည်…';
 
   @override
-  String get homeProPromoTitle => 'Pro ကို ၇ ရက် အခမဲ့ စမ်းသုံးကြည့်ပါ';
+  String get homeProPromoTitle => 'Pro ကို ၂၄ နာရီ အခမဲ့ စမ်းသုံးကြည့်ပါ';
 
   @override
   String get homeProPromoSubtitle =>

@@ -936,7 +936,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get planFreeAi => '10 AI kérés havonta';
 
   @override
-  String get planFreeAds => 'Kis banner hirdetések (az első 7 napban nincs)';
+  String get planFreeAds => 'Kis banner hirdetések';
 
   @override
   String get planCoreFeatures => 'Listák, árak, nyugták, kiadási diagramok';
@@ -1739,7 +1739,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get receiptPhotoPreparing => 'Nyugtafotó előkészítése…';
 
   @override
-  String get homeProPromoTitle => 'Próbálja ki a Pro-t 7 napig ingyen';
+  String get homeProPromoTitle => 'Próbálja ki a Pro-t 24 órán át ingyen';
 
   @override
   String get homeProPromoSubtitle =>

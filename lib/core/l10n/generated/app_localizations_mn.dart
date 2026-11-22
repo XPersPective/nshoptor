@@ -938,7 +938,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get planFreeAi => 'Сар бүр 10 AI хүсэлт';
 
   @override
-  String get planFreeAds => 'Жижиг баннер реклам (эхний 7 хоногт байхгүй)';
+  String get planFreeAds => 'Жижиг баннер реклам';
 
   @override
   String get planCoreFeatures => 'Жагсаалт, үнэ, нэхэмжлэл, зардлын диаграмм';
@@ -1740,7 +1740,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get receiptPhotoPreparing => 'Баримтын зургийг бэлдэж байна…';
 
   @override
-  String get homeProPromoTitle => 'Pro-г 7 хоног үнэгүй туршаарай';
+  String get homeProPromoTitle => 'Pro-г 24 цаг үнэгүй туршаарай';
 
   @override
   String get homeProPromoSubtitle =>

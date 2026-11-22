@@ -933,7 +933,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get planFreeAi => '10 ຄຳຮ້ອງຂໍ AI ຕໍ່ເດືອນ';
 
   @override
-  String get planFreeAds => 'ໂຄສະນາແບນເນີຂະໜາດນ້ອຍ (ບໍ່ມີໃນ 7 ວັນທຳອິດຂອງທ່ານ)';
+  String get planFreeAds => 'ໂຄສະນາແບນເນີຂະໜາດນ້ອຍ';
 
   @override
   String get planCoreFeatures => 'ລາຍການ, ລາຄາ, ໃບບິນ, ກຣາຟການໃຊ້ຈ່າຍ';
@@ -1722,7 +1722,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get receiptPhotoPreparing => 'ກຳລັງກະກຽມຮູບໃບຮັບເງິນ…';
 
   @override
-  String get homeProPromoTitle => 'ທົດລອງໃຊ້ Pro ຟຣີ 7 ມື້';
+  String get homeProPromoTitle => 'ທົດລອງໃຊ້ Pro ຟຣີ 24 ຊົ່ວໂມງ';
 
   @override
   String get homeProPromoSubtitle =>

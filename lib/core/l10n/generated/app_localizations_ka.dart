@@ -933,7 +933,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get planFreeAi => '10 AI მოთხოვნა თვეში';
 
   @override
-  String get planFreeAds => 'მცირე ბანერული რეკლამა (პირველ 7 დღეში არ არის)';
+  String get planFreeAds => 'მცირე ბანერული რეკლამა';
 
   @override
   String get planCoreFeatures => 'სიები, ფასები, ჩიზები, ხარჯების გრაფიკები';
@@ -1730,7 +1730,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get receiptPhotoPreparing => 'ქვითრის ფოტო მზადდება…';
 
   @override
-  String get homeProPromoTitle => 'სცადეთ Pro 7 დღე უფასოდ';
+  String get homeProPromoTitle => 'სცადეთ Pro 24 საათი უფასოდ';
 
   @override
   String get homeProPromoSubtitle =>

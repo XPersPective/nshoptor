@@ -40,7 +40,7 @@ yayınının veya Apple hesabı bağlantısının tamamlandığı anlamına gelm
 ## Reklam
 
 Ücretsiz sürüm Google AdMob reklamları (banner ve isteğe
-bağlı ödüllü video) gösterir; ilk 7 gün reklam yoktur. AdMob cihazınız için
+bağlı ödüllü video) gösterir; ilk 24 saat reklam yoktur. AdMob cihazınız için
 reklam/cihaz kimlikleri, IP kaynaklı yaklaşık konum, etkileşim ve tanılama
 verilerini işleyebilir. AB/İngiltere'de kişiselleştirilmiş reklam
 yalnızca onayınızla gösterilir (https://policies.google.com/privacy).
@@ -98,7 +98,7 @@ turns a sentence into a list (switch it off in Settings → AI help).
 - When AI help is used, reduced-size receipt/label photos (JPEG), task text, locale, install ID and optional store purchase proof (a Google Play token or, in supported iOS builds, an Apple-signed transaction) are sent over HTTPS to our Cloudflare proxy. Qwen receives only the task input (reduced-size photo or text) and locale, not the install ID or purchase proof.
 - The Worker processes photos and input text transiently and never stores them. We make no unverified guarantee about the provider's retention or training practices.
 - The backend retains monthly installation/purchase-hash quota, daily totals and entitlement/ownership metadata; we do not describe these records as anonymous.
-- To preserve the seven-day promotional deadline across reinstalls on the same device, Cloudflare stores an app-specific hashed device identifier and trial dates. On iOS, the hash is derived from a random value stored in the device-only Keychain. On Android 8 and newer, the hash is derived from an identifier scoped to the signing key and Android user. The hash is used solely for this promotion and is never sent to advertising or AI providers.
+- To preserve the 24-hour promotional deadline across reinstalls on the same device, Cloudflare stores an app-specific hashed device identifier and trial dates. On iOS, the hash is derived from a random value stored in the device-only Keychain. On Android 8 and newer, the hash is derived from an identifier scoped to the signing key and Android user. The hash is used solely for this promotion and is never sent to advertising or AI providers.
 
 ## Subscriptions and purchases
 
@@ -118,7 +118,7 @@ an App Store release or Apple account connection has been completed.
 ## Ads
 
 The free version shows Google AdMob ads (banner and optional
-rewarded video); there are no ads in the first 7 days. AdMob may collect your
+rewarded video); there are no ads in the first 24 hours. AdMob may collect your
 advertising/device identifiers, IP-derived approximate location, interactions
 and diagnostics. In the EU/UK personalised ads are shown only with your
 consent (https://policies.google.com/privacy). Pro, Max and ad-free for life

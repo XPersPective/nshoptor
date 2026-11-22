@@ -83,12 +83,12 @@ void main() {
     await closing;
   }
 
-  testWidgets('displays 7-day Free Pro card, opens paywall on tap, and persists dismissal', (tester) async {
+  testWidgets('displays 24-hour Free Pro card, opens paywall on tap, and persists dismissal', (tester) async {
     await tester.pumpWidget(host(locale: 'tr'));
     await tester.pumpAndSettle();
 
     expect(find.byKey(const Key('home_pro_promo_card')), findsOneWidget);
-    expect(find.text('7 gün ücretsiz Pro deneyin'), findsOneWidget);
+    expect(find.text('24 saat ücretsiz Pro deneyin'), findsOneWidget);
     expect(find.byKey(const Key('home_pro_promo_remaining')), findsOneWidget);
     expect(
       tester.getSize(find.byKey(const Key('home_pro_promo_dismiss'))).height,

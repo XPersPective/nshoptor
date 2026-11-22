@@ -936,8 +936,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get planFreeAi => '10 AI užklausų per mėnesį';
 
   @override
-  String get planFreeAds =>
-      'Maži baneriniai reklamos pranešimai (pirmąsias 7 dienas jų nėra)';
+  String get planFreeAds => 'Maži baneriniai reklamos pranešimai';
 
   @override
   String get planCoreFeatures => 'Sąrašai, kainos, čekiai, išlaidų grafikai';
@@ -1745,7 +1744,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get receiptPhotoPreparing => 'Ruošiama kvito nuotrauka…';
 
   @override
-  String get homeProPromoTitle => 'Išbandykite „Pro“ 7 dienas nemokamai';
+  String get homeProPromoTitle => 'Išbandykite „Pro“ 24 valandas nemokamai';
 
   @override
   String get homeProPromoSubtitle =>

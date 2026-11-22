@@ -934,7 +934,7 @@ class AppLocalizationsSr extends AppLocalizations {
   String get planFreeAi => '10 AI захтева месечно';
 
   @override
-  String get planFreeAds => 'Мале банер рекламе (без реклама првих 7 дана)';
+  String get planFreeAds => 'Мале банер рекламе';
 
   @override
   String get planCoreFeatures => 'Листе, цене, рачуни, графикони расхода';
@@ -1739,7 +1739,7 @@ class AppLocalizationsSr extends AppLocalizations {
   String get receiptPhotoPreparing => 'Припрема фотографије рачуна…';
 
   @override
-  String get homeProPromoTitle => 'Испробајте Pro бесплатно 7 дана';
+  String get homeProPromoTitle => 'Испробајте Pro бесплатно 24 сата';
 
   @override
   String get homeProPromoSubtitle =>

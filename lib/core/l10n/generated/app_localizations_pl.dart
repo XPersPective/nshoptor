@@ -937,7 +937,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get planFreeAi => '10 żądań AI w miesiącu';
 
   @override
-  String get planFreeAds => 'Małe reklamy banerowe (brak przez pierwsze 7 dni)';
+  String get planFreeAds => 'Małe reklamy banerowe';
 
   @override
   String get planCoreFeatures => 'Listy, ceny, paragoni, wykresy wydatków';
@@ -1742,7 +1742,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get receiptPhotoPreparing => 'Przygotowywanie zdjęcia paragonu…';
 
   @override
-  String get homeProPromoTitle => 'Wypróbuj Pro za darmo przez 7 dni';
+  String get homeProPromoTitle => 'Wypróbuj Pro za darmo przez 24 godziny';
 
   @override
   String get homeProPromoSubtitle =>

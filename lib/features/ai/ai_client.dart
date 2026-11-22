@@ -186,8 +186,9 @@ class AiClient {
   }
 
   Future<AiResult?> syncTrialAccess() async {
-    if (baseUrl.isEmpty || trialFirstOpenedAt == null || _registered)
+    if (baseUrl.isEmpty || trialFirstOpenedAt == null || _registered) {
       return null;
+    }
     final pending = _registration ??= _registerAccess().timeout(
       trialDeviceId == null ? timeout : const Duration(seconds: 5),
       onTimeout: () => const AiFailed('timeout'),

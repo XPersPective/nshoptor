@@ -937,7 +937,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get planFreeAi => 'Oyiga 10 ta AI so‘rov';
 
   @override
-  String get planFreeAds => 'Kichik banner reklama (birinchi 7 kunida yo‘q)';
+  String get planFreeAds => 'Kichik banner reklama';
 
   @override
   String get planCoreFeatures =>
@@ -1744,7 +1744,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get receiptPhotoPreparing => 'Chek rasmi tayyorlanmoqda…';
 
   @override
-  String get homeProPromoTitle => 'Pro’ni 7 kun bepul sinab ko‘ring';
+  String get homeProPromoTitle => 'Pro’ni 24 soat bepul sinab ko‘ring';
 
   @override
   String get homeProPromoSubtitle =>

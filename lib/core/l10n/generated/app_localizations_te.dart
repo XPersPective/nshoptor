@@ -939,8 +939,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get planFreeAi => 'నెలకు 10 AI రిక్వెస్ట్‌లు';
 
   @override
-  String get planFreeAds =>
-      'చిన్న బ్యానర్ ప్రకటనలు (మొదటి 7 రోజుల్లో కనిపించవు)';
+  String get planFreeAds => 'చిన్న బ్యానర్ ప్రకటనలు';
 
   @override
   String get planCoreFeatures => 'జాబితాలు, ధరలు, రసీదులు, ఖర్చు చార్ట్‌లు';
@@ -1745,7 +1744,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get receiptPhotoPreparing => 'రసీదు ఫోటో సిద్ధమవుతోంది…';
 
   @override
-  String get homeProPromoTitle => '7 రోజులు Pro ఉచితంగా ప్రయత్నించండి';
+  String get homeProPromoTitle => '24 గంటలు Pro ఉచితంగా ప్రయత్నించండి';
 
   @override
   String get homeProPromoSubtitle =>

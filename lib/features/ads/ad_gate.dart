@@ -4,12 +4,12 @@ import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
 
 /// Uygulamaya özgü reklam kapıları (PB-056, ADR-004 §8):
-/// - kurulumdan sonraki ilk 7 gün hiç reklam yok;
+/// - kurulumdan sonraki ilk 24 saat hiç reklam yok;
 /// - alışveriş modundayken tam ekran reklam yok (kullanıcı rafta).
 class AdGate {
   AdGate._();
 
-  static const graceDays = 7;
+  static const graceDays = 1;
   static const firstOpenKey = 'first_open_at';
   static const graceStateKey = 'ad_grace_state_v1';
   static const rewardedAdFreeDayKey = 'ad_reward_day_v1';
@@ -18,7 +18,7 @@ class AdGate {
   static bool shoppingModeActive = false;
 
   /// Earliest known first launch. Surviving policy/grace records repair a
-  /// missing legacy key, rather than awarding another seven days.
+  /// missing legacy key, rather than awarding a new promotional window.
   static DateTime firstOpen(SettingsStore store, DateTime now) =>
       _observeGrace(store, now).firstOpen;
 

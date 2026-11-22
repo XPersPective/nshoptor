@@ -936,8 +936,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get planFreeAi => '10 AI-pyyntöä kuukaudessa';
 
   @override
-  String get planFreeAds =>
-      'Pieni mainospalkki (ei ensimmäisten 7 päivän aikana)';
+  String get planFreeAds => 'Pieni mainospalkki';
 
   @override
   String get planCoreFeatures => 'Listat, hinnat, kuitit, kulukaaviot';
@@ -1737,7 +1736,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get receiptPhotoPreparing => 'Valmistellaan kuitin kuvaa…';
 
   @override
-  String get homeProPromoTitle => 'Kokeile Prota 7 päivää ilmaiseksi';
+  String get homeProPromoTitle => 'Kokeile Prota 24 tuntia ilmaiseksi';
 
   @override
   String get homeProPromoSubtitle =>

@@ -936,8 +936,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get planFreeAi => '10 AI pieprasījumi mēnesī';
 
   @override
-  String get planFreeAds =>
-      'Mazi reklāmas baneri (pirmajās 7 dienās nav neviena)';
+  String get planFreeAds => 'Mazi reklāmas baneri';
 
   @override
   String get planCoreFeatures => 'Saraksti, cenas, čeki, tēriņu diagrammas';
@@ -1739,7 +1738,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get receiptPhotoPreparing => 'Tiek sagatavots čeka fotoattēls…';
 
   @override
-  String get homeProPromoTitle => 'Izmēģiniet Pro 7 dienas bez maksas';
+  String get homeProPromoTitle => 'Izmēģiniet Pro 24 stundas bez maksas';
 
   @override
   String get homeProPromoSubtitle =>

@@ -929,8 +929,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get planFreeAi => '10 בקשות AI לחודש';
 
   @override
-  String get planFreeAds =>
-      'פרסומות באנר קטנות (ללא פרסומות ב-7 הימים הראשונים)';
+  String get planFreeAds => 'פרסומות באנר קטנות';
 
   @override
   String get planCoreFeatures => 'רשימות, מחירים, קבלות, גרפי הוצאות';
@@ -1720,7 +1719,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get receiptPhotoPreparing => 'מכין את תמונת הקבלה…';
 
   @override
-  String get homeProPromoTitle => 'נסו את Pro חינם ל-7 ימים';
+  String get homeProPromoTitle => 'נסו את Pro חינם ל-24 שעות';
 
   @override
   String get homeProPromoSubtitle =>

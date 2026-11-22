@@ -933,8 +933,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get planFreeAi => '10 permintaan AI per bulan';
 
   @override
-  String get planFreeAds =>
-      'Iklan banner kecil (tidak ada dalam 7 hari pertama Anda)';
+  String get planFreeAds => 'Iklan banner kecil';
 
   @override
   String get planCoreFeatures => 'Daftar, harga, struk, grafik pengeluaran';
@@ -1734,7 +1733,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get receiptPhotoPreparing => 'Menyiapkan foto struk…';
 
   @override
-  String get homeProPromoTitle => 'Coba Pro gratis 7 hari';
+  String get homeProPromoTitle => 'Coba Pro gratis 24 jam';
 
   @override
   String get homeProPromoSubtitle =>

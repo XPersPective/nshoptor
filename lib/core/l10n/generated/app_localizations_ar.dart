@@ -927,7 +927,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get planFreeAi => '10 طلب ذكاء اصطناعي شهريًا';
 
   @override
-  String get planFreeAds => 'إعلانات بانر صغيرة (لا إعلانات في أول 7 أيام)';
+  String get planFreeAds => 'إعلانات بانر صغيرة';
 
   @override
   String get planCoreFeatures => 'قوائم وأسعار وإيصالات ورسوم بيانية للمصروف';
@@ -1723,7 +1723,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get receiptPhotoPreparing => 'جارٍ تجهيز صورة الإيصال…';
 
   @override
-  String get homeProPromoTitle => 'جرّب Pro مجاناً لـ 7 أيام';
+  String get homeProPromoTitle => 'جرّب Pro مجاناً لـ ٢٤ ساعة';
 
   @override
   String get homeProPromoSubtitle =>

@@ -934,8 +934,7 @@ class AppLocalizationsAf extends AppLocalizations {
   String get planFreeAi => '10 AI-aanvrae per maand';
 
   @override
-  String get planFreeAds =>
-      'Klein bannerreklames (geen in jou eerste 7 dae nie)';
+  String get planFreeAds => 'Klein bannerreklames';
 
   @override
   String get planCoreFeatures =>
@@ -1740,7 +1739,7 @@ class AppLocalizationsAf extends AppLocalizations {
   String get receiptPhotoPreparing => 'Kwitansiefoto word voorberei…';
 
   @override
-  String get homeProPromoTitle => 'Probeer Pro 7 dae gratis';
+  String get homeProPromoTitle => 'Probeer Pro 24 uur gratis';
 
   @override
   String get homeProPromoSubtitle =>

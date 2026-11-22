@@ -10,12 +10,12 @@ import unicodedata
 REPO = 'https://github.com/XPersPective/nshoptor'
 
 L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
-           'short': 'Grocery list & budget: receipt scan, AI & 7-day free Pro (no card).',
+           'short': 'Grocery list & budget: receipt scan, AI & 24-hour free Pro (no card).',
            'full': 'Plan at home, check faster at checkout.\n'
                    '\n'
-                   '7 DAYS OF PRO FREE — NO CARD NEEDED\n'
+                   '24 HOURS OF PRO FREE — NO CARD NEEDED\n'
                    'Start with 100 AI receipt scans, ad-free shopping, and full backup for your '
-                   'first 7 days — no credit card or auto-charge required.\n'
+                   'first 24 hours — no credit card or auto-charge required.\n'
                    '\n'
                    'ONE LIST, THROUGHOUT YOUR SHOPPING\n'
                    'Create one named list for home planning and store checkout. Add items with '
@@ -49,19 +49,19 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                    'independently.\n'
                    '\n'
                    'Open source (GPL-3.0): https://github.com/XPersPective/nshoptor',
-           'notes': 'New in 1.3.4:\n'
-                    '• Try Pro free for 7 days: 100 AI receipt scans and no ads right from install (no card)\n'
+           'notes': 'New in 1.3.5:\n'
+                    '• Try Pro free for 24 hours: 100 AI receipt scans and no ads right from install (no card)\n'
                     '• Improved receipt reading reliability with clear loading overlay & done notifications\n'
                     '• Branded splash screen and refined light, dark & AMOLED themes across all palettes\n'
                     '• Batch capture in My receipts with duplicate detection & zoomable list photos\n'
                     '• Updated localizations across all 71 languages'},
  'tr-TR': {'title': 'NShoptor: Alışveriş Listesi',
-           'short': 'Alışveriş listesi & bütçe: fiş okuma, YZ, 7 gün ücretsiz Pro (kartsız).',
+           'short': 'Alışveriş listesi & bütçe: fiş okuma, YZ, 24 saat ücretsiz Pro (kartsız).',
            'full': 'Evde planla, kasada netleş.\n'
                    '\n'
-                   '7 GÜN ÜCRETSİZ PRO — KART GEREKMEZ\n'
+                   '24 SAAT ÜCRETSİZ PRO — KART GEREKMEZ\n'
                    'İlk kurulumda 100 yapay zekâ fiş okuma, reklamsız deneyim ve tam yedekleme '
-                   'ile 7 gün Pro özelliklerini kartsız ve otomatik ücret olmadan deneyin.\n'
+                   'ile 24 saat Pro özelliklerini kartsız ve otomatik ücret olmadan deneyin.\n'
                    '\n'
                    'BAŞTAN SONA TEK LİSTE\n'
                    'Evdeki planlama ve market alışverişi için tek liste açın. Ürünleri beklenen '
@@ -95,8 +95,8 @@ L = {'en-US': {'title': 'NShoptor: Smart Grocery List',
                    '71 arayüz dili. Dil, sayı biçimi ve para birimi bağımsız seçilir.\n'
                    '\n'
                    'Açık kaynak (GPL-3.0): https://github.com/XPersPective/nshoptor',
-           'notes': 'Sürüm 1.3.4 yenilikleri:\n'
-                    '• 7 gün ücretsiz Pro karşılama kartı: kartsız 100 YZ fiş okuma ve reklamsız deneyim\n'
+           'notes': 'Sürüm 1.3.5 yenilikleri:\n'
+                    '• 24 saat ücretsiz Pro karşılama kartı: kartsız 100 YZ fiş okuma ve reklamsız deneyim\n'
                     '• Güçlendirilen fiş okuma motoru, yükleme animasyonu ve yerel tamamlanma bildirimi\n'
                     '• İkonlu yeni açılış ekranı ve yerelleştirilmiş slogan\n'
                     '• Açık, koyu ve AMOLED ekranlarda cilalanan sakin tema tasarımları\n'
@@ -112,10 +112,10 @@ if _extra.exists():
 L.update({
     'de-DE': {
         'title': 'NShoptor: Einkaufsbudget',
-        'short': 'Einkaufsliste & Budget: Bon-Scan, KI & 7 Tage Pro gratis (ohne Karte).',
+        'short': 'Einkaufsliste & Budget: Bon-Scan, KI & 24 Stunden Pro gratis (ohne Karte).',
         'full': "Zuhause planen, an der Kasse den Überblick behalten.\n\n"
-                "7 TAGE PRO GRATIS — OHNE KREDITKARTE\n"
-                "Starte ab der Installation mit 100 KI-Bon-Scans, werbefreiem Einkauf und vollständigem Backup für 7 Tage — ganz ohne Karte oder automatische Abbuchung.\n\n"
+                "24 STUNDEN PRO GRATIS — OHNE KREDITKARTE\n"
+                "Starte ab der Installation mit 100 KI-Bon-Scans, werbefreiem Einkauf und vollständigem Backup für 24 Stunden — ganz ohne Karte oder automatische Abbuchung.\n\n"
                 "EINE LISTE VON DER PLANUNG BIS ZUR KASSE\n"
                 "Erstelle eine benannte Liste für Einkaufsplanung und Kassencheck. Füge Artikel mit geplanter Menge und Schätzpreis hinzu und trage im Laden den tatsächlichen Kassenpreis direkt am selben Eintrag nach. Sortiere nach Einkaufsdatum, Name oder eigener Reihenfolge. Unbekannte Preise bleiben unbekannt; nicht gekaufte Artikel zählen nicht als Ersparnis.\n\n"
                 "SERIEN-BELEGSCAN, LOKALE EINGABE & DEINE FREIGABE\n"
@@ -126,8 +126,8 @@ L.update({
                 "Kein Konto nötig. Listen, Fotos und Audio bleiben auf deinem Gerät. Kernfunktionen und lokaler Bon-/Etikettenscan funktionieren offline. Optionale KI sendet nur den gewählten Text oder verkleinerte Beleg-/Etikettfotos zur vorübergehenden Erkennung (ohne dauerhafte Speicherung) an unseren Dienst und Modellanbieter. Backups bleiben unter deiner Kontrolle.\n\n"
                 "71 Oberflächensprachen. Sprache, Zahlenformat und Währung frei wählbar.\n\n"
                 "Open Source (GPL-3.0): https://github.com/XPersPective/nshoptor",
-        'notes': 'Neu in 1.3.4:\n'
-                 '• 7 Tage Pro gratis testen: 100 KI-Bon-Scans ohne Werbung und ohne Kreditkarte\n'
+        'notes': 'Neu in 1.3.5:\n'
+                 '• 24 Stunden Pro gratis testen: 100 KI-Bon-Scans ohne Werbung und ohne Kreditkarte\n'
                  '• Verbesserte Bon-Erkennung mit klarer Ladeanzeige und lokaler Benachrichtigung\n'
                  '• Neuer Startbildschirm mit App-Icon, Slogan & verfeinertem Hell/Dunkel/AMOLED-Design\n'
                  '• Serien-Scan unter „Meine Belege“ mit Duplikatprüfung & zoombaren Listenfotos\n'
@@ -135,10 +135,10 @@ L.update({
     },
     'es-ES': {
         'title': 'NShoptor: Lista y presupuesto',
-        'short': 'Lista y presupuesto: escáner de tickets, IA, 7 días Pro gratis (sin tarjeta).',
+        'short': 'Lista y presupuesto: escáner de tickets, IA, 24 horas Pro gratis (sin tarjeta).',
         'full': "Planifica en casa, comprueba en caja.\n\n"
-                "7 DÍAS DE PRO GRATIS — SIN TARJETA\n"
-                "Empieza con 100 escaneos de tickets por IA, sin anuncios y con copia de seguridad completa durante 7 días tras instalar, sin tarjeta ni cobro automático.\n\n"
+                "24 HORAS DE PRO GRATIS — SIN TARJETA\n"
+                "Empieza con 100 escaneos de tickets por IA, sin anuncios y con copia de seguridad completa durante 24 horas tras instalar, sin tarjeta ni cobro automático.\n\n"
                 "UNA SOLA LISTA DE PRINCIPIO A FIN\n"
                 "Crea una lista con nombre para planificar en casa y anotar el precio real en el súper sobre el mismo artículo. Ordena por fecha de compra, nombre u orden manual. Los precios desconocidos no se inventan y lo no comprado no cuenta como ahorro.\n\n"
                 "ESCANEO DE TICKETS POR LOTES Y TU APROBACIÓN\n"
@@ -149,8 +149,8 @@ L.update({
                 "Sin cuenta. Listas, fotos y audio permanecen en tu dispositivo. Las listas y el OCR local funcionan sin internet. La IA opcional envía solo el texto elegido o fotos reducidas de tickets/etiquetas para lectura transitoria (nunca almacenadas) a nuestro servicio y su proveedor de modelos.\n\n"
                 "71 idiomas de interfaz. Idioma, números y moneda independientes.\n\n"
                 "Código abierto (GPL-3.0): https://github.com/XPersPective/nshoptor",
-        'notes': 'Novedades 1.3.4:\n'
-                 '• Prueba Pro gratis 7 días: 100 lecturas de tickets con IA y sin anuncios (sin tarjeta)\n'
+        'notes': 'Novedades 1.3.5:\n'
+                 '• Prueba Pro gratis 24 horas: 100 lecturas de tickets con IA y sin anuncios (sin tarjeta)\n'
                  '• Lectura de tickets mejorada con indicador de carga y aviso local al terminar\n'
                  '• Pantalla de inicio con icono y eslogan localizados; temas claro, oscuro y AMOLED pulidos\n'
                  '• Escaneo por lotes en «Mis recibos» con detección de duplicados y fotos ampliables\n'
@@ -158,10 +158,10 @@ L.update({
     },
     'fr-FR': {
         'title': 'NShoptor : liste et budget',
-        'short': 'Courses & budget : scan tickets, IA, 7 j Pro gratuits (sans carte).',
+        'short': 'Courses & budget : scan tickets, IA, 24 h Pro gratuits (sans carte).',
         'full': "Planifiez chez vous, vérifiez en caisse.\n\n"
-                "7 JOURS PRO GRATUITS — SANS CARTE BANCAIRE\n"
-                "Profitez dès l'installation de 100 scans de tickets par IA, sans publicité et avec sauvegarde complète pendant 7 jours, sans carte ni prélèvement.\n\n"
+                "24 HEURES PRO GRATUITS — SANS CARTE BANCAIRE\n"
+                "Profitez dès l'installation de 100 scans de tickets par IA, sans publicité et avec sauvegarde complète pendant 24 heures, sans carte ni prélèvement.\n\n"
                 "UNE SEULE LISTE DU DÉBUT À LA FIN\n"
                 "Créez une liste nommée pour planifier vos courses et pointer en magasin. Ajoutez quantité et prix estimé à la maison, puis saisissez le prix réel en rayon sur la même ligne. Triez par date d'achat, nom ou ordre manuel. Les prix inconnus restent inconnus ; un article non acheté n'est pas compté comme une économie.\n\n"
                 "SCAN DE TICKETS EN SÉRIE & VALIDATION MANUELLE\n"
@@ -172,8 +172,8 @@ L.update({
                 "Aucun compte requis. Listes, tickets, photos et audio restent sur votre appareil. Les listes et la lecture locale fonctionnent hors ligne. L'IA optionnelle envoie uniquement le texte choisi ou des photos réduites pour lecture transitoire (jamais stockées) à notre service et son fournisseur de modèle.\n\n"
                 "71 langues d'interface. Langue, format numérique et devise indépendants.\n\n"
                 "Open source (GPL-3.0) : https://github.com/XPersPective/nshoptor",
-        'notes': 'Nouveautés 1.3.4 :\n'
-                 '• Essai Pro gratuit 7 jours : 100 scans IA et zéro pub dès l’installation (sans carte)\n'
+        'notes': 'Nouveautés 1.3.5 :\n'
+                 '• Essai Pro gratuit 24 heures : 100 scans IA et zéro pub dès l’installation (sans carte)\n'
                  '• Lecture de tickets renforcée avec indicateur de chargement et notification claire\n'
                  '• Écran de démarrage avec logo et slogan localisés ; thèmes clair, sombre et AMOLED affinés\n'
                  '• « Mes tickets » en rafale avec détection des doublons et photos zoomables\n'
@@ -181,10 +181,10 @@ L.update({
     },
     'it-IT': {
         'title': 'NShoptor: lista e budget',
-        'short': 'Lista spesa & budget: scontrini, IA, 7 giorni Pro gratis (senza carta).',
+        'short': 'Lista spesa & budget: scontrini, IA, 24 ore Pro gratis (senza carta).',
         'full': "Pianifica a casa, controlla alla cassa.\n\n"
-                "7 GIORNI DI PRO GRATIS — SENZA CARTA\n"
-                "Inizia subito con 100 scansioni scontrini con IA, esperienza senza pubblicità e backup completo per 7 giorni, senza carta né addebito automatico.\n\n"
+                "24 ORE DI PRO GRATIS — SENZA CARTA\n"
+                "Inizia subito con 100 scansioni scontrini con IA, esperienza senza pubblicità e backup completo per 24 ore, senza carta né addebito automatico.\n\n"
                 "UN'UNICA LISTA DALLA PIANIFICAZIONE AL CARRELLO\n"
                 "Crea una lista con nome per pianificare la spesa e inserire il prezzo reale in negozio sulla stessa riga. Ordina per data di spesa, nome o ordine manuale. I prezzi sconosciuti restano tali e gli articoli non acquistati non risultano come risparmio.\n\n"
                 "SCANSIONE SCONTRINI IN SERIE E TUA APPROVAZIONE\n"
@@ -195,8 +195,8 @@ L.update({
                 "Nessun account richiesto. Liste, foto e audio restano sul dispositivo. Funzioni base e OCR locale lavorano offline. L'IA opzionale invia solo il testo scelto o foto ridotte di scontrini/etichette per lettura transitoria (mai archiviate) al nostro servizio e fornitore di modelli.\n\n"
                 "71 lingue di interfaccia. Lingua, formato numeri e valuta indipendenti.\n\n"
                 "Open source (GPL-3.0): https://github.com/XPersPective/nshoptor",
-        'notes': 'Novità in 1.3.4:\n'
-                 '• Prova Pro gratis 7 giorni: 100 scansioni IA e zero pubblicità (senza carta)\n'
+        'notes': 'Novità in 1.3.5:\n'
+                 '• Prova Pro gratis 24 ore: 100 scansioni IA e zero pubblicità (senza carta)\n'
                  '• Lettura scontrini migliorata con indicatore di caricamento e avviso al termine\n'
                  '• Splash screen con icona e slogan localizzati; temi chiaro, scuro e AMOLED rifiniti\n'
                  '• Acquisizione in serie in «I miei scontrini» con controllo duplicati e foto ingrandibili\n'
@@ -204,10 +204,10 @@ L.update({
     },
     'pt-PT': {
         'title': 'NShoptor: Lista de Compras',
-        'short': 'Lista e orçamento: talões, IA, 7 dias Pro grátis (sem cartão).',
+        'short': 'Lista e orçamento: talões, IA, 24 horas Pro grátis (sem cartão).',
         'full': "Planeje em casa, confira no caixa.\n\n"
-                "7 DIAS PRO GRÁTIS — SEM CARTÃO\n"
-                "Comece com 100 leituras de talões por IA, sem anúncios e com cópia de segurança completa durante 7 dias, sem cartão nem cobrança automática.\n\n"
+                "24 HORAS PRO GRÁTIS — SEM CARTÃO\n"
+                "Comece com 100 leituras de talões por IA, sem anúncios e com cópia de segurança completa durante 24 horas, sem cartão nem cobrança automática.\n\n"
                 "UMA ÚNICA LISTA DO INÍCIO AO FIM\n"
                 "Crie uma lista para planejar em casa e anotar o preço real no mercado no mesmo item. Ordene por data da compra, nome ou ordem manual. Preços desconhecidos continuam desconhecidos; itens não comprados não aparecem como economia.\n\n"
                 "CUPONS EM LOTE, ENTRADA LOCAL E SUA APROVAÇÃO\n"
@@ -218,8 +218,8 @@ L.update({
                 "Sem conta. Listas, fotos e áudio ficam no seu aparelho. Compras e OCR local funcionam offline. A IA opcional envia apenas o texto escolhido ou fotos reduzidas de cupons/etiquetas para leitura transitória (nunca armazenadas) ao nosso serviço e provedor de modelo.\n\n"
                 "71 idiomas de interface. Idioma, números e moeda independentes.\n\n"
                 "Código aberto (GPL-3.0): https://github.com/XPersPective/nshoptor",
-        'notes': 'Novidades 1.3.4:\n'
-                 '• Experimente Pro grátis por 7 dias: 100 leituras IA e zero anúncios (sem cartão)\n'
+        'notes': 'Novidades 1.3.5:\n'
+                 '• Experimente Pro grátis por 24 horas: 100 leituras IA e zero anúncios (sem cartão)\n'
                  '• Leitura de talões melhorada com indicador de carregamento e notificação local\n'
                  '• Ecrã inicial com ícone e slogan localizados; temas claro, escuro e AMOLED refinados\n'
                  '• Separador «Meus recibos» em série com alerta de duplicados e fotos ampliáveis\n'
@@ -227,10 +227,10 @@ L.update({
     },
     'pt-BR': {
         'title': 'NShoptor: Lista de Compras',
-        'short': 'Lista e orçamento: cupons, IA, 7 dias Pro grátis (sem cartão).',
+        'short': 'Lista e orçamento: cupons, IA, 24 horas Pro grátis (sem cartão).',
         'full': "Planeje em casa, confira no caixa.\n\n"
-                "7 DIAS PRO GRÁTIS — SEM CARTÃO\n"
-                "Comece com 100 leituras de cupons com IA, experiência sem anúncios e backup completo por 7 dias após instalar — sem cartão nem cobrança automática.\n\n"
+                "24 HORAS PRO GRÁTIS — SEM CARTÃO\n"
+                "Comece com 100 leituras de cupons com IA, experiência sem anúncios e backup completo por 24 horas após instalar — sem cartão nem cobrança automática.\n\n"
                 "UMA ÚNICA LISTA DO INÍCIO AO FIM\n"
                 "Crie uma lista para planejar em casa e anotar o preço real no mercado no mesmo item. Ordene por data da compra, nome ou ordem manual. Preços desconhecidos continuam desconhecidos; itens não comprados não aparecem como economia.\n\n"
                 "CUPONS EM LOTE, ENTRADA LOCAL E SUA APROVAÇÃO\n"
@@ -241,8 +241,8 @@ L.update({
                 "Sem conta. Listas, fotos e áudio ficam no seu aparelho. Compras e OCR local funcionam offline. A IA opcional envia apenas o texto escolhido ou fotos reduzidas de cupons/etiquetas para leitura transitória (nunca armazenadas) ao nosso serviço e provedor de modelo.\n\n"
                 "71 idiomas de interface. Idioma, números e moeda independentes.\n\n"
                 "Código aberto (GPL-3.0): https://github.com/XPersPective/nshoptor",
-        'notes': 'Novidades 1.3.4:\n'
-                 '• Teste Pro grátis por 7 dias: 100 leituras com IA e sem anúncios (sem cartão)\n'
+        'notes': 'Novidades 1.3.5:\n'
+                 '• Teste Pro grátis por 24 horas: 100 leituras com IA e sem anúncios (sem cartão)\n'
                  '• Leitura de cupons reforçada com indicador de carregamento e aviso local ao concluir\n'
                  '• Tela inicial com ícone e slogan localizados; temas claro, escuro e AMOLED refinados\n'
                  '• Aba «Meus recibos» em lote com alerta de duplicados e fotos ampliáveis\n'
@@ -250,10 +250,10 @@ L.update({
     },
     'ru-RU': {
         'title': 'NShoptor: список и бюджет',
-        'short': 'Список покупок & бюджет: чеки, ИИ, 7 дней Pro бесплатно (без карты).',
+        'short': 'Список покупок & бюджет: чеки, ИИ, 24 часа Pro бесплатно (без карты).',
         'full': "Планируйте дома, сверяйте на кассе.\n\n"
-                "7 ДНЕЙ PRO БЕСПЛАТНО — БЕЗ КАРТЫ\n"
-                "Начните со 100 ИИ-распознаваний чеков, работы без рекламы и полного резервного копирования на первые 7 дней — без привязки карты и автосписаний.\n\n"
+                "24 ЧАСА PRO БЕСПЛАТНО — БЕЗ КАРТЫ\n"
+                "Начните со 100 ИИ-распознаваний чеков, работы без рекламы и полного резервного копирования на первые 24 часа — без привязки карты и автосписаний.\n\n"
                 "ОДИН СПИСОК НА ВСЮ ПОКУПКУ\n"
                 "Создайте список с планируемым количеством и ценой дома, а в магазине укажите фактическую цену прямо в той же строке. Сортируйте по дате покупок, названию или вручную. Неизвестные цены остаются неизвестными, а некупленные товары не считаются экономией.\n\n"
                 "ПАКЕТНОЕ СКАНИРОВАНИЕ ЧЕКОВ И ВАШ КОНТРОЛЬ\n"
@@ -264,8 +264,8 @@ L.update({
                 "Аккаунт не нужен. Списки, фото и аудио хранятся на устройстве. Базовые функции и локальное распознавание работают офлайн. Опциональный ИИ передаёт только выбранный текст или уменьшенные фото чеков/ценников для временного чтения (без сохранения) нашему сервису и провайдеру модели.\n\n"
                 "71 язык интерфейса. Язык, числа и валюта настраиваются независимо.\n\n"
                 "Открытый исходный код (GPL-3.0): https://github.com/XPersPective/nshoptor",
-        'notes': 'Новое в 1.3.4:\n'
-                 '• Попробуйте Pro бесплатно 7 дней: 100 ИИ-сканов и никакой рекламы (без карты)\n'
+        'notes': 'Новое в 1.3.5:\n'
+                 '• Попробуйте Pro бесплатно 24 часа: 100 ИИ-сканов и никакой рекламы (без карты)\n'
                  '• Повышена точность чтения чеков, добавлена анимация загрузки и чёткое уведомление\n'
                  '• Новый экран запуска с иконкой и слоганом; доработаны светлая, тёмная и AMOLED темы\n'
                  '• Пакетное сканирование во вкладке «Мои чеки» с проверкой дубликатов и фото чека\n'
@@ -273,10 +273,10 @@ L.update({
     },
     'ar': {
         'title': 'NShoptor: قائمة تسوق ذكية',
-        'short': 'قائمة تسوق وميزانية: فواتير، ذكاء اصطناعي، 7 أيام Pro مجاناً بلا بطاقة.',
+        'short': 'قائمة تسوق وميزانية: فواتير، ذكاء اصطناعي، 24 ساعة Pro مجاناً بلا بطاقة.',
         'full': "خطّط في المنزل، وتحقّق عند الدفع.\n\n"
-                "7 أيام Pro مجاناً — دون بطاقة بنكية\n"
-                "ابدأ بـ 100 مسح إيصال بالذكاء الاصطناعي وتجربة خالية من الإعلانات مع نسخ احتياطي كامل خلال أول 7 أيام — دون بطاقة أو خصم تلقائي.\n\n"
+                "24 ساعة Pro مجاناً — دون بطاقة بنكية\n"
+                "ابدأ بـ 100 مسح إيصال بالذكاء الاصطناعي وتجربة خالية من الإعلانات مع نسخ احتياطي كامل خلال أول 24 ساعة — دون بطاقة أو خصم تلقائي.\n\n"
                 "قائمة واحدة من البداية إلى الكاشير\n"
                 "أنشئ قائمة للتخطيط بالكميات والأسعار التقديرية في المنزل، ثم سجّل السعر الفعلي في المتجر على السطر نفسه. رتّب حسب تاريخ التسوّق أو الاسم أو الترتيب اليدوي. الأسعار المجهولة لا تُقدّر جزافاً، والسلع غير المشتراة لا تُحسب كتوفير.\n\n"
                 "مسح الإيصالات دفعة واحدة وبموافقتك\n"
@@ -287,8 +287,8 @@ L.update({
                 "لا حاجة لحساب. تبقى القوائم والصور والصوت على جهازك. يعمل التسوق والقراءة المحلية دون إنترنت. يرسل الذكاء الاصطناعي الاختياري النص الذي تختاره فقط أو صوراً مصغّرة للقراءة المؤقتة (دون تخزين) إلى خدمتنا ومزوّد النموذج.\n\n"
                 "71 لغة واجهة مع اختيار مستقل للغة والأرقام والعملة.\n\n"
                 "مفتوح المصدر (GPL-3.0): https://github.com/XPersPective/nshoptor",
-        'notes': 'الجديد في 1.3.4:\n'
-                 '• جرّب Pro مجاناً لـ 7 أيام: 100 مسح بالذكاء الاصطناعي وبلا إعلانات (دون بطاقة)\n'
+        'notes': 'الجديد في 1.3.5:\n'
+                 '• جرّب Pro مجاناً لـ 24 ساعة: 100 مسح بالذكاء الاصطناعي وبلا إعلانات (دون بطاقة)\n'
                  '• تحسين قراءة الإيصالات مع مؤشر تحميل أنيق وإشعار واضح عند الاكتمال\n'
                  '• شاشة بداية بهوية التطبيق وشعاره المترجم مع صقل السمات الفاتحة والداكنة وAMOLED\n'
                  '• مسح متتابع في تبويب «إيصالاتي» مع كشف التكرار وحفظ صور الإيصال القابلة للتكبير\n'

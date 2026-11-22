@@ -914,7 +914,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get planFreeAi => '每月 10 次 AI 请求';
 
   @override
-  String get planFreeAds => '少量横幅广告（前 7 天无广告）';
+  String get planFreeAds => '少量横幅广告';
 
   @override
   String get planCoreFeatures => '列表、价格、收据、支出图表';
@@ -1663,7 +1663,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get receiptPhotoPreparing => '正在准备小票照片…';
 
   @override
-  String get homeProPromoTitle => '免费试用 Pro 7 天';
+  String get homeProPromoTitle => '免费试用 Pro 24 小时';
 
   @override
   String get homeProPromoSubtitle => '已解锁 100 次 AI 小票识别与无广告体验 · 无需绑卡';

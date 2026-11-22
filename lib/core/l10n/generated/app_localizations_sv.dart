@@ -934,7 +934,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get planFreeAi => '10 AI-förfrågningar i månaden';
 
   @override
-  String get planFreeAds => 'Små bannerreklam (ingen de första 7 dagarna)';
+  String get planFreeAds => 'Små bannerreklam';
 
   @override
   String get planCoreFeatures => 'Listor, priser, kvitton, utgiftsdiagram';
@@ -1733,7 +1733,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get receiptPhotoPreparing => 'Förbereder kvittobild…';
 
   @override
-  String get homeProPromoTitle => 'Prova Pro gratis i 7 dagar';
+  String get homeProPromoTitle => 'Prova Pro gratis i 24 timmar';
 
   @override
   String get homeProPromoSubtitle =>

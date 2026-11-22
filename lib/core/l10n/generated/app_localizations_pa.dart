@@ -935,7 +935,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get planFreeAi => 'ਮਹੀਨੇ ਵਿੱਚ 10 AI ਰਿਕਵੈਸਟਾਂ';
 
   @override
-  String get planFreeAds => 'ਛੋਟੀ ਬੈਨਰ ਵਿਗਿਆਪਨ (ਪਹਿਲੇ 7 ਦਿਨਾਂ ਵਿੱਚ ਕੋਈ ਨਹੀਂ)';
+  String get planFreeAds => 'ਛੋਟੀ ਬੈਨਰ ਵਿਗਿਆਪਨ';
 
   @override
   String get planCoreFeatures => 'ਸੂਚੀਆਂ, ਕੀਮਤਾਂ, ਰਸੀਦਾਂ, ਖਰਚ ਚਾਰਟ';
@@ -1734,7 +1734,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get receiptPhotoPreparing => 'ਰਸੀਦ ਦੀ ਫ਼ੋਟੋ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…';
 
   @override
-  String get homeProPromoTitle => '7 ਦਿਨ Pro ਮੁਫ਼ਤ ਵਰਤ ਕੇ ਦੇਖੋ';
+  String get homeProPromoTitle => '24 ਘੰਟੇ Pro ਮੁਫ਼ਤ ਵਰਤ ਕੇ ਦੇਖੋ';
 
   @override
   String get homeProPromoSubtitle =>

@@ -933,7 +933,7 @@ class AppLocalizationsGu extends AppLocalizations {
   String get planFreeAi => 'મહિને 10 AI વિનંતીઓ';
 
   @override
-  String get planFreeAds => 'નાના બેનર એડ્સ (પહેલા 7 દિવસે કોઈ નહીં)';
+  String get planFreeAds => 'નાના બેનર એડ્સ';
 
   @override
   String get planCoreFeatures => 'યાદીઓ, કિંમતો, રસીદો, ખર્ચ ચાર્ટ્સ';
@@ -1732,7 +1732,7 @@ class AppLocalizationsGu extends AppLocalizations {
   String get receiptPhotoPreparing => 'રસીદનો ફોટો તૈયાર થઈ રહ્યો છે…';
 
   @override
-  String get homeProPromoTitle => '7 દિવસ માટે Pro મફત અજમાવો';
+  String get homeProPromoTitle => '24 કલાક માટે Pro મફત અજમાવો';
 
   @override
   String get homeProPromoSubtitle =>

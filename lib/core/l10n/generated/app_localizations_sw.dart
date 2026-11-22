@@ -935,8 +935,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get planFreeAi => 'Maombi 10 ya AI kwa mwezi';
 
   @override
-  String get planFreeAds =>
-      'Matamko madogo ya bango (hakuna katika siku zako za kwanza 7)';
+  String get planFreeAds => 'Matamko madogo ya bango';
 
   @override
   String get planCoreFeatures => 'Orodha, bei, risiti, michoro ya matumizi';
@@ -1740,7 +1739,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get receiptPhotoPreparing => 'Inaandaa picha ya risiti…';
 
   @override
-  String get homeProPromoTitle => 'Jaribu Pro bure kwa siku 7';
+  String get homeProPromoTitle => 'Jaribu Pro bure kwa saa 24';
 
   @override
   String get homeProPromoSubtitle =>

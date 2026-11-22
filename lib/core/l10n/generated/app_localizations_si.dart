@@ -932,8 +932,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get planFreeAi => 'මාසයකට AI ඉල්ලීම් 10';
 
   @override
-  String get planFreeAds =>
-      'කුඩා බැනර් දැන්වීම් (ඔබේ පළමු දින 7 තුළ කිසිවක් නැත)';
+  String get planFreeAds => 'කුඩා බැනර් දැන්වීම්';
 
   @override
   String get planCoreFeatures => 'ලැයිස්තු, මිල, ලැබුම් පත්, ආදායම චාට්';
@@ -1734,7 +1733,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get receiptPhotoPreparing => 'රිසිට්පත් ඡායාරූපය සූදානම් කරමින්…';
 
   @override
-  String get homeProPromoTitle => 'දින 7ක් Pro නොමිලේ අත්හදා බලන්න';
+  String get homeProPromoTitle => 'පැය 24ක් Pro නොමිලේ අත්හදා බලන්න';
 
   @override
   String get homeProPromoSubtitle =>

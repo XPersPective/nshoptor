@@ -932,7 +932,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get planFreeAi => 'Ayda 10 yapay zekâ isteği';
 
   @override
-  String get planFreeAds => 'Küçük banner reklam (ilk 7 gün reklamsız)';
+  String get planFreeAds => 'İlk 24 saatten sonra küçük banner reklam';
 
   @override
   String get planCoreFeatures =>
@@ -1733,7 +1733,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get receiptPhotoPreparing => 'Fiş fotoğrafı hazırlanıyor…';
 
   @override
-  String get homeProPromoTitle => '7 gün ücretsiz Pro deneyin';
+  String get homeProPromoTitle => '24 saat ücretsiz Pro deneyin';
 
   @override
   String get homeProPromoSubtitle =>

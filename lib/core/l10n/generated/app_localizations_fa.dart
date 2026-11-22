@@ -932,7 +932,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get planFreeAi => '10 درخواست هوش مصنوعی در ماه';
 
   @override
-  String get planFreeAds => 'بنر تبلیغاتی کوچک (۷ روز اول هیچ تبلیغی ندارید)';
+  String get planFreeAds => 'بنر تبلیغاتی کوچک';
 
   @override
   String get planCoreFeatures => 'لیست‌ها، قیمت‌ها، رسیدها، نمودارهای مصرف';
@@ -1729,7 +1729,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get receiptPhotoPreparing => 'در حال آماده‌سازی تصویر رسید…';
 
   @override
-  String get homeProPromoTitle => '۷ روز Pro را رایگان امتحان کنید';
+  String get homeProPromoTitle => '۲۴ ساعت Pro را رایگان امتحان کنید';
 
   @override
   String get homeProPromoSubtitle =>

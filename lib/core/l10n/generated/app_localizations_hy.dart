@@ -937,7 +937,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get planFreeAi => '10 AI հարցում ամիսը';
 
   @override
-  String get planFreeAds => 'Փոքր բաններ (առաջին 7 օրերին՝ առանց)';
+  String get planFreeAds => 'Փոքր բաններ';
 
   @override
   String get planCoreFeatures =>
@@ -1742,7 +1742,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get receiptPhotoPreparing => 'Պատրաստվում է կտրոնի լուսանկարը…';
 
   @override
-  String get homeProPromoTitle => 'Փորձեք Pro-ն 7 օր անվճար';
+  String get homeProPromoTitle => 'Փորձեք Pro-ն 24 ժամ անվճար';
 
   @override
   String get homeProPromoSubtitle =>

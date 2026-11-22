@@ -935,8 +935,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get planFreeAi => '10 lượt yêu cầu AI mỗi tháng';
 
   @override
-  String get planFreeAds =>
-      'Quảng cáo biểu ngữ nhỏ (không quảng cáo trong 7 ngày đầu tiên của bạn)';
+  String get planFreeAds => 'Quảng cáo biểu ngữ nhỏ';
 
   @override
   String get planCoreFeatures => 'Danh sách, giá cả, hóa đơn, biểu đồ chi tiêu';
@@ -1730,7 +1729,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get receiptPhotoPreparing => 'Đang chuẩn bị ảnh hóa đơn…';
 
   @override
-  String get homeProPromoTitle => 'Dùng thử Pro miễn phí 7 ngày';
+  String get homeProPromoTitle => 'Dùng thử Pro miễn phí 24 giờ';
 
   @override
   String get homeProPromoSubtitle =>

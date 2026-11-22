@@ -936,8 +936,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get planFreeAi => '10 permintaan AI sebulan';
 
   @override
-  String get planFreeAds =>
-      'Iklan banner kecil (tiada dalam 7 hari pertama anda)';
+  String get planFreeAds => 'Iklan banner kecil';
 
   @override
   String get planCoreFeatures => 'Senarai, harga, resit, carta perbelanjaan';
@@ -1738,7 +1737,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get receiptPhotoPreparing => 'Menyediakan foto resit…';
 
   @override
-  String get homeProPromoTitle => 'Cuba Pro percuma selama 7 hari';
+  String get homeProPromoTitle => 'Cuba Pro percuma selama 24 jam';
 
   @override
   String get homeProPromoSubtitle =>

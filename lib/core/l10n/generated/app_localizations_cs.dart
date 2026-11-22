@@ -934,7 +934,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get planFreeAi => '10 AI požadavků měsíčně';
 
   @override
-  String get planFreeAds => 'Malé bannerové reklamy (žádné v prvních 7 dnech)';
+  String get planFreeAds => 'Malé bannerové reklamy';
 
   @override
   String get planCoreFeatures => 'Seznamy, ceny, účtenky, grafy výdajů';
@@ -1736,7 +1736,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get receiptPhotoPreparing => 'Připravuje se fotka účtenky…';
 
   @override
-  String get homeProPromoTitle => 'Vyzkoušejte Pro na 7 dní zdarma';
+  String get homeProPromoTitle => 'Vyzkoušejte Pro na 24 hodin zdarma';
 
   @override
   String get homeProPromoSubtitle =>

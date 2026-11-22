@@ -916,7 +916,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get planFreeAi => '月10回のAIリクエスト';
 
   @override
-  String get planFreeAds => 'バナー広告あり（最初の7日間はなし）';
+  String get planFreeAds => 'バナー広告あり';
 
   @override
   String get planCoreFeatures => 'リスト、価格、レシート、支出グラフ';
@@ -1676,7 +1676,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get receiptPhotoPreparing => 'レシート写真を準備しています…';
 
   @override
-  String get homeProPromoTitle => 'Proを7日間無料で試す';
+  String get homeProPromoTitle => 'Proを24時間無料で試す';
 
   @override
   String get homeProPromoSubtitle => 'AIレシート読取100回と広告非表示が利用可能 · カード不要';

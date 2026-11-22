@@ -15,7 +15,7 @@ String planLabel(
   Tier.free => proUnlocked ? 'Pro' : 'Free',
 };
 
-/// Paywall başlığındaki açık durum: "Mevcut: Pro · 7 gün ücretsiz".
+/// Paywall başlığındaki açık durum: "Mevcut: Pro · Deneme".
 String planStatusText(
   AppLocalizations l10n, {
   required String label,

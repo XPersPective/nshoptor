@@ -936,8 +936,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get planFreeAi => '10 kërkesa AI në muaj';
 
   @override
-  String get planFreeAds =>
-      'Reklama banner të vogla (pa asnjë në ditët e para 7)';
+  String get planFreeAds => 'Reklama banner të vogla';
 
   @override
   String get planCoreFeatures => 'Lista, çmime, fatura, grafika shpenzimesh';
@@ -1739,7 +1738,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get receiptPhotoPreparing => 'Po përgatitet fotoja e faturës…';
 
   @override
-  String get homeProPromoTitle => 'Provo Pro falas për 7 ditë';
+  String get homeProPromoTitle => 'Provo Pro falas për 24 orë';
 
   @override
   String get homeProPromoSubtitle =>

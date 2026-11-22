@@ -932,7 +932,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get planFreeAi => '10 คำขอ AI ต่อเดือน';
 
   @override
-  String get planFreeAds => 'โฆษณาแบนเนอร์เล็กน้อย (ไม่มีใน 7 วันแรก)';
+  String get planFreeAds => 'โฆษณาแบนเนอร์เล็กน้อย';
 
   @override
   String get planCoreFeatures => 'รายการ ราคา ใบเสร็จ กราฟค่าใช้จ่าย';
@@ -1721,7 +1721,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get receiptPhotoPreparing => 'กำลังเตรียมรูปใบเสร็จ…';
 
   @override
-  String get homeProPromoTitle => 'ทดลองใช้ Pro ฟรี 7 วัน';
+  String get homeProPromoTitle => 'ทดลองใช้ Pro ฟรี 24 ชั่วโมง';
 
   @override
   String get homeProPromoSubtitle =>

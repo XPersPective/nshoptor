@@ -935,8 +935,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get planFreeAi => 'ತಿಂಗಳಿಗೆ 10 AI ವಿನಂತಿಗಳು';
 
   @override
-  String get planFreeAds =>
-      'ಚಿಕ್ಕ ಬ್ಯಾನರ್ ವಿಜ್ಞಾಪನೆಗಳು (ಮೊದಲ 7 ದಿನಗಳಲ್ಲಿ ಯಾವುದೂ ಇಲ್ಲ)';
+  String get planFreeAds => 'ಚಿಕ್ಕ ಬ್ಯಾನರ್ ವಿಜ್ಞಾಪನೆಗಳು';
 
   @override
   String get planCoreFeatures =>
@@ -1736,7 +1735,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get receiptPhotoPreparing => 'ರಸೀದಿ ಫೋಟೋ ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ…';
 
   @override
-  String get homeProPromoTitle => '7 ದಿನಗಳು Pro ಉಚಿತವಾಗಿ ಪ್ರಯತ್ನಿಸಿ';
+  String get homeProPromoTitle => '24 ಗಂಟೆಗಳ ಕಾಲ Pro ಉಚಿತವಾಗಿ ಪ್ರಯತ್ನಿಸಿ';
 
   @override
   String get homeProPromoSubtitle =>
