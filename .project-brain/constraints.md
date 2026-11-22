@@ -33,3 +33,5 @@
 - C-016: Güncel karar 2026-10-24: Önceki yalnız aylık yeni satış talebinin yerini yıllık tek Pro alır: vergi hariç yıllık 1 ABD doları temel fiyat, her takvim ayında mevcut Pro 100 YZ isteği, reklamsız kullanım ve JSON yedekleme. Yerel nihai fiyat mağazadan gelir; vergi iki kez eklenmez. Yeni aylık/Max/lifetime satışları kapanır; mevcut ücretli haklar, yenileme sözleşmeleri ve restore iptal edilmez (R71–R74, PB-135..137).
 - C-017: Alışveriş tarih+saat isteğe bağlı; liste varsayılan tarih sıralı ve A–Z seçilebilir (2026-10-23 R52–R53).
 - C-018: Toplam fiyat varsayılanını ayarlarda yeni seçenekle karmaşıklaştırma. İki fiyat anlamı görünür olsun ve tek dokunuşla seçilsin; fiyat modu için açılır menü açtırma. Ev/market bağımsızlığı, erişilebilirlik ve ekonomik tutar korunur (user 2026-10-23 UX followup).
+
+- C-023: 2026-11-22 user requires a one-day automatic promotional trial anchored to first use, surviving same-device reinstall; paid store rights survive restore. Update store and in-app statements with the new verified release.

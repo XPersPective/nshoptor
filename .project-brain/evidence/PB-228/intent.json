@@ -1,0 +1,8 @@
+{
+  "contract": "a21aa28d8357ca56",
+  "epoch": "32ec2b6be0745b8a",
+  "independent": false,
+  "intent": "8635605ce3597c84",
+  "note": "Keep paid offers independent; final Verify commands run from this worktree. Live signed builds and store acceptance remain open.",
+  "protocol": 1
+}
