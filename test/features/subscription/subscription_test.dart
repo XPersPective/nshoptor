@@ -492,28 +492,32 @@ void main() {
     },
   );
 
-  test(
-    'new offers include annual Pro only; monthly Max and legacy excluded',
-    () async {
-      final native = _NativeStore()
-        ..products = [
-          ..._products(SubscriptionService.proId),
-          ..._products(SubscriptionService.legacyProId),
-          ..._products(SubscriptionService.maxId),
-        ];
-      final service = SubscriptionService(store: SettingsStore(), iap: native);
-      final offers = await service.loadOffers();
-      expect(offers, hasLength(1));
-      expect(offers.single.price, '469,99 ₺');
-      expect(offers.single.hasTrial, isFalse);
-      expect(offers.single.billingPeriod, 'P1Y');
-      expect(offers.single.yearly, isTrue);
-      expect(offers.single.basePlanId, SubscriptionService.annualBasePlanId);
-      expect(offers.single.productId, SubscriptionService.proId);
-      service.dispose();
-      await native.events.close();
-    },
-  );
+  test('new offers include monthly and annual Pro; discounts, Max and legacy excluded', () async {
+    final native = _NativeStore()
+      ..products = [
+        ..._products(SubscriptionService.proId),
+        ..._products(SubscriptionService.legacyProId),
+        ..._products(SubscriptionService.maxId),
+      ];
+    final service = SubscriptionService(store: SettingsStore(), iap: native);
+    final offers = await service.loadOffers();
+    expect(offers, hasLength(2));
+    final annual = offers.singleWhere((offer) => offer.yearly);
+    final monthly = offers.singleWhere((offer) => offer.monthly);
+    expect(annual.price, '469,99 ₺');
+    expect(annual.basePlanId, SubscriptionService.annualBasePlanId);
+    expect(monthly.price, '57,99 ₺');
+    expect(monthly.basePlanId, SubscriptionService.monthlyBasePlanId);
+    expect(offers.every((offer) => !offer.hasTrial), isTrue);
+    expect(
+      offers.every((offer) => offer.productId == SubscriptionService.proId),
+      isTrue,
+    );
+    await service.buy(monthly);
+    expect(native.buys.single.offerToken, 'monthly-token');
+    service.dispose();
+    await native.events.close();
+  });
 
   test(
     'finite annual plans are not sold as automatically renewing subscriptions',
@@ -521,6 +525,7 @@ void main() {
       final native = _NativeStore()
         ..products = _products(
           SubscriptionService.proId,
+          monthlyRecurrence: RecurrenceMode.nonRecurring,
           yearlyRecurrence: RecurrenceMode.nonRecurring,
         );
       final service = SubscriptionService(store: SettingsStore(), iap: native);
@@ -753,7 +758,9 @@ void main() {
     native.launch!.complete(true);
     await launch;
     expect(s.busy, isTrue);
-    s.applyOwned([(productId: SubscriptionService.proId, token: 'owned-token')]);
+    s.applyOwned([
+      (productId: SubscriptionService.proId, token: 'owned-token'),
+    ]);
     expect(s.busy, isFalse);
     expect(s.tier, isNot(Tier.free));
     s.dispose();
