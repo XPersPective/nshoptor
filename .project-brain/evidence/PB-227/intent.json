@@ -1,0 +1,8 @@
+{
+  "contract": "6cfa07a3fa955987",
+  "epoch": "82d9246cb6c24078",
+  "independent": false,
+  "intent": "d019fc799437be12",
+  "note": "User requested preventing repeat promotional trial on reinstall. Keeps offline shopping and store entitlements intact under C-003, releases through public Actions under C-025, no repo secrets or advertising identifier.",
+  "protocol": 1
+}
