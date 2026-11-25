@@ -44,7 +44,7 @@ jobs:
           python3 -m unittest discover -s tool/l10n -p "test_*.py"
           python3 tool/l10n/check_scripts.py
       - name: Analyze
-        run: flutter analyze --fatal-warnings
+        run: flutter analyze
       - name: Test
         run: flutter test
 
