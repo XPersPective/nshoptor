@@ -1,3 +1,5 @@
 node_modules/
 .wrangler/
 .dev.vars*
+.apple-dry-run/
+.apple-runtime-*/

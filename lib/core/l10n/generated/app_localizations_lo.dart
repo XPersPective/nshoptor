@@ -512,14 +512,14 @@ class AppLocalizationsLo extends AppLocalizations {
   String get confirmDelete => 'ລຶບຖາວອນ';
 
   @override
-  String get dataDeleted => 'ຂໍ້ມູນທັງໝົດໃນเครื่องຖືກລຶບແລ້ວ.';
+  String get dataDeleted => 'ຂໍ້ມູນທັງໝົດໃນອຸປະກອນຖືກລຶບແລ້ວ.';
 
   @override
   String get privacyInfoLabel => 'ຄວາມເປັນສ່ວນຕົວ';
 
   @override
   String get privacyInfoBody =>
-      'ລາຍການ, ລາຄາ, ໃບເກັບເງິນ ແລະ ຮູບພາບຂອງທ່ານຈະຢູ່ໃນອຸປະກອນຂອງທ່ານ. ຮູບພາບ ແລະ ສຽຍບໍ່ເຄີຍອອກຈາກອຸປະກອນ. ເມື່ອໃຊ້ AI help, ພຽງແຕ່ຂໍ້ຄວາມ (ເຊັ່ນ: ແຖວໃບເກັບເງິນ ຫຼື ສິ່ງທີ່ທ່ານບອກ) ຈະຖືກສົ່ງໄປຍັງເຊີເວີຂອງພວກເຮົາເພື່ອປະມວນຜົນ ແລະ ບໍ່ຖືກເກັບ.';
+      'ລາຍການ, ລາຄາ, ໃບເກັບເງິນ ແລະ ຮູບພາບຂອງທ່ານຖືກເກັບໄວ້ໃນອຸປະກອນຂອງທ່ານ. ສຽງຈະບໍ່ອອກຈາກອຸປະກອນເລີຍ. ເມື່ອເປີດໃຊ້ການຊ່ວຍເຫຼືອໂດຍ AI, ຮູບໃບເກັບເງິນ ແລະ ປ້າຍລາຄາ (ຫຼຸດຂະໜາດແລ້ວ) ແລະ ຂໍ້ຄວາມ ເຊັ່ນ ລາຍການທີ່ເວົ້າບອກ ຈະຖືກສົ່ງໄປຫາເຊີບເວີຂອງພວກເຮົາເພື່ອອ່ານເທົ່ານັ້ນ; ຂໍ້ມູນຖືກປະມວນຜົນທັນທີ ແລະ ບໍ່ຖືກເກັບໄວ້ເລີຍ.';
 
   @override
   String get aboutSection => 'ກ່ຽວກັບ';
@@ -729,7 +729,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ບໍ່ມີໂຄສະນາ · ສົ່ງອອກ ແລະ ນຳເຂົ້າຂໍ້ມູນ · ຕໍ່ເດືອນ';
+      'ບໍ່ມີໂຄສະນາ · ສົ່ງອອກ ແລະ ນຳເຂົ້າຂໍ້ມູນ · ຕໍ່ປີ';
 
   @override
   String get proBenefitNoAds => 'ປະສົບການບໍ່ມີໂຄສະນາ';
@@ -761,8 +761,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get formatLocaleLabel => 'ຮູບແບບຕົວເລກ ແລະ ສັນຍາລັກເງິນ';
 
   @override
-  String get formatLocaleSystem =>
-      'ຕົວຢ່າງຂອງອຸປະກອນ (ຕົວເລກ Latin; ຖ້າບໍ່ແມ່ນ English)';
+  String get formatLocaleSystem => 'ຕົວຢ່າງຂອງອຸປະກອນ';
 
   @override
   String get formatLocaleTr => 'ຕວກກີ (1.234,56)';
@@ -775,7 +774,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'ຈັບຄູ່ໃບບິນ, ອ່ານປ້າຍລາຄາ ແລະ ປ່ຽນຂໍ້ຄວາມເປັນລາຍການ. ຮູບ ແລະ ສຽງຈະຖືກເກັບໄວ້ໃນອຸປະກອນຂອງທ່ານ; ມີແຕ່ຂໍ້ຄວາມທີ່ຖືກປະມວນຜົນເທົ່ານັ້ນ.';
+      'ອ່ານໃບເກັບເງິນ ແລະ ປ້າຍລາຄາຈາກຮູບ, ຈັບຄູ່ໃບເກັບເງິນ ແລະ ປ່ຽນປະໂຫຍກເປັນລາຍການ. ຮູບຖືກສົ່ງເພື່ອອ່ານເທົ່ານັ້ນ ແລະ ບໍ່ຖືກເກັບໄວ້ເລີຍ.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -995,7 +994,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get assistantTitle => 'ຜູ້ຊ່ວຍ';
 
   @override
-  String get assistantGreeting => 'ສະບາຍດີ! ທ່ານຕ້ອງການ做什么?';
+  String get assistantGreeting => 'ສະບາຍດີ! ທ່ານຕ້ອງການເຮັດຫຍັງ?';
 
   @override
   String get assistantNewList => 'ລາຍການໃໝ່';
@@ -1119,6 +1118,15 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get csvExportAction => 'ສົ່ງອອກ CSV';
+
+  @override
+  String get reportSharePdf => 'ແບ່ງປັນເປັນ PDF';
+
+  @override
+  String get reportShareCsv => 'ແບ່ງປັນເປັນ CSV';
+
+  @override
+  String get reportPrintAction => 'ພິມ';
 
   @override
   String get backupSizeWarning =>
@@ -1393,4 +1401,172 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get reportZoom => 'ຊູມ';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days ມື້ເຫຼືອ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ຊົ່ວໂມງເຫຼືອ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ຊ່ວງທົດລອງໃຊ້ Pro ຂອງທ່ານສິ້ນສຸດແລ້ວ';
+
+  @override
+  String get planTrialEndedBody =>
+      'ທ່ານຍັງໃຊ້ລາຍການ, ການປ້ອນຂໍ້ມູນເອງ ແລະສຽງໃນອຸປະກອນໄດ້ຟຣີ. Free ມີຄຳຂໍ AI 10 ຄັ້ງຕໍ່ເດືອນປະຕິທິນ. ເລືອກ Pro ລາຍປີເພື່ອໄດ້ຄຳຂໍ AI 100 ຄັ້ງຕໍ່ເດືອນ, ບໍ່ມີໂຄສະນາ ແລະມີການສຳຮອງຂໍ້ມູນ. ຂໍ້ມູນເກົ່າຂອງທ່ານຍັງຢູ່ຄືເກົ່າ.';
+
+  @override
+  String get planContinueFree => 'ສືບຕໍ່ໃຊ້ Free';
+
+  @override
+  String get supportIdLabel => 'ລະຫັດຝ່າຍຊ່ວຍເຫຼືອ';
+
+  @override
+  String get supportEmailLabel => 'ຊ່ວຍເຫຼືອທາງອີເມວ';
+
+  @override
+  String get captureTipFirst =>
+      'ເລີ່ມຈາກເທິງສຸດ: ຕ້ອງເຫັນຊື່ຮ້ານ ແລະວັນທີ. ໃສ່ລາຍການໃຫ້ໄດ້ຫຼາຍທີ່ສຸດ; ທີ່ເຫຼືອໃສ່ໃນຮູບຖັດໄປ.';
+
+  @override
+  String get captureTipContinue =>
+      'ໃບຮັບເງິນໃບດຽວກັນ: ໃສ່ລາຍການສຸດທ້າຍຂອງຮູບກ່ອນໜ້າ.';
+
+  @override
+  String get captureTipNeverShow => 'ບໍ່ຕ້ອງສະແດງອີກ';
+
+  @override
+  String get captureTipOk => 'ເຂົ້າໃຈແລ້ວ';
+
+  @override
+  String get captureTipsSetting => 'ສະແດງຄຳແນະນຳການຖ່າຍໃບຮັບເງິນ';
+
+  @override
+  String get receiptReadingProgress => 'ກຳລັງອ່ານໃບຮັບເງິນ…';
+
+  @override
+  String get receiptReadInBackground => 'ສືບຕໍ່ໃນພື້ນຫຼັງ';
+
+  @override
+  String get receiptReadDoneTitle => 'ອ່ານໃບຮັບເງິນແລ້ວ';
+
+  @override
+  String get receiptReadDoneBody => 'ແຕະເພື່ອກວດສອບ ແລະບັນທຶກ.';
+
+  @override
+  String get receiptReadMoreTitle => 'ຖ່າຍຮູບສ່ວນທີ່ເຫຼືອຂອງໃບຮັບເງິນ';
+
+  @override
+  String get receiptReadFailedTitle => 'ບໍ່ສາມາດອ່ານໃບຮັບເງິນໄດ້';
+
+  @override
+  String get listReceiptsSection => 'ໃບບິນ';
+
+  @override
+  String get receiptStateComplete => 'ສຳເລັດ';
+
+  @override
+  String get receiptStateIncomplete => 'ບໍ່ຄົບ';
+
+  @override
+  String get receiptStateFailed => 'ລົ້ມເຫຼວ';
+
+  @override
+  String get receiptStoreUnknown => 'ອ່ານຮ້ານບໍ່ໄດ້';
+
+  @override
+  String get receiptDeleteAction => 'ລຶບໃບບິນ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ລຶບໃບບິນນີ້ ແລະ ລາຍການທີ່ມັນເພີ່ມບໍ? ທ່ານສາມາດນຳເຂົ້າອີກຄັ້ງໃນພາຍຫຼັງ.';
+
+  @override
+  String get receiptDeleted => 'ລຶບໃບບິນແລ້ວ.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ສະແດງທັງໝົດ ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'ສະແດງໜ້ອຍລົງ';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ວັນທີໃບບິນ: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'ຕາມການຊື້';
+
+  @override
+  String get historyViewStore => 'ຕາມຮ້ານ';
+
+  @override
+  String get historyViewProduct => 'ຕາມສິນຄ້າ';
+
+  @override
+  String get historyShareAll => 'ແບ່ງປັນທັງໝົດ';
+
+  @override
+  String get historyUnknownStore => 'ຮ້ານທີ່ບໍ່ຮູ້ຈັກ';
+
+  @override
+  String get historyDailySpending => 'ລາຍຈ່າຍລາຍວັນ';
+
+  @override
+  String get historyResetPeriod => 'ກັບໄປອາທິດນີ້';
+
+  @override
+  String get tourSkip => 'ຂ້າມ';
+
+  @override
+  String get tourNewListBody =>
+      'ເລີ່ມລາຍການຊື້ເຄື່ອງ ແລະ ເພີ່ມສິ່ງທີ່ທ່ານຕັ້ງໃຈຈະຊື້.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ຊື້ເຄື່ອງແລ້ວບໍ? ປ່ຽນໃບບິນເປັນລາຍການພ້ອມລາຄາ.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ເລີ່ມຈາກທາງເທິງຂອງໃບບິນ: ຖ່າຍຮ້ານ ແລະ ວັນທີກ່ອນ, ແລ້ວສືບຕໍ່ກັບແຖວທີ່ເຫຼືອ.';
+
+  @override
+  String get tourTabsBody =>
+      'ສະຫຼັບລະຫວ່າງລາຍການທີ່ໃຊ້ງານ, ສຳເລັດແລ້ວ ແລະ ເກັບໄວ້. ປຸ່ມທ້າຍແຖວປ່ຽນລຳດັບ.';
+
+  @override
+  String get tourDiscoverBody => 'ເບິ່ງແອັບອື່ນຈາກຜູ້ພັດທະນາດຽວກັນ.';
+
+  @override
+  String get tourHelpBody =>
+      'ແຕະບ່ອນນີ້ເພື່ອເບິ່ງຄຳແນະນຳນີ້ອີກຄັ້ງ. ເປີດລາຍການເພື່ອເບິ່ງຄຳອະທິບາຍຍອດລວມ ແລະ ສິນຄ້າ.';
+
+  @override
+  String get tourTotalsBody =>
+      'ຍອດລວມຕາມແຜນ, ຍອດຈິງ ແລະ ສ່ວນຕ່າງຈະອັບເດດຂະນະທີ່ທ່ານຊື້.';
+
+  @override
+  String get tourItemsBody => 'ສິນຄ້າຂອງທ່ານ. ປ່ຽນລຳດັບ ຫຼື ຊອກຫາໄດ້ທີ່ນີ້.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'ໃຊ້ໄປແລ້ວ $percent% ຂອງວົງເງິນ';
+  }
 }

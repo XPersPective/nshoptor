@@ -12,10 +12,12 @@ import '../../core/theme/semantic_colors.dart';
 import '../../data/db/app_database.dart';
 import '../lists/list_repository.dart';
 import '../lists/lists_screen.dart';
+import '../history/insights/history_budget_card.dart';
 import '../history/insights/insights_repository.dart';
 import '../history/insights/spending_screen.dart';
 import '../history/history_screen.dart';
 import '../discover/discover_screen.dart';
+import '../onboarding/coach_tour.dart';
 import '../onboarding/first_run_guide.dart';
 import '../subscription/plan_badge.dart';
 import '../subscription/subscription_paywall.dart';
@@ -110,22 +112,33 @@ class _HomeShellState extends State<HomeShell> {
   int _tab = 0;
   final _nativeReminders = LocalNotificationsScheduler();
   StreamSubscription<int>? _notificationSubscription;
+  StreamSubscription<int>? _receiptSubscription;
   final _openedReminders = <int>{};
   Future<void> _reminderNavigation = Future<void>.value();
+  bool _trialNoticeShowing = false;
 
   @override
   void initState() {
     super.initState();
+    widget.subscriptions?.addListener(_trialChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted && widget.firstRunGuide && !AppDefaults.guideSeen()) {
-        await showFirstRunGuide(context);
+        await runHomeTour(context);
       }
+      if (mounted) await _maybeTrialNotice();
       if (!mounted || widget.reminderScheduler != null) return;
       _notificationSubscription = LocalNotificationsScheduler.selectedReminders
           .listen((id) => unawaited(_openReminder(id)));
+      // A receipt read in the background opens its list (F08).
+      _receiptSubscription = LocalNotificationsScheduler.selectedReceiptLists
+          .listen((id) {
+            if (mounted) unawaited(_openShopping(context, id));
+          });
       try {
         final id = await _nativeReminders.initialReminderId();
         if (id != null && mounted) await _openReminder(id);
+        final list = await _nativeReminders.initialReceiptListId();
+        if (list != null && mounted) await _openShopping(context, list);
       } catch (_) {
         // Unsupported native notification services leave manual lists usable.
       }
@@ -134,8 +147,51 @@ class _HomeShellState extends State<HomeShell> {
 
   @override
   void dispose() {
+    widget.subscriptions?.removeListener(_trialChanged);
     unawaited(_notificationSubscription?.cancel());
+    unawaited(_receiptSubscription?.cancel());
     super.dispose();
+  }
+
+  void _trialChanged() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(_maybeTrialNotice());
+    });
+  }
+
+  Future<void> _maybeTrialNotice() async {
+    final service = widget.subscriptions;
+    if (!mounted ||
+        _trialNoticeShowing ||
+        service == null ||
+        !service.needsTrialExpiryNotice ||
+        ModalRoute.of(context)?.isCurrent != true) {
+      return;
+    }
+    _trialNoticeShowing = true;
+    final l10n = AppLocalizations.of(context);
+    final annual = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.planTrialEndedTitle),
+        content: SingleChildScrollView(child: Text(l10n.planTrialEndedBody)),
+        actions: [
+          TextButton(
+            key: const Key('trial_continue_free'),
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(l10n.planContinueFree),
+          ),
+          FilledButton(
+            key: const Key('trial_annual_pro'),
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(l10n.plansAction),
+          ),
+        ],
+      ),
+    );
+    service.acknowledgeTrialExpiry();
+    _trialNoticeShowing = false;
+    if (mounted && annual == true) await _openPlanPage(context);
   }
 
   Future<void> _openReminder(int id) {
@@ -199,6 +255,7 @@ class _HomeShellState extends State<HomeShell> {
   // Settings is rebuilt on each visit: ad availability (daily gift) and the
   // plan badge change outside its own state.
   int _settingsVisit = 0;
+  int _budgetVisit = 0;
 
   /// Plan simgesi, abonelik değişince kendini günceller (satın alma, iptal).
   Widget _planBadgeLive(BuildContext context) {
@@ -221,6 +278,7 @@ class _HomeShellState extends State<HomeShell> {
       badgeKey: const Key('home_plan_badge'),
       label: planLabel(l10n, tier: tier, proUnlocked: proUnlocked),
       trial: tier == Tier.pro && subs != null && subs.inTrial(),
+      remaining: trialRemainingLabel(l10n, subs),
       active: proUnlocked,
       onPressed: () => _openPlanPage(context),
     );
@@ -238,6 +296,13 @@ class _HomeShellState extends State<HomeShell> {
     if (mounted) setState(() {});
   }
 
+  /// "How to use" from any tab: show the lists tab, then tour its controls.
+  Future<void> _startTour() async {
+    if (_tab != 0) setState(() => _tab = 0);
+    await WidgetsBinding.instance.endOfFrame;
+    if (mounted) await runHomeTour(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -245,12 +310,38 @@ class _HomeShellState extends State<HomeShell> {
       ListsScreen(
         repository: widget.listRepository,
         reminderScheduler: widget.reminderScheduler,
+        bannerController: widget.bannerController,
         planBadge: _planBadgeLive(context),
         onScanReceipt: () => _createFromReceipt(context),
         receiptBusy: _inputBusy,
         onDiscover: () => _openDiscover(context),
+        budgetCard: HistoryBudgetCard(
+          // Rebuilt on every return to the Lists tab so spending is current.
+          key: ValueKey('home_budget_$_budgetVisit'),
+          db: widget.db,
+          currencyCode: AppDefaults.defaultCurrency(),
+          now: DateTime.now(),
+          money: (minor) => formatMoney(
+            Money.fromMinorUnits(
+              minor,
+              Currency.fromCode(AppDefaults.defaultCurrency()),
+            ),
+            locale: formatLocaleCode(context),
+          ),
+          onEdit: () async {
+            await Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => SpendingScreen(db: widget.db),
+              ),
+            );
+            if (mounted) setState(() => _budgetVisit++);
+          },
+        ),
       ),
-      HistoryPlaceholder(db: widget.db),
+      HistoryPlaceholder(
+        db: widget.db,
+        bannerController: widget.bannerController,
+      ),
       widget.settingsRepository == null || widget.languageController == null
           ? const SettingsPlaceholder()
           : SettingsScreen(
@@ -265,40 +356,42 @@ class _HomeShellState extends State<HomeShell> {
               giftFlow: widget.giftFlow,
             ),
     ];
-    return Scaffold(
-      body: IndexedStack(index: _tab, children: tabs),
-      // Banner bottom bar'ın altındadır (kullanıcı talebi 2026-10-02);
-      // AdPolicy Pro'da hiç yüklemez, kalkınca boşluk kalmaz.
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          NavigationBar(
-            selectedIndex: _tab,
-            onDestinationSelected: (i) => setState(() {
-              if (i == 2 && _tab != 2) _settingsVisit++;
-              _tab = i;
-            }),
-            destinations: [
-              NavigationDestination(
-                icon: const Icon(Icons.list_outlined),
-                selectedIcon: const Icon(Icons.list),
-                label: l10n.navLists,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.history_outlined),
-                selectedIcon: const Icon(Icons.history),
-                label: l10n.navHistory,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.settings_outlined),
-                selectedIcon: const Icon(Icons.settings),
-                label: l10n.navSettings,
-              ),
-            ],
-          ),
-          if (widget.bannerController != null)
-            BannerAdWidget(controller: widget.bannerController!),
-        ],
+    return GuidedTourHost(
+      start: _startTour,
+      child: Scaffold(
+        body: IndexedStack(index: _tab, children: tabs),
+        // Banner bottom bar'ın altındadır (kullanıcı talebi 2026-10-02);
+        // AdPolicy Pro'da hiç yüklemez, kalkınca boşluk kalmaz.
+        bottomNavigationBar: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            NavigationBar(
+              selectedIndex: _tab,
+              onDestinationSelected: (i) => setState(() {
+                if (i == 2 && _tab != 2) _settingsVisit++;
+                if (i == 0 && _tab != 0) _budgetVisit++;
+                _tab = i;
+              }),
+              destinations: [
+                NavigationDestination(
+                  icon: const Icon(Icons.list_outlined),
+                  selectedIcon: const Icon(Icons.list),
+                  label: l10n.navLists,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.history_outlined),
+                  selectedIcon: const Icon(Icons.history),
+                  label: l10n.navHistory,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.settings_outlined),
+                  selectedIcon: const Icon(Icons.settings),
+                  label: l10n.navSettings,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -324,7 +417,12 @@ class _HomeShellState extends State<HomeShell> {
     try {
       await _scanReceipt(context);
     } finally {
-      if (mounted) setState(() => _inputBusy = false);
+      if (mounted) {
+        setState(() {
+          _inputBusy = false;
+          _budgetVisit++;
+        });
+      }
     }
   }
 
@@ -750,12 +848,18 @@ class _MonthlyCard extends StatelessWidget {
 
 /// Geçmiş sekmesi: dönem sekmeleri, takvim, alınan ürünler (SA-010).
 class HistoryPlaceholder extends StatelessWidget {
-  const HistoryPlaceholder({super.key, required this.db});
+  const HistoryPlaceholder({
+    super.key,
+    required this.db,
+    this.bannerController,
+  });
 
   final AppDatabase db;
+  final BannerAdController? bannerController;
 
   @override
-  Widget build(BuildContext context) => HistoryScreen(db: db);
+  Widget build(BuildContext context) =>
+      HistoryScreen(db: db, bannerController: bannerController);
 }
 
 /// Ayarlar sekmesi: T30 tam ekran gelene kadar hakkında bilgisi (gerçek içerik).

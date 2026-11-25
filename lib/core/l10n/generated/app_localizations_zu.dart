@@ -522,7 +522,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Amalisti akho, izinto ezithengwayo, imiphumela namafoto ahlala kwidivayisi yakho. Amafoto nezwi azikaze zidlule kuyo. Uma usizo lwe-AI lulungisiwe, kuphela umbhalo (isibonelo imigqa yemiphumela noma lokho okushiwo) lithunyelwa eseva yethu ukuze luprosesiwe futhi alugcinwe.';
+      'Amalisti akho, amanani, amarisidi namafoto agcinwa kudivayisi yakho. Izwi alikaze liyishiye. Uma usizo lwe-AI luvuliwe, amafoto amarisidi namalebula amanani (anciphisiwe ngosayizi) nombhalo onjengezinto owuzisho ngezwi, kuthunyelwa kuseva yethu ukuze kufundwe kuphela; kucutshungulwa ngokushesha futhi akuze kugcinwe.';
 
   @override
   String get aboutSection => 'Mayelana';
@@ -736,7 +736,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Azikho izikhangiso · Thumela bese ufaka imidwebo · Ngenyanga';
+      'Azikho izikhangiso · Thumela bese ufaka imidwebo · Nyakenye';
 
   @override
   String get proBenefitNoAds => 'Ukusetshenziswa ngaphandle kwamapromoshini';
@@ -768,8 +768,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get formatLocaleLabel => 'Inombolo nendlela yokubala imali';
 
   @override
-  String get formatLocaleSystem =>
-      'Isistimu yefomethi yesikhungo (izinombolo zeLatin; ngaphandle kwalokho isiNgisi)';
+  String get formatLocaleSystem => 'Isistimu yefomethi yesikhungo';
 
   @override
   String get formatLocaleTr => 'IsiTuthuki (1.234,56)';
@@ -782,7 +781,7 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Luhambanisa amarekhodi, lufunda izitika zamanani futhi luguqule izitatimende zibe yizinhlu. Izithombe nezwi kuhlala kwidivayisi yakho; kuphela umbhalo uyaphrosesiwa.';
+      'Ifunda amarisidi namalebula amanani emifanekisweni, ifanisa amarisidi futhi iguqula imisho ibe amalisti. Amafoto athunyelwa ukuze afundwe kuphela futhi awagcinwa neze.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1134,6 +1133,15 @@ class AppLocalizationsZu extends AppLocalizations {
   String get csvExportAction => 'Thumela i-CSV';
 
   @override
+  String get reportSharePdf => 'Yabelana njenge-PDF';
+
+  @override
+  String get reportShareCsv => 'Yabelana njenge-CSV';
+
+  @override
+  String get reportPrintAction => 'Phrinta';
+
+  @override
   String get backupSizeWarning =>
       'I-JSON ihlanganisa amarekhodi, hhayi amafayela ezingcaphulo. Umkhawulo wokungenisa: 16 MB.';
 
@@ -1411,4 +1419,177 @@ class AppLocalizationsZu extends AppLocalizations {
 
   @override
   String get reportZoom => 'Sondeza';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days izinsuku ezisele',
+      one: '$days usuku olusele',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours amahora asele',
+      one: '$hours ihora elisele',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle =>
+      'Isikhathi sakho sesivivinyo se-Pro siphelile';
+
+  @override
+  String get planTrialEndedBody =>
+      'Usengaqhubeka usebenzisa uhlu, ukufaka ngesandla nezwi kudivayisi mahhala. Uhlelo Lwamahhala lufaka izicelo ze-AI eziyi-10 ngenyanga yekhalenda. Khetha i-Pro yonyaka ukuze uthole izicelo ze-AI eziyi-100 ngenyanga, ngaphandle kwezikhangiso nangamakhophi ayisipele. Idatha yakho ekhona izohlala inawe.';
+
+  @override
+  String get planContinueFree => 'Qhubeka Mahhala';
+
+  @override
+  String get supportIdLabel => 'I-ID Yokwesekwa';
+
+  @override
+  String get supportEmailLabel => 'Ukusekelwa nge-imeyili';
+
+  @override
+  String get captureTipFirst =>
+      'Qala phezulu kakhulu: igama lesitolo nosuku kufanele kubonakale. Faka izinto eziningi ngangokunokwenzeka; okusele kuya esithombeni esilandelayo.';
+
+  @override
+  String get captureTipContinue =>
+      'Irisidi elifanayo: faka into yokugcina yesithombe esedlule.';
+
+  @override
+  String get captureTipNeverShow => 'Ungabonisi futhi';
+
+  @override
+  String get captureTipOk => 'Ngiyaqonda';
+
+  @override
+  String get captureTipsSetting => 'Bonisa amathiphu okuthatha irisidi';
+
+  @override
+  String get receiptReadingProgress => 'Iyifunda irisidi…';
+
+  @override
+  String get receiptReadInBackground => 'Qhubeka ngemuva';
+
+  @override
+  String get receiptReadDoneTitle => 'Irisidi lifundiwe';
+
+  @override
+  String get receiptReadDoneBody => 'Thepha ukuze ubuyekeze futhi ulondoloze.';
+
+  @override
+  String get receiptReadMoreTitle =>
+      'Thatha isithombe sesinye isigaba serisidi';
+
+  @override
+  String get receiptReadFailedTitle => 'Irisidi alikwazanga ukufundwa';
+
+  @override
+  String get listReceiptsSection => 'Amarisidi';
+
+  @override
+  String get receiptStateComplete => 'Kuqediwe';
+
+  @override
+  String get receiptStateIncomplete => 'Akuphelele';
+
+  @override
+  String get receiptStateFailed => 'Kuhlulekile';
+
+  @override
+  String get receiptStoreUnknown => 'Isitolo asifundwanga';
+
+  @override
+  String get receiptDeleteAction => 'Susa irisidi';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Susa le risidi nezinto ezengeziwe yiyo? Ungayingenisa futhi kamuva.';
+
+  @override
+  String get receiptDeleted => 'Irisidi isusiwe.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Bonisa konke ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Bonisa okumbalwa';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Usuku lwerisidi: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Ngokuthenga';
+
+  @override
+  String get historyViewStore => 'Ngesitolo';
+
+  @override
+  String get historyViewProduct => 'Ngomkhiqizo';
+
+  @override
+  String get historyShareAll => 'Yabelana ngakho konke';
+
+  @override
+  String get historyUnknownStore => 'Isitolo esingaziwa';
+
+  @override
+  String get historyDailySpending => 'Izindleko zansuku zonke';
+
+  @override
+  String get historyResetPeriod => 'Buyela kuleli sonto';
+
+  @override
+  String get tourSkip => 'Yeqa';
+
+  @override
+  String get tourNewListBody =>
+      'Qala uhlu lokuthenga bese wengeza okuhlela ukukuthenga.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Usuthengile? Shintsha irisidi ibe uhlu olunamanani alo.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Qala phezulu kwerisidi: thatha isitolo nosuku kuqala, bese uqhubeka nemigqa esele.';
+
+  @override
+  String get tourTabsBody =>
+      'Shintsha phakathi kohlu olusebenzayo, oluqediwe nolugciniwe. Inkinobho ekugcineni ishintsha ukuhleleka.';
+
+  @override
+  String get tourDiscoverBody => 'Bona ezinye izinhlelo zonjiniyela ofanayo.';
+
+  @override
+  String get tourHelpBody =>
+      'Thepha lapha ukuze ubone lo mhlahlandlela futhi. Vula uhlu ukuze ubone incazelo yezamba nezinto.';
+
+  @override
+  String get tourTotalsBody =>
+      'Izamba ezihleliwe, zangempela nomehluko ziyabuyekezwa njengoba uthenga.';
+
+  @override
+  String get tourItemsBody =>
+      'Izinto zakho. Shintsha ukuhleleka kwazo noma uzisesha lapha.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Ukukhawulelwa kusetshenziswe ngo-$percent%';
+  }
 }

@@ -12,6 +12,7 @@ import 'package:nshoptor/features/lists/list_repository.dart';
 import 'package:nshoptor/features/lists/lists_screen.dart';
 import 'package:nshoptor/features/lists/list_status.dart';
 import 'package:nshoptor/features/history/insights/spending_screen.dart';
+import 'package:nshoptor/features/history/reports/report_preview_screen.dart';
 import 'package:nshoptor/features/lists/list_detail_screen.dart';
 import 'package:nshoptor/features/subscription/subscription_service.dart';
 import 'package:nshoptor/features/subscription/subscription_paywall.dart';
@@ -184,7 +185,7 @@ void main() {
     );
   }
 
-  testWidgets('history opens completed detail and monthly card preserves USD', (
+  testWidgets('history opens read-only report and monthly card preserves USD', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(800, 1400));
@@ -224,12 +225,18 @@ void main() {
     await settle(tester);
     await tester.tap(find.text('Geçmiş').last);
     await settle(tester);
-    await tester.tap(find.byKey(const Key('history_period_tab_1')));
+    await tester.tap(find.byKey(const Key('history_span_month')));
     await settle(tester);
     await tester.tap(find.byKey(Key('history_list_$id')));
     await settle(tester);
     expect(
-      tester.widget<ListDetailScreen>(find.byType(ListDetailScreen)).listId,
+      tester
+          .widget<ReportPreviewScreen>(find.byType(ReportPreviewScreen))
+          .document
+          .shopping
+          .single
+          .list
+          .id,
       id,
     );
     expect((await ListRepository(db).getById(id)).status, 'completed');
@@ -385,6 +392,54 @@ void main() {
       await disposeApp(tester);
     },
   );
+
+  for (final rtl in [false, true]) {
+    testWidgets(
+      'Pro badge at 320dp ${rtl ? 'RTL' : 'LTR'}: ≥16dp from edge, 8–16dp from Discover, aligned (F02/F26)',
+      (tester) async {
+        await tester.binding.setSurfaceSize(const Size(320, 700));
+        final subs = SubscriptionService(store: SettingsStore());
+        await tester.pumpWidget(
+          MaterialApp(
+            locale: Locale(rtl ? 'ar' : 'tr'),
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: HomeShell(
+              db: db,
+              listRepository: ListRepository(db),
+              subscriptions: subs,
+            ),
+          ),
+        );
+        await settle(tester);
+
+        final badge = tester.getRect(find.byKey(const Key('home_plan_badge')));
+        final discover = find.byKey(const Key('home_nav_discover'));
+        final glyph = tester.getRect(
+          find.descendant(of: discover, matching: find.byType(Icon)),
+        );
+        if (rtl) {
+          expect(badge.left, greaterThanOrEqualTo(16));
+          expect(glyph.left - badge.right, inInclusiveRange(8, 16));
+        } else {
+          expect(320 - badge.right, greaterThanOrEqualTo(16));
+          expect(badge.left - glyph.right, inInclusiveRange(8, 16));
+        }
+        expect(badge.center.dy, moreOrLessEquals(glyph.center.dy, epsilon: 1));
+        final bar = tester.getRect(find.byType(AppBar));
+        expect(glyph.center.dy, lessThan(bar.top + kToolbarHeight));
+        expect(tester.getSize(discover).shortestSide, greaterThanOrEqualTo(48));
+        expect(tester.takeException(), isNull);
+        await disposeApp(tester);
+      },
+    );
+  }
+
   testWidgets('farklı para birimli listeler ayrı kartlarda raporlanır (T33)', (
     tester,
   ) async {
@@ -441,6 +496,25 @@ void main() {
     expect(find.textContaining('15,00 ₺'), findsWidgets);
     expect(find.textContaining('3,00 USD'), findsWidgets);
 
+    await disposeApp(tester);
+  });
+
+  testWidgets('the main screen shows budget progress only when a limit is set', (
+    tester,
+  ) async {
+    AppDefaults.attach(SettingsStore());
+    await tester.pumpWidget(subject());
+    await settle(tester);
+    expect(find.byKey(const Key('history_budget_card')), findsNothing);
+    await tester.pumpWidget(const SizedBox.shrink());
+    AppDefaults.setMonthlyLimitMinor(
+      150000,
+      currencyCode: AppDefaults.defaultCurrency(),
+    );
+    await tester.pumpWidget(subject());
+    await settle(tester);
+    expect(find.byKey(const Key('history_budget_card')), findsOneWidget);
+    expect(find.byKey(const Key('history_budget_month')), findsOneWidget);
     await disposeApp(tester);
   });
 }

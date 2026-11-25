@@ -521,7 +521,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Jūsu saraksti, cenas, čeki un fotogrāfijas paliek ierīcē. Fotogrāfijas un balss nekad to neatstāj. Kad AI palīdzība ir ieslēgta, uz serveri tiek nosūtīts tikai teksts (piemēram, čeku rindas vai tas, ko jūs diktojat), lai to apstrādātu, un tas netiek glabāts.';
+      'Jūsu saraksti, cenas, čeki un fotogrāfijas tiek glabāti jūsu ierīcē. Balss to nekad nepamet. Kad AI palīdzība ir ieslēgta, čeku un cenu etiķešu fotogrāfijas (samazinātā izmērā) un teksts, piemēram, nodiktētie ieraksti, tiek nosūtīti uz mūsu serveri tikai nolasīšanai; tie tiek apstrādāti uzreiz un nekad netiek glabāti.';
 
   @override
   String get aboutSection => 'Par';
@@ -733,7 +733,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bez reklāmām · Rezerves kopija eksportēšanai un importēšanai · Mēnesī';
+      'Bez reklāmām · Rezerves kopija eksportēšanai un importēšanai · Gadā';
 
   @override
   String get proBenefitNoAds => 'Tīra pieredze bez reklāmām';
@@ -765,8 +765,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get formatLocaleLabel => 'Skaitļu un valūtas formāts';
 
   @override
-  String get formatLocaleSystem =>
-      'Ierīces formāts (Latīņu cipari; citādi angļu valodā)';
+  String get formatLocaleSystem => 'Ierīces formāts';
 
   @override
   String get formatLocaleTr => 'Turku (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Salīdzina čeki, lasa cenu etiķetes un pārvērš teikumus sarakstos. Foto un balss paliek ierīcē; tiek apstrādāts tikai teksts.';
+      'Nolasa čekus un cenu etiķetes no fotogrāfijām, saskaņo čekus un pārvērš teikumus sarakstos. Fotogrāfijas tiek sūtītas tikai nolasīšanai un nekad netiek glabātas.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1128,6 +1127,15 @@ class AppLocalizationsLv extends AppLocalizations {
   String get csvExportAction => 'Eksportēt CSV';
 
   @override
+  String get reportSharePdf => 'Kopīgot kā PDF';
+
+  @override
+  String get reportShareCsv => 'Kopīgot kā CSV';
+
+  @override
+  String get reportPrintAction => 'Drukāt';
+
+  @override
   String get backupSizeWarning =>
       'JSON ietver ierakstus, nevis foto failus. Importa limits: 16 MB.';
 
@@ -1404,4 +1412,178 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get reportZoom => 'Tuvināt';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dienas atlikušas',
+      one: '$days diena atlikusi',
+      zero: '$days dienu atlikušas',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours stundas atlikušas',
+      one: '$hours stunda atlikusi',
+      zero: '$hours stundu atlikušas',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro izmēģinājuma periods ir beidzies';
+
+  @override
+  String get planTrialEndedBody =>
+      'Joprojām bez maksas varat izmantot sarakstus, manuālu ievadi un ierīces balss funkciju. Bezmaksas plānā ir 10 AI pieprasījumi kalendārajā mēnesī. Izvēlieties gada Pro, lai saņemtu 100 AI pieprasījumus mēnesī, bez reklāmām un ar dublējumkopijām. Jūsu esošie dati paliks pie jums.';
+
+  @override
+  String get planContinueFree => 'Turpināt bez maksas';
+
+  @override
+  String get supportIdLabel => 'Atbalsta ID';
+
+  @override
+  String get supportEmailLabel => 'Atbalsts e-pastā';
+
+  @override
+  String get captureTipFirst =>
+      'Sāciet pašā augšā: jābūt redzamam veikala nosaukumam un datumam. Iekļaujiet pēc iespējas vairāk preču, pārējās būs nākamajā foto.';
+
+  @override
+  String get captureTipContinue =>
+      'Tas pats čeks: iekļaujiet iepriekšējā foto pēdējo preci.';
+
+  @override
+  String get captureTipNeverShow => 'Vairs nerādīt';
+
+  @override
+  String get captureTipOk => 'Skaidrs';
+
+  @override
+  String get captureTipsSetting => 'Rādīt čeka fotografēšanas padomus';
+
+  @override
+  String get receiptReadingProgress => 'Čeks tiek lasīts…';
+
+  @override
+  String get receiptReadInBackground => 'Turpināt fonā';
+
+  @override
+  String get receiptReadDoneTitle => 'Čeks nolasīts';
+
+  @override
+  String get receiptReadDoneBody =>
+      'Pieskarieties, lai pārskatītu un saglabātu.';
+
+  @override
+  String get receiptReadMoreTitle => 'Nofotografējiet pārējo čeka daļu';
+
+  @override
+  String get receiptReadFailedTitle => 'Čeku neizdevās nolasīt';
+
+  @override
+  String get listReceiptsSection => 'Čeki';
+
+  @override
+  String get receiptStateComplete => 'Pabeigts';
+
+  @override
+  String get receiptStateIncomplete => 'Nepilnīgs';
+
+  @override
+  String get receiptStateFailed => 'Neizdevās';
+
+  @override
+  String get receiptStoreUnknown => 'Veikals nav nolasīts';
+
+  @override
+  String get receiptDeleteAction => 'Dzēst čeku';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Vai dzēst šo čeku un tā pievienotās preces? Vēlāk to varēsiet importēt vēlreiz.';
+
+  @override
+  String get receiptDeleted => 'Čeks izdzēsts.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Rādīt visus ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Rādīt mazāk';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Čeka datums: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Pēc iepirkšanās';
+
+  @override
+  String get historyViewStore => 'Pēc veikala';
+
+  @override
+  String get historyViewProduct => 'Pēc produkta';
+
+  @override
+  String get historyShareAll => 'Kopīgot visu';
+
+  @override
+  String get historyUnknownStore => 'Nezināms veikals';
+
+  @override
+  String get historyDailySpending => 'Dienas tēriņi';
+
+  @override
+  String get historyResetPeriod => 'Atpakaļ uz šo nedēļu';
+
+  @override
+  String get tourSkip => 'Izlaist';
+
+  @override
+  String get tourNewListBody =>
+      'Sāciet iepirkumu sarakstu un pievienojiet, ko plānojat pirkt.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Jau iepirkāties? Pārvērtiet čeku sarakstā ar cenām.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Sāciet čeka augšā: vispirms veikalu un datumu, pēc tam turpiniet ar pārējām rindām.';
+
+  @override
+  String get tourTabsBody =>
+      'Pārslēdzieties starp aktīviem, pabeigtiem un arhivētiem sarakstiem. Poga galā maina secību.';
+
+  @override
+  String get tourDiscoverBody => 'Citas tā paša izstrādātāja lietotnes.';
+
+  @override
+  String get tourHelpBody =>
+      'Pieskarieties šeit, lai vēlreiz skatītu ceļvedi. Atveriet sarakstu, lai redzētu summu un preču skaidrojumu.';
+
+  @override
+  String get tourTotalsBody =>
+      'Plānotā, faktiskā summa un starpība atjaunojas iepirkšanās laikā.';
+
+  @override
+  String get tourItemsBody =>
+      'Jūsu preces. Šeit mainiet to secību vai meklējiet tās.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Izmantoti $percent% no limita';
+  }
 }

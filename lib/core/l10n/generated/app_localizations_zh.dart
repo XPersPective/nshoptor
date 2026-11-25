@@ -512,7 +512,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      '您的清单、价格、收据和照片均保存在您的设备上。照片和语音永远不会离开您的设备。当开启 AI 帮助时，仅发送文本（例如收据行或您口述的内容）到我们的服务器进行处理，且不会被存储。';
+      '您的清单、价格、收据和照片均保存在您的设备上。语音永远不会离开您的设备。开启 AI 帮助后，收据和价格标签的照片（已缩小尺寸）以及口述条目等文本，仅会发送到我们的服务器进行识读；它们会被立即处理，绝不会被存储。';
 
   @override
   String get aboutSection => '关于';
@@ -717,7 +717,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => '无广告 · 备份导出与导入 · 月付';
+  String get proBenefitsLine => '无广告 · 备份导出与导入 · 年付';
 
   @override
   String get proBenefitNoAds => '无广告体验';
@@ -749,7 +749,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get formatLocaleLabel => '数字与货币格式';
 
   @override
-  String get formatLocaleSystem => '设备格式（拉丁数字；否则为英文）';
+  String get formatLocaleSystem => '设备格式';
 
   @override
   String get formatLocaleTr => '土耳其语 (1.234,56)';
@@ -761,7 +761,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiToggleTitle => 'AI 帮助';
 
   @override
-  String get aiToggleSubtitle => '匹配收据、读取价格标签并将句子转为列表。照片和语音保留在您的设备上；仅处理文本。';
+  String get aiToggleSubtitle =>
+      '从照片中识读收据和价格标签，匹配收据，并将句子转换为清单。照片仅为识读而发送，绝不会被存储。';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1086,6 +1087,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get csvExportAction => '导出 CSV';
 
   @override
+  String get reportSharePdf => '以 PDF 分享';
+
+  @override
+  String get reportShareCsv => '以 CSV 分享';
+
+  @override
+  String get reportPrintAction => '打印';
+
+  @override
   String get backupSizeWarning => 'JSON 包含记录，而非照片文件。导入限制：16 MB。';
 
   @override
@@ -1346,4 +1356,163 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get reportZoom => '缩放';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '还剩 $days 天',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '还剩 $hours 小时',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => '你的 Pro 试用期已结束';
+
+  @override
+  String get planTrialEndedBody =>
+      '你仍可免费使用清单、手动输入和设备端语音功能。免费版每个自然月包含 10 次 AI 请求。选择年度 Pro，即可每月获得 100 次 AI 请求、无广告体验和备份。现有数据仍会保留。';
+
+  @override
+  String get planContinueFree => '继续使用免费版';
+
+  @override
+  String get supportIdLabel => '支持 ID';
+
+  @override
+  String get supportEmailLabel => '电子邮件支持';
+
+  @override
+  String get captureTipFirst => '请从最顶部开始拍摄：必须拍到店名和日期。尽量多拍一些商品，其余的放在下一张照片中。';
+
+  @override
+  String get captureTipContinue => '同一张收据：请包含上一张照片的最后一件商品。';
+
+  @override
+  String get captureTipNeverShow => '不再显示';
+
+  @override
+  String get captureTipOk => '知道了';
+
+  @override
+  String get captureTipsSetting => '显示收据拍摄提示';
+
+  @override
+  String get receiptReadingProgress => '正在读取收据…';
+
+  @override
+  String get receiptReadInBackground => '在后台继续';
+
+  @override
+  String get receiptReadDoneTitle => '收据已读取';
+
+  @override
+  String get receiptReadDoneBody => '点按即可查看并保存。';
+
+  @override
+  String get receiptReadMoreTitle => '请拍摄收据的其余部分';
+
+  @override
+  String get receiptReadFailedTitle => '无法读取收据';
+
+  @override
+  String get listReceiptsSection => '小票';
+
+  @override
+  String get receiptStateComplete => '已完成';
+
+  @override
+  String get receiptStateIncomplete => '未完成';
+
+  @override
+  String get receiptStateFailed => '失败';
+
+  @override
+  String get receiptStoreUnknown => '未识别商店';
+
+  @override
+  String get receiptDeleteAction => '删除小票';
+
+  @override
+  String get receiptDeleteConfirm => '要删除此小票及其添加的商品吗？之后可以再次导入。';
+
+  @override
+  String get receiptDeleted => '小票已删除。';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return '显示全部（$count）';
+  }
+
+  @override
+  String get listReceiptsShowLess => '收起';
+
+  @override
+  String receiptDateLabel(String date) {
+    return '小票日期：$date';
+  }
+
+  @override
+  String get historyViewShopping => '按购物';
+
+  @override
+  String get historyViewStore => '按商店';
+
+  @override
+  String get historyViewProduct => '按商品';
+
+  @override
+  String get historyShareAll => '全部分享';
+
+  @override
+  String get historyUnknownStore => '未知商店';
+
+  @override
+  String get historyDailySpending => '每日支出';
+
+  @override
+  String get historyResetPeriod => '返回本周';
+
+  @override
+  String get tourSkip => '跳过';
+
+  @override
+  String get tourNewListBody => '创建购物清单，添加你打算购买的商品。';
+
+  @override
+  String get tourFromReceiptBody => '已经买完了？把小票变成带价格的清单。';
+
+  @override
+  String get tourReceiptFlowBody => '从小票顶部开始：先拍商店和日期，再继续拍其余行。';
+
+  @override
+  String get tourTabsBody => '在进行中、已完成和已归档清单之间切换。末尾的按钮可更改排序。';
+
+  @override
+  String get tourDiscoverBody => '查看同一开发者的更多应用。';
+
+  @override
+  String get tourHelpBody => '点按此处可再次查看本指南。打开一个清单即可查看总计和商品的说明。';
+
+  @override
+  String get tourTotalsBody => '计划、实际总额及差额会在购物时更新。';
+
+  @override
+  String get tourItemsBody => '你的商品。可在此更改顺序或搜索。';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '已使用限额的$percent%';
+  }
 }

@@ -1,6 +1,6 @@
 # Google Play Veri güvenliği — NShoptor
 
-> 2026-10-10, 1.2.1 kaynak koduna göre hazırlanan taslak; Console formunun
+> 2026-10-27, 1.3.1+20 kaynak koduna göre güncellenen taslak; Console formunun
 > güncellendiği/yayımlandığı iddia edilmez. Üretim sürümü1 için mevcut form
 > ile yeni sürümün kapsamı yayın öncesinde ayrıca karşılaştırılmalıdır.
 
@@ -29,7 +29,7 @@ denemez. Kaynak matrisi nihai Console cevaplarının yerine geçmez.
 
 - [Google Play beyan kapsamı](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en): SDK ve cihaz dışı akışları da değerlendirin.
 - [AdMob açıklaması](https://developers.google.com/admob/android/privacy/play-data-disclosure): güncel kılavuz25.5.0 içindir; yayımlanan AAB'nin gerçek SDK sürümüyle karşılaştırın.
-- Reklam: banner/uygulama açılışı; ödüllü birim yapılandırılmışsa ödüllü reklam.
-- Satın alma: yeni `nshoptor_pro_v2`, `nshoptor_max_v2`; eski `nshoptor_pro`, `nshoptor_max` hakları ve `com.crazypenguin.nshoptor.pro_lifetime` korunur.
+- Reklam: banner ve yapılandırılmış isteğe bağlı ödüllü video; uygulama açılışı reklamı bu kaynakta kullanılmaz. İlk yedi gün reklam gösterilmez; SDK/onay başlatması ayrı değerlendirilir.
+- Yeni satış: yalnız yıllık `nshoptor_pro_v2` (Pro100YZ/ay). Eski Pro/Max ürün ve planları ile `com.crazypenguin.nshoptor.pro_lifetime` hakları korunur; yeni Max/aylık/ömür boyu satış yoktur.
 - Çocuklara yönelik değildir. Mikrofon/kamera yalnız ilgili kullanımda;
   bildirim izni yalnız hatırlatma kurulurken istenir.

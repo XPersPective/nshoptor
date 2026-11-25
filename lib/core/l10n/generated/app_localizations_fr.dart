@@ -520,7 +520,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Vos listes, prix, tickets et photos restent sur votre appareil. Les photos et la voix ne le quittent jamais. Quand l\'aide IA est activée, seul du texte (par exemple des lignes de ticket ou ce que vous avez dicté) est envoyé à notre serveur pour être traité, sans être conservé.';
+      'Vos listes, prix, tickets et photos sont stockés sur votre appareil. La voix ne le quitte jamais. Lorsque l\'aide IA est activée, les photos de tickets et d\'étiquettes de prix (réduites en taille) et le texte, comme les articles dictés, sont envoyés à notre serveur uniquement pour être lus ; ils sont traités immédiatement et jamais stockés.';
 
   @override
   String get aboutSection => 'À propos';
@@ -732,7 +732,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sans publicité · Export et import de sauvegarde · Mensuel';
+      'Sans publicité · Export et import de sauvegarde · Annuel';
 
   @override
   String get proBenefitNoAds => 'Sans publicité';
@@ -764,8 +764,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get formatLocaleLabel => 'Format des nombres et devises';
 
   @override
-  String get formatLocaleSystem =>
-      'Format du système (chiffres latins ; sinon anglais)';
+  String get formatLocaleSystem => 'Format du système';
 
   @override
   String get formatLocaleTr => 'Turc (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Associe les tickets, lit les étiquettes de prix et transforme des phrases en listes. Photos et voix restent sur l\'appareil ; seul le texte est traité.';
+      'Lit les tickets et les étiquettes de prix à partir de photos, rapproche les tickets et transforme des phrases en listes. Les photos sont envoyées uniquement pour être lues et ne sont jamais stockées.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1131,6 +1130,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get csvExportAction => 'Exporter en CSV';
 
   @override
+  String get reportSharePdf => 'Partager en PDF';
+
+  @override
+  String get reportShareCsv => 'Partager en CSV';
+
+  @override
+  String get reportPrintAction => 'Imprimer';
+
+  @override
   String get backupSizeWarning =>
       'Le JSON contient des enregistrements, pas des fichiers photo. Limite d\'importation : 16 Mo.';
 
@@ -1411,4 +1419,178 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zoomer';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days jours restants',
+      one: '$days jour restant',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours heures restantes',
+      one: '$hours heure restante',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Votre essai Pro est terminé';
+
+  @override
+  String get planTrialEndedBody =>
+      'Vous pouvez continuer à utiliser gratuitement les listes, la saisie manuelle et la voix sur l’appareil. L’offre gratuite comprend 10 requêtes IA par mois calendaire. Choisissez Pro annuel pour 100 requêtes IA par mois, sans publicité et avec des sauvegardes. Vos données existantes restent avec vous.';
+
+  @override
+  String get planContinueFree => 'Continuer gratuitement';
+
+  @override
+  String get supportIdLabel => 'ID d’assistance';
+
+  @override
+  String get supportEmailLabel => 'Assistance par e-mail';
+
+  @override
+  String get captureTipFirst =>
+      'Commencez tout en haut : le nom du magasin et la date doivent être visibles. Incluez le plus d’articles possible ; le reste ira dans la photo suivante.';
+
+  @override
+  String get captureTipContinue =>
+      'Même reçu : incluez le dernier article de la photo précédente.';
+
+  @override
+  String get captureTipNeverShow => 'Ne plus afficher';
+
+  @override
+  String get captureTipOk => 'Compris';
+
+  @override
+  String get captureTipsSetting =>
+      'Afficher les conseils de prise de vue du reçu';
+
+  @override
+  String get receiptReadingProgress => 'Lecture du reçu…';
+
+  @override
+  String get receiptReadInBackground => 'Continuer en arrière-plan';
+
+  @override
+  String get receiptReadDoneTitle => 'Reçu lu';
+
+  @override
+  String get receiptReadDoneBody =>
+      'Touchez pour le vérifier et l’enregistrer.';
+
+  @override
+  String get receiptReadMoreTitle => 'Photographiez le reste du reçu';
+
+  @override
+  String get receiptReadFailedTitle => 'Impossible de lire le reçu';
+
+  @override
+  String get listReceiptsSection => 'Tickets';
+
+  @override
+  String get receiptStateComplete => 'Terminé';
+
+  @override
+  String get receiptStateIncomplete => 'Incomplet';
+
+  @override
+  String get receiptStateFailed => 'Échec';
+
+  @override
+  String get receiptStoreUnknown => 'Magasin non lu';
+
+  @override
+  String get receiptDeleteAction => 'Supprimer le ticket';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Supprimer ce ticket et les articles qu\'il a ajoutés ? Vous pourrez l\'importer de nouveau plus tard.';
+
+  @override
+  String get receiptDeleted => 'Ticket supprimé.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Tout afficher ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Afficher moins';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Date du ticket : $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Par course';
+
+  @override
+  String get historyViewStore => 'Par magasin';
+
+  @override
+  String get historyViewProduct => 'Par produit';
+
+  @override
+  String get historyShareAll => 'Tout partager';
+
+  @override
+  String get historyUnknownStore => 'Magasin inconnu';
+
+  @override
+  String get historyDailySpending => 'Dépenses quotidiennes';
+
+  @override
+  String get historyResetPeriod => 'Revenir à cette semaine';
+
+  @override
+  String get tourSkip => 'Passer';
+
+  @override
+  String get tourNewListBody =>
+      'Créez une liste de courses et ajoutez ce que vous prévoyez d\'acheter.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Déjà fait vos courses ? Transformez un ticket en liste avec ses prix.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Commencez par le haut du ticket : capturez d\'abord le magasin et la date, puis continuez avec le reste des lignes.';
+
+  @override
+  String get tourTabsBody =>
+      'Passez des listes actives aux listes terminées ou archivées. Le bouton au bout change l\'ordre.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Découvrez d\'autres applis du même développeur.';
+
+  @override
+  String get tourHelpBody =>
+      'Touchez ici pour revoir ce guide. Ouvrez une liste pour découvrir ses totaux et ses articles.';
+
+  @override
+  String get tourTotalsBody =>
+      'Les totaux prévu, réel et l\'écart se mettent à jour pendant vos courses.';
+
+  @override
+  String get tourItemsBody =>
+      'Vos articles. Changez leur ordre ou recherchez-les ici.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent % de la limite utilisée';
+  }
 }

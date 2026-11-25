@@ -520,7 +520,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Orodha zako, bei, risiti na picha zinaendelea kuwa kwenye kifaa chako. Picha na sauti haziondoki kamwe. Wakati msaada wa AI umewashwa, tu maandishi (kwa mfano mistari ya risiti au uliyosema) hutumwa kwenye seva yetu kuchakatwa na hayahifadhiwa.';
+      'Orodha zako, bei, risiti na picha huhifadhiwa kwenye kifaa chako. Sauti haiondoki kamwe. Msaada wa AI unapowashwa, picha za risiti na lebo za bei (zilizopunguzwa ukubwa) na maandishi kama vitu ulivyoviamuru hutumwa kwa seva yetu kwa ajili ya kusomwa tu; huchakatwa mara moja na hazihifadhiwi kamwe.';
 
   @override
   String get aboutSection => 'Kuhusu';
@@ -732,7 +732,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Hakuna matamko · Hifadhi na uingize nje · Mwezi';
+      'Hakuna matamko · Hifadhi na uingize nje · Mwaka';
 
   @override
   String get proBenefitNoAds => 'Uzoefu bila matangazo';
@@ -764,8 +764,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get formatLocaleLabel => 'Namba na muundo wa sarafu';
 
   @override
-  String get formatLocaleSystem =>
-      'Muundo wa kifaa (tarakimu za Kihindi; vinginevyo Kiingereza)';
+  String get formatLocaleSystem => 'Muundo wa kifaa';
 
   @override
   String get formatLocaleTr => 'Kituruki (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Inalinganisha risiti, inasoma lebo za bei na kubadilisha sentensi kuwa orodha. Picha na sauti zinaendelea kwenye kifaa chako; tu maandishi yanachakatwa.';
+      'Husoma risiti na lebo za bei kutoka kwenye picha, huoanisha risiti na hubadilisha sentensi kuwa orodha. Picha hutumwa kwa ajili ya kusomwa tu na hazihifadhiwi kamwe.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1128,6 +1127,15 @@ class AppLocalizationsSw extends AppLocalizations {
   String get csvExportAction => 'Tunza CSV';
 
   @override
+  String get reportSharePdf => 'Shiriki kama PDF';
+
+  @override
+  String get reportShareCsv => 'Shiriki kama CSV';
+
+  @override
+  String get reportPrintAction => 'Chapisha';
+
+  @override
   String get backupSizeWarning =>
       'JSON inarekodi, si faili za picha. Kikomo cha uingizaji: 16 MB.';
 
@@ -1404,4 +1412,177 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get reportZoom => 'Kuza';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days siku zimebaki',
+      one: '$days siku imebaki',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours saa zimebaki',
+      one: '$hours saa imebaki',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle =>
+      'Kipindi chako cha majaribio cha Pro kimeisha';
+
+  @override
+  String get planTrialEndedBody =>
+      'Unaweza kuendelea kutumia orodha, kuingiza mwenyewe na sauti kwenye kifaa bila malipo. Mpango wa Bure una maombi 10 ya AI kwa mwezi wa kalenda. Chagua Pro ya mwaka kwa maombi 100 ya AI kwa mwezi, bila matangazo na ikiwa na nakala rudufu. Data yako iliyopo itabaki nawe.';
+
+  @override
+  String get planContinueFree => 'Endelea Bila Malipo';
+
+  @override
+  String get supportIdLabel => 'Kitambulisho cha Usaidizi';
+
+  @override
+  String get supportEmailLabel => 'Usaidizi kwa Barua Pepe';
+
+  @override
+  String get captureTipFirst =>
+      'Anza juu kabisa: jina la duka na tarehe lazima vionekane. Jumuisha bidhaa nyingi uwezavyo; zilizobaki ziwe kwenye picha inayofuata.';
+
+  @override
+  String get captureTipContinue =>
+      'Risiti ile ile: jumuisha bidhaa ya mwisho ya picha iliyotangulia.';
+
+  @override
+  String get captureTipNeverShow => 'Usionyeshe tena';
+
+  @override
+  String get captureTipOk => 'Nimeelewa';
+
+  @override
+  String get captureTipsSetting =>
+      'Onyesha vidokezo vya kupiga picha ya risiti';
+
+  @override
+  String get receiptReadingProgress => 'Inasoma risiti…';
+
+  @override
+  String get receiptReadInBackground => 'Endelea chinichini';
+
+  @override
+  String get receiptReadDoneTitle => 'Risiti imesomwa';
+
+  @override
+  String get receiptReadDoneBody => 'Gusa ili kukagua na kuhifadhi.';
+
+  @override
+  String get receiptReadMoreTitle => 'Piga picha sehemu iliyobaki ya risiti';
+
+  @override
+  String get receiptReadFailedTitle => 'Risiti haikuweza kusomwa';
+
+  @override
+  String get listReceiptsSection => 'Risiti';
+
+  @override
+  String get receiptStateComplete => 'Imekamilika';
+
+  @override
+  String get receiptStateIncomplete => 'Haijakamilika';
+
+  @override
+  String get receiptStateFailed => 'Imeshindikana';
+
+  @override
+  String get receiptStoreUnknown => 'Duka halikusomwa';
+
+  @override
+  String get receiptDeleteAction => 'Futa risiti';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Ungependa kufuta risiti hii na bidhaa ilizoongeza? Unaweza kuiingiza tena baadaye.';
+
+  @override
+  String get receiptDeleted => 'Risiti imefutwa.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Onyesha zote ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Onyesha chache';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tarehe ya risiti: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Kwa ununuzi';
+
+  @override
+  String get historyViewStore => 'Kwa duka';
+
+  @override
+  String get historyViewProduct => 'Kwa bidhaa';
+
+  @override
+  String get historyShareAll => 'Shiriki zote';
+
+  @override
+  String get historyUnknownStore => 'Duka lisilojulikana';
+
+  @override
+  String get historyDailySpending => 'Matumizi ya kila siku';
+
+  @override
+  String get historyResetPeriod => 'Rudi wiki hii';
+
+  @override
+  String get tourSkip => 'Ruka';
+
+  @override
+  String get tourNewListBody =>
+      'Anzisha orodha ya ununuzi na uongeze unachopanga kununua.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Umeshanunua? Geuza risiti kuwa orodha pamoja na bei zake.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Anza juu ya risiti: piga duka na tarehe kwanza, kisha endelea na mistari iliyobaki.';
+
+  @override
+  String get tourTabsBody =>
+      'Badilisha kati ya orodha hai, zilizokamilika na zilizohifadhiwa. Kitufe cha mwisho hubadilisha mpangilio.';
+
+  @override
+  String get tourDiscoverBody => 'Tazama programu zaidi za msanidi yuleyule.';
+
+  @override
+  String get tourHelpBody =>
+      'Gusa hapa kuona mwongozo huu tena. Fungua orodha kuona maelezo ya jumla na bidhaa.';
+
+  @override
+  String get tourTotalsBody =>
+      'Jumla iliyopangwa, halisi na tofauti husasishwa unaponunua.';
+
+  @override
+  String get tourItemsBody =>
+      'Bidhaa zako. Badilisha mpangilio wake au zitafute hapa.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Asilimia $percent ya kikomo imetumika';
+  }
 }

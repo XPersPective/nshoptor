@@ -1,12 +1,14 @@
 import 'package:drift/drift.dart';
 
 import '../../../core/money/decimal_fixed.dart';
+import '../../../core/text/store_name.dart';
 import '../../../data/db/app_database.dart';
 import '../../shopping_mode/item_status.dart';
 import '../insights/insights_repository.dart' show SpendAmount;
 import 'report_period.dart';
 
 typedef ReportQuantity = ({DecimalFixed quantity, String unitCode});
+typedef ReportStoreSpend = ({String? store, SpendAmount spent});
 
 /// Immutable, read-only report values. No purchase or list mutation is exposed.
 final class ReportProduct {
@@ -42,9 +44,23 @@ final class ShoppingReport {
     required List<Receipt> receipts,
     required this.spent,
     required this.plannedMinor,
+    List<ReportStoreSpend>? storeSpend,
   }) : products = List.unmodifiable(products),
-       receipts = List.unmodifiable(receipts);
+       receipts = List.unmodifiable(receipts),
+       storeSpend = List.unmodifiable(
+         storeSpend ??
+             [
+               (
+                 store: storeName == null ? null : cleanStoreName(storeName),
+                 spent: spent,
+               ),
+             ],
+       );
   final ShoppingList list;
+
+  /// Spend split by cleaned store name (null = unknown). One trip can span
+  /// stores when its receipts come from different shops.
+  final List<ReportStoreSpend> storeSpend;
   final String? storeName;
   final List<ReportProduct> products;
   final List<Receipt> receipts;
@@ -206,9 +222,57 @@ class ReportRepository {
       products.add(_product(entry.name, [entry]));
     }
     final knownPlan = products.where((p) => p.plannedMinor != null).toList();
+    String? clean(String? raw) {
+      final name = raw == null ? '' : cleanStoreName(raw);
+      return name.isEmpty ? null : name;
+    }
+
+    final receiptStores = {
+      for (final r in receipts)
+        r.id: clean(r.confirmedStore ?? r.detectedStore),
+    };
+    final distinctReceiptStores = receiptStores.values
+        .whereType<String>()
+        .map((s) => s.toLowerCase())
+        .toSet();
+    final fallbackStore =
+        clean(storeName) ??
+        (distinctReceiptStores.length == 1
+            ? receiptStores.values.whereType<String>().first
+            : null);
+    final byStore = <String?, ({String? store, List<PurchaseEntry> entries})>{};
+    for (final entry in entries) {
+      final store = receiptStores[entry.receiptId] ?? fallbackStore;
+      byStore
+          .putIfAbsent(store?.toLowerCase(), () => (store: store, entries: []))
+          .entries
+          .add(entry);
+    }
+    final legacyUnknown = products.any((p) => p.actual.unknown);
+    final storeSpend = <ReportStoreSpend>[
+      for (final (i, group) in byStore.values.indexed)
+        (
+          store: group.store,
+          spent: SpendAmount(
+            group.entries.fold(0, (s, e) => s + e.actualLineTotalMinorUnits),
+            known: group.entries.any(hasMarketPrice),
+            unknown:
+                group.entries.any((e) => !hasMarketPrice(e)) ||
+                (i == 0 && legacyUnknown),
+          ),
+        ),
+    ];
+    final spent = SpendAmount(
+      entries.fold(0, (sum, entry) => sum + entry.actualLineTotalMinorUnits),
+      known: entries.any(hasMarketPrice),
+      unknown: legacyUnknown,
+    );
     return ShoppingReport(
       list: list,
       storeName: storeName,
+      storeSpend: storeSpend.isEmpty
+          ? [(store: fallbackStore, spent: spent)]
+          : storeSpend,
       products: products,
       receipts: receipts,
       plannedMinor: knownPlan.isEmpty
@@ -217,11 +281,7 @@ class ReportRepository {
               0,
               (sum, product) => sum + product.plannedMinor!,
             ),
-      spent: SpendAmount(
-        entries.fold(0, (sum, entry) => sum + entry.actualLineTotalMinorUnits),
-        known: entries.any(hasMarketPrice),
-        unknown: products.any((p) => p.actual.unknown),
-      ),
+      spent: spent,
     );
   }
 

@@ -1,0 +1,11 @@
+{
+  "protocol": 1,
+  "next": "Resolve native registry for formal acceptance; remaining app priorities F03/F07/F10/F23 and native/device/privacy gates stay in the main handoff",
+  "failing": "Installed registry marks current native model unavailable; formal start/evidence/acceptance cannot run honestly",
+  "dirty": "Only History padding, new regression test and scoped Brain records for this checkpoint",
+  "strategy": "Keep real renderer/interaction/a11y bounds checks, History suite and source review separate from formal PB evidence",
+  "attempt": "cb0d31808ab3e1a0",
+  "repeats": 1,
+  "contract": "402c0489be68325f",
+  "usage": {}
+}

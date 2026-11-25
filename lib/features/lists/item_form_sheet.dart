@@ -11,6 +11,7 @@ import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
+import '../onboarding/first_run_guide.dart';
 import '../receipts/shelf_label/price_candidates.dart';
 import '../../core/money/currency.dart';
 import '../../core/money/decimal_fixed.dart';
@@ -181,7 +182,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
   void _prefillFields() {
     if (_prefilled || !_currencyLoaded) return;
     _prefilled = true;
-    String local(String value) => value.replaceAll('.', _separators.decimal);
+    String local(String value) => _separators.formatInput(value);
     final item = widget.existing;
     if (item != null) {
       _name.text = item.name;
@@ -304,9 +305,13 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     if (widget.focusActual) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
-        final bothEmpty =
-            _price.text.trim().isEmpty && _actualPrice.text.trim().isEmpty;
-        (bothEmpty || _mixedUnits ? _homePriceFocus : _marketPriceFocus)
+        // The empty price is the one to fill (F22): a receipt fills the
+        // market price, so the home estimate gets focus; both filled → market.
+        final homeEmpty = _price.text.trim().isEmpty;
+        final marketEmpty = _actualPrice.text.trim().isEmpty;
+        (_mixedUnits || homeEmpty && !marketEmpty || homeEmpty && marketEmpty
+                ? _homePriceFocus
+                : _marketPriceFocus)
             .requestFocus();
       });
     }
@@ -543,11 +548,9 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
       final amount = _tryParse(field.text);
       if (!isUnit || amount == null || oldBasis == nextBasis) return;
       try {
-        field.text = _displayUnitAmount(
-          amount,
-          oldBasis,
-          nextBasis,
-        ).toInputString().replaceAll('.', _separators.decimal);
+        field.text = _separators.formatInput(
+          _displayUnitAmount(amount, oldBasis, nextBasis).toInputString(),
+        );
       } catch (_) {
         if (actual) {
           _actualBasisInvalid = true;
@@ -583,9 +586,8 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     final unit = actual ? _actualUnit : _unit;
     final confirming = actual && _pendingActualPrice != null;
     if (confirming) {
-      controller.text = _pendingActualPrice!.toInputString().replaceAll(
-        '.',
-        _separators.decimal,
+      controller.text = _separators.formatInput(
+        _pendingActualPrice!.toInputString(),
       );
       _pendingActualPrice = null;
     }
@@ -615,9 +617,10 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                   priceUnit: PriceInput.displayUnit(unit),
                 ) -
                 discount;
-      controller.text = (converted.isNegative ? DecimalFixed.zero() : converted)
-          .toInputString()
-          .replaceAll('.', _separators.decimal);
+      controller.text = _separators.formatInput(
+        (converted.isNegative ? DecimalFixed.zero() : converted)
+            .toInputString(),
+      );
     }
     setState(() {
       if (actual) {
@@ -743,7 +746,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
     // Initial values are localized by _prefillFields after context is available.
     if (_prefilled) {
       for (final field in [_quantity, _price]) {
-        field.text = field.text.replaceAll('.', _separators.decimal);
+        field.text = _separators.formatInput(field.text);
       }
     }
   }
@@ -791,10 +794,7 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
           : c.value;
       _actualPriceIsUnitPrice = c.isUnitPrice || c.priceQuantity != null;
       _pendingActualPrice = null;
-      _actualPrice.text = amount.toInputString().replaceAll(
-        '.',
-        _separators.decimal,
-      );
+      _actualPrice.text = _separators.formatInput(amount.toInputString());
       _photoCurrencyMismatch = false;
       _actualBasisInvalid = false;
       _actualMeaningRequired = false;
@@ -950,11 +950,23 @@ class _ItemFormSheetState extends State<ItemFormSheet> {
                 suffixIcon:
                     widget.onShelfCandidatePressed == null || _mixedUnits
                     ? null
-                    : IconButton(
-                        key: const Key('item_scan_actual_price'),
-                        tooltip: l10n.tipShelfCamera,
-                        icon: const Icon(Icons.photo_camera_outlined),
-                        onPressed: _scanActualPrice,
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            key: const Key('item_scan_actual_price'),
+                            tooltip: l10n.tipShelfCamera,
+                            icon: const Icon(Icons.photo_camera_outlined),
+                            onPressed: _scanActualPrice,
+                          ),
+                          IconButton(
+                            key: const Key('item_scan_price_help'),
+                            tooltip: l10n.howToUseLabel,
+                            icon: const Icon(Icons.help_outline),
+                            onPressed: () =>
+                                showScanHelpDialog(context, isReceipt: false),
+                          ),
+                        ],
                       ),
               ),
               onChanged: (_) {

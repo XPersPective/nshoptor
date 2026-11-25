@@ -108,4 +108,87 @@ void main() {
     );
     expect(await reader.read('x', currencyCode: 'TRY'), isEmpty);
   });
+
+  test('AI price printed on an unusual layout is accepted only when the exact number is on the label', () async {
+    AiLabelReader reader() => AiLabelReader(
+      _ai(
+        () => http.Response(
+          jsonEncode({
+            'tier': 'pro',
+            'used': 1,
+            'limit': 100,
+            'result': {
+              'productName': 'SÜT',
+              'price': '42.50',
+              'unitPrice': null,
+            },
+          }),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        ),
+      ),
+    );
+    final found = await reader().read(
+      'SÜT 1 LT\nFiyat\n42,50',
+      currencyCode: 'TRY',
+    );
+    expect(found.single.value.toDbString(), '42.50');
+    expect(found.single.isUnitPrice, isFalse);
+    expect(
+      await reader().read('SÜT 1 LT\nFiyat\n43,50', currencyCode: 'TRY'),
+      isEmpty,
+    );
+    expect(
+      await reader().read('SÜT\n42,50 TL / kg', currencyCode: 'TRY'),
+      isEmpty,
+    );
+  });
+
+  test(
+    'label photo reading returns AI candidates and rejects foreign currency',
+    () async {
+      AiLabelReader reader(Map<String, dynamic> result) => AiLabelReader(
+        _ai(
+          () => http.Response(
+            jsonEncode({
+              'tier': 'pro',
+              'used': 1,
+              'limit': 100,
+              'result': result,
+            }),
+            200,
+            headers: {'content-type': 'application/json; charset=utf-8'},
+          ),
+        ),
+      );
+      Future<String?> encode(String _) async => '/9j/x';
+      final found = await reader({
+        'schema': 1,
+        'status': 'ok',
+        'productName': 'حليب',
+        'price': '7.50',
+        'unitPrice': '5.00',
+        'unit': 'litre',
+        'currency': 'SAR',
+      }).readImage('p', currencyCode: 'SAR', encode: encode);
+      expect(found!.first.value.toDbString(), '7.50');
+      expect(found.first.productName, 'حليب');
+      expect(found.last.isUnitPrice, isTrue);
+      expect(found.last.unitCode, UnitCode.litre);
+      expect(
+        await reader({
+          'schema': 1,
+          'status': 'ok',
+          'price': '7.50',
+          'currency': 'EUR',
+        }).readImage('p', currencyCode: 'SAR', encode: encode),
+        isEmpty,
+      );
+      expect(
+        await reader({'schema': 1, 'status': 'unreadable'})
+            .readImage('p', currencyCode: 'SAR', encode: encode),
+        isEmpty,
+      );
+    },
+  );
 }

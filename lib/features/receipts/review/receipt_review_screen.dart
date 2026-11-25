@@ -9,7 +9,6 @@ import '../../../core/money/currency.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
-import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 
 import 'receipt_review_controller.dart';
@@ -103,9 +102,6 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
 
     final diff = _c.reconciliationDifference;
     final metadata = _c.document?.metadata;
-    final decisionsComplete = _c.lines.every(
-      (l) => l.status != ReviewStatus.pending,
-    );
     final material = MaterialLocalizations.of(context);
     final printedAt = metadata?.dateTime;
     final metadataText = [
@@ -194,7 +190,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                         metadataText,
                         key: const Key('receipt_document_metadata'),
                       ),
-                    if (diff != null && decisionsComplete)
+                    if (diff != null)
                       Text(
                         '${l10n.receiptDiff}: ${money(diff)}',
                         style: TextStyle(
@@ -301,28 +297,22 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (!_c.reviewResolved) Text(l10n.receiptResolveLines),
                     Wrap(
                       spacing: 12,
                       runSpacing: 8,
                       alignment: WrapAlignment.end,
                       children: [
-                        TextButton(
-                          key: const Key('receipt_accept_all'),
-                          onPressed: _editable ? _c.acceptAll : null,
-                          child: Text(l10n.receiptCommit),
-                        ),
                         FilledButton(
                           key: const Key('receipt_commit_button'),
                           onPressed:
                               _editable &&
                                   _c.documentReady &&
-                                  _c.reviewResolved &&
                                   !_c.currencyNeedsConfirmation &&
                                   (_c.detectedCurrency == null ||
                                       _c.detectedCurrency == widget.currency) &&
+                                  // Lines are kept unless removed (F17).
                                   _c.lines.any(
-                                    (l) => l.status == ReviewStatus.accepted,
+                                    (l) => l.status != ReviewStatus.ignored,
                                   )
                               ? () => _commit(context)
                               : null,
@@ -430,9 +420,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
         ? null
         : formatQuantityNumber(
             line.quantity!,
-            decimalSeparator: MoneySeparators.forLocaleCode(
-              formatLocaleCode(context),
-            ).decimal,
+            locale: formatLocaleCode(context),
           );
     final unit = line.unitCode == null
         ? ''
@@ -452,6 +440,7 @@ class _ReceiptReviewScreenState extends State<ReceiptReviewScreen> {
 
   Future<void> _commit(BuildContext context) async {
     if (_saving) return;
+    _c.acceptPending();
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     setState(() {

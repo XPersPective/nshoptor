@@ -520,7 +520,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Suas listas, preços, cupons e fotos ficam no seu aparelho. Fotos e voz nunca saem dele. Com a ajuda de IA ativada, só texto (por exemplo linhas do cupom ou o que você ditou) é enviado ao nosso servidor para processamento, sem ser armazenado.';
+      'Suas listas, preços, cupons e fotos ficam salvos no seu aparelho. A voz nunca sai dele. Quando a ajuda de IA está ativada, fotos de cupons e de etiquetas de preço (reduzidas de tamanho) e texto, como itens ditados, são enviados ao nosso servidor apenas para serem lidos; eles são processados na hora e nunca armazenados.';
 
   @override
   String get aboutSection => 'Sobre';
@@ -734,7 +734,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sem anúncios · Exportar e importar backup · Mensal';
+      'Sem anúncios · Exportar e importar backup · Anual';
 
   @override
   String get proBenefitNoAds => 'Sem anúncios';
@@ -766,8 +766,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get formatLocaleLabel => 'Formato de números e moeda';
 
   @override
-  String get formatLocaleSystem =>
-      'Formato do dispositivo (dígitos latinos; caso contrário, inglês)';
+  String get formatLocaleSystem => 'Formato do dispositivo';
 
   @override
   String get formatLocaleTr => 'Turco (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Associa cupons, lê etiquetas de preço e transforma frases em listas. Fotos e voz ficam no aparelho; só o texto é processado.';
+      'Lê cupons e etiquetas de preço a partir de fotos, associa cupons e transforma frases em listas. As fotos são enviadas apenas para serem lidas e nunca são armazenadas.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1130,6 +1129,15 @@ class AppLocalizationsPt extends AppLocalizations {
   String get csvExportAction => 'Exportar CSV';
 
   @override
+  String get reportSharePdf => 'Compartilhar como PDF';
+
+  @override
+  String get reportShareCsv => 'Compartilhar como CSV';
+
+  @override
+  String get reportPrintAction => 'Imprimir';
+
+  @override
   String get backupSizeWarning =>
       'O JSON inclui registros, não arquivos de foto. Limite de importação: 16 MB.';
 
@@ -1408,4 +1416,174 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get reportZoom => 'Ampliar';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dias restantes',
+      one: '$days dia restante',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours horas restantes',
+      one: '$hours hora restante',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'O período de avaliação do Pro terminou';
+
+  @override
+  String get planTrialEndedBody =>
+      'Pode continuar a usar listas, introdução manual e voz no dispositivo gratuitamente. O plano Gratuito inclui 10 pedidos de IA por mês civil. Escolha o Pro anual para ter 100 pedidos de IA por mês, sem anúncios e com cópias de segurança. Os seus dados atuais continuam consigo.';
+
+  @override
+  String get planContinueFree => 'Continuar gratuitamente';
+
+  @override
+  String get supportIdLabel => 'ID de suporte';
+
+  @override
+  String get supportEmailLabel => 'Suporte por e-mail';
+
+  @override
+  String get captureTipFirst =>
+      'Comece bem pelo topo: o nome da loja e a data devem estar visíveis. Inclua o máximo de itens possível; o resto vai na próxima foto.';
+
+  @override
+  String get captureTipContinue =>
+      'Mesmo recibo: inclua o último item da foto anterior.';
+
+  @override
+  String get captureTipNeverShow => 'Não mostrar novamente';
+
+  @override
+  String get captureTipOk => 'Entendi';
+
+  @override
+  String get captureTipsSetting => 'Mostrar dicas para fotografar o recibo';
+
+  @override
+  String get receiptReadingProgress => 'Lendo o recibo…';
+
+  @override
+  String get receiptReadInBackground => 'Continuar em segundo plano';
+
+  @override
+  String get receiptReadDoneTitle => 'Recibo lido';
+
+  @override
+  String get receiptReadDoneBody => 'Toque para revisar e salvar.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografe o restante do recibo';
+
+  @override
+  String get receiptReadFailedTitle => 'Não foi possível ler o recibo';
+
+  @override
+  String get listReceiptsSection => 'Recibos';
+
+  @override
+  String get receiptStateComplete => 'Concluído';
+
+  @override
+  String get receiptStateIncomplete => 'Incompleto';
+
+  @override
+  String get receiptStateFailed => 'Falhou';
+
+  @override
+  String get receiptStoreUnknown => 'Loja não lida';
+
+  @override
+  String get receiptDeleteAction => 'Excluir recibo';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Excluir este recibo e os itens que ele adicionou? Você poderá importá-lo novamente depois.';
+
+  @override
+  String get receiptDeleted => 'Recibo excluído.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Mostrar todos ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Mostrar menos';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data do recibo: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Por compra';
+
+  @override
+  String get historyViewStore => 'Por loja';
+
+  @override
+  String get historyViewProduct => 'Por produto';
+
+  @override
+  String get historyShareAll => 'Partilhar tudo';
+
+  @override
+  String get historyUnknownStore => 'Loja desconhecida';
+
+  @override
+  String get historyDailySpending => 'Gasto diário';
+
+  @override
+  String get historyResetPeriod => 'Voltar a esta semana';
+
+  @override
+  String get tourSkip => 'Pular';
+
+  @override
+  String get tourNewListBody =>
+      'Crie uma lista de compras e adicione o que pretende comprar.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Já fez as compras? Transforme um recibo em lista com os preços.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Comece pelo topo do recibo: capture primeiro a loja e a data e depois continue com as demais linhas.';
+
+  @override
+  String get tourTabsBody =>
+      'Alterne entre listas ativas, concluídas e arquivadas. O botão no final muda a ordem.';
+
+  @override
+  String get tourDiscoverBody => 'Veja mais apps do mesmo desenvolvedor.';
+
+  @override
+  String get tourHelpBody =>
+      'Toque aqui para rever este guia. Abra uma lista para ver os totais e os itens explicados.';
+
+  @override
+  String get tourTotalsBody =>
+      'Os totais previsto, real e a diferença são atualizados enquanto você compra.';
+
+  @override
+  String get tourItemsBody => 'Seus itens. Mude a ordem ou pesquise-os aqui.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% do limite utilizado';
+  }
 }

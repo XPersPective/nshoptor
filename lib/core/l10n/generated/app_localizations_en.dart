@@ -519,7 +519,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Your lists, prices, receipts and photos stay on your device. Photos and voice never leave it. When AI help is on, only text (for example receipt lines or what you dictated) is sent to our server to be processed and is not stored.';
+      'Your lists, prices, receipts and photos are stored on your device. Voice never leaves it. When AI help is on, receipt and price-label photos (reduced in size) and text such as dictated items are sent to our server only to be read; they are processed immediately and never stored.';
 
   @override
   String get aboutSection => 'About';
@@ -729,7 +729,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'No ads · Backup export and import · Monthly';
+  String get proBenefitsLine => 'No ads · Backup export and import · Yearly';
 
   @override
   String get proBenefitNoAds => 'Ad-free experience';
@@ -761,8 +761,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get formatLocaleLabel => 'Number & currency format';
 
   @override
-  String get formatLocaleSystem =>
-      'Device format (Latin digits; otherwise English)';
+  String get formatLocaleSystem => 'Device format';
 
   @override
   String get formatLocaleTr => 'Turkish (1.234,56)';
@@ -775,7 +774,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Matches receipts, reads price labels and turns sentences into lists. Photos and voice stay on your device; only text is processed.';
+      'Reads receipts and price labels from photos, matches receipts and turns sentences into lists. Photos are sent only to be read and are never stored.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1124,6 +1123,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get csvExportAction => 'Export CSV';
 
   @override
+  String get reportSharePdf => 'Share as PDF';
+
+  @override
+  String get reportShareCsv => 'Share as CSV';
+
+  @override
+  String get reportPrintAction => 'Print';
+
+  @override
   String get backupSizeWarning =>
       'JSON includes records, not photo files. Import limit: 16 MB.';
 
@@ -1400,4 +1408,175 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zoom';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days left',
+      one: '$days day left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hours left',
+      one: '$hours hour left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Your Pro trial has ended';
+
+  @override
+  String get planTrialEndedBody =>
+      'You can keep using lists, manual entry and on-device voice for free. Free includes 10 AI requests per calendar month. Choose annual Pro for 100 AI requests per month, no ads and backups. Your existing data stays with you.';
+
+  @override
+  String get planContinueFree => 'Continue with Free';
+
+  @override
+  String get supportIdLabel => 'Support ID';
+
+  @override
+  String get supportEmailLabel => 'Email support';
+
+  @override
+  String get captureTipFirst =>
+      'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.';
+
+  @override
+  String get captureTipContinue =>
+      'Same receipt: include the last item of the previous photo.';
+
+  @override
+  String get captureTipNeverShow => 'Don\'t show again';
+
+  @override
+  String get captureTipOk => 'Got it';
+
+  @override
+  String get captureTipsSetting => 'Show receipt capture tips';
+
+  @override
+  String get receiptReadingProgress => 'Reading the receipt…';
+
+  @override
+  String get receiptReadInBackground => 'Continue in background';
+
+  @override
+  String get receiptReadDoneTitle => 'Receipt read';
+
+  @override
+  String get receiptReadDoneBody => 'Tap to review and save it.';
+
+  @override
+  String get receiptReadMoreTitle => 'Photograph the rest of the receipt';
+
+  @override
+  String get receiptReadFailedTitle => 'The receipt could not be read';
+
+  @override
+  String get listReceiptsSection => 'Receipts';
+
+  @override
+  String get receiptStateComplete => 'Complete';
+
+  @override
+  String get receiptStateIncomplete => 'Incomplete';
+
+  @override
+  String get receiptStateFailed => 'Failed';
+
+  @override
+  String get receiptStoreUnknown => 'Store not read';
+
+  @override
+  String get receiptDeleteAction => 'Delete receipt';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Delete this receipt and the items it added? You can import it again later.';
+
+  @override
+  String get receiptDeleted => 'Receipt deleted.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Show all ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Show less';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Receipt date: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'By shopping';
+
+  @override
+  String get historyViewStore => 'By store';
+
+  @override
+  String get historyViewProduct => 'By product';
+
+  @override
+  String get historyShareAll => 'Share all';
+
+  @override
+  String get historyUnknownStore => 'Unknown store';
+
+  @override
+  String get historyDailySpending => 'Daily spending';
+
+  @override
+  String get historyResetPeriod => 'Back to this week';
+
+  @override
+  String get tourSkip => 'Skip';
+
+  @override
+  String get tourNewListBody =>
+      'Start a shopping list and add what you plan to buy.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Already shopped? Turn a receipt into a list with its prices.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Start at the top of the receipt: capture the store and date first, then continue with the rest of the lines.';
+
+  @override
+  String get tourTabsBody =>
+      'Switch between active, completed and archived lists. The button at the end changes the order.';
+
+  @override
+  String get tourDiscoverBody => 'See more apps from the same developer.';
+
+  @override
+  String get tourHelpBody =>
+      'Tap here to replay this guide. Open a list to see its totals and items explained.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planned, actual and difference totals update as you shop.';
+
+  @override
+  String get tourItemsBody =>
+      'Your items. Change their order or search them here.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% of the limit used';
+  }
 }

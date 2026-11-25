@@ -520,7 +520,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Jou lyste, pryse, resceipts en foto\'s bly op jou toestel. Foto\'s en stemme vertrek nooit dit nie. Wanneer AI-hulp aangeskakel is, slegs teks (bv. resceipt-lyne of wat jy gedikteer het) word na ons bediener gestuur om verwerk te word en word nie gestoor nie.';
+      'Jou lyste, pryse, kwitansies en foto\'s word op jou toestel gestoor. Stem verlaat dit nooit. Wanneer AI-hulp aan is, word foto\'s van kwitansies en prysetikette (verklein) en teks soos gedikteerde items net na ons bediener gestuur om gelees te word; dit word onmiddellik verwerk en nooit gestoor nie.';
 
   @override
   String get aboutSection => 'Aangaande';
@@ -732,7 +732,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Geen reklames nie · Sleutel- en invoer · Maandeliks';
+      'Geen reklames nie · Sleutel- en invoer · Jaarliks';
 
   @override
   String get proBenefitNoAds => 'Advertensievrye ervaring';
@@ -764,8 +764,7 @@ class AppLocalizationsAf extends AppLocalizations {
   String get formatLocaleLabel => 'Getal- en geldeenheidsformaat';
 
   @override
-  String get formatLocaleSystem =>
-      'Toestelindeling (Latynse syfers; andersins Engels)';
+  String get formatLocaleSystem => 'Toestelindeling';
 
   @override
   String get formatLocaleTr => 'Turks (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Pas kwiteansies toe, lees prysetikette en omskakel sinne na lyste. Foto\'s en stem bly op jou toestel; slegs teks word verwerk.';
+      'Lees kwitansies en prysetikette uit foto\'s, pas kwitansies by mekaar en skakel sinne om in lyste. Foto\'s word net gestuur om gelees te word en word nooit gestoor nie.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1128,6 +1127,15 @@ class AppLocalizationsAf extends AppLocalizations {
   String get csvExportAction => 'Eksporteer CSV';
 
   @override
+  String get reportSharePdf => 'Deel as PDF';
+
+  @override
+  String get reportShareCsv => 'Deel as CSV';
+
+  @override
+  String get reportPrintAction => 'Druk';
+
+  @override
   String get backupSizeWarning =>
       'JSON sluit rekords in, nie fotolêers nie. Invoergrens: 16 MB.';
 
@@ -1406,4 +1414,176 @@ class AppLocalizationsAf extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zoem';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dae oor',
+      one: '$days dag oor',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ure oor',
+      one: '$hours uur oor',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Jou Pro-proeflopie is verby';
+
+  @override
+  String get planTrialEndedBody =>
+      'Jy kan steeds gratis lyste, handmatige invoer en stemverwerking op jou toestel gebruik. Gratis sluit 10 KI-versoeke per kalendermaand in. Kies jaarlikse Pro vir 100 KI-versoeke per maand, geen advertensies en rugsteun. Jou bestaande data bly joune.';
+
+  @override
+  String get planContinueFree => 'Gaan voort met Gratis';
+
+  @override
+  String get supportIdLabel => 'Ondersteunings-ID';
+
+  @override
+  String get supportEmailLabel => 'E-posondersteuning';
+
+  @override
+  String get captureTipFirst =>
+      'Begin heel bo: die winkelnaam en datum moet sigbaar wees. Kry soveel items as moontlik in; die res kom in die volgende foto.';
+
+  @override
+  String get captureTipContinue =>
+      'Dieselfde kwitansie: sluit die laaste item van die vorige foto in.';
+
+  @override
+  String get captureTipNeverShow => 'Moenie weer wys nie';
+
+  @override
+  String get captureTipOk => 'Verstaan';
+
+  @override
+  String get captureTipsSetting => 'Wys kwitansie-opnametips';
+
+  @override
+  String get receiptReadingProgress => 'Kwitansie word gelees…';
+
+  @override
+  String get receiptReadInBackground => 'Gaan voort op die agtergrond';
+
+  @override
+  String get receiptReadDoneTitle => 'Kwitansie gelees';
+
+  @override
+  String get receiptReadDoneBody => 'Tik om dit na te gaan en te stoor.';
+
+  @override
+  String get receiptReadMoreTitle => 'Foto die res van die kwitansie';
+
+  @override
+  String get receiptReadFailedTitle => 'Die kwitansie kon nie gelees word nie';
+
+  @override
+  String get listReceiptsSection => 'Kwitansies';
+
+  @override
+  String get receiptStateComplete => 'Voltooi';
+
+  @override
+  String get receiptStateIncomplete => 'Onvolledig';
+
+  @override
+  String get receiptStateFailed => 'Misluk';
+
+  @override
+  String get receiptStoreUnknown => 'Winkel nie gelees nie';
+
+  @override
+  String get receiptDeleteAction => 'Vee kwitansie uit';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Vee hierdie kwitansie en die items wat dit bygevoeg het uit? Jy kan dit later weer invoer.';
+
+  @override
+  String get receiptDeleted => 'Kwitansie uitgevee.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Wys alles ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Wys minder';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kwitansiedatum: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Per inkopie';
+
+  @override
+  String get historyViewStore => 'Per winkel';
+
+  @override
+  String get historyViewProduct => 'Per produk';
+
+  @override
+  String get historyShareAll => 'Deel alles';
+
+  @override
+  String get historyUnknownStore => 'Onbekende winkel';
+
+  @override
+  String get historyDailySpending => 'Daaglikse besteding';
+
+  @override
+  String get historyResetPeriod => 'Terug na hierdie week';
+
+  @override
+  String get tourSkip => 'Slaan oor';
+
+  @override
+  String get tourNewListBody =>
+      'Begin \'n inkopielys en voeg by wat jy beplan om te koop.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Klaar gekoop? Maak \'n kwitansie \'n lys met pryse.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Begin bo-aan die kwitansie: eers die winkel en datum, gaan dan voort met die res van die reëls.';
+
+  @override
+  String get tourTabsBody =>
+      'Wissel tussen aktiewe, voltooide en geargiveerde lyste. Die knoppie aan die einde verander die volgorde.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Sien meer toepassings van dieselfde ontwikkelaar.';
+
+  @override
+  String get tourHelpBody =>
+      'Tik hier om hierdie gids weer te sien. Maak \'n lys oop om die totale en items verduidelik te sien.';
+
+  @override
+  String get tourTotalsBody =>
+      'Beplande, werklike en verskiltotale word bygewerk terwyl jy koop.';
+
+  @override
+  String get tourItemsBody =>
+      'Jou items. Verander hul volgorde of soek hulle hier.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% van die limiet gebruik';
+  }
 }

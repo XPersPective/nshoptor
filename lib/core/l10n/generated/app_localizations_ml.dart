@@ -520,7 +520,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'നിങ്ങളുടെ ലിസ്റ്റുകൾ, വിലകൾ, റിസീറ്റുകൾ, ഫോട്ടോകൾ എന്നിവ നിങ്ങളുടെ ഉപകരണത്തിൽ തന്നെ നിലനിൽക്കുന്നു. ഫോട്ടോകളും ശബ്ദവും അവിടെ നിന്ന് പുറത്തുപോകുന്നില്ല. AI സഹായം സജീവമാകുമ്പോൾ, പ്രോസസ്സിംഗിനായി ടെക്സ്റ്റ് (ഉദാഹരണത്തിന് റിസീറ്റ് വരികൾ അല്ലെങ്കിൽ നിങ്ങൾ പറഞ്ഞത്) മാത്രം നമ്മുടെ സർവർിലേക്ക് അയക്കുന്നു, അത് സംഭരിക്കില്ല.';
+      'നിങ്ങളുടെ ലിസ്റ്റുകൾ, വിലകൾ, റിസീറ്റുകൾ, ഫോട്ടോകൾ എന്നിവ നിങ്ങളുടെ ഉപകരണത്തിൽ സംഭരിക്കുന്നു. ശബ്ദം ഒരിക്കലും അതിൽ നിന്ന് പുറത്തുപോകില്ല. AI സഹായം ഓണായിരിക്കുമ്പോൾ, റിസീറ്റുകളുടെയും വില ലേബലുകളുടെയും ഫോട്ടോകളും (വലുപ്പം കുറച്ചത്) പറഞ്ഞെഴുതിച്ച ഇനങ്ങൾ പോലുള്ള വാചകവും വായിക്കാൻ മാത്രമായി ഞങ്ങളുടെ സെർവറിലേക്ക് അയയ്ക്കുന്നു; അവ ഉടൻ പ്രോസസ്സ് ചെയ്യുന്നു, ഒരിക്കലും സംഭരിക്കുന്നില്ല.';
 
   @override
   String get aboutSection => 'കുറിച്ച്';
@@ -732,7 +732,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'വിജ്ഞാപനങ്ങളില്ല · ബാക്ക്‌അപ്പ് എക്സ്പോർട്ടും ഇംപോർട്ടും · മാസം';
+      'വിജ്ഞാപനങ്ങളില്ല · ബാക്ക്‌അപ്പ് എക്സ്പോർട്ടും ഇംപോർട്ടും · വർഷം';
 
   @override
   String get proBenefitNoAds => 'അഡ്‌സ് ഇല്ലാത്ത അനുഭവം';
@@ -755,7 +755,7 @@ class AppLocalizationsMl extends AppLocalizations {
   String get rateAction => 'ഞങ്ങളെ മൂല്യനിർണ്ണയം ചെയ്യുക';
 
   @override
-  String get aboutOpenRow => 'എപ്പോൾ & اوپن സോഴ്സ്';
+  String get aboutOpenRow => 'ആപ്പിനെക്കുറിച്ച് & ഓപ്പൺ സോഴ്‌സ്';
 
   @override
   String get voiceAddItemAction => 'വോയ്‌സ് വഴി ചേർക്കുക';
@@ -764,8 +764,7 @@ class AppLocalizationsMl extends AppLocalizations {
   String get formatLocaleLabel => 'സംഖ്യയും നാണയ ഫോമാറ്റും';
 
   @override
-  String get formatLocaleSystem =>
-      'ഡിവൈസ് ഫോർമാറ്റ് (ലാറ്റിൻ അക്കങ്ങൾ; മറ്റുള്ളവ ഇംഗ്ലീഷ്)';
+  String get formatLocaleSystem => 'ഡിവൈസ് ഫോർമാറ്റ്';
 
   @override
   String get formatLocaleTr => 'ടർക്കിഷ് (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'റീസീറ്റുകൾ മെച്ചപ്പെടുത്തുന്നു, വില ലേബലുകൾ വായിക്കുന്നു, വാചകങ്ങളെ പട്ടികയാക്കുന്നു. ഫോട്ടോകളും ശബ്ദവും നിങ്ങളുടെ ഉപകരണത്തിൽ തന്നെ; വരികൾ മാത്രം പ്രോസസ്സ് ചെയ്യുന്നു.';
+      'ഫോട്ടോകളിൽ നിന്ന് റിസീറ്റുകളും വില ലേബലുകളും വായിക്കുന്നു, റിസീറ്റുകൾ പൊരുത്തപ്പെടുത്തുന്നു, വാക്യങ്ങളെ ലിസ്റ്റുകളാക്കി മാറ്റുന്നു. ഫോട്ടോകൾ വായിക്കാൻ മാത്രമായി അയയ്ക്കുന്നു, ഒരിക്കലും സംഭരിക്കുന്നില്ല.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -874,10 +873,10 @@ class AppLocalizationsMl extends AppLocalizations {
   String get spendingMonthTotal => 'ഈ മാസം';
 
   @override
-  String get spendingWeekly => 'ആഴ്ചവారی ചെലവ്';
+  String get spendingWeekly => 'ആഴ്ചയിലെ ചെലവ്';
 
   @override
-  String get spendingMonthly => 'മാസവാരী ചെലവ്';
+  String get spendingMonthly => 'മാസത്തിലെ ചെലവ്';
 
   @override
   String get monthlyLimitTitle => 'മാസ പരിധി';
@@ -1016,7 +1015,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get assistantReceiptHint =>
-      'നിങ്ങളുടെ ലിസ്റ്റ് തുറന്ന് സ്കാൻ ചെയ്യാൻ റീസീറ്റ് آیکон ടാപ്പ് ചെയ്യുക.';
+      'നിങ്ങളുടെ ലിസ്റ്റ് തുറന്ന് സ്കാൻ ചെയ്യാൻ രസീതിന്റെ ഐക്കണിൽ ടാപ്പ് ചെയ്യുക.';
 
   @override
   String get assistantToggleTitle => 'അസിസ്റ്റന്റ് കാണിക്കുക';
@@ -1033,11 +1032,11 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get deleteItemConfirm =>
-      'ഈ ആइटം及其 രേഖപ്പെടുത്തിയ വാങ്ങലുകൾ ഡിലീറ്റ് ചെയ്യണോ?';
+      'ഈ ഇനവും അതിന്റെ രേഖപ്പെടുത്തിയ വാങ്ങലുകളും ഇല്ലാതാക്കണോ?';
 
   @override
   String get clearPurchaseConfirm =>
-      'ഈ ആइटം അൺചെക്ക് ചെയ്ത് its രേഖപ്പെടുത്തിയ വാങ്ങലുകൾ നീക്കം ചെയ്യണോ?';
+      'ഈ ഇനത്തിന്റെ ചെക്ക് നീക്കി അതിന്റെ രേഖപ്പെടുത്തിയ വാങ്ങലുകൾ നീക്കം ചെയ്യണോ?';
 
   @override
   String get reportPdfAction => 'PDF റിപ്പോർട്ട് സേവ് ചെയ്യുക';
@@ -1123,6 +1122,15 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV എക്സ്പോർട്ട് ചെയ്യുക';
+
+  @override
+  String get reportSharePdf => 'PDF ആയി പങ്കിടുക';
+
+  @override
+  String get reportShareCsv => 'CSV ആയി പങ്കിടുക';
+
+  @override
+  String get reportPrintAction => 'പ്രിന്റ് ചെയ്യുക';
 
   @override
   String get backupSizeWarning =>
@@ -1402,4 +1410,174 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get reportZoom => 'സൂം';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days ദിവസം ബാക്കി',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours മണിക്കൂർ ബാക്കി',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'നിങ്ങളുടെ Pro പരീക്ഷണ കാലയളവ് അവസാനിച്ചു';
+
+  @override
+  String get planTrialEndedBody =>
+      'ലിസ്റ്റുകളും നേരിട്ട് നൽകലും ഉപകരണത്തിലെ വോയിസും സൗജന്യമായി തുടർന്നും ഉപയോഗിക്കാം. Free-ൽ ഓരോ കലണ്ടർ മാസത്തിലും 10 AI അഭ്യർത്ഥനകൾ ഉൾപ്പെടുന്നു. പ്രതിമാസം 100 AI അഭ്യർത്ഥനകൾക്കും പരസ്യങ്ങളില്ലാത്ത ഉപയോഗത്തിനും ബാക്കപ്പുകൾക്കുമായി വാർഷിക Pro തിരഞ്ഞെടുക്കുക. നിങ്ങളുടെ നിലവിലെ ഡാറ്റ നിങ്ങളോടൊപ്പം തുടരും.';
+
+  @override
+  String get planContinueFree => 'Free ആയി തുടരുക';
+
+  @override
+  String get supportIdLabel => 'പിന്തുണ ID';
+
+  @override
+  String get supportEmailLabel => 'ഇമെയിൽ പിന്തുണ';
+
+  @override
+  String get captureTipFirst =>
+      'ഏറ്റവും മുകളിൽ നിന്ന് തുടങ്ങുക: കടയുടെ പേരും തീയതിയും കാണണം. കഴിയുന്നത്ര ഇനങ്ങൾ ഉൾപ്പെടുത്തുക; ബാക്കിയുള്ളവ അടുത്ത ഫോട്ടോയിൽ.';
+
+  @override
+  String get captureTipContinue =>
+      'അതേ രസീത്: മുമ്പത്തെ ഫോട്ടോയിലെ അവസാന ഇനം ഉൾപ്പെടുത്തുക.';
+
+  @override
+  String get captureTipNeverShow => 'വീണ്ടും കാണിക്കരുത്';
+
+  @override
+  String get captureTipOk => 'മനസ്സിലായി';
+
+  @override
+  String get captureTipsSetting => 'രസീത് പകർത്താനുള്ള നുറുങ്ങുകൾ കാണിക്കുക';
+
+  @override
+  String get receiptReadingProgress => 'രസീത് വായിക്കുന്നു…';
+
+  @override
+  String get receiptReadInBackground => 'പശ്ചാത്തലത്തിൽ തുടരുക';
+
+  @override
+  String get receiptReadDoneTitle => 'രസീത് വായിച്ചു';
+
+  @override
+  String get receiptReadDoneBody => 'പരിശോധിച്ച് സേവ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക.';
+
+  @override
+  String get receiptReadMoreTitle =>
+      'രസീതിന്റെ ബാക്കി ഭാഗത്തിന്റെ ഫോട്ടോ എടുക്കുക';
+
+  @override
+  String get receiptReadFailedTitle => 'രസീത് വായിക്കാൻ കഴിഞ്ഞില്ല';
+
+  @override
+  String get listReceiptsSection => 'രസീതുകൾ';
+
+  @override
+  String get receiptStateComplete => 'പൂർത്തിയായി';
+
+  @override
+  String get receiptStateIncomplete => 'അപൂർണ്ണം';
+
+  @override
+  String get receiptStateFailed => 'പരാജയപ്പെട്ടു';
+
+  @override
+  String get receiptStoreUnknown => 'കട വായിക്കാനായില്ല';
+
+  @override
+  String get receiptDeleteAction => 'രസീത് ഇല്ലാതാക്കുക';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ഈ രസീതും അത് ചേർത്ത ഇനങ്ങളും ഇല്ലാതാക്കണോ? പിന്നീട് വീണ്ടും ഇറക്കുമതി ചെയ്യാം.';
+
+  @override
+  String get receiptDeleted => 'രസീത് ഇല്ലാതാക്കി.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'എല്ലാം കാണിക്കുക ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'കുറച്ച് കാണിക്കുക';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'രസീത് തീയതി: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'ഷോപ്പിംഗ് അനുസരിച്ച്';
+
+  @override
+  String get historyViewStore => 'കട അനുസരിച്ച്';
+
+  @override
+  String get historyViewProduct => 'ഉൽപ്പന്നം അനുസരിച്ച്';
+
+  @override
+  String get historyShareAll => 'എല്ലാം പങ്കിടുക';
+
+  @override
+  String get historyUnknownStore => 'അജ്ഞാത കട';
+
+  @override
+  String get historyDailySpending => 'ദൈനംദിന ചെലവ്';
+
+  @override
+  String get historyResetPeriod => 'ഈ ആഴ്ചയിലേക്ക് മടങ്ങുക';
+
+  @override
+  String get tourSkip => 'ഒഴിവാക്കുക';
+
+  @override
+  String get tourNewListBody =>
+      'ഒരു ഷോപ്പിങ് ലിസ്റ്റ് തുടങ്ങി വാങ്ങാനുള്ളവ ചേർക്കൂ.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ഇതിനകം വാങ്ങിയോ? രസീത് അതിലെ വിലകളോടെ ലിസ്റ്റാക്കൂ.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'രസീതിന്റെ മുകളിൽ നിന്ന് തുടങ്ങൂ: ആദ്യം കടയും തീയതിയും, പിന്നെ ബാക്കി വരികളുമായി തുടരൂ.';
+
+  @override
+  String get tourTabsBody =>
+      'സജീവ, പൂർത്തിയായ, ആർക്കൈവ് ചെയ്ത ലിസ്റ്റുകൾക്കിടയിൽ മാറൂ. അവസാനത്തെ ബട്ടൺ ക്രമം മാറ്റുന്നു.';
+
+  @override
+  String get tourDiscoverBody => 'അതേ ഡെവലപ്പറുടെ കൂടുതൽ ആപ്പുകൾ കാണൂ.';
+
+  @override
+  String get tourHelpBody =>
+      'ഈ ഗൈഡ് വീണ്ടും കാണാൻ ഇവിടെ ടാപ്പ് ചെയ്യൂ. ആകെത്തുകകളുടെയും ഇനങ്ങളുടെയും വിശദീകരണത്തിന് ഒരു ലിസ്റ്റ് തുറക്കൂ.';
+
+  @override
+  String get tourTotalsBody =>
+      'ആസൂത്രിത, യഥാർത്ഥ ആകെത്തുകയും വ്യത്യാസവും വാങ്ങുമ്പോൾ പുതുക്കപ്പെടും.';
+
+  @override
+  String get tourItemsBody =>
+      'നിങ്ങളുടെ ഇനങ്ങൾ. ഇവിടെ അവയുടെ ക്രമം മാറ്റുകയോ തിരയുകയോ ചെയ്യൂ.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'പരിധിയുടെ $percent% ഉപയോഗിച്ചു';
+  }
 }

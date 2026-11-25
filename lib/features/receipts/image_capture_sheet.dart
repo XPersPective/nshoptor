@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../app/app_defaults.dart';
 import '../../core/l10n/generated/app_localizations.dart';
+import '../onboarding/first_run_guide.dart';
 import 'image_capture_service.dart';
 import 'ocr_text_source.dart';
 import 'shelf_label/mlkit_text_source.dart';
@@ -14,6 +16,7 @@ Future<CaptureOutcome> captureImageText(
   Future<String?> Function()? pickImage,
   OcrTextSource? ocrSource,
   ImageSource? preferredSource,
+  bool requireText = true,
 }) async {
   final l10n = AppLocalizations.of(context);
   Future<String?> Function() picker;
@@ -23,13 +26,27 @@ Future<CaptureOutcome> captureImageText(
     final source =
         preferredSource ?? await showImageSourceSheet(context, title: title);
     if (source == null || !context.mounted) return const CaptureCancelled();
-    picker = () async => (await ImagePicker().pickImage(source: source))?.path;
+    // Gallery originals can be HEIC/HEIF or tens of megapixels, which the
+    // native recognizer rejects. Re-encoding to a bounded JPEG keeps fine
+    // receipt print legible while making recognition reliable.
+    picker = () async => (await ImagePicker().pickImage(
+      source: source,
+      // Native downscale (fast on every device); 1600px keeps receipt print
+      // legible for OCR and the image model, which then needs no re-encode.
+      maxWidth: 1600,
+      maxHeight: 1600,
+      imageQuality: 85,
+    ))?.path;
   }
   final ownedSource = ocrSource == null ? _OwnedTextSource() : null;
   final source = ocrSource ?? ownedSource!;
   final CaptureOutcome outcome;
   try {
-    outcome = await scanImage(pickImage: picker, source: source);
+    outcome = await scanImage(
+      pickImage: picker,
+      source: source,
+      requireText: requireText,
+    );
   } finally {
     // Cancellation never creates a native recognizer. A cleanup failure must
     // not replace the original typed outcome (including an unavailable plugin).
@@ -59,41 +76,98 @@ Future<ImageSource?> showImageSourceSheet(
   required String title,
 }) {
   final l10n = AppLocalizations.of(context);
+  final isReceipt = title == l10n.scanReceiptAction;
+  var showTip = isReceipt && AppDefaults.captureTipsEnabled();
   return showModalBottomSheet<ImageSource>(
     context: context,
     showDragHandle: true,
     isScrollControlled: true,
-    builder: (sheetContext) => SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(title, style: Theme.of(sheetContext).textTheme.titleLarge),
-            const SizedBox(height: 16),
-            FilledButton.icon(
-              key: const Key('image_source_camera'),
-              onPressed: () => Navigator.pop(sheetContext, ImageSource.camera),
-              icon: const Icon(Icons.photo_camera_outlined),
-              label: Text(l10n.imageCameraAction),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size(48, 56),
-                padding: const EdgeInsets.all(16),
+    builder: (sheetContext) => StatefulBuilder(
+      builder: (sheetContext, setSheetState) => SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: Theme.of(sheetContext).textTheme.titleLarge,
+                    ),
+                  ),
+                  IconButton(
+                    key: const Key('image_source_help'),
+                    tooltip: l10n.howToUseLabel,
+                    onPressed: () => showScanHelpDialog(
+                      sheetContext,
+                      isReceipt: isReceipt,
+                    ),
+                    icon: const Icon(Icons.help_outline),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 8),
-            FilledButton.tonalIcon(
-              key: const Key('image_source_gallery'),
-              onPressed: () => Navigator.pop(sheetContext, ImageSource.gallery),
-              icon: const Icon(Icons.photo_library_outlined),
-              label: Text(l10n.imageGalleryAction),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size(48, 56),
-                padding: const EdgeInsets.all(16),
+              if (showTip) ...[
+                const SizedBox(height: 8),
+                Container(
+                  key: const Key('capture_tip_first'),
+                  padding: const EdgeInsets.fromLTRB(12, 10, 8, 4),
+                  decoration: BoxDecoration(
+                    color: Theme.of(
+                      sheetContext,
+                    ).colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.captureTipFirst,
+                        style: Theme.of(sheetContext).textTheme.bodyMedium,
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: TextButton(
+                          key: const Key('capture_tip_never'),
+                          onPressed: () {
+                            AppDefaults.setCaptureTipsEnabled(false);
+                            setSheetState(() => showTip = false);
+                          },
+                          child: Text(l10n.captureTipNeverShow),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              const SizedBox(height: 16),
+              FilledButton.icon(
+                key: const Key('image_source_camera'),
+                onPressed: () =>
+                    Navigator.pop(sheetContext, ImageSource.camera),
+                icon: const Icon(Icons.photo_camera_outlined),
+                label: Text(l10n.imageCameraAction),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size(48, 56),
+                  padding: const EdgeInsets.all(16),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+              FilledButton.tonalIcon(
+                key: const Key('image_source_gallery'),
+                onPressed: () =>
+                    Navigator.pop(sheetContext, ImageSource.gallery),
+                icon: const Icon(Icons.photo_library_outlined),
+                label: Text(l10n.imageGalleryAction),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size(48, 56),
+                  padding: const EdgeInsets.all(16),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
@@ -8,10 +10,13 @@ import '../../../core/money/money_parser.dart';
 
 /// Raf etiketi adaylarını listeler; kullanıcının seçtiği değer döner
 /// (spec §6.8: en büyük sayı körlemesine seçilmez, kullanıcı seçer).
+/// [imagePath] shows the captured label above the choices, so the user sees
+/// what was read before confirming a price (F04).
 Future<PriceCandidate?> showPriceCandidateSheet(
   BuildContext context,
-  List<PriceCandidate> candidates,
-) {
+  List<PriceCandidate> candidates, {
+  String? imagePath,
+}) {
   final l10n = AppLocalizations.of(context);
   return showModalBottomSheet<PriceCandidate>(
     context: context,
@@ -26,6 +31,22 @@ Future<PriceCandidate?> showPriceCandidateSheet(
               child: Text(l10n.priceCandidatesTitle),
             ),
           ),
+          if (imagePath != null && File(imagePath).existsSync())
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.file(
+                  File(imagePath),
+                  key: const Key('price_label_preview'),
+                  height: 180,
+                  fit: BoxFit.contain,
+                  cacheHeight: 540,
+                  semanticLabel: l10n.priceCandidatesTitle,
+                  errorBuilder: (_, _, _) => const SizedBox.shrink(),
+                ),
+              ),
+            ),
           if (candidates.isEmpty)
             ListTile(
               key: const Key('no_price_candidates'),
@@ -35,9 +56,9 @@ Future<PriceCandidate?> showPriceCandidateSheet(
             ListTile(
               key: Key('price_candidate_$i'),
               title: Text(
-                '${c.value.toDbString().replaceAll('.', MoneySeparators.forLocaleCode(formatLocaleCode(context)).decimal)} ${c.currencyCode}'
+                '${MoneySeparators.forLocaleCode(formatLocaleCode(context)).formatInput(c.value.toDbString())} ${c.currencyCode}'
                 '${c.unitCode != null
-                    ? ' / ${c.priceQuantity?.toDbString() ?? ''} ${unitDisplayName(c.unitCode!, l10n)}'
+                    ? ' / ${c.priceQuantity == null ? '' : MoneySeparators.forLocaleCode(formatLocaleCode(context)).formatInput(c.priceQuantity!.toDbString())} ${unitDisplayName(c.unitCode!, l10n)}'
                     : c.isUnitPrice
                     ? ' · ${l10n.pricingModeUnitPrice}'
                     : ' · ${l10n.pricingModeLineTotal}'}',

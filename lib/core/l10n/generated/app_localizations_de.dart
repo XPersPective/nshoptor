@@ -520,7 +520,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Deine Listen, Preise, Kassenbons und Fotos bleiben auf deinem Gerät. Fotos und Sprache verlassen es nie. Ist die KI-Hilfe an, wird nur Text (z. B. Bonzeilen oder Diktiertes) zur Verarbeitung an unseren Server gesendet und nicht gespeichert.';
+      'Deine Listen, Preise, Kassenbons und Fotos werden auf deinem Gerät gespeichert. Die Stimme verlässt es nie. Wenn die KI-Hilfe aktiv ist, werden Fotos von Kassenbons und Preisschildern (verkleinert) sowie Text wie diktierte Artikel nur zum Auslesen an unseren Server gesendet; sie werden sofort verarbeitet und nie gespeichert.';
 
   @override
   String get aboutSection => 'Über';
@@ -733,7 +733,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Keine Werbung · Sicherung exportieren und importieren · Monatlich';
+      'Keine Werbung · Sicherung exportieren und importieren · Jährlich';
 
   @override
   String get proBenefitNoAds => 'Werbefrei';
@@ -765,8 +765,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get formatLocaleLabel => 'Zahlen- & Währungsformat';
 
   @override
-  String get formatLocaleSystem =>
-      'Geräteformat (lateinische Ziffern; sonst Englisch)';
+  String get formatLocaleSystem => 'Geräteformat';
 
   @override
   String get formatLocaleTr => 'Türkisch (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Gleicht Kassenbons ab, liest Preisschilder und macht aus Sätzen Listen. Fotos und Sprache bleiben auf dem Gerät; nur Text wird verarbeitet.';
+      'Liest Kassenbons und Preisschilder aus Fotos, ordnet Kassenbons zu und macht aus Sätzen Listen. Fotos werden nur zum Auslesen gesendet und nie gespeichert.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1130,6 +1129,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get csvExportAction => 'CSV exportieren';
 
   @override
+  String get reportSharePdf => 'Als PDF teilen';
+
+  @override
+  String get reportShareCsv => 'Als CSV teilen';
+
+  @override
+  String get reportPrintAction => 'Drucken';
+
+  @override
   String get backupSizeWarning =>
       'JSON enthält Datensätze, keine Bilddateien. Importlimit: 16 MB.';
 
@@ -1407,4 +1415,176 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get reportZoom => 'Vergrößern';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days Tage übrig',
+      one: '$days Tag übrig',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours Stunden übrig',
+      one: '$hours Stunde übrig',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Deine Pro-Testphase ist abgelaufen';
+
+  @override
+  String get planTrialEndedBody =>
+      'Du kannst Listen, manuelle Eingabe und die Spracheingabe auf dem Gerät weiterhin kostenlos nutzen. Der kostenlose Tarif umfasst 10 KI-Anfragen pro Kalendermonat. Wähle Pro im Jahresabo für 100 KI-Anfragen pro Monat, keine Werbung und Sicherungen. Deine vorhandenen Daten bleiben erhalten.';
+
+  @override
+  String get planContinueFree => 'Kostenlos fortfahren';
+
+  @override
+  String get supportIdLabel => 'Support-ID';
+
+  @override
+  String get supportEmailLabel => 'E-Mail-Support';
+
+  @override
+  String get captureTipFirst =>
+      'Beginne ganz oben: Geschäftsname und Datum müssen sichtbar sein. Erfasse so viele Artikel wie möglich; der Rest kommt aufs nächste Foto.';
+
+  @override
+  String get captureTipContinue =>
+      'Gleicher Beleg: Nimm den letzten Artikel des vorherigen Fotos mit auf.';
+
+  @override
+  String get captureTipNeverShow => 'Nicht mehr anzeigen';
+
+  @override
+  String get captureTipOk => 'Verstanden';
+
+  @override
+  String get captureTipsSetting =>
+      'Tipps zum Fotografieren von Belegen anzeigen';
+
+  @override
+  String get receiptReadingProgress => 'Beleg wird gelesen…';
+
+  @override
+  String get receiptReadInBackground => 'Im Hintergrund fortsetzen';
+
+  @override
+  String get receiptReadDoneTitle => 'Beleg gelesen';
+
+  @override
+  String get receiptReadDoneBody => 'Tippe, um ihn zu prüfen und zu speichern.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografiere den Rest des Belegs';
+
+  @override
+  String get receiptReadFailedTitle => 'Der Beleg konnte nicht gelesen werden';
+
+  @override
+  String get listReceiptsSection => 'Belege';
+
+  @override
+  String get receiptStateComplete => 'Vollständig';
+
+  @override
+  String get receiptStateIncomplete => 'Unvollständig';
+
+  @override
+  String get receiptStateFailed => 'Fehlgeschlagen';
+
+  @override
+  String get receiptStoreUnknown => 'Geschäft nicht erkannt';
+
+  @override
+  String get receiptDeleteAction => 'Beleg löschen';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Diesen Beleg und die hinzugefügten Artikel löschen? Du kannst ihn später erneut importieren.';
+
+  @override
+  String get receiptDeleted => 'Beleg gelöscht.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Alle anzeigen ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Weniger anzeigen';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Belegdatum: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Nach Einkauf';
+
+  @override
+  String get historyViewStore => 'Nach Geschäft';
+
+  @override
+  String get historyViewProduct => 'Nach Produkt';
+
+  @override
+  String get historyShareAll => 'Alles teilen';
+
+  @override
+  String get historyUnknownStore => 'Unbekanntes Geschäft';
+
+  @override
+  String get historyDailySpending => 'Tägliche Ausgaben';
+
+  @override
+  String get historyResetPeriod => 'Zurück zu dieser Woche';
+
+  @override
+  String get tourSkip => 'Überspringen';
+
+  @override
+  String get tourNewListBody =>
+      'Starte eine Einkaufsliste und füge hinzu, was du kaufen willst.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Schon eingekauft? Mach aus einem Kassenbon eine Liste mit Preisen.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Beginne oben auf dem Bon: erst Geschäft und Datum aufnehmen, dann mit den übrigen Zeilen weitermachen.';
+
+  @override
+  String get tourTabsBody =>
+      'Wechsle zwischen aktiven, erledigten und archivierten Listen. Die Taste am Ende ändert die Reihenfolge.';
+
+  @override
+  String get tourDiscoverBody => 'Weitere Apps desselben Entwicklers ansehen.';
+
+  @override
+  String get tourHelpBody =>
+      'Tippe hier, um diese Anleitung erneut zu sehen. Öffne eine Liste, um Summen und Artikel erklärt zu bekommen.';
+
+  @override
+  String get tourTotalsBody =>
+      'Geplante, tatsächliche und Differenzsummen werden beim Einkaufen aktualisiert.';
+
+  @override
+  String get tourItemsBody =>
+      'Deine Artikel. Ändere hier die Reihenfolge oder suche sie.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent % des Limits verbraucht';
+  }
 }

@@ -520,7 +520,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listele, prețurile, chitanțele și pozele tale rămân pe dispozitiv. Pozele și vocea nu părăsesc niciodată dispozitivul. Când asistența AI este activă, doar textul (de exemplu, liniile din chitanță sau ceea ce ai dictat) este trimis pe serverul nostru pentru procesare și nu este stocat.';
+      'Listele, prețurile, chitanțele și pozele tale sunt stocate pe dispozitivul tău. Vocea nu îl părăsește niciodată. Când ajutorul AI este activat, pozele cu chitanțe și etichete de preț (reduse ca dimensiune) și textul, cum ar fi articolele dictate, sunt trimise către serverul nostru doar pentru a fi citite; sunt procesate imediat și nu sunt stocate niciodată.';
 
   @override
   String get aboutSection => 'Despre';
@@ -732,7 +732,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Fără reclame · Export și import de backup · Lunar';
+      'Fără reclame · Export și import de backup · Anual';
 
   @override
   String get proBenefitNoAds => 'Experiență fără reclame';
@@ -764,8 +764,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get formatLocaleLabel => 'Format număr și valută';
 
   @override
-  String get formatLocaleSystem =>
-      'Formatul dispozitivului (cifre latine; altfel engleză)';
+  String get formatLocaleSystem => 'Formatul dispozitivului';
 
   @override
   String get formatLocaleTr => 'Turcă (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Potrivește chitanțele, citește etichetele de preț și transformă propozițiile în liste. Fotografiile și vocea rămân pe dispozitivul tău; doar textul este procesat.';
+      'Citește chitanțe și etichete de preț din poze, potrivește chitanțele și transformă propozițiile în liste. Pozele sunt trimise doar pentru a fi citite și nu sunt stocate niciodată.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1130,6 +1129,15 @@ class AppLocalizationsRo extends AppLocalizations {
   String get csvExportAction => 'Exportare CSV';
 
   @override
+  String get reportSharePdf => 'Distribuie ca PDF';
+
+  @override
+  String get reportShareCsv => 'Distribuie ca CSV';
+
+  @override
+  String get reportPrintAction => 'Imprimă';
+
+  @override
   String get backupSizeWarning =>
       'JSON include înregistrări, nu fișiere foto. Limita de import: 16 MB.';
 
@@ -1409,4 +1417,179 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get reportZoom => 'Mărește';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days de zile rămase',
+      few: '$days zile rămase',
+      one: '$days zi rămasă',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours de ore rămase',
+      few: '$hours ore rămase',
+      one: '$hours oră rămasă',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Perioada de probă Pro s-a încheiat';
+
+  @override
+  String get planTrialEndedBody =>
+      'Poți folosi în continuare gratuit listele, introducerea manuală și vocea pe dispozitiv. Planul Gratuit include 10 solicitări AI pe lună calendaristică. Alege Pro anual pentru 100 de solicitări AI pe lună, fără reclame și cu copii de siguranță. Datele existente rămân la tine.';
+
+  @override
+  String get planContinueFree => 'Continuă gratuit';
+
+  @override
+  String get supportIdLabel => 'ID de asistență';
+
+  @override
+  String get supportEmailLabel => 'Asistență prin e-mail';
+
+  @override
+  String get captureTipFirst =>
+      'Începeți chiar de sus: numele magazinului și data trebuie să fie vizibile. Includeți cât mai multe produse; restul merge în următoarea fotografie.';
+
+  @override
+  String get captureTipContinue =>
+      'Același bon: includeți ultimul produs din fotografia anterioară.';
+
+  @override
+  String get captureTipNeverShow => 'Nu mai afișa';
+
+  @override
+  String get captureTipOk => 'Am înțeles';
+
+  @override
+  String get captureTipsSetting =>
+      'Afișează sfaturile pentru fotografierea bonului';
+
+  @override
+  String get receiptReadingProgress => 'Se citește bonul…';
+
+  @override
+  String get receiptReadInBackground => 'Continuă în fundal';
+
+  @override
+  String get receiptReadDoneTitle => 'Bon citit';
+
+  @override
+  String get receiptReadDoneBody => 'Atingeți pentru a-l verifica și salva.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografiați restul bonului';
+
+  @override
+  String get receiptReadFailedTitle => 'Bonul nu a putut fi citit';
+
+  @override
+  String get listReceiptsSection => 'Bonuri';
+
+  @override
+  String get receiptStateComplete => 'Complet';
+
+  @override
+  String get receiptStateIncomplete => 'Incomplet';
+
+  @override
+  String get receiptStateFailed => 'Eșuat';
+
+  @override
+  String get receiptStoreUnknown => 'Magazin necitit';
+
+  @override
+  String get receiptDeleteAction => 'Șterge bonul';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Ștergi acest bon și articolele adăugate de el? Îl poți importa din nou mai târziu.';
+
+  @override
+  String get receiptDeleted => 'Bon șters.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Afișează tot ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Afișează mai puțin';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data bonului: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'După cumpărături';
+
+  @override
+  String get historyViewStore => 'După magazin';
+
+  @override
+  String get historyViewProduct => 'După produs';
+
+  @override
+  String get historyShareAll => 'Distribuie tot';
+
+  @override
+  String get historyUnknownStore => 'Magazin necunoscut';
+
+  @override
+  String get historyDailySpending => 'Cheltuieli zilnice';
+
+  @override
+  String get historyResetPeriod => 'Înapoi la săptămâna aceasta';
+
+  @override
+  String get tourSkip => 'Omite';
+
+  @override
+  String get tourNewListBody =>
+      'Începe o listă de cumpărături și adaugă ce vrei să cumperi.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Ai făcut deja cumpărăturile? Transformă bonul într-o listă cu prețuri.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Începe din partea de sus a bonului: întâi magazinul și data, apoi continuă cu restul rândurilor.';
+
+  @override
+  String get tourTabsBody =>
+      'Comută între listele active, finalizate și arhivate. Butonul de la capăt schimbă ordinea.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Vezi alte aplicații ale aceluiași dezvoltator.';
+
+  @override
+  String get tourHelpBody =>
+      'Atinge aici pentru a revedea ghidul. Deschide o listă pentru explicații despre totaluri și produse.';
+
+  @override
+  String get tourTotalsBody =>
+      'Totalurile planificat, real și diferența se actualizează în timp ce cumperi.';
+
+  @override
+  String get tourItemsBody =>
+      'Produsele tale. Schimbă-le ordinea sau caută-le aici.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% din limită a fost folosit';
+  }
 }

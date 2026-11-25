@@ -247,11 +247,12 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
     final separators = MoneySeparators.forLocaleCode(formatLocaleCode(context));
     final form = GlobalKey<FormState>();
     var name = c.name, brand = c.brand ?? '', category = c.category ?? '';
-    var quantity = (c.quantity ?? DecimalFixed.fromInt(1))
-        .toDbString()
-        .replaceAll('.', separators.decimal);
-    var price =
-        c.unitPrice?.toDbString().replaceAll('.', separators.decimal) ?? '';
+    var quantity = separators.formatInput(
+      (c.quantity ?? DecimalFixed.fromInt(1)).toDbString(),
+    );
+    var price = c.unitPrice == null
+        ? ''
+        : separators.formatInput(c.unitPrice!.toDbString());
     var unit = c.unitCode ?? UnitCode.adet;
     bool? isUnit = c.unitPrice == null ? false : c.isUnitPrice;
     final priceBasis =
@@ -382,10 +383,7 @@ class _ListDraftSheetState extends State<ListDraftSheet> {
                                 isUnitPrice: true,
                                 priceUnit: priceBasis,
                               );
-                        price = converted.toDbString().replaceAll(
-                          '.',
-                          separators.decimal,
-                        );
+                        price = separators.formatInput(converted.toDbString());
                         priceEditor.text = price;
                       }
                       conversionError = null;

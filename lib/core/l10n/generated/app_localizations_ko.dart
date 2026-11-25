@@ -513,7 +513,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      '리스트, 가격, 영수증 및 사진은 모두 기기에 보관됩니다. 사진과 음성은 절대 외부로 전송되지 않습니다. AI 도움이 활성화되면 텍스트(예: 영수증 항목 또는 음성 입력 내용)만 처리를 위해 서버로 전송되며 저장되지 않습니다.';
+      '리스트, 가격, 영수증 및 사진은 기기에 저장됩니다. 음성은 기기 밖으로 나가지 않습니다. AI 도움말이 켜져 있으면 영수증과 가격표 사진(크기를 줄인 것)과 받아쓰기한 항목 같은 텍스트가 읽기 목적으로만 서버로 전송되며, 즉시 처리된 후 저장되지 않습니다.';
 
   @override
   String get aboutSection => '소개';
@@ -720,7 +720,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => '광고 없음 · 백업 내보내기 및 가져오기 · 월간';
+  String get proBenefitsLine => '광고 없음 · 백업 내보내기 및 가져오기 · 연간';
 
   @override
   String get proBenefitNoAds => '광고 없는 경험';
@@ -752,7 +752,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get formatLocaleLabel => '숫자 및 통화 형식';
 
   @override
-  String get formatLocaleSystem => '기기 설정 (숫자는 아라비아 숫자; 나머지는 영어)';
+  String get formatLocaleSystem => '기기 설정';
 
   @override
   String get formatLocaleTr => '터키어 (1.234,56)';
@@ -765,7 +765,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      '영수증을 매칭하고 가격 라벨을 읽으며 문장을 목록으로 변환합니다. 사진과 음성은 기기 내부에 저장되며 텍스트만 처리됩니다.';
+      '사진에서 영수증과 가격표를 읽고, 영수증을 매칭하고, 문장을 리스트로 바꿔 줍니다. 사진은 읽기 위해서만 전송되며 저장되지 않습니다.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1096,6 +1096,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String get csvExportAction => 'CSV 내보내기';
 
   @override
+  String get reportSharePdf => 'PDF로 공유';
+
+  @override
+  String get reportShareCsv => 'CSV로 공유';
+
+  @override
+  String get reportPrintAction => '인쇄';
+
+  @override
   String get backupSizeWarning =>
       'JSON에는 레코드가 포함되어 있으며 사진 파일은 포함되지 않습니다. 가져오기 제한: 16MB.';
 
@@ -1360,4 +1369,166 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get reportZoom => '확대';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days일 남음',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간 남음',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro 체험 기간이 종료되었습니다';
+
+  @override
+  String get planTrialEndedBody =>
+      '목록, 직접 입력, 기기 내 음성 기능은 계속 무료로 이용할 수 있습니다. Free에는 월별 10회의 AI 요청이 포함됩니다. 연간 Pro를 선택하면 매월 AI 요청 100회, 광고 제거, 백업을 이용할 수 있습니다. 기존 데이터는 그대로 유지됩니다.';
+
+  @override
+  String get planContinueFree => 'Free로 계속하기';
+
+  @override
+  String get supportIdLabel => '지원 ID';
+
+  @override
+  String get supportEmailLabel => '이메일 지원';
+
+  @override
+  String get captureTipFirst =>
+      '맨 위부터 시작하세요. 매장 이름과 날짜가 보여야 합니다. 가능한 한 많은 품목을 담고, 나머지는 다음 사진에 담으세요.';
+
+  @override
+  String get captureTipContinue => '같은 영수증입니다. 이전 사진의 마지막 품목을 포함하세요.';
+
+  @override
+  String get captureTipNeverShow => '다시 표시하지 않음';
+
+  @override
+  String get captureTipOk => '확인';
+
+  @override
+  String get captureTipsSetting => '영수증 촬영 팁 표시';
+
+  @override
+  String get receiptReadingProgress => '영수증을 읽는 중…';
+
+  @override
+  String get receiptReadInBackground => '백그라운드에서 계속';
+
+  @override
+  String get receiptReadDoneTitle => '영수증을 읽었습니다';
+
+  @override
+  String get receiptReadDoneBody => '탭하여 확인하고 저장하세요.';
+
+  @override
+  String get receiptReadMoreTitle => '영수증의 나머지 부분을 촬영하세요';
+
+  @override
+  String get receiptReadFailedTitle => '영수증을 읽을 수 없습니다';
+
+  @override
+  String get listReceiptsSection => '영수증';
+
+  @override
+  String get receiptStateComplete => '완료';
+
+  @override
+  String get receiptStateIncomplete => '미완료';
+
+  @override
+  String get receiptStateFailed => '실패';
+
+  @override
+  String get receiptStoreUnknown => '매장을 읽지 못함';
+
+  @override
+  String get receiptDeleteAction => '영수증 삭제';
+
+  @override
+  String get receiptDeleteConfirm => '이 영수증과 추가된 항목을 삭제할까요? 나중에 다시 가져올 수 있습니다.';
+
+  @override
+  String get receiptDeleted => '영수증이 삭제되었습니다.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return '모두 보기($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => '간단히 보기';
+
+  @override
+  String receiptDateLabel(String date) {
+    return '영수증 날짜: $date';
+  }
+
+  @override
+  String get historyViewShopping => '장보기별';
+
+  @override
+  String get historyViewStore => '매장별';
+
+  @override
+  String get historyViewProduct => '상품별';
+
+  @override
+  String get historyShareAll => '모두 공유';
+
+  @override
+  String get historyUnknownStore => '알 수 없는 매장';
+
+  @override
+  String get historyDailySpending => '일별 지출';
+
+  @override
+  String get historyResetPeriod => '이번 주로 돌아가기';
+
+  @override
+  String get tourSkip => '건너뛰기';
+
+  @override
+  String get tourNewListBody => '장보기 목록을 만들고 살 물건을 추가하세요.';
+
+  @override
+  String get tourFromReceiptBody => '이미 장을 보셨나요? 영수증을 가격이 포함된 목록으로 바꾸세요.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      '영수증 맨 위부터 시작하세요. 먼저 매장과 날짜를 찍고 나머지 줄을 이어서 찍으세요.';
+
+  @override
+  String get tourTabsBody => '진행 중, 완료, 보관된 목록 사이를 전환합니다. 끝의 버튼으로 정렬 순서를 바꿉니다.';
+
+  @override
+  String get tourDiscoverBody => '같은 개발자의 다른 앱을 살펴보세요.';
+
+  @override
+  String get tourHelpBody =>
+      '여기를 탭하면 이 안내를 다시 볼 수 있습니다. 목록을 열면 합계와 품목 설명을 볼 수 있습니다.';
+
+  @override
+  String get tourTotalsBody => '계획, 실제 합계와 차액이 장을 보는 동안 업데이트됩니다.';
+
+  @override
+  String get tourItemsBody => '내 품목입니다. 여기에서 순서를 바꾸거나 검색하세요.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '한도의 $percent% 사용됨';
+  }
 }

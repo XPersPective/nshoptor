@@ -521,7 +521,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'तपाईंका सूचीहरू, मूल्यहरू, रेसिप्टहरू र तस्बिरहरू तपाईंको उपकरणमा नै रहन्छन्। तस्बिरहरू र आवाज कहिल्यै त्यहाँबाट बाहिर जाँदैनन्। जब AI सहयोग सक्रिय हुन्छ, केवल पाठ (जस्तै रेसिप्ट पङ्क्तिहरू वा तपाईंले भनाएको कुरा) प्रशोधनको लागि हाम्रो सर्भरमा पठाइन्छ र संग्रह गरिँदैन।';
+      'तपाईंका सूचीहरू, मूल्यहरू, रसिदहरू र तस्बिरहरू तपाईंको उपकरणमा भण्डारण गरिन्छन्। आवाज कहिल्यै उपकरणबाट बाहिर जाँदैन। AI सहायता सक्रिय हुँदा रसिद र मूल्य लेबलका तस्बिरहरू (आकार घटाइएका) तथा बोलेर लेखाइएका वस्तुजस्ता पाठ पढ्नका लागि मात्र हाम्रो सर्भरमा पठाइन्छन्; ती तुरुन्तै प्रशोधन गरिन्छन् र कहिल्यै भण्डारण गरिँदैनन्।';
 
   @override
   String get aboutSection => 'बारेमा';
@@ -735,7 +735,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'विज्ञापन छैन · ब्याकअप एक्सपोर्ट र इम्पोर्ट · मासिक';
+      'विज्ञापन छैन · ब्याकअप एक्सपोर्ट र इम्पोर्ट · वार्षिक';
 
   @override
   String get proBenefitNoAds => 'विज्ञापन रहित अनुभव';
@@ -767,7 +767,7 @@ class AppLocalizationsNe extends AppLocalizations {
   String get formatLocaleLabel => 'संख्या र मुद्रा प्रारूप';
 
   @override
-  String get formatLocaleSystem => 'डिभाइस फरमेट (लिन अंक; अन्यथा इंग्लिश)';
+  String get formatLocaleSystem => 'डिभाइस फरमेट';
 
   @override
   String get formatLocaleTr => 'टर्किश (1.234,56)';
@@ -780,7 +780,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'रेसेट मिलाउँछ, मूल्य लेबल पढ्छ र वाक्यलाई सूचीमा परिणत गर्छ। फोटो र आवाज तपाईंको डिभाइसमै रहन्छन्; केवल पाठ प्रक्रिया गरिन्छ।';
+      'तस्बिरबाट रसिद र मूल्य लेबल पढ्छ, रसिदहरू मिलाउँछ र वाक्यहरूलाई सूचीमा बदल्छ। तस्बिरहरू पढ्नका लागि मात्र पठाइन्छन् र कहिल्यै भण्डारण गरिँदैनन्।';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1128,6 +1128,15 @@ class AppLocalizationsNe extends AppLocalizations {
   String get csvExportAction => 'CSV निर्यात गर्नुहोस्';
 
   @override
+  String get reportSharePdf => 'PDF को रूपमा सेयर गर्नुहोस्';
+
+  @override
+  String get reportShareCsv => 'CSV को रूपमा सेयर गर्नुहोस्';
+
+  @override
+  String get reportPrintAction => 'प्रिन्ट गर्नुहोस्';
+
+  @override
   String get backupSizeWarning =>
       'JSON मा रेकर्डहरू छन्, फोटो फाइलहरू होइन। आयात सीमा: १६ एमबी।';
 
@@ -1404,4 +1413,173 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get reportZoom => 'जुम';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days दिन बाँकी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours घण्टा बाँकी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'तपाईंको Pro परीक्षण अवधि सकियो';
+
+  @override
+  String get planTrialEndedBody =>
+      'तपाईं सूची, म्यानुअल प्रविष्टि र उपकरणमै चल्ने आवाज सुविधा निःशुल्क प्रयोग गर्न सक्नुहुन्छ। Free मा प्रत्येक पात्रो महिनामा १० AI अनुरोध समावेश छन्। महिनामा १०० AI अनुरोध, विज्ञापनरहित प्रयोग र ब्याकअपका लागि वार्षिक Pro छान्नुहोस्। तपाईंको हालको डेटा तपाईंसँगै रहनेछ।';
+
+  @override
+  String get planContinueFree => 'Free मै जारी राख्नुहोस्';
+
+  @override
+  String get supportIdLabel => 'सहायता ID';
+
+  @override
+  String get supportEmailLabel => 'इमेल सहायता';
+
+  @override
+  String get captureTipFirst =>
+      'सबैभन्दा माथिबाट सुरु गर्नुहोस्: पसलको नाम र मिति देखिनुपर्छ। सकेसम्म धेरै सामान समेट्नुहोस्; बाँकी अर्को फोटोमा जान्छ।';
+
+  @override
+  String get captureTipContinue =>
+      'उही रसिद: अघिल्लो फोटोको अन्तिम सामान समावेश गर्नुहोस्।';
+
+  @override
+  String get captureTipNeverShow => 'फेरि नदेखाउनुहोस्';
+
+  @override
+  String get captureTipOk => 'बुझें';
+
+  @override
+  String get captureTipsSetting => 'रसिद खिच्ने सुझाव देखाउनुहोस्';
+
+  @override
+  String get receiptReadingProgress => 'रसिद पढ्दै…';
+
+  @override
+  String get receiptReadInBackground => 'पृष्ठभूमिमा जारी राख्नुहोस्';
+
+  @override
+  String get receiptReadDoneTitle => 'रसिद पढियो';
+
+  @override
+  String get receiptReadDoneBody => 'जाँच गरी सुरक्षित गर्न ट्याप गर्नुहोस्।';
+
+  @override
+  String get receiptReadMoreTitle => 'रसिदको बाँकी भागको फोटो खिच्नुहोस्';
+
+  @override
+  String get receiptReadFailedTitle => 'रसिद पढ्न सकिएन';
+
+  @override
+  String get listReceiptsSection => 'रसिदहरू';
+
+  @override
+  String get receiptStateComplete => 'पूरा';
+
+  @override
+  String get receiptStateIncomplete => 'अपूर्ण';
+
+  @override
+  String get receiptStateFailed => 'असफल';
+
+  @override
+  String get receiptStoreUnknown => 'पसल पढ्न सकिएन';
+
+  @override
+  String get receiptDeleteAction => 'रसिद मेटाउनुहोस्';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'यो रसिद र यसले थपेका सामानहरू मेटाउने? पछि फेरि आयात गर्न सक्नुहुन्छ।';
+
+  @override
+  String get receiptDeleted => 'रसिद मेटाइयो।';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'सबै देखाउनुहोस् ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'कम देखाउनुहोस्';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'रसिदको मिति: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'किनमेल अनुसार';
+
+  @override
+  String get historyViewStore => 'पसल अनुसार';
+
+  @override
+  String get historyViewProduct => 'उत्पादन अनुसार';
+
+  @override
+  String get historyShareAll => 'सबै साझा गर्नुहोस्';
+
+  @override
+  String get historyUnknownStore => 'अज्ञात पसल';
+
+  @override
+  String get historyDailySpending => 'दैनिक खर्च';
+
+  @override
+  String get historyResetPeriod => 'यो हप्तामा फर्कनुहोस्';
+
+  @override
+  String get tourSkip => 'छोड्नुहोस्';
+
+  @override
+  String get tourNewListBody =>
+      'किनमेल सूची सुरु गर्नुहोस् र किन्ने कुरा थप्नुहोस्।';
+
+  @override
+  String get tourFromReceiptBody =>
+      'किनमेल गरिसक्नुभयो? रसिदलाई मूल्यसहित सूचीमा बदल्नुहोस्।';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'रसिदको माथिबाट सुरु गर्नुहोस्: पहिले पसल र मिति लिनुहोस्, त्यसपछि बाँकी पङ्क्तिहरूसँग जारी राख्नुहोस्।';
+
+  @override
+  String get tourTabsBody =>
+      'सक्रिय, सम्पन्न र संग्रहित सूचीहरूबीच बदल्नुहोस्। अन्तिम बटनले क्रम बदल्छ।';
+
+  @override
+  String get tourDiscoverBody => 'उही विकासकर्ताका थप एपहरू हेर्नुहोस्।';
+
+  @override
+  String get tourHelpBody =>
+      'यो गाइड फेरि हेर्न यहाँ ट्याप गर्नुहोस्। जम्मा र सामानको व्याख्या हेर्न कुनै सूची खोल्नुहोस्।';
+
+  @override
+  String get tourTotalsBody =>
+      'योजना गरिएको, वास्तविक जम्मा र फरक किनमेल गर्दा अद्यावधिक हुन्छन्।';
+
+  @override
+  String get tourItemsBody =>
+      'तपाईंका सामान। यहाँ तिनको क्रम बदल्नुहोस् वा खोज्नुहोस्।';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'सीमाको $percent% प्रयोग भइसक्यो';
+  }
 }

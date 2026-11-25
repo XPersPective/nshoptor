@@ -521,7 +521,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listat, çmimet, faturat dhe fotografitë tuaja qëndrojnë në pajisjen tuaj. Fotografitë dhe zëri kurrë nuk largohen prej saj. Kur ndihma AI është aktive, vetëm teksti (p.sh. linjat e faturës ose ajo që diktuat) dërgohet te serveri ynë për t\'u përpunuar dhe nuk ruhet.';
+      'Listat, çmimet, faturat dhe fotografitë tuaja ruhen në pajisjen tuaj. Zëri nuk e braktis asnjëherë. Kur ndihma AI është e aktivizuar, fotografitë e faturave dhe të etiketave të çmimeve (të zvogëluara) dhe teksti, si artikujt e diktuar, dërgohen te serveri ynë vetëm për t\'u lexuar; përpunohen menjëherë dhe nuk ruhen kurrë.';
 
   @override
   String get aboutSection => 'Rreth';
@@ -734,7 +734,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Pa reklama · Eksportim dhe importim backup-i · Mujore';
+      'Pa reklama · Eksportim dhe importim backup-i · Vjetore';
 
   @override
   String get proBenefitNoAds => 'Përvojë pa reklama';
@@ -766,8 +766,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get formatLocaleLabel => 'Formati i numrave dhe valutës';
 
   @override
-  String get formatLocaleSystem =>
-      'Formati i pajisjes (shifra Latine; përndryshe Anglisht';
+  String get formatLocaleSystem => 'Formati i pajisjes';
 
   @override
   String get formatLocaleTr => 'Turqisht (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Përputh faturat, lexon etiketat e çmimeve dhe kthen fjali në lista. Fotot dhe zëri mbeten te pajisja jote; vetëm teksti përpunohet.';
+      'Lexon faturat dhe etiketat e çmimeve nga fotografitë, përputh faturat dhe i kthen fjalitë në lista. Fotografitë dërgohen vetëm për t\'u lexuar dhe nuk ruhen kurrë.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1130,6 +1129,15 @@ class AppLocalizationsSq extends AppLocalizations {
   String get csvExportAction => 'Eksporto CSV';
 
   @override
+  String get reportSharePdf => 'Ndaj si PDF';
+
+  @override
+  String get reportShareCsv => 'Ndaj si CSV';
+
+  @override
+  String get reportPrintAction => 'Printo';
+
+  @override
   String get backupSizeWarning =>
       'JSON përfshin regjistra, jo skedarë fotoje. Kufiri i importit: 16 MB.';
 
@@ -1406,4 +1414,176 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zmadho';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days ditë të mbetura',
+      one: '$days ditë e mbetur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours orë të mbetura',
+      one: '$hours orë e mbetur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Periudha e provës Pro përfundoi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Mund të vazhdosh t’i përdorësh listat, futjen manuale dhe zërin në pajisje falas. Plani Falas përfshin 10 kërkesa AI për muaj kalendarik. Zgjidh Pro vjetor për 100 kërkesa AI në muaj, pa reklama dhe me kopje rezervë. Të dhënat ekzistuese mbeten me ty.';
+
+  @override
+  String get planContinueFree => 'Vazhdo falas';
+
+  @override
+  String get supportIdLabel => 'ID-ja e mbështetjes';
+
+  @override
+  String get supportEmailLabel => 'Mbështetje me email';
+
+  @override
+  String get captureTipFirst =>
+      'Fillo që nga maja: emri i dyqanit dhe data duhet të duken. Përfshi sa më shumë artikuj; pjesa tjetër shkon në foton tjetër.';
+
+  @override
+  String get captureTipContinue =>
+      'E njëjta faturë: përfshi artikullin e fundit të fotos së mëparshme.';
+
+  @override
+  String get captureTipNeverShow => 'Mos e shfaq më';
+
+  @override
+  String get captureTipOk => 'E kuptova';
+
+  @override
+  String get captureTipsSetting => 'Shfaq këshillat për fotografimin e faturës';
+
+  @override
+  String get receiptReadingProgress => 'Po lexohet fatura…';
+
+  @override
+  String get receiptReadInBackground => 'Vazhdo në sfond';
+
+  @override
+  String get receiptReadDoneTitle => 'Fatura u lexua';
+
+  @override
+  String get receiptReadDoneBody => 'Prek për ta shqyrtuar dhe ruajtur.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografo pjesën tjetër të faturës';
+
+  @override
+  String get receiptReadFailedTitle => 'Fatura nuk mund të lexohej';
+
+  @override
+  String get listReceiptsSection => 'Faturat';
+
+  @override
+  String get receiptStateComplete => 'E plotë';
+
+  @override
+  String get receiptStateIncomplete => 'E paplotë';
+
+  @override
+  String get receiptStateFailed => 'Dështoi';
+
+  @override
+  String get receiptStoreUnknown => 'Dyqani nuk u lexua';
+
+  @override
+  String get receiptDeleteAction => 'Fshi faturën';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Të fshihet kjo faturë dhe artikujt që shtoi? Mund ta importoni sërish më vonë.';
+
+  @override
+  String get receiptDeleted => 'Fatura u fshi.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Shfaq të gjitha ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Shfaq më pak';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data e faturës: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Sipas blerjes';
+
+  @override
+  String get historyViewStore => 'Sipas dyqanit';
+
+  @override
+  String get historyViewProduct => 'Sipas produktit';
+
+  @override
+  String get historyShareAll => 'Ndaj të gjitha';
+
+  @override
+  String get historyUnknownStore => 'Dyqan i panjohur';
+
+  @override
+  String get historyDailySpending => 'Shpenzimi ditor';
+
+  @override
+  String get historyResetPeriod => 'Kthehu te kjo javë';
+
+  @override
+  String get tourSkip => 'Kapërce';
+
+  @override
+  String get tourNewListBody =>
+      'Nis një listë blerjesh dhe shto atë që planifikon të blesh.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'I ke bërë blerjet? Ktheje faturën në listë me çmimet.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Fillo nga maja e faturës: së pari dyqanin dhe datën, pastaj vazhdo me rreshtat e tjerë.';
+
+  @override
+  String get tourTabsBody =>
+      'Kalo mes listave aktive, të përfunduara dhe të arkivuara. Butoni në fund ndryshon renditjen.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Shiko aplikacione të tjera të të njëjtit zhvillues.';
+
+  @override
+  String get tourHelpBody =>
+      'Prek këtu për ta parë sërish udhëzuesin. Hap një listë për shpjegimin e totaleve dhe artikujve.';
+
+  @override
+  String get tourTotalsBody =>
+      'Totalet e planifikuara, reale dhe diferenca përditësohen ndërsa blen.';
+
+  @override
+  String get tourItemsBody =>
+      'Artikujt e tu. Ndrysho renditjen ose kërkoji këtu.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'U përdor $percent% e kufirit';
+  }
 }

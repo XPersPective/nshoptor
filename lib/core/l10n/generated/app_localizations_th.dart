@@ -519,7 +519,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'รายการ ราคา ใบเสร็จ และรูปภาพของคุณจะอยู่ในอุปกรณ์ของคุณเท่านั้น รูปภาพและเสียงจะไม่ออกนอกอุปกรณ์ เมื่อเปิดใช้งาน AI ช่วยเหลือ จะส่งเฉพาะข้อความ (เช่น รายการในใบเสร็จหรือสิ่งที่คุณพูด) ไปยังเซิร์ฟเวอร์ของเราเพื่อประมวลผลและไม่มีการเก็บรักษา';
+      'รายการ ราคา ใบเสร็จ และรูปภาพของคุณจะถูกเก็บไว้ในอุปกรณ์ของคุณ เสียงจะไม่ออกจากอุปกรณ์เลย เมื่อเปิดการช่วยเหลือโดย AI รูปใบเสร็จและป้ายราคา (ย่อขนาดแล้ว) รวมถึงข้อความ เช่น รายการที่พูดบอก จะถูกส่งไปยังเซิร์ฟเวอร์ของเราเพื่ออ่านเท่านั้น โดยจะประมวลผลทันทีและไม่มีการจัดเก็บไว้';
 
   @override
   String get aboutSection => 'เกี่ยวกับ';
@@ -730,7 +730,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'ไม่มีโฆษณา · สำรองและนำเข้าข้อมูล · รายเดือน';
+  String get proBenefitsLine => 'ไม่มีโฆษณา · สำรองและนำเข้าข้อมูล · รายปี';
 
   @override
   String get proBenefitNoAds => 'ประสบการณ์ไร้โฆษณา';
@@ -762,8 +762,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get formatLocaleLabel => 'รูปแบบตัวเลขและสกุลเงิน';
 
   @override
-  String get formatLocaleSystem =>
-      'รูปแบบของอุปกรณ์ (ตัวเลขละติน; หากไม่ใช่เป็นภาษาอังกฤษ)';
+  String get formatLocaleSystem => 'รูปแบบของอุปกรณ์';
 
   @override
   String get formatLocaleTr => 'ตุรกี (1.234,56)';
@@ -776,7 +775,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'จับคู่ใบเสร็จ อ่านป้ายราคา และแปลงประโยคเป็นรายการ รูปภาพและเสียงจะอยู่ในอุปกรณ์ของคุณเท่านั้น มีเพียงข้อความเท่านั้นที่ถูกประมวลผล';
+      'อ่านใบเสร็จและป้ายราคาจากรูปภาพ จับคู่ใบเสร็จ และเปลี่ยนประโยคเป็นรายการ รูปภาพจะถูกส่งเพื่ออ่านเท่านั้นและไม่มีการจัดเก็บไว้';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1121,6 +1120,15 @@ class AppLocalizationsTh extends AppLocalizations {
   String get csvExportAction => 'ส่งออก CSV';
 
   @override
+  String get reportSharePdf => 'แชร์เป็น PDF';
+
+  @override
+  String get reportShareCsv => 'แชร์เป็น CSV';
+
+  @override
+  String get reportPrintAction => 'พิมพ์';
+
+  @override
   String get backupSizeWarning =>
       'JSON มีบันทึกข้อมูล ไม่ใช่ไฟล์รูปภาพ ขีดจำกัดการนำเข้า: 16 MB';
 
@@ -1393,4 +1401,172 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get reportZoom => 'ซูม';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days วันเหลือ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ชั่วโมงเหลือ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ช่วงทดลองใช้ Pro ของคุณสิ้นสุดแล้ว';
+
+  @override
+  String get planTrialEndedBody =>
+      'คุณยังใช้รายการ การป้อนข้อมูลด้วยตนเอง และเสียงบนอุปกรณ์ได้ฟรีต่อไป แพ็กเกจ Free มีคำขอ AI 10 ครั้งต่อเดือนปฏิทิน เลือก Pro รายปีเพื่อรับคำขอ AI 100 ครั้งต่อเดือน ไม่มีโฆษณา และมีข้อมูลสำรอง ข้อมูลเดิมของคุณยังอยู่ครบ';
+
+  @override
+  String get planContinueFree => 'ใช้ Free ต่อไป';
+
+  @override
+  String get supportIdLabel => 'รหัสฝ่ายสนับสนุน';
+
+  @override
+  String get supportEmailLabel => 'ติดต่อฝ่ายสนับสนุนทางอีเมล';
+
+  @override
+  String get captureTipFirst =>
+      'เริ่มจากด้านบนสุด: ต้องเห็นชื่อร้านและวันที่ ใส่รายการให้ได้มากที่สุด ที่เหลือไปอยู่ในภาพถัดไป';
+
+  @override
+  String get captureTipContinue =>
+      'ใบเสร็จใบเดิม: ใส่รายการสุดท้ายของภาพก่อนหน้าด้วย';
+
+  @override
+  String get captureTipNeverShow => 'ไม่ต้องแสดงอีก';
+
+  @override
+  String get captureTipOk => 'เข้าใจแล้ว';
+
+  @override
+  String get captureTipsSetting => 'แสดงเคล็ดลับการถ่ายใบเสร็จ';
+
+  @override
+  String get receiptReadingProgress => 'กำลังอ่านใบเสร็จ…';
+
+  @override
+  String get receiptReadInBackground => 'ทำต่อในเบื้องหลัง';
+
+  @override
+  String get receiptReadDoneTitle => 'อ่านใบเสร็จแล้ว';
+
+  @override
+  String get receiptReadDoneBody => 'แตะเพื่อตรวจสอบและบันทึก';
+
+  @override
+  String get receiptReadMoreTitle => 'ถ่ายภาพส่วนที่เหลือของใบเสร็จ';
+
+  @override
+  String get receiptReadFailedTitle => 'อ่านใบเสร็จไม่ได้';
+
+  @override
+  String get listReceiptsSection => 'ใบเสร็จ';
+
+  @override
+  String get receiptStateComplete => 'เสร็จสมบูรณ์';
+
+  @override
+  String get receiptStateIncomplete => 'ไม่สมบูรณ์';
+
+  @override
+  String get receiptStateFailed => 'ล้มเหลว';
+
+  @override
+  String get receiptStoreUnknown => 'อ่านชื่อร้านไม่ได้';
+
+  @override
+  String get receiptDeleteAction => 'ลบใบเสร็จ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ลบใบเสร็จนี้และรายการที่เพิ่มเข้ามาหรือไม่ คุณนำเข้าอีกครั้งได้ภายหลัง';
+
+  @override
+  String get receiptDeleted => 'ลบใบเสร็จแล้ว';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'แสดงทั้งหมด ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'แสดงน้อยลง';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'วันที่ในใบเสร็จ: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'ตามการซื้อ';
+
+  @override
+  String get historyViewStore => 'ตามร้าน';
+
+  @override
+  String get historyViewProduct => 'ตามสินค้า';
+
+  @override
+  String get historyShareAll => 'แชร์ทั้งหมด';
+
+  @override
+  String get historyUnknownStore => 'ร้านที่ไม่รู้จัก';
+
+  @override
+  String get historyDailySpending => 'ค่าใช้จ่ายรายวัน';
+
+  @override
+  String get historyResetPeriod => 'กลับไปสัปดาห์นี้';
+
+  @override
+  String get tourSkip => 'ข้าม';
+
+  @override
+  String get tourNewListBody =>
+      'เริ่มรายการซื้อของและเพิ่มสิ่งที่คุณตั้งใจจะซื้อ';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ซื้อของแล้วใช่ไหม เปลี่ยนใบเสร็จเป็นรายการพร้อมราคา';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'เริ่มจากด้านบนของใบเสร็จ: ถ่ายร้านและวันที่ก่อน แล้วต่อด้วยบรรทัดที่เหลือ';
+
+  @override
+  String get tourTabsBody =>
+      'สลับระหว่างรายการที่ใช้งาน เสร็จแล้ว และเก็บถาวร ปุ่มท้ายแถวใช้เปลี่ยนลำดับ';
+
+  @override
+  String get tourDiscoverBody => 'ดูแอปอื่นจากผู้พัฒนาเดียวกัน';
+
+  @override
+  String get tourHelpBody =>
+      'แตะที่นี่เพื่อดูคำแนะนำนี้อีกครั้ง เปิดรายการเพื่อดูคำอธิบายยอดรวมและสินค้า';
+
+  @override
+  String get tourTotalsBody =>
+      'ยอดรวมตามแผน ยอดจริง และส่วนต่างจะอัปเดตขณะคุณซื้อของ';
+
+  @override
+  String get tourItemsBody => 'สินค้าของคุณ เปลี่ยนลำดับหรือค้นหาได้ที่นี่';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'ใช้ไปแล้ว $percent% ของวงเงิน';
+  }
 }

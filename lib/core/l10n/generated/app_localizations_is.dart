@@ -520,7 +520,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listarnir þínir, verð, kvittanir og myndir geymast á tækinu þínu. Myndir og rödd yfirgefa aldrei tækið. Þegar AI-hjálp er virk, er aðeins texta (til dæmis línur frá kvittun eða það sem þú sagðir) sent til okkar netþjóns til vinnslu og er ekki geymt.';
+      'Listarnir þínir, verð, kvittanir og myndir eru vistuð á tækinu þínu. Röddin yfirgefur það aldrei. Þegar AI aðstoð er virk eru myndir af kvittunum og verðmiðum (minnkaðar) og texti, svo sem atriði sem þú talar inn, send á netþjóninn okkar eingöngu til lestrar; þetta er unnið strax og aldrei vistað.';
 
   @override
   String get aboutSection => 'Um';
@@ -732,7 +732,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Engar auglýsingar · Bakgrunnshermt og innflutningur · Mánaðarlega';
+      'Engar auglýsingar · Bakgrunnshermt og innflutningur · Árlega';
 
   @override
   String get proBenefitNoAds => 'Auglýsingalaust upplifun';
@@ -764,8 +764,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get formatLocaleLabel => 'Tölur og gjaldmiðill';
 
   @override
-  String get formatLocaleSystem =>
-      'Tæki stillt (Latneskir tölustafir; annars enska)';
+  String get formatLocaleSystem => 'Tæki stillt';
 
   @override
   String get formatLocaleTr => 'Tyrkneska (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Samanburður við kvittanir, lestur verðmiða og breyting setninga í lista. Myndir og rödd eru á tækinu þínu; aðeins texti er vinnslinn.';
+      'Les kvittanir og verðmiða úr myndum, passar saman kvittanir og breytir setningum í lista. Myndir eru sendar eingöngu til lestrar og aldrei vistaðar.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1125,6 +1124,15 @@ class AppLocalizationsIs extends AppLocalizations {
   String get csvExportAction => 'Flytja út CSV';
 
   @override
+  String get reportSharePdf => 'Deila sem PDF';
+
+  @override
+  String get reportShareCsv => 'Deila sem CSV';
+
+  @override
+  String get reportPrintAction => 'Prenta';
+
+  @override
   String get backupSizeWarning =>
       'JSON inniheldur skrár, ekki ljósmyndaskrár. Innflutningstakmörk: 16 MB.';
 
@@ -1401,4 +1409,177 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get reportZoom => 'Aðdráttur';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dagar eftir',
+      few: '$days dagar eftir',
+      one: '$days dagur eftir',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours klukkustundir eftir',
+      few: '$hours klukkustundir eftir',
+      one: '$hours klukkustund eftir',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro-prufutímabilinu þínu er lokið';
+
+  @override
+  String get planTrialEndedBody =>
+      'Þú getur áfram notað lista, handvirka innsláttar og tal á tækinu þér að kostnaðarlausu. Ókeypis áskrift inniheldur 10 AI-beiðnir á almanaksmánuði. Veldu árlegt Pro fyrir 100 AI-beiðnir á mánuði, engar auglýsingar og afrit. Gögnin þín haldast hjá þér.';
+
+  @override
+  String get planContinueFree => 'Halda áfram ókeypis';
+
+  @override
+  String get supportIdLabel => 'Auðkenni þjónustuvers';
+
+  @override
+  String get supportEmailLabel => 'Þjónustuaðstoð í tölvupósti';
+
+  @override
+  String get captureTipFirst =>
+      'Byrjaðu efst: nafn verslunar og dagsetning þurfa að sjást. Taktu með eins margar vörur og þú getur; restin fer á næstu mynd.';
+
+  @override
+  String get captureTipContinue =>
+      'Sama kvittun: hafðu síðustu vöruna af fyrri mynd með.';
+
+  @override
+  String get captureTipNeverShow => 'Ekki sýna aftur';
+
+  @override
+  String get captureTipOk => 'Skilið';
+
+  @override
+  String get captureTipsSetting => 'Sýna ráð til að mynda kvittun';
+
+  @override
+  String get receiptReadingProgress => 'Les kvittun…';
+
+  @override
+  String get receiptReadInBackground => 'Halda áfram í bakgrunni';
+
+  @override
+  String get receiptReadDoneTitle => 'Kvittun lesin';
+
+  @override
+  String get receiptReadDoneBody => 'Ýttu til að yfirfara og vista.';
+
+  @override
+  String get receiptReadMoreTitle => 'Taktu mynd af restinni af kvittuninni';
+
+  @override
+  String get receiptReadFailedTitle => 'Ekki tókst að lesa kvittunina';
+
+  @override
+  String get listReceiptsSection => 'Kvittanir';
+
+  @override
+  String get receiptStateComplete => 'Lokið';
+
+  @override
+  String get receiptStateIncomplete => 'Ófullgerð';
+
+  @override
+  String get receiptStateFailed => 'Mistókst';
+
+  @override
+  String get receiptStoreUnknown => 'Verslun ekki lesin';
+
+  @override
+  String get receiptDeleteAction => 'Eyða kvittun';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Eyða þessari kvittun og vörunum sem hún bætti við? Þú getur flutt hana inn aftur síðar.';
+
+  @override
+  String get receiptDeleted => 'Kvittun eytt.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Sýna allt ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Sýna minna';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Dagsetning kvittunar: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Eftir innkaupum';
+
+  @override
+  String get historyViewStore => 'Eftir verslun';
+
+  @override
+  String get historyViewProduct => 'Eftir vöru';
+
+  @override
+  String get historyShareAll => 'Deila öllu';
+
+  @override
+  String get historyUnknownStore => 'Óþekkt verslun';
+
+  @override
+  String get historyDailySpending => 'Dagleg útgjöld';
+
+  @override
+  String get historyResetPeriod => 'Aftur í þessa viku';
+
+  @override
+  String get tourSkip => 'Sleppa';
+
+  @override
+  String get tourNewListBody =>
+      'Byrjaðu innkaupalista og bættu við því sem þú ætlar að kaupa.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Búin(n) að versla? Breyttu kvittun í lista með verðum.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Byrjaðu efst á kvittuninni: fyrst verslun og dagsetningu, haltu svo áfram með restina af línunum.';
+
+  @override
+  String get tourTabsBody =>
+      'Skiptu á milli virkra, lokinna og safnaðra lista. Hnappurinn í lokin breytir röðinni.';
+
+  @override
+  String get tourDiscoverBody => 'Sjáðu fleiri öpp frá sama forritara.';
+
+  @override
+  String get tourHelpBody =>
+      'Ýttu hér til að sjá leiðarvísinn aftur. Opnaðu lista til að fá útskýringu á samtölum og vörum.';
+
+  @override
+  String get tourTotalsBody =>
+      'Áætluð, raunveruleg samtala og mismunur uppfærast meðan þú verslar.';
+
+  @override
+  String get tourItemsBody =>
+      'Vörurnar þínar. Breyttu röðinni eða leitaðu að þeim hér.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% af mörkunum notuð';
+  }
 }

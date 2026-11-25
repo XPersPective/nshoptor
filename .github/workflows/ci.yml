@@ -6,6 +6,18 @@ on:
   pull_request:
 
 jobs:
+  server_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install verified server dependencies
+        run: npm ci --prefix server
+      - name: Trial, quota, purchase and AI contract regressions
+        run: node --test server/test/*.test.js
+
   analyze_and_test:
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +39,10 @@ jobs:
           git config --global url."ssh://git@github.com/XPersPective/napp_kit.git".insteadOf "https://github.com/XPersPective/napp_kit.git"
       - name: Pub get
         run: flutter pub get
+      - name: Reject mixed-script localization corruption
+        run: |
+          python3 -m unittest discover -s tool/l10n -p "test_*.py"
+          python3 tool/l10n/check_scripts.py
       - name: Analyze
         run: flutter analyze --fatal-infos
       - name: Test

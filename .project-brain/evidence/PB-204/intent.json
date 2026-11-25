@@ -1,0 +1,8 @@
+{
+  "contract": "1da5117623756636",
+  "epoch": "2c57d471b407240a",
+  "independent": false,
+  "intent": "4eea9d63611f3510",
+  "note": "User explicitly expanded numeric support to every country/locale; exact canonical arithmetic remains unchanged per ADR-010",
+  "protocol": 1
+}

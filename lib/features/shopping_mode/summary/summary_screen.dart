@@ -1,20 +1,22 @@
 import '../../../core/money/format_locale.dart';
-import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:intl/number_symbols_data.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/money/currency.dart';
 import '../../../core/money/decimal_fixed.dart';
 import '../../../core/money/money_format.dart';
 import '../../../core/money/money.dart';
+import '../../../core/money/money_parser.dart';
+import '../../../core/money/locale_conventions.dart';
+import '../../../core/quantity/unit_display.dart';
 import '../../../core/theme/semantic_colors.dart';
 import 'compare_table.dart';
 import 'result_repository.dart';
-import 'pdf_report.dart';
-import '../../settings/backup/csv_export.dart';
+import '../../history/reports/report_document.dart';
+import '../../history/reports/report_repository.dart';
+import '../../history/reports/report_share_menu.dart';
 
 /// Alışveriş bitiş/sonuç ekranı (spec §6.11).
 ///
@@ -39,37 +41,32 @@ class SummaryScreen extends StatefulWidget {
 }
 
 class _SummaryScreenState extends State<SummaryScreen> {
-  bool _exportingCsv = false;
-
-  Future<void> _exportCsv() async {
-    if (_exportingCsv) return;
-    final l10n = AppLocalizations.of(context);
-    setState(() => _exportingCsv = true);
-    try {
-      final result = await widget.repository.db.transaction(() => widget.repository.compute(widget.listId));
-      if (!mounted) return;
-      final csv = listResultToCsv(result, headers: [l10n.compareItem, l10n.plannedQtyLabel,
-        l10n.plannedUnitPriceLabel, l10n.actualQtyLabel, l10n.actualUnitPriceLabel,
-        l10n.compareActual, l10n.compareDiff, l10n.detailsSection]);
-      await FilePicker.saveFile(dialogTitle: l10n.csvExportAction,
-        fileName: 'NShoptor-${Currency.fromCode(result.currencyCode).code}.csv',
-        mimeType: 'text/csv',
-        bytes: Uint8List.fromList(utf8.encode('\uFEFF$csv')));
-    } catch (_) {
-      if (mounted) {
-        ScaffoldMessenger.of(context)..clearSnackBars()..showSnackBar(
-          SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true, duration: const Duration(days: 1)));
-      }
-    } finally {
-      if (mounted) setState(() => _exportingCsv = false);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.resultTitle), actions: [PdfReportButton(db: widget.repository.db, listId: widget.listId)]),
+      appBar: AppBar(
+        title: Text(l10n.resultTitle),
+        actions: [
+          // One Share action (F28): PDF or CSV via the share sheet, or print.
+          ReportShareButton(
+            key: const Key('summary_share'),
+            iconOnly: true,
+            document: () async {
+              final report = await ReportRepository(widget.repository.db)
+                  .shopping(widget.listId);
+              return ReportDocument(
+                title:
+                    report.list.title ??
+                    report.list.generatedTitle ??
+                    l10n.listsTitle,
+                currencyCode: report.list.currencyCode,
+                shopping: [report],
+              );
+            },
+          ),
+        ],
+      ),
       body: FutureBuilder<ListResult>(
         future: widget.repository.compute(widget.listId),
         builder: (context, snapshot) {
@@ -106,9 +103,6 @@ class _SummaryScreenState extends State<SummaryScreen> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 children: [
-                  TextButton.icon(key: const Key('summary_csv_export'),
-                    onPressed: _exportingCsv ? null : _exportCsv,
-                    icon: const Icon(Icons.table_chart_outlined), label: Text(l10n.csvExportAction)),
                   for (final row in result.rows)
                     _ItemResultTile(result: result, row: row),
                 ],
@@ -164,11 +158,15 @@ class _SummarySection extends StatelessWidget {
             const SizedBox(height: 8),
             _Row(
               label: l10n.plannedTotalLabel,
-              value: result.hasKnownPlan ? money(result.plannedTotalMinor) : '—',
+              value: result.hasKnownPlan
+                  ? money(result.plannedTotalMinor)
+                  : '—',
             ),
             _Row(
               label: l10n.actualTotalLabel,
-              value: !result.hasKnownActual ? '—' : '${money(result.actualTotalMinor)}${result.hasUnknownActual ? ' + —' : ''}',
+              value: !result.hasKnownActual
+                  ? '—'
+                  : '${money(result.actualTotalMinor)}${result.hasUnknownActual ? ' + —' : ''}',
             ),
             _Row(
               label: l10n.varianceLabel,
@@ -225,15 +223,17 @@ class _Row extends StatelessWidget {
         children: [
           Expanded(child: Text(label)),
           ?icon,
-          Flexible(child: Text(
-            value,
-            textAlign: TextAlign.end,
-            style: TextStyle(
-              color: valueColor,
-              fontWeight: FontWeight.w600,
-              fontFeatures: const [],
+          Flexible(
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                color: valueColor,
+                fontWeight: FontWeight.w600,
+                fontFeatures: const [],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     );
@@ -281,13 +281,23 @@ class _ItemResultTile extends StatelessWidget {
             if (!row.isUnplanned) ...[
               _Row(
                 label: l10n.plannedQtyLabel,
-                value: row.plannedQuantity?.toDbString() ?? '-',
+                value: row.plannedQuantity == null
+                    ? '-'
+                    : formatQuantityNumber(
+                        row.plannedQuantity!,
+                        locale: formatLocaleCode(context),
+                      ),
               ),
               _Row(
                 label: l10n.actualQtyLabel,
                 value: row.notTaken
                     ? l10n.notBoughtMark
-                    : row.actualQuantity?.toDbString() ?? '-',
+                    : row.actualQuantity == null
+                    ? '-'
+                    : formatQuantityNumber(
+                        row.actualQuantity!,
+                        locale: formatLocaleCode(context),
+                      ),
               ),
             ],
             if (row.plannedUnitPrice != null)
@@ -307,7 +317,9 @@ class _ItemResultTile extends StatelessWidget {
               ),
             _Row(
               label: l10n.lineVarianceLabel,
-              value: row.actualKnown && row.plannedKnown ? money(row.lineVarianceMinor) : '—',
+              value: row.actualKnown && row.plannedKnown
+                  ? money(row.lineVarianceMinor)
+                  : '—',
             ),
           ],
         ),
@@ -338,17 +350,31 @@ String formatPercentText(DecimalFixed percent, String localeCode) {
   final frac = parts.length > 1 ? parts[1].padRight(2, '0') : '00';
   var tenths = int.parse(parts[0]) * 10 + int.parse(frac[0]);
   if (int.parse(frac[1]) >= 5) tenths += 1;
-  final sep = localeCode == 'tr' ? ',' : '.';
-  var number = '${tenths ~/ 10}$sep${tenths % 10}';
+  final separators = MoneySeparators.forLocaleCode(localeCode);
+  final symbols = numberFormatSymbols[knownNumberLocale(localeCode)]!;
+  var number = '${tenths ~/ 10}.${tenths % 10}';
   if (tenths % 10 == 0) number = '${tenths ~/ 10}';
-  final sign = negative && tenths != 0 ? '-' : '';
-  return localeCode == 'tr' ? '$sign%$number' : '$sign$number%';
+  number = separators.formatInput(number);
+  final sign = negative && tenths != 0 ? separators.minusSign : '';
+  final pattern = symbols.PERCENT_PATTERN.split(';').first;
+  final prefix = pattern.indexOf('%') < pattern.indexOf('#');
+  final gap = pattern.contains('\u00a0%')
+      ? '\u00a0'
+      : pattern.contains(' %')
+      ? ' '
+      : '';
+  return prefix
+      ? '$sign${symbols.PERCENT}$gap$number'
+      : '$sign$number$gap${symbols.PERCENT}';
 }
-
 
 /// Liste detayından açılan yalın karşılaştırma ekranı (PB-053).
 class CompareScreen extends StatelessWidget {
-  const CompareScreen({super.key, required this.repository, required this.listId});
+  const CompareScreen({
+    super.key,
+    required this.repository,
+    required this.listId,
+  });
 
   final ResultRepository repository;
   final int listId;
@@ -362,7 +388,9 @@ class CompareScreen extends StatelessWidget {
         future: repository.compute(listId),
         builder: (context, snapshot) {
           final result = snapshot.data;
-          if (result == null) return const Center(child: CircularProgressIndicator());
+          if (result == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
           return ListView(
             padding: const EdgeInsets.all(12),
             children: [

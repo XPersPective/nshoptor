@@ -520,7 +520,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'A listáid, árak, nyugták és fotók az eszközödön maradnak. A fotók és hangfelvételek soha nem hagyják el azt. Ha az AI segítség be van kapcsolva, csak szöveg (például nyugta sorok vagy amit felmondtál) kerül a szerverünkre feldolgozásra, és nem tároljuk el.';
+      'A listáid, árak, nyugták és fotók az eszközödön tárolódnak. A hang soha nem hagyja el. Ha az AI segítség be van kapcsolva, a nyugták és árcímkék fotói (csökkentett méretben), valamint a szöveg, például a diktált tételek, kizárólag beolvasás céljából kerülnek a szerverünkre; azonnal feldolgozzuk őket, és soha nem tároljuk.';
 
   @override
   String get aboutSection => 'Névjegy';
@@ -734,7 +734,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Nincsenek hirdetések · Biztonsági mentés export és import · Havi';
+      'Nincsenek hirdetések · Biztonsági mentés export és import · Éves';
 
   @override
   String get proBenefitNoAds => 'Reklámmentes élmény';
@@ -766,8 +766,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get formatLocaleLabel => 'Szám- és pénznemformátum';
 
   @override
-  String get formatLocaleSystem =>
-      'Eszköz formátuma (Latin számjegyek; egyébként angol)';
+  String get formatLocaleSystem => 'Eszköz formátuma';
 
   @override
   String get formatLocaleTr => 'Török (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Összehasonlítja a nyugtákat, felismeri az árcímkéket, és mondatokból listát készít. A képek és hangfelvételek az eszközön maradnak; csak a szöveg kerül feldolgozásra.';
+      'Fotókról beolvassa a nyugtákat és árcímkéket, párosítja a nyugtákat, és mondatokból listát készít. A fotókat csak beolvasásra küldi el, és soha nem tárolja.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1128,6 +1127,15 @@ class AppLocalizationsHu extends AppLocalizations {
   String get csvExportAction => 'CSV export';
 
   @override
+  String get reportSharePdf => 'Megosztás PDF-ként';
+
+  @override
+  String get reportShareCsv => 'Megosztás CSV-ként';
+
+  @override
+  String get reportPrintAction => 'Nyomtatás';
+
+  @override
   String get backupSizeWarning =>
       'A JSON fájlok rekordokat tartalmaznak, nem képfájlokat. Importálási korlát: 16 MB.';
 
@@ -1404,4 +1412,176 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get reportZoom => 'Nagyítás';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days nap van hátra',
+      one: '$days nap van hátra',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours óra van hátra',
+      one: '$hours óra van hátra',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Lejárt a Pro próbaidőszakod';
+
+  @override
+  String get planTrialEndedBody =>
+      'Továbbra is ingyen használhatod a listákat, a kézi bevitelt és az eszközön működő hangfunkciót. Az ingyenes csomag naptári hónaponként 10 AI-kérést tartalmaz. Válaszd az éves Prót havi 100 AI-kérésért, reklámok nélkül és biztonsági mentésekkel. A meglévő adataid megmaradnak.';
+
+  @override
+  String get planContinueFree => 'Folytatás ingyenesen';
+
+  @override
+  String get supportIdLabel => 'Támogatási azonosító';
+
+  @override
+  String get supportEmailLabel => 'E-mailes támogatás';
+
+  @override
+  String get captureTipFirst =>
+      'Kezdje a legfelülről: az üzlet nevének és a dátumnak látszania kell. Annyi tételt vegyen fel, amennyi elfér; a többi a következő fotóra kerül.';
+
+  @override
+  String get captureTipContinue =>
+      'Ugyanaz a nyugta: az előző fotó utolsó tételét is tegye rá.';
+
+  @override
+  String get captureTipNeverShow => 'Ne jelenjen meg újra';
+
+  @override
+  String get captureTipOk => 'Értem';
+
+  @override
+  String get captureTipsSetting => 'Nyugtafotózási tippek megjelenítése';
+
+  @override
+  String get receiptReadingProgress => 'Nyugta olvasása…';
+
+  @override
+  String get receiptReadInBackground => 'Folytatás a háttérben';
+
+  @override
+  String get receiptReadDoneTitle => 'Nyugta beolvasva';
+
+  @override
+  String get receiptReadDoneBody => 'Koppintson az áttekintéshez és mentéshez.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fényképezze le a nyugta többi részét';
+
+  @override
+  String get receiptReadFailedTitle => 'A nyugtát nem sikerült beolvasni';
+
+  @override
+  String get listReceiptsSection => 'Blokkok';
+
+  @override
+  String get receiptStateComplete => 'Kész';
+
+  @override
+  String get receiptStateIncomplete => 'Hiányos';
+
+  @override
+  String get receiptStateFailed => 'Sikertelen';
+
+  @override
+  String get receiptStoreUnknown => 'Az üzlet nem olvasható';
+
+  @override
+  String get receiptDeleteAction => 'Blokk törlése';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Törlöd ezt a blokkot és az általa hozzáadott tételeket? Később újra importálhatod.';
+
+  @override
+  String get receiptDeleted => 'Blokk törölve.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Az összes ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Kevesebb';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Blokk dátuma: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Vásárlásonként';
+
+  @override
+  String get historyViewStore => 'Üzletenként';
+
+  @override
+  String get historyViewProduct => 'Termékenként';
+
+  @override
+  String get historyShareAll => 'Összes megosztása';
+
+  @override
+  String get historyUnknownStore => 'Ismeretlen üzlet';
+
+  @override
+  String get historyDailySpending => 'Napi költés';
+
+  @override
+  String get historyResetPeriod => 'Vissza erre a hétre';
+
+  @override
+  String get tourSkip => 'Kihagyás';
+
+  @override
+  String get tourNewListBody =>
+      'Kezdj egy bevásárlólistát, és add hozzá, amit venni szeretnél.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Már vásároltál? Alakítsd a blokkot listává az árakkal együtt.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Kezdd a blokk tetején: előbb rögzítsd az üzletet és a dátumot, aztán folytasd a többi sorral.';
+
+  @override
+  String get tourTabsBody =>
+      'Válts az aktív, befejezett és archivált listák között. A végén lévő gomb a sorrendet váltja.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Ugyanattól a fejlesztőtől származó további alkalmazások.';
+
+  @override
+  String get tourHelpBody =>
+      'Koppints ide az útmutató újbóli megtekintéséhez. Nyiss meg egy listát az összegek és tételek magyarázatához.';
+
+  @override
+  String get tourTotalsBody =>
+      'A tervezett, a tényleges összeg és a különbség vásárlás közben frissül.';
+
+  @override
+  String get tourItemsBody =>
+      'A tételeid. Itt módosíthatod a sorrendjüket vagy kereshetsz köztük.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'A limit $percent%-a felhasználva';
+  }
 }

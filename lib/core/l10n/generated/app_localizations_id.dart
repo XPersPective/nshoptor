@@ -519,7 +519,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Daftar, harga, struk, dan foto Anda tetap berada di perangkat. Foto dan suara tidak pernah keluar darinya. Saat bantuan AI aktif, hanya teks (misalnya baris struk atau apa yang Anda ucapkan) dikirim ke server kami untuk diproses dan tidak disimpan.';
+      'Daftar, harga, struk, dan foto Anda disimpan di perangkat Anda. Suara tidak pernah meninggalkannya. Saat bantuan AI aktif, foto struk dan label harga (ukurannya diperkecil) serta teks seperti item yang didiktekan dikirim ke server kami hanya untuk dibaca; semuanya langsung diproses dan tidak pernah disimpan.';
 
   @override
   String get aboutSection => 'Tentang';
@@ -732,7 +732,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Tanpa iklan · Cadangan, ekspor, dan impor · Bulanan';
+      'Tanpa iklan · Cadangan, ekspor, dan impor · Tahunan';
 
   @override
   String get proBenefitNoAds => 'Pengalaman tanpa iklan';
@@ -764,8 +764,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get formatLocaleLabel => 'Format angka & mata uang';
 
   @override
-  String get formatLocaleSystem =>
-      'Format perangkat (angka Latin; jika tidak, bahasa Inggris)';
+  String get formatLocaleSystem => 'Format perangkat';
 
   @override
   String get formatLocaleTr => 'Turki (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Mencocokkan struk, membaca label harga, dan mengubah kalimat menjadi daftar. Foto dan suara tetap di perangkat Anda; hanya teks yang diproses.';
+      'Membaca struk dan label harga dari foto, mencocokkan struk, dan mengubah kalimat menjadi daftar. Foto dikirim hanya untuk dibaca dan tidak pernah disimpan.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1125,6 +1124,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get csvExportAction => 'Ekspor CSV';
 
   @override
+  String get reportSharePdf => 'Bagikan sebagai PDF';
+
+  @override
+  String get reportShareCsv => 'Bagikan sebagai CSV';
+
+  @override
+  String get reportPrintAction => 'Cetak';
+
+  @override
   String get backupSizeWarning =>
       'JSON mencakup catatan, bukan file foto. Batas impor: 16 MB.';
 
@@ -1402,4 +1410,173 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get reportZoom => 'Perbesar';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days hari tersisa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours jam tersisa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Masa uji coba Pro Anda berakhir';
+
+  @override
+  String get planTrialEndedBody =>
+      'Anda tetap dapat menggunakan daftar, input manual, dan suara di perangkat secara gratis. Paket Gratis mencakup 10 permintaan AI per bulan kalender. Pilih Pro tahunan untuk 100 permintaan AI per bulan, tanpa iklan, dan dengan pencadangan. Data Anda tetap tersimpan.';
+
+  @override
+  String get planContinueFree => 'Lanjutkan Gratis';
+
+  @override
+  String get supportIdLabel => 'ID Dukungan';
+
+  @override
+  String get supportEmailLabel => 'Dukungan Email';
+
+  @override
+  String get captureTipFirst =>
+      'Mulai dari paling atas: nama toko dan tanggal harus terlihat. Masukkan sebanyak mungkin item; sisanya di foto berikutnya.';
+
+  @override
+  String get captureTipContinue =>
+      'Struk yang sama: sertakan item terakhir dari foto sebelumnya.';
+
+  @override
+  String get captureTipNeverShow => 'Jangan tampilkan lagi';
+
+  @override
+  String get captureTipOk => 'Mengerti';
+
+  @override
+  String get captureTipsSetting => 'Tampilkan tips memotret struk';
+
+  @override
+  String get receiptReadingProgress => 'Membaca struk…';
+
+  @override
+  String get receiptReadInBackground => 'Lanjutkan di latar belakang';
+
+  @override
+  String get receiptReadDoneTitle => 'Struk terbaca';
+
+  @override
+  String get receiptReadDoneBody => 'Ketuk untuk meninjau dan menyimpannya.';
+
+  @override
+  String get receiptReadMoreTitle => 'Foto sisa struk';
+
+  @override
+  String get receiptReadFailedTitle => 'Struk tidak dapat dibaca';
+
+  @override
+  String get listReceiptsSection => 'Struk';
+
+  @override
+  String get receiptStateComplete => 'Selesai';
+
+  @override
+  String get receiptStateIncomplete => 'Belum lengkap';
+
+  @override
+  String get receiptStateFailed => 'Gagal';
+
+  @override
+  String get receiptStoreUnknown => 'Toko tidak terbaca';
+
+  @override
+  String get receiptDeleteAction => 'Hapus struk';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Hapus struk ini dan item yang ditambahkannya? Anda dapat mengimpornya lagi nanti.';
+
+  @override
+  String get receiptDeleted => 'Struk dihapus.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Tampilkan semua ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Tampilkan lebih sedikit';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tanggal struk: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Per belanja';
+
+  @override
+  String get historyViewStore => 'Per toko';
+
+  @override
+  String get historyViewProduct => 'Per produk';
+
+  @override
+  String get historyShareAll => 'Bagikan semua';
+
+  @override
+  String get historyUnknownStore => 'Toko tidak dikenal';
+
+  @override
+  String get historyDailySpending => 'Pengeluaran harian';
+
+  @override
+  String get historyResetPeriod => 'Kembali ke minggu ini';
+
+  @override
+  String get tourSkip => 'Lewati';
+
+  @override
+  String get tourNewListBody =>
+      'Mulai daftar belanja dan tambahkan yang ingin Anda beli.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Sudah belanja? Ubah struk menjadi daftar beserta harganya.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Mulai dari bagian atas struk: ambil toko dan tanggal dulu, lalu lanjutkan dengan baris lainnya.';
+
+  @override
+  String get tourTabsBody =>
+      'Beralih antara daftar aktif, selesai, dan arsip. Tombol di ujung mengubah urutan.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Lihat aplikasi lain dari pengembang yang sama.';
+
+  @override
+  String get tourHelpBody =>
+      'Ketuk di sini untuk melihat panduan ini lagi. Buka daftar untuk melihat penjelasan total dan item.';
+
+  @override
+  String get tourTotalsBody =>
+      'Total rencana, aktual, dan selisih diperbarui saat Anda berbelanja.';
+
+  @override
+  String get tourItemsBody => 'Item Anda. Ubah urutannya atau cari di sini.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% dari batas telah digunakan';
+  }
 }

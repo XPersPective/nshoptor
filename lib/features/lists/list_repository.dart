@@ -150,13 +150,28 @@ class ListRepository {
     if (!current.canTransitionTo(next)) {
       throw StateError('geçersiz durum geçişi: ${current.name} → ${next.name}');
     }
+    // A shopping recorded from receipts happened when the receipts were
+    // printed, not when the list is closed: History dates it by the latest
+    // approved receipt time when there is one.
+    DateTime? completedAt;
+    if (next == ListStatus.completed) {
+      final printed =
+          await (_db.select(_db.receipts)..where(
+                (t) =>
+                    t.listId.equals(id) &
+                    t.identityKey.isNotNull() &
+                    (t.confirmedAt.isNotNull() | t.detectedAt.isNotNull()),
+              ))
+              .get();
+      final times = [for (final r in printed) r.confirmedAt ?? r.detectedAt!]
+        ..sort();
+      completedAt = times.isEmpty ? DateTime.now() : times.last;
+    }
     await (_db.update(_db.shoppingLists)..where((t) => t.id.equals(id))).write(
       ShoppingListsCompanion(
         status: Value(next.name),
         archivedAt: Value(next == ListStatus.archived ? DateTime.now() : null),
-        completedAt: Value(
-          next == ListStatus.completed ? DateTime.now() : null,
-        ),
+        completedAt: Value(completedAt),
         updatedAt: Value(DateTime.now()),
       ),
     );

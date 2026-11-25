@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:napp_core/napp_core.dart';
+import 'package:napp_core/napp_core.dart' hide AppTheme;
 
 import '../core/theme/app_theme.dart';
 
@@ -9,12 +9,14 @@ class AppThemeModeController extends ChangeNotifier {
   AppThemeModeController({this._store});
 
 
-  /// SettingsStore anahtarı; değer `system|light|dark`.
+  /// SettingsStore anahtarı; değer `system|light|dark` (varsayılan
+  /// [AppTheme.defaultModeName]).
   static const String storageKey = 'app.theme';
 
   final SettingsStore? _store;
 
-  String _value = 'system';
+  // Fresh installs start on the brand dark-green theme (F36).
+  String _value = AppTheme.defaultModeName;
 
   /// Kalıcı depodan okur; main'de runApp'ten önce çağrılır.
   void load() {

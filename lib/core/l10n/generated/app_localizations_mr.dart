@@ -520,7 +520,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'तुमच्या याद्या, किंमती, रिसेट्स आणि फोटो तुमच्या उपकरणावरच राहतात. फोटो आणि आवाज कधीही बाहेर जात नाहीत. जेव्हा AI मदत सक्रिय असते, तेव्हा फक्त मजकूर (उदा. रिसेट ओळी किंवा तुम्ही सांगितलेला मजकूर) प्रक्रियेसाठी आमच्या सर्व्हरवर पाठवला जातो आणि तो साठवला जात नाही.';
+      'तुमच्या याद्या, किंमती, पावत्या आणि फोटो तुमच्या उपकरणावरच साठवले जातात. आवाज कधीही उपकरणाबाहेर जात नाही. AI मदत चालू असताना पावत्या आणि किंमत लेबलांचे फोटो (आकार कमी केलेले) तसेच बोलून लिहिलेल्या वस्तूंसारखा मजकूर फक्त वाचण्यासाठी आमच्या सर्व्हरवर पाठवला जातो; त्यावर लगेच प्रक्रिया केली जाते आणि तो कधीही साठवला जात नाही.';
 
   @override
   String get aboutSection => 'बद्दल';
@@ -532,7 +532,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get aboutLicenses => 'लायसन्सेस (GPL-3.0)';
 
   @override
-  String get voiceSettingsLabel => 'आवाزی इनपुट';
+  String get voiceSettingsLabel => 'आवाजाद्वारे इनपुट';
 
   @override
   String get voiceStatusUnknown => 'सेवा: तपासले नाही';
@@ -552,7 +552,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'पैशांचे राऊंडिंग एका नियमानुसार होते: अर्धे शून्यापासून दूर राऊंड होतात, हे फक्त Money कन्व्हर्जनच्या वेळी एकदा लागू होते.';
 
   @override
-  String get voiceInputTitle => 'आवाزی इनपुट';
+  String get voiceInputTitle => 'आवाजाद्वारे इनपुट';
 
   @override
   String get voiceStartListening => 'ऐकणे सुरू करा';
@@ -732,7 +732,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'कोणतीही जाहिरात नाही · बॅकअप एक्सपोर्ट आणि इम्पोर्ट · मासिक';
+      'कोणतीही जाहिरात नाही · बॅकअप एक्सपोर्ट आणि इम्पोर्ट · वार्षिक';
 
   @override
   String get proBenefitNoAds => 'जाहिरात-मुक्त अनुभव';
@@ -764,8 +764,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get formatLocaleLabel => 'संख्या आणि चलन स्वरूप';
 
   @override
-  String get formatLocaleSystem =>
-      'डिव्हाइस फॉरमॅट (लॅटिन अंकांसह; अन्यथा इंग्रजी)';
+  String get formatLocaleSystem => 'डिव्हाइस फॉरमॅट';
 
   @override
   String get formatLocaleTr => 'तुर्की (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'रेसिप्ट जुळवते, किमतीच्या लेबल्स वाचते आणि वाक्ये यादीत रूपांतरित करते. फोटो आणि आवाज तुमच्या डिव्हाइसवर राहतात; फक्त मजकूर प्रक्रिया केला जातो.';
+      'फोटोंमधून पावत्या आणि किंमत लेबले वाचते, पावत्या जुळवते आणि वाक्यांचे याद्यांमध्ये रूपांतर करते. फोटो फक्त वाचण्यासाठी पाठवले जातात आणि कधीही साठवले जात नाहीत.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1125,6 +1124,15 @@ class AppLocalizationsMr extends AppLocalizations {
   String get csvExportAction => 'CSV एक्सपोर्ट करा';
 
   @override
+  String get reportSharePdf => 'PDF म्हणून शेअर करा';
+
+  @override
+  String get reportShareCsv => 'CSV म्हणून शेअर करा';
+
+  @override
+  String get reportPrintAction => 'प्रिंट करा';
+
+  @override
   String get backupSizeWarning =>
       'JSON मध्ये रेकॉर्ड्स आहेत, फोटो फाइल्स नाहीत. आयात मर्यादा: 16 MB.';
 
@@ -1399,4 +1407,173 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get reportZoom => 'झूम';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days दिवस बाकी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours तास बाकी',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'तुमची Pro चाचणी संपली आहे';
+
+  @override
+  String get planTrialEndedBody =>
+      'तुम्ही याद्या, हाताने नोंद आणि डिव्हाइसवरील व्हॉइस विनामूल्य वापरत राहू शकता. Freeमध्ये प्रत्येक कॅलेंडर महिन्याला 10 AI विनंत्या आहेत. दरमहा 100 AI विनंत्या, जाहिरातींशिवाय वापर आणि बॅकअपसाठी वार्षिक Pro निवडा. तुमचा सध्याचा डेटा तुमच्याकडेच राहील.';
+
+  @override
+  String get planContinueFree => 'Free सुरू ठेवा';
+
+  @override
+  String get supportIdLabel => 'सहायता ID';
+
+  @override
+  String get supportEmailLabel => 'ईमेलद्वारे मदत';
+
+  @override
+  String get captureTipFirst =>
+      'अगदी वरून सुरू करा: दुकानाचे नाव आणि तारीख दिसली पाहिजे. शक्य तितक्या वस्तू समाविष्ट करा; उर्वरित पुढील फोटोमध्ये येतील.';
+
+  @override
+  String get captureTipContinue =>
+      'तीच पावती: मागील फोटोमधील शेवटची वस्तू समाविष्ट करा.';
+
+  @override
+  String get captureTipNeverShow => 'पुन्हा दाखवू नका';
+
+  @override
+  String get captureTipOk => 'समजले';
+
+  @override
+  String get captureTipsSetting => 'पावती कॅप्चर टिप्स दाखवा';
+
+  @override
+  String get receiptReadingProgress => 'पावती वाचत आहे…';
+
+  @override
+  String get receiptReadInBackground => 'पार्श्वभूमीत सुरू ठेवा';
+
+  @override
+  String get receiptReadDoneTitle => 'पावती वाचली';
+
+  @override
+  String get receiptReadDoneBody => 'तपासून जतन करण्यासाठी टॅप करा.';
+
+  @override
+  String get receiptReadMoreTitle => 'पावतीच्या उर्वरित भागाचा फोटो घ्या';
+
+  @override
+  String get receiptReadFailedTitle => 'पावती वाचता आली नाही';
+
+  @override
+  String get listReceiptsSection => 'पावत्या';
+
+  @override
+  String get receiptStateComplete => 'पूर्ण';
+
+  @override
+  String get receiptStateIncomplete => 'अपूर्ण';
+
+  @override
+  String get receiptStateFailed => 'अयशस्वी';
+
+  @override
+  String get receiptStoreUnknown => 'दुकान वाचता आले नाही';
+
+  @override
+  String get receiptDeleteAction => 'पावती हटवा';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ही पावती आणि तिने जोडलेल्या वस्तू हटवायच्या? नंतर ती पुन्हा आयात करता येईल.';
+
+  @override
+  String get receiptDeleted => 'पावती हटवली.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'सर्व दाखवा ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'कमी दाखवा';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'पावतीची तारीख: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'खरेदीनुसार';
+
+  @override
+  String get historyViewStore => 'दुकानानुसार';
+
+  @override
+  String get historyViewProduct => 'उत्पादनानुसार';
+
+  @override
+  String get historyShareAll => 'सर्व शेअर करा';
+
+  @override
+  String get historyUnknownStore => 'अज्ञात दुकान';
+
+  @override
+  String get historyDailySpending => 'दैनिक खर्च';
+
+  @override
+  String get historyResetPeriod => 'या आठवड्यावर परत जा';
+
+  @override
+  String get tourSkip => 'वगळा';
+
+  @override
+  String get tourNewListBody =>
+      'खरेदी यादी सुरू करा आणि जे घ्यायचे आहे ते जोडा.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'खरेदी झाली? पावतीला तिच्या किमतींसह यादीत बदला.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'पावतीच्या वरून सुरुवात करा: आधी दुकान आणि तारीख घ्या, मग उरलेल्या ओळींसह पुढे जा.';
+
+  @override
+  String get tourTabsBody =>
+      'सक्रिय, पूर्ण आणि संग्रहित याद्यांमध्ये बदला. शेवटचे बटण क्रम बदलते.';
+
+  @override
+  String get tourDiscoverBody => 'त्याच विकसकाची आणखी अ‍ॅप्स पहा.';
+
+  @override
+  String get tourHelpBody =>
+      'हे मार्गदर्शन पुन्हा पाहण्यासाठी येथे टॅप करा. बेरीज आणि वस्तूंचे स्पष्टीकरण पाहण्यासाठी एखादी यादी उघडा.';
+
+  @override
+  String get tourTotalsBody =>
+      'नियोजित, प्रत्यक्ष बेरीज आणि फरक खरेदी करताना अद्ययावत होतात.';
+
+  @override
+  String get tourItemsBody =>
+      'तुमच्या वस्तू. येथे त्यांचा क्रम बदला किंवा त्या शोधा.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'मर्यादेच्या $percent% वापरले';
+  }
 }

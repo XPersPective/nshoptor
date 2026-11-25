@@ -115,14 +115,15 @@ class ReceiptReviewController extends ChangeNotifier {
           lineTotalMinor: line.lineTotalMinor,
         ),
     ];
-    if ((parseResult.discountMinor ?? 0) > 0) {
+    final discountToApply = parseResult.appliedDiscountMinor;
+    if (discountToApply > 0) {
       lines.add(
         ReviewLine(
           rawText: '',
           name: '−',
           normalizedName: 'discount',
           quantity: DecimalFixed.zero(),
-          lineTotalMinor: -parseResult.discountMinor!,
+          lineTotalMinor: -discountToApply,
         )..isDiscount = true,
       );
     }
@@ -174,6 +175,15 @@ class ReceiptReviewController extends ChangeNotifier {
   bool get isPartialSelection =>
       document != null && acceptedTotalMinor != document!.metadata.totalMinor;
 
+  /// Saving keeps every line the user did not remove (F17).
+  void acceptPending() {
+    for (final line in lines) {
+      if (line.status == ReviewStatus.pending) {
+        line.status = ReviewStatus.accepted;
+      }
+    }
+  }
+
   void acceptAll() {
     for (final line in lines) {
       line.status = ReviewStatus.accepted;
@@ -196,8 +206,9 @@ class ReceiptReviewController extends ChangeNotifier {
   int? confirmedTotalMinor;
 
   /// Kabul edilen satırların toplamı.
+  /// Every line not removed counts (F17: saving keeps undecided lines).
   int get acceptedTotalMinor => lines
-      .where((l) => l.status == ReviewStatus.accepted)
+      .where((l) => l.status != ReviewStatus.ignored)
       .fold<int>(0, (s, l) => s + l.lineTotalMinor);
 
   /// Kullanıcının toplamı düzgünleştirmesi (spec §6.9: toplam düzenlenebilir).
@@ -247,6 +258,10 @@ class ReceiptReviewController extends ChangeNotifier {
     final planned = await (_db.select(
       _db.plannedItems,
     )..where((t) => t.listId.equals(listId!))).get();
+    planned.removeWhere(
+      (item) =>
+          item.createdByReceiptId != null && item.createdByReceiptId != draftId,
+    );
     final inputs = _matchInputs();
     final outcome = await AiReceiptMatcher(client, localeCode: localeCode)
         .match(
@@ -301,7 +316,7 @@ class ReceiptReviewController extends ChangeNotifier {
         ),
     ];
     final matches = await ReceiptMatcher(_db)
-        .match(candidates, listId: listId!);
+        .match(candidates, listId: listId!, receiptId: draftId);
     if (_disposed || !listEquals(inputs, _matchInputs())) return;
     var changed = false;
     for (final (line, item, confidence) in matches) {
@@ -588,6 +603,7 @@ class ReceiptReviewController extends ChangeNotifier {
         }
         final linked = <int, PlannedItem>{};
         final alreadyPriced = <int>{};
+        final createdForReceipt = <String, int>{};
         for (final id
             in (document == null ? accepted : reviewed)
                 .map((l) => l.linkedPlannedItemId)
@@ -639,23 +655,47 @@ class ReceiptReviewController extends ChangeNotifier {
             }
             purchaseUnit = targetUnit;
           }
+          // Repeated rows of one receipt (the same product scanned twice) add
+          // purchases to one planned row; only prices from earlier shopping
+          // keep their row untouched.
           var plannedItemId = reuseTarget ? line.linkedPlannedItemId : null;
-          if (document != null && plannedItemId != null) {
-            alreadyPriced.add(plannedItemId);
-          }
           // Positive receipt lines absent from the plan still belong in the list:
           // create the smallest valid planned row, then link its purchase so the
           // completed receipt is visible in the same shopping history.
+          final createdKey =
+              '${normalizeName(line.name)}|${purchaseUnit.dbCode}';
           if (plannedItemId == null &&
               !line.isDiscount &&
               quantity.isPositive) {
-            plannedItemId = await ItemRepository(_db).addItem(
-              listId: committedListId,
-              name: line.name,
-              quantity: quantity,
-              unitCode: purchaseUnit.dbCode,
-              priceIsUnitPrice: false,
-            );
+            final existing = createdForReceipt[createdKey];
+            if (existing == null) {
+              plannedItemId = createdForReceipt[createdKey] =
+                  await ItemRepository(_db).addItem(
+                    listId: committedListId,
+                    createdByReceiptId: receiptId,
+                    name: line.name,
+                    quantity: quantity,
+                    unitCode: purchaseUnit.dbCode,
+                    priceIsUnitPrice: false,
+                  );
+            } else {
+              // The same product scanned again: one row whose quantity is the
+              // sum of the receipt rows.
+              plannedItemId = existing;
+              final row = await (_db.select(
+                _db.plannedItems,
+              )..where((t) => t.id.equals(existing))).getSingle();
+              await (_db.update(
+                _db.plannedItems,
+              )..where((t) => t.id.equals(existing))).write(
+                PlannedItemsCompanion(
+                  plannedQuantity: Value(
+                    (DecimalFixed.parse(row.plannedQuantity) + quantity)
+                        .toDbString(),
+                  ),
+                ),
+              );
+            }
           }
           await repo.recordPurchase(
             listId: committedListId,

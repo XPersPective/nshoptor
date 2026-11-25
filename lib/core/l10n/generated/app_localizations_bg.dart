@@ -521,7 +521,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Вашите списъци, цени, касови бележки и снимки остават на устройството ви. Снимките и гласът никога не напускат устройството. Когато помощта с AI е активирана, само текст (например редове от касовата бележка или това, което сте продиктували) се изпраща до нашия сървър за обработка и не се съхранява.';
+      'Вашите списъци, цени, касови бележки и снимки се съхраняват на устройството ви. Гласът никога не го напуска. Когато AI помощта е включена, снимки на касови бележки и ценови етикети (с намален размер) и текст, например продиктувани артикули, се изпращат на нашия сървър само за прочитане; обработват се веднага и никога не се съхраняват.';
 
   @override
   String get aboutSection => 'Относно';
@@ -733,7 +733,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Без реклами · Архивиране на експорт и импорт · Месечно';
+      'Без реклами · Архивиране на експорт и импорт · Годишно';
 
   @override
   String get proBenefitNoAds => 'Опит без реклами';
@@ -765,8 +765,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get formatLocaleLabel => 'Формат за числа и валута';
 
   @override
-  String get formatLocaleSystem =>
-      'Системна локализация (Латински цифри; иначе английски)';
+  String get formatLocaleSystem => 'Системна локализация';
 
   @override
   String get formatLocaleTr => 'Турски (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Съпоставя касови бележки, разчита етикети с цени и превръща изречения в списъци. Снимки и глас остават на устройството ви; обработва се само текст.';
+      'Чете касови бележки и ценови етикети от снимки, съпоставя бележките и превръща изречения в списъци. Снимките се изпращат само за прочитане и никога не се съхраняват.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1129,6 +1128,15 @@ class AppLocalizationsBg extends AppLocalizations {
   String get csvExportAction => 'Експортиране на CSV';
 
   @override
+  String get reportSharePdf => 'Споделяне като PDF';
+
+  @override
+  String get reportShareCsv => 'Споделяне като CSV';
+
+  @override
+  String get reportPrintAction => 'Печат';
+
+  @override
   String get backupSizeWarning =>
       'JSON включва записи, а не файлове със снимки. Ограничение за импортиране: 16 MB.';
 
@@ -1408,4 +1416,175 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get reportZoom => 'Увеличи';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days дни остават',
+      one: '$days ден остава',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours часа остават',
+      one: '$hours час остава',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Пробният ви период на Pro изтече';
+
+  @override
+  String get planTrialEndedBody =>
+      'Можете да продължите да използвате списъци, ръчно въвеждане и гласова обработка на устройството безплатно. Безплатният план включва 10 AI заявки за календарен месец. Изберете годишен Pro за 100 AI заявки месечно, без реклами и с резервни копия. Данните ви остават ваши.';
+
+  @override
+  String get planContinueFree => 'Продължи безплатно';
+
+  @override
+  String get supportIdLabel => 'ID за поддръжка';
+
+  @override
+  String get supportEmailLabel => 'Поддръжка по имейл';
+
+  @override
+  String get captureTipFirst =>
+      'Започнете от най-горе: името на магазина и датата трябва да се виждат. Включете колкото може повече артикули, останалите са в следващата снимка.';
+
+  @override
+  String get captureTipContinue =>
+      'Същата касова бележка: включете последния артикул от предишната снимка.';
+
+  @override
+  String get captureTipNeverShow => 'Не показвай отново';
+
+  @override
+  String get captureTipOk => 'Разбрах';
+
+  @override
+  String get captureTipsSetting => 'Показвай съвети за снимане на бележка';
+
+  @override
+  String get receiptReadingProgress => 'Касовата бележка се чете…';
+
+  @override
+  String get receiptReadInBackground => 'Продължи на заден план';
+
+  @override
+  String get receiptReadDoneTitle => 'Бележката е прочетена';
+
+  @override
+  String get receiptReadDoneBody => 'Докоснете, за да прегледате и запазите.';
+
+  @override
+  String get receiptReadMoreTitle => 'Снимайте останалата част от бележката';
+
+  @override
+  String get receiptReadFailedTitle => 'Бележката не можа да бъде прочетена';
+
+  @override
+  String get listReceiptsSection => 'Касови бележки';
+
+  @override
+  String get receiptStateComplete => 'Завършена';
+
+  @override
+  String get receiptStateIncomplete => 'Непълна';
+
+  @override
+  String get receiptStateFailed => 'Неуспешна';
+
+  @override
+  String get receiptStoreUnknown => 'Магазинът не е разчетен';
+
+  @override
+  String get receiptDeleteAction => 'Изтриване на бележката';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Да се изтрият ли тази бележка и добавените от нея артикули? По-късно можете да я импортирате отново.';
+
+  @override
+  String get receiptDeleted => 'Бележката е изтрита.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Покажи всички ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Покажи по-малко';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Дата на бележката: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'По пазаруване';
+
+  @override
+  String get historyViewStore => 'По магазин';
+
+  @override
+  String get historyViewProduct => 'По продукт';
+
+  @override
+  String get historyShareAll => 'Сподели всичко';
+
+  @override
+  String get historyUnknownStore => 'Неизвестен магазин';
+
+  @override
+  String get historyDailySpending => 'Дневни разходи';
+
+  @override
+  String get historyResetPeriod => 'Към тази седмица';
+
+  @override
+  String get tourSkip => 'Пропусни';
+
+  @override
+  String get tourNewListBody =>
+      'Създайте списък за пазаруване и добавете какво смятате да купите.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Вече пазарувахте? Превърнете касовата бележка в списък с цени.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Започнете от горната част на бележката: първо снимайте магазина и датата, после продължете с останалите редове.';
+
+  @override
+  String get tourTabsBody =>
+      'Превключвайте между активни, завършени и архивирани списъци. Бутонът в края сменя подредбата.';
+
+  @override
+  String get tourDiscoverBody => 'Още приложения от същия разработчик.';
+
+  @override
+  String get tourHelpBody =>
+      'Докоснете тук, за да видите ръководството отново. Отворете списък, за да видите обяснение на сумите и артикулите.';
+
+  @override
+  String get tourTotalsBody =>
+      'Планираната, реалната сума и разликата се обновяват, докато пазарувате.';
+
+  @override
+  String get tourItemsBody =>
+      'Вашите артикули. Сменете реда им или ги търсете тук.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Използвани са $percent% от лимита';
+  }
 }

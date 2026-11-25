@@ -10,7 +10,12 @@ import '../../../core/money/money_format.dart';
 import '../../../core/money/money_parser.dart';
 import '../../../data/db/app_database.dart';
 import 'insights_repository.dart';
-import 'monthly_report.dart';
+import 'limit_editor.dart';
+import 'value_bar_chart.dart';
+import '../reports/report_document.dart';
+import '../reports/report_period.dart';
+import '../reports/report_repository.dart';
+import '../reports/report_share_menu.dart';
 import '../../../core/quantity/unit_display.dart';
 import '../../../core/quantity/unit_code.dart';
 import '../../lists/starter_categories.dart';
@@ -58,8 +63,27 @@ class _SpendingScreenState extends State<SpendingScreen> {
   })();
   late final _data = (() async =>
       (points: await _points, analytics: await _analytics))();
-  late int? _limit = AppDefaults.monthlyLimitMinor(currencyCode: _currency);
-  late int? _weekLimit = AppDefaults.weeklyLimitMinor(currencyCode: _currency);
+  DateTime get _nextWeek =>
+      AppDefaults.weekStart(_now).add(const Duration(days: 7));
+  DateTime get _nextMonth => DateTime(_now.year, _now.month + 1);
+  late int? _limit = AppDefaults.monthlyLimitMinor(
+    currencyCode: _currency,
+    month: _month,
+  );
+  late int? _weekLimit = AppDefaults.weeklyLimitMinor(
+    currencyCode: _currency,
+    week: _now,
+  );
+  late int? _nextWeekLimit = AppDefaults.weeklyLimitMinor(
+    currencyCode: _currency,
+    week: _nextWeek,
+    explicitOnly: true,
+  );
+  late int? _nextMonthLimit = AppDefaults.monthlyLimitMinor(
+    currencyCode: _currency,
+    month: _nextMonth,
+    explicitOnly: true,
+  );
   late int? _shoppingLimit = AppDefaults.shoppingLimitMinor(
     currencyCode: _currency,
   );
@@ -90,83 +114,85 @@ class _SpendingScreenState extends State<SpendingScreen> {
         l10n.monthlyLimitHelp,
         _limit,
       ),
+      _LimitKind.nextWeek => (
+        '${l10n.weeklyLimitTitle} (+1)',
+        l10n.weeklyLimitHelp,
+        _nextWeekLimit,
+      ),
+      _LimitKind.nextMonth => (
+        '${l10n.monthlyLimitTitle} (+1)',
+        l10n.monthlyLimitHelp,
+        _nextMonthLimit,
+      ),
       _LimitKind.shopping => (
         l10n.shoppingLimitTitle,
         l10n.shoppingLimitHelp,
         _shoppingLimit,
       ),
     };
-    final digits = Currency.fromCode(_currency).minorUnitDigits;
-    final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context));
-    var text = current == null
-        ? ''
-        : DecimalFixed.fromMinorUnits(
-            current,
-            digits,
-          ).toDbString().replaceAll('.', sep.decimal);
-    final form = GlobalKey<FormState>();
-    int parse() {
-      final minor = MoneyParser.parseDecimal(
-        text,
-        separators: sep,
-        requirePositive: true,
-      ).toMinorUnits(digits);
-      if (minor <= 0) {
-        throw const FormatException('positive minor amount required');
-      }
-      return minor;
-    }
-
-    final result = await showDialog<int?>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(title),
-        content: Form(
-          key: form,
-          child: TextFormField(
-            validator: (_) {
-              try {
-                parse();
-                return null;
-              } on FormatException {
-                return l10n.invalidPriceError;
-              }
-            },
-            key: const Key('limit_field'),
-            initialValue: text,
-            onChanged: (value) => text = value,
-            autofocus: true,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(
-              helperText: help,
-              suffixText: _currency,
-            ),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, -1),
-            child: Text(l10n.monthlyLimitRemove),
-          ),
-          FilledButton(
-            key: const Key('limit_save'),
-            onPressed: () {
-              if (form.currentState!.validate()) Navigator.pop(ctx, parse());
-            },
-            child: Text(l10n.saveButton),
-          ),
-        ],
-      ),
+    final result = await showLimitEditor(
+      context,
+      title: title,
+      help: help,
+      current: current,
+      currency: _currency,
     );
     if (result == null || !mounted) return;
     final value = result < 0 ? null : result;
     switch (kind) {
       case _LimitKind.week:
         AppDefaults.setWeeklyLimitMinor(value, currencyCode: _currency);
+        AppDefaults.setWeeklyLimitMinor(
+          value,
+          currencyCode: _currency,
+          week: _now,
+        );
         setState(() => _weekLimit = value);
       case _LimitKind.month:
-        AppDefaults.setMonthlyLimitMinor(value, currencyCode: _currency);
-        setState(() => _limit = value);
+        final isCurrentMonth =
+            _month.year == _now.year && _month.month == _now.month;
+        if (isCurrentMonth) {
+          AppDefaults.setMonthlyLimitMinor(value, currencyCode: _currency);
+        }
+        AppDefaults.setMonthlyLimitMinor(
+          value,
+          currencyCode: _currency,
+          month: _month,
+        );
+        setState(() {
+          _limit = AppDefaults.monthlyLimitMinor(
+            currencyCode: _currency,
+            month: _month,
+          );
+          _nextMonthLimit = AppDefaults.monthlyLimitMinor(
+            currencyCode: _currency,
+            month: _nextMonth,
+            explicitOnly: true,
+          );
+        });
+      case _LimitKind.nextWeek:
+        AppDefaults.setWeeklyLimitMinor(
+          value,
+          currencyCode: _currency,
+          week: _nextWeek,
+        );
+        setState(() => _nextWeekLimit = value);
+      case _LimitKind.nextMonth:
+        AppDefaults.setMonthlyLimitMinor(
+          value,
+          currencyCode: _currency,
+          month: _nextMonth,
+        );
+        setState(() {
+          _nextMonthLimit = value;
+          if (_month.year == _nextMonth.year &&
+              _month.month == _nextMonth.month) {
+            _limit = AppDefaults.monthlyLimitMinor(
+              currencyCode: _currency,
+              month: _month,
+            );
+          }
+        });
       case _LimitKind.shopping:
         AppDefaults.setShoppingLimitMinor(value, currencyCode: _currency);
         setState(() => _shoppingLimit = value);
@@ -272,12 +298,13 @@ class _SpendingScreenState extends State<SpendingScreen> {
                             key: const Key('month_prev'),
                             tooltip: l10n.previousMonthAction,
                             icon: const Icon(Icons.chevron_left),
-                            onPressed: () => setState(
-                              () => _month = DateTime(
-                                _month.year,
-                                _month.month - 1,
-                              ),
-                            ),
+                            onPressed: () => setState(() {
+                              _month = DateTime(_month.year, _month.month - 1);
+                              _limit = AppDefaults.monthlyLimitMinor(
+                                currencyCode: _currency,
+                                month: _month,
+                              );
+                            }),
                           ),
                           Expanded(
                             child: Text(
@@ -290,12 +317,13 @@ class _SpendingScreenState extends State<SpendingScreen> {
                             key: const Key('month_next'),
                             tooltip: l10n.nextMonthAction,
                             icon: const Icon(Icons.chevron_right),
-                            onPressed: () => setState(
-                              () => _month = DateTime(
-                                _month.year,
-                                _month.month + 1,
-                              ),
-                            ),
+                            onPressed: () => setState(() {
+                              _month = DateTime(_month.year, _month.month + 1);
+                              _limit = AppDefaults.monthlyLimitMinor(
+                                currencyCode: _currency,
+                                month: _month,
+                              );
+                            }),
                           ),
                         ],
                       ),
@@ -316,15 +344,25 @@ class _SpendingScreenState extends State<SpendingScreen> {
                           key: const Key('month_total'),
                         ),
                       ),
-                      TextButton.icon(
-                        key: const Key('monthly_report'),
-                        icon: const Icon(Icons.picture_as_pdf_outlined),
-                        label: Text(l10n.monthlyReportAction),
-                        onPressed: () => showMonthlyReport(
-                          context,
-                          widget.db,
-                          _month,
-                          _currency,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: ReportShareButton(
+                          key: const Key('monthly_report'),
+                          label: l10n.monthlyReportAction,
+                          document: () async {
+                            final month = _month;
+                            final report = await ReportRepository(widget.db)
+                                .period(
+                                  ReportPeriod.forSpan(ReportSpan.month, month),
+                                  _currency,
+                                );
+                            return ReportDocument(
+                              title:
+                                  '${l10n.monthlyReportAction} · ${ml.formatMonthYear(month)}',
+                              currencyCode: report.currencyCode,
+                              shopping: report.shopping,
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -332,7 +370,58 @@ class _SpendingScreenState extends State<SpendingScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              _BarChartCard(
+              Card(
+                key: const Key('future_limits_card'),
+                child: ExpansionTile(
+                  key: const Key('future_limits_tile'),
+                  leading: const Icon(Icons.event_repeat_outlined),
+                  title: Text('${l10n.nextPeriodAction} · ${l10n.budgetLabel}'),
+                  children: [
+                    ListTile(
+                      key: const Key('next_weekly_limit_tile'),
+                      title: Text(
+                        '${l10n.weeklyLimitTitle} (${ml.formatShortDate(_nextWeek)})',
+                      ),
+                      subtitle: Text(
+                        _nextWeekLimit == null
+                            ? l10n.weeklyLimitNone
+                            : _money(_nextWeekLimit!),
+                      ),
+                      trailing: TextButton(
+                        key: const Key('next_weekly_limit_edit'),
+                        onPressed: () => _editLimit(_LimitKind.nextWeek),
+                        child: Text(
+                          _nextWeekLimit == null
+                              ? l10n.monthlyLimitSet
+                              : l10n.monthlyLimitChange,
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                      key: const Key('next_monthly_limit_tile'),
+                      title: Text(
+                        '${l10n.monthlyLimitTitle} (${ml.formatMonthYear(_nextMonth)})',
+                      ),
+                      subtitle: Text(
+                        _nextMonthLimit == null
+                            ? l10n.monthlyLimitNone
+                            : _money(_nextMonthLimit!),
+                      ),
+                      trailing: TextButton(
+                        key: const Key('next_monthly_limit_edit'),
+                        onPressed: () => _editLimit(_LimitKind.nextMonth),
+                        child: Text(
+                          _nextMonthLimit == null
+                              ? l10n.monthlyLimitSet
+                              : l10n.monthlyLimitChange,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              ValueBarChartCard(
                 title: l10n.spendingWeekly,
                 bars: [
                   for (final (d, v) in weeks)
@@ -349,7 +438,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                 valueText: (v) => _money(v.toMinorUnits(0)),
               ),
               const SizedBox(height: 8),
-              _BarChartCard(
+              ValueBarChartCard(
                 title: l10n.spendingMonthly,
                 bars: [
                   for (final (d, v) in months)
@@ -370,7 +459,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                 limitMinor: _limit,
               ),
               const SizedBox(height: 8),
-              _BarChartCard(
+              ValueBarChartCard(
                 title: l10n.spendingYearly,
                 bars: [
                   for (final (d, v) in years)
@@ -437,7 +526,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                   final top = [...?s.data]
                     ..removeWhere((p) => p.actualMinor <= 0)
                     ..sort((a, b) => b.actualMinor.compareTo(a.actualMinor));
-                  return _BarChartCard(
+                  return ValueBarChartCard(
                     key: const Key('product_spending_chart'),
                     title: switch (_span) {
                       SpendSpan.week => l10n.historyThisWeek,
@@ -464,13 +553,10 @@ class _SpendingScreenState extends State<SpendingScreen> {
                   String category(String label) =>
                       StarterCategories().labelOf(l10n, label);
                   String quantity(DecimalFixed value) =>
-                      value.toDbString().replaceAll(
-                        '.',
-                        MoneySeparators.forLocaleCode(formatLocaleCode(context))
-                            .decimal,
-                      );
+                      MoneySeparators.forLocaleCode(formatLocaleCode(context))
+                          .formatInput(value.toDbString());
                   final children = <Widget>[
-                    _BarChartCard(
+                    ValueBarChartCard(
                       title: '${l10n.categoryLabel} · ${l10n.actualTotalLabel}',
                       bars: [
                         for (final s in data.categories)
@@ -481,7 +567,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                       ],
                       valueText: (v) => _money(v.toMinorUnits(0)),
                     ),
-                    _BarChartCard(
+                    ValueBarChartCard(
                       title: '${l10n.storeLabel} · ${l10n.actualTotalLabel}',
                       bars: [
                         for (final s in data.stores)
@@ -510,7 +596,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
                           .toList();
                       final unitLabel = unitDisplayNameFromDb(unit, l10n);
                       children.add(
-                        _BarChartCard(
+                        ValueBarChartCard(
                           title:
                               '$title · ${l10n.purchasedQuantity} ($unitLabel)',
                           bars: [
@@ -598,7 +684,7 @@ class _SpendingScreenState extends State<SpendingScreen> {
   }
 }
 
-enum _LimitKind { week, month, shopping }
+enum _LimitKind { week, month, nextWeek, nextMonth, shopping }
 
 /// Bir bakışta harcama: bu hafta, bu ay, bu yıl; limit varsa ilerleme çubuğu.
 class _OverviewCard extends StatelessWidget {
@@ -860,82 +946,6 @@ class MonthCalendar extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: cells,
-    );
-  }
-}
-
-class _BarChartCard extends StatelessWidget {
-  const _BarChartCard({
-    super.key,
-    required this.title,
-    required this.bars,
-    required this.valueText,
-    this.limitMinor,
-    this.valueLabels,
-  });
-  final String title;
-  final List<(String, DecimalFixed)> bars;
-  final String Function(DecimalFixed) valueText;
-  final int? limitMinor;
-  final List<String>? valueLabels;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    String display(int index, DecimalFixed value) =>
-        valueLabels?[index] ?? valueText(value);
-    final maxV = bars.fold<DecimalFixed>(
-      DecimalFixed.zero(),
-      (m, b) => b.$2.abs() > m ? b.$2.abs() : m,
-    );
-    // ponytail: nonzero bars have a 2% visual floor; exact labels remain authoritative.
-    // Keep every amount in the text flow at all screen widths.
-    double fraction(DecimalFixed v) => v.isZero || maxV.isZero
-        ? 0
-        : (v.abs().divide(maxV, scale: 6).toMinorUnits(6) / 1000000).clamp(
-            0.02,
-            1,
-          );
-    Color color(DecimalFixed v) =>
-        v.isNegative ||
-            limitMinor != null && v > DecimalFixed.fromInt(limitMinor!)
-        ? scheme.error
-        : scheme.primary;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 12),
-            if (bars.isEmpty)
-              Text(AppLocalizations.of(context).noPurchasesNote)
-            else ...[
-              for (final (index, (label, value)) in bars.indexed)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Semantics(
-                    label: '$label: ${display(index, value)}',
-                    excludeSemantics: true,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text('$label: ${display(index, value)}'),
-                        const SizedBox(height: 4),
-                        LinearProgressIndicator(
-                          value: fraction(value),
-                          minHeight: 8,
-                          color: color(value),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-            ],
-          ],
-        ),
-      ),
     );
   }
 }

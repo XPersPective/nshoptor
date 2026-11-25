@@ -104,12 +104,14 @@ void main() {
     expect(entries.single.name, 'EKMEK');
   });
 
-  test('fark gösterimi: kabul edilenler ↔ bildirilen toplam', () async {
+  test('fark gösterimi: çıkarılmayan satırlar ↔ bildirilen toplam (F17)', () async {
     final controller =
         controllerFrom(['EKMEK 15,00', 'SUT 32,00', 'TOPLAM 48,00']);
     expect(controller.reportedTotalMinor, 4800);
+    // Undecided lines are kept on save, so they count from the start.
+    expect(controller.reconciliationDifference, 4700 - 4800);
 
-    controller.accept(0);
+    controller.ignore(1);
     expect(controller.reconciliationDifference, 1500 - 4800);
 
     controller.accept(1);

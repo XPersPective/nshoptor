@@ -88,7 +88,7 @@ void main() {
     () {
       expect(
         ShelfPriceExtractor(defaultCurrency: 'KWD')
-            .extract([line('1.234 KWD')])
+            .extract([line('1٫234 KWD')])
             .single
             .value
             .toDbString(),

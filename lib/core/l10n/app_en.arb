@@ -195,7 +195,7 @@
   "confirmDelete": "Delete permanently",
   "dataDeleted": "All local data was deleted.",
   "privacyInfoLabel": "Privacy",
-  "privacyInfoBody": "Your lists, prices, receipts and photos stay on your device. Photos and voice never leave it. When AI help is on, only text (for example receipt lines or what you dictated) is sent to our server to be processed and is not stored.",
+  "privacyInfoBody": "Your lists, prices, receipts and photos are stored on your device. Voice never leaves it. When AI help is on, receipt and price-label photos (reduced in size) and text such as dictated items are sent to our server only to be read; they are processed immediately and never stored.",
   "aboutSection": "About",
   "aboutPublisher": "Publisher: Crazy Penguin",
   "aboutLicenses": "Licenses (GPL-3.0)",
@@ -262,7 +262,7 @@
   "plannedTotalSummary": "Planned: {total} · {count} items",
   "proActiveLabel": "Pro active — thank you!",
   "proBuyLabel": "NShoptor Pro",
-  "proBenefitsLine": "No ads · Backup export and import · Monthly",
+  "proBenefitsLine": "No ads · Backup export and import · Yearly",
   "proBenefitNoAds": "Ad-free experience",
   "proBenefitBackup": "Backup (export/import)",
   "aboutVersion": "Version {version}",
@@ -272,11 +272,11 @@
   "aboutOpenRow": "About & open source",
   "voiceAddItemAction": "Add by voice",
   "formatLocaleLabel": "Number & currency format",
-  "formatLocaleSystem": "Device format (Latin digits; otherwise English)",
+  "formatLocaleSystem": "Device format",
   "formatLocaleTr": "Turkish (1.234,56)",
   "formatLocaleEn": "English (1,234.56)",
   "aiToggleTitle": "AI help",
-  "aiToggleSubtitle": "Matches receipts, reads price labels and turns sentences into lists. Photos and voice stay on your device; only text is processed.",
+  "aiToggleSubtitle": "Reads receipts and price labels from photos, matches receipts and turns sentences into lists. Photos are sent only to be read and are never stored.",
   "aiQuotaReached": "You have used this month's AI requests ({used}/{limit}). Upgrade for more, or continue without AI.",
   "aiOffline": "No connection — continuing without AI.",
   "aiFailed": "AI is unavailable right now — continuing without it.",
@@ -412,6 +412,9 @@
   "purchaseHistoryHint": "All completed shopping. Returns reduce totals. Dates refer to shopping completion. One visit is not enough to calculate an average interval.",
   "planLegacyRights": "Existing Pro and Max subscriptions keep their original monthly AI allowance.",
   "csvExportAction": "Export CSV",
+  "reportSharePdf": "Share as PDF",
+  "reportShareCsv": "Share as CSV",
+  "reportPrintAction": "Print",
   "backupSizeWarning": "JSON includes records, not photo files. Import limit: 16 MB.",
   "backupImportFailed": "Could not import this backup. Your data was not changed.",
   "backupImported": "Backup imported successfully.",
@@ -473,8 +476,7 @@
   "demoProductTomato": "Tomatoes",
   "demoProductEggs": "Eggs",
   "demoProductCoffee": "Coffee",
-  "demoProductDetergent": "Detergent"
-,
+  "demoProductDetergent": "Detergent",
   "sendAction": "Send",
   "previousMonthAction": "Previous month",
   "nextMonthAction": "Next month",
@@ -505,5 +507,86 @@
   "previousPeriodAction": "Previous period",
   "nextPeriodAction": "Next period",
   "reportSaved": "Report saved.",
-  "reportZoom": "Zoom"
+  "reportZoom": "Zoom",
+  "planTrialDaysLeft": "{days, plural, one{{days} day left} other{{days} days left}}",
+  "planTrialHoursLeft": "{hours, plural, one{{hours} hour left} other{{hours} hours left}}",
+  "planTrialEndedTitle": "Your Pro trial has ended",
+  "planTrialEndedBody": "You can keep using lists, manual entry and on-device voice for free. Free includes 10 AI requests per calendar month. Choose annual Pro for 100 AI requests per month, no ads and backups. Your existing data stays with you.",
+  "planContinueFree": "Continue with Free",
+  "@planTrialDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "@planTrialHoursLeft": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "supportIdLabel": "Support ID",
+  "supportEmailLabel": "Email support",
+  "captureTipFirst": "Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.",
+  "captureTipContinue": "Same receipt: include the last item of the previous photo.",
+  "captureTipNeverShow": "Don't show again",
+  "captureTipOk": "Got it",
+  "captureTipsSetting": "Show receipt capture tips",
+  "receiptReadingProgress": "Reading the receipt…",
+  "receiptReadInBackground": "Continue in background",
+  "receiptReadDoneTitle": "Receipt read",
+  "receiptReadDoneBody": "Tap to review and save it.",
+  "receiptReadMoreTitle": "Photograph the rest of the receipt",
+  "receiptReadFailedTitle": "The receipt could not be read",
+  "listReceiptsSection": "Receipts",
+  "receiptStateComplete": "Complete",
+  "receiptStateIncomplete": "Incomplete",
+  "receiptStateFailed": "Failed",
+  "receiptStoreUnknown": "Store not read",
+  "receiptDeleteAction": "Delete receipt",
+  "receiptDeleteConfirm": "Delete this receipt and the items it added? You can import it again later.",
+  "receiptDeleted": "Receipt deleted.",
+  "listReceiptsShowAll": "Show all ({count})",
+  "listReceiptsShowLess": "Show less",
+  "receiptDateLabel": "Receipt date: {date}",
+  "@listReceiptsShowAll": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@receiptDateLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "historyViewShopping": "By shopping",
+  "historyViewStore": "By store",
+  "historyViewProduct": "By product",
+  "historyShareAll": "Share all",
+  "historyUnknownStore": "Unknown store",
+  "historyDailySpending": "Daily spending",
+  "historyResetPeriod": "Back to this week",
+  "tourSkip": "Skip",
+  "tourNewListBody": "Start a shopping list and add what you plan to buy.",
+  "tourFromReceiptBody": "Already shopped? Turn a receipt into a list with its prices.",
+  "tourReceiptFlowBody": "Start at the top of the receipt: capture the store and date first, then continue with the rest of the lines.",
+  "tourTabsBody": "Switch between active, completed and archived lists. The button at the end changes the order.",
+  "tourDiscoverBody": "See more apps from the same developer.",
+  "tourHelpBody": "Tap here to replay this guide. Open a list to see its totals and items explained.",
+  "tourTotalsBody": "Planned, actual and difference totals update as you shop.",
+  "tourItemsBody": "Your items. Change their order or search them here.",
+  "budgetAlertNear": "{percent}% of the limit used",
+  "@budgetAlertNear": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  }
 }

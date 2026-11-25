@@ -22,13 +22,80 @@ export async function readBoundedText(source, maxBytes) {
 
 export const configured = env => String(env.AI_URL || '').startsWith('https://') && !!env.AI_KEY && !!env.AI_MODEL;
 
-export async function chatJson(env, system, user, { fetchImpl = fetch, maxTokens = 1200 } = {}) {
-  const base = String(env.AI_URL || '').replace(/\/+$/, '');
-  if (!configured(env)) {
-    throw new AiError('ai_not_configured');
+// A model setting may list fallbacks ("a,b,c"): when one model is offline,
+// overloaded or unreachable the next one answers. Invalid output does not
+// switch models; the task's own retry handles that.
+export async function chatJson(env, system, user, options = {}) {
+  if (!configured(env)) throw new AiError('ai_not_configured');
+  const models = String(options.model || env.AI_MODEL).split(',').map(m => m.trim()).filter(Boolean);
+  if (options.hedgeAfterMs > 0 && models.length > 1) return hedged(env, system, user, options, models);
+  let last;
+  for (const model of models) {
+    try {
+      const raw = await chatOnce(env, system, user, { ...options, model });
+      if (!options.accept) return raw;
+      try { return options.accept(raw); } catch (error) {
+        options.onReject?.(raw, error);
+        throw error;
+      }
+    } catch (e) {
+      last = e;
+      if (!(e instanceof AiError) || !/^ai_(unreachable|http_(404|408|409|425|429|5\d\d))$/.test(e.message)) throw e;
+    }
   }
+  throw last ?? new AiError('ai_not_configured');
+}
+
+// Hedged requests for slow tasks: when the current model has not answered
+// within `hedgeAfterMs`, the next model is asked as well; the first valid
+// answer wins and the others are aborted. Bounds latency when one model on the
+// provider is overloaded (live: 8 s normally, 84-120 s under load).
+function hedged(env, system, user, options, models) {
+  return new Promise((resolve, reject) => {
+    const controllers = [];
+    let next = 0, active = 0, settled = false, lastError, timer;
+    const finish = () => { settled = true; clearInterval(timer); };
+    const launch = () => {
+      if (settled || next >= models.length) return false;
+      const model = models[next++];
+      const controller = new AbortController();
+      controllers.push(controller);
+      active++;
+      chatOnce(env, system, user, { ...options, model, signal: controller.signal }).then(raw => {
+        if (settled) return;
+        // With `accept`, only an answer that passes the task contract wins;
+        // a wrong answer from one model keeps waiting for the others.
+        let value = raw;
+        if (options.accept) {
+          try { value = options.accept(raw); } catch (error) {
+            active--;
+            lastError = error;
+            options.onReject?.(raw, error);
+            if (!launch() && active === 0) { finish(); reject(lastError); }
+            return;
+          }
+        }
+        finish();
+        for (const c of controllers) if (c !== controller) c.abort();
+        resolve(value);
+      }, error => {
+        active--;
+        if (settled) return;
+        lastError = error;
+        if (!launch() && active === 0) { finish(); reject(lastError); }
+      });
+      return true;
+    };
+    launch();
+    timer = setInterval(() => { if (!launch()) clearInterval(timer); }, options.hedgeAfterMs);
+  });
+}
+
+async function chatOnce(env, system, user, { fetchImpl = fetch, maxTokens = 1200, model, timeoutMs, signal } = {}) {
+  const base = String(env.AI_URL || '').replace(/\/+$/, '');
   const body = {
-    model: env.AI_MODEL,
+    // `user` is a string or OpenAI-compatible content parts (text + image_url).
+    model,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: user },
@@ -44,7 +111,9 @@ export async function chatJson(env, system, user, { fetchImpl = fetch, maxTokens
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: 'Bearer ' + env.AI_KEY },
       body: JSON.stringify(body),
-      signal: AbortSignal.timeout(Number(env.AI_TIMEOUT_MS) || 20000),
+      signal: signal
+        ? AbortSignal.any([signal, AbortSignal.timeout(timeoutMs || Number(env.AI_TIMEOUT_MS) || 20000)])
+        : AbortSignal.timeout(timeoutMs || Number(env.AI_TIMEOUT_MS) || 20000),
     });
   } catch {
     throw new AiError('ai_unreachable');

@@ -520,7 +520,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'لیست‌ها، قیمت‌ها، رسیدها و عکس‌های شما روی دستگاه شما باقی می‌مانند. عکس‌ها و صدا هرگز از آن خارج نمی‌شوند. وقتی کمک AI روشن است، فقط متن (مثلاً خطوط رسید یا آنچه شما دیکته کردید) برای پردازش به سرور ما ارسال می‌شود و ذخیره نمی‌شود.';
+      'فهرست‌ها، قیمت‌ها، رسیدها و عکس‌های شما روی دستگاه شما ذخیره می‌شود. صدا هرگز از دستگاه خارج نمی‌شود. وقتی کمک هوش مصنوعی روشن است، عکس رسیدها و برچسب قیمت‌ها (با اندازهٔ کاهش‌یافته) و متن، مثلاً اقلام دیکته‌شده، فقط برای خوانده شدن به سرور ما ارسال می‌شود؛ بلافاصله پردازش می‌شود و هرگز ذخیره نمی‌شود.';
 
   @override
   String get aboutSection => 'درباره';
@@ -731,7 +731,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'بدون تبلیغات · پشتیبان‌گیری و بازیابی · ماهانه';
+      'بدون تبلیغات · پشتیبان‌گیری و بازیابی · سالانه';
 
   @override
   String get proBenefitNoAds => 'تجربه بدون تبلیغ';
@@ -763,8 +763,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get formatLocaleLabel => 'فرمت عدد و ارز';
 
   @override
-  String get formatLocaleSystem =>
-      'فرمت دستگاه (اعداد لاتین؛ در غیر این صورت انگلیسی)';
+  String get formatLocaleSystem => 'فرمت دستگاه';
 
   @override
   String get formatLocaleTr => 'ترکی (1.234,56)';
@@ -777,7 +776,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'رسیدها را تطبیق می‌دهد، برچسب قیمت را می‌خواند و جملات را به لیست تبدیل می‌کند. عکس‌ها و صدا فقط روی دستگاه شما می‌مانند؛ فقط متن پردازش می‌شود.';
+      'رسیدها و برچسب قیمت‌ها را از روی عکس می‌خواند، رسیدها را تطبیق می‌دهد و جمله‌ها را به فهرست تبدیل می‌کند. عکس‌ها فقط برای خوانده شدن ارسال می‌شوند و هرگز ذخیره نمی‌شوند.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1122,6 +1121,15 @@ class AppLocalizationsFa extends AppLocalizations {
   String get csvExportAction => 'خروجی CSV';
 
   @override
+  String get reportSharePdf => 'اشتراک‌گذاری به‌صورت PDF';
+
+  @override
+  String get reportShareCsv => 'اشتراک‌گذاری به‌صورت CSV';
+
+  @override
+  String get reportPrintAction => 'چاپ';
+
+  @override
   String get backupSizeWarning =>
       'فایل JSON شامل رکوردها است، نه عکس‌ها. محدودیت وارد کردن: ۱۶ مگابایت.';
 
@@ -1397,4 +1405,173 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get reportZoom => 'بزرگ‌نمایی';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days روز باقی‌مانده',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ساعت باقی‌مانده',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'دوره آزمایشی Pro شما پایان یافت';
+
+  @override
+  String get planTrialEndedBody =>
+      'می‌توانید فهرست‌ها، ورود دستی و صدای روی دستگاه را رایگان ادامه دهید. طرح رایگان در هر ماه میلادی ۱۰ درخواست هوش مصنوعی دارد. برای ۱۰۰ درخواست هوش مصنوعی در ماه، بدون تبلیغات و همراه با پشتیبان‌گیری، Pro سالانه را انتخاب کنید. داده‌های فعلی شما حفظ می‌شوند.';
+
+  @override
+  String get planContinueFree => 'ادامه با طرح رایگان';
+
+  @override
+  String get supportIdLabel => 'شناسه پشتیبانی';
+
+  @override
+  String get supportEmailLabel => 'پشتیبانی ایمیلی';
+
+  @override
+  String get captureTipFirst =>
+      'از بالاترین قسمت شروع کنید: نام فروشگاه و تاریخ باید دیده شوند. تا جایی که می‌شود اقلام را در کادر بگنجانید؛ بقیه در عکس بعدی قرار می‌گیرد.';
+
+  @override
+  String get captureTipContinue =>
+      'همان رسید: آخرین قلم عکس قبلی را هم بگنجانید.';
+
+  @override
+  String get captureTipNeverShow => 'دیگر نشان نده';
+
+  @override
+  String get captureTipOk => 'متوجه شدم';
+
+  @override
+  String get captureTipsSetting => 'نمایش نکات عکس‌برداری از رسید';
+
+  @override
+  String get receiptReadingProgress => 'در حال خواندن رسید…';
+
+  @override
+  String get receiptReadInBackground => 'ادامه در پس‌زمینه';
+
+  @override
+  String get receiptReadDoneTitle => 'رسید خوانده شد';
+
+  @override
+  String get receiptReadDoneBody => 'برای بررسی و ذخیره ضربه بزنید.';
+
+  @override
+  String get receiptReadMoreTitle => 'از بقیهٔ رسید عکس بگیرید';
+
+  @override
+  String get receiptReadFailedTitle => 'رسید خوانده نشد';
+
+  @override
+  String get listReceiptsSection => 'رسیدها';
+
+  @override
+  String get receiptStateComplete => 'کامل';
+
+  @override
+  String get receiptStateIncomplete => 'ناقص';
+
+  @override
+  String get receiptStateFailed => 'ناموفق';
+
+  @override
+  String get receiptStoreUnknown => 'فروشگاه خوانده نشد';
+
+  @override
+  String get receiptDeleteAction => 'حذف رسید';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'این رسید و اقلامی که اضافه کرده حذف شوند؟ بعداً می‌توانید دوباره آن را وارد کنید.';
+
+  @override
+  String get receiptDeleted => 'رسید حذف شد.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'نمایش همه ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'نمایش کمتر';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'تاریخ رسید: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'بر اساس خرید';
+
+  @override
+  String get historyViewStore => 'بر اساس فروشگاه';
+
+  @override
+  String get historyViewProduct => 'بر اساس محصول';
+
+  @override
+  String get historyShareAll => 'اشتراک‌گذاری همه';
+
+  @override
+  String get historyUnknownStore => 'فروشگاه نامشخص';
+
+  @override
+  String get historyDailySpending => 'هزینه روزانه';
+
+  @override
+  String get historyResetPeriod => 'بازگشت به این هفته';
+
+  @override
+  String get tourSkip => 'رد شدن';
+
+  @override
+  String get tourNewListBody =>
+      'یک فهرست خرید بسازید و آنچه قصد خریدش را دارید اضافه کنید.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'خرید کرده‌اید؟ رسید را با قیمت‌هایش به فهرست تبدیل کنید.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'از بالای رسید شروع کنید: اول فروشگاه و تاریخ را ثبت کنید، سپس با بقیه سطرها ادامه دهید.';
+
+  @override
+  String get tourTabsBody =>
+      'بین فهرست‌های فعال، تکمیل‌شده و بایگانی‌شده جابه‌جا شوید. دکمه انتها ترتیب را تغییر می‌دهد.';
+
+  @override
+  String get tourDiscoverBody => 'برنامه‌های دیگر همین توسعه‌دهنده را ببینید.';
+
+  @override
+  String get tourHelpBody =>
+      'برای دیدن دوباره این راهنما اینجا بزنید. یک فهرست باز کنید تا توضیح جمع‌ها و اقلام را ببینید.';
+
+  @override
+  String get tourTotalsBody =>
+      'جمع برنامه‌ریزی‌شده، واقعی و اختلاف هنگام خرید به‌روز می‌شود.';
+
+  @override
+  String get tourItemsBody =>
+      'اقلام شما. ترتیبشان را تغییر دهید یا اینجا جست‌وجو کنید.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent٪ از سقف مصرف شده است';
+  }
 }

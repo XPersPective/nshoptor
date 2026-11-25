@@ -519,7 +519,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Sinu nimekirjad, hinnad, kviitungid ja pildid jäävad sinu seadmesse. Pildid ja hääl ei lahkunud kunagi seadmest. Kui AI abi on sees, saadetakse meie serverisse ainult tekst (näiteks kviitingu read või mida sa dikteersid) töötlemiseks ja seda ei säilitata.';
+      'Sinu nimekirjad, hinnad, kviitungid ja pildid salvestatakse sinu seadmesse. Hääl ei lahku sealt kunagi. Kui AI abi on sisse lülitatud, saadetakse kviitungite ja hinnasiltide pildid (vähendatud suuruses) ning tekst, näiteks dikteeritud kirjed, meie serverisse ainult lugemiseks; need töödeldakse kohe ja neid ei salvestata kunagi.';
 
   @override
   String get aboutSection => 'Teave';
@@ -731,7 +731,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ilma reklaamita · Varundamise eksport ja import · Igakuiselt';
+      'Ilma reklaamita · Varundamise eksport ja import · Aastaselt';
 
   @override
   String get proBenefitNoAds => 'Reklaamivaba kogemus';
@@ -763,8 +763,7 @@ class AppLocalizationsEt extends AppLocalizations {
   String get formatLocaleLabel => 'Arvude ja valuuta vorming';
 
   @override
-  String get formatLocaleSystem =>
-      'Seadme formaat (ladina numbrid; muidu inglise keeles)';
+  String get formatLocaleSystem => 'Seadme formaat';
 
   @override
   String get formatLocaleTr => 'Türgi (1.234,56)';
@@ -777,7 +776,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Võrdleb kvite, loeb hinnasildid ja teisendab laused nimekirjaks. Pildid ja hääl jäävad sinu seadmesse; töödeldakse ainult teksti.';
+      'Loeb piltidelt kviitungeid ja hinnasilte, sobitab kviitungeid ning muudab laused nimekirjadeks. Pilte saadetakse ainult lugemiseks ja neid ei salvestata kunagi.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1125,6 +1124,15 @@ class AppLocalizationsEt extends AppLocalizations {
   String get csvExportAction => 'Ekspordi CSV';
 
   @override
+  String get reportSharePdf => 'Jaga PDF-ina';
+
+  @override
+  String get reportShareCsv => 'Jaga CSV-na';
+
+  @override
+  String get reportPrintAction => 'Prindi';
+
+  @override
   String get backupSizeWarning =>
       'JSON sisaldab kirjeid, mitte fotofaile. Impordi piirang: 16 MB.';
 
@@ -1401,4 +1409,175 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get reportZoom => 'Suumi sisse';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days päeva jäänud',
+      one: '$days päev jäänud',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours tundi jäänud',
+      one: '$hours tund jäänud',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Sinu Pro prooviperiood on lõppenud';
+
+  @override
+  String get planTrialEndedBody =>
+      'Saad loendeid, käsitsi sisestamist ja seadmes töötavat häälsisestust tasuta edasi kasutada. Tasuta pakett sisaldab 10 AI-päringut kalendrikuus. Vali aastane Pro, et saada kuus 100 AI-päringut, reklaamivaba kasutus ja varukoopiad. Sinu olemasolevad andmed jäävad alles.';
+
+  @override
+  String get planContinueFree => 'Jätka tasuta';
+
+  @override
+  String get supportIdLabel => 'Toe ID';
+
+  @override
+  String get supportEmailLabel => 'E-posti tugi';
+
+  @override
+  String get captureTipFirst =>
+      'Alusta päris ülevalt: kaupluse nimi ja kuupäev peavad olema nähtavad. Mahuta pildile nii palju kaupu kui võimalik, ülejäänud jäävad järgmisele fotole.';
+
+  @override
+  String get captureTipContinue =>
+      'Sama kviitung: lisa eelmise foto viimane kaup.';
+
+  @override
+  String get captureTipNeverShow => 'Ära enam näita';
+
+  @override
+  String get captureTipOk => 'Selge';
+
+  @override
+  String get captureTipsSetting => 'Näita kviitungi pildistamise nippe';
+
+  @override
+  String get receiptReadingProgress => 'Kviitungit loetakse…';
+
+  @override
+  String get receiptReadInBackground => 'Jätka taustal';
+
+  @override
+  String get receiptReadDoneTitle => 'Kviitung loetud';
+
+  @override
+  String get receiptReadDoneBody => 'Puuduta, et üle vaadata ja salvestada.';
+
+  @override
+  String get receiptReadMoreTitle => 'Pildista kviitungi ülejäänud osa';
+
+  @override
+  String get receiptReadFailedTitle => 'Kviitungit ei õnnestunud lugeda';
+
+  @override
+  String get listReceiptsSection => 'Tšekid';
+
+  @override
+  String get receiptStateComplete => 'Valmis';
+
+  @override
+  String get receiptStateIncomplete => 'Puudulik';
+
+  @override
+  String get receiptStateFailed => 'Ebaõnnestus';
+
+  @override
+  String get receiptStoreUnknown => 'Poodi ei loetud';
+
+  @override
+  String get receiptDeleteAction => 'Kustuta tšekk';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Kas kustutada see tšekk ja selle lisatud tooted? Saad selle hiljem uuesti importida.';
+
+  @override
+  String get receiptDeleted => 'Tšekk kustutatud.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Näita kõiki ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Näita vähem';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tšeki kuupäev: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Ostude kaupa';
+
+  @override
+  String get historyViewStore => 'Poodide kaupa';
+
+  @override
+  String get historyViewProduct => 'Toodete kaupa';
+
+  @override
+  String get historyShareAll => 'Jaga kõike';
+
+  @override
+  String get historyUnknownStore => 'Tundmatu pood';
+
+  @override
+  String get historyDailySpending => 'Päevased kulud';
+
+  @override
+  String get historyResetPeriod => 'Tagasi sellesse nädalasse';
+
+  @override
+  String get tourSkip => 'Jäta vahele';
+
+  @override
+  String get tourNewListBody =>
+      'Alusta ostunimekirja ja lisa, mida plaanid osta.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Juba ostlesid? Tee tšekist hindadega nimekiri.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Alusta tšeki ülaosast: esmalt pood ja kuupäev, siis jätka ülejäänud ridadega.';
+
+  @override
+  String get tourTabsBody =>
+      'Vaheta aktiivsete, lõpetatud ja arhiveeritud nimekirjade vahel. Lõpus olev nupp muudab järjekorda.';
+
+  @override
+  String get tourDiscoverBody => 'Sama arendaja teised rakendused.';
+
+  @override
+  String get tourHelpBody =>
+      'Puuduta siin, et juhendit uuesti vaadata. Ava nimekiri, et näha summade ja toodete selgitust.';
+
+  @override
+  String get tourTotalsBody =>
+      'Plaanitud, tegelik summa ja vahe uuenevad ostlemise ajal.';
+
+  @override
+  String get tourItemsBody =>
+      'Sinu tooted. Muuda siin nende järjekorda või otsi neid.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Limiidist on kasutatud $percent%';
+  }
 }

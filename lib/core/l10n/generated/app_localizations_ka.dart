@@ -167,7 +167,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get categoryDairy => 'რძის პროდუქტები';
 
   @override
-  String get categoryMeat => 'мясо';
+  String get categoryMeat => 'ხორცი';
 
   @override
   String get categoryBakery => 'საკონდიტრო';
@@ -501,7 +501,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get deleteAllConfirm =>
-      'ეს მოქმედება წაშლის ყველა სიას, ისტორიას, ჩекის ფოტოს და ფასებს. თქვენ მიერ ექსპორტირებული ფაილები თქვენს მეხსიერებაში დარჩება. გაგრძელდება?';
+      'ეს ქმედება წაშლის ყველა სიას, ისტორიას, ქვითრების ფოტოებსა და ფასებს. თქვენს მიერ ექსპორტირებული ფაილები თქვენს საცავში დარჩება. გსურთ გაგრძელება?';
 
   @override
   String get deleteAllConfirm2 =>
@@ -521,7 +521,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'თქვენი სიები, ფასები, ჩეკები და ფოტოები მოწყობილობაზე რჩება. ფოტოები და ხმა არასდროს ტოვებს მას. როდესაც AI დახმარება ჩართულია, მხოლოდ ტექსტი (მაგალითად, ჩეკის სტრიქონები ან თქვენს მიერ ნათქვამი) იგზავნება ჩვენს სერვერზე დამუშავებისთვის და ინახება.';
+      'თქვენი სიები, ფასები, ჩეკები და ფოტოები ინახება თქვენს მოწყობილობაზე. ხმა მას არასოდეს ტოვებს. როცა AI დახმარება ჩართულია, ჩეკებისა და ფასების ეტიკეტების ფოტოები (შემცირებული ზომით) და ტექსტი, მაგალითად, კარნახით შეყვანილი ნივთები, იგზავნება ჩვენს სერვერზე მხოლოდ წასაკითხად; ისინი მუშავდება დაუყოვნებლივ და არასოდეს ინახება.';
 
   @override
   String get aboutSection => 'შესახებ';
@@ -732,7 +732,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'რეკლამის გარეშე · ბექაპის ექსპორტი და იმპორტი · თვიური';
+      'რეკლამის გარეშე · ბექაპის ექსპორტი და იმპორტი · წლიური';
 
   @override
   String get proBenefitNoAds => 'რეკლამის გარეშე გამოცდილება';
@@ -764,8 +764,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get formatLocaleLabel => 'რიცხვების და ვალუტის ფორმატი';
 
   @override
-  String get formatLocaleSystem =>
-      'მოწყობილობის ფორმატი (ლათინური ციფრები; სხვა შემთხვევაში ინგლისურად)';
+  String get formatLocaleSystem => 'მოწყობილობის ფორმატი';
 
   @override
   String get formatLocaleTr => 'თურქული (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'შეესაბამება ჩიზებს, კითხულობს ფასის ლეიბლებს და წინადადებებს სიებით აქცევს. ფოტოები და ხმა თქვენს მოწყობილობაზე რჩება; მხოლოდ ტექსტი დამუშავდება.';
+      'კითხულობს ჩეკებსა და ფასების ეტიკეტებს ფოტოებიდან, ადარებს ჩეკებს და წინადადებებს სიებად აქცევს. ფოტოები იგზავნება მხოლოდ წასაკითხად და არასოდეს ინახება.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1125,6 +1124,15 @@ class AppLocalizationsKa extends AppLocalizations {
   String get csvExportAction => 'CSV-ის ექსპორტი';
 
   @override
+  String get reportSharePdf => 'PDF-ად გაზიარება';
+
+  @override
+  String get reportShareCsv => 'CSV-ად გაზიარება';
+
+  @override
+  String get reportPrintAction => 'ბეჭდვა';
+
+  @override
   String get backupSizeWarning =>
       'JSON-ში ჩანაწერებია, არა ფოტოფაილები. იმპორტის ლიმიტი: 16 MB.';
 
@@ -1401,4 +1409,172 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get reportZoom => 'გადიდება';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days დღე დარჩა',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours საათი დარჩა',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro-ის საცდელი პერიოდი დასრულდა';
+
+  @override
+  String get planTrialEndedBody =>
+      'შეგიძლიათ უფასოდ გააგრძელოთ სიების, ხელით შეყვანისა და მოწყობილობაზე ხმის ფუნქციის გამოყენება. უფასო გეგმა კალენდარულ თვეში 10 AI მოთხოვნას მოიცავს. აირჩიეთ წლიური Pro თვეში 100 AI მოთხოვნის, რეკლამების გარეშე გამოყენებისა და სარეზერვო ასლებისთვის. თქვენი არსებული მონაცემები თქვენთან დარჩება.';
+
+  @override
+  String get planContinueFree => 'უფასოდ გაგრძელება';
+
+  @override
+  String get supportIdLabel => 'მხარდაჭერის ID';
+
+  @override
+  String get supportEmailLabel => 'ელფოსტით მხარდაჭერა';
+
+  @override
+  String get captureTipFirst =>
+      'დაიწყეთ ზემოდან: მაღაზიის სახელი და თარიღი უნდა ჩანდეს. მოათავსეთ რაც შეიძლება მეტი პროდუქტი, დანარჩენი შემდეგ ფოტოში იქნება.';
+
+  @override
+  String get captureTipContinue =>
+      'იგივე ქვითარი: ჩართეთ წინა ფოტოს ბოლო პროდუქტი.';
+
+  @override
+  String get captureTipNeverShow => 'აღარ აჩვენო';
+
+  @override
+  String get captureTipOk => 'გასაგებია';
+
+  @override
+  String get captureTipsSetting => 'ქვითრის გადაღების რჩევების ჩვენება';
+
+  @override
+  String get receiptReadingProgress => 'ქვითარი იკითხება…';
+
+  @override
+  String get receiptReadInBackground => 'გაგრძელება ფონურ რეჟიმში';
+
+  @override
+  String get receiptReadDoneTitle => 'ქვითარი წაკითხულია';
+
+  @override
+  String get receiptReadDoneBody => 'შეეხეთ გადასახედად და შესანახად.';
+
+  @override
+  String get receiptReadMoreTitle => 'გადაიღეთ ქვითრის დანარჩენი ნაწილი';
+
+  @override
+  String get receiptReadFailedTitle => 'ქვითრის წაკითხვა ვერ მოხერხდა';
+
+  @override
+  String get listReceiptsSection => 'ქვითრები';
+
+  @override
+  String get receiptStateComplete => 'დასრულებული';
+
+  @override
+  String get receiptStateIncomplete => 'არასრული';
+
+  @override
+  String get receiptStateFailed => 'ვერ მოხერხდა';
+
+  @override
+  String get receiptStoreUnknown => 'მაღაზია ვერ წაიკითხა';
+
+  @override
+  String get receiptDeleteAction => 'ქვითრის წაშლა';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'წაიშალოს ეს ქვითარი და მის მიერ დამატებული ნივთები? მოგვიანებით შეგიძლიათ ხელახლა შემოიტანოთ.';
+
+  @override
+  String get receiptDeleted => 'ქვითარი წაიშალა.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ყველას ჩვენება ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'ნაკლების ჩვენება';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ქვითრის თარიღი: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'შოპინგის მიხედვით';
+
+  @override
+  String get historyViewStore => 'მაღაზიის მიხედვით';
+
+  @override
+  String get historyViewProduct => 'პროდუქტის მიხედვით';
+
+  @override
+  String get historyShareAll => 'ყველაფრის გაზიარება';
+
+  @override
+  String get historyUnknownStore => 'უცნობი მაღაზია';
+
+  @override
+  String get historyDailySpending => 'დღიური ხარჯი';
+
+  @override
+  String get historyResetPeriod => 'ამ კვირაზე დაბრუნება';
+
+  @override
+  String get tourSkip => 'გამოტოვება';
+
+  @override
+  String get tourNewListBody =>
+      'დაიწყეთ საყიდლების სია და დაამატეთ, რისი ყიდვაც გეგმავთ.';
+
+  @override
+  String get tourFromReceiptBody => 'უკვე იყიდეთ? აქციეთ ქვითარი სიად ფასებით.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'დაიწყეთ ქვითრის ზემოდან: ჯერ მაღაზია და თარიღი, შემდეგ გააგრძელეთ დანარჩენი ხაზებით.';
+
+  @override
+  String get tourTabsBody =>
+      'გადადით აქტიურ, დასრულებულ და დაარქივებულ სიებს შორის. ბოლოში ღილაკი ცვლის თანმიმდევრობას.';
+
+  @override
+  String get tourDiscoverBody => 'იხილეთ იმავე დეველოპერის სხვა აპები.';
+
+  @override
+  String get tourHelpBody =>
+      'შეეხეთ აქ ამ გზამკვლევის ხელახლა სანახავად. გახსენით სია ჯამებისა და ნივთების ახსნის სანახავად.';
+
+  @override
+  String get tourTotalsBody =>
+      'დაგეგმილი, ფაქტობრივი ჯამი და სხვაობა ყიდვისას განახლდება.';
+
+  @override
+  String get tourItemsBody =>
+      'თქვენი ნივთები. აქ შეცვალეთ მათი თანმიმდევრობა ან მოძებნეთ ისინი.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'ლიმიტის $percent% გამოყენებულია';
+  }
 }

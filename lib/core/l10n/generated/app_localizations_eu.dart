@@ -519,7 +519,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Zure zerrendak, prezioak, jasoen eta argazkiak zure gailuan geratzen dira. Argazkiak eta ahotsa inoiz ez dira kanpora ateratzen. AI laguntza aktibatuta badago, testua bakarrik (adibidez, jasoko lerroak edo diktatutakoa) bidaltzen da gure zerbitzura prozesatzeko eta ez da gordetzen.';
+      'Zure zerrendak, prezioak, ordainagiriak eta argazkiak zure gailuan gordetzen dira. Ahotsak ez du inoiz gailua uzten. AI laguntza aktibatuta dagoenean, ordainagirien eta prezio-etiketen argazkiak (tamaina txikituta) eta testua, esaterako diktatutako elementuak, gure zerbitzarira bidaltzen dira irakurtzeko soilik; berehala prozesatzen dira eta ez dira inoiz gordetzen.';
 
   @override
   String get aboutSection => 'Buruz';
@@ -732,7 +732,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Iragarkirik ez · Atxapen esportazioa eta inportazioa · Hilabetekoa';
+      'Iragarkirik ez · Atxapen esportazioa eta inportazioa · Urteko';
 
   @override
   String get proBenefitNoAds => 'Iragarkirik gabeko esperientzia';
@@ -764,8 +764,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get formatLocaleLabel => 'Zenbaki eta moneta-formatua';
 
   @override
-  String get formatLocaleSystem =>
-      'Gailuaren formatua (digitu latindarrak; bestela ingelesez';
+  String get formatLocaleSystem => 'Gailuaren formatua';
 
   @override
   String get formatLocaleTr => 'Turkiera (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Errezeptuak bat datoz, prezio-etiketak irakurtzen ditu eta esaldiak zerrendetan bihurtzen ditu. Argazkiak eta ahotsa zure gailuan geratzen dira; testua bakarrik prozesatzen da.';
+      'Argazkietatik ordainagiriak eta prezio-etiketak irakurtzen ditu, ordainagiriak parekatzen ditu eta esaldiak zerrenda bihurtzen ditu. Argazkiak irakurtzeko soilik bidaltzen dira eta ez dira inoiz gordetzen.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1129,6 +1128,15 @@ class AppLocalizationsEu extends AppLocalizations {
   String get csvExportAction => 'Esportatu CSV';
 
   @override
+  String get reportSharePdf => 'Partekatu PDF gisa';
+
+  @override
+  String get reportShareCsv => 'Partekatu CSV gisa';
+
+  @override
+  String get reportPrintAction => 'Inprimatu';
+
+  @override
   String get backupSizeWarning =>
       'JSON-k erregistroak ditu, ez argazki-fitxategiak. Inportazio muga: 16 MB.';
 
@@ -1407,4 +1415,178 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get reportZoom => 'Handiagotu';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days egun geratzen dira',
+      one: '$days egun geratzen da',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ordu geratzen dira',
+      one: '$hours ordu geratzen da',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro probaldia amaitu da';
+
+  @override
+  String get planTrialEndedBody =>
+      'Zerrendak, eskuzko sarrera eta gailuko ahotsa doan erabiltzen jarrai dezakezu. Doako planak 10 AI eskaera ditu hilabete natural bakoitzeko. Aukeratu urteko Pro hilean 100 AI eskaera, iragarkirik ez eta babeskopiak izateko. Zure datuak zurekin geratuko dira.';
+
+  @override
+  String get planContinueFree => 'Jarraitu doan';
+
+  @override
+  String get supportIdLabel => 'Laguntza-IDa';
+
+  @override
+  String get supportEmailLabel => 'Laguntza posta elektronikoz';
+
+  @override
+  String get captureTipFirst =>
+      'Hasi goiko aldean: dendaren izena eta data ikusi behar dira. Sartu ahalik eta produktu gehien; gainerakoak hurrengo argazkian joango dira.';
+
+  @override
+  String get captureTipContinue =>
+      'Ordainagiri bera: sartu aurreko argazkiko azken produktua.';
+
+  @override
+  String get captureTipNeverShow => 'Ez erakutsi berriro';
+
+  @override
+  String get captureTipOk => 'Ulertu dut';
+
+  @override
+  String get captureTipsSetting =>
+      'Erakutsi ordainagiriak argazkitzeko aholkuak';
+
+  @override
+  String get receiptReadingProgress => 'Ordainagiria irakurtzen…';
+
+  @override
+  String get receiptReadInBackground => 'Jarraitu atzeko planoan';
+
+  @override
+  String get receiptReadDoneTitle => 'Ordainagiria irakurrita';
+
+  @override
+  String get receiptReadDoneBody => 'Sakatu berrikusteko eta gordetzeko.';
+
+  @override
+  String get receiptReadMoreTitle =>
+      'Atera argazkia ordainagiriaren gainerakoari';
+
+  @override
+  String get receiptReadFailedTitle => 'Ezin izan da ordainagiria irakurri';
+
+  @override
+  String get listReceiptsSection => 'Tiketak';
+
+  @override
+  String get receiptStateComplete => 'Osatuta';
+
+  @override
+  String get receiptStateIncomplete => 'Osatu gabe';
+
+  @override
+  String get receiptStateFailed => 'Huts egin du';
+
+  @override
+  String get receiptStoreUnknown => 'Ez da denda irakurri';
+
+  @override
+  String get receiptDeleteAction => 'Ezabatu tiketa';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Tiket hau eta gehitu zituen artikuluak ezabatu? Geroago berriro inporta dezakezu.';
+
+  @override
+  String get receiptDeleted => 'Tiketa ezabatu da.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Erakutsi guztiak ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Erakutsi gutxiago';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Tiketaren data: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Erosketaren arabera';
+
+  @override
+  String get historyViewStore => 'Dendaren arabera';
+
+  @override
+  String get historyViewProduct => 'Produktuaren arabera';
+
+  @override
+  String get historyShareAll => 'Partekatu dena';
+
+  @override
+  String get historyUnknownStore => 'Denda ezezaguna';
+
+  @override
+  String get historyDailySpending => 'Eguneko gastua';
+
+  @override
+  String get historyResetPeriod => 'Itzuli aste honetara';
+
+  @override
+  String get tourSkip => 'Saltatu';
+
+  @override
+  String get tourNewListBody =>
+      'Hasi erosketa-zerrenda bat eta gehitu erosi nahi duzuna.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Erosketak egin dituzu? Bihurtu tiketa prezioak dituen zerrenda.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Hasi tiketaren goiko aldetik: lehenik denda eta data, gero jarraitu gainerako lerroekin.';
+
+  @override
+  String get tourTabsBody =>
+      'Aldatu zerrenda aktibo, osatu eta artxibatuen artean. Amaierako botoiak ordena aldatzen du.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Ikusi garatzaile beraren beste aplikazio batzuk.';
+
+  @override
+  String get tourHelpBody =>
+      'Sakatu hemen gida berriro ikusteko. Ireki zerrenda bat guztizkoen eta produktuen azalpena ikusteko.';
+
+  @override
+  String get tourTotalsBody =>
+      'Aurreikusitako, benetako guztizkoa eta aldea erosi ahala eguneratzen dira.';
+
+  @override
+  String get tourItemsBody =>
+      'Zure produktuak. Aldatu haien ordena edo bilatu hemen.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Mugaren %$percent erabili da';
+  }
 }

@@ -230,4 +230,33 @@ void main() {
       },
     );
   });
+
+  test('a list completed from receipts is dated by the latest receipt time', () async {
+    final id = await repo.createList(title: 'ŞOK', currencyCode: 'TRY');
+    await ShoppingRepository(db).startShopping(id);
+    final printed = DateTime(2024, 2, 1, 20, 51, 41);
+    await db.into(db.receipts).insert(
+      ReceiptsCompanion.insert(
+        listId: Value(id),
+        identityKey: const Value('k1'),
+        detectedAt: Value(printed),
+        processingStatus: const Value('reviewed'),
+      ),
+    );
+    // A pending draft never sets the shopping date.
+    await db.into(db.receipts).insert(
+      ReceiptsCompanion.insert(
+        listId: Value(id),
+        detectedAt: Value(DateTime(2025, 1, 1)),
+      ),
+    );
+    await repo.changeStatus(id, ListStatus.completed);
+    expect((await repo.getById(id)).completedAt, printed);
+
+    final plain = await repo.createList(title: 'Plan', currencyCode: 'TRY');
+    await ShoppingRepository(db).startShopping(plain);
+    final before = DateTime.now().subtract(const Duration(seconds: 1));
+    await repo.changeStatus(plain, ListStatus.completed);
+    expect((await repo.getById(plain)).completedAt!.isAfter(before), isTrue);
+  });
 }

@@ -81,7 +81,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get noteLabel => 'గమనిక (ఐచ్ఛికం)';
 
   @override
-  String get storeLabel => 'దোকान';
+  String get storeLabel => 'దుకాణం';
 
   @override
   String get keepAmountsAction => 'రాశులు ఉంచు';
@@ -485,7 +485,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get mergeImportLabel => 'ప్రస్తుత డేటాలో కలపండి';
 
   @override
-  String get separateImportLabel => 'แยกสำเนาเป็นสำเนาใหม่';
+  String get separateImportLabel => 'వేరే ప్రతిగా దిగుమతి చేయండి';
 
   @override
   String get importCancelled => 'దిగుమతి రద్దు చేయబడింది.';
@@ -521,7 +521,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'మీ జాబితాలు, ధరలు, రసీదులు మరియు ఫోటోలు మీ పరికరంలోనే ఉంటాయి. ఫోటోలు మరియు వాయిస్ ఎప్పటికీ బయటకు వెళ్లవు. AI సహాయం ఆన్‌లో ఉన్నప్పుడు, కేవలం పాఠ్యం (ఉదాహరణకు రసీదు పంక్తులు లేదా మీరు చెప్పిన విషయాలు) మాత్రమే ప్రాసెసింగ్ కోసం మా సర్వర్‌కు పంపబడుతుంది మరియు నిల్వ చేయబడదు.';
+      'మీ జాబితాలు, ధరలు, రసీదులు మరియు ఫోటోలు మీ పరికరంలోనే నిల్వ ఉంటాయి. వాయిస్ ఎప్పుడూ పరికరం నుండి బయటకు వెళ్లదు. AI సహాయం ఆన్‌లో ఉన్నప్పుడు, రసీదులు మరియు ధర లేబుళ్ల ఫోటోలు (పరిమాణం తగ్గించినవి) అలాగే చెప్పి రాయించిన వస్తువుల వంటి టెక్స్ట్ చదవడానికి మాత్రమే మా సర్వర్‌కు పంపబడతాయి; వాటిని వెంటనే ప్రాసెస్ చేస్తారు, ఎప్పుడూ నిల్వ చేయరు.';
 
   @override
   String get aboutSection => 'గురించి';
@@ -543,7 +543,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get permissionsBody =>
-      'క్యামెరా, మైక్రోఫోన్ మరియు నోటిఫికేషన్లు మీరు ఆ ఫీచర్లను వాడేటప్పుడు మాత్రమే అడిగి పొందబడతాయి.';
+      'కెమెరా, మైక్రోఫోన్, నోటిఫికేషన్‌ల అనుమతులు సంబంధిత ఫీచర్లను ఉపయోగించినప్పుడు మాత్రమే అడుగుతాం.';
 
   @override
   String get unitsSection => 'డిఫాల్ట్లు';
@@ -584,7 +584,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get receiptLineActions =>
-      'ఆइटెమ్‌కు లింక్ చేయండి, విభజించండి లేదా విస్మరించండి';
+      'అంశానికి లింక్ చేయండి, విభజించండి లేదా విస్మరించండి';
 
   @override
   String get receiptCommit => 'అన్నీ అంగీకరించండి';
@@ -603,7 +603,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get templateHint =>
-      'ముந்தరి షాపింగ్ ప్రయాణం నుండి కొత్త ప్రణాళికను సృష్టించండి';
+      'గత కొనుగోలు పర్యటనను ఆధారంగా చేసుకుని కొత్త ప్రణాళికను రూపొందించండి.';
 
   @override
   String get scanReceiptAction => 'రసీదు స్కాన్ చేయండి';
@@ -626,7 +626,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'వాయిస్ రికగ్నిషన్ అందుబాటులో లేదు; మాన్యువల్‌గా నమోదు చేయండి.';
 
   @override
-  String get linkToItem => 'ఆइटెమ్‌కు లింక్ చేయండి';
+  String get linkToItem => 'అంశానికి లింక్ చేయండి';
 
   @override
   String get splitLine => 'రెండుగా విభజించండి';
@@ -641,14 +641,14 @@ class AppLocalizationsTe extends AppLocalizations {
   String get priceHistoryAction => 'ధర చరిత్ర';
 
   @override
-  String get itemsEmptyTitle => 'ఇంకా ఆइटెమ్‌లు లేవు';
+  String get itemsEmptyTitle => 'ఇంకా అంశాలు లేవు';
 
   @override
   String get itemsEmptyBody =>
-      'మీ మొదటి ఆइटెమ్‌ను జోడించండి — దుకాణంలో నిజమైన ధరలను ఇక్కడ నమోదు చేస్తారు.';
+      'మీ మొదటి అంశాన్ని జోడించండి — దుకాణంలో నిజమైన ధరలను ఇక్కడ నమోదు చేస్తారు.';
 
   @override
-  String get addItemTooltip => 'ఆइटెమ్‌ను జోడించండి';
+  String get addItemTooltip => 'అంశాన్ని జోడించండి';
 
   @override
   String get unitAdet => 'pc';
@@ -725,7 +725,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String plannedTotalSummary(Object count, Object total) {
-    return 'ప్లాన్ చేయబడినది: $total · $count ఆइटెమ్‌లు';
+    return 'ప్లాన్ చేయబడినది: $total · $count అంశాలు';
   }
 
   @override
@@ -736,10 +736,10 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'విజ్ఞاپనాలు లేవు · బ్యాకప్ ఎగుమతి మరియు దిగుమతి · నెలవారీ';
+      'ప్రకటనలు లేవు · బ్యాకప్ ఎగుమతి మరియు దిగుమతి · సంవత్సరానికి';
 
   @override
-  String get proBenefitNoAds => 'విజ్ఞప్తులు లేని అనుభవం';
+  String get proBenefitNoAds => 'ప్రకటనలు లేని అనుభవం';
 
   @override
   String get proBenefitBackup => 'బ్యాకప్ (ఎగుమతి/దిగుమతి)';
@@ -768,8 +768,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get formatLocaleLabel => 'సంఖ్య & కరెన్సి ఫార్మాట్';
 
   @override
-  String get formatLocaleSystem =>
-      'డివైస్ ఫార్మాట్ (లాటిన్ అంకెలు; ఇతరత్రా ఇంగ్లీష్)';
+  String get formatLocaleSystem => 'డివైస్ ఫార్మాట్';
 
   @override
   String get formatLocaleTr => 'తుర్కీ (1.234,56)';
@@ -782,7 +781,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'రసీదులను మ్యాచ్ చేస్తుంది, ధర లేబుల్‌లను చదువుతుంది మరియు వాక్యాలను జాబితాలుగా మారుస్తుంది. ఫోటోలు మరియు వాయిస్ మీ పరికరంలోనే ఉంటాయి; కేవలం టెక్స్ట్ మాత్రమే ప్రాసెస్ అవుతుంది.';
+      'ఫోటోల నుండి రసీదులు మరియు ధర లేబుళ్లను చదువుతుంది, రసీదులను సరిపోల్చుతుంది, వాక్యాలను జాబితాలుగా మారుస్తుంది. ఫోటోలు చదవడానికి మాత్రమే పంపబడతాయి, ఎప్పుడూ నిల్వ చేయబడవు.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -852,7 +851,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get compareBudget => 'బడ్జెట్';
 
   @override
-  String get compareNotBought => 'خریداری نہیں کی گئی';
+  String get compareNotBought => 'ఇంకా కొనలేదు';
 
   @override
   String get compareUnplanned => 'plan చేయబడలేదు';
@@ -941,7 +940,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get planFreeAds =>
-      'చిన్న బ్యానర్ విజ్ఞাপనాలు (మీ మొదటి 7 రోజుల్లో ఏవి లేవు)';
+      'చిన్న బ్యానర్ ప్రకటనలు (మొదటి 7 రోజుల్లో కనిపించవు)';
 
   @override
   String get planCoreFeatures => 'జాబితాలు, ధరలు, రసీదులు, ఖర్చు చార్ట్‌లు';
@@ -959,7 +958,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get planProAi => 'నెలకు 100 AI రిక్వెస్ట్‌లు';
 
   @override
-  String get planNoAds => 'విజ్ఞاپనాలు లేవు';
+  String get planNoAds => 'ప్రకటనలు లేవు';
 
   @override
   String get planBackup => 'బ్యాకప్ ఎగుమతి మరియు దిగుమతి';
@@ -1040,11 +1039,11 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get deleteItemConfirm =>
-      'ఈ ఆइटెమ్ మరియు దాని రికార్డ్ చేయబడిన కొనుగోళ్లను తొలగించాలా?';
+      'ఈ అంశం మరియు దాని రికార్డ్ చేయబడిన కొనుగోళ్లను తొలగించాలా?';
 
   @override
   String get clearPurchaseConfirm =>
-      'ఈ ఆइटెమ్ నుండి టిక్ తీసి, దాని రికార్డ్ చేయబడిన కొనుగోళ్లను తొలగించాలా?';
+      'ఈ అంశం నుండి టిక్ తీసి, దాని రికార్డ్ చేయబడిన కొనుగోళ్లను తొలగించాలా?';
 
   @override
   String get reportPdfAction => 'PDF రిపోర్ట్ సేవ్ చేయి';
@@ -1131,6 +1130,15 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV ఎగుమతి';
+
+  @override
+  String get reportSharePdf => 'PDFగా షేర్ చేయి';
+
+  @override
+  String get reportShareCsv => 'CSVగా షేర్ చేయి';
+
+  @override
+  String get reportPrintAction => 'ప్రింట్ చేయి';
 
   @override
   String get backupSizeWarning =>
@@ -1411,4 +1419,175 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get reportZoom => 'జూమ్';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days రోజులు మిగిలాయి',
+      one: '$days రోజు మిగిలింది',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours గంటలు మిగిలాయి',
+      one: '$hours గంట మిగిలింది',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'మీ Pro ట్రయల్ ముగిసింది';
+
+  @override
+  String get planTrialEndedBody =>
+      'మీరు జాబితాలు, మాన్యువల్ ఎంట్రీ, పరికరంలోని వాయిస్‌ను ఉచితంగా కొనసాగించవచ్చు. Freeలో ప్రతి క్యాలెండర్ నెలకు 10 AI అభ్యర్థనలు ఉంటాయి. నెలకు 100 AI అభ్యర్థనలు, ప్రకటనలు లేని వినియోగం, బ్యాకప్‌ల కోసం వార్షిక Pro ఎంచుకోండి. మీ ప్రస్తుత డేటా మీ వద్దే ఉంటుంది.';
+
+  @override
+  String get planContinueFree => 'Freeతో కొనసాగండి';
+
+  @override
+  String get supportIdLabel => 'మద్దతు ID';
+
+  @override
+  String get supportEmailLabel => 'ఇమెయిల్ మద్దతు';
+
+  @override
+  String get captureTipFirst =>
+      'పైభాగం నుండి మొదలుపెట్టండి: దుకాణం పేరు, తేదీ కనిపించాలి. వీలైనన్ని వస్తువులను చేర్చండి; మిగతావి తర్వాతి ఫోటోలో ఉంటాయి.';
+
+  @override
+  String get captureTipContinue =>
+      'అదే రసీదు: ముందు ఫోటోలోని చివరి వస్తువును చేర్చండి.';
+
+  @override
+  String get captureTipNeverShow => 'మళ్లీ చూపవద్దు';
+
+  @override
+  String get captureTipOk => 'అర్థమైంది';
+
+  @override
+  String get captureTipsSetting => 'రసీదు తీసే చిట్కాలను చూపించు';
+
+  @override
+  String get receiptReadingProgress => 'రసీదును చదువుతోంది…';
+
+  @override
+  String get receiptReadInBackground => 'బ్యాక్‌గ్రౌండ్‌లో కొనసాగించండి';
+
+  @override
+  String get receiptReadDoneTitle => 'రసీదు చదవబడింది';
+
+  @override
+  String get receiptReadDoneBody => 'సమీక్షించి సేవ్ చేయడానికి నొక్కండి.';
+
+  @override
+  String get receiptReadMoreTitle => 'రసీదులోని మిగతా భాగం ఫోటో తీయండి';
+
+  @override
+  String get receiptReadFailedTitle => 'రసీదును చదవలేకపోయాం';
+
+  @override
+  String get listReceiptsSection => 'రసీదులు';
+
+  @override
+  String get receiptStateComplete => 'పూర్తయింది';
+
+  @override
+  String get receiptStateIncomplete => 'అసంపూర్ణం';
+
+  @override
+  String get receiptStateFailed => 'విఫలమైంది';
+
+  @override
+  String get receiptStoreUnknown => 'దుకాణం చదవబడలేదు';
+
+  @override
+  String get receiptDeleteAction => 'రసీదును తొలగించు';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ఈ రసీదును మరియు అది జోడించిన అంశాలను తొలగించాలా? తర్వాత మళ్లీ దిగుమతి చేయవచ్చు.';
+
+  @override
+  String get receiptDeleted => 'రసీదు తొలగించబడింది.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'అన్నీ చూపు ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'తక్కువ చూపు';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'రసీదు తేదీ: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'షాపింగ్ వారీగా';
+
+  @override
+  String get historyViewStore => 'దుకాణం వారీగా';
+
+  @override
+  String get historyViewProduct => 'ఉత్పత్తి వారీగా';
+
+  @override
+  String get historyShareAll => 'అన్నీ షేర్ చేయండి';
+
+  @override
+  String get historyUnknownStore => 'తెలియని దుకాణం';
+
+  @override
+  String get historyDailySpending => 'రోజువారీ ఖర్చు';
+
+  @override
+  String get historyResetPeriod => 'ఈ వారానికి తిరిగి వెళ్ళండి';
+
+  @override
+  String get tourSkip => 'దాటవేయి';
+
+  @override
+  String get tourNewListBody =>
+      'షాపింగ్ జాబితా ప్రారంభించి కొనాలనుకున్నవి జోడించండి.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ఇప్పటికే కొన్నారా? రసీదును దాని ధరలతో జాబితాగా మార్చండి.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'రసీదు పై నుండి ప్రారంభించండి: ముందు దుకాణం మరియు తేదీ, తర్వాత మిగిలిన పంక్తులతో కొనసాగండి.';
+
+  @override
+  String get tourTabsBody =>
+      'సక్రియ, పూర్తయిన మరియు ఆర్కైవ్ జాబితాల మధ్య మారండి. చివరి బటన్ క్రమాన్ని మారుస్తుంది.';
+
+  @override
+  String get tourDiscoverBody => 'అదే డెవలపర్ ఇతర యాప్‌లను చూడండి.';
+
+  @override
+  String get tourHelpBody =>
+      'ఈ గైడ్‌ను మళ్లీ చూడడానికి ఇక్కడ నొక్కండి. మొత్తాలు మరియు అంశాల వివరణ కోసం ఒక జాబితాను తెరవండి.';
+
+  @override
+  String get tourTotalsBody =>
+      'ప్రణాళిక, వాస్తవ మొత్తం మరియు తేడా షాపింగ్ చేస్తూ ఉండగా నవీకరించబడతాయి.';
+
+  @override
+  String get tourItemsBody =>
+      'మీ అంశాలు. ఇక్కడ వాటి క్రమాన్ని మార్చండి లేదా వెతకండి.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'పరిమితిలో $percent% ఉపయోగించబడింది';
+  }
 }

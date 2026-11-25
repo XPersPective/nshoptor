@@ -521,7 +521,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Jūsų sąrašai, kainos, kvitai ir nuotraukos lieka jūsų įrenginyje. Nuotraukos ir balsas niekada jo nepalieka. Kai naudojama AI pagalba, į mūsų serverį siunčiamas tik tekstas (pvz., kvito eilutės arba tai, ką diktuojate) apdorojimui ir jis nėra saugomas.';
+      'Jūsų sąrašai, kainos, kvitai ir nuotraukos saugomi jūsų įrenginyje. Balsas jo niekada nepalieka. Kai įjungta AI pagalba, kvitų ir kainų etikečių nuotraukos (sumažinto dydžio) bei tekstas, pavyzdžiui, padiktuoti elementai, siunčiami į mūsų serverį tik perskaityti; jie apdorojami iš karto ir niekada nesaugomi.';
 
   @override
   String get aboutSection => 'Apie';
@@ -733,7 +733,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Be reklamų · Atsarginės kopijos eksportas ir importavimas · Mėnesinis';
+      'Be reklamų · Atsarginės kopijos eksportas ir importavimas · Metinis';
 
   @override
   String get proBenefitNoAds => 'Patirtis be reklamų';
@@ -765,8 +765,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get formatLocaleLabel => 'Skaičių ir valiutos formatavimas';
 
   @override
-  String get formatLocaleSystem =>
-      'Įrenginio formatas (Lotyniški skaitmenys; kitu atveju anglų kalba)';
+  String get formatLocaleSystem => 'Įrenginio formatas';
 
   @override
   String get formatLocaleTr => 'Turkų (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Sulygina čekius, skaito kainas ir paverčia sakinius sąrašais. Nuotraukos ir balsas lieka jūsų įrenginyje; apdorojamas tik tekstas.';
+      'Iš nuotraukų skaito kvitus ir kainų etiketes, suderina kvitus ir paverčia sakinius sąrašais. Nuotraukos siunčiamos tik perskaityti ir niekada nesaugomos.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1129,6 +1128,15 @@ class AppLocalizationsLt extends AppLocalizations {
   String get csvExportAction => 'Eksportuoti CSV';
 
   @override
+  String get reportSharePdf => 'Bendrinti kaip PDF';
+
+  @override
+  String get reportShareCsv => 'Bendrinti kaip CSV';
+
+  @override
+  String get reportPrintAction => 'Spausdinti';
+
+  @override
   String get backupSizeWarning =>
       'JSON failas įrašo duomenis, o ne nuotraukų failus. Importavimo limitas: 16 MB.';
 
@@ -1408,4 +1416,180 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get reportZoom => 'Priartinti';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dienos liko',
+      many: '$days dienų liko',
+      few: '$days dienos liko',
+      one: '$days diena liko',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours valandos liko',
+      many: '$hours valandų liko',
+      few: '$hours valandos liko',
+      one: '$hours valanda liko',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Jūsų Pro bandomasis laikotarpis baigėsi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Sąrašais, rankiniu įvedimu ir įrenginio balso funkcija galite naudotis nemokamai ir toliau. Nemokamas planas apima 10 DI užklausų per kalendorinį mėnesį. Pasirinkite metinį Pro ir gaukite 100 DI užklausų per mėnesį, be reklamų ir su atsarginėmis kopijomis. Esami jūsų duomenys liks su jumis.';
+
+  @override
+  String get planContinueFree => 'Tęsti nemokamai';
+
+  @override
+  String get supportIdLabel => 'Pagalbos ID';
+
+  @override
+  String get supportEmailLabel => 'Pagalba el. paštu';
+
+  @override
+  String get captureTipFirst =>
+      'Pradėkite pačiame viršuje: turi matytis parduotuvės pavadinimas ir data. Sutalpinkite kuo daugiau prekių, likusios bus kitoje nuotraukoje.';
+
+  @override
+  String get captureTipContinue =>
+      'Tas pats kvitas: įtraukite paskutinę ankstesnės nuotraukos prekę.';
+
+  @override
+  String get captureTipNeverShow => 'Daugiau nerodyti';
+
+  @override
+  String get captureTipOk => 'Supratau';
+
+  @override
+  String get captureTipsSetting => 'Rodyti kvito fotografavimo patarimus';
+
+  @override
+  String get receiptReadingProgress => 'Skaitomas kvitas…';
+
+  @override
+  String get receiptReadInBackground => 'Tęsti fone';
+
+  @override
+  String get receiptReadDoneTitle => 'Kvitas perskaitytas';
+
+  @override
+  String get receiptReadDoneBody =>
+      'Palieskite, kad peržiūrėtumėte ir išsaugotumėte.';
+
+  @override
+  String get receiptReadMoreTitle => 'Nufotografuokite likusią kvito dalį';
+
+  @override
+  String get receiptReadFailedTitle => 'Nepavyko perskaityti kvito';
+
+  @override
+  String get listReceiptsSection => 'Kvitai';
+
+  @override
+  String get receiptStateComplete => 'Užbaigtas';
+
+  @override
+  String get receiptStateIncomplete => 'Neišsamus';
+
+  @override
+  String get receiptStateFailed => 'Nepavyko';
+
+  @override
+  String get receiptStoreUnknown => 'Parduotuvė nenuskaityta';
+
+  @override
+  String get receiptDeleteAction => 'Ištrinti kvitą';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Ištrinti šį kvitą ir jo pridėtas prekes? Vėliau galėsite jį importuoti iš naujo.';
+
+  @override
+  String get receiptDeleted => 'Kvitas ištrintas.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Rodyti visus ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Rodyti mažiau';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kvito data: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Pagal apsipirkimą';
+
+  @override
+  String get historyViewStore => 'Pagal parduotuvę';
+
+  @override
+  String get historyViewProduct => 'Pagal prekę';
+
+  @override
+  String get historyShareAll => 'Bendrinti viską';
+
+  @override
+  String get historyUnknownStore => 'Nežinoma parduotuvė';
+
+  @override
+  String get historyDailySpending => 'Dienos išlaidos';
+
+  @override
+  String get historyResetPeriod => 'Grįžti į šią savaitę';
+
+  @override
+  String get tourSkip => 'Praleisti';
+
+  @override
+  String get tourNewListBody =>
+      'Pradėkite pirkinių sąrašą ir įtraukite, ką planuojate pirkti.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Jau apsipirkote? Paverskite kvitą sąrašu su kainomis.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Pradėkite nuo kvito viršaus: pirmiausia parduotuvę ir datą, tada tęskite kitomis eilutėmis.';
+
+  @override
+  String get tourTabsBody =>
+      'Perjunkite aktyvius, užbaigtus ir archyvuotus sąrašus. Mygtukas gale keičia tvarką.';
+
+  @override
+  String get tourDiscoverBody => 'Daugiau to paties kūrėjo programėlių.';
+
+  @override
+  String get tourHelpBody =>
+      'Bakstelėkite čia, kad vėl peržiūrėtumėte vadovą. Atidarykite sąrašą, kad pamatytumėte sumų ir prekių paaiškinimą.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planuota, faktinė suma ir skirtumas atnaujinami apsiperkant.';
+
+  @override
+  String get tourItemsBody =>
+      'Jūsų prekės. Čia keiskite jų tvarką arba ieškokite.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Panaudota $percent % limito';
+  }
 }

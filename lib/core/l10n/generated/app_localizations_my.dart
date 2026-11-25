@@ -521,7 +521,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'သင့်စာရင်းများ၊ ဈေးနှုန်းများ၊ receipts နှင့် ဓာတ်ပုံများသည် သင့်ဖုန်းတွင်သာ ရှိနေမည်ဖြစ်ပါသည်။ ဓာတ်ပုံများနှင့် အသံများသည် ဖုန်းမှ မထွက်ခွာပါ။ AI help ကို အသုံးပြုနေပါက စာသားများ (ဥပမာ - receipt များ သို့မဟုတ် သင်ပြောဆိုခဲ့သော စာသားများ) ကိုသာ server သို့ ပို့ဆောင်ပြီး ပြုပြင်လုပ်ဆောင်ကာ သိမ်းဆည်းထားခြင်း မရှိပါ။';
+      'သင့်စာရင်းများ၊ ဈေးနှုန်းများ၊ ပြေစာများနှင့် ဓာတ်ပုံများကို သင့်စက်ထဲတွင် သိမ်းဆည်းထားသည်။ အသံသည် စက်ထဲမှ ဘယ်သောအခါမျှ မထွက်ပါ။ AI အကူအညီ ဖွင့်ထားချိန်တွင် ပြေစာနှင့် ဈေးနှုန်းတံဆိပ်ဓာတ်ပုံများ (အရွယ်အစား ချုံ့ထားသည်) နှင့် ပြောဆိုရေးခိုင်းထားသော ပစ္စည်းများကဲ့သို့ စာသားကို ဖတ်ရန်သာ ကျွန်ုပ်တို့၏ဆာဗာသို့ ပို့ပေးသည်။ ၎င်းတို့ကို ချက်ချင်းလုပ်ဆောင်ပြီး ဘယ်သောအခါမျှ မသိမ်းဆည်းပါ။';
 
   @override
   String get aboutSection => 'About';
@@ -735,7 +735,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ads မရှိ · Backup ထုတ်ယူခြင်းနှင့် ဝင်ရောက်ခြင်း · တစ်လ';
+      'Ads မရှိ · Backup ထုတ်ယူခြင်းနှင့် ဝင်ရောက်ခြင်း · တစ်နှစ်';
 
   @override
   String get proBenefitNoAds => 'ကြော်ငြာ မပါဝင်သော အတွေ့အကြုံ';
@@ -767,8 +767,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get formatLocaleLabel => 'အရေအတွက်နှင့် ငွေကြေးပုံစံ';
 
   @override
-  String get formatLocaleSystem =>
-      'စက်ပစ္စည်း ပုံစံ (လက်ရေးကိန်းဂဏန်းများ; အခြားအင်္ဂလိပ်)';
+  String get formatLocaleSystem => 'စက်ပစ္စည်း ပုံစံ';
 
   @override
   String get formatLocaleTr => 'တူရကီ (1.234,56)';
@@ -781,7 +780,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'ရီးဆစ်များကို ကိုက်ညီစေပြီး၊ ဈေးနှုန်းစတicker များကိုဖတ်ကာ စာသားများကို စာရင်းအဖြစ်ပြောင်းပေးသည်။ ဓာတ်ပုံနှင့်အသံများသည် သင့်စက်တွင်ရှိနေပါမည် - စာသားသာ ပြန်လည်သုံးသပ်ခြင်းဖြစ်သည်။';
+      'ဓာတ်ပုံများမှ ပြေစာနှင့် ဈေးနှုန်းတံဆိပ်များကို ဖတ်ပေးပြီး ပြေစာများကို တိုက်ဆိုင်ပေးကာ ဝါကျများကို စာရင်းများအဖြစ် ပြောင်းပေးသည်။ ဓာတ်ပုံများကို ဖတ်ရန်သာ ပို့ပြီး ဘယ်သောအခါမျှ မသိမ်းဆည်းပါ။';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1116,7 +1115,8 @@ class AppLocalizationsMy extends AppLocalizations {
   String get voiceStopListening => 'နားထောင်ခြင်း ရပ်မည်';
 
   @override
-  String get keepAwakeFailed => 'စکرဉ်ကို မိတ်ဆက်မရပါ။ ပြန်လည်ကြိုးစားပါ။';
+  String get keepAwakeFailed =>
+      'မျက်နှာပြင်ကို မပိတ်အောင် ထား၍ မရပါ။ ထပ်မံကြိုးစားပါ။';
 
   @override
   String get purchaseHistoryHint =>
@@ -1128,6 +1128,15 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV ထုတ်ယူရန်';
+
+  @override
+  String get reportSharePdf => 'PDF အဖြစ် မျှဝေရန်';
+
+  @override
+  String get reportShareCsv => 'CSV အဖြစ် မျှဝေရန်';
+
+  @override
+  String get reportPrintAction => 'ပုံနှိပ်ရန်';
 
   @override
   String get backupSizeWarning =>
@@ -1406,4 +1415,174 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get reportZoom => 'ချဲ့ရန်';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days ရက်ကျန်',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours နာရီကျန်',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'သင်၏ Pro အစမ်းသုံးကာလ ကုန်ဆုံးသွားပါပြီ';
+
+  @override
+  String get planTrialEndedBody =>
+      'စာရင်းများ၊ ကိုယ်တိုင်ထည့်သွင်းခြင်းနှင့် စက်ပေါ်ရှိ အသံလုပ်ဆောင်ချက်ကို အခမဲ့ ဆက်လက်အသုံးပြုနိုင်ပါသည်။ အခမဲ့အစီအစဉ်တွင် ပြက္ခဒိန်တစ်လလျှင် AI တောင်းဆိုမှု ၁၀ ခု ပါဝင်သည်။ တစ်လလျှင် AI တောင်းဆိုမှု ၁၀၀ ခု၊ ကြော်ငြာမပါဘဲ အသုံးပြုမှုနှင့် အရန်သိမ်းဆည်းမှုများအတွက် နှစ်စဉ် Pro ကို ရွေးပါ။ သင့်ဒေတာများကို ဆက်လက်ထိန်းသိမ်းထားမည်။';
+
+  @override
+  String get planContinueFree => 'အခမဲ့ ဆက်လုပ်ရန်';
+
+  @override
+  String get supportIdLabel => 'ပံ့ပိုးမှု ID';
+
+  @override
+  String get supportEmailLabel => 'အီးမေးလ်ဖြင့် ပံ့ပိုးမှု';
+
+  @override
+  String get captureTipFirst =>
+      'အပေါ်ဆုံးကစပါ- ဆိုင်အမည်နှင့် ရက်စွဲ မြင်ရရမည်။ ပစ္စည်းများကို တတ်နိုင်သမျှ ထည့်ပါ၊ ကျန်တာကို နောက်ဓာတ်ပုံတွင် ထည့်ပါ။';
+
+  @override
+  String get captureTipContinue =>
+      'ပြေစာတစ်ခုတည်း- ယခင်ဓာတ်ပုံ၏ နောက်ဆုံးပစ္စည်းကို ထည့်ပါ။';
+
+  @override
+  String get captureTipNeverShow => 'ထပ်မပြပါနှင့်';
+
+  @override
+  String get captureTipOk => 'နားလည်ပြီ';
+
+  @override
+  String get captureTipsSetting => 'ပြေစာရိုက်ယူရန် အကြံပြုချက်များ ပြပါ';
+
+  @override
+  String get receiptReadingProgress => 'ပြေစာကို ဖတ်နေသည်…';
+
+  @override
+  String get receiptReadInBackground => 'နောက်ခံတွင် ဆက်လုပ်ပါ';
+
+  @override
+  String get receiptReadDoneTitle => 'ပြေစာကို ဖတ်ပြီးပါပြီ';
+
+  @override
+  String get receiptReadDoneBody => 'စစ်ဆေးပြီး သိမ်းရန် ထိပါ။';
+
+  @override
+  String get receiptReadMoreTitle => 'ပြေစာ၏ ကျန်အပိုင်းကို ဓာတ်ပုံရိုက်ပါ';
+
+  @override
+  String get receiptReadFailedTitle => 'ပြေစာကို ဖတ်၍မရပါ';
+
+  @override
+  String get listReceiptsSection => 'ပြေစာများ';
+
+  @override
+  String get receiptStateComplete => 'ပြီးဆုံး';
+
+  @override
+  String get receiptStateIncomplete => 'မပြည့်စုံ';
+
+  @override
+  String get receiptStateFailed => 'မအောင်မြင်';
+
+  @override
+  String get receiptStoreUnknown => 'ဆိုင်ကို မဖတ်နိုင်ပါ';
+
+  @override
+  String get receiptDeleteAction => 'ပြေစာ ဖျက်ရန်';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ဤပြေစာနှင့် ၎င်းထည့်ခဲ့သော ပစ္စည်းများကို ဖျက်မလား။ နောက်မှ ပြန်တင်သွင်းနိုင်ပါသည်။';
+
+  @override
+  String get receiptDeleted => 'ပြေစာ ဖျက်ပြီးပါပြီ။';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'အားလုံးပြရန် ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'နည်းနည်းပြရန်';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ပြေစာ ရက်စွဲ- $date';
+  }
+
+  @override
+  String get historyViewShopping => 'ဈေးဝယ်မှုအလိုက်';
+
+  @override
+  String get historyViewStore => 'ဆိုင်အလိုက်';
+
+  @override
+  String get historyViewProduct => 'ကုန်ပစ္စည်းအလိုက်';
+
+  @override
+  String get historyShareAll => 'အားလုံးမျှဝေရန်';
+
+  @override
+  String get historyUnknownStore => 'မသိသောဆိုင်';
+
+  @override
+  String get historyDailySpending => 'နေ့စဉ်အသုံးစရိတ်';
+
+  @override
+  String get historyResetPeriod => 'ဤအပတ်သို့ ပြန်သွားရန်';
+
+  @override
+  String get tourSkip => 'ကျော်ရန်';
+
+  @override
+  String get tourNewListBody =>
+      'ဈေးဝယ်စာရင်းတစ်ခု စတင်ပြီး ဝယ်မည့်အရာများကို ထည့်ပါ။';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ဝယ်ပြီးပြီလား။ ပြေစာကို ဈေးနှုန်းများနှင့်အတူ စာရင်းအဖြစ် ပြောင်းပါ။';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ပြေစာ၏ အပေါ်ဆုံးမှ စပါ- ဦးစွာ ဆိုင်နှင့် ရက်စွဲကို ရိုက်ပြီး ကျန်လိုင်းများဖြင့် ဆက်လုပ်ပါ။';
+
+  @override
+  String get tourTabsBody =>
+      'အသုံးပြုဆဲ၊ ပြီးဆုံးပြီး နှင့် သိမ်းဆည်းထားသော စာရင်းများကြား ပြောင်းပါ။ အဆုံးရှိ ခလုတ်သည် အစီအစဉ်ကို ပြောင်းသည်။';
+
+  @override
+  String get tourDiscoverBody =>
+      'တူညီသော ဆော့ဖ်ဝဲရေးသူ၏ အခြားအက်ပ်များကို ကြည့်ပါ။';
+
+  @override
+  String get tourHelpBody =>
+      'ဤလမ်းညွှန်ကို ထပ်ကြည့်ရန် ဤနေရာကို တို့ပါ။ စုစုပေါင်းနှင့် ပစ္စည်းများ ရှင်းလင်းချက်အတွက် စာရင်းတစ်ခု ဖွင့်ပါ။';
+
+  @override
+  String get tourTotalsBody =>
+      'စီစဉ်ထားသော၊ အမှန်တကယ် စုစုပေါင်းနှင့် ကွာခြားချက်များ ဈေးဝယ်နေစဉ် အပ်ဒိတ်ဖြစ်သည်။';
+
+  @override
+  String get tourItemsBody =>
+      'သင့်ပစ္စည်းများ။ ဤနေရာတွင် အစီအစဉ်ပြောင်းပါ သို့မဟုတ် ရှာပါ။';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'ကန့်သတ်ချက်၏ $percent% အသုံးပြုပြီး';
+  }
 }

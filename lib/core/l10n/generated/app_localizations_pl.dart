@@ -521,7 +521,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Twoje listy, ceny, paragony i zdjęcia pozostają na urządzeniu. Zdjęcia i głos nigdy go nie opuszczają. Gdy pomoc AI jest włączona, tylko tekst (np. linie paragonu lub to, co dyktowałeś) jest wysyłany do naszego serwera w celu przetworzenia i nie jest przechowywany.';
+      'Twoje listy, ceny, paragony i zdjęcia są przechowywane na urządzeniu. Głos nigdy go nie opuszcza. Gdy pomoc AI jest włączona, zdjęcia paragonów i etykiet cenowych (pomniejszone) oraz tekst, np. podyktowane pozycje, są wysyłane na nasz serwer wyłącznie w celu odczytania; są przetwarzane natychmiast i nigdy nie są zapisywane.';
 
   @override
   String get aboutSection => 'O aplikacji';
@@ -734,7 +734,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bez reklam · Eksport i import kopii zapasowej · Miesięcznie';
+      'Bez reklam · Eksport i import kopii zapasowej · Rocznie';
 
   @override
   String get proBenefitNoAds => 'Doświadczenie bez reklam';
@@ -766,8 +766,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get formatLocaleLabel => 'Format liczb i waluty';
 
   @override
-  String get formatLocaleSystem =>
-      'Format urządzenia (cyfry łacińskie; w przeciwnym razie angielski)';
+  String get formatLocaleSystem => 'Format urządzenia';
 
   @override
   String get formatLocaleTr => 'Turecki (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Dopasowuje paragoni, czyta ceny na etykietach i zamienia zdania na listy. Zdjęcia i głos pozostają na Twoim urządzeniu; przetwarzany jest tylko tekst.';
+      'Odczytuje paragony i etykiety cenowe ze zdjęć, dopasowuje paragony i zamienia zdania w listy. Zdjęcia są wysyłane wyłącznie w celu odczytania i nigdy nie są zapisywane.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1128,6 +1127,15 @@ class AppLocalizationsPl extends AppLocalizations {
   String get csvExportAction => 'Eksportuj CSV';
 
   @override
+  String get reportSharePdf => 'Udostępnij jako PDF';
+
+  @override
+  String get reportShareCsv => 'Udostępnij jako CSV';
+
+  @override
+  String get reportPrintAction => 'Drukuj';
+
+  @override
   String get backupSizeWarning =>
       'JSON zawiera rekordy, a nie pliki zdjęć. Limit importu: 16 MB.';
 
@@ -1404,4 +1412,180 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get reportZoom => 'Powiększ';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dnia pozostało',
+      many: '$days dni pozostało',
+      few: '$days dni pozostały',
+      one: '$days dzień pozostał',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours godziny pozostało',
+      many: '$hours godzin pozostało',
+      few: '$hours godziny pozostały',
+      one: '$hours godzina pozostała',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Okres próbny Pro dobiegł końca';
+
+  @override
+  String get planTrialEndedBody =>
+      'Nadal możesz bezpłatnie korzystać z list, ręcznego wprowadzania i głosu na urządzeniu. Plan Free obejmuje 10 zapytań AI w miesiącu kalendarzowym. Wybierz roczny Pro, aby otrzymywać 100 zapytań AI miesięcznie, bez reklam i z kopiami zapasowymi. Twoje dotychczasowe dane pozostaną z Tobą.';
+
+  @override
+  String get planContinueFree => 'Kontynuuj bezpłatnie';
+
+  @override
+  String get supportIdLabel => 'Identyfikator pomocy';
+
+  @override
+  String get supportEmailLabel => 'Pomoc e-mailowa';
+
+  @override
+  String get captureTipFirst =>
+      'Zacznij od samej góry: nazwa sklepu i data muszą być widoczne. Zmieść jak najwięcej pozycji, reszta trafi na następne zdjęcie.';
+
+  @override
+  String get captureTipContinue =>
+      'Ten sam paragon: uwzględnij ostatnią pozycję z poprzedniego zdjęcia.';
+
+  @override
+  String get captureTipNeverShow => 'Nie pokazuj ponownie';
+
+  @override
+  String get captureTipOk => 'Rozumiem';
+
+  @override
+  String get captureTipsSetting =>
+      'Pokazuj wskazówki dotyczące fotografowania paragonu';
+
+  @override
+  String get receiptReadingProgress => 'Odczytywanie paragonu…';
+
+  @override
+  String get receiptReadInBackground => 'Kontynuuj w tle';
+
+  @override
+  String get receiptReadDoneTitle => 'Paragon odczytany';
+
+  @override
+  String get receiptReadDoneBody => 'Dotknij, aby sprawdzić i zapisać.';
+
+  @override
+  String get receiptReadMoreTitle => 'Sfotografuj resztę paragonu';
+
+  @override
+  String get receiptReadFailedTitle => 'Nie udało się odczytać paragonu';
+
+  @override
+  String get listReceiptsSection => 'Paragony';
+
+  @override
+  String get receiptStateComplete => 'Ukończony';
+
+  @override
+  String get receiptStateIncomplete => 'Niekompletny';
+
+  @override
+  String get receiptStateFailed => 'Niepowodzenie';
+
+  @override
+  String get receiptStoreUnknown => 'Nie odczytano sklepu';
+
+  @override
+  String get receiptDeleteAction => 'Usuń paragon';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Usunąć ten paragon i dodane przez niego produkty? Później możesz zaimportować go ponownie.';
+
+  @override
+  String get receiptDeleted => 'Paragon usunięty.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Pokaż wszystkie ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Pokaż mniej';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data paragonu: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Według zakupów';
+
+  @override
+  String get historyViewStore => 'Według sklepu';
+
+  @override
+  String get historyViewProduct => 'Według produktu';
+
+  @override
+  String get historyShareAll => 'Udostępnij wszystko';
+
+  @override
+  String get historyUnknownStore => 'Nieznany sklep';
+
+  @override
+  String get historyDailySpending => 'Wydatki dzienne';
+
+  @override
+  String get historyResetPeriod => 'Wróć do tego tygodnia';
+
+  @override
+  String get tourSkip => 'Pomiń';
+
+  @override
+  String get tourNewListBody =>
+      'Utwórz listę zakupów i dodaj to, co planujesz kupić.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Już po zakupach? Zamień paragon w listę z cenami.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Zacznij od góry paragonu: najpierw uchwyć sklep i datę, potem kontynuuj resztą pozycji.';
+
+  @override
+  String get tourTabsBody =>
+      'Przełączaj się między listami aktywnymi, ukończonymi i zarchiwizowanymi. Przycisk na końcu zmienia kolejność.';
+
+  @override
+  String get tourDiscoverBody => 'Zobacz inne aplikacje tego samego twórcy.';
+
+  @override
+  String get tourHelpBody =>
+      'Dotknij tutaj, aby ponownie obejrzeć przewodnik. Otwórz listę, aby zobaczyć objaśnienie sum i produktów.';
+
+  @override
+  String get tourTotalsBody =>
+      'Sumy planowana, rzeczywista i różnica aktualizują się podczas zakupów.';
+
+  @override
+  String get tourItemsBody =>
+      'Twoje produkty. Zmieniaj tu ich kolejność lub je wyszukuj.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Wykorzystano $percent% limitu';
+  }
 }

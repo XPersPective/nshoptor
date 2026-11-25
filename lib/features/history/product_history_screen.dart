@@ -120,7 +120,7 @@ class ProductHistoryScreen extends StatelessWidget {
                       '${ml.formatMediumDate(r.at.toLocal())} · ${paid(r.paidMinor)}',
                     ),
                     subtitle: Text(
-                      '${r.quantity.toDbString()} ${unitDisplayNameFromDb(r.unitCode, l10n)}\n'
+                      '${formatQuantityNumber(r.quantity, locale: formatLocaleCode(context))} ${unitDisplayNameFromDb(r.unitCode, l10n)}\n'
                       '${l10n.compareEstimated}: ${money(r.plannedUnitPrice)}'
                       ' · ${l10n.compareActual}: ${money(r.actualUnitPrice)}'
                       ' / ${unitDisplayNameFromDb(r.unitCode, l10n)}',

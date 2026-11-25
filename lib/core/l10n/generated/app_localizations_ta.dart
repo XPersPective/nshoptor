@@ -520,7 +520,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'உங்கள் பட்டியல்கள், விலைகள், ரசீதுகள் மற்றும் படங்கள் உங்கள் சாதனத்தில் இருக்கும். படங்கள் மற்றும் குரல் அதை விட்டு வெளியேறாது. AI உதவி இயக்கப்பட்டிருக்கும்போது, செயலாக்கத்திற்காக உரை (எடுத்துக்காட்டாக ரசீது வரிகள் அல்லது நீங்கள் சொன்னது) மட்டும் எங்கள் சேவையகத்திற்கு அனுப்பப்படும் மற்றும் சேமிக்கப்படாது.';
+      'உங்கள் பட்டியல்கள், விலைகள், ரசீதுகள் மற்றும் படங்கள் உங்கள் சாதனத்திலேயே சேமிக்கப்படுகின்றன. குரல் ஒருபோதும் சாதனத்தை விட்டு வெளியேறாது. AI உதவி இயக்கத்தில் இருக்கும்போது, ரசீதுகள் மற்றும் விலை லேபிள்களின் படங்கள் (அளவு குறைக்கப்பட்டவை) மற்றும் சொல்லி எழுதவைத்த பொருட்கள் போன்ற உரை படிப்பதற்காக மட்டுமே எங்கள் சேவையகத்திற்கு அனுப்பப்படும்; அவை உடனடியாகச் செயலாக்கப்படும், ஒருபோதும் சேமிக்கப்படாது.';
 
   @override
   String get aboutSection => 'பற்றி';
@@ -734,7 +734,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'விளம்பரங்கள் இல்லை · பின்புல ஏற்றுமதி மற்றும் இறக்குமதி · மாதாந்திர';
+      'விளம்பரங்கள் இல்லை · பின்புல ஏற்றுமதி மற்றும் இறக்குமதி · ஆண்டு';
 
   @override
   String get proBenefitNoAds => 'விளம்பரங்களற்ற அனுபவம்';
@@ -766,8 +766,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get formatLocaleLabel => 'எண் மற்றும் நாணய வடிவம்';
 
   @override
-  String get formatLocaleSystem =>
-      'சாதன வடிவம் (லத்தின் எண்கள்; மற்றபடி ஆங்கிலம்)';
+  String get formatLocaleSystem => 'சாதன வடிவம்';
 
   @override
   String get formatLocaleTr => 'துருக்கிய (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'ரிசீட்டுகளை பொருத்துகிறது, விலை லேபிள்களை படிக்கிறது மற்றும் வாக்கியங்களை பட்டியலாக மாற்றுகிறது. புகைப்படங்கள் மற்றும் குரல் ஆகியவை உங்கள் சாதனத்தில் இருக்கும்; எழுத்து மட்டும் செயலாக்கப்படும்.';
+      'படங்களிலிருந்து ரசீதுகளையும் விலை லேபிள்களையும் படிக்கிறது, ரசீதுகளைப் பொருத்துகிறது, வாக்கியங்களைப் பட்டியல்களாக மாற்றுகிறது. படங்கள் படிப்பதற்காக மட்டுமே அனுப்பப்படும், ஒருபோதும் சேமிக்கப்படாது.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1133,6 +1132,15 @@ class AppLocalizationsTa extends AppLocalizations {
   String get csvExportAction => 'CSV ஏற்றுமதி';
 
   @override
+  String get reportSharePdf => 'PDF ஆகப் பகிர்';
+
+  @override
+  String get reportShareCsv => 'CSV ஆகப் பகிர்';
+
+  @override
+  String get reportPrintAction => 'அச்சிடு';
+
+  @override
   String get backupSizeWarning =>
       'JSON-ல் பதிவுகள் உள்ளன, படக் கோப்புகள் அல்ல. இறக்குமதி வரம்பு: 16 MB.';
 
@@ -1413,4 +1421,173 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get reportZoom => 'பெரிதாக்கு';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days நாட்கள் மீதம்',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours மணிநேரம் மீதம்',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'உங்கள் Pro சோதனைக் காலம் முடிந்தது';
+
+  @override
+  String get planTrialEndedBody =>
+      'பட்டியல்கள், கைமுறை உள்ளீடு மற்றும் சாதனத்திலுள்ள குரல் அம்சத்தைத் தொடர்ந்து இலவசமாகப் பயன்படுத்தலாம். Free திட்டத்தில் ஒவ்வொரு காலண்டர் மாதமும் 10 AI கோரிக்கைகள் உள்ளன. மாதத்திற்கு 100 AI கோரிக்கைகள், விளம்பரமில்லா பயன்பாடு மற்றும் காப்புப்பிரதிகளுக்கு ஆண்டு Pro-ஐத் தேர்ந்தெடுக்கவும். உங்கள் தற்போதைய தரவு உங்களிடமே இருக்கும்.';
+
+  @override
+  String get planContinueFree => 'Free-இல் தொடரவும்';
+
+  @override
+  String get supportIdLabel => 'ஆதரவு ID';
+
+  @override
+  String get supportEmailLabel => 'மின்னஞ்சல் ஆதரவு';
+
+  @override
+  String get captureTipFirst =>
+      'மிக மேலிருந்து தொடங்குங்கள்: கடையின் பெயரும் தேதியும் தெரிய வேண்டும். முடிந்தவரை பல பொருட்களைச் சேர்க்கவும்; மீதம் அடுத்த படத்தில் இருக்கட்டும்.';
+
+  @override
+  String get captureTipContinue =>
+      'அதே ரசீது: முந்தைய படத்தின் கடைசிப் பொருளைச் சேர்க்கவும்.';
+
+  @override
+  String get captureTipNeverShow => 'மீண்டும் காட்டாதே';
+
+  @override
+  String get captureTipOk => 'புரிந்தது';
+
+  @override
+  String get captureTipsSetting => 'ரசீது எடுப்பதற்கான குறிப்புகளைக் காட்டு';
+
+  @override
+  String get receiptReadingProgress => 'ரசீது படிக்கப்படுகிறது…';
+
+  @override
+  String get receiptReadInBackground => 'பின்னணியில் தொடரவும்';
+
+  @override
+  String get receiptReadDoneTitle => 'ரசீது படிக்கப்பட்டது';
+
+  @override
+  String get receiptReadDoneBody => 'சரிபார்த்துச் சேமிக்க தட்டவும்.';
+
+  @override
+  String get receiptReadMoreTitle => 'ரசீதின் மீதமுள்ள பகுதியைப் படமெடுக்கவும்';
+
+  @override
+  String get receiptReadFailedTitle => 'ரசீதைப் படிக்க முடியவில்லை';
+
+  @override
+  String get listReceiptsSection => 'ரசீதுகள்';
+
+  @override
+  String get receiptStateComplete => 'முடிந்தது';
+
+  @override
+  String get receiptStateIncomplete => 'முழுமையற்றது';
+
+  @override
+  String get receiptStateFailed => 'தோல்வி';
+
+  @override
+  String get receiptStoreUnknown => 'கடை படிக்கப்படவில்லை';
+
+  @override
+  String get receiptDeleteAction => 'ரசீதை நீக்கு';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'இந்த ரசீதையும் அது சேர்த்த பொருட்களையும் நீக்கவா? பின்னர் மீண்டும் இறக்குமதி செய்யலாம்.';
+
+  @override
+  String get receiptDeleted => 'ரசீது நீக்கப்பட்டது.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'அனைத்தையும் காட்டு ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'குறைவாகக் காட்டு';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ரசீது தேதி: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'ஷாப்பிங் வாரியாக';
+
+  @override
+  String get historyViewStore => 'கடை வாரியாக';
+
+  @override
+  String get historyViewProduct => 'பொருள் வாரியாக';
+
+  @override
+  String get historyShareAll => 'அனைத்தையும் பகிர்';
+
+  @override
+  String get historyUnknownStore => 'தெரியாத கடை';
+
+  @override
+  String get historyDailySpending => 'தினசரி செலவு';
+
+  @override
+  String get historyResetPeriod => 'இந்த வாரத்திற்குத் திரும்பு';
+
+  @override
+  String get tourSkip => 'தவிர்';
+
+  @override
+  String get tourNewListBody =>
+      'ஒரு ஷாப்பிங் பட்டியலைத் தொடங்கி வாங்க வேண்டியவற்றைச் சேர்க்கவும்.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ஏற்கனவே வாங்கிவிட்டீர்களா? ரசீதை அதன் விலைகளுடன் பட்டியலாக மாற்றுங்கள்.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ரசீதின் மேலிருந்து தொடங்குங்கள்: முதலில் கடை மற்றும் தேதி, பிறகு மீதமுள்ள வரிகளுடன் தொடருங்கள்.';
+
+  @override
+  String get tourTabsBody =>
+      'செயலில் உள்ள, முடிந்த மற்றும் காப்பகப் பட்டியல்களுக்கு இடையே மாறுங்கள். இறுதியில் உள்ள பொத்தான் வரிசையை மாற்றும்.';
+
+  @override
+  String get tourDiscoverBody => 'அதே டெவலப்பரின் மேலும் ஆப்ஸைப் பாருங்கள்.';
+
+  @override
+  String get tourHelpBody =>
+      'இந்த வழிகாட்டியை மீண்டும் பார்க்க இங்கே தட்டவும். மொத்தங்கள் மற்றும் பொருட்களின் விளக்கத்திற்கு ஒரு பட்டியலைத் திறக்கவும்.';
+
+  @override
+  String get tourTotalsBody =>
+      'திட்டமிட்ட, உண்மையான மொத்தம் மற்றும் வேறுபாடு வாங்கும்போது புதுப்பிக்கப்படும்.';
+
+  @override
+  String get tourItemsBody =>
+      'உங்கள் பொருட்கள். இங்கே அவற்றின் வரிசையை மாற்றவும் அல்லது தேடவும்.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'வரம்பில் $percent% பயன்படுத்தப்பட்டது';
+  }
 }

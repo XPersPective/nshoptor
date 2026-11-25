@@ -520,7 +520,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Les teves llistes, preus, rebuts i fotos es queden al teu dispositiu. Les fotos i la veu mai el deixen. Quan l\'ajuda IA està activada, només s\'envia text (per exemple, les línies del rebut o el que dictis) al nostre servidor per ser processat i no es desa.';
+      'Les teves llistes, preus, rebuts i fotos es desen al teu dispositiu. La veu no en surt mai. Quan l\'ajuda d\'IA està activada, les fotos de rebuts i d\'etiquetes de preu (reduïdes de mida) i el text, com els articles dictats, s\'envien al nostre servidor només per ser llegits; es processen immediatament i no s\'emmagatzemen mai.';
 
   @override
   String get aboutSection => 'Quant a';
@@ -733,7 +733,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Sense anuncis · Còpia de seguretat, exportació i importació · Mensual';
+      'Sense anuncis · Còpia de seguretat, exportació i importació · Anual';
 
   @override
   String get proBenefitNoAds => 'Experiència sense anuncis';
@@ -765,8 +765,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get formatLocaleLabel => 'Format de nombre i moneda';
 
   @override
-  String get formatLocaleSystem =>
-      'Format del dispositiu (xifres llatines; altrament, anglès)';
+  String get formatLocaleSystem => 'Format del dispositiu';
 
   @override
   String get formatLocaleTr => 'Turc (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Concilia rebuts, llegeix etiquetes de preu i converteix frases en llistes. Les fotos i la veu es queden al teu dispositiu; només es processa el text.';
+      'Llegeix rebuts i etiquetes de preu a partir de fotos, relaciona els rebuts i converteix frases en llistes. Les fotos s\'envien només per ser llegides i no s\'emmagatzemen mai.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1130,6 +1129,15 @@ class AppLocalizationsCa extends AppLocalizations {
   String get csvExportAction => 'Exportar CSV';
 
   @override
+  String get reportSharePdf => 'Comparteix en PDF';
+
+  @override
+  String get reportShareCsv => 'Comparteix en CSV';
+
+  @override
+  String get reportPrintAction => 'Imprimeix';
+
+  @override
   String get backupSizeWarning =>
       'El JSON inclou registres, no fitxers d\'imatge. Límit d\'importació: 16 MB.';
 
@@ -1409,4 +1417,176 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get reportZoom => 'Amplia';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dies restants',
+      one: '$days dia restant',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hores restants',
+      one: '$hours hora restant',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'La prova de Pro s’ha acabat';
+
+  @override
+  String get planTrialEndedBody =>
+      'Pots continuar utilitzant llistes, entrada manual i veu al dispositiu de manera gratuïta. El pla gratuït inclou 10 sol·licituds d’IA per mes natural. Tria Pro anual per tenir 100 sol·licituds d’IA al mes, sense anuncis i amb còpies de seguretat. Les teves dades continuen sent teves.';
+
+  @override
+  String get planContinueFree => 'Continua amb el pla gratuït';
+
+  @override
+  String get supportIdLabel => 'ID de suport';
+
+  @override
+  String get supportEmailLabel => 'Suport per correu electrònic';
+
+  @override
+  String get captureTipFirst =>
+      'Comença pel capdamunt: s’han de veure el nom de la botiga i la data. Inclou tants articles com puguis; la resta anirà a la foto següent.';
+
+  @override
+  String get captureTipContinue =>
+      'Mateix rebut: inclou l’últim article de la foto anterior.';
+
+  @override
+  String get captureTipNeverShow => 'No ho tornis a mostrar';
+
+  @override
+  String get captureTipOk => 'Entesos';
+
+  @override
+  String get captureTipsSetting =>
+      'Mostra els consells per fotografiar el rebut';
+
+  @override
+  String get receiptReadingProgress => 'S’està llegint el rebut…';
+
+  @override
+  String get receiptReadInBackground => 'Continua en segon pla';
+
+  @override
+  String get receiptReadDoneTitle => 'Rebut llegit';
+
+  @override
+  String get receiptReadDoneBody => 'Toca per revisar-lo i desar-lo.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografia la resta del rebut';
+
+  @override
+  String get receiptReadFailedTitle => 'No s’ha pogut llegir el rebut';
+
+  @override
+  String get listReceiptsSection => 'Tiquets';
+
+  @override
+  String get receiptStateComplete => 'Complet';
+
+  @override
+  String get receiptStateIncomplete => 'Incomplet';
+
+  @override
+  String get receiptStateFailed => 'Error';
+
+  @override
+  String get receiptStoreUnknown => 'No s\'ha llegit la botiga';
+
+  @override
+  String get receiptDeleteAction => 'Suprimeix el tiquet';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Vols suprimir aquest tiquet i els articles que ha afegit? Més endavant el pots tornar a importar.';
+
+  @override
+  String get receiptDeleted => 'Tiquet suprimit.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Mostra-ho tot ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Mostra\'n menys';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Data del tiquet: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Per compra';
+
+  @override
+  String get historyViewStore => 'Per botiga';
+
+  @override
+  String get historyViewProduct => 'Per producte';
+
+  @override
+  String get historyShareAll => 'Comparteix-ho tot';
+
+  @override
+  String get historyUnknownStore => 'Botiga desconeguda';
+
+  @override
+  String get historyDailySpending => 'Despesa diària';
+
+  @override
+  String get historyResetPeriod => 'Torna a aquesta setmana';
+
+  @override
+  String get tourSkip => 'Omet';
+
+  @override
+  String get tourNewListBody =>
+      'Crea una llista de la compra i afegeix el que vols comprar.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Ja has comprat? Converteix un tiquet en una llista amb els preus.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Comença per la part de dalt del tiquet: primer la botiga i la data, després continua amb la resta de línies.';
+
+  @override
+  String get tourTabsBody =>
+      'Canvia entre llistes actives, completades i arxivades. El botó del final canvia l\'ordre.';
+
+  @override
+  String get tourDiscoverBody => 'Mira més apps del mateix desenvolupador.';
+
+  @override
+  String get tourHelpBody =>
+      'Toca aquí per tornar a veure aquesta guia. Obre una llista per veure explicats els totals i els productes.';
+
+  @override
+  String get tourTotalsBody =>
+      'Els totals previst, real i la diferència s\'actualitzen mentre compres.';
+
+  @override
+  String get tourItemsBody =>
+      'Els teus productes. Canvia\'n l\'ordre o cerca\'ls aquí.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'S\'ha utilitzat el $percent% del límit';
+  }
 }

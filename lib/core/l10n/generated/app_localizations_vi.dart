@@ -520,7 +520,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Danh sách, giá cả, biên lai và ảnh của bạn đều lưu trên thiết bị. Ảnh và giọng nói không bao giờ rời khỏi thiết bị của bạn. Khi tính năng AI trợ giúp được bật, chỉ văn bản (ví dụ: dòng từ biên lai hoặc nội dung bạn nói) được gửi đến máy chủ của chúng tôi để xử lý và không được lưu trữ.';
+      'Danh sách, giá cả, biên lai và ảnh của bạn được lưu trên thiết bị. Giọng nói không bao giờ rời khỏi thiết bị. Khi trợ lý AI bật, ảnh biên lai và nhãn giá (đã giảm kích thước) cùng văn bản như các mục bạn đọc cho ghi chép chỉ được gửi đến máy chủ của chúng tôi để đọc; chúng được xử lý ngay và không bao giờ được lưu trữ.';
 
   @override
   String get aboutSection => 'Giới thiệu';
@@ -732,7 +732,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Không quảng cáo · Sao lưu, xuất và nhập · Hàng tháng';
+      'Không quảng cáo · Sao lưu, xuất và nhập · Hàng năm';
 
   @override
   String get proBenefitNoAds => 'Trải nghiệm không quảng cáo';
@@ -764,8 +764,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get formatLocaleLabel => 'Định dạng số & tiền tệ';
 
   @override
-  String get formatLocaleSystem =>
-      'Định dạng thiết bị (chữ số Latin; nếu không thì tiếng Anh)';
+  String get formatLocaleSystem => 'Định dạng thiết bị';
 
   @override
   String get formatLocaleTr => 'Tiếng Thổ Nhĩ Kỳ (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'So khớp hóa đơn, đọc nhãn giá và chuyển câu thành danh sách. Ảnh và giọng nói được lưu trên thiết bị của bạn; chỉ có văn bản được xử lý.';
+      'Đọc biên lai và nhãn giá từ ảnh, đối chiếu biên lai và biến câu nói thành danh sách. Ảnh chỉ được gửi để đọc và không bao giờ được lưu trữ.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1127,6 +1126,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get csvExportAction => 'Xuất CSV';
 
   @override
+  String get reportSharePdf => 'Chia sẻ dạng PDF';
+
+  @override
+  String get reportShareCsv => 'Chia sẻ dạng CSV';
+
+  @override
+  String get reportPrintAction => 'In';
+
+  @override
   String get backupSizeWarning =>
       'JSON bao gồm các bản ghi, không phải tệp ảnh. Giới hạn nhập: 16 MB.';
 
@@ -1399,4 +1407,173 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get reportZoom => 'Phóng to';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Còn $days ngày',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Còn $hours giờ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Thời gian dùng thử Pro đã kết thúc';
+
+  @override
+  String get planTrialEndedBody =>
+      'Bạn vẫn có thể dùng danh sách, nhập thủ công và giọng nói trên thiết bị miễn phí. Gói Miễn phí có 10 yêu cầu AI mỗi tháng dương lịch. Chọn Pro hằng năm để có 100 yêu cầu AI mỗi tháng, không quảng cáo và có bản sao lưu. Dữ liệu hiện có vẫn thuộc về bạn.';
+
+  @override
+  String get planContinueFree => 'Tiếp tục miễn phí';
+
+  @override
+  String get supportIdLabel => 'ID hỗ trợ';
+
+  @override
+  String get supportEmailLabel => 'Hỗ trợ qua email';
+
+  @override
+  String get captureTipFirst =>
+      'Bắt đầu từ trên cùng: phải thấy rõ tên cửa hàng và ngày. Chụp càng nhiều mặt hàng càng tốt, phần còn lại để ở ảnh tiếp theo.';
+
+  @override
+  String get captureTipContinue =>
+      'Cùng một hóa đơn: bao gồm mặt hàng cuối cùng của ảnh trước.';
+
+  @override
+  String get captureTipNeverShow => 'Không hiện lại';
+
+  @override
+  String get captureTipOk => 'Đã hiểu';
+
+  @override
+  String get captureTipsSetting => 'Hiện mẹo chụp hóa đơn';
+
+  @override
+  String get receiptReadingProgress => 'Đang đọc hóa đơn…';
+
+  @override
+  String get receiptReadInBackground => 'Tiếp tục trong nền';
+
+  @override
+  String get receiptReadDoneTitle => 'Đã đọc hóa đơn';
+
+  @override
+  String get receiptReadDoneBody => 'Nhấn để xem lại và lưu.';
+
+  @override
+  String get receiptReadMoreTitle => 'Chụp phần còn lại của hóa đơn';
+
+  @override
+  String get receiptReadFailedTitle => 'Không thể đọc hóa đơn';
+
+  @override
+  String get listReceiptsSection => 'Hóa đơn';
+
+  @override
+  String get receiptStateComplete => 'Hoàn tất';
+
+  @override
+  String get receiptStateIncomplete => 'Chưa hoàn tất';
+
+  @override
+  String get receiptStateFailed => 'Thất bại';
+
+  @override
+  String get receiptStoreUnknown => 'Không đọc được cửa hàng';
+
+  @override
+  String get receiptDeleteAction => 'Xóa hóa đơn';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Xóa hóa đơn này và các mặt hàng nó đã thêm? Bạn có thể nhập lại sau.';
+
+  @override
+  String get receiptDeleted => 'Đã xóa hóa đơn.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Hiện tất cả ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Thu gọn';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Ngày hóa đơn: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Theo lần mua';
+
+  @override
+  String get historyViewStore => 'Theo cửa hàng';
+
+  @override
+  String get historyViewProduct => 'Theo sản phẩm';
+
+  @override
+  String get historyShareAll => 'Chia sẻ tất cả';
+
+  @override
+  String get historyUnknownStore => 'Cửa hàng không xác định';
+
+  @override
+  String get historyDailySpending => 'Chi tiêu hằng ngày';
+
+  @override
+  String get historyResetPeriod => 'Quay lại tuần này';
+
+  @override
+  String get tourSkip => 'Bỏ qua';
+
+  @override
+  String get tourNewListBody =>
+      'Tạo danh sách mua sắm và thêm những gì bạn định mua.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Đã mua xong? Biến hóa đơn thành danh sách kèm giá.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Bắt đầu từ đầu hóa đơn: chụp cửa hàng và ngày trước, rồi tiếp tục với các dòng còn lại.';
+
+  @override
+  String get tourTabsBody =>
+      'Chuyển giữa danh sách đang dùng, đã xong và lưu trữ. Nút ở cuối đổi thứ tự.';
+
+  @override
+  String get tourDiscoverBody => 'Xem thêm ứng dụng của cùng nhà phát triển.';
+
+  @override
+  String get tourHelpBody =>
+      'Chạm vào đây để xem lại hướng dẫn. Mở một danh sách để xem giải thích về tổng và mặt hàng.';
+
+  @override
+  String get tourTotalsBody =>
+      'Tổng dự kiến, thực tế và chênh lệch được cập nhật khi bạn mua sắm.';
+
+  @override
+  String get tourItemsBody =>
+      'Các mặt hàng của bạn. Đổi thứ tự hoặc tìm kiếm tại đây.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Đã dùng $percent% hạn mức';
+  }
 }

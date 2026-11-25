@@ -6,6 +6,7 @@ import '../../ai/ai_client.dart';
 import '../ocr_text_source.dart';
 import '../ocr_currency.dart';
 import 'ai_label_reader.dart';
+import 'mlkit_text_source.dart';
 import '../image_capture_service.dart';
 import '../image_capture_sheet.dart';
 import 'price_candidate_sheet.dart';
@@ -23,17 +24,43 @@ Future<PriceCandidate?> readShelfCandidate(
 }) async {
   final l10n = AppLocalizations.of(context);
   try {
+    final client = AiService.client;
+    final aiOn = client != null && client.enabled;
     final capture = await captureImageText(
       context,
       title: l10n.scanPriceLabel,
       pickImage: pickImage,
-      ocrSource: ocrSource,
+      // The image model reads any script; device OCR runs only when it is
+      // needed as a fallback (it is slow on weak devices).
+      ocrSource: aiOn ? const _NoOcr() : ocrSource,
+      requireText: !aiOn,
     );
     if (capture is! CapturedImage) return null;
-    final scan = capture.scan;
+    if (!context.mounted) return null;
+    final lang = Localizations.localeOf(context).languageCode;
+    final reader = client == null
+        ? null
+        : AiLabelReader(client, localeCode: lang);
+    var fromAi = await reader?.readImage(
+      capture.path,
+      currencyCode: currencyCode,
+    );
+    var scan = capture.scan;
+    if (aiOn && (fromAi == null || fromAi.isEmpty)) {
+      final owned = ocrSource == null ? MlKitTextSource() : null;
+      try {
+        scan = await (ocrSource ?? owned!).scan(capture.path);
+      } catch (_) {
+        scan = const OcrScanResult(lines: []);
+      } finally {
+        try {
+          await owned?.dispose();
+        } catch (_) {}
+      }
+    }
     if (!context.mounted) return null;
     final evidence = detectOcrCurrency(
-      scan.lines.map((l) => l.text).join('\n'),
+      scan.lines.map((l) => l.text).join(String.fromCharCode(10)),
       fallback: currencyCode,
     );
     if (evidence.conflictsWith(currencyCode)) {
@@ -51,18 +78,24 @@ Future<PriceCandidate?> readShelfCandidate(
     }
     final local = ShelfPriceExtractor(defaultCurrency: currencyCode)
         .extract(scan.lines);
-    final client = AiService.client;
-    final lang = Localizations.localeOf(context).languageCode;
     final ocrText = scan.lines.map((l) => l.text).join(String.fromCharCode(10));
-    final reader = client == null
-        ? null
-        : AiLabelReader(client, localeCode: lang);
-    final locallyClear =
-        local.isNotEmpty && local.every((c) => c.confidence == 'high');
-    final fromAi = locallyClear
-        ? const <PriceCandidate>[]
-        : await reader?.read(ocrText, currencyCode: currencyCode) ??
-              const <PriceCandidate>[];
+    if (fromAi == null && reader != null && ocrText.trim().isNotEmpty) {
+      fromAi = await reader.read(ocrText, currencyCode: currencyCode);
+    }
+    fromAi ??= const <PriceCandidate>[];
+    if (fromAi.isEmpty && local.isEmpty) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l10n.imageRecognitionFailed),
+              showCloseIcon: true,
+            ),
+          );
+      }
+      return null;
+    }
     if (!context.mounted) return null;
     final problem = reader?.lastResult;
     final notice = switch (problem) {
@@ -82,19 +115,24 @@ Future<PriceCandidate?> readShelfCandidate(
           ),
         );
     }
+    final aiCandidates = fromAi;
     final candidates = [
-      ...local,
-      ...fromAi.where(
-        (c) => !local.any(
-          (a) =>
+      ...aiCandidates,
+      ...local.where(
+        (a) => !aiCandidates.any(
+          (c) =>
               a.value == c.value &&
-              a.unitCode == c.unitCode &&
               a.isUnitPrice == c.isUnitPrice &&
-              a.priceQuantity == c.priceQuantity,
+              (c.unitCode == null || a.unitCode == c.unitCode) &&
+              (c.priceQuantity == null || a.priceQuantity == c.priceQuantity),
         ),
       ),
     ];
-    final picked = await showPriceCandidateSheet(context, candidates);
+    final picked = await showPriceCandidateSheet(
+      context,
+      candidates,
+      imagePath: capture.path,
+    );
     return picked;
   } catch (_) {
     if (context.mounted) {
@@ -122,3 +160,10 @@ Future<String?> readShelfPrice(
   pickImage: pickImage,
   ocrSource: ocrSource,
 ))?.value.toDbString();
+
+final class _NoOcr implements OcrTextSource {
+  const _NoOcr();
+  @override
+  Future<OcrScanResult> scan(String imagePath) async =>
+      const OcrScanResult(lines: []);
+}

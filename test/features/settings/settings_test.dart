@@ -126,13 +126,13 @@ void main() {
       expect(find.byKey(const Key('delete_all_dialog_1')), findsNothing);
       await tester.tap(guide);
       await tester.pumpAndSettle();
-      expect(find.text('1 / 7'), findsOneWidget);
+      expect(find.text('1 / 4'), findsOneWidget);
       await tester.tap(find.byKey(const Key('first_run_guide_close')));
       await tester.pumpAndSettle();
       expect(AppDefaults.guideSeen(), isTrue);
       await tester.tap(guide);
       await tester.pumpAndSettle();
-      expect(find.text('1 / 7'), findsOneWidget);
+      expect(find.text('1 / 4'), findsOneWidget);
       await tester.tap(find.byKey(const Key('first_run_guide_close')));
       await tester.pumpAndSettle();
       Future<void> answer(bool yes) async {
@@ -193,7 +193,7 @@ void main() {
       final store = SettingsStore();
       final repo = SettingsRepository(db, NappSettingsStoreOps(store));
       final controller = AppThemeModeController(store: store)..load();
-      expect(controller.mode, ThemeMode.system);
+      expect(controller.mode, ThemeMode.dark);
 
       repo.setThemeMode('dark');
       controller.load(); // yeniden başlatma davranışı
@@ -505,6 +505,54 @@ void main() {
     subs.dispose();
   });
 
+
+  testWidgets('spending limits are editable from Settings and reach the spending checks', (tester) async {
+    AppDefaults.attach(SettingsStore());
+    await tester.binding.setSurfaceSize(const Size(800, 5000));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+      home: SettingsScreen(repository: settings, languageController: LanguageController(store: SettingsStore())..load()),
+    ));
+    await tester.pumpAndSettle();
+    final currency = AppDefaults.defaultCurrency();
+    for (final kind in ['week', 'month', 'shopping']) {
+      await tester.tap(find.byKey(Key('settings_limit_$kind')));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byKey(const Key('limit_field')), '1500');
+      await tester.tap(find.byKey(const Key('limit_save')));
+      await tester.pumpAndSettle();
+    }
+    final now = DateTime.now();
+    expect(AppDefaults.weeklyLimitMinor(currencyCode: currency, week: now), 150000);
+    expect(AppDefaults.monthlyLimitMinor(currencyCode: currency, month: DateTime(now.year, now.month)), 150000);
+    expect(AppDefaults.shoppingLimitMinor(currencyCode: currency), 150000);
+    expect(find.textContaining(RegExp(r'1\D?500')), findsNWidgets(3));
+
+    // Capture tips can be turned back on from Settings (F38).
+    AppDefaults.setCaptureTipsEnabled(false);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpWidget(MaterialApp(locale: const Locale('tr'),
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [AppLocalizations.delegate, GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
+      home: SettingsScreen(repository: settings, languageController: LanguageController(store: SettingsStore())..load()),
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('settings_capture_tips')));
+    await tester.pumpAndSettle();
+    expect(AppDefaults.captureTipsEnabled(), isTrue);
+
+    // Removing a limit clears it.
+    await tester.tap(find.byKey(const Key('settings_limit_shopping')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(AppLocalizations.of(tester.element(find.byType(AlertDialog))).monthlyLimitRemove));
+    await tester.pumpAndSettle();
+    expect(AppDefaults.shoppingLimitMinor(currencyCode: currency), isNull);
+    expect(tester.takeException(), isNull);
+  });
 }
 
 /// Bellekte çalışan ayar deposu (test için).

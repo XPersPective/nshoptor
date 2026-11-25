@@ -521,7 +521,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Vaše seznamy, ceny, účtenky a fotografie zůstávají ve vašem zařízení. Fotografie a hlas nikdy neopustí vaše zařízení. Když je AI nápověda zapnutá, na náš server se odesílá pouze text (například řádky z účtenky nebo to, co jste diktovali) k zpracování a není ukládán.';
+      'Vaše seznamy, ceny, účtenky a fotografie jsou uloženy ve vašem zařízení. Hlas ho nikdy neopustí. Když je zapnutá pomoc AI, fotografie účtenek a cenovek (zmenšené) a text, například nadiktované položky, se na náš server odesílají jen za účelem přečtení; zpracují se okamžitě a nikdy se neukládají.';
 
   @override
   String get aboutSection => 'O aplikaci';
@@ -733,7 +733,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Žádné reklamy · Záloha, export a import · Měsíční';
+      'Žádné reklamy · Záloha, export a import · Roční';
 
   @override
   String get proBenefitNoAds => 'Provoz bez reklam';
@@ -765,8 +765,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get formatLocaleLabel => 'Formát čísel a měny';
 
   @override
-  String get formatLocaleSystem =>
-      'Formát systému zařízení (latinské číslice; jinak anglicky)';
+  String get formatLocaleSystem => 'Formát systému zařízení';
 
   @override
   String get formatLocaleTr => 'Turečtina (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Párování účtenek, čtení cenovek a převět vět na seznamy. Fotky a hlas zůstávají ve vašem zařízení; zpracovává se pouze text.';
+      'Čte účtenky a cenovky z fotografií, páruje účtenky a mění věty na seznamy. Fotografie se odesílají jen k přečtení a nikdy se neukládají.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1125,6 +1124,15 @@ class AppLocalizationsCs extends AppLocalizations {
   String get csvExportAction => 'Exportovat CSV';
 
   @override
+  String get reportSharePdf => 'Sdílet jako PDF';
+
+  @override
+  String get reportShareCsv => 'Sdílet jako CSV';
+
+  @override
+  String get reportPrintAction => 'Tisk';
+
+  @override
   String get backupSizeWarning =>
       'JSON obsahuje záznamy, nikoliv soubory fotografií. Limit importu: 16 MB.';
 
@@ -1401,4 +1409,177 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get reportZoom => 'Přiblížit';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dní zbývá',
+      few: '$days dny zbývají',
+      one: '$days den zbývá',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hodin zbývá',
+      few: '$hours hodiny zbývají',
+      one: '$hours hodina zbývá',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Zkušební období Pro skončilo';
+
+  @override
+  String get planTrialEndedBody =>
+      'Seznamy, ruční zadávání i hlasové funkce v zařízení můžete dál používat zdarma. Bezplatný tarif zahrnuje 10 požadavků na AI za kalendářní měsíc. Zvolte roční Pro pro 100 požadavků na AI měsíčně, bez reklam a se zálohami. Vaše stávající data vám zůstanou.';
+
+  @override
+  String get planContinueFree => 'Pokračovat zdarma';
+
+  @override
+  String get supportIdLabel => 'ID podpory';
+
+  @override
+  String get supportEmailLabel => 'Podpora e-mailem';
+
+  @override
+  String get captureTipFirst =>
+      'Začněte úplně nahoře: musí být vidět název obchodu a datum. Vyfoťte co nejvíc položek, zbytek bude na další fotce.';
+
+  @override
+  String get captureTipContinue =>
+      'Stejná účtenka: zahrňte poslední položku z předchozí fotky.';
+
+  @override
+  String get captureTipNeverShow => 'Již nezobrazovat';
+
+  @override
+  String get captureTipOk => 'Rozumím';
+
+  @override
+  String get captureTipsSetting => 'Zobrazovat tipy k focení účtenky';
+
+  @override
+  String get receiptReadingProgress => 'Čtení účtenky…';
+
+  @override
+  String get receiptReadInBackground => 'Pokračovat na pozadí';
+
+  @override
+  String get receiptReadDoneTitle => 'Účtenka přečtena';
+
+  @override
+  String get receiptReadDoneBody => 'Klepnutím ji zkontrolujete a uložíte.';
+
+  @override
+  String get receiptReadMoreTitle => 'Vyfoťte zbytek účtenky';
+
+  @override
+  String get receiptReadFailedTitle => 'Účtenku se nepodařilo přečíst';
+
+  @override
+  String get listReceiptsSection => 'Účtenky';
+
+  @override
+  String get receiptStateComplete => 'Dokončeno';
+
+  @override
+  String get receiptStateIncomplete => 'Neúplné';
+
+  @override
+  String get receiptStateFailed => 'Selhalo';
+
+  @override
+  String get receiptStoreUnknown => 'Obchod nebyl přečten';
+
+  @override
+  String get receiptDeleteAction => 'Smazat účtenku';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Smazat tuto účtenku a položky, které přidala? Později ji můžete importovat znovu.';
+
+  @override
+  String get receiptDeleted => 'Účtenka byla smazána.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Zobrazit vše ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Zobrazit méně';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Datum účtenky: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Podle nákupu';
+
+  @override
+  String get historyViewStore => 'Podle obchodu';
+
+  @override
+  String get historyViewProduct => 'Podle produktu';
+
+  @override
+  String get historyShareAll => 'Sdílet vše';
+
+  @override
+  String get historyUnknownStore => 'Neznámý obchod';
+
+  @override
+  String get historyDailySpending => 'Denní útrata';
+
+  @override
+  String get historyResetPeriod => 'Zpět na tento týden';
+
+  @override
+  String get tourSkip => 'Přeskočit';
+
+  @override
+  String get tourNewListBody =>
+      'Založte nákupní seznam a přidejte, co plánujete koupit.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Už máte nakoupeno? Udělejte z účtenky seznam s cenami.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Začněte nahoře na účtence: nejprve zachyťte obchod a datum, pak pokračujte zbylými řádky.';
+
+  @override
+  String get tourTabsBody =>
+      'Přepínejte mezi aktivními, dokončenými a archivovanými seznamy. Tlačítko na konci mění pořadí.';
+
+  @override
+  String get tourDiscoverBody => 'Další aplikace od stejného vývojáře.';
+
+  @override
+  String get tourHelpBody =>
+      'Klepnutím sem si průvodce pustíte znovu. Otevřete seznam a uvidíte vysvětlení součtů a položek.';
+
+  @override
+  String get tourTotalsBody =>
+      'Plánovaný, skutečný součet a rozdíl se při nákupu průběžně aktualizují.';
+
+  @override
+  String get tourItemsBody =>
+      'Vaše položky. Zde měňte jejich pořadí nebo je vyhledejte.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Využito $percent % limitu';
+  }
 }

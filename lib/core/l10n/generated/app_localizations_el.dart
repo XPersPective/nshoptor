@@ -68,7 +68,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get undoButton => 'Αναίρεση';
 
   @override
-  String get searchListHint => 'Αναζήτηση λίستων';
+  String get searchListHint => 'Αναζήτηση λιστών';
 
   @override
   String get currencyLabel => 'Νόμισμα';
@@ -521,7 +521,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Οι λίστες, οι τιμές, οι αποδείξεις και οι φωτογραφίες σου παραμένουν στη συσκευή σου. Οι φωτογραφίες και η φωνή δεν την покиνούν ποτέ. Όταν η βοήθεια AI είναι ενεργή, μόνο κείμενο (για παράδειγμα γραμμές απόδειξης ή όσα dictares) στέλνεται στον server μας για επεξεργασία και δεν αποθηκεύεται.';
+      'Οι λίστες, οι τιμές, οι αποδείξεις και οι φωτογραφίες σου αποθηκεύονται στη συσκευή σου. Η φωνή δεν την εγκαταλείπει ποτέ. Όταν η βοήθεια AI είναι ενεργή, φωτογραφίες αποδείξεων και ετικετών τιμής (σε μειωμένο μέγεθος) και κείμενο, όπως τα είδη που υπαγορεύεις, στέλνονται στον διακομιστή μας μόνο για ανάγνωση· επεξεργάζονται αμέσως και δεν αποθηκεύονται ποτέ.';
 
   @override
   String get aboutSection => 'Σχετικά';
@@ -733,7 +733,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Χωρίς διαφημίσεις · Εξαγωγή και εισαγωγή αντιγράφων ασφαλείας · Μηνιαία';
+      'Χωρίς διαφημίσεις · Εξαγωγή και εισαγωγή αντιγράφων ασφαλείας · Ετήσια';
 
   @override
   String get proBenefitNoAds => 'Εμπειρία χωρίς διαφημίσεις';
@@ -765,8 +765,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get formatLocaleLabel => 'Μορφή αριθμών και νομίσματος';
 
   @override
-  String get formatLocaleSystem =>
-      'Μορφή συσκευής (Λατινικά ψηφία· διαφορετικά Αγγλικά)';
+  String get formatLocaleSystem => 'Μορφή συσκευής';
 
   @override
   String get formatLocaleTr => 'Τουρκικά (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Αντιστοιχίζει αποδείξεις, διαβάζει ετικέτες τιμών και μετατρέπει προτάσεις σε λίστες. Οι φωτογραφίες και η φωνή παραμένουν στη συσκευή σας· επεξεργάζεται μόνο το κείμενο.';
+      'Διαβάζει αποδείξεις και ετικέτες τιμών από φωτογραφίες, ταιριάζει αποδείξεις και μετατρέπει προτάσεις σε λίστες. Οι φωτογραφίες στέλνονται μόνο για ανάγνωση και δεν αποθηκεύονται ποτέ.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1129,6 +1128,15 @@ class AppLocalizationsEl extends AppLocalizations {
   String get csvExportAction => 'Εξαγωγή CSV';
 
   @override
+  String get reportSharePdf => 'Κοινοποίηση ως PDF';
+
+  @override
+  String get reportShareCsv => 'Κοινοποίηση ως CSV';
+
+  @override
+  String get reportPrintAction => 'Εκτύπωση';
+
+  @override
   String get backupSizeWarning =>
       'Το JSON περιλαμβάνει αρχεία καταγραφών, όχι φωτογραφίες. Όριο εισαγωγής: 16 MB.';
 
@@ -1410,4 +1418,176 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get reportZoom => 'Μεγέθυνση';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days ημέρες απομένουν',
+      one: '$days ημέρα απομένει',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ώρες απομένουν',
+      one: '$hours ώρα απομένει',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Η δοκιμή Pro έληξε';
+
+  @override
+  String get planTrialEndedBody =>
+      'Μπορείτε να συνεχίσετε να χρησιμοποιείτε δωρεάν τις λίστες, τη μη αυτόματη καταχώριση και τη φωνητική λειτουργία στη συσκευή. Το δωρεάν πρόγραμμα περιλαμβάνει 10 αιτήματα AI ανά ημερολογιακό μήνα. Επιλέξτε ετήσιο Pro για 100 αιτήματα AI τον μήνα, χωρίς διαφημίσεις και με αντίγραφα ασφαλείας. Τα υπάρχοντα δεδομένα σας παραμένουν δικά σας.';
+
+  @override
+  String get planContinueFree => 'Συνέχεια δωρεάν';
+
+  @override
+  String get supportIdLabel => 'Αναγνωριστικό υποστήριξης';
+
+  @override
+  String get supportEmailLabel => 'Υποστήριξη μέσω email';
+
+  @override
+  String get captureTipFirst =>
+      'Ξεκινήστε από το πάνω μέρος: το όνομα του καταστήματος και η ημερομηνία πρέπει να φαίνονται. Συμπεριλάβετε όσα προϊόντα χωρούν· τα υπόλοιπα πάνε στην επόμενη φωτογραφία.';
+
+  @override
+  String get captureTipContinue =>
+      'Ίδια απόδειξη: συμπεριλάβετε το τελευταίο προϊόν της προηγούμενης φωτογραφίας.';
+
+  @override
+  String get captureTipNeverShow => 'Να μην εμφανιστεί ξανά';
+
+  @override
+  String get captureTipOk => 'Το κατάλαβα';
+
+  @override
+  String get captureTipsSetting => 'Εμφάνιση συμβουλών λήψης απόδειξης';
+
+  @override
+  String get receiptReadingProgress => 'Ανάγνωση απόδειξης…';
+
+  @override
+  String get receiptReadInBackground => 'Συνέχεια στο παρασκήνιο';
+
+  @override
+  String get receiptReadDoneTitle => 'Η απόδειξη διαβάστηκε';
+
+  @override
+  String get receiptReadDoneBody => 'Πατήστε για έλεγχο και αποθήκευση.';
+
+  @override
+  String get receiptReadMoreTitle => 'Φωτογραφίστε το υπόλοιπο της απόδειξης';
+
+  @override
+  String get receiptReadFailedTitle =>
+      'Δεν ήταν δυνατή η ανάγνωση της απόδειξης';
+
+  @override
+  String get listReceiptsSection => 'Αποδείξεις';
+
+  @override
+  String get receiptStateComplete => 'Ολοκληρωμένη';
+
+  @override
+  String get receiptStateIncomplete => 'Ελλιπής';
+
+  @override
+  String get receiptStateFailed => 'Απέτυχε';
+
+  @override
+  String get receiptStoreUnknown => 'Το κατάστημα δεν αναγνώστηκε';
+
+  @override
+  String get receiptDeleteAction => 'Διαγραφή απόδειξης';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Διαγραφή αυτής της απόδειξης και των ειδών που πρόσθεσε; Μπορείτε να την εισαγάγετε ξανά αργότερα.';
+
+  @override
+  String get receiptDeleted => 'Η απόδειξη διαγράφηκε.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Εμφάνιση όλων ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Εμφάνιση λιγότερων';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Ημερομηνία απόδειξης: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Ανά αγορά';
+
+  @override
+  String get historyViewStore => 'Ανά κατάστημα';
+
+  @override
+  String get historyViewProduct => 'Ανά προϊόν';
+
+  @override
+  String get historyShareAll => 'Κοινοποίηση όλων';
+
+  @override
+  String get historyUnknownStore => 'Άγνωστο κατάστημα';
+
+  @override
+  String get historyDailySpending => 'Ημερήσια έξοδα';
+
+  @override
+  String get historyResetPeriod => 'Επιστροφή σε αυτή την εβδομάδα';
+
+  @override
+  String get tourSkip => 'Παράλειψη';
+
+  @override
+  String get tourNewListBody =>
+      'Ξεκινήστε μια λίστα αγορών και προσθέστε ό,τι σκοπεύετε να αγοράσετε.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Ψωνίσατε ήδη; Κάντε την απόδειξη λίστα με τις τιμές της.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Ξεκινήστε από την κορυφή της απόδειξης: πρώτα το κατάστημα και η ημερομηνία, μετά συνεχίστε με τις υπόλοιπες γραμμές.';
+
+  @override
+  String get tourTabsBody =>
+      'Εναλλαγή μεταξύ ενεργών, ολοκληρωμένων και αρχειοθετημένων λιστών. Το κουμπί στο τέλος αλλάζει τη σειρά.';
+
+  @override
+  String get tourDiscoverBody => 'Δείτε άλλες εφαρμογές του ίδιου δημιουργού.';
+
+  @override
+  String get tourHelpBody =>
+      'Πατήστε εδώ για να δείτε ξανά τον οδηγό. Ανοίξτε μια λίστα για εξήγηση των συνόλων και των ειδών.';
+
+  @override
+  String get tourTotalsBody =>
+      'Τα σύνολα προγραμματισμένου, πραγματικού και διαφοράς ενημερώνονται καθώς ψωνίζετε.';
+
+  @override
+  String get tourItemsBody =>
+      'Τα είδη σας. Αλλάξτε τη σειρά τους ή αναζητήστε τα εδώ.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Χρησιμοποιήθηκε το $percent% του ορίου';
+  }
 }

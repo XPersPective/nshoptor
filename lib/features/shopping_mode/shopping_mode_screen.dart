@@ -11,6 +11,7 @@ import '../../core/money/decimal_fixed.dart';
 import '../../core/money/money_parser.dart';
 import '../../core/quantity/unit_code.dart';
 import '../../data/db/app_database.dart';
+import '../onboarding/first_run_guide.dart';
 import '../voice_input/parser/parsed_item_candidate.dart';
 import 'shopping_repository.dart';
 import '../lists/list_detail_screen.dart';
@@ -127,10 +128,8 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
           .replaceFirst(RegExp(r'0+$'), '')
           .replaceFirst(RegExp(r'\.$'), '');
     }
-    return value.replaceAll(
-      '.',
-      MoneySeparators.forLocaleCode(formatLocaleCode(context)).decimal,
-    );
+    return MoneySeparators.forLocaleCode(formatLocaleCode(context))
+        .formatInput(value);
   }
 
   void _switchMode(bool next) {
@@ -169,23 +168,20 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
     super.didChangeDependencies();
     if (!_quantityPrefilled) {
       _quantityPrefilled = true;
-      final decimalSep = MoneySeparators.forLocaleCode(
+      final separators = MoneySeparators.forLocaleCode(
         formatLocaleCode(context),
-      ).decimal;
+      );
       // Planlı miktarda kullanıcıya yerel ayracıyla önerilir (1.5 → 1,5).
       final planned =
           widget.item?.plannedQuantity ??
           widget.initialCandidate?.quantity?.toDbString() ??
           '1';
-      _quantity.text = planned.replaceAll('.', decimalSep);
+      _quantity.text = separators.formatInput(planned);
       final voiced = widget.initialCandidate;
       if (voiced?.unitPrice != null) {
         _unitMode = voiced!.isUnitPrice == true;
         _needsMeaning = voiced.requiresPriceConfirmation;
-        _price.text = voiced.unitPrice!.toDbString().replaceAll(
-          '.',
-          decimalSep,
-        );
+        _price.text = separators.formatInput(voiced.unitPrice!.toDbString());
         if (_unitMode) {
           _price.text = _localAmount(
             PriceInput.total(
@@ -201,7 +197,7 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
       final prev = widget.existing;
       if (prev != null) {
         _unitMode = prev.pricingInputMode != 'lineTotal';
-        _quantity.text = prev.actualQuantity.replaceAll('.', decimalSep);
+        _quantity.text = separators.formatInput(prev.actualQuantity);
         if (_isUnplanned && !_unitMode) {
           _price.text = _localAmount(
             DecimalFixed.fromMinorUnits(
@@ -210,7 +206,7 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
             ),
           );
         } else if (prev.actualUnitPrice != null) {
-          _price.text = prev.actualUnitPrice!.replaceAll('.', decimalSep);
+          _price.text = separators.formatInput(prev.actualUnitPrice!);
         }
         _discount.text = _localAmount(
           DecimalFixed.fromMinorUnits(
@@ -221,7 +217,7 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
       }
       if (widget.initialPrice != null) {
         _unitMode = true;
-        _price.text = widget.initialPrice!.replaceAll('.', decimalSep);
+        _price.text = separators.formatInput(widget.initialPrice!);
       }
     }
   }
@@ -230,10 +226,9 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
   Future<void> _scan() async {
     final value = await widget.onShelfPricePressed!(context);
     if (value == null || !mounted) return;
-    final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context))
-        .decimal;
+    final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context));
     setState(() {
-      _price.text = value.replaceAll('.', sep);
+      _price.text = sep.formatInput(value);
       _unitMode = true;
       _needsMeaning = false;
     });
@@ -361,11 +356,23 @@ class _PurchaseEntrySheetState extends State<PurchaseEntrySheet> {
                 labelText: l10n.actualPriceLabel,
                 suffixIcon: widget.onShelfPricePressed == null
                     ? null
-                    : IconButton(
-                        key: const Key('entry_scan_price'),
-                        tooltip: l10n.tipShelfCamera,
-                        icon: const Icon(Icons.photo_camera_outlined),
-                        onPressed: _scan,
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            key: const Key('entry_scan_price'),
+                            tooltip: l10n.tipShelfCamera,
+                            icon: const Icon(Icons.photo_camera_outlined),
+                            onPressed: _scan,
+                          ),
+                          IconButton(
+                            key: const Key('entry_scan_price_help'),
+                            tooltip: l10n.howToUseLabel,
+                            icon: const Icon(Icons.help_outline),
+                            onPressed: () =>
+                                showScanHelpDialog(context, isReceipt: false),
+                          ),
+                        ],
                       ),
               ),
             ),

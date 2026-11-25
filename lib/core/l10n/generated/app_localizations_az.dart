@@ -520,7 +520,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Siyahılarınız, qiymətləriniz, qəbullarınız və şəkilləriniz cihazınızda saxlanılır. Şəkillər və səs heç vaxt cihazdan çıxmır. AI kömək aktiv olduqda, yalnız mətn (məsələn, qəbul sətirləri və ya dictasiya etdiyiniz şey) emal üçün serverimizə göndərilir və saxlanılmır.';
+      'Siyahılarınız, qiymətləriniz, qəbullarınız və şəkilləriniz cihazınızda saxlanılır. Səs heç vaxt cihazdan çıxmır. AI kömək aktiv olduqda, qəbul və qiymət etiketi şəkilləri (ölçüsü azaldılmış) və diktə etdiyiniz maddələr kimi mətn yalnız oxunmaq üçün serverimizə göndərilir; dərhal emal olunur və heç vaxt saxlanılmır.';
 
   @override
   String get aboutSection => 'Haqqında';
@@ -733,7 +733,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklam yoxdur · Yedəkləmə ixrac və idxal · Aylıq';
+      'Reklam yoxdur · Yedəkləmə ixrac və idxal · Illik';
 
   @override
   String get proBenefitNoAds => 'Reklamsız təcrübə';
@@ -765,8 +765,7 @@ class AppLocalizationsAz extends AppLocalizations {
   String get formatLocaleLabel => 'Rəqəm və valyuta formatı';
 
   @override
-  String get formatLocaleSystem =>
-      'Cihaz formatı (Latın rəqəmləri; əks halda İngilis dili)';
+  String get formatLocaleSystem => 'Cihaz formatı';
 
   @override
   String get formatLocaleTr => 'Türkcə (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Çekləri uyğunlaşdırır, qiymət etiketlərini oxuyur və cümlələri siyahıya çevirir. Şəkillər və səs cihazınızda qalır; yalnız mətn emal olunur.';
+      'Şəkillərdən qəbulları və qiymət etiketlərini oxuyur, qəbulları uyğunlaşdırır və cümlələri siyahıya çevirir. Şəkillər yalnız oxunmaq üçün göndərilir və heç vaxt saxlanılmır.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1129,6 +1128,15 @@ class AppLocalizationsAz extends AppLocalizations {
   String get csvExportAction => 'CSV ixracat et';
 
   @override
+  String get reportSharePdf => 'PDF kimi paylaş';
+
+  @override
+  String get reportShareCsv => 'CSV kimi paylaş';
+
+  @override
+  String get reportPrintAction => 'Çap et';
+
+  @override
   String get backupSizeWarning =>
       'JSON faylı şəkil faylları əvəzinə qeydlər daşıyır. İdxal həddi: 16 MB.';
 
@@ -1407,4 +1415,173 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get reportZoom => 'Böyüt';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days gün qalıb',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours saat qalıb',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro sınaq müddətiniz bitdi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Siyahılardan, əl ilə daxil etmədən və cihazdakı səs funksiyasından pulsuz istifadə edə bilərsiniz. Pulsuz plana hər təqvim ayında 10 AI sorğusu daxildir. Ayda 100 AI sorğusu, reklamsız istifadə və ehtiyat nüsxələr üçün illik Pro seçin. Mövcud məlumatlarınız sizdə qalır.';
+
+  @override
+  String get planContinueFree => 'Pulsuz davam et';
+
+  @override
+  String get supportIdLabel => 'Dəstək ID-si';
+
+  @override
+  String get supportEmailLabel => 'E-poçtla dəstək';
+
+  @override
+  String get captureTipFirst =>
+      'Ən yuxarıdan başlayın: mağazanın adı və tarix görünməlidir. Mümkün qədər çox məhsulu sığışdırın, qalanı növbəti fotoda olsun.';
+
+  @override
+  String get captureTipContinue =>
+      'Eyni çek: əvvəlki fotodakı son məhsulu da daxil edin.';
+
+  @override
+  String get captureTipNeverShow => 'Bir daha göstərmə';
+
+  @override
+  String get captureTipOk => 'Anladım';
+
+  @override
+  String get captureTipsSetting => 'Çek çəkilişi məsləhətlərini göstər';
+
+  @override
+  String get receiptReadingProgress => 'Çek oxunur…';
+
+  @override
+  String get receiptReadInBackground => 'Arxa planda davam et';
+
+  @override
+  String get receiptReadDoneTitle => 'Çek oxundu';
+
+  @override
+  String get receiptReadDoneBody => 'Yoxlamaq və saxlamaq üçün toxunun.';
+
+  @override
+  String get receiptReadMoreTitle => 'Çekin qalan hissəsini çəkin';
+
+  @override
+  String get receiptReadFailedTitle => 'Çeki oxumaq mümkün olmadı';
+
+  @override
+  String get listReceiptsSection => 'Qəbzlər';
+
+  @override
+  String get receiptStateComplete => 'Tamamlandı';
+
+  @override
+  String get receiptStateIncomplete => 'Natamam';
+
+  @override
+  String get receiptStateFailed => 'Uğursuz';
+
+  @override
+  String get receiptStoreUnknown => 'Mağaza oxunmadı';
+
+  @override
+  String get receiptDeleteAction => 'Qəbzi sil';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Bu qəbz və onun əlavə etdiyi məhsullar silinsin? Sonra yenidən idxal edə bilərsiniz.';
+
+  @override
+  String get receiptDeleted => 'Qəbz silindi.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Hamısını göstər ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Daha az göstər';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Qəbz tarixi: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Alış-verişə görə';
+
+  @override
+  String get historyViewStore => 'Mağazaya görə';
+
+  @override
+  String get historyViewProduct => 'Məhsula görə';
+
+  @override
+  String get historyShareAll => 'Hamısını paylaş';
+
+  @override
+  String get historyUnknownStore => 'Naməlum mağaza';
+
+  @override
+  String get historyDailySpending => 'Gündəlik xərc';
+
+  @override
+  String get historyResetPeriod => 'Bu həftəyə qayıt';
+
+  @override
+  String get tourSkip => 'Keç';
+
+  @override
+  String get tourNewListBody =>
+      'Alış-veriş siyahısı başladın və almaq istədiklərinizi əlavə edin.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Artıq alış-veriş etmisiniz? Çeki qiymətləri ilə siyahıya çevirin.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Çekin yuxarısından başlayın: əvvəl mağaza və tarixi çəkin, sonra qalan sətirlərlə davam edin.';
+
+  @override
+  String get tourTabsBody =>
+      'Aktiv, tamamlanmış və arxivlənmiş siyahılar arasında keçin. Sondakı düymə sıranı dəyişir.';
+
+  @override
+  String get tourDiscoverBody => 'Eyni tərtibatçının digər tətbiqlərinə baxın.';
+
+  @override
+  String get tourHelpBody =>
+      'Bu bələdçini yenidən görmək üçün bura toxunun. Cəmlərin və məhsulların izahı üçün siyahı açın.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planlaşdırılan, faktiki cəm və fərq alış-veriş etdikcə yenilənir.';
+
+  @override
+  String get tourItemsBody =>
+      'Məhsullarınız. Sıralarını burada dəyişin və ya axtarın.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Limitin $percent% istifadə olunub';
+  }
 }

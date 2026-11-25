@@ -520,7 +520,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listasi, hinnat, kuitit ja valokuvat säilyvät laitteellasi. Valokuvat ja ääni eivät koskaan poistu laitteestasi. Kun tekoälyavustin on käytössä, vain teksti (esim. kuitirivit tai diktoimaasi) lähetetään palvelimellemme prosessoitavaaksi eikä sitä säilytetä.';
+      'Listasi, hinnat, kuitit ja valokuvat tallennetaan laitteellesi. Ääni ei poistu koskaan laitteelta. Kun AI-avustaja on päällä, kuittien ja hintalappujen valokuvat (pienennettyinä) sekä teksti, kuten sanelemasi tuotteet, lähetetään palvelimellemme vain luettaviksi; ne käsitellään heti, eikä niitä tallenneta koskaan.';
 
   @override
   String get aboutSection => 'Tietoja';
@@ -732,7 +732,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ei mainoksia · Varmuuskopiointi ja tuonti · Kuukausittain';
+      'Ei mainoksia · Varmuuskopiointi ja tuonti · Vuosittain';
 
   @override
   String get proBenefitNoAds => 'Mainokseton kokemus';
@@ -764,8 +764,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get formatLocaleLabel => 'Numerot ja valuuttamuoto';
 
   @override
-  String get formatLocaleSystem =>
-      'Laitteen asetus (latinalaiset numerot; muuten englanti)';
+  String get formatLocaleSystem => 'Laitteen asetus';
 
   @override
   String get formatLocaleTr => 'Turkki (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Yhdistää kuitit, lukee hintalappuja ja muuntaa lauseet listoiksi. Kuvat ja ääni pysyvät laitteellasi; vain tekstiä käsitellään.';
+      'Lukee kuitit ja hintalaput valokuvista, täsmää kuitit ja muuttaa lauseet listoiksi. Valokuvat lähetetään vain luettaviksi, eikä niitä tallenneta koskaan.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1131,6 +1130,15 @@ class AppLocalizationsFi extends AppLocalizations {
   String get csvExportAction => 'Vie CSV';
 
   @override
+  String get reportSharePdf => 'Jaa PDF-tiedostona';
+
+  @override
+  String get reportShareCsv => 'Jaa CSV-tiedostona';
+
+  @override
+  String get reportPrintAction => 'Tulosta';
+
+  @override
   String get backupSizeWarning =>
       'JSON sisältää tietueita, ei valokuvatiedostoja. Tuontiraja: 16 Mt.';
 
@@ -1406,4 +1414,174 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zoomaa';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days päivää jäljellä',
+      one: '$days päivä jäljellä',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours tuntia jäljellä',
+      one: '$hours tunti jäljellä',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro-kokeilujaksosi on päättynyt';
+
+  @override
+  String get planTrialEndedBody =>
+      'Voit jatkaa listojen, manuaalisen syötön ja laitteen puhetoiminnon käyttöä maksutta. Ilmainen sisältää 10 tekoälypyyntöä kalenterikuukaudessa. Valitse vuotuinen Pro, niin saat 100 tekoälypyyntöä kuukaudessa, ei mainoksia ja varmuuskopiot. Nykyiset tietosi säilyvät sinulla.';
+
+  @override
+  String get planContinueFree => 'Jatka ilmaiseksi';
+
+  @override
+  String get supportIdLabel => 'Tukitunnus';
+
+  @override
+  String get supportEmailLabel => 'Sähköpostituki';
+
+  @override
+  String get captureTipFirst =>
+      'Aloita aivan ylhäältä: kaupan nimen ja päivämäärän on näyttävä. Ota mukaan mahdollisimman monta tuotetta, loput tulevat seuraavaan kuvaan.';
+
+  @override
+  String get captureTipContinue =>
+      'Sama kuitti: ota mukaan edellisen kuvan viimeinen tuote.';
+
+  @override
+  String get captureTipNeverShow => 'Älä näytä uudelleen';
+
+  @override
+  String get captureTipOk => 'Selvä';
+
+  @override
+  String get captureTipsSetting => 'Näytä kuitin kuvausvinkit';
+
+  @override
+  String get receiptReadingProgress => 'Luetaan kuittia…';
+
+  @override
+  String get receiptReadInBackground => 'Jatka taustalla';
+
+  @override
+  String get receiptReadDoneTitle => 'Kuitti luettu';
+
+  @override
+  String get receiptReadDoneBody => 'Napauta tarkistaaksesi ja tallentaaksesi.';
+
+  @override
+  String get receiptReadMoreTitle => 'Ota kuva kuitin loppuosasta';
+
+  @override
+  String get receiptReadFailedTitle => 'Kuittia ei voitu lukea';
+
+  @override
+  String get listReceiptsSection => 'Kuitit';
+
+  @override
+  String get receiptStateComplete => 'Valmis';
+
+  @override
+  String get receiptStateIncomplete => 'Keskeneräinen';
+
+  @override
+  String get receiptStateFailed => 'Epäonnistui';
+
+  @override
+  String get receiptStoreUnknown => 'Kauppaa ei luettu';
+
+  @override
+  String get receiptDeleteAction => 'Poista kuitti';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Poistetaanko tämä kuitti ja sen lisäämät tuotteet? Voit tuoda sen myöhemmin uudelleen.';
+
+  @override
+  String get receiptDeleted => 'Kuitti poistettu.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Näytä kaikki ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Näytä vähemmän';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kuitin päivämäärä: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Ostoksittain';
+
+  @override
+  String get historyViewStore => 'Kaupoittain';
+
+  @override
+  String get historyViewProduct => 'Tuotteittain';
+
+  @override
+  String get historyShareAll => 'Jaa kaikki';
+
+  @override
+  String get historyUnknownStore => 'Tuntematon kauppa';
+
+  @override
+  String get historyDailySpending => 'Päivittäiset menot';
+
+  @override
+  String get historyResetPeriod => 'Takaisin tähän viikkoon';
+
+  @override
+  String get tourSkip => 'Ohita';
+
+  @override
+  String get tourNewListBody => 'Aloita ostoslista ja lisää, mitä aiot ostaa.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Jo ostoksilla? Tee kuitista lista hintoineen.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Aloita kuitin yläosasta: ensin kauppa ja päivämäärä, sitten muut rivit.';
+
+  @override
+  String get tourTabsBody =>
+      'Vaihda aktiivisten, valmiiden ja arkistoitujen listojen välillä. Lopun painike vaihtaa järjestyksen.';
+
+  @override
+  String get tourDiscoverBody => 'Katso saman kehittäjän muita sovelluksia.';
+
+  @override
+  String get tourHelpBody =>
+      'Napauta tästä nähdäksesi oppaan uudelleen. Avaa lista nähdäksesi summien ja tuotteiden selitykset.';
+
+  @override
+  String get tourTotalsBody =>
+      'Suunniteltu, toteutunut summa ja erotus päivittyvät ostosten aikana.';
+
+  @override
+  String get tourItemsBody =>
+      'Tuotteesi. Muuta niiden järjestystä tai hae niitä tästä.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Rajasta käytetty $percent %';
+  }
 }

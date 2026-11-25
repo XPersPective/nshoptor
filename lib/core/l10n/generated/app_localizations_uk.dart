@@ -520,7 +520,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Ваші списки, ціни, чеки та фотографії залишаються на пристрої. Фотографії та голос ніколи не покидають його. Якщо увімкнено допомогу AI, лише текст (наприклад, рядки чека або те, що ви продиктували) надсилається на наш сервер для обробки й не зберігається.';
+      'Ваші списки, ціни, чеки та фотографії зберігаються на пристрої. Голос його ніколи не залишає. Коли допомогу AI ввімкнено, фотографії чеків і цінників (зменшені) та текст, наприклад продиктовані позиції, надсилаються на наш сервер лише для зчитування; вони обробляються одразу й ніколи не зберігаються.';
 
   @override
   String get aboutSection => 'Про додаток';
@@ -734,7 +734,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Без реклами · Експорт і імпорт резервної копії · Щомісяця';
+      'Без реклами · Експорт і імпорт резервної копії · Щороку';
 
   @override
   String get proBenefitNoAds => 'Без реклами';
@@ -766,8 +766,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get formatLocaleLabel => 'Формат чисел і валюти';
 
   @override
-  String get formatLocaleSystem =>
-      'Формат пристрою (латинські цифри; інакше англійською)';
+  String get formatLocaleSystem => 'Формат пристрою';
 
   @override
   String get formatLocaleTr => 'Турецький (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Зіставляє чеки, зчитує цінники та перетворює речення на списки. Фото й голос залишаються на вашому пристрої; обробляється лише текст.';
+      'Зчитує чеки й цінники з фотографій, зіставляє чеки та перетворює речення на списки. Фотографії надсилаються лише для зчитування й ніколи не зберігаються.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1128,6 +1127,15 @@ class AppLocalizationsUk extends AppLocalizations {
   String get csvExportAction => 'Експорт CSV';
 
   @override
+  String get reportSharePdf => 'Поділитися як PDF';
+
+  @override
+  String get reportShareCsv => 'Поділитися як CSV';
+
+  @override
+  String get reportPrintAction => 'Друк';
+
+  @override
   String get backupSizeWarning =>
       'JSON містить записи, а не файли фото. Ліміт імпорту: 16 МБ.';
 
@@ -1405,4 +1413,179 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get reportZoom => 'Збільшити';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days дня залишилося',
+      many: '$days днів залишилося',
+      few: '$days дні залишилися',
+      one: '$days день залишився',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours години залишилося',
+      many: '$hours годин залишилося',
+      few: '$hours години залишилися',
+      one: '$hours година залишилася',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Пробний період Pro завершився';
+
+  @override
+  String get planTrialEndedBody =>
+      'Ви й надалі можете безкоштовно користуватися списками, ручним введенням і голосовою функцією на пристрої. Безкоштовний план містить 10 запитів до ШІ за календарний місяць. Виберіть річний Pro, щоб отримувати 100 запитів до ШІ на місяць, без реклами та з резервними копіями. Ваші наявні дані залишаться з вами.';
+
+  @override
+  String get planContinueFree => 'Продовжити безкоштовно';
+
+  @override
+  String get supportIdLabel => 'Ідентифікатор підтримки';
+
+  @override
+  String get supportEmailLabel => 'Підтримка електронною поштою';
+
+  @override
+  String get captureTipFirst =>
+      'Почніть із самого верху: назва магазину та дата мають бути видимі. Охопіть якомога більше позицій, решта буде на наступному фото.';
+
+  @override
+  String get captureTipContinue =>
+      'Той самий чек: додайте останню позицію з попереднього фото.';
+
+  @override
+  String get captureTipNeverShow => 'Більше не показувати';
+
+  @override
+  String get captureTipOk => 'Зрозуміло';
+
+  @override
+  String get captureTipsSetting => 'Показувати поради щодо зйомки чека';
+
+  @override
+  String get receiptReadingProgress => 'Чек зчитується…';
+
+  @override
+  String get receiptReadInBackground => 'Продовжити у фоні';
+
+  @override
+  String get receiptReadDoneTitle => 'Чек зчитано';
+
+  @override
+  String get receiptReadDoneBody => 'Торкніться, щоб перевірити й зберегти.';
+
+  @override
+  String get receiptReadMoreTitle => 'Сфотографуйте решту чека';
+
+  @override
+  String get receiptReadFailedTitle => 'Не вдалося зчитати чек';
+
+  @override
+  String get listReceiptsSection => 'Чеки';
+
+  @override
+  String get receiptStateComplete => 'Завершено';
+
+  @override
+  String get receiptStateIncomplete => 'Незавершено';
+
+  @override
+  String get receiptStateFailed => 'Помилка';
+
+  @override
+  String get receiptStoreUnknown => 'Магазин не розпізнано';
+
+  @override
+  String get receiptDeleteAction => 'Видалити чек';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Видалити цей чек і додані ним товари? Пізніше його можна імпортувати знову.';
+
+  @override
+  String get receiptDeleted => 'Чек видалено.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Показати всі ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Показати менше';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Дата чека: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'За покупками';
+
+  @override
+  String get historyViewStore => 'За магазинами';
+
+  @override
+  String get historyViewProduct => 'За товарами';
+
+  @override
+  String get historyShareAll => 'Поділитися всім';
+
+  @override
+  String get historyUnknownStore => 'Невідомий магазин';
+
+  @override
+  String get historyDailySpending => 'Щоденні витрати';
+
+  @override
+  String get historyResetPeriod => 'Повернутися до цього тижня';
+
+  @override
+  String get tourSkip => 'Пропустити';
+
+  @override
+  String get tourNewListBody =>
+      'Створіть список покупок і додайте те, що плануєте купити.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Уже зробили покупки? Перетворіть чек на список із цінами.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Почніть з верху чека: спершу зніміть магазин і дату, потім продовжуйте рештою рядків.';
+
+  @override
+  String get tourTabsBody =>
+      'Перемикайтеся між активними, завершеними та архівними списками. Кнопка в кінці змінює порядок.';
+
+  @override
+  String get tourDiscoverBody => 'Інші застосунки того самого розробника.';
+
+  @override
+  String get tourHelpBody =>
+      'Торкніться тут, щоб переглянути посібник знову. Відкрийте список, щоб дізнатися про підсумки й товари.';
+
+  @override
+  String get tourTotalsBody =>
+      'Підсумки за планом, фактом і різницею оновлюються під час покупок.';
+
+  @override
+  String get tourItemsBody =>
+      'Ваші товари. Змінюйте їхній порядок або шукайте їх тут.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Використано $percent% ліміту';
+  }
 }

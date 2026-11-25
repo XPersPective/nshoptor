@@ -4,11 +4,18 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.js",
+    "test:apple-runtime": "node test/apple_runtime.mjs",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "migrate": "wrangler d1 migrations apply DB --remote"
   },
   "devDependencies": {
+    "jsrsasign": "11.1.5",
+    "miniflare": "5.20261006.1-alpha",
     "wrangler": "^4.145.0"
+  },
+  "dependencies": {
+    "@apple/app-store-server-library": "3.1.0",
+    "jsonwebtoken": "9.0.3"
   }
 }

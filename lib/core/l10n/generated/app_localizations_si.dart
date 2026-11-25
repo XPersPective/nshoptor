@@ -519,7 +519,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'ඔබේ ලිස්ට්, මිල, රිසිට්පත් සහ ඡායාරූප ඔබේ උපාංගයේම පවතී. ඡායාරූප සහ හඬ කිසිවිටෙක එයින් පිටවන්නේ නැත. AI ආධාරය සක්‍රිය වූ විට, පමණක් පාඨය (උදා: රිසිට්පත් පේළි හෝ ඔබ කතා කළ දේ) සැකසීම සඳහා අපගේ සර්වරයට යවන අතර එය ගබඩා නොකෙරේ.';
+      'ඔබේ ලිස්ට්, මිල, රිසිට්පත් සහ ඡායාරූප ඔබේ උපාංගයේ ගබඩා වේ. හඬ කිසිවිටෙක එයින් පිටතට නොයයි. AI උදව් සක්‍රිය විට රිසිට්පත් සහ මිල ලේබල්වල ඡායාරූප (ප්‍රමාණය අඩු කළ) සහ කියවා ලියවූ අයිතම වැනි පෙළ කියවීමට පමණක් අපගේ සේවාදායකයට යවනු ලැබේ; ඒවා වහාම සැකසෙන අතර කිසිවිටෙක ගබඩා නොකෙරේ.';
 
   @override
   String get aboutSection => 'ගැන';
@@ -730,10 +730,11 @@ class AppLocalizationsSi extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'විज्ञापन නැත · බැකප් අපනයනය සහ ආයාතය · මාසික';
+  String get proBenefitsLine =>
+      'දැන්වීම් නැත · බැකප් අපනයනය සහ ආයාතය · වාර්ෂික';
 
   @override
-  String get proBenefitNoAds => 'විज्ञापන රහිත අත්දැකීම';
+  String get proBenefitNoAds => 'දැන්වීම් රහිත අත්දැකීම';
 
   @override
   String get proBenefitBackup => 'බැක්අප් (නිර්ගත/ආයාත)';
@@ -762,8 +763,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get formatLocaleLabel => 'අංක සහ මුදල් ආකෘතිය';
 
   @override
-  String get formatLocaleSystem =>
-      'උපාංග ආකෘතිය (ලතින් අංක; වෙනත් ස්ථානවල ඉංග්‍රීසි)';
+  String get formatLocaleSystem => 'උපාංග ආකෘතිය';
 
   @override
   String get formatLocaleTr => 'තුර්කි (1.234,56)';
@@ -776,7 +776,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'ලැබුම් පත් ගැළපේ, මිල ලේබල් කියවේ සහ වාක්‍ය ලැයිස්තු බවට පත් කරයි. ඡායාරූප සහ ශබ්ද ඔබේ උපාංගයේ පවතී; පාඨය පමණක් සැකසේ.';
+      'ඡායාරූපවලින් රිසිට්පත් සහ මිල ලේබල් කියවයි, රිසිට්පත් ගළපයි, වාක්‍ය ලැයිස්තු බවට හරවයි. ඡායාරූප යවන්නේ කියවීමට පමණි, කිසිවිටෙක ගබඩා නොකෙරේ.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -933,7 +933,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get planFreeAds =>
-      'කුඩා බැනර් විज्ञापन (ඔබේ පළමු දින 7 තුළ කිසිවක් නැත)';
+      'කුඩා බැනර් දැන්වීම් (ඔබේ පළමු දින 7 තුළ කිසිවක් නැත)';
 
   @override
   String get planCoreFeatures => 'ලැයිස්තු, මිල, ලැබුම් පත්, ආදායම චාට්';
@@ -951,7 +951,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get planProAi => 'මාසයකට AI ඉල්ලීම් 100';
 
   @override
-  String get planNoAds => 'විज्ञापन නැත';
+  String get planNoAds => 'දැන්වීම් නැත';
 
   @override
   String get planBackup => 'බැකප් අපනයනය සහ ආයාතය';
@@ -1122,6 +1122,15 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get csvExportAction => 'CSV අපනයනය කරන්න';
+
+  @override
+  String get reportSharePdf => 'PDF ලෙස බෙදාගන්න';
+
+  @override
+  String get reportShareCsv => 'CSV ලෙස බෙදාගන්න';
+
+  @override
+  String get reportPrintAction => 'මුද්‍රණය කරන්න';
 
   @override
   String get backupSizeWarning =>
@@ -1400,4 +1409,175 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get reportZoom => 'විශාල කරන්න';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days දින ඉතිරියි',
+      one: '$days දින ඉතිරියි',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours පැය ඉතිරියි',
+      one: '$hours පැය ඉතිරියි',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ඔබගේ Pro අත්හදා බැලීමේ කාලය අවසන්';
+
+  @override
+  String get planTrialEndedBody =>
+      'ඔබට ලැයිස්තු, අතින් ඇතුළත් කිරීම සහ උපාංගයේ හඬ විශේෂාංගය නොමිලේ භාවිත කළ හැක. Free හි දින දර්ශන මාසයකට AI ඉල්ලීම් 10ක් ඇත. මාසයකට AI ඉල්ලීම් 100ක්, දැන්වීම් රහිත භාවිතය සහ උපස්ථ සඳහා වාර්ෂික Pro තෝරන්න. ඔබගේ දැනට ඇති දත්ත ඔබ සතුවම පවතී.';
+
+  @override
+  String get planContinueFree => 'නොමිලේ දිගටම';
+
+  @override
+  String get supportIdLabel => 'සහාය ID';
+
+  @override
+  String get supportEmailLabel => 'විද්‍යුත් තැපැල් සහාය';
+
+  @override
+  String get captureTipFirst =>
+      'ඉහළම කොටසින් පටන් ගන්න: වෙළඳසැලේ නම සහ දිනය පෙනිය යුතුයි. හැකි තරම් භාණ්ඩ ඇතුළත් කරන්න; ඉතිරිය ඊළඟ ඡායාරූපයේ තබන්න.';
+
+  @override
+  String get captureTipContinue =>
+      'එම රිසිට්පතම: පෙර ඡායාරූපයේ අවසාන භාණ්ඩය ඇතුළත් කරන්න.';
+
+  @override
+  String get captureTipNeverShow => 'නැවත නොපෙන්වන්න';
+
+  @override
+  String get captureTipOk => 'තේරුණා';
+
+  @override
+  String get captureTipsSetting => 'රිසිට්පත් ගැනීමේ ඉඟි පෙන්වන්න';
+
+  @override
+  String get receiptReadingProgress => 'රිසිට්පත කියවමින්…';
+
+  @override
+  String get receiptReadInBackground => 'පසුබිමේ දිගටම කරගෙන යන්න';
+
+  @override
+  String get receiptReadDoneTitle => 'රිසිට්පත කියවා ඇත';
+
+  @override
+  String get receiptReadDoneBody => 'සමාලෝචනය කර සුරැකීමට තට්ටු කරන්න.';
+
+  @override
+  String get receiptReadMoreTitle => 'රිසිට්පතේ ඉතිරි කොටස ඡායාරූපගත කරන්න';
+
+  @override
+  String get receiptReadFailedTitle => 'රිසිට්පත කියවීමට නොහැකි විය';
+
+  @override
+  String get listReceiptsSection => 'රිසිට්පත්';
+
+  @override
+  String get receiptStateComplete => 'සම්පූර්ණයි';
+
+  @override
+  String get receiptStateIncomplete => 'අසම්පූර්ණයි';
+
+  @override
+  String get receiptStateFailed => 'අසාර්ථකයි';
+
+  @override
+  String get receiptStoreUnknown => 'වෙළඳසැල කියවිය නොහැකි විය';
+
+  @override
+  String get receiptDeleteAction => 'රිසිට්පත මකන්න';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'මෙම රිසිට්පත සහ එය එක් කළ අයිතම මකන්නද? පසුව නැවත ආයාත කළ හැක.';
+
+  @override
+  String get receiptDeleted => 'රිසිට්පත මකා දැමිණි.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'සියල්ල පෙන්වන්න ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'අඩුවෙන් පෙන්වන්න';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'රිසිට්පතේ දිනය: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'සාප්පු සවාරිය අනුව';
+
+  @override
+  String get historyViewStore => 'සාප්පුව අනුව';
+
+  @override
+  String get historyViewProduct => 'නිෂ්පාදනය අනුව';
+
+  @override
+  String get historyShareAll => 'සියල්ල බෙදාගන්න';
+
+  @override
+  String get historyUnknownStore => 'නොදන්නා සාප්පුව';
+
+  @override
+  String get historyDailySpending => 'දෛනික වියදම';
+
+  @override
+  String get historyResetPeriod => 'මෙම සතියට ආපසු';
+
+  @override
+  String get tourSkip => 'මඟ හරින්න';
+
+  @override
+  String get tourNewListBody =>
+      'සාප්පු ලැයිස්තුවක් අරඹා මිලදී ගැනීමට අදහස් කරන දේ එක් කරන්න.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'දැනටමත් මිලදී ගත්තාද? රිසිට්පත එහි මිල ගණන් සමඟ ලැයිස්තුවක් කරන්න.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'රිසිට්පතේ ඉහළින් අරඹන්න: පළමුව වෙළඳසැල සහ දිනය, ඉන්පසු ඉතිරි පේළි සමඟ ඉදිරියට යන්න.';
+
+  @override
+  String get tourTabsBody =>
+      'සක්‍රිය, සම්පූර්ණ සහ සංරක්ෂිත ලැයිස්තු අතර මාරු වන්න. අවසානයේ බොත්තම අනුපිළිවෙල වෙනස් කරයි.';
+
+  @override
+  String get tourDiscoverBody => 'එම සංවර්ධකයාගේම තවත් යෙදුම් බලන්න.';
+
+  @override
+  String get tourHelpBody =>
+      'මෙම මාර්ගෝපදේශය නැවත බැලීමට මෙහි තට්ටු කරන්න. එකතු සහ අයිතම පැහැදිලි කිරීම සඳහා ලැයිස්තුවක් විවෘත කරන්න.';
+
+  @override
+  String get tourTotalsBody =>
+      'සැලසුම් කළ, සැබෑ එකතුව සහ වෙනස මිලදී ගන්නා විට යාවත්කාලීන වේ.';
+
+  @override
+  String get tourItemsBody =>
+      'ඔබගේ අයිතම. මෙහි ඒවායේ අනුපිළිවෙල වෙනස් කරන්න හෝ සොයන්න.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'සීමාවෙන් $percent% ක් භාවිතා කර ඇත';
+  }
 }

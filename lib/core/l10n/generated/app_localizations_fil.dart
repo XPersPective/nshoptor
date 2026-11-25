@@ -521,7 +521,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Ang iyong mga listahan, presyo, resibo at litrato ay nananatili sa iyong device. Hindi lumalabas ang mga litrato at boses. Kapag naka-on ang AI help, ipinapadala lamang ang text (halimbawa, mga linya ng resibo o iyong binigkas) sa aming server para maproseso at hindi ito naii-save.';
+      'Ang iyong mga listahan, presyo, resibo at litrato ay nakaimbak sa iyong device. Hindi kailanman lumalabas dito ang boses. Kapag naka-on ang tulong ng AI, ang mga litrato ng resibo at price label (pinaliit ang laki) at teksto gaya ng idinikta mong mga item ay ipinapadala sa aming server para lang basahin; agad itong pinoproseso at hindi kailanman iniimbak.';
 
   @override
   String get aboutSection => 'Tungkol';
@@ -734,7 +734,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Walang ads · I-export at i-import ang backup · Buwang-buwan';
+      'Walang ads · I-export at i-import ang backup · Taon-taon';
 
   @override
   String get proBenefitNoAds => 'Walang-ads na karanasan';
@@ -766,8 +766,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get formatLocaleLabel => 'Format ng numero at pera';
 
   @override
-  String get formatLocaleSystem =>
-      'Format ng device (Latin digits; kung hindi, English)';
+  String get formatLocaleSystem => 'Format ng device';
 
   @override
   String get formatLocaleTr => 'Turko (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Ina-match ang resibo, binabasa ang label ng presyo, at ginagawa listahan mula sa pangungusap. Ang mga litrato at boses ay nananatili sa iyong device; ang teksto lamang ang pinoproseso.';
+      'Binabasa ang mga resibo at price label mula sa mga litrato, itinutugma ang mga resibo at ginagawang listahan ang mga pangungusap. Ipinapadala lang ang mga litrato para basahin at hindi kailanman iniimbak.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1132,6 +1131,15 @@ class AppLocalizationsFil extends AppLocalizations {
   String get csvExportAction => 'I-export ang CSV';
 
   @override
+  String get reportSharePdf => 'Ibahagi bilang PDF';
+
+  @override
+  String get reportShareCsv => 'Ibahagi bilang CSV';
+
+  @override
+  String get reportPrintAction => 'I-print';
+
+  @override
   String get backupSizeWarning =>
       'Ang JSON ay naglalaman ng mga rekord, hindi mga file ng larawan. Limitasyon sa pag-import: 16 MB.';
 
@@ -1412,4 +1420,175 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get reportZoom => 'I-zoom';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days araw pa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours oras pa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Tapos na ang iyong Pro trial';
+
+  @override
+  String get planTrialEndedBody =>
+      'Maaari mo pa ring gamitin nang libre ang mga listahan, manu-manong paglalagay, at voice sa device. May 10 AI request bawat buwan sa Free. Piliin ang taunang Pro para sa 100 AI request bawat buwan, walang ads, at may mga backup. Mananatili sa iyo ang dati mong data.';
+
+  @override
+  String get planContinueFree => 'Magpatuloy nang Libre';
+
+  @override
+  String get supportIdLabel => 'Support ID';
+
+  @override
+  String get supportEmailLabel => 'Suporta sa email';
+
+  @override
+  String get captureTipFirst =>
+      'Magsimula sa pinakaitaas: dapat makita ang pangalan ng tindahan at ang petsa. Isama ang pinakamaraming item hangga\'t kaya; ang natitira ay sa susunod na larawan.';
+
+  @override
+  String get captureTipContinue =>
+      'Parehong resibo: isama ang huling item sa nakaraang larawan.';
+
+  @override
+  String get captureTipNeverShow => 'Huwag nang ipakita muli';
+
+  @override
+  String get captureTipOk => 'Nakuha ko';
+
+  @override
+  String get captureTipsSetting =>
+      'Ipakita ang mga tip sa pagkuha ng larawan ng resibo';
+
+  @override
+  String get receiptReadingProgress => 'Binabasa ang resibo…';
+
+  @override
+  String get receiptReadInBackground => 'Magpatuloy sa background';
+
+  @override
+  String get receiptReadDoneTitle => 'Nabasa na ang resibo';
+
+  @override
+  String get receiptReadDoneBody => 'I-tap para suriin at i-save ito.';
+
+  @override
+  String get receiptReadMoreTitle => 'Kunan ang natitirang bahagi ng resibo';
+
+  @override
+  String get receiptReadFailedTitle => 'Hindi nabasa ang resibo';
+
+  @override
+  String get listReceiptsSection => 'Mga resibo';
+
+  @override
+  String get receiptStateComplete => 'Kumpleto';
+
+  @override
+  String get receiptStateIncomplete => 'Hindi kumpleto';
+
+  @override
+  String get receiptStateFailed => 'Nabigo';
+
+  @override
+  String get receiptStoreUnknown => 'Hindi nabasa ang tindahan';
+
+  @override
+  String get receiptDeleteAction => 'Burahin ang resibo';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Burahin ang resibong ito at ang mga item na idinagdag nito? Maaari mo itong i-import muli mamaya.';
+
+  @override
+  String get receiptDeleted => 'Nabura ang resibo.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Ipakita lahat ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Ipakita nang mas kaunti';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Petsa ng resibo: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Ayon sa pamimili';
+
+  @override
+  String get historyViewStore => 'Ayon sa tindahan';
+
+  @override
+  String get historyViewProduct => 'Ayon sa produkto';
+
+  @override
+  String get historyShareAll => 'Ibahagi lahat';
+
+  @override
+  String get historyUnknownStore => 'Hindi kilalang tindahan';
+
+  @override
+  String get historyDailySpending => 'Pang-araw-araw na gastos';
+
+  @override
+  String get historyResetPeriod => 'Bumalik sa linggong ito';
+
+  @override
+  String get tourSkip => 'Laktawan';
+
+  @override
+  String get tourNewListBody =>
+      'Magsimula ng shopping list at idagdag ang balak mong bilhin.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Nakapamili ka na? Gawing listahan ang resibo kasama ang mga presyo.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Magsimula sa itaas ng resibo: kunan muna ang tindahan at petsa, saka ituloy ang iba pang linya.';
+
+  @override
+  String get tourTabsBody =>
+      'Lumipat sa aktibo, tapos at naka-archive na listahan. Binabago ng button sa dulo ang ayos.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Tingnan ang iba pang app ng parehong developer.';
+
+  @override
+  String get tourHelpBody =>
+      'I-tap dito para ulitin ang gabay na ito. Magbukas ng listahan para makita ang paliwanag sa kabuuan at mga item.';
+
+  @override
+  String get tourTotalsBody =>
+      'Nag-a-update ang planado, aktwal at diperensiyang kabuuan habang namimili ka.';
+
+  @override
+  String get tourItemsBody =>
+      'Ang iyong mga item. Baguhin ang ayos o hanapin sila rito.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% ng limit ang nagamit na';
+  }
 }

@@ -518,7 +518,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Listelerin, fiyatların, fişlerin ve fotoğrafların cihazında kalır. Fotoğraf ve ses asla cihazdan çıkmaz. Yapay zekâ yardımı açıkken yalnızca metin (örneğin fiş satırları ya da söylediklerin) işlenmek üzere sunucumuza gider ve saklanmaz.';
+      'Listelerin, fiyatların, fişlerin ve fotoğrafların cihazında saklanır. Ses asla cihazdan çıkmaz. Yapay zekâ yardımı açıkken fiş ve fiyat etiketi fotoğrafları (küçültülmüş) ile sesli girdiğin ürünler gibi metinler yalnızca okunmak üzere sunucumuza gönderilir; anında işlenir ve asla saklanmaz.';
 
   @override
   String get aboutSection => 'Hakkında';
@@ -728,7 +728,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Reklamsız · Yedeği dışa ve içe aktarma · Aylık';
+      'Reklamsız · Yedeği dışa ve içe aktarma · Yıllık';
 
   @override
   String get proBenefitNoAds => 'Reklamsız kullanım';
@@ -760,8 +760,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get formatLocaleLabel => 'Sayı ve para biçimi';
 
   @override
-  String get formatLocaleSystem =>
-      'Cihaz biçimi (Latin rakamlar; diğerlerinde İngilizce)';
+  String get formatLocaleSystem => 'Cihaz biçimi';
 
   @override
   String get formatLocaleTr => 'Türkçe (1.234,56)';
@@ -774,7 +773,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Fişi eşleştirir, raf etiketini okur, cümleden liste çıkarır. Fotoğraf ve ses cihazında kalır; yalnızca metin işlenir.';
+      'Fotoğraflardan fişleri ve fiyat etiketlerini okur, fişleri eşleştirir ve cümleleri listeye dönüştürür. Fotoğraflar yalnızca okunmak üzere gönderilir ve asla saklanmaz.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1125,6 +1124,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get csvExportAction => 'CSV dışa aktar';
 
   @override
+  String get reportSharePdf => 'PDF olarak paylaş';
+
+  @override
+  String get reportShareCsv => 'CSV olarak paylaş';
+
+  @override
+  String get reportPrintAction => 'Yazdır';
+
+  @override
   String get backupSizeWarning =>
       'JSON yalnız kayıtları içerir; fotoğraf dosyalarını içermez. İçe aktarma sınırı: 16 MB.';
 
@@ -1402,4 +1410,174 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get reportZoom => 'Büyüt';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days gün kaldı',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours saat kaldı',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro denemen sona erdi';
+
+  @override
+  String get planTrialEndedBody =>
+      'Listeleri, elle giriş yapmayı ve cihazda çalışan ses özelliğini ücretsiz kullanmaya devam edebilirsin. Ücretsiz planda takvim ayı başına 10 yapay zekâ isteği bulunur. Ayda 100 yapay zekâ isteği, reklamsız kullanım ve yedekleme için yıllık Pro’yu seç. Mevcut verilerin sende kalır.';
+
+  @override
+  String get planContinueFree => 'Ücretsiz devam et';
+
+  @override
+  String get supportIdLabel => 'Destek kimliği';
+
+  @override
+  String get supportEmailLabel => 'E-posta ile destek';
+
+  @override
+  String get captureTipFirst =>
+      'En üstten başlayın: mağaza adı ve tarih görünmeli. Sığdığı kadar ürünü çekin; kalanı sonraki fotoğrafa.';
+
+  @override
+  String get captureTipContinue =>
+      'Aynı fiş: önceki fotoğraftaki son ürün de görünsün.';
+
+  @override
+  String get captureTipNeverShow => 'Bir daha gösterme';
+
+  @override
+  String get captureTipOk => 'Anladım';
+
+  @override
+  String get captureTipsSetting => 'Fiş çekme ipuçlarını göster';
+
+  @override
+  String get receiptReadingProgress => 'Fiş okunuyor…';
+
+  @override
+  String get receiptReadInBackground => 'Arka planda devam et';
+
+  @override
+  String get receiptReadDoneTitle => 'Fiş okundu';
+
+  @override
+  String get receiptReadDoneBody => 'İncelemek ve kaydetmek için dokunun.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fişin devamını çekin';
+
+  @override
+  String get receiptReadFailedTitle => 'Fiş okunamadı';
+
+  @override
+  String get listReceiptsSection => 'Fişler';
+
+  @override
+  String get receiptStateComplete => 'Tamamlandı';
+
+  @override
+  String get receiptStateIncomplete => 'Eksik';
+
+  @override
+  String get receiptStateFailed => 'Başarısız';
+
+  @override
+  String get receiptStoreUnknown => 'Mağaza okunamadı';
+
+  @override
+  String get receiptDeleteAction => 'Fişi sil';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Bu fiş ve eklediği ürünler silinsin mi? Daha sonra yeniden içe aktarabilirsiniz.';
+
+  @override
+  String get receiptDeleted => 'Fiş silindi.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Tümünü göster ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Daha az göster';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Fiş tarihi: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Alışverişe göre';
+
+  @override
+  String get historyViewStore => 'Mağazaya göre';
+
+  @override
+  String get historyViewProduct => 'Ürüne göre';
+
+  @override
+  String get historyShareAll => 'Tümünü paylaş';
+
+  @override
+  String get historyUnknownStore => 'Bilinmeyen mağaza';
+
+  @override
+  String get historyDailySpending => 'Günlük harcama';
+
+  @override
+  String get historyResetPeriod => 'Bu haftaya dön';
+
+  @override
+  String get tourSkip => 'Geç';
+
+  @override
+  String get tourNewListBody =>
+      'Bir alışveriş listesi başlatın ve almayı planladıklarınızı ekleyin.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Alışverişi yaptınız mı? Fişi fiyatlarıyla birlikte listeye dönüştürün.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Fişin en üstünden başlayın: önce mağaza ve tarihi çekin, sonra kalan satırlarla devam edin.';
+
+  @override
+  String get tourTabsBody =>
+      'Aktif, tamamlanan ve arşivlenen listeler arasında geçin. Sondaki düğme sıralamayı değiştirir.';
+
+  @override
+  String get tourDiscoverBody =>
+      'Aynı geliştiricinin diğer uygulamalarını görün.';
+
+  @override
+  String get tourHelpBody =>
+      'Bu rehberi yeniden izlemek için buraya dokunun. Toplamların ve ürünlerin anlatımı için bir liste açın.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planlanan, gerçek ve fark toplamları alışveriş yaptıkça güncellenir.';
+
+  @override
+  String get tourItemsBody =>
+      'Ürünleriniz. Sıralarını buradan değiştirin veya arayın.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Limitin %$percent kadarı kullanıldı';
+  }
 }

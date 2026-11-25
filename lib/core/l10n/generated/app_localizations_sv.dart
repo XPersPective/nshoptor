@@ -519,7 +519,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Dina listor, priser, kvitton och bilder stannar på din enhet. Bilder och röst lämnar den aldrig. När AI-hjälp är aktiverad skickas endast text (till exempel raderna från ett kvitto eller vad du dikterat) till vår server för bearbetning och lagras inte.';
+      'Dina listor, priser, kvitton och bilder sparas på din enhet. Rösten lämnar den aldrig. När AI-hjälp är på skickas bilder på kvitton och prislappar (förminskade) samt text, till exempel dikterade varor, till vår server endast för att läsas; de bearbetas direkt och sparas aldrig.';
 
   @override
   String get aboutSection => 'Om';
@@ -731,7 +731,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ingen reklam · Säkerhetskopiera och importera · Månadsvis';
+      'Ingen reklam · Säkerhetskopiera och importera · Årligen';
 
   @override
   String get proBenefitNoAds => 'Annonserfri upplevelse';
@@ -763,8 +763,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get formatLocaleLabel => 'Nummer- och valutainställningar';
 
   @override
-  String get formatLocaleSystem =>
-      'Enhetens format (Latinska siffror; annars engelska)';
+  String get formatLocaleSystem => 'Enhetens format';
 
   @override
   String get formatLocaleTr => 'Turkiska (1.234,56)';
@@ -777,7 +776,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Matchar kvitton, läser prisetiketter och omvandlar meningar till listor. Bilder och röst stannar på din enhet; endast text bearbetas.';
+      'Läser kvitton och prislappar från bilder, matchar kvitton och gör om meningar till listor. Bilder skickas endast för att läsas och sparas aldrig.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1125,6 +1124,15 @@ class AppLocalizationsSv extends AppLocalizations {
   String get csvExportAction => 'Exportera CSV';
 
   @override
+  String get reportSharePdf => 'Dela som PDF';
+
+  @override
+  String get reportShareCsv => 'Dela som CSV';
+
+  @override
+  String get reportPrintAction => 'Skriv ut';
+
+  @override
   String get backupSizeWarning =>
       'JSON innehåller poster, inte bildfiler. Importgräns: 16 MB.';
 
@@ -1401,4 +1409,175 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zooma';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dagar kvar',
+      one: '$days dag kvar',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours timmar kvar',
+      one: '$hours timme kvar',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Din Pro-testperiod har löpt ut';
+
+  @override
+  String get planTrialEndedBody =>
+      'Du kan fortsätta använda listor, manuell inmatning och röst på enheten gratis. Gratis innehåller 10 AI-förfrågningar per kalendermånad. Välj årlig Pro för 100 AI-förfrågningar i månaden, inga annonser och säkerhetskopior. Dina befintliga data finns kvar hos dig.';
+
+  @override
+  String get planContinueFree => 'Fortsätt gratis';
+
+  @override
+  String get supportIdLabel => 'Support-ID';
+
+  @override
+  String get supportEmailLabel => 'E-postsupport';
+
+  @override
+  String get captureTipFirst =>
+      'Börja högst upp: butikens namn och datum måste synas. Ta med så många varor du kan; resten kommer på nästa foto.';
+
+  @override
+  String get captureTipContinue =>
+      'Samma kvitto: ta med den sista varan från föregående foto.';
+
+  @override
+  String get captureTipNeverShow => 'Visa inte igen';
+
+  @override
+  String get captureTipOk => 'Uppfattat';
+
+  @override
+  String get captureTipsSetting => 'Visa tips för att fotografera kvitton';
+
+  @override
+  String get receiptReadingProgress => 'Läser kvittot…';
+
+  @override
+  String get receiptReadInBackground => 'Fortsätt i bakgrunden';
+
+  @override
+  String get receiptReadDoneTitle => 'Kvittot har lästs';
+
+  @override
+  String get receiptReadDoneBody => 'Tryck för att granska och spara.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografera resten av kvittot';
+
+  @override
+  String get receiptReadFailedTitle => 'Kvittot kunde inte läsas';
+
+  @override
+  String get listReceiptsSection => 'Kvitton';
+
+  @override
+  String get receiptStateComplete => 'Klart';
+
+  @override
+  String get receiptStateIncomplete => 'Ofullständigt';
+
+  @override
+  String get receiptStateFailed => 'Misslyckades';
+
+  @override
+  String get receiptStoreUnknown => 'Butiken lästes inte';
+
+  @override
+  String get receiptDeleteAction => 'Radera kvitto';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Radera det här kvittot och varorna det lade till? Du kan importera det igen senare.';
+
+  @override
+  String get receiptDeleted => 'Kvittot har raderats.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Visa alla ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Visa färre';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kvittodatum: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Per inköp';
+
+  @override
+  String get historyViewStore => 'Per butik';
+
+  @override
+  String get historyViewProduct => 'Per produkt';
+
+  @override
+  String get historyShareAll => 'Dela allt';
+
+  @override
+  String get historyUnknownStore => 'Okänd butik';
+
+  @override
+  String get historyDailySpending => 'Daglig utgift';
+
+  @override
+  String get historyResetPeriod => 'Tillbaka till denna vecka';
+
+  @override
+  String get tourSkip => 'Hoppa över';
+
+  @override
+  String get tourNewListBody =>
+      'Starta en inköpslista och lägg till det du tänker köpa.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Redan handlat? Gör om ett kvitto till en lista med priser.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Börja högst upp på kvittot: först butik och datum, fortsätt sedan med resten av raderna.';
+
+  @override
+  String get tourTabsBody =>
+      'Växla mellan aktiva, klara och arkiverade listor. Knappen i slutet ändrar ordningen.';
+
+  @override
+  String get tourDiscoverBody => 'Se fler appar från samma utvecklare.';
+
+  @override
+  String get tourHelpBody =>
+      'Tryck här för att se guiden igen. Öppna en lista för att få summor och varor förklarade.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planerad, faktisk summa och skillnad uppdateras medan du handlar.';
+
+  @override
+  String get tourItemsBody =>
+      'Dina varor. Ändra ordning eller sök bland dem här.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent % av gränsen har använts';
+  }
 }

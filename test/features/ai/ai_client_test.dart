@@ -8,17 +8,28 @@ import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/features/ai/ai_client.dart';
 
 void main() {
-  AiClient client(MockClient mock, {SettingsStore? store}) =>
-      AiClient(store: store ?? SettingsStore(), baseUrl: 'https://x', httpClient: mock);
+  AiClient client(MockClient mock, {SettingsStore? store}) => AiClient(
+    store: store ?? SettingsStore(),
+    baseUrl: 'https://x',
+    httpClient: mock,
+  );
 
   test('başarılı yanıt AiOk; gövdede kurulum kimliği ve metin', () async {
     late Map<String, dynamic> sent;
     final mock = MockClient((req) async {
       sent = jsonDecode(req.body) as Map<String, dynamic>;
       return http.Response(
-          jsonEncode({'tier': 'free', 'used': 1, 'limit': 15, 'result': {'items': []}}), 200);
+        jsonEncode({
+          'tier': 'free',
+          'used': 1,
+          'limit': 15,
+          'result': {'items': []},
+        }),
+        200,
+      );
     });
-    final r = await client(mock).request('parse_list', {'text': 'elma'}, locale: 'tr');
+    final r = await client(mock)
+        .request('parse_list', {'text': 'elma'}, locale: 'tr');
     expect(r, isA<AiOk>());
     expect((r as AiOk).limit, 15);
     expect(sent['installId'], matches(RegExp(r'^[a-f0-9]{32}$')));
@@ -27,20 +38,59 @@ void main() {
   });
 
   test('429 quota → AiQuota', () async {
-    final mock = MockClient((_) async => http.Response(
-        jsonEncode({'error': 'quota', 'tier': 'free', 'limit': 15, 'used': 15}), 429));
+    final mock = MockClient(
+      (_) async => http.Response(
+        jsonEncode({'error': 'quota', 'tier': 'free', 'limit': 15, 'used': 15}),
+        429,
+      ),
+    );
     final r = await client(mock).request('parse_list', {'text': 'x'});
     expect(r, isA<AiQuota>());
     expect((r as AiQuota).used, 15);
   });
 
+  test(
+    'Apple proof has a separate field and bypasses trial registration',
+    () async {
+      final sent = <Map<String, dynamic>>[];
+      final c = AiClient(
+        store: SettingsStore(),
+        baseUrl: 'https://x',
+        appleTransaction: () => 'signed.apple.transaction',
+        trialFirstOpenedAt: () => 1,
+        httpClient: MockClient((request) async {
+          expect(request.url.path, '/v1/ai');
+          sent.add(jsonDecode(request.body) as Map<String, dynamic>);
+          return http.Response(
+            jsonEncode({
+              'tier': 'pro',
+              'used': 1,
+              'limit': 100,
+              'result': {'items': []},
+            }),
+            200,
+          );
+        }),
+      );
+      expect(await c.request('parse_list', {'text': 'elma'}), isA<AiOk>());
+      expect(sent.single['appleTransaction'], 'signed.apple.transaction');
+      expect(sent.single.containsKey('purchaseToken'), isFalse);
+      expect(sent.single.containsKey('productId'), isFalse);
+    },
+  );
+
   test('ağ hatası → AiOffline', () async {
     final mock = MockClient((_) async => throw const SocketException('down'));
-    expect(await client(mock).request('parse_list', {'text': 'x'}), isA<AiOffline>());
+    expect(
+      await client(mock).request('parse_list', {'text': 'x'}),
+      isA<AiOffline>(),
+    );
   });
 
   test('sunucu hatası → AiFailed', () async {
-    final mock = MockClient((_) async => http.Response(jsonEncode({'error': 'ai_failed'}), 502));
+    final mock = MockClient(
+      (_) async => http.Response(jsonEncode({'error': 'ai_failed'}), 502),
+    );
     final r = await client(mock).request('parse_list', {'text': 'x'});
     expect(r, isA<AiFailed>());
     expect((r as AiFailed).reason, 'ai_failed');

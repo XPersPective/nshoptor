@@ -519,7 +519,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'ستاسو لیستونه، قیمتونه، رسیدونه او عکسونه په ستاسو وسیله کې پاتې کیږي. عکسونه او غږ هیڅکله له وسیلې نه وځي. کله چې AI مرسته فعاله وي، یوازې متن (لکه د رسید قطارونه یا هغه څه چې تاسو ویلي) زموږ سرور ته استول کیږي ترڅو پروسس شي او ذخیره نه کیږي.';
+      'ستاسو لیستونه، قیمتونه، رسیدونه او عکسونه ستاسو په وسیله کې ساتل کیږي. غږ هیڅکله له هغې نه وځي. کله چې د AI مرسته فعاله وي، د رسیدونو او د قیمت لیبلونو عکسونه (کوچني شوي) او متن، لکه ویل شوي توکي، یوازې د لوستلو لپاره زموږ سرور ته لیږل کیږي؛ دوی سمدستي پروسس کیږي او هیڅکله نه ساتل کیږي.';
 
   @override
   String get aboutSection => 'په اړه';
@@ -731,7 +731,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'هیڅ اعلان نشته · بیک اپ صادرول او واردول · میاشتنی';
+      'هیڅ اعلان نشته · بیک اپ صادرول او واردول · کلنی';
 
   @override
   String get proBenefitNoAds => 'پرېکړه تجربه';
@@ -763,8 +763,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get formatLocaleLabel => 'د شمېرو او پیسو بڼه';
 
   @override
-  String get formatLocaleSystem =>
-      'د وسیزې فارمیټ (لاتیني شمیرې؛ نور ځایونه انګلیسي)';
+  String get formatLocaleSystem => 'د وسیزې فارمیټ';
 
   @override
   String get formatLocaleTr => 'ترکي (1.234,56)';
@@ -777,7 +776,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'ریسیټونه مطابقت کوي، د قیمت لیبلونه لولي او جملې په لیستونو بدلوي. عکسونه او غږ ستاسو په وسیله پاتې کیږي؛ یوازې متن پروسس کیږي.';
+      'له عکسونو رسیدونه او د قیمت لیبلونه لولي، رسیدونه سره برابروي او جملې په لیستونو بدلوي. عکسونه یوازې د لوستلو لپاره لیږل کیږي او هیڅکله نه ساتل کیږي.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1123,6 +1122,15 @@ class AppLocalizationsPs extends AppLocalizations {
   String get csvExportAction => 'CSV صادر کړئ';
 
   @override
+  String get reportSharePdf => 'د PDF په توګه شریکول';
+
+  @override
+  String get reportShareCsv => 'د CSV په توګه شریکول';
+
+  @override
+  String get reportPrintAction => 'چاپ';
+
+  @override
   String get backupSizeWarning =>
       'JSON کې ریکارډونه شامل دي، د عکس فایلونه نه. د واردولو حد: ۱۶ MB.';
 
@@ -1395,4 +1403,172 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get reportZoom => 'لویول';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days ورځې پاتې دي',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ساعتونه پاتې دي',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ستاسو د Pro ازمایښتي موده پای ته ورسېده';
+
+  @override
+  String get planTrialEndedBody =>
+      'تاسو لا هم کولای شئ لېستونه، لاسي ننوتل او د وسیلې غږ په وړیا توګه وکاروئ. Free په هره کلیزې میاشت کې ۱۰ د AI غوښتنې لري. د میاشتې ۱۰۰ د AI غوښتنو، بې‌اعلانه کارونې او شاتړ لپاره کلنی Pro وټاکئ. ستاسو اوسني معلومات به درسره پاتې شي.';
+
+  @override
+  String get planContinueFree => 'په وړیا توګه دوام ورکړئ';
+
+  @override
+  String get supportIdLabel => 'د ملاتړ پېژند';
+
+  @override
+  String get supportEmailLabel => 'د برېښنالیک له لارې ملاتړ';
+
+  @override
+  String get captureTipFirst =>
+      'له بشپړ سر څخه پیل کړئ: د هټۍ نوم او نېټه باید ښکاره وي. څومره چې کولی شئ توکي شامل کړئ؛ پاتې به په راتلونکي انځور کې وي.';
+
+  @override
+  String get captureTipContinue =>
+      'ورته رسید: د مخکینۍ انځور وروستی توکی شامل کړئ.';
+
+  @override
+  String get captureTipNeverShow => 'بیا مه ښایئ';
+
+  @override
+  String get captureTipOk => 'پوه شوم';
+
+  @override
+  String get captureTipsSetting => 'د رسید اخیستلو لارښوونې وښایاست';
+
+  @override
+  String get receiptReadingProgress => 'رسید لوستل کیږي…';
+
+  @override
+  String get receiptReadInBackground => 'په شالید کې دوام ورکړئ';
+
+  @override
+  String get receiptReadDoneTitle => 'رسید ولوستل شو';
+
+  @override
+  String get receiptReadDoneBody => 'د کتلو او ساتلو لپاره ټک کړئ.';
+
+  @override
+  String get receiptReadMoreTitle => 'د رسید پاتې برخه عکس کړئ';
+
+  @override
+  String get receiptReadFailedTitle => 'رسید ونه لوستل شو';
+
+  @override
+  String get listReceiptsSection => 'رسیدونه';
+
+  @override
+  String get receiptStateComplete => 'بشپړ';
+
+  @override
+  String get receiptStateIncomplete => 'نیمګړی';
+
+  @override
+  String get receiptStateFailed => 'ناکام';
+
+  @override
+  String get receiptStoreUnknown => 'پلورنځی ونه لوستل شو';
+
+  @override
+  String get receiptDeleteAction => 'رسید ړنګ کړئ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'دا رسید او هغه توکي چې زیات کړي دي ړنګ شي؟ وروسته یې بیا وارد کولی شئ.';
+
+  @override
+  String get receiptDeleted => 'رسید ړنګ شو.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ټول وښایاست ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'لږ وښایاست';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'د رسید نېټه: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'د پیرودنې له مخې';
+
+  @override
+  String get historyViewStore => 'د هټۍ له مخې';
+
+  @override
+  String get historyViewProduct => 'د محصول له مخې';
+
+  @override
+  String get historyShareAll => 'ټول شریک کړئ';
+
+  @override
+  String get historyUnknownStore => 'نامعلومه هټۍ';
+
+  @override
+  String get historyDailySpending => 'ورځنی لګښت';
+
+  @override
+  String get historyResetPeriod => 'دې اونۍ ته ستون شئ';
+
+  @override
+  String get tourSkip => 'تېرول';
+
+  @override
+  String get tourNewListBody =>
+      'د پیرودلو لېست پیل کړئ او هغه څه ورزیات کړئ چې اخلئ یې.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'پېرود مو کړی؟ رسید د بیو سره په لېست بدل کړئ.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'د رسید له سر څخه پیل وکړئ: لومړی پلورنځی او نېټه واخلئ، بیا پاتې کرښې دوام ورکړئ.';
+
+  @override
+  String get tourTabsBody =>
+      'د فعالو، بشپړو او ارشیف شویو لېستونو ترمنځ واوړئ. په پای کې تڼۍ ترتیب بدلوي.';
+
+  @override
+  String get tourDiscoverBody => 'د همدې جوړونکي نور اپونه وګورئ.';
+
+  @override
+  String get tourHelpBody =>
+      'د دې لارښود د بیا لیدو لپاره دلته ټک کړئ. د مجموعو او توکو د تشریح لپاره یو لېست پرانیزئ.';
+
+  @override
+  String get tourTotalsBody =>
+      'پلان شوي، اصلي او توپیر مجموعې د پېرود پر مهال تازه کېږي.';
+
+  @override
+  String get tourItemsBody => 'ستاسو توکي. دلته یې ترتیب بدل کړئ یا یې ولټوئ.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'د حد $percent٪ کارول شوی دی';
+  }
 }

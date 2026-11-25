@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,9 +17,34 @@ import 'package:nshoptor/features/history/reports/report_export_service.dart';
 import 'package:nshoptor/features/history/reports/report_preview_screen.dart';
 import 'package:nshoptor/features/history/reports/report_repository.dart';
 
+const _review = bool.fromEnvironment('REPORT_UI_REVIEW');
+const _captureKey = Key('report_review_capture');
+const _captureDir = String.fromEnvironment(
+  'REPORT_UI_REVIEW_DIR',
+  defaultValue: '.project-brain/.cache/ui-review/PB-147',
+);
+
+Future<void> _capture(WidgetTester tester, String name) async {
+  if (!_review) return;
+  final boundary = tester.renderObject<RenderRepaintBoundary>(
+    find.byKey(_captureKey),
+  );
+  await tester.runAsync(() async {
+    final image = await boundary.toImage();
+    try {
+      final data = await image.toByteData(format: ui.ImageByteFormat.png);
+      await Directory(_captureDir).create(recursive: true);
+      await File('$_captureDir/$name.png')
+          .writeAsBytes(data!.buffer.asUint8List());
+    } finally {
+      image.dispose();
+    }
+  });
+}
+
 class _Export extends ReportExportService {
   Completer<Uint8List> pending = Completer();
-  int renders = 0, saves = 0, shares = 0;
+  int renders = 0, saves = 0, shares = 0, prints = 0;
   @override
   Future<Uint8List> bytes(
     ReportDocument document,
@@ -45,6 +73,15 @@ class _Export extends ReportExportService {
     Rect origin,
   ) async {
     shares++;
+  }
+
+  @override
+  Future<void> printReport(
+    ReportDocument document,
+    ReportText text, {
+    bool rtl = false,
+  }) async {
+    prints++;
   }
 }
 
@@ -116,6 +153,25 @@ Widget subject(
 );
 
 void main() {
+  setUpAll(() async {
+    if (!_review) return;
+    WidgetsApp.debugAllowBannerOverride = false;
+    final font = FontLoader('Roboto');
+    for (final path in [
+      'C:/Windows/Fonts/segoeui.ttf',
+      'C:/Windows/Fonts/segoeuib.ttf',
+    ]) {
+      font.addFont(File(path).readAsBytes().then(ByteData.sublistView));
+    }
+    await font.load();
+    final root = Platform.environment['FLUTTER_ROOT'] ?? 'C:/flutter';
+    await (FontLoader('MaterialIcons')..addFont(
+          File(
+            '$root/bin/cache/artifacts/material_fonts/materialicons-regular.otf',
+          ).readAsBytes().then(ByteData.sublistView),
+        ))
+        .load();
+  });
   for (final spec in [
     (320.0, 'tr', true, 2.0),
     (320.0, 'ar', false, 2.0),
@@ -127,14 +183,28 @@ void main() {
     ) async {
       await tester.binding.setSurfaceSize(Size(spec.$1, 850));
       addTearDown(() => tester.binding.setSurfaceSize(null));
+      tester.platformDispatcher.localeTestValue = Locale(spec.$2);
+      addTearDown(tester.platformDispatcher.clearLocaleTestValue);
       final semantics = tester.ensureSemantics();
       try {
         await tester.pumpWidget(
-          subject(document(), locale: spec.$2, dark: spec.$3, scale: spec.$4),
+          RepaintBoundary(
+            key: _captureKey,
+            child: subject(
+              document(),
+              locale: spec.$2,
+              dark: spec.$3,
+              scale: spec.$4,
+            ),
+          ),
         );
         await tester.pumpAndSettle();
+        final name =
+            '${spec.$1.toInt()}_${spec.$2}_${spec.$3 ? 'dark' : 'light'}_text${spec.$4}';
+        await _capture(tester, '${name}_preview');
         expect(find.byType(Checkbox), findsNothing);
         expect(find.byKey(const Key('report_product_0_0')), findsOneWidget);
+        expect(find.byKey(const Key('report_grand_total')), findsNothing);
         final mark = find.byWidgetPredicate(
           (w) => w is Semantics && w.properties.checked == true,
         );
@@ -145,37 +215,74 @@ void main() {
         await tester.drag(find.byType(ListView), const Offset(0, -600));
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull);
+        await _capture(tester, '${name}_zoomed');
+        final l = AppLocalizations.of(tester.element(find.byType(Scaffold)));
+        final share = find.byKey(const Key('report_share'));
+        await tester.scrollUntilVisible(
+          share,
+          400,
+          scrollable: find.byType(Scrollable).first,
+          maxScrolls: 30,
+        );
+        await tester.pumpAndSettle();
+        await _capture(tester, '${name}_actions');
+        await tester.tap(share);
+        await tester.pumpAndSettle();
+        expect(find.descendant(of: share, matching: find.text(l.reportShareAction)), findsOneWidget);
+        expect(find.text(l.reportSharePdf), findsOneWidget);
+        expect(find.text(l.reportShareCsv), findsOneWidget);
+        expect(find.text(l.reportPrintAction), findsOneWidget);
+        await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('report_share_menu')), findsNothing);
+        expect(tester.takeException(), isNull);
       } finally {
         semantics.dispose();
       }
     });
   }
   testWidgets(
-    'export rejects double taps, cancellation is quiet, errors permit retry',
+    'share rejects double taps, errors permit retry, print is reachable',
     (tester) async {
       final export = _Export();
       await tester.pumpWidget(subject(document(empty: true), service: export));
       await tester.pumpAndSettle();
       final l = AppLocalizations.of(tester.element(find.byType(Scaffold)));
-      final button = find.widgetWithText(OutlinedButton, l.reportPdfAction);
-      await tester.ensureVisible(button);
-      await tester.tap(button);
-      await tester.pump();
-      await tester.tap(button);
+      expect(find.byKey(const Key('report_grand_total')), findsOneWidget);
+      final button = find.byKey(const Key('report_share'));
+      // The old separate save buttons are gone: one Share action only.
+      expect(find.widgetWithText(OutlinedButton, l.reportPdfAction), findsNothing);
+      expect(find.widgetWithText(OutlinedButton, l.csvExportAction), findsNothing);
+      Future<void> choose(String action) async {
+        await tester.ensureVisible(button);
+        await tester.tap(button);
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(Key('report_share_$action')));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 400));
+      }
+
+      await choose('pdf');
       expect(export.renders, 1);
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      await tester.tap(button, warnIfMissed: false);
+      await tester.pump();
+      expect(find.byKey(const Key('report_share_menu')), findsNothing);
+      expect(export.renders, 1);
       export.pending.complete(Uint8List.fromList('%PDF-qa'.codeUnits));
       await tester.pumpAndSettle();
-      expect(export.saves, 1);
-      expect(find.text(l.reportSaved), findsNothing);
+      expect(export.shares, 1);
+      expect(export.saves, 0);
       expect(find.text(l.saveFailed), findsNothing);
       export.pending = Completer();
-      await tester.tap(button);
-      await tester.pump();
+      await choose('csv');
       export.pending.completeError(StateError('synthetic renderer failure'));
       await tester.pumpAndSettle();
       expect(find.text(l.saveFailed), findsOneWidget);
-      expect(tester.widget<OutlinedButton>(button).onPressed, isNotNull);
+      expect(export.shares, 1);
+      await choose('print');
+      await tester.pumpAndSettle();
+      expect(export.prints, 1);
+      expect(export.renders, 2);
     },
   );
 }

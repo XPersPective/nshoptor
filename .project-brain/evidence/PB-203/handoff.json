@@ -1,0 +1,30 @@
+{
+  "protocol": 1,
+  "task": "PB-203",
+  "status": "BLOCKED",
+  "contract": "402c0489be68325f",
+  "areas": [
+    "lib/features/history/history_screen.dart",
+    "test/features/history/history_currency_layout_test.dart"
+  ],
+  "inputs": [
+    "lib/core/theme/app_theme.dart"
+  ],
+  "resume": [
+    "Next: Resolve native registry for formal acceptance; remaining app priorities F03/F07/F10/F23 and native/device/privacy gates stay in the main handoff",
+    "Failing: Installed registry marks current native model unavailable; formal start/evidence/acceptance cannot run honestly",
+    "Dirty: Only History padding, new regression test and scoped Brain records for this checkpoint"
+  ],
+  "external": [],
+  "open_criteria": [
+    "0c1588c7",
+    "d44c2029",
+    "7680e92c",
+    "30a57772"
+  ],
+  "readback_required": false,
+  "private_logs": "not exported; new environments must recheck when receipts are unavailable",
+  "digest": "e6151cb8ccf1b752",
+  "files": 6,
+  "checks_reusable_here": false
+}

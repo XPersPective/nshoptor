@@ -520,7 +520,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Je lijsten, prijzen, bonnen en foto\'s blijven op je apparaat. Foto\'s en stemmen verlaten het nooit. Wanneer AI-hulp is ingeschakeld, wordt alleen tekst (bijvoorbeeld bonregels of wat je hebt ingedikt) naar onze server gestuurd voor verwerking en niet bewaard.';
+      'Je lijsten, prijzen, bonnen en foto\'s worden op je apparaat opgeslagen. Je stem verlaat het nooit. Als AI-hulp aanstaat, worden foto\'s van bonnen en prijskaartjes (verkleind) en tekst, zoals gedicteerde items, alleen naar onze server gestuurd om gelezen te worden; ze worden direct verwerkt en nooit opgeslagen.';
 
   @override
   String get aboutSection => 'Over';
@@ -733,7 +733,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Geen advertenties · Back-up export en import · Maandelijks';
+      'Geen advertenties · Back-up export en import · Jaarlijks';
 
   @override
   String get proBenefitNoAds => 'Advrije ervaring';
@@ -765,8 +765,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get formatLocaleLabel => 'Getallen- en valuta-indeling';
 
   @override
-  String get formatLocaleSystem =>
-      'Apparaatindeling (Latijnse cijfers; anders Engels)';
+  String get formatLocaleSystem => 'Apparaatindeling';
 
   @override
   String get formatLocaleTr => 'Turks (1.234,56)';
@@ -779,7 +778,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Kwitanties matchen, prijslabels lezen en zinnen omzetten naar lijsten. Foto\'s en spraak blijven op je apparaat; alleen tekst wordt verwerkt.';
+      'Leest bonnen en prijskaartjes van foto\'s, koppelt bonnen en maakt lijsten van zinnen. Foto\'s worden alleen gestuurd om gelezen te worden en nooit opgeslagen.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1130,6 +1129,15 @@ class AppLocalizationsNl extends AppLocalizations {
   String get csvExportAction => 'CSV exporteren';
 
   @override
+  String get reportSharePdf => 'Delen als pdf';
+
+  @override
+  String get reportShareCsv => 'Delen als csv';
+
+  @override
+  String get reportPrintAction => 'Afdrukken';
+
+  @override
   String get backupSizeWarning =>
       'JSON bevat records, geen fotobestanden. Importlimiet: 16 MB.';
 
@@ -1408,4 +1416,176 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get reportZoom => 'Inzoomen';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dagen over',
+      one: '$days dag over',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours uur over',
+      one: '$hours uur over',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Je Pro-proefperiode is afgelopen';
+
+  @override
+  String get planTrialEndedBody =>
+      'Je kunt lijsten, handmatige invoer en spraak op je apparaat gratis blijven gebruiken. Gratis bevat 10 AI-verzoeken per kalendermaand. Kies jaarlijks Pro voor 100 AI-verzoeken per maand, geen advertenties en back-ups. Je bestaande gegevens blijven van jou.';
+
+  @override
+  String get planContinueFree => 'Gratis doorgaan';
+
+  @override
+  String get supportIdLabel => 'Support-ID';
+
+  @override
+  String get supportEmailLabel => 'E-mailondersteuning';
+
+  @override
+  String get captureTipFirst =>
+      'Begin helemaal bovenaan: de winkelnaam en de datum moeten zichtbaar zijn. Neem zoveel mogelijk artikelen mee; de rest komt op de volgende foto.';
+
+  @override
+  String get captureTipContinue =>
+      'Dezelfde bon: neem het laatste artikel van de vorige foto mee.';
+
+  @override
+  String get captureTipNeverShow => 'Niet meer tonen';
+
+  @override
+  String get captureTipOk => 'Begrepen';
+
+  @override
+  String get captureTipsSetting =>
+      'Tips voor het fotograferen van bonnen tonen';
+
+  @override
+  String get receiptReadingProgress => 'Bon wordt gelezen…';
+
+  @override
+  String get receiptReadInBackground => 'Doorgaan op de achtergrond';
+
+  @override
+  String get receiptReadDoneTitle => 'Bon gelezen';
+
+  @override
+  String get receiptReadDoneBody => 'Tik om te controleren en op te slaan.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografeer de rest van de bon';
+
+  @override
+  String get receiptReadFailedTitle => 'De bon kon niet worden gelezen';
+
+  @override
+  String get listReceiptsSection => 'Bonnen';
+
+  @override
+  String get receiptStateComplete => 'Voltooid';
+
+  @override
+  String get receiptStateIncomplete => 'Onvolledig';
+
+  @override
+  String get receiptStateFailed => 'Mislukt';
+
+  @override
+  String get receiptStoreUnknown => 'Winkel niet gelezen';
+
+  @override
+  String get receiptDeleteAction => 'Bon verwijderen';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Deze bon en de toegevoegde artikelen verwijderen? Je kunt hem later opnieuw importeren.';
+
+  @override
+  String get receiptDeleted => 'Bon verwijderd.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Alles tonen ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Minder tonen';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Bondatum: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Per aankoop';
+
+  @override
+  String get historyViewStore => 'Per winkel';
+
+  @override
+  String get historyViewProduct => 'Per product';
+
+  @override
+  String get historyShareAll => 'Alles delen';
+
+  @override
+  String get historyUnknownStore => 'Onbekende winkel';
+
+  @override
+  String get historyDailySpending => 'Dagelijkse uitgaven';
+
+  @override
+  String get historyResetPeriod => 'Terug naar deze week';
+
+  @override
+  String get tourSkip => 'Overslaan';
+
+  @override
+  String get tourNewListBody =>
+      'Begin een boodschappenlijst en voeg toe wat je wilt kopen.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Al boodschappen gedaan? Maak van een kassabon een lijst met prijzen.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Begin bovenaan de bon: leg eerst winkel en datum vast en ga dan verder met de overige regels.';
+
+  @override
+  String get tourTabsBody =>
+      'Wissel tussen actieve, voltooide en gearchiveerde lijsten. De knop aan het eind wijzigt de volgorde.';
+
+  @override
+  String get tourDiscoverBody => 'Bekijk meer apps van dezelfde ontwikkelaar.';
+
+  @override
+  String get tourHelpBody =>
+      'Tik hier om deze uitleg opnieuw te zien. Open een lijst voor uitleg over totalen en artikelen.';
+
+  @override
+  String get tourTotalsBody =>
+      'Geplande, werkelijke en verschiltotalen worden tijdens het winkelen bijgewerkt.';
+
+  @override
+  String get tourItemsBody =>
+      'Je artikelen. Wijzig hier de volgorde of zoek ze op.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% van de limiet gebruikt';
+  }
 }

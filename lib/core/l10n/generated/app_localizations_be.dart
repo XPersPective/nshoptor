@@ -521,7 +521,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Вашы спісы, кошты, чаки і фота захоўваюцца на прыладзе. Фота і голас ніколі не пакідаюць яе. Калі ўключана дапамога AI, толькі тэкст (напрыклад, радкі чека або ваша дыктоўка) адпраўляецца на наш сервер для апрацоўкі і не захоўваецца.';
+      'Вашы спісы, кошты, чаки і фота захоўваюцца на прыладзе. Голас яе ніколі не пакідае. Калі ўключана дапамога AI, фота чакаў і цэннікаў (паменшаныя ў памеры) і тэкст, напрыклад прадыктаваныя пазіцыі, адпраўляюцца на наш сервер толькі для прачытання; яны апрацоўваюцца адразу і ніколі не захоўваюцца.';
 
   @override
   String get aboutSection => 'Пра праграму';
@@ -734,7 +734,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Без рэкламы · Рэзервовая копія: экспарт і імпорт · Штомесяц';
+      'Без рэкламы · Рэзервовая копія: экспарт і імпорт · Штогод';
 
   @override
   String get proBenefitNoAds => 'Выкарыстанне без рэкламы';
@@ -766,8 +766,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get formatLocaleLabel => 'Фармат лічбаў і валюты';
 
   @override
-  String get formatLocaleSystem =>
-      'Фармат сістэмы (лічбы лацінскія; інакш англійская)';
+  String get formatLocaleSystem => 'Фармат сістэмы';
 
   @override
   String get formatLocaleTr => 'Турэцкі (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Злучае чеки з спісамі, чытае цэннікі і ператварае сказы ў спісы. Фота і голас застаюцца на вашым прыладзе; апрацоўваецца толькі тэкст.';
+      'Чытае чакі і цэннікі з фота, супастаўляе чакі і ператварае сказы ў спісы. Фота адпраўляюцца толькі для прачытання і ніколі не захоўваюцца.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1129,6 +1128,15 @@ class AppLocalizationsBe extends AppLocalizations {
   String get csvExportAction => 'Экспарт CSV';
 
   @override
+  String get reportSharePdf => 'Абагуліць як PDF';
+
+  @override
+  String get reportShareCsv => 'Абагуліць як CSV';
+
+  @override
+  String get reportPrintAction => 'Друкаваць';
+
+  @override
   String get backupSizeWarning =>
       'JSON утрымлівае запісы, а не файлы фатаграфій. Ліміт імпарту: 16 МБ.';
 
@@ -1407,4 +1415,179 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get reportZoom => 'Павялічыць';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days дня засталося',
+      many: '$days дзён засталося',
+      few: '$days дні засталіся',
+      one: '$days дзень застаўся',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours гадзіны засталося',
+      many: '$hours гадзін засталося',
+      few: '$hours гадзіны засталіся',
+      one: '$hours гадзіна засталася',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Пробны перыяд Pro скончыўся';
+
+  @override
+  String get planTrialEndedBody =>
+      'Вы можаце бясплатна карыстацца спісамі, ручным уводам і апрацоўкай голасу на прыладзе. Бясплатны план уключае 10 запытаў да AI за каляндарны месяц. Абярыце гадавы Pro, каб атрымліваць 100 запытаў да AI штомесяц, без рэкламы і з рэзервовымі копіямі. Вашы даныя застануцца з вамі.';
+
+  @override
+  String get planContinueFree => 'Працягнуць бясплатна';
+
+  @override
+  String get supportIdLabel => 'Ідэнтыфікатар падтрымкі';
+
+  @override
+  String get supportEmailLabel => 'Падтрымка па электроннай пошце';
+
+  @override
+  String get captureTipFirst =>
+      'Пачніце са самага верху: назва крамы і дата павінны быць бачныя. Змясціце як мага больш пазіцый, астатняе будзе ў наступным здымку.';
+
+  @override
+  String get captureTipContinue =>
+      'Той жа чэк: уключыце апошнюю пазіцыю з папярэдняга здымка.';
+
+  @override
+  String get captureTipNeverShow => 'Больш не паказваць';
+
+  @override
+  String get captureTipOk => 'Зразумела';
+
+  @override
+  String get captureTipsSetting => 'Паказваць парады па здымцы чэка';
+
+  @override
+  String get receiptReadingProgress => 'Чытаецца чэк…';
+
+  @override
+  String get receiptReadInBackground => 'Працягнуць у фоне';
+
+  @override
+  String get receiptReadDoneTitle => 'Чэк прачытаны';
+
+  @override
+  String get receiptReadDoneBody => 'Націсніце, каб праверыць і захаваць.';
+
+  @override
+  String get receiptReadMoreTitle => 'Сфатаграфуйце астатнюю частку чэка';
+
+  @override
+  String get receiptReadFailedTitle => 'Не атрымалася прачытаць чэк';
+
+  @override
+  String get listReceiptsSection => 'Чэкі';
+
+  @override
+  String get receiptStateComplete => 'Завершаны';
+
+  @override
+  String get receiptStateIncomplete => 'Незавершаны';
+
+  @override
+  String get receiptStateFailed => 'Памылка';
+
+  @override
+  String get receiptStoreUnknown => 'Крама не прачытана';
+
+  @override
+  String get receiptDeleteAction => 'Выдаліць чэк';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Выдаліць гэты чэк і тавары, якія ён дадаў? Пазней вы зможаце імпартаваць яго зноў.';
+
+  @override
+  String get receiptDeleted => 'Чэк выдалены.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Паказаць усе ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Паказаць менш';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Дата чэка: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Па пакупках';
+
+  @override
+  String get historyViewStore => 'Па крамах';
+
+  @override
+  String get historyViewProduct => 'Па таварах';
+
+  @override
+  String get historyShareAll => 'Падзяліцца ўсім';
+
+  @override
+  String get historyUnknownStore => 'Невядомая крама';
+
+  @override
+  String get historyDailySpending => 'Штодзённыя выдаткі';
+
+  @override
+  String get historyResetPeriod => 'Вярнуцца да гэтага тыдня';
+
+  @override
+  String get tourSkip => 'Прапусціць';
+
+  @override
+  String get tourNewListBody =>
+      'Стварыце спіс пакупак і дадайце тое, што плануеце купіць.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Ужо зрабілі пакупкі? Ператварыце чэк у спіс з цэнамі.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Пачніце з верху чэка: спачатку здымiце краму і дату, потым працягвайце астатнімі радкамі.';
+
+  @override
+  String get tourTabsBody =>
+      'Пераключайцеся паміж актыўнымі, завершанымі і архіўнымі спісамі. Кнопка ў канцы мяняе парадак.';
+
+  @override
+  String get tourDiscoverBody => 'Іншыя праграмы таго ж распрацоўшчыка.';
+
+  @override
+  String get tourHelpBody =>
+      'Націсніце тут, каб зноў паглядзець даведнік. Адкрыйце спіс, каб даведацца пра вынікі і тавары.';
+
+  @override
+  String get tourTotalsBody =>
+      'Вынікі па плане, факце і розніцы абнаўляюцца падчас пакупак.';
+
+  @override
+  String get tourItemsBody =>
+      'Вашы тавары. Мяняйце іх парадак або шукайце іх тут.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Выкарыстана $percent% ад ліміту';
+  }
 }

@@ -8,6 +8,7 @@ import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/app/app_defaults.dart';
 import 'package:nshoptor/core/l10n/generated/app_localizations.dart';
 import 'package:nshoptor/data/db/app_database.dart';
+import 'package:nshoptor/features/history/insights/budget_check.dart';
 import 'package:nshoptor/features/history/insights/insights_repository.dart';
 import 'package:nshoptor/features/history/insights/spending_screen.dart';
 
@@ -112,4 +113,88 @@ void main() {
     expect(find.byKey(const Key('cal_day_3')), findsOneWidget);
     AppDefaults.setMonthlyLimitMinor(null);
   });
+
+  test(
+    'future weekly/monthly limits activate on period transition and evaluate independently of list budget',
+    () async {
+      final store = SettingsStore();
+      AppDefaults.attach(store);
+      final octNow = DateTime(2026, 10, 8, 12);
+      final nextWeek = DateTime(2026, 10, 12);
+      final nextMonth = DateTime(2026, 11, 1);
+
+      AppDefaults.setMonthlyLimitMinor(
+        30000,
+        currencyCode: 'TRY',
+        month: octNow,
+      );
+      AppDefaults.setMonthlyLimitMinor(
+        45000,
+        currencyCode: 'TRY',
+        month: nextMonth,
+      );
+      AppDefaults.setWeeklyLimitMinor(12000, currencyCode: 'TRY', week: octNow);
+      AppDefaults.setWeeklyLimitMinor(
+        18000,
+        currencyCode: 'TRY',
+        week: nextWeek,
+      );
+
+      expect(
+        AppDefaults.monthlyLimitMinor(currencyCode: 'TRY', month: octNow),
+        30000,
+      );
+      expect(
+        AppDefaults.monthlyLimitMinor(currencyCode: 'TRY', month: nextMonth),
+        45000,
+      );
+      expect(
+        AppDefaults.weeklyLimitMinor(currencyCode: 'TRY', week: octNow),
+        12000,
+      );
+      expect(
+        AppDefaults.weeklyLimitMinor(currencyCode: 'TRY', week: nextWeek),
+        18000,
+      );
+
+      // Foreign currency spending never pollutes TRY budget evaluation.
+      await completed(DateTime(2026, 10, 6, 10), 999999, currency: 'EUR');
+      await completed(DateTime(2026, 10, 6, 12), 10000, currency: 'TRY');
+
+      final activeListId = await db
+          .into(db.shoppingLists)
+          .insert(
+            ShoppingListsCompanion.insert(
+              currencyCode: 'TRY',
+              budgetMinorUnits: const Value(5000),
+              status: const Value('shopping'),
+            ),
+          );
+      await db
+          .into(db.purchaseEntries)
+          .insert(
+            PurchaseEntriesCompanion.insert(
+              listId: activeListId,
+              name: 'Peynir',
+              normalizedName: 'peynir',
+              actualQuantity: '1',
+              actualUnitCode: 'adet',
+              actualLineTotalMinorUnits: 25000,
+              userConfirmed: const Value(true),
+            ),
+          );
+
+      final status = await evaluateBudgetStatus(
+        db,
+        listId: activeListId,
+        now: octNow,
+      );
+      expect(status.listOver, isTrue);
+      expect(status.listOverMinor, 20000);
+      expect(status.weekOver, isTrue);
+      expect(status.weekOverMinor, 23000); // 10000 + 25000 - 12000
+      expect(status.monthOver, isTrue);
+      expect(status.monthOverMinor, 5000); // 10000 + 25000 - 30000
+    },
+  );
 }

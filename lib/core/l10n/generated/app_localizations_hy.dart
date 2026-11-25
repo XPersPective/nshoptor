@@ -522,7 +522,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Ձեր ցուցակները, գները, զեկույցները և լուսանկարները մնում են ձեր սարքում։ Լուսանկարները և ձայնը երբեք դուրս չեն գալիս։ Երբ AI օգնությունը միացված է, միայն տեքստը (օրինակ՝ զեկույցի տողերը կամ ձեր ասածը) է ուղարկվում մեր սերվեր՝ մշակման համար և չի պահվում։';
+      'Ձեր ցուցակները, գները, կտրոնները և լուսանկարները պահվում են ձեր սարքում։ Ձայնը երբեք չի լքում այն։ Երբ AI օգնությունը միացված է, կտրոնների և գնային պիտակների լուսանկարները (փոքրացված չափով) և տեքստը, օրինակ՝ թելադրված իրերը, ուղարկվում են մեր սերվեր միայն կարդալու համար․ դրանք մշակվում են անմիջապես և երբեք չեն պահվում։';
 
   @override
   String get aboutSection => 'Մասին';
@@ -734,7 +734,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Առանց գովազդի · Պատճենահանում և ներմուծում · Ամսական';
+      'Առանց գովազդի · Պատճենահանում և ներմուծում · Տարեկան';
 
   @override
   String get proBenefitNoAds => 'Առանց գովազդի փորձառություն';
@@ -766,8 +766,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get formatLocaleLabel => 'Թվերի և արժույթի ձևաչափ';
 
   @override
-  String get formatLocaleSystem =>
-      'Սարքի ձևաչափ (Լատինական թվեր; հակառակ դեպքում անգլերեն)';
+  String get formatLocaleSystem => 'Սարքի ձևաչափ';
 
   @override
   String get formatLocaleTr => 'Թուրքերեն (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Համապատասխանեցնում է զեկույցները, կարդում է գների պիտակները և նախադասությունները վերածում ցուցակների։ Ֆոտոները և ձայնը մնում են ձեր սարքում; մշակվում է միայն տեքստը։';
+      'Լուսանկարներից կարդում է կտրոններն ու գնային պիտակները, համապատասխանեցնում է կտրոնները և նախադասությունները վերածում ցուցակների։ Լուսանկարներն ուղարկվում են միայն կարդալու համար և երբեք չեն պահվում։';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -887,7 +886,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get monthlyLimitHelp =>
-      'Քանի՞ գումար եք ցանկանում ծախսել շاپավորումների վրա ամիսը մեկ:';
+      'Գնումների վրա ամսական որքա՞ն գումար եք ցանկանում ծախսել։';
 
   @override
   String get monthlyLimitRemove => 'Հեռացնել';
@@ -1128,6 +1127,15 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get csvExportAction => 'Արտահանել CSV';
+
+  @override
+  String get reportSharePdf => 'Կիսվել որպես PDF';
+
+  @override
+  String get reportShareCsv => 'Կիսվել որպես CSV';
+
+  @override
+  String get reportPrintAction => 'Տպել';
 
   @override
   String get backupSizeWarning =>
@@ -1408,4 +1416,175 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get reportZoom => 'Մեծացնել';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days օր է մնացել',
+      one: '$days օր է մնացել',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ժամ է մնացել',
+      one: '$hours ժամ է մնացել',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro-ի փորձաշրջանն ավարտվել է';
+
+  @override
+  String get planTrialEndedBody =>
+      'Կարող եք անվճար շարունակել օգտվել ցուցակներից, ձեռքով մուտքագրումից և սարքի ձայնային հնարավորությունից։ Անվճար պլանը ներառում է ամսական 10 AI հարցում։ Ընտրեք տարեկան Pro՝ ամսական 100 AI հարցման, առանց գովազդի և պահուստային պատճենների համար։ Ձեր տվյալները կմնան ձեզ հետ։';
+
+  @override
+  String get planContinueFree => 'Շարունակել անվճար';
+
+  @override
+  String get supportIdLabel => 'Աջակցության ID';
+
+  @override
+  String get supportEmailLabel => 'Աջակցություն էլ. փոստով';
+
+  @override
+  String get captureTipFirst =>
+      'Սկսեք ամենավերևից՝ խանութի անունը և ամսաթիվը պետք է երևան։ Ներառեք հնարավորինս շատ ապրանք, մնացածը կլինի հաջորդ լուսանկարում։';
+
+  @override
+  String get captureTipContinue =>
+      'Նույն կտրոնը՝ ներառեք նախորդ լուսանկարի վերջին ապրանքը։';
+
+  @override
+  String get captureTipNeverShow => 'Այլևս չցուցադրել';
+
+  @override
+  String get captureTipOk => 'Հասկացա';
+
+  @override
+  String get captureTipsSetting => 'Ցուցադրել կտրոնի լուսանկարման խորհուրդները';
+
+  @override
+  String get receiptReadingProgress => 'Կտրոնը կարդացվում է…';
+
+  @override
+  String get receiptReadInBackground => 'Շարունակել ֆոնային ռեժիմում';
+
+  @override
+  String get receiptReadDoneTitle => 'Կտրոնը կարդացվեց';
+
+  @override
+  String get receiptReadDoneBody => 'Հպեք՝ ստուգելու և պահելու համար։';
+
+  @override
+  String get receiptReadMoreTitle => 'Լուսանկարեք կտրոնի մնացած մասը';
+
+  @override
+  String get receiptReadFailedTitle => 'Կտրոնը չհաջողվեց կարդալ';
+
+  @override
+  String get listReceiptsSection => 'Կտրոններ';
+
+  @override
+  String get receiptStateComplete => 'Ավարտված';
+
+  @override
+  String get receiptStateIncomplete => 'Թերի';
+
+  @override
+  String get receiptStateFailed => 'Ձախողվեց';
+
+  @override
+  String get receiptStoreUnknown => 'Խանութը չկարդացվեց';
+
+  @override
+  String get receiptDeleteAction => 'Ջնջել կտրոնը';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Ջնջե՞լ այս կտրոնը և դրա ավելացրած ապրանքները։ Հետագայում կարող եք այն կրկին ներմուծել։';
+
+  @override
+  String get receiptDeleted => 'Կտրոնը ջնջվեց։';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Ցույց տալ բոլորը ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Ցույց տալ քիչ';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Կտրոնի ամսաթիվ՝ $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Ըստ գնումների';
+
+  @override
+  String get historyViewStore => 'Ըստ խանութի';
+
+  @override
+  String get historyViewProduct => 'Ըստ ապրանքի';
+
+  @override
+  String get historyShareAll => 'Կիսվել բոլորով';
+
+  @override
+  String get historyUnknownStore => 'Անհայտ խանութ';
+
+  @override
+  String get historyDailySpending => 'Օրական ծախս';
+
+  @override
+  String get historyResetPeriod => 'Վերադառնալ այս շաբաթ';
+
+  @override
+  String get tourSkip => 'Բաց թողնել';
+
+  @override
+  String get tourNewListBody =>
+      'Սկսեք գնումների ցուցակ և ավելացրեք այն, ինչ պատրաստվում եք գնել։';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Արդեն գնումներ եք արե՞լ։ Կտրոնը դարձրեք ցուցակ՝ գներով։';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Սկսեք կտրոնի վերևից՝ նախ խանութն ու ամսաթիվը, հետո շարունակեք մնացած տողերով։';
+
+  @override
+  String get tourTabsBody =>
+      'Անցեք ակտիվ, ավարտված և արխիվացված ցուցակների միջև։ Վերջի կոճակը փոխում է հերթականությունը։';
+
+  @override
+  String get tourDiscoverBody => 'Նույն մշակողի այլ հավելվածներ։';
+
+  @override
+  String get tourHelpBody =>
+      'Հպեք այստեղ՝ ուղեցույցը կրկին դիտելու համար։ Բացեք ցուցակ՝ գումարների և ապրանքների բացատրությունը տեսնելու համար։';
+
+  @override
+  String get tourTotalsBody =>
+      'Պլանավորված, փաստացի գումարները և տարբերությունը թարմացվում են գնումների ընթացքում։';
+
+  @override
+  String get tourItemsBody =>
+      'Ձեր ապրանքները։ Այստեղ փոխեք դրանց հերթականությունը կամ որոնեք։';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Սահմանաչափի $percent%-ն օգտագործվել է';
+  }
 }

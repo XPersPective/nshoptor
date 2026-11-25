@@ -58,33 +58,52 @@ class DemoData {
         }
 
         var count = 0;
-        for (var m = 11; m >= 0; m--) {
-          final shoppings = m % 3 == 0 ? 3 : 2;
-          for (var s = 0; s < shoppings; s++) {
-            final date = DateTime(today.year, today.month - m, 3 + s * 9, 11);
-            if (date.isAfter(today)) continue;
-            final listId = await _db.into(_db.shoppingLists).insert(ShoppingListsCompanion.insert(
+        final offsets = const [14, 3];
+        for (var s = 0; s < offsets.length; s++) {
+          final baseDate = today.subtract(Duration(days: offsets[s]));
+          final date = DateTime(
+            baseDate.year,
+            baseDate.month,
+            baseDate.day,
+            11,
+          );
+          final listId = await _db
+              .into(_db.shoppingLists)
+              .insert(
+                ShoppingListsCompanion.insert(
                   currencyCode: currencyCode,
-                  title: Value('${l10n.demoDataTitle} ${date.day}.${date.month}.${date.year}'),
+                  title: Value(
+                    '${l10n.demoDataTitle} ${date.day}.${date.month}.${date.year}',
+                  ),
                   status: const Value('completed'),
                   createdAt: Value(date),
                   completedAt: Value(date),
                   note: const Value(marker),
-                ));
-            count++;
-            final itemCount = 4 + (s + m) % 3;
-            for (var k = 0; k < itemCount; k++) {
-              final index = (m + s * 3 + k) % products.length;
-              final (name, unit, quantity, base) = products[index];
-              final trend = 1 + 0.015 * (11 - m);
-              final wobble = const [-0.04, 0.0, 0.05][(m + s + k) % 3];
-              final actualUnit = (base * trend * (1 + wobble) * scale).round();
-              final plannedUnit = (base * (1 + 0.012 * (11 - m)) * scale).round();
-              final qty = DecimalFixed.parse(quantity);
-              final actualLine = (DecimalFixed.fromMinorUnits(actualUnit, digits) * qty).toMinorUnits(digits);
-              final plannedLine = (DecimalFixed.fromMinorUnits(plannedUnit, digits) * qty).toMinorUnits(digits);
-              final actualPrice = DecimalFixed.fromMinorUnits(actualUnit, digits).toDbString();
-              final itemId = await _db.into(_db.plannedItems).insert(PlannedItemsCompanion.insert(
+                ),
+              );
+          count++;
+          final itemCount = 4;
+          for (var k = 0; k < itemCount; k++) {
+            final index = k;
+            final (name, unit, quantity, base) = products[index];
+            final wobble = s == 0 ? -0.03 : 0.04;
+            final actualUnit = (base * (1 + wobble) * scale).round();
+            final plannedUnit = (base * scale).round();
+            final qty = DecimalFixed.parse(quantity);
+            final actualLine =
+                (DecimalFixed.fromMinorUnits(actualUnit, digits) * qty)
+                    .toMinorUnits(digits);
+            final plannedLine =
+                (DecimalFixed.fromMinorUnits(plannedUnit, digits) * qty)
+                    .toMinorUnits(digits);
+            final actualPrice = DecimalFixed.fromMinorUnits(
+              actualUnit,
+              digits,
+            ).toDbString();
+            final itemId = await _db
+                .into(_db.plannedItems)
+                .insert(
+                  PlannedItemsCompanion.insert(
                     listId: listId,
                     productId: Value(productIds[index]),
                     name: name,
@@ -92,13 +111,22 @@ class DemoData {
                     plannedQuantity: quantity,
                     plannedUnitCode: unit.dbCode,
                     pricingInputMode: 'unitPrice',
-                    plannedUnitPrice: Value(DecimalFixed.fromMinorUnits(plannedUnit, digits).toDbString()),
+                    plannedUnitPrice: Value(
+                      DecimalFixed.fromMinorUnits(
+                        plannedUnit,
+                        digits,
+                      ).toDbString(),
+                    ),
                     plannedLineTotalMinorUnits: Value(plannedLine),
                     status: const Value('inCart'),
                     sortOrder: Value(k),
                     createdAt: Value(date),
-                  ));
-              final entryId = await _db.into(_db.purchaseEntries).insert(PurchaseEntriesCompanion.insert(
+                  ),
+                );
+            final entryId = await _db
+                .into(_db.purchaseEntries)
+                .insert(
+                  PurchaseEntriesCompanion.insert(
                     listId: listId,
                     plannedItemId: Value(itemId),
                     name: name,
@@ -110,8 +138,12 @@ class DemoData {
                     userConfirmed: const Value(true),
                     note: const Value(marker),
                     createdAt: Value(date),
-                  ));
-              await _db.into(_db.priceObservations).insert(PriceObservationsCompanion.insert(
+                  ),
+                );
+            await _db
+                .into(_db.priceObservations)
+                .insert(
+                  PriceObservationsCompanion.insert(
                     productId: Value(productIds[index]),
                     purchaseEntryId: Value(entryId),
                     observedAt: Value(date),
@@ -122,8 +154,8 @@ class DemoData {
                     lineTotalMinorUnits: actualLine,
                     currencyCode: currencyCode,
                     source: 'manual',
-                  ));
-            }
+                  ),
+                );
           }
         }
         return count;

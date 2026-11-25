@@ -520,7 +520,7 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Vaši popisi, cijene, računi i fotografije ostaju na vašem uređaju. Fotografije i glas nikada ne napuštaju uređaj. Kada je AI pomoć uključena, samo tekst (npr. stavke s računa ili ono što ste dictirali) šalje se na naš poslužitelj radi obrade i ne pohranjuje se.';
+      'Vaši popisi, cijene, računi i fotografije pohranjeni su na vašem uređaju. Glas ga nikada ne napušta. Kada je pomoć AI uključena, fotografije računa i cjenovnih oznaka (smanjene veličine) te tekst, poput diktiranih stavki, šalju se na naš server samo radi čitanja; obrađuju se odmah i nikada se ne pohranjuju.';
 
   @override
   String get aboutSection => 'O aplikaciji';
@@ -732,7 +732,7 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Bez reklama · Sigurnosna kopija: izvoz i uvoz · Mjesečno';
+      'Bez reklama · Sigurnosna kopija: izvoz i uvoz · Godišnje';
 
   @override
   String get proBenefitNoAds => 'Iskustvo bez reklama';
@@ -764,8 +764,7 @@ class AppLocalizationsBs extends AppLocalizations {
   String get formatLocaleLabel => 'Format brojeva i valuta';
 
   @override
-  String get formatLocaleSystem =>
-      'Format uređaja (Latinke cifre; inače engleski)';
+  String get formatLocaleSystem => 'Format uređaja';
 
   @override
   String get formatLocaleTr => 'Turski (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Uparuje račune, čita cijene s etiketa i pretvara rečenice u liste. Fotografije i glas ostaju na vašem uređaju; obrađuje se samo tekst.';
+      'Čita račune i cjenovne oznake s fotografija, uparuje račune i pretvara rečenice u popise. Fotografije se šalju samo radi čitanja i nikada se ne pohranjuju.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1127,6 +1126,15 @@ class AppLocalizationsBs extends AppLocalizations {
   String get csvExportAction => 'Izvezi CSV';
 
   @override
+  String get reportSharePdf => 'Podijeli kao PDF';
+
+  @override
+  String get reportShareCsv => 'Podijeli kao CSV';
+
+  @override
+  String get reportPrintAction => 'Štampaj';
+
+  @override
   String get backupSizeWarning =>
       'JSON uključuje zapise, a ne datoteke s fotografijama. Ograničenje uvoza: 16 MB.';
 
@@ -1404,4 +1412,177 @@ class AppLocalizationsBs extends AppLocalizations {
 
   @override
   String get reportZoom => 'Uvećaj';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dana preostalo',
+      few: '$days dana preostala',
+      one: '$days dan preostao',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours sati preostalo',
+      few: '$hours sata preostala',
+      one: '$hours sat preostao',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Vaš Pro probni period je završen';
+
+  @override
+  String get planTrialEndedBody =>
+      'I dalje možete besplatno koristiti liste, ručni unos i glas na uređaju. Besplatni plan uključuje 10 AI zahtjeva po kalendarskom mjesecu. Izaberite godišnji Pro za 100 AI zahtjeva mjesečno, bez oglasa i uz sigurnosne kopije. Vaši postojeći podaci ostaju vaši.';
+
+  @override
+  String get planContinueFree => 'Nastavi besplatno';
+
+  @override
+  String get supportIdLabel => 'ID podrške';
+
+  @override
+  String get supportEmailLabel => 'Podrška e-poštom';
+
+  @override
+  String get captureTipFirst =>
+      'Počnite sasvim od vrha: naziv prodavnice i datum moraju biti vidljivi. Obuhvatite što više artikala, ostatak ide u sljedeću fotografiju.';
+
+  @override
+  String get captureTipContinue =>
+      'Isti račun: uključite zadnji artikal s prethodne fotografije.';
+
+  @override
+  String get captureTipNeverShow => 'Ne prikazuj ponovo';
+
+  @override
+  String get captureTipOk => 'Razumijem';
+
+  @override
+  String get captureTipsSetting => 'Prikaži savjete za snimanje računa';
+
+  @override
+  String get receiptReadingProgress => 'Čitanje računa…';
+
+  @override
+  String get receiptReadInBackground => 'Nastavi u pozadini';
+
+  @override
+  String get receiptReadDoneTitle => 'Račun je pročitan';
+
+  @override
+  String get receiptReadDoneBody => 'Dodirnite da pregledate i sačuvate.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografirajte ostatak računa';
+
+  @override
+  String get receiptReadFailedTitle => 'Račun nije moguće pročitati';
+
+  @override
+  String get listReceiptsSection => 'Računi';
+
+  @override
+  String get receiptStateComplete => 'Završen';
+
+  @override
+  String get receiptStateIncomplete => 'Nepotpun';
+
+  @override
+  String get receiptStateFailed => 'Neuspješno';
+
+  @override
+  String get receiptStoreUnknown => 'Trgovina nije pročitana';
+
+  @override
+  String get receiptDeleteAction => 'Izbriši račun';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Izbrisati ovaj račun i stavke koje je dodao? Kasnije ga možete ponovo uvesti.';
+
+  @override
+  String get receiptDeleted => 'Račun je izbrisan.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Prikaži sve ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Prikaži manje';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Datum računa: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Po kupovini';
+
+  @override
+  String get historyViewStore => 'Po prodavnici';
+
+  @override
+  String get historyViewProduct => 'Po proizvodu';
+
+  @override
+  String get historyShareAll => 'Podijeli sve';
+
+  @override
+  String get historyUnknownStore => 'Nepoznata prodavnica';
+
+  @override
+  String get historyDailySpending => 'Dnevna potrošnja';
+
+  @override
+  String get historyResetPeriod => 'Nazad na ovu sedmicu';
+
+  @override
+  String get tourSkip => 'Preskoči';
+
+  @override
+  String get tourNewListBody =>
+      'Započnite listu za kupovinu i dodajte šta planirate kupiti.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Već ste kupili? Pretvorite račun u listu sa cijenama.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Počnite od vrha računa: prvo snimite prodavnicu i datum, zatim nastavite s ostalim redovima.';
+
+  @override
+  String get tourTabsBody =>
+      'Prebacujte se između aktivnih, završenih i arhiviranih lista. Dugme na kraju mijenja redoslijed.';
+
+  @override
+  String get tourDiscoverBody => 'Druge aplikacije istog programera.';
+
+  @override
+  String get tourHelpBody =>
+      'Dodirnite ovdje da ponovo vidite vodič. Otvorite listu za objašnjenje zbirova i stavki.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planirani, stvarni zbir i razlika ažuriraju se dok kupujete.';
+
+  @override
+  String get tourItemsBody =>
+      'Vaše stavke. Ovdje im promijenite redoslijed ili ih pretražite.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Iskorišteno je $percent% limita';
+  }
 }

@@ -520,7 +520,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'הרשימות, המחירים, הקבלות והתמונות שלך נשארים במכשיר. תמונות וקול לעולם לא יוצאים ממנו. כאשר עזרת AI פועלת, רק טקסט (למשל שורות בקבלה או מה שהקלטת) נשלח לשרת שלנו לעיבוד ואינו נשמר.';
+      'הרשימות, המחירים, הקבלות והתמונות שלך נשמרים במכשיר. הקול לעולם לא עוזב אותו. כשעזרת AI פועלת, תמונות של קבלות ושל תוויות מחיר (בגודל מוקטן) וטקסט, כמו פריטים שהוכתבו, נשלחים לשרת שלנו רק לצורך קריאה; הם מעובדים מיד ואינם נשמרים לעולם.';
 
   @override
   String get aboutSection => 'אודות';
@@ -729,7 +729,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'ללא פרסומות · גיבוי ייצוא וייבוא · חודשי';
+  String get proBenefitsLine => 'ללא פרסומות · גיבוי ייצוא וייבוא · שנתי';
 
   @override
   String get proBenefitNoAds => 'חוויה ללא מודעות';
@@ -761,7 +761,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get formatLocaleLabel => 'פורמט מספרים ומטבע';
 
   @override
-  String get formatLocaleSystem => 'תצורת המכשיר (ספרות לטיניות; אחרת באנגלית)';
+  String get formatLocaleSystem => 'תצורת המכשיר';
 
   @override
   String get formatLocaleTr => 'טורקי (1.234,56)';
@@ -774,7 +774,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'תואם קבלות, קורא תוויות מחיר והופך משפטים לרשימות. תמונות וקול נשארים במכשיר שלך; רק טקסט מעובד.';
+      'קורא קבלות ותוויות מחיר מתמונות, מתאים קבלות והופך משפטים לרשימות. התמונות נשלחות רק לצורך קריאה ואינן נשמרות לעולם.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1115,6 +1115,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get csvExportAction => 'ייצוא CSV';
 
   @override
+  String get reportSharePdf => 'שיתוף כ-PDF';
+
+  @override
+  String get reportShareCsv => 'שיתוף כ-CSV';
+
+  @override
+  String get reportPrintAction => 'הדפסה';
+
+  @override
   String get backupSizeWarning =>
       'קובץ JSON כולל רשומות, לא קבצי תמונה. מגבלת ייבוא: 16 MB.';
 
@@ -1387,4 +1396,176 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get reportZoom => 'הגדלה';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days ימים נותרו',
+      two: '$days ימים נותרו',
+      one: '$days יום נותר',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours שעות נותרו',
+      two: '$hours שעות נותרו',
+      one: '$hours שעה נותרה',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'תקופת הניסיון של Pro הסתיימה';
+
+  @override
+  String get planTrialEndedBody =>
+      'אפשר להמשיך להשתמש בחינם ברשימות, בהזנה ידנית ובקול במכשיר. התוכנית החינמית כוללת 10 בקשות AI בכל חודש קלנדרי. בחרו Pro שנתי לקבלת 100 בקשות AI בחודש, ללא פרסומות ועם גיבויים. הנתונים הקיימים שלכם יישארו אצלכם.';
+
+  @override
+  String get planContinueFree => 'המשך בחינם';
+
+  @override
+  String get supportIdLabel => 'מזהה תמיכה';
+
+  @override
+  String get supportEmailLabel => 'תמיכה בדוא״ל';
+
+  @override
+  String get captureTipFirst =>
+      'התחילו מהחלק העליון ביותר: שם החנות והתאריך חייבים להיות גלויים. כללו כמה שיותר פריטים; השאר יהיה בתמונה הבאה.';
+
+  @override
+  String get captureTipContinue =>
+      'אותה קבלה: כללו את הפריט האחרון מהתמונה הקודמת.';
+
+  @override
+  String get captureTipNeverShow => 'אל תציג שוב';
+
+  @override
+  String get captureTipOk => 'הבנתי';
+
+  @override
+  String get captureTipsSetting => 'הצג טיפים לצילום קבלה';
+
+  @override
+  String get receiptReadingProgress => 'הקבלה נקראת…';
+
+  @override
+  String get receiptReadInBackground => 'המשך ברקע';
+
+  @override
+  String get receiptReadDoneTitle => 'הקבלה נקראה';
+
+  @override
+  String get receiptReadDoneBody => 'הקישו כדי לבדוק ולשמור.';
+
+  @override
+  String get receiptReadMoreTitle => 'צלמו את שאר הקבלה';
+
+  @override
+  String get receiptReadFailedTitle => 'לא ניתן היה לקרוא את הקבלה';
+
+  @override
+  String get listReceiptsSection => 'קבלות';
+
+  @override
+  String get receiptStateComplete => 'הושלמה';
+
+  @override
+  String get receiptStateIncomplete => 'חלקית';
+
+  @override
+  String get receiptStateFailed => 'נכשלה';
+
+  @override
+  String get receiptStoreUnknown => 'החנות לא זוהתה';
+
+  @override
+  String get receiptDeleteAction => 'מחיקת קבלה';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'למחוק את הקבלה הזו ואת הפריטים שהיא הוסיפה? אפשר לייבא אותה שוב מאוחר יותר.';
+
+  @override
+  String get receiptDeleted => 'הקבלה נמחקה.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'הצגת הכול ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'הצגת פחות';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'תאריך הקבלה: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'לפי קנייה';
+
+  @override
+  String get historyViewStore => 'לפי חנות';
+
+  @override
+  String get historyViewProduct => 'לפי מוצר';
+
+  @override
+  String get historyShareAll => 'שתף הכול';
+
+  @override
+  String get historyUnknownStore => 'חנות לא ידועה';
+
+  @override
+  String get historyDailySpending => 'הוצאה יומית';
+
+  @override
+  String get historyResetPeriod => 'חזרה לשבוע הזה';
+
+  @override
+  String get tourSkip => 'דילוג';
+
+  @override
+  String get tourNewListBody =>
+      'התחילו רשימת קניות והוסיפו את מה שאתם מתכננים לקנות.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'כבר קניתם? הפכו קבלה לרשימה עם המחירים שלה.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'התחילו בראש הקבלה: צלמו קודם את החנות והתאריך, ואז המשיכו עם שאר השורות.';
+
+  @override
+  String get tourTabsBody =>
+      'עברו בין רשימות פעילות, שהושלמו ובארכיון. הכפתור בסוף משנה את הסדר.';
+
+  @override
+  String get tourDiscoverBody => 'ראו אפליקציות נוספות של אותו מפתח.';
+
+  @override
+  String get tourHelpBody =>
+      'הקישו כאן כדי לצפות שוב במדריך. פתחו רשימה כדי לקבל הסבר על הסכומים והפריטים.';
+
+  @override
+  String get tourTotalsBody =>
+      'הסכומים המתוכנן, בפועל וההפרש מתעדכנים בזמן הקנייה.';
+
+  @override
+  String get tourItemsBody => 'הפריטים שלכם. שנו את הסדר או חפשו אותם כאן.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'נוצלו $percent% מהמגבלה';
+  }
 }

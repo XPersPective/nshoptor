@@ -1,12 +1,10 @@
 import 'package:flutter/widgets.dart';
 
-import 'locale_conventions.dart';
-
 /// Sayı/para BİÇİMİ yereli — DİLDEN BAĞIMSIZ (C-001, PB-042).
 ///
 /// Kullanıcı "İngilizce arayüz + Türkçe biçim (1.234,56 ₺)" isteyebilir.
 /// `AppFormatLocale.attach` main'de ayarlardan bağlanır; ayar 'system'
-/// olduğunda (varsayılan) biçim, cihazın ülke yerelinden gelir; Latin dışı rakamda en yedeği kullanılır.
+/// olduğunda (varsayılan) biçim, cihazın ülke yerelinden gelir.
 class AppFormatLocale {
   AppFormatLocale._();
 
@@ -23,14 +21,15 @@ class AppFormatLocale {
 
   /// Etkin biçim yereli: ayar 'system'/yoksa cihazın ülke yereli.
   static String effective(BuildContext context) =>
-      _code ?? forLanguage(WidgetsBinding.instance.platformDispatcher.locale.toString());
+      _code ??
+      forLanguage(WidgetsBinding.instance.platformDispatcher.locale.toString());
 
-  /// Arayüz dilinden biçim yereli. Batı rakamı yazmayan dillerde (ar, fa, bn…)
-  /// giriş (0-9, nokta) ile gösterim tutarlı kalsın diye 'en' biçimi
-  /// kullanılır (PB-058/061).
+  /// Keep region and numbering data; native and Latin keyboards are both
+  /// accepted by MoneyParser. Locale defaults come from installed intl/CLDR.
   static String forLanguage(String languageCode) =>
-      usesLatinDigits(languageCode) ? languageCode : 'en';
+      languageCode.replaceAll('-', '_');
 }
 
 /// Kısayol: parasal/ondalık biçimleme yerel kodu.
-String formatLocaleCode(BuildContext context) => AppFormatLocale.effective(context);
+String formatLocaleCode(BuildContext context) =>
+    AppFormatLocale.effective(context);

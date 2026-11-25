@@ -518,7 +518,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'تبقى قوائمك وأسعارك وإيصالاتك وصورك على جهازك. الصور والصوت لا يغادرانه أبدًا. عند تفعيل مساعدة الذكاء الاصطناعي، يُرسل النص فقط (مثل أسطر الإيصال أو ما أمليته) إلى خادمنا لمعالجته دون حفظه.';
+      'تُخزَّن قوائمك وأسعارك وإيصالاتك وصورك على جهازك. الصوت لا يغادره أبدًا. عند تفعيل مساعدة الذكاء الاصطناعي، تُرسَل صور الإيصالات وملصقات الأسعار (بعد تصغير حجمها) والنصوص مثل العناصر المُملاة إلى خادمنا للقراءة فقط؛ وتُعالَج فورًا ولا تُخزَّن أبدًا.';
 
   @override
   String get aboutSection => 'حول';
@@ -728,7 +728,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'بلا إعلانات · تصدير واستيراد النسخ الاحتياطية · شهري';
+      'بلا إعلانات · تصدير واستيراد النسخ الاحتياطية · سنوي';
 
   @override
   String get proBenefitNoAds => 'بلا إعلانات';
@@ -760,7 +760,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get formatLocaleLabel => 'تنسيق الأرقام والعملة';
 
   @override
-  String get formatLocaleSystem => 'تنسيق الجهاز (أرقام لاتينية؛ وإلا إنجليزي)';
+  String get formatLocaleSystem => 'تنسيق الجهاز';
 
   @override
   String get formatLocaleTr => 'التركية (1.234,56)';
@@ -773,7 +773,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'يطابق الإيصالات ويقرأ ملصقات الأسعار ويحوّل الجمل إلى قوائم. تبقى الصور والصوت على جهازك؛ يُعالَج النص فقط.';
+      'يقرأ الإيصالات وملصقات الأسعار من الصور، ويطابق الإيصالات ويحوّل الجمل إلى قوائم. تُرسَل الصور للقراءة فقط ولا تُخزَّن أبدًا.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1114,6 +1114,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get csvExportAction => 'تصدير CSV';
 
   @override
+  String get reportSharePdf => 'مشاركة بصيغة PDF';
+
+  @override
+  String get reportShareCsv => 'مشاركة بصيغة CSV';
+
+  @override
+  String get reportPrintAction => 'طباعة';
+
+  @override
   String get backupSizeWarning =>
       'يحتوي ملف JSON على سجلات وليس ملفات صور. حد الاستيراد: 16 ميجابايت.';
 
@@ -1385,4 +1394,181 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reportZoom => 'تكبير';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days يوم متبقٍ',
+      many: '$days يومًا متبقيًا',
+      few: '$days أيام متبقية',
+      two: 'يومان متبقيان',
+      one: 'يوم واحد متبقٍ',
+      zero: 'لا أيام متبقية',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ساعة متبقية',
+      many: '$hours ساعة متبقية',
+      few: '$hours ساعات متبقية',
+      two: 'ساعتان متبقيتان',
+      one: 'ساعة واحدة متبقية',
+      zero: 'لا ساعات متبقية',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'انتهت الفترة التجريبية لـ Pro';
+
+  @override
+  String get planTrialEndedBody =>
+      'يمكنك مواصلة استخدام القوائم والإدخال اليدوي والصوت على الجهاز مجانًا. تشمل الخطة المجانية 10 طلبات ذكاء اصطناعي في كل شهر تقويمي. اختر Pro السنوية للحصول على 100 طلب ذكاء اصطناعي شهريًا، بلا إعلانات ومع نسخ احتياطية. ستبقى بياناتك الحالية معك.';
+
+  @override
+  String get planContinueFree => 'المتابعة بالخطة المجانية';
+
+  @override
+  String get supportIdLabel => 'معرّف الدعم';
+
+  @override
+  String get supportEmailLabel => 'الدعم عبر البريد الإلكتروني';
+
+  @override
+  String get captureTipFirst =>
+      'ابدأ من الأعلى تمامًا: يجب أن يظهر اسم المتجر والتاريخ. التقط أكبر عدد ممكن من العناصر، وسيكون الباقي في الصورة التالية.';
+
+  @override
+  String get captureTipContinue =>
+      'نفس الإيصال: ضمّن آخر عنصر من الصورة السابقة.';
+
+  @override
+  String get captureTipNeverShow => 'عدم الإظهار مرة أخرى';
+
+  @override
+  String get captureTipOk => 'فهمت';
+
+  @override
+  String get captureTipsSetting => 'إظهار نصائح تصوير الإيصال';
+
+  @override
+  String get receiptReadingProgress => 'جارٍ قراءة الإيصال…';
+
+  @override
+  String get receiptReadInBackground => 'المتابعة في الخلفية';
+
+  @override
+  String get receiptReadDoneTitle => 'تمت قراءة الإيصال';
+
+  @override
+  String get receiptReadDoneBody => 'اضغط للمراجعة والحفظ.';
+
+  @override
+  String get receiptReadMoreTitle => 'صوّر باقي الإيصال';
+
+  @override
+  String get receiptReadFailedTitle => 'تعذّرت قراءة الإيصال';
+
+  @override
+  String get listReceiptsSection => 'الإيصالات';
+
+  @override
+  String get receiptStateComplete => 'مكتمل';
+
+  @override
+  String get receiptStateIncomplete => 'غير مكتمل';
+
+  @override
+  String get receiptStateFailed => 'فشل';
+
+  @override
+  String get receiptStoreUnknown => 'لم تتم قراءة المتجر';
+
+  @override
+  String get receiptDeleteAction => 'حذف الإيصال';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'هل تريد حذف هذا الإيصال والعناصر التي أضافها؟ يمكنك استيراده مرة أخرى لاحقًا.';
+
+  @override
+  String get receiptDeleted => 'تم حذف الإيصال.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'عرض الكل ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'عرض أقل';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'تاريخ الإيصال: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'حسب التسوق';
+
+  @override
+  String get historyViewStore => 'حسب المتجر';
+
+  @override
+  String get historyViewProduct => 'حسب المنتج';
+
+  @override
+  String get historyShareAll => 'مشاركة الكل';
+
+  @override
+  String get historyUnknownStore => 'متجر غير معروف';
+
+  @override
+  String get historyDailySpending => 'الإنفاق اليومي';
+
+  @override
+  String get historyResetPeriod => 'العودة إلى هذا الأسبوع';
+
+  @override
+  String get tourSkip => 'تخطٍّ';
+
+  @override
+  String get tourNewListBody => 'ابدأ قائمة تسوق وأضف ما تنوي شراءه.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'تسوقت بالفعل؟ حوّل الإيصال إلى قائمة بأسعاره.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ابدأ من أعلى الإيصال: صوّر المتجر والتاريخ أولًا، ثم تابع ببقية السطور.';
+
+  @override
+  String get tourTabsBody =>
+      'تنقّل بين القوائم النشطة والمكتملة والمؤرشفة. الزر في النهاية يغيّر الترتيب.';
+
+  @override
+  String get tourDiscoverBody => 'اطّلع على تطبيقات أخرى من المطوّر نفسه.';
+
+  @override
+  String get tourHelpBody =>
+      'اضغط هنا لإعادة عرض هذا الدليل. افتح قائمة لترى شرح مجاميعها وعناصرها.';
+
+  @override
+  String get tourTotalsBody =>
+      'تتحدث مجاميع المخطط والفعلي والفرق أثناء تسوقك.';
+
+  @override
+  String get tourItemsBody => 'عناصرك. غيّر ترتيبها أو ابحث عنها هنا.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'تم استخدام $percent٪ من الحد';
+  }
 }

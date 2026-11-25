@@ -199,7 +199,7 @@ void main() {
 
   for (final (currency, price, minor) in [
     ('JPY', '32', 32),
-    ('KWD', '3.215', 3215),
+    ('KWD', '3٫215', 3215),
   ]) {
     test('$currency receipt keeps currency precision', () async {
       await (db.update(db.shoppingLists)..where((t) => t.id.equals(listId)))

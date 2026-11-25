@@ -513,7 +513,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'あなたのリスト、価格、レシート、写真はデバイス上に保存されます。写真や音声は外部に送信されません。AIヘルプを使用する場合、処理のためにテキスト（レシートの行や音声入力など）のみがサーバーに送信され、保存されることはありません。';
+      'リスト、価格、レシート、写真はデバイスに保存されます。音声がデバイスの外に出ることはありません。AIヘルプがオンの場合、レシートや値札の写真（サイズを縮小したもの）と、音声入力した品目などのテキストは、読み取りのためだけにサーバーへ送信されます。送信されたデータはすぐに処理され、保存されることはありません。';
 
   @override
   String get aboutSection => 'アプリ情報';
@@ -719,7 +719,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => '広告なし · バックアップのエクスポートとインポート · 月額';
+  String get proBenefitsLine => '広告なし · バックアップのエクスポートとインポート · 年額';
 
   @override
   String get proBenefitNoAds => '広告なし体験';
@@ -751,7 +751,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get formatLocaleLabel => '数字と通貨の形式';
 
   @override
-  String get formatLocaleSystem => 'デバイスの形式（ラテン数字の場合、それ以外は英語）';
+  String get formatLocaleSystem => 'デバイスの形式';
 
   @override
   String get formatLocaleTr => 'トルコ語 (1.234,56)';
@@ -764,7 +764,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'レシートを照合し、価格ラベルを読み取り、文章からリストを作成します。写真と音声はデバイス上に残り、テキストのみが処理されます。';
+      '写真からレシートや値札を読み取り、レシートを照合し、文章をリストに変換します。写真は読み取りのためだけに送信され、保存されることはありません。';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1093,6 +1093,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get csvExportAction => 'CSVをエクスポート';
 
   @override
+  String get reportSharePdf => 'PDFで共有';
+
+  @override
+  String get reportShareCsv => 'CSVで共有';
+
+  @override
+  String get reportPrintAction => '印刷';
+
+  @override
   String get backupSizeWarning =>
       'JSONにはレコードが含まれており、写真ファイルは含まれていません。インポート制限：16 MB。';
 
@@ -1357,4 +1366,164 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get reportZoom => '拡大';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days 日残っています',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 時間残っています',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Pro のトライアル期間が終了しました';
+
+  @override
+  String get planTrialEndedBody =>
+      'リスト、手動入力、端末内の音声機能は引き続き無料で利用できます。Free では暦月ごとに AI リクエストを 10 回利用できます。年間 Pro を選ぶと、月 100 回の AI リクエスト、広告なし、バックアップが利用できます。既存のデータはそのまま残ります。';
+
+  @override
+  String get planContinueFree => 'Free で続ける';
+
+  @override
+  String get supportIdLabel => 'サポート ID';
+
+  @override
+  String get supportEmailLabel => 'メールサポート';
+
+  @override
+  String get captureTipFirst =>
+      'いちばん上から撮影してください。店名と日付が写っている必要があります。できるだけ多くの商品を収め、残りは次の写真に写してください。';
+
+  @override
+  String get captureTipContinue => '同じレシートです。前の写真の最後の商品を含めてください。';
+
+  @override
+  String get captureTipNeverShow => '今後表示しない';
+
+  @override
+  String get captureTipOk => '了解';
+
+  @override
+  String get captureTipsSetting => 'レシート撮影のヒントを表示';
+
+  @override
+  String get receiptReadingProgress => 'レシートを読み取り中…';
+
+  @override
+  String get receiptReadInBackground => 'バックグラウンドで続ける';
+
+  @override
+  String get receiptReadDoneTitle => 'レシートを読み取りました';
+
+  @override
+  String get receiptReadDoneBody => 'タップして確認・保存します。';
+
+  @override
+  String get receiptReadMoreTitle => 'レシートの残りを撮影してください';
+
+  @override
+  String get receiptReadFailedTitle => 'レシートを読み取れませんでした';
+
+  @override
+  String get listReceiptsSection => 'レシート';
+
+  @override
+  String get receiptStateComplete => '完了';
+
+  @override
+  String get receiptStateIncomplete => '未完了';
+
+  @override
+  String get receiptStateFailed => '失敗';
+
+  @override
+  String get receiptStoreUnknown => '店舗を読み取れません';
+
+  @override
+  String get receiptDeleteAction => 'レシートを削除';
+
+  @override
+  String get receiptDeleteConfirm => 'このレシートと追加された商品を削除しますか？後で再度取り込むことができます。';
+
+  @override
+  String get receiptDeleted => 'レシートを削除しました。';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'すべて表示（$count）';
+  }
+
+  @override
+  String get listReceiptsShowLess => '表示を減らす';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'レシートの日付: $date';
+  }
+
+  @override
+  String get historyViewShopping => '買い物別';
+
+  @override
+  String get historyViewStore => '店舗別';
+
+  @override
+  String get historyViewProduct => '商品別';
+
+  @override
+  String get historyShareAll => 'すべて共有';
+
+  @override
+  String get historyUnknownStore => '不明な店舗';
+
+  @override
+  String get historyDailySpending => '日別の支出';
+
+  @override
+  String get historyResetPeriod => '今週に戻る';
+
+  @override
+  String get tourSkip => 'スキップ';
+
+  @override
+  String get tourNewListBody => '買い物リストを作って、買う予定のものを追加しましょう。';
+
+  @override
+  String get tourFromReceiptBody => 'もう買い物を済ませましたか？レシートを価格付きのリストに変換できます。';
+
+  @override
+  String get tourReceiptFlowBody => 'レシートの上から始めます。まず店名と日付を撮り、続けて残りの行を撮ります。';
+
+  @override
+  String get tourTabsBody => '進行中・完了・アーカイブのリストを切り替えます。末尾のボタンで並び順を変更します。';
+
+  @override
+  String get tourDiscoverBody => '同じ開発者のほかのアプリを見る。';
+
+  @override
+  String get tourHelpBody => 'ここをタップするとこのガイドをもう一度見られます。リストを開くと合計と品目の説明が表示されます。';
+
+  @override
+  String get tourTotalsBody => '予定・実績の合計と差額は買い物中に更新されます。';
+
+  @override
+  String get tourItemsBody => '品目の一覧です。ここで並び順を変えたり検索したりできます。';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '上限の$percent%を使用しました';
+  }
 }

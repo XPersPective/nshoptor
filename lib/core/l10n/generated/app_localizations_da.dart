@@ -519,7 +519,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Dine lister, priser, kvitteringer og fotos bliver på din enhed. Fotos og stemme forlader aldrig den. Når AI-hjælp er aktiveret, sendes kun tekst (f.eks. kvitteringslinjer eller det, du har dikteret) til vores server til behandling og gemmes ikke.';
+      'Dine lister, priser, kvitteringer og fotos gemmes på din enhed. Stemmen forlader den aldrig. Når AI-hjælp er slået til, sendes fotos af kvitteringer og prisskilte (formindsket) og tekst, f.eks. dikterede varer, kun til vores server for at blive læst; de behandles med det samme og gemmes aldrig.';
 
   @override
   String get aboutSection => 'Om';
@@ -730,7 +730,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'Ingen annoncer · Backup-eksport og -import · Månedlig';
+      'Ingen annoncer · Backup-eksport og -import · Årlig';
 
   @override
   String get proBenefitNoAds => 'Reklamefri oplevelse';
@@ -762,8 +762,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get formatLocaleLabel => 'Nummer- og valutaformat';
 
   @override
-  String get formatLocaleSystem =>
-      'Enhedsformat (Latinske cifre; ellers engelsk)';
+  String get formatLocaleSystem => 'Enhedsformat';
 
   @override
   String get formatLocaleTr => 'Tyrkisk (1.234,56)';
@@ -776,7 +775,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Matcher kvitteringer, læser prislabel og omdanner sætninger til lister. Fotos og stemme bliver på din enhed; kun tekst behandles.';
+      'Læser kvitteringer og prisskilte fra fotos, matcher kvitteringer og laver sætninger om til lister. Fotos sendes kun for at blive læst og gemmes aldrig.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1126,6 +1125,15 @@ class AppLocalizationsDa extends AppLocalizations {
   String get csvExportAction => 'Eksporter CSV';
 
   @override
+  String get reportSharePdf => 'Del som PDF';
+
+  @override
+  String get reportShareCsv => 'Del som CSV';
+
+  @override
+  String get reportPrintAction => 'Udskriv';
+
+  @override
   String get backupSizeWarning =>
       'JSON indeholder poster, ikke fotofiler. Importgrænse: 16 MB.';
 
@@ -1401,4 +1409,175 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get reportZoom => 'Zoom';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days dage tilbage',
+      one: '$days dag tilbage',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours timer tilbage',
+      one: '$hours time tilbage',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Din Pro-prøveperiode er slut';
+
+  @override
+  String get planTrialEndedBody =>
+      'Du kan fortsat bruge lister, manuel indtastning og tale på enheden gratis. Gratisplanen indeholder 10 AI-anmodninger pr. kalendermåned. Vælg årlig Pro for 100 AI-anmodninger om måneden, ingen annoncer og sikkerhedskopier. Dine eksisterende data forbliver dine.';
+
+  @override
+  String get planContinueFree => 'Fortsæt gratis';
+
+  @override
+  String get supportIdLabel => 'Support-id';
+
+  @override
+  String get supportEmailLabel => 'Support via e-mail';
+
+  @override
+  String get captureTipFirst =>
+      'Start helt øverst: butiksnavn og dato skal være synlige. Få så mange varer med som muligt; resten kommer på næste billede.';
+
+  @override
+  String get captureTipContinue =>
+      'Samme kvittering: tag den sidste vare fra det forrige billede med.';
+
+  @override
+  String get captureTipNeverShow => 'Vis ikke igen';
+
+  @override
+  String get captureTipOk => 'Forstået';
+
+  @override
+  String get captureTipsSetting => 'Vis tips til fotografering af kvittering';
+
+  @override
+  String get receiptReadingProgress => 'Læser kvitteringen…';
+
+  @override
+  String get receiptReadInBackground => 'Fortsæt i baggrunden';
+
+  @override
+  String get receiptReadDoneTitle => 'Kvittering læst';
+
+  @override
+  String get receiptReadDoneBody => 'Tryk for at gennemgå og gemme den.';
+
+  @override
+  String get receiptReadMoreTitle => 'Fotografér resten af kvitteringen';
+
+  @override
+  String get receiptReadFailedTitle => 'Kvitteringen kunne ikke læses';
+
+  @override
+  String get listReceiptsSection => 'Kvitteringer';
+
+  @override
+  String get receiptStateComplete => 'Fuldført';
+
+  @override
+  String get receiptStateIncomplete => 'Ufuldstændig';
+
+  @override
+  String get receiptStateFailed => 'Mislykkedes';
+
+  @override
+  String get receiptStoreUnknown => 'Butik ikke læst';
+
+  @override
+  String get receiptDeleteAction => 'Slet kvittering';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Vil du slette denne kvittering og de varer, den tilføjede? Du kan importere den igen senere.';
+
+  @override
+  String get receiptDeleted => 'Kvittering slettet.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Vis alle ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Vis færre';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Kvitteringsdato: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Efter indkøb';
+
+  @override
+  String get historyViewStore => 'Efter butik';
+
+  @override
+  String get historyViewProduct => 'Efter produkt';
+
+  @override
+  String get historyShareAll => 'Del alt';
+
+  @override
+  String get historyUnknownStore => 'Ukendt butik';
+
+  @override
+  String get historyDailySpending => 'Dagligt forbrug';
+
+  @override
+  String get historyResetPeriod => 'Tilbage til denne uge';
+
+  @override
+  String get tourSkip => 'Spring over';
+
+  @override
+  String get tourNewListBody =>
+      'Start en indkøbsliste, og tilføj det, du vil købe.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Allerede handlet? Lav en kvittering om til en liste med priser.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Start øverst på kvitteringen: først butik og dato, fortsæt derefter med resten af linjerne.';
+
+  @override
+  String get tourTabsBody =>
+      'Skift mellem aktive, afsluttede og arkiverede lister. Knappen til sidst ændrer rækkefølgen.';
+
+  @override
+  String get tourDiscoverBody => 'Se flere apps fra samme udvikler.';
+
+  @override
+  String get tourHelpBody =>
+      'Tryk her for at se guiden igen. Åbn en liste for at få summer og varer forklaret.';
+
+  @override
+  String get tourTotalsBody =>
+      'Planlagt, faktisk sum og forskel opdateres, mens du handler.';
+
+  @override
+  String get tourItemsBody =>
+      'Dine varer. Skift rækkefølge eller søg i dem her.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return '$percent% af grænsen er brugt';
+  }
 }

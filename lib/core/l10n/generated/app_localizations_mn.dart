@@ -521,7 +521,7 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'Таны жагсаалт, үнэ, найруулга болон зураг таны төхөөрөмж дээр л хадгалагдана. Зураг болон дууны бичлэг төхөөрөмжөөс гардаггүй. Хэрэв AI тусламж идэвхтэй бол зөвхөн текст (жишээ нь найруулгын мөр эсвэл та яриад өгсөн зүйл) сервер рүүгээ боловсруулахад илгээгдэж, хадгалагдахгүй.';
+      'Таны жагсаалт, үнэ, баримт болон зураг таны төхөөрөмжид хадгалагдана. Дуу хоолой төхөөрөмжөөс хэзээ ч гарахгүй. AI тусламж асаалттай үед баримт болон үнийн шошгоны зураг (хэмжээг багасгасан) болон хэлж бичүүлсэн зүйлс зэрэг текстийг зөвхөн унших зорилгоор манай сервер рүү илгээнэ; тэдгээрийг шууд боловсруулж, хэзээ ч хадгалахгүй.';
 
   @override
   String get aboutSection => 'Тухай';
@@ -734,7 +734,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get proBuyLabel => 'NShoptor Pro';
 
   @override
-  String get proBenefitsLine => 'Рекламгүй · Нөөцлөх экспорт, импорт · Сар бүр';
+  String get proBenefitsLine => 'Рекламгүй · Нөөцлөх экспорт, импорт · Жил бүр';
 
   @override
   String get proBenefitNoAds => 'Зогсоолгүй туршлага';
@@ -766,8 +766,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get formatLocaleLabel => 'Тоо ба валютын формат';
 
   @override
-  String get formatLocaleSystem =>
-      'Төхөөрөмжийн хэлбэр (Латин цифр; бусад нь Англи)';
+  String get formatLocaleSystem => 'Төхөөрөмжийн хэлбэр';
 
   @override
   String get formatLocaleTr => 'Турк (1.234,56)';
@@ -780,7 +779,7 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'Нэхэмжлэлийг тохируулж, үнийн шошгыг уншиж, өгүүлбэрийг жагсаалт болгоно. Зураг, дуу хоолой таны төхөөрөмж дээр хадгалагдаж, зөвхөн текст боловсруулна.';
+      'Зургаас баримт болон үнийн шошгыг уншиж, баримтыг тааруулж, өгүүлбэрийг жагсаалт болгоно. Зургийг зөвхөн унших зорилгоор илгээх бөгөөд хэзээ ч хадгалахгүй.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1131,6 +1130,15 @@ class AppLocalizationsMn extends AppLocalizations {
   String get csvExportAction => 'CSV экспортлох';
 
   @override
+  String get reportSharePdf => 'PDF болгон хуваалцах';
+
+  @override
+  String get reportShareCsv => 'CSV болгон хуваалцах';
+
+  @override
+  String get reportPrintAction => 'Хэвлэх';
+
+  @override
   String get backupSizeWarning =>
       'JSON нь зураг файлуудыг агуулаагүй, бичлэгүүдийг агуулдаг. Импортлох хязгаар: 16 MB.';
 
@@ -1409,4 +1417,173 @@ class AppLocalizationsMn extends AppLocalizations {
 
   @override
   String get reportZoom => 'Томруулах';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days өдөр үлдлээ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours цаг үлдлээ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'Таны Pro туршилтын хугацаа дууслаа';
+
+  @override
+  String get planTrialEndedBody =>
+      'Та жагсаалт, гараар оруулах болон төхөөрөмж дээрх дуу хоолойн функцийг үнэгүй ашигласаар байж болно. Үнэгүй багцад хуанлийн сар бүр 10 AI хүсэлт багтана. Сард 100 AI хүсэлт, заргүй хэрэглээ, нөөц хуулбар авахын тулд жилийн Pro-г сонгоно уу. Таны одоогийн өгөгдөл хэвээр үлдэнэ.';
+
+  @override
+  String get planContinueFree => 'Үнэгүй үргэлжлүүлэх';
+
+  @override
+  String get supportIdLabel => 'Тусламжийн ID';
+
+  @override
+  String get supportEmailLabel => 'Имэйлээр тусламж авах';
+
+  @override
+  String get captureTipFirst =>
+      'Хамгийн дээрээс эхлээрэй: дэлгүүрийн нэр, огноо харагдах ёстой. Аль болох олон бараа багтаа, үлдсэн нь дараагийн зурагт байна.';
+
+  @override
+  String get captureTipContinue =>
+      'Нэг баримт: өмнөх зургийн сүүлийн барааг оруулна уу.';
+
+  @override
+  String get captureTipNeverShow => 'Дахин үзүүлэхгүй';
+
+  @override
+  String get captureTipOk => 'Ойлголоо';
+
+  @override
+  String get captureTipsSetting => 'Баримт авах зөвлөгөөг харуулах';
+
+  @override
+  String get receiptReadingProgress => 'Баримтыг уншиж байна…';
+
+  @override
+  String get receiptReadInBackground => 'Далд үргэлжлүүлэх';
+
+  @override
+  String get receiptReadDoneTitle => 'Баримт уншигдлаа';
+
+  @override
+  String get receiptReadDoneBody => 'Шалгаж хадгалахын тулд товшино уу.';
+
+  @override
+  String get receiptReadMoreTitle => 'Баримтын үлдсэн хэсгийг зургийн авна уу';
+
+  @override
+  String get receiptReadFailedTitle => 'Баримтыг уншиж чадсангүй';
+
+  @override
+  String get listReceiptsSection => 'Баримтууд';
+
+  @override
+  String get receiptStateComplete => 'Дууссан';
+
+  @override
+  String get receiptStateIncomplete => 'Дутуу';
+
+  @override
+  String get receiptStateFailed => 'Амжилтгүй';
+
+  @override
+  String get receiptStoreUnknown => 'Дэлгүүрийг уншиж чадсангүй';
+
+  @override
+  String get receiptDeleteAction => 'Баримт устгах';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'Энэ баримт болон түүний нэмсэн бараануудыг устгах уу? Дараа нь дахин импортлох боломжтой.';
+
+  @override
+  String get receiptDeleted => 'Баримт устгагдлаа.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'Бүгдийг харуулах ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'Цөөнийг харуулах';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'Баримтын огноо: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'Худалдан авалтаар';
+
+  @override
+  String get historyViewStore => 'Дэлгүүрээр';
+
+  @override
+  String get historyViewProduct => 'Бүтээгдэхүүнээр';
+
+  @override
+  String get historyShareAll => 'Бүгдийг хуваалцах';
+
+  @override
+  String get historyUnknownStore => 'Тодорхойгүй дэлгүүр';
+
+  @override
+  String get historyDailySpending => 'Өдрийн зарлага';
+
+  @override
+  String get historyResetPeriod => 'Энэ долоо хоног руу буцах';
+
+  @override
+  String get tourSkip => 'Алгасах';
+
+  @override
+  String get tourNewListBody =>
+      'Худалдан авалтын жагсаалт эхлүүлж, авах зүйлсээ нэмнэ үү.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'Аль хэдийн худалдан авсан уу? Баримтыг үнэтэй нь жагсаалт болгоорой.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'Баримтын дээд хэсгээс эхлээрэй: эхлээд дэлгүүр, огноог авч, дараа нь үлдсэн мөрүүдээр үргэлжлүүлнэ үү.';
+
+  @override
+  String get tourTabsBody =>
+      'Идэвхтэй, дууссан, архивласан жагсаалтуудын хооронд шилжинэ үү. Төгсгөлийн товч дарааллыг өөрчилнө.';
+
+  @override
+  String get tourDiscoverBody => 'Ижил хөгжүүлэгчийн бусад аппууд.';
+
+  @override
+  String get tourHelpBody =>
+      'Энэ зааврыг дахин үзэхийн тулд энд дарна уу. Нийлбэр, барааны тайлбарыг харахын тулд жагсаалт нээнэ үү.';
+
+  @override
+  String get tourTotalsBody =>
+      'Төлөвлөсөн, бодит нийлбэр болон зөрүү худалдан авах явцад шинэчлэгдэнэ.';
+
+  @override
+  String get tourItemsBody =>
+      'Таны бараа. Эндээс дарааллыг нь өөрчлөх эсвэл хайна уу.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'Лимитийн $percent% ашиглагдсан';
+  }
 }

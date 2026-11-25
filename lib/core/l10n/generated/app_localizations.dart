@@ -1223,7 +1223,7 @@ abstract class AppLocalizations {
   /// No description provided for @privacyInfoBody.
   ///
   /// In en, this message translates to:
-  /// **'Your lists, prices, receipts and photos stay on your device. Photos and voice never leave it. When AI help is on, only text (for example receipt lines or what you dictated) is sent to our server to be processed and is not stored.'**
+  /// **'Your lists, prices, receipts and photos are stored on your device. Voice never leaves it. When AI help is on, receipt and price-label photos (reduced in size) and text such as dictated items are sent to our server only to be read; they are processed immediately and never stored.'**
   String get privacyInfoBody;
 
   /// No description provided for @aboutSection.
@@ -1625,7 +1625,7 @@ abstract class AppLocalizations {
   /// No description provided for @proBenefitsLine.
   ///
   /// In en, this message translates to:
-  /// **'No ads · Backup export and import · Monthly'**
+  /// **'No ads · Backup export and import · Yearly'**
   String get proBenefitsLine;
 
   /// No description provided for @proBenefitNoAds.
@@ -1685,7 +1685,7 @@ abstract class AppLocalizations {
   /// No description provided for @formatLocaleSystem.
   ///
   /// In en, this message translates to:
-  /// **'Device format (Latin digits; otherwise English)'**
+  /// **'Device format'**
   String get formatLocaleSystem;
 
   /// No description provided for @formatLocaleTr.
@@ -1709,7 +1709,7 @@ abstract class AppLocalizations {
   /// No description provided for @aiToggleSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Matches receipts, reads price labels and turns sentences into lists. Photos and voice stay on your device; only text is processed.'**
+  /// **'Reads receipts and price labels from photos, matches receipts and turns sentences into lists. Photos are sent only to be read and are never stored.'**
   String get aiToggleSubtitle;
 
   /// No description provided for @aiQuotaReached.
@@ -2336,6 +2336,24 @@ abstract class AppLocalizations {
   /// **'Export CSV'**
   String get csvExportAction;
 
+  /// No description provided for @reportSharePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as PDF'**
+  String get reportSharePdf;
+
+  /// No description provided for @reportShareCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as CSV'**
+  String get reportShareCsv;
+
+  /// No description provided for @reportPrintAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Print'**
+  String get reportPrintAction;
+
   /// No description provided for @backupSizeWarning.
   ///
   /// In en, this message translates to:
@@ -2851,6 +2869,282 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zoom'**
   String get reportZoom;
+
+  /// No description provided for @planTrialDaysLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, one{{days} day left} other{{days} days left}}'**
+  String planTrialDaysLeft(int days);
+
+  /// No description provided for @planTrialHoursLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours, plural, one{{hours} hour left} other{{hours} hours left}}'**
+  String planTrialHoursLeft(int hours);
+
+  /// No description provided for @planTrialEndedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Pro trial has ended'**
+  String get planTrialEndedTitle;
+
+  /// No description provided for @planTrialEndedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can keep using lists, manual entry and on-device voice for free. Free includes 10 AI requests per calendar month. Choose annual Pro for 100 AI requests per month, no ads and backups. Your existing data stays with you.'**
+  String get planTrialEndedBody;
+
+  /// No description provided for @planContinueFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Free'**
+  String get planContinueFree;
+
+  /// No description provided for @supportIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Support ID'**
+  String get supportIdLabel;
+
+  /// No description provided for @supportEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email support'**
+  String get supportEmailLabel;
+
+  /// No description provided for @captureTipFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Start at the very top: the store name and date must be visible. Fit as many items as you can; the rest goes in the next photo.'**
+  String get captureTipFirst;
+
+  /// No description provided for @captureTipContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Same receipt: include the last item of the previous photo.'**
+  String get captureTipContinue;
+
+  /// No description provided for @captureTipNeverShow.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t show again'**
+  String get captureTipNeverShow;
+
+  /// No description provided for @captureTipOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get captureTipOk;
+
+  /// No description provided for @captureTipsSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Show receipt capture tips'**
+  String get captureTipsSetting;
+
+  /// No description provided for @receiptReadingProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading the receipt…'**
+  String get receiptReadingProgress;
+
+  /// No description provided for @receiptReadInBackground.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue in background'**
+  String get receiptReadInBackground;
+
+  /// No description provided for @receiptReadDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt read'**
+  String get receiptReadDoneTitle;
+
+  /// No description provided for @receiptReadDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to review and save it.'**
+  String get receiptReadDoneBody;
+
+  /// No description provided for @receiptReadMoreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Photograph the rest of the receipt'**
+  String get receiptReadMoreTitle;
+
+  /// No description provided for @receiptReadFailedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The receipt could not be read'**
+  String get receiptReadFailedTitle;
+
+  /// No description provided for @listReceiptsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipts'**
+  String get listReceiptsSection;
+
+  /// No description provided for @receiptStateComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get receiptStateComplete;
+
+  /// No description provided for @receiptStateIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Incomplete'**
+  String get receiptStateIncomplete;
+
+  /// No description provided for @receiptStateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get receiptStateFailed;
+
+  /// No description provided for @receiptStoreUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Store not read'**
+  String get receiptStoreUnknown;
+
+  /// No description provided for @receiptDeleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete receipt'**
+  String get receiptDeleteAction;
+
+  /// No description provided for @receiptDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this receipt and the items it added? You can import it again later.'**
+  String get receiptDeleteConfirm;
+
+  /// No description provided for @receiptDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt deleted.'**
+  String get receiptDeleted;
+
+  /// No description provided for @listReceiptsShowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all ({count})'**
+  String listReceiptsShowAll(int count);
+
+  /// No description provided for @listReceiptsShowLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get listReceiptsShowLess;
+
+  /// No description provided for @receiptDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt date: {date}'**
+  String receiptDateLabel(String date);
+
+  /// No description provided for @historyViewShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'By shopping'**
+  String get historyViewShopping;
+
+  /// No description provided for @historyViewStore.
+  ///
+  /// In en, this message translates to:
+  /// **'By store'**
+  String get historyViewStore;
+
+  /// No description provided for @historyViewProduct.
+  ///
+  /// In en, this message translates to:
+  /// **'By product'**
+  String get historyViewProduct;
+
+  /// No description provided for @historyShareAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Share all'**
+  String get historyShareAll;
+
+  /// No description provided for @historyUnknownStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown store'**
+  String get historyUnknownStore;
+
+  /// No description provided for @historyDailySpending.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily spending'**
+  String get historyDailySpending;
+
+  /// No description provided for @historyResetPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to this week'**
+  String get historyResetPeriod;
+
+  /// No description provided for @tourSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get tourSkip;
+
+  /// No description provided for @tourNewListBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a shopping list and add what you plan to buy.'**
+  String get tourNewListBody;
+
+  /// No description provided for @tourFromReceiptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Already shopped? Turn a receipt into a list with its prices.'**
+  String get tourFromReceiptBody;
+
+  /// No description provided for @tourReceiptFlowBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start at the top of the receipt: capture the store and date first, then continue with the rest of the lines.'**
+  String get tourReceiptFlowBody;
+
+  /// No description provided for @tourTabsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch between active, completed and archived lists. The button at the end changes the order.'**
+  String get tourTabsBody;
+
+  /// No description provided for @tourDiscoverBody.
+  ///
+  /// In en, this message translates to:
+  /// **'See more apps from the same developer.'**
+  String get tourDiscoverBody;
+
+  /// No description provided for @tourHelpBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap here to replay this guide. Open a list to see its totals and items explained.'**
+  String get tourHelpBody;
+
+  /// No description provided for @tourTotalsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned, actual and difference totals update as you shop.'**
+  String get tourTotalsBody;
+
+  /// No description provided for @tourItemsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your items. Change their order or search them here.'**
+  String get tourItemsBody;
+
+  /// No description provided for @budgetAlertNear.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% of the limit used'**
+  String budgetAlertNear(String percent);
 }
 
 class _AppLocalizationsDelegate

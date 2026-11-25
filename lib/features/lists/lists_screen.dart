@@ -4,6 +4,7 @@ import '../../core/money/format_locale.dart';
 import '../../core/text/list_title.dart';
 
 import 'package:flutter/material.dart';
+import 'package:napp_ads/napp_ads.dart';
 
 import '../../core/theme/brand_wordmark.dart';
 
@@ -18,8 +19,11 @@ import 'list_detail_screen.dart';
 import 'list_repository.dart';
 import 'list_scheduling.dart';
 import 'reminders/reminder_scheduler.dart';
+import 'reminders/reminders_repository.dart';
 import 'list_status.dart';
 import '../voice_input/dictation_mic_button.dart';
+import '../onboarding/coach_tour.dart';
+import '../onboarding/first_run_guide.dart';
 
 /// Liste durumlarının görünen adları (kanonik kod → l10n).
 String statusLabel(AppLocalizations l10n, ListStatus status) =>
@@ -42,16 +46,19 @@ class ListsScreen extends StatefulWidget {
     required this.repository,
     this.onOpenListDetail,
     this.reminderScheduler,
+    this.bannerController,
     this.onScanReceipt,
     this.receiptBusy = false,
     this.onDiscover,
     this.planBadge,
+    this.budgetCard,
   });
 
   final ListRepository repository;
 
   /// Test dikişi: liste detayına geçirilir (hatırlatma akışı).
   final ReminderScheduler? reminderScheduler;
+  final BannerAdController? bannerController;
 
   /// Liste kartına dokununca detay ekranını açar; verilmediyse dahili olarak
   /// ListDetailScreen push edilir.
@@ -63,16 +70,25 @@ class ListsScreen extends StatefulWidget {
   /// Plan simgesi (ana sayfanın üstünde); verilmezse gösterilmez.
   final Widget? planBadge;
 
+  /// Weekly/monthly budget progress shown above the lists when limits exist.
+  final Widget? budgetCard;
+
   @override
   State<ListsScreen> createState() => _ListsScreenState();
 }
 
 class _ListsScreenState extends State<ListsScreen> {
   String _query = '';
-  bool _searching = false;
+  final _searchController = TextEditingController();
   bool _editorOpen = false;
   ListSortMode _sort = ListSortMode.fromCode(AppDefaults.listSort());
   final _orders = <ListStatus, List<int>>{};
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,172 +98,210 @@ class _ListsScreenState extends State<ListsScreen> {
       ListSortMode.title => l10n.listSortAz,
       ListSortMode.manual => l10n.listSortManual,
     };
-    final tools = <Widget>[
-      IconButton(
-        key: const Key('lists_search_button'),
-        tooltip: l10n.searchListHint,
-        icon: Icon(_searching ? Icons.close : Icons.search),
+    // F26: sort sits at the end of the tabs row (start in RTL).
+    final sortButton = Semantics(
+      value: sortLabel,
+      child: IconButton(
+        key: const Key('lists_sort_button'),
+        tooltip: '${l10n.listSortLabel}: $sortLabel',
+        icon: Icon(switch (_sort) {
+          ListSortMode.date => Icons.event_outlined,
+          ListSortMode.title => Icons.sort_by_alpha,
+          ListSortMode.manual => Icons.drag_indicator,
+        }),
         onPressed: () => setState(() {
-          _searching = !_searching;
-          if (!_searching) _query = '';
+          _sort = _sort.next;
+          AppDefaults.setListSort(_sort.name);
         }),
       ),
-      Semantics(
-        value: sortLabel,
-        child: IconButton(
-          key: const Key('lists_sort_button'),
-          tooltip: '${l10n.listSortLabel}: $sortLabel',
-          icon: Icon(switch (_sort) {
-            ListSortMode.date => Icons.event_outlined,
-            ListSortMode.title => Icons.sort_by_alpha,
-            ListSortMode.manual => Icons.drag_indicator,
-          }),
-          onPressed: () => setState(() {
-            _sort = _sort.next;
-            AppDefaults.setListSort(_sort.name);
-          }),
-        ),
+    );
+    final helpInAppBar = MediaQuery.sizeOf(context).width >= 380;
+    final helpButton = TourAnchor(
+      id: TourTargets.listsHelp,
+      child: IconButton(
+        key: const Key('lists_help_button'),
+        tooltip: l10n.howToUseLabel,
+        icon: const Icon(Icons.help_outline),
+        onPressed: () => showFirstRunGuide(context),
       ),
-      if (widget.onDiscover != null)
-        IconButton(
-          key: const Key('home_nav_discover'),
-          tooltip: l10n.navDiscover,
-          icon: const Icon(Icons.explore_outlined),
-          onPressed: widget.onDiscover,
-        ),
-    ];
-    return LayoutBuilder(
-      builder: (context, constraints) => DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            title: const BrandTitle(),
-            actions: [
-              ?widget.planBadge,
-              if (constraints.maxWidth >= 480) ...tools,
-            ],
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(
-                kTextTabBarHeight + (constraints.maxWidth < 480 ? 48 : 0),
+    );
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const BrandTitle(),
+          // F26/F02: [Discover][Pro] — Pro ends 16dp from the screen edge;
+          // Discover's 48dp target leaves a 12dp gap between glyph and badge.
+          // F40: [?] replays the coach-mark tour; below 380dp the brand
+          // would shrink past legibility with long plan names, so it moves
+          // to the tabs row beside sort.
+          actions: [
+            if (helpInAppBar) helpButton,
+            if (widget.onDiscover != null)
+              TourAnchor(
+                id: TourTargets.listsDiscover,
+                child: IconButton(
+                  key: const Key('home_nav_discover'),
+                  tooltip: l10n.navDiscover,
+                  icon: const Icon(Icons.explore_outlined),
+                  onPressed: widget.onDiscover,
+                ),
               ),
-              child: Column(
+            if (widget.planBadge != null) ...[
+              TourAnchor(id: TourTargets.listsPlan, child: widget.planBadge!),
+              const SizedBox(width: 16),
+            ] else
+              const SizedBox(width: 4),
+          ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(48),
+            child: TourAnchor(
+              id: TourTargets.listsTabs,
+              child: Row(
                 children: [
-                  if (constraints.maxWidth < 480)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: tools,
+                  Expanded(
+                    child: TabBar(
+                      isScrollable: true,
+                      tabAlignment: TabAlignment.start,
+                      tabs: [
+                        Tab(
+                          key: const Key('lists_tab_active'),
+                          text: l10n.listsTabActive,
+                        ),
+                        Tab(
+                          key: const Key('lists_tab_completed'),
+                          text: l10n.listsTabCompleted,
+                        ),
+                        Tab(
+                          key: const Key('lists_tab_archived'),
+                          text: l10n.listsTabArchived,
+                        ),
+                      ],
                     ),
-                  TabBar(
-                    isScrollable: true,
-                    tabAlignment: TabAlignment.start,
-                    tabs: [
-                      Tab(
-                        key: const Key('lists_tab_active'),
-                        text: l10n.listsTabActive,
-                      ),
-                      Tab(
-                        key: const Key('lists_tab_completed'),
-                        text: l10n.listsTabCompleted,
-                      ),
-                      Tab(
-                        key: const Key('lists_tab_archived'),
-                        text: l10n.listsTabArchived,
-                      ),
-                    ],
                   ),
+                  if (!helpInAppBar) helpButton,
+                  sortButton,
+                  const SizedBox(width: 4),
                 ],
               ),
             ),
           ),
-          body: Column(
-            children: [
-              if (_searching)
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                  child: TextField(
-                    key: const Key('lists_search_field'),
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      hintText: l10n.searchListHint,
-                      prefixIcon: const Icon(Icons.search),
-                    ),
-                    onChanged: (v) => setState(() => _query = v.trim()),
-                  ),
+        ),
+        body: Column(
+          children: [
+            ?widget.budgetCard,
+            // F26/F27: no show/hide toggle; search stays under the tabs and
+            // filters whichever sort order is active.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+              child: TextField(
+                key: const Key('lists_search_field'),
+                controller: _searchController,
+                textInputAction: TextInputAction.search,
+                onSubmitted: (_) => FocusScope.of(context).unfocus(),
+                decoration: InputDecoration(
+                  isDense: true,
+                  labelText: l10n.searchListHint,
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: _query.isEmpty
+                      ? null
+                      : IconButton(
+                          key: const Key('lists_search_clear'),
+                          constraints: const BoxConstraints(
+                            minWidth: 48,
+                            minHeight: 48,
+                          ),
+                          tooltip: MaterialLocalizations.of(context)
+                              .clearButtonTooltip,
+                          icon: const Icon(Icons.close),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() => _query = '');
+                          },
+                        ),
                 ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    _ListsTab(
-                      repository: widget.repository,
-                      query: _query,
-                      sort: _sort,
-                      statuses: const {
-                        ListStatus.draft,
-                        ListStatus.planned,
-                        ListStatus.shopping,
-                      },
-                      orderKey: ListStatus.draft,
-                      order: _orders[ListStatus.draft],
-                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                        ListStatus.draft,
-                        lists,
-                        oldIndex,
-                        newIndex,
-                      ),
-                      emptyText: l10n.listsEmpty,
-                      onOpenListDetail: widget.onOpenListDetail,
-                      reminderScheduler: widget.reminderScheduler,
-                    ),
-                    _ListsTab(
-                      repository: widget.repository,
-                      query: _query,
-                      sort: _sort,
-                      statuses: const {ListStatus.completed},
-                      orderKey: ListStatus.completed,
-                      order: _orders[ListStatus.completed],
-                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                        ListStatus.completed,
-                        lists,
-                        oldIndex,
-                        newIndex,
-                      ),
-                      emptyText: l10n.listsEmpty,
-                      onOpenListDetail: widget.onOpenListDetail,
-                      reminderScheduler: widget.reminderScheduler,
-                    ),
-                    _ListsTab(
-                      repository: widget.repository,
-                      query: _query,
-                      sort: _sort,
-                      statuses: const {ListStatus.archived},
-                      orderKey: ListStatus.archived,
-                      order: _orders[ListStatus.archived],
-                      onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                        ListStatus.archived,
-                        lists,
-                        oldIndex,
-                        newIndex,
-                      ),
-                      emptyText: l10n.listsEmpty,
-                      onOpenListDetail: widget.onOpenListDetail,
-                      reminderScheduler: widget.reminderScheduler,
-                    ),
-                  ],
-                ),
+                onChanged: (v) => setState(() => _query = v.trim()),
               ),
-            ],
-          ),
-          bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
-              ? null
-              : SafeArea(
-                  top: false,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-                    child: IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    sort: _sort,
+                    statuses: const {
+                      ListStatus.draft,
+                      ListStatus.planned,
+                      ListStatus.shopping,
+                    },
+                    orderKey: ListStatus.draft,
+                    order: _orders[ListStatus.draft],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.draft,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                    bannerController: widget.bannerController,
+                  ),
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    sort: _sort,
+                    statuses: const {ListStatus.completed},
+                    orderKey: ListStatus.completed,
+                    order: _orders[ListStatus.completed],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.completed,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                    bannerController: widget.bannerController,
+                  ),
+                  _ListsTab(
+                    repository: widget.repository,
+                    query: _query,
+                    sort: _sort,
+                    statuses: const {ListStatus.archived},
+                    orderKey: ListStatus.archived,
+                    order: _orders[ListStatus.archived],
+                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                      ListStatus.archived,
+                      lists,
+                      oldIndex,
+                      newIndex,
+                    ),
+                    emptyText: l10n.listsEmpty,
+                    onOpenListDetail: widget.onOpenListDetail,
+                    reminderScheduler: widget.reminderScheduler,
+                    bannerController: widget.bannerController,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
+            ? null
+            : SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          child: TourAnchor(
+                            id: TourTargets.listsNew,
                             child: FilledButton(
                               key: const Key('lists_new_list_button'),
                               style: FilledButton.styleFrom(
@@ -275,9 +329,12 @@ class _ListsScreenState extends State<ListsScreen> {
                               ),
                             ),
                           ),
-                          if (widget.onScanReceipt != null) ...[
-                            const SizedBox(width: 12),
-                            Expanded(
+                        ),
+                        if (widget.onScanReceipt != null) ...[
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: TourAnchor(
+                              id: TourTargets.listsReceipt,
                               child: FilledButton.tonal(
                                 key: const Key('lists_receipt_button'),
                                 style: FilledButton.styleFrom(
@@ -305,13 +362,13 @@ class _ListsScreenState extends State<ListsScreen> {
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ],
-                      ),
+                      ],
                     ),
                   ),
                 ),
-        ),
+              ),
       ),
     );
   }
@@ -324,6 +381,7 @@ class _ListsScreenState extends State<ListsScreen> {
         context,
         widget.repository,
         reminderScheduler: widget.reminderScheduler,
+        bannerController: widget.bannerController,
       );
     } finally {
       if (mounted) setState(() => _editorOpen = false);
@@ -349,6 +407,7 @@ Future<void> showListEditor(
   ListRepository repository, {
   ShoppingList? existing,
   ReminderScheduler? reminderScheduler,
+  BannerAdController? bannerController,
 }) async {
   final id = await showModalBottomSheet<int>(
     context: context,
@@ -357,6 +416,7 @@ Future<void> showListEditor(
       repository: repository,
       l10n: AppLocalizations.of(context),
       existing: existing,
+      reminderScheduler: reminderScheduler,
     ),
   );
   if (existing == null && id != null && context.mounted) {
@@ -367,6 +427,7 @@ Future<void> showListEditor(
           listRepository: repository,
           listId: id,
           reminderScheduler: reminderScheduler,
+          bannerController: bannerController,
         ),
       ),
     );
@@ -385,6 +446,7 @@ class _ListsTab extends StatelessWidget {
     required this.emptyText,
     required this.onOpenListDetail,
     this.reminderScheduler,
+    this.bannerController,
   });
 
   final ListRepository repository;
@@ -397,6 +459,7 @@ class _ListsTab extends StatelessWidget {
   final String emptyText;
   final void Function(BuildContext, int)? onOpenListDetail;
   final ReminderScheduler? reminderScheduler;
+  final BannerAdController? bannerController;
 
   @override
   Widget build(BuildContext context) {
@@ -421,37 +484,48 @@ class _ListsTab extends StatelessWidget {
         );
         if (lists.isEmpty) {
           final colors = Theme.of(context).colorScheme;
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: colors.secondaryContainer,
-                      shape: BoxShape.circle,
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Icon(
-                      Icons.receipt_long_outlined,
-                      size: 30,
-                      color: colors.onSecondaryContainer,
+          // Scrolls when the always-visible search leaves little height
+          // (320dp, 2x text) instead of overflowing.
+          return LayoutBuilder(
+            builder: (context, box) => SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: box.maxHeight),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: colors.secondaryContainer,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: const EdgeInsets.all(16),
+                          child: Icon(
+                            Icons.receipt_long_outlined,
+                            size: 30,
+                            color: colors.onSecondaryContainer,
+                          ),
+                        ),
+                        const SizedBox(height: 14),
+                        Text(
+                          emptyText,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(color: colors.onSurfaceVariant),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 14),
-                  Text(
-                    emptyText,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleMedium
-                        ?.copyWith(color: colors.onSurfaceVariant),
-                  ),
-                ],
+                ),
               ),
             ),
           );
         }
-        if (sort != ListSortMode.manual) {
+        // A filtered manual list keeps its saved order without drag handles:
+        // reordering a subset would rewrite the hidden lists' positions.
+        if (sort != ListSortMode.manual || query.isNotEmpty) {
           return ListView.builder(
             padding: const EdgeInsets.only(bottom: 12),
             itemCount: lists.length,
@@ -461,6 +535,7 @@ class _ListsTab extends StatelessWidget {
               list: lists[index],
               onOpen: onOpenListDetail,
               reminderScheduler: reminderScheduler,
+              bannerController: bannerController,
             ),
           );
         }
@@ -491,6 +566,7 @@ class _ListsTab extends StatelessWidget {
                 list: lists[index],
                 onOpen: onOpenListDetail,
                 reminderScheduler: reminderScheduler,
+                bannerController: bannerController,
               ),
             ),
           ),
@@ -507,12 +583,14 @@ class _ListCard extends StatelessWidget {
     required this.list,
     this.onOpen,
     this.reminderScheduler,
+    this.bannerController,
   });
 
   final ListRepository repository;
   final ShoppingList list;
   final void Function(BuildContext, int)? onOpen;
   final ReminderScheduler? reminderScheduler;
+  final BannerAdController? bannerController;
 
   @override
   Widget build(BuildContext context) {
@@ -584,6 +662,7 @@ class _ListCard extends StatelessWidget {
                     listRepository: repository,
                     listId: list.id,
                     reminderScheduler: reminderScheduler,
+                    bannerController: bannerController,
                   ),
                 ),
               );
@@ -647,6 +726,7 @@ class _ListCard extends StatelessWidget {
             repository: repository,
             l10n: l10n,
             existing: list,
+            reminderScheduler: reminderScheduler,
           ),
         );
       case 'duplicate':
@@ -715,11 +795,13 @@ class _ListEditorSheet extends StatefulWidget {
     required this.repository,
     required this.l10n,
     this.existing,
+    this.reminderScheduler,
   });
 
   final ListRepository repository;
   final AppLocalizations l10n;
   final ShoppingList? existing;
+  final ReminderScheduler? reminderScheduler;
 
   @override
   State<_ListEditorSheet> createState() => _ListEditorSheetState();
@@ -732,6 +814,7 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
   late final TextEditingController _budget = TextEditingController();
   String? _budgetPrefilled;
   late DateTime? _plannedAt = widget.existing?.plannedAt;
+  late String _reminderMode = AppDefaults.datedReminderMode();
   late String _currency =
       widget.existing?.currencyCode ?? AppDefaults.defaultCurrency();
   late final TextEditingController _note = TextEditingController(
@@ -770,12 +853,13 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
     if (_budgetPrefilled == null && widget.existing?.budgetMinorUnits != null) {
       _budgetPrefilled = '';
       final existing = widget.existing!;
-      final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context))
-          .decimal;
-      _budget.text = _minorToInput(
-        existing.budgetMinorUnits!,
-        Currency.fromCode(existing.currencyCode),
-        sep,
+      final sep = MoneySeparators.forLocaleCode(formatLocaleCode(context));
+      _budget.text = sep.formatInput(
+        _minorToInput(
+          existing.budgetMinorUnits!,
+          Currency.fromCode(existing.currencyCode),
+          '.',
+        ),
       );
     }
   }
@@ -869,6 +953,42 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
         _note.text.trim().isEmpty ? null : _note.text.trim(),
       );
     }
+    AppDefaults.setDatedReminderMode(_reminderMode);
+    final targetId = createdId ?? existing!.id;
+    final scheduler = widget.reminderScheduler;
+    if (scheduler != null) {
+      try {
+        final repo = RemindersRepository(widget.repository.db, scheduler);
+        if (_plannedAt == null || _reminderMode == 'none') {
+          if (existing != null && _plannedAt == null) {
+            final active = await repo.activeForList(targetId);
+            if (active != null) await repo.cancelReminder(active.id);
+          }
+        } else {
+          final granted = await scheduler.ensurePermission();
+          if (granted) {
+            final desired = _reminderMode == '1h'
+                ? _plannedAt!.subtract(const Duration(hours: 1))
+                : _plannedAt!;
+            final now = DateTime.now();
+            final fireAt = desired.isAfter(now)
+                ? desired
+                : now.add(const Duration(seconds: 30));
+            final displayName = title.isNotEmpty
+                ? title
+                : (existing?.generatedTitle ?? widget.l10n.listsTitle);
+            await repo.setReminder(
+              listId: targetId,
+              title: widget.l10n.reminderTitle,
+              body: widget.l10n.reminderBody(displayName),
+              atUtc: fireAt.toUtc(),
+            );
+          }
+        }
+      } catch (_) {
+        // Optional reminder scheduling never blocks saving the list (N063/N064).
+      }
+    }
     if (mounted) Navigator.of(context).pop(createdId);
   }
 
@@ -932,6 +1052,40 @@ class _ListEditorSheetState extends State<_ListEditorSheet> {
               enabled: !_saving,
               onChanged: (value) => setState(() => _plannedAt = value),
             ),
+            if (_plannedAt != null) ...[
+              const SizedBox(height: 8),
+              Wrap(
+                key: const Key('dated_list_reminder_mode'),
+                spacing: 8,
+                runSpacing: 4,
+                children: [
+                  ChoiceChip(
+                    key: const Key('dated_reminder_none'),
+                    label: Text(l10n.cancelButton),
+                    selected: _reminderMode == 'none',
+                    onSelected: _saving
+                        ? null
+                        : (_) => setState(() => _reminderMode = 'none'),
+                  ),
+                  ChoiceChip(
+                    key: const Key('dated_reminder_same_day'),
+                    label: Text(l10n.setReminderAction),
+                    selected: _reminderMode == 'same_day',
+                    onSelected: _saving
+                        ? null
+                        : (_) => setState(() => _reminderMode = 'same_day'),
+                  ),
+                  ChoiceChip(
+                    key: const Key('dated_reminder_1h'),
+                    label: Text('${l10n.setReminderAction} (-1h)'),
+                    selected: _reminderMode == '1h',
+                    onSelected: _saving
+                        ? null
+                        : (_) => setState(() => _reminderMode = '1h'),
+                  ),
+                ],
+              ),
+            ],
             const SizedBox(height: 12),
             ExpansionTile(
               key: const Key('list_details_expand'),

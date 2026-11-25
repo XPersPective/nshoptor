@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Android 12+ dark mode system splash: app icon on black. -->
+    <!-- Android 12+ system splash: app icon on the brand dark green (no black screen). -->
     <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowSplashScreenBackground">@color/splash_dark</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icon_android12</item>
         <item name="android:windowBackground">@drawable/launch_background</item>
     </style>
 </resources>

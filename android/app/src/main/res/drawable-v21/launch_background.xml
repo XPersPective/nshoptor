@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Launch splash: white background with the app icon. Name and slogan come from the Flutter splash (localized).
--->
+<!-- Branded launch screen (PB-201): app icon on the brand dark green, same in light and dark mode,
+     so a cold start never shows a black window. Name and localized slogan come from the Flutter splash. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@android:color/white" />
+    <item android:drawable="@color/splash_dark" />
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/launch_image" />
+            android:src="@drawable/splash_icon" />
     </item>
 </layer-list>

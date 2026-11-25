@@ -427,7 +427,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get aboutBody =>
-      'Crazy Penguin ನಿಂದ NShoptor. ಆಫ್‌ಲೈನ್-ಮೊದಲು ಖರೀದಿ ಯೋಜಕ. GPL-3.0 ಅಡಿಯಲ್ಲಿ لایسنسد.';
+      'Crazy Penguin‌ನ NShoptor. ಆಫ್‌ಲೈನ್‌ಗೆ ಆದ್ಯತೆಯಿರುವ ಖರೀದಿ ಯೋಜಕ. GPL-3.0 ಪರವಾನಗಿಯಡಿ.';
 
   @override
   String get startShoppingLabel => 'ಖರೀದಿ ಪ್ರಾರಂಭಿಸಿ';
@@ -484,7 +484,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get mergeImportLabel => 'ಪ್ರಸ್ತುತ ಡೇಟಾದೊಂದಿಗೆ ವಿಲೀನಗೊಳಿಸಿ';
 
   @override
-  String get separateImportLabel => 'ಪृಥಕ್ ಪ್ರತಿಯಾಗಿ ಇಂಪೋರ್ಟ್ ಮಾಡಿ';
+  String get separateImportLabel => 'ಪ್ರತ್ಯೇಕ ಪ್ರತಿಯಾಗಿ ಆಮದು ಮಾಡಿ';
 
   @override
   String get importCancelled => 'ಇಂಪೋರ್ಟ್ ರದ್ದುಗೊಂಡಿದೆ.';
@@ -520,7 +520,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get privacyInfoBody =>
-      'ನಿಮ್ಮ ಪಟ್ಟಿಗಳು, ಬೆಲೆಗಳು, ರಿಸೀಪ್ಟ್‌ಗಳು ಮತ್ತು ಫೋಟೋಗಳು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿಯೇ ಉಳಿಯುತ್ತವೆ. ಫೋಟೋಗಳು ಮತ್ತು ಧ್ವನಿ ಅವುಗಳಿಂದ ಎಂದಿಗೂ ಹೊರಹೋಗುವುದಿಲ್ಲ. AI ಸಹಾಯ ಸಕ್ರಿಯವಾಗಿದ್ದಾಗ, ಪಠ್ಯ ಮಾತ್ರ (ಉದಾಹರಣೆಗೆ ರಿಸೀಪ್ಟ್‌ನ ಸಾಲುಗಳು ಅಥವಾ ನೀವು ಹೇಳಿದ ವಿಷಯ) ಪ್ರಕ್ರಿಯೆಗಾಗಿ ನಮ್ಮ ಸರ್ವರ್‌ಗೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ.';
+      'ನಿಮ್ಮ ಪಟ್ಟಿಗಳು, ಬೆಲೆಗಳು, ರಿಸೀಪ್ಟ್‌ಗಳು ಮತ್ತು ಫೋಟೋಗಳು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿಯೇ ಸಂಗ್ರಹವಾಗಿರುತ್ತವೆ. ಧ್ವನಿ ಎಂದಿಗೂ ಅದನ್ನು ಬಿಟ್ಟು ಹೋಗುವುದಿಲ್ಲ. AI ಸಹಾಯ ಆನ್ ಇದ್ದಾಗ, ರಿಸೀಪ್ಟ್ ಮತ್ತು ಬೆಲೆ ಲೇಬಲ್‌ಗಳ ಫೋಟೋಗಳು (ಗಾತ್ರ ಕಡಿಮೆ ಮಾಡಿದ) ಹಾಗೂ ಹೇಳಿ ಬರೆಸಿದ ಐಟಂಗಳಂತಹ ಪಠ್ಯವನ್ನು ಓದಲು ಮಾತ್ರ ನಮ್ಮ ಸರ್ವರ್‌ಗೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ; ಅವುಗಳನ್ನು ತಕ್ಷಣ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಎಂದಿಗೂ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ.';
 
   @override
   String get aboutSection => 'ಬಗ್ಗೆ';
@@ -732,7 +732,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get proBenefitsLine =>
-      'ಯಾವುದೇ ವಿಜ್ಞಾಪನೆಗಳಿಲ್ಲ · ಬ್ಯಾಕಪ್ ರಫ್ತು ಮತ್ತು ಆಮದು · ತಿಂಗಳಿಗೆ';
+      'ಯಾವುದೇ ವಿಜ್ಞಾಪನೆಗಳಿಲ್ಲ · ಬ್ಯಾಕಪ್ ರಫ್ತು ಮತ್ತು ಆಮದು · ವಾರ್ಷಿಕ';
 
   @override
   String get proBenefitNoAds => 'ವಿಜ್ಞಾಪನೆ-ರಹಿತ ಅನುಭವ';
@@ -764,8 +764,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get formatLocaleLabel => 'ಸಂಖ್ಯೆ ಮತ್ತು ನಾಣ್ಯ ರೂಪ';
 
   @override
-  String get formatLocaleSystem =>
-      'ಸಾಧನದ ರೂಪ (ಲ್ಯಾಟಿನ್ ಅಂಕಿಗಳು; ಇಲ್ಲದಿದ್ದರೆ ಇಂಗ್ಲಿಷ್)';
+  String get formatLocaleSystem => 'ಸಾಧನದ ರೂಪ';
 
   @override
   String get formatLocaleTr => 'ಟರ್ಕಿಶ್ (1.234,56)';
@@ -778,7 +777,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get aiToggleSubtitle =>
-      'ರಿಸೀಟ್‌ಗಳನ್ನು ಹೊಂದಿಸುತ್ತದೆ, ಬೆಲೆ ಲೇಬಲ್‌ಗಳನ್ನು padlysuttadeva and sentences into lists. Photos and voice stay on your device; only text is processed.';
+      'ಫೋಟೋಗಳಿಂದ ರಿಸೀಪ್ಟ್‌ಗಳು ಮತ್ತು ಬೆಲೆ ಲೇಬಲ್‌ಗಳನ್ನು ಓದುತ್ತದೆ, ರಿಸೀಪ್ಟ್‌ಗಳನ್ನು ಹೊಂದಿಸುತ್ತದೆ ಮತ್ತು ವಾಕ್ಯಗಳನ್ನು ಪಟ್ಟಿಗಳನ್ನಾಗಿ ಮಾಡುತ್ತದೆ. ಫೋಟೋಗಳನ್ನು ಓದಲು ಮಾತ್ರ ಕಳುಹಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಎಂದಿಗೂ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ.';
 
   @override
   String aiQuotaReached(int used, int limit) {
@@ -1129,6 +1128,15 @@ class AppLocalizationsKn extends AppLocalizations {
   String get csvExportAction => 'CSV ರಫ್ತು';
 
   @override
+  String get reportSharePdf => 'PDF ಆಗಿ ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get reportShareCsv => 'CSV ಆಗಿ ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get reportPrintAction => 'ಮುದ್ರಿಸಿ';
+
+  @override
   String get backupSizeWarning =>
       'JSON ನಲ್ಲಿ ದಾಖಲೆಗಳಿವೆ, ಫೋಟೊ ಫೈಲ್‌ಗಳಲ್ಲ. ಆಮದು ಮಿತಿ: 16 MB.';
 
@@ -1405,4 +1413,173 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get reportZoom => 'ಜೂಮ್';
+
+  @override
+  String planTrialDaysLeft(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days ದಿನ ಬಾಕಿ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planTrialHoursLeft(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ಗಂಟೆ ಬಾಕಿ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planTrialEndedTitle => 'ನಿಮ್ಮ Pro ಪ್ರಯೋಗ ಅವಧಿ ಮುಗಿದಿದೆ';
+
+  @override
+  String get planTrialEndedBody =>
+      'ಪಟ್ಟಿಗಳು, ಕೈಯಾರೆ ನಮೂದು ಮತ್ತು ಸಾಧನದಲ್ಲಿನ ಧ್ವನಿ ವೈಶಿಷ್ಟ್ಯವನ್ನು ನೀವು ಉಚಿತವಾಗಿ ಬಳಸಬಹುದು. Freeನಲ್ಲಿ ಪ್ರತಿ ಕ್ಯಾಲೆಂಡರ್ ತಿಂಗಳಿಗೆ 10 AI ವಿನಂತಿಗಳಿವೆ. ತಿಂಗಳಿಗೆ 100 AI ವಿನಂತಿಗಳು, ಜಾಹೀರಾತುಗಳಿಲ್ಲದ ಬಳಕೆ ಮತ್ತು ಬ್ಯಾಕಪ್‌ಗಳಿಗಾಗಿ ವಾರ್ಷಿಕ Pro ಆಯ್ಕೆಮಾಡಿ. ನಿಮ್ಮ ಹಳೆಯ ಡೇಟಾ ನಿಮ್ಮೊಂದಿಗೇ ಇರುತ್ತದೆ.';
+
+  @override
+  String get planContinueFree => 'Free ಆಗಿ ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get supportIdLabel => 'ಬೆಂಬಲ ID';
+
+  @override
+  String get supportEmailLabel => 'ಇಮೇಲ್ ಬೆಂಬಲ';
+
+  @override
+  String get captureTipFirst =>
+      'ಮೇಲಿನಿಂದಲೇ ಪ್ರಾರಂಭಿಸಿ: ಅಂಗಡಿಯ ಹೆಸರು ಮತ್ತು ದಿನಾಂಕ ಕಾಣಿಸಬೇಕು. ಸಾಧ್ಯವಾದಷ್ಟು ವಸ್ತುಗಳನ್ನು ಸೇರಿಸಿ; ಉಳಿದವು ಮುಂದಿನ ಫೋಟೋದಲ್ಲಿರಲಿ.';
+
+  @override
+  String get captureTipContinue =>
+      'ಅದೇ ರಸೀದಿ: ಹಿಂದಿನ ಫೋಟೋದ ಕೊನೆಯ ವಸ್ತುವನ್ನು ಸೇರಿಸಿ.';
+
+  @override
+  String get captureTipNeverShow => 'ಮತ್ತೆ ತೋರಿಸಬೇಡಿ';
+
+  @override
+  String get captureTipOk => 'ಅರ್ಥವಾಯಿತು';
+
+  @override
+  String get captureTipsSetting => 'ರಸೀದಿ ಸೆರೆಹಿಡಿಯುವ ಸಲಹೆಗಳನ್ನು ತೋರಿಸಿ';
+
+  @override
+  String get receiptReadingProgress => 'ರಸೀದಿಯನ್ನು ಓದಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get receiptReadInBackground => 'ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get receiptReadDoneTitle => 'ರಸೀದಿ ಓದಲಾಗಿದೆ';
+
+  @override
+  String get receiptReadDoneBody => 'ಪರಿಶೀಲಿಸಿ ಉಳಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.';
+
+  @override
+  String get receiptReadMoreTitle => 'ರಸೀದಿಯ ಉಳಿದ ಭಾಗದ ಫೋಟೋ ತೆಗೆಯಿರಿ';
+
+  @override
+  String get receiptReadFailedTitle => 'ರಸೀದಿಯನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
+
+  @override
+  String get listReceiptsSection => 'ರಸೀದಿಗಳು';
+
+  @override
+  String get receiptStateComplete => 'ಪೂರ್ಣ';
+
+  @override
+  String get receiptStateIncomplete => 'ಅಪೂರ್ಣ';
+
+  @override
+  String get receiptStateFailed => 'ವಿಫಲವಾಗಿದೆ';
+
+  @override
+  String get receiptStoreUnknown => 'ಅಂಗಡಿಯನ್ನು ಓದಲಾಗಿಲ್ಲ';
+
+  @override
+  String get receiptDeleteAction => 'ರಸೀದಿ ಅಳಿಸಿ';
+
+  @override
+  String get receiptDeleteConfirm =>
+      'ಈ ರಸೀದಿ ಮತ್ತು ಅದು ಸೇರಿಸಿದ ಐಟಂಗಳನ್ನು ಅಳಿಸಬೇಕೇ? ನಂತರ ಅದನ್ನು ಮತ್ತೆ ಆಮದು ಮಾಡಬಹುದು.';
+
+  @override
+  String get receiptDeleted => 'ರಸೀದಿ ಅಳಿಸಲಾಗಿದೆ.';
+
+  @override
+  String listReceiptsShowAll(int count) {
+    return 'ಎಲ್ಲವನ್ನೂ ತೋರಿಸಿ ($count)';
+  }
+
+  @override
+  String get listReceiptsShowLess => 'ಕಡಿಮೆ ತೋರಿಸಿ';
+
+  @override
+  String receiptDateLabel(String date) {
+    return 'ರಸೀದಿ ದಿನಾಂಕ: $date';
+  }
+
+  @override
+  String get historyViewShopping => 'ಖರೀದಿ ಪ್ರಕಾರ';
+
+  @override
+  String get historyViewStore => 'ಅಂಗಡಿ ಪ್ರಕಾರ';
+
+  @override
+  String get historyViewProduct => 'ಉತ್ಪನ್ನ ಪ್ರಕಾರ';
+
+  @override
+  String get historyShareAll => 'ಎಲ್ಲವನ್ನೂ ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get historyUnknownStore => 'ಅಪರಿಚಿತ ಅಂಗಡಿ';
+
+  @override
+  String get historyDailySpending => 'ದೈನಂದಿನ ಖರ್ಚು';
+
+  @override
+  String get historyResetPeriod => 'ಈ ವಾರಕ್ಕೆ ಹಿಂತಿರುಗಿ';
+
+  @override
+  String get tourSkip => 'ಬಿಟ್ಟುಬಿಡಿ';
+
+  @override
+  String get tourNewListBody =>
+      'ಶಾಪಿಂಗ್ ಪಟ್ಟಿಯನ್ನು ಆರಂಭಿಸಿ, ಕೊಳ್ಳಬೇಕಾದುದನ್ನು ಸೇರಿಸಿ.';
+
+  @override
+  String get tourFromReceiptBody =>
+      'ಈಗಾಗಲೇ ಖರೀದಿಸಿದಿರಾ? ರಸೀದಿಯನ್ನು ಅದರ ಬೆಲೆಗಳೊಂದಿಗೆ ಪಟ್ಟಿಯಾಗಿಸಿ.';
+
+  @override
+  String get tourReceiptFlowBody =>
+      'ರಸೀದಿಯ ಮೇಲಿನಿಂದ ಆರಂಭಿಸಿ: ಮೊದಲು ಅಂಗಡಿ ಮತ್ತು ದಿನಾಂಕ, ನಂತರ ಉಳಿದ ಸಾಲುಗಳೊಂದಿಗೆ ಮುಂದುವರಿಸಿ.';
+
+  @override
+  String get tourTabsBody =>
+      'ಸಕ್ರಿಯ, ಪೂರ್ಣಗೊಂಡ ಮತ್ತು ಆರ್ಕೈವ್ ಪಟ್ಟಿಗಳ ನಡುವೆ ಬದಲಿಸಿ. ಕೊನೆಯ ಬಟನ್ ಕ್ರಮವನ್ನು ಬದಲಿಸುತ್ತದೆ.';
+
+  @override
+  String get tourDiscoverBody => 'ಅದೇ ಡೆವಲಪರ್‌ನ ಇನ್ನಷ್ಟು ಆ್ಯಪ್‌ಗಳನ್ನು ನೋಡಿ.';
+
+  @override
+  String get tourHelpBody =>
+      'ಈ ಮಾರ್ಗದರ್ಶಿಯನ್ನು ಮತ್ತೆ ನೋಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ. ಮೊತ್ತ ಮತ್ತು ಐಟಂಗಳ ವಿವರಣೆಗೆ ಒಂದು ಪಟ್ಟಿಯನ್ನು ತೆರೆಯಿರಿ.';
+
+  @override
+  String get tourTotalsBody =>
+      'ಯೋಜಿತ, ನಿಜವಾದ ಮೊತ್ತ ಮತ್ತು ವ್ಯತ್ಯಾಸ ಖರೀದಿಸುವಾಗ ನವೀಕರಿಸಲ್ಪಡುತ್ತವೆ.';
+
+  @override
+  String get tourItemsBody =>
+      'ನಿಮ್ಮ ಐಟಂಗಳು. ಇಲ್ಲಿ ಅವುಗಳ ಕ್ರಮ ಬದಲಿಸಿ ಅಥವಾ ಹುಡುಕಿ.';
+
+  @override
+  String budgetAlertNear(String percent) {
+    return 'ಮಿತಿಯ $percent% ಬಳಸಲಾಗಿದೆ';
+  }
 }

@@ -384,6 +384,7 @@ void main() {
             currencyCode: data.currency,
             title: Value('${data.list} · ${data.real.first}'),
             status: const Value('completed'),
+            plannedAt: Value(DateTime.now().subtract(const Duration(days: 1))),
             completedAt: Value(
               DateTime.now().subtract(const Duration(days: 1)),
             ),
@@ -417,6 +418,8 @@ void main() {
     await tester.tap(find.byKey(const Key('item_save_button')));
     await settle(tester);
 
+    await tester.ensureVisible(find.text(data.items.first.$1).first);
+    await settle(tester);
     await tester.tap(find.text(data.items.first.$1).first);
     await settle(tester);
     await tester.tap(find.byKey(const Key('item_details_expand')));

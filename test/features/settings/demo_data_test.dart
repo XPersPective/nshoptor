@@ -21,15 +21,13 @@ void main() {
     final now = DateTime(2026, 10, 20);
 
     final count = await demo.insert(l10n, currencyCode: 'TRY', now: now);
-    expect(count, greaterThan(20));
+    expect(count, 2);
     expect(await demo.present(), isTrue);
 
     final points = await InsightsRepository(db).completedSpend('TRY');
     expect(points.length, count);
     expect(points.every((p) => p.actualMinor > 0), isTrue);
     expect(points.every((p) => !p.at.isAfter(now)), isTrue);
-    final months = {for (final p in points) '${p.at.year}-${p.at.month}'};
-    expect(months.length, 12);
 
     final stats = await InsightsRepository(db).purchaseStats('TRY');
     expect(stats.map((s) => s.name), containsAll(['Elma', 'Ekmek', 'Süt']));
