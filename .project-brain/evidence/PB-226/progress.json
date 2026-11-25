@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "",
+  "strategy": "check",
+  "attempt": "f73bda89728f29ab",
+  "repeats": 0,
+  "contract": "9461d2589124ead9",
+  "usage": {
+    "checks": 1,
+    "seconds": 397.047
+  }
+}
