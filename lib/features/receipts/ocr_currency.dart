@@ -24,6 +24,10 @@ OcrCurrencyEvidence detectOcrCurrency(String text, {required String fallback}) {
   if (RegExp(r'(?<![A-Za-z])(?:TL|TRY|lira)(?![A-Za-z])', caseSensitive: false).hasMatch(text) || text.contains('₺')) codes.add('TRY');
   if (text.contains('€')) codes.add('EUR');
   if (text.contains('£') && !text.contains('E£')) codes.add('GBP');
+  if (text.contains('ر.س') || text.contains('ريال')) codes.add('SAR');
+  if (text.contains('د.إ') || text.contains('درهم')) codes.add('AED');
+  if (text.contains('ج.م')) codes.add('EGP');
+  if (text.contains('د.ك')) codes.add('KWD');
   var unresolved = false;
   for (final symbol in const [r'$', '¥', 'kr']) {
     if (symbol == 'kr' ? !RegExp(r'(?<![A-Za-z])kr(?![A-Za-z])', caseSensitive: false).hasMatch(text) : !text.contains(symbol)) continue;

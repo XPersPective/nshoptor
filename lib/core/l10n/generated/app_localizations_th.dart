@@ -932,7 +932,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get planFreeAi => '10 คำขอ AI ต่อเดือน';
 
   @override
-  String get planFreeAds => 'โฆษณาแบนเนอร์เล็กน้อย (ไม่มีใน 7 วันแรก)';
+  String get planFreeAds => 'โฆษณาแบนเนอร์เล็กน้อย';
 
   @override
   String get planCoreFeatures => 'รายการ ราคา ใบเสร็จ กราฟค่าใช้จ่าย';
@@ -1310,10 +1310,10 @@ class AppLocalizationsTh extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'เดือนก่อนหน้า';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'เดือนถัดไป';
 
   @override
   String get helpSection => 'ความช่วยเหลือและการสนับสนุน';
@@ -1569,4 +1569,197 @@ class AppLocalizationsTh extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ใช้ไปแล้ว $percent% ของวงเงิน';
   }
+
+  @override
+  String get receiptReviewNowAction => 'ตรวจสอบและแก้ไข';
+
+  @override
+  String get receiptEditDetailsTitle => 'รายละเอียดใบเสร็จ';
+
+  @override
+  String get receiptDateTimeLabel => 'วันที่และเวลา';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ยอดรวมไม่ตรงกัน';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ยอดรวมสินค้าต่างจากยอดรวมในใบเสร็จ $difference จะบันทึกอยู่ดีหรือไม่';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'บันทึกอยู่ดี';
+
+  @override
+  String get receiptNeedsDetails =>
+      'เพิ่มร้านค้าและวันที่เพื่อบันทึกใบเสร็จนี้';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'อ่านไม่ได้: $fields คุณกรอกข้อมูลเหล่านี้ได้ขณะตรวจสอบ';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'การเข้าถึงกล้องปิดอยู่ เปิดในการตั้งค่าเพื่อสแกนใบเสร็จและป้ายราคา';
+
+  @override
+  String get openSettingsAction => 'เปิดการตั้งค่า';
+
+  @override
+  String get priceManualEntryAction => 'กรอกราคาเอง';
+
+  @override
+  String get priceRetakeAction => 'ถ่ายรูปใหม่';
+
+  @override
+  String get paletteSage => 'สีเซจ';
+
+  @override
+  String get paletteSlate => 'สีหินชนวน';
+
+  @override
+  String get receiptContinueSame => 'ดำเนินการต่อด้วยใบเสร็จเดิม';
+
+  @override
+  String get receiptCaptureDone => 'เสร็จสิ้น';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'จับภาพแล้ว $count หน้า';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'รอคิวใบเสร็จ — กำลังเตรียมการในพื้นหลัง';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'เพิ่มได้สูงสุด $max หน้าต่อหนึ่งใบเสร็จ';
+  }
+
+  @override
+  String get shelfLabelReading => 'กำลังอ่านป้ายราคา…';
+
+  @override
+  String get shelfLabelContinueOther => 'สแกนสินค้าชิ้นอื่น';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ป้ายราคากำลังอ่านอยู่เบื้องหลัง';
+
+  @override
+  String get listsTabReceipts => 'ใบเสร็จของฉัน';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ใบเสร็จของฉัน ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'รอคิว';
+
+  @override
+  String get receiptStatusProcessing => 'กำลังอ่านใบเสร็จ…';
+
+  @override
+  String get receiptStatusReady => 'พร้อมใช้งาน';
+
+  @override
+  String get receiptStatusDuplicate => 'อาจเป็นสำเนาซ้ำ';
+
+  @override
+  String get receiptStatusFailed => 'ไม่สามารถอ่านได้';
+
+  @override
+  String get receiptConvertToListAction => 'แปลงเป็นรายการ';
+
+  @override
+  String get receiptRetryReadAction => 'ลองอีกครั้ง';
+
+  @override
+  String get receiptDeleteDraftAction => 'ลบ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ใบเสร็จพร้อมแล้ว';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ใบเสร็จของคุณพร้อมแล้ว ต้องการโอนไปยังรายการหรือไม่?';
+
+  @override
+  String get receiptDuplicateTitle => 'เพิ่มใบเสร็จนี้ไปแล้วหรือยัง?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'มีรายการที่ตรงกับร้านและเวลานี้อยู่แล้ว ($listTitle) ต้องการเพิ่มอีกครั้งไหม?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'เพิ่ม anyway';
+
+  @override
+  String get receiptDuplicateDelete => 'ลบใบเสร็จ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ไม่มีใบเสร็จในคิว';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ใบเสร็จที่สแกนจะประมวลผลในพื้นหลังและคงอยู่ในนี้จนกว่าคุณแปลงหรือลบออก';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count หน้า';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'รูปภาพใบเสร็จ';
+
+  @override
+  String get receiptOpenPhotoHint => 'แตะรูปภาพใบเสร็จเพื่อดูขนาดเต็ม';
+
+  @override
+  String get receiptPhotoPreparing => 'กำลังเตรียมรูปใบเสร็จ…';
+
+  @override
+  String get homeProPromoTitle => 'ทดลองใช้ Pro ฟรี 24 ชั่วโมง';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'สแกนใบเสร็จ AI 100 ครั้งและไร้โฆษณาเปิดใช้งานแล้ว · ไม่ต้องใช้บัตร';
+
+  @override
+  String get receiptFailureSheetTitle => 'ทำไมอ่านไม่ได้';
+
+  @override
+  String get receiptFailureMissingTop => 'ขาดส่วนบน';
+
+  @override
+  String get receiptFailureMissingBottom => 'ขาดส่วนล่าง';
+
+  @override
+  String get receiptFailureMissingMiddle => 'ขาดส่วนกลาง';
+
+  @override
+  String get receiptFailureNotReceipt => 'ไม่ใช่ใบเสร็จ';
+
+  @override
+  String get receiptFailureUnreadable => 'อ่านไม่ชัด';
+
+  @override
+  String get receiptFailureMismatch => 'ยอดรวมไม่ตรง';
+
+  @override
+  String get receiptFailureRejected => 'อ่านไม่ได้';
+
+  @override
+  String get receiptFailureService => 'ใช้บริการไม่ได้';
+
+  @override
+  String get receiptFailureUnknown => 'อ่านไม่สำเร็จ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ถ่ายส่วนที่เหลือ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ถ่ายใหม่';
 }

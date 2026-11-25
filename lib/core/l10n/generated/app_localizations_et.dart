@@ -932,8 +932,7 @@ class AppLocalizationsEt extends AppLocalizations {
   String get planFreeAi => '10 AI päringut kuus';
 
   @override
-  String get planFreeAds =>
-      'Väikesed bännerireklaamid (esimesel 7 päeval puuduvad)';
+  String get planFreeAds => 'Väikesed bännerireklaamid';
 
   @override
   String get planCoreFeatures =>
@@ -1580,4 +1579,199 @@ class AppLocalizationsEt extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Limiidist on kasutatud $percent%';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kontrolli ja paranda';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kviitungi andmed';
+
+  @override
+  String get receiptDateTimeLabel => 'Kuupäev ja kellaaeg';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Kogusumma ei klapi';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Kaubad erinevad kviitungi kogusummast $difference võrra. Salvestada sellegipoolest?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Salvesta sellegipoolest';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Selle kviitungi salvestamiseks lisa pood ja kuupäev.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ei saanud lugeda: $fields. Saad need ülevaatamise ajal ise täita.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kaamerale juurdepääs on väljas. Lülita see seadetest sisse, et skaneerida kviitungeid ja hinnasilte.';
+
+  @override
+  String get openSettingsAction => 'Ava seaded';
+
+  @override
+  String get priceManualEntryAction => 'Sisesta hind käsitsi';
+
+  @override
+  String get priceRetakeAction => 'Pildista uuesti';
+
+  @override
+  String get paletteSage => 'Salvei';
+
+  @override
+  String get paletteSlate => 'Kiltkivi';
+
+  @override
+  String get receiptContinueSame => 'Jätka sama arvega';
+
+  @override
+  String get receiptCaptureDone => 'Valmis';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count lehekülge pildistatud';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Arve on järjekorras — taustal ettevalmistamisel.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Iga arve kohta saab lisada kuni $max lehekülge.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Hindade sildi lugemine…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skaneeri teine toode';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Hindade silti loetakse taustal.';
+
+  @override
+  String get listsTabReceipts => 'Minu kvitid';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Minu kvitid ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Järjekorras';
+
+  @override
+  String get receiptStatusProcessing => 'Kviti lugemine…';
+
+  @override
+  String get receiptStatusReady => 'Valmis';
+
+  @override
+  String get receiptStatusDuplicate => 'Võimalik dubleerimine';
+
+  @override
+  String get receiptStatusFailed => 'Ei õnnestunud lugeda';
+
+  @override
+  String get receiptConvertToListAction => 'Teisenda nimekirjaks';
+
+  @override
+  String get receiptRetryReadAction => 'Proovi uuesti';
+
+  @override
+  String get receiptDeleteDraftAction => 'Kustuta';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kviit valmis';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Sinu kviit on valmis. Kas teisendada see nimekirja?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kviit on juba lisatud?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Selle poe ja aja jaoks on juba olemas vastav nimi ($listTitle). Kas lisada siiski?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Lisa siiski';
+
+  @override
+  String get receiptDuplicateDelete => 'Kustuta kviit';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Pole ootel kvite';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skaneeritud kviidid töötlevad taustal ja jäävad siia, kuni teisendad või eemaldad need.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count lehekülge';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kviidi pildid';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Täissuuruses kuvamiseks puuduta kvidi pilti';
+
+  @override
+  String get receiptPhotoPreparing => 'Tšeki foto ettevalmistamine…';
+
+  @override
+  String get homeProPromoTitle => 'Proovi Pro-d 24 tundi tasuta';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 tehisaru tšekiskannimist ja reklaamivaba kasutus · Kaarti pole vaja';
+
+  @override
+  String get receiptFailureSheetTitle => 'Miks lugeda ei õnnestunud';
+
+  @override
+  String get receiptFailureMissingTop => 'Ülemine osa puudub';
+
+  @override
+  String get receiptFailureMissingBottom => 'Alumine osa puudub';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Keskmine osa puudub';
+
+  @override
+  String get receiptFailureNotReceipt => 'See pole arve';
+
+  @override
+  String get receiptFailureUnreadable => 'Ei loetav';
+
+  @override
+  String get receiptFailureMismatch => 'Kogusumma ei klapi';
+
+  @override
+  String get receiptFailureRejected => 'Ei õnnestunud lugeda';
+
+  @override
+  String get receiptFailureService => 'Teenus pole saadaval';
+
+  @override
+  String get receiptFailureUnknown => 'Lugemine ebaõnnestus';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Pildista ülejäänud';
+
+  @override
+  String get receiptFailureRetakeAction => 'Pildista uuesti';
 }

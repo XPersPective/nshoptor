@@ -932,7 +932,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get planFreeAi => 'Ayda 10 yapay zekâ isteği';
 
   @override
-  String get planFreeAds => 'Küçük banner reklam (ilk 7 gün reklamsız)';
+  String get planFreeAds => 'İlk 24 saatten sonra küçük banner reklam';
 
   @override
   String get planCoreFeatures =>
@@ -1580,4 +1580,198 @@ class AppLocalizationsTr extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Limitin %$percent kadarı kullanıldı';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kontrol et ve düzelt';
+
+  @override
+  String get receiptEditDetailsTitle => 'Fiş bilgileri';
+
+  @override
+  String get receiptDateTimeLabel => 'Tarih ve saat';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Toplam tutmuyor';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Ürünlerin toplamı fiş toplamından $difference farklı. Yine de kaydedilsin mi?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Yine de kaydet';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Bu fişi kaydetmek için mağaza ve tarihi girin.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Okunamayan: $fields. Kontrol ederken doldurabilirsiniz.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kamera izni kapalı. Fiş ve etiket okumak için Ayarlar\'dan açın.';
+
+  @override
+  String get openSettingsAction => 'Ayarları aç';
+
+  @override
+  String get priceManualEntryAction => 'Fiyatı elle gir';
+
+  @override
+  String get priceRetakeAction => 'Yeniden çek';
+
+  @override
+  String get paletteSage => 'Adaçayı';
+
+  @override
+  String get paletteSlate => 'Arduvaz';
+
+  @override
+  String get receiptContinueSame => 'Aynı fişe devam';
+
+  @override
+  String get receiptCaptureDone => 'Tamam';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sayfa çekildi';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Fiş sıraya alındı — arka planda hazırlanıyor.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Bir fiş için en fazla $max fotoğraf eklenebilir.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Fiyat etiketi okunuyor…';
+
+  @override
+  String get shelfLabelContinueOther => 'Başka ürüne geç';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Fiyat etiketi arka planda okunuyor.';
+
+  @override
+  String get listsTabReceipts => 'Fişlerim';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Fişlerim ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Sırada';
+
+  @override
+  String get receiptStatusProcessing => 'Okunuyor…';
+
+  @override
+  String get receiptStatusReady => 'Hazır';
+
+  @override
+  String get receiptStatusDuplicate => 'Zaten girilmiş olabilir';
+
+  @override
+  String get receiptStatusFailed => 'Okunamadı';
+
+  @override
+  String get receiptConvertToListAction => 'Listeye çevir';
+
+  @override
+  String get receiptRetryReadAction => 'Tekrar dene';
+
+  @override
+  String get receiptDeleteDraftAction => 'Sil';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Fiş hazır';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Fiş hazır, listeye aktarmak ister misin?';
+
+  @override
+  String get receiptDuplicateTitle => 'Bu fiş zaten girilmiş olabilir';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Bu market ve saatle eşleşen bir liste zaten var ($listTitle). Yine de eklensin mi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Yine de ekle';
+
+  @override
+  String get receiptDuplicateDelete => 'Fişi sil';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Bekleyen fiş yok';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Okuttuğunuz fişler arka planda hazırlanır; listeye çevirip silene kadar burada bekler.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sayfa';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fiş görselleri';
+
+  @override
+  String get receiptOpenPhotoHint => 'Büyütmek için fiş görseline dokunun';
+
+  @override
+  String get receiptPhotoPreparing => 'Fiş fotoğrafı hazırlanıyor…';
+
+  @override
+  String get homeProPromoTitle => '24 saat ücretsiz Pro deneyin';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 yapay zekâ fiş taraması ve reklamsız kullanım açık · Kart gerekmez';
+
+  @override
+  String get receiptFailureSheetTitle => 'Neden okunamadı?';
+
+  @override
+  String get receiptFailureMissingTop => 'Üst kısım eksik';
+
+  @override
+  String get receiptFailureMissingBottom => 'Alt kısım eksik';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Orta kısım eksik';
+
+  @override
+  String get receiptFailureNotReceipt => 'Fiş değil';
+
+  @override
+  String get receiptFailureUnreadable => 'Okunaklı değil';
+
+  @override
+  String get receiptFailureMismatch => 'Toplam uyuşmuyor';
+
+  @override
+  String get receiptFailureRejected => 'Okunamadı';
+
+  @override
+  String get receiptFailureService => 'Servis kullanılamıyor';
+
+  @override
+  String get receiptFailureUnknown => 'Okuma başarısız';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Devamını çek';
+
+  @override
+  String get receiptFailureRetakeAction => 'Yeniden çek';
 }

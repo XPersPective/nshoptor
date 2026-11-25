@@ -933,7 +933,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get planFreeAi => '10 запросов к ИИ в месяц';
 
   @override
-  String get planFreeAds => 'Небольшие баннеры (первые 7 дней без рекламы)';
+  String get planFreeAds => 'Небольшие баннеры';
 
   @override
   String get planCoreFeatures => 'Списки, цены, чеки, графики расходов';
@@ -1585,4 +1585,198 @@ class AppLocalizationsRu extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Использовано $percent% лимита';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Проверить и исправить';
+
+  @override
+  String get receiptEditDetailsTitle => 'Данные чека';
+
+  @override
+  String get receiptDateTimeLabel => 'Дата и время';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Сумма не совпадает';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Сумма товаров отличается от итога чека на $difference. Всё равно сохранить?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Всё равно сохранить';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Добавьте магазин и дату, чтобы сохранить этот чек.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Не удалось прочитать: $fields. Это можно заполнить при проверке.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Доступ к камере выключен. Включите его в настройках, чтобы сканировать чеки и этикетки.';
+
+  @override
+  String get openSettingsAction => 'Открыть настройки';
+
+  @override
+  String get priceManualEntryAction => 'Ввести цену вручную';
+
+  @override
+  String get priceRetakeAction => 'Снять заново';
+
+  @override
+  String get paletteSage => 'Шалфей';
+
+  @override
+  String get paletteSlate => 'Сланец';
+
+  @override
+  String get receiptContinueSame => 'Продолжить тот же чек';
+
+  @override
+  String get receiptCaptureDone => 'Готово';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'Захвачено $count стр.';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Чек в очереди — обработка в фоне.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'К одному чеку можно добавить до $max стр.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Сканирую ценник…';
+
+  @override
+  String get shelfLabelContinueOther => 'Отсканировать другой товар';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Ценник обрабатывается в фоне.';
+
+  @override
+  String get listsTabReceipts => 'Мои чеки';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Мои чеки ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'В очереди';
+
+  @override
+  String get receiptStatusProcessing => 'Читаем чек…';
+
+  @override
+  String get receiptStatusReady => 'Готово';
+
+  @override
+  String get receiptStatusDuplicate => 'Возможно, дубликат';
+
+  @override
+  String get receiptStatusFailed => 'Не удалось прочитать';
+
+  @override
+  String get receiptConvertToListAction => 'Создать список';
+
+  @override
+  String get receiptRetryReadAction => 'Повторить';
+
+  @override
+  String get receiptDeleteDraftAction => 'Удалить';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Чек готов';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Чек готов. Перенести его в список?';
+
+  @override
+  String get receiptDuplicateTitle => 'Чек уже добавлен?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Список для этого магазина и времени уже есть ($listTitle). Добавить ещё раз?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Добавить всё равно';
+
+  @override
+  String get receiptDuplicateDelete => 'Удалить чек';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Нет ожидающих чеков';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Отсканированные чеки обрабатываются в фоне и остаются здесь, пока вы не создадите из них список или не удалите их.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count стр.';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Фото чеков';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Нажмите на фото чека, чтобы открыть его на весь экран';
+
+  @override
+  String get receiptPhotoPreparing => 'Подготовка фото чека…';
+
+  @override
+  String get homeProPromoTitle => 'Попробуйте Pro 24 часа бесплатно';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI-сканов чеков и работа без рекламы открыты · Карта не нужна';
+
+  @override
+  String get receiptFailureSheetTitle => 'Почему не удалось прочитать';
+
+  @override
+  String get receiptFailureMissingTop => 'Верхняя часть отсутствует';
+
+  @override
+  String get receiptFailureMissingBottom => 'Нижняя часть отсутствует';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Средняя часть отсутствует';
+
+  @override
+  String get receiptFailureNotReceipt => 'Это не чек';
+
+  @override
+  String get receiptFailureUnreadable => 'Неразборчиво';
+
+  @override
+  String get receiptFailureMismatch => 'Сумма не совпадает';
+
+  @override
+  String get receiptFailureRejected => 'Не удалось прочитать';
+
+  @override
+  String get receiptFailureService => 'Сервис недоступен';
+
+  @override
+  String get receiptFailureUnknown => 'Ошибка чтения';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Сфотографируйте остальное';
+
+  @override
+  String get receiptFailureRetakeAction => 'Снять заново';
 }

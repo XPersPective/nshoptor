@@ -3,7 +3,52 @@ import 'package:napp_core/napp_core.dart';
 import 'package:nshoptor/features/subscription/subscription_service.dart';
 
 void main() {
-  test('a fresh install receives seven days of local Pro access without a purchase', () {
+  test('fresh offline installation waits for confirmed device trial', () {
+    final store = SettingsStore();
+    final now = DateTime.utc(2026, 10, 25, 12);
+    SubscriptionService(store: store)
+      ..initializeTrial(now: () => now, requireDeviceConfirmation: true)
+      ..dispose();
+    final service = SubscriptionService(store: store)
+      ..initializeTrial(now: () => now, requireDeviceConfirmation: true);
+    addTearDown(service.dispose);
+    final end = now.add(const Duration(days: 2)).millisecondsSinceEpoch;
+
+    expect(service.tier, Tier.free);
+    expect(service.needsTrialExpiryNotice, isFalse);
+    service.observeTrialServer(
+      endsAt: end,
+      serverNow: now.millisecondsSinceEpoch,
+    );
+    expect(service.tier, Tier.free);
+    service.observeTrialServer(
+      endsAt: end,
+      serverNow: now.millisecondsSinceEpoch,
+      deviceConfirmed: true,
+    );
+    expect(service.storeTier, Tier.free);
+    expect(service.trialRemaining, const Duration(hours: 24));
+    expect(service.credential, isNull);
+  });
+
+  test(
+    'confirmed expired device keeps no promotional access after reinstall',
+    () {
+      final now = DateTime.utc(2026, 10, 25, 12);
+      final service = SubscriptionService(store: SettingsStore())
+        ..initializeTrial(now: () => now, requireDeviceConfirmation: true);
+      addTearDown(service.dispose);
+      service.observeTrialServer(
+        endsAt: now.subtract(const Duration(days: 2)).millisecondsSinceEpoch,
+        serverNow: now.millisecondsSinceEpoch,
+        deviceConfirmed: true,
+      );
+      expect(service.promotionalTrial, isFalse);
+      expect(service.needsTrialExpiryNotice, isTrue);
+    },
+  );
+
+  test('a fresh install receives 24 hours of local Pro access without a purchase', () {
     final store = SettingsStore();
     final now = DateTime.utc(2026, 10, 25, 12);
     final service = SubscriptionService(store: store)
@@ -12,19 +57,19 @@ void main() {
 
     expect(service.storeTier, Tier.free);
     expect(service.tier, Tier.pro);
-    expect(service.trialRemaining, const Duration(days: 7));
+    expect(service.trialRemaining, const Duration(days: 1));
     expect(service.monthlyAllowance, 100);
     expect(service.productId, isNull);
     expect(service.credential, isNull);
   });
 
-  test('existing AdGate first-open anchor prevents a fresh trial week', () {
+  test('existing AdGate first-open anchor prevents a fresh promotional window', () {
     final store = SettingsStore();
     final opened = DateTime.utc(2026, 10, 1);
     store.setInt('first_open_at', opened.millisecondsSinceEpoch);
     final now = opened.add(const Duration(days: 8));
     final service = SubscriptionService(store: store)
-      ..initializeTrial(now: () => now);
+      ..initializeTrial(now: () => now, requireDeviceConfirmation: true);
     addTearDown(service.dispose);
 
     expect(service.storeTier, Tier.free);
@@ -38,7 +83,7 @@ void main() {
     var now = start;
     final service = SubscriptionService(store: store)
       ..initializeTrial(now: () => now);
-    now = start.add(const Duration(days: 7));
+    now = start.add(const Duration(days: 1));
     expect(service.trialRemaining, Duration.zero);
     expect(service.needsTrialExpiryNotice, isTrue);
     service.acknowledgeTrialExpiry();
@@ -63,12 +108,12 @@ void main() {
         ..initializeTrial(now: () => now);
       addTearDown(service.dispose);
 
-      final shortenedEnd = start.add(const Duration(days: 2));
+      final shortenedEnd = start.add(const Duration(hours: 2));
       service.observeTrialServer(
         endsAt: shortenedEnd.millisecondsSinceEpoch,
         serverNow: start.millisecondsSinceEpoch,
       );
-      now = start.add(const Duration(days: 3));
+      now = start.add(const Duration(hours: 3));
       expect(service.trialRemaining, Duration.zero);
 
       service.observeTrialServer(
@@ -89,15 +134,15 @@ void main() {
       final service = SubscriptionService(store: store)
         ..initializeTrial(now: () => now);
       service.observeTrialServer(
-        endsAt: start.add(const Duration(days: 7)).millisecondsSinceEpoch,
-        serverNow: start.add(const Duration(days: 6)).millisecondsSinceEpoch,
+        endsAt: start.add(const Duration(days: 1)).millisecondsSinceEpoch,
+        serverNow: start.add(const Duration(hours: 18)).millisecondsSinceEpoch,
       );
-      expect(service.trialRemaining, const Duration(days: 1));
+      expect(service.trialRemaining, const Duration(hours: 6));
       service.dispose();
       final reloaded = SubscriptionService(store: store)
         ..initializeTrial(now: () => now);
       addTearDown(reloaded.dispose);
-      expect(reloaded.trialRemaining, const Duration(days: 1));
+      expect(reloaded.trialRemaining, const Duration(hours: 6));
       now = start.add(const Duration(days: 1));
       expect(reloaded.tier, Tier.free);
       now = start;
@@ -114,10 +159,10 @@ void main() {
       final service = SubscriptionService(store: store)
         ..initializeTrial(now: () => deviceNow);
       service.observeTrialServer(
-        endsAt: serverNow.add(const Duration(days: 7)).millisecondsSinceEpoch,
+        endsAt: serverNow.add(const Duration(days: 1)).millisecondsSinceEpoch,
         serverNow: serverNow.millisecondsSinceEpoch,
       );
-      expect(service.trialRemaining, const Duration(days: 7));
+      expect(service.trialRemaining, const Duration(days: 1));
       expect(service.promotionalTrial, isTrue);
       service.dispose();
 
@@ -125,25 +170,25 @@ void main() {
       final reloaded = SubscriptionService(store: store)
         ..initializeTrial(now: () => deviceNow);
       addTearDown(reloaded.dispose);
-      expect(reloaded.trialRemaining, const Duration(days: 7));
+      expect(reloaded.trialRemaining, const Duration(days: 1));
       expect(reloaded.promotionalTrial, isTrue);
 
       // Registration on a new app launch observes another active server window.
       // The corrected raw clock is behind the persisted device observation.
       reloaded.observeTrialServer(
-        endsAt: serverNow.add(const Duration(days: 7)).millisecondsSinceEpoch,
+        endsAt: serverNow.add(const Duration(days: 1)).millisecondsSinceEpoch,
         serverNow: serverNow
-            .add(const Duration(days: 1))
+            .add(const Duration(hours: 6))
             .millisecondsSinceEpoch,
       );
-      expect(reloaded.trialRemaining, const Duration(days: 6));
+      expect(reloaded.trialRemaining, const Duration(hours: 18));
       expect(reloaded.promotionalTrial, isTrue);
 
       // A corrected device clock must not override actual server expiry.
       reloaded.observeTrialServer(
-        endsAt: serverNow.add(const Duration(days: 7)).millisecondsSinceEpoch,
+        endsAt: serverNow.add(const Duration(days: 1)).millisecondsSinceEpoch,
         serverNow: serverNow
-            .add(const Duration(days: 7))
+            .add(const Duration(days: 1))
             .millisecondsSinceEpoch,
       );
       expect(reloaded.trialRemaining, Duration.zero);
@@ -185,7 +230,7 @@ void main() {
       var changes = 0;
       service.addListener(() => changes++);
       now = start
-          .add(const Duration(days: 7))
+          .add(const Duration(days: 1))
           .subtract(const Duration(milliseconds: 500));
       service.refreshTrial();
       expect(service.tier, Tier.pro);

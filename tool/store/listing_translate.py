@@ -49,7 +49,7 @@ Translate the JSON values from English into {lang}. Write natural marketing copy
 Rules:
 - Keep product words NShoptor, Pro, Max, GPL-3.0 and the URL unchanged. Keep bullet characters and line breaks and the section headings (translate headings, keep them short, UPPERCASE if the script has case).
 - Hard length limits in characters: title <= 30, short <= 80, full <= 4000, notes <= 500. Be concise: the short text must fit 80 characters including spaces.
-- Preserve every ASCII number in full/notes, including the USD 1 annual base price, 10 free requests each month, 100 Pro requests each month, 71 languages and 7 days where present. Preserve the annual-only new Pro offer, applicable local tax, final localized Google Play price and existing ownership rights. Never introduce a new Max, monthly or lifetime purchase offer. Never change quotas.
+- Preserve every ASCII number in full/notes, including the USD 1 annual base price, 10 free requests each month, 100 Pro requests each month, 71 languages and 24 hours where present. Preserve the annual-only new Pro offer, applicable local tax, final localized Google Play price and existing ownership rights. Never introduce a new Max, monthly or lifetime purchase offer. Never change quotas.
 - Keep the meaning of every feature and the privacy claims exactly; do not invent features.
 Return ONE JSON object with exactly the input keys."""
 

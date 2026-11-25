@@ -52,6 +52,9 @@ class ShelfPriceExtractor {
 
   /// Etikette bulunan tüm fiyat adayları; konuma göre (üst-sol) sıralı.
   List<PriceCandidate> extract(List<OcrLine> lines) {
+    // Turkish labels print kuruş as a small raised number beside the big
+    // whole-lira figure and OCR emits that as separate lines (PB-208).
+    lines = mergeSmallCents(lines);
     if (lines.every(
       (l) => l.boundingBoxTop != null && l.boundingBoxLeft != null,
     )) {
@@ -84,10 +87,7 @@ class ShelfPriceExtractor {
           .allMatches(text)
           .where(
             (m) =>
-                !quantityMatches.any(
-                  (q) => m.start >= q.start && m.end <= q.end,
-                ) &&
-                !RegExp(r'^\d{8,}$').hasMatch(m.group(1)!),
+                !quantityMatches.any((q) => m.start >= q.start && m.end <= q.end),
           )
           .toList();
       for (final (index, match) in matches.indexed) {
@@ -102,7 +102,14 @@ class ShelfPriceExtractor {
         )) {
           continue;
         }
-        if (RegExp(r'^\d{8,}$').hasMatch(raw)) continue; // barcode/product code
+        // Barcodes and product codes are bare 6+ digit integer runs. A real
+        // price of that size always carries a decimal separator, or its own
+        // currency marker with no other amount in between; a barcode that
+        // merely shares a line with the printed price stays a code (PB-208).
+        if (RegExp(r'^\d{6,}$').hasMatch(raw) &&
+            !_currencyMarkerAdjacent(text, match.start, match.end)) {
+          continue;
+        }
 
         final around = text.substring(
           match.end,
@@ -285,6 +292,33 @@ class ShelfPriceExtractor {
 
   // Consume the complete numeric token: never turn 12.3456 into 12.34 + 56.
   RegExp get _pricePattern => RegExp(r'(\d+(?:[.,\u066b]\d+)*)');
+
+  /// Whether a currency marker in [text] borders the [start]/[end] match with
+  /// no other number in between, so a 6+ digit run is the marker's own amount
+  /// ('123456 TL' is a price; '8690123456789 24,95 TL' keeps only 24,95).
+  static bool _currencyMarkerAdjacent(String text, int start, int end) {
+    for (final word in _currencyWords) {
+      for (var i = text.indexOf(word); i >= 0; i = text.indexOf(word, i + 1)) {
+        // A currency marker is a standalone token: SÜTLÜ/TATLI/KRAKER must
+        // not turn a barcode next to them into a price (review finding).
+        final before = i == 0 || RegExp(r'[^\p{L}\p{N}]').hasMatch(text[i - 1]);
+        final after = i + word.length >= text.length ||
+            RegExp(r'[^\p{L}\p{N}]').hasMatch(text[i + word.length]);
+        if (!before || !after) continue;
+        final String span;
+        if (i >= end) {
+          span = text.substring(end, i);
+        } else if (i + word.length <= start) {
+          span = text.substring(i + word.length, start);
+        } else {
+          continue; // The marker cannot overlap a digits-only match.
+        }
+        if (!RegExp(r'\d').hasMatch(span)) return true;
+      }
+    }
+    return false;
+  }
+
   static const List<String> _currencyWords = [
     'TL',
     'TRY',
@@ -300,6 +334,103 @@ class ShelfPriceExtractor {
 }
 
 typedef _ShelfBasis = ({UnitCode unit, DecimalFixed? quantity, bool perUnit});
+
+/// Joins the raised kuruş line of a Turkish shelf label with its big
+/// whole-lira line: labels print a large "24" with a small superscript "95"
+/// beside it, and OCR emits two separate lines. A small 2-digit line merges
+/// into a big whole-number line only when its box sits to the RIGHT of the
+/// big digits, is aligned to their top half (superscript) and is clearly
+/// smaller. Merged text is `'<big>,<small>'`; the big line's box is kept and
+/// the cents line is consumed. Pure function: [lines] is not modified.
+List<OcrLine> mergeSmallCents(List<OcrLine> lines) {
+  final merged = <OcrLine>[];
+  final consumed = <OcrLine>{};
+  for (final big in lines) {
+    if (consumed.contains(big)) continue;
+    final bigText = big.text.trim();
+    OcrLine? cents;
+    // Only plain whole-lira lines (1-5 digits, no separators) can adopt a
+    // cents line; longer runs are barcodes/codes, never a lira figure.
+    if (RegExp(r'^\d{1,5}$').hasMatch(bigText)) {
+      for (final small in lines) {
+        if (identical(small, big) || consumed.contains(small)) continue;
+        if (RegExp(r'^\d{2}$').hasMatch(small.text.trim()) &&
+            _isRaisedCents(big, small)) {
+          cents = small;
+          break;
+        }
+      }
+    }
+    if (cents == null) {
+      merged.add(big);
+      continue;
+    }
+    consumed.add(cents);
+    merged.add(
+      OcrLine(
+        text: '$bigText,${cents.text.trim()}',
+        boundingBoxTop: big.boundingBoxTop,
+        boundingBoxLeft: big.boundingBoxLeft,
+        boundingBoxHeight: big.boundingBoxHeight,
+        boundingBoxWidth: big.boundingBoxWidth,
+      ),
+    );
+  }
+  return merged;
+}
+
+/// Geometry gate for [mergeSmallCents]: [small] must be the raised kuruş of
+/// [big]. Both boxes must exist and be finite/positive; equal boxes within
+/// noise (duplicate OCR lines) never merge.
+bool _isRaisedCents(OcrLine big, OcrLine small) {
+  final dims = [
+    big.boundingBoxTop,
+    big.boundingBoxLeft,
+    big.boundingBoxHeight,
+    big.boundingBoxWidth,
+    small.boundingBoxTop,
+    small.boundingBoxLeft,
+    small.boundingBoxHeight,
+    small.boundingBoxWidth,
+  ];
+  if (dims.any((d) => d == null || !d.isFinite)) return false;
+  if (big.boundingBoxHeight! <= 0 || big.boundingBoxWidth! <= 0) return false;
+  if (small.boundingBoxHeight! <= 0 || small.boundingBoxWidth! <= 0) {
+    return false;
+  }
+  final noise = math.max(
+    1.0,
+    0.02 * math.max(big.boundingBoxHeight!, big.boundingBoxWidth!),
+  );
+  if ((big.boundingBoxTop! - small.boundingBoxTop!).abs() <= noise &&
+      (big.boundingBoxLeft! - small.boundingBoxLeft!).abs() <= noise &&
+      (big.boundingBoxHeight! - small.boundingBoxHeight!).abs() <= noise &&
+      (big.boundingBoxWidth! - small.boundingBoxWidth!).abs() <= noise) {
+    return false;
+  }
+  // The kuruş is printed clearly smaller than the lira digits.
+  if (small.boundingBoxHeight! > 0.7 * big.boundingBoxHeight!) return false;
+  // Superscript: the cents sit in the top half of the big line and share its
+  // vertical span.
+  final bigCenterY = big.boundingBoxTop! + big.boundingBoxHeight! / 2;
+  final smallCenterY = small.boundingBoxTop! + small.boundingBoxHeight! / 2;
+  if (smallCenterY > bigCenterY) return false;
+  if (small.boundingBoxTop! >= big.boundingBoxTop! + big.boundingBoxHeight! ||
+      small.boundingBoxTop! + small.boundingBoxHeight! <=
+          big.boundingBoxTop!) {
+    return false;
+  }
+  // To the RIGHT of the big digits: a slight overlap is tolerated, a distant
+  // column never merges.
+  final bigRight = big.boundingBoxLeft! + big.boundingBoxWidth!;
+  if (small.boundingBoxLeft! < bigRight - 0.25 * small.boundingBoxWidth!) {
+    return false;
+  }
+  if (small.boundingBoxLeft! > bigRight + 1.5 * big.boundingBoxHeight!) {
+    return false;
+  }
+  return true;
+}
 
 String? _nearbyProductName(OcrLine price, Iterable<OcrLine> names) {
   if (price.boundingBoxHeight == null ||

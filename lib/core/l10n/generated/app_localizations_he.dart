@@ -929,8 +929,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get planFreeAi => '10 בקשות AI לחודש';
 
   @override
-  String get planFreeAds =>
-      'פרסומות באנר קטנות (ללא פרסומות ב-7 הימים הראשונים)';
+  String get planFreeAds => 'פרסומות באנר קטנות';
 
   @override
   String get planCoreFeatures => 'רשימות, מחירים, קבלות, גרפי הוצאות';
@@ -1304,10 +1303,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'חודש קודם';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'חודש הבא';
 
   @override
   String get helpSection => 'עזרה ותמיכה';
@@ -1568,4 +1567,197 @@ class AppLocalizationsHe extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'נוצלו $percent% מהמגבלה';
   }
+
+  @override
+  String get receiptReviewNowAction => 'לבדוק ולתקן';
+
+  @override
+  String get receiptEditDetailsTitle => 'פרטי הקבלה';
+
+  @override
+  String get receiptDateTimeLabel => 'תאריך ושעה';
+
+  @override
+  String get receiptSaveAnywayTitle => 'הסכום אינו תואם';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'הפריטים שונים ב-$difference מסכום הקבלה. לשמור בכל זאת?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'לשמור בכל זאת';
+
+  @override
+  String get receiptNeedsDetails =>
+      'הוסיפו חנות ותאריך כדי לשמור את הקבלה הזו.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'לא נקראו: $fields. אפשר למלא אותם בזמן הבדיקה.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'הגישה למצלמה כבויה. הפעילו אותה בהגדרות כדי לסרוק קבלות ותוויות.';
+
+  @override
+  String get openSettingsAction => 'פתיחת הגדרות';
+
+  @override
+  String get priceManualEntryAction => 'הזנת מחיר ידנית';
+
+  @override
+  String get priceRetakeAction => 'צילום תמונה נוספת';
+
+  @override
+  String get paletteSage => 'מרווה';
+
+  @override
+  String get paletteSlate => 'צפחה';
+
+  @override
+  String get receiptContinueSame => 'המשך באותו קבלה';
+
+  @override
+  String get receiptCaptureDone => 'סיום';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count עמודים תועדו';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'הקבלה בתור — מתכוננת ברקע.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ניתן להוסיף עד $max עמודים לכל קבלה.';
+  }
+
+  @override
+  String get shelfLabelReading => 'קורא מדבקת מחיר…';
+
+  @override
+  String get shelfLabelContinueOther => 'סרוק פריט נוסף';
+
+  @override
+  String get shelfLabelQueuedNotice => 'מדבקת המחיר נקראת ברקע.';
+
+  @override
+  String get listsTabReceipts => 'הקבלות שלי';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'הקבלות שלי ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'בתור';
+
+  @override
+  String get receiptStatusProcessing => 'קורא קבלה…';
+
+  @override
+  String get receiptStatusReady => 'מוכן';
+
+  @override
+  String get receiptStatusDuplicate => 'ייתכן שכפול';
+
+  @override
+  String get receiptStatusFailed => 'לא ניתן לקרוא';
+
+  @override
+  String get receiptConvertToListAction => 'המרה לרשימה';
+
+  @override
+  String get receiptRetryReadAction => 'נסה שוב';
+
+  @override
+  String get receiptDeleteDraftAction => 'מחק';
+
+  @override
+  String get receiptReadyNotificationTitle => 'הקבלה מוכנה';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'הקבלה שלך מוכנה. להעביר אותה לרשימה?';
+
+  @override
+  String get receiptDuplicateTitle => 'הקבלה כבר נוספה?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'כבר קיימת רשימה התואמת את החנות והזמן האלה ($listTitle). להוסיף בכל זאת?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'הוסף בכל זאת';
+
+  @override
+  String get receiptDuplicateDelete => 'מחק קבלה';
+
+  @override
+  String get receiptEmptyTrayTitle => 'אין קבלות בהמתנה';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'קבלות סרוקות מעובדות ברקע ונשארות כאן עד שתמיר או תסיר אותן.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count עמודים';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'תמונות קבלה';
+
+  @override
+  String get receiptOpenPhotoHint => 'לחץ על תמונת קבלה כדי לצפות בגודל מלא';
+
+  @override
+  String get receiptPhotoPreparing => 'מכין את תמונת הקבלה…';
+
+  @override
+  String get homeProPromoTitle => 'נסו את Pro חינם ל-24 שעות';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 סריקות קבלות ב-AI וללא פרסומות פתוח · ללא צורך בכרטיס';
+
+  @override
+  String get receiptFailureSheetTitle => 'למה לא ניתן לקרוא';
+
+  @override
+  String get receiptFailureMissingTop => 'החלק העליון חסר';
+
+  @override
+  String get receiptFailureMissingBottom => 'החלק התחתון חסר';
+
+  @override
+  String get receiptFailureMissingMiddle => 'החלק האמצעי חסר';
+
+  @override
+  String get receiptFailureNotReceipt => 'לא קבלה';
+
+  @override
+  String get receiptFailureUnreadable => 'לא קריא';
+
+  @override
+  String get receiptFailureMismatch => 'הסכום אינו תואם';
+
+  @override
+  String get receiptFailureRejected => 'לא ניתן לקרוא';
+
+  @override
+  String get receiptFailureService => 'השירות אינו זמין';
+
+  @override
+  String get receiptFailureUnknown => 'הקריאה נכשלה';
+
+  @override
+  String get receiptFailureAddMoreAction => 'צלמו את השאר';
+
+  @override
+  String get receiptFailureRetakeAction => 'צלמו שוב';
 }

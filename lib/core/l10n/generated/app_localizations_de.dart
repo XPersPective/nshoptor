@@ -935,8 +935,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get planFreeAi => '10 KI-Anfragen pro Monat';
 
   @override
-  String get planFreeAds =>
-      'Kleine Bannerwerbung (in den ersten 7 Tagen keine)';
+  String get planFreeAds => 'Kleine Bannerwerbung';
 
   @override
   String get planCoreFeatures =>
@@ -1587,4 +1586,200 @@ class AppLocalizationsDe extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent % des Limits verbraucht';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Prüfen und korrigieren';
+
+  @override
+  String get receiptEditDetailsTitle => 'Belegdetails';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum und Uhrzeit';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Summe stimmt nicht';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Die Artikel weichen um $difference vom Gesamtbetrag des Belegs ab. Trotzdem speichern?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Trotzdem speichern';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Gib Geschäft und Datum an, um diesen Beleg zu speichern.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Konnte nicht gelesen werden: $fields. Du kannst das beim Prüfen ergänzen.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Der Kamerazugriff ist aus. Aktiviere ihn in den Einstellungen, um Belege und Etiketten zu scannen.';
+
+  @override
+  String get openSettingsAction => 'Einstellungen öffnen';
+
+  @override
+  String get priceManualEntryAction => 'Preis manuell eingeben';
+
+  @override
+  String get priceRetakeAction => 'Neues Foto aufnehmen';
+
+  @override
+  String get paletteSage => 'Salbei';
+
+  @override
+  String get paletteSlate => 'Schiefer';
+
+  @override
+  String get receiptContinueSame => 'Weiter mit gleichem Beleg';
+
+  @override
+  String get receiptCaptureDone => 'Fertig';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count Seiten erfasst';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Beleg in der Warteschlange — wird im Hintergrund vorbereitet.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Pro Beleg können bis zu $max Seiten hinzugefügt werden.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Preisetikett wird gelesen…';
+
+  @override
+  String get shelfLabelContinueOther => 'Ein anderes Produkt scannen';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Preisetikett wird im Hintergrund gelesen.';
+
+  @override
+  String get listsTabReceipts => 'Meine Quittungen';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Meine Quittungen ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'In der Warteschlange';
+
+  @override
+  String get receiptStatusProcessing => 'Quittung wird gelesen…';
+
+  @override
+  String get receiptStatusReady => 'Bereit';
+
+  @override
+  String get receiptStatusDuplicate => 'Möglicher Doppelgänger';
+
+  @override
+  String get receiptStatusFailed => 'Konnte nicht gelesen werden';
+
+  @override
+  String get receiptConvertToListAction => 'In Liste umwandeln';
+
+  @override
+  String get receiptRetryReadAction => 'Erneut versuchen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Löschen';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Quittung bereit';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Deine Quittung ist fertig. Soll sie in eine Liste übernommen werden?';
+
+  @override
+  String get receiptDuplicateTitle => 'Quittung bereits hinzugefügt?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Es gibt bereits eine Liste für diesen Laden und Zeitpunkt ($listTitle). Trotzdem erneut hinzufügen?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Trotzdem hinzufügen';
+
+  @override
+  String get receiptDuplicateDelete => 'Quittung löschen';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Keine ausstehenden Quittungen';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Gescannte Quittungen werden im Hintergrund verarbeitet und bleiben hier, bis du sie in eine Liste überträgst oder löschst.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count Seiten';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Quittungsfotos';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tippe auf ein Quittungsfoto, um es in voller Größe anzusehen';
+
+  @override
+  String get receiptPhotoPreparing => 'Belegfoto wird vorbereitet…';
+
+  @override
+  String get homeProPromoTitle => 'Pro 24 Stunden kostenlos testen';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 KI-Bon-Scans & werbefrei freigeschaltet · Keine Karte nötig';
+
+  @override
+  String get receiptFailureSheetTitle => 'Warum nicht lesbar';
+
+  @override
+  String get receiptFailureMissingTop => 'Oberteil fehlt';
+
+  @override
+  String get receiptFailureMissingBottom => 'Unterteil fehlt';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Mittelteil fehlt';
+
+  @override
+  String get receiptFailureNotReceipt => 'Kein Beleg';
+
+  @override
+  String get receiptFailureUnreadable => 'Nicht lesbar';
+
+  @override
+  String get receiptFailureMismatch => 'Summe stimmt nicht';
+
+  @override
+  String get receiptFailureRejected => 'Konnte nicht gelesen werden';
+
+  @override
+  String get receiptFailureService => 'Dienst nicht verfügbar';
+
+  @override
+  String get receiptFailureUnknown => 'Lesen fehlgeschlagen';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Rest fotografieren';
+
+  @override
+  String get receiptFailureRetakeAction => 'Neu aufnehmen';
 }

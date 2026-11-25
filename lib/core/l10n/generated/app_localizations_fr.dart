@@ -936,8 +936,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get planFreeAi => '10 requêtes IA par mois';
 
   @override
-  String get planFreeAds =>
-      'Petites bannières publicitaires (aucune les 7 premiers jours)';
+  String get planFreeAds => 'Petites bannières publicitaires';
 
   @override
   String get planCoreFeatures =>
@@ -1593,4 +1592,200 @@ class AppLocalizationsFr extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent % de la limite utilisée';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Vérifier et corriger';
+
+  @override
+  String get receiptEditDetailsTitle => 'Détails du reçu';
+
+  @override
+  String get receiptDateTimeLabel => 'Date et heure';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Le total ne correspond pas';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Les articles diffèrent du total du reçu de $difference. Enregistrer quand même ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Enregistrer quand même';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Ajoutez le magasin et la date pour enregistrer ce reçu.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Illisible : $fields. Vous pourrez les compléter pendant la vérification.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'L\'accès à l\'appareil photo est désactivé. Activez-le dans les Réglages pour scanner des reçus et des étiquettes.';
+
+  @override
+  String get openSettingsAction => 'Ouvrir les Réglages';
+
+  @override
+  String get priceManualEntryAction => 'Saisir le prix à la main';
+
+  @override
+  String get priceRetakeAction => 'Reprendre une photo';
+
+  @override
+  String get paletteSage => 'Sauge';
+
+  @override
+  String get paletteSlate => 'Ardoise';
+
+  @override
+  String get receiptContinueSame => 'Continuer avec le même reçu';
+
+  @override
+  String get receiptCaptureDone => 'Terminé';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pages capturées';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Reçu en file d\'attente — préparation en arrière-plan.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Jusqu\'à $max pages peuvent être ajoutées par reçu.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lecture de l\'étiquette…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scanner un autre article';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Lecture de l\'étiquette en arrière-plan.';
+
+  @override
+  String get listsTabReceipts => 'Mes reçus';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mes reçus ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'En file d\'attente';
+
+  @override
+  String get receiptStatusProcessing => 'Lecture du reçu…';
+
+  @override
+  String get receiptStatusReady => 'Prêt';
+
+  @override
+  String get receiptStatusDuplicate => 'Double possible';
+
+  @override
+  String get receiptStatusFailed => 'Impossible de lire';
+
+  @override
+  String get receiptConvertToListAction => 'Convertir en liste';
+
+  @override
+  String get receiptRetryReadAction => 'Réessayer';
+
+  @override
+  String get receiptDeleteDraftAction => 'Supprimer';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Reçu prêt';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Votre reçu est prêt. Le transférer dans une liste ?';
+
+  @override
+  String get receiptDuplicateTitle => 'Reçu déjà ajouté ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Une liste correspondant à ce magasin et à cette date existe déjà ($listTitle). Ajouter quand même ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Ajouter quand même';
+
+  @override
+  String get receiptDuplicateDelete => 'Supprimer le reçu';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Aucun reçu en attente';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Les reçus scannés se préparent en arrière-plan et restent ici jusqu\'à ce que vous les convertissiez ou les supprimiez.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pages';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Photos des reçus';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Appuyez sur une photo de reçu pour l\'afficher en taille réelle';
+
+  @override
+  String get receiptPhotoPreparing => 'Préparation de la photo du reçu…';
+
+  @override
+  String get homeProPromoTitle => 'Essayez Pro gratuitement 24 heures';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 scans de tickets par IA et sans pub débloqués · Sans carte';
+
+  @override
+  String get receiptFailureSheetTitle => 'Raison de l\'échec';
+
+  @override
+  String get receiptFailureMissingTop => 'Haut manquant';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bas manquant';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Milieu manquant';
+
+  @override
+  String get receiptFailureNotReceipt => 'Pas un reçu';
+
+  @override
+  String get receiptFailureUnreadable => 'Illisible';
+
+  @override
+  String get receiptFailureMismatch => 'Le total ne correspond pas';
+
+  @override
+  String get receiptFailureRejected => 'Impossible de lire';
+
+  @override
+  String get receiptFailureService => 'Service indisponible';
+
+  @override
+  String get receiptFailureUnknown => 'Échec de la lecture';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Photographier le reste';
+
+  @override
+  String get receiptFailureRetakeAction => 'Reprendre une photo';
 }

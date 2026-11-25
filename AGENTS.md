@@ -3,9 +3,8 @@
 This project keeps its state in `.project-brain/` (current architecture, target, open tasks).
 Before any work, load the `project-brain` skill and run its boot step; follow it for all work here.
 
-## User workflow correction — 2026-10-26
+## User workflow — 2026-10-26
 
-Store Automation was removed. Do not install, run, or adopt its cached or backup copies.
 Use Project Brain for development and the installed Release Harbor skill for authorized store publishing:
 `C:/Users/rubicon/.skills-manager/skills/release-harbor/SKILL.md`.
 Project Forge is a separate new-project startup protocol, not a publishing tool.

@@ -29,6 +29,49 @@ http.Response _access({
 
 void main() {
   test(
+    'device trial retries after an unconfirmed response and preserves free AI',
+    () async {
+      final paths = <String>[];
+      final deviceId = List.filled(64, 'a').join();
+      var confirm = false;
+      AiTrialWindow? observed;
+      final client = AiClient(
+        store: SettingsStore(),
+        baseUrl: 'https://x',
+        trialFirstOpenedAt: () => 42,
+        trialDeviceId: () async => deviceId,
+        onTrialWindow: (window) => observed = window,
+        httpClient: MockClient((request) async {
+          paths.add(request.url.path);
+          final body = jsonDecode(request.body) as Map<String, dynamic>;
+          if (request.url.path == '/v1/ai') {
+            expect(body.containsKey('deviceTrialId'), isFalse);
+            return _ok();
+          }
+          expect(body['deviceTrialId'], deviceId);
+          return http.Response(
+            jsonEncode({
+              'trial': {
+                'endsAt': 1_800_000_000_000,
+                'serverNow': 1_700_000_000_000,
+              },
+              'deviceConfirmed': confirm,
+            }),
+            200,
+          );
+        }),
+      );
+
+      expect(await client.request('parse_list', {'text': 'tea'}), isA<AiOk>());
+      expect(observed, isNull);
+      confirm = true;
+      expect(await client.syncTrialAccess(), isNull);
+      expect(observed?.deviceConfirmed, isTrue);
+      expect(paths, ['/v1/access', '/v1/ai', '/v1/access']);
+    },
+  );
+
+  test(
     'a purchase restored during failed registration remains usable',
     () async {
       final pending = Completer<http.Response>();

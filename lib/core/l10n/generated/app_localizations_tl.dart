@@ -938,7 +938,7 @@ class AppLocalizationsTl extends AppLocalizations {
   String get planFreeAi => '10 AI requests kada buwan';
 
   @override
-  String get planFreeAds => 'Maliit na banner ads (walang sa unang 7 araw)';
+  String get planFreeAds => 'Maliit na banner ads';
 
   @override
   String get planCoreFeatures =>
@@ -1066,7 +1066,7 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get receiptReplaces =>
-      'Pupunan ang mga item na walang presyo. Idadagdag bilang hiwalay na pagbili ang mga item na may presyo sa merkado.';
+      'Pupunan ang mga item na walang presyo. Idinaragdag bilang hiwalay na mga pagbili ang mga item na mayroon nang presyo sa merkado.';
 
   @override
   String get receiptIncompleteHeader =>
@@ -1074,31 +1074,31 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get receiptIncompleteTail =>
-      'Kuhanan ng larawan ang susunod na bahagi na may ilang magkakapatong na item at huling kabuuan.';
+      'Kunan ng larawan ang susunod na bahagi na may ilang magkakapatong na item at kabuuang halaga.';
 
   @override
   String get receiptContinuationRejected =>
-      'Hindi maidugtong ang larawang ito. Kunan muli ito na may magkakapatong na item mula sa parehong resibo.';
+      'Hindi maisama ang larawang ito sa resibo. Kunan itong muli na may magkakapatong na item mula sa parehong resibo.';
 
   @override
   String get receiptDraftSaved =>
-      'Na-save bilang draft ang resibo. Maaari mo itong ituloy mamaya.';
+      'Nai-save ang resibo bilang draft. Maaari kang magpatuloy sa ibang pagkakataon.';
 
   @override
-  String get receiptContinueAction => 'Ituloy ang resibo';
+  String get receiptContinueAction => 'Ipagpatuloy ang resibo';
 
   @override
-  String get receiptDraftsTitle => 'Mga hindi pa tapos na resibo';
+  String get receiptDraftsTitle => 'Hindi pa tapos na mga resibo';
 
   @override
   String get receiptDuplicate => 'Naidagdag na ang resibong ito.';
 
   @override
   String get receiptTotalMismatch =>
-      'Hindi tugma ang kabuuan ng mga item sa kabuuan ng resibo. Tiyaking nakikita ang buong resibo.';
+      'Hindi tugma ang mga item sa kabuuan ng resibo. Tiyaking nakikita ang buong resibo.';
 
   @override
-  String get receiptSaveDraftAction => 'I-save para mamaya';
+  String get receiptSaveDraftAction => 'I-save para sa ibang pagkakataon';
 
   @override
   String get receiptResolveLines =>
@@ -1167,23 +1167,23 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get tipReceiptScan =>
-      'I-scan ang resibo para itugma ang mga presyo sa listahan mo';
+      'I-scan ang resibo para itugma ang mga presyo sa iyong listahan';
 
   @override
   String get tipVoiceAdd =>
-      'Sabihin ang isa o higit pang item, at suriin bago idagdag';
+      'Sabihin ang isa o higit pang item, saka suriin bago idagdag';
 
   @override
   String get tipShelfCamera =>
-      'Basahin ang presyo sa shelf label gamit ang camera';
+      'Basahin ang presyo sa shelf label gamit ang kamera';
 
   @override
   String get tipPlan =>
-      'Ang plano mo: tingnan ang detalye, mag-subscribe o mag-upgrade';
+      'Ang iyong plano: tingnan ang detalye, mag-subscribe o mag-upgrade';
 
   @override
   String get guideAddBody =>
-      'I-tap ang + para magdagdag ng item. I-type ang planong presyo ngayon at ang presyo sa merkado sa checkout.';
+      'I-tap ang + para magdagdag ng item. I-type ang plano na presyo ngayon at ang presyo sa merkado sa checkout.';
 
   @override
   String get guideVoiceBody =>
@@ -1191,7 +1191,7 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get guideReceiptBody =>
-      'I-scan ang resibo para itugma ang mga presyo nito sa mga item sa listahan mo.';
+      'I-scan ang resibo para itugma ang presyo nito sa mga item sa iyong listahan.';
 
   @override
   String get guidePlanBody =>
@@ -1222,16 +1222,16 @@ class AppLocalizationsTl extends AppLocalizations {
   String get darkBlackLabel => 'Purong itim sa madilim na tema';
 
   @override
-  String get spendingOverview => 'Buod';
+  String get spendingOverview => 'Pangkalahatang-tanaw';
 
   @override
   String get spendingThisYear => 'Ngayong taon';
 
   @override
-  String get spendingYearly => 'Gastos sa isang taon';
+  String get spendingYearly => 'Gastos bawat taon';
 
   @override
-  String get productSpending => 'Gastos bawat produkto';
+  String get productSpending => 'Gastos ayon sa produkto';
 
   @override
   String get spanWeek => 'Linggo';
@@ -1247,7 +1247,7 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get weeklyLimitHelp =>
-      'Magkano ang gusto mong gastusin sa pamimili kada linggo?';
+      'Magkano ang gusto mong gastusin sa pamimili bawat linggo?';
 
   @override
   String get weeklyLimitNone =>
@@ -1259,7 +1259,7 @@ class AppLocalizationsTl extends AppLocalizations {
   }
 
   @override
-  String get shoppingLimitTitle => 'Limitasyon kada pamimili';
+  String get shoppingLimitTitle => 'Limitasyon bawat pamimili';
 
   @override
   String get shoppingLimitHelp =>
@@ -1419,7 +1419,7 @@ class AppLocalizationsTl extends AppLocalizations {
   String get reportSaved => 'Na-save ang ulat.';
 
   @override
-  String get reportZoom => 'Mag-zoom';
+  String get reportZoom => 'I-zoom';
 
   @override
   String planTrialDaysLeft(int days) {
@@ -1479,7 +1479,7 @@ class AppLocalizationsTl extends AppLocalizations {
   String get receiptReadingProgress => 'Binabasa ang resibo…';
 
   @override
-  String get receiptReadInBackground => 'Ipagpatuloy sa background';
+  String get receiptReadInBackground => 'Magpatuloy sa background';
 
   @override
   String get receiptReadDoneTitle => 'Nabasa na ang resibo';
@@ -1591,4 +1591,200 @@ class AppLocalizationsTl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% ng limit ang nagamit na';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Suriin at itama';
+
+  @override
+  String get receiptEditDetailsTitle => 'Mga detalye ng resibo';
+
+  @override
+  String get receiptDateTimeLabel => 'Petsa at oras';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Hindi tugma ang kabuuan';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Nagkaiba ng $difference ang mga item sa total ng resibo. I-save pa rin?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'I-save pa rin';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Idagdag ang tindahan at petsa para i-save ang resibong ito.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Hindi nabasa: $fields. Maaari mong punan ang mga ito habang sinusuri.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Sarado ang access sa camera. Buksan ito sa Mga Setting para i-scan ang mga resibo at label.';
+
+  @override
+  String get openSettingsAction => 'Buksan ang Mga Setting';
+
+  @override
+  String get priceManualEntryAction => 'Ilagay ang presyo nang manu-mano';
+
+  @override
+  String get priceRetakeAction => 'Kumuha ng ibang larawan';
+
+  @override
+  String get paletteSage => 'Sabiya';
+
+  @override
+  String get paletteSlate => 'Slate';
+
+  @override
+  String get receiptContinueSame => 'Magpatuloy sa receipt na iyon';
+
+  @override
+  String get receiptCaptureDone => 'Tapos na';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count na pahina ang nakakuha';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Naka-queue na ang receipt — pinaproseso sa background.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hanggang $max na pahina ang maaaring idagdag sa bawat receipt.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Binabasa ang label ng presyo…';
+
+  @override
+  String get shelfLabelContinueOther => 'Mag-scan ng ibang item';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Binabasa ang label ng presyo sa background.';
+
+  @override
+  String get listsTabReceipts => 'Aking mga resibo';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Aking mga resibo ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Naka-queue';
+
+  @override
+  String get receiptStatusProcessing => 'Binabasa ang resibo…';
+
+  @override
+  String get receiptStatusReady => 'Handa na';
+
+  @override
+  String get receiptStatusDuplicate => 'Maaaring duplicate';
+
+  @override
+  String get receiptStatusFailed => 'Hindi nabasa';
+
+  @override
+  String get receiptConvertToListAction => 'I-convert sa listahan';
+
+  @override
+  String get receiptRetryReadAction => 'Subukan ulit';
+
+  @override
+  String get receiptDeleteDraftAction => 'Burahin';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Handa na ang resibo';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Handa na ang iyong resibo. Ilipat ito sa isang listahan?';
+
+  @override
+  String get receiptDuplicateTitle => 'Naidagdag na ba ang resibo?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'May listahan na naaayon sa tindahan at oras na ito ($listTitle). Idagdag pa rin?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Idagdag pa rin';
+
+  @override
+  String get receiptDuplicateDelete => 'Burahin ang resibo';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Walang naka-pending na resibo';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Ang mga na-scan na resibo ay inihahanda sa background at nananatili dito hanggang ma-convert o matanggal.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count na pahina';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Mga litrato ng resibo';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Pindutin ang litrato ng resibo para makita sa buong laki';
+
+  @override
+  String get receiptPhotoPreparing => 'Inihahanda ang larawan ng resibo…';
+
+  @override
+  String get homeProPromoTitle => 'Subukan ang Pro nang libre sa 24 oras';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI scan ng resibo at walang ad na bukas · Walang kailangang card';
+
+  @override
+  String get receiptFailureSheetTitle => 'Bakit hindi nabasa';
+
+  @override
+  String get receiptFailureMissingTop => 'Nawawalang itaas';
+
+  @override
+  String get receiptFailureMissingBottom => 'Nawawalang ibaba';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Nawawalang gitna';
+
+  @override
+  String get receiptFailureNotReceipt => 'Hindi resibo';
+
+  @override
+  String get receiptFailureUnreadable => 'Hindi malinaw';
+
+  @override
+  String get receiptFailureMismatch => 'Hindi tugma ang kabuuan';
+
+  @override
+  String get receiptFailureRejected => 'Hindi nabasa';
+
+  @override
+  String get receiptFailureService => 'Hindi available ang serbisyo';
+
+  @override
+  String get receiptFailureUnknown => 'Nabigo ang pagbasa';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Kunan ang natitira';
+
+  @override
+  String get receiptFailureRetakeAction => 'Kunan muli';
 }

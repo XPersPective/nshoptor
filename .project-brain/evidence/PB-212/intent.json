@@ -1,0 +1,8 @@
+{
+  "contract": "a896cb353d56f48e",
+  "epoch": "6ffe5d41c1b00087",
+  "independent": false,
+  "intent": "452a6f23a13f292e",
+  "note": "Verified full suite fix in test/features/receipts/receipt_ownership_test.dart v4 reconstruction alongside Drift v6 migration, backup compat, JPEG budget, dedup, and repository lifecycle",
+  "protocol": 1
+}

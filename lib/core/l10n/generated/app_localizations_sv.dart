@@ -934,7 +934,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get planFreeAi => '10 AI-förfrågningar i månaden';
 
   @override
-  String get planFreeAds => 'Små bannerreklam (ingen de första 7 dagarna)';
+  String get planFreeAds => 'Små bannerreklam';
 
   @override
   String get planCoreFeatures => 'Listor, priser, kvitton, utgiftsdiagram';
@@ -1580,4 +1580,198 @@ class AppLocalizationsSv extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent % av gränsen har använts';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Granska och rätta';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kvittouppgifter';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum och tid';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totalen stämmer inte';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Varorna skiljer sig med $difference från kvittots totalsumma. Spara ändå?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Spara ändå';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Lägg till butik och datum för att spara det här kvittot.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Kunde inte läsas: $fields. Du kan fylla i dem under granskningen.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameraåtkomsten är av. Slå på den i inställningarna för att skanna kvitton och etiketter.';
+
+  @override
+  String get openSettingsAction => 'Öppna inställningarna';
+
+  @override
+  String get priceManualEntryAction => 'Ange priset manuellt';
+
+  @override
+  String get priceRetakeAction => 'Ta ett nytt foto';
+
+  @override
+  String get paletteSage => 'Salvia';
+
+  @override
+  String get paletteSlate => 'Skiffer';
+
+  @override
+  String get receiptContinueSame => 'Fortsätt med samma kvitto';
+
+  @override
+  String get receiptCaptureDone => 'Klar';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sidor har fångats';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Kittot köat — förbereds i bakgrunden.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Upp till $max sidor kan läggas till per kvitto.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Läser prisetikett…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skanna ett annat objekt';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Prisetiketten läses i bakgrunden.';
+
+  @override
+  String get listsTabReceipts => 'Mina kvitton';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mina kvitton ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Köad';
+
+  @override
+  String get receiptStatusProcessing => 'Läser av kvitto…';
+
+  @override
+  String get receiptStatusReady => 'Klar';
+
+  @override
+  String get receiptStatusDuplicate => 'Trolig dublett';
+
+  @override
+  String get receiptStatusFailed => 'Kunde inte läsa av';
+
+  @override
+  String get receiptConvertToListAction => 'Konvertera till lista';
+
+  @override
+  String get receiptRetryReadAction => 'Försök igen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Ta bort';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kvitto klart';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ditt kvitto är klart. Vill du överföra det till en lista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kvitto redan tillagt?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'En lista som matchar denna butik och tidpunkt finns redan ($listTitle). Lägg till ändå?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Lägg till ändå';
+
+  @override
+  String get receiptDuplicateDelete => 'Ta bort kvitto';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Inga väntande kvitton';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skannade kvitton bearbetas i bakgrunden och stannar här tills du konverterar eller tar bort dem.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sidor';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kvittofoton';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tryck på ett kvittofoto för att visa i full storlek';
+
+  @override
+  String get receiptPhotoPreparing => 'Förbereder kvittobild…';
+
+  @override
+  String get homeProPromoTitle => 'Prova Pro gratis i 24 timmar';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI-kvittoskanningar & reklamfritt upplåst · Inget kort behövs';
+
+  @override
+  String get receiptFailureSheetTitle => 'Varför kunde inte läsas';
+
+  @override
+  String get receiptFailureMissingTop => 'Toppen saknas';
+
+  @override
+  String get receiptFailureMissingBottom => 'Botten saknas';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Mitten saknas';
+
+  @override
+  String get receiptFailureNotReceipt => 'Inte ett kvitto';
+
+  @override
+  String get receiptFailureUnreadable => 'Oläsligt';
+
+  @override
+  String get receiptFailureMismatch => 'Totalen stämmer inte';
+
+  @override
+  String get receiptFailureRejected => 'Kunde inte läsa av';
+
+  @override
+  String get receiptFailureService => 'Tjänsten är otillgänglig';
+
+  @override
+  String get receiptFailureUnknown => 'Läsningen misslyckades';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fota resten';
+
+  @override
+  String get receiptFailureRetakeAction => 'Ta om';
 }

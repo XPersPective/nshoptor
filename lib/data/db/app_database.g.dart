@@ -2068,6 +2068,54 @@ class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
     requiredDuringInsert: false,
     defaultValue: const Constant('pending'),
   );
+  static const VerificationMeta _queueStateMeta = const VerificationMeta(
+    'queueState',
+  );
+  @override
+  late final GeneratedColumn<String> queueState = GeneratedColumn<String>(
+    'queue_state',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('queued'),
+  );
+  static const VerificationMeta _queueErrorMeta = const VerificationMeta(
+    'queueError',
+  );
+  @override
+  late final GeneratedColumn<String> queueError = GeneratedColumn<String>(
+    'queue_error',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _convertedAtMeta = const VerificationMeta(
+    'convertedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> convertedAt = GeneratedColumn<DateTime>(
+    'converted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _duplicateOfListIdMeta = const VerificationMeta(
+    'duplicateOfListId',
+  );
+  @override
+  late final GeneratedColumn<int> duplicateOfListId = GeneratedColumn<int>(
+    'duplicate_of_list_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES shopping_lists (id) ON DELETE SET NULL',
+    ),
+  );
   static const VerificationMeta _createdAtMeta = const VerificationMeta(
     'createdAt',
   );
@@ -2099,6 +2147,10 @@ class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
     identityKey,
     captureDataJson,
     processingStatus,
+    queueState,
+    queueError,
+    convertedAt,
+    duplicateOfListId,
     createdAt,
   ];
   @override
@@ -2245,6 +2297,36 @@ class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
         ),
       );
     }
+    if (data.containsKey('queue_state')) {
+      context.handle(
+        _queueStateMeta,
+        queueState.isAcceptableOrUnknown(data['queue_state']!, _queueStateMeta),
+      );
+    }
+    if (data.containsKey('queue_error')) {
+      context.handle(
+        _queueErrorMeta,
+        queueError.isAcceptableOrUnknown(data['queue_error']!, _queueErrorMeta),
+      );
+    }
+    if (data.containsKey('converted_at')) {
+      context.handle(
+        _convertedAtMeta,
+        convertedAt.isAcceptableOrUnknown(
+          data['converted_at']!,
+          _convertedAtMeta,
+        ),
+      );
+    }
+    if (data.containsKey('duplicate_of_list_id')) {
+      context.handle(
+        _duplicateOfListIdMeta,
+        duplicateOfListId.isAcceptableOrUnknown(
+          data['duplicate_of_list_id']!,
+          _duplicateOfListIdMeta,
+        ),
+      );
+    }
     if (data.containsKey('created_at')) {
       context.handle(
         _createdAtMeta,
@@ -2330,6 +2412,22 @@ class $ReceiptsTable extends Receipts with TableInfo<$ReceiptsTable, Receipt> {
         DriftSqlType.string,
         data['${effectivePrefix}processing_status'],
       )!,
+      queueState: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}queue_state'],
+      )!,
+      queueError: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}queue_error'],
+      ),
+      convertedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}converted_at'],
+      ),
+      duplicateOfListId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}duplicate_of_list_id'],
+      ),
       createdAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
         data['${effectivePrefix}created_at'],
@@ -2371,6 +2469,10 @@ class Receipt extends DataClass implements Insertable<Receipt> {
 
   /// pending | ocrDone | reviewed | error
   final String processingStatus;
+  final String queueState;
+  final String? queueError;
+  final DateTime? convertedAt;
+  final int? duplicateOfListId;
   final DateTime createdAt;
   const Receipt({
     required this.id,
@@ -2390,6 +2492,10 @@ class Receipt extends DataClass implements Insertable<Receipt> {
     this.identityKey,
     this.captureDataJson,
     required this.processingStatus,
+    required this.queueState,
+    this.queueError,
+    this.convertedAt,
+    this.duplicateOfListId,
     required this.createdAt,
   });
   @override
@@ -2448,6 +2554,16 @@ class Receipt extends DataClass implements Insertable<Receipt> {
       map['capture_data_json'] = Variable<String>(captureDataJson);
     }
     map['processing_status'] = Variable<String>(processingStatus);
+    map['queue_state'] = Variable<String>(queueState);
+    if (!nullToAbsent || queueError != null) {
+      map['queue_error'] = Variable<String>(queueError);
+    }
+    if (!nullToAbsent || convertedAt != null) {
+      map['converted_at'] = Variable<DateTime>(convertedAt);
+    }
+    if (!nullToAbsent || duplicateOfListId != null) {
+      map['duplicate_of_list_id'] = Variable<int>(duplicateOfListId);
+    }
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
   }
@@ -2499,6 +2615,16 @@ class Receipt extends DataClass implements Insertable<Receipt> {
           ? const Value.absent()
           : Value(captureDataJson),
       processingStatus: Value(processingStatus),
+      queueState: Value(queueState),
+      queueError: queueError == null && nullToAbsent
+          ? const Value.absent()
+          : Value(queueError),
+      convertedAt: convertedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(convertedAt),
+      duplicateOfListId: duplicateOfListId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(duplicateOfListId),
       createdAt: Value(createdAt),
     );
   }
@@ -2532,6 +2658,10 @@ class Receipt extends DataClass implements Insertable<Receipt> {
       identityKey: serializer.fromJson<String?>(json['identityKey']),
       captureDataJson: serializer.fromJson<String?>(json['captureDataJson']),
       processingStatus: serializer.fromJson<String>(json['processingStatus']),
+      queueState: serializer.fromJson<String>(json['queueState']),
+      queueError: serializer.fromJson<String?>(json['queueError']),
+      convertedAt: serializer.fromJson<DateTime?>(json['convertedAt']),
+      duplicateOfListId: serializer.fromJson<int?>(json['duplicateOfListId']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
@@ -2560,6 +2690,10 @@ class Receipt extends DataClass implements Insertable<Receipt> {
       'identityKey': serializer.toJson<String?>(identityKey),
       'captureDataJson': serializer.toJson<String?>(captureDataJson),
       'processingStatus': serializer.toJson<String>(processingStatus),
+      'queueState': serializer.toJson<String>(queueState),
+      'queueError': serializer.toJson<String?>(queueError),
+      'convertedAt': serializer.toJson<DateTime?>(convertedAt),
+      'duplicateOfListId': serializer.toJson<int?>(duplicateOfListId),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
@@ -2582,6 +2716,10 @@ class Receipt extends DataClass implements Insertable<Receipt> {
     Value<String?> identityKey = const Value.absent(),
     Value<String?> captureDataJson = const Value.absent(),
     String? processingStatus,
+    String? queueState,
+    Value<String?> queueError = const Value.absent(),
+    Value<DateTime?> convertedAt = const Value.absent(),
+    Value<int?> duplicateOfListId = const Value.absent(),
     DateTime? createdAt,
   }) => Receipt(
     id: id ?? this.id,
@@ -2619,6 +2757,12 @@ class Receipt extends DataClass implements Insertable<Receipt> {
         ? captureDataJson.value
         : this.captureDataJson,
     processingStatus: processingStatus ?? this.processingStatus,
+    queueState: queueState ?? this.queueState,
+    queueError: queueError.present ? queueError.value : this.queueError,
+    convertedAt: convertedAt.present ? convertedAt.value : this.convertedAt,
+    duplicateOfListId: duplicateOfListId.present
+        ? duplicateOfListId.value
+        : this.duplicateOfListId,
     createdAt: createdAt ?? this.createdAt,
   );
   Receipt copyWithCompanion(ReceiptsCompanion data) {
@@ -2670,6 +2814,18 @@ class Receipt extends DataClass implements Insertable<Receipt> {
       processingStatus: data.processingStatus.present
           ? data.processingStatus.value
           : this.processingStatus,
+      queueState: data.queueState.present
+          ? data.queueState.value
+          : this.queueState,
+      queueError: data.queueError.present
+          ? data.queueError.value
+          : this.queueError,
+      convertedAt: data.convertedAt.present
+          ? data.convertedAt.value
+          : this.convertedAt,
+      duplicateOfListId: data.duplicateOfListId.present
+          ? data.duplicateOfListId.value
+          : this.duplicateOfListId,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
@@ -2694,13 +2850,17 @@ class Receipt extends DataClass implements Insertable<Receipt> {
           ..write('identityKey: $identityKey, ')
           ..write('captureDataJson: $captureDataJson, ')
           ..write('processingStatus: $processingStatus, ')
+          ..write('queueState: $queueState, ')
+          ..write('queueError: $queueError, ')
+          ..write('convertedAt: $convertedAt, ')
+          ..write('duplicateOfListId: $duplicateOfListId, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     id,
     listId,
     imagePaths,
@@ -2718,8 +2878,12 @@ class Receipt extends DataClass implements Insertable<Receipt> {
     identityKey,
     captureDataJson,
     processingStatus,
+    queueState,
+    queueError,
+    convertedAt,
+    duplicateOfListId,
     createdAt,
-  );
+  ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2741,6 +2905,10 @@ class Receipt extends DataClass implements Insertable<Receipt> {
           other.identityKey == this.identityKey &&
           other.captureDataJson == this.captureDataJson &&
           other.processingStatus == this.processingStatus &&
+          other.queueState == this.queueState &&
+          other.queueError == this.queueError &&
+          other.convertedAt == this.convertedAt &&
+          other.duplicateOfListId == this.duplicateOfListId &&
           other.createdAt == this.createdAt);
 }
 
@@ -2762,6 +2930,10 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
   final Value<String?> identityKey;
   final Value<String?> captureDataJson;
   final Value<String> processingStatus;
+  final Value<String> queueState;
+  final Value<String?> queueError;
+  final Value<DateTime?> convertedAt;
+  final Value<int?> duplicateOfListId;
   final Value<DateTime> createdAt;
   const ReceiptsCompanion({
     this.id = const Value.absent(),
@@ -2781,6 +2953,10 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     this.identityKey = const Value.absent(),
     this.captureDataJson = const Value.absent(),
     this.processingStatus = const Value.absent(),
+    this.queueState = const Value.absent(),
+    this.queueError = const Value.absent(),
+    this.convertedAt = const Value.absent(),
+    this.duplicateOfListId = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
   ReceiptsCompanion.insert({
@@ -2801,6 +2977,10 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     this.identityKey = const Value.absent(),
     this.captureDataJson = const Value.absent(),
     this.processingStatus = const Value.absent(),
+    this.queueState = const Value.absent(),
+    this.queueError = const Value.absent(),
+    this.convertedAt = const Value.absent(),
+    this.duplicateOfListId = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
   static Insertable<Receipt> custom({
@@ -2821,6 +3001,10 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     Expression<String>? identityKey,
     Expression<String>? captureDataJson,
     Expression<String>? processingStatus,
+    Expression<String>? queueState,
+    Expression<String>? queueError,
+    Expression<DateTime>? convertedAt,
+    Expression<int>? duplicateOfListId,
     Expression<DateTime>? createdAt,
   }) {
     return RawValuesInsertable({
@@ -2843,6 +3027,10 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
       if (identityKey != null) 'identity_key': identityKey,
       if (captureDataJson != null) 'capture_data_json': captureDataJson,
       if (processingStatus != null) 'processing_status': processingStatus,
+      if (queueState != null) 'queue_state': queueState,
+      if (queueError != null) 'queue_error': queueError,
+      if (convertedAt != null) 'converted_at': convertedAt,
+      if (duplicateOfListId != null) 'duplicate_of_list_id': duplicateOfListId,
       if (createdAt != null) 'created_at': createdAt,
     });
   }
@@ -2865,6 +3053,10 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     Value<String?>? identityKey,
     Value<String?>? captureDataJson,
     Value<String>? processingStatus,
+    Value<String>? queueState,
+    Value<String?>? queueError,
+    Value<DateTime?>? convertedAt,
+    Value<int?>? duplicateOfListId,
     Value<DateTime>? createdAt,
   }) {
     return ReceiptsCompanion(
@@ -2887,6 +3079,10 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
       identityKey: identityKey ?? this.identityKey,
       captureDataJson: captureDataJson ?? this.captureDataJson,
       processingStatus: processingStatus ?? this.processingStatus,
+      queueState: queueState ?? this.queueState,
+      queueError: queueError ?? this.queueError,
+      convertedAt: convertedAt ?? this.convertedAt,
+      duplicateOfListId: duplicateOfListId ?? this.duplicateOfListId,
       createdAt: createdAt ?? this.createdAt,
     );
   }
@@ -2951,6 +3147,18 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
     if (processingStatus.present) {
       map['processing_status'] = Variable<String>(processingStatus.value);
     }
+    if (queueState.present) {
+      map['queue_state'] = Variable<String>(queueState.value);
+    }
+    if (queueError.present) {
+      map['queue_error'] = Variable<String>(queueError.value);
+    }
+    if (convertedAt.present) {
+      map['converted_at'] = Variable<DateTime>(convertedAt.value);
+    }
+    if (duplicateOfListId.present) {
+      map['duplicate_of_list_id'] = Variable<int>(duplicateOfListId.value);
+    }
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
@@ -2977,6 +3185,10 @@ class ReceiptsCompanion extends UpdateCompanion<Receipt> {
           ..write('identityKey: $identityKey, ')
           ..write('captureDataJson: $captureDataJson, ')
           ..write('processingStatus: $processingStatus, ')
+          ..write('queueState: $queueState, ')
+          ..write('queueError: $queueError, ')
+          ..write('convertedAt: $convertedAt, ')
+          ..write('duplicateOfListId: $duplicateOfListId, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
@@ -8908,6 +9120,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
+        'shopping_lists',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('receipts', kind: UpdateKind.update)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
         'receipts',
         limitUpdateKind: UpdateKind.delete,
       ),
@@ -10350,25 +10569,6 @@ final class $$ShoppingListsTableReferences
     );
   }
 
-  static MultiTypedResultKey<$ReceiptsTable, List<Receipt>> _receiptsRefsTable(
-    _$AppDatabase db,
-  ) => MultiTypedResultKey.fromTable(
-    db.receipts,
-    aliasName: 'shopping_lists__id__receipts__list_id',
-  );
-
-  $$ReceiptsTableProcessedTableManager get receiptsRefs {
-    final manager = $$ReceiptsTableTableManager(
-      $_db,
-      $_db.receipts,
-    ).filter((f) => f.listId.id.sqlEquals($_itemColumn<int>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_receiptsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
   static MultiTypedResultKey<$PlannedItemsTable, List<PlannedItem>>
   _plannedItemsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
     db.plannedItems,
@@ -10536,31 +10736,6 @@ class $$ShoppingListsTableFilterComposer
           ),
     );
     return composer;
-  }
-
-  Expression<bool> receiptsRefs(
-    Expression<bool> Function($$ReceiptsTableFilterComposer f) f,
-  ) {
-    final $$ReceiptsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.receipts,
-      getReferencedColumn: (t) => t.listId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ReceiptsTableFilterComposer(
-            $db: $db,
-            $table: $db.receipts,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
   }
 
   Expression<bool> plannedItemsRefs(
@@ -10844,31 +11019,6 @@ class $$ShoppingListsTableAnnotationComposer
     return composer;
   }
 
-  Expression<T> receiptsRefs<T extends Object>(
-    Expression<T> Function($$ReceiptsTableAnnotationComposer a) f,
-  ) {
-    final $$ReceiptsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.receipts,
-      getReferencedColumn: (t) => t.listId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$ReceiptsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.receipts,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
   Expression<T> plannedItemsRefs<T extends Object>(
     Expression<T> Function($$PlannedItemsTableAnnotationComposer a) f,
   ) {
@@ -10960,7 +11110,6 @@ class $$ShoppingListsTableTableManager
           ShoppingList,
           PrefetchHooks Function({
             bool storeId,
-            bool receiptsRefs,
             bool plannedItemsRefs,
             bool purchaseEntriesRefs,
             bool remindersRefs,
@@ -11064,7 +11213,6 @@ class $$ShoppingListsTableTableManager
           prefetchHooksCallback:
               ({
                 storeId = false,
-                receiptsRefs = false,
                 plannedItemsRefs = false,
                 purchaseEntriesRefs = false,
                 remindersRefs = false,
@@ -11072,7 +11220,6 @@ class $$ShoppingListsTableTableManager
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
-                    if (receiptsRefs) db.receipts,
                     if (plannedItemsRefs) db.plannedItems,
                     if (purchaseEntriesRefs) db.purchaseEntries,
                     if (remindersRefs) db.reminders,
@@ -11109,27 +11256,6 @@ class $$ShoppingListsTableTableManager
                       },
                   getPrefetchedDataCallback: (items) async {
                     return [
-                      if (receiptsRefs)
-                        await $_getPrefetchedData<
-                          ShoppingList,
-                          $ShoppingListsTable,
-                          Receipt
-                        >(
-                          currentTable: table,
-                          referencedTable: $$ShoppingListsTableReferences
-                              ._receiptsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$ShoppingListsTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).receiptsRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.listId == item.id,
-                              ),
-                          typedResults: items,
-                        ),
                       if (plannedItemsRefs)
                         await $_getPrefetchedData<
                           ShoppingList,
@@ -11215,7 +11341,6 @@ typedef $$ShoppingListsTableProcessedTableManager =
       ShoppingList,
       PrefetchHooks Function({
         bool storeId,
-        bool receiptsRefs,
         bool plannedItemsRefs,
         bool purchaseEntriesRefs,
         bool remindersRefs,
@@ -11239,6 +11364,10 @@ typedef $$ReceiptsTableCreateCompanionBuilder = ReceiptsCompanion Function({
   Value<String?> identityKey,
   Value<String?> captureDataJson,
   Value<String> processingStatus,
+  Value<String> queueState,
+  Value<String?> queueError,
+  Value<DateTime?> convertedAt,
+  Value<int?> duplicateOfListId,
   Value<DateTime> createdAt,
 });
 typedef $$ReceiptsTableUpdateCompanionBuilder = ReceiptsCompanion Function({
@@ -11259,6 +11388,10 @@ typedef $$ReceiptsTableUpdateCompanionBuilder = ReceiptsCompanion Function({
   Value<String?> identityKey,
   Value<String?> captureDataJson,
   Value<String> processingStatus,
+  Value<String> queueState,
+  Value<String?> queueError,
+  Value<DateTime?> convertedAt,
+  Value<int?> duplicateOfListId,
   Value<DateTime> createdAt,
 });
 
@@ -11277,6 +11410,24 @@ final class $$ReceiptsTableReferences
       $_db.shoppingLists,
     ).filter((f) => f.id.sqlEquals($_column));
     final item = $_typedResult.readTableOrNull(_listIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $ShoppingListsTable _duplicateOfListIdTable(_$AppDatabase db) => db
+      .shoppingLists
+      .createAlias('receipts__duplicate_of_list_id__shopping_lists__id');
+
+  $$ShoppingListsTableProcessedTableManager? get duplicateOfListId {
+    final $_column = $_itemColumn<int>('duplicate_of_list_id');
+    if ($_column == null) return null;
+    final manager = $$ShoppingListsTableTableManager(
+      $_db,
+      $_db.shoppingLists,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_duplicateOfListIdTable($_db));
     if (item == null) return manager;
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: [item]),
@@ -11437,6 +11588,21 @@ class $$ReceiptsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get queueState => $composableBuilder(
+    column: $table.queueState,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get queueError => $composableBuilder(
+    column: $table.queueError,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get convertedAt => $composableBuilder(
+    column: $table.convertedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
     column: $table.createdAt,
     builder: (column) => ColumnFilters(column),
@@ -11446,6 +11612,29 @@ class $$ReceiptsTableFilterComposer
     final $$ShoppingListsTableFilterComposer composer = $composerBuilder(
       composer: this,
       getCurrentColumn: (t) => t.listId,
+      referencedTable: $db.shoppingLists,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ShoppingListsTableFilterComposer(
+            $db: $db,
+            $table: $db.shoppingLists,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$ShoppingListsTableFilterComposer get duplicateOfListId {
+    final $$ShoppingListsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.duplicateOfListId,
       referencedTable: $db.shoppingLists,
       getReferencedColumn: (t) => t.id,
       builder:
@@ -11631,6 +11820,21 @@ class $$ReceiptsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get queueState => $composableBuilder(
+    column: $table.queueState,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get queueError => $composableBuilder(
+    column: $table.queueError,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get convertedAt => $composableBuilder(
+    column: $table.convertedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
     column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
@@ -11640,6 +11844,29 @@ class $$ReceiptsTableOrderingComposer
     final $$ShoppingListsTableOrderingComposer composer = $composerBuilder(
       composer: this,
       getCurrentColumn: (t) => t.listId,
+      referencedTable: $db.shoppingLists,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ShoppingListsTableOrderingComposer(
+            $db: $db,
+            $table: $db.shoppingLists,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$ShoppingListsTableOrderingComposer get duplicateOfListId {
+    final $$ShoppingListsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.duplicateOfListId,
       referencedTable: $db.shoppingLists,
       getReferencedColumn: (t) => t.id,
       builder:
@@ -11748,6 +11975,21 @@ class $$ReceiptsTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<String> get queueState => $composableBuilder(
+    column: $table.queueState,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get queueError => $composableBuilder(
+    column: $table.queueError,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get convertedAt => $composableBuilder(
+    column: $table.convertedAt,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
 
@@ -11755,6 +11997,29 @@ class $$ReceiptsTableAnnotationComposer
     final $$ShoppingListsTableAnnotationComposer composer = $composerBuilder(
       composer: this,
       getCurrentColumn: (t) => t.listId,
+      referencedTable: $db.shoppingLists,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ShoppingListsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.shoppingLists,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$ShoppingListsTableAnnotationComposer get duplicateOfListId {
+    final $$ShoppingListsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.duplicateOfListId,
       referencedTable: $db.shoppingLists,
       getReferencedColumn: (t) => t.id,
       builder:
@@ -11866,6 +12131,7 @@ class $$ReceiptsTableTableManager
           Receipt,
           PrefetchHooks Function({
             bool listId,
+            bool duplicateOfListId,
             bool plannedItemsRefs,
             bool purchaseEntriesRefs,
             bool receiptCandidateLinesRefs,
@@ -11901,6 +12167,10 @@ class $$ReceiptsTableTableManager
                 Value<String?> identityKey = const Value.absent(),
                 Value<String?> captureDataJson = const Value.absent(),
                 Value<String> processingStatus = const Value.absent(),
+                Value<String> queueState = const Value.absent(),
+                Value<String?> queueError = const Value.absent(),
+                Value<DateTime?> convertedAt = const Value.absent(),
+                Value<int?> duplicateOfListId = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
               }) => ReceiptsCompanion(
                 id: id,
@@ -11920,6 +12190,10 @@ class $$ReceiptsTableTableManager
                 identityKey: identityKey,
                 captureDataJson: captureDataJson,
                 processingStatus: processingStatus,
+                queueState: queueState,
+                queueError: queueError,
+                convertedAt: convertedAt,
+                duplicateOfListId: duplicateOfListId,
                 createdAt: createdAt,
               ),
           createCompanionCallback:
@@ -11941,6 +12215,10 @@ class $$ReceiptsTableTableManager
                 Value<String?> identityKey = const Value.absent(),
                 Value<String?> captureDataJson = const Value.absent(),
                 Value<String> processingStatus = const Value.absent(),
+                Value<String> queueState = const Value.absent(),
+                Value<String?> queueError = const Value.absent(),
+                Value<DateTime?> convertedAt = const Value.absent(),
+                Value<int?> duplicateOfListId = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
               }) => ReceiptsCompanion.insert(
                 id: id,
@@ -11960,6 +12238,10 @@ class $$ReceiptsTableTableManager
                 identityKey: identityKey,
                 captureDataJson: captureDataJson,
                 processingStatus: processingStatus,
+                queueState: queueState,
+                queueError: queueError,
+                convertedAt: convertedAt,
+                duplicateOfListId: duplicateOfListId,
                 createdAt: createdAt,
               ),
           withReferenceMapper: (p0) => p0
@@ -11973,6 +12255,7 @@ class $$ReceiptsTableTableManager
           prefetchHooksCallback:
               ({
                 listId = false,
+                duplicateOfListId = false,
                 plannedItemsRefs = false,
                 purchaseEntriesRefs = false,
                 receiptCandidateLinesRefs = false,
@@ -12008,6 +12291,17 @@ class $$ReceiptsTableTableManager
                                 ._listIdTable(db),
                             referencedColumn: $$ReceiptsTableReferences
                                 ._listIdTable(db)
+                                .id,
+                          ) as T;
+                        }
+                        if (duplicateOfListId) {
+                          state = state.withJoin(
+                            currentTable: table,
+                            currentColumn: table.duplicateOfListId,
+                            referencedTable: $$ReceiptsTableReferences
+                                ._duplicateOfListIdTable(db),
+                            referencedColumn: $$ReceiptsTableReferences
+                                ._duplicateOfListIdTable(db)
                                 .id,
                           ) as T;
                         }
@@ -12101,6 +12395,7 @@ typedef $$ReceiptsTableProcessedTableManager =
       Receipt,
       PrefetchHooks Function({
         bool listId,
+        bool duplicateOfListId,
         bool plannedItemsRefs,
         bool purchaseEntriesRefs,
         bool receiptCandidateLinesRefs,

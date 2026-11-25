@@ -326,14 +326,23 @@ void main() {
         lessThan(tester.getTopLeft(find.text('A tarihsiz')).dy),
       );
       expect(find.byType(ReorderableListView), findsNothing);
-      await tester.tap(find.byKey(const Key('lists_sort_button')));
-      await tester.pumpAndSettle();
+      Future<void> selectSort(ListSortMode mode) async {
+        await tester.tap(find.byKey(const Key('lists_sort_button')));
+        await tester.pumpAndSettle();
+        await tester.tap(
+          find.byWidgetPredicate(
+            (w) => w is PopupMenuItem<ListSortMode> && w.value == mode,
+          ),
+        );
+        await tester.pumpAndSettle();
+      }
+
+      await selectSort(ListSortMode.title);
       expect(
         tester.getTopLeft(find.text('A tarihsiz')).dy,
         lessThan(tester.getTopLeft(find.text('Z tarihli')).dy),
       );
-      await tester.tap(find.byKey(const Key('lists_sort_button')));
-      await tester.pumpAndSettle();
+      await selectSort(ListSortMode.manual);
       expect(find.byType(ReorderableListView), findsOneWidget);
       expect(AppDefaults.listSort(), 'manual');
       // Recreate the screen with the same store to prove selected-mode reload.
@@ -344,12 +353,13 @@ void main() {
       expect(find.byType(ReorderableListView), findsOneWidget);
       expect(
         tester
-            .widget<IconButton>(find.byKey(const Key('lists_sort_button')))
+            .widget<PopupMenuButton<ListSortMode>>(
+              find.byKey(const Key('lists_sort_button')),
+            )
             .tooltip,
         contains('Elle'),
       );
-      await tester.tap(find.byKey(const Key('lists_sort_button')));
-      await tester.pumpAndSettle();
+      await selectSort(ListSortMode.date);
       expect(AppDefaults.listSort(), 'date');
       expect(find.byType(ReorderableListView), findsNothing);
       expect(

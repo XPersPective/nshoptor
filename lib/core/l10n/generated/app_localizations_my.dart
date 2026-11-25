@@ -938,7 +938,7 @@ class AppLocalizationsMy extends AppLocalizations {
   String get planFreeAi => 'တစ်လလျှင် AI တောင်းဆိုမှု 10 ခု';
 
   @override
-  String get planFreeAds => 'Banner ads (ပထမ ၇ ရက်တွင် မရှိပါ)';
+  String get planFreeAds => 'Banner ads';
 
   @override
   String get planCoreFeatures =>
@@ -1323,10 +1323,10 @@ class AppLocalizationsMy extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'ယခင်လ';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'နောက်လ';
 
   @override
   String get helpSection => 'အကူအညီနှင့် ပံ့ပိုးမှု';
@@ -1585,4 +1585,200 @@ class AppLocalizationsMy extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ကန့်သတ်ချက်၏ $percent% အသုံးပြုပြီး';
   }
+
+  @override
+  String get receiptReviewNowAction => 'စစ်ဆေးပြီး ပြင်ဆင်ပါ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ပြေစာအချက်အလက်များ';
+
+  @override
+  String get receiptDateTimeLabel => 'ရက်စွဲနှင့် အချိန်';
+
+  @override
+  String get receiptSaveAnywayTitle => 'စုစုပေါင်း မကိုက်ညီပါ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ပစ္စည်းများ စုစုပေါင်းသည် ပြေစာ စုစုပေါင်းနှင့် $difference ကွာဟနေပါသည်။ သို့သော်လည်း သိမ်းဆည်းမလား?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'သို့သော် သိမ်းဆည်းမည်';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ဤပြေစာကို သိမ်းဆည်းရန် ဆိုင်နှင့် ရက်စွဲ ထည့်ပါ။';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'မဖတ်နိုင်ခဲ့ပါ: $fields။ စစ်ဆေးချိန်တွင် ဖြည့်နိုင်ပါသည်။';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'ကင်မရာ ခွင့်ပြုချက် ပိတ်ထားပါသည်။ ပြေစာနှင့် အမှတ်အသားများကို ဖတ်ရန် ဆက်တင်များတွင် ဖွင့်ပါ။';
+
+  @override
+  String get openSettingsAction => 'ဆက်တင်များ ဖွင့်ရန်';
+
+  @override
+  String get priceManualEntryAction => 'ဈေးနှုန်းကို လက်ဖြင့် ထည့်ပါ';
+
+  @override
+  String get priceRetakeAction => 'ဓာတ်ပုံ အသစ် ရိုက်ပါ';
+
+  @override
+  String get paletteSage => 'ဆေ့ချ်';
+
+  @override
+  String get paletteSlate => 'ကျောက်သင်ပုန်း';
+
+  @override
+  String get receiptContinueSame => 'ဆက်လက်ပြုလုပ်မည်';
+
+  @override
+  String get receiptCaptureDone => 'ပြီးဆုံးပါပြီ';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count စာမျက်နှာကို ဖမ်းယူပြီးပါပြီ';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ရိတ်သံချုပ်စာရွက်ကို အစဉ်လိုက် ထည့်ထားပြီး — နောက်ခံတွင် ပြင်ဆင်နေသည်။';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ရိတ်သံချုပ်စာရွက်တစ်ခုစီအတွက် $max စာမျက်နှာအထိ ထည့်နိုင်သည်။';
+  }
+
+  @override
+  String get shelfLabelReading => 'ဈေးနှုန်းပစ္စည်းအမှတ်အသားကို ဖတ်နေသည်…';
+
+  @override
+  String get shelfLabelContinueOther => 'ပစ္စည်းအခြားကို စကန်ဖတ်မည်';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'ဈေးနှုန်းပစ္စည်းအမှတ်အသားကို နောက်ခံတွင် ဖတ်နေသည်။';
+
+  @override
+  String get listsTabReceipts => 'ကျွန်ုပ်၏ ခြေရာခံများ';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ကျွန်ုပ်၏ ခြေရာခံများ ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'စောင့်ဆိုင်းနေသည်';
+
+  @override
+  String get receiptStatusProcessing => 'ခြေရာခံကို ဖတ်နေသည်…';
+
+  @override
+  String get receiptStatusReady => 'အဆင်သင့်ဖြစ်သည်';
+
+  @override
+  String get receiptStatusDuplicate => 'တူညီနိုင်သော ခြေရာခံ';
+
+  @override
+  String get receiptStatusFailed => 'ဖတ်၍ မရပါ';
+
+  @override
+  String get receiptConvertToListAction => 'စာရင်းသို့ ပြောင်းပါ';
+
+  @override
+  String get receiptRetryReadAction => 'ပြန်လည်ကြိုးစားပါ';
+
+  @override
+  String get receiptDeleteDraftAction => 'ဖျက်ပါ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ခြေရာခံ အဆင်သင့်ဖြစ်ပြီ';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ခြေရာခံ အဆင်သင့်ဖြစ်ပြီ။ စာရင်းထဲသို့ ပို့မလား?';
+
+  @override
+  String get receiptDuplicateTitle => 'ခြေရာခံ ထည့်ပြီးသားလား?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ဆိုင်နှင့် အချိန် တူညီသော စာရင်း ရှိနေပြီ ($listTitle)။ ဆက်လက်ထည့်မလား?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'ဆက်လက်ထည့်ပါ';
+
+  @override
+  String get receiptDuplicateDelete => 'ခြေရာခံ ဖျက်ပါ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'စောင့်ဆိုင်းနေသော ခြေရာခံ မရှိပါ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ဖတ်ထားသော ခြေရာခံများသည် နောက်ခံတွင် ပြင်ဆင်ပြီး သင် ပြောင်းလဲခြင်း သို့မဟုတ် ဖျက်ပစ်သည်အထိ ဤနေရာတွင် ကျန်ရှိနေမည်။';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count စာမျက်နှာ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ခြေရာခံ ဓာတ်ပုံများ';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'ခြေရာခံ ဓာတ်ပုံကို နှိပ်၍ အရွယ်အစားကြီးဖြင့် ကြည့်ရှုပါ';
+
+  @override
+  String get receiptPhotoPreparing => 'ပြေစာဓာတ်ပုံကို ပြင်ဆင်နေသည်…';
+
+  @override
+  String get homeProPromoTitle => 'Pro ကို ၂၄ နာရီ အခမဲ့ စမ်းသုံးကြည့်ပါ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'AI ဘောက်ချာစကင် ၁၀၀ ကြိမ်နှင့် ကြော်ငြာမဲ့အသုံးပြုမှု · ကတ်မလိုပါ';
+
+  @override
+  String get receiptFailureSheetTitle => 'ဘာကြောင့် ဖတ်၍ မရပါ';
+
+  @override
+  String get receiptFailureMissingTop => 'အပေါ်ပိုင်း မရှိပါ';
+
+  @override
+  String get receiptFailureMissingBottom => 'အောက်ပိုင်း မရှိပါ';
+
+  @override
+  String get receiptFailureMissingMiddle => 'အလယ်ပိုင်း မရှိပါ';
+
+  @override
+  String get receiptFailureNotReceipt => 'ပြေစာ မဟုတ်ပါ';
+
+  @override
+  String get receiptFailureUnreadable => 'မရှင်းလင်းပါ';
+
+  @override
+  String get receiptFailureMismatch => 'စုစုပေါင်း မကိုက်ညီပါ';
+
+  @override
+  String get receiptFailureRejected => 'ဖတ်၍ မရပါ';
+
+  @override
+  String get receiptFailureService => 'ဝန်ဆောင်မှု မရှိပါ';
+
+  @override
+  String get receiptFailureUnknown => 'ဖတ်မှု မအောင်မြင်ပါ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ကျန်အပိုင်း ဓာတ်ပုံရိုက်ပါ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ပြန်ရိုက်ပါ';
 }

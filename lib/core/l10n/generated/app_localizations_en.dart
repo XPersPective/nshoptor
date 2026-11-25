@@ -932,7 +932,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get planFreeAi => '10 AI requests a month';
 
   @override
-  String get planFreeAds => 'Small banner ads (none in your first 7 days)';
+  String get planFreeAds => 'Small banner ads after the first 24 hours';
 
   @override
   String get planCoreFeatures => 'Lists, prices, receipts, spending charts';
@@ -1579,4 +1579,205 @@ class AppLocalizationsEn extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% of the limit used';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Review and fix';
+
+  @override
+  String get receiptEditDetailsTitle => 'Receipt details';
+
+  @override
+  String get receiptDateTimeLabel => 'Date and time';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Total does not match';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'The items differ from the receipt total by $difference. Save anyway?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Save anyway';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Add the store and date to save this receipt.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Could not read: $fields. You can fill these in while reviewing.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Camera access is off. Turn it on in Settings to scan receipts and labels.';
+
+  @override
+  String get openSettingsAction => 'Open Settings';
+
+  @override
+  String get priceManualEntryAction => 'Enter price manually';
+
+  @override
+  String get priceRetakeAction => 'Take another photo';
+
+  @override
+  String get paletteSage => 'Sage';
+
+  @override
+  String get paletteSlate => 'Slate';
+
+  @override
+  String get receiptContinueSame => 'Continue same receipt';
+
+  @override
+  String get receiptCaptureDone => 'Done';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pages captured',
+      one: '1 page captured',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Receipt queued — preparing in the background.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Up to $max pages can be added per receipt.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Reading price label…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scan another item';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Price label is reading in the background.';
+
+  @override
+  String get listsTabReceipts => 'My receipts';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'My receipts ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Queued';
+
+  @override
+  String get receiptStatusProcessing => 'Reading receipt…';
+
+  @override
+  String get receiptStatusReady => 'Ready';
+
+  @override
+  String get receiptStatusDuplicate => 'Possible duplicate';
+
+  @override
+  String get receiptStatusFailed => 'Could not read';
+
+  @override
+  String get receiptConvertToListAction => 'Convert to list';
+
+  @override
+  String get receiptRetryReadAction => 'Retry';
+
+  @override
+  String get receiptDeleteDraftAction => 'Delete';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Receipt ready';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Your receipt is ready. Transfer it to a list?';
+
+  @override
+  String get receiptDuplicateTitle => 'Receipt already added?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'A list matching this store and time already exists ($listTitle). Add again anyway?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Add anyway';
+
+  @override
+  String get receiptDuplicateDelete => 'Delete receipt';
+
+  @override
+  String get receiptEmptyTrayTitle => 'No pending receipts';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Scanned receipts prepare in the background and stay here until you convert or remove them.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pages';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Receipt photos';
+
+  @override
+  String get receiptOpenPhotoHint => 'Tap a receipt photo to view full size';
+
+  @override
+  String get receiptPhotoPreparing => 'Preparing receipt photo…';
+
+  @override
+  String get homeProPromoTitle => 'Try Pro free for 24 hours';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI receipt scans & ad-free unlocked · No card needed';
+
+  @override
+  String get receiptFailureSheetTitle => 'Why it could not be read';
+
+  @override
+  String get receiptFailureMissingTop => 'Top is missing';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bottom is missing';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Middle is missing';
+
+  @override
+  String get receiptFailureNotReceipt => 'Not a receipt';
+
+  @override
+  String get receiptFailureUnreadable => 'Not legible';
+
+  @override
+  String get receiptFailureMismatch => 'Total does not match';
+
+  @override
+  String get receiptFailureRejected => 'Could not be read';
+
+  @override
+  String get receiptFailureService => 'Service unavailable';
+
+  @override
+  String get receiptFailureUnknown => 'Reading failed';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Shoot the rest';
+
+  @override
+  String get receiptFailureRetakeAction => 'Retake';
 }

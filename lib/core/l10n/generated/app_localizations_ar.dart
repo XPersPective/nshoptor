@@ -927,7 +927,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get planFreeAi => '10 طلب ذكاء اصطناعي شهريًا';
 
   @override
-  String get planFreeAds => 'إعلانات بانر صغيرة (لا إعلانات في أول 7 أيام)';
+  String get planFreeAds => 'إعلانات بانر صغيرة';
 
   @override
   String get planCoreFeatures => 'قوائم وأسعار وإيصالات ورسوم بيانية للمصروف';
@@ -1571,4 +1571,197 @@ class AppLocalizationsAr extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'تم استخدام $percent٪ من الحد';
   }
+
+  @override
+  String get receiptReviewNowAction => 'راجع وصحّح';
+
+  @override
+  String get receiptEditDetailsTitle => 'تفاصيل الإيصال';
+
+  @override
+  String get receiptDateTimeLabel => 'التاريخ والوقت';
+
+  @override
+  String get receiptSaveAnywayTitle => 'الإجمالي غير مطابق';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'تختلف العناصر عن إجمالي الإيصال بمقدار $difference. هل تريد الحفظ رغم ذلك؟';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'الحفظ رغم ذلك';
+
+  @override
+  String get receiptNeedsDetails => 'أضف المتجر والتاريخ لحفظ هذا الإيصال.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'لم تتم قراءة: $fields. يمكنك تعبئتها أثناء المراجعة.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'الوصول إلى الكاميرا متوقف. فعّله من الإعدادات لمسح الإيصالات والملصقات.';
+
+  @override
+  String get openSettingsAction => 'فتح الإعدادات';
+
+  @override
+  String get priceManualEntryAction => 'إدخال السعر يدويًا';
+
+  @override
+  String get priceRetakeAction => 'التقاط صورة أخرى';
+
+  @override
+  String get paletteSage => 'مريمية';
+
+  @override
+  String get paletteSlate => 'أردواز';
+
+  @override
+  String get receiptContinueSame => 'استمر على نفس الإيصال';
+
+  @override
+  String get receiptCaptureDone => 'تم';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count صفحات تم التقاطها';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'الإيصال في الانتظار — جار التحضير في الخلفية.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'يمكن إضافة ما يصل إلى $max صفحة لكل إيصال.';
+  }
+
+  @override
+  String get shelfLabelReading => 'جارٍ قراءة ملصق السعر…';
+
+  @override
+  String get shelfLabelContinueOther => 'مسح عنصر آخر';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ملصق السعر يُقرأ في الخلفية.';
+
+  @override
+  String get listsTabReceipts => 'إيصالاتِي';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'إيصالاتِي ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'في الانتظار';
+
+  @override
+  String get receiptStatusProcessing => 'جاري قراءة الإيصال…';
+
+  @override
+  String get receiptStatusReady => 'جاهز';
+
+  @override
+  String get receiptStatusDuplicate => 'إيصال مكرر محتمل';
+
+  @override
+  String get receiptStatusFailed => 'تعذرت القراءة';
+
+  @override
+  String get receiptConvertToListAction => 'تحويل إلى قائمة';
+
+  @override
+  String get receiptRetryReadAction => 'إعادة المحاولة';
+
+  @override
+  String get receiptDeleteDraftAction => 'حذف';
+
+  @override
+  String get receiptReadyNotificationTitle => 'الإيصال جاهز';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'إيصالك جاهز. هل تريد نقله إلى قائمة؟';
+
+  @override
+  String get receiptDuplicateTitle => 'هل تمت إضافة الإيصال مسبقاً؟';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'توجد قائمة مطابقة لهذا المتجر والوقت بالفعل ($listTitle). هل تضيفه مرة أخرى على أي حال؟';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'أضف على أي حال';
+
+  @override
+  String get receiptDuplicateDelete => 'حذف الإيصال';
+
+  @override
+  String get receiptEmptyTrayTitle => 'لا توجد إيصالات قيد الانتظار';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'تجهز الإيصالات الممسوحة ضوئياً في الخلفية وتبقى هنا حتى تقوم بتحويلها أو إزالتها.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count صفحات';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'صور الإيصالات';
+
+  @override
+  String get receiptOpenPhotoHint => 'انقر على صورة إيصال لعرضها بالحجم الكامل';
+
+  @override
+  String get receiptPhotoPreparing => 'جارٍ تجهيز صورة الإيصال…';
+
+  @override
+  String get homeProPromoTitle => 'جرّب Pro مجاناً لـ ٢٤ ساعة';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 مسح إيصال بالذكاء الاصطناعي وتجربة بلا إعلانات · دون بطاقة';
+
+  @override
+  String get receiptFailureSheetTitle => 'لماذا تعذرت قراءته';
+
+  @override
+  String get receiptFailureMissingTop => 'الجزء العلوي مفقود';
+
+  @override
+  String get receiptFailureMissingBottom => 'الجزء السفلي مفقود';
+
+  @override
+  String get receiptFailureMissingMiddle => 'الجزء الأوسط مفقود';
+
+  @override
+  String get receiptFailureNotReceipt => 'ليس إيصالاً';
+
+  @override
+  String get receiptFailureUnreadable => 'غير مقروء';
+
+  @override
+  String get receiptFailureMismatch => 'الإجمالي غير مطابق';
+
+  @override
+  String get receiptFailureRejected => 'تعذرت القراءة';
+
+  @override
+  String get receiptFailureService => 'الخدمة غير متاحة';
+
+  @override
+  String get receiptFailureUnknown => 'فشلت القراءة';
+
+  @override
+  String get receiptFailureAddMoreAction => 'صوّر الباقي';
+
+  @override
+  String get receiptFailureRetakeAction => 'أعد الالتقاط';
 }

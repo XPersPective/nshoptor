@@ -936,7 +936,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get planFreeAi => '10 запытаў AI у месяц';
 
   @override
-  String get planFreeAds => 'Невялікія банерныя рэкламы (няма ў першыя 7 дзён)';
+  String get planFreeAds => 'Невялікія банерныя рэкламы';
 
   @override
   String get planCoreFeatures => 'Спісы, цэны, чеки, графікі расходаў';
@@ -1323,10 +1323,10 @@ class AppLocalizationsBe extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Папярэдні месяц';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Наступны месяц';
 
   @override
   String get helpSection => 'Дапамога і падтрымка';
@@ -1590,4 +1590,198 @@ class AppLocalizationsBe extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Выкарыстана $percent% ад ліміту';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Праверце і выправіце';
+
+  @override
+  String get receiptEditDetailsTitle => 'Звесткі чэка';
+
+  @override
+  String get receiptDateTimeLabel => 'Дата і час';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Сума не супадае';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Сума тавараў адрозніваецца ад выніковай сумы чэка на $difference. Захаваць усё роўна?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Захаваць усё роўна';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Дадайце краму і дату, каб захаваць гэты чэк.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Не ўдалося прачытаць: $fields. Гэта можна запоўніць падчас праверкі.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Доступ да камеры выключаны. Уключыце яго ў наладах, каб сканаваць чэкі і цэннікі.';
+
+  @override
+  String get openSettingsAction => 'Адкрыць налады';
+
+  @override
+  String get priceManualEntryAction => 'Увесці цэну ўручную';
+
+  @override
+  String get priceRetakeAction => 'Зрабіць іншае фота';
+
+  @override
+  String get paletteSage => 'Шалфей';
+
+  @override
+  String get paletteSlate => 'Грыфель';
+
+  @override
+  String get receiptContinueSame => 'Працягнуць той жа чэк';
+
+  @override
+  String get receiptCaptureDone => 'Гатова';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count старонак захопана';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Чэк у чарзе — падрыхтоўка ў фоне.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Да $max старонак можна дадаць на адзін чэк.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Чытаем цэннікавую этикетку…';
+
+  @override
+  String get shelfLabelContinueOther => 'Сканаваць іншы тавар';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Цэннікавая этикетка чытаецца ў фоне.';
+
+  @override
+  String get listsTabReceipts => 'Мае чэкі';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Мае чэкі ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'У чарзе';
+
+  @override
+  String get receiptStatusProcessing => 'Чытаю чэк…';
+
+  @override
+  String get receiptStatusReady => 'Гатова';
+
+  @override
+  String get receiptStatusDuplicate => 'Магчымы дубль';
+
+  @override
+  String get receiptStatusFailed => 'Не ўдалося прачытаць';
+
+  @override
+  String get receiptConvertToListAction => 'Пераўтварыць у спіс';
+
+  @override
+  String get receiptRetryReadAction => 'Паўтарыць';
+
+  @override
+  String get receiptDeleteDraftAction => 'Выдаліць';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Чэк гатовы';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ваш чэк гатовы. Перадаць яго ў спіс?';
+
+  @override
+  String get receiptDuplicateTitle => 'Чэк ужо дададзены?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Спіс для гэтай крамы і часу ўжо існуе ($listTitle). Дадаць яшчэ раз?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Дадаць усё роўна';
+
+  @override
+  String get receiptDuplicateDelete => 'Выдаліць чэк';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Няма чэкаў на апрацоўку';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Адсканаваныя чэкі апрацоўваюцца ў фоне і застаюцца тут, пакуль вы не пераўтварыце або не выдаліце іх.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count старонак';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Фота чекаў';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Націсніце на фота чека, каб праглядзець яго ў поўным памеры';
+
+  @override
+  String get receiptPhotoPreparing => 'Падрыхтоўка фота чэка…';
+
+  @override
+  String get homeProPromoTitle => 'Паспрабуйце Pro 24 гадзіны бясплатна';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ШІ-сканаванняў чэкаў і без рэкламы адкрыта · Картка не патрэбна';
+
+  @override
+  String get receiptFailureSheetTitle => 'Чаму не ўдалося прачытаць';
+
+  @override
+  String get receiptFailureMissingTop => 'Верхняя частка адсутнічае';
+
+  @override
+  String get receiptFailureMissingBottom => 'Ніжняя частка адсутнічае';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Сярэдняя частка адсутнічае';
+
+  @override
+  String get receiptFailureNotReceipt => 'Не чэк';
+
+  @override
+  String get receiptFailureUnreadable => 'Нечытліва';
+
+  @override
+  String get receiptFailureMismatch => 'Сума не супадае';
+
+  @override
+  String get receiptFailureRejected => 'Не ўдалося прачытаць';
+
+  @override
+  String get receiptFailureService => 'Сервіс недаступны';
+
+  @override
+  String get receiptFailureUnknown => 'Чытанне не ўдалося';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Сфатаграфуйце астатак';
+
+  @override
+  String get receiptFailureRetakeAction => 'Зрабіце зноў';
 }

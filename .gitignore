@@ -55,10 +55,8 @@ ios/Flutter/AdsConfig.xcconfig
 .project-brain/.cache/
 
 # Obsolete automation and local verification output; canonical publishing is external
-/.store-automation/
 /--help/
 /artifacts/
-/build-sa*/
 /.wrangler/
 
 # Kotlin compiler runtime cache

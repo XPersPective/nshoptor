@@ -4,14 +4,25 @@
 <dict>
 	<key>GADApplicationIdentifier</key>
 	<string>$(ADMOB_APP_ID_IOS)</string>
+	<key>GADDelayAppMeasurementInit</key>
+	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Take photos of receipts and shelf labels to read their prices on your device.</string>
+	<string>Take photos of receipts and shelf labels so their prices can be read for you.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Choose receipt or shelf label photos to read their prices on your device.</string>
+	<string>Choose receipt or shelf label photos to read their prices.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Add shopping items by speaking, for example one kilo of apples.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Turn your spoken shopping items into text on your device.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to deliver relevant ads and keep the free tier supported.</string>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>cstr6suwn9.skadnetwork</string>
+		</dict>
+	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -75,6 +86,14 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>processing</string>
+	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.crazypenguin.nshoptor.receipt-queue</string>
 	</array>
 </dict>
 </plist>

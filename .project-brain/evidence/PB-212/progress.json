@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "lib/data/db/app_database.dart, lib/data/db/app_database.g.dart, lib/features/receipts/ai_image.dart, lib/features/receipts/receipt_dedup.dart, lib/features/receipts/receipt_draft_repository.dart; inspect git status for the complete dirty set",
+  "strategy": "check",
+  "attempt": "032ac9b88a370d26",
+  "repeats": 0,
+  "contract": "a896cb353d56f48e",
+  "usage": {
+    "checks": 2,
+    "seconds": 660.844
+  }
+}

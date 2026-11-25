@@ -933,7 +933,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get planFreeAi => '10 AI მოთხოვნა თვეში';
 
   @override
-  String get planFreeAds => 'მცირე ბანერული რეკლამა (პირველ 7 დღეში არ არის)';
+  String get planFreeAds => 'მცირე ბანერული რეკლამა';
 
   @override
   String get planCoreFeatures => 'სიები, ფასები, ჩიზები, ხარჯების გრაფიკები';
@@ -1317,10 +1317,10 @@ class AppLocalizationsKa extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'წინა თვე';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'შემდეგი თვე';
 
   @override
   String get helpSection => 'დახმარება და მხარდაჭერა';
@@ -1577,4 +1577,198 @@ class AppLocalizationsKa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ლიმიტის $percent% გამოყენებულია';
   }
+
+  @override
+  String get receiptReviewNowAction => 'გადახედეთ და შეასწორეთ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ქვითრის დეტალები';
+
+  @override
+  String get receiptDateTimeLabel => 'თარიღი და დრო';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ჯამი არ ემთხვევა';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'პროდუქტების ჯამი ქვითრის ჯამს აცდება $difference-ით. მაინც შევინახოთ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'მაინც შენახვა';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ამ ქვითრის შესანახად მიუთითეთ მაღაზია და თარიღი.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'ვერ წაიკითხა: $fields. შეგიძლიათ შეავსოთ გადახედვისას.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'კამერის წვდომა გამორთულია. ჩართეთ ის პარამეტრებიდან, რომ დაასკანიროთ ქვითრები და ეტიკეტები.';
+
+  @override
+  String get openSettingsAction => 'პარამეტრების გახსნა';
+
+  @override
+  String get priceManualEntryAction => 'შეიყვანეთ ფასი ხელით';
+
+  @override
+  String get priceRetakeAction => 'სხვა ფოტო გადაიღეთ';
+
+  @override
+  String get paletteSage => 'სალბი';
+
+  @override
+  String get paletteSlate => 'ფიქალი';
+
+  @override
+  String get receiptContinueSame => 'გაგრძელება იგივე ჩიზით';
+
+  @override
+  String get receiptCaptureDone => 'დასრულდა';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count გვერდი დაფიქსირებულია';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'ჩიზი რიგშია — ფონურად მზადდება.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ერთ ჩიზზე მაქსიმუმ $max გვერდის დამატება შეიძლება.';
+  }
+
+  @override
+  String get shelfLabelReading => 'ღირებულების ეტიკეტის კითხვა…';
+
+  @override
+  String get shelfLabelContinueOther => 'სხვა პროდუქტის სკანირება';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ღირებულების ეტიკეტი ფონურად კითხვას.';
+
+  @override
+  String get listsTabReceipts => 'ჩემი ჩეკები';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ჩემი ჩეკები ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'რიგშია';
+
+  @override
+  String get receiptStatusProcessing => 'ჩეკის წაკითხვა…';
+
+  @override
+  String get receiptStatusReady => 'მზადაა';
+
+  @override
+  String get receiptStatusDuplicate => 'შესაძლოა, დუბლირებულია';
+
+  @override
+  String get receiptStatusFailed => 'წაკითხვა ვერ მოხერხდა';
+
+  @override
+  String get receiptConvertToListAction => 'სიაში გადაყვანა';
+
+  @override
+  String get receiptRetryReadAction => 'თავიდან სცადე';
+
+  @override
+  String get receiptDeleteDraftAction => 'წაშლა';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ჩეკი მზადაა';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'თქვენი ჩეკი მზადაა. გადავიტანოთ სიაში?';
+
+  @override
+  String get receiptDuplicateTitle => 'ჩეკი უკვე დაემატა?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ამ მაღაზიასა და დროს ემთხვევა არსებული სია ($listTitle). მაინც დავამატოთ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'დამატება';
+
+  @override
+  String get receiptDuplicateDelete => 'ჩეკის წაშლა';
+
+  @override
+  String get receiptEmptyTrayTitle => 'მიმდინარე ჩეკები არ არის';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'დასკანილი ჩეკები ფონურ რეჟიმში ამუშავდება და აქ დარჩება, სანამ სიაში გადაიტანთ ან წაშლით.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count გვერდი';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ჩეკების ფოტოები';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'სრულ ზომასთან გასახილად, შეეხეთ ჩეკის ფოტოს';
+
+  @override
+  String get receiptPhotoPreparing => 'ქვითრის ფოტო მზადდება…';
+
+  @override
+  String get homeProPromoTitle => 'სცადეთ Pro 24 საათი უფასოდ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI ქვითრის სკანირება და რეკლამის გარეშე · ბარათი არ სჭირდება';
+
+  @override
+  String get receiptFailureSheetTitle => 'რატომ ვერ წაიკითხა';
+
+  @override
+  String get receiptFailureMissingTop => 'ზედა ნაწილი აკლია';
+
+  @override
+  String get receiptFailureMissingBottom => 'ქვედა ნაწილი აკლია';
+
+  @override
+  String get receiptFailureMissingMiddle => 'შუა ნაწილი აკლია';
+
+  @override
+  String get receiptFailureNotReceipt => 'ჩიზი არ არის';
+
+  @override
+  String get receiptFailureUnreadable => 'წაკითხვა შეუძლებელია';
+
+  @override
+  String get receiptFailureMismatch => 'ჯამი არ ემთხვევა';
+
+  @override
+  String get receiptFailureRejected => 'უარისკვეცა';
+
+  @override
+  String get receiptFailureService => 'სერვისი მიუწვდომელია';
+
+  @override
+  String get receiptFailureUnknown => 'წაკითხვა ვერ მოხერხდა';
+
+  @override
+  String get receiptFailureAddMoreAction => 'დანარჩენი გადაიღე';
+
+  @override
+  String get receiptFailureRetakeAction => 'თავიდან გადაიღე';
 }

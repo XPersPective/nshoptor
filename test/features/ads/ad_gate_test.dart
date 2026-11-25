@@ -8,12 +8,12 @@ import 'package:nshoptor/features/ads/ad_gate.dart';
 void main() {
   tearDown(() => AdGate.showInterstitial = null);
 
-  test('fresh installation keeps the complete seven-day grace including its boundary', () {
+  test('fresh installation keeps the complete 24-hour grace including its boundary', () {
     final store = SettingsStore();
     final first = DateTime.utc(2026, 10, 1, 9);
     expect(AdGate.inGrace(store, first), isTrue);
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 7)).subtract(const Duration(milliseconds: 1))), isTrue);
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 7))), isFalse);
+    expect(AdGate.inGrace(store, first.add(const Duration(days: 1)).subtract(const Duration(milliseconds: 1))), isTrue);
+    expect(AdGate.inGrace(store, first.add(const Duration(days: 1))), isFalse);
   });
 
   test('expired grace stays expired after rollback and persisted restart', () async {
@@ -33,10 +33,10 @@ void main() {
     final store = SettingsStore();
     final first = DateTime.utc(2026, 10, 1);
     AdGate.inGrace(store, first);
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 5))), isTrue);
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 2))), isTrue);
+    expect(AdGate.inGrace(store, first.add(const Duration(hours: 20))), isTrue);
+    expect(AdGate.inGrace(store, first.add(const Duration(hours: 4))), isTrue);
     expect(AdGate.firstOpen(store, first), first);
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 7))), isFalse);
+    expect(AdGate.inGrace(store, first.add(const Duration(days: 1))), isFalse);
   });
 
   test('isolated future first-open cannot postpone grace expiry until year2099', () {
@@ -53,7 +53,7 @@ void main() {
     expect(AdGate.inGrace(store, first), isTrue);
     expect(AdGate.inGrace(store, first.subtract(const Duration(days: 2))), isTrue);
     expect(AdGate.firstOpen(store, first.subtract(const Duration(days: 2))), first);
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 7))), isFalse);
+    expect(AdGate.inGrace(store, first.add(const Duration(days: 1))), isFalse);
   });
 
   test('frequent policy checks throttle disk observations but expiry latches immediately', () async {
@@ -72,12 +72,12 @@ void main() {
     await store.flush();
     expect(adapter.writeKeys, [AdGate.graceStateKey]);
     adapter.writeKeys.clear();
-    final justBeforeExpiry = first.add(const Duration(days: 7)).subtract(const Duration(seconds: 1));
+    final justBeforeExpiry = first.add(const Duration(days: 1)).subtract(const Duration(seconds: 1));
     expect(AdGate.inGrace(store, justBeforeExpiry), isTrue);
     await store.flush();
     adapter.writeKeys.clear();
     // Expiry occurs one second after a persisted observation, not a minute.
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 7))), isFalse);
+    expect(AdGate.inGrace(store, first.add(const Duration(days: 1))), isFalse);
     await store.flush();
     expect(adapter.writeKeys, [AdGate.graceStateKey]);
     adapter.writeKeys.clear();
@@ -102,7 +102,7 @@ void main() {
     final store = SettingsStore();
     AdGate.inGrace(store, first);
     store.remove(AdGate.firstOpenKey);
-    expect(AdGate.firstOpen(store, first.add(const Duration(days: 5))), first);
+    expect(AdGate.firstOpen(store, first.add(const Duration(hours: 20))), first);
     store.setInt(AdGate.firstOpenKey, first.add(const Duration(days: 100)).millisecondsSinceEpoch);
     expect(AdGate.inGrace(store, first.add(const Duration(days: 8))), isFalse);
     expect(AdGate.firstOpen(store, first.add(const Duration(days: 8))), first);
@@ -122,8 +122,8 @@ void main() {
     final store = SettingsStore();
     store.setInt(AdGate.firstOpenKey, first.millisecondsSinceEpoch);
     store.setString(AdGate.graceStateKey, '{broken');
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 2))), isTrue);
-    expect(AdGate.inGrace(store, first.add(const Duration(days: 7))), isFalse);
+    expect(AdGate.inGrace(store, first.add(const Duration(hours: 4))), isTrue);
+    expect(AdGate.inGrace(store, first.add(const Duration(days: 1))), isFalse);
   });
 
   test('all local state erased remains indistinguishable from a genuinely new install', () {

@@ -938,7 +938,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get planFreeAi => '10 AI requests kada buwan';
 
   @override
-  String get planFreeAds => 'Maliit na banner ads (walang sa unang 7 araw)';
+  String get planFreeAds => 'Maliit na banner ads';
 
   @override
   String get planCoreFeatures =>
@@ -1591,4 +1591,200 @@ class AppLocalizationsFil extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% ng limit ang nagamit na';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Suriin at itama';
+
+  @override
+  String get receiptEditDetailsTitle => 'Mga detalye ng resibo';
+
+  @override
+  String get receiptDateTimeLabel => 'Petsa at oras';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Hindi tugma ang kabuuan';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Nagkaiba ng $difference ang mga item sa total ng resibo. I-save pa rin?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'I-save pa rin';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Idagdag ang tindahan at petsa para i-save ang resibong ito.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Hindi nabasa: $fields. Maaari mong punan ang mga ito habang sinusuri.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Sarado ang access sa camera. Buksan ito sa Mga Setting para i-scan ang mga resibo at label.';
+
+  @override
+  String get openSettingsAction => 'Buksan ang Mga Setting';
+
+  @override
+  String get priceManualEntryAction => 'Ilagay ang presyo nang manu-mano';
+
+  @override
+  String get priceRetakeAction => 'Kumuha ng ibang larawan';
+
+  @override
+  String get paletteSage => 'Sabiya';
+
+  @override
+  String get paletteSlate => 'Slate';
+
+  @override
+  String get receiptContinueSame => 'Magpatuloy sa receipt na iyon';
+
+  @override
+  String get receiptCaptureDone => 'Tapos na';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count na pahina ang nakakuha';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Naka-queue na ang receipt — pinaproseso sa background.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hanggang $max na pahina ang maaaring idagdag sa bawat receipt.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Binabasa ang label ng presyo…';
+
+  @override
+  String get shelfLabelContinueOther => 'Mag-scan ng ibang item';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Binabasa ang label ng presyo sa background.';
+
+  @override
+  String get listsTabReceipts => 'Aking mga resibo';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Aking mga resibo ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Naka-queue';
+
+  @override
+  String get receiptStatusProcessing => 'Binabasa ang resibo…';
+
+  @override
+  String get receiptStatusReady => 'Handa na';
+
+  @override
+  String get receiptStatusDuplicate => 'Maaaring duplicate';
+
+  @override
+  String get receiptStatusFailed => 'Hindi nabasa';
+
+  @override
+  String get receiptConvertToListAction => 'I-convert sa listahan';
+
+  @override
+  String get receiptRetryReadAction => 'Subukan ulit';
+
+  @override
+  String get receiptDeleteDraftAction => 'Burahin';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Handa na ang resibo';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Handa na ang iyong resibo. Ilipat ito sa isang listahan?';
+
+  @override
+  String get receiptDuplicateTitle => 'Naidagdag na ba ang resibo?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'May listahan na naaayon sa tindahan at oras na ito ($listTitle). Idagdag pa rin?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Idagdag pa rin';
+
+  @override
+  String get receiptDuplicateDelete => 'Burahin ang resibo';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Walang naka-pending na resibo';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Ang mga na-scan na resibo ay inihahanda sa background at nananatili dito hanggang ma-convert o matanggal.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count na pahina';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Mga litrato ng resibo';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Pindutin ang litrato ng resibo para makita sa buong laki';
+
+  @override
+  String get receiptPhotoPreparing => 'Inihahanda ang larawan ng resibo…';
+
+  @override
+  String get homeProPromoTitle => 'Subukan ang Pro nang libre sa 24 oras';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI scan ng resibo at walang ad na bukas · Walang kailangang card';
+
+  @override
+  String get receiptFailureSheetTitle => 'Bakit hindi nabasa';
+
+  @override
+  String get receiptFailureMissingTop => 'Nawala ang itaas';
+
+  @override
+  String get receiptFailureMissingBottom => 'Nawala ang ibaba';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Nawala ang gitna';
+
+  @override
+  String get receiptFailureNotReceipt => 'Hindi resibo';
+
+  @override
+  String get receiptFailureUnreadable => 'Hindi nababasa';
+
+  @override
+  String get receiptFailureMismatch => 'Hindi tugma ang kabuuan';
+
+  @override
+  String get receiptFailureRejected => 'Hindi nabasa';
+
+  @override
+  String get receiptFailureService => 'Hindi available ang serbisyo';
+
+  @override
+  String get receiptFailureUnknown => 'Nabigti ang pagbabasa';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Kumuha ang natitira';
+
+  @override
+  String get receiptFailureRetakeAction => 'Kumuha ng ibang larawan';
 }

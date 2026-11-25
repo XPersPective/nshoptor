@@ -42,7 +42,9 @@ void main() {
       expect(result, isA<CaptureFailed>());
       final failure = result as CaptureFailed;
       expect(failure.stage, CaptureStage.capture);
-      expect(failure.errorCode, 'capture_failed');
+      // A camera-permission denial keeps its own code so iOS can offer
+      // Settings; any other picker failure stays generic (PB-207).
+      expect(failure.errorCode, 'camera_access_denied');
       expect(source.paths, isEmpty);
     },
   );

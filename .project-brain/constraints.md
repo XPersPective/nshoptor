@@ -3,6 +3,7 @@
 - 2026-10-26: Keep active project context compact. Source/tests and nonsecret versioned automation belong in the app repository; credentials, store media, publishing readbacks and archived artifacts belong under the existing D:/AppPublishing app registry. No AI Co-Authored-By contributor trailers. Preserve current implementation while processing new user requests; app first, publishing preparation next, website last. Hash-verify valuable material before removing obsolete copies.
 
 - C-023: Kullanıcı 2026-10-26: Store Automation kaldırılmıştır; önbellek/yedek kopyası kullanılmaz, geçiş yapılmaz. Geliştirme Project Brain; mağaza yayını Release Harbor. Project Forge yalnız yeni proje başlangıcı içindir. Mevcut yayın yetkisi tekrar sorulmaz; hesap oturumu yoksa somut eksik olarak kaydedilir.
+- C-025: Kullanıcı 2026-11-15: Sonraki release derleme/yayın işlemleri açık kaynak repo için ücretsiz olan GitHub Actions üzerinden yürütülsün (`.github/workflows/android-release.yml` ve `ios-release.yml` sürüm ve yayın adımları buna göre kullanılır/güncellenir).
 - C-024: Kullanıcının güncel AGENTS.md yönergesi tek ortak Medium_Phone_API_36.0 AVD'sini zorunlu kılar; eski geçici AVD istisnaları kullanılmaz. Başka oturum kullanıyorsa dokunulmaz.
 
 - C-022: Superseded by C-024: only shared Medium_Phone_API_36.0; no temporary AVD exceptions remain authorized.
@@ -32,3 +33,5 @@
 - C-016: Güncel karar 2026-10-24: Önceki yalnız aylık yeni satış talebinin yerini yıllık tek Pro alır: vergi hariç yıllık 1 ABD doları temel fiyat, her takvim ayında mevcut Pro 100 YZ isteği, reklamsız kullanım ve JSON yedekleme. Yerel nihai fiyat mağazadan gelir; vergi iki kez eklenmez. Yeni aylık/Max/lifetime satışları kapanır; mevcut ücretli haklar, yenileme sözleşmeleri ve restore iptal edilmez (R71–R74, PB-135..137).
 - C-017: Alışveriş tarih+saat isteğe bağlı; liste varsayılan tarih sıralı ve A–Z seçilebilir (2026-10-23 R52–R53).
 - C-018: Toplam fiyat varsayılanını ayarlarda yeni seçenekle karmaşıklaştırma. İki fiyat anlamı görünür olsun ve tek dokunuşla seçilsin; fiyat modu için açılır menü açtırma. Ev/market bağımsızlığı, erişilebilirlik ve ekonomik tutar korunur (user 2026-10-23 UX followup).
+
+- C-023: 2026-11-22 user requires a one-day automatic promotional trial anchored to first use, surviving same-device reinstall; paid store rights survive restore. Update store and in-app statements with the new verified release.

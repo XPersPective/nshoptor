@@ -937,7 +937,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get planFreeAi => 'प्रति माह 10 AI रिक्वेस्ट';
 
   @override
-  String get planFreeAds => 'छोटी बैनर विज्ञापन (पहले 7 दिनों में कोई नहीं)';
+  String get planFreeAds => 'छोटी बैनर विज्ञापन';
 
   @override
   String get planCoreFeatures => 'सूचियां, कीमतें, रसीदें, खर्च चार्ट';
@@ -1322,10 +1322,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'पिछला महीना';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'अगला महीना';
 
   @override
   String get helpSection => 'मदद और सहायता';
@@ -1583,4 +1583,200 @@ class AppLocalizationsHi extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'सीमा का $percent% उपयोग हो चुका है';
   }
+
+  @override
+  String get receiptReviewNowAction => 'जाँच कर ठीक करें';
+
+  @override
+  String get receiptEditDetailsTitle => 'रसीद का विवरण';
+
+  @override
+  String get receiptDateTimeLabel => 'तारीख और समय';
+
+  @override
+  String get receiptSaveAnywayTitle => 'कुल राशि मेल नहीं खा रही';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'वस्तुओं का योग रसीद के कुल से $difference अलग है। फिर भी सेव करें?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'फिर भी सेव करें';
+
+  @override
+  String get receiptNeedsDetails =>
+      'यह रसीद सेव करने के लिए दुकान और तारीख जोड़ें।';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'पढ़ा नहीं जा सका: $fields। समीक्षा करते समय आप इन्हें भर सकते हैं।';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'कैमरा ऐक्सेस बंद है। रसीद और लेबल स्कैन करने के लिए इसे सेटिंग्स में चालू करें।';
+
+  @override
+  String get openSettingsAction => 'सेटिंग्स खोलें';
+
+  @override
+  String get priceManualEntryAction => 'कीमत मैन्युअल रूप से दर्ज करें';
+
+  @override
+  String get priceRetakeAction => 'दूसरी फ़ोटो लें';
+
+  @override
+  String get paletteSage => 'सेज';
+
+  @override
+  String get paletteSlate => 'स्लेट';
+
+  @override
+  String get receiptContinueSame => 'वही रसीद जारी रखें';
+
+  @override
+  String get receiptCaptureDone => 'हो गया';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count पेज कैप्चर किए गए';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'रसीद कतार में है — बैकग्राउंड में तैयार हो रही है।';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'प्रति रसीद अधिकतम $max पेड़ जोड़े जा सकते हैं।';
+  }
+
+  @override
+  String get shelfLabelReading => 'कीमत लेबल पढ़ रहे हैं…';
+
+  @override
+  String get shelfLabelContinueOther => 'कोई और आइटम स्कैन करें';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'कीमत लेबल बैकग्राउंड में पढ़ा जा रहा है।';
+
+  @override
+  String get listsTabReceipts => 'मेरे रसीदें';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'मेरी रसीदें ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'कतार में';
+
+  @override
+  String get receiptStatusProcessing => 'रसीद पढ़ रहे हैं…';
+
+  @override
+  String get receiptStatusReady => 'तैयार';
+
+  @override
+  String get receiptStatusDuplicate => 'संभावित डुप्लिकेट';
+
+  @override
+  String get receiptStatusFailed => 'पढ़ नहीं सका';
+
+  @override
+  String get receiptConvertToListAction => 'लिस्ट में बदलें';
+
+  @override
+  String get receiptRetryReadAction => 'फिर से कोशिश करें';
+
+  @override
+  String get receiptDeleteDraftAction => 'हटाएं';
+
+  @override
+  String get receiptReadyNotificationTitle => 'रसीद तैयार है';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'आपकी रसीद तैयार है। इसे लिस्ट में ट्रांसफर करें?';
+
+  @override
+  String get receiptDuplicateTitle => 'रसीद पहले ही जोड़ी गई?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'इस स्टोर और समय के साथ मिलती-जुलती एक लिस्ट पहले से मौजूद है ($listTitle)। फिर भी जोड़ें?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'फिर भी जोड़ें';
+
+  @override
+  String get receiptDuplicateDelete => 'रसीद हटाएं';
+
+  @override
+  String get receiptEmptyTrayTitle => 'कोई लंबित रसीदें नहीं';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'स्कैन की गई रसीदें बैकग्राउंड में तैयार होती हैं और जब तक आप उन्हें कन्वर्ट या हटा नहीं देते, ये यहीं रहती हैं।';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count पेज';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'रसीद फोटो';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'पूर्ण आकार में देखने के लिए रसीद की फोटो पर टैप करें';
+
+  @override
+  String get receiptPhotoPreparing => 'रसीद की फ़ोटो तैयार की जा रही है…';
+
+  @override
+  String get homeProPromoTitle => '24 घंटे Pro मुफ़्त आज़माएँ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI रसीद स्कैन और विज्ञापन-मुक्त अनुभव चालू · कार्ड की ज़रूरत नहीं';
+
+  @override
+  String get receiptFailureSheetTitle => 'क्यों नहीं पढ़ा जा सका?';
+
+  @override
+  String get receiptFailureMissingTop => 'ऊपरी भाग गायब है';
+
+  @override
+  String get receiptFailureMissingBottom => 'निचला भाग गायब है';
+
+  @override
+  String get receiptFailureMissingMiddle => 'बीच का भाग गायब है';
+
+  @override
+  String get receiptFailureNotReceipt => 'यह रसीद नहीं है';
+
+  @override
+  String get receiptFailureUnreadable => 'स्पष्ट नहीं';
+
+  @override
+  String get receiptFailureMismatch => 'कुल मेल नहीं खाता';
+
+  @override
+  String get receiptFailureRejected => 'पढ़ा नहीं जा सका';
+
+  @override
+  String get receiptFailureService => 'सेवा उपलब्ध नहीं';
+
+  @override
+  String get receiptFailureUnknown => 'पढ़ना विफल रहा';
+
+  @override
+  String get receiptFailureAddMoreAction => 'बाकी हिस्सा फोटो करें';
+
+  @override
+  String get receiptFailureRetakeAction => 'फिर से फोटो लें';
 }

@@ -937,8 +937,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get planFreeAi => 'மாதத்திற்கு 10 AI கோரிக்கைகள்';
 
   @override
-  String get planFreeAds =>
-      'சிறிய பேனர் விளம்பரங்கள் (உங்கள் முதல் 7 நாட்களில் எதுவும் இல்லை)';
+  String get planFreeAds => 'சிறிய பேனர் விளம்பரங்கள்';
 
   @override
   String get planCoreFeatures =>
@@ -1329,10 +1328,10 @@ class AppLocalizationsTa extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'முந்தைய மாதம்';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'அடுத்த மாதம்';
 
   @override
   String get helpSection => 'உதவி மற்றும் ஆதரவு';
@@ -1590,4 +1589,201 @@ class AppLocalizationsTa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'வரம்பில் $percent% பயன்படுத்தப்பட்டது';
   }
+
+  @override
+  String get receiptReviewNowAction => 'சரிபார்த்து சரிசெய்யுங்கள்';
+
+  @override
+  String get receiptEditDetailsTitle => 'ரசீது விவரங்கள்';
+
+  @override
+  String get receiptDateTimeLabel => 'தேதி மற்றும் நேரம்';
+
+  @override
+  String get receiptSaveAnywayTitle => 'மொத்தம் பொருந்தவில்லை';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'பொருட்களின் தொகை ரசீதின் மொத்தத்திலிருந்து $difference வேறுபடுகிறது. எப்படியும் சேமிக்கவா?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'எப்படியும் சேமி';
+
+  @override
+  String get receiptNeedsDetails =>
+      'இந்த ரசீதை சேமிக்க கடை மற்றும் தேதியைச் சேர்க்கவும்.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'படிக்க முடியவில்லை: $fields. சரிபார்க்கும்போது இவற்றை நிரப்பலாம்.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'கேமரா அணுகல் முடக்கப்பட்டுள்ளது. ரசீது மற்றும் லேபிள்களை ஸ்கேன் செய்ய அமைப்புகளில் இயக்கவும்.';
+
+  @override
+  String get openSettingsAction => 'அமைப்புகளைத் திற';
+
+  @override
+  String get priceManualEntryAction => 'விலையை கைமுறையாக உள்ளிடு';
+
+  @override
+  String get priceRetakeAction => 'மற்றொரு படம் எடுக்கவும்';
+
+  @override
+  String get paletteSage => 'சேஜ்';
+
+  @override
+  String get paletteSlate => 'சிலேட்';
+
+  @override
+  String get receiptContinueSame => 'அதே ரசீதை தொடர்';
+
+  @override
+  String get receiptCaptureDone => 'முடிந்தது';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count பக்கங்கள் பிடிக்கப்பட்டன';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ரசீது வரிசையில் வைக்கப்பட்டுள்ளது — பின்னணியில் தயாரிக்கப்படுகிறது.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ஒவ்வொரு ரசீதிற்கும் அதிகபட்சம் $max பக்கங்கள் சேர்க்கலாம்.';
+  }
+
+  @override
+  String get shelfLabelReading => 'விலை லேபிளைப் படிக்கிறது…';
+
+  @override
+  String get shelfLabelContinueOther => 'மற்ற பொருளை ஸ்கேன் செய்';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'விலை லேபிள் பின்னணியில் படிக்கப்படுகிறது.';
+
+  @override
+  String get listsTabReceipts => 'என் ரசீதுகள்';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'என் ரசீதுகள் ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'வரிசையில் உள்ளது';
+
+  @override
+  String get receiptStatusProcessing => 'ரசீதைப் படிக்கிறது…';
+
+  @override
+  String get receiptStatusReady => 'தயார்';
+
+  @override
+  String get receiptStatusDuplicate => 'இரட்டைப்படுத்தல் சாத்தியம்';
+
+  @override
+  String get receiptStatusFailed => 'படிக்க முடியவில்லை';
+
+  @override
+  String get receiptConvertToListAction => 'பட்டியலாக மாற்று';
+
+  @override
+  String get receiptRetryReadAction => 'மீண்டும் முயற்சி';
+
+  @override
+  String get receiptDeleteDraftAction => 'நீக்கு';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ரசீது தயார்';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'உங்கள் ரசீது தயாராக உள்ளது. இதை ஒரு பட்டியலுக்கு மாற்றுவீர்களா?';
+
+  @override
+  String get receiptDuplicateTitle => 'ரசீது ஏற்கனவே சேர்க்கப்பட்டதா?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'இந்த கடை மற்றும் நேரத்துடன் பொருந்தும் பட்டியல் ஏற்கனவே உள்ளது ($listTitle). இருப்பினும் மீண்டும் சேர்க்கவா?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'இருப்பினும் சேர்';
+
+  @override
+  String get receiptDuplicateDelete => 'ரசீதை நீக்கு';
+
+  @override
+  String get receiptEmptyTrayTitle => 'காத்திருக்கும் ரசீதுகள் இல்லை';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ஸ்கேன் செய்யப்பட்ட ரசீதுகள் பின்னணியில் தயாராகி, நீங்கள் அவற்றை மாற்றவோ அல்லது அழிக்கவோ செய்வது வரை இங்கே இருக்கும்.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count பக்கங்கள்';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ரசீது படங்கள்';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'முழு அளவில் பார்க்க ஒரு ரசீது படத்தைத் தட்டவும்';
+
+  @override
+  String get receiptPhotoPreparing => 'ரசீது புகைப்படம் தயாராகிறது…';
+
+  @override
+  String get homeProPromoTitle => '24 மணி நேரம் Pro இலவசமாக முயலுங்கள்';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI ரசீது ஸ்கேன் & விளம்பரமில்லா அனுபவம் · கார்டு தேவையில்லை';
+
+  @override
+  String get receiptFailureSheetTitle => 'ஏன் படிக்க முடியவில்லை';
+
+  @override
+  String get receiptFailureMissingTop => 'மேல் பகுதி இல்லை';
+
+  @override
+  String get receiptFailureMissingBottom => 'கீழ் பகுதி இல்லை';
+
+  @override
+  String get receiptFailureMissingMiddle => 'நடு பகுதி இல்லை';
+
+  @override
+  String get receiptFailureNotReceipt => 'இது ரசீது அல்ல';
+
+  @override
+  String get receiptFailureUnreadable => 'தெளிவாக இல்லை';
+
+  @override
+  String get receiptFailureMismatch => 'மொத்தம் பொருந்தவில்லை';
+
+  @override
+  String get receiptFailureRejected => 'படிக்க முடியவில்லை';
+
+  @override
+  String get receiptFailureService => 'சேவை கிடைக்கவில்லை';
+
+  @override
+  String get receiptFailureUnknown => 'வாசிப்பு தோல்வி';
+
+  @override
+  String get receiptFailureAddMoreAction =>
+      'மீதமுள்ள பகுதியைப் படம் எடுக்கவும்';
+
+  @override
+  String get receiptFailureRetakeAction => 'மற்றொரு படம் எடுக்கவும்';
 }

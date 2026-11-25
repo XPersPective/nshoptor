@@ -939,8 +939,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get planFreeAi => 'నెలకు 10 AI రిక్వెస్ట్‌లు';
 
   @override
-  String get planFreeAds =>
-      'చిన్న బ్యానర్ ప్రకటనలు (మొదటి 7 రోజుల్లో కనిపించవు)';
+  String get planFreeAds => 'చిన్న బ్యానర్ ప్రకటనలు';
 
   @override
   String get planCoreFeatures => 'జాబితాలు, ధరలు, రసీదులు, ఖర్చు చార్ట్‌లు';
@@ -1327,10 +1326,10 @@ class AppLocalizationsTe extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'గత నెల';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'తర్వాతి నెల';
 
   @override
   String get helpSection => 'సహాయం మరియు మద్దతు';
@@ -1590,4 +1589,200 @@ class AppLocalizationsTe extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'పరిమితిలో $percent% ఉపయోగించబడింది';
   }
+
+  @override
+  String get receiptReviewNowAction => 'సమీక్షించి సరిచేయండి';
+
+  @override
+  String get receiptEditDetailsTitle => 'రసీదు వివరాలు';
+
+  @override
+  String get receiptDateTimeLabel => 'తేదీ మరియు సమయం';
+
+  @override
+  String get receiptSaveAnywayTitle => 'మొత్తం సరిపోలడం లేదు';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'వస్తువుల మొత్తం రసీదు మొత్తం నుండి $difference తేడా ఉంది. ఏమైనా సేవ్ చేయాలా?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'ఏమైనా సేవ్ చేయండి';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ఈ రసీదును సేవ్ చేయడానికి దుకాణం మరియు తేదీని జోడించండి.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'చదవలేకపోయాం: $fields. సమీక్షించేటప్పుడు వీటిని పూరించవచ్చు.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'కెమెరా యాక్సెస్ ఆఫ్‌లో ఉంది. రసీదులు మరియు లేబుల్స్ స్కాన్ చేయడానికి సెట్టింగ్‌లలో దీన్ని ఆన్ చేయండి.';
+
+  @override
+  String get openSettingsAction => 'సెట్టింగ్‌లను తెరవండి';
+
+  @override
+  String get priceManualEntryAction => 'ధరను మాన్యువల్‌గా నమోదు చేయండి';
+
+  @override
+  String get priceRetakeAction => 'మరో ఫోటో తీయండి';
+
+  @override
+  String get paletteSage => 'సేజ్';
+
+  @override
+  String get paletteSlate => 'స్లేట్';
+
+  @override
+  String get receiptContinueSame => 'అదే రసీదుతో కొనసాగండి';
+
+  @override
+  String get receiptCaptureDone => 'పూర్తయింది';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count పేజీలు క్యాప్చర్ చేయబడ్డాయి';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'రసీదు వరుసలో ఉంది — బ్యాక్‌గ్రౌండ్‌లో సిద్ధం చేయబడుతోంది.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ఒక రసీదుకు గరిష్ఠంగా $max పేజీలను జోడించవచ్చు.';
+  }
+
+  @override
+  String get shelfLabelReading => 'ధర లేబుల్ చదివిస్తున్నాము…';
+
+  @override
+  String get shelfLabelContinueOther => 'మరొక ఐటెమ్ స్కాన్ చేయండి';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'ధర లేబుల్ బ్యాక్‌గ్రౌండ్‌లో చదివిస్తున్నారు.';
+
+  @override
+  String get listsTabReceipts => 'నా రసీదులు';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'నా రసీదులు ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'క్యూలో ఉంది';
+
+  @override
+  String get receiptStatusProcessing => 'రసీదు చదువుతోంది…';
+
+  @override
+  String get receiptStatusReady => 'తయారైంది';
+
+  @override
+  String get receiptStatusDuplicate => 'డూప్లికేట్ అయి ఉండవచ్చు';
+
+  @override
+  String get receiptStatusFailed => 'చదవలేకపోయింది';
+
+  @override
+  String get receiptConvertToListAction => 'లస్ట్‌గా మార్చు';
+
+  @override
+  String get receiptRetryReadAction => 'మళ్ళీ ప్రయత్నించు';
+
+  @override
+  String get receiptDeleteDraftAction => 'తొలగించు';
+
+  @override
+  String get receiptReadyNotificationTitle => 'రసీదు తయారైంది';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'మీ రసీదు తయారైంది. దీన్ని లస్ట్‌కు బదిలీ చేయాలా?';
+
+  @override
+  String get receiptDuplicateTitle => 'రసీదు ఇప్పటికే జోడించబడిందా?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ఈ దుకాణం మరియు సమయానికి సరిపోయే లస్ట్ ఇప్పటికే ఉంది ($listTitle). అయినా జోడించాలా?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'అయినా జోడించు';
+
+  @override
+  String get receiptDuplicateDelete => 'రసీదును తొలగించు';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ఎటువంటి వేచి ఉన్న రసీదులు లేవు';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'స్కాన్ చేసిన రసీదులు బ్యాక్‌గ్రౌండ్‌లో సిద్ధమవుతాయి, మీరు మార్చే వరకు లేదా తొలగించే వరకు ఇక్కడే ఉంటాయి.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count పేజీలు';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'రసీదు ఫోటోలు';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'పూర్తి పరిమాణంలో చూడటానికి రసీదు ఫోటోను ట్యాప్ చేయండి';
+
+  @override
+  String get receiptPhotoPreparing => 'రసీదు ఫోటో సిద్ధమవుతోంది…';
+
+  @override
+  String get homeProPromoTitle => '24 గంటలు Pro ఉచితంగా ప్రయత్నించండి';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI రసీదు స్కాన్లు మరియు ప్రకటనలు లేని ఉపయోగం · కార్డు అవసరం లేదు';
+
+  @override
+  String get receiptFailureSheetTitle => 'ఎందుకు చదవలేకపోయాం';
+
+  @override
+  String get receiptFailureMissingTop => 'పై భాగం లేదు';
+
+  @override
+  String get receiptFailureMissingBottom => 'కింది భాగం లేదు';
+
+  @override
+  String get receiptFailureMissingMiddle => 'మధ్య భాగం లేదు';
+
+  @override
+  String get receiptFailureNotReceipt => 'రసీదు కాదు';
+
+  @override
+  String get receiptFailureUnreadable => 'స్పష్టంగా లేదు';
+
+  @override
+  String get receiptFailureMismatch => 'మొత్తం సరిపోలడం లేదు';
+
+  @override
+  String get receiptFailureRejected => 'చదవలేకపోయాం';
+
+  @override
+  String get receiptFailureService => 'సేవ అందుబాటులో లేదు';
+
+  @override
+  String get receiptFailureUnknown => 'చదవడం విఫలమైంది';
+
+  @override
+  String get receiptFailureAddMoreAction => 'మిగతా భాగం తీయండి';
+
+  @override
+  String get receiptFailureRetakeAction => 'మళ్ళీ తీయండి';
 }

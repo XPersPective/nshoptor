@@ -935,8 +935,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get planFreeAi => '10 požiadaviek AI za mesiac';
 
   @override
-  String get planFreeAds =>
-      'Malé bannerové reklamy (žiadne počas prvých 7 dní)';
+  String get planFreeAds => 'Malé bannerové reklamy';
 
   @override
   String get planCoreFeatures => 'Zoznamy, ceny, účty, grafy výdavkov';
@@ -1586,4 +1585,199 @@ class AppLocalizationsSk extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Využitých $percent % limitu';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Skontrolovať a opraviť';
+
+  @override
+  String get receiptEditDetailsTitle => 'Podrobnosti bločka';
+
+  @override
+  String get receiptDateTimeLabel => 'Dátum a čas';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Súčet sa nezhoduje';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Súčet položiek sa od celkovej sumy na bločku líši o $difference. Uložiť aj tak?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Uložiť aj tak';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Na uloženie tohto bločka doplňte obchod a dátum.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nedalo sa prečítať: $fields. Môžete ich doplniť pri kontrole.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Prístup ku kamere je vypnutý. Zapnite ho v nastaveniach, aby ste mohli skenovať bločky a cenovky.';
+
+  @override
+  String get openSettingsAction => 'Otvoriť nastavenia';
+
+  @override
+  String get priceManualEntryAction => 'Zadať cenu ručne';
+
+  @override
+  String get priceRetakeAction => 'Odfotiť znovu';
+
+  @override
+  String get paletteSage => 'Šalvia';
+
+  @override
+  String get paletteSlate => 'Bridlica';
+
+  @override
+  String get receiptContinueSame => 'Pokračovať s rovnakým účtenkou';
+
+  @override
+  String get receiptCaptureDone => 'Hotovo';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count strán zachytených';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Účtenka zaradená do fronty — pripravuje sa na pozadí.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Na jednu účtenku možno pridať až $max strán.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Čítanie cenovky…';
+
+  @override
+  String get shelfLabelContinueOther => 'Naskenovať ďalší produkt';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Cenovka sa číta na pozadí.';
+
+  @override
+  String get listsTabReceipts => 'Moje účtenky';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Moje účtenky ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'V poradí';
+
+  @override
+  String get receiptStatusProcessing => 'Čítam účtenku…';
+
+  @override
+  String get receiptStatusReady => 'Pripravené';
+
+  @override
+  String get receiptStatusDuplicate => 'Možná duplikácia';
+
+  @override
+  String get receiptStatusFailed => 'Nepodarilo sa prečítať';
+
+  @override
+  String get receiptConvertToListAction => 'Previesť na zoznam';
+
+  @override
+  String get receiptRetryReadAction => 'Skúsiť znova';
+
+  @override
+  String get receiptDeleteDraftAction => 'Odstrániť';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Účtenka je pripravená';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Vaša účtenka je pripravená. Presunúť ju do zoznamu?';
+
+  @override
+  String get receiptDuplicateTitle => 'Účtenka už pridaná?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Zoznam zhodujúci sa s týmto obchodom a časom už existuje ($listTitle). Pridať ho aj tak?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Pridať aj tak';
+
+  @override
+  String get receiptDuplicateDelete => 'Odstrániť účtenku';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Žiadne čakajúce účtenky';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Naskenované účtenky sa spracúvajú na pozadí a zostanú tu, kým ich nepresuniete alebo neodstránite.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count strán';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotky účteniek';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Klepnutím na fotku účtenky si ju zobrazíte v plnej veľkosti';
+
+  @override
+  String get receiptPhotoPreparing => 'Pripravuje sa fotografia bločka…';
+
+  @override
+  String get homeProPromoTitle => 'Vyskúšajte Pro na 24 hodín zadarmo';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI skenov účteniek a bez reklám odomknuté · Karta nie je potrebná';
+
+  @override
+  String get receiptFailureSheetTitle => 'Prečo sa neprečítalo';
+
+  @override
+  String get receiptFailureMissingTop => 'Chýba horná časť';
+
+  @override
+  String get receiptFailureMissingBottom => 'Chýba dolná časť';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Chýba stredná časť';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nie je to účtenka';
+
+  @override
+  String get receiptFailureUnreadable => 'Nie je čitateľné';
+
+  @override
+  String get receiptFailureMismatch => 'Súčet sa nezhoduje';
+
+  @override
+  String get receiptFailureRejected => 'Nepodarilo sa prečítať';
+
+  @override
+  String get receiptFailureService => 'Služba je nedostupná';
+
+  @override
+  String get receiptFailureUnknown => 'Prečítanie zlyhalo';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Odfotiť zvyšok';
+
+  @override
+  String get receiptFailureRetakeAction => 'Odfotiť znovu';
 }

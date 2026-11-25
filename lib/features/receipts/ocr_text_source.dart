@@ -27,3 +27,17 @@ class OcrScanResult {
 abstract class OcrTextSource {
   Future<OcrScanResult> scan(String imagePath);
 }
+
+/// Reads nothing.
+///
+/// Used on capture-first paths where the image model reads the photo: the
+/// on-device recognizer would only slow the capture down, and it is not
+/// needed to decide whether the capture succeeded.
+class NoOcrTextSource implements OcrTextSource {
+  const NoOcrTextSource();
+
+  @override
+  Future<OcrScanResult> scan(String imagePath) async =>
+      const OcrScanResult(lines: []);
+}
+

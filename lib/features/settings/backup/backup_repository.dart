@@ -182,6 +182,7 @@ class BackupRepository {
         'defaultCategoryId': 'categories',
         'aisleId': 'aisles',
         'listId': 'lists',
+        'duplicateOfListId': 'lists',
         'productId': 'productMemory',
         'plannedItemId': 'plannedItems',
         'linkedPlannedItemId': 'plannedItems',
@@ -493,6 +494,7 @@ class BackupRepository {
     for (final json in _asMaps(data['receipts'])) {
       allocate(receiptIds, json, next++);
       json['listId'] = remap(listIds, json['listId']);
+      json['duplicateOfListId'] = remap(listIds, json['duplicateOfListId']);
       await _db.into(_db.receipts).insert(_receiptFromJson(json));
     }
 
@@ -640,6 +642,7 @@ class BackupRepository {
   // Drift's default serializer casts this converted column to List<String>.
   Receipt _receiptFromJson(Map<String, dynamic> json) => Receipt.fromJson({
     ...json,
+    'queueState': json['queueState'] ?? 'legacy',
     'imagePaths': (json['imagePaths'] as List).cast<String>().toList(),
   });
 }

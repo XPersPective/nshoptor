@@ -916,7 +916,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get planFreeAi => '月10回のAIリクエスト';
 
   @override
-  String get planFreeAds => 'バナー広告あり（最初の7日間はなし）';
+  String get planFreeAds => 'バナー広告あり';
 
   @override
   String get planCoreFeatures => 'リスト、価格、レシート、支出グラフ';
@@ -1276,10 +1276,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => '前月';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => '翌月';
 
   @override
   String get helpSection => 'ヘルプとサポート';
@@ -1526,4 +1526,194 @@ class AppLocalizationsJa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '上限の$percent%を使用しました';
   }
+
+  @override
+  String get receiptReviewNowAction => '確認して修正';
+
+  @override
+  String get receiptEditDetailsTitle => 'レシートの詳細';
+
+  @override
+  String get receiptDateTimeLabel => '日付と時刻';
+
+  @override
+  String get receiptSaveAnywayTitle => '合計が一致しません';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return '商品合計がレシートの合計と$difference異なります。このまま保存しますか？';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'このまま保存';
+
+  @override
+  String get receiptNeedsDetails => 'このレシートを保存するには店舗と日付を入力してください。';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return '読み取れませんでした：$fields。確認中に入力できます。';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'カメラへのアクセスがオフです。レシートやラベルをスキャンするには設定でオンにしてください。';
+
+  @override
+  String get openSettingsAction => '設定を開く';
+
+  @override
+  String get priceManualEntryAction => '価格を手動で入力';
+
+  @override
+  String get priceRetakeAction => '撮り直す';
+
+  @override
+  String get paletteSage => 'セージ';
+
+  @override
+  String get paletteSlate => 'スレート';
+
+  @override
+  String get receiptContinueSame => '同じレシートを続ける';
+
+  @override
+  String get receiptCaptureDone => '完了';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$countページ撮影済み';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'レシートがキューに追加されました — 背景で準備中。';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return '1つのレシートには最大$maxページまで追加できます。';
+  }
+
+  @override
+  String get shelfLabelReading => '価格ラベルを読み取り中…';
+
+  @override
+  String get shelfLabelContinueOther => '別の商品をスキャン';
+
+  @override
+  String get shelfLabelQueuedNotice => '価格ラベルは背景で読み取り中です。';
+
+  @override
+  String get listsTabReceipts => 'レシート一覧';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'レシート一覧 ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'キューに追加済み';
+
+  @override
+  String get receiptStatusProcessing => 'レシートを読み取り中…';
+
+  @override
+  String get receiptStatusReady => '準備完了';
+
+  @override
+  String get receiptStatusDuplicate => '重複の可能性あり';
+
+  @override
+  String get receiptStatusFailed => '読み取れませんでした';
+
+  @override
+  String get receiptConvertToListAction => 'リストに変換';
+
+  @override
+  String get receiptRetryReadAction => '再読み込み';
+
+  @override
+  String get receiptDeleteDraftAction => '削除';
+
+  @override
+  String get receiptReadyNotificationTitle => 'レシートの準備ができました';
+
+  @override
+  String get receiptReadyNotificationBody => 'レシートが準備完了しました。リストに追加しますか？';
+
+  @override
+  String get receiptDuplicateTitle => 'すでに追加されていますか？';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'この店舗と時刻のリストは既に存在しています ($listTitle)。それでも追加しますか？';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => '追加する';
+
+  @override
+  String get receiptDuplicateDelete => 'レシートを削除';
+
+  @override
+  String get receiptEmptyTrayTitle => '保留中のレシートはありません';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'スキャンしたレシートはバックグラウンドで処理され、変換または削除されるまでここに保持されます。';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$countページ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'レシートの写真';
+
+  @override
+  String get receiptOpenPhotoHint => 'レシートの写真をタップしてフルサイズで表示';
+
+  @override
+  String get receiptPhotoPreparing => 'レシート写真を準備しています…';
+
+  @override
+  String get homeProPromoTitle => 'Proを24時間無料で試す';
+
+  @override
+  String get homeProPromoSubtitle => 'AIレシート読取100回と広告非表示が利用可能 · カード不要';
+
+  @override
+  String get receiptFailureSheetTitle => '読み取れなかった理由';
+
+  @override
+  String get receiptFailureMissingTop => '上部が欠けています';
+
+  @override
+  String get receiptFailureMissingBottom => '下部が欠けています';
+
+  @override
+  String get receiptFailureMissingMiddle => '中部が欠けています';
+
+  @override
+  String get receiptFailureNotReceipt => 'レシートではありません';
+
+  @override
+  String get receiptFailureUnreadable => '判読できません';
+
+  @override
+  String get receiptFailureMismatch => '合計が一致しません';
+
+  @override
+  String get receiptFailureRejected => '読み取れませんでした';
+
+  @override
+  String get receiptFailureService => 'サービスを利用できません';
+
+  @override
+  String get receiptFailureUnknown => '読み取りに失敗しました';
+
+  @override
+  String get receiptFailureAddMoreAction => '残りを撮影';
+
+  @override
+  String get receiptFailureRetakeAction => '撮り直す';
 }

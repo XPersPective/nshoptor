@@ -914,7 +914,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get planFreeAi => '每月 10 次 AI 请求';
 
   @override
-  String get planFreeAds => '少量横幅广告（前 7 天无广告）';
+  String get planFreeAds => '少量横幅广告';
 
   @override
   String get planCoreFeatures => '列表、价格、收据、支出图表';
@@ -1268,10 +1268,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => '上个月';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => '下个月';
 
   @override
   String get helpSection => '帮助与支持';
@@ -1515,4 +1515,192 @@ class AppLocalizationsZh extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '已使用限额的$percent%';
   }
+
+  @override
+  String get receiptReviewNowAction => '检查并修正';
+
+  @override
+  String get receiptEditDetailsTitle => '收据详情';
+
+  @override
+  String get receiptDateTimeLabel => '日期和时间';
+
+  @override
+  String get receiptSaveAnywayTitle => '总额不符';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return '商品总额与收据总额相差$difference。仍要保存吗？';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => '仍要保存';
+
+  @override
+  String get receiptNeedsDetails => '请添加商店和日期以保存这张收据。';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return '无法读取：$fields。您可以在检查时补填。';
+  }
+
+  @override
+  String get cameraAccessDenied => '相机权限已关闭。请在设置中开启，以便扫描收据和标签。';
+
+  @override
+  String get openSettingsAction => '打开设置';
+
+  @override
+  String get priceManualEntryAction => '手动输入价格';
+
+  @override
+  String get priceRetakeAction => '重新拍照';
+
+  @override
+  String get paletteSage => '鼠尾草';
+
+  @override
+  String get paletteSlate => '板岩';
+
+  @override
+  String get receiptContinueSame => '继续同一收据';
+
+  @override
+  String get receiptCaptureDone => '完成';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '已捕获 $count 页';
+  }
+
+  @override
+  String get receiptQueuedNotice => '收据已排队——后台正在准备。';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return '每张收据最多可添加 $max 页。';
+  }
+
+  @override
+  String get shelfLabelReading => '正在读取价格标签…';
+
+  @override
+  String get shelfLabelContinueOther => '扫描其他商品';
+
+  @override
+  String get shelfLabelQueuedNotice => '价格标签正在后台读取。';
+
+  @override
+  String get listsTabReceipts => '我的收据';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return '我的收据（$count）';
+  }
+
+  @override
+  String get receiptStatusQueued => '排队中';
+
+  @override
+  String get receiptStatusProcessing => '正在读取收据…';
+
+  @override
+  String get receiptStatusReady => '已完成';
+
+  @override
+  String get receiptStatusDuplicate => '可能重复';
+
+  @override
+  String get receiptStatusFailed => '读取失败';
+
+  @override
+  String get receiptConvertToListAction => '转为清单';
+
+  @override
+  String get receiptRetryReadAction => '重试';
+
+  @override
+  String get receiptDeleteDraftAction => '删除';
+
+  @override
+  String get receiptReadyNotificationTitle => '收据已就绪';
+
+  @override
+  String get receiptReadyNotificationBody => '您的收据已准备好，是否将其添加到清单？';
+
+  @override
+  String get receiptDuplicateTitle => '收据已添加？';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return '已存在匹配该商店和时间的清单（$listTitle）。仍要再次添加吗？';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => '仍要添加';
+
+  @override
+  String get receiptDuplicateDelete => '删除收据';
+
+  @override
+  String get receiptEmptyTrayTitle => '暂无待处理收据';
+
+  @override
+  String get receiptEmptyTrayBody => '扫描的收据将在后台处理，并保留在此处，直到您转换或删除它们。';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count页';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => '收据照片';
+
+  @override
+  String get receiptOpenPhotoHint => '点击收据照片可查看大图';
+
+  @override
+  String get receiptPhotoPreparing => '正在准备小票照片…';
+
+  @override
+  String get homeProPromoTitle => '免费试用 Pro 24 小时';
+
+  @override
+  String get homeProPromoSubtitle => '已解锁 100 次 AI 小票识别与无广告体验 · 无需绑卡';
+
+  @override
+  String get receiptFailureSheetTitle => '无法读取的原因';
+
+  @override
+  String get receiptFailureMissingTop => '缺少顶部';
+
+  @override
+  String get receiptFailureMissingBottom => '缺少底部';
+
+  @override
+  String get receiptFailureMissingMiddle => '缺少中部';
+
+  @override
+  String get receiptFailureNotReceipt => '不是收据';
+
+  @override
+  String get receiptFailureUnreadable => '无法辨认';
+
+  @override
+  String get receiptFailureMismatch => '总额不符';
+
+  @override
+  String get receiptFailureRejected => '无法读取';
+
+  @override
+  String get receiptFailureService => '服务不可用';
+
+  @override
+  String get receiptFailureUnknown => '读取失败';
+
+  @override
+  String get receiptFailureAddMoreAction => '拍摄剩余部分';
+
+  @override
+  String get receiptFailureRetakeAction => '重新拍摄';
 }

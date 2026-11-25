@@ -228,7 +228,7 @@ void main() {
     await disposeApp(tester);
   });
 
-  testWidgets('search and sort work together; sort ends the tabs row (F26/F27)', (
+  testWidgets('search and sort menu work together cleanly below TabBar (PB-211)', (
     tester,
   ) async {
     AppDefaults.attach(SettingsStore());
@@ -248,42 +248,44 @@ void main() {
 
     final sort = find.byKey(const Key('lists_sort_button'));
     final tabs = tester.getRect(find.byType(TabBar));
-    expect(tester.getCenter(sort).dy, moreOrLessEquals(tabs.center.dy, epsilon: 2));
-    expect(tester.getTopLeft(sort).dx, greaterThanOrEqualTo(tabs.right));
+    expect(tester.getSize(sort).shortestSide, greaterThanOrEqualTo(48));
+    expect(tester.getTopLeft(sort).dy, greaterThanOrEqualTo(tabs.bottom - 1));
 
     await tester.enterText(find.byKey(const Key('lists_search_field')), 'market');
     await settle(tester);
-    var sawManual = false;
-    var sawTitle = false;
-    for (var i = 0; i < ListSortMode.values.length; i++) {
+
+    Future<void> choose(ListSortMode mode) async {
       await tester.tap(sort);
       await settle(tester);
-      // Sorting keeps the query and its filter.
-      expect(
-        tester
-            .widget<TextField>(find.byKey(const Key('lists_search_field')))
-            .controller!
-            .text,
-        'market',
+      await tester.tap(
+        find.byWidgetPredicate(
+          (w) => w is PopupMenuItem<ListSortMode> && w.value == mode,
+        ),
       );
-      expect(find.text('Bakkal'), findsNothing);
-      expect(find.text('Ayran market'), findsOneWidget);
-      expect(find.text('Zeytin market'), findsOneWidget);
-      final mode = ListSortMode.fromCode(AppDefaults.listSort());
-      if (mode == ListSortMode.manual) {
-        sawManual = true;
-        // A filtered subset cannot be dragged into hidden lists' slots.
-        expect(find.byType(ReorderableListView), findsNothing);
-      }
-      if (mode == ListSortMode.title) {
-        sawTitle = true;
-        expect(
-          tester.getTopLeft(find.text('Ayran market')).dy,
-          lessThan(tester.getTopLeft(find.text('Zeytin market')).dy),
-        );
-      }
+      await settle(tester);
     }
-    expect(sawManual && sawTitle, isTrue);
+
+    await choose(ListSortMode.title);
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('lists_search_field')))
+          .controller!
+          .text,
+      'market',
+    );
+    expect(find.text('Bakkal'), findsNothing);
+    expect(find.text('Ayran market'), findsOneWidget);
+    expect(find.text('Zeytin market'), findsOneWidget);
+    expect(
+      tester.getTopLeft(find.text('Ayran market')).dy,
+      lessThan(tester.getTopLeft(find.text('Zeytin market')).dy),
+    );
+
+    await choose(ListSortMode.manual);
+    expect(AppDefaults.listSort(), 'manual');
+    // A filtered subset cannot be dragged into hidden lists' slots.
+    expect(find.byType(ReorderableListView), findsNothing);
+    expect(tester.takeException(), isNull);
     await disposeApp(tester);
   });
 

@@ -936,7 +936,7 @@ class AppLocalizationsAz extends AppLocalizations {
   String get planFreeAi => 'Ayda 10 AI sorğusu';
 
   @override
-  String get planFreeAds => 'Kiçik banner reklam (ilk 7 gündə yoxdur)';
+  String get planFreeAds => 'Kiçik banner reklam';
 
   @override
   String get planCoreFeatures =>
@@ -1584,4 +1584,199 @@ class AppLocalizationsAz extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Limitin $percent% istifadə olunub';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Yoxla və düzəlt';
+
+  @override
+  String get receiptEditDetailsTitle => 'Çek məlumatları';
+
+  @override
+  String get receiptDateTimeLabel => 'Tarix və saat';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Yekun məbləğ uyğun gəlmir';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Məhsullar çekin yekun məbləğindən $difference fərqlənir. Yenə də saxlanılsın?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Yenə də saxla';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Bu çeki saxlamaq üçün mağaza və tarix daxil edin.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Oxunmadı: $fields. Bunları yoxlayarkən doldura bilərsiniz.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameraya giriş bağlıdır. Çek və etiket oxumaq üçün onu Tənzimləmələrdən açın.';
+
+  @override
+  String get openSettingsAction => 'Tənzimləmələri aç';
+
+  @override
+  String get priceManualEntryAction => 'Qiyməti əl ilə daxil et';
+
+  @override
+  String get priceRetakeAction => 'Yenidən çək';
+
+  @override
+  String get paletteSage => 'Sürvə';
+
+  @override
+  String get paletteSlate => 'Şifer boz';
+
+  @override
+  String get receiptContinueSame => 'Eyni çeki davam et';
+
+  @override
+  String get receiptCaptureDone => 'Hazırdır';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count səhifə tutuldu';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Çek növbəyə qoyuldu — arxa planda hazırlanır.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hər bir çək üçün ən çox $max səhifə əlavə edilə bilər.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Qiymət etiketi oxunur…';
+
+  @override
+  String get shelfLabelContinueOther => 'Başqa məhsulu skan et';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Qiymət etiketi arxa planda oxunur.';
+
+  @override
+  String get listsTabReceipts => 'Mənim çeklerim';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mənim çeklerim ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Gözləmə siyahısında';
+
+  @override
+  String get receiptStatusProcessing => 'Çek oxunur…';
+
+  @override
+  String get receiptStatusReady => 'Hazırdır';
+
+  @override
+  String get receiptStatusDuplicate => 'Ola bilsin ki, dublikatdır';
+
+  @override
+  String get receiptStatusFailed => 'Oxuna bilmədi';
+
+  @override
+  String get receiptConvertToListAction => 'Siyahıya çevir';
+
+  @override
+  String get receiptRetryReadAction => 'Yenidən cəhd et';
+
+  @override
+  String get receiptDeleteDraftAction => 'Sil';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Çek hazırdır';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Çekiniz hazırdır. Onu siyahıya köçürmək istəyirsiniz?';
+
+  @override
+  String get receiptDuplicateTitle => 'Çek artıq əlavə edilib?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Bu mağaza və vaxta uyğun siyahı artıq mövcuddur ($listTitle). Yenidən əlavə etmək istəyirsiniz?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Yenidən əlavə et';
+
+  @override
+  String get receiptDuplicateDelete => 'Çeki sil';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Gözləyən çek yoxdur';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Sklenen çeklər arxa planda emal olunur və siz onları siyahıya çevirməyinizə və ya silməyinizə qədər burada saxlanılır.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count səhifə';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Çek fotoşəkilləri';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tam ölçüdə görmək üçün çek fotoşəkilinə toxunun';
+
+  @override
+  String get receiptPhotoPreparing => 'Çek şəkli hazırlanır…';
+
+  @override
+  String get homeProPromoTitle => 'Pro-nu 24 saat pulsuz sınayın';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 süni intellekt çek oxuması və reklamsız istifadə açıq · Kart lazım deyil';
+
+  @override
+  String get receiptFailureSheetTitle => 'Niyə oxunmadı';
+
+  @override
+  String get receiptFailureMissingTop => 'Yuxarı hissə yoxdur';
+
+  @override
+  String get receiptFailureMissingBottom => 'Aşağı hissə yoxdur';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Orta hissə yoxdur';
+
+  @override
+  String get receiptFailureNotReceipt => 'Çek deyil';
+
+  @override
+  String get receiptFailureUnreadable => 'Oxunmur';
+
+  @override
+  String get receiptFailureMismatch => 'Yekun məbləğ uyğun gəlmir';
+
+  @override
+  String get receiptFailureRejected => 'Oxuna bilmədi';
+
+  @override
+  String get receiptFailureService => 'Xidmət mövcud deyil';
+
+  @override
+  String get receiptFailureUnknown => 'Oxunma uğursuz oldu';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Qalanını çəkin';
+
+  @override
+  String get receiptFailureRetakeAction => 'Yenidən çəkin';
 }

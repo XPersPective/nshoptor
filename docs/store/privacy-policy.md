@@ -21,6 +21,7 @@ yardımı ile kapatılabilir).
 - AI kullanırken küçültülmüş fiş/etiket fotoğrafları (JPEG), görev metni, dil, kurulum kimliği ve varsa mağaza satın alma kanıtı (Google Play jetonu veya desteklenen iOS sürümünde Apple imzalı işlem) HTTPS üzerinden Cloudflare vekilimize gider. Qwen görüntü/metin sağlayıcısına yalnız görev girdisi (küçültülmüş fotoğraf veya metin) ve dil iletilir; kurulum kimliği ve satın alma kanıtı iletilmez.
 - Worker gönderilen fotoğrafları ve giriş metnini kalıcı kaydetmez; anında işleyip sonucu döner. Sağlayıcının saklama/eğitim uygulamaları için doğrulanmamış garanti vermiyoruz.
 - Sunucu kurulum veya doğrulanmış satın alma özetiyle aylık kota, günlük toplam ve plan/sahiplik kayıtları tutar; bunları anonim veri diye nitelemiyoruz.
+- Yedi günlük promosyon süresini aynı cihazdaki yeniden yüklemelerde korumak için uygulamaya özgü özet cihaz tanımlayıcısı ve deneme tarihleri Cloudflare'da saklanır. iOS'ta özet, cihazla sınırlı Anahtar Zinciri'nde tutulan rastgele bir değerden türetilir. Android 8 ve sonrasında özet, imzaya ve Android kullanıcısına özgü cihaz tanımlayıcısından türetilir. Özet yalnızca bu promosyon için kullanılır ve reklam veya AI sağlayıcılarına gönderilmez.
 
 ## Abonelik ve satın almalar
 
@@ -39,7 +40,7 @@ yayınının veya Apple hesabı bağlantısının tamamlandığı anlamına gelm
 ## Reklam
 
 Ücretsiz sürüm Google AdMob reklamları (banner ve isteğe
-bağlı ödüllü video) gösterir; ilk 7 gün reklam yoktur. AdMob cihazınız için
+bağlı ödüllü video) gösterir; ilk 24 saat reklam yoktur. AdMob cihazınız için
 reklam/cihaz kimlikleri, IP kaynaklı yaklaşık konum, etkileşim ve tanılama
 verilerini işleyebilir. AB/İngiltere'de kişiselleştirilmiş reklam
 yalnızca onayınızla gösterilir (https://policies.google.com/privacy).
@@ -58,7 +59,7 @@ bağlantıları ve seçtiğiniz bulut dosya sağlayıcısı.
 
 - **Erişim/taşınabilirlik:** Ayarlar → Yedekleme ile verilerinizi JSON olarak
   dışa aktarabilirsiniz (ücretli planlar).
-- **Silme:** Ayarlar → Tüm verileri sil alışveriş veritabanını temizler; paylaşılan tercihler silinmez. Kaldırma uygulama özel deposunu kaldırır. Dışa aktarılan dosyalar ve sunucu kota/sahiplik kayıtları bu işlemlerle silinmez. Sunucu verileriyle ilgili talepler için aşağıdaki e-postaya yazabilirsiniz.
+- **Silme:** Ayarlar → Tüm verileri sil alışveriş veritabanını temizler. Paylaşılan tercihler kalır. Uygulama kaldırıldığında yerel dosyaları silinir. iOS Anahtar Zinciri kaydı, dışa aktarılan dosyalar ve sunucudaki deneme, kota ve sahiplik kayıtları kalabilir. Sunucu verileriyle ilgili talepler için aşağıdaki e-postaya yazabilirsiniz.
 - Reklam kimliğini cihaz ayarlarından sıfırlayabilir/kapatabilirsiniz.
 
 ## Çocuklar
@@ -97,6 +98,7 @@ turns a sentence into a list (switch it off in Settings → AI help).
 - When AI help is used, reduced-size receipt/label photos (JPEG), task text, locale, install ID and optional store purchase proof (a Google Play token or, in supported iOS builds, an Apple-signed transaction) are sent over HTTPS to our Cloudflare proxy. Qwen receives only the task input (reduced-size photo or text) and locale, not the install ID or purchase proof.
 - The Worker processes photos and input text transiently and never stores them. We make no unverified guarantee about the provider's retention or training practices.
 - The backend retains monthly installation/purchase-hash quota, daily totals and entitlement/ownership metadata; we do not describe these records as anonymous.
+- To preserve the 24-hour promotional deadline across reinstalls on the same device, Cloudflare stores an app-specific hashed device identifier and trial dates. On iOS, the hash is derived from a random value stored in the device-only Keychain. On Android 8 and newer, the hash is derived from an identifier scoped to the signing key and Android user. The hash is used solely for this promotion and is never sent to advertising or AI providers.
 
 ## Subscriptions and purchases
 
@@ -116,7 +118,7 @@ an App Store release or Apple account connection has been completed.
 ## Ads
 
 The free version shows Google AdMob ads (banner and optional
-rewarded video); there are no ads in the first 7 days. AdMob may collect your
+rewarded video); there are no ads in the first 24 hours. AdMob may collect your
 advertising/device identifiers, IP-derived approximate location, interactions
 and diagnostics. In the EU/UK personalised ads are shown only with your
 consent (https://policies.google.com/privacy). Pro, Max and ad-free for life
@@ -133,7 +135,7 @@ links and the cloud file provider you choose for an export.
 
 - **Access/portability:** export your data as JSON in Settings → Backup
   (paid plans).
-- **Deletion:** Settings → Delete all data clears the shopping database, not shared preferences. Uninstalling removes app-private storage. Neither removes exported files or backend quota/ownership records. Contact the email below about backend data requests.
+- **Deletion:** Settings → Delete all data clears the shopping database. Shared preferences remain. Uninstalling removes the app's local files. The iOS Keychain item, exported files and backend trial, quota and ownership records may remain. Contact the email below about backend data requests.
 - You can reset or turn off your advertising ID in your device settings.
 
 ## Children

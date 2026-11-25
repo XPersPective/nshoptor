@@ -936,8 +936,7 @@ class AppLocalizationsSq extends AppLocalizations {
   String get planFreeAi => '10 kërkesa AI në muaj';
 
   @override
-  String get planFreeAds =>
-      'Reklama banner të vogla (pa asnjë në ditët e para 7)';
+  String get planFreeAds => 'Reklama banner të vogla';
 
   @override
   String get planCoreFeatures => 'Lista, çmime, fatura, grafika shpenzimesh';
@@ -1586,4 +1585,198 @@ class AppLocalizationsSq extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'U përdor $percent% e kufirit';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kontrollo dhe korrigjo';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detajet e faturës';
+
+  @override
+  String get receiptDateTimeLabel => 'Data dhe ora';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totali nuk përputhet';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Shuma e artikujve ndryshon me $difference nga totali i faturës. Të ruaj megjithatë?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Ruaj megjithatë';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Shto dyqanin dhe datën për ta ruajtur këtë faturë.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nuk u lexua: $fields. Mund t\'i plotësosh gjatë rishikimit.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Qasja në kamera është e çaktivizuar. Aktivizoje në Cilësimet për të skanuar fatura dhe etiketa.';
+
+  @override
+  String get openSettingsAction => 'Hap Cilësimet';
+
+  @override
+  String get priceManualEntryAction => 'Fut çmimin manualisht';
+
+  @override
+  String get priceRetakeAction => 'Bëj një foto tjetër';
+
+  @override
+  String get paletteSage => 'Sherbele';
+
+  @override
+  String get paletteSlate => 'Rrasë';
+
+  @override
+  String get receiptContinueSame => 'Vazhdo me të njëjtin faturë';
+
+  @override
+  String get receiptCaptureDone => 'U krye';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count faqe të kapura';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Fatura në radhë — po përgatitet në sfond.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Maksimumi $max faqe mund të shtohen për çdo faturë.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Duke lexuar etiketën e çmimit…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skano një artikull tjetër';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Etiketa e çmimit po lexohet në sfond.';
+
+  @override
+  String get listsTabReceipts => 'Faturat e mia';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Faturat e mia ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Në pritje';
+
+  @override
+  String get receiptStatusProcessing => 'Duke lexuar faturën…';
+
+  @override
+  String get receiptStatusReady => 'Gati';
+
+  @override
+  String get receiptStatusDuplicate => 'E mundshme kopje';
+
+  @override
+  String get receiptStatusFailed => 'S’u lexua dot';
+
+  @override
+  String get receiptConvertToListAction => 'Shndërro në listë';
+
+  @override
+  String get receiptRetryReadAction => 'Provo përsëri';
+
+  @override
+  String get receiptDeleteDraftAction => 'Fshi';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Fatura gati';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Fatura jote është gati. Ta transferosh në një listë?';
+
+  @override
+  String get receiptDuplicateTitle => 'A u shtua tashmë fatura?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Ekziston një listë që përputhet me këtë dyqan dhe kohë ($listTitle). Ta shtosh përsëri?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Shto përsëri';
+
+  @override
+  String get receiptDuplicateDelete => 'Fshi faturën';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Pa fatura në pritje';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Faturat e skanuara përgatiten në sfond dhe mbeten këtu derisa t\'i shndërrosh ose t\'i heqësh.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count faqe';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotografitë e faturave';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Prek një foto fature për ta parë në madhësi të plotë';
+
+  @override
+  String get receiptPhotoPreparing => 'Po përgatitet fotoja e faturës…';
+
+  @override
+  String get homeProPromoTitle => 'Provo Pro falas për 24 orë';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 skanime fature me IA dhe pa reklama të hapura · Pa kartë';
+
+  @override
+  String get receiptFailureSheetTitle => 'Pse nuk u lexua';
+
+  @override
+  String get receiptFailureMissingTop => 'Mungon pjesa e sipërme';
+
+  @override
+  String get receiptFailureMissingBottom => 'Mungon pjesa e poshtme';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Mungon pjesa e mesme';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nuk është faturë';
+
+  @override
+  String get receiptFailureUnreadable => 'Nuk është e lexueshme';
+
+  @override
+  String get receiptFailureMismatch => 'Totali nuk përputhet';
+
+  @override
+  String get receiptFailureRejected => 'S’u lexua dot';
+
+  @override
+  String get receiptFailureService => 'Shërbimi nuk disponohet';
+
+  @override
+  String get receiptFailureUnknown => 'Leximi dështoi';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografo pjesën që mbetet';
+
+  @override
+  String get receiptFailureRetakeAction => 'Bëj një foto tjetër';
 }

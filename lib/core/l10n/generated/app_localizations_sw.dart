@@ -935,8 +935,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get planFreeAi => 'Maombi 10 ya AI kwa mwezi';
 
   @override
-  String get planFreeAds =>
-      'Matamko madogo ya bango (hakuna katika siku zako za kwanza 7)';
+  String get planFreeAds => 'Matamko madogo ya bango';
 
   @override
   String get planCoreFeatures => 'Orodha, bei, risiti, michoro ya matumizi';
@@ -1585,4 +1584,200 @@ class AppLocalizationsSw extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Asilimia $percent ya kikomo imetumika';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kagua na urekebishe';
+
+  @override
+  String get receiptEditDetailsTitle => 'Maelezo ya risiti';
+
+  @override
+  String get receiptDateTimeLabel => 'Tarehe na saa';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Jumla hailingani';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Jumla ya bidhaa inatofautiana kwa $difference na jumla ya risiti. Ihifadhi vyovyote vile?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Hifadhi vyovyote vile';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Ongeza duka na tarehe kuhifadhi risiti hii.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Haikusomwa: $fields. Unaweza kuzijaza unapokagua.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Ruhusa ya kamera imezimwa. Iwashe kwenye Mipangilio ili uskane risiti na lebo.';
+
+  @override
+  String get openSettingsAction => 'Fungua Mipangilio';
+
+  @override
+  String get priceManualEntryAction => 'Weka bei kwa mkono';
+
+  @override
+  String get priceRetakeAction => 'Piga picha nyingine';
+
+  @override
+  String get paletteSage => 'Mruju';
+
+  @override
+  String get paletteSlate => 'Grife';
+
+  @override
+  String get receiptContinueSame => 'Endelea na risiti ileile';
+
+  @override
+  String get receiptCaptureDone => 'Imekamilika';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count kurasa zimechukuliwa';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Risiti imepangwa — inatayarishwa katika mazingira ya nyuma.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hadi $max kurasa zinaweza kuongezwa kwa kila risiti.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Inasoma lebo ya bei…';
+
+  @override
+  String get shelfLabelContinueOther => 'Changanua bidhaa nyingine';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Lebo ya bei inasomwa katika mazingira ya nyuma.';
+
+  @override
+  String get listsTabReceipts => 'Risiti zangu';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Risiti zangu ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Inasubiri';
+
+  @override
+  String get receiptStatusProcessing => 'Inasoma risiti…';
+
+  @override
+  String get receiptStatusReady => 'Imekamilika';
+
+  @override
+  String get receiptStatusDuplicate => 'Inawezekana kuwa nakala';
+
+  @override
+  String get receiptStatusFailed => 'Haikuweza kusomwa';
+
+  @override
+  String get receiptConvertToListAction => 'Badilisha kuwa orodha';
+
+  @override
+  String get receiptRetryReadAction => 'Jaribu tena';
+
+  @override
+  String get receiptDeleteDraftAction => 'Futa';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Risiti imekamilika';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Risiti yako imekamilika. Uhamishe kwenye orodha?';
+
+  @override
+  String get receiptDuplicateTitle => 'Risiti tayari imeongezwa?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Orodha inayolingana na duka na wakati huu tayari ipo ($listTitle). Uiongeze tena?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Ongeza ingawa hivyo';
+
+  @override
+  String get receiptDuplicateDelete => 'Futa risiti';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Hakuna risiti zinazosubiri';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Risiti zilizochanganuliwa hazitayarishwa nyuma na zinaendelea hapa hadi uzie au uondoe.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count kurasa';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Picha za risiti';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Gusa picha ya risiti ili kuona ukubwa kamili';
+
+  @override
+  String get receiptPhotoPreparing => 'Inaandaa picha ya risiti…';
+
+  @override
+  String get homeProPromoTitle => 'Jaribu Pro bure kwa saa 24';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'Skani 100 za risiti za AI na bila matangazo zimefunguliwa · Hakuna kadi';
+
+  @override
+  String get receiptFailureSheetTitle => 'Kwa nini haikuweza kusomwa';
+
+  @override
+  String get receiptFailureMissingTop => 'Sehemu ya juu haipo';
+
+  @override
+  String get receiptFailureMissingBottom => 'Sehemu ya chini haipo';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Sehemu ya kati haipo';
+
+  @override
+  String get receiptFailureNotReceipt => 'Si risiti';
+
+  @override
+  String get receiptFailureUnreadable => 'Haipasikiwi';
+
+  @override
+  String get receiptFailureMismatch => 'Jumla halilingani';
+
+  @override
+  String get receiptFailureRejected => 'Haikuweza kusomwa';
+
+  @override
+  String get receiptFailureService => 'Huduma haipatikani';
+
+  @override
+  String get receiptFailureUnknown => 'Kusoma kushindwa';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Piga sehemu iliyobaki';
+
+  @override
+  String get receiptFailureRetakeAction => 'Piga picha nyingine';
 }

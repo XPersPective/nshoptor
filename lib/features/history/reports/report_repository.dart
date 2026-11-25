@@ -21,6 +21,8 @@ final class ReportProduct {
     required this.actual,
     required this.purchased,
     this.isDiscount = false,
+    this.discountMinor = 0,
+    this.discountLabel,
   }) : actualQuantities = List.unmodifiable(actualQuantities);
   final String name;
   final DecimalFixed? plannedQuantity;
@@ -30,6 +32,8 @@ final class ReportProduct {
   final SpendAmount actual;
   final bool purchased;
   final bool isDiscount;
+  final int discountMinor;
+  final String? discountLabel;
   int? get difference =>
       purchased && plannedMinor != null && actual.known && !actual.unknown
       ? actual.minor - plannedMinor!
@@ -307,6 +311,16 @@ class ReportRepository {
       known: entries.any(hasMarketPrice),
       unknown: unknownLegacy || entries.any((e) => !hasMarketPrice(e)),
     );
+    final discountMinor = entries.fold<int>(
+      0,
+      (sum, entry) => sum + entry.discountMinorUnits,
+    );
+    final labels = entries
+        .map((e) => e.note?.trim())
+        .whereType<String>()
+        .where((s) => s.isNotEmpty)
+        .toSet()
+        .toList();
     return ReportProduct(
       name: name,
       plannedQuantity: plannedQuantity,
@@ -321,6 +335,8 @@ class ReportRepository {
       isDiscount:
           entries.isNotEmpty &&
           entries.every((e) => e.actualLineTotalMinorUnits < 0),
+      discountMinor: discountMinor,
+      discountLabel: labels.isEmpty ? null : labels.join(', '),
     );
   }
 }

@@ -933,7 +933,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get planFreeAi => '10 AI beiðnir á mánuði';
 
   @override
-  String get planFreeAds => 'Lítillar auglýsingar (engrar fyrstu 7 dagana)';
+  String get planFreeAds => 'Lítillar auglýsingar';
 
   @override
   String get planCoreFeatures => 'Listar, verð, kvittanir, gjaldagrafar';
@@ -1582,4 +1582,199 @@ class AppLocalizationsIs extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% af mörkunum notuð';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Skoðaðu og lagaðu';
+
+  @override
+  String get receiptEditDetailsTitle => 'Upplýsingar kvittunar';
+
+  @override
+  String get receiptDateTimeLabel => 'Dagsetning og tími';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Heildarupphæðin stemmir ekki';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Vörurnar afvíkja um $difference frá heildarupphæð kvittunarinnar. Vista samt?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Vista samt';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Bættu verslun og dagsetningu við til að vista þessa kvittun.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Gat ekki lesið: $fields. Þú getur fyllt þetta út við yfirferðina.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Aðgangur að myndavél er slökkt. Kveiktu á honum í stillingum til að skanna kvittanir og verðmerki.';
+
+  @override
+  String get openSettingsAction => 'Opna stillingar';
+
+  @override
+  String get priceManualEntryAction => 'Sláðu inn verð handvirkt';
+
+  @override
+  String get priceRetakeAction => 'Taka aðra mynd';
+
+  @override
+  String get paletteSage => 'Salvía';
+
+  @override
+  String get paletteSlate => 'Flöguberg';
+
+  @override
+  String get receiptContinueSame => 'Halda áfram með sama kvitt';
+
+  @override
+  String get receiptCaptureDone => 'Lokið';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count síður teknar upp';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Kvitt í biðröð — undirbúningur í bakgrunni.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hægt er að bæta allt að $max síðum við hvern kvitt.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Les verðmiða…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skanna annað vöru';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Verðmiði er lesinn í bakgrunni.';
+
+  @override
+  String get listsTabReceipts => 'Quittningar mínar';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Quittningar mínar ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Í bið';
+
+  @override
+  String get receiptStatusProcessing => 'Les skjal…';
+
+  @override
+  String get receiptStatusReady => 'Tilbúið';
+
+  @override
+  String get receiptStatusDuplicate => 'Möguleg afrit';
+
+  @override
+  String get receiptStatusFailed => 'Gat ekki lesið';
+
+  @override
+  String get receiptConvertToListAction => 'Breyta í lista';
+
+  @override
+  String get receiptRetryReadAction => 'Reyna aftur';
+
+  @override
+  String get receiptDeleteDraftAction => 'Eyða';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Skjal tilbúið';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Skjalið þitt er tilbúið. Flytja yfir í lista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Skjal þegar bætt við?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Listi sem passar við verslun og tíma er þegar til ($listTitle). Bæta við samt?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Bæta við samt';
+
+  @override
+  String get receiptDuplicateDelete => 'Eyða skjali';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Engin bíðandi skjöl';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skannað skjöl undirbúa sig í bakgrunninu og verða hér þar til þú breytir eða fjarlægir þau.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count síður';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Ljósmyndir af kvittningum';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Smelltu á ljósmynd af kvittningu til að sjá hana í fullri stærð';
+
+  @override
+  String get receiptPhotoPreparing => 'Undirbýr kvittunarmynd…';
+
+  @override
+  String get homeProPromoTitle => 'Prófaðu Pro ókeypis í 24 klukkustundir';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 gervigreindarskannanir & auglýsingalaust opið · Ekkert kort þarf';
+
+  @override
+  String get receiptFailureSheetTitle => 'Af hverju ekki hægt að lesa?';
+
+  @override
+  String get receiptFailureMissingTop => 'Efri hluti vantar';
+
+  @override
+  String get receiptFailureMissingBottom => 'Neðri hluti vantar';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Miðji hluti vantar';
+
+  @override
+  String get receiptFailureNotReceipt => 'Ekki kvitt';
+
+  @override
+  String get receiptFailureUnreadable => 'Ólæsilegt';
+
+  @override
+  String get receiptFailureMismatch => 'Heildin passar ekki';
+
+  @override
+  String get receiptFailureRejected => 'Ekki hægt að lesa';
+
+  @override
+  String get receiptFailureService => 'Þjónusta ekki í boði';
+
+  @override
+  String get receiptFailureUnknown => 'Lesing mistókst';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Taka mynd af afgangnum';
+
+  @override
+  String get receiptFailureRetakeAction => 'Taka aftur';
 }

@@ -934,8 +934,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get planFreeAi => '10 richieste IA al mese';
 
   @override
-  String get planFreeAds =>
-      'Piccoli banner pubblicitari (nessuno nei primi 7 giorni)';
+  String get planFreeAds => 'Piccoli banner pubblicitari';
 
   @override
   String get planCoreFeatures =>
@@ -1587,4 +1586,200 @@ class AppLocalizationsIt extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Usato il $percent% del limite';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Controlla e correggi';
+
+  @override
+  String get receiptEditDetailsTitle => 'Dettagli dello scontrino';
+
+  @override
+  String get receiptDateTimeLabel => 'Data e ora';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Il totale non corrisponde';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Gli articoli differiscono dal totale dello scontrino di $difference. Salvare comunque?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Salva comunque';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Aggiungi negozio e data per salvare questo scontrino.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Impossibile leggere: $fields. Puoi compilarli durante la verifica.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'L\'accesso alla fotocamera è disattivato. Attivalo nelle Impostazioni per scansionare scontrini ed etichette.';
+
+  @override
+  String get openSettingsAction => 'Apri Impostazioni';
+
+  @override
+  String get priceManualEntryAction => 'Inserisci il prezzo a mano';
+
+  @override
+  String get priceRetakeAction => 'Scatta un\'altra foto';
+
+  @override
+  String get paletteSage => 'Salvia';
+
+  @override
+  String get paletteSlate => 'Ardesia';
+
+  @override
+  String get receiptContinueSame => 'Continua con lo stesso scontrino';
+
+  @override
+  String get receiptCaptureDone => 'Fatto';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pagine catturate';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Scontrino in coda — preparazione in background.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Possono essere aggiunte fino a $max pagine per scontrino.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lettura dell\'etichetta del prezzo…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scansiona un altro articolo';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Lettura dell\'etichetta del prezzo in background.';
+
+  @override
+  String get listsTabReceipts => 'Le mie ricevute';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Le mie ricevute ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'In coda';
+
+  @override
+  String get receiptStatusProcessing => 'Lettura della ricevuta…';
+
+  @override
+  String get receiptStatusReady => 'Pronta';
+
+  @override
+  String get receiptStatusDuplicate => 'Possibile duplicato';
+
+  @override
+  String get receiptStatusFailed => 'Impossibile leggere';
+
+  @override
+  String get receiptConvertToListAction => 'Converti in lista';
+
+  @override
+  String get receiptRetryReadAction => 'Riprova';
+
+  @override
+  String get receiptDeleteDraftAction => 'Elimina';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Ricevuta pronta';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'La tua ricevuta è pronta. Vuoi trasferirla in una lista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Ricevuta già aggiunta?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Esiste già una lista corrispondente a questo negozio e orario ($listTitle). Vuoi aggiungerla comunque?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Aggiungi comunque';
+
+  @override
+  String get receiptDuplicateDelete => 'Elimina ricevuta';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nessuna ricevuta in attesa';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Le ricevute scansionate vengono elaborate in background e rimangono qui finché non le converti o le elimini.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pagine';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Foto delle ricevute';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tocca una foto della ricevuta per visualizzarla a grandezza intera';
+
+  @override
+  String get receiptPhotoPreparing => 'Preparazione foto scontrino…';
+
+  @override
+  String get homeProPromoTitle => 'Prova Pro gratis per 24 ore';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 scansioni scontrini IA e zero pubblicità attive · Nessuna carta';
+
+  @override
+  String get receiptFailureSheetTitle => 'Perché non si legge?';
+
+  @override
+  String get receiptFailureMissingTop => 'Parte superiore mancante';
+
+  @override
+  String get receiptFailureMissingBottom => 'Parte inferiore mancante';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Parte centrale mancante';
+
+  @override
+  String get receiptFailureNotReceipt => 'Non è uno scontrino';
+
+  @override
+  String get receiptFailureUnreadable => 'Illeggibile';
+
+  @override
+  String get receiptFailureMismatch => 'Totale non corrisponde';
+
+  @override
+  String get receiptFailureRejected => 'Impossibile leggere';
+
+  @override
+  String get receiptFailureService => 'Servizio non disponibile';
+
+  @override
+  String get receiptFailureUnknown => 'Lettura non riuscita';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografa il resto';
+
+  @override
+  String get receiptFailureRetakeAction => 'Rifai la foto';
 }

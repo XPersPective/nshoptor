@@ -936,7 +936,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get planFreeAi => '10 AI заявки на месец';
 
   @override
-  String get planFreeAds => 'Малки банерни реклами (няма през първите 7 дни)';
+  String get planFreeAds => 'Малки банерни реклами';
 
   @override
   String get planCoreFeatures =>
@@ -1324,10 +1324,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Предишен месец';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Следващ месец';
 
   @override
   String get helpSection => 'Помощ и поддръжка';
@@ -1587,4 +1587,200 @@ class AppLocalizationsBg extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Използвани са $percent% от лимита';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Проверете и коригирайте';
+
+  @override
+  String get receiptEditDetailsTitle => 'Детайли на бележката';
+
+  @override
+  String get receiptDateTimeLabel => 'Дата и час';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Общата сума не съвпада';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Артикулите се различават с $difference от общата сума на бележката. Да се запази ли въпреки това?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Запази въпреки това';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Добавете магазина и датата, за да запазите тази бележка.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Не можа да се прочете: $fields. Може да ги попълните при прегледа.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Достъпът до камерата е изключен. Включете го в настройките, за да сканирате бележки и етикети.';
+
+  @override
+  String get openSettingsAction => 'Отворете настройките';
+
+  @override
+  String get priceManualEntryAction => 'Въведете цената ръчно';
+
+  @override
+  String get priceRetakeAction => 'Направете нова снимка';
+
+  @override
+  String get paletteSage => 'Градински чай';
+
+  @override
+  String get paletteSlate => 'Шисти';
+
+  @override
+  String get receiptContinueSame => 'Продължи със същия касов бон';
+
+  @override
+  String get receiptCaptureDone => 'Готово';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count страници са заснети';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Касовият бон е в опашка — подготвя се във фонов режим.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Може да добавите до $max страници за всеки касов бон.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Чете се цената на етикета…';
+
+  @override
+  String get shelfLabelContinueOther => 'Сканирай друг продукт';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Цената на етикета се чете във фонов режим.';
+
+  @override
+  String get listsTabReceipts => 'Моите разписки';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Моите разписки ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'На опашка';
+
+  @override
+  String get receiptStatusProcessing => 'Чета разписка…';
+
+  @override
+  String get receiptStatusReady => 'Готова';
+
+  @override
+  String get receiptStatusDuplicate => 'Възможно дублиране';
+
+  @override
+  String get receiptStatusFailed => 'Неуспешно четене';
+
+  @override
+  String get receiptConvertToListAction => 'Преобразувай в списък';
+
+  @override
+  String get receiptRetryReadAction => 'Опитай отново';
+
+  @override
+  String get receiptDeleteDraftAction => 'Изтрий';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Разписката е готова';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Разписката ви е готова. Да я прехвърлим в списък?';
+
+  @override
+  String get receiptDuplicateTitle => 'Разписката вече е добавена?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Вече има списък за тази магазин и време ($listTitle). Да я добавим пак?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Добави все пак';
+
+  @override
+  String get receiptDuplicateDelete => 'Изтрий разписката';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Няма чакащи разписки';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Сканираните разписки се обработват на заден план и остават тук, докато ги преобразувате или изтриете.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count страници';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Снимки на разписки';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Докоснете снимка на разписка, за да я видите на цял екран';
+
+  @override
+  String get receiptPhotoPreparing => 'Подготвяне на снимката на бона…';
+
+  @override
+  String get homeProPromoTitle => 'Изпробвайте Pro безплатно за 24 часа';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ИИ сканирания на бележки и без реклами отключено · Без карта';
+
+  @override
+  String get receiptFailureSheetTitle => 'Защо не се прочете';
+
+  @override
+  String get receiptFailureMissingTop => 'Горната част липсва';
+
+  @override
+  String get receiptFailureMissingBottom => 'Долната част липсва';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Средната част липсва';
+
+  @override
+  String get receiptFailureNotReceipt => 'Не е касова бележка';
+
+  @override
+  String get receiptFailureUnreadable => 'Нечетливо';
+
+  @override
+  String get receiptFailureMismatch => 'Общата сума не съвпада';
+
+  @override
+  String get receiptFailureRejected => 'Неуспешно четене';
+
+  @override
+  String get receiptFailureService => 'Услугата не е достъпна';
+
+  @override
+  String get receiptFailureUnknown => 'Четенето е неуспешно';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Снимайте остатъка';
+
+  @override
+  String get receiptFailureRetakeAction => 'Снимайте отново';
 }

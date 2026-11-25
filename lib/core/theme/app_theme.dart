@@ -12,9 +12,11 @@ import 'package:flutter/material.dart';
 /// Renk temaları: marka yeşili varsayılan; diğerleri aynı yapıyla.
 enum AppPalette {
   forest(Color(0xFF0B8457)),
-  ocean(Color(0xFF0B6E99)),
-  sunset(Color(0xFFC2410C)),
-  lavender(Color(0xFF6E56CF));
+  sage(Color(0xFF2B7A67)),
+  ocean(Color(0xFF16688A)),
+  slate(Color(0xFF446275)),
+  sunset(Color(0xFFA65138)),
+  lavender(Color(0xFF6855B8));
 
   const AppPalette(this.seed);
   final Color seed;
@@ -23,24 +25,136 @@ enum AppPalette {
       values.firstWhere((p) => p.name == name, orElse: () => forest);
 }
 
+typedef _SurfaceLadder = ({
+  Color surface,
+  Color lowest,
+  Color low,
+  Color container,
+  Color high,
+  Color highest,
+});
+
 class AppTheme {
   AppTheme._();
 
   /// Marka tohum rengi: sakin yeşil-turkuaz.
   static const Color brandSeed = Color(0xFF0B8457);
 
-  /// Theme mode for a fresh install (F36): the brand dark-green premium look.
+  /// Theme mode for a fresh install (F36): the brand dark-green slate look.
   /// Only applies while no choice is stored; a saved `app.theme` always wins.
   static const String defaultModeName = 'dark';
 
-  /// Brand dark-green surfaces (premium black + green) for the default
-  /// forest palette. Pure black stays a separate opt-in ([dark] `black`).
-  static const Color brandDarkSurface = Color(0xFF07140E);
+  /// Calm elevated pine-slate dark surface for the default [AppPalette.forest].
+  /// Keeps green leading slightly (`g > r`, `g > b`) without pitch-black voids.
+  /// Pure black stays an explicit AMOLED opt-in ([dark] `black: true`).
+  static const Color brandDarkSurface = Color(0xFF212824);
+
+  static _SurfaceLadder _darkSurface(AppPalette palette) => switch (palette) {
+        AppPalette.forest => const (
+          surface: brandDarkSurface,
+          lowest: Color(0xFF1A201D),
+          low: Color(0xFF272E2A),
+          container: Color(0xFF2D3531),
+          high: Color(0xFF353E39),
+          highest: Color(0xFF3E4842),
+        ),
+        AppPalette.sage => const (
+          surface: Color(0xFF222826),
+          lowest: Color(0xFF1B201E),
+          low: Color(0xFF282E2C),
+          container: Color(0xFF2E3533),
+          high: Color(0xFF363E3B),
+          highest: Color(0xFF3F4845),
+        ),
+        AppPalette.ocean => const (
+          surface: Color(0xFF1F262D),
+          lowest: Color(0xFF181E24),
+          low: Color(0xFF252D35),
+          container: Color(0xFF2B343D),
+          high: Color(0xFF333D47),
+          highest: Color(0xFF3C4752),
+        ),
+        AppPalette.slate => const (
+          surface: Color(0xFF23272B),
+          lowest: Color(0xFF1C1F23),
+          low: Color(0xFF292E33),
+          container: Color(0xFF30353B),
+          high: Color(0xFF383E45),
+          highest: Color(0xFF414850),
+        ),
+        AppPalette.sunset => const (
+          surface: Color(0xFF282220),
+          lowest: Color(0xFF201B19),
+          low: Color(0xFF2F2826),
+          container: Color(0xFF362E2C),
+          high: Color(0xFF3F3633),
+          highest: Color(0xFF483E3B),
+        ),
+        AppPalette.lavender => const (
+          surface: Color(0xFF181620),
+          lowest: Color(0xFF121119),
+          low: Color(0xFF1E1C28),
+          container: Color(0xFF252331),
+          high: Color(0xFF2D2A3B),
+          highest: Color(0xFF353245),
+        ),
+      };
+
+  static _SurfaceLadder _lightSurface(AppPalette palette) => switch (palette) {
+        AppPalette.forest => const (
+          surface: Color(0xFFF5F8F6),
+          lowest: Color(0xFFFAFDFB),
+          low: Color(0xFFEFF4F0),
+          container: Color(0xFFE7EFEA),
+          high: Color(0xFFDFE9E3),
+          highest: Color(0xFFD7E3DC),
+        ),
+        AppPalette.sage => const (
+          surface: Color(0xFFF5F7F5),
+          lowest: Color(0xFFFAFDFB),
+          low: Color(0xFFEEEFE9),
+          container: Color(0xFFE6EBE6),
+          high: Color(0xFFDEE4DE),
+          highest: Color(0xFFD5DDD6),
+        ),
+        AppPalette.ocean => const (
+          surface: Color(0xFFF4F7FA),
+          lowest: Color(0xFFFAFCFE),
+          low: Color(0xFFEBF1F6),
+          container: Color(0xFFE3ECF3),
+          high: Color(0xFFDBE5EE),
+          highest: Color(0xFFD3DFE9),
+        ),
+        AppPalette.slate => const (
+          surface: Color(0xFFF5F7F9),
+          lowest: Color(0xFFFBFCFD),
+          low: Color(0xFFEDF0F4),
+          container: Color(0xFFE5E9EF),
+          high: Color(0xFFDDE2E9),
+          highest: Color(0xFFD5DBE3),
+        ),
+        AppPalette.sunset => const (
+          surface: Color(0xFFFAF6F4),
+          lowest: Color(0xFFFFFBFA),
+          low: Color(0xFFF4ECE8),
+          container: Color(0xFFECE2DC),
+          high: Color(0xFFE5D9D2),
+          highest: Color(0xFFDCD0C8),
+        ),
+        AppPalette.lavender => const (
+          surface: Color(0xFFF7F6FA),
+          lowest: Color(0xFFFCFBFD),
+          low: Color(0xFFEFEDF5),
+          container: Color(0xFFE7E4EF),
+          high: Color(0xFFDFDCE9),
+          highest: Color(0xFFD7D3E3),
+        ),
+      };
 
   static ThemeData light({AppPalette palette = AppPalette.forest}) =>
       _base(Brightness.light, palette, black: false);
 
-  /// [black]: koyu temada tam siyah yüzeyler (AMOLED); varsayılan marka tonlu koyu.
+  /// [black]: koyu temada tam siyah yüzeyler (AMOLED); varsayılan dengeli koyu tonlar.
   static ThemeData dark({AppPalette palette = AppPalette.forest, bool black = false}) =>
       _base(Brightness.dark, palette, black: black);
 
@@ -49,16 +163,27 @@ class AppTheme {
       seedColor: palette.seed,
       brightness: brightness,
     );
-    if (brightness == Brightness.dark && !black && palette == AppPalette.forest) {
-      scheme = scheme.copyWith(
-        surface: brandDarkSurface,
-        surfaceContainerLowest: const Color(0xFF040D09),
-        surfaceContainerLow: const Color(0xFF0C1C15),
-        surfaceContainer: const Color(0xFF10231A),
-        surfaceContainerHigh: const Color(0xFF162D22),
-        surfaceContainerHighest: const Color(0xFF1D372A),
-      );
-    }
+    final ladder = brightness == Brightness.dark
+        ? _darkSurface(palette)
+        : _lightSurface(palette);
+    final calmPrimary = brightness == Brightness.dark
+        ? Color.lerp(scheme.primary, scheme.primaryContainer, 0.24)!
+        : Color.lerp(scheme.primary, scheme.secondary, 0.20)!;
+    final calmSecondaryContainer = Color.lerp(
+      scheme.secondaryContainer,
+      brightness == Brightness.dark ? ladder.high : ladder.container,
+      brightness == Brightness.dark ? 0.24 : 0.16,
+    );
+    scheme = scheme.copyWith(
+      primary: calmPrimary,
+      surface: ladder.surface,
+      surfaceContainerLowest: ladder.lowest,
+      surfaceContainerLow: ladder.low,
+      surfaceContainer: ladder.container,
+      surfaceContainerHigh: ladder.high,
+      surfaceContainerHighest: ladder.highest,
+      secondaryContainer: calmSecondaryContainer,
+    );
     if (black) {
       scheme = scheme.copyWith(
         surface: Colors.black,
@@ -98,14 +223,14 @@ class AppTheme {
     final inputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(14),
     );
-    // M3's light blue primary is strong on a dark ocean surface. Keep its
-    // accessible dark foreground, with a little of the deeper container tone
-    // in filled actions (including Save); other palettes and branding stay put.
-    final softenOceanActions =
-        brightness == Brightness.dark && palette == AppPalette.ocean;
-    final filledActionColor = softenOceanActions
-        ? Color.lerp(scheme.primary, scheme.primaryContainer, 0.22)
-        : null;
+    final hairlineColor = scheme.outlineVariant.withValues(
+      alpha: brightness == Brightness.dark ? (black ? 0.62 : 0.45) : 0.65,
+    );
+    final cardSurface = brightness == Brightness.light
+        ? scheme.surfaceContainerLowest
+        : scheme.surfaceContainerLow;
+    // Harmonious, low-glare button geometry/typography while letting FilledButton
+    // use calm scheme.primary and FilledButton.tonal preserve scheme.secondaryContainer.
     return base.copyWith(
       textTheme: textTheme,
       splashFactory: InkSparkle.splashFactory,
@@ -118,21 +243,22 @@ class AppTheme {
         centerTitle: false,
         backgroundColor: scheme.surface,
         foregroundColor: scheme.onSurface,
+        surfaceTintColor: Colors.transparent,
         titleTextStyle: textTheme.titleLarge?.copyWith(
           color: scheme.onSurface,
         ),
-        scrolledUnderElevation: 1,
+        scrolledUnderElevation: 0,
+        shape: Border(bottom: BorderSide(color: hairlineColor)),
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: scheme.surfaceContainerLow,
         indicatorColor: scheme.secondaryContainer,
+        indicatorShape: const StadiumBorder(),
         elevation: 0,
-        surfaceTintColor: scheme.surfaceContainerLow,
+        surfaceTintColor: Colors.transparent,
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          backgroundColor: filledActionColor,
-          foregroundColor: softenOceanActions ? scheme.onPrimary : null,
           minimumSize: const Size(64, 48),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           shape: stadium,
@@ -145,14 +271,21 @@ class AppTheme {
           minimumSize: const Size(64, 48),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           shape: stadium,
+          side: BorderSide(color: hairlineColor),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(shape: stadium),
       ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: scheme.primary,
+        foregroundColor: scheme.onPrimary,
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: inputBorder,
-        enabledBorder: inputBorder.copyWith(borderSide: BorderSide(color: scheme.outlineVariant)),
+        enabledBorder: inputBorder.copyWith(borderSide: BorderSide(color: hairlineColor)),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: scheme.primary, width: 2),
@@ -161,19 +294,40 @@ class AppTheme {
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         filled: true,
-        fillColor: scheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        fillColor: brightness == Brightness.light
+            ? scheme.surfaceContainerLowest
+            : scheme.surfaceContainerHigh.withValues(alpha: 0.45),
       ),
       cardTheme: CardThemeData(
         elevation: 0,
-        color: scheme.surfaceContainerLow,
+        color: cardSurface,
         surfaceTintColor: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18),
+          side: BorderSide(color: hairlineColor),
+        ),
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      ),
+      chipTheme: base.chipTheme.copyWith(
+        shape: stadium,
+        side: BorderSide(color: hairlineColor),
+        backgroundColor: cardSurface,
+        selectedColor: scheme.secondaryContainer,
+      ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: scheme.surfaceContainerLow,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+          side: BorderSide(color: hairlineColor),
+        ),
       ),
       listTileTheme: ListTileThemeData(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: scheme.surfaceContainerLow,
+        surfaceTintColor: Colors.transparent,
         showDragHandle: true,
         dragHandleColor: scheme.onSurfaceVariant.withValues(alpha: 0.4),
         shape: const RoundedRectangleBorder(
@@ -183,9 +337,9 @@ class AppTheme {
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
-      dividerTheme: DividerThemeData(color: scheme.outlineVariant),
+      dividerTheme: DividerThemeData(color: hairlineColor, thickness: 1),
       // Liste ögesindeki tik alanı, ekleme alanıyla aynı çizgi dilinde:
       // yumuşak köşe, ince kontur, işaretliyken marka dolgusu.
       checkboxTheme: CheckboxThemeData(

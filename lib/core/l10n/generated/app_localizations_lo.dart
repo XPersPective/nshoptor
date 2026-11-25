@@ -933,7 +933,7 @@ class AppLocalizationsLo extends AppLocalizations {
   String get planFreeAi => '10 ຄຳຮ້ອງຂໍ AI ຕໍ່ເດືອນ';
 
   @override
-  String get planFreeAds => 'ໂຄສະນາແບນເນີຂະໜາດນ້ອຍ (ບໍ່ມີໃນ 7 ວັນທຳອິດຂອງທ່ານ)';
+  String get planFreeAds => 'ໂຄສະນາແບນເນີຂະໜາດນ້ອຍ';
 
   @override
   String get planCoreFeatures => 'ລາຍການ, ລາຄາ, ໃບບິນ, ກຣາຟການໃຊ້ຈ່າຍ';
@@ -1310,10 +1310,10 @@ class AppLocalizationsLo extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'ເດືອນກ່ອນໜ້າ';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'ເດືອນໜ້າ';
 
   @override
   String get helpSection => 'ຄວາມຊ່ວຍເຫຼືອແລະການສະໜັບສະໜູນ';
@@ -1569,4 +1569,198 @@ class AppLocalizationsLo extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ໃຊ້ໄປແລ້ວ $percent% ຂອງວົງເງິນ';
   }
+
+  @override
+  String get receiptReviewNowAction => 'ກວດສອບ ແລະ ແກ້ໄຂ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ລາຍລະອຽດໃບເກັບເງິນ';
+
+  @override
+  String get receiptDateTimeLabel => 'ວັນທີ ແລະ ເວລາ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ຍອດລວມບໍ່ກົງກັນ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ຍອດຂອງລາຍການ ແລະ ຍອດລວມໃນໃບເກັບເງິນຕ່າງກັນ $difference. ຍັງບັນທຶກແທ້ບໍ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'ບັນທຶກແທ້';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ໃສ່ຮ້ານຄ້າ ແລະ ວັນທີ ເພື່ອບັນທຶກໃບເກັບເງິນນີ້.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'ອ່ານບໍ່ອອກ: $fields. ສາມາດຕື່ມໄດ້ເວລາກວດສອບ.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'ການໃຊ້ກ້ອງຖ່າຍຮູບປິດຢູ່. ເປີດໃນການຕັ້ງຄ່າເພື່ອສະແກນໃບເກັບເງິນ ແລະ ປ້າຍລາຄາ.';
+
+  @override
+  String get openSettingsAction => 'ເປີດການຕັ້ງຄ່າ';
+
+  @override
+  String get priceManualEntryAction => 'ປ້ອນລາຄາເອງ';
+
+  @override
+  String get priceRetakeAction => 'ຖ່າຍຮູບໃໝ່';
+
+  @override
+  String get paletteSage => 'ສີໃບໄມ້';
+
+  @override
+  String get paletteSlate => 'ສີຫີນ';
+
+  @override
+  String get receiptContinueSame => 'ຕໍ່ໄປກັບໃບເກັບເງິນດຽວກັນ';
+
+  @override
+  String get receiptCaptureDone => 'ສຳເລັດແລ້ວ';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count ໜ້າທີ່ຖືກຈັບ';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ໃບເກັບເງິນຖືກວາງໃນລໍຖ້າ — ກຳລັງປະມວນຜົນຢູ່ພື້ນຫຼັງ.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ສາມາດເພີ່ມໄດ້ສູງສຸດ $max ໜ້າ ຕໍ່ໃບເກັບເງິນ.';
+  }
+
+  @override
+  String get shelfLabelReading => 'ກຳລັງອ່ານປ້າຍລາຄາ…';
+
+  @override
+  String get shelfLabelContinueOther => 'ສະແກນອື່ນອີກ 1 ລາຍການ';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ປ້າຍລາຄາກຳລັງອ່ານຢູ່ພື້ນຫຼັງ.';
+
+  @override
+  String get listsTabReceipts => 'ໃບເກັບເງິນຂ້ອຍ';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ໃບເກັບເງິນຂ້ອຍ ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'ລໍຖ້າ';
+
+  @override
+  String get receiptStatusProcessing => 'ກຳລັງອ່ານໃບເກັບເງິນ…';
+
+  @override
+  String get receiptStatusReady => 'ພ້ອມແລ້ວ';
+
+  @override
+  String get receiptStatusDuplicate => 'ອາດຈະຊ້ຳກັນ';
+
+  @override
+  String get receiptStatusFailed => 'ບໍ່ສາມາດອ່ານໄດ້';
+
+  @override
+  String get receiptConvertToListAction => 'ປ່ຽນເປັນລາຍການ';
+
+  @override
+  String get receiptRetryReadAction => 'ລອງໃໝ່';
+
+  @override
+  String get receiptDeleteDraftAction => 'ລຶບ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ໃບເກັບເງິນພ້ອມແລ້ວ';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ໃບເກັບເງິນຂອງທ່ານພ້ອມແລ້ວ. ຍ້າຍໄປໃສ່ລາຍການບໍ?';
+
+  @override
+  String get receiptDuplicateTitle => 'ເກັບໃບເກັບເງິນໄປແລ້ວບໍ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ມີລາຍການທີ່ກົງກັບໂຮງງານ ແລະ ເວລານີ້ແລ້ວ ($listTitle). ບັນທຶກອີກຄັ້ງຫຼືບໍ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'ບັນທຶກແທ້ໆ';
+
+  @override
+  String get receiptDuplicateDelete => 'ລຶບໃບເກັບເງິນ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ບໍ່ມີໃບເກັບເງິນທີ່ລໍຖ້າ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ໃບເກັບເງິນທີ່ສະແກນແລ້ວຈະກະກຽມຢູ່ພື້ນຫຼັງ ແລະ ຢູ່ນີ້ຈົນກະທັ່ງທ່ານປ່ຽນເປັນລາຍການ ຫຼື ລຶບອອກ.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count ໜ້າ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ຮູບພາບໃບເກັບເງິນ';
+
+  @override
+  String get receiptOpenPhotoHint => 'ກົດຮູບພາບໃບເກັບເງິນເພື່ອເບິ່ງຂະໜາດເຕັມ';
+
+  @override
+  String get receiptPhotoPreparing => 'ກຳລັງກະກຽມຮູບໃບຮັບເງິນ…';
+
+  @override
+  String get homeProPromoTitle => 'ທົດລອງໃຊ້ Pro ຟຣີ 24 ຊົ່ວໂມງ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'ສະແກນໃບບິນ AI 100 ຄັ້ງ ແລະ ບໍ່ມີໂຄສະນາ · ບໍ່ຕ້ອງໃສ່ບັດ';
+
+  @override
+  String get receiptFailureSheetTitle => 'ເປັນຫຍັງອ່ານບໍ່ໄດ້';
+
+  @override
+  String get receiptFailureMissingTop => 'ສ່ວນເທິງຂາດ';
+
+  @override
+  String get receiptFailureMissingBottom => 'ສ່ວນລຸ່ມຂາດ';
+
+  @override
+  String get receiptFailureMissingMiddle => 'ສ່ວນກາງຂາດ';
+
+  @override
+  String get receiptFailureNotReceipt => 'ບໍ່ແມ່ນໃບເກັບເງິນ';
+
+  @override
+  String get receiptFailureUnreadable => 'ອ່ານບໍ່ຊັດເຈນ';
+
+  @override
+  String get receiptFailureMismatch => 'ຍອດລວມບໍ່ກົງ';
+
+  @override
+  String get receiptFailureRejected => 'ຖືກປະເສັດ';
+
+  @override
+  String get receiptFailureService => 'ບໍລິການບໍ່ພ້ອມ';
+
+  @override
+  String get receiptFailureUnknown => 'ການອ່ານລ້ມເຫລວ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ຖ່າຍທີ່ເຫຼືອງ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ຖ່າຍໃໝ່';
 }

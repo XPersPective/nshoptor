@@ -12,10 +12,19 @@ import 'item_status.dart';
 /// Bir ürünün tahmini ve gerçek tutarı (PB-062): ayrıntı ekranına gitmeden
 /// her satırda "20 → 30, +10" görünür.
 class ItemPrices {
-  const ItemPrices({this.plannedMinor, this.actualMinor});
+  const ItemPrices({
+    this.plannedMinor,
+    this.actualMinor,
+    this.grossActualMinor,
+    this.discountMinor = 0,
+    this.discountLabel,
+  });
 
   final int? plannedMinor;
   final int? actualMinor;
+  final int? grossActualMinor;
+  final int discountMinor;
+  final String? discountLabel;
 
   bool get hasActual => actualMinor != null;
 
@@ -25,11 +34,27 @@ class ItemPrices {
 
   factory ItemPrices.of(PlannedItem item, Iterable<PurchaseEntry> entries) {
     final mine = entries.where((e) => e.plannedItemId == item.id).toList();
+    final complete = mine.isNotEmpty && mine.every(hasMarketPrice);
+    final actual = !complete
+        ? null
+        : mine.fold<int>(0, (a, e) => a + e.actualLineTotalMinorUnits);
+    final discount = !complete
+        ? 0
+        : mine.fold<int>(0, (a, e) => a + e.discountMinorUnits);
+    final labels = !complete
+        ? const <String>[]
+        : mine
+              .map((e) => e.note?.trim())
+              .whereType<String>()
+              .where((s) => s.isNotEmpty)
+              .toSet()
+              .toList();
     return ItemPrices(
       plannedMinor: item.plannedLineTotalMinorUnits,
-      actualMinor: mine.isEmpty || !mine.every(hasMarketPrice)
-          ? null
-          : mine.fold<int>(0, (a, e) => a + e.actualLineTotalMinorUnits),
+      actualMinor: actual,
+      grossActualMinor: actual != null && discount > 0 ? actual + discount : null,
+      discountMinor: discount,
+      discountLabel: labels.isEmpty ? null : labels.join(', '),
     );
   }
 }
@@ -109,9 +134,39 @@ class ItemPriceCell extends StatelessWidget {
         ),
     ];
 
-    return Wrap(spacing: 16, runSpacing: 4, crossAxisAlignment: WrapCrossAlignment.center, children: [
-      Tooltip(message: l10n.compareEstimated, child: planned), if (prices.hasActual) Tooltip(message: l10n.compareActual, child: actual), ...buttons,
-    ]);
+    return Wrap(
+      spacing: 16,
+      runSpacing: 4,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        Tooltip(message: l10n.compareEstimated, child: planned),
+        if (prices.hasActual) Tooltip(message: l10n.compareActual, child: actual),
+        if (prices.discountMinor > 0)
+          line([
+            Icon(
+              Icons.local_offer_outlined,
+              size: 13,
+              color: theme.colorScheme.primary,
+            ),
+            const SizedBox(width: 4),
+            Text(
+              key: const Key('price_discount'),
+              [
+                if (prices.grossActualMinor != null)
+                  money(prices.grossActualMinor!),
+                '−${money(prices.discountMinor)}',
+                if (prices.discountLabel?.isNotEmpty == true)
+                  prices.discountLabel!,
+              ].join(' · '),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.primary,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ]),
+        ...buttons,
+      ],
+    );
   }
 }
 

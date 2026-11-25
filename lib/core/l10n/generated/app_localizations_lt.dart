@@ -936,8 +936,7 @@ class AppLocalizationsLt extends AppLocalizations {
   String get planFreeAi => '10 AI užklausų per mėnesį';
 
   @override
-  String get planFreeAds =>
-      'Maži baneriniai reklamos pranešimai (pirmąsias 7 dienas jų nėra)';
+  String get planFreeAds => 'Maži baneriniai reklamos pranešimai';
 
   @override
   String get planCoreFeatures => 'Sąrašai, kainos, čekiai, išlaidų grafikai';
@@ -1592,4 +1591,198 @@ class AppLocalizationsLt extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Panaudota $percent % limito';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Patikrinkite ir ištaisykite';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kvito duomenys';
+
+  @override
+  String get receiptDateTimeLabel => 'Data ir laikas';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Suma nesutampa';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Prekių suma skiriasi $difference nuo kvito sumos. Vis tiek išsaugoti?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Vis tiek išsaugoti';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Norėdami išsaugoti šį kvitą, pridėkite parduotuvę ir datą.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nepavyko perskaityti: $fields. Galite užpildyti peržiūrėdami.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameros prieiga išjungta. Įjunkite ją Nustatymuose, kad galėtumėte skenuoti kvitus ir kainų etiketes.';
+
+  @override
+  String get openSettingsAction => 'Atidaryti nustatymus';
+
+  @override
+  String get priceManualEntryAction => 'Įvesti kainą rankiniu būdu';
+
+  @override
+  String get priceRetakeAction => 'Fotografuoti iš naujo';
+
+  @override
+  String get paletteSage => 'Šalavijas';
+
+  @override
+  String get paletteSlate => 'Šiferis';
+
+  @override
+  String get receiptContinueSame => 'Tęsti tą patį čekį';
+
+  @override
+  String get receiptCaptureDone => 'Baigta';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'Nufotografuota $count puslapiai';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Checkis eilėje — ruošiamas fone.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Į vieną čekį galima įtraukti iki $max puslapių.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Skaitymas kainos etiketę…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skenuoti kitą prekę';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Kainos etiketė skaitoma fone.';
+
+  @override
+  String get listsTabReceipts => 'Mano kvitai';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mano kvitai ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Eilėje';
+
+  @override
+  String get receiptStatusProcessing => 'Kvitą skaitome…';
+
+  @override
+  String get receiptStatusReady => 'Paruoštas';
+
+  @override
+  String get receiptStatusDuplicate => 'Gali būti dublikatas';
+
+  @override
+  String get receiptStatusFailed => 'Nepavyko perskaityti';
+
+  @override
+  String get receiptConvertToListAction => 'Konvertuoti į sąrašą';
+
+  @override
+  String get receiptRetryReadAction => 'Bandyti dar kartą';
+
+  @override
+  String get receiptDeleteDraftAction => 'Pašalinti';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kvitas paruoštas';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Jūsų kvitas paruoštas. Perkeliant jį į sąrašą?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kvitas jau pridėtas?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Sąrašas, atitinkantis šią parduotuvę ir laiką, jau egzistuoja ($listTitle). Vis tiek pridėti?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Vis tiek pridėti';
+
+  @override
+  String get receiptDuplicateDelete => 'Pašalinti kvitą';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nėra laukiančių kvitų';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Nuskenuoti kvitai apdorojami fone ir čia išlieka, kol juos konvertuosite arba pašalinsite.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count puslapiai';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kvitų nuotraukos';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Spustelėkite kvito nuotrauką, kad pamatytumėte pilno dydžio';
+
+  @override
+  String get receiptPhotoPreparing => 'Ruošiama kvito nuotrauka…';
+
+  @override
+  String get homeProPromoTitle => 'Išbandykite „Pro“ 24 valandas nemokamai';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 DI kvitų nuskaitymų ir be reklamų atrakinta · Kortelės nereikia';
+
+  @override
+  String get receiptFailureSheetTitle => 'Kodėl nepavyko perskaityti';
+
+  @override
+  String get receiptFailureMissingTop => 'Trūksta viršaus';
+
+  @override
+  String get receiptFailureMissingBottom => 'Trūksta apačios';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Trūksta vidurio';
+
+  @override
+  String get receiptFailureNotReceipt => 'Tai ne kvitas';
+
+  @override
+  String get receiptFailureUnreadable => 'Neįskaitoma';
+
+  @override
+  String get receiptFailureMismatch => 'Suma nesutampa';
+
+  @override
+  String get receiptFailureRejected => 'Atmesta';
+
+  @override
+  String get receiptFailureService => 'Paslauga nepasiekiama';
+
+  @override
+  String get receiptFailureUnknown => 'Nepavyko perskaityti';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Nufotografuokite likusį dalį';
+
+  @override
+  String get receiptFailureRetakeAction => 'Fotografuoti iš naujo';
 }

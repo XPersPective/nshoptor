@@ -936,7 +936,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get planFreeAi => '10 AI kérés havonta';
 
   @override
-  String get planFreeAds => 'Kis banner hirdetések (az első 7 napban nincs)';
+  String get planFreeAds => 'Kis banner hirdetések';
 
   @override
   String get planCoreFeatures => 'Listák, árak, nyugták, kiadási diagramok';
@@ -1584,4 +1584,200 @@ class AppLocalizationsHu extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'A limit $percent%-a felhasználva';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Ellenőrzés és javítás';
+
+  @override
+  String get receiptEditDetailsTitle => 'Nyugta adatai';
+
+  @override
+  String get receiptDateTimeLabel => 'Dátum és idő';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Az összeg nem egyezik';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'A tételek $difference eltéréssel különböznek a nyugta végösszegétől. Mentés mégis?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Mentés mégis';
+
+  @override
+  String get receiptNeedsDetails =>
+      'A nyugta mentéséhez adja meg az üzletet és a dátumot.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nem olvasható: $fields. Ezeket ellenőrzés közben kitöltheti.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'A kamerához való hozzáférés ki van kapcsolva. Kapcsolja be a Beállításokban a nyugták és címkék beolvasásához.';
+
+  @override
+  String get openSettingsAction => 'Beállítások megnyitása';
+
+  @override
+  String get priceManualEntryAction => 'Ár megadása kézzel';
+
+  @override
+  String get priceRetakeAction => 'Új fénykép készítése';
+
+  @override
+  String get paletteSage => 'Zsálya';
+
+  @override
+  String get paletteSlate => 'Pala';
+
+  @override
+  String get receiptContinueSame => 'Folytatás ugyanazzal a számlával';
+
+  @override
+  String get receiptCaptureDone => 'Kész';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count oldal rögzítve';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'A számla sorba állítva – előkészítés folyamatban.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Egy számlához maximum $max oldal adható hozzá.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Árcímke olvasása…';
+
+  @override
+  String get shelfLabelContinueOther => 'Másik termék beolvasása';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Az árcímke háttérben olvasható.';
+
+  @override
+  String get listsTabReceipts => 'Számláim';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Számláim ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Várakozik';
+
+  @override
+  String get receiptStatusProcessing => 'Számla olvasása…';
+
+  @override
+  String get receiptStatusReady => 'Kész';
+
+  @override
+  String get receiptStatusDuplicate => 'Lehetséges másolat';
+
+  @override
+  String get receiptStatusFailed => 'Nem sikerült olvasni';
+
+  @override
+  String get receiptConvertToListAction => 'Átalakítás listává';
+
+  @override
+  String get receiptRetryReadAction => 'Újrapróbálkozás';
+
+  @override
+  String get receiptDeleteDraftAction => 'Törlés';
+
+  @override
+  String get receiptReadyNotificationTitle => 'A számla kész';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'A számlád készen áll. Áthelyezed egy listára?';
+
+  @override
+  String get receiptDuplicateTitle => 'Már hozzáadva a számla?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Már létezik ilyen üzletre és időpontra vonatkozó lista ($listTitle). Mindenképp hozzáadod?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Hozzáadás mindenképp';
+
+  @override
+  String get receiptDuplicateDelete => 'Számla törlése';
+
+  @override
+  String get receiptEmptyTrayTitle =>
+      'Nincsenek feldolgozás alatt lévő számlák';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'A beolvasott számlák háttérben készülnek, és itt maradnak, amíg átalakítod vagy eltávolítod őket.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count oldal';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Számlafotók';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Koppints egy számlafotóra a teljes méretű megtekintéshez';
+
+  @override
+  String get receiptPhotoPreparing => 'Nyugtafotó előkészítése…';
+
+  @override
+  String get homeProPromoTitle => 'Próbálja ki a Pro-t 24 órán át ingyen';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI blokkszkennelés és reklámmentesség feloldva · Kártya nem kell';
+
+  @override
+  String get receiptFailureSheetTitle => 'Miért nem sikerült olvasni?';
+
+  @override
+  String get receiptFailureMissingTop => 'Felső rész hiányzik';
+
+  @override
+  String get receiptFailureMissingBottom => 'Alsó rész hiányzik';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Középső rész hiányzik';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nem számla';
+
+  @override
+  String get receiptFailureUnreadable => 'Nem olvasható';
+
+  @override
+  String get receiptFailureMismatch => 'Az összeg nem egyezik';
+
+  @override
+  String get receiptFailureRejected => 'Nem sikerült olvasni';
+
+  @override
+  String get receiptFailureService => 'Szolgáltatás nem elérhető';
+
+  @override
+  String get receiptFailureUnknown => 'Olvasás sikertelen';
+
+  @override
+  String get receiptFailureAddMoreAction => 'A többi rész fotózása';
+
+  @override
+  String get receiptFailureRetakeAction => 'Újrafényképezés';
 }

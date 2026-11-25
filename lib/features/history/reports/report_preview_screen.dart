@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/money/format_locale.dart';
+import '../../../core/text/store_name.dart';
+import '../../receipts/receipt_photo_viewer.dart';
 import 'report_document.dart';
 import 'report_export_service.dart';
 import 'report_repository.dart';
@@ -123,7 +125,20 @@ class _ShoppingSection extends StatelessWidget {
         ),
         if (report.storeName != null)
           Text('${l.storeLabel}: ${report.storeName}'),
-        for (final receipt in report.receipts) Text(text.receipt(receipt)),
+        Text(
+          '${l.reportTotalSpent}: ${report.spent.display(text.money)}',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        if (report.list.budgetMinorUnits != null &&
+            report.spent.known &&
+            !report.spent.unknown &&
+            report.spent.minor > report.list.budgetMinorUnits!)
+          Text(
+            '${l.budgetLabel}: ${l.monthlyLimitOver(text.money(report.spent.minor - report.list.budgetMinorUnits!))}',
+            key: Key('report_over_limit_$index'),
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+        const SizedBox(height: 8),
         for (final (row, p) in report.products.indexed)
           Card(
             key: Key('report_product_${index}_$row'),
@@ -188,24 +203,90 @@ class _ShoppingSection extends StatelessWidget {
                             );
                     },
                   ),
+                  if (p.discountMinor > 0) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      p.discountLabel?.isNotEmpty == true
+                          ? '${l.receiptDiscountLine}: −${text.money(p.discountMinor)} (${p.discountLabel})'
+                          : '${l.receiptDiscountLine}: −${text.money(p.discountMinor)}',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 8),
                   Text('${l.compareDiff}: ${text.amount(p.difference)}'),
                 ],
               ),
             ),
           ),
-        Text(
-          '${l.reportTotalSpent}: ${report.spent.display(text.money)}',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        if (report.list.budgetMinorUnits != null &&
-            report.spent.known &&
-            !report.spent.unknown &&
-            report.spent.minor > report.list.budgetMinorUnits!)
-          Text(
-            '${l.budgetLabel}: ${l.monthlyLimitOver(text.money(report.spent.minor - report.list.budgetMinorUnits!))}',
-            key: Key('report_over_limit_$index'),
-            style: TextStyle(color: Theme.of(context).colorScheme.error),
+        if (report.receipts.isNotEmpty)
+          Card(
+            key: Key('report_receipts_$index'),
+            margin: const EdgeInsets.only(top: 12),
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.receipt_long_outlined,
+                        size: 18,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          '${l.listReceiptsSection} (${report.receipts.length})',
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  for (final receipt in report.receipts) ...[
+                    Text(text.receipt(receipt)),
+                    if (receipt.imagePaths.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          for (var i = 0; i < receipt.imagePaths.length; i++)
+                            ReceiptPhotoThumbnail(
+                              key: Key('report_receipt_photo_${receipt.id}_$i'),
+                              imagePath: receipt.imagePaths[i],
+                              size: const Size(64, 84),
+                              semanticLabel: l.receiptOpenPhotoHint,
+                              onTap: () => showReceiptPhotoViewer(
+                                context,
+                                imagePath: receipt.imagePaths[i],
+                                receiptId: receipt.id,
+                                title:
+                                    (receipt.confirmedStore ??
+                                            receipt.detectedStore) ==
+                                        null
+                                    ? null
+                                    : cleanStoreName(
+                                        (receipt.confirmedStore ??
+                                            receipt.detectedStore)!,
+                                      ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+                    if (receipt != report.receipts.last)
+                      const Divider(height: 20),
+                  ],
+                ],
+              ),
+            ),
           ),
       ],
     );

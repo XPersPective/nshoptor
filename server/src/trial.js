@@ -1,4 +1,4 @@
-export const TRIAL_MS = 7 * 24 * 60 * 60 * 1000;
+export const TRIAL_MS = 24 * 60 * 60 * 1000;
 export const trialEnabled = env => env.TRIAL_ENABLED === '1';
 
 const snapshot = row => row == null ? null : ({
@@ -16,15 +16,16 @@ export async function registerTrial(env, id, firstOpenedAt, now) {
     'INSERT INTO install_trials(install_id, started_at, ends_at, last_seen_at) VALUES(?, ?, ?, ?) ' +
     'ON CONFLICT(install_id) DO UPDATE SET ' +
     'started_at = MIN(started_at, excluded.started_at), ' +
-    'ends_at = MIN(ends_at, excluded.ends_at), ' +
+    'ends_at = MIN(ends_at, started_at + ?, excluded.ends_at), ' +
     'last_seen_at = MAX(last_seen_at, excluded.last_seen_at) RETURNING *',
-  ).bind(id, start, start + TRIAL_MS, now).first();
+  ).bind(id, start, start + TRIAL_MS, now, TRIAL_MS).first();
   return snapshot(result);
 }
 
 export async function observeTrial(env, id, now) {
   const row = await env.DB.prepare(
-    'UPDATE install_trials SET last_seen_at = MAX(last_seen_at, ?) WHERE install_id = ? RETURNING *',
-  ).bind(now, id).first();
+    'UPDATE install_trials SET ends_at = MIN(ends_at, started_at + ?), ' +
+    'last_seen_at = MAX(last_seen_at, ?) WHERE install_id = ? RETURNING *',
+  ).bind(TRIAL_MS, now, id).first();
   return snapshot(row);
 }

@@ -1,0 +1,8 @@
+{
+  "contract": "fb33a9b80e330005",
+  "epoch": "3bab38d86f920149",
+  "independent": false,
+  "intent": "452a6f23a13f292e",
+  "note": "Add all 71 ARB locales for PB-213 keys and align connection_test.dart with capture-first flow",
+  "protocol": 1
+}

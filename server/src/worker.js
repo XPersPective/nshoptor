@@ -34,9 +34,21 @@ export async function handleAccess(request, env, { now = new Date() } = {}) {
   if (hint !== undefined && (!Number.isSafeInteger(hint) || hint < 0 || hint > 8640000000000000 - 604800000)) {
     return json(400, { error: 'invalid_start' });
   }
+  const deviceId = body.deviceTrialId;
+  if (deviceId !== undefined && (typeof deviceId !== 'string' || !/^[a-f0-9]{64}$/.test(deviceId))) {
+    return json(400, { error: 'invalid_device_id' });
+  }
   try {
-    const trial = await registerTrial(env, body.installId, hint, now.getTime());
-    return json(200, { trial });
+    const time = now.getTime();
+    if (deviceId === undefined) {
+      const trial = await registerTrial(env, body.installId, hint, time);
+      return json(200, { trial });
+    }
+    const installed = await observeTrial(env, body.installId, time);
+    const start = Math.min(installed?.startedAt ?? time, hint ?? time);
+    const device = await registerTrial(env, 'device:' + deviceId, start, time);
+    const trial = await registerTrial(env, body.installId, device.startedAt, device.serverNow);
+    return json(200, { trial, deviceConfirmed: true });
   } catch { return json(503, { error: 'busy' }); }
 }
 

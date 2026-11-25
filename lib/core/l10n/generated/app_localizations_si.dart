@@ -932,8 +932,7 @@ class AppLocalizationsSi extends AppLocalizations {
   String get planFreeAi => 'මාසයකට AI ඉල්ලීම් 10';
 
   @override
-  String get planFreeAds =>
-      'කුඩා බැනර් දැන්වීම් (ඔබේ පළමු දින 7 තුළ කිසිවක් නැත)';
+  String get planFreeAds => 'කුඩා බැනර් දැන්වීම්';
 
   @override
   String get planCoreFeatures => 'ලැයිස්තු, මිල, ලැබුම් පත්, ආදායම චාට්';
@@ -1317,10 +1316,10 @@ class AppLocalizationsSi extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'පෙර මාසය';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'ඊළඟ මාසය';
 
   @override
   String get helpSection => 'උදව් සහ සහාය';
@@ -1580,4 +1579,199 @@ class AppLocalizationsSi extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'සීමාවෙන් $percent% ක් භාවිතා කර ඇත';
   }
+
+  @override
+  String get receiptReviewNowAction => 'සමාලෝචනය කර නිවැරදි කරන්න';
+
+  @override
+  String get receiptEditDetailsTitle => 'රිසිට්පතේ විස්තර';
+
+  @override
+  String get receiptDateTimeLabel => 'දිනය සහ වේලාව';
+
+  @override
+  String get receiptSaveAnywayTitle => 'මුළු මුදල නොගැළපේ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'භාණ්ඩ එකතුව රිසිට්පතේ මුළු මුදලෙන් $difference කින් වෙනස් වේ. කෙසේ හෝ සුරකින්නද?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'කෙසේ හෝ සුරකින්න';
+
+  @override
+  String get receiptNeedsDetails =>
+      'මෙම රිසිට්පත සුරැකීමට සාප්පුව සහ දිනය එක් කරන්න.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'කියවිය නොහැකි විය: $fields. සමාලෝචනය කරන අතරතුර මේවා පුරවන්න පුළුවන.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'කැමරා ප්‍රවේශය වසා ඇත. රිසිට්පත් සහ ලේබල් පරීක්ෂා කිරීමට සැකසුම් තුළින් එය සක්‍රිය කරන්න.';
+
+  @override
+  String get openSettingsAction => 'සැකසුම් විවෘත කරන්න';
+
+  @override
+  String get priceManualEntryAction => 'මිල අතින් ඇතුළත් කරන්න';
+
+  @override
+  String get priceRetakeAction => 'වෙනත් ඡායාරූපයක් ගන්න';
+
+  @override
+  String get paletteSage => 'සේජ්';
+
+  @override
+  String get paletteSlate => 'ස්ලේට්';
+
+  @override
+  String get receiptContinueSame => 'එම රිසිට්පතම ඉදිරියට යන්න';
+
+  @override
+  String get receiptCaptureDone => 'අවසන්';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count පිටු ගැනීම සම්පූර්ණයි';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'රිසිට්පත වාරයේ තබා ඇත — පසුබිමේ සකස් කරමින්.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'රිසිට්පතකට $max දක්වා පිටු එකතු කළ හැක.';
+  }
+
+  @override
+  String get shelfLabelReading => 'මිල ලේබලය කියවමින්…';
+
+  @override
+  String get shelfLabelContinueOther => 'වෙනත් අයිතමයක් ස්කෑන් කරන්න';
+
+  @override
+  String get shelfLabelQueuedNotice => 'මිල ලේබලය පසුබිමේ කියවමින් පවතී.';
+
+  @override
+  String get listsTabReceipts => 'මගේ බිල්පත්';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'මගේ බිල්පත් ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'අනුරූපණය වෙමින්';
+
+  @override
+  String get receiptStatusProcessing => 'බිල්පත කියවමින්…';
+
+  @override
+  String get receiptStatusReady => 'සූදානම්';
+
+  @override
+  String get receiptStatusDuplicate => 'සමාන බිල්පතක් තිබිය හැක';
+
+  @override
+  String get receiptStatusFailed => 'කියවා ගත නොහැක';
+
+  @override
+  String get receiptConvertToListAction => 'ලැයිස්තුවක් බවට පරිවර්තනය කරන්න';
+
+  @override
+  String get receiptRetryReadAction => 'නැවත උත්සාහ කරන්න';
+
+  @override
+  String get receiptDeleteDraftAction => 'මකන්න';
+
+  @override
+  String get receiptReadyNotificationTitle => 'බිල්පත සූදානම්';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ඔබේ බිල්පත සූදානම්. එය ලැයිස්තුවකට මාරු කරන්නද?';
+
+  @override
+  String get receiptDuplicateTitle => 'බිල්පත දැනටමත් එකතු කර ඇති බවක්?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'මෙම වෙළඳසැල සහ කාලයට ගැලපෙන ලැයිස්තුවක් දැනටමත් පවතී ($listTitle). නැවත එකතු කරන්නද?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'එසේම එකතු කරන්න';
+
+  @override
+  String get receiptDuplicateDelete => 'බිල්පත මකන්න';
+
+  @override
+  String get receiptEmptyTrayTitle => 'අනුරූපණය වෙමින් පවතින බිල්පත් නැත';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ස්කෑන් කරන ලද බිල්පත් පසුබිමේ සකස් වන අතර, ඔබ ඒවා පරිවර්තනය හෝ ඉවත් කරන තෙක් මෙහි රඳවා ගනී.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count පිටු';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'බිල්පත් ඡායාරූප';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'සම්පූර්ණ ප්‍රමාණයෙන් බැලීමට බිල්පත් ඡායාරූපයක් තට්ටු කරන්න';
+
+  @override
+  String get receiptPhotoPreparing => 'රිසිට්පත් ඡායාරූපය සූදානම් කරමින්…';
+
+  @override
+  String get homeProPromoTitle => 'පැය 24ක් Pro නොමිලේ අත්හදා බලන්න';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'AI රිසිට්පත් ස්කෑන් 100ක් හා දැන්වීම් රහිතව විවෘතයි · කාඩ් අවශ්‍ය නැත';
+
+  @override
+  String get receiptFailureSheetTitle => 'කියවිය නොහැක්කේ ඇයි';
+
+  @override
+  String get receiptFailureMissingTop => 'ඉහළ කොටස නැත';
+
+  @override
+  String get receiptFailureMissingBottom => 'පහළ කොටස නැත';
+
+  @override
+  String get receiptFailureMissingMiddle => 'මැද කොටස නැත';
+
+  @override
+  String get receiptFailureNotReceipt => 'රිසිට්පතක් නොවේ';
+
+  @override
+  String get receiptFailureUnreadable => 'අලෙක් නොවේ';
+
+  @override
+  String get receiptFailureMismatch => 'මුළු මුදල නොගැළපේ';
+
+  @override
+  String get receiptFailureRejected => 'කියවා ගත නොහැක';
+
+  @override
+  String get receiptFailureService => 'සේවාවය නොලබා දිය නොහැක';
+
+  @override
+  String get receiptFailureUnknown => 'කියවීම අසාර්ථකයි';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ඉතිරිය ඡායාරූපයක් ගන්න';
+
+  @override
+  String get receiptFailureRetakeAction => 'නැවත ඡායාරූපයක් ගන්න';
 }

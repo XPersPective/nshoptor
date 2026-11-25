@@ -91,14 +91,26 @@ void main() {
           expect(creation.overlaps(receipt), isFalse);
           expect(find.byKey(const Key('lists_search_button')), findsNothing);
           expect(find.byKey(const Key('lists_search_field')), findsOneWidget);
-          for (final key in ['lists_sort_button', 'home_nav_discover']) {
-            final control = find.byKey(Key(key));
-            expect(
-              tester.getSize(control).shortestSide,
-              greaterThanOrEqualTo(48),
-            );
-            expect(tester.widget<IconButton>(control).tooltip, isNotEmpty);
-          }
+          final sortControl = find.byKey(const Key('lists_sort_button'));
+          expect(
+            tester.getSize(sortControl).shortestSide,
+            greaterThanOrEqualTo(48),
+          );
+          expect(
+            tester
+                .widget<PopupMenuButton<dynamic>>(sortControl)
+                .tooltip,
+            isNotEmpty,
+          );
+          final discoverControl = find.byKey(const Key('home_nav_discover'));
+          expect(
+            tester.getSize(discoverControl).shortestSide,
+            greaterThanOrEqualTo(48),
+          );
+          expect(
+            tester.widget<IconButton>(discoverControl).tooltip,
+            isNotEmpty,
+          );
           expect(find.byKey(const Key('lists_tools_button')), findsNothing);
           expect(
             receipt.bottom,

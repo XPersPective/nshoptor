@@ -935,8 +935,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get planFreeAi => 'ತಿಂಗಳಿಗೆ 10 AI ವಿನಂತಿಗಳು';
 
   @override
-  String get planFreeAds =>
-      'ಚಿಕ್ಕ ಬ್ಯಾನರ್ ವಿಜ್ಞಾಪನೆಗಳು (ಮೊದಲ 7 ದಿನಗಳಲ್ಲಿ ಯಾವುದೂ ಇಲ್ಲ)';
+  String get planFreeAds => 'ಚಿಕ್ಕ ಬ್ಯಾನರ್ ವಿಜ್ಞಾಪನೆಗಳು';
 
   @override
   String get planCoreFeatures =>
@@ -1321,10 +1320,10 @@ class AppLocalizationsKn extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'ಹಿಂದಿನ ತಿಂಗಳು';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'ಮುಂದಿನ ತಿಂಗಳು';
 
   @override
   String get helpSection => 'ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ';
@@ -1582,4 +1581,199 @@ class AppLocalizationsKn extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'ಮಿತಿಯ $percent% ಬಳಸಲಾಗಿದೆ';
   }
+
+  @override
+  String get receiptReviewNowAction => 'ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಸರಿಪಡಿಸಿ';
+
+  @override
+  String get receiptEditDetailsTitle => 'ರಸೀದಿ ವಿವರಗಳು';
+
+  @override
+  String get receiptDateTimeLabel => 'ದಿನಾಂಕ ಮತ್ತು ಸಮಯ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'ಒಟ್ಟು ಮೊತ್ತ ತಾಳೆಯಾಗುತ್ತಿಲ್ಲ';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'ವಸ್ತುಗಳ ಮೊತ್ತ ರಸೀದಿಯ ಒಟ್ಟು ಮೊತ್ತದಿಂದ $difference ವ್ಯತ್ಯಾಸವಿದೆ. ಇನ್ನೂ ಉಳಿಸಬೇಕೆ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'ಇನ್ನೂ ಉಳಿಸಿ';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ಈ ರಸೀದಿಯನ್ನು ಉಳಿಸಲು ಅಂಗಡಿ ಮತ್ತು ದಿನಾಂಕವನ್ನು ಸೇರಿಸಿ.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'ಓದಲಾಗಲಿಲ್ಲ: $fields. ಪರಿಶೀಲಿಸುವಾಗ ಇವನ್ನು ಭರ್ತಿ ಮಾಡಬಹುದು.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶ ಆಫ್ ಇದೆ. ರಸೀದಿ ಮತ್ತು ಲೇಬಲ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಆನ್ ಮಾಡಿ.';
+
+  @override
+  String get openSettingsAction => 'ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ';
+
+  @override
+  String get priceManualEntryAction => 'ಬೆಲೆಯನ್ನು ಕೈಯಾರೆ ನಮೂದಿಸಿ';
+
+  @override
+  String get priceRetakeAction => 'ಇನ್ನೊಂದು ಫೋಟೋ ತೆಗೆಯಿರಿ';
+
+  @override
+  String get paletteSage => 'ಸೇಜ್';
+
+  @override
+  String get paletteSlate => 'ಸ್ಲೇಟ್';
+
+  @override
+  String get receiptContinueSame => 'ಅದೇ ರಿಸೀಟ್ ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get receiptCaptureDone => 'ಮುಗಿದಿದೆ';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count ಪುಟಗಳು ಕ್ಯಾಪ್ಚರ್ ಆಗಿವೆ';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'ರಿಸೀಟ್ ಕ್ಯೂನಲ್ಲಿ ಇದೆ — ಹಿನ್ನೆಲೆಯಲ್ಲಿ ತಯಾರಾಗುತ್ತಿದೆ.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ಪ್ರತಿ ರಿಸೀಟ್‌ಗೆ ಗರಿಷ್ಠ $max ಪುಟಗಳನ್ನು ಸೇರಿಸಬಹುದು.';
+  }
+
+  @override
+  String get shelfLabelReading => 'ಬೆಲೆ ಲೇಬಲ್ ಓದಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get shelfLabelContinueOther => 'ಇನ್ನೊಂದು ವಸ್ತುವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ';
+
+  @override
+  String get shelfLabelQueuedNotice => 'ಬೆಲೆ ಲೇಬಲ್ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಓದಲಾಗುತ್ತಿದೆ.';
+
+  @override
+  String get listsTabReceipts => 'ನನ್ನ ರಸೀತಿಗಳು';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'ನನ್ನ ರಸೀತಿಗಳು ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'ಕ್ಯೂ‌ನಲ್ಲಿದೆ';
+
+  @override
+  String get receiptStatusProcessing => 'ರಸೀತಿಯನ್ನು pad್ಧಿ ಮಾಡುತ್ತಿದ್ದೇವೆ…';
+
+  @override
+  String get receiptStatusReady => 'ತಯಾರಾಗಿದೆ';
+
+  @override
+  String get receiptStatusDuplicate => 'ಸಾಧ್ಯವಾದ ನಕಲು';
+
+  @override
+  String get receiptStatusFailed => 'ಪಢಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
+
+  @override
+  String get receiptConvertToListAction => 'ಪಟ್ಟಿಗೆಗೆ ಪರಿವರ್ತಿಸಿ';
+
+  @override
+  String get receiptRetryReadAction => 'ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ';
+
+  @override
+  String get receiptDeleteDraftAction => 'ಅಳಿಸಿ';
+
+  @override
+  String get receiptReadyNotificationTitle => 'ರಸೀತಿ ತಯಾರಾಗಿದೆ';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'ನಿಮ್ಮ ರಸೀತಿ ತಯಾರಾಗಿದೆ. ಇದನ್ನು ಪಟ್ಟಿಗೆಗೆ ವರ್ಗಾಯಿಸುವುದೇ?';
+
+  @override
+  String get receiptDuplicateTitle => 'ರಸೀತಿ ಈಗಾಗಲೇ ಸೇರಿದೆಯೇ?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'ಈ ಅಂಗಡಿ ಮತ್ತು ಸಮಯಕ್ಕೆ ಹೊಂದಿಕೆಯಾಗುವ ಪಟ್ಟಿಯೊಂದು ಈಗಾಗಲೇ ಇದೆ ($listTitle). ಮತ್ತೆ ಸೇರಿಸುವುದೇ?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'ಮತ್ತೆ ಸೇರಿಸಿ';
+
+  @override
+  String get receiptDuplicateDelete => 'ರಸೀತಿಯನ್ನು ಅಳಿಸಿ';
+
+  @override
+  String get receiptEmptyTrayTitle => 'ಬಾಕಿ ರಸೀತಿಗಳಿಲ್ಲ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'ಸ್ಕ್ಯಾನ್ ಮಾಡಿದ ರಸೀತಿಗಳು ಹಿನ್ನೆಲೆಯಲ್ಲಿ ತಯಾರಾಗುತ್ತವೆ ಮತ್ತು ನೀವು ಪರಿವರ್ತಿಸುವವರೆಗೆ ಅಥವಾ ತೆಗೆದುಹಾಕುವವರೆಗೆ ಇಲ್ಲಿ ಉಳಿಯುತ್ತವೆ.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count ಪುಟಗಳು';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'ರಸೀತಿ ಫೋಟೋಗಳು';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'ಪೂರ್ಣ ಗಾತ್ರದಲ್ಲಿ ನೋಡಲು ರಸೀತಿ ಫೋಟೋವನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ';
+
+  @override
+  String get receiptPhotoPreparing => 'ರಸೀದಿ ಫೋಟೋ ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get homeProPromoTitle => '24 ಗಂಟೆಗಳ ಕಾಲ Pro ಉಚಿತವಾಗಿ ಪ್ರಯತ್ನಿಸಿ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI ರಸೀದಿ ಸ್ಕ್ಯಾನ್ ಮತ್ತು ಜಾಹೀರಾತು-ರಹಿತ ಲಭ್ಯ · ಕಾರ್ಡ್ ಬೇಡ';
+
+  @override
+  String get receiptFailureSheetTitle => 'ಏಕೆ ಓದಲಾಗಲಿಲ್ಲ';
+
+  @override
+  String get receiptFailureMissingTop => 'ಮೇಲಿನ ಭಾಗ ಇಲ್ಲ';
+
+  @override
+  String get receiptFailureMissingBottom => 'ಕೆಳಗಿನ ಭಾಗ ಇಲ್ಲ';
+
+  @override
+  String get receiptFailureMissingMiddle => 'ಮಧ್ಯಭಾಗ ಇಲ್ಲ';
+
+  @override
+  String get receiptFailureNotReceipt => 'ರಸೀದಿ ಅಲ್ಲ';
+
+  @override
+  String get receiptFailureUnreadable => 'ಓದಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ';
+
+  @override
+  String get receiptFailureMismatch => 'ಒಟ್ಟು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ';
+
+  @override
+  String get receiptFailureRejected => 'ತಡೆಹಿಡಿಯಲಾಗಿಲ್ಲ';
+
+  @override
+  String get receiptFailureService => 'ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ';
+
+  @override
+  String get receiptFailureUnknown => 'ಓದುವಿಕೆ ವಿಫಲವಾಗಿದೆ';
+
+  @override
+  String get receiptFailureAddMoreAction => 'ಉಳಿದದ್ದನ್ನು ಫೋಟೋ ತೆಗೆಯಿರಿ';
+
+  @override
+  String get receiptFailureRetakeAction => 'ಮತ್ತೆ ಫೋಟೋ ತೆಗೆಯಿರಿ';
 }

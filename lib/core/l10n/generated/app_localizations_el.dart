@@ -935,8 +935,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get planFreeAi => '10 αιτήσεις AI τον μήνα';
 
   @override
-  String get planFreeAds =>
-      'Μικρές διαφημίσεις μπάνερ (καμία στις πρώτες 7 ημέρες)';
+  String get planFreeAds => 'Μικρές διαφημίσεις μπάνερ';
 
   @override
   String get planCoreFeatures => 'Λίστες, τιμές, αποδείξεις, γραφήματα δαπανών';
@@ -1326,10 +1325,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Προηγούμενος μήνας';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Επόμενος μήνας';
 
   @override
   String get helpSection => 'Βοήθεια και υποστήριξη';
@@ -1590,4 +1589,200 @@ class AppLocalizationsEl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Χρησιμοποιήθηκε το $percent% του ορίου';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Ελέγξτε και διορθώστε';
+
+  @override
+  String get receiptEditDetailsTitle => 'Στοιχεία απόδειξης';
+
+  @override
+  String get receiptDateTimeLabel => 'Ημερομηνία και ώρα';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Το σύνολο δεν ταιριάζει';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Τα είδη διαφέρουν κατά $difference από το σύνολο της απόδειξης. Να αποθηκευτεί ούτως ή άλλως;';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Αποθήκευση ούτως ή άλλως';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Προσθέστε το κατάστημα και την ημερομηνία για να αποθηκεύσετε την απόδειξη.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Δεν ήταν δυνατή η ανάγνωση: $fields. Μπορείτε να τα συμπληρώσετε κατά τον έλεγχο.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Η πρόσβαση στην κάμερα είναι απενεργοποιημένη. Ενεργοποιήστε την στις ρυθμίσεις για να σαρώνετε αποδείξεις και ετικέτες.';
+
+  @override
+  String get openSettingsAction => 'Άνοιγμα ρυθμίσεων';
+
+  @override
+  String get priceManualEntryAction => 'Εισαγωγή τιμής χειροκίνητα';
+
+  @override
+  String get priceRetakeAction => 'Βγάλτε άλλη φωτογραφία';
+
+  @override
+  String get paletteSage => 'Φασκόμηλο';
+
+  @override
+  String get paletteSlate => 'Σχιστόλιθος';
+
+  @override
+  String get receiptContinueSame => 'Συνέχεια με το ίδιο απόδειξη';
+
+  @override
+  String get receiptCaptureDone => 'Ολοκλήρωση';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count σελίδες καταγράφηκαν';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Η απόδειξη περιμένει στη σειρά — προετοιμάζεται στο παρασκήνιο.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Μπορούν να προστεθούν έως $max σελίδες ανά απόδειξη.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Ανάγνωση ετικέτας τιμής…';
+
+  @override
+  String get shelfLabelContinueOther => 'Σάρωση άλλου προϊόντος';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Η ετικέτα τιμής αναγιγνώσκεται στο παρασκήνιο.';
+
+  @override
+  String get listsTabReceipts => 'Τα παραστατικά μου';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Τα παραστατικά μου ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Σε αναμονή';
+
+  @override
+  String get receiptStatusProcessing => 'Ανάγνωση παραστατικού…';
+
+  @override
+  String get receiptStatusReady => 'Έτοιμο';
+
+  @override
+  String get receiptStatusDuplicate => 'Πιθανό διπλότυπο';
+
+  @override
+  String get receiptStatusFailed => 'Δεν έγινε ανάγνωση';
+
+  @override
+  String get receiptConvertToListAction => 'Μετατροπή σε λίστα';
+
+  @override
+  String get receiptRetryReadAction => 'Επανάληψη';
+
+  @override
+  String get receiptDeleteDraftAction => 'Διαγραφή';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Το παραστατικό είναι έτοιμο';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Το παραστατικό σας είναι έτοιμο. Να το μεταφέρω σε λίστα;';
+
+  @override
+  String get receiptDuplicateTitle => 'Ήδη προστέθηκε παραστατικό;';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Υπάρχει ήδη λίστα για αυτό το κατάστημα και την ώρα ($listTitle). Να το προσθέσω ξανά;';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Ναι, πρόσθεσέ το';
+
+  @override
+  String get receiptDuplicateDelete => 'Διαγραφή παραστατικού';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Δεν υπάρχουν εκκρεμή παραστατικά';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Τα σαρωμένα παραστατικά επεξεργάζονται στο παρασκήνιο και μένουν εδώ μέχρι να τα μετατρέψετε ή να τα αφαιρέσετε.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count σελίδες';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Φωτογραφίες παραστατικών';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Πατήστε μια φωτογραφία παραστατικού για προβολή σε πλήρες μέγεθος';
+
+  @override
+  String get receiptPhotoPreparing => 'Προετοιμασία φωτογραφίας απόδειξης…';
+
+  @override
+  String get homeProPromoTitle => 'Δοκιμάστε το Pro δωρεάν για 24 ώρες';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 σαρώσεις αποδείξεων με ΤΝ & χωρίς διαφημίσεις · Χωρίς κάρτα';
+
+  @override
+  String get receiptFailureSheetTitle => 'Γιατί δεν διαβάστηκε';
+
+  @override
+  String get receiptFailureMissingTop => 'Λείπει το πάνω μέρος';
+
+  @override
+  String get receiptFailureMissingBottom => 'Λείπει το κάτω μέρος';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Λείπει το μεσαίο μέρος';
+
+  @override
+  String get receiptFailureNotReceipt => 'Δεν είναι απόδειξη';
+
+  @override
+  String get receiptFailureUnreadable => 'Δεν είναι ευανάγνωστο';
+
+  @override
+  String get receiptFailureMismatch => 'Το σύνολο δεν ταιριάζει';
+
+  @override
+  String get receiptFailureRejected => 'Δεν διαβάστηκε';
+
+  @override
+  String get receiptFailureService => 'Υπηρεσία μη διαθέσιμη';
+
+  @override
+  String get receiptFailureUnknown => 'Η ανάγνωση απέτυχε';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Φωτογραφήστε το υπόλοιπο';
+
+  @override
+  String get receiptFailureRetakeAction => 'Βγάλτε άλλη φωτογραφία';
 }

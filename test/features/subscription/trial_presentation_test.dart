@@ -64,7 +64,7 @@ void main() {
             find.byKey(const Key('plans_current_status')),
           );
           final l10n = AppLocalizations.of(context);
-          expect(find.text(l10n.planTrialDaysLeft(7)), findsOneWidget);
+          expect(find.text(l10n.planTrialHoursLeft(24)), findsOneWidget);
           expect(find.textContaining(l10n.planLegacyRights), findsNothing);
           expect(tester.takeException(), isNull);
           await tester.pumpWidget(
@@ -77,7 +77,7 @@ void main() {
                       label: 'Pro',
                       trial: true,
                       active: true,
-                      remaining: l10n.planTrialDaysLeft(7),
+                      remaining: l10n.planTrialHoursLeft(24),
                       onPressed: () {},
                     ),
                   ],
@@ -91,7 +91,7 @@ void main() {
           await tester.pumpAndSettle();
           expect(
             find.byTooltip(
-              'Pro · ${l10n.planTrialDaysLeft(7)} · ${l10n.tipPlan}',
+              'Pro · ${l10n.planTrialHoursLeft(24)} · ${l10n.tipPlan}',
             ),
             findsOneWidget,
           );

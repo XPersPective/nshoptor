@@ -1,0 +1,13 @@
+# Seven-day Pro trial — implementation and rollout
+
+ADR-005 separates promotional access from store ownership. The app explicitly initializes the original seven-day ad-grace clock as full local Pro access. Paid product/token/restore/replacement metadata remain actual store data. The effective plan and real store tier are separate; promotional status is hidden for paid customers. Countdown refreshes each minute and on resume. The one-time expiry explanation offers annual plans or Free continuation without touching shopping data. Settings exposes the configured support email and a copyable anonymous installation ID; no purchase token is displayed.
+
+The worker adds POST /v1/access (2KiB maximum body), backed by additive migration 0002_install_trials.sql. Registration is idempotent, cannot extend the original window, and reserves no AI/global quota. Only registered active installations receive pro-v2's 100/calendar-month allowance. Existing unregistered clients retain Free10; verified paid lineage/policy wins. All anonymous trial/Free requests share the existing installation/month counter, including after expiry. The client's first AI request registers first; registration failures do not consume a Free request, and newly restored paid credentials bypass a failed promotional registration.
+
+The local clock uses surviving legacy/policy anchors and sticky expiry. Server remaining duration is anchored to the local clock and can only shorten the window. Full data erasure creates a new anonymous identity and cannot be perfectly distinguished from a new installation without an account/platform authority. Offline elapsed time and compromised clocks cannot provide absolute anti-abuse guarantees; AI eligibility is decided on the server.
+
+## Deployment gate
+
+Source default TRIAL_ENABLED=0 intentionally preserves current remote behavior. This is not live trial rollout evidence. Before enabling: read back current worker/D1 state; apply additive migration 0002 without clearing existing usage; confirm table/schema and old counters; enable flag in a reviewed deployment; verify /v1/access twice with the same dedicated QA ID and inspect identical deadline/no usage reservation. Never call the actual AI provider merely to prove registration. Native app/store and real purchase/restore tests remain separate. No deployment or migration was performed as part of these local changes.
+
+Local tests/results and any later rollout must be appended with precise source/build scope. Formal PB acceptance remains open; translation key alignment and generated code alone do not prove all71 locales are naturally translated or visually correct.

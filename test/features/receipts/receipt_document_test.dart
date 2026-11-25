@@ -707,4 +707,83 @@ void main() {
       throwsUnsupportedError,
     );
   });
+
+  test(
+    'appendSequential stitches 2-page A101 and SOK receipts (overlapping, non-overlapping, and duplicate pages) and round-trips encode/decode',
+    () {
+      // 1. A101 2-page split: Page 1 has branch header + 16:56 + repeated WINSTON;
+      //    Page 2 has overlapping WINSTON + remaining items + total + fatura.a101.com.tr + 16:57 POS time.
+      final a101Page1 = _document([
+        'USKUDAR/94804',
+        'TARIH :18.10.2026 16:56',
+        'BELGE NO :20543020261018165746',
+        '2 x20,00 TL/ad',
+        'EKMEK %01 *40,00',
+        'WINSTON SLIMS GRi %00 *130,00',
+        'WINSTON SLIMS GRi %00 *130,00',
+      ]);
+      final a101Joined = a101Page1.appendSequential(
+        _scan([
+          'WINSTON SLIMS GRi %00 *130,00',
+          'WINSTON SLIMS GRi %00 *130,00',
+          'SIVI DET. ALOE VERA 1,5 L RINS%20 *89,50',
+          'KOFTE PiLiC PARMAK 260 G ERPiL%01 *89,00',
+          'GAZLI iCECEK KOLA 1.75 L COCA %10 *85,00',
+          'ARA TOPLAM *563,50',
+          'ODENECEK TUTAR *563,50',
+          'https://fatura.a101.com.tr',
+          '18.10.2026 16:57 B:000074 S:000038',
+        ]),
+      );
+      final a101Restored = ReceiptDocument.decode(a101Joined.encode());
+      expect(a101Restored.state, ReceiptDocumentState.complete);
+      expect(a101Restored.metadata.store, 'A101');
+      expect(a101Restored.productLines, hasLength(6));
+      expect(a101Restored.metadata.totalMinor, 56350);
+      expect(
+        a101Restored.toParseResult().withinReconciliationTolerance,
+        isTrue,
+      );
+
+      // 2. SOK 2-page split WITHOUT any overlapping product line:
+      final sokPage1 = _document([
+        'ŞOK MARKETLER TİC.A.Ş',
+        'TARİH : 01/02/2024',
+        'SAAT : 20:51:41',
+        'FİŞ NO : 0259',
+        'OZMO FUN FİGÜRLÜ 23G %01 *13,50',
+        '7-24 NAMET DANA MACA %01 *27,90',
+        'OZMO FUN FİGÜRLÜ 23G %01 *13,50',
+        '1,033Kg X 99,00',
+        'TADPİ PİLİÇ BAGET KG %01 *102,27',
+      ]);
+      final sokJoined = sokPage1.appendSequential(
+        _scan([
+          'FINISH QUANTUM ÖZEL %20 *259,00',
+          '25TLFINISH110TL *149,00-',
+          'FINISH QUANTUM ÖZEL %20 *259,00',
+          '25TLFINISH110TL *149,00-',
+          'ARKO DEĞERLİ YAĞLAR %20 *104,50',
+          '25TLARKO50TL *54,50-',
+          'ALIŞVERİŞ POŞETİ 43 %20 *0,25',
+          'TOPKDV *46,60',
+          'TOPLAM *427,42',
+        ]),
+      );
+      final sokRestored = ReceiptDocument.decode(sokJoined.encode());
+      expect(sokRestored.state, ReceiptDocumentState.complete);
+      expect(sokRestored.productLines, hasLength(8));
+      expect(sokRestored.metadata.totalMinor, 42742);
+      expect(sokRestored.toParseResult().discountMinor, 35250);
+      expect(sokRestored.toParseResult().computedTotalMinor, 42742);
+      expect(sokRestored.toParseResult().withinReconciliationTolerance, isTrue);
+
+      // 3. Same full page added twice in a 2-page session does not double-count:
+      final duplicated = a101Restored.appendSequential(
+        a101Restored.fragments.first,
+      );
+      expect(duplicated.productLines, hasLength(6));
+      expect(duplicated.toParseResult().withinReconciliationTolerance, isTrue);
+    },
+  );
 }

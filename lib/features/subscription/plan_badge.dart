@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/l10n/generated/app_localizations.dart';
 import 'subscription_service.dart';
 
-/// Plan adı: Ücretsiz, Pro ya da Max. Geçici Pro (ödüllü hediye) ücretsiz
+/// Plan adı: Free, Pro ya da Max. Geçici Pro (ödüllü hediye) ücretsiz
 /// katmanda "Pro" gösterir (Ayarlar ile aynı kural).
 String planLabel(
   AppLocalizations l10n, {
@@ -12,10 +12,10 @@ String planLabel(
 }) => switch (tier) {
   Tier.max => 'Max',
   Tier.pro => 'Pro',
-  Tier.free => proUnlocked ? 'Pro' : l10n.planFree,
+  Tier.free => proUnlocked ? 'Pro' : 'Free',
 };
 
-/// Paywall başlığındaki açık durum: "Mevcut: Pro · 7 gün ücretsiz".
+/// Paywall başlığındaki açık durum: "Mevcut: Pro · Deneme".
 String planStatusText(
   AppLocalizations l10n, {
   required String label,
@@ -79,42 +79,50 @@ class PlanBadge extends StatelessWidget {
             height: 48,
             child: Center(
               widthFactor: 1,
-              child: DecoratedBox(
-                decoration: ShapeDecoration(
-                  shape: const StadiumBorder(),
-                  color: active
-                      ? scheme.primaryContainer.withValues(alpha: 0.7)
-                      : scheme.surfaceContainerHighest.withValues(alpha: 0.7),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: iconOnly ? 8 : 10,
-                    vertical: 5,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        trial ? Icons.hourglass_top : Icons.workspace_premium,
-                        size: 14,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 32),
+                child: DecoratedBox(
+                  decoration: ShapeDecoration(
+                    shape: StadiumBorder(
+                      side: BorderSide(
                         color: active
-                            ? scheme.primary
-                            : scheme.onSurfaceVariant,
+                            ? scheme.outlineVariant.withValues(alpha: 0.55)
+                            : scheme.primary.withValues(alpha: 0.45),
                       ),
-                      if (!iconOnly) ...[
-                        const SizedBox(width: 4),
-                        Flexible(
-                          child: Text(
-                            display,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.labelMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
+                    ),
+                    color: active
+                        ? scheme.primaryContainer.withValues(alpha: 0.72)
+                        : scheme.primaryContainer.withValues(alpha: 0.28),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: iconOnly ? 10 : 12,
+                      vertical: 5,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          trial ? Icons.hourglass_top : Icons.workspace_premium,
+                          size: 16,
+                          color: scheme.primary,
+                        ),
+                        if (!iconOnly) ...[
+                          const SizedBox(width: 6),
+                          Flexible(
+                            child: Text(
+                              display,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.15,
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),

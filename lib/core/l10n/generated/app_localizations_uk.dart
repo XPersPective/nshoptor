@@ -936,8 +936,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get planFreeAi => '10 запитів до AI на місяць';
 
   @override
-  String get planFreeAds =>
-      'Невеликі банерні реклами (перші 7 днів без реклами)';
+  String get planFreeAds => 'Невеликі банерні реклами';
 
   @override
   String get planCoreFeatures => 'Списки, ціни, чеки, графіки витрат';
@@ -1321,10 +1320,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Попередній місяць';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Наступний місяць';
 
   @override
   String get helpSection => 'Допомога та підтримка';
@@ -1588,4 +1587,198 @@ class AppLocalizationsUk extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Використано $percent% ліміту';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Перевірити й виправити';
+
+  @override
+  String get receiptEditDetailsTitle => 'Дані чека';
+
+  @override
+  String get receiptDateTimeLabel => 'Дата і час';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Сума не збігається';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Сума товарів відрізняється від загальної суми чека на $difference. Усе одно зберегти?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Усе одно зберегти';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Додайте магазин і дату, щоб зберегти цей чек.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Не вдалося прочитати: $fields. Це можна заповнити під час перевірки.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Доступ до камери вимкнено. Увімкніть його в налаштуваннях, щоб сканувати чеки та етикетки.';
+
+  @override
+  String get openSettingsAction => 'Відкрити налаштування';
+
+  @override
+  String get priceManualEntryAction => 'Ввести ціну вручну';
+
+  @override
+  String get priceRetakeAction => 'Перезняти фото';
+
+  @override
+  String get paletteSage => 'Шавлія';
+
+  @override
+  String get paletteSlate => 'Сланець';
+
+  @override
+  String get receiptContinueSame => 'Продовжити той самий чек';
+
+  @override
+  String get receiptCaptureDone => 'Готово';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count сторінок знято';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Чек у черзі — обробка в фоновому режимі.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'До $max сторінок можна додати на один чек.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Зчитування ціни…';
+
+  @override
+  String get shelfLabelContinueOther => 'Сканувати інший товар';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Ціна зчитується в фоновому режимі.';
+
+  @override
+  String get listsTabReceipts => 'Мої чеки';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Мої чеки ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'В черзі';
+
+  @override
+  String get receiptStatusProcessing => 'Зчитування чека…';
+
+  @override
+  String get receiptStatusReady => 'Готово';
+
+  @override
+  String get receiptStatusDuplicate => 'Можливий дублікат';
+
+  @override
+  String get receiptStatusFailed => 'Не вдалося зчитати';
+
+  @override
+  String get receiptConvertToListAction => 'Перетворити на список';
+
+  @override
+  String get receiptRetryReadAction => 'Повторити';
+
+  @override
+  String get receiptDeleteDraftAction => 'Видалити';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Чек готовий';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ваш чек готовий. Перенести його до списку?';
+
+  @override
+  String get receiptDuplicateTitle => 'Чек уже додано?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Список для цього магазину та часу вже існує ($listTitle). Додати все одно?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Додати все ж таки';
+
+  @override
+  String get receiptDuplicateDelete => 'Видалити чек';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Немає очікуваних чеків';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Зскановані чеки обробляються у фоновому режимі й залишаються тут, поки ви не перетворите їх на список або не видалите.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count стор.';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Фото чеків';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Натисніть на фото чека, щоб переглянути у повному розмірі';
+
+  @override
+  String get receiptPhotoPreparing => 'Підготовка фото чека…';
+
+  @override
+  String get homeProPromoTitle => 'Спробуйте Pro 24 години безкоштовно';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ШІ-сканів чеків і без реклами відкрито · Картка не потрібна';
+
+  @override
+  String get receiptFailureSheetTitle => 'Чому не вдалося зчитати';
+
+  @override
+  String get receiptFailureMissingTop => 'Верхня частина відсутня';
+
+  @override
+  String get receiptFailureMissingBottom => 'Нижня частина відсутня';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Середня частина відсутня';
+
+  @override
+  String get receiptFailureNotReceipt => 'Це не чек';
+
+  @override
+  String get receiptFailureUnreadable => 'Нерозбірливо';
+
+  @override
+  String get receiptFailureMismatch => 'Сума не збігається';
+
+  @override
+  String get receiptFailureRejected => 'Не вдалося зчитати';
+
+  @override
+  String get receiptFailureService => 'Сервіс недоступний';
+
+  @override
+  String get receiptFailureUnknown => 'Читання не вдалося';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Сфотографуйте решту';
+
+  @override
+  String get receiptFailureRetakeAction => 'Перезняти';
 }

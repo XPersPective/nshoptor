@@ -45,12 +45,23 @@ def main():
             d = root / loc
             for key, name in [('title','title.txt'),('short','short_description.txt'),('full','full_description.txt')]:
                 assert (d / name).read_text(encoding='utf-8').strip() == listing.L[loc][key].strip(), (loc,name)
-            files = list((d / 'images/phoneScreenshots').glob('*.png'))
+            files = sorted((d / 'images/phoneScreenshots').glob('*.png'))
             assert len(files) == 8, loc
-            for f in files:
+            for idx, f in enumerate(files):
+                expected_size = (1080, 1920) if idx < 6 else (1920, 1080)
                 with Image.open(f) as img:
-                    assert img.size == (1080,1920), f
+                    assert img.size == expected_size, (f, img.size, expected_size)
                     img.verify()
+            for folder, expected_size in [
+                ('images/sevenInchScreenshots', (1920, 1200)),
+                ('images/tenInchScreenshots', (2560, 1600)),
+            ]:
+                tfiles = sorted((d / folder).glob('*.png'))
+                assert len(tfiles) == 4, (loc, folder, len(tfiles))
+                for f in tfiles:
+                    with Image.open(f) as img:
+                        assert img.size == expected_size, (f, img.size, expected_size)
+                        img.verify()
             with Image.open(d / 'images/featureGraphic.jpg') as img:
                 assert img.size == (1024,500), loc
                 img.verify()

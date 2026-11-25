@@ -48,6 +48,41 @@ class ReceiptParser {
     'genel toplam',
     'total',
     'grand total',
+    'gesamt',
+    'summe',
+    'montant total',
+    'total ttc',
+    'totale',
+    'итого',
+    'إجمالي',
+    'المجموع',
+    'المجموع الكلي',
+    'الصافي',
+    'المبلغ المستحق',
+    '合計',
+    '総計',
+    '总计',
+    'ödenecek tutar',
+    'odenecek tutar',
+    'ödenecek',
+    'odenecek',
+    'fatura tutarı',
+    'fatura tutari',
+    'amount due',
+    'total due',
+    'balance due',
+  ];
+  static const List<String> _subtotalMarkers = [
+    'ara toplam',
+    'aratoplam',
+    'subtotal',
+    'sub-total',
+    'zwischenbetrag',
+    'zwischensumme',
+    'sous-total',
+    'subtotale',
+    'подитог',
+    'المجموع الفرعي',
   ];
   static final String _splitTotalCurrencyPattern =
       r'(?:\b(?:' +
@@ -62,19 +97,29 @@ class ReceiptParser {
     caseSensitive: false,
     unicode: true,
   );
-  static const List<String> _subtotalMarkers = ['ara toplam', 'aratoplam'];
-  static const List<String> _discountMarkers = ['indirim', 'iskonto'];
+  static const List<String> _discountMarkers = [
+    'indirim',
+    'iskonto',
+    'خصم',
+    'تخفيض',
+  ];
   static const List<String> _taxMarkers = [
     'kdv',
     'topkdv',
     'vergi',
     'vat',
     'tax',
+    'ضريبة',
+    'ض.ق.م',
   ];
   static const List<String> _storeWords = ['market', 'mağaza', 'merk'];
   static const List<String> _skipWords = [
     'fiş',
     'fis',
+    'fatura',
+    'invoice',
+    'e-arşiv',
+    'e-arsiv',
     'no:',
     'no :',
     'kasiyer',
@@ -88,6 +133,28 @@ class ReceiptParser {
     'www',
     '.com',
     'mal.hizmet',
+    'mal/hizmet',
+    'mal hizmet',
+    'topkdv',
+    'kdv oranı',
+    'kdv orani',
+    'kdv dahil',
+    'provizyon',
+    'ref.no',
+    'referans',
+    'faturanıza',
+    'faturaniza',
+    'aşağıdaki',
+    'asagidaki',
+    'erişebilirsiniz',
+    'erisebilirsiniz',
+    'yapı kredi',
+    'yapi kredi',
+    'yapikredi',
+    'puan:',
+    'puan :',
+    'ettn',
+    'belge no',
     'gv.ilk',
     'geçici',
     'gecici',
@@ -122,7 +189,7 @@ class ReceiptParser {
   /// Reading-order rows shared by parsing and overlapping receipt assembly.
   /// Coordinates belong to one photo; returned rows no longer carry them.
   List<OcrLine> readingRows(OcrScanResult scan) {
-    final rows = _reconstructRows(scan.lines);
+    var rows = _reconstructRows(scan.lines);
     final currencyEvidence = detectOcrCurrency(
       rows.map((line) => line.text).join('\n'),
       fallback: currency,
@@ -134,6 +201,18 @@ class ReceiptParser {
             reconciliationToleranceMinor: reconciliationToleranceMinor,
           )
         : this;
+    // Repair digit/letter confusions (`*1O,50`) once, after row assembly, so
+    // merged products, totals and quantity rows all see the same fixed text.
+    rows = [
+      for (final line in rows)
+        OcrLine(
+          text: repairConfusableAmounts(line.text),
+          boundingBoxTop: line.boundingBoxTop,
+          boundingBoxLeft: line.boundingBoxLeft,
+          boundingBoxHeight: line.boundingBoxHeight,
+          boundingBoxWidth: line.boundingBoxWidth,
+        ),
+    ];
     return List.unmodifiable(rows.map(normalizer._normalizeSplitTotalLabel));
   }
 
@@ -221,23 +300,30 @@ class ReceiptParser {
         dateCandidate = _tryParseDate(text);
       }
 
-      // Telefon / kart / vergi no satırları asla ürün veya toplam değildir.
+      // Telefon / kart / vergi no / ödeme meta satırları asla ürün veya toplam değildir.
       if (_phonePattern.hasMatch(text) ||
           _cardMaskPattern.hasMatch(text) ||
-          _taxNoPattern.hasMatch(text)) {
+          _taxNoPattern.hasMatch(text) ||
+          _isPaymentMetadata(lower)) {
         continue;
       }
 
-      if (_isStructuralLine(lower) || _isPaymentMetadata(lower)) continue;
-
       // Turkish fiscal printers mark campaign discounts by a trailing minus
-      // (`25TLFINISH110TL *149,00-`) without an "indirim" word.
+      // (`25TLFINISH110TL *149,00-`) or campaign promo code without an "indirim" word.
       final trailingMinus = _trailingMinusAmount.firstMatch(text);
       if (trailingMinus != null) {
         final value = _minorFrom(trailingMinus.group(1)!);
         if (value != null) discountMinor = (discountMinor ?? 0) + value;
         continue;
       }
+      if (_isCampaignPromoDiscount(text)) {
+        final value = _lastAmountMinor(text);
+        if (value != null) discountMinor = (discountMinor ?? 0) + value;
+        continue;
+      }
+
+      // VAT summary table rows at receipt footer (`%1 *129,00 *1,28`).
+      if (_isVatSummaryRow(text)) continue;
 
       // Toplamsal satırlar.
       final amount = _lastAmountMinor(text);
@@ -259,6 +345,8 @@ class ReceiptParser {
           continue;
         }
       }
+
+      if (_isStructuralLine(lower)) continue;
 
       // Mağaza adayı: fiş başındaki, harf ağırlıklı kısa satırlar.
       if (storeCandidates.isEmpty &&
@@ -403,7 +491,15 @@ class ReceiptParser {
   }
 
   RegExp get _trailingMinusAmount =>
-      RegExp('(?:^|[^\\d.,])\\*?\\s*($_amountPattern)\\s*[-−]\\s*\$');
+      RegExp('(?:^|[^\\d.,])\\*?\\s*($_amountPattern)\\s*[-−–—]\\s*\$');
+
+  static bool _isVatSummaryRow(String text) =>
+      RegExp(r'^[*#•\s]*%\s*\d{1,2}(?:\s|$)').hasMatch(text);
+
+  static bool _isCampaignPromoDiscount(String text) => RegExp(
+    r'^\d{1,4}\s*TL\s*[A-ZÇĞİÖŞÜ]{2,}[A-ZÇĞİÖŞÜ0-9]{2,}\s+\*?\d+(?:[.,\u066b]\d{2})\s*$',
+    caseSensitive: false,
+  ).hasMatch(text);
 
   List<OcrLine> _mergeWrappedLines(List<OcrLine> lines) {
     final priceOnly = RegExp('^$_amountPattern\$');
@@ -434,6 +530,8 @@ class ReceiptParser {
           _hasHeader(lower, _subtotalMarkers) ||
           _isDiscountLine(lower) ||
           _trailingMinusAmount.hasMatch(text) ||
+          _isCampaignPromoDiscount(text) ||
+          _isVatSummaryRow(text) ||
           _hasHeader(lower, _taxMarkers) ||
           _isTotalLine(lower) ||
           _isPaymentMetadata(lower) ||
@@ -448,12 +546,12 @@ class ReceiptParser {
         merged.add(line);
         continue;
       }
-      // Some printers print the weighed quantity row (`1,033Kg X 99,00`)
-      // above the product name and line total; hold it for that row.
+      // Some printers print the weighed/counted quantity row (`1,033Kg X 99,00`
+      // or `2 x20,00 TL/ad`) above the product name and line total; hold it for that row.
       if (_quantityOnlyRow.hasMatch(text)) {
         if (pendingQuantity != null) merged.add(pendingQuantity);
         pendingQuantity = OcrLine(
-          text: original,
+          text: _stripQuantityPerUnitSuffix(original),
           boundingBoxTop: line.boundingBoxTop,
         );
         continue;
@@ -482,9 +580,11 @@ class ReceiptParser {
       if (priceOnly.hasMatch(text)) {
         // fiyat-satırı: önceki taşan ad satırlarıyla birleşir.
         if (nameBuffer.isNotEmpty) {
+          final qtyPart = pendingQuantity != null ? '${pendingQuantity.text} ' : '';
+          pendingQuantity = null;
           merged.add(
             OcrLine(
-              text: '${nameBuffer.join(' ')} $original',
+              text: '${nameBuffer.join(' ')} $qtyPart$original',
               boundingBoxTop: line.boundingBoxTop,
             ),
           );
@@ -518,8 +618,32 @@ class ReceiptParser {
     return merged;
   }
 
+  /// Count-only row above an item: `2 X 6,25`, `2 x20,00 TL/ad`,
+  /// `2 AD X 6,25`, `1,033KG X 99,00`.
+  /// The unit and trailing `/unit` notation are optional.
   RegExp get _quantityOnlyRow => RegExp(
-    '^\\d+(?:[.,\u066b]\\d+)?\\s*(?:kg|gr|g|lt|l|ml)\\s*[xX×]\\s*$_amountPattern\$',
+    '^\\d+(?:[.,\u066b]\\d+)?\\s*'
+    '(?:kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket)?\\s*'
+    '[xX×]\\s*$_amountPattern'
+    r'(?:\s*(?:(?:[A-Z]{3}|TL|[₺€£$])\s*)?(?:/\s*(?:kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket|pk)|(?:[A-Z]{3}|TL|[₺€£$])))?\s*$',
+    caseSensitive: false,
+  );
+
+  static String _stripQuantityPerUnitSuffix(String text) => text.replaceFirst(
+    RegExp(
+      r'(?:\s*(?:(?:[A-Z]{3}|TL|[₺€£$])\s*)?(?:/\s*(?:kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket|pk)|(?:[A-Z]{3}|TL|[₺€£$])))\s*$',
+      caseSensitive: false,
+    ),
+    '',
+  ).trimRight();
+
+  /// Names made only of count syntax — digits, x, %, units and separators —
+  /// are quantity leftovers (`2 X`, `3 AD`, `1,5KG`), never products. A digit
+  /// is required so letter-only OCR scraps keep their old low-confidence path.
+  static final RegExp _quantityLikeName = RegExp(
+    r'^(?=[\d\s.,\u066bxX×*%+\-\u2013\u2014]*\d)'
+    r'[\d\s.,\u066bxX×*%+\-\u2013\u2014]+$'
+    r'|^\d+(?:[.,\u066b]\d+)?\s*(?:kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket)$',
     caseSensitive: false,
   );
 
@@ -543,10 +667,15 @@ class ReceiptParser {
   }
 
   /// Ürün satırı: `SUT 2X32,90 64,00` | `DOMATES 1,5KG X42,90 64,35` |
-  /// `EKMEK 15,00`. Dönüşüm: name + opsiyonel miktar/birim fiyat + son fiyat.
+  /// `EKMEK 2 AD X 6,25 12,50` | `EKMEK 15,00`. Dönüşüm: name + opsiyonel
+  /// miktar/birim fiyat + son fiyat.
   RegExp get _quantityPricePattern => RegExp(
-    r'(?<!\S)(\d+(?:[.,\u066b]\d+)?)\s*(kg|gr|g|lt|l|ml|adet|x)?\s*(?:x|X|×)\s*'
-    '($_amountPattern)\\s+($_amountPattern)\$',
+    r'(?<!\S)(\d+(?:[.,\u066b]\d+)?)\s*'
+    '(kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket|x)?\\s*'
+    r'(?:x|X|×)\s*'
+    '($_amountPattern)'
+    r'(?:\s*(?:(?:[A-Z]{3}|TL|[₺€£$])\s*)?(?:/\s*(?:kg|gr|g|lt|l|ml|adet|adt|ad|pcs|piece|paket|pk)|(?:[A-Z]{3}|TL|[₺€£$])))?'
+    '\\s+($_amountPattern)\$',
     caseSensitive: false,
   );
 
@@ -607,7 +736,7 @@ class ReceiptParser {
           'gr' || 'g' => UnitCode.gram,
           'lt' || 'l' => UnitCode.litre,
           'ml' => UnitCode.mililitre,
-          'adet' || 'ad' || 'pcs' || 'piece' || 'x' => UnitCode.adet,
+          'adet' || 'adt' || 'ad' || 'pcs' || 'piece' || 'x' => UnitCode.adet,
           'paket' || 'pkg' => UnitCode.paket,
           _ => null,
         },
@@ -627,6 +756,9 @@ class ReceiptParser {
           .length;
       final name = view.originalSlice(0, nameEnd).trim();
       if (name.isEmpty) return null;
+      // A leftover count/quantity token (`2 X`, `1,5KG`, `%8`) is structural,
+      // not a product, whatever price ended up beside it.
+      if (_quantityLikeName.hasMatch(name)) return null;
       if (currency == 'IDR' && RegExp(r'[-−+]\s*$').hasMatch(name)) {
         return null;
       }
@@ -646,29 +778,44 @@ class ReceiptParser {
     return null;
   }
 
-  bool _isTotalLine(String text) => _totalMarkers.any(
-    (marker) => RegExp(
-      r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|$)',
-      caseSensitive: false,
-    ).hasMatch(text),
-  );
+  bool _isTotalLine(String text) {
+    final folded = _keywordFold(text);
+    return RegExp(
+          r'^[*#•\s]*[oö]denecek(?:\s+t[^\s\d]{0,6}(?:\s+[^\s\d]{1,6})?)?(?=\s|:|$)',
+          caseSensitive: false,
+        ).hasMatch(folded) ||
+        _totalMarkers.any(
+          (marker) => RegExp(
+            r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|$)',
+            caseSensitive: false,
+          ).hasMatch(folded),
+        );
+  }
 
   bool _hasHeader(String text, List<String> markers) => markers.any(
     (marker) => RegExp(
       r'^[*#•\s]*' + RegExp.escape(marker) + r'(?=\s|:|\(|%|$)',
       caseSensitive: false,
-    ).hasMatch(text),
+    ).hasMatch(_keywordFold(text)),
   );
+
+  /// OCR reads letters inside keywords too (`T0PLAM`, `F1S`). Folding the
+  /// digit→letter direction lets keyword matching survive single-glyph slips
+  /// without loosening the amount grammar.
+  static String _keywordFold(String text) =>
+      text.replaceAll('0', 'o').replaceAll('1', 'l').replaceAll('5', 's');
 
   bool _isStructuralLine(String text) =>
       _hasHeader(text, _skipWords) ||
       text.contains('www.') ||
+      text.contains('http://') ||
+      text.contains('https://') ||
       text.contains('.com');
 
   bool _isPaymentMetadata(String text) =>
       RegExp(r'^kasa\s*(?:no\b|:|\d)', caseSensitive: false).hasMatch(text) ||
       RegExp(
-        r'^[*#•\s]*(?:nakit|kredi\s+kart[ıi]|banka\s+kart[ıi]|kart|visa|mastercard|cash|change|para\s*[üu]st[üu]|al[ıi]nan\s*para|[öo]denen|payment|paid)(?=\s|:|$)',
+        r'^[*#•\s]*(?:nakit|kredi\s+kart[ıi]|banka\s+kart[ıi]|kart|visa|mastercard|yap[ıi]\s*kredi|yapikredi|provizyon|puan|pe[şs]in|taksit|rrn|cash|change|para\s*[üu]st[üu]|al[ıi]nan\s*para|[öo]denen|payment|paid)(?=\s|:|\(|$)',
         caseSensitive: false,
       ).hasMatch(text);
 
@@ -739,17 +886,30 @@ class ReceiptParser {
   }
 
   DateTime? _tryParseDate(String text) {
-    final m =
-        RegExp(r'(\d{1,2})[./\u066b-](\d{1,2})[./\u066b-](\d{2,4})')
-            .firstMatch(text);
+    final iso = RegExp(
+      r'(\d{4})[./\u066b-](\d{1,2})[./\u066b-](\d{1,2})',
+    ).firstMatch(text);
+    if (iso != null) {
+      final year = int.parse(iso.group(1)!);
+      final month = int.parse(iso.group(2)!);
+      final day = int.parse(iso.group(3)!);
+      if (month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+        final dt = DateTime(year, month, day);
+        if (dt.year == year && dt.month == month && dt.day == day) return dt;
+      }
+    }
+    final m = RegExp(
+      r'(\d{1,2})[./\u066b-](\d{1,2})[./\u066b-](\d{2,4})',
+    ).firstMatch(text);
     if (m == null) return null;
+    final day = int.parse(m.group(1)!);
+    final month = int.parse(m.group(2)!);
     var year = int.parse(m.group(3)!);
     if (year < 100) year += 2000;
-    try {
-      return DateTime(year, int.parse(m.group(2)!), int.parse(m.group(1)!));
-    } on FormatException {
-      return null;
-    }
+    if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+    final dt = DateTime(year, month, day);
+    if (dt.year != year || dt.month != month || dt.day != day) return null;
+    return dt;
   }
 
   bool _hasDigits(String text) => RegExp(r'\d').hasMatch(text);

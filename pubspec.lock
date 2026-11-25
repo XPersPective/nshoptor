@@ -26,7 +26,7 @@ packages:
     source: hosted
     version: "2.0.0"
   app_tracking_transparency:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: app_tracking_transparency
       sha256: "3a52669c0645ffd7efe9a460047616de3e3f2128338f9ec7cdb681628d36238e"

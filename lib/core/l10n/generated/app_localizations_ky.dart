@@ -933,7 +933,7 @@ class AppLocalizationsKy extends AppLocalizations {
   String get planFreeAi => 'Айына 10 AI сурамы';
 
   @override
-  String get planFreeAds => 'Кичине баннердик жарнамалар (биринчи 7 күндө жок)';
+  String get planFreeAds => 'Кичине баннердик жарнамалар';
 
   @override
   String get planCoreFeatures =>
@@ -1320,10 +1320,10 @@ class AppLocalizationsKy extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Мурунку ай';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Кийинки ай';
 
   @override
   String get helpSection => 'Жардам жана колдоо';
@@ -1582,4 +1582,198 @@ class AppLocalizationsKy extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Лимиттин $percent% колдонулду';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Текшерип, оңдоңуз';
+
+  @override
+  String get receiptEditDetailsTitle => 'Чек маалыматтары';
+
+  @override
+  String get receiptDateTimeLabel => 'Күн жана убакыт';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Жалпы сумма туура келбейт';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Товарлардын суммасы чектеги жалпы суммадан $difference айырмаланат. Ошого карабастан сактайсызбы?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Ошого карабастан сактоо';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Бул чекти сактоо үчүн дүкөндү жана күндү көрсөтүңүз.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Окулган жок: $fields. Аларды текшерүү учурунда толтура аласыз.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Камерага кирүү өчүк. Чектерди жана баа этикеткаларын сканерлөө үчүн аны жөндөөлөрдөн күйгүзүңүз.';
+
+  @override
+  String get openSettingsAction => 'Жөндөөлөрдү ачуу';
+
+  @override
+  String get priceManualEntryAction => 'Бааны кол менен киргизиңиз';
+
+  @override
+  String get priceRetakeAction => 'Башка сүрөт тартыңыз';
+
+  @override
+  String get paletteSage => 'Шалфей';
+
+  @override
+  String get paletteSlate => 'Сланец';
+
+  @override
+  String get receiptContinueSame => 'Ушул чекти улантуу';
+
+  @override
+  String get receiptCaptureDone => 'Аяктады';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count барак тартылды';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Чек кезекке коюлду — фондо даярдалууда.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Бир чекке $max баракка чейин кошсоңуз болот.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Баа этикеткасын окуп жатат…';
+
+  @override
+  String get shelfLabelContinueOther => 'Дагы бир азыктарды сканерлөө';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Баа этикеткасы фондо окулууда.';
+
+  @override
+  String get listsTabReceipts => 'Менин чектерим';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Менин чектерим ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Кезекте';
+
+  @override
+  String get receiptStatusProcessing => 'Чек окулууда…';
+
+  @override
+  String get receiptStatusReady => 'Даяр';
+
+  @override
+  String get receiptStatusDuplicate => 'Окшош чек табылды';
+
+  @override
+  String get receiptStatusFailed => 'Окуу ишке ашкан жок';
+
+  @override
+  String get receiptConvertToListAction => 'Тизмеге айландыруу';
+
+  @override
+  String get receiptRetryReadAction => 'Кайра аракет кылуу';
+
+  @override
+  String get receiptDeleteDraftAction => 'Өчүрүү';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Чек даяр';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Чек даяр. Аны тизмеге өткөрөсүзбү?';
+
+  @override
+  String get receiptDuplicateTitle => 'Чек мурунтан кошулганбы?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Бул дүкөн жана убакытка дал келген тизме бар ($listTitle). Бардыгы бирдей эле кошосузбу?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Бардыгы бирдей кошуу';
+
+  @override
+  String get receiptDuplicateDelete => 'Чекти өчүрүү';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Кезектеги чектер жок';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Сканерленген чектер фондо даярдалат жана сиз аларды тизмеге айландырмасыңыз же өчүрмөйүнчө ушул жерде турат.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count барак';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Чектин сүрөттөрү';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Толук өлчөмдө көрүү үчүн чектин сүрөтүн басыңыз';
+
+  @override
+  String get receiptPhotoPreparing => 'Чек сүрөтү даярдалууда…';
+
+  @override
+  String get homeProPromoTitle => 'Pro версиясын 24 саат бекер сынап көрүңүз';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ЖИ дүмүрчөк сканерлөө жана жарнамасыз · Карта талап кылынбайт';
+
+  @override
+  String get receiptFailureSheetTitle => 'Эмне үчүн окулбады';
+
+  @override
+  String get receiptFailureMissingTop => 'Жогорку бөлүк жок';
+
+  @override
+  String get receiptFailureMissingBottom => 'Төмөнкү бөлүк жок';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Орто бөлүк жок';
+
+  @override
+  String get receiptFailureNotReceipt => 'Чек эмес';
+
+  @override
+  String get receiptFailureUnreadable => 'Окууга болбос';
+
+  @override
+  String get receiptFailureMismatch => 'Жалпы сумма дал келбейт';
+
+  @override
+  String get receiptFailureRejected => 'Кабылданбады';
+
+  @override
+  String get receiptFailureService => 'Сервис жеткиликсиз';
+
+  @override
+  String get receiptFailureUnknown => 'Окуу ишке ашкан жок';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Калганын тартыңыз';
+
+  @override
+  String get receiptFailureRetakeAction => 'Кайра тартыңыз';
 }

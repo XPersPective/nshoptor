@@ -9,6 +9,9 @@
   saklama/eğitim davranışı hakkında doğrulanmamış garanti verilmez.
 - D1 kurulum/satın alma özetiyle kota, plan ve bağlı jeton sahipliği tutar.
   Yetki önbelleğinin süresi dolsa da sahiplik kayıtları otomatik silinmez.
+- Yedi günlük promosyon süresini doğrulamak için Cloudflare Worker, uygulamaya
+  özgü özet cihaz tanımlayıcısı ve deneme tarihlerini saklar. Özet reklam
+  kimliğinden üretilmez ve reklam veya AI sağlayıcılarına iletilmez.
 - Play satın alma, AdMob ve Keşfet internet kullanır. AdMob bağlantı,
   etkileşim, tanılama ve cihaz kimlikleri işleyebilir; reklamsız hak,
   reklam gösterimini kapatır, SDK'nın hiç başlatılmadığı anlamına gelmez.

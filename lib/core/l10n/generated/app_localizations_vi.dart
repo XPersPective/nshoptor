@@ -935,8 +935,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get planFreeAi => '10 lượt yêu cầu AI mỗi tháng';
 
   @override
-  String get planFreeAds =>
-      'Quảng cáo biểu ngữ nhỏ (không quảng cáo trong 7 ngày đầu tiên của bạn)';
+  String get planFreeAds => 'Quảng cáo biểu ngữ nhỏ';
 
   @override
   String get planCoreFeatures => 'Danh sách, giá cả, hóa đơn, biểu đồ chi tiêu';
@@ -1576,4 +1575,199 @@ class AppLocalizationsVi extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Đã dùng $percent% hạn mức';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kiểm tra và sửa';
+
+  @override
+  String get receiptEditDetailsTitle => 'Chi tiết biên lai';
+
+  @override
+  String get receiptDateTimeLabel => 'Ngày và giờ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Tổng không khớp';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Tổng các mặt hàng chênh $difference so với tổng hóa đơn. Vẫn lưu chứ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Vẫn lưu';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Thêm cửa hàng và ngày để lưu biên lai này.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Không đọc được: $fields. Bạn có thể điền các mục này khi xem lại.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Quyền truy cập máy ảnh đang tắt. Bật trong Cài đặt để quét hóa đơn và nhãn giá.';
+
+  @override
+  String get openSettingsAction => 'Mở Cài đặt';
+
+  @override
+  String get priceManualEntryAction => 'Nhập giá thủ công';
+
+  @override
+  String get priceRetakeAction => 'Chụp ảnh khác';
+
+  @override
+  String get paletteSage => 'Xô thơm';
+
+  @override
+  String get paletteSlate => 'Đá phiến';
+
+  @override
+  String get receiptContinueSame => 'Tiếp tục với hóa đơn này';
+
+  @override
+  String get receiptCaptureDone => 'Xong';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return 'Đã chụp $count trang';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Hóa đơn đang chờ xử lý — chuẩn bị trong nền.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Tối đa $max trang có thể thêm vào mỗi hóa đơn.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Đang đọc nhãn giá…';
+
+  @override
+  String get shelfLabelContinueOther => 'Quét mục khác';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Nhãn giá đang được đọc trong nền.';
+
+  @override
+  String get listsTabReceipts => 'Hóa đơn của tôi';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Hóa đơn của tôi ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Đang chờ xử lý';
+
+  @override
+  String get receiptStatusProcessing => 'Đang đọc hóa đơn…';
+
+  @override
+  String get receiptStatusReady => 'Sẵn sàng';
+
+  @override
+  String get receiptStatusDuplicate => 'Có thể trùng lặp';
+
+  @override
+  String get receiptStatusFailed => 'Không thể đọc';
+
+  @override
+  String get receiptConvertToListAction => 'Chuyển thành danh sách';
+
+  @override
+  String get receiptRetryReadAction => 'Thử lại';
+
+  @override
+  String get receiptDeleteDraftAction => 'Xóa';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Hóa đơn đã sẵn sàng';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Hóa đơn của bạn đã sẵn sàng. Chuyển sang danh sách không?';
+
+  @override
+  String get receiptDuplicateTitle => 'Hóa đơn đã được thêm?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Danh sách cho cửa hàng và thời gian này đã tồn tại ($listTitle). Vẫn muốn thêm?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Vẫn thêm';
+
+  @override
+  String get receiptDuplicateDelete => 'Xóa hóa đơn';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Không có hóa đơn đang chờ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Hóa đơn đã quét sẽ được xử lý ngầm và hiển thị ở đây cho đến khi bạn chuyển hoặc xóa chúng.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count trang';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Ảnh hóa đơn';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Nhấn vào ảnh hóa đơn để xem toàn màn hình';
+
+  @override
+  String get receiptPhotoPreparing => 'Đang chuẩn bị ảnh hóa đơn…';
+
+  @override
+  String get homeProPromoTitle => 'Dùng thử Pro miễn phí 24 giờ';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'Mở khóa 100 lượt quét hóa đơn AI & không quảng cáo · Không cần thẻ';
+
+  @override
+  String get receiptFailureSheetTitle => 'Sao không đọc được';
+
+  @override
+  String get receiptFailureMissingTop => 'Thiếu phần trên';
+
+  @override
+  String get receiptFailureMissingBottom => 'Thiếu phần dưới';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Thiếu phần giữa';
+
+  @override
+  String get receiptFailureNotReceipt => 'Không phải hóa đơn';
+
+  @override
+  String get receiptFailureUnreadable => 'Chữ không rõ';
+
+  @override
+  String get receiptFailureMismatch => 'Tổng không khớp';
+
+  @override
+  String get receiptFailureRejected => 'Không đọc được';
+
+  @override
+  String get receiptFailureService => 'Dịch vụ không khả dụng';
+
+  @override
+  String get receiptFailureUnknown => 'Đọc thất bại';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Chụp phần còn lại';
+
+  @override
+  String get receiptFailureRetakeAction => 'Chụp lại';
 }

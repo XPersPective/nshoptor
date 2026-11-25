@@ -936,8 +936,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get planFreeAi => '10 permintaan AI sebulan';
 
   @override
-  String get planFreeAds =>
-      'Iklan banner kecil (tiada dalam 7 hari pertama anda)';
+  String get planFreeAds => 'Iklan banner kecil';
 
   @override
   String get planCoreFeatures => 'Senarai, harga, resit, carta perbelanjaan';
@@ -1583,4 +1582,200 @@ class AppLocalizationsMs extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% daripada had telah digunakan';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Semak dan betulkan';
+
+  @override
+  String get receiptEditDetailsTitle => 'Butiran resit';
+
+  @override
+  String get receiptDateTimeLabel => 'Tarikh dan masa';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Jumlah tidak sepadan';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Jumlah item berbeza $difference daripada jumlah resit. Simpan juga?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Simpan juga';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Tambahkan kedai dan tarikh untuk menyimpan resit ini.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Tidak dapat dibaca: $fields. Anda boleh isikan semasa menyemak.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Akses kamera dimatikan. Hidupkan dalam Tetapan untuk mengimbas resit dan label.';
+
+  @override
+  String get openSettingsAction => 'Buka Tetapan';
+
+  @override
+  String get priceManualEntryAction => 'Masukkan harga secara manual';
+
+  @override
+  String get priceRetakeAction => 'Ambil foto lain';
+
+  @override
+  String get paletteSage => 'Sage';
+
+  @override
+  String get paletteSlate => 'Batu tulis';
+
+  @override
+  String get receiptContinueSame => 'Teruskan resit yang sama';
+
+  @override
+  String get receiptCaptureDone => 'Selesai';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count halaman ditangkap';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Resit dalam barisan — sedang disediakan di latar belakang.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hingga $max halaman boleh ditambah bagi setiap resit.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Membaca label harga…';
+
+  @override
+  String get shelfLabelContinueOther => 'Imbas item lain';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Label harga sedang dibaca di latar belakang.';
+
+  @override
+  String get listsTabReceipts => 'Resit saya';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Resit saya ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Dalam barisan';
+
+  @override
+  String get receiptStatusProcessing => 'Membaca resit…';
+
+  @override
+  String get receiptStatusReady => 'Sedia';
+
+  @override
+  String get receiptStatusDuplicate => 'Kemungkinan salinan';
+
+  @override
+  String get receiptStatusFailed => 'Gagal dibaca';
+
+  @override
+  String get receiptConvertToListAction => 'Tukar ke senarai';
+
+  @override
+  String get receiptRetryReadAction => 'Cuba lagi';
+
+  @override
+  String get receiptDeleteDraftAction => 'Padam';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Resit sedia';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Resit anda sudah sedia. Pindahkan ke senarai?';
+
+  @override
+  String get receiptDuplicateTitle => 'Resit sudah ditambah?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Senarai yang sepadan dengan kedai dan masa ini sudah wujud ($listTitle). Tambah sekali lagi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Tambah juga';
+
+  @override
+  String get receiptDuplicateDelete => 'Padam resit';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Tiada resit menunggu';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Resit yang dipindai diproses di latar belakang dan kekal di sini sehingga anda menukarnya atau mengeluarkannya.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count halaman';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Foto resit';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Ketik foto resit untuk melihat saiz penuh';
+
+  @override
+  String get receiptPhotoPreparing => 'Menyediakan foto resit…';
+
+  @override
+  String get homeProPromoTitle => 'Cuba Pro percuma selama 24 jam';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 imbasan resit AI & bebas iklan dibuka · Tiada kad diperlukan';
+
+  @override
+  String get receiptFailureSheetTitle => 'Mengapa tidak dapat dibaca';
+
+  @override
+  String get receiptFailureMissingTop => 'Bahagian atas hilang';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bahagian bawah hilang';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Bahagian tengah hilang';
+
+  @override
+  String get receiptFailureNotReceipt => 'Bukan resit';
+
+  @override
+  String get receiptFailureUnreadable => 'Tidak jelas';
+
+  @override
+  String get receiptFailureMismatch => 'Jumlah tidak sepadan';
+
+  @override
+  String get receiptFailureRejected => 'Tidak dapat dibaca';
+
+  @override
+  String get receiptFailureService => 'Perkhidmatan tidak tersedia';
+
+  @override
+  String get receiptFailureUnknown => 'Pembacaan gagal';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Ambil baki resit';
+
+  @override
+  String get receiptFailureRetakeAction => 'Ambil semula';
 }

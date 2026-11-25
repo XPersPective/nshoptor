@@ -936,7 +936,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get planFreeAi => '10 cereri AI pe lună';
 
   @override
-  String get planFreeAds => 'Banner-uri mici (fără primele 7 zile)';
+  String get planFreeAds => 'Banner-uri mici';
 
   @override
   String get planCoreFeatures =>
@@ -1592,4 +1592,200 @@ class AppLocalizationsRo extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% din limită a fost folosit';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Verifică și corectează';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detalii bon';
+
+  @override
+  String get receiptDateTimeLabel => 'Dată și oră';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totalul nu corespunde';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Suma produselor diferă cu $difference de totalul bonului. Salvezi oricum?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Salvează oricum';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Adaugă magazinul și data pentru a salva acest bon.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nu s-a putut citi: $fields. Le poți completa în timpul verificării.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Accesul la cameră este oprit. Activează-l din Setări pentru a scana bonuri și etichete.';
+
+  @override
+  String get openSettingsAction => 'Deschide Setările';
+
+  @override
+  String get priceManualEntryAction => 'Introdu prețul manual';
+
+  @override
+  String get priceRetakeAction => 'Fă altă fotografie';
+
+  @override
+  String get paletteSage => 'Salvie';
+
+  @override
+  String get paletteSlate => 'Ardezie';
+
+  @override
+  String get receiptContinueSame => 'Continuă cu același chitanță';
+
+  @override
+  String get receiptCaptureDone => 'Gata';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pagini capturate';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Chitanța a fost adăugată în coadă — se pregătește în fundal.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Se pot adăuga până la $max pagini per chitanță.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Se citește eticheta de preț…';
+
+  @override
+  String get shelfLabelContinueOther => 'Scanează un alt produs';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Eticheta de preț este în curs de citire în fundal.';
+
+  @override
+  String get listsTabReceipts => 'Chitanțele mele';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Chitanțele mele ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'În așteptare';
+
+  @override
+  String get receiptStatusProcessing => 'Se citește chitanța…';
+
+  @override
+  String get receiptStatusReady => 'Gata';
+
+  @override
+  String get receiptStatusDuplicate => 'Posibil duplicat';
+
+  @override
+  String get receiptStatusFailed => 'Nu s-a putut citi';
+
+  @override
+  String get receiptConvertToListAction => 'Convertește în listă';
+
+  @override
+  String get receiptRetryReadAction => 'Încearcă din nou';
+
+  @override
+  String get receiptDeleteDraftAction => 'Șterge';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Chitanță pregătită';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Chitanța ta este gata. O transferăm într-o listă?';
+
+  @override
+  String get receiptDuplicateTitle => 'Chitanța a fost deja adăugată?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'O listă pentru același magazin și oră există deja ($listTitle). Vrei să o adaugi din nou?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Adaugă oricum';
+
+  @override
+  String get receiptDuplicateDelete => 'Șterge chitanța';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nicio chitanță în așteptare';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Chitanțele scanate se procesează în fundal și rămân aici până le convertești sau le ștergi.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pagini';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotografii cu chitanțe';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Atinge o fotografie cu chitanța pentru a o vedea pe tot ecranul';
+
+  @override
+  String get receiptPhotoPreparing => 'Se pregătește fotografia bonului…';
+
+  @override
+  String get homeProPromoTitle => 'Încearcă Pro gratuit 24 de ore';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 scanări AI de bonuri și fără reclame active · Nu necesită card';
+
+  @override
+  String get receiptFailureSheetTitle => 'De ce nu s-a citit';
+
+  @override
+  String get receiptFailureMissingTop => 'Partea de sus lipsește';
+
+  @override
+  String get receiptFailureMissingBottom => 'Partea de jos lipsește';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Partea din mijloc lipsește';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nu e chitanță';
+
+  @override
+  String get receiptFailureUnreadable => 'Nu e lizibil';
+
+  @override
+  String get receiptFailureMismatch => 'Totalul nu corespunde';
+
+  @override
+  String get receiptFailureRejected => 'Nu s-a putut citi';
+
+  @override
+  String get receiptFailureService => 'Serviciu indisponibil';
+
+  @override
+  String get receiptFailureUnknown => 'Citirea a eșuat';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografiază restul';
+
+  @override
+  String get receiptFailureRetakeAction => 'Fotografiază din nou';
 }

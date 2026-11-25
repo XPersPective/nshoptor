@@ -936,8 +936,7 @@ class AppLocalizationsLv extends AppLocalizations {
   String get planFreeAi => '10 AI pieprasījumi mēnesī';
 
   @override
-  String get planFreeAds =>
-      'Mazi reklāmas baneri (pirmajās 7 dienās nav neviena)';
+  String get planFreeAds => 'Mazi reklāmas baneri';
 
   @override
   String get planCoreFeatures => 'Saraksti, cenas, čeki, tēriņu diagrammas';
@@ -1586,4 +1585,198 @@ class AppLocalizationsLv extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Izmantoti $percent% no limita';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Pārbaudiet un izlabojiet';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kvīts dati';
+
+  @override
+  String get receiptDateTimeLabel => 'Datums un laiks';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Kopsumma neatbilst';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Preču summa atšķiras no kvīts kopsummas par $difference. Vai tomēr saglabāt?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Tomēr saglabāt';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Lai saglabātu šo kvīti, pievienojiet veikalu un datumu.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Neizdevās nolasīt: $fields. Varat aizpildīt pārskatot.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Piekļuve kamerai ir izslēgta. Ieslēdziet to iestatījumos, lai skenētu kvītis un cenu etiķetes.';
+
+  @override
+  String get openSettingsAction => 'Atvērt iestatījumus';
+
+  @override
+  String get priceManualEntryAction => 'Ievadīt cenu manuāli';
+
+  @override
+  String get priceRetakeAction => 'Uzņemt citu fotoattēlu';
+
+  @override
+  String get paletteSage => 'Salvija';
+
+  @override
+  String get paletteSlate => 'Slāneklis';
+
+  @override
+  String get receiptContinueSame => 'Turpināt ar to pašu čeku';
+
+  @override
+  String get receiptCaptureDone => 'Gatavs';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count lapas nofiksētas';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Čeks rindā — tiek apstrādāts fona režīmā.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Vienam čekam var pievienot līdz $max lapām.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lasu cenu etiķeti…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skenēt citu preci';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Cenas etiķete tiek lasīta fona režīmā.';
+
+  @override
+  String get listsTabReceipts => 'Mani čeki';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mani čeki ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Gaida';
+
+  @override
+  String get receiptStatusProcessing => 'Čeka lasīšana…';
+
+  @override
+  String get receiptStatusReady => 'Gatavs';
+
+  @override
+  String get receiptStatusDuplicate => 'Iespējams dublikāts';
+
+  @override
+  String get receiptStatusFailed => 'Neizdevās nolasīt';
+
+  @override
+  String get receiptConvertToListAction => 'Pārvērst sarakstā';
+
+  @override
+  String get receiptRetryReadAction => 'Mēģināt vēlreiz';
+
+  @override
+  String get receiptDeleteDraftAction => 'Dzēst';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Čeks gatavs';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Jūsu čeks ir gatavs. Pārnest to sarakstā?';
+
+  @override
+  String get receiptDuplicateTitle => 'Čeks jau pievienots?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Saraksts ar šo veikalu un laiku jau pastāv ($listTitle). Pievienot atkārtoti?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Pieņemt tomēr';
+
+  @override
+  String get receiptDuplicateDelete => 'Dzēst čeku';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nav gaidošo čekų';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Naskenētie čeki tiek apstrādāti fonā un paliek šeit, līdz tos pārvērsiet vai noņemsiet.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count lapas';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Čeku fotogrāfijas';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Pieskarieties čeka fotogrāfijai, lai skatītu pilnizmēra attēlu';
+
+  @override
+  String get receiptPhotoPreparing => 'Tiek sagatavots čeka fotoattēls…';
+
+  @override
+  String get homeProPromoTitle => 'Izmēģiniet Pro 24 stundas bez maksas';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 MI čeku skenēšanas un bez reklāmām atbloķēts · Karte nav vajadzīga';
+
+  @override
+  String get receiptFailureSheetTitle => 'Kāpēc neizdevās nolasīt';
+
+  @override
+  String get receiptFailureMissingTop => 'Trūkst augšdaļas';
+
+  @override
+  String get receiptFailureMissingBottom => 'Trūkst apakšdaļas';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Trūkst vidusdaļas';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nav čeks';
+
+  @override
+  String get receiptFailureUnreadable => 'Nav nolasāms';
+
+  @override
+  String get receiptFailureMismatch => 'Kopsumma neatbilst';
+
+  @override
+  String get receiptFailureRejected => 'Atteigts';
+
+  @override
+  String get receiptFailureService => 'Pakalpojums nav pieejams';
+
+  @override
+  String get receiptFailureUnknown => 'Nolasīšana neizdevās';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Nofotografējiet atlikumu';
+
+  @override
+  String get receiptFailureRetakeAction => 'Uzņemt vēlreiz';
 }

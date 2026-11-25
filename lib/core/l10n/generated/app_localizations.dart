@@ -1997,7 +1997,7 @@ abstract class AppLocalizations {
   /// No description provided for @planFreeAds.
   ///
   /// In en, this message translates to:
-  /// **'Small banner ads (none in your first 7 days)'**
+  /// **'Small banner ads after the first 24 hours'**
   String get planFreeAds;
 
   /// No description provided for @planCoreFeatures.
@@ -3145,6 +3145,354 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{percent}% of the limit used'**
   String budgetAlertNear(String percent);
+
+  /// No description provided for @receiptReviewNowAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Review and fix'**
+  String get receiptReviewNowAction;
+
+  /// No description provided for @receiptEditDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt details'**
+  String get receiptEditDetailsTitle;
+
+  /// No description provided for @receiptDateTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date and time'**
+  String get receiptDateTimeLabel;
+
+  /// No description provided for @receiptSaveAnywayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Total does not match'**
+  String get receiptSaveAnywayTitle;
+
+  /// No description provided for @receiptSaveAnywayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The items differ from the receipt total by {difference}. Save anyway?'**
+  String receiptSaveAnywayBody(String difference);
+
+  /// No description provided for @receiptSaveAnywayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save anyway'**
+  String get receiptSaveAnywayAction;
+
+  /// No description provided for @receiptNeedsDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the store and date to save this receipt.'**
+  String get receiptNeedsDetails;
+
+  /// No description provided for @receiptMissingFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read: {fields}. You can fill these in while reviewing.'**
+  String receiptMissingFields(String fields);
+
+  /// No description provided for @cameraAccessDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera access is off. Turn it on in Settings to scan receipts and labels.'**
+  String get cameraAccessDenied;
+
+  /// No description provided for @openSettingsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get openSettingsAction;
+
+  /// No description provided for @priceManualEntryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter price manually'**
+  String get priceManualEntryAction;
+
+  /// No description provided for @priceRetakeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Take another photo'**
+  String get priceRetakeAction;
+
+  /// No description provided for @paletteSage.
+  ///
+  /// In en, this message translates to:
+  /// **'Sage'**
+  String get paletteSage;
+
+  /// No description provided for @paletteSlate.
+  ///
+  /// In en, this message translates to:
+  /// **'Slate'**
+  String get paletteSlate;
+
+  /// No description provided for @receiptContinueSame.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue same receipt'**
+  String get receiptContinueSame;
+
+  /// No description provided for @receiptCaptureDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get receiptCaptureDone;
+
+  /// No description provided for @receiptSessionPagesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 page captured} other{{count} pages captured}}'**
+  String receiptSessionPagesCount(int count);
+
+  /// No description provided for @receiptQueuedNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt queued — preparing in the background.'**
+  String get receiptQueuedNotice;
+
+  /// No description provided for @receiptMaxPagesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to {max} pages can be added per receipt.'**
+  String receiptMaxPagesNote(int max);
+
+  /// No description provided for @shelfLabelReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading price label…'**
+  String get shelfLabelReading;
+
+  /// No description provided for @shelfLabelContinueOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan another item'**
+  String get shelfLabelContinueOther;
+
+  /// No description provided for @shelfLabelQueuedNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price label is reading in the background.'**
+  String get shelfLabelQueuedNotice;
+
+  /// No description provided for @listsTabReceipts.
+  ///
+  /// In en, this message translates to:
+  /// **'My receipts'**
+  String get listsTabReceipts;
+
+  /// No description provided for @listsTabReceiptsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'My receipts ({count})'**
+  String listsTabReceiptsCount(int count);
+
+  /// No description provided for @receiptStatusQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get receiptStatusQueued;
+
+  /// No description provided for @receiptStatusProcessing.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading receipt…'**
+  String get receiptStatusProcessing;
+
+  /// No description provided for @receiptStatusReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get receiptStatusReady;
+
+  /// No description provided for @receiptStatusDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Possible duplicate'**
+  String get receiptStatusDuplicate;
+
+  /// No description provided for @receiptStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read'**
+  String get receiptStatusFailed;
+
+  /// No description provided for @receiptConvertToListAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Convert to list'**
+  String get receiptConvertToListAction;
+
+  /// No description provided for @receiptRetryReadAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get receiptRetryReadAction;
+
+  /// No description provided for @receiptDeleteDraftAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get receiptDeleteDraftAction;
+
+  /// No description provided for @receiptReadyNotificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt ready'**
+  String get receiptReadyNotificationTitle;
+
+  /// No description provided for @receiptReadyNotificationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your receipt is ready. Transfer it to a list?'**
+  String get receiptReadyNotificationBody;
+
+  /// No description provided for @receiptDuplicateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt already added?'**
+  String get receiptDuplicateTitle;
+
+  /// No description provided for @receiptDuplicateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A list matching this store and time already exists ({listTitle}). Add again anyway?'**
+  String receiptDuplicateBody(String listTitle);
+
+  /// No description provided for @receiptDuplicateAddAnyway.
+  ///
+  /// In en, this message translates to:
+  /// **'Add anyway'**
+  String get receiptDuplicateAddAnyway;
+
+  /// No description provided for @receiptDuplicateDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete receipt'**
+  String get receiptDuplicateDelete;
+
+  /// No description provided for @receiptEmptyTrayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No pending receipts'**
+  String get receiptEmptyTrayTitle;
+
+  /// No description provided for @receiptEmptyTrayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned receipts prepare in the background and stay here until you convert or remove them.'**
+  String get receiptEmptyTrayBody;
+
+  /// No description provided for @receiptTrayPagesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pages'**
+  String receiptTrayPagesLabel(int count);
+
+  /// No description provided for @receiptPhotosSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt photos'**
+  String get receiptPhotosSectionTitle;
+
+  /// No description provided for @receiptOpenPhotoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a receipt photo to view full size'**
+  String get receiptOpenPhotoHint;
+
+  /// No description provided for @receiptPhotoPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing receipt photo…'**
+  String get receiptPhotoPreparing;
+
+  /// No description provided for @homeProPromoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Pro free for 24 hours'**
+  String get homeProPromoTitle;
+
+  /// No description provided for @homeProPromoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'100 AI receipt scans & ad-free unlocked · No card needed'**
+  String get homeProPromoSubtitle;
+
+  /// No description provided for @receiptFailureSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why it could not be read'**
+  String get receiptFailureSheetTitle;
+
+  /// No description provided for @receiptFailureMissingTop.
+  ///
+  /// In en, this message translates to:
+  /// **'Top is missing'**
+  String get receiptFailureMissingTop;
+
+  /// No description provided for @receiptFailureMissingBottom.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom is missing'**
+  String get receiptFailureMissingBottom;
+
+  /// No description provided for @receiptFailureMissingMiddle.
+  ///
+  /// In en, this message translates to:
+  /// **'Middle is missing'**
+  String get receiptFailureMissingMiddle;
+
+  /// No description provided for @receiptFailureNotReceipt.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a receipt'**
+  String get receiptFailureNotReceipt;
+
+  /// No description provided for @receiptFailureUnreadable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not legible'**
+  String get receiptFailureUnreadable;
+
+  /// No description provided for @receiptFailureMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Total does not match'**
+  String get receiptFailureMismatch;
+
+  /// No description provided for @receiptFailureRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not be read'**
+  String get receiptFailureRejected;
+
+  /// No description provided for @receiptFailureService.
+  ///
+  /// In en, this message translates to:
+  /// **'Service unavailable'**
+  String get receiptFailureService;
+
+  /// No description provided for @receiptFailureUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading failed'**
+  String get receiptFailureUnknown;
+
+  /// No description provided for @receiptFailureAddMoreAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoot the rest'**
+  String get receiptFailureAddMoreAction;
+
+  /// No description provided for @receiptFailureRetakeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retake'**
+  String get receiptFailureRetakeAction;
 }
 
 class _AppLocalizationsDelegate

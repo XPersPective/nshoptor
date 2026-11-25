@@ -939,8 +939,7 @@ class AppLocalizationsZu extends AppLocalizations {
   String get planFreeAi => 'Imicelo ye-AI engu-10 ngenyanga';
 
   @override
-  String get planFreeAds =>
-      'Izikhangiso ezincane (azikho ezinsukwini zakho zokuqala ezi-7)';
+  String get planFreeAds => 'Izikhangiso ezincane';
 
   @override
   String get planCoreFeatures =>
@@ -1592,4 +1591,199 @@ class AppLocalizationsZu extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Ukukhawulelwa kusetshenziswe ngo-$percent%';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Hlola futhi ulungise';
+
+  @override
+  String get receiptEditDetailsTitle => 'Imininingwane yerisidi';
+
+  @override
+  String get receiptDateTimeLabel => 'Usuku nesikhathi';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Isamba asifani';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Isamba sezinto sihlukana nesamba serisidi ngo-$difference. Sigcine noma kunjalo?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Gcina noma kunjalo';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Faka isitolo nosuku ukuze ulondoloze le risidi.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ayifundwanga: $fields. Ungazigcwalisa ngenkathi ubuka.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Ukufinyelela kukamera kuvaliwe. Vula kumazilungiselelo ukuze uskane amarisidi namalebula.';
+
+  @override
+  String get openSettingsAction => 'Vula izilungiselelo';
+
+  @override
+  String get priceManualEntryAction => 'Faka inani ngesandla';
+
+  @override
+  String get priceRetakeAction => 'Thatha esinye isithombe';
+
+  @override
+  String get paletteSage => 'Impepho';
+
+  @override
+  String get paletteSlate => 'Itshe elimpunga';
+
+  @override
+  String get receiptContinueSame => 'Qhubeka ngereceipt efanayo';
+
+  @override
+  String get receiptCaptureDone => 'Kwenziwe';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count amaphepha abambeke';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Ireceipt ilindele — iqala ukulungiswa emva.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Kufika ku-$max amaphepha angafakwa kureceipt ngayinye.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Ufunda isikhwama sesitolo…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skana enye into';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Isikhwama sesitolo siyafundwa emva.';
+
+  @override
+  String get listsTabReceipts => 'Amathikithi ami';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Amathikithi ami ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Kulindile';
+
+  @override
+  String get receiptStatusProcessing => 'Sifunda ithikithi…';
+
+  @override
+  String get receiptStatusReady => 'Kulungile';
+
+  @override
+  String get receiptStatusDuplicate => 'Kungenzeka ukuthi kuphindwe kabili';
+
+  @override
+  String get receiptStatusFailed => 'Awukwazanga ukufunda';
+
+  @override
+  String get receiptConvertToListAction => 'Guqula ibe yilisti';
+
+  @override
+  String get receiptRetryReadAction => 'Zama futhi';
+
+  @override
+  String get receiptDeleteDraftAction => 'Susa';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Ithikithi lilungile';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ithikithi lakho selilungile. Uyafuna ukusihudulela kwilisti?';
+
+  @override
+  String get receiptDuplicateTitle => 'Ithikithi sele engeziwe?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Ilisiti ehambisanayo nalesi sikhathi nesitolo sele ikhona ($listTitle). Uyafuna ukuyengeza futhi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Yengeza nakuba kunjalo';
+
+  @override
+  String get receiptDuplicateDelete => 'Susa ithikithi';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ayikho imisebenzi elindele';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Amathikithi akhishelwe isithombe alungiswa ngemuva bese ehlala lapha kuze kufike usiguqule noma ususe.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count amaphepha';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Izithombe zamathikithi';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Chofoza isithombe sethikithi ukuze ubuke ngobukhulu';
+
+  @override
+  String get receiptPhotoPreparing => 'Ilungiselela isithombe serisidi…';
+
+  @override
+  String get homeProPromoTitle => 'Zama i-Pro mahhala amahora angu-24';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'Ukuskena okungu-100 kwe-AI okungenazikhangiso kuvuliwe · Alikho ikhadi elidingekayo';
+
+  @override
+  String get receiptFailureSheetTitle => 'Kungani akwazi ukufunda';
+
+  @override
+  String get receiptFailureMissingTop => 'Phezulu alukho';
+
+  @override
+  String get receiptFailureMissingBottom => 'Phansi alukho';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Maphakathi alukho';
+
+  @override
+  String get receiptFailureNotReceipt => 'Akusona irisidi';
+
+  @override
+  String get receiptFailureUnreadable => 'Abukeli';
+
+  @override
+  String get receiptFailureMismatch => 'Isamba asihambisani';
+
+  @override
+  String get receiptFailureRejected => 'Akufundwa';
+
+  @override
+  String get receiptFailureService => 'Isevisi ayisebenzi';
+
+  @override
+  String get receiptFailureUnknown => 'Ukufunda akuphumele';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Thatha okusele';
+
+  @override
+  String get receiptFailureRetakeAction => 'Thatha esinye';
 }

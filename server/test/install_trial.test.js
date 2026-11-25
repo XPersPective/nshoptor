@@ -48,6 +48,48 @@ test('registration clamps future hints, keeps the earliest window, and observes 
   assert.equal(rows(e.DB).length, 1);
 });
 
+test('existing seven-day trials are capped from first open on both reads and re-registration', async () => {
+  const e = makeEnv();
+  const start = 1_800_000_000_000;
+  const deadline = start + 24 * 60 * 60 * 1000;
+  const otherId = 'b'.repeat(32);
+  const insert = e.DB.sqlite.prepare('INSERT INTO install_trials VALUES (?, ?, ?, ?)');
+  for (const id of [ID, otherId]) insert.run(id, start, start + 7 * TRIAL_MS, start);
+
+  const observed = await observeTrial(e, ID, deadline);
+  assert.equal(observed.endsAt, deadline);
+  assert.equal(observed.active, false);
+
+  const registered = await registerTrial(e, otherId, deadline, deadline);
+  assert.equal(registered.startedAt, start);
+  assert.equal(registered.endsAt, deadline);
+  assert.equal(registered.active, false);
+});
+
+test('device registration keeps the original deadline across preference loss', async () => {
+  const e = makeEnv();
+  const start = 1_800_000_000_000;
+  const deviceTrialId = 'c'.repeat(64);
+  const secondId = 'b'.repeat(32);
+  await registerTrial(e, ID, start, start);
+  const register = (id, time) => handleAccess(req('/v1/access', {
+    ...access(id, time), deviceTrialId,
+  }), e, { now: new Date(time) });
+
+  const migrated = await register(ID, start + 100_000);
+  assert.equal(migrated.status, 200);
+  assert.equal((await migrated.json()).deviceConfirmed, true);
+
+  const reinstalled = await register(secondId, start + TRIAL_MS);
+  assert.equal(reinstalled.status, 200);
+  assert.deepEqual((await reinstalled.json()).trial, {
+    startedAt: start, endsAt: start + TRIAL_MS, serverNow: start + TRIAL_MS, active: false,
+  });
+  assert.equal((await observeTrial(e, secondId, start + TRIAL_MS + 1)).active, false);
+  const invalid = await handleAccess(req('/v1/access', { ...access(secondId), deviceTrialId: 'x' }), e);
+  assert.equal(invalid.status, 400);
+});
+
 test('rollback observations and concurrent repeated registrations cannot reopen or extend a trial', async () => {
   const e = makeEnv();
   const start = 1_700_000_000_000;

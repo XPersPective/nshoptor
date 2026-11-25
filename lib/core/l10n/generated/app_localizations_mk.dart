@@ -936,8 +936,7 @@ class AppLocalizationsMk extends AppLocalizations {
   String get planFreeAi => '10 AI барања месечно';
 
   @override
-  String get planFreeAds =>
-      'Мали банер реклами (без ниту една во првите 7 дена)';
+  String get planFreeAds => 'Мали банер реклами';
 
   @override
   String get planCoreFeatures => 'Списоци, цени, сметки, дијаграми на расходи';
@@ -1323,10 +1322,10 @@ class AppLocalizationsMk extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Претходен месец';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Следен месец';
 
   @override
   String get helpSection => 'Помош и поддршка';
@@ -1586,4 +1585,200 @@ class AppLocalizationsMk extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Искористени се $percent% од лимитот';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Проверете и поправете';
+
+  @override
+  String get receiptEditDetailsTitle => 'Податоци за сметката';
+
+  @override
+  String get receiptDateTimeLabel => 'Датум и време';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Износот не се совпаѓа';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Збирот на производите се разликува за $difference од вкупниот износ на сметката. Да зачувам и покрај тоа?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Зачувај и покрај тоа';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Додадете продавница и датум за да ја зачувате сметката.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Не може да се прочита: $fields. Може да ги пополните при прегледот.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Пристапот до камерата е исклучен. Вклучете го во Поставките за да скенирате сметки и етикети.';
+
+  @override
+  String get openSettingsAction => 'Отвори Поставки';
+
+  @override
+  String get priceManualEntryAction => 'Внесете ја цената рачно';
+
+  @override
+  String get priceRetakeAction => 'Сликајте повторно';
+
+  @override
+  String get paletteSage => 'Жалфија';
+
+  @override
+  String get paletteSlate => 'Шкрилец';
+
+  @override
+  String get receiptContinueSame => 'Продолжи со истата сметка';
+
+  @override
+  String get receiptCaptureDone => 'Готово';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count страници се снимени';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Сметката е во ред — подготвување во позадина.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Може да додадете до $max страници по сметка.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Се чита цената…';
+
+  @override
+  String get shelfLabelContinueOther => 'Скенирај друг производ';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Цената се чита во позадина.';
+
+  @override
+  String get listsTabReceipts => 'Моите сметки';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Моите сметки ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Во ред за обработка';
+
+  @override
+  String get receiptStatusProcessing => 'Читање на сметка…';
+
+  @override
+  String get receiptStatusReady => 'Подготвена';
+
+  @override
+  String get receiptStatusDuplicate => 'Можна дупликација';
+
+  @override
+  String get receiptStatusFailed => 'Не може да се прочита';
+
+  @override
+  String get receiptConvertToListAction => 'Претвори во листа';
+
+  @override
+  String get receiptRetryReadAction => 'Обиди се повторно';
+
+  @override
+  String get receiptDeleteDraftAction => 'Избриши';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Сметката е подготвена';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Вашата сметка е подготвена. Да ја пренесеме во листа?';
+
+  @override
+  String get receiptDuplicateTitle => 'Дали сметката веќе е додадена?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Веќе постои листа за овој магазин и време ($listTitle). Дали сакате да ја додадете повторно?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Додај сепак';
+
+  @override
+  String get receiptDuplicateDelete => 'Избриши ја сметката';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Нема чекања';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Скенираните сметки се обработуваат во позадина и остануваат овде додека не ги претворите или отстраните.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count страници';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Фотографии од сметки';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Допрете фотографија од сметка за да ја видите во полна големина';
+
+  @override
+  String get receiptPhotoPreparing =>
+      'Се подготвува фотографијата од сметката…';
+
+  @override
+  String get homeProPromoTitle => 'Пробајте го Pro 24 часа бесплатно';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ВИ скенирања сметки и без реклами отклучено · Без картичка';
+
+  @override
+  String get receiptFailureSheetTitle => 'Зошто не се прочита';
+
+  @override
+  String get receiptFailureMissingTop => 'Недостасува горниот дел';
+
+  @override
+  String get receiptFailureMissingBottom => 'Недостасува долниот дел';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Недостасува средниот дел';
+
+  @override
+  String get receiptFailureNotReceipt => 'Не е сметка';
+
+  @override
+  String get receiptFailureUnreadable => 'Нечитливо';
+
+  @override
+  String get receiptFailureMismatch => 'Збирот не се совпаѓа';
+
+  @override
+  String get receiptFailureRejected => 'Одбиено';
+
+  @override
+  String get receiptFailureService => 'Сервисот не е достапен';
+
+  @override
+  String get receiptFailureUnknown => 'Читањето не успеа';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Фотографирајте го остатокот';
+
+  @override
+  String get receiptFailureRetakeAction => 'Сликајте повторно';
 }

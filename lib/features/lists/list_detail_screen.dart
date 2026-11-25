@@ -11,6 +11,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../app/app_defaults.dart';
 import '../../app/navigation.dart';
+import '../receipts/receipt_photo_viewer.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/money/currency.dart';
@@ -708,8 +709,11 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                 final headingStyle = Theme.of(context).textTheme.titleSmall
                     ?.copyWith(fontWeight: FontWeight.w600);
                 final hasProducts = items.isNotEmpty || entries.isNotEmpty;
-                // F25: "Products" heading row; the sort control sits at the
-                // row end (start in RTL through Row directionality).
+                final sortLabel = _sortMode == ItemSortMode.custom
+                    ? l10n.listSortManual
+                    : l10n.listSortAz;
+                // F25: "Products" heading row; the icon-only sort control sits
+                // flush at the row end (start in RTL through Row directionality).
                 final productsHeader = Row(
                   key: const Key('detail_products_header'),
                   children: [
@@ -727,80 +731,75 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                         ),
                       ),
                     ),
-                    Flexible(
-                      child: PopupMenuButton<ItemSortMode>(
-                        key: const Key('detail_item_sort'),
-                        tooltip: l10n.listSortLabel,
-                        initialValue: _sortMode,
-                        enabled: !_busy && !_sortBusy,
-                        onSelected: _changeSort,
-                        itemBuilder: (_) => [
-                          CheckedPopupMenuItem(
-                            value: ItemSortMode.custom,
-                            checked: _sortMode == ItemSortMode.custom,
-                            child: Text(l10n.listSortManual),
-                          ),
-                          CheckedPopupMenuItem(
-                            value: ItemSortMode.alphabetical,
-                            checked: _sortMode == ItemSortMode.alphabetical,
-                            child: Text(l10n.listSortAz),
-                          ),
-                        ],
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(minHeight: 48),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(Icons.sort),
-                                const SizedBox(width: 8),
-                                Flexible(
-                                  child: Text(
-                                    _sortMode == ItemSortMode.custom
-                                        ? l10n.listSortManual
-                                        : l10n.listSortAz,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                const Icon(Icons.arrow_drop_down),
-                              ],
-                            ),
-                          ),
+                    PopupMenuButton<ItemSortMode>(
+                      key: const Key('detail_item_sort'),
+                      tooltip: '${l10n.listSortLabel}: $sortLabel',
+                      initialValue: _sortMode,
+                      enabled: !_busy && !_sortBusy,
+                      onSelected: _changeSort,
+                      itemBuilder: (_) => [
+                        CheckedPopupMenuItem(
+                          value: ItemSortMode.custom,
+                          checked: _sortMode == ItemSortMode.custom,
+                          child: Text(l10n.listSortManual),
                         ),
+                        CheckedPopupMenuItem(
+                          value: ItemSortMode.alphabetical,
+                          checked: _sortMode == ItemSortMode.alphabetical,
+                          child: Text(l10n.listSortAz),
+                        ),
+                      ],
+                      child: const SizedBox(
+                        width: 48,
+                        height: 48,
+                        child: Icon(Icons.sort),
                       ),
                     ),
                   ],
                 );
-                // F25/F27: compact search lives with the product list and
-                // filters whichever sort order is active.
+                // F25/F27: slim search lives with the product list and filters
+                // whichever sort order is active.
                 final searchField = Padding(
                   padding: const EdgeInsets.only(bottom: 4),
-                  child: TextField(
-                    key: const Key('detail_item_search'),
-                    controller: _searchController,
-                    textInputAction: TextInputAction.search,
-                    onChanged: (value) => setState(() => _searchQuery = value),
-                    onSubmitted: (_) => FocusScope.of(context).unfocus(),
-                    decoration: InputDecoration(
-                      isDense: true,
-                      labelText: material.searchFieldLabel,
-                      prefixIcon: const Icon(Icons.search),
-                      suffixIcon: _searchQuery.isEmpty
-                          ? null
-                          : IconButton(
-                              key: const Key('detail_search_clear'),
-                              constraints: const BoxConstraints(
-                                minWidth: 48,
-                                minHeight: 48,
+                  child: Semantics(
+                    label: material.searchFieldLabel,
+                    child: TextField(
+                      key: const Key('detail_item_search'),
+                      controller: _searchController,
+                      textInputAction: TextInputAction.search,
+                      onChanged: (value) =>
+                          setState(() => _searchQuery = value),
+                      onSubmitted: (_) => FocusScope.of(context).unfocus(),
+                      onTapOutside: (_) =>
+                          FocusManager.instance.primaryFocus?.unfocus(),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        hintText: material.searchFieldLabel,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        prefixIcon: const Icon(Icons.search, size: 20),
+                        prefixIconConstraints: const BoxConstraints(
+                          minWidth: 40,
+                          minHeight: 40,
+                        ),
+                        suffixIcon: _searchQuery.isEmpty
+                            ? null
+                            : IconButton(
+                                key: const Key('detail_search_clear'),
+                                constraints: const BoxConstraints(
+                                  minWidth: 48,
+                                  minHeight: 48,
+                                ),
+                                tooltip: material.clearButtonTooltip,
+                                icon: const Icon(Icons.close, size: 20),
+                                onPressed: () {
+                                  _searchController.clear();
+                                  setState(() => _searchQuery = '');
+                                },
                               ),
-                              tooltip: material.clearButtonTooltip,
-                              icon: const Icon(Icons.close),
-                              onPressed: () {
-                                _searchController.clear();
-                                setState(() => _searchQuery = '');
-                              },
-                            ),
+                      ),
                     ),
                   ),
                 );
@@ -887,19 +886,6 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                   ),
                                 ),
                               ),
-                              if (receipts.isNotEmpty)
-                                _ReceiptsSection(
-                                  receipts: receipts,
-                                  fallbackCurrency: list.currencyCode,
-                                  fallbackStore: list.title,
-                                  onOpen: _busy || !_editable
-                                      ? null
-                                      : (receipt) => _scanReceipt(
-                                          context,
-                                          resumeDraftId: receipt.id,
-                                        ),
-                                  onDelete: _busy ? null : _deleteReceipt,
-                                ),
                               if (hasProducts) ...[
                                 TourAnchor(
                                   id: TourTargets.detailItems,
@@ -1012,6 +998,22 @@ class _ListDetailScreenState extends State<ListDetailScreen>
                                     ),
                                   ),
                                 ),
+                              if (list.status == 'completed' &&
+                                  receipts.isNotEmpty)
+                                _ReceiptsSection(
+                                  receipts: receipts,
+                                  fallbackCurrency: list.currencyCode,
+                                  fallbackStore: list.title,
+                                  onOpen: _busy || !_editable
+                                      ? null
+                                      : (receipt) => _scanReceipt(
+                                          context,
+                                          resumeDraftId: receipt.id,
+                                        ),
+                                  onDelete: _busy ? null : _deleteReceipt,
+                                  onDeletePhoto:
+                                      _busy ? null : _deleteReceiptPhoto,
+                                ),
                             ],
                           );
                         },
@@ -1105,24 +1107,32 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     ShoppingList list,
   ) {
     final l10n = AppLocalizations.of(context);
+    final locale = formatLocaleCode(context);
+    final currency = Currency.fromCode(list.currencyCode);
     final amount = formatMoney(
-      Money.fromMinorUnits(
-        entry.actualLineTotalMinorUnits,
-        Currency.fromCode(list.currencyCode),
-      ),
-      locale: formatLocaleCode(context),
+      Money.fromMinorUnits(entry.actualLineTotalMinorUnits, currency),
+      locale: locale,
     );
-    // A receipt discount is not a product: name it and show only its amount.
+    final note = entry.note?.trim() ?? '';
+    // A receipt discount is not a product: name it, show its note, and amount.
     if (entry.normalizedName == 'discount') {
       return Card(
         key: ValueKey('detail_unplanned_${entry.id}'),
         child: ListTile(
           leading: const Icon(Icons.local_offer_outlined),
           title: Text(l10n.receiptDiscountLine),
+          subtitle: note.isEmpty ? null : Text(note),
           trailing: Text(amount),
         ),
       );
     }
+    final discountText = entry.discountMinorUnits > 0
+        ? formatMoney(
+            Money.fromMinorUnits(entry.discountMinorUnits, currency),
+            locale: locale,
+          )
+        : null;
+    final theme = Theme.of(context);
     return Card(
       key: ValueKey('detail_unplanned_${entry.id}'),
       child: Padding(
@@ -1132,9 +1142,21 @@ class _ListDetailScreenState extends State<ListDetailScreen>
           children: [
             Text(entry.name),
             Text(
-              '${MoneySeparators.forLocaleCode(formatLocaleCode(context)).formatInput(entry.actualQuantity)} ${unitDisplayNameFromDb(entry.actualUnitCode, l10n)}',
+              '${MoneySeparators.forLocaleCode(locale).formatInput(entry.actualQuantity)} ${unitDisplayNameFromDb(entry.actualUnitCode, l10n)}',
             ),
             Text('${l10n.compareUnplanned} · $amount'),
+            if (discountText != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: Text(
+                  note.isEmpty ? '-$discountText' : '-$discountText · $note',
+                  key: ValueKey('detail_unplanned_discount_${entry.id}'),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
           ],
         ),
       ),
@@ -1512,11 +1534,12 @@ class _ListDetailScreenState extends State<ListDetailScreen>
   Future<void> _deleteReceipt(ListReceipt receipt) async {
     if (_busy) return;
     final l10n = AppLocalizations.of(context);
+    final cleaned = receipt.store == null ? '' : cleanStoreName(receipt.store!);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text(l10n.receiptDeleteAction),
-        content: Text(l10n.receiptDeleteConfirm),
+        content: cleaned.isEmpty ? null : Text(cleaned),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
@@ -1533,7 +1556,7 @@ class _ListDetailScreenState extends State<ListDetailScreen>
     if (confirmed != true || !mounted) return;
     setState(() => _busy = true);
     try {
-      await _receiptRepo.delete(receipt.id);
+      await _receiptRepo.detachAndDelete(receipt.id);
       if (!mounted) return;
       _refresh();
       ScaffoldMessenger.of(context)
@@ -1541,6 +1564,49 @@ class _ListDetailScreenState extends State<ListDetailScreen>
         ..showSnackBar(
           SnackBar(content: Text(l10n.receiptDeleted), showCloseIcon: true),
         );
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(content: Text(l10n.saveFailed), showCloseIcon: true),
+          );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _deleteReceiptPhoto(
+    ListReceipt receipt,
+    String imagePath,
+  ) async {
+    if (_busy) return;
+    final l10n = AppLocalizations.of(context);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.deleteButton),
+        content: Text(l10n.receiptPhotosSectionTitle),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(l10n.cancelButton),
+          ),
+          FilledButton(
+            key: const Key('receipt_photo_delete_confirm'),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(l10n.deleteButton),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    setState(() => _busy = true);
+    try {
+      await _receiptRepo.removePhoto(receipt.id, imagePath);
+      if (!mounted) return;
+      _refresh();
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context)
@@ -1837,7 +1903,7 @@ String _formatPrinted(BuildContext context, DateTime at) {
   return '$date $time';
 }
 
-/// F13: every receipt of the list with its state; long lists stay short.
+/// Unified receipts + compressed receipt photos section (`PB-214`).
 class _ReceiptsSection extends StatefulWidget {
   const _ReceiptsSection({
     required this.receipts,
@@ -1845,6 +1911,7 @@ class _ReceiptsSection extends StatefulWidget {
     this.fallbackStore,
     required this.onOpen,
     required this.onDelete,
+    this.onDeletePhoto,
   });
 
   final List<ListReceipt> receipts;
@@ -1854,6 +1921,7 @@ class _ReceiptsSection extends StatefulWidget {
   final String? fallbackStore;
   final ValueChanged<ListReceipt>? onOpen;
   final ValueChanged<ListReceipt>? onDelete;
+  final void Function(ListReceipt receipt, String imagePath)? onDeletePhoto;
 
   static const collapsedCount = 3;
 
@@ -1873,9 +1941,13 @@ class _ReceiptsSectionState extends State<_ReceiptsSection> {
     final shown = _expanded || !overflow
         ? receipts
         : receipts.take(_ReceiptsSection.collapsedCount).toList();
+    final attached = [
+      for (final r in receipts)
+        if (r.imagePaths.isNotEmpty) r,
+    ];
     return Card(
       key: const Key('detail_receipts_section'),
-      margin: const EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(top: 8, bottom: 8),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
@@ -1909,6 +1981,127 @@ class _ReceiptsSectionState extends State<_ReceiptsSection> {
                   ),
                 ),
               ),
+            if (attached.isNotEmpty) ...[
+              const Divider(height: 16),
+              Padding(
+                key: const Key('list_receipt_photos_section'),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 6),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.photo_library_outlined,
+                          size: 18,
+                          color: theme.colorScheme.primary,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            l10n.receiptPhotosSectionTitle,
+                            style: theme.textTheme.titleSmall,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l10n.receiptOpenPhotoHint,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    for (final receipt in attached) ...[
+                      if (attached.length > 1 && receipt.store != null) ...[
+                        Text(
+                          cleanStoreName(receipt.store!),
+                          style: theme.textTheme.labelMedium,
+                        ),
+                        const SizedBox(height: 4),
+                      ],
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: [
+                          for (var i = 0; i < receipt.imagePaths.length; i++)
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    top: 12,
+                                    end: 12,
+                                  ),
+                                  child: ReceiptPhotoThumbnail(
+                                    key: Key(
+                                      'receipt_photo_thumb_${receipt.id}_$i',
+                                    ),
+                                    imagePath: receipt.imagePaths[i],
+                                    size: const Size(64, 84),
+                                    semanticLabel: l10n.receiptOpenPhotoHint,
+                                    onTap: () => showReceiptPhotoViewer(
+                                      context,
+                                      imagePath: receipt.imagePaths[i],
+                                      receiptId: receipt.id,
+                                      title: receipt.store == null
+                                          ? null
+                                          : cleanStoreName(receipt.store!),
+                                    ),
+                                  ),
+                                ),
+                                if (widget.onDeletePhoto != null)
+                                  PositionedDirectional(
+                                    top: 0,
+                                    end: 0,
+                                    child: IconButton(
+                                      key: Key(
+                                        'receipt_photo_delete_${receipt.id}_$i',
+                                      ),
+                                      tooltip: l10n.deleteButton,
+                                      constraints: const BoxConstraints(
+                                        minWidth: 48,
+                                        minHeight: 48,
+                                      ),
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () => widget.onDeletePhoto!(
+                                        receipt,
+                                        receipt.imagePaths[i],
+                                      ),
+                                      icon: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: theme
+                                              .colorScheme
+                                              .surfaceContainerHighest,
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: theme
+                                                .colorScheme
+                                                .outlineVariant,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(4),
+                                          child: Icon(
+                                            Icons.close,
+                                            size: 14,
+                                            color: theme.colorScheme.onSurface,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                        ],
+                      ),
+                      if (receipt != attached.last) const SizedBox(height: 10),
+                    ],
+                  ],
+                ),
+              ),
+            ],
           ],
         ),
       ),

@@ -936,8 +936,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get planFreeAi => '10 sol·licituds d\'IA al mes';
 
   @override
-  String get planFreeAds =>
-      'Petits anuncis en forma de banner (cap durant els primers 7 dies)';
+  String get planFreeAds => 'Petits anuncis en forma de banner';
 
   @override
   String get planCoreFeatures => 'Llistes, preus, rebuts, gràfics de despeses';
@@ -1589,4 +1588,200 @@ class AppLocalizationsCa extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'S\'ha utilitzat el $percent% del límit';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Revisa i corregeix';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detalls del rebut';
+
+  @override
+  String get receiptDateTimeLabel => 'Data i hora';
+
+  @override
+  String get receiptSaveAnywayTitle => 'El total no coincideix';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Els articles difereixen del total del rebut en $difference. Vols desar-lo igualment?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Desa igualment';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Afegeix la botiga i la data per desar aquest rebut.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'No s\'ha pogut llegir: $fields. Pots omplir-ho mentre ho revises.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'L\'accés a la càmera està desactivat. Activa\'l a la configuració per escapar rebuts i etiquetes.';
+
+  @override
+  String get openSettingsAction => 'Obre la configuració';
+
+  @override
+  String get priceManualEntryAction => 'Introdueix el preu manualment';
+
+  @override
+  String get priceRetakeAction => 'Fes una altra foto';
+
+  @override
+  String get paletteSage => 'Sàlvia';
+
+  @override
+  String get paletteSlate => 'Pissarra';
+
+  @override
+  String get receiptContinueSame => 'Continua amb el mateix rebuig';
+
+  @override
+  String get receiptCaptureDone => 'Fet';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pàgines capturades';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Rebuig en cua — preparant-se en segon pla.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Es poden afegir fins a $max pàgines per rebuig.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Llegint etiqueta de preu…';
+
+  @override
+  String get shelfLabelContinueOther => 'Escaneja un altre article';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'L\'etiqueta de preu es llegeix en segon pla.';
+
+  @override
+  String get listsTabReceipts => 'Els meus rebuts';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Els meus rebuts ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'En cua';
+
+  @override
+  String get receiptStatusProcessing => 'Llegint el rebut…';
+
+  @override
+  String get receiptStatusReady => 'Preparat';
+
+  @override
+  String get receiptStatusDuplicate => 'Possible duplicat';
+
+  @override
+  String get receiptStatusFailed => 'No s\'ha pogut llegir';
+
+  @override
+  String get receiptConvertToListAction => 'Converteix a llista';
+
+  @override
+  String get receiptRetryReadAction => 'Torna-ho a provar';
+
+  @override
+  String get receiptDeleteDraftAction => 'Suprimeix';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Rebut preparat';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'El teu rebut està llest. Vols transferir-lo a una llista?';
+
+  @override
+  String get receiptDuplicateTitle => 'Rebut ja afegit?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Ja existeix una llista que coincideix amb aquesta botiga i hora ($listTitle). Vols tornar-lo a afegir?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Afegeix-lo igualment';
+
+  @override
+  String get receiptDuplicateDelete => 'Suprimeix el rebut';
+
+  @override
+  String get receiptEmptyTrayTitle => 'No hi ha rebuts pendents';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Els rebuts escanejats es processen en segon pla i romanen aquí fins que els converteixis o els suprimeixis.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pàgines';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotos dels rebuts';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Toca una foto del rebut per veure-la a mida completa';
+
+  @override
+  String get receiptPhotoPreparing => 'Preparant la foto del rebut…';
+
+  @override
+  String get homeProPromoTitle => 'Prova Pro gratis durant 24 hores';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 escaneigs de tiquets amb IA i sense anuncis activats · Sense targeta';
+
+  @override
+  String get receiptFailureSheetTitle => 'Per què no s\'ha llegit';
+
+  @override
+  String get receiptFailureMissingTop => 'Falta la part superior';
+
+  @override
+  String get receiptFailureMissingBottom => 'Falta la part inferior';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Falta la part central';
+
+  @override
+  String get receiptFailureNotReceipt => 'No és un rebut';
+
+  @override
+  String get receiptFailureUnreadable => 'No és llegible';
+
+  @override
+  String get receiptFailureMismatch => 'El total no coincideix';
+
+  @override
+  String get receiptFailureRejected => 'No s\'ha pogut llegir';
+
+  @override
+  String get receiptFailureService => 'Servei no disponible';
+
+  @override
+  String get receiptFailureUnknown => 'La lectura ha fallat';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografia la resta';
+
+  @override
+  String get receiptFailureRetakeAction => 'Torna-ho a fer';
 }

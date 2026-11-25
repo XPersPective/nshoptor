@@ -936,8 +936,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get planFreeAi => '10 AI-pyyntöä kuukaudessa';
 
   @override
-  String get planFreeAds =>
-      'Pieni mainospalkki (ei ensimmäisten 7 päivän aikana)';
+  String get planFreeAds => 'Pieni mainospalkki';
 
   @override
   String get planCoreFeatures => 'Listat, hinnat, kuitit, kulukaaviot';
@@ -1584,4 +1583,198 @@ class AppLocalizationsFi extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Rajasta käytetty $percent %';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Tarkista ja korjaa';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kuitin tiedot';
+
+  @override
+  String get receiptDateTimeLabel => 'Päivämäärä ja kellonaika';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Loppusumma ei täsmää';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Tuotteiden summa eroaa kuitin loppusummasta $difference. Tallennetaanko silti?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Tallenna silti';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Lisää kauppa ja päivämäärä tallentaaksesi kuitin.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ei voitu lukea: $fields. Voit täyttää ne tarkistuksen aikana.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameran käyttöoikeus on pois päältä. Ota se käyttöön asetuksista skannataksesi kuitteja ja hintalappuja.';
+
+  @override
+  String get openSettingsAction => 'Avaa asetukset';
+
+  @override
+  String get priceManualEntryAction => 'Syötä hinta manuaalisesti';
+
+  @override
+  String get priceRetakeAction => 'Ota uusi kuva';
+
+  @override
+  String get paletteSage => 'Salvia';
+
+  @override
+  String get paletteSlate => 'Liuske';
+
+  @override
+  String get receiptContinueSame => 'Jatka samalla kuitilla';
+
+  @override
+  String get receiptCaptureDone => 'Valmis';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sivua kuvattu';
+  }
+
+  @override
+  String get receiptQueuedNotice => 'Kuitu jonossa — valmistautuu taustalla.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Kuittiin voi lisätä enintään $max sivua.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Luetaan hyllynsiltaa…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skannaa toinen tuote';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Hyllynsiltaa luetaan taustalla.';
+
+  @override
+  String get listsTabReceipts => 'Omat kuitit';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Omat kuitit ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Jonossa';
+
+  @override
+  String get receiptStatusProcessing => 'Luetaan kuitia…';
+
+  @override
+  String get receiptStatusReady => 'Valmis';
+
+  @override
+  String get receiptStatusDuplicate => 'Mahdollinen kaksoiskappale';
+
+  @override
+  String get receiptStatusFailed => 'Ei voitu lukea';
+
+  @override
+  String get receiptConvertToListAction => 'Muunna listaksi';
+
+  @override
+  String get receiptRetryReadAction => 'Yritä uudelleen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Poista';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Kuiti valmis';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Kuittisi on valmis. Haluatko siirtää sen listaan?';
+
+  @override
+  String get receiptDuplicateTitle => 'Kuiti jo lisätty?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Lista, joka vastaa tätä kauppaa ja ajankohtaa, on jo olemassa ($listTitle). Lisätäänkö silti?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Lisää silti';
+
+  @override
+  String get receiptDuplicateDelete => 'Poista kuiti';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ei odottavia kuitteja';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skannatut kuitit käsitellään taustalla ja pysyvät tässä, kunnes muunnat tai poistat ne.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sivua';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Kuitin kuvat';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Paina kuitin kuvaa nähdäksesi sen koko koossa';
+
+  @override
+  String get receiptPhotoPreparing => 'Valmistellaan kuitin kuvaa…';
+
+  @override
+  String get homeProPromoTitle => 'Kokeile Prota 24 tuntia ilmaiseksi';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 tekoälykuittiskannausta ja mainokseton käyttö · Ei korttia';
+
+  @override
+  String get receiptFailureSheetTitle => 'Miksi ei voitu lukea';
+
+  @override
+  String get receiptFailureMissingTop => 'Yläosa puuttuu';
+
+  @override
+  String get receiptFailureMissingBottom => 'Alaosa puuttuu';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Keskiosa puuttuu';
+
+  @override
+  String get receiptFailureNotReceipt => 'Ei ole kuitti';
+
+  @override
+  String get receiptFailureUnreadable => 'Ei luettava';
+
+  @override
+  String get receiptFailureMismatch => 'Loppusumma ei täsmää';
+
+  @override
+  String get receiptFailureRejected => 'Ei voitu lukea';
+
+  @override
+  String get receiptFailureService => 'Palvelu ei ole käytettävissä';
+
+  @override
+  String get receiptFailureUnknown => 'Luku epäonnistui';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Kuvaa loppu';
+
+  @override
+  String get receiptFailureRetakeAction => 'Ota uusi kuva';
 }

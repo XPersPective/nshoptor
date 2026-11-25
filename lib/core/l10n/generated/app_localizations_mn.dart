@@ -938,7 +938,7 @@ class AppLocalizationsMn extends AppLocalizations {
   String get planFreeAi => 'Сар бүр 10 AI хүсэлт';
 
   @override
-  String get planFreeAds => 'Жижиг баннер реклам (эхний 7 хоногт байхгүй)';
+  String get planFreeAds => 'Жижиг баннер реклам';
 
   @override
   String get planCoreFeatures => 'Жагсаалт, үнэ, нэхэмжлэл, зардлын диаграмм';
@@ -1325,10 +1325,10 @@ class AppLocalizationsMn extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Өмнөх сар';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Дараагийн сар';
 
   @override
   String get helpSection => 'Тусламж ба дэмжлэг';
@@ -1586,4 +1586,199 @@ class AppLocalizationsMn extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Лимитийн $percent% ашиглагдсан';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Шалгаж засна уу';
+
+  @override
+  String get receiptEditDetailsTitle => 'Баримтын мэдээлэл';
+
+  @override
+  String get receiptDateTimeLabel => 'Огноо, цаг';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Нийт дүн таарахгүй байна';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Барааны дүн баримтын нийт дүнээс $difference-ээр зөрж байна. Гэсэн хэдий ч хадгалах уу?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Гэсэн хэдий ч хадгалах';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Энэ баримтыг хадгалахын тулд дэлгүэр болон огноог оруулна уу.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Уншиж чадсангүй: $fields. Шалгаж байх үедээ бөглөнө үү.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Камерын хандалт хаалттай. Баримт болон үнийн шошго уншихын тулд Тохиргооноос нээгээрэй.';
+
+  @override
+  String get openSettingsAction => 'Тохиргоог нээх';
+
+  @override
+  String get priceManualEntryAction => 'Үнийг гараар оруулна уу';
+
+  @override
+  String get priceRetakeAction => 'Өөр зураг авна уу';
+
+  @override
+  String get paletteSage => 'Сэйж';
+
+  @override
+  String get paletteSlate => 'Саарал';
+
+  @override
+  String get receiptContinueSame => 'Ижил баримтыг үргэлжлүүлэх';
+
+  @override
+  String get receiptCaptureDone => 'Дууссан';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count хуудас авсан';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Баримт дараалалд орлоо — арын горимд бэлтгэж байна.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Нэг баримтад $max хуудас хүртэл нэмж болно.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Үнийн шошгыг уншиж байна…';
+
+  @override
+  String get shelfLabelContinueOther => 'Өөр бүтээгдэхүүнийг сканнердах';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Үнийн шошгыг арын горимд уншиж байна.';
+
+  @override
+  String get listsTabReceipts => 'Миний баримт барууд';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Миний баримт барууд ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Дуусгах дараалалд';
+
+  @override
+  String get receiptStatusProcessing => 'Баримт барыг уншиж байна…';
+
+  @override
+  String get receiptStatusReady => 'Бэлэн';
+
+  @override
+  String get receiptStatusDuplicate => 'Хуулбар байж магадгүй';
+
+  @override
+  String get receiptStatusFailed => 'Унших боломжгүй';
+
+  @override
+  String get receiptConvertToListAction => 'Жагсаалтад хөрвүүлэх';
+
+  @override
+  String get receiptRetryReadAction => 'Дахин оролдох';
+
+  @override
+  String get receiptDeleteDraftAction => 'Устгах';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Баримт бэлэн боллоо';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Таны баримт бэлэн болсон. Жагсаалтад шилжүүлэх үү?';
+
+  @override
+  String get receiptDuplicateTitle => 'Баримт аль хэдийн нэмсэн үү?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Энэ дэлгүүр, цаг хугацаатай ижил жагсаалт аль хэдийн байна ($listTitle). Дахин нэмэх үү?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Яаж ч нэмэх';
+
+  @override
+  String get receiptDuplicateDelete => 'Баримт барыг устгах';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Хүлээж буй баримт барууд байхгүй';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Уншсан баримт барууд арын горимд бэлэн болж, та хөрвүүлэх эсвэл устгах хүртэл энд хадгалагдана.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count хуудас';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Баримт барын зурагнууд';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Бүтэн хэмжээгээр харахын тулд баримт барын зургийг товшино уу';
+
+  @override
+  String get receiptPhotoPreparing => 'Баримтын зургийг бэлдэж байна…';
+
+  @override
+  String get homeProPromoTitle => 'Pro-г 24 цаг үнэгүй туршаарай';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 хиймэл оюуны баримт уншуулах ба зар сурталчилгаагүй · Карт шаардахгүй';
+
+  @override
+  String get receiptFailureSheetTitle => 'Яагаад уншиж чадсангүй';
+
+  @override
+  String get receiptFailureMissingTop => 'Дээд хэсэг дутуу';
+
+  @override
+  String get receiptFailureMissingBottom => 'Доод хэсэг дутуу';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Дунд хэсэг дутуу';
+
+  @override
+  String get receiptFailureNotReceipt => 'Баримт биш';
+
+  @override
+  String get receiptFailureUnreadable => 'Уншигдахгүй';
+
+  @override
+  String get receiptFailureMismatch => 'Нийт дүн таарахгүй';
+
+  @override
+  String get receiptFailureRejected => 'Уншиж чадсангүй';
+
+  @override
+  String get receiptFailureService => 'Үйлчилгээ боломжгүй';
+
+  @override
+  String get receiptFailureUnknown => 'Уншилт амжилтгүй';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Үлдсэн хэсгийг зурна уу';
+
+  @override
+  String get receiptFailureRetakeAction => 'Дахин зурна уу';
 }

@@ -936,8 +936,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get planFreeAi => '10 AI-verzoeken per maand';
 
   @override
-  String get planFreeAds =>
-      'Kleine banneradvertenties (geen in je eerste 7 dagen)';
+  String get planFreeAds => 'Kleine banneradvertenties';
 
   @override
   String get planCoreFeatures =>
@@ -1588,4 +1587,200 @@ class AppLocalizationsNl extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% van de limiet gebruikt';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Controleren en corrigeren';
+
+  @override
+  String get receiptEditDetailsTitle => 'Bondetails';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum en tijd';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totaal komt niet overeen';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'De artikelen wijken $difference af van het totaal op de bon. Toch opslaan?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Toch opslaan';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Voeg de winkel en datum toe om deze bon op te slaan.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Kon niet worden gelezen: $fields. Je kunt dit invullen tijdens het controleren.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Cameratoegang staat uit. Zet hem aan in de instellingen om bonnen en labels te scannen.';
+
+  @override
+  String get openSettingsAction => 'Instellingen openen';
+
+  @override
+  String get priceManualEntryAction => 'Prijs handmatig invoeren';
+
+  @override
+  String get priceRetakeAction => 'Nieuwe foto maken';
+
+  @override
+  String get paletteSage => 'Salie';
+
+  @override
+  String get paletteSlate => 'Leisteen';
+
+  @override
+  String get receiptContinueSame => 'Doorgaan met dezelfde bon';
+
+  @override
+  String get receiptCaptureDone => 'Gereed';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count pagina\'s vastgelegd';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Bon in wachtrij — wordt op de achtergrond verwerkt.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Er kunnen maximaal $max pagina\'s aan een bon worden toegevoegd.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Prijslabel uitlezen…';
+
+  @override
+  String get shelfLabelContinueOther => 'Een ander item scannen';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Prijslabel wordt op de achtergrond uitgelezen.';
+
+  @override
+  String get listsTabReceipts => 'Mijn bonnen';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mijn bonnen ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'In wachtrij';
+
+  @override
+  String get receiptStatusProcessing => 'Bon lezen…';
+
+  @override
+  String get receiptStatusReady => 'Klaar';
+
+  @override
+  String get receiptStatusDuplicate => 'Mogelijke dubbele';
+
+  @override
+  String get receiptStatusFailed => 'Kon niet lezen';
+
+  @override
+  String get receiptConvertToListAction => 'Omzetten naar lijst';
+
+  @override
+  String get receiptRetryReadAction => 'Opnieuw proberen';
+
+  @override
+  String get receiptDeleteDraftAction => 'Verwijderen';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Bon klaar';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Je bon is klaar. Naar een lijst overzetten?';
+
+  @override
+  String get receiptDuplicateTitle => 'Bon al toegevoegd?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Er bestaat al een lijst voor deze winkel en tijd ($listTitle). Toch nogmaals toevoegen?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Toch toevoegen';
+
+  @override
+  String get receiptDuplicateDelete => 'Bon verwijderen';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Geen wachtende bonnen';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Gescande bonnen worden op de achtergrond verwerkt en blijven hier staan tot je ze omzet of verwijdert.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count pagina\'s';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Bonfoto\'s';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tik op een bonfoto om hem in volledige grootte te bekijken';
+
+  @override
+  String get receiptPhotoPreparing => 'Bonfoto voorbereiden…';
+
+  @override
+  String get homeProPromoTitle => 'Probeer Pro 24 uur gratis';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI-bonscans & advertentievrij ontgrendeld · Geen kaart nodig';
+
+  @override
+  String get receiptFailureSheetTitle => 'Waarom niet gelezen';
+
+  @override
+  String get receiptFailureMissingTop => 'Bovenkant ontbreekt';
+
+  @override
+  String get receiptFailureMissingBottom => 'Onderkant ontbreekt';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Midden ontbreekt';
+
+  @override
+  String get receiptFailureNotReceipt => 'Geen bon';
+
+  @override
+  String get receiptFailureUnreadable => 'Niet leesbaar';
+
+  @override
+  String get receiptFailureMismatch => 'Totaal komt niet overeen';
+
+  @override
+  String get receiptFailureRejected => 'Kon niet worden gelezen';
+
+  @override
+  String get receiptFailureService => 'Dienst niet beschikbaar';
+
+  @override
+  String get receiptFailureUnknown => 'Lezen mislukt';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Rest fotograferen';
+
+  @override
+  String get receiptFailureRetakeAction => 'Opnieuw maken';
 }

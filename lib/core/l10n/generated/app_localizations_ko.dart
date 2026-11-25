@@ -917,7 +917,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get planFreeAi => '월 10회 AI 요청';
 
   @override
-  String get planFreeAds => '소형 배너 광고 (첫 7일 동안 없음)';
+  String get planFreeAds => '소형 배너 광고';
 
   @override
   String get planCoreFeatures => '목록, 가격, 영수증, 지출 차트';
@@ -1279,10 +1279,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => '이전 달';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => '다음 달';
 
   @override
   String get helpSection => '도움말 및 지원';
@@ -1531,4 +1531,193 @@ class AppLocalizationsKo extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '한도의 $percent% 사용됨';
   }
+
+  @override
+  String get receiptReviewNowAction => '확인하고 수정';
+
+  @override
+  String get receiptEditDetailsTitle => '영수증 정보';
+
+  @override
+  String get receiptDateTimeLabel => '날짜와 시간';
+
+  @override
+  String get receiptSaveAnywayTitle => '합계가 일치하지 않습니다';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return '품목 합계가 영수증 총액과 $difference 차이납니다. 그래도 저장할까요?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => '그래도 저장';
+
+  @override
+  String get receiptNeedsDetails => '이 영수증을 저장하려면 매장과 날짜를 입력하세요.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return '인식하지 못함: $fields. 확인하면서 채워 넣을 수 있어요.';
+  }
+
+  @override
+  String get cameraAccessDenied => '카메라 접근이 꺼져 있습니다. 영수증과 라벨을 스캔하려면 설정에서 켜세요.';
+
+  @override
+  String get openSettingsAction => '설정 열기';
+
+  @override
+  String get priceManualEntryAction => '가격 직접 입력';
+
+  @override
+  String get priceRetakeAction => '다시 촬영';
+
+  @override
+  String get paletteSage => '세이지';
+
+  @override
+  String get paletteSlate => '슬레이트';
+
+  @override
+  String get receiptContinueSame => '같은 영수증 계속하기';
+
+  @override
+  String get receiptCaptureDone => '완료';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count페이지 캡처됨';
+  }
+
+  @override
+  String get receiptQueuedNotice => '영수증이 대기열에 추가되었습니다 — 백그라운드에서 준비 중입니다.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return '영수증당 최대 $max페이지까지 추가할 수 있습니다.';
+  }
+
+  @override
+  String get shelfLabelReading => '가격 라벨 읽는 중…';
+
+  @override
+  String get shelfLabelContinueOther => '다른 항목 스캔';
+
+  @override
+  String get shelfLabelQueuedNotice => '가격 라벨이 백그라운드에서 읽히는 중입니다.';
+
+  @override
+  String get listsTabReceipts => '내 영수증';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return '내 영수증 ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => '대기 중';
+
+  @override
+  String get receiptStatusProcessing => '영수증 읽는 중…';
+
+  @override
+  String get receiptStatusReady => '준비 완료';
+
+  @override
+  String get receiptStatusDuplicate => '중복 가능성 있음';
+
+  @override
+  String get receiptStatusFailed => '읽기 실패';
+
+  @override
+  String get receiptConvertToListAction => '리스트로 변환';
+
+  @override
+  String get receiptRetryReadAction => '다시 시도';
+
+  @override
+  String get receiptDeleteDraftAction => '삭제';
+
+  @override
+  String get receiptReadyNotificationTitle => '영수증 준비 완료';
+
+  @override
+  String get receiptReadyNotificationBody => '영수증이 준비되었습니다. 리스트에 추가하시겠습니까?';
+
+  @override
+  String get receiptDuplicateTitle => '이미 추가된 영수증인가요?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return '같은 매장 및 시간의 리스트가 이미 존재합니다 ($listTitle). 그래도 다시 추가하시겠습니까?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => '그래도 추가';
+
+  @override
+  String get receiptDuplicateDelete => '영수증 삭제';
+
+  @override
+  String get receiptEmptyTrayTitle => '대기 중인 영수증이 없습니다';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      '스캔한 영수증은 백그라운드에서 처리되며, 변환하거나 제거할 때까지 여기에 보관됩니다.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count페이지';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => '영수증 사진';
+
+  @override
+  String get receiptOpenPhotoHint => '전체 크기로 보려면 영수증 사진을 탭하세요';
+
+  @override
+  String get receiptPhotoPreparing => '영수증 사진을 준비하는 중…';
+
+  @override
+  String get homeProPromoTitle => 'Pro 24시간 무료 체험하기';
+
+  @override
+  String get homeProPromoSubtitle => 'AI 영수증 스캔 100회 및 광고 제거 사용 가능 · 카드 등록 불필요';
+
+  @override
+  String get receiptFailureSheetTitle => '읽히지 않은 이유';
+
+  @override
+  String get receiptFailureMissingTop => '상단 누락';
+
+  @override
+  String get receiptFailureMissingBottom => '하단 누락';
+
+  @override
+  String get receiptFailureMissingMiddle => '중간 누락';
+
+  @override
+  String get receiptFailureNotReceipt => '영수증 아님';
+
+  @override
+  String get receiptFailureUnreadable => '판독 불가';
+
+  @override
+  String get receiptFailureMismatch => '합계 불일치';
+
+  @override
+  String get receiptFailureRejected => '거부됨';
+
+  @override
+  String get receiptFailureService => '서비스 불가';
+
+  @override
+  String get receiptFailureUnknown => '읽기 실패';
+
+  @override
+  String get receiptFailureAddMoreAction => '나머지 촬영';
+
+  @override
+  String get receiptFailureRetakeAction => '다시 촬영';
 }

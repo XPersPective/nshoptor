@@ -339,6 +339,64 @@ void main() {
   );
 
   test(
+    'v5 receipt JSON missing queueState defaults to legacy and separate import remaps duplicateOfListId',
+    () async {
+      final originalListId = await db
+          .into(db.shoppingLists)
+          .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+      await db
+          .into(db.receipts)
+          .insert(
+            ReceiptsCompanion.insert(
+              queueState: const Value('duplicate'),
+              duplicateOfListId: Value(originalListId),
+            ),
+          );
+      final v6Json =
+          jsonDecode(await BackupRepository(db).exportBackup())
+              as Map<String, dynamic>;
+
+      // Simulate a v5 snapshot lacking v6 columns cleanly restoring into v6 DB.
+      final legacyV5Map = Map<String, dynamic>.from(v6Json);
+      final legacyReceipts = [
+        for (final row in legacyV5Map['receipts'] as List)
+          Map<String, dynamic>.from(row as Map)
+            ..remove('queueState')
+            ..remove('queueError')
+            ..remove('convertedAt')
+            ..remove('duplicateOfListId'),
+      ];
+      legacyV5Map['receipts'] = legacyReceipts;
+
+      final legacyTarget = AppDatabase(NativeDatabase.memory());
+      addTearDown(legacyTarget.close);
+      await BackupRepository(
+        legacyTarget,
+      ).importBackup(jsonEncode(legacyV5Map), ImportMode.merge);
+      final restoredLegacy =
+          (await legacyTarget.select(legacyTarget.receipts).get()).single;
+      expect(restoredLegacy.queueState, 'legacy');
+      expect(restoredLegacy.duplicateOfListId, isNull);
+
+      // Verify separate import remaps duplicateOfListId onto newly allocated list id.
+      final target = AppDatabase(NativeDatabase.memory());
+      addTearDown(target.close);
+      final targetExistingList = await target
+          .into(target.shoppingLists)
+          .insert(ShoppingListsCompanion.insert(currencyCode: 'TRY'));
+      await BackupRepository(
+        target,
+      ).importBackup(jsonEncode(v6Json), ImportMode.separate);
+      final importedReceipt =
+          (await target.select(target.receipts).get()).single;
+      expect(importedReceipt.queueState, 'duplicate');
+      expect(importedReceipt.duplicateOfListId, isNotNull);
+      expect(importedReceipt.duplicateOfListId, isNot(originalListId));
+      expect(importedReceipt.duplicateOfListId, isNot(targetExistingList));
+    },
+  );
+
+  test(
     'malformed capture evidence cannot enter a backup recovery transaction',
     () async {
       await db.into(db.receipts).insert(ReceiptsCompanion.insert());

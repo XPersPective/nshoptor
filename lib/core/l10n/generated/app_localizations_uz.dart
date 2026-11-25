@@ -937,7 +937,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get planFreeAi => 'Oyiga 10 ta AI so‘rov';
 
   @override
-  String get planFreeAds => 'Kichik banner reklama (birinchi 7 kunida yo‘q)';
+  String get planFreeAds => 'Kichik banner reklama';
 
   @override
   String get planCoreFeatures =>
@@ -1589,4 +1589,200 @@ class AppLocalizationsUz extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Limitning $percent% ishlatildi';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Tekshirib, tuzating';
+
+  @override
+  String get receiptEditDetailsTitle => 'Chek ma\'lumotlari';
+
+  @override
+  String get receiptDateTimeLabel => 'Sana va vaqt';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Jami summa mos kelmaydi';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Mahsulotlar summasi chek jami bilan $difference farq qiladi. Baribir saqlansinmi?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Baribir saqlash';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Bu chekni saqlash uchun do\'kon va sanani kiriting.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'O\'qilmadi: $fields. Ularni ko\'rib chiqish paytida to\'ldirishingiz mumkin.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kameraga kirish yopiq. Cheklar va yorliqlarni skanerlash uchun uni sozlamalardan yoqing.';
+
+  @override
+  String get openSettingsAction => 'Sozlamalarni ochish';
+
+  @override
+  String get priceManualEntryAction => 'Narxni qo\'lda kiriting';
+
+  @override
+  String get priceRetakeAction => 'Boshqa suratga oling';
+
+  @override
+  String get paletteSage => 'Marmarak';
+
+  @override
+  String get paletteSlate => 'Slanets';
+
+  @override
+  String get receiptContinueSame => 'Xuddi shu chekni davom ettirish';
+
+  @override
+  String get receiptCaptureDone => 'Tayyor';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count sahifa o\'qildi';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Chek navbatga qo\'yildi — fon rejimida tayyorlanmoqda.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Har bir chekka eng ko\'pi bilan $max sahifa qo\'shish mumkin.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Narx yorlig\'i o\'qilmoqda…';
+
+  @override
+  String get shelfLabelContinueOther => 'Boshqa mahsulotni skanerlash';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Narx yorlig\'i fon rejimida o\'qilmoqda.';
+
+  @override
+  String get listsTabReceipts => 'Mening cheklari';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Mening cheklari ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Navbatda';
+
+  @override
+  String get receiptStatusProcessing => 'Chek o\'qilmoqda…';
+
+  @override
+  String get receiptStatusReady => 'Tayyor';
+
+  @override
+  String get receiptStatusDuplicate => 'Ehtimol, dublikat';
+
+  @override
+  String get receiptStatusFailed => 'O\'qib bo\'lmadi';
+
+  @override
+  String get receiptConvertToListAction => 'Ro\'yxatga aylantirish';
+
+  @override
+  String get receiptRetryReadAction => 'Qayta urinish';
+
+  @override
+  String get receiptDeleteDraftAction => 'O\'chirish';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Chek tayyor';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Chekingiz tayyor. Uni ro\'yxatga ko\'chirish kerakmi?';
+
+  @override
+  String get receiptDuplicateTitle => 'Chek allaqachon qo\'shilganmi?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Bu do\'kon va vaqtga mos keladigan ro\'yxat allaqachon mavjud ($listTitle). Yana qo\'shilsinmi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Yana qo\'shish';
+
+  @override
+  String get receiptDuplicateDelete => 'Chetni o\'chirish';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Kutilayotgan cheklar yo\'q';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skanerlangan cheklar fon tayyorlanadi va siz ularni ro\'yxatga aylantirguncha yoki o\'chirguncha shu yerda turadi.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count sahifa';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Chek rasmlari';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'To\'liq hajmda ko\'rish uchun chek rasmiga bosing';
+
+  @override
+  String get receiptPhotoPreparing => 'Chek rasmi tayyorlanmoqda…';
+
+  @override
+  String get homeProPromoTitle => 'Pro’ni 24 soat bepul sinab ko‘ring';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 ta SI chek skanerlash va reklamasiz rejim ochiq · Karta kerak emas';
+
+  @override
+  String get receiptFailureSheetTitle => 'Nima uchun o‘qilmadi';
+
+  @override
+  String get receiptFailureMissingTop => 'Yuqori qismi yo‘q';
+
+  @override
+  String get receiptFailureMissingBottom => 'Pastki qismi yo‘q';
+
+  @override
+  String get receiptFailureMissingMiddle => 'O‘rta qismi yo‘q';
+
+  @override
+  String get receiptFailureNotReceipt => 'Bu chek emas';
+
+  @override
+  String get receiptFailureUnreadable => 'Aniq emas';
+
+  @override
+  String get receiptFailureMismatch => 'Summa mos kelmadi';
+
+  @override
+  String get receiptFailureRejected => 'O‘qib bo‘lmadi';
+
+  @override
+  String get receiptFailureService => 'Xizmat mavjud emas';
+
+  @override
+  String get receiptFailureUnknown => 'O‘qish muvaffaqiyatsiz';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Qolganini suratga oling';
+
+  @override
+  String get receiptFailureRetakeAction => 'Qayta oling';
 }

@@ -86,6 +86,7 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final current = widget.service.tier;
+    final storePaid = widget.service.storeTier != Tier.free;
     final status = planStatusText(
       l10n,
       label: planLabel(l10n, tier: current, proUnlocked: current != Tier.free),
@@ -104,6 +105,11 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
           final proOffer = offers
               .where(
                 (o) => o.productId == SubscriptionService.proId && o.yearly,
+              )
+              .firstOrNull;
+          final monthlyOffer = offers
+              .where(
+                (o) => o.productId == SubscriptionService.proId && o.monthly,
               )
               .firstOrNull;
           return ListView(
@@ -164,16 +170,32 @@ class _SubscriptionPaywallState extends State<SubscriptionPaywall> {
                 price: proOffer?.price,
                 period: l10n.plansPerYear,
                 benefits: [l10n.planProAi, l10n.planNoAds, l10n.planBackup],
-                current: false,
+                current: storePaid && monthlyOffer == null,
                 highlight: true,
                 loading: snap.connectionState != ConnectionState.done,
                 unavailableText: l10n.planUnavailable,
-                onBuy: busy || proOffer == null
+                onBuy: busy || storePaid || proOffer == null
                     ? null
                     : () => widget.service.buy(proOffer),
               ),
+              if (monthlyOffer != null) ...[
+                const SizedBox(height: 16),
+                Text(l10n.plansMonthly, style: theme.textTheme.titleMedium),
+                _PlanCard(
+                  key: const Key('plan_pro_monthly'),
+                  title: 'Pro',
+                  current: false,
+                  price: monthlyOffer.price,
+                  period: l10n.plansPerMonth,
+                  benefits: [l10n.planProAi, l10n.planNoAds, l10n.planBackup],
+                  onBuy: busy || storePaid
+                      ? null
+                      : () => widget.service.buy(monthlyOffer),
+                ),
+              ],
               if (snap.connectionState == ConnectionState.done &&
-                  proOffer == null)
+                  proOffer == null &&
+                  monthlyOffer == null)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Column(

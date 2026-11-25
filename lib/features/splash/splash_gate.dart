@@ -61,37 +61,59 @@ class _SplashPage extends StatelessWidget {
         body: SafeArea(
           child: Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(
-                    'assets/brand/icon_1024.png',
-                    key: const Key('splash_icon'),
-                    width: 120,
-                    height: 120,
-                    excludeFromSemantics: true,
-                  ),
-                  const SizedBox(height: 20),
-                  Semantics(
-                    label: 'NShoptor',
-                    excludeSemantics: true,
-                    child: Text.rich(
-                      TextSpan(children: [
-                        TextSpan(
-                          text: 'N',
-                          style: wordmark.copyWith(color: AppTheme.splashAccent),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      key: const Key('splash_brand_row'),
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(14),
+                          child: Image.asset(
+                            'assets/brand/icon_1024.png',
+                            key: const Key('splash_icon'),
+                            width: 52,
+                            height: 52,
+                            excludeFromSemantics: true,
+                          ),
                         ),
-                        TextSpan(
-                          text: 'Shoptor',
-                          style: wordmark.copyWith(color: Colors.white),
+                        const SizedBox(width: 16),
+                        Semantics(
+                          label: 'NShoptor',
+                          excludeSemantics: true,
+                          child: Text.rich(
+                            TextSpan(children: [
+                              TextSpan(
+                                text: 'N',
+                                style: wordmark.copyWith(color: AppTheme.splashAccent),
+                              ),
+                              TextSpan(
+                                text: 'Shoptor',
+                                style: wordmark.copyWith(color: Colors.white),
+                              ),
+                            ]),
+                            key: const Key('splash_wordmark'),
+                            textScaler: TextScaler.noScaling,
+                          ),
                         ),
-                      ]),
-                      key: const Key('splash_wordmark'),
-                      textScaler: TextScaler.noScaling,
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 14),
+                  Container(
+                    width: 44,
+                    height: 2,
+                    decoration: BoxDecoration(
+                      color: AppTheme.splashAccent.withValues(alpha: 0.35),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
                   Text(
                     l10n.slogan,
                     key: const Key('splash_slogan'),
@@ -99,6 +121,7 @@ class _SplashPage extends StatelessWidget {
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: AppTheme.splashAccent,
                       fontWeight: FontWeight.w500,
+                      letterSpacing: 0.15,
                     ),
                   ),
                 ],

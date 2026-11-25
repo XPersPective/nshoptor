@@ -934,7 +934,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get planFreeAi => 'ماہانہ 10 AI درخواستیں';
 
   @override
-  String get planFreeAds => 'چھوٹی بینر اشتہارات (پہلے 7 دنوں میں کوئی نہیں)';
+  String get planFreeAds => 'چھوٹی بینر اشتہارات';
 
   @override
   String get planCoreFeatures => 'لسٹیں، قیمتیں، رسیدیں، خرچ گراف';
@@ -1319,10 +1319,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'پچھلا مہینہ';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'اگلا مہینہ';
 
   @override
   String get helpSection => 'مدد اور معاونت';
@@ -1580,4 +1580,200 @@ class AppLocalizationsUr extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'حد کا $percent٪ استعمال ہو چکا ہے';
   }
+
+  @override
+  String get receiptReviewNowAction => 'جائزہ لیں اور درست کریں';
+
+  @override
+  String get receiptEditDetailsTitle => 'رسید کی تفصیلات';
+
+  @override
+  String get receiptDateTimeLabel => 'تاریخ اور وقت';
+
+  @override
+  String get receiptSaveAnywayTitle => 'کل رقم میل نہیں کھاتی';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'اشیا کا مجموعہ رسید کی کل رقم سے $difference مختلف ہے۔ پھر بھی محفوظ کریں؟';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'پھر بھی محفوظ کریں';
+
+  @override
+  String get receiptNeedsDetails =>
+      'اس رسید کو محفوظ کرنے کے لیے دکان اور تاریخ شامل کریں۔';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'پڑھا نہیں جا سکا: $fields۔ آپ جائزے کے دوران یہ بھر سکتے ہیں۔';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'کیمرے تک رسائی بند ہے۔ رسیدیں اور لیبل اسکین کرنے کے لیے اسے ترتیبات میں کھولیں۔';
+
+  @override
+  String get openSettingsAction => 'ترتیبات کھولیں';
+
+  @override
+  String get priceManualEntryAction => 'قیمت خود درج کریں';
+
+  @override
+  String get priceRetakeAction => 'دوسری تصویر لیں';
+
+  @override
+  String get paletteSage => 'سیج';
+
+  @override
+  String get paletteSlate => 'سلیٹ';
+
+  @override
+  String get receiptContinueSame => 'یہی رسید جاری رکھیں';
+
+  @override
+  String get receiptCaptureDone => 'مکمل';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count صفحات کیمرے میں لیے گئے';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'رسید قطار میں ہے — پس منظر میں تیار ہو رہی ہے۔';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'ایک رسید میں زیادہ سے زیادہ $max صفحات شامل کیے جا سکتے ہیں۔';
+  }
+
+  @override
+  String get shelfLabelReading => 'قیمت کا لیبل پڑھا جا رہا ہے…';
+
+  @override
+  String get shelfLabelContinueOther => 'کوئی اور آئٹم اسکین کریں';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'قیمت کا لیبل پس منظر میں پڑھا جا رہا ہے۔';
+
+  @override
+  String get listsTabReceipts => 'میری رسیدیں';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'میری رسیدیں ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'قطار میں';
+
+  @override
+  String get receiptStatusProcessing => 'رسید پڑھی جا رہی ہے…';
+
+  @override
+  String get receiptStatusReady => 'تیار';
+
+  @override
+  String get receiptStatusDuplicate => 'ممکنہ نقل';
+
+  @override
+  String get receiptStatusFailed => 'پڑھ نہیں سکی';
+
+  @override
+  String get receiptConvertToListAction => 'فہرست میں تبدیل کریں';
+
+  @override
+  String get receiptRetryReadAction => 'دوبارہ کوشش کریں';
+
+  @override
+  String get receiptDeleteDraftAction => 'حذف کریں';
+
+  @override
+  String get receiptReadyNotificationTitle => 'رسید تیار ہے';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'آپ کی رسید تیار ہے۔ اسے فہرست میں منتقل کریں؟';
+
+  @override
+  String get receiptDuplicateTitle => 'رسید پہلے سے شامل ہے؟';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'اس دکان اور وقت کے مطابق ایک فہرست پہلے سے موجود ہے ($listTitle)۔ پھر بھی شامل کریں؟';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'پھر بھی شامل کریں';
+
+  @override
+  String get receiptDuplicateDelete => 'رسید حذف کریں';
+
+  @override
+  String get receiptEmptyTrayTitle => 'کوئی زیرِ عمل رسیدیں نہیں';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'اسکین شدہ رسیدیں بیک گراؤنڈ میں تیاری ہوتی ہیں اور آپ انہیں تبدیل یا ہٹانے تک یہاں رہتی ہیں۔';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count صفحات';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'رسید کی تصاویر';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'مکمل سائز دیکھنے کے لیے کسی رسید کی تصویر پر ٹیپ کریں';
+
+  @override
+  String get receiptPhotoPreparing => 'رسید کی تصویر تیار کی جا رہی ہے…';
+
+  @override
+  String get homeProPromoTitle => '24 گھنٹے کے لیے Pro مفت آزمائیں';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI رسید اسکین اور اشتہارات کے بغیر تجربہ فعال · کارڈ درکار نہیں';
+
+  @override
+  String get receiptFailureSheetTitle => 'کیوں نہیں پڑھ سکے';
+
+  @override
+  String get receiptFailureMissingTop => 'اوپر کا حصہ غائب';
+
+  @override
+  String get receiptFailureMissingBottom => 'نیچے کا حصہ غائب';
+
+  @override
+  String get receiptFailureMissingMiddle => 'درمیان کا حصہ غائب';
+
+  @override
+  String get receiptFailureNotReceipt => 'یہ رسید نہیں';
+
+  @override
+  String get receiptFailureUnreadable => 'واضح نہیں';
+
+  @override
+  String get receiptFailureMismatch => 'کل رقم نہیں ملتی';
+
+  @override
+  String get receiptFailureRejected => 'پڑھی نہیں جا سکی';
+
+  @override
+  String get receiptFailureService => 'سروس دستیاب نہیں';
+
+  @override
+  String get receiptFailureUnknown => 'پڑھنا ناکام';
+
+  @override
+  String get receiptFailureAddMoreAction => 'باقی حصہ تصویر لیں';
+
+  @override
+  String get receiptFailureRetakeAction => 'دوبارہ تصویر لیں';
 }

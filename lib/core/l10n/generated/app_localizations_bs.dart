@@ -935,7 +935,7 @@ class AppLocalizationsBs extends AppLocalizations {
   String get planFreeAi => '10 AI zahtjeva mjesečno';
 
   @override
-  String get planFreeAds => 'Male banner reklame (nijedne prvih 7 dana)';
+  String get planFreeAds => 'Male banner reklame';
 
   @override
   String get planCoreFeatures => 'Liste, cijene, računi, grafikoni troškova';
@@ -1585,4 +1585,199 @@ class AppLocalizationsBs extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Iskorišteno je $percent% limita';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Pregledajte i ispravite';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detalji računa';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum i vrijeme';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Ukupni iznos se ne podudara';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Artikli se razlikuju za $difference od ukupnog iznosa računa. Spremiti ipak?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Spremi ipak';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Dodajte trgovinu i datum da biste spremili ovaj račun.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Nije moguće pročitati: $fields. Možete ih popuniti tokom pregleda.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Pristup kameri je isključen. Uključite ga u postavkama da skenirate račune i naljepnice.';
+
+  @override
+  String get openSettingsAction => 'Otvorite postavke';
+
+  @override
+  String get priceManualEntryAction => 'Unesite cijenu ručno';
+
+  @override
+  String get priceRetakeAction => 'Fotografišite ponovo';
+
+  @override
+  String get paletteSage => 'Kadulja';
+
+  @override
+  String get paletteSlate => 'Škriljac';
+
+  @override
+  String get receiptContinueSame => 'Nastavi s istim računom';
+
+  @override
+  String get receiptCaptureDone => 'Gotovo';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count stranica uhvaćeno';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Račun je u redu čekanja — priprema se u pozadini.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Do $max stranica može se dodati po računu.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Čitanje cijene…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skeniraj drugi artikl';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Cijena se čita u pozadini.';
+
+  @override
+  String get listsTabReceipts => 'Moji računi';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Moji računi ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'U redu čekanja';
+
+  @override
+  String get receiptStatusProcessing => 'Čitanje računa…';
+
+  @override
+  String get receiptStatusReady => 'Spremno';
+
+  @override
+  String get receiptStatusDuplicate => 'Mogući duplikat';
+
+  @override
+  String get receiptStatusFailed => 'Nije moguće pročitati';
+
+  @override
+  String get receiptConvertToListAction => 'Pretvori u listu';
+
+  @override
+  String get receiptRetryReadAction => 'Pokušaj ponovo';
+
+  @override
+  String get receiptDeleteDraftAction => 'Obriši';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Račun spreman';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Vaš račun je spreman. Prenijeti ga na listu?';
+
+  @override
+  String get receiptDuplicateTitle => 'Račun već dodan?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Lista koja odgovara ovoj trgovini i vremenu već postoji ($listTitle). Dodati ipak?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Dodaj ipak';
+
+  @override
+  String get receiptDuplicateDelete => 'Obriši račun';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Nema računa u redu čekanja';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Skenirani računi se pripremaju u pozadini i ostaju ovdje dok ih ne pretvorite ili ne uklonite.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count stranica';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Fotografije računa';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Dodirnite fotografiju računa za prikaz u punoj veličini';
+
+  @override
+  String get receiptPhotoPreparing => 'Priprema fotografije računa…';
+
+  @override
+  String get homeProPromoTitle => 'Isprobajte Pro besplatno 24 sata';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI skeniranja računa i bez reklama otključano · Kartica nije potrebna';
+
+  @override
+  String get receiptFailureSheetTitle => 'Zašto se nije mogao pročitati';
+
+  @override
+  String get receiptFailureMissingTop => 'Gornji dio nedostaje';
+
+  @override
+  String get receiptFailureMissingBottom => 'Donji dio nedostaje';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Srednji dio nedostaje';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nije račun';
+
+  @override
+  String get receiptFailureUnreadable => 'Nije čitljivo';
+
+  @override
+  String get receiptFailureMismatch => 'Iznos se ne podudara';
+
+  @override
+  String get receiptFailureRejected => 'Nije moguće pročitati';
+
+  @override
+  String get receiptFailureService => 'Servis nije dostupan';
+
+  @override
+  String get receiptFailureUnknown => 'Čitanje nije uspjelo';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Fotografirajte ostatak';
+
+  @override
+  String get receiptFailureRetakeAction => 'Fotografirajte ponovo';
 }

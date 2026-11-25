@@ -935,8 +935,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get planFreeAi => '10 AI eskari hilabetero';
 
   @override
-  String get planFreeAds =>
-      'Irrati-iragarki txikiak (ez dago lehenengo 7 egunetan)';
+  String get planFreeAds => 'Irrati-iragarki txikiak';
 
   @override
   String get planCoreFeatures =>
@@ -1589,4 +1588,200 @@ class AppLocalizationsEu extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Mugaren %$percent erabili da';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Berrikusi eta zuzendu';
+
+  @override
+  String get receiptEditDetailsTitle => 'Ordainagiriaren xehetasunak';
+
+  @override
+  String get receiptDateTimeLabel => 'Data eta ordua';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Guztizkoa ez dator bat';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Artikuluak ez datoz bat ordainagiriaren guztizkoarekin, $difference aldea dago. Hala ere gorde?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Gorde hala ere';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Gehitu denda eta data ordainagiri hau gordetzeko.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Ezin izan da irakurri: $fields. Berrikustean bete ditzakezu.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kamerarako sarbidea desaktibatuta dago. Gaitu ezarpenetan ordainagiriak eta etiketak eskaneatzeko.';
+
+  @override
+  String get openSettingsAction => 'Ireki ezarpenak';
+
+  @override
+  String get priceManualEntryAction => 'Sartu prezioa eskuz';
+
+  @override
+  String get priceRetakeAction => 'Atera beste argazki bat';
+
+  @override
+  String get paletteSage => 'Salbia';
+
+  @override
+  String get paletteSlate => 'Arbela';
+
+  @override
+  String get receiptContinueSame => 'Jarraitu errezeptu berarekin';
+
+  @override
+  String get receiptCaptureDone => 'Eginda';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count orri kapturatuta';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Errezeptua ilaran — atzeko planoan prestatzen.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Gehienez $max orri gehitu daitezke errezeptu bakoitzean.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Prezio-labela irakurtzen…';
+
+  @override
+  String get shelfLabelContinueOther => 'Eskaneatu beste produktu bat';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Prezio-labela atzeko planoan irakurtzen ari da.';
+
+  @override
+  String get listsTabReceipts => 'Nire errekiburuak';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Nire errekiburuak ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Emanean';
+
+  @override
+  String get receiptStatusProcessing => 'Errekiburua irakurtzen…';
+
+  @override
+  String get receiptStatusReady => 'Prest';
+
+  @override
+  String get receiptStatusDuplicate => 'Bikoiztu bat izan daiteke';
+
+  @override
+  String get receiptStatusFailed => 'Ezin izan da irakurri';
+
+  @override
+  String get receiptConvertToListAction => 'Zerrenda bihurtu';
+
+  @override
+  String get receiptRetryReadAction => 'Saiatu berriro';
+
+  @override
+  String get receiptDeleteDraftAction => 'Ezabatu';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Errekiburua prest';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Zure errekiburua prest dago. Zerrendara transferitu?';
+
+  @override
+  String get receiptDuplicateTitle => 'Errekiburua jada gehituta?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Dendarekin eta denborarekin bat datorren zerrenda bat existitzen da jada ($listTitle). Berriro gehitu al duzu?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Gehitu hala ere';
+
+  @override
+  String get receiptDuplicateDelete => 'Ezabatu errekiburua';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ez dago errekiburu pendingik';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Eskenearritako errekiburuak atzealdean prestatzen dira eta hemen geratzen dira zurek bihurtu edo kentzen dituzun arte.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count orrialde';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Errekiburu argazkiak';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Ukitu errekiburu baten argazkia tamaina osoan ikusteko';
+
+  @override
+  String get receiptPhotoPreparing => 'Ordainagiriaren argazkia prestatzen…';
+
+  @override
+  String get homeProPromoTitle => 'Probatu Pro doan 24 orduz';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AA ordainagiri-eskaneatze eta iragarkirik gabe · Txartelik gabe';
+
+  @override
+  String get receiptFailureSheetTitle => 'Zergatik ez da irakurri';
+
+  @override
+  String get receiptFailureMissingTop => 'Goialdea falta';
+
+  @override
+  String get receiptFailureMissingBottom => 'Behekoa falta';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Ertaina falta';
+
+  @override
+  String get receiptFailureNotReceipt => 'Ez da ordainagiria';
+
+  @override
+  String get receiptFailureUnreadable => 'Irakurgaitza';
+
+  @override
+  String get receiptFailureMismatch => 'Guztizkoa ez dator bat';
+
+  @override
+  String get receiptFailureRejected => 'Ezin izan da irakurri';
+
+  @override
+  String get receiptFailureService => 'Zerbitzua ez dago';
+
+  @override
+  String get receiptFailureUnknown => 'Irakurtzean huts egin du';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Atera gainera';
+
+  @override
+  String get receiptFailureRetakeAction => 'Atera beste argazki bat';
 }

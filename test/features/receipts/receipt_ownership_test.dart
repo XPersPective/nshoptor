@@ -284,6 +284,15 @@ void main() {
       lineTotalMinor: 13001,
       source: 'receiptOcr',
     );
+    await old.customStatement('DROP INDEX IF EXISTS idx_receipts_queue_state_created');
+    for (final column in [
+      'queue_state',
+      'queue_error',
+      'converted_at',
+      'duplicate_of_list_id',
+    ]) {
+      await old.customStatement('ALTER TABLE receipts DROP COLUMN $column');
+    }
     await old.customStatement(
       'ALTER TABLE planned_items DROP COLUMN created_by_receipt_id',
     );

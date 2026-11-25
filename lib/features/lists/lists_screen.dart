@@ -15,8 +15,11 @@ import '../../core/money/money.dart';
 import '../../core/money/money_format.dart';
 import '../../core/money/money_parser.dart';
 import '../../data/db/app_database.dart';
+import '../receipts/receipt_draft_repository.dart';
+import '../receipts/receipt_queue_service.dart';
 import 'list_detail_screen.dart';
 import 'list_repository.dart';
+import 'receipts_tray_tab.dart';
 import 'list_scheduling.dart';
 import 'reminders/reminder_scheduler.dart';
 import 'reminders/reminders_repository.dart';
@@ -51,7 +54,11 @@ class ListsScreen extends StatefulWidget {
     this.receiptBusy = false,
     this.onDiscover,
     this.planBadge,
+    this.promoCard,
     this.budgetCard,
+    this.receiptQueueService,
+    this.requestedTab,
+    this.requestedTabNonce = 0,
   });
 
   final ListRepository repository;
@@ -70,14 +77,23 @@ class ListsScreen extends StatefulWidget {
   /// Plan simgesi (ana sayfanın üstünde); verilmezse gösterilmez.
   final Widget? planBadge;
 
+  /// Promotional welcome banner (24-hour Free Pro) shown while active.
+  final Widget? promoCard;
+
   /// Weekly/monthly budget progress shown above the lists when limits exist.
   final Widget? budgetCard;
+  final ReceiptQueueService? receiptQueueService;
+  final int? requestedTab;
+  final int requestedTabNonce;
 
   @override
   State<ListsScreen> createState() => _ListsScreenState();
 }
 
-class _ListsScreenState extends State<ListsScreen> {
+class _ListsScreenState extends State<ListsScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+  late final Stream<List<Receipt>> _trayStream;
   String _query = '';
   final _searchController = TextEditingController();
   bool _editorOpen = false;
@@ -85,291 +101,459 @@ class _ListsScreenState extends State<ListsScreen> {
   final _orders = <ListStatus, List<int>>{};
 
   @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 4,
+      vsync: this,
+      initialIndex: (widget.requestedTab ?? 0).clamp(0, 3),
+    );
+    _trayStream = ReceiptDraftRepository(widget.repository.db).watchTrayReceipts();
+  }
+
+  @override
+  void didUpdateWidget(covariant ListsScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.requestedTabNonce != oldWidget.requestedTabNonce &&
+        widget.requestedTab != null) {
+      final target = widget.requestedTab!.clamp(0, 3);
+      if (_tabController.index != target) {
+        _tabController.animateTo(target);
+      }
+    }
+  }
+
+  @override
   void dispose() {
+    _tabController.dispose();
     _searchController.dispose();
     super.dispose();
+  }
+
+  String _sortModeLabel(AppLocalizations l10n, ListSortMode mode) =>
+      switch (mode) {
+        ListSortMode.date => l10n.listSortDate,
+        ListSortMode.title => l10n.listSortAz,
+        ListSortMode.manual => l10n.listSortManual,
+      };
+
+  Widget _buildSortMenu(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) {
+    final scheme = Theme.of(context).colorScheme;
+    final sortLabel = _sortModeLabel(l10n, _sort);
+    return Semantics(
+      button: true,
+      label: l10n.listSortLabel,
+      value: sortLabel,
+      child: PopupMenuButton<ListSortMode>(
+        key: const Key('lists_sort_button'),
+        tooltip: '${l10n.listSortLabel}: $sortLabel',
+        initialValue: _sort,
+        onSelected: (selected) {
+          if (selected == _sort) return;
+          setState(() {
+            _sort = selected;
+            AppDefaults.setListSort(_sort.name);
+          });
+        },
+        itemBuilder: (context) => [
+          for (final mode in ListSortMode.values)
+            CheckedPopupMenuItem<ListSortMode>(
+              value: mode,
+              checked: _sort == mode,
+              child: Text(_sortModeLabel(l10n, mode)),
+            ),
+        ],
+        child: SizedBox(
+          width: 48,
+          height: 48,
+          child: Center(
+            child: DecoratedBox(
+              decoration: ShapeDecoration(
+                shape: CircleBorder(
+                  side: BorderSide(
+                    color: scheme.outlineVariant.withValues(alpha: 0.55),
+                  ),
+                ),
+                color: scheme.surfaceContainerHigh,
+              ),
+              child: SizedBox(
+                width: 36,
+                height: 36,
+                child: Icon(
+                  Icons.sort,
+                  size: 20,
+                  color: scheme.onSurfaceVariant,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _toolbarIconButton({
+    Key? buttonKey,
+    required String tooltip,
+    required IconData icon,
+    required VoidCallback? onPressed,
+  }) {
+    return Builder(
+      builder: (context) {
+        final scheme = Theme.of(context).colorScheme;
+        return IconButton(
+          key: buttonKey,
+          tooltip: tooltip,
+          iconSize: 22,
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+          onPressed: onPressed,
+          icon: DecoratedBox(
+            decoration: ShapeDecoration(
+              shape: CircleBorder(
+                side: BorderSide(
+                  color: scheme.outlineVariant.withValues(alpha: 0.45),
+                ),
+              ),
+              color: scheme.surfaceContainerHigh.withValues(alpha: 0.55),
+            ),
+            child: SizedBox(
+              width: 34,
+              height: 34,
+              child: Center(child: Icon(icon, size: 22)),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final sortLabel = switch (_sort) {
-      ListSortMode.date => l10n.listSortDate,
-      ListSortMode.title => l10n.listSortAz,
-      ListSortMode.manual => l10n.listSortManual,
-    };
-    // F26: sort sits at the end of the tabs row (start in RTL).
-    final sortButton = Semantics(
-      value: sortLabel,
-      child: IconButton(
-        key: const Key('lists_sort_button'),
-        tooltip: '${l10n.listSortLabel}: $sortLabel',
-        icon: Icon(switch (_sort) {
-          ListSortMode.date => Icons.event_outlined,
-          ListSortMode.title => Icons.sort_by_alpha,
-          ListSortMode.manual => Icons.drag_indicator,
-        }),
-        onPressed: () => setState(() {
-          _sort = _sort.next;
-          AppDefaults.setListSort(_sort.name);
-        }),
-      ),
-    );
-    final helpInAppBar = MediaQuery.sizeOf(context).width >= 380;
-    final helpButton = TourAnchor(
-      id: TourTargets.listsHelp,
-      child: IconButton(
-        key: const Key('lists_help_button'),
-        tooltip: l10n.howToUseLabel,
-        icon: const Icon(Icons.help_outline),
-        onPressed: () => showFirstRunGuide(context),
-      ),
-    );
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const BrandTitle(),
-          // F26/F02: [Discover][Pro] — Pro ends 16dp from the screen edge;
-          // Discover's 48dp target leaves a 12dp gap between glyph and badge.
-          // F40: [?] replays the coach-mark tour; below 380dp the brand
-          // would shrink past legibility with long plan names, so it moves
-          // to the tabs row beside sort.
-          actions: [
-            if (helpInAppBar) helpButton,
-            if (widget.onDiscover != null)
-              TourAnchor(
-                id: TourTargets.listsDiscover,
-                child: IconButton(
-                  key: const Key('home_nav_discover'),
-                  tooltip: l10n.navDiscover,
-                  icon: const Icon(Icons.explore_outlined),
-                  onPressed: widget.onDiscover,
-                ),
-              ),
-            if (widget.planBadge != null) ...[
-              TourAnchor(id: TourTargets.listsPlan, child: widget.planBadge!),
-              const SizedBox(width: 16),
-            ] else
-              const SizedBox(width: 4),
-          ],
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(48),
-            child: TourAnchor(
-              id: TourTargets.listsTabs,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TabBar(
-                      isScrollable: true,
-                      tabAlignment: TabAlignment.start,
-                      tabs: [
-                        Tab(
-                          key: const Key('lists_tab_active'),
-                          text: l10n.listsTabActive,
-                        ),
-                        Tab(
-                          key: const Key('lists_tab_completed'),
-                          text: l10n.listsTabCompleted,
-                        ),
-                        Tab(
-                          key: const Key('lists_tab_archived'),
-                          text: l10n.listsTabArchived,
-                        ),
-                      ],
-                    ),
-                  ),
-                  if (!helpInAppBar) helpButton,
-                  sortButton,
-                  const SizedBox(width: 4),
-                ],
-              ),
-            ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final viewportWidth = constraints.hasBoundedWidth
+            ? constraints.maxWidth
+            : MediaQuery.sizeOf(context).width;
+        final helpInAppBar = viewportWidth >= 380;
+        final sortButton = _buildSortMenu(context, l10n);
+        final helpButton = TourAnchor(
+          id: TourTargets.listsHelp,
+          child: _toolbarIconButton(
+            buttonKey: const Key('lists_help_button'),
+            tooltip: l10n.howToUseLabel,
+            icon: Icons.help_outline,
+            onPressed: () => showFirstRunGuide(context),
           ),
-        ),
-        body: Column(
-          children: [
-            ?widget.budgetCard,
-            // F26/F27: no show/hide toggle; search stays under the tabs and
-            // filters whichever sort order is active.
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-              child: TextField(
-                key: const Key('lists_search_field'),
-                controller: _searchController,
-                textInputAction: TextInputAction.search,
-                onSubmitted: (_) => FocusScope.of(context).unfocus(),
-                decoration: InputDecoration(
-                  isDense: true,
-                  labelText: l10n.searchListHint,
-                  prefixIcon: const Icon(Icons.search),
-                  suffixIcon: _query.isEmpty
-                      ? null
-                      : IconButton(
-                          key: const Key('lists_search_clear'),
-                          constraints: const BoxConstraints(
-                            minWidth: 48,
-                            minHeight: 48,
-                          ),
-                          tooltip: MaterialLocalizations.of(context)
-                              .clearButtonTooltip,
-                          icon: const Icon(Icons.close),
-                          onPressed: () {
-                            _searchController.clear();
-                            setState(() => _query = '');
-                          },
-                        ),
+        );
+        final searchField = Semantics(
+          label: l10n.searchListHint,
+          child: TextField(
+            key: const Key('lists_search_field'),
+            controller: _searchController,
+            textInputAction: TextInputAction.search,
+            onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+            onSubmitted: (_) => FocusScope.of(context).unfocus(),
+            decoration: InputDecoration(
+              isDense: true,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
+              hintText: l10n.searchListHint,
+              prefixIcon: const Icon(Icons.search, size: 20),
+              prefixIconConstraints: const BoxConstraints(
+                minWidth: 40,
+                minHeight: 40,
+              ),
+              suffixIcon: _query.isEmpty
+                  ? null
+                  : IconButton(
+                      key: const Key('lists_search_clear'),
+                      constraints: const BoxConstraints(
+                        minWidth: 48,
+                        minHeight: 48,
+                      ),
+                      tooltip: MaterialLocalizations.of(context)
+                          .clearButtonTooltip,
+                      icon: const Icon(Icons.close),
+                      onPressed: () {
+                        _searchController.clear();
+                        setState(() => _query = '');
+                      },
+                    ),
+            ),
+            onChanged: (v) => setState(() => _query = v.trim()),
+          ),
+        );
+        return StreamBuilder<List<Receipt>>(
+          stream: _trayStream,
+          builder: (context, traySnap) {
+            final trayReceipts = traySnap.data ?? const <Receipt>[];
+            final trayCount = trayReceipts.length;
+            return Scaffold(
+            appBar: AppBar(
+              title: const BrandTitle(),
+              // Balance 34dp AppBar action circles and 32dp PlanBadge pill.
+              actions: [
+                if (helpInAppBar) helpButton,
+                if (widget.onDiscover != null)
+                  TourAnchor(
+                    id: TourTargets.listsDiscover,
+                    child: _toolbarIconButton(
+                      buttonKey: const Key('home_nav_discover'),
+                      tooltip: l10n.navDiscover,
+                      icon: Icons.explore_outlined,
+                      onPressed: widget.onDiscover,
+                    ),
+                  ),
+                if (widget.planBadge != null) ...[
+                  const SizedBox(width: 2),
+                  TourAnchor(
+                    id: TourTargets.listsPlan,
+                    child: widget.planBadge!,
+                  ),
+                  const SizedBox(width: 16),
+                ] else
+                  const SizedBox(width: 4),
+              ],
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(48),
+                child: TourAnchor(
+                  id: TourTargets.listsTabs,
+                  child: TabBar(
+                    controller: _tabController,
+                    isScrollable: true,
+                    tabAlignment: TabAlignment.start,
+                    tabs: [
+                      Tab(
+                        key: const Key('lists_tab_active'),
+                        text: l10n.listsTabActive,
+                      ),
+                      Tab(
+                        key: const Key('lists_tab_completed'),
+                        text: l10n.listsTabCompleted,
+                      ),
+                      Tab(
+                        key: const Key('lists_tab_archived'),
+                        text: l10n.listsTabArchived,
+                      ),
+                      Tab(
+                        key: const Key('lists_tab_receipts'),
+                        text: trayCount > 0
+                            ? l10n.listsTabReceiptsCount(trayCount)
+                            : l10n.listsTabReceipts,
+                      ),
+                    ],
+                  ),
                 ),
-                onChanged: (v) => setState(() => _query = v.trim()),
               ),
             ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    sort: _sort,
-                    statuses: const {
-                      ListStatus.draft,
-                      ListStatus.planned,
-                      ListStatus.shopping,
-                    },
-                    orderKey: ListStatus.draft,
-                    order: _orders[ListStatus.draft],
-                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                      ListStatus.draft,
-                      lists,
-                      oldIndex,
-                      newIndex,
-                    ),
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                    bannerController: widget.bannerController,
-                  ),
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    sort: _sort,
-                    statuses: const {ListStatus.completed},
-                    orderKey: ListStatus.completed,
-                    order: _orders[ListStatus.completed],
-                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                      ListStatus.completed,
-                      lists,
-                      oldIndex,
-                      newIndex,
-                    ),
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                    bannerController: widget.bannerController,
-                  ),
-                  _ListsTab(
-                    repository: widget.repository,
-                    query: _query,
-                    sort: _sort,
-                    statuses: const {ListStatus.archived},
-                    orderKey: ListStatus.archived,
-                    order: _orders[ListStatus.archived],
-                    onReorder: (lists, oldIndex, newIndex) => _reorderLists(
-                      ListStatus.archived,
-                      lists,
-                      oldIndex,
-                      newIndex,
-                    ),
-                    emptyText: l10n.listsEmpty,
-                    onOpenListDetail: widget.onOpenListDetail,
-                    reminderScheduler: widget.reminderScheduler,
-                    bannerController: widget.bannerController,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
-            ? null
-            : SafeArea(
-                top: false,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: TourAnchor(
-                            id: TourTargets.listsNew,
-                            child: FilledButton(
-                              key: const Key('lists_new_list_button'),
-                              style: FilledButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 12,
-                                ),
-                                minimumSize: const Size(48, 48),
-                              ),
-                              onPressed: _editorOpen
-                                  ? null
-                                  : () => _openEditor(context),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(Icons.add),
-                                  const SizedBox(width: 8),
-                                  Flexible(
-                                    child: Text(
-                                      l10n.newListButton,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        if (widget.onScanReceipt != null) ...[
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: TourAnchor(
-                              id: TourTargets.listsReceipt,
-                              child: FilledButton.tonal(
-                                key: const Key('lists_receipt_button'),
-                                style: FilledButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 12,
-                                  ),
-                                  minimumSize: const Size(48, 48),
-                                ),
-                                onPressed: widget.receiptBusy
-                                    ? null
-                                    : widget.onScanReceipt,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Icon(Icons.receipt_long_outlined),
-                                    const SizedBox(width: 8),
-                                    Flexible(
-                                      child: Text(
-                                        l10n.fromReceiptListButton,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+            body: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: LayoutBuilder(
+                builder: (context, bodyBox) {
+                  final headerChildren = [
+                    ?widget.promoCard,
+                    ?widget.budgetCard,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 8, 4),
+                      child: Row(
+                        children: [
+                          Expanded(child: searchField),
+                          const SizedBox(width: 4),
+                          sortButton,
+                          if (!helpInAppBar) helpButton,
                         ],
-                      ],
+                      ),
                     ),
+                  ];
+                  final maxHeaderHeight = (bodyBox.maxHeight - 80).clamp(
+                    0.0,
+                    bodyBox.maxHeight,
+                  );
+                  return Column(
+                  children: [
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxHeight: maxHeaderHeight),
+                      child: SingleChildScrollView(
+                        primary: false,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: headerChildren,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      _ListsTab(
+                        repository: widget.repository,
+                        query: _query,
+                        sort: _sort,
+                        statuses: const {
+                          ListStatus.draft,
+                          ListStatus.planned,
+                          ListStatus.shopping,
+                        },
+                        orderKey: ListStatus.draft,
+                        order: _orders[ListStatus.draft],
+                        onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                          ListStatus.draft,
+                          lists,
+                          oldIndex,
+                          newIndex,
+                        ),
+                        emptyText: l10n.listsEmpty,
+                        onOpenListDetail: widget.onOpenListDetail,
+                        reminderScheduler: widget.reminderScheduler,
+                        bannerController: widget.bannerController,
+                      ),
+                      _ListsTab(
+                        repository: widget.repository,
+                        query: _query,
+                        sort: _sort,
+                        statuses: const {ListStatus.completed},
+                        orderKey: ListStatus.completed,
+                        order: _orders[ListStatus.completed],
+                        onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                          ListStatus.completed,
+                          lists,
+                          oldIndex,
+                          newIndex,
+                        ),
+                        emptyText: l10n.listsEmpty,
+                        onOpenListDetail: widget.onOpenListDetail,
+                        reminderScheduler: widget.reminderScheduler,
+                        bannerController: widget.bannerController,
+                      ),
+                      _ListsTab(
+                        repository: widget.repository,
+                        query: _query,
+                        sort: _sort,
+                        statuses: const {ListStatus.archived},
+                        orderKey: ListStatus.archived,
+                        order: _orders[ListStatus.archived],
+                        onReorder: (lists, oldIndex, newIndex) => _reorderLists(
+                          ListStatus.archived,
+                          lists,
+                          oldIndex,
+                          newIndex,
+                        ),
+                        emptyText: l10n.listsEmpty,
+                        onOpenListDetail: widget.onOpenListDetail,
+                        reminderScheduler: widget.reminderScheduler,
+                        bannerController: widget.bannerController,
+                      ),
+                      ReceiptsTrayTab(
+                        repository: widget.repository,
+                        receipts: trayReceipts,
+                        loading:
+                            traySnap.connectionState == ConnectionState.waiting &&
+                            !traySnap.hasData,
+                        queueService: widget.receiptQueueService,
+                        onOpenListDetail: widget.onOpenListDetail,
+                        reminderScheduler: widget.reminderScheduler,
+                        bannerController: widget.bannerController,
+                      ),
+                    ],
                   ),
                 ),
-              ),
-      ),
+                  ],
+                );
+              },
+            ),
+            ),
+            bottomNavigationBar: MediaQuery.viewInsetsOf(context).bottom > 0
+                ? null
+                : SafeArea(
+                    top: false,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Expanded(
+                              child: TourAnchor(
+                                id: TourTargets.listsNew,
+                                child: FilledButton(
+                                  key: const Key('lists_new_list_button'),
+                                  style: FilledButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 12,
+                                    ),
+                                    minimumSize: const Size(48, 48),
+                                  ),
+                                  onPressed: _editorOpen
+                                      ? null
+                                      : () => _openEditor(context),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(Icons.add),
+                                      const SizedBox(width: 8),
+                                      Flexible(
+                                        child: Text(
+                                          l10n.newListButton,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            if (widget.onScanReceipt != null) ...[
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: TourAnchor(
+                                  id: TourTargets.listsReceipt,
+                                  child: FilledButton.tonal(
+                                    key: const Key('lists_receipt_button'),
+                                    style: FilledButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 12,
+                                      ),
+                                      minimumSize: const Size(48, 48),
+                                    ),
+                                    onPressed: widget.receiptBusy
+                                        ? null
+                                        : widget.onScanReceipt,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(Icons.receipt_long_outlined),
+                                        const SizedBox(width: 8),
+                                        Flexible(
+                                          child: Text(
+                                            l10n.fromReceiptListButton,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+            );
+          },
+        );
+      },
     );
   }
 

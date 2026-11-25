@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:nshoptor/core/theme/app_theme.dart';
@@ -24,6 +26,24 @@ double contrastRatio(Color a, Color b) {
 }
 
 void main() {
+  setUpAll(() async {
+    if (const String.fromEnvironment('CAPTURE_OUT').isEmpty) return;
+    final fonts = FontLoader('Roboto');
+    for (final name in ['segoeui.ttf', 'segoeuib.ttf']) {
+      fonts.addFont(
+        File('C:/Windows/Fonts/$name').readAsBytes().then(ByteData.sublistView),
+      );
+    }
+    await fonts.load();
+    final root = Platform.environment['FLUTTER_ROOT'] ?? 'C:/flutter';
+    await (FontLoader('MaterialIcons')..addFont(
+          File(
+            '$root/bin/cache/artifacts/material_fonts/materialicons-regular.otf',
+          ).readAsBytes().then(ByteData.sublistView),
+        ))
+        .load();
+  });
+
   group('tema üretimi', () {
     test('açık ve koyu tema oluşturulur; Material 3 etkin', () {
       final light = AppTheme.light();
@@ -52,27 +72,81 @@ void main() {
 
   group('WCAG kontrast', () {
     test(
-      'dark ocean actions are calmer with accessible text and boundaries',
+      'all dark and light palettes provide non-pitch surfaces and accessible calm buttons',
       () {
-        for (final black in [false, true]) {
-          final theme = AppTheme.dark(palette: AppPalette.ocean, black: black);
-          final scheme = theme.colorScheme;
-          final style = theme.filledButtonTheme.style!;
-          final background = style.backgroundColor!.resolve({})!;
-          final foreground = style.foregroundColor!.resolve({})!;
-          expect(luminance(background), lessThan(luminance(scheme.primary)));
+        for (final palette in AppPalette.values) {
+          final light = AppTheme.light(palette: palette);
+          final lScheme = light.colorScheme;
+          expect(luminance(lScheme.onSurface), lessThan(0.1));
           expect(
-            contrastRatio(foreground, background),
+            contrastRatio(lScheme.onPrimary, lScheme.primary),
             greaterThanOrEqualTo(4.5),
+            reason: '$palette light filled button contrast',
           );
           expect(
-            contrastRatio(background, scheme.surface),
+            contrastRatio(lScheme.primary, lScheme.surface),
             greaterThanOrEqualTo(3),
+            reason: '$palette light filled button vs surface',
           );
           expect(
-            contrastRatio(background, scheme.surfaceContainerLow),
-            greaterThanOrEqualTo(3),
+            contrastRatio(lScheme.onSecondaryContainer, lScheme.secondaryContainer),
+            greaterThanOrEqualTo(4.5),
+            reason: '$palette light tonal button contrast',
           );
+          expect(
+            lScheme.secondaryContainer,
+            isNot(equals(lScheme.primary)),
+            reason: '$palette light tonal action distinct from primary',
+          );
+
+          for (final black in [false, true]) {
+            final theme = AppTheme.dark(palette: palette, black: black);
+            final scheme = theme.colorScheme;
+            final rawSeedScheme = ColorScheme.fromSeed(
+              seedColor: palette.seed,
+              brightness: Brightness.dark,
+            );
+            if (!black) {
+              expect(
+                luminance(scheme.surface),
+                greaterThan(0.008),
+                reason: '$palette dark surface should not be pitch black',
+              );
+            }
+            expect(
+              luminance(scheme.primary),
+              lessThan(luminance(rawSeedScheme.primary)),
+              reason: '$palette dark black=$black calm primary luminance',
+            );
+            expect(
+              contrastRatio(scheme.onPrimary, scheme.primary),
+              greaterThanOrEqualTo(4.5),
+              reason: '$palette dark black=$black text contrast',
+            );
+            expect(
+              contrastRatio(scheme.primary, scheme.surface),
+              greaterThanOrEqualTo(3),
+              reason: '$palette dark black=$black boundary vs surface',
+            );
+            expect(
+              contrastRatio(scheme.primary, scheme.surfaceContainerLow),
+              greaterThanOrEqualTo(3),
+              reason: '$palette dark black=$black boundary vs surfaceLow',
+            );
+            expect(
+              contrastRatio(
+                scheme.onSecondaryContainer,
+                scheme.secondaryContainer,
+              ),
+              greaterThanOrEqualTo(4.5),
+              reason: '$palette dark black=$black tonal button contrast',
+            );
+            expect(
+              scheme.secondaryContainer,
+              isNot(equals(scheme.primary)),
+              reason: '$palette dark black=$black tonal distinct from primary',
+            );
+          }
         }
         expect(AppTheme.brandSeed, const Color(0xFF0B8457));
       },
@@ -111,5 +185,73 @@ void main() {
       expect(overDark.color,
           SemanticDelta.palette(SpendingDirection.overPlan).dark);
     });
+
+    test('cards, header hairline, navigation bar, and chips have crisp polish across all modes & palettes', () {
+      for (final palette in AppPalette.values) {
+        final themes = [
+          AppTheme.light(palette: palette),
+          AppTheme.dark(palette: palette, black: false),
+          AppTheme.dark(palette: palette, black: true),
+        ];
+        for (final theme in themes) {
+          final cardShape = theme.cardTheme.shape;
+          expect(cardShape, isA<RoundedRectangleBorder>());
+          expect((cardShape as RoundedRectangleBorder).side, isNot(BorderSide.none));
+          expect(theme.appBarTheme.surfaceTintColor, Colors.transparent);
+          expect(theme.appBarTheme.shape, isA<Border>());
+          expect(theme.navigationBarTheme.indicatorShape, isA<StadiumBorder>());
+          expect(theme.navigationBarTheme.surfaceTintColor, Colors.transparent);
+        }
+      }
+    });
+
+    for (final variant in [
+      (name: 'light', theme: AppTheme.light()),
+      (name: 'dark', theme: AppTheme.dark()),
+      (name: 'amoled', theme: AppTheme.dark(black: true)),
+    ]) {
+      testWidgets('themed AppBar, Card, and NavigationBar render cleanly at 320dp (${variant.name})', (tester) async {
+        tester.view.devicePixelRatio = 1;
+        tester.view.physicalSize = const Size(320, 640);
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: variant.theme,
+            home: Scaffold(
+              appBar: AppBar(title: const Text('NShoptor')),
+              body: ListView(
+                children: const [
+                  Card(
+                    child: ListTile(
+                      title: Text('Haftalık Market'),
+                      subtitle: Text('₺563,50 · 6 ürün'),
+                    ),
+                  ),
+                ],
+              ),
+              bottomNavigationBar: NavigationBar(
+                selectedIndex: 0,
+                destinations: const [
+                  NavigationDestination(icon: Icon(Icons.list), label: 'Listeler'),
+                  NavigationDestination(icon: Icon(Icons.history), label: 'Geçmiş'),
+                  NavigationDestination(icon: Icon(Icons.settings), label: 'Ayarlar'),
+                ],
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+        final captureOut = const String.fromEnvironment('CAPTURE_OUT');
+        if (captureOut.isNotEmpty) {
+          await expectLater(
+            find.byType(MaterialApp),
+            matchesGoldenFile('$captureOut/pb218_theme_${variant.name}.png'),
+          );
+        }
+      });
+    }
   });
 }

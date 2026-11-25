@@ -36,7 +36,7 @@ test('a complete receipt must reconcile exactly and keep each row arithmetic', (
   const bad = [
     o => { o.total = '225.78'; },
     o => { o.items[1].lineTotal = '103.27'; o.total = '226.77'; },
-    o => { o.items[0].lineTotal = '13,50'; },
+    o => { o.items[0].lineTotal = '13;50'; },
     o => { o.items = []; },
     o => { o.discounts = [{ amount: '-149' }]; },
     o => { o.schema = 1; },
@@ -117,7 +117,7 @@ test('a second invalid answer fails with a reason; text tasks keep their 16 KiB 
 test('an echoed status option list is accepted only when the full arithmetic holds', () => {
   const echoed = { ...receipt(), status: ['complete', 'top_missing', 'bottom_missing'] };
   assert.equal(R.clean(echoed).status, 'complete');
-  assert.equal(R.clean({ ...receipt(), status: ['bottom_missing'] }).status, 'bottom_missing');
+  assert.equal(R.clean({ ...receipt(), status: ['bottom_missing'], total: null }).status, 'bottom_missing');
   assert.equal(R.clean({ ...receipt(), status: ' Complete ' }).status, 'complete');
   assert.equal(R.clean({ ...receipt(), status: { any: 1 }, total: null }).status, 'bottom_missing');
 });
@@ -166,9 +166,46 @@ test('a slow model is hedged: the next model answers and wins', async () => {
 });
 
 test('a complete claim without header or total is reported as the missing part', () => {
-  assert.equal(R.clean({ ...receipt(), store: null }).status, 'top_missing');
-  assert.equal(R.clean({ ...receipt(), date: 'yesterday' }).status, 'top_missing');
+  // Without store/date, only arithmetic proves the top is there.
+  const unreconciled = { ...receipt(), total: '999.00' };
+  assert.equal(R.clean({ ...unreconciled, store: null }).status, 'top_missing');
+  assert.equal(R.clean({ ...unreconciled, date: 'yesterday' }).status, 'top_missing');
   assert.equal(R.clean({ ...receipt(), total: null }).status, 'bottom_missing');
+  // Rows that reconcile with the printed total are kept even without a header.
+  const kept = R.clean({ ...receipt(), store: null });
+  assert.equal(kept.status, 'complete');
+  assert.equal(kept.store, null);
+  assert.equal(kept.items.length, 3);
+});
+
+test('decimal commas, summary rows and zero discounts never break a readable receipt', () => {
+  const out = R.clean({
+    schema: 2, status: 'complete', store: 'A101', date: '2026-10-18', time: '16:56:00',
+    documentNumber: '20543/2/251', currency: 'TRY',
+    items: [
+      { name: 'EKMEK', quantity: '2', unit: 'piece', unitPrice: '20,00', lineTotal: '40,00' },
+      { name: 'WINSTON SLIMS GRI', lineTotal: '*130,00' },
+      { name: 'WINSTON SLIMS GRI', lineTotal: '130,00' },
+      { name: 'SIVI DET. ALOE VERA 1,5 L', lineTotal: '89,50' },
+      { name: 'KOFTE PILIC PARMAK 260 G', lineTotal: '89,00' },
+      { name: 'GAZLI ICECEK KOLA 1.75 L', lineTotal: '85,00' },
+      { name: 'MAL/HIZMET TOPLAM TUTARI', lineTotal: '539,57' },
+      { name: 'TOPKDV', lineTotal: '23,93' },
+      { name: 'ODENECEK TUTAR', lineTotal: '563,50' },
+    ],
+    discounts: [{ label: 'KREDI KARTI', amount: '0,00' }],
+    tax: '23,93', subtotal: '563,50', total: '563,50',
+  });
+  assert.equal(out.status, 'complete');
+  assert.equal(out.items.length, 6);
+  assert.equal(out.items[0].lineTotal, '40.00');
+  assert.deepEqual(out.discounts, []);
+  assert.equal(out.total, '563.50');
+});
+
+test('a cut-off claim whose rows reconcile with the printed total is complete', () => {
+  assert.equal(R.clean({ ...receipt(), status: 'bottom_missing' }).status, 'complete');
+  assert.equal(R.clean({ ...receipt(), status: 'top_missing', total: '999.00' }).status, 'top_missing');
 });
 
 test('a cut-off receipt returns its visible rows, never priced as a whole', () => {
@@ -177,7 +214,7 @@ test('a cut-off receipt returns its visible rows, never priced as a whole', () =
   assert.equal(out.status, 'bottom_missing');
   assert.equal(out.items.length, 3);
   assert.equal(out.total, null);
-  assert.deepEqual(R.clean({ ...receipt(), status: 'top_missing' }).items, []);
+  assert.deepEqual(R.clean({ ...receipt(), status: 'top_missing', total: null }).items, []);
 });
 
 test('a wrong answer from one model waits for a valid one from the next', async () => {
@@ -194,4 +231,85 @@ test('a wrong answer from one model waits for a valid one from the next', async 
   assert.equal(res.status, 200);
   assert.equal((await res.json()).result.total, '225.77');
   assert.deepEqual(seen, ['sloppy-model', 'careful-model']);
+});
+
+test('full ŞOK receipt with multiple campaign discounts & A101 URL-identified receipt reconcile cleanly', () => {
+  const fullSok = R.clean({
+    schema: 2,
+    status: 'complete',
+    store: 'ŞOK MARKETLER TİC.A.Ş',
+    date: '2024-02-01',
+    time: '20:51:41',
+    documentNumber: '0259',
+    currency: 'TRY',
+    items: [
+      { name: 'OZMO FUN FİGÜRLÜ 23G', quantity: null, unit: null, unitPrice: null, lineTotal: '13.50' },
+      { name: '7-24 NAMET DANA MACA', quantity: null, unit: null, unitPrice: null, lineTotal: '27.90' },
+      { name: 'OZMO FUN FİGÜRLÜ 23G', quantity: null, unit: null, unitPrice: null, lineTotal: '13.50' },
+      { name: 'TADPİ PİLİÇ BAGET KG', quantity: '1.033', unit: 'kilogram', unitPrice: '99.00', lineTotal: '102.27' },
+      { name: 'FINISH QUANTUM ÖZEL', quantity: null, unit: null, unitPrice: null, lineTotal: '259.00' },
+      { name: 'FINISH QUANTUM ÖZEL', quantity: null, unit: null, unitPrice: null, lineTotal: '259.00' },
+      { name: 'ARKO DEĞERLİ YAĞLAR', quantity: null, unit: null, unitPrice: null, lineTotal: '104.50' },
+      { name: 'ALIŞVERİŞ POŞETİ 43', quantity: null, unit: null, unitPrice: null, lineTotal: '0.25' },
+    ],
+    discounts: [
+      { label: '25TLFINISH110TL', amount: '149.00' },
+      { label: '25TLFINISH110TL', amount: '149.00' },
+      { label: '25TLARKO50TL', amount: '54.50' },
+    ],
+    tax: '46.60',
+    subtotal: null,
+    total: '427.42',
+  });
+  assert.equal(fullSok.status, 'complete');
+  assert.equal(fullSok.reconciles, true);
+
+  const fullA101 = R.clean({
+    schema: 2,
+    status: 'complete',
+    store: 'A101',
+    date: '2026-10-18',
+    time: '16:56:00',
+    documentNumber: '20543020261018165746',
+    currency: 'TRY',
+    items: [
+      { name: 'EKMEK', quantity: '2', unit: 'piece', unitPrice: '20.00', lineTotal: '40.00' },
+      { name: 'WINSTON SLIMS GRI', quantity: null, unit: null, unitPrice: null, lineTotal: '130.00' },
+      { name: 'WINSTON SLIMS GRI', quantity: null, unit: null, unitPrice: null, lineTotal: '130.00' },
+      { name: 'SIVI DET. ALOE VERA 1,5 L', quantity: null, unit: null, unitPrice: null, lineTotal: '89.50' },
+      { name: 'KOFTE PILIC PARMAK 260 G', quantity: null, unit: null, unitPrice: null, lineTotal: '89.00' },
+      { name: 'GAZLI ICECEK KOLA 1.75 L', quantity: null, unit: null, unitPrice: null, lineTotal: '85.00' },
+    ],
+    discounts: [],
+    tax: '23.93',
+    subtotal: '563.50',
+    total: '563.50',
+  });
+  assert.equal(fullA101.status, 'complete');
+  assert.equal(fullA101.reconciles, true);
+
+  const nonOverlappingTwoPage = R.clean({
+    ...receipt(),
+    status: 'middle_gap',
+  });
+  assert.equal(nonOverlappingTwoPage.status, 'complete');
+  assert.equal(nonOverlappingTwoPage.reconciles, true);
+  assert.equal(nonOverlappingTwoPage.total, '225.77');
+
+  const attributed = R.clean({
+    ...receipt(),
+    discounts: [
+      { label: '25TLFINISH110TL', amount: '149.00', itemIndex: 2 },
+    ],
+  });
+  assert.equal(attributed.discounts[0].itemIndex, 2);
+
+  // Out-of-bounds or exceeding itemIndex falls back safely to unattributed without failing clean().
+  const capped = R.clean({
+    ...receipt(),
+    discounts: [
+      { label: '25TLFINISH110TL', amount: '149.00', itemIndex: 0 },
+    ],
+  });
+  assert.equal(capped.discounts[0].itemIndex, undefined);
 });

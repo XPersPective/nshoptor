@@ -937,7 +937,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get planFreeAi => '10 AI հարցում ամիսը';
 
   @override
-  String get planFreeAds => 'Փոքր բաններ (առաջին 7 օրերին՝ առանց)';
+  String get planFreeAds => 'Փոքր բաններ';
 
   @override
   String get planCoreFeatures =>
@@ -1324,10 +1324,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'Նախորդ ամիս';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'Հաջորդ ամիս';
 
   @override
   String get helpSection => 'Օգնություն և աջակցություն';
@@ -1587,4 +1587,200 @@ class AppLocalizationsHy extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'Սահմանաչափի $percent%-ն օգտագործվել է';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Ստուգեք և ուղղեք';
+
+  @override
+  String get receiptEditDetailsTitle => 'Կտրոնի տվյալները';
+
+  @override
+  String get receiptDateTimeLabel => 'Ամսաթիվ և ժամ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Գումարը չի համընկնում';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Ապրանքների գումարը $difference-ով տարբերվում է կտրոնի ընդհանուր գումարից։ Պահպանել այնուամենայնիվ?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Պահպանել այնուամենայնիվ';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Ավելացրեք խանութը և ամսաթիվը՝ պահպանելու այս կտրոնը։';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Չհաջողվեց կարդալ՝ $fields։ Դրանք կարող եք լրացնել ստուգելիս։';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Տեսախցիկի հասանելիությունն անջատված է։ Միացրեք այն կարգավորումներից՝ կտրոններ և պիտակներ սկանավորելու համար։';
+
+  @override
+  String get openSettingsAction => 'Բացել կարգավորումները';
+
+  @override
+  String get priceManualEntryAction => 'Գինը մուտքագրեք ձեռքով';
+
+  @override
+  String get priceRetakeAction => 'Նկարեք մեկ այլ լուսանկար';
+
+  @override
+  String get paletteSage => 'Եղեսպակ';
+
+  @override
+  String get paletteSlate => 'Թերթաքար';
+
+  @override
+  String get receiptContinueSame => 'Շարունակել նույն չեկով';
+
+  @override
+  String get receiptCaptureDone => 'Պատրաստ է';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count էջ ներբեռնված է';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Չեկը հերթում է — նախապատրաստվում է ֆոնային ռեժիմում։';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Մեկ չեկի համար կարող եք ավելացնել մինչև $max էջ։';
+  }
+
+  @override
+  String get shelfLabelReading => 'Կարդում են գնի պիտակը…';
+
+  @override
+  String get shelfLabelContinueOther => 'Սկանավորել այլ ապրանք';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Գնի պիտակը կարդում են ֆոնային ռեժիմում։';
+
+  @override
+  String get listsTabReceipts => 'Իմ թղթեր';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Իմ թղթեր ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Հերթում է';
+
+  @override
+  String get receiptStatusProcessing => 'Կարդում եմ թուղթը…';
+
+  @override
+  String get receiptStatusReady => 'Պատրաստ է';
+
+  @override
+  String get receiptStatusDuplicate => 'Հնարավոր կրկնօրինակ';
+
+  @override
+  String get receiptStatusFailed => 'Չհաջողվեց կարդալ';
+
+  @override
+  String get receiptConvertToListAction => 'Փոխարկել ցանկի';
+
+  @override
+  String get receiptRetryReadAction => 'Կրկին փորձել';
+
+  @override
+  String get receiptDeleteDraftAction => 'Ջնջել';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Թուղթը պատրաստ է';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Ձեր թուղթը պատրաստ է։ Փոխադրե՞լ այն ցանկի:';
+
+  @override
+  String get receiptDuplicateTitle => 'Թուղթն արդեն ավելացված է՞';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Այս խանութի և ժամանակի համար արդեն գոյություն ունի ցանկ ($listTitle)։ Ավելացնե՞լ նորից:';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Ավելացնել';
+
+  @override
+  String get receiptDuplicateDelete => 'Ջնջել թուղթը';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Ոչ մի սպասող թուղթ';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Սքանավորված թղթերը նախապատրաստվում են ֆոնային ռեժիմով և մնում են այստեղ, մինչև դուք դրանք փոխարկեք կամ հեռացնեք:';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count էջ';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Թղթերի լուսանկարներ';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Սեղմեք թղթի լուսանկարը՝ լրիվ չափով դիտելու համար';
+
+  @override
+  String get receiptPhotoPreparing => 'Պատրաստվում է կտրոնի լուսանկարը…';
+
+  @override
+  String get homeProPromoTitle => 'Փորձեք Pro-ն 24 ժամ անվճար';
+
+  @override
+  String get homeProPromoSubtitle =>
+      'ԱԲ-ով 100 կտրոնի սկան և առանց գովազդի ռեժիմ · Քարտ պետք չէ';
+
+  @override
+  String get receiptFailureSheetTitle => 'Ինչու չհաջողվեց կարդալ';
+
+  @override
+  String get receiptFailureMissingTop => 'Վերին մասը բացակայում է';
+
+  @override
+  String get receiptFailureMissingBottom => 'Ներրևին մասը բացակայում է';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Միջին մասը բացակայում է';
+
+  @override
+  String get receiptFailureNotReceipt => 'Չեկ չէ';
+
+  @override
+  String get receiptFailureUnreadable => 'Ոչ ընթեռնելի';
+
+  @override
+  String get receiptFailureMismatch => 'Ընդհանուրը չի համապատասխանում';
+
+  @override
+  String get receiptFailureRejected => 'Չհաջողվեց կարդալ';
+
+  @override
+  String get receiptFailureService => 'Ծառայությունն անհասնելի է';
+
+  @override
+  String get receiptFailureUnknown => 'Կարդալը ձախողվեց';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Նկարահանել մնացած մասը';
+
+  @override
+  String get receiptFailureRetakeAction => 'Նկարահանել նորից';
 }

@@ -934,8 +934,7 @@ class AppLocalizationsAf extends AppLocalizations {
   String get planFreeAi => '10 AI-aanvrae per maand';
 
   @override
-  String get planFreeAds =>
-      'Klein bannerreklames (geen in jou eerste 7 dae nie)';
+  String get planFreeAds => 'Klein bannerreklames';
 
   @override
   String get planCoreFeatures =>
@@ -1586,4 +1585,199 @@ class AppLocalizationsAf extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% van die limiet gebruik';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Kontroleer en maak reg';
+
+  @override
+  String get receiptEditDetailsTitle => 'Kwitansiebesonderhede';
+
+  @override
+  String get receiptDateTimeLabel => 'Datum en tyd';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Totaal stem nie ooreen nie';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Die items verskil $difference van die kwitansietotaal. Stoor in elk geval?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Stoor in elk geval';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Voeg die winkel en datum by om hierdie kwitansie te stoor.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Kon nie lees nie: $fields. Jy kan dit invul terwyl jy hersien.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Kamertoegang is af. Skakel dit in Instellings aan om kwitansies en etikette te skandeer.';
+
+  @override
+  String get openSettingsAction => 'Maak Instellings oop';
+
+  @override
+  String get priceManualEntryAction => 'Voer prys handmatig in';
+
+  @override
+  String get priceRetakeAction => 'Neem weer \'n foto';
+
+  @override
+  String get paletteSage => 'Salie';
+
+  @override
+  String get paletteSlate => 'Leiklip';
+
+  @override
+  String get receiptContinueSame => 'Gaan voort met dieselfde kwitansie';
+
+  @override
+  String get receiptCaptureDone => 'Klaar';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count bladsye vasgelê';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Kwitansie in waglys — word agtertoets voorberei.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Tot $max bladsye kan per kwitansie gevoeg word.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Lees prysetiket…';
+
+  @override
+  String get shelfLabelContinueOther => 'Skandeer nog \'n item';
+
+  @override
+  String get shelfLabelQueuedNotice => 'Prysetiket word agtertoets gelees.';
+
+  @override
+  String get listsTabReceipts => 'My ontvangs';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'My ontvangs ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'In waglys';
+
+  @override
+  String get receiptStatusProcessing => 'Lees ontvang…';
+
+  @override
+  String get receiptStatusReady => 'Gereed';
+
+  @override
+  String get receiptStatusDuplicate => 'Moontlike duplikaat';
+
+  @override
+  String get receiptStatusFailed => 'Kon nie lees nie';
+
+  @override
+  String get receiptConvertToListAction => 'Skakel om na lys';
+
+  @override
+  String get receiptRetryReadAction => 'Probeer weer';
+
+  @override
+  String get receiptDeleteDraftAction => 'Vee uit';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Ontvang gereed';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Jou ontvang is gereed. Oordra dit na \'n lys?';
+
+  @override
+  String get receiptDuplicateTitle => 'Ontvang reeds bygevoeg?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return '\'n Lys wat ooreenstem met hierdie winkel en tyd bestaan reeds ($listTitle). Tog byvoeg?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Tog byvoeg';
+
+  @override
+  String get receiptDuplicateDelete => 'Vee ontvang uit';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Geen hangende ontvangs nie';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Geskandeerde ontvangs word op die agtergrond voorberei en bly hier totdat jy hulle omskakel of verwyder.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count bladsye';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Ontvangfoto\'s';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Tik op \'n ontvangfoto om dit in volle grootte te sien';
+
+  @override
+  String get receiptPhotoPreparing => 'Kwitansiefoto word voorberei…';
+
+  @override
+  String get homeProPromoTitle => 'Probeer Pro 24 uur gratis';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 KI-strokie-skanderings & advertensievry oop · Geen kaart nodig';
+
+  @override
+  String get receiptFailureSheetTitle => 'Waarom is dit nie gelees nie';
+
+  @override
+  String get receiptFailureMissingTop => 'Boonste gedeelte ontbreek';
+
+  @override
+  String get receiptFailureMissingBottom => 'Onderste gedeelte ontbreek';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Middelste gedeelte ontbreek';
+
+  @override
+  String get receiptFailureNotReceipt => 'Nie \'n kwitansie nie';
+
+  @override
+  String get receiptFailureUnreadable => 'Nie leesbaar nie';
+
+  @override
+  String get receiptFailureMismatch => 'Totaal stem nie ooreen nie';
+
+  @override
+  String get receiptFailureRejected => 'Kon nie lees nie';
+
+  @override
+  String get receiptFailureService => 'Diens nie beskikbaar nie';
+
+  @override
+  String get receiptFailureUnknown => 'Lees het misluk';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Foto die res';
+
+  @override
+  String get receiptFailureRetakeAction => 'Neem weer';
 }

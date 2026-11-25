@@ -934,7 +934,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get planFreeAi => 'महिनाभरात 10 AI विनंत्या';
 
   @override
-  String get planFreeAds => 'लहान बॅनर जाहिराती (पहिल्या ७ दिवसांत नाही)';
+  String get planFreeAds => 'लहान बॅनर जाहिराती';
 
   @override
   String get planCoreFeatures => 'याद्या, किमती, रेसिप्ट, खर्च आलेख';
@@ -1315,10 +1315,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get sendAction => 'Send';
 
   @override
-  String get previousMonthAction => 'Previous month';
+  String get previousMonthAction => 'मागील महिना';
 
   @override
-  String get nextMonthAction => 'Next month';
+  String get nextMonthAction => 'पुढचा महिना';
 
   @override
   String get helpSection => 'मदत आणि सहाय्य';
@@ -1576,4 +1576,199 @@ class AppLocalizationsMr extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return 'मर्यादेच्या $percent% वापरले';
   }
+
+  @override
+  String get receiptReviewNowAction => 'तपासा आणि दुरुस्त करा';
+
+  @override
+  String get receiptEditDetailsTitle => 'पावती तपशील';
+
+  @override
+  String get receiptDateTimeLabel => 'तारीख आणि वेळ';
+
+  @override
+  String get receiptSaveAnywayTitle => 'एकूण रक्कम जुळत नाही';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'वस्तूंची बेरीज पावतीच्या एकूण रकमेपेक्षा $difference ने वेगळी आहे. तरीही जतन करायचे?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'तरीही जतन करा';
+
+  @override
+  String get receiptNeedsDetails =>
+      'ही पावती जतन करण्यासाठी दुकान आणि तारीख जोडा.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'वाचता आले नाही: $fields. तपासताना तुम्ही हे भरू शकता.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'कॅमेरा परवानगी बंद आहे. पावत्या आणि लेबल स्कॅन करण्यासाठी ती सेटिंग्जमध्ये सुरू करा.';
+
+  @override
+  String get openSettingsAction => 'सेटिंग्ज उघडा';
+
+  @override
+  String get priceManualEntryAction => 'किंमत स्वतः टाका';
+
+  @override
+  String get priceRetakeAction => 'दुसरा फोटो काढा';
+
+  @override
+  String get paletteSage => 'सेज';
+
+  @override
+  String get paletteSlate => 'स्लेट';
+
+  @override
+  String get receiptContinueSame => 'त्याच रेसिप्टने पुढे जा';
+
+  @override
+  String get receiptCaptureDone => 'पूर्ण झाले';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count पृष्ठ कॅप्चर झाली';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'रेसिप्ट रांगेत आहे — बॅकग्राउंडमध्ये तयार होत आहे.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'एका रेसिप्टसाठी कमाल $max पृष्ठ जोडता येतील.';
+  }
+
+  @override
+  String get shelfLabelReading => 'किंमत लेबल वाचत आहे…';
+
+  @override
+  String get shelfLabelContinueOther => 'दुसरा आयटम स्कॅन करा';
+
+  @override
+  String get shelfLabelQueuedNotice => 'किंमत लेबल बॅकग्राउंडमध्ये वाचत आहे.';
+
+  @override
+  String get listsTabReceipts => 'माझ्या बिलांची यादी';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'माझी बिले ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'रांगेत';
+
+  @override
+  String get receiptStatusProcessing => 'बिल वाचत आहे…';
+
+  @override
+  String get receiptStatusReady => 'तयार';
+
+  @override
+  String get receiptStatusDuplicate => 'शक्यता दुप्पट';
+
+  @override
+  String get receiptStatusFailed => 'वाचू शकले नाही';
+
+  @override
+  String get receiptConvertToListAction => 'यादीमध्ये रूपांतरित करा';
+
+  @override
+  String get receiptRetryReadAction => 'पुन्हा वाचा';
+
+  @override
+  String get receiptDeleteDraftAction => 'हटवा';
+
+  @override
+  String get receiptReadyNotificationTitle => 'बिल तयार आहे';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'तुमचे बिल तयार आहे. ते यादीमध्ये हलवायचे का?';
+
+  @override
+  String get receiptDuplicateTitle => 'बिल आधीच जोडले आहे का?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'या दुकान आणि वेळेसह एक यादी आधीच अस्तित्वात आहे ($listTitle). तरीही पुन्हा जोडावे का?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'तरीही जोडा';
+
+  @override
+  String get receiptDuplicateDelete => 'बिल हटवा';
+
+  @override
+  String get receiptEmptyTrayTitle => 'कोणतेही प्रलंबित बिले नाहीत';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'स्कॅन केलेली बिले पार्श्वभूमीवर तयार होतात आणि तुम्ही ते रूपांतरित किंवा काढून टाकपर्यंत इथे राहतात.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count पृष्ठे';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'बिलांची फोटो';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'पूर्ण आकार पाहण्यासाठी बिलाच्या फोटोवर टॅप करा';
+
+  @override
+  String get receiptPhotoPreparing => 'पावतीचा फोटो तयार होत आहे…';
+
+  @override
+  String get homeProPromoTitle => '24 तास Pro मोफत वापरून पहा';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 AI पावती स्कॅन आणि जाहिरातमुक्त अनुभव सुरू · कार्डची गरज नाही';
+
+  @override
+  String get receiptFailureSheetTitle => 'वाचता आले नाही का';
+
+  @override
+  String get receiptFailureMissingTop => 'वरचा भाग गायब';
+
+  @override
+  String get receiptFailureMissingBottom => 'खालचा भाग गायब';
+
+  @override
+  String get receiptFailureMissingMiddle => 'मध्य भाग गायब';
+
+  @override
+  String get receiptFailureNotReceipt => 'पावत नाही';
+
+  @override
+  String get receiptFailureUnreadable => 'अस्पष्ट';
+
+  @override
+  String get receiptFailureMismatch => 'एकूण रक्कम जुळत नाही';
+
+  @override
+  String get receiptFailureRejected => 'वाचता आले नाही';
+
+  @override
+  String get receiptFailureService => 'सेवा उपलब्ध नाही';
+
+  @override
+  String get receiptFailureUnknown => 'वाचणे अयशस्वी';
+
+  @override
+  String get receiptFailureAddMoreAction => 'उर्वरित भागाचा फोटो घ्या';
+
+  @override
+  String get receiptFailureRetakeAction => 'पुन्हा फोटो घ्या';
 }

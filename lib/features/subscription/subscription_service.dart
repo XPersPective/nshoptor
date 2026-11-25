@@ -62,6 +62,11 @@ class SubscriptionService extends ChangeNotifier {
   static const legacyProId = 'nshoptor_pro';
   static const legacyMaxId = 'nshoptor_max';
   static const annualBasePlanId = 'yearly';
+  static const monthlyBasePlanId = 'monthly';
+
+  static bool _isPlayProPeriod(String basePlanId, String period) =>
+      (basePlanId == annualBasePlanId && period == 'P1Y') ||
+      (basePlanId == monthlyBasePlanId && period == 'P1M');
   static const offerIds = {proId};
   static const ids = {proId, maxId, legacyProId, legacyMaxId};
   static const _productKey = 'sub_product';
@@ -135,8 +140,15 @@ class SubscriptionService extends ChangeNotifier {
 
   /// Called explicitly by app boot; tests/legacy purchase consumers retain
   /// store-only behavior unless they opt into promotional access.
-  void initializeTrial({DateTime Function()? now}) {
-    _installationTrial ??= InstallationTrial(store, now: now);
+  void initializeTrial({
+    DateTime Function()? now,
+    bool requireDeviceConfirmation = false,
+  }) {
+    _installationTrial ??= InstallationTrial(
+      store,
+      now: now,
+      requireDeviceConfirmation: requireDeviceConfirmation,
+    );
     refreshTrial();
     _trialTimer ??= Timer.periodic(
       const Duration(minutes: 1),
@@ -155,8 +167,16 @@ class SubscriptionService extends ChangeNotifier {
     notifyListeners();
   }
 
-  void observeTrialServer({required int endsAt, required int serverNow}) {
-    _installationTrial?.observeServer(endsAt: endsAt, serverNow: serverNow);
+  void observeTrialServer({
+    required int endsAt,
+    required int serverNow,
+    bool deviceConfirmed = false,
+  }) {
+    _installationTrial?.observeServer(
+      endsAt: endsAt,
+      serverNow: serverNow,
+      deviceConfirmed: deviceConfirmed,
+    );
     refreshTrial();
   }
 
@@ -476,11 +496,8 @@ class SubscriptionService extends ChangeNotifier {
       final o = offers[index];
       if (o.pricingPhases.isEmpty) continue;
       final recurring = o.pricingPhases.last;
-      // New purchases use the single annual Pro base plan. Restore remains
-      // independent so paid legacy Pro/Max entitlements are preserved.
-      if (o.basePlanId != annualBasePlanId ||
+      if (!_isPlayProPeriod(o.basePlanId, recurring.billingPeriod) ||
           o.offerId != null ||
-          recurring.billingPeriod != 'P1Y' ||
           recurring.recurrenceMode != RecurrenceMode.infiniteRecurring) {
         continue;
       }
@@ -495,7 +512,7 @@ class SubscriptionService extends ChangeNotifier {
         ),
       );
     }
-    // Return each verified annual base plan once.
+    // Return each verified base plan once.
     final byPlan = <String, SubscriptionOffer>{};
     for (final o in out) {
       final key = '${o.productId}/${o.basePlanId}';
@@ -511,14 +528,14 @@ class SubscriptionService extends ChangeNotifier {
     lastError = null;
     notifyListeners();
     try {
-      if (!offer.yearly ||
-          offer.basePlanId != annualBasePlanId ||
+      if (!_isPlayProPeriod(offer.basePlanId, offer.billingPeriod) ||
           !offerIds.contains(offer.productId)) {
-        throw StateError('annual_pro_offer_required');
+        throw StateError('pro_offer_required');
       }
       final nativeDetails = offer.details;
       if (_applePlatform) {
-        if (nativeDetails is! AppStoreProduct2Details ||
+        if (!offer.yearly ||
+            nativeDetails is! AppStoreProduct2Details ||
             nativeDetails.id != offer.productId ||
             !_annualAppleProduct(nativeDetails)) {
           throw StateError('annual_native_offer_required');
@@ -552,10 +569,11 @@ class SubscriptionService extends ChangeNotifier {
             catalog[index].basePlanId != offer.basePlanId ||
             catalog[index].offerId != null ||
             catalog[index].pricingPhases.isEmpty ||
-            (catalog[index].pricingPhases.last.billingPeriod != 'P1Y' ||
+            (catalog[index].pricingPhases.last.billingPeriod !=
+                    offer.billingPeriod ||
                 catalog[index].pricingPhases.last.recurrenceMode !=
                     RecurrenceMode.infiniteRecurring)) {
-          throw StateError('annual_native_offer_required');
+          throw StateError('native_offer_required');
         }
       }
       await refresh();
@@ -574,7 +592,7 @@ class SubscriptionService extends ChangeNotifier {
       final change = old != null
           ? ChangeSubscriptionParam(
               oldPurchaseDetails: old,
-              // Same-product benefits switch immediately; the new annual
+              // Same-product benefits switch immediately; the new
               // price is charged at the next bill, not a second charge now.
               replacementMode: old.productID == offer.productId
                   ? ReplacementMode.withoutProration
@@ -584,7 +602,7 @@ class SubscriptionService extends ChangeNotifier {
             )
           : null;
       _purchasePending = true;
-      _pendingTrial = false; // The only new offering is the paid annual base.
+      _pendingTrial = false;
       final launched = await _iap.buyNonConsumable(
         purchaseParam: GooglePlayPurchaseParam(
           productDetails: offer.details,

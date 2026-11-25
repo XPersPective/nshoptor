@@ -78,3 +78,15 @@ guaranteed by metadata.
 - The temporary preview tab was closed, viewport override reset and owned HTTP
   server stopped. No public deployment was performed by the site implementation
   task. A live Pages readback and native screen-reader review remain separate.
+
+
+## Monthly subscription content — PB-132
+
+The site and README now describe new Pro/Max offers as monthly subscriptions,
+renewing until cancelled in Google Play. No fixed price or trial duration is
+promised. Existing subscriptions keep restoration and entitlement support.
+Core PDF/CSV reports are distinguished from Pro/Max JSON backup/restore based
+on the current source. The website is published at
+https://xperspective.github.io/nshoptor/; these local content changes require a
+new Pages deployment before they appear publicly. The earlier implementation
+verification above refers to its earlier artifact, not this new content revision.

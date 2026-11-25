@@ -1,16 +1,16 @@
 // Gizli degerler KODA YAZILMAZ; derlemede --dart-define ile verilir (1.2).
 import 'dart:async';
 
-import 'package:drift/drift.dart' show QueryExecutor;
-import 'package:drift_flutter/drift_flutter.dart';
-
 import 'dart:ui' show PlatformDispatcher;
 
 import 'package:flutter/material.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/foundation.dart'
-    show kReleaseMode, defaultTargetPlatform;
+    show kReleaseMode, defaultTargetPlatform, TargetPlatform;
 
 import 'features/ads/ad_startup.dart';
+import 'features/ads/ios_tracking_permission.dart';
+import 'features/ads/recovering_banner_controller.dart';
 
 import 'package:napp_ads/napp_ads.dart';
 import 'package:napp_core/napp_core.dart';
@@ -25,17 +25,22 @@ import 'core/config/env_config.dart';
 import 'core/money/country_currency.dart';
 import 'core/money/format_locale.dart';
 import 'data/db/app_database.dart';
+import 'data/db/app_database_opener.dart';
 import 'features/ads/ad_gate.dart';
+import 'features/ai/ai_client.dart';
 import 'features/engagement/review_moments.dart';
 import 'features/assistant/assistant_bubble.dart';
-import 'features/ai/ai_client.dart';
+import 'features/lists/reminders/local_notifications_scheduler.dart';
 import 'features/subscription/subscription_purchase_adapter.dart';
 import 'features/subscription/subscription_service.dart';
 import 'features/settings/settings_repository.dart';
+import 'features/receipts/receipt_capture_flow.dart';
 import 'features/receipts/receipt_image_store.dart';
+import 'features/receipts/receipt_queue_service.dart';
 
-/// Uygulama veritabanı: tüm platformlarda app dizininde tek dosya.
-QueryExecutor openAppDatabase() => driftDatabase(name: 'nshoptor');
+export 'data/db/app_database_opener.dart' show openAppDatabase;
+export 'features/receipts/receipt_queue_service.dart'
+    show receiptQueueBackgroundMain;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -81,20 +86,11 @@ Future<void> main() async {
   // Pro/Max abonelikleri (ADR-004 §6); AI kotası sunucuda doğrulanır.
   final subscriptions = SubscriptionService(store: store)
     ..load()
-    ..initializeTrial();
+    ..initializeTrial(requireDeviceConfirmation: true);
   SubscriptionService.instance = subscriptions;
-  AiService.client = AiClient(
-    store: store,
-    baseUrl: EnvConfig.aiBaseUrl,
-    credential: () => subscriptions.credential,
-    appleTransaction: () => subscriptions.appleTransaction,
-    trialFirstOpenedAt: () => subscriptions.trialFirstOpenedAt,
-    onTrialWindow: (window) => subscriptions.observeTrialServer(
-      endsAt: window.endsAt,
-      serverNow: window.serverNow,
-    ),
-  );
-  // İlk 7 gün tam Pro, abonelik ya da o günün ödüllü reklamsız hakkı (N055/N056).
+  final ai = buildAppAiClient(store: store, subscriptions: subscriptions);
+  AiService.client = ai;
+  // İlk 24 saat tam Pro, abonelik ya da o günün ödüllü reklamsız hakkı (N055/N056).
   bool adFree() =>
       SubscriptionService.adFree(
         temporaryPro: proController.isPro,
@@ -112,7 +108,17 @@ Future<void> main() async {
   policy.setPro(adFree());
   policy.startSession(DateTime.now());
   AdPolicyPersistence.save(adsAdapter, policy);
-  final bannerController = BannerAdController(policy: policy);
+  bool foreground() =>
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
+  final hasBannerUnit = adUnitEnabled(
+    platform: defaultTargetPlatform,
+    releaseMode: kReleaseMode,
+    androidUnit: const String.fromEnvironment('ADMOB_BANNER_ANDROID'),
+    iosUnit: const String.fromEnvironment('ADMOB_BANNER_IOS'),
+  );
+  final bannerController = hasBannerUnit
+      ? RecoveringBannerController(policy: policy, isForeground: foreground)
+      : null;
   final rewardedManager = RewardedAdManager(policy: policy);
   final hasRewardedUnit = adUnitEnabled(
     platform: defaultTargetPlatform,
@@ -120,37 +126,74 @@ Future<void> main() async {
     androidUnit: const String.fromEnvironment('ADMOB_REWARDED_ANDROID'),
     iosUnit: const String.fromEnvironment('ADMOB_REWARDED_IOS'),
   );
+  final trackingPermission = defaultTargetPlatform == TargetPlatform.iOS
+      ? IosTrackingPermission(
+          isActive: foreground,
+          readStatus: () => AppTrackingTransparency.trackingAuthorizationStatus,
+          request: AppTrackingTransparency.requestTrackingAuthorization,
+        )
+      : null;
   final adStartup = AdStartup(
     isAdFree: adFree,
-    initialize: ConsentManager.initialize,
+    initialize: () async {
+      if (trackingPermission != null && !await trackingPermission.resolve()) {
+        return false;
+      }
+      return ConsentManager.initialize();
+    },
     onReady: () => policy.setSdkReady(true),
     load: () async {
       policy.setPro(adFree());
-      bannerController.load();
+      bannerController?.load();
       if (hasRewardedUnit) await rewardedManager.load();
     },
   );
   var firstFrameReady = false;
   void syncAds() {
     policy.setPro(adFree());
-    bannerController.onProChanged();
+    bannerController?.onProChanged();
     AdPolicyPersistence.save(adsAdapter, policy);
-    if (firstFrameReady) unawaited(adStartup.ensureReady());
+    if (!firstFrameReady) return;
+    // The iOS prompt must also be reachable on a fresh, ad-free trial.
+    if (trackingPermission != null) unawaited(trackingPermission.resolve());
+    unawaited(adStartup.ensureReady());
   }
+
+  WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
+  final db = AppDatabase(openAppDatabase());
+  final queueNotifications = LocalNotificationsScheduler();
+  String currentQueueLocale() =>
+      languageController.locale?.languageCode ??
+      PlatformDispatcher.instance.locale.languageCode;
+  final receiptQueue = ReceiptQueueService(
+    db: db,
+    ai: AiService.client,
+    localeCode: currentQueueLocale(),
+    notifications: queueNotifications,
+  );
+  ReceiptQueueService.activeInstance = receiptQueue;
+  onReceiptEnqueued = (_) => unawaited(receiptQueue.onEnqueued());
+  receiptQueue.attachNativeWakeupHandler();
+  languageController.addListener(() {
+    receiptQueue.localeCode = currentQueueLocale();
+  });
 
   proController.addListener(syncAds);
   subscriptions.addListener(syncAds);
   // N054: no automatic app-open or interstitial advertisement.
   AdGate.showInterstitial = null;
-  AppLifecycleListener(onResume: syncAds);
-
-  WidgetsBinding.instance.addObserver(SettingsLifecycleObserver(store));
-  final db = AppDatabase(openAppDatabase());
+  AppLifecycleListener(
+    onResume: () {
+      unawaited(ai.syncTrialAccess());
+      syncAds();
+      unawaited(receiptQueue.reconcileAndDrain());
+    },
+  );
   final receiptMedia = await ReceiptImageStore.directory();
   runApp(
     NShoptorApp(
       db: db,
-      splash: Duration.zero,
+      splash: const Duration(milliseconds: 1400),
       settingsRepository: SettingsRepository(
         db,
         NappSettingsStoreOps(store),
@@ -178,14 +221,16 @@ Future<void> main() async {
     ),
   );
   unawaited(
-    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) {
-      firstFrameReady = true;
+    WidgetsBinding.instance.waitUntilFirstFrameRasterized.then((_) async {
       proController.startListening();
       subscriptions.start();
       WidgetsBinding.instance.addObserver(
         SubscriptionResumeObserver(subscriptions),
       );
+      await ai.syncTrialAccess();
+      firstFrameReady = true;
       syncAds();
+      unawaited(receiptQueue.reconcileAndDrain());
     }),
   );
 }

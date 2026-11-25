@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -9,7 +10,18 @@ import 'package:nshoptor/core/theme/app_theme.dart';
 import 'package:nshoptor/features/splash/splash_gate.dart';
 
 void main() {
-  Widget app(Locale locale, Duration duration) => MaterialApp(
+  setUpAll(() async {
+    if (const String.fromEnvironment('CAPTURE_OUT').isEmpty) return;
+    final fonts = FontLoader('Roboto');
+    for (final name in ['segoeui.ttf', 'segoeuib.ttf']) {
+      fonts.addFont(
+        File('C:/Windows/Fonts/$name').readAsBytes().then(ByteData.sublistView),
+      );
+    }
+    await fonts.load();
+  });
+
+  Widget app(Locale locale, Duration duration, {double scale = 1.0}) => MaterialApp(
         locale: locale,
         localizationsDelegates: const [
           AppLocalizations.delegate,
@@ -18,6 +30,10 @@ void main() {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(scale)),
+          child: child!,
+        ),
         home: SplashGate(
           duration: duration,
           child: const Text('home', key: Key('home_child')),
@@ -114,5 +130,57 @@ void main() {
         .firstMatch(storyboard)!;
     int channel(int i) => (double.parse(match.group(i)!) * 255).round();
     expect([channel(1), channel(2), channel(3)], [(argb >> 16) & 0xFF, (argb >> 8) & 0xFF, argb & 0xFF]);
+  });
+
+  testWidgets('splash icon sits beside NShoptor wordmark with slogan below at 320dp & 2x scale', (tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(320, 640);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(
+      app(const Locale('tr'), const Duration(milliseconds: 300), scale: 2.0),
+    );
+    expect(find.byKey(const Key('splash_brand_row')), findsOneWidget);
+    final iconRect = tester.getRect(find.byKey(const Key('splash_icon')));
+    final wordmarkRect = tester.getRect(find.byKey(const Key('splash_wordmark')));
+    final sloganRect = tester.getRect(find.byKey(const Key('splash_slogan')));
+
+    expect((iconRect.center.dy - wordmarkRect.center.dy).abs(), lessThan(8));
+    expect(iconRect.right, lessThan(wordmarkRect.left));
+    expect(sloganRect.top, greaterThan(wordmarkRect.bottom));
+    expect(sloganRect.top, greaterThan(iconRect.bottom));
+    expect(tester.takeException(), isNull);
+
+    final captureOut = const String.fromEnvironment('CAPTURE_OUT');
+    if (captureOut.isNotEmpty) {
+      await expectLater(
+        find.byType(MaterialApp),
+        matchesGoldenFile('$captureOut/pb218_splash_tr.png'),
+      );
+    }
+
+    await tester.pump(const Duration(milliseconds: 400));
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('RTL splash keeps icon beside wordmark cleanly', (tester) async {
+    await tester.pumpWidget(
+      KeyedSubtree(
+        key: const ValueKey('rtl_splash'),
+        child: app(const Locale('ar'), const Duration(milliseconds: 300)),
+      ),
+    );
+    final iconRect = tester.getRect(find.byKey(const Key('splash_icon')));
+    final wordmarkRect = tester.getRect(find.byKey(const Key('splash_wordmark')));
+    final sloganRect = tester.getRect(find.byKey(const Key('splash_slogan')));
+
+    expect((iconRect.center.dy - wordmarkRect.center.dy).abs(), lessThan(8));
+    expect(wordmarkRect.right, lessThan(iconRect.left));
+    expect(sloganRect.top, greaterThan(wordmarkRect.bottom));
+    expect(tester.takeException(), isNull);
+
+    await tester.pump(const Duration(milliseconds: 400));
+    await tester.pumpAndSettle();
   });
 }

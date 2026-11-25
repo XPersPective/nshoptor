@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:nshoptor/core/money/format_locale.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
@@ -32,6 +34,12 @@ class _FakeOcr implements OcrTextSource {
 class _FakeReceiptImageStore extends ReceiptImageStore {
   @override
   Future<String?> keep(String sourcePath) async => null;
+
+  @override
+  Future<String?> keepCompressed(
+    String sourcePath, {
+    Future<Uint8List?> Function(String path)? compress,
+  }) async => null;
 }
 
 void main() {
@@ -337,10 +345,11 @@ void main() {
   );
 
   testWidgets(
-    'home receipt opens standalone preview; cancel and empty OCR leave no list',
+    'home receipt opens batch capture; cancel and empty pick leave no list',
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(800, 1400));
       addTearDown(() => tester.binding.setSurfaceSize(null));
+      String? pickedImage = 'fake.jpg';
       final ocr = _FakeOcr([
         'A101 MARKET',
         'TARİH: 24.10.2026',
@@ -354,7 +363,7 @@ void main() {
           HomeShell(
             db: db,
             listRepository: listRepo,
-            pickImage: () async => 'fake.jpg',
+            pickImage: () async => pickedImage,
             ocrSource: ocr,
             receiptImageStore: _FakeReceiptImageStore(),
           ),
@@ -367,15 +376,19 @@ void main() {
       }
 
       await scan();
-      expect(find.byKey(const Key('receipt_commit_button')), findsOneWidget);
+      expect(find.byKey(const Key('receipt_capture_done')), findsOneWidget);
+      expect(find.byKey(const Key('receipt_capture_continue_same')), findsOneWidget);
+      expect(find.byKey(const Key('receipt_commit_button')), findsNothing);
       expect(await db.select(db.shoppingLists).get(), isEmpty);
       expect(await db.select(db.purchaseEntries).get(), isEmpty);
+      expect(await db.select(db.receipts).get(), isEmpty);
       await tester.binding.handlePopRoute();
       await settle(tester);
-      // Unfinished receipts belong to lists (F13): outside a list nothing is
-      // offered for resuming and header-less leftovers are dropped.
-      ocr.lines.clear();
+      // Cancelling the batch sheet or camera leaves no standalone draft,
+      // resume prompt, list, or purchase entry.
+      pickedImage = null;
       await scan();
+      expect(find.byKey(const Key('receipt_capture_done')), findsNothing);
       expect(find.byKey(const Key('receipt_resume_1')), findsNothing);
       expect(find.byKey(const Key('receipt_new_capture')), findsNothing);
       expect(find.byKey(const Key('receipt_commit_button')), findsNothing);

@@ -1,0 +1,14 @@
+{
+  "protocol": 1,
+  "next": "Tick proven criteria, verify remaining behavior, then review and accept",
+  "failing": "",
+  "dirty": "docs/store/play-data-safety.md, ios/Runner/Info.plist, lib/core/l10n/app_af.arb, lib/core/l10n/app_ar.arb, lib/core/l10n/app_az.arb; inspect git status for the complete dirty set",
+  "strategy": "check",
+  "attempt": "57d9e1b4580aac39",
+  "repeats": 0,
+  "contract": "d398f744a4d8388b",
+  "usage": {
+    "checks": 2,
+    "seconds": 766.235
+  }
+}

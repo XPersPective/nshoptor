@@ -4,6 +4,7 @@ import 'package:napp_core/napp_core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/l10n/generated/app_localizations.dart';
+import 'app_icon_cache.dart';
 
 /// NAppKit core-v1.0.1 has no forced-refresh API. Expire only its freshness
 /// marker for an explicit user reload; keep the payload for offline fallback.
@@ -156,14 +157,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       height: 48,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
-                        child: app.iconUrl == null
-                            ? const Icon(Icons.apps_outlined)
-                            : Image.network(
-                                app.iconUrl!,
-                                fit: BoxFit.cover,
-                                errorBuilder: (_, _, _) =>
-                                    const Icon(Icons.apps_outlined),
-                              ),
+                        child: DiscoverAppIcon(url: app.iconUrl),
                       ),
                     ),
                     title: Text(app.nameIn(locale)),

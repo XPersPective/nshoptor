@@ -933,8 +933,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get planFreeAi => '10 permintaan AI per bulan';
 
   @override
-  String get planFreeAds =>
-      'Iklan banner kecil (tidak ada dalam 7 hari pertama Anda)';
+  String get planFreeAds => 'Iklan banner kecil';
 
   @override
   String get planCoreFeatures => 'Daftar, harga, struk, grafik pengeluaran';
@@ -1579,4 +1578,200 @@ class AppLocalizationsId extends AppLocalizations {
   String budgetAlertNear(String percent) {
     return '$percent% dari batas telah digunakan';
   }
+
+  @override
+  String get receiptReviewNowAction => 'Periksa dan perbaiki';
+
+  @override
+  String get receiptEditDetailsTitle => 'Detail struk';
+
+  @override
+  String get receiptDateTimeLabel => 'Tanggal dan waktu';
+
+  @override
+  String get receiptSaveAnywayTitle => 'Total tidak cocok';
+
+  @override
+  String receiptSaveAnywayBody(String difference) {
+    return 'Jumlah item berbeda $difference dari total struk. Tetap simpan?';
+  }
+
+  @override
+  String get receiptSaveAnywayAction => 'Tetap simpan';
+
+  @override
+  String get receiptNeedsDetails =>
+      'Tambahkan toko dan tanggal untuk menyimpan struk ini.';
+
+  @override
+  String receiptMissingFields(String fields) {
+    return 'Tidak terbaca: $fields. Anda dapat mengisinya saat meninjau.';
+  }
+
+  @override
+  String get cameraAccessDenied =>
+      'Akses kamera nonaktif. Aktifkan di Pengaturan untuk memindai struk dan label.';
+
+  @override
+  String get openSettingsAction => 'Buka Pengaturan';
+
+  @override
+  String get priceManualEntryAction => 'Masukkan harga secara manual';
+
+  @override
+  String get priceRetakeAction => 'Ambil foto lagi';
+
+  @override
+  String get paletteSage => 'Sage';
+
+  @override
+  String get paletteSlate => 'Sabak';
+
+  @override
+  String get receiptContinueSame => 'Lanjutkan dengan struk yang sama';
+
+  @override
+  String get receiptCaptureDone => 'Selesai';
+
+  @override
+  String receiptSessionPagesCount(int count) {
+    return '$count halaman berhasil diambil';
+  }
+
+  @override
+  String get receiptQueuedNotice =>
+      'Struk masuk antrean — sedang diproses di latar belakang.';
+
+  @override
+  String receiptMaxPagesNote(int max) {
+    return 'Hingga $max halaman dapat ditambahkan per struk.';
+  }
+
+  @override
+  String get shelfLabelReading => 'Membaca label harga…';
+
+  @override
+  String get shelfLabelContinueOther => 'Pindai item lain';
+
+  @override
+  String get shelfLabelQueuedNotice =>
+      'Label harga sedang dibaca di latar belakang.';
+
+  @override
+  String get listsTabReceipts => 'Struk saya';
+
+  @override
+  String listsTabReceiptsCount(int count) {
+    return 'Struk saya ($count)';
+  }
+
+  @override
+  String get receiptStatusQueued => 'Antrian';
+
+  @override
+  String get receiptStatusProcessing => 'Membaca struk…';
+
+  @override
+  String get receiptStatusReady => 'Siap';
+
+  @override
+  String get receiptStatusDuplicate => 'Kemungkinan duplikat';
+
+  @override
+  String get receiptStatusFailed => 'Gagal dibaca';
+
+  @override
+  String get receiptConvertToListAction => 'Ubah ke daftar';
+
+  @override
+  String get receiptRetryReadAction => 'Coba lagi';
+
+  @override
+  String get receiptDeleteDraftAction => 'Hapus';
+
+  @override
+  String get receiptReadyNotificationTitle => 'Struk siap';
+
+  @override
+  String get receiptReadyNotificationBody =>
+      'Struk Anda sudah siap. Pindahkan ke daftar?';
+
+  @override
+  String get receiptDuplicateTitle => 'Struk sudah ditambahkan?';
+
+  @override
+  String receiptDuplicateBody(String listTitle) {
+    return 'Daftar untuk toko dan waktu ini sudah ada ($listTitle). Tambahkan lagi?';
+  }
+
+  @override
+  String get receiptDuplicateAddAnyway => 'Tambahkan saja';
+
+  @override
+  String get receiptDuplicateDelete => 'Hapus struk';
+
+  @override
+  String get receiptEmptyTrayTitle => 'Tidak ada struk antrian';
+
+  @override
+  String get receiptEmptyTrayBody =>
+      'Struk yang dipindai diproses di latar belakang dan tetap di sini sampai Anda mengubah atau menghapusnya.';
+
+  @override
+  String receiptTrayPagesLabel(int count) {
+    return '$count halaman';
+  }
+
+  @override
+  String get receiptPhotosSectionTitle => 'Foto struk';
+
+  @override
+  String get receiptOpenPhotoHint =>
+      'Ketuk foto struk untuk melihat ukuran penuh';
+
+  @override
+  String get receiptPhotoPreparing => 'Menyiapkan foto struk…';
+
+  @override
+  String get homeProPromoTitle => 'Coba Pro gratis 24 jam';
+
+  @override
+  String get homeProPromoSubtitle =>
+      '100 pindai struk AI & bebas iklan terbuka · Tanpa kartu kredit';
+
+  @override
+  String get receiptFailureSheetTitle => 'Mengapa tidak dapat dibaca';
+
+  @override
+  String get receiptFailureMissingTop => 'Bagian atas hilang';
+
+  @override
+  String get receiptFailureMissingBottom => 'Bagian bawah hilang';
+
+  @override
+  String get receiptFailureMissingMiddle => 'Bagian tengah hilang';
+
+  @override
+  String get receiptFailureNotReceipt => 'Bukan struk';
+
+  @override
+  String get receiptFailureUnreadable => 'Tidak terbaca';
+
+  @override
+  String get receiptFailureMismatch => 'Total tidak cocok';
+
+  @override
+  String get receiptFailureRejected => 'Tidak dapat dibaca';
+
+  @override
+  String get receiptFailureService => 'Layanan tidak tersedia';
+
+  @override
+  String get receiptFailureUnknown => 'Pembacaan gagal';
+
+  @override
+  String get receiptFailureAddMoreAction => 'Foto sisa struk';
+
+  @override
+  String get receiptFailureRetakeAction => 'Ambil ulang';
 }
